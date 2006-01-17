@@ -1,0 +1,111 @@
+<project name="ApiCommonWebsite" default="Installation" basedir=".">
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="WDK-Installation">
+    <ant antfile="../WDK/build.xml" target="WDK-Installation">
+      <property name="project" value="WDK"/>
+      <property name="version" value="2.1.2"/>
+    </ant>
+  </target>  
+
+  <target name="CBIL-Installation">
+    <ant antfile="../CBIL/build.xml" target="CBIL-Installation">
+      <property name="project" value="CBIL"/>
+      <property name="version" value="2.1.2"/>
+    </ant>
+  </target>  
+
+  <target name="WDK-WebInstallation">
+    <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
+      <property name="project" value="WDK"/>
+      <property name="version" value="2.1.2"/>
+    </ant>
+  </target>  
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite-Installation" depends="WDK-Installation,
+                                                       CBIL-Installation,
+                                                       ApiCommonWebsite/Model-Installation,
+                                                       ApiCommonWebsite/View-Installation"
+  >
+
+    <ant target="defaultProjectInstall"/>
+
+  </target>
+
+
+ <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite/Model-Installation" depends="ProjectTree">
+    <ant target="defaultComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="Model"/>
+    </ant>
+  </target>
+
+  <target name="ApiCommonWebsite/View-Installation" depends="ProjectTree">
+    <ant target="defaultComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="View"/>
+    </ant>
+  </target>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooo  Web Installation  oooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
+                                                          WDK-WebInstallation,
+                                                          ApiCommonWebsite/Site-WebInstallation">
+ </target>
+
+  <target name="ApiCommonWebsite/Site-WebInstallation" depends="ProjectTree">
+    <ant target="defaultWebComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="Site"/>
+    </ant>
+  </target>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite-Release">
+    
+    <ant target="defaultProjectRelease">
+      <property name="cvsroot" value=":ext:cvs.sanger.ac.uk:/cvsroot/GUS"/>
+    </ant>
+  </target>  
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  Distributable  ooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite-Distributable" depends="ProjectTree">
+
+    <copy todir="${targetDir}">
+      <fileset dir="${projectsDir}" >
+        <exclude name="**/CVS/*" />
+      </fileset>
+    </copy>  
+  </target>  
+
+
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  ProjectTree  ooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ProjectTree" if="${checkout}">
+    <ant target="projectCheckOut"/>
+  </target>  
+
+</project>
+
+
