@@ -30,9 +30,7 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-Installation" depends="WDK-Installation,
-                                                       CBIL-Installation,
-                                                       ApiCommonWebsite/Model-Installation,
-                                                       ApiCommonWebsite/View-Installation"
+                                                       CBIL-Installation"
   >
 
     <ant target="defaultProjectInstall"/>
