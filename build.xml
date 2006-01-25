@@ -59,8 +59,7 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
-                                                          WDK-WebInstallation,
-                                                          ApiCommonWebsite/Site-WebInstallation">
+                                                          WDK-WebInstallation">
  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation" depends="ProjectTree">
