@@ -30,7 +30,8 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-Installation" depends="WDK-Installation,
-                                                       CBIL-Installation"
+                                                       CBIL-Installation,
+                                                       ApiCommonWebsite/View-Installation"
   >
 
     <ant target="defaultProjectInstall"/>
@@ -59,7 +60,8 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
-                                                          WDK-WebInstallation">
+                                                          WDK-WebInstallation,
+                                                          ApiCommonWebsite/Site-WebInstallation">
  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation" depends="ProjectTree">
