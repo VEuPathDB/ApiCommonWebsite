@@ -26,7 +26,6 @@ sub go {
             . "Browser information: $browser" . "\n\n"
             . "$message" . "\n";
 
-      $to = 'ygan@pcbi.upenn.edu';
       system("echo '$body' | mail -s '$subject' $to");
 
       if ($?) {
