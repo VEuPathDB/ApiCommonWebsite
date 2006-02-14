@@ -25,23 +25,31 @@
     </ant>
   </target>  
 
-  <target name="WDK-Checkout"> 
+  <target name="WDK-Checkout" unless="WDK.present"> 
     <ant target="defaultProjectCheckout">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK/${trunkflag}"/>
-      <property name="username" value="jerric"/>
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
       <property name="project" value="WDK"/>
-      <property name="version" value="${version}"/>
+      <property name="version" value="WDK_version_1-10"/>
     </ant>
   </target>  
 
-  <target name="CBIL-Checkout"> 
-    <ant target="defaultProjectCheckout">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL/${trunkflag}"/>
-      <property name="username" value="jerric"/>
+  <target name="CBIL-Checkout" unless="CBIL.present"> 
+    <ant target="defaultProjectCheckout"> 
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
       <property name="project" value="CBIL"/>
       <property name="version" value="${version}"/>
     </ant>
   </target>  
+  
+  <target name="detect.dependecies">
+    <available file="../WDK"
+               type="dir" 
+               property="WDK.present" />
+
+    <available file="../CBIL"
+               type="dir" 
+               property="CBIL.present" />
+  </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
@@ -128,7 +136,10 @@
   <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
-  <target name="ApiCommonWebsite-Checkout" depends="WDK-Checkout,CBIL-Checkout" />
+  <target name="ApiCommonWebsite-Checkout" depends="detect.dependecies" >
+    <antcall target="WDK-Checkout" />
+    <antcall target="CBIL-Checkout" />
+  </target>
 
 </project>
 
