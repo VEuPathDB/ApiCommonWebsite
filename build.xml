@@ -39,6 +39,18 @@
       <property name="project" value="CBIL"/>
       <property name="version" value="${version}"/>
     </ant>
+  </target>    
+
+  <target name="WDK-Update"> 
+    <ant target="defaultProjectUpdate">
+      <property name="project" value="WDK"/>
+    </ant>
+  </target>   
+
+  <target name="CBIL-Update"> 
+    <ant target="defaultProjectUpdate">
+      <property name="project" value="CBIL"/>
+    </ant>
   </target>  
   
   <target name="detect.dependecies">
@@ -137,8 +149,20 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-Checkout" depends="detect.dependecies" >
+    <!-- checkout its dependencies -->
     <antcall target="WDK-Checkout" />
     <antcall target="CBIL-Checkout" />
+  </target>
+  
+  
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo    Update    oooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite-Update" >
+    <!-- update its dependencies -->
+    <antcall target="WDK-Update" />
+    <antcall target="CBIL-Update" />
   </target>
 
 </project>
