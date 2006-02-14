@@ -25,6 +25,24 @@
     </ant>
   </target>  
 
+  <target name="WDK-Checkout"> 
+    <ant target="defaultProjectCheckout">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK/${trunkflag}"/>
+      <property name="username" value="jerric"/>
+      <property name="project" value="WDK"/>
+      <property name="version" value="${version}"/>
+    </ant>
+  </target>  
+
+  <target name="CBIL-Checkout"> 
+    <ant target="defaultProjectCheckout">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL/${trunkflag}"/>
+      <property name="username" value="jerric"/>
+      <property name="project" value="CBIL"/>
+      <property name="version" value="${version}"/>
+    </ant>
+  </target>  
+
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
@@ -104,6 +122,13 @@
   <target name="ProjectTree" if="${checkout}">
     <ant target="projectCheckOut"/>
   </target>  
+  
+  
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite-Checkout" depends="WDK-Checkout,CBIL-Checkout" />
 
 </project>
 
