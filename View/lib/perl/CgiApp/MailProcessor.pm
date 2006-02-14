@@ -8,7 +8,9 @@ sub go {
     my $Self = shift;
     my $cgi = CGI->new();
 
-    my $to = join("", @{ $cgi->{'to'} });
+    my $to1 = join("", @{ $cgi->{'to1'} });
+    my $to2 = join("", @{ $cgi->{'to2'} });
+    my $to = "$to1$to2";
     my $subject = join("", @{ $cgi->{'subject'} });
     my $replyTo = join("", @{ $cgi->{'replyTo'} }) || 'anonymous';
     my $privacy = join("", @{ $cgi->{'privacy'} });
