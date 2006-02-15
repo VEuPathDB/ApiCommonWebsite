@@ -21,6 +21,7 @@ sub go {
     my $website = join("", @{ $cgi->{'website'} });
     my $version = join("", @{ $cgi->{'version'} });
     my $browser = join("", @{ $cgi->{'browser'} });
+    my $referer = join("", @{ $cgi->{'referer'} });
     my $message = join("", @{ $cgi->{'message'} });
 
     my $cfmMsg;
@@ -31,7 +32,8 @@ sub go {
     if ($to) {
       my $metaInfo = "Privacy preference: $privacy" . "\n"
 	. "Website and version: $website $version" . "\n"
-	. "Browser information: $browser";
+	. "Browser information: $browser" . "\n"
+	. "Referer page: $referer";
 
       $cfmMsg = sendMail($to, $subject, $replyTo, $metaInfo, $message);
 
