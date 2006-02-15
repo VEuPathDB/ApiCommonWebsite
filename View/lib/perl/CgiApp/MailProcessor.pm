@@ -3,6 +3,10 @@ package ApiCommonWebsite::View::CgiApp::MailProcessor;
 
 use strict;
 use CGI;
+use Mail::Send;
+use Mail::Sendmail;
+
+my $MAIL_PROCESSOR_EMAIL = 'apache@pcbi.upenn.edu';
 
 sub go {
     my $Self = shift;
@@ -19,24 +23,18 @@ sub go {
     my $browser = join("", @{ $cgi->{'browser'} });
     my $message = join("", @{ $cgi->{'message'} });
 
-    my $cfmMsg = "Sorry your message was not sent";
-    my $body;
+    my $cfmMsg;
+
+    # testing mode
+    # $to = 'ygan@pcbi.upenn.edu';
+
     if ($to) {
-      $body = "On behalf of: $replyTo" . "\n"
-            . "Privacy preference: $privacy" . "\n"
-            . "Website and version: $website $version" . "\n"
-            . "Browser information: $browser" . "\n\n"
-            . "$message" . "\n";
+      my $metaInfo = "Privacy preference: $privacy" . "\n"
+	. "Website and version: $website $version" . "\n"
+	. "Browser information: $browser";
 
-      system("echo '$body' | mail -s '$subject' $to");
+      $cfmMsg = sendMail($to, $subject, $replyTo, $metaInfo, $message);
 
-      if ($?) {
-	$cfmMsg .= ": $!"
-                 . "\n\nPlease use your browser's back button to go back and try again.";
-      } else {
-	$cfmMsg = "Thank you! Your message has been sent."
-                . "\n\nPlease use you browser's back button to go back to the website.";
-      }
     } else {
       $cfmMsg .= ": no recipient is specified."
                . "\n\nThis indicate a problem with the mail form."
@@ -45,9 +43,64 @@ sub go {
 
     print $cgi->header('text/plain');
     print "$cfmMsg";
+}
 
-    if(0) {
-      print "\n\nDEBUG: mailed to $to with the following message:\n$body";
+sub sendMail { return &_cpanMailSendmail(@_); }
+
+sub _cpanMailSendmail {
+    my ($to, $subject, $replyTo, $metaInfo, $message) = @_;
+
+    my $fromName = $replyTo; $fromName =~ s/\@/\\\@/;
+
+    my %mail = (From    => "$fromName <$MAIL_PROCESSOR_EMAIL>",
+		To      => $to,
+		Subject => $subject,
+		'Reply-To'    => $replyTo,
+		Message => "$metaInfo\n\n$message");
+
+    my $success = sendmail(%mail);
+
+    if (!$success) {
+      return "Sorry your message was not sent: " . $Mail::Sendmail::error
+	. "\n\nPlease use your browser's back button to go back and try again.";
+    } else {
+      return "Thank you! Your message has been sent."
+	. "\n\nPlease use you browser's back button to go back to the website.";
+    }
+}
+
+sub _cpanMailSend {
+    my ($to, $subject, $replyTo, $metaInfo, $message) = @_;
+
+    my $msg = new Mail::Send (Subject=>$subject,
+			      To=>$to);
+    # my $fh = $msg->open;               # some default mailer
+    my $fh = $msg->open('sendmail'); # explicit
+    print $fh "replyTo: $replyTo\n" . $metaInfo . "\n\n" . $message;
+    $fh->close;         # complete the message and send it
+
+    if ($?) {
+      return "Sorry your message was not sent: $!"
+	. "\n\nPlease use your browser's back button to go back and try again.";
+    } else {
+      return "Thank you! Your message has been sent."
+	. "\n\nPlease use you browser's back button to go back to the website.";
+    }
+}
+
+sub _unixMail {
+    my ($to, $subject, $replyTo, $metaInfo, $message) = @_;
+    my $body = "Reply-To: $replyTo" . "\n"
+      . $metaInfo . "\n\n" . "$message" . "\n";
+
+    system("echo '$body' | mail -s '$subject' $to");
+
+    if ($?) {
+      return "Sorry your message was not sent: $!"
+	. "\n\nPlease use your browser's back button to go back and try again.";
+    } else {
+      return "Thank you! Your message has been sent."
+	. "\n\nPlease use you browser's back button to go back to the website.";
     }
 }
 
