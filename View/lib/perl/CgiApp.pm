@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::CgiApp;
+package ApiCommonWebsite::View::CgiApp;
 
 =pod
 
