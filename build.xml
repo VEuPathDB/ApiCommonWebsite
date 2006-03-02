@@ -84,10 +84,10 @@
 
  <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
 
-  <target name="ApiCommonWebsite/Model-Installation">
+  <target name="ApiCommonWebsite/Site-Installation">
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="Model"/>
+      <property name="component" value="Site"/>
     </ant>
   </target>
 
