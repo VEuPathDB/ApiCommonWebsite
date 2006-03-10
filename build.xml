@@ -74,6 +74,7 @@
 
   <target name="ApiCommonWebsite-Installation" depends="WDK-Installation,
                                                        CBIL-Installation,
+                                                       ApiCommonWebsite/Model-Installation,
                                                        ApiCommonWebsite/View-Installation"
   >
 
@@ -83,6 +84,13 @@
 
 
  <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite/Model-Installation">
+    <ant target="defaultComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="Model"/>
+    </ant>
+  </target>
 
   <target name="ApiCommonWebsite/Site-Installation">
     <ant target="defaultComponentInstall">
