@@ -7,7 +7,7 @@
     <xmlAnswer>
       <xsl:for-each select="resourcesPipeline/resource">
         <record>
-          <xsl:attribute name="id">
+          <xsl:attribute name="recordID">
             <xsl:value-of select="@resource"/>
           </xsl:attribute>
           <xsl:element name="attribute">
@@ -26,6 +26,9 @@
             <xsl:attribute name="name">category</xsl:attribute>
             <xsl:value-of select="@category"/>
           </xsl:element>
+          <xsl:if test="count(description)=0">
+             <attribute name="description"> </attribute>
+          </xsl:if>
           <xsl:for-each select="description">
              <xsl:element name="attribute">
                <xsl:attribute name="name">description</xsl:attribute>
