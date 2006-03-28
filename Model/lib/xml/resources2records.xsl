@@ -7,7 +7,7 @@
     <xmlAnswer>
       <xsl:for-each select="resourcesPipeline/resource">
         <record>
-          <xsl:attribute name="recordID">
+          <xsl:attribute name="id">
             <xsl:value-of select="@resource"/>
           </xsl:attribute>
           <xsl:element name="attribute">
