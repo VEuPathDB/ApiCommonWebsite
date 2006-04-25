@@ -23,6 +23,10 @@
             <xsl:value-of select="@publicUrl"/>
           </xsl:element>
           <xsl:element name="attribute">
+            <xsl:attribute name="name">organisms</xsl:attribute>
+            <xsl:value-of select="@organisms"/>
+          </xsl:element>
+          <xsl:element name="attribute">
             <xsl:attribute name="name">category</xsl:attribute>
             <xsl:value-of select="@category"/>
           </xsl:element>
@@ -45,7 +49,6 @@
                 </xsl:element>
               </xsl:element>
             </xsl:for-each>
-
           </xsl:element>
  
         </record>
