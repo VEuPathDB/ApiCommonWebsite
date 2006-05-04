@@ -5,10 +5,10 @@
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 
 <!-- get wdkQuestion; setup requestScope HashMap to collect help info for footer -->  
-<c:set value="${sessionScope.wdkQuestion}" var="wdkQuestion"/>
+<c:set value="${requestScope.wdkQuestion}" var="wdkQuestion"/>
 <jsp:useBean scope="request" id="helps" class="java.util.HashMap"/>
 
-<c:set value="${sessionScope.questionForm}" var="qForm"/>
+<c:set value="${requestScope.questionForm}" var="qForm"/>
 
 <!-- display page header with wdkQuestion displayName as banner -->
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
@@ -121,6 +121,5 @@
   <td valign=top class=dottedLeftBorder></td> 
 </tr>
 </table> 
-
 
 <site:footer/>
