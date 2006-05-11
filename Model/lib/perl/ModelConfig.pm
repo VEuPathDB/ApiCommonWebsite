@@ -38,6 +38,11 @@ sub _jdbc2dbi {
 # convert Oracle thin jdbc driver syntax to dbi syntax
 # jdbc:oracle:thin:@redux.rcc.uga.edu:1521:cryptoB
 # dbi:Oracle:host=redux.rcc.uga.edu;sid=cryptob
+
+# valid strings NOT yet handled:
+# jdbc:oracle:oci:@toxoprod
+# jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS_LIST=(LOAD_BALANCE=ON)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=cbildb01.pcbi.upenn.edu)(PORT=1521))(ADDRESS=(PROTOCOL=TCP)(HOST=cbildb03.pcbi.upenn.edu)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=cbilbld.db.cbil.upenn.edu)(FAILOVER_MODE=(TYPE=SELECT)(METHOD=BASIC))))
+
     my ($jdbc) = @_;
     my ($host, $port, $sid) = $jdbc =~ m/thin:[^\@]*\@([^:]+):([^:]+):([^:]+)/;
     return "dbi:Oracle:host=$host;sid=$sid;port=$port";
