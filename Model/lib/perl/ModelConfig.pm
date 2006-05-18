@@ -36,11 +36,22 @@ sub getWebServiceUrl      { $_[0]->{webServiceUrl} }
 
 sub _jdbc2dbi {
 # convert Oracle thin jdbc driver syntax to dbi syntax
-# jdbc:oracle:thin:@redux.rcc.uga.edu:1521:cryptoB
-# dbi:Oracle:host=redux.rcc.uga.edu;sid=cryptob
+
     my ($jdbc) = @_;
-    my ($host, $port, $sid) = $jdbc =~ m/thin:[^\@]*\@([^:]+):([^:]+):([^:]+)/;
-    return "dbi:Oracle:host=$host;sid=$sid;port=$port";
+    
+    if ($jdbc =~ m/thin:[^@]*@([^:]+):([^:]+):([^:]+)/) {
+        # jdbc:oracle:thin:@redux.rcc.uga.edu:1521:cryptoB
+        my ($host, $port, $sid) = $jdbc =~ m/thin:[^@]*@([^:]+):([^:]+):([^:]+)/;
+        return "dbi:Oracle:host=$host;sid=$sid;port=$port";
+    } elsif ($jdbc =~ m/@\(DESCRIPTION/i) {    
+        # jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=redux.rcc.uga.edu)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cryptoB.rcc.uga.edu)))
+        my ($tns) = $jdbc =~ m/[^@]+@(.+)/;
+        return "dbi:Oracle:$tns";
+    } elsif ($jdbc =~ m/:oci:@/) {
+       # jdbc:oracle:oci:@toxoprod
+       my ($sid) = $jdbc =~ m/:oci:@(.+)/;
+        return "dbi:Oracle:$sid";
+    }
 }
 
 1;
