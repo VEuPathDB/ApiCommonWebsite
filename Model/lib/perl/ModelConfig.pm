@@ -51,6 +51,11 @@ sub _jdbc2dbi {
        # jdbc:oracle:oci:@toxoprod
        my ($sid) = $jdbc =~ m/:oci:@(.+)/;
         return "dbi:Oracle:$sid";
+    } else {
+        # last ditch effort.
+        # jdbc:oracle:thin:@kiwi.rcr.uga.edu/cryptoB.kiwi.rcr.uga.edu
+        $jdbc =~ m/thin:[^@]*@(.+)/;
+        return "dbi:Oracle:$1";
     }
 }
 
