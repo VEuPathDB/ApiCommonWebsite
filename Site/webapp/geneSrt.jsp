@@ -84,6 +84,7 @@ Regions:
   <li><i>relative to sequence stop</i>:  to retrieve, eg, the last 10 amino acids of a protein, use "begin at <i>stop</i> +/- -9  end at <i>stop</i> +/- 0".
   <li><i>relative to sequence start and stop</i>:  to retrieve, eg, a CDS with the  first and last 10 basepairs excised, use: "begin at <i>start</i> +/- 10 end at <i>stop</i> +/- -10".
    </ul>
+    <img src="<c:url value="/images/genemodel.gif" />" border="1"/>
   </td>
   <td valign="top" class="dottedLeftBorder"></td> 
 </tr>
