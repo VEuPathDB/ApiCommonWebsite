@@ -47,10 +47,27 @@
                   <xsl:attribute name="name">pmid</xsl:attribute>
                   <xsl:value-of select="@pmid"/>
                 </xsl:element>
+                <xsl:if test="@pmdetails">
+                <xsl:element name="attribute">
+                  <xsl:attribute name="name">pmdetails</xsl:attribute>
+                  <xsl:value-of select="@pmdetails"/>
+                </xsl:element>
+                </xsl:if>
+                <xsl:if test="@pmauthors">
+                <xsl:element name="attribute">
+                  <xsl:attribute name="name">pmauthors</xsl:attribute>
+                  <xsl:value-of select="@pmauthors"/>
+                </xsl:element>
+                </xsl:if>
+                <xsl:if test="@pmtitle">
+                <xsl:element name="attribute">
+                  <xsl:attribute name="name">pmtitle</xsl:attribute>
+                  <xsl:value-of select="@pmtitle"/>
+                </xsl:element>
+                </xsl:if>
               </xsl:element>
             </xsl:for-each>
           </xsl:element>
- 
         </record>
       </xsl:for-each>
     </xmlAnswer>
