@@ -16,13 +16,13 @@ sub go {
     my $to2 = join("", @{ $cgi->{'to2'} });
     my $to = "$to1$to2";
     my $subject = join("", @{ $cgi->{'subject'} });
-    my $replyTo = join("", @{ $cgi->{'replyTo'} }) || 'anonymous';
-    my $privacy = join("", @{ $cgi->{'privacy'} });
-    my $website = join("", @{ $cgi->{'website'} });
-    my $version = join("", @{ $cgi->{'version'} });
-    my $browser = join("", @{ $cgi->{'browser'} });
-    my $referer = join("", @{ $cgi->{'referer'} });
-    my $message = join("", @{ $cgi->{'message'} });
+    my $replyTo = join("", @{ $cgi->{'replyTo'} or ['anonymous']});
+    my $privacy = join("", @{ $cgi->{'privacy'} or [] });
+    my $website = join("", @{ $cgi->{'website'} or [$ENV{SERVER_NAME}] });
+    my $version = join("", @{ $cgi->{'version'} or [] });
+    my $browser = join("", @{ $cgi->{'browser'} or [$ENV{HTTP_USER_AGENT}] });
+    my $referer = join("", @{ $cgi->{'referer'} or [$ENV{HTTP_REFERER}] });
+    my $message = join("", @{ $cgi->{'message'} or [] });
 
     my $cfmMsg;
 
@@ -52,9 +52,10 @@ sub sendMail { return &_cpanMailSendmail(@_); }
 sub _cpanMailSendmail {
     my ($to, $subject, $replyTo, $metaInfo, $message) = @_;
 
-    my $fromName = $replyTo; $fromName =~ s/\@/\\\@/;
+    my $fromName = ($replyTo eq 'anonymous') ? 
+        $MAIL_PROCESSOR_EMAIL : $replyTo;
 
-    my %mail = (From    => "$fromName <$MAIL_PROCESSOR_EMAIL>",
+    my %mail = (From    => "$replyTo <$fromName>",
 		To      => $to,
 		Subject => $subject,
 		'Reply-To'    => $replyTo,
