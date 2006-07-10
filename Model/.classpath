@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/java/jstl.jar"/>
+	<classpathentry kind="lib" path="lib/java/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="lib/java/servlet-api-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/java/struts-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/java/commons-digester-1.5.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WDK Controller"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WDK Model"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
