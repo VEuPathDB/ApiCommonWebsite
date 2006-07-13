@@ -22,25 +22,42 @@ sub go {
     my $version = join("", @{ $cgi->{'version'} or [] });
     my $browser = join("", @{ $cgi->{'browser'} or [$ENV{HTTP_USER_AGENT}] });
     my $referer = join("", @{ $cgi->{'referer'} or [$ENV{HTTP_REFERER}] });
+    my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or $replyTo });
+
     my $message = join("", @{ $cgi->{'message'} or [] });
 
     my $cfmMsg;
 
     # testing mode
-    # $to = 'ygan@pcbi.upenn.edu';
+    #$to = 'ygan@pcbi.upenn.edu';
 
-    if ($to) {
-      my $metaInfo = "Privacy preference: $privacy" . "\n"
-	. "Website and version: $website $version" . "\n"
+    my $short_desc = $subject;
+    $subject = "Bugzilla [$subject]";
+    if ($to && $subject) {
+      # for auto submission to bugzilla
+      my $metaInfo = ""
+        . '@product      = ' . "SupportRequests" . "\n"
+        . '@component    = ' . "$website" . "\n"
+        . '@version      = ' . "$version" . "\n"
+        . '@short_desc   = ' . "$short_desc" . "\n"
+        . '@priority     = ' . "? " . "\n"
+        . '@bug_severity = ' . "feature" . "\n"
+        . '@rep_platform = ' . "all" . "\n"
+        . '@op_sys       = ' . "all" . "\n"
+        . "\n"
+        . "ReplyTo: $replyTo" . "\n"
+        . "Privacy preference: $privacy" . "\n"
 	. "Browser information: $browser" . "\n"
 	. "Referer page: $referer";
 
-      $cfmMsg = sendMail($to, $subject, $replyTo, $metaInfo, $message);
+      $cfmMsg = sendMail($reporterEmail, $to, $subject, $replyTo, $metaInfo, $message);
 
-    } else {
+    } elsif  ($subject) {
       $cfmMsg .= ": no recipient is specified."
                . "\n\nThis indicate a problem with the mail form."
                . " Please contact the webmaster to report the problem.";
+    } else {
+      $cfmMsg .= " Please provide a subject line for your support request."
     }
 
     print $cgi->header('text/plain');
@@ -50,12 +67,12 @@ sub go {
 sub sendMail { return &_cpanMailSendmail(@_); }
 
 sub _cpanMailSendmail {
-    my ($to, $subject, $replyTo, $metaInfo, $message) = @_;
+    my ($from, $to, $subject, $replyTo, $metaInfo, $message) = @_;
 
-    my $fromName = ($replyTo eq 'anonymous') ? 
-        $MAIL_PROCESSOR_EMAIL : $replyTo;
+    my $fromName = ($from eq 'anonymous') ? 
+        $MAIL_PROCESSOR_EMAIL : $from;
 
-    my %mail = (From    => "$replyTo <$fromName>",
+    my %mail = (From    => "$from <$fromName>",
 		To      => $to,
 		Subject => $subject,
 		'Reply-To'    => $replyTo,
@@ -73,7 +90,7 @@ sub _cpanMailSendmail {
 }
 
 sub _cpanMailSend {
-    my ($to, $subject, $replyTo, $metaInfo, $message) = @_;
+    my ($from, $to, $subject, $replyTo, $metaInfo, $message) = @_;
 
     my $msg = new Mail::Send (Subject=>$subject,
 			      To=>$to);
@@ -92,7 +109,7 @@ sub _cpanMailSend {
 }
 
 sub _unixMail {
-    my ($to, $subject, $replyTo, $metaInfo, $message) = @_;
+    my ($from, $to, $subject, $replyTo, $metaInfo, $message) = @_;
     my $body = "Reply-To: $replyTo" . "\n"
       . $metaInfo . "\n\n" . "$message" . "\n";
 
