@@ -22,7 +22,7 @@ sub go {
     my $version = join("", @{ $cgi->{'version'} or [] });
     my $browser = join("", @{ $cgi->{'browser'} or [$ENV{HTTP_USER_AGENT}] });
     my $referer = join("", @{ $cgi->{'referer'} or [$ENV{HTTP_REFERER}] });
-    my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or $replyTo });
+    my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'supportform@apidb.org' });
 
     my $message = join("", @{ $cgi->{'message'} or [] });
 
