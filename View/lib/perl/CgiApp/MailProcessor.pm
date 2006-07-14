@@ -15,6 +15,9 @@ sub go {
     my $to1 = join("", @{ $cgi->{'to1'} });
     my $to2 = join("", @{ $cgi->{'to2'} });
     my $to = "$to1$to2";
+    my $cc1 = join("", @{ $cgi->{'cc1'} });
+    my $cc2 = join("", @{ $cgi->{'cc2'} });
+    my $cc = "$cc1$cc2";
     my $subject = join("", @{ $cgi->{'subject'} });
     my $replyTo = join("", @{ $cgi->{'replyTo'} or ['anonymous']});
     my $privacy = join("", @{ $cgi->{'privacy'} or [] });
@@ -26,16 +29,28 @@ sub go {
 
     my $message = join("", @{ $cgi->{'message'} or [] });
 
-    my $cfmMsg;
-
     # testing mode
-    #$to = 'ygan@pcbi.upenn.edu';
+    # $cc = 'ygan@pcbi.upenn.edu';
+    # $to = 'ygan@pcbi.upenn.edu';
+
+    my $metaInfo = ""
+        . "ReplyTo: $replyTo" . "\n"
+        . "Privacy preference: $privacy" . "\n"
+	. "Browser information: $browser" . "\n"
+	. "Referer page: $referer";
+
+    my $cfmMsg;
+    if($cc) {
+      $cfmMsg = sendMail($replyTo, $cc, $subject, $replyTo, $metaInfo, $message);
+    } else {
+      $cfmMsg = "warning: did not cc support because no support email is provided\n";
+    }
 
     my $short_desc = $subject;
     $subject = "Bugzilla [$subject]";
     if ($to && $subject) {
       # for auto submission to bugzilla
-      my $metaInfo = ""
+      $metaInfo = ""
         . '@product      = ' . "SupportRequests" . "\n"
         . '@component    = ' . "$website" . "\n"
         . '@version      = ' . "$version" . "\n"
@@ -44,13 +59,8 @@ sub go {
         . '@bug_severity = ' . "feature" . "\n"
         . '@rep_platform = ' . "all" . "\n"
         . '@op_sys       = ' . "all" . "\n"
-        . "\n"
-        . "ReplyTo: $replyTo" . "\n"
-        . "Privacy preference: $privacy" . "\n"
-	. "Browser information: $browser" . "\n"
-	. "Referer page: $referer";
-
-      $cfmMsg = sendMail($reporterEmail, $to, $subject, $replyTo, $metaInfo, $message);
+        . "\n" . $metaInfo;
+      $cfmMsg .= "\n\n" . sendMail($reporterEmail, $to, $subject, $replyTo, $metaInfo, $message);
 
     } elsif  ($subject) {
       $cfmMsg .= ": no recipient is specified."
@@ -60,8 +70,10 @@ sub go {
       $cfmMsg .= " Please provide a subject line for your support request."
     }
 
-    print $cgi->header('text/plain');
-    print "$cfmMsg";
+    $cfmMsg .= "\n\nPlease use you browser's back button to go back to the website.";
+
+    print $cgi->header('text/html');
+    print "<pre>$cfmMsg</pre>";
 }
 
 sub sendMail { return &_cpanMailSendmail(@_); }
@@ -84,8 +96,7 @@ sub _cpanMailSendmail {
       return "Sorry your message was not sent: " . $Mail::Sendmail::error
 	. "\n\nPlease use your browser's back button to go back and try again.";
     } else {
-      return "Thank you! Your message has been sent."
-	. "\n\nPlease use you browser's back button to go back to the website.";
+      return "Thank you! Your message has been sent  to $to."
     }
 }
 
