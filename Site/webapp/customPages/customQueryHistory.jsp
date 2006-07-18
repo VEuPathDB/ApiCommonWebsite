@@ -122,7 +122,6 @@
               <html:text property="booleanExpression" value=""/>
                 <font size="-1">[eg: 1 or ((4 and 3) not 2)]</font><br>
               <html:hidden property="historySectionId" value="${rec}"/>
-              <html:reset property="reset" value="Clear"/>
               <html:submit property="submit" value="Get Combined Result"/>
             </html:form>
           </td>
