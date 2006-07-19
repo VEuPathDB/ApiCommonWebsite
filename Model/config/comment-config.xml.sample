@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<commentConfig login="login_to_comment_database"
+        password="password"
+        connectionUrl="comment_database_connection_string"
+        platformClass="org.gusdb.wdk.model.implementation.Oracle"
+        initialSize="3"
+        maxActive="50"
+        maxIdle="3"
+        minIdle="3"
+        maxWait="120"
+        commentSchema="comment_schema_name"
+        projectDbLink="dblink_to_gus_schema" />
