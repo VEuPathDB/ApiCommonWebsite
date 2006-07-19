@@ -19,10 +19,10 @@ import org.gusdb.wdk.model.WdkModelException;
 public class CommentTest {
 
     private static String[] keys = { "config", "email", "headline", "content",
-            "projectid", "stableid", "commenttarget", "conceptual",
-            "locations", "reversed" };
+            "projectname", "projectversion", "stableid", "commenttarget",
+            "conceptual", "locations", "reversed" };
     private static boolean[] required = { true, true, false, true, true, true,
-            true, false, false, false };
+            true, true, false, false, false };
 
     private static Map<String, Boolean> knownParams = new HashMap<String, Boolean>();
 
@@ -45,7 +45,8 @@ public class CommentTest {
         String email = params.get("email");
         String headline = params.get("headline");
         String content = params.get("content");
-        String projectId = params.get("projectid");
+        String projectName = params.get("projectname");
+        String projectVersion = params.get("projectversion");
         String stableId = params.get("stableid");
         String commentTarget = params.get("commenttarget");
         String conceptual = params.get("conceptual");
@@ -63,7 +64,8 @@ public class CommentTest {
         Comment comment = new Comment(email);
         if (headline != null) comment.setHeadline(headline);
         if (content != null) comment.setContent(content);
-        if (projectId != null) comment.setProjectId(projectId);
+        if (projectName != null) comment.setProjectName(projectName);
+        if (projectVersion != null) comment.setProjectVersion(projectVersion);
         if (stableId != null) comment.setStableId(stableId);
         if (commentTarget != null) comment.setCommentTarget(commentTarget);
         if (conceptual != null)
@@ -127,7 +129,9 @@ public class CommentTest {
                 + "\t-email <user_email>\n"
                 + "\t[-headline <headline_text, quoted>]\n"
                 + "\t-content <content_text, quoted>\n"
-                + "\t-projectId <site_id>\n" + "\t-stableId <source_id>\n"
+                + "\t-projectName <site_name>\n"
+                + "\t-projectVersion <site_version>\n"
+                + "\t-stableId <source_id>\n"
                 + "\t-commentTarget <gene, protein, or genome>\n"
                 + "\t[-conceptual <true/false>]"
                 + "\t[-locations <location pairs, eg. 12-17,245-567 >]"

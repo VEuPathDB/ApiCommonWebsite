@@ -29,9 +29,13 @@ public class Comment {
      */
     private boolean conceptual;
     /**
-     * the site id where the comment is made, eg. "plasmodb 5.0"
+     * the site name where the comment is made, eg. "PlasmoDB"
      */
-    private String projectId;
+    private String projectName;
+    /**
+     * the version of the site where the comment is added, eg. '5.0'
+     */
+    private String projectVersion;
     private String headline;
     private String content;
     /**
@@ -55,7 +59,8 @@ public class Comment {
         conceptual = false;
         commentDate = new Date();
         stableId = " ";
-        projectId = " ";
+        projectName = " ";
+        projectVersion = " ";
         headline = " ";
         content = " ";
         reviewStatus = " ";
@@ -136,19 +141,36 @@ public class Comment {
         this.headline = qualify(headline);
     }
 
+    
     /**
-     * @return Returns the projectId.
+     * @return Returns the projectName.
      */
-    public String getProjectId() {
-        return projectId;
+    public String getProjectName() {
+        return projectName;
     }
 
+    
     /**
-     * @param projectId
-     *            The projectId to set.
+     * @param projectName The projectName to set.
      */
-    public void setProjectId(String projectId) {
-        this.projectId = qualify(projectId);
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    
+    /**
+     * @return Returns the projectVersion.
+     */
+    public String getProjectVersion() {
+        return projectVersion;
+    }
+
+    
+    /**
+     * @param projectVersion The projectVersion to set.
+     */
+    public void setProjectVersion(String projectVersion) {
+        this.projectVersion = projectVersion;
     }
 
     /**
@@ -249,7 +271,8 @@ public class Comment {
         sb.append("CommentDate:\t" + commentDate+ "\n");
         sb.append("StableId:\t" + stableId+ "\n");
         sb.append("IsConceptual:\t" + conceptual+ "\n");
-        sb.append("ProjectId:\t" + projectId+ "\n");
+        sb.append("ProjectName:\t" + projectName+ "\n");
+        sb.append("ProjectVersion:\t" + projectVersion+ "\n");
         sb.append("Headline:\t" + headline+ "\n");
         sb.append("ReviewStatus:\t" + reviewStatus+ "\n");
         sb.append("Locations:\t");

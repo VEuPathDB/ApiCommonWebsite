@@ -125,14 +125,17 @@ public class CommentFactory {
             StringBuffer sql = new StringBuffer();
             sql.append("INSERT INTO " + schema + ".comments (comment_id, email");
             sql.append(", comment_date, comment_target_id, stable_id, ");
-            sql.append("conceptual, project_id, headline, content) VALUES (");
-            sql.append(commentId + ", '" + comment.getEmail() + "', {ts '");
+            sql.append("conceptual, project_name, project_version, headline, ");
+            sql.append("content) VALUES (" + commentId + ", '" );
+            sql.append(comment.getEmail() + "', {ts '");
             sql.append(format.format(commentDate) + "'}, '");
             sql.append(comment.getCommentTarget() + "', '");
             sql.append(comment.getStableId() + "', ");
             sql.append((comment.isConceptual()? "1, '" : "0, '"));
-            sql.append(comment.getProjectId() + "', '" + comment.getHeadline());
-            sql.append("', '" + comment.getContent() + "')");
+            sql.append(comment.getProjectName() + "', '");
+            sql.append(comment.getProjectVersion() + "', '");
+            sql.append(comment.getHeadline() + "', '");
+            sql.append(comment.getContent() + "')");
             SqlUtils.execute(dataSource, sql.toString());
 
             // update the fields of comment
@@ -289,7 +292,8 @@ public class CommentFactory {
             comment.setConceptual(rs.getBoolean("conceptual"));
             comment.setContent(rs.getString("content"));
             comment.setHeadline(rs.getString("headline"));
-            comment.setProjectId(rs.getString("project_id"));
+            comment.setProjectName(rs.getString("project_name"));
+            comment.setProjectVersion(rs.getString("project_version"));
             comment.setReviewStatus(rs.getString("review_status_id"));
             comment.setStableId(rs.getString("stable_id"));
 

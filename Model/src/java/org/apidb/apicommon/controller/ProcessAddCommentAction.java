@@ -78,13 +78,15 @@ public class ProcessAddCommentAction extends Action {
         String locations = request.getParameter("locations");
 
         String email = user.getEmail().trim().toLowerCase();
-        String projectId = wdkModel.getName();
+        String projectName = wdkModel.getName();
+        String projectVersion = wdkModel.getVersion();
 
         // create a comment instance
         Comment comment = new Comment(email);
         comment.setCommentTarget(commentTarget);
         comment.setStableId(stableId);
-        comment.setProjectId(projectId);
+        comment.setProjectName(projectName);
+        comment.setProjectVersion(projectVersion);
         comment.setHeadline(headline);
         comment.setContent(content);
         comment.setLocations(reversed, locations);
