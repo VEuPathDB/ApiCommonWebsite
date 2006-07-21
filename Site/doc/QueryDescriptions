@@ -50,7 +50,7 @@ Find a gene by ToxoDB Gene ID. The search is case insensitive. Wild card searche
 
 
 !Gene Type
-Find genes by type.
+Find genes by type (eg, protein coding, tRNA, etc).
 
 Gene type assignments are based on the gene annotations from TIGR.
 
@@ -76,17 +76,20 @@ Find genes whose protein product is within a molecular weight range.
 
 Molecular weights are machine calculated from the raw translation and does not take into account any protein or residue modifications. For translations containing ambiguous amino acid codes (B, Z, X) we calculate the upper bound of the molecular weight. _fix for ~ToxoDB and ~PlasmoDB_
 
-!Ortholog Phylogenetic Profile
+!Orthology Phylogenetic Profile
 (_steve to rewrite_)
-Find genes that have a specified phylogenetic pattern (orthology) is a series of, based on ortholog groups. The phylogenetic profile (orthology-based) of a P. falicparum gene is a series of 65 "present" or "absent" calls, reflecting the presence or absence of a putative ortholog in the 65 genomes.
+Find genes that have a specified orthology-based phylogenetic pattern. The phylogenetic profile of a gene is a series of 65 "present" or "absent" calls, reflecting the presence or absence of a putative ortholog in 65 genomes.
 
-An OrthoMCL analysis of the proteins of 65 species, including Plasmodia, placed each protein in an ortholog group. From a Plasmodium gene perspective, the other species that are included in that gene's ortholog group can be thought of as a phyletic profile.
+An <a href="http://orthomcl.cbil.upenn.edu/cgi-bin/OrthoMclWeb.cgi">OrthoMCL</a> analysis of the proteins of 65 species, including Plasmodia, placed each protein in an ortholog group. From a Plasmodium gene perspective, the other species that are included in that gene's ortholog group can be thought of as a phylogenetic profile.
+
+ An OrthoMCL analysis of the proteins of 65 species, including Plasmodia, placed each protein in an ortholog group. From a Plasmodium gene perspective, the other species that are included in that gene's ortholog group can be thought of as a phyletic profile.
 
 Use this query to define a pattern across ortholog groups, and find genes that match that pattern. The pattern is a specification, for each species, of "include", "exclude", or "don't care." Click on the radio button next to a species to toggle through the three states. (A means "include", an means "exclude" and means "don't care".)
 
 For example, to find genes that are present in Apicomplexa but not in humans, click on Apicomplexa until you see a and click on Homo sapiens until you see an .
 
 Note that this query can take some time because of the large number of combinations of possible presence/absence calls (265 possible combinations, of which 2487 are associated with a total of 30739 genes).
+
 
 !Protein Motif Pattern
 Find genes whose protein product contains a motif pattern that you specify.
@@ -114,13 +117,22 @@ Metabolic Pathway Reconstruction for T. gondii is available on the KEGG Pathway 
 
 !Plasmodium species
 
+Find genes from one or more Plasmodium species.
+
 !PDB 3D Structures
 
-!Proximity to a Centromere (P.f. only)
+Find genes with a 3D protein structure in the <a href="http://www.rcsb.org/pdb">Protein Data Bank (PDB)</a>. Specify one or more organisms whose genes to retrieve; one or more clades of organisms whose PDB records should be considered; and a p-value exponent cutoff.
+
+The mapping from <i>Plasmodium</i> genes is through BLAST of the protein product to the sequence associated by PDB to their structure chains.  
+
+!Centromere Proximity (P.f. only)
+Find <i>P. falciparum</i> genes within a given distance from an annotated centromere location.
 
 !Exported Protein
+Find genes that are predicted by ExportPred to produce an exported protein.
 
-!Genbank, RefSeq or Swissprot ID
+!Presence in Genbank, RefSeq or Swissprot
+Find genes whose predicted protein product has an amino-acid sequence identical to that of a record from GenBank, RefSeq or Swiss-Prot.
 
 !Y2H Protein Interaction (P.f. only)
 
