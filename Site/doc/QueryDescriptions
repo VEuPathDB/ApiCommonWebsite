@@ -1,0 +1,153 @@
+!! Issues
+* What should we call "product"
+* get rid of 'All available queries' (including all pulldown list of queries) on home page
+* use 'Gene Type' instead of 'RNA Type' (as on ~PlasmODB 4.4)
+* include Methods in Data Sources page; rename to 'Materials and Methods' or 'Data and Methods'?
+* include Links to Data Sources on the Query page
+* include References in the Methods declared in the analysis pipeline
+* molecular weight Method is missing
+
+!! Descriptions
+common prefix for Title of the Query page
+
+ * Search Genes -
+ * Gene Search -
+ * Find Genes by
+
+
+!Text Search
+
+Find genes whose "Gene Product" or "Annotated Notes" fields contain your text.  The search is case insensitive, for example both 'ACTIN' and 'actin' will work.  The fields must contain your text exactly.  Use '*' as a wildcard.  The wildcard can span several words. For example: "red*ase" will find "reductase" and "predicted lactate dehydrogenase".
+
+For Plasmo: (On the Gene pages, the Notes are found in the Annotation section.)<br>
+For Toxo: (On Gene pages, Notes are found in Toxoplasma Genome Sequencing Project Annotation)
+
+!Pfam
+
+Find genes containing a given Pfam domain, family or repeat.  Type a Pfam name, accession or description. Use the Pfam browser to search Pfam if you are not sure.  The list below shows the descriptions mapped to PlasmoDB genes.
+
+!EC Number
+
+Find <i>P. falciparum </i> genes that have been assigned a particular Enzyme Commission (EC) number.  Use '-' in place of numbers to denote partial EC Numbers, for example, '2.7.7.-'.
+
+
+E.C. numbers assignments for <i>P. falciparum</i> are from Andy Berry, Matt Berriman (Sanger Institute) and Hagai Ginsburg (Hebrew University).
+
+http://www.chem.qmul.ac.uk/iubmb/enzyme/
+
+!GO Term
+
+Find genes by Gene Ontology (GO) term for molecular function, biological process or subcellular localization.  The search finds genes with the GO term you specify and genes with terms that are specializations of your term (is-a).  For a list of GO terms, we suggest using the AmiGO browser.  For GO IDs, include the GO prefix as in "GO:0003824."
+
+!BLAST
+Find genes that have BLAST similarity to your input sequence. The search uses NCBI BLAST. _Please limit your input sequence to length 4000 (this will be corrected in an upcoming release)_
+
+
+!Gene ID
+Find a gene by ToxoDB Gene ID. The search is case insensitive. Wild card searches, e.g. ' 128.m* ', are permitted.
+
+-----
+
+
+!Gene Type
+Find genes by type.
+
+Gene type assignments are based on the gene annotations from TIGR.
+
+!Signal Peptide
+Find genes that are predicted to have a signal peptide.
+
+The predictions are made with the SignalP program.
+http://www.cbs.dtu.dk/services/SignalP/
+
+
+!Exon Count
+Find genes having at least the given number of exons.
+
+Exon numbers are based on annotated gene models from TIGR.
+
+!Transmembrane Domain Count
+Find genes with at least a given number of transmembrane domains.
+
+Transmembrane domains were predicted using TMHMM.
+
+!Molecular Weight
+Find genes whose protein product is within a molecular weight range.
+
+Molecular weights are machine calculated from the raw translation and does not take into account any protein or residue modifications. For translations containing ambiguous amino acid codes (B, Z, X) we calculate the upper bound of the molecular weight. _fix for ~ToxoDB and ~PlasmoDB_
+
+!Ortholog Phylogenetic Profile
+(_steve to rewrite_)
+Find genes that have a specified phylogenetic pattern (orthology) is a series of, based on ortholog groups. The phylogenetic profile (orthology-based) of a P. falicparum gene is a series of 65 "present" or "absent" calls, reflecting the presence or absence of a putative ortholog in the 65 genomes.
+
+An OrthoMCL analysis of the proteins of 65 species, including Plasmodia, placed each protein in an ortholog group. From a Plasmodium gene perspective, the other species that are included in that gene's ortholog group can be thought of as a phyletic profile.
+
+Use this query to define a pattern across ortholog groups, and find genes that match that pattern. The pattern is a specification, for each species, of "include", "exclude", or "don't care." Click on the radio button next to a species to toggle through the three states. (A means "include", an means "exclude" and means "don't care".)
+
+For example, to find genes that are present in Apicomplexa but not in humans, click on Apicomplexa until you see a and click on Homo sapiens until you see an .
+
+Note that this query can take some time because of the large number of combinations of possible presence/absence calls (265 possible combinations, of which 2487 are associated with a total of 30739 genes).
+
+!Protein Motif Pattern
+Find genes whose protein product contains a motif pattern that you specify.
+
+Specify the pattern with a (Perl style) "regular expression". (Regular expressions are more powerful than PROSITE patterns.) For a description of how to create regular expressions, please see the Regular Expression Tutorial.
+
+The following codes can be used to represent classes of amino acids.
+(_include table_)
+
+
+-----
+
+!Isoelectric Point
+Find genes whose protein product has an isoelectric point within the given range.
+
+!Location or Genomic Region
+
+
+!Metabolic Pathway
+Find genes involved in specific metabolic pathway.
+
+Metabolic Pathway Reconstruction for T. gondii is available on the KEGG Pathway site.
+
+----
+
+!Plasmodium species
+
+!PDB 3D Structures
+
+!Proximity to a Centromere (P.f. only)
+
+!Exported Protein
+
+!Genbank, RefSeq or Swissprot ID
+
+!Y2H Protein Interaction (P.f. only)
+
+!Predicted Functional Interaction (P.f. only)
+
+!Subcellular targeting
+
+!Protein Accession
+
+!Protein Secondary Structure
+
+!Predicted 3D Structure (P.f. only)
+
+!Homolog Phyletic Profile (P.f. only)
+
+!Orthologs and Paralogs
+
+!Expression Timing (P.f only)
+
+!Expression Percentile (P.f. only)
+
+!Protein Expression (P.f only)
+
+!Expression Percentile (P.b. only)
+
+!Protein Expression (P.b. only)
+
+!MR4 Reagents Availability(P.f only)
+
+-----
