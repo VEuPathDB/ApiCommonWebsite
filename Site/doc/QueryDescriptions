@@ -22,25 +22,52 @@ Find genes whose "Gene Product" or "Annotated Notes" fields contain your text.  
 For Plasmo: (On the Gene pages, the Notes are found in the Annotation section.)<br>
 For Toxo: (On Gene pages, Notes are found in Toxoplasma Genome Sequencing Project Annotation)
 
+Organism: Select one or more than one organism.
+Keyword (Text?): The text you enter can consist of one word or several words. These words will be used to search for a match in the "Gene Product" or the "Annotated Notes" fields, with the words in that same exact order. You can use uppercase or lowercase, it does not matter. You can use "*" as a wildcard; "*" represents any sequence of letters. For example, "red*ase" will find "reductase" and "predcited lactate dehydrogenase".  
+
+
 !Pfam
 
 Find genes containing a given Pfam domain, family or repeat.  Type a Pfam name, accession or description. Use the Pfam browser to search Pfam if you are not sure.  The list below shows the descriptions mapped to PlasmoDB genes.
 
+Organism: Select one or more than one organism.
+Pfam Name, Pfam Accession Number or Pfam Description: you can select a Pfam family by typing its name, its accession number or its description. For more information on Pfam Domains visit LINK.
+
+
 !EC Number
 
-Find <i>P. falciparum </i> genes that have been assigned a particular Enzyme Commission (EC) number.  Use '-' in place of numbers to denote partial EC Numbers, for example, '2.7.7.-'.
+Find <i>P. falciparum </i> genes that have been assigned a particular Enzyme Commission (EC) number.http://www.chem.qmul.ac.uk/iubmb/enzyme/.  Use '-' in place of numbers to denote partial EC Numbers, for example, '2.7.7.-'.
 
 
 E.C. numbers assignments for <i>P. falciparum</i> are from Andy Berry, Matt Berriman (Sanger Institute) and Hagai Ginsburg (Hebrew University).
 
-http://www.chem.qmul.ac.uk/iubmb/enzyme/
+
+Organism: Select one or more than one organism.
+EC Number: Enzyme Commission numbers describe enzymes hierarchically by the class of reactions they catalize. For example: 2.7.7.6, 3.5.1.31.  Use '-' in place of numbers to denote partial EC Numbers, for example, '2.7.7.-'. http://www.chem.qmul.ac.uk/iubmb/enzyme/
+
 
 !GO Term
 
 Find genes by Gene Ontology (GO) term for molecular function, biological process or subcellular localization.  The search finds genes with the GO term you specify and genes with terms that are specializations of your term (is-a).  For a list of GO terms, we suggest using the AmiGO browser.  For GO IDs, include the GO prefix as in "GO:0003824."
 
+Organism: Select one or more than one organism.
+GO Term or GO ID: Enter a GO ID (e.g., "GO:0003824") or GO Term (e.g."catalytic activity"). The character "*" can be used as a wildcard
+in a GO Term. (not for the ID?)
+
+
 !BLAST
 Find genes that have BLAST similarity to your input sequence. The search uses NCBI BLAST. _Please limit your input sequence to length 4000 (this will be corrected in an upcoming release)_
+
+BLAST target database type: indicates the type of sequences in the target database: CDS, Protein or translated CDS. The selection of the program (blastn, blastp, tblastn, etc) depends on this parameter and the input sequence type.
+
+BLAST target databse organism: select one organism to define the traget database.
+BLAST input sequence: you can input a fasta format, the define will be ignored; please be aware that a this point sequences longer than 4000 characteres do not do well in our system. This will be fixed in the next release.
+BLAST input sequence type: DNA or Protein.
+Expectation value (E): as in WUBLAST.
+Maximum descriptions (V):as in WUBLAST.
+Maximum alignments (B):as in WUBLAST.
+
+
 
 
 !Gene ID
