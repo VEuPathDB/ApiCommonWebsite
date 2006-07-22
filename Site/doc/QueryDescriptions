@@ -162,31 +162,181 @@ Find genes that are predicted by ExportPred to produce an exported protein.
 Find genes whose predicted protein product has an amino-acid sequence identical to that of a record from GenBank, RefSeq or Swiss-Prot.
 
 !Y2H Protein Interaction (P.f. only)
+Find genes that interact with a given gene, as determined by yeast two-hybrid experiments.  <br><br>
+        <i>Times reproduced</i> refers to the number of independent yeast two-hybrid screens in which a given interaction was found. Interactions found in two or more yeast two-hybrid screens were independently reproduced, and are thus more likely to be true yeast two-hybrid positives. 
+<br><br>
+<i>Times observed</i> refers to the total number of times a given interaction was identified in all yeast two-hybrid screens.  An  interaction can be identified multiple times in the same screen for several reasons: (1) The original yeast cell containing the pair of  interacting proteins divided before being plated on selective media; (2) The same prey plasmid was present in the library multiple times  and thus gave rise to multiple positive colonies; or (3) The prey  gene was present in the library as multiple independent, overlapping  fragments, all of which interact with a given bait.  Only (3) provides independent confirmation of a putative interaction.
+<br><br>
+Protein interactions were experimentally determined using the yeast two-hybrid system as described in LaCount DJ, Vignali M, Chettier R, Phansalkar A, Bell R, Hesselberth JR, Schoenfeld LW, Ota I, Sahasrabudhe S, Kurschner C, Fields S, Hughes RE.  A protein interaction network of the malaria parasite Plasmodium falciparum. Nature. 2005 438:103-7.
 
 !Predicted Functional Interaction (P.f. only)
+Find genes of <i>Plasmodium falciparum</i> (strain HB3) identified by the <a href="http://www.cbil.upenn.edu/plasmoMAP">plasmoMAP</a> project to have a functional interaction with the given gene. 
 
-!Subcellular targeting
+<br><br>Input a gene ID and a minimum interaction likelihood score.  Scores range from 2 to 9435, and increasing scores indicate higher confidence.  Generally, a likelihood score of 10 or more indicates a high-confidence interaction.
+
+<br><br>There are 388,969 total predicted protein pairs in the result set, with likelihood scores ranging from 2 to 9435. Below a score of 2, the number of false positives exceed the number of true positives. Most protein-protein interaction pairs (~79%) have a likelihood score of below 10, while about 20% of the pairs have a likelihood score between 10 and 9435 (only 251 pairs, or about 0.06% of the total, have a likelihood score above 100).
+
+<br><br>Emperical observations of the results show that while many pairs with very low likelihood scores (say between 2-4) are biologically valid, the predicted interactions are likely to be highly accurate as the scores approach a value of 10. In the published manuscript, a score of 14 was used to isolate a high-confidence subset of interactions, where the number of true positives was about 10 times greater than the number of false positives.
+
+
+<br><br><a href="http://www.genome.org/cgi/content/abstract/gr.4573206v1">Date, S.V. & Stoeckert, C.J., Jr. Computational modeling of the <i>Plasmodium falciparum</i> interactome reveals protein function on a genome-wide scale. <i>Genome Research</i>, April 2006, doi:10.1101/gr.4573206</a>
+
+!Subcellular Localization
+               Find <i>P. falciparum</i> genes targeted to the apicoplast or the RBC membrane. Sequence motifs identified by
+               Marti and co-workers (Cowman lab),  and Hiller and co-workers
+               (Haldar lab), as being associated with  proteins targeted to
+               the human erythrocyte, are referred to as the  'Pexel' and 'HT'
+               motifs respectively.<br><br>
+               <b>References:</b><br>
+               <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=12560551&dopt=Citation">Foth
+               BJ, Ralph SA, Tonkin CJ, Struck NS, Fraunholz M, Roos DS,
+               Cowman AF, McFadden GI<br>Dissecting apicoplast targeting in
+               the malaria parasite <i>Plasmodium falciparum</i><br>
+               <i>Science</i> 2003 Jan 31; <b>299</b>(5607):705-8</a>
+               <br><br>
+                <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=15591203&query_hl=1">Hiller
+               NL, Bhattacharjee S, van Ooij C, Liolios K, Harrison T,
+               Lopez-Estrano C, Haldar K<br>
+               A host-targeting signal in virulence proteins reveals a
+               secretome in malarial infection<br>
+               <i>Science</i> 2004 Dec 10; <b>306</b>(5703):1897-8</a><br><br>
+               <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=15591202&query_hl=2">Marti
+               M, Good RT, Rug M, Knuepfer E, Cowman AF<br>
+               Targeting malaria virulence and remodeling proteins to the host
+               erythrocyte<br>
+               <i>Science</i> 2004 Dec 10; <b>306</b>(5703):1930-3</a>
 
 !Protein Accession
+              Find genes mapped to a protein accession number.  The result set will include all genes of the specified species whose predicted protein sequence exactly matches records with the given accession number in
+              <a href="http://www.ncbi.nlm.nih.gov/Genbank">GenBank</a>,
+              <a href="http://www.ncbi.nlm.nih.gov/RefSeq">RefSeq</a>, or
+              <a href="http://www.ebi.ac.uk/swissprot">Swiss-Prot</a>
 
 !Protein Secondary Structure
+              Find genes whose proteins are predicted to have the given secondary-structure content by the PSIPRED program. The percent composition is computed by counting the amino acids in which one of the three calls is given the highest confidence, and dividing by the length of the protein.  For example the percent helix is the number of amino acids in which helix has the highest confidence, divided by the length of the protein.
+            
+                                                    
+              </P><PRE><B>References:</B> <BR> Jones DT. (1999) Protein secondary structure prediction<BR> based on position-specific scoring matrices<BR> <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=10493868">J Mol Biol. 1999 Sep 17;292(2):195-202</a></PRE>
 
 !Predicted 3D Structure (P.f. only)
+             Find <i>P. falciparum</i> genes that have 
+              computationally predicted 3D structure models.  
+              <br><br>
+              The models were generated
+              computationally                                    
+              by Dinesh Gupta at the <a href="http://icgeb.res.in/">ICGEB</a>.
+              They are seeded with experimentally-determined
+              structures of similar proteins (from <a href="http://www.rcsb.org">PDB</a>).
+ 
+!Homolog Phylogenetic Profile (P.f. only)
+Find <i>P. falciparum</i> genes that have a homology-based phylogenetic profile similar to a specified gene.
+          <br><br>
 
-!Homolog Phyletic Profile (P.f. only)
+The phylogenetic profile (homology-based) of a <i>P. falicparum</i> gene is a series of 164 "present" or "absent" calls reflecting the presence or absence of a putative homolog in 164 completely sequenced genomes. Similarity between profiles is a good indicator of functional linkages between proteins (see Pellegrini M, Marcotte EM, Thompson MJ, Eisenberg D, Yeates TO. Assigning protein functions by comparative genome analysis: protein phylogenetic profiles. Proc. Natl. Acad. Sci. USA 1999 96, 4285-4288). Data on ORFs with the most similar profiles to a given query ORF is also available, and can be used to establish the function of uncharacterized ORFs, based on the similarity of their profiles (see Date SV & Marcotte EM. Discovery of uncharacterized cellular systems by genome-wide analysis of functional linkages. Nature Biotechnology 2003 21:1055-1062) with ORFs of known function.
 
 !Orthologs and Paralogs
+Find genes that have been identified by the <a href="http://orthomcl.cbil.upenn.edu/cgi-bin/OrthoMclWeb.cgi">OrthoMCL</a> project as orthologous (or paralagous) to a given gene.
 
 !Expression Timing (P.f only)
+              Find genes with peaks or troughs occuring within specified intervals during the intraerythrocytic infection cycle.  Five intraerythrocytic time courses may be
+              queried in turn (and results may be combined using the
+              <a href="showQueryHistory.do">query history</a>).  The five time
+              courses are those provided by the
+              <a href="http://www.scripps.edu/cb/winzeler/index.html">Winzeler
+              Lab</a> and the <a href="http://derisilab.ucsf.edu/">DeRisi
+              Lab</a> -- the first two time courses rely on photolithographic
+              (Affy) arrays and employ sorbitol and temperature
+              synchronizations, while the other three time courses rely on a
+              glass slide array and analyze HB3, 3D7, and Dd2 parasites.
 
 !Expression Percentile (P.f. only)
+        Find genes expressed in 
+        early ring, late ring, early trophozoite, late trophozoite, early
+        schizont, late schizont, merozoite, sporozoite, or gametocyte.  
+        <br><br>
+        
+        The data is from a total of 17 microarray experiments (1) performed using an
+        Affymetrix short oligonucleotide platform.  Cultures were synchronized
+        using two independent methods, 5% D-sorbitol and temperature cycling,
+        for all developmental stages except Gametocyte and Sporozoite.  This
+        platform contains oligos (25-mers) derived from the predicted coding
+        regions of the entire <I>P. falciparum</I> genome.
+        <P>Expression values for each probe set were obtained by the MOID
+        algorithm (2). Queries can be performed to retrieve only those genes
+        in at least the Xth percentile level, where X can be from 95 to 5.  In
+        this way it is possible to select only the most highly expressed
+        genes, to any desired level above the 5th percentile.  Genes are
+        returned in decreasing order of their intensity.
+        <p>However, please note that, regardless of the percentile expression
+        level selected, only genes that are above background and whose
+        observed expression level would not be expected by chance (MOID
+        expression level >10 and logP < -0.5) are included and will be
+        reported.  This means that genes that have only a single probe on the
+        array will not be reported as their logP values will always be too
+        high to satisfy the query.
+        <p><b>References:</b><br> (1) Discovery of Gene Function by Expression
+        Profiling of the Malaria Parasite Life Cycle.  Karine G. Le Roch,
+        Yingyao Zhou, Peter L. Blair, Muni Grainger, J. Kathleen Moch, J.
+        David Haynes, Patricia De la Vega, Anthony A. Holder, Serge Batalov,
+        Daniel J. Carucci, and Elizabeth A. Winzeler Published online July 31,
+        2003; 10.1126/science.1087025 (Science Express Research Articles)
+        <br>(2) Zhou Y, Abagyan R. Match-Only Integral Distribution (MOID)
+        Algorithm for high-density oligonucleotide array analysis. BMC
+        Bioinformatics. 2002;3(1):3.
 
 !Protein Expression (P.f only)
+                Find <I>P. falciparum</I> genes that have evidence of
+                expression in a specific lifecycle stage
+                or within a subcellular fraction of the parasite. Select the experimental condition which have MS/MS peptide
+                evidence and only genes with proteomics evidence will be
+                returned,  i.e. genes whose proteins have  minimum number of 1
+                observed MS spectrum or identified peptides. Specify a
+                higher number for these values to select proteins
+                that will be more abundant in the examined experimental
+                condition/developmental stage/subcellular fraction. These values are not strictly quantitative
+                as the detection of proteins in MS/MS analyses is dependent on
+                solubility of the proteins and other factors. Specify the amount of amino acid sequence (sequence
+                coverage) in % that was identified in the respective assay.
+                If this parameter is set to 0% by default, only
+                genes with at least one spectrum for the specified stage will
+                be returned. 
+                <br><br>
+                <UL type='a'>Current data sets stored in PlasmoDB:
+                <LI> Florens 2002: Merozoites, Trophozoites, Sporozoites,
+                Gametocytes
+                <LI> Florens 2004: Membranes_iRBC, CompleteTrophozoiteSchizont
+                </UL>
+                Selecting "any" will result in returning genes that appear in
+                any of the available datasets.<BR>
+                Please refer to the original papers for more information
+                on the experiments and experimental conditions. 
+                <PRE> <B>References:</B><BR>
+                a) Florens, L., Washburn, M.P., Raine, J.D., Anthony, R.M., Grainger, M., Haynes, J.D.,<BR>
+                Moch, J.K., Muster, N., Sacci, J.B., Tabb, D.L., Witney, A.A., Wolters, D., Wu, Y.,<BR>
+                Gardner, M.J., Holder, A.A., Sinden, R.E., Yates, J.R., Carucci, D.J. (2002)<BR>
+                A proteomic view of the <I>Plasmodium falciparum</I> life cycle. Nature 419: 520-526.<BR><BR>
+                c) Lasonder, E., Ishihama, Y., Andersen, J.S., Vermunt, A.M., Pain, A., Sauerwein, R.W.,<BR>
+                Eling, W.M., Hall, N., Waters, A.P., Stunnenberg, H.G., Mann M. (2002) Analysis of the<BR>
+                Plasmodium falciparum proteome by high-accuracy mass spectrometry. Nature. 419:537-542.<BR><BR>
+                b) Florens, L., Liu X., Wang, Y., Yang, S., Schwartz, O., Peglar, M., Carucci, D.J.,Yates,<BR>
+                J.R., Wu, Y.  Proteomics Approach Reveals Novel Proteins on the Surface of Malaria-Infected <BR>
+                Erythrocytes (in press) <BR> </PRE>
 
 !Expression Percentile (P.b. only)
+        Find <i>P. berghei</i> genes expressed in mature schizont, ring, young trophozoite, young schizont, mature 
+        schizont, merozoite, sporozoite, or gametocyte.  
 
 !Protein Expression (P.b. only)
+            Find <i>P. berghei</i> genes with the specified protein expression across different life cycle stages.  For each life cycle stage, choose "observed", "not observed" or "do not care".   Genes are returned that have a matching expression pattern. 
 
 !MR4 Reagents Availability(P.f only)
+                Find <i>Plasmodium falciparum</i> genes that have
+                <a href="http://www.malaria.atcc.org/">MR4</a> reagents.
+                <br><br>
+                The reagents are mapped to genes using gene names and 
+                GenBank/EMBL sequence similarity. An MR4
+                reagent may be linked to multiple genes when it is not clear
+                which is the correct gene or if the reagent might be considered
+                to function with either gene. 
 
 -----
