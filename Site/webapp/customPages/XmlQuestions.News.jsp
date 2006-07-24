@@ -12,12 +12,20 @@
 
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 
+<c:set var="rssUrl" value="showXmlDataContent.do?name=XmlQuestions.NewsRss"/>
+<c:set var="headElement">
+<link rel="alternate" type="application/rss+xml" 
+  title="RSS Feed for ${wdkModel.displayName}" 
+  href="${rssUrl}" />
+</c:set>
+
 <site:header title="${wdkModel.displayName} : News"
                  banner="${banner}"
                  parentDivision="${wdkModel.displayName}"
                  parentUrl="/home.jsp"
                  divisionName="News"
-                 division="news"/>
+                 division="news"
+                 headElement="${headElement}" />
 
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 
@@ -40,15 +48,31 @@
   <c:set var="date" value="${record.attributesMap['date']}"/>
   <c:set var="item" value="${record.attributesMap['item']}"/>
 
-  <a name="newsItem${i}"/>
-  <a name="${tag}"/>
-  <table border="0" cellpadding="2" cellspacing="0" width="100%">
-
-  <c:if test="${i > 1}"><tr><td colspan="2"><hr></td></tr></c:if>
-  <tr class="rowLight"><td>
-    <b>${headline}</b> (${date})<br><br>${item}</td></tr></table>
-  <c:set var="i" value="${i+1}"/>
+  <c:if test="${param.tag == null or param.tag eq tag or param.tag == ''}">
+    <a name="newsItem${i}"/>
+    <a name="${tag}"/>
+    <table border="0" cellpadding="2" cellspacing="0" width="100%">
+  
+    <c:if test="${i > 1}"><tr><td colspan="2"><hr></td></tr></c:if>
+    <tr class="rowLight"><td>
+      <b>${headline}</b> (${date})<br><br>${item}</td></tr></table>
+    <c:set var="i" value="${i+1}"/>
+  </c:if>
 </c:forEach>
+
+<p>
+
+<table width='100%'>
+<tr><td>
+<c:if test="${param.tag != null and param.tag != ''}">
+ <a href="showXmlDataContent.do?name=XmlQuestions.News" id='allnews'>All ${xmlAnswer.question.displayName}</a>
+</c:if>
+</td><td align="right">
+<a href="${rssUrl}">
+  <img src="/images/feed-icon16x16.png" border='0'>
+<font size='-2' color='black'>RSS</font></a>
+</td></tr>
+</table>
 
 <!-- main body end -->
 
