@@ -76,6 +76,7 @@ public class ProcessAddCommentAction extends Action {
                 ? true
                 : false;
         String locations = request.getParameter("locations");
+        String coordinateType = request.getParameter("coordinateType");
 
         String email = user.getEmail().trim().toLowerCase();
         String projectName = wdkModel.getName();
@@ -89,7 +90,7 @@ public class ProcessAddCommentAction extends Action {
         comment.setProjectVersion(projectVersion);
         comment.setHeadline(headline);
         comment.setContent(content);
-        comment.setLocations(reversed, locations);
+        comment.setLocations(reversed, locations, coordinateType);
 
         // add the comment
         factory.addComment(comment);

@@ -26,9 +26,7 @@ CREATE TABLE comments.comment_target
 (
   comment_target_id varchar(20) NOT NULL,
   comment_target_name varchar(200) NOT NULL,
-  allow_location NUMBER(1),
-  allow_reverse NUMBER(1),
-  location_description varchar(4000),
+  require_location NUMBER(1),
   CONSTRAINT comment_target_key PRIMARY KEY (comment_target_id)
 );
 
@@ -90,6 +88,7 @@ CREATE TABLE comments.locations
   location_id NUMBER(10) NOT NULL,
   location_start NUMBER(12),
   location_end NUMBER(12),
+  coordinate_type VARCHAR(20),
   is_reverse NUMBER(1),
   CONSTRAINT locations_pkey PRIMARY KEY (comment_id, location_id),
   CONSTRAINT locations_comment_id_fkey FOREIGN KEY (comment_id)
@@ -134,14 +133,14 @@ GRANT select on comments.external_databases_pkseq to GUS_R;
 
 
 
-insert into comments.comment_target values ('gene', 'Gene Feature', 1, 1, 'the location for the gene feature comment is optional. You can have multiple locations, eg "1-35, 130-255"');
+insert into comments.comment_target values ('gene', 'Gene Feature', 0);
 
-insert into comments.comment_target values ('protein', 'Protein Feature', 1, 0, 'the location for protein feature comment is optional. You can have multiple locations, eg "1-35, 130-255"');
+insert into comments.comment_target values ('genome', 'Genome Sequence', 1);
 
-insert into comments.comment_target values ('genome', 'Genome Sequence', 1, 1, 'the location for the genome sequence comment is optional. You can have multiple locations, eg "1-35, 130-255"');
+insert into comments.review_status values ('unknown', 'the comment has not been reviewed (by default)');
 
-insert into comments.review_status values ('unknown', 'the review status is unknown (by default)');
+insert into comments.review_status values ('not_spam', 'the comment has been reviewed internally, and determined not a spam');
 
-insert into comments.review_status values ('accepted', 'the comment has been reviewed and accepted');
+insert into comments.review_status values ('spam', 'the comment has been reviewed internally, and determined as a spam');
 
-insert into comments.review_status values ('rejected', 'the comment has been reviewed and rejected');
+insert into comments.review_status values ('adopted', 'the comment has been adopted by the sequencing center');

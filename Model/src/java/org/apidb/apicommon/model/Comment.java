@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.gusdb.wdk.model.WdkModelException;
+
 /**
  * @author xingao
  * 
@@ -44,16 +46,16 @@ public class Comment {
      * value of a controlled vocabulary.
      */
     private String reviewStatus;
-    
+
     private List<Location> locations;
-    
+
     private List<ExternalDatabase> externalDbs;
 
     public Comment(String email) {
         this.email = email;
         locations = new ArrayList<Location>();
         externalDbs = new ArrayList<ExternalDatabase>();
-        
+
         // setup default values
         commentTarget = " ";
         conceptual = false;
@@ -141,7 +143,6 @@ public class Comment {
         this.headline = qualify(headline);
     }
 
-    
     /**
      * @return Returns the projectName.
      */
@@ -149,15 +150,14 @@ public class Comment {
         return projectName;
     }
 
-    
     /**
-     * @param projectName The projectName to set.
+     * @param projectName
+     *            The projectName to set.
      */
     public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
 
-    
     /**
      * @return Returns the projectVersion.
      */
@@ -165,9 +165,9 @@ public class Comment {
         return projectVersion;
     }
 
-    
     /**
-     * @param projectVersion The projectVersion to set.
+     * @param projectVersion
+     *            The projectVersion to set.
      */
     public void setProjectVersion(String projectVersion) {
         this.projectVersion = projectVersion;
@@ -209,72 +209,78 @@ public class Comment {
     public String getEmail() {
         return email;
     }
-    
-    public Location addLocation(boolean reversed, long locationStart, long locationEnd) {
-        Location location= new Location(this);
+
+    public Location addLocation(boolean reversed, long locationStart,
+            long locationEnd, String coordinateType) {
+        Location location = new Location(this);
         location.setReversed(reversed);
         location.setLocationStart(locationStart);
         location.setLocationEnd(locationEnd);
+        location.setCoordinateType(coordinateType);
         locations.add(location);
         return location;
     }
-    
-    public void setLocations(boolean reversed, String locations) {
-        if (locations == null ||locations.length() == 0) return;
-        String[] parts = locations.split(",");
-        for (String part : parts) {
-            String[] loc = part.trim().split("\\-");
-            long start = Long.parseLong(loc[0]);
-            long end = Long.parseLong(loc[1]);
-            Location location = new Location(this);
-            location.setReversed(reversed);
-            location.setLocationStart(start);
-            location.setLocationEnd(end);
-            this.locations.add(location);
+
+    public void setLocations(boolean reversed, String locations,
+            String coordinateType) throws WdkModelException {
+        if (locations == null || locations.length() == 0) return;
+        try {
+            String[] parts = locations.split(",");
+            for (String part : parts) {
+                String[] loc = part.trim().split("\\-");
+                long start = Long.parseLong(loc[0]);
+                long end = Long.parseLong(loc[1]);
+                addLocation(reversed, start, end, coordinateType);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            throw new WdkModelException("Invalid location format: " + locations);
         }
     }
-    
+
     public Location[] getLocations() {
         Location[] array = new Location[locations.size()];
         locations.toArray(array);
         return array;
     }
-    
-    public ExternalDatabase addExternalDatabase(String externalDbName, String externalDbVersion) {
+
+    public ExternalDatabase addExternalDatabase(String externalDbName,
+            String externalDbVersion) {
         ExternalDatabase externalDb = new ExternalDatabase();
         externalDb.setExternalDbName(externalDbName);
         externalDb.setExternalDbVersion(externalDbVersion);
         externalDbs.add(externalDb);
         return externalDb;
     }
-    
+
     public ExternalDatabase[] getExternalDbs() {
         ExternalDatabase[] array = new ExternalDatabase[externalDbs.size()];
         externalDbs.toArray(array);
         return array;
     }
-    
+
     private String qualify(String content) {
         // replace all single quotes with two single quotes
         content = content.replaceAll("'", "''");
         return content;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("Email:\t" + email + "\n");
-        sb.append("CommentTarget:\t" + commentTarget+ "\n");
-        sb.append("CommentDate:\t" + commentDate+ "\n");
-        sb.append("StableId:\t" + stableId+ "\n");
-        sb.append("IsConceptual:\t" + conceptual+ "\n");
-        sb.append("ProjectName:\t" + projectName+ "\n");
-        sb.append("ProjectVersion:\t" + projectVersion+ "\n");
-        sb.append("Headline:\t" + headline+ "\n");
-        sb.append("ReviewStatus:\t" + reviewStatus+ "\n");
+        sb.append("CommentTarget:\t" + commentTarget + "\n");
+        sb.append("CommentDate:\t" + commentDate + "\n");
+        sb.append("StableId:\t" + stableId + "\n");
+        sb.append("IsConceptual:\t" + conceptual + "\n");
+        sb.append("ProjectName:\t" + projectName + "\n");
+        sb.append("ProjectVersion:\t" + projectVersion + "\n");
+        sb.append("Headline:\t" + headline + "\n");
+        sb.append("ReviewStatus:\t" + reviewStatus + "\n");
         sb.append("Locations:\t");
         for (Location loc : locations) {
             sb.append(loc.getLocationStart() + "-" + loc.getLocationEnd());

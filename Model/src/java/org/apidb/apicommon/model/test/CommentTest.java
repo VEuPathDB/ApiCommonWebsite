@@ -20,9 +20,9 @@ public class CommentTest {
 
     private static String[] keys = { "config", "email", "headline", "content",
             "projectname", "projectversion", "stableid", "commenttarget",
-            "conceptual", "locations", "reversed" };
+            "conceptual", "locations", "reversed", "coordinatetype" };
     private static boolean[] required = { true, true, false, true, true, true,
-            true, true, false, false, false };
+            true, true, false, false, false, false };
 
     private static Map<String, Boolean> knownParams = new HashMap<String, Boolean>();
 
@@ -52,6 +52,7 @@ public class CommentTest {
         String conceptual = params.get("conceptual");
         String locations = params.get("locations");
         String reversed = params.get("reversed");
+        String coordinateType = params.get("coordinatetype");
 
         // initialize comment factory
         File configDir = new File(System.getProperties().getProperty(
@@ -73,7 +74,10 @@ public class CommentTest {
         if (locations != null) {
             boolean rev = (reversed != null && reversed.equalsIgnoreCase("true")) ? true
                     : false;
-            comment.setLocations(rev, locations);
+            // default coordinate type would be gene
+            if (coordinateType == null || coordinateType.length() == 0)
+                coordinateType = "gene";
+            comment.setLocations(rev, locations, coordinateType);
         }
 
         // add comment into database
@@ -132,9 +136,9 @@ public class CommentTest {
                 + "\t-projectName <site_name>\n"
                 + "\t-projectVersion <site_version>\n"
                 + "\t-stableId <source_id>\n"
-                + "\t-commentTarget <gene, protein, or genome>\n"
-                + "\t[-conceptual <true/false>]"
-                + "\t[-locations <location pairs, eg. 12-17,245-567 >]"
-                + "\t[-reversed <true/false>]");
+                + "\t-commentTarget <gene or genome>\n"
+                + "\t[-conceptual <true/false>]\n"
+                + "\t[-locations <location pairs, eg. 12-17,245-567 >]\n"
+                + "\t[-reversed <true/false>]\n"+ "\t[-coordinateType <gene or protein>]\n");
     }
 }

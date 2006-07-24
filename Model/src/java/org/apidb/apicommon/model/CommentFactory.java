@@ -92,9 +92,7 @@ public class CommentFactory {
 
             target = new CommentTarget(internalValue);
             target.setDisplayName(rs.getString("commnet_target_name"));
-            target.setAllowLocation(rs.getBoolean("allow_location"));
-            target.setAllowReverse(rs.getBoolean("allow_reverse"));
-            target.setLocationDescription(rs.getString("location_description"));
+            target.setRequireLocation(rs.getBoolean("require_location"));
 
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
@@ -158,8 +156,8 @@ public class CommentFactory {
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + schema + ".locations (comment_id, ");
-        sql.append("location_id, location_start, location_end, is_reverse) ");
-        sql.append("VALUES (?, ?, ?, ?, ?)");
+        sql.append("location_id, location_start, location_end, is_reverse, ");
+        sql.append("coordinate_type) VALUES (?, ?, ?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
@@ -173,6 +171,7 @@ public class CommentFactory {
                 statement.setLong(3, location.getLocationStart());
                 statement.setLong(4, location.getLocationEnd());
                 statement.setBoolean(5, location.isReversed());
+                statement.setString(6, location.getCoordinateType());
                 statement.execute();
             }
         } finally {
@@ -320,8 +319,8 @@ public class CommentFactory {
         String schema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT location_start, location_end, is_reversed FROM ");
-        sql.append(schema + ".locations ");
+        sql.append("SELECT location_start, location_end, is_reversed, ");
+        sql.append("coordinate_type FROM " + schema + ".locations ");
         sql.append("WHERE comment_id = " + commentId);
         ResultSet rs = null;
         try {
@@ -330,7 +329,8 @@ public class CommentFactory {
                 long start = rs.getLong("location_start");
                 long end = rs.getLong("location_end");
                 boolean reversed = rs.getBoolean("is_reversed");
-                comment.addLocation(reversed, start, end);
+                String coordinateType = rs.getString("coordinate_type");
+                comment.addLocation(reversed, start, end, coordinateType);
             }
         } finally {
             SqlUtils.closeResultSet(rs);

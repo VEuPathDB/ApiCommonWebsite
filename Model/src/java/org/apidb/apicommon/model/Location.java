@@ -13,6 +13,7 @@ public class Location {
     private boolean reversed;
     private long locationStart;
     private long locationEnd;
+    private String coordinateType;
 
     public Location(Comment comment) {
         this.comment = comment;
@@ -68,5 +69,20 @@ public class Location {
      */
     public Comment getComment() {
         return comment;
+    }
+
+    /**
+     * @return Returns the coordinateType.
+     */
+    public String getCoordinateType() {
+        return coordinateType;
+    }
+
+    /**
+     * @param coordinateType
+     *            The coordinateType to set.
+     */
+    public void setCoordinateType(String coordinateType) {
+        this.coordinateType = coordinateType;
     }
 }
