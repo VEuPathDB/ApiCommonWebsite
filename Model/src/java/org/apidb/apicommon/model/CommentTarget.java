@@ -9,12 +9,12 @@ package org.apidb.apicommon.model;
  */
 public class CommentTarget {
 
-    private String internalValue;
+    private String commentTargetId;
     private String displayName;
     private boolean requireLocation;
 
     public CommentTarget(String internalValue) {
-        this.internalValue = internalValue;
+        this.commentTargetId = internalValue;
     }
 
     /**
@@ -35,8 +35,8 @@ public class CommentTarget {
     /**
      * @return Returns the internalValue.
      */
-    public String getInternalValue() {
-        return internalValue;
+    public String getCommentTargetId() {
+        return commentTargetId;
     }
 
     /**
