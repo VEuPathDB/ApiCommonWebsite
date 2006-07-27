@@ -8,9 +8,6 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.sql.DataSource;
 
@@ -77,25 +74,27 @@ public class CommentFactory {
         String schema = config.getCommentSchema();
 
         // load the comment target definition of the given internal value
-        StringBuffer sql = new StringBuffer();
-        sql.append("SELECT * FROM " + schema
-                + ".comment_target WHERE comment_target_id = '");
-        sql.append(internalValue + "'");
+
         ResultSet rs = null;
         CommentTarget target = null;
+        PreparedStatement ps = null;
         try {
-            rs = SqlUtils.getResultSet(platform.getDataSource(), sql.toString());
+            
+            ps = SqlUtils.getPreparedStatement (platform.getDataSource(), "SELECT * FROM " 
+    				+ schema + ".comment_target where comment_target_id = ?");
+        	ps.setString(1, internalValue);
+            rs = ps.executeQuery();
             if (!rs.next())
                 throw new WdkModelException("The comment target cannot be "
                         + "found with the given internal value: "
                         + internalValue);
 
             target = new CommentTarget(internalValue);
-            target.setDisplayName(rs.getString("commnet_target_name"));
-            target.setRequireLocation(rs.getBoolean("require_location"));
+            target.setDisplayName(rs.getString("comment_target_name"));
+            target.setRequireLocation((rs.getInt("require_location") != 0));
 
         } catch (SQLException ex) {
-            throw new WdkModelException(ex);
+            throw new WdkModelException(ps.toString());
         } finally {
             // close the connection
             try {
@@ -109,35 +108,36 @@ public class CommentFactory {
 
     public void addComment(Comment comment) throws WdkModelException {
         String schema = config.getCommentSchema();
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
-        // qualify all the fields
-        Date commentDate = new Date();
 
+        PreparedStatement ps = null;
         // get a new comment id
         try {
-            DataSource dataSource = platform.getDataSource();
+            //DataSource dataSource = platform.getDataSource();
             String commentId = platform.getNextId(schema, "comments");
+            
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), 
+            		"INSERT INTO " + schema + ".comments (comment_id, email, "
+            		+ "comment_date, comment_target_id, stable_id, conceptual, "
+            		+ "project_name, project_version, headline, content) "
+            		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            
+            long currentMillis = System.currentTimeMillis();
+            
+            ps.setInt(1, Integer.parseInt(commentId));
+            ps.setString (2, comment.getEmail());
+            ps.setDate(3, new java.sql.Date (currentMillis));
+            ps.setString (4, comment.getCommentTarget());
+            ps.setString (5, comment.getStableId());
+            ps.setBoolean (6, comment.isConceptual());
+            ps.setString (7, comment.getProjectName());
+            ps.setString (8, comment.getProjectVersion());
+            ps.setString (9, comment.getHeadline());
+            ps.setString (10, comment.getContent());
 
-            // construct the sql query
-            StringBuffer sql = new StringBuffer();
-            sql.append("INSERT INTO " + schema + ".comments (comment_id, email");
-            sql.append(", comment_date, comment_target_id, stable_id, ");
-            sql.append("conceptual, project_name, project_version, headline, ");
-            sql.append("content) VALUES (" + commentId + ", '" );
-            sql.append(comment.getEmail() + "', {ts '");
-            sql.append(format.format(commentDate) + "'}, '");
-            sql.append(comment.getCommentTarget() + "', '");
-            sql.append(comment.getStableId() + "', ");
-            sql.append((comment.isConceptual()? "1, '" : "0, '"));
-            sql.append(comment.getProjectName() + "', '");
-            sql.append(comment.getProjectVersion() + "', '");
-            sql.append(comment.getHeadline() + "', '");
-            sql.append(comment.getContent() + "')");
-            SqlUtils.execute(dataSource, sql.toString());
+            ps.execute();
 
             // update the fields of comment
-            comment.setCommentDate(commentDate);
+            comment.setCommentDate(new java.util.Date(currentMillis));
 
             // then add the location information
             saveLocations(commentId, comment);
@@ -199,7 +199,7 @@ public class CommentFactory {
                 + "     AND edr.external_database_id = ed.external_database_id "
                 + "     AND drnf.db_ref_id = dr.db_ref_id "
                 + "     AND drnf.na_feature_id = gf.na_feature_id ");
-        sql.append("    AND gf.source_id = '" + stableId + "') ");
+        sql.append("    AND gf.source_id = ?) ");
         sql.append("union "
                 + "( SELECT DISTINCT ed.name AS external_database_name, "
                 + "    edr.version AS external_database_version ");
@@ -212,11 +212,15 @@ public class CommentFactory {
                 + "    AND edr.external_database_id = ed.external_database_id "
                 + "    AND drns.db_ref_id = dr.db_ref_id "
                 + "    AND drns.na_sequence_id = sns.na_sequence_id ");
-        sql.append("    AND sns.source_id = '" + stableId + "')");
+        sql.append("    AND sns.source_id = ?)");
         ResultSet rs = null;
-        PreparedStatement queryDb = null, insertDb = null, insertLink = null;
+        PreparedStatement ps = null, queryDb = null, insertDb = null, insertLink = null;
         try {
-            rs = SqlUtils.getResultSet(dataSource, sql.toString());
+        	ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
+        	ps.setString(1, stableId);
+        	ps.setString (2, stableId);
+        	
+            rs = ps.executeQuery();
 
             // construct prepared statements
             sql = new StringBuffer();
@@ -276,10 +280,15 @@ public class CommentFactory {
 
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT * FROM " + schema + ".comments ");
-        sql.append("WHERE comment_id = " + commentId);
+        sql.append("WHERE comment_id = ?");
         ResultSet rs = null;
+        PreparedStatement ps = null;
         try {
-            rs = SqlUtils.getResultSet(platform.getDataSource(), sql.toString());
+        	
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql.toString());
+            ps.setString(1, commentId);
+            rs = ps.executeQuery();
+            
             if (!rs.next())
                 throw new WdkModelException("Comment of the given id '"
                         + commentId + "' cannot be found.");
@@ -321,10 +330,16 @@ public class CommentFactory {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT location_start, location_end, is_reversed, ");
         sql.append("coordinate_type FROM " + schema + ".locations ");
-        sql.append("WHERE comment_id = " + commentId);
+        sql.append("WHERE comment_id = ?");
         ResultSet rs = null;
+        
+        PreparedStatement ps = null;
         try {
-            rs = SqlUtils.getResultSet(platform.getDataSource(), sql.toString());
+        	
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql.toString());
+            ps.setString (1, commentId);
+            rs = ps.executeQuery();
+            
             while (rs.next()) {
                 long start = rs.getLong("location_start");
                 long end = rs.getLong("location_end");
@@ -345,11 +360,16 @@ public class CommentFactory {
         sql.append("SELECT ed.external_database_name, ed.external_database_version ");
         sql.append("FROM " + schema + ".external_databases ed, ");
         sql.append(schema + ".comment_external_database ced ");
-        sql.append("WHERE ced.comment_id = " + commentId);
+        sql.append("WHERE ced.comment_id = ?" );
         sql.append(" AND ced.external_database_id = ed.external_database_id");
+        
+        PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            rs = SqlUtils.getResultSet(platform.getDataSource(), sql.toString());
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql.toString());
+            ps.setString (1, commentId);
+            rs = ps.executeQuery();
+            
             while (rs.next()) {
                 String externalDbName = rs.getString("external_database_name");
                 String externalDbVersion = rs.getString("external_database_version");
