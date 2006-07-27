@@ -242,6 +242,19 @@ public class Comment {
         locations.toArray(array);
         return array;
     }
+    
+    public String getLocationString() {
+        if (locations.isEmpty()) return " ";
+        StringBuffer sb = new StringBuffer();
+        Location location = locations.get(0);
+        sb.append(location.getCoordinateType());
+        if (location.isReversed()) sb.append("(reversed)");
+        sb.append(": " + location);
+        for (int i = 1; i < locations.size(); i++) {
+            sb.append(", " + locations.get(i));
+        }
+        return sb.toString();
+    }
 
     public ExternalDatabase addExternalDatabase(String externalDbName,
             String externalDbVersion) {

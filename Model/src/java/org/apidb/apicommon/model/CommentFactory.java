@@ -118,8 +118,8 @@ public class CommentFactory {
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(), 
             		"INSERT INTO " + schema + ".comments (comment_id, email, "
             		+ "comment_date, comment_target_id, stable_id, conceptual, "
-            		+ "project_name, project_version, headline, content) "
-            		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            		+ "project_name, project_version, headline, content, "
+            		+ "location_string) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             
             long currentMillis = System.currentTimeMillis();
             
@@ -133,6 +133,7 @@ public class CommentFactory {
             ps.setString (8, comment.getProjectVersion());
             ps.setString (9, comment.getHeadline());
             ps.setString (10, comment.getContent());
+            ps.setString(11, comment.getLocationString());
 
             ps.execute();
 

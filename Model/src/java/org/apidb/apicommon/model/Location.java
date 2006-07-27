@@ -85,4 +85,12 @@ public class Location {
     public void setCoordinateType(String coordinateType) {
         this.coordinateType = coordinateType;
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return locationStart + "-" + locationEnd;
+    }
 }
