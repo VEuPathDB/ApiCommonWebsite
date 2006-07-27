@@ -65,7 +65,7 @@ public class Comment {
         projectVersion = " ";
         headline = " ";
         content = " ";
-        reviewStatus = " ";
+        reviewStatus = "unknown";
     }
 
     /**
@@ -260,7 +260,9 @@ public class Comment {
 
     private String qualify(String content) {
         // replace all single quotes with two single quotes
-        content = content.replaceAll("'", "''");
+    	if (content == null)
+    		content = "";
+        //content = content.replaceAll("'", "''");
         return content;
     }
 
