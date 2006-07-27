@@ -30,6 +30,9 @@ public class ProcessAddCommentAction extends Action {
 
     public static final String DEFAULT_COMMENT_CONFIG_XML = "/WEB-INF/wdk-model/config/comment-config.xml";
     public static final String COMMENT_CONFIG_XML_PARAM = "commentConfigXml_param";
+    public static final String LOCATION_COORDINATETYPE_PROTEIN = "protein";
+    public static final String LOCATION_COORDINATETYPE_GENOME = "genome";
+    
 
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
@@ -54,8 +57,8 @@ public class ProcessAddCommentAction extends Action {
 
         int index = referer.lastIndexOf("/");
         referer = referer.substring(index);
-        ActionForward forward = new ActionForward(referer);
-        forward.setRedirect(true);
+        ActionForward forward = new ActionForward(referer, false);
+        //forward.setRedirect(true);
 
         WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
                 CConstants.WDK_MODEL_KEY);
@@ -64,21 +67,31 @@ public class ProcessAddCommentAction extends Action {
                 CConstants.WDK_USER_KEY);
         // if the user is null or is a guest, fail
         if (user == null || user.getGuest())
-            throw new WdkUserException("Please login before posting a comment.");
+           throw new WdkUserException("Please login before posting a comment.");
 
-        // get the information
-        String headline = request.getParameter("headline");
-        String content = request.getParameter("content");
-        String commentTarget = request.getParameter("commentTarget");
+        //get all the parameters
+        //HTML sanitization need to be enabled only for headline and content.
+        String headline = BBCode.getInstance().convertBBCodeToHtml(request.getParameter("headline"));
+        String content = BBCode.getInstance().convertBBCodeToHtml(request.getParameter("content"));
+        
+        String commentTarget = request.getParameter("commentTargetId");
         String stableId = request.getParameter("stableId");
-        String reversedStr = request.getParameter("reversed");
-        boolean reversed = (reversedStr != null && reversedStr.equalsIgnoreCase("true"))
-                ? true
-                : false;
+        
+        String locType = request.getParameter ("locType");
+        String coordinateType = null;
+        boolean reversed = false;
+        if (locType.startsWith("genome")) { 
+        	coordinateType = LOCATION_COORDINATETYPE_GENOME;
+        	if (locType.endsWith("r"))
+        		reversed = true; 
+        }
+        else
+        	coordinateType = LOCATION_COORDINATETYPE_PROTEIN;
+
         String locations = request.getParameter("locations");
-        String coordinateType = request.getParameter("coordinateType");
 
         String email = user.getEmail().trim().toLowerCase();
+        //String email = "someone@somewhere.com";
         String projectName = wdkModel.getName();
         String projectVersion = wdkModel.getVersion();
 
@@ -96,6 +109,7 @@ public class ProcessAddCommentAction extends Action {
         factory.addComment(comment);
 
         // redirect back to the referer page
+        request.setAttribute("showThanks", "true");
         return forward;
     }
 
