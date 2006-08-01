@@ -15,6 +15,7 @@ import org.gusdb.wdk.model.WdkModelException;
  */
 public class Comment {
 
+	public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
     private String email;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
@@ -65,7 +66,7 @@ public class Comment {
         projectVersion = " ";
         headline = " ";
         content = " ";
-        reviewStatus = "unknown";
+        reviewStatus = Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
     }
 
     /**
