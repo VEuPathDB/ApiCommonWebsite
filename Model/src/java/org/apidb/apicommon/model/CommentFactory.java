@@ -119,7 +119,8 @@ public class CommentFactory {
             		"INSERT INTO " + schema + ".comments (comment_id, email, "
             		+ "comment_date, comment_target_id, stable_id, conceptual, "
             		+ "project_name, project_version, headline, content, "
-            		+ "location_string) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            		+ "location_string, review_status_id) "
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
             
             long currentMillis = System.currentTimeMillis();
             
@@ -134,6 +135,7 @@ public class CommentFactory {
             ps.setString (9, comment.getHeadline());
             ps.setString (10, comment.getContent());
             ps.setString(11, comment.getLocationString());
+            ps.setString(12, Comment.COMMENT_REVIEW_STATUS_UNKNOWN);
 
             ps.execute();
 
