@@ -82,7 +82,7 @@ public class CommentFactory {
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
                     "SELECT * FROM " + schema
-                            + ".comment_target where comment_target_id = ?");
+                            + ".comment_target where comment_target_id=?");
             ps.setString(1, internalValue);
             rs = ps.executeQuery();
             if (!rs.next())
@@ -95,7 +95,7 @@ public class CommentFactory {
             target.setRequireLocation((rs.getInt("require_location") != 0));
 
         } catch (SQLException ex) {
-            throw new WdkModelException(ps.toString());
+            throw new WdkModelException(ps.toString(), ex);
         } finally {
             // close the connection
             try {
