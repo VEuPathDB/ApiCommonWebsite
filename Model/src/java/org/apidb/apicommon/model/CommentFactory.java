@@ -94,23 +94,15 @@ public class CommentFactory {
             target.setRequireLocation((rs.getInt("require_location") != 0));
 
         } catch (SQLException ex) {
-            throw new WdkModelException(query);
+            throw new WdkModelException(ex);
         } finally {
-        	try {
-        		SqlUtils.closeResultSet(rs);
-        	} catch (SQLException ex) {
-        		ex.printStackTrace();
-        	}
-        }
-        
-        /*finally {
             // close the connection
             try {
                 SqlUtils.closeResultSet(rs);
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-        }*/
+        }
         return target;
     }
 
