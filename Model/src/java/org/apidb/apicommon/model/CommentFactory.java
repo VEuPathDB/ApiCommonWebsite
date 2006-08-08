@@ -78,11 +78,10 @@ public class CommentFactory {
         ResultSet rs = null;
         CommentTarget target = null;
         PreparedStatement ps = null;
+        String query = null;
         try {
-
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                    "SELECT * FROM " + schema
-                            + ".comment_target where comment_target_id=?");
+        	query = "SELECT * FROM " + schema + ".comment_target WHERE comment_target_id=?";
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), query);
             ps.setString(1, internalValue);
             rs = ps.executeQuery();
             if (!rs.next())
@@ -95,15 +94,23 @@ public class CommentFactory {
             target.setRequireLocation((rs.getInt("require_location") != 0));
 
         } catch (SQLException ex) {
-            throw new WdkModelException(ps.toString(), ex);
+            throw new WdkModelException(query);
         } finally {
+        	try {
+        		SqlUtils.closeResultSet(rs);
+        	} catch (SQLException ex) {
+        		ex.printStackTrace();
+        	}
+        }
+        
+        /*finally {
             // close the connection
             try {
                 SqlUtils.closeResultSet(rs);
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-        }
+        }*/
         return target;
     }
 
