@@ -249,11 +249,15 @@ public class Comment {
         StringBuffer sb = new StringBuffer();
         Location location = locations.get(0);
         sb.append(location.getCoordinateType());
-        if (location.isReversed()) sb.append("(reversed)");
         sb.append(": " + location);
         for (int i = 1; i < locations.size(); i++) {
             sb.append(", " + locations.get(i));
         }
+        
+        if (location.isReversed()) 
+        	sb.append(" (reverse strand)");
+        else
+        	sb.append (" (forward strand)");
         return sb.toString();
     }
 
