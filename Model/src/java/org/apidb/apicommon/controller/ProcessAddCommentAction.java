@@ -66,12 +66,21 @@ public class ProcessAddCommentAction extends Action {
         UserBean user = (UserBean) request.getSession().getAttribute(
                 CConstants.WDK_USER_KEY);
         // if the user is null or is a guest, fail
-        if (user == null || user.getGuest())
-           throw new WdkUserException("Please login before posting a comment.");
+        if (user == null || user.getGuest()) {
+			//This is the case where the session times out while the user is on the
+			//comment form page, or someone maliciously trying to post to the comment form
+			//action directly. Return to the add comments page, where it is handled correctly.
+           return forward;
+        }
 
         //get all the parameters
         //HTML sanitization need to be enabled only for headline and content.
-        String headline = BBCode.getInstance().convertBBCodeToHtml(request.getParameter("headline"));
+        String headline = request.getParameter("headline");
+        if (headline.trim().length() == 0)
+        	headline = null;
+        else
+        	headline = BBCode.getInstance().convertBBCodeToHtml(headline);
+        
         String content = BBCode.getInstance().convertBBCodeToHtml(request.getParameter("content"));
         
         String commentTarget = request.getParameter("commentTargetId");
