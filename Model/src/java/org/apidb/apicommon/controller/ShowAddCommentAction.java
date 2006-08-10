@@ -46,14 +46,6 @@ public class ShowAddCommentAction extends Action {
             factory = CommentFactory.getInstance();
         }
 
-        // get the referer link
-		
-        String referer = (String) request.getParameter(CConstants.WDK_REFERER_URL_KEY);
-        if (referer == null) referer = request.getHeader("referer");
-
-        int index = referer.lastIndexOf("/");
-        referer = referer.substring(index);
-
 		String customViewDir = (String)application.getAttribute(CConstants.WDK_CUSTOMVIEWDIR_KEY);
         String addCommentPage = customViewDir + File.separator + CUSTOM_ADDCOMMENT_PAGE;
 	
@@ -65,9 +57,6 @@ public class ShowAddCommentAction extends Action {
             forward = new ActionForward (File.separator + DEFAULT_ADDCOMMENT_PAGE, false);
         }
 
-        //ActionForward forward = new ActionForward(referer);
-        //forward.setRedirect(true);
-        
         // get parameters
         String stableId = request.getParameter("stableId");
         String commentTargetId = request.getParameter("commentTargetId");
