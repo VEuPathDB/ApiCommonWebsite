@@ -97,11 +97,7 @@ public class CommentFactory {
             throw new WdkModelException(ex);
         } finally {
             // close the connection
-            try {
                 SqlUtils.closeResultSet(rs);
-            } catch (SQLException ex) {
-                throw new WdkModelException(ex);
-            }
         }
         return target;
     }
