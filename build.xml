@@ -14,7 +14,7 @@
   <target name="CBIL-Installation">
     <ant antfile="../CBIL/build.xml" target="CBIL-Installation">
       <property name="project" value="CBIL"/>
-      <property name="version" value="WDK_version_1-11.1"/>
+      <property name="version" value="1.7"/>
     </ant>
   </target>  
 
@@ -37,7 +37,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false"> 
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
       <property name="project" value="CBIL"/>
-      <property name="version" value="api-august-2006"/>
+      <property name="version" value="1.7"/>
     </ant>
   </target>    
 
