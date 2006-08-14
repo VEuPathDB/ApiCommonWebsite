@@ -89,7 +89,7 @@
             <c:set var="showOnClick" value="updateImageMapDiv('${imageMapDivId}', '${imageMapSource}')"/>
         </c:if>
         <c:if test="${showOnClick != ''}">
-            <c:set var="showOnClick" value="&&${showOnClick}"/>
+            <c:set var="showOnClick" value="${showOnClick}&&"/>
         </c:if>
 
         <c:if test="${ anchorName == null}">
@@ -97,19 +97,19 @@
             <a name="${anchorName}"></a>   
         </c:if>
 
-        <%--  Safari can't handle this way of doing it  --%>
+        <%--  Safari/IE can't handle this way of doing it  --%>
         <c:choose>
-        <c:when test="${!fn:contains(userAgent, 'Safari')}">
+        <c:when test="${fn:contains(userAgent, 'Firefox') || fn:contains(userAgent, 'Red Hat') }">
            <div id="toggle${name}" align="left"><b><font size="+0">${displayName}</font></b>
-             <a href="javascript:toggleLayer('${name}', 'toggle${name}')${showOnClick}" title="Show ${displayName}" onMouseOver="status='Show ${displayName}';return true" onMouseOut="status='';return true">Show</a>
+             <a href="javascript:${showOnClick}toggleLayer('${name}', 'toggle${name}')" title="Show ${displayName}" onMouseOver="status='Show ${displayName}';return true" onMouseOut="status='';return true">Show</a>
            </div>
         </c:when>
 
-        <%--  Netscape can't handle this way of doing it  --%>
+        <%--  Netscape/Firefox can't handle this way of doing it  --%>
         <c:otherwise>
 
            <div id="showToggle${name}" class="toggle" align="left"><b><font size="+0">${displayName}</font></b>
-             <a href="javascript:showLayer('${name}')&&showLayer('hideToggle${name}')&&hideLayer('showToggle${name}')${showOnClick}&&storeIntelligentCookie('show${name}',1)" title="Show ${displayName}" onMouseOver="status='Show ${displayName}';return true" onMouseOut="status='';return true">Show</a>
+             <a href="javascript:${showOnClick}showLayer('${name}')&&showLayer('hideToggle${name}')&&hideLayer('showToggle${name}')&&storeIntelligentCookie('show${name}',1)" title="Show ${displayName}" onMouseOver="status='Show ${displayName}';return true" onMouseOut="status='';return true">Show</a>
            </div>
 
            <div id="hideToggle${name}" class="toggle" align="left"><b><font size="+0">${displayName}</font></b>
@@ -138,9 +138,9 @@
   </div>
 
      
-     <%--  Safari can't handle this way of doing it  --%>
+     <%--  IE/Safari can't handle this way of doing it  --%>
      <c:choose>
-     <c:when test="${!fn:contains(userAgent, 'Safari')}">
+      <c:when test="${fn:contains(userAgent, 'Firefox') || fn:contains(userAgent, 'Red Hat') }">
         <c:if test="${isOpen}"> 
            <SCRIPT TYPE="text/javascript" LANG="JavaScript">
               toggleLayer('${name}', 'toggle${name}');
