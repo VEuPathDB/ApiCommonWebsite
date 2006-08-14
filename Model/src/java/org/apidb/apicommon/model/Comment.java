@@ -16,6 +16,8 @@ import org.gusdb.wdk.model.WdkModelException;
 public class Comment {
 
 	public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
+    
+    private String commentId;
     private String email;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
@@ -68,6 +70,26 @@ public class Comment {
         content = " ";
         reviewStatus = Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
     }
+    
+    
+    /**
+     * @return Returns the commentId.
+     */
+    public String getCommentId() {
+        return commentId;
+    }
+
+
+
+    
+    /**
+     * @param commentId The commentId to set.
+     */
+    void setCommentId(String commentId) {
+        this.commentId = commentId;
+    }
+
+
 
     /**
      * @return Returns the commentDate.
@@ -133,6 +155,15 @@ public class Comment {
      * @return Returns the headline.
      */
     public String getHeadline() {
+        if (headline == null || headline.trim().length() == 0) {
+            String cnt = content.trim();
+            if (cnt.length() <= 40) headline = cnt + " ";
+            else {
+                int pos = cnt.indexOf(' ', 40);
+                if (pos < 0) pos = cnt.length();
+                headline = cnt.substring(0, pos) + "...";
+            }
+        }
         return headline;
     }
 

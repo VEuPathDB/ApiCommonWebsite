@@ -8,6 +8,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -80,7 +82,8 @@ public class CommentFactory {
         PreparedStatement ps = null;
         String query = null;
         try {
-        	query = "SELECT * FROM " + schema + ".comment_target WHERE comment_target_id=?";
+            query = "SELECT * FROM " + schema
+                    + ".comment_target WHERE comment_target_id=?";
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(), query);
             ps.setString(1, internalValue);
             rs = ps.executeQuery();
@@ -97,9 +100,9 @@ public class CommentFactory {
             throw new WdkModelException(ex);
         } finally {
             // close the connection
-				try {
+            try {
                 SqlUtils.closeResultSet(rs);
-				} catch (SQLException e) {}
+            } catch (SQLException e) {}
         }
         return target;
     }
@@ -142,6 +145,7 @@ public class CommentFactory {
 
             // update the fields of comment
             comment.setCommentDate(new java.util.Date(currentMillis));
+            comment.setCommentId(commentId);
 
             // then add the location information
             saveLocations(commentId, comment);
@@ -318,6 +322,7 @@ public class CommentFactory {
 
             // construct a comment object
             Comment comment = new Comment(rs.getString("email"));
+            comment.setCommentId(commentId);
             comment.setCommentDate(rs.getDate("comment_date"));
             comment.setCommentTarget(rs.getString("comment_target_id"));
             comment.setConceptual(rs.getBoolean("conceptual"));
@@ -351,7 +356,7 @@ public class CommentFactory {
         String schema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT location_start, location_end, is_reversed, ");
+        sql.append("SELECT location_start, location_end, is_reverse, ");
         sql.append("coordinate_type FROM " + schema + ".locations ");
         sql.append("WHERE comment_id = ?");
         ResultSet rs = null;
@@ -402,6 +407,101 @@ public class CommentFactory {
             }
         } finally {
             SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    public Comment[] queryComments(String email, String projectName,
+            String stableId, String conceptual, String reviewStatus,
+            String keyword) throws WdkModelException {
+        String schema = config.getCommentSchema();
+        DataSource dataSource = platform.getDataSource();
+
+        StringBuffer where = new StringBuffer();
+        if (email != null) {
+            email = email.replace('*', '%');
+            email = email.replaceAll("'", "");
+            where.append(" email like '" + email + "'");
+        }
+        if (projectName != null) {
+            projectName = projectName.replace('*', '%');
+            projectName = projectName.replaceAll("'", "");
+            if (where.length() > 0) where.append(" AND");
+            where.append(" project_name like '" + projectName + "'");
+        }
+        if (stableId != null) {
+            stableId = stableId.replace('*', '%');
+            stableId = stableId.replaceAll("'", "");
+            if (where.length() > 0) where.append(" AND ");
+            where.append(" stable_id like '" + stableId + "'");
+        }
+        if (conceptual != null) {
+            boolean concpt = Boolean.parseBoolean(conceptual);
+            if (where.length() > 0) where.append(" AND ");
+            where.append(" conceptual like " + concpt);
+        }
+        if (reviewStatus != null) {
+            reviewStatus = stableId.replace('*', '%');
+            reviewStatus = stableId.replaceAll("'", "");
+            if (where.length() > 0) where.append(" AND ");
+            where.append(" review_status like '" + reviewStatus + "'");
+        }
+        if (keyword != null) {
+            keyword = stableId.replace('*', '%');
+            keyword = stableId.replaceAll("'", "");
+            if (where.length() > 0) where.append(" AND ");
+            where.append(" (headline like '" + keyword);
+            where.append("' OR content like '" + keyword + "')");
+        }
+
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT comment_id FROM " + schema + ".comments");
+        if (where.length() > 0) sql.append(" WHERE " + where.toString());
+        sql.append(" ORDER BY comment_id");
+
+        List<Comment> comments = new ArrayList<Comment>();
+        ResultSet rs = null;
+        try {
+            rs = SqlUtils.getResultSet(dataSource, sql.toString());
+            while (rs.next()) {
+                String commentId = rs.getString("comment_id");
+                Comment comment = factory.getComment(commentId);
+                comments.add(comment);
+            }
+        } catch (SQLException ex) {
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeResultSet(rs);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+        }
+        Comment[] array = new Comment[comments.size()];
+        comments.toArray(array);
+        return array;
+    }
+
+    public void deleteComment(String commentId) throws WdkModelException {
+        String schema = config.getCommentSchema();
+        DataSource dataSource = platform.getDataSource();
+
+        String where = " WHERE comment_id = " + commentId;
+
+        try {
+            // delete the location information
+            String sql = "DELETE FROM " + schema + ".locations" + where;
+            SqlUtils.execute(dataSource, sql);
+
+            // delete associated external database info
+            sql = "DELETE FROM " + schema + ".comment_external_database"
+                    + where;
+            SqlUtils.execute(dataSource, sql);
+
+            // delete comment information
+            sql = "DELETE FROM " + schema + ".comments" + where;
+            SqlUtils.execute(dataSource, sql);
+        } catch (SQLException ex) {
+            throw new WdkModelException(ex);
         }
     }
 }
