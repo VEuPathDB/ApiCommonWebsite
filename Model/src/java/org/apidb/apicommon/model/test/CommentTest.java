@@ -212,7 +212,7 @@ public class CommentTest {
         factory.deleteComment(commentId);
 
         System.out.println("Comment #" + commentId
-                + " has been deleted from the database/");
+                + " has been deleted from the database.");
     }
 
     private static void printUsage(String message) {

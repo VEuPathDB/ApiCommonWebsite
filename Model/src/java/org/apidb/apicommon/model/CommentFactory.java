@@ -372,7 +372,7 @@ public class CommentFactory {
             while (rs.next()) {
                 long start = rs.getLong("location_start");
                 long end = rs.getLong("location_end");
-                boolean reversed = rs.getBoolean("is_reversed");
+                boolean reversed = rs.getBoolean("is_reverse");
                 String coordinateType = rs.getString("coordinate_type");
                 comment.addLocation(reversed, start, end, coordinateType);
             }
