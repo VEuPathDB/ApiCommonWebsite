@@ -301,9 +301,10 @@ sub get_feature_by_name {
 
 		my $query = $self->parser->getSQL("GUS.pm", "get_feature_by_name");
 		$query =~ s/(\$\w+)/eval $1/eg;
-		$query =~ s/\*/\%/g;
+		#$query =~ s/\*/\%/g;
 		my $un = uc($name);
-		$query =~ s/\?/\'\%$un\%\'/g;
+		#$query =~ s/\?/\'\%$un\%\'/g;
+		$query =~ s/\?/\'$un\'/g;
 		$sth = $self->dbh->prepare($query);
 		$sth->execute();
 
