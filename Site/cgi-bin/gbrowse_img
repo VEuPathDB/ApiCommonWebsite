@@ -201,7 +201,7 @@ if ($embed) {
     $map                = my_make_map($boxes,$source,scalar @add_features);
   }
 
-  $map =~ s/href/target="_top" href/g;  # add appropriate target tags
+#  $map =~ s/href/target="_top" href/g;  # add appropriate target tags
 
   print_cached (
 		$newpagecache,
