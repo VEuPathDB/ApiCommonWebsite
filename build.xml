@@ -120,6 +120,24 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
+
+    <!-- get the orginal gbrowse_img code and patch it -->
+    <copy file="${projectsDir}/ApiCommonWebsite/Site/cgi-bin/gbrowse_img" 
+          tofile="${cgibinTargetDir}/gbrowse_img" overwrite="true"/>
+    <exec executable="patch">
+        <arg value="-d"/>
+        <arg path="${cgibinTargetDir}"/>
+        <arg value="-N"/>
+        <arg value="-i"/>
+        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse_img.patch"/>
+    </exec>
+    <!-- replacement for gbrowse_img config and lib dirs -->
+    <replace file="${cgibinTargetDir}/gbrowse_img" 
+    	token="@confTargetDir@" 
+    	value="${confTargetDir}"/>
+    <replace file="${cgibinTargetDir}/gbrowse_img" 
+    	token="@cgilibTargetDir@" 
+    	value="${cgilibTargetDir}"/>
   </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
