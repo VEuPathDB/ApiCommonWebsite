@@ -73,8 +73,8 @@
 Types of sequences:
  <ul>
  <li><i>protein</i>: the predicted translation of the gene
- <li><i>CDS</i>: the coding sequence, including UTRs (introns spliced out)
- <li><i>transcript</i>: the processed transcript, excluding UTRs (introns spliced out)
+ <li><i>CDS</i>: the coding sequence, excluding UTRs (introns spliced out)
+ <li><i>transcript</i>: the processed transcript, including UTRs (introns spliced out)
  <li><i>genomic</i>: a region of the genome.  Genomic sequence is always returned from 5' to 3', on the proper strand
  </ul>
 
