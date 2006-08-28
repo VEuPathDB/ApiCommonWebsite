@@ -1,0 +1,243 @@
+
+    ############   PubCrawler configuration file   ############
+    #######   (for PubCrawler Version higher than 0.53)  ######
+
+    ############################################################
+    #                                                          #
+    #   lines beginning with hash marks (#) are ignored.       #
+    #                                                          #
+    #   PubCrawler home page:                                  #
+    #               http://www.pubcrawler.ie                   #
+    #                                                          #
+    #   Specify your file locations and search options here.   #
+    #   Each line is in the format  FIELD space VALUE.         #
+    #   Any leading or trailing quotes will be chopped off.    # 
+    #   Hash marks separate comments from data.                #
+    #   You must specify a value for all 6 mandatory fields.   #
+    #                                                          #
+    ############################################################
+
+    ############################################################
+    ################# MANDATORY SETTINGS #######################
+    ############################################################
+html_file index.html   
+              # html_file is the name of the output HTML file for results
+	      # it will be written to the specified working directory
+	      # unless an absolute pathname is given
+viewdays 14   
+              # viewdays is the number of days each document will be shown.
+
+relentrezdate 90
+              # relentrezdate (relative date of insertion into Entrez) 
+	      # is the maximum age (in days) of database entries to be reported.
+              # NOTE: sometimes records first appear in the databases several
+              # days or even weeks later than indicated by their database
+              # date-stamp, i.e. with non-zero values of relentrezdate.
+              # Therefore relentrezdate needs to be high enough to find these
+              # records.  A relentrezdate of 90 days is suggested (if you make 
+              # relentrezdate too huge the searches will be very slow.)
+	      # other valid entries are: 
+	      # '1 year', '2 years', '5 years', '10 years', and 'no limit'
+
+getmax 800    # getmax is the maximum number of documents to be retrieved
+	      # for each search carried out.
+
+fullmax 500   # fullmax is the maximum number of documents for which a full
+              # report is being presented
+	      # if more documents were retrieved, these can be accessed
+	      # through a hyperlink (in groups of up to fullmax articles)
+
+include_config no  
+              # include_config (yes/no) specifies whether or not to append 
+              # this config-file to the end of the output file
+
+#-------------------------------------------------------------------#
+    ############################################################
+    ################## OPTIONAL SETTINGS #######################
+    ############################################################
+search_URL ''
+	      # URL where searches are being sent to
+	      # defaults to 
+	      # http://www.ncbi.nlm.nih.gov/entrez/utils/pmqty.fcgi
+
+neighbour_URL ''
+	      # URL where neighbourhood searches are being sent to
+	      # defaults to 
+	      # http://www.ncbi.nlm.nih.gov/entrez/utils/qmap.cgi
+
+retrieve_URL ''
+	      # URL where documents are retrieved from
+	      # defaults to 
+	      # http://www.ncbi.nlm.nih.gov/entrez/query.fcgi
+
+work_dir /www/plasmodb.org/PubCrawler                        
+	# specify a directory in which databases, output and log file 
+	# will be located
+	# if no value given, the current working directory will be used
+
+extra_range 1000
+	# specifies the number of documents combined in a link
+	# minimum value is 1, defaults to 'fullmax'
+
+check 0
+	# if set to '1' program will just check all settings
+	# without performing the actual search
+	# RECOMMENDED FOR THE FIRST RUN!
+
+prompt 1
+	# for Mac-users only:
+	# if this option is set to '1' the program will ask you 
+	# explicitly for command line options
+	# NOTE: THIS IS NOT SUITABLE FOR AUTOMATED USE!
+
+verbose 0                                                    
+	# verbose 0 runs silently and makes log file                 
+	# verbose 1 writes log output on screen 
+
+mute 0
+        # mute 0 writes some messages to STDERR
+        # mute 1 stops ALL messages going to STDERR
+        # unless an error was encountered                    
+
+log_file ''
+	# name of file for log-output
+	# (verbose has to be set to '0')   
+
+#base_URL 'http://www.gen.tcd.ie/pubcrawler/pubcrawler_output.html'
+base_URL 'http://www.plasmodb.org/pubcrawler2.2/'
+	# specify a URL, that will be used for 
+	# the 'Back to Top' link in the output page   
+        # 'local_file' makes links relative to results file
+
+#mail joe@hotmail.earth.com
+        # if the hash mark ('#') at the beginning of the above line
+        # is removed, PubCrawler will send the results file to
+        # the given address at the end of each run. You can specify
+        # multiple addresses using commas (no spaces!).
+
+#notify jfk@hotmail.earth.com#joe
+        # if the hash mark ('#') at the beginning of the above line
+        # is removed, PubCrawler will send a notification to
+        # the given address (minus '#joe') at the end of each run
+        # The recipient will be addressed with joe (optional).
+	# You can specify multiple addresses using commas (no spaces!).
+
+lynx ''
+	# for Unix-users only:
+	# if you don't want to use the libwww-Perl module and
+	# have an alternative browser installed, that works from the 
+	# command line, like 'Lynx', you can use it by entering the
+	# command that evokes it (e.g. lynx '/usr/bin/lynx')
+	# NOTE: THIS OVERRIDES ANY PROXY SETTINGS!
+
+#header 'head.html'
+	# specify a location of a header (in HTML-style) that will be used
+	# for the output file (disabled unless hash mark is removed)
+
+prefix ''
+	# if you would like a different prefix to be used 
+	# for standard files (configuration, database, log)
+	# insert it here (default is program name up to first dot):
+
+system ''
+	# name of operating system
+	# might need the explicit assignment of an adequate value
+	# ('MacOS','Win','Unix', or 'Linux')
+	# if Perl is not configured properly
+
+#### PROXY SETTING (if desired and/or necessary) ####
+
+#proxy www.tcd.ie/proxy.cgi
+	# insert either a proxy server (eg. 'proxy.domain.com')
+	# or the address of a proxy configuration file
+	# if known (eg. 'www.domain.com/proxy.cgi')
+	# and uncomment
+
+proxy_port ''    
+	# port of the proxy server,defaults to '80'
+
+proxy_auth ''
+proxy_pass ''
+	# in case you need to submit a username and a password
+	# for accessing your proxy, you can fill it in here:
+	# CAUTION! Having passwords stored in a file means a
+	# possible security risk! Please delete after usage
+	# or use the according command line option!
+	# !!! Please make sure that the module MIME::Base64 is 
+	# installed for the proxy authorization to work!!!
+
+time_out 180 
+	# specify how many SECONDS to give remote servers 
+	# in creating responses before the library disconnects
+	# (defaults to 180 seconds if no value is given) 
+
+test_URL http://www.ncbi.nlm.nih.gov/ 
+	# test-URL for proxy-test
+
+no_test 0
+	# if a proxy is given, the internet connection is tested
+	# at the start of the program by default; this can be
+	# suppressed if a value of '1' is given here
+
+indent 125
+	# amount of pixels that output is being shifted to the right
+
+no_decap ''
+	# put 1 inbetween single quotes if you want to disable 
+	# processing of the entrez documents (chopping of head and tail
+	# and collecting UIs)
+
+spacer '/pubcrawler2.2/spacer.gif'
+	# specify a gif that will be inserted in the output to shift
+        # text past the left, blue column
+	# (defaults to: http://www.gen.tcd.ie/pubcrawler/pics/spacer.gif)
+
+#-----------------------------------------------------------------------------#
+	    ############################################################
+	    ################# SEARCH SPECIFICATION #####################
+	    ############################################################
+    ###########################################################################
+    ######  Entrez abbreviations for fields                                   #
+    ######  (see http://www4.ncbi.nlm.nih.gov/PubMed/linking.html).           #
+    ######  combine fields with AND, OR, BUTNOT and parentheses.              #
+    #                                                                         #
+    # for PubMed : one of AFFL, ALL, AUTH, ECNO, JOUR, MESH, MAJR, PAGE,      #
+    #                      PDAT, PTYP, KYWD, WORD, TITLE, or VOL.             #
+    # for Nucleotide : one of ACCN, AUTH, PDAT, ECNO, FKEY, GENE, JOUR, KYWD, #
+    #                      MDAT, ORGN, PROP, PROT, SQID, SLEN, SUBS, or WORD. #
+    #                                                                         #
+    # where ACCN = Accession Number, AFFL = Afilliation, ALL = all fields,    #
+    #       AUTH = Author Name, ECNO = E. C. Number, FKEY = Feature Key,      #
+    #       GENE = gene name, JOUR =journal name, KYWD = Keywords,            #
+    #       MAJR = MeSH major topic, MDAT = modification date,                #
+    #	    MESH = mesh term,ORGN = organism, PACC = Primary Accesion Number, #
+    #       PAGE = first page, PDAT = publication/creation date,              #
+    #       PROP = Properties,  PROT = protein name, PTYP = Publication Type, #
+    #	    SUBS = Substance, TITL = title word, WORD = text word,            #
+    # 	    VOL = volume.                                                     #
+    ###########################################################################
+
+##### Each search-specification has to be written on one line.
+##### The first word must specify the database: 
+##### pubmed, pm_neighbour, genbank, or gb_neighbour
+##### Any following words enclosed in single quotes (') will be used
+##### as an alias for this query, otherwise they will be considered
+##### Entrez-search-terms, as will the rest of the line.
+
+##### You can have as many different searches as you wish. The results of all
+##### searches will be combined according to their aliases.
+
+##### You CAN NOT use the same alias for searches at different databases!
+
+##### Write your search descriptions below this line.  
+##### (Upper/lower case does not matter.)
+
+#The next query searches GenBank forall new Plasmodium publications
+pubmed 'New PubMed articles on Plasmodium' Plasmodium [ALL]
+
+
+# The next query searches GenBank for all new Plasmodium sequences
+genbank 'New Genbank sequences on Plasmodium' Plasmodium [ALL]
+
+
+
