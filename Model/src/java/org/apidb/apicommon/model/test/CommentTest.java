@@ -96,7 +96,7 @@ public class CommentTest {
                     deleteParams);
             deleteComment(params);
         } else {
-            printUsage("Unknown command for userTester: " + cmd);
+            printUsage("Unknown command for commentTest: " + cmd);
             System.exit(-1);
         }
     }
