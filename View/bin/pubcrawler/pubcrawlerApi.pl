@@ -508,7 +508,6 @@ my $error = 0;    #needed for -check option
 my @error = ();   #needed for -check option
 my $warning = 0;  #needed for -check option
 my @warning = (); #needed for -check option
-my ($bg, $proj, $icon);
 
 	
 # cascading style sheets:
@@ -761,9 +760,9 @@ GetOptions('add_path', \$PARAM{'add_path'},  # this option is dealt with in BEGI
 	   'v', \$PARAM{'verbose'},
 	   'verbose', \$PARAM{'verbose'},
 	   'viewdays=i', \$PARAM{'viewdays'},
-           'bg=s', \$bg,
-           'proj=s', \$proj,
-           'icon=s', \$icon,
+           'bg=s', \$PARAM{'bg'},
+           'proj=s', \$PARAM{'proj'},
+           'icon=s', \$PARAM{'icon'},
 	   'version', \$version,
            'simulation|sim|simulate=s', \$simulation,
            'sim_file|simulation_file=s', \$simulation_file,
@@ -1661,7 +1660,7 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
     $quot_alias =~ s/\"/&quot;/g;
     
     $result_collection .= "\n<!-- Results for $alias -->"
-	.&tab('TR'," bgcolor=\"$bg\"")
+	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
 	.&tab('TD')
 	."<H3><font color=\"#ffffff\">::::::</font>&nbsp;<A NAME=\"$quot_alias\">Results for \'$alias\' at $word</A></H3>"
 	.&tab('/TD')
@@ -1682,7 +1681,7 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
 
     $no_html = &set_flag;
     $result_collection_mail .= "\n"
-	.&tab('TR'," bgcolor=\"$bg\"")
+	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
 	.&tab('TD')
 	.$text_insert
 	.&tab('/TD')
@@ -2006,9 +2005,9 @@ $css
 <tr>
 <!--#include virtual=\"/include/left-image.html\" -->
 <td ALIGN=\"center\" valign=\"middle\">
-<b><font face=\"Arial,Helvetica\" size=+2>&nbsp;$proj PubMed and Entrez Updates&nbsp;</font></b>
+<b><font face=\"Arial,Helvetica\" size=+2>&nbsp;$PARAM{'proj'} PubMed and Entrez Updates&nbsp;</font></b>
 </td>
-<td align='right' width=\"20\"><img src=\"$icon\"></td>
+<td align='right' width=\"20\"><img src=\"$PARAM{'icon'}\"></td>
 </tr>
 <tr><td colspan=\"3\">
 <!--#include virtual=\"/include/toolbar.html\" -->
@@ -2082,7 +2081,7 @@ $css
     
     if ($PARAM{'pic'}) {
 #	$picture = "<A HREF=\"http://www.pubcrawler.ie\"><IMG BORDER=0 SRC=\"$PARAM{'pic'}\" ALT=\"LOGO\"></A>";
-	$picture = "<A HREF=\"http://www.$proj.org\"><IMG BORDER=0 SRC=\"$icon\" ALT=\"LOGO\"></A>";
+	$picture = "<A HREF=\"http://www.$PARAM{'proj'}.org\"><IMG BORDER=0 SRC=\"$PARAM{'icon'}\" ALT=\"LOGO\"></A>";
     } else {
 	$picture = $picture_replacement;
     }
@@ -2144,7 +2143,7 @@ main column
      <div>
       <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">
        <tr>
-        <td bgcolor=\"$bg\">
+        <td bgcolor=\"$PARAM{'bg'}\">
          <div align=\"right\">
           <h3><b>$dateline&nbsp;<font color=\"#ffffff\">::::::</font></b></h3>
          </div>
@@ -2221,7 +2220,7 @@ $picture
            <font color=\"#000000\">
 
            
-           &nbsp;<i>www.$proj.org</i></font></div>
+           &nbsp;<i>www.$PARAM{'proj'}.org</i></font></div>
           </div>
          </td>
         </tr>
@@ -2253,7 +2252,7 @@ main column
      <div>
       <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"95%\">
        <tr>
-        <td bgcolor=\"$bg\">
+        <td bgcolor=\"$PARAM{'bg'}\">
          <div align=\"right\">
           <h3><b>$dateline&nbsp;<font color=\"#ffffff\">::::::</font></b></h3>
          </div>
@@ -2269,7 +2268,7 @@ main column
      <div align=\"center\">
       <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"95%\">
        <tr>
-        <td bgcolor=\"$bg\">
+        <td bgcolor=\"$PARAM{'bg'}\">
          <div align=\"right\">
           <h3><b>$dateline&nbsp;<font color=\"#ffffff\">::::::</font></b></h3>
          </div>
@@ -3709,7 +3708,7 @@ Please take a look at NCBI\'s Disclaimer for more information about their discla
     }
 
     $trailer = 
-	&tab('TR'," bgcolor=\"$bg\"")
+	&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
 	.&tab('TD')
 	.$retrieval_header
 	.&tab('/TD')
@@ -3719,7 +3718,7 @@ Please take a look at NCBI\'s Disclaimer for more information about their discla
 	.$ncbi_buttons_out
 	.&tab('/TD')
 	.&tab('/TR')
-	.&tab('TR'," bgcolor=\"$bg\"")
+	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
 	.&tab('TD')
 	.$query_box_header
 	.&tab('/TD')
@@ -3729,7 +3728,7 @@ Please take a look at NCBI\'s Disclaimer for more information about their discla
 	.$query_box
 	.&tab('/TD')
 	.&tab('/TR')
-	.&tab('TR'," bgcolor=\"$bg\"")
+	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
 	.&tab('TD')
 	.$disclaimer_header
 	.&tab('/TD')
