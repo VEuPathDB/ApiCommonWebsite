@@ -17,12 +17,12 @@ my $gnugpl = "
 #  modify it under the terms of the GNU General Public License
 #  as published by the Free Software Foundation; either version 2
 #  of the License, or (at your option) any later version.
-#  
+#
 #  This program is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
-#  
+#
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -33,19 +33,19 @@ my $gnugpl = "
 
 ";
 
-# Version number is automatically assigned 
+# Version number is automatically assigned
 # by RCS (revision control system):
 my $version_number = '$Revision: 12946 $'; # '  $Date: 2006-08-24 12:37:28 -0400 (Thu, 24 Aug 2006) $
 $version_number =~ s/[\$Revision\: | \$]//g;
 
 # LOCATION OF MODULES:
-# In case you have Perl modules installed 
+# In case you have Perl modules installed
 # in one of your own directories,
 # edit the following line by adding any paths
 # in which PERL should look for modules...
 BEGIN {
-    unshift(@INC, "$ENV{HOME}/lib", "$ENV{HOME}/PubCrawler/lib", 
-	          '/full/path/to/module/directory', './lib');
+    unshift(@INC, "$ENV{HOME}/lib", "$ENV{HOME}/PubCrawler/lib",
+              '/full/path/to/module/directory', './lib');
       # there are three example paths provided:
       # - the first one ("$ENV{HOME}/lib") points to the directory
       #   'lib' below your HOME-directory (~/lib or $HOME/lib);
@@ -57,26 +57,26 @@ BEGIN {
       # ADD /current_working_directory/lib to @INC
       # (activated with option -add_path)
     if (grep /\Q-add_path/, @ARGV) {
-	my $tmp_file = "/tmp/pubcrawler_pwd.$$";
-	system "pwd > $tmp_file";
-	open (IN, "$tmp_file");
-	chomp(my $cwd = <IN>);
-	close IN;
-	unlink $tmp_file;
-	push @INC, "$cwd/lib";
-	print STDERR "\nTemporarily added path $cwd/lib to \@INC\n";
+    my $tmp_file = "/tmp/pubcrawler_pwd.$$";
+    system "pwd > $tmp_file";
+    open (IN, "$tmp_file");
+    chomp(my $cwd = <IN>);
+    close IN;
+    unlink $tmp_file;
+    push @INC, "$cwd/lib";
+    print STDERR "\nTemporarily added path $cwd/lib to \@INC\n";
     }
 
       # LIBRARY TEST:
       # (activated with option -lib_test)
     if (grep /\Q-lib_test/, @ARGV) {
-	print STDERR "\n          ***** PubCrawler - library test *****\n";
-	print STDERR "\nThe following directories will be searched for modules:\n\n";
-	foreach (@INC) {
-	    print STDERR "$_\n";}
-	exit;
+    print STDERR "\n          ***** PubCrawler - library test *****\n";
+    print STDERR "\nThe following directories will be searched for modules:\n\n";
+    foreach (@INC) {
+        print STDERR "$_\n";}
+    exit;
     }
-}				
+}               
 
 #### STANDARD MODULES ####
 use Getopt::Long;    # to read in command line options
@@ -86,8 +86,8 @@ use Cwd;             # to get the current working directory
 use Fcntl;           # for unbuffered writing to results file
 
 #### ADDITIONAL MODULES ####
-use LWP::Simple;     # to retrieve proxy autoconfig-file                 
-use HTML::Parser;    # to parse HTML-expressions              
+use LWP::Simple;     # to retrieve proxy autoconfig-file
+use HTML::Parser;    # to parse HTML-expressions
 use LWP::UserAgent;  # for advanced internet connections
 
 ###############################################################
@@ -100,7 +100,7 @@ $| = 1;  # print to STDOUT immediately
 # I'm using metasend, because it allows me
 #  - to send the results as an HTML-file
 #  - to set the From: header manually
-# drawback is, that I have to store the message 
+# drawback is, that I have to store the message
 # in a file locally
 # /usr/bin/mail would be easier to use
 # but is quite limited...
@@ -115,47 +115,47 @@ my $cwd = cwd;        # get current working directory
 
 # I am just guessing here, that the following operating systems
 # will work alright with the 'system'-variable set to 'unix'
-my @unix_flav = qw( aix dec_os dec_osf dynix epix esix freebsd genix hpux 
-		irix isc linux lynxos machten mips mpc mpeix 
-		netbsd nwsos next openbsd powerux qnx sco solaris 
-		stellar sunos svr4 ti1500 titanos ultrix umips 
-		unicos unisys unix utek uts cygwin );
+my @unix_flav = qw( aix dec_os dec_osf dynix epix esix freebsd genix hpux
+        irix isc linux lynxos machten mips mpc mpeix
+        netbsd nwsos next openbsd powerux qnx sco solaris
+        stellar sunos svr4 ti1500 titanos ultrix umips
+        unicos unisys unix utek uts cygwin );
 my $unix_flav = join '|', @unix_flav;
 
 my $link_gen = 'http://pubcrawler.gen.tcd.ie';
 my $home_link = 'http://www.pubcrawler.ie';
 
 my %db_match = ('pubmed', 'm',     # matches database key
-		'genbank', 'n',    # to query-option 
-		'nucleotide', 'n',    # to query-option 
-		'pm_neighbour', 'relm',    # to query-option 
-		'gb_neighbour', 'reln'
-		);  
+        'genbank', 'n',    # to query-option
+        'nucleotide', 'n',    # to query-option
+        'pm_neighbour', 'relm',    # to query-option
+        'gb_neighbour', 'reln'
+        );
 my %back_match = ('pm_neighbour', 'pubmed',
-		  'gb_neighbour', 'nucleotide'
-		  );
+          'gb_neighbour', 'nucleotide'
+          );
 my %search_db = ('m', 'pubmed',
-		 'n', 'nucleotide'
-		 );
+         'n', 'nucleotide'
+         );
 my %date_limit = ('m','reldate',
-		  'n','reldate'
-		  );
+          'n','reldate'
+          );
 my %date_range = ('m','entrezdate',
-		  'n','moddate'
-		  );
+          'n','moddate'
+          );
                                               
 my %word = ('pubmed', 'PubMed',    #matches database key
-	 'nucleotide', 'GenBank',  #to the real word 
-	 'genbank', 'GenBank', 
-	 'pm_neighbour', 'Medline Neighbourhood',  #to the real word 
-	 'gb_neighbour', 'Nucleotide Neighbourhood'
-	 );  
+     'nucleotide', 'GenBank',  #to the real word 
+     'genbank', 'GenBank', 
+     'pm_neighbour', 'Medline Neighbourhood',  #to the real word 
+     'gb_neighbour', 'Nucleotide Neighbourhood'
+     );  
 my %retrieve_db = ('pubmed', 'PubMed',         #matches database key
-		   'nucleotide', 'nucleotide', #to databases recognized for retrieval links		   
-		   );  
+           'nucleotide', 'nucleotide', #to databases recognized for retrieval links        
+           );  
 
 my %ncbi_options = ('pubmed', 'DocSum, Brief, Abstract, Citation, MEDLINE, XML, ASN1, ExternalLink',
-		    'nucleotide', 'DocSum, Brief, GenBank, ASN1, FASTA, ExternalLink, XML');
+            'nucleotide', 'DocSum, Brief, GenBank, ASN1, FASTA, ExternalLink, XML');
 my %ncbi_options_string = ();
 foreach (keys %ncbi_options) {
     $ncbi_options_string{$_} = '"'.(join '", "', (split /, /, $ncbi_options{$_})).'"';
@@ -203,11 +203,11 @@ Select format:
    foreach (@ncbi_options) {
        my $opt = lc $_;
        $ncbi_buttons .= "<OPTION VALUE=\"$opt\"".
-	   ( ($_ eq $retrieve_format
-	      or
-	      $opt eq $retrieve_format) ?
-	     ' SELECTED' : '').
-	     ">$_</OPTION>\n";
+       ( ($_ eq $retrieve_format
+          or
+          $opt eq $retrieve_format) ?
+         ' SELECTED' : '').
+         ">$_</OPTION>\n";
    }
 #    $ncbi_buttons .= "
 #</SELECT>
@@ -342,75 +342,75 @@ or $home_link
 
 # list of variables for which the program expects values:
 my @expect_val = qw( 
-		     fullmax 
-		     getmax 
-		     html_file 
-		     include_config 
-		     relentrezdate 
-		     viewdays 
-                     bg
-                     icon
-                     proj
-		 );
+             fullmax 
+             getmax 
+             html_file 
+             include_config 
+             relentrezdate 
+             viewdays 
+             bg
+             icon
+             proj
+         );
 
-my @allowed_var = qw(		  
-		      break
-		      base_URL
-		      check
-		      cmd_query
-		      database
-		      extra_query
-		      extra_range
-		      fullmax 
-		      force_mail
-		      format
-		      from_quick
-		      from
-		      from_date
-		      header
-		      id
-		      indent
-		      log_file
-		      log_mail
-		      log_queries
-		      lynx
-		      mail
-		      mail_ascii
-		      mail_features
-		      mail_feature
-		      mail_only
-		      mail_relay
-		      mail_results_format
-		      mail_simple
-		      mute
-		      no_decap
-		      no_test		  
-		      notify
-		      neighbour_URL
-		      pic
-		      prefix
-		      prompt
-		      proxy
-		      proxy_port
-		      proxy_auth
-		      proxy_pass
-		      quickstart
-		      relpubdate 
-		      replace_header 
-		      results_format
-		      retrieve_URL
-		      retry
-		      search_URL
-		      spacer
-		      system
-		      test_URL
-		      time_out
-		      to
-		      to_date
-		      tool
-		      touch
-		      verbose
-		      work_dir
+my @allowed_var = qw(         
+              break
+              base_URL
+              check
+              cmd_query
+              database
+              extra_query
+              extra_range
+              fullmax 
+              force_mail
+              format
+              from_quick
+              from
+              from_date
+              header
+              id
+              indent
+              log_file
+              log_mail
+              log_queries
+              lynx
+              mail
+              mail_ascii
+              mail_features
+              mail_feature
+              mail_only
+              mail_relay
+              mail_results_format
+              mail_simple
+              mute
+              no_decap
+              no_test         
+              notify
+              neighbour_URL
+              pic
+              prefix
+              prompt
+              proxy
+              proxy_port
+              proxy_auth
+              proxy_pass
+              quickstart
+              relpubdate 
+              replace_header 
+              results_format
+              retrieve_URL
+              retry
+              search_URL
+              spacer
+              system
+              test_URL
+              time_out
+              to
+              to_date
+              tool
+              touch
+              verbose
+              work_dir
 );
 
 my %PARAM = ();
@@ -509,7 +509,7 @@ my @error = ();   #needed for -check option
 my $warning = 0;  #needed for -check option
 my @warning = (); #needed for -check option
 
-	
+    
 # cascading style sheets:
 my $css = '
 <style type="text/css">
@@ -544,45 +544,45 @@ function id_collect_ncbi(form)
   url = url + format + "&list_uids=";
   if (db == "pubmed") {
       if ( form.PubMedHits.length ) {
-	  // look for checked boxes;
-	  for ( index = 0; index < form.PubMedHits.length; index++ ) {
-	      if ( form.PubMedHits[ index ].checked ) {
-		  allEmpty = false; //at least one box ticked
-		      if (first == true) {
-			  url = url + form.PubMedHits[ index ].value;
-			  first = false;
-		      } else if (first == false) {
-			  url = url + "," + form.PubMedHits[ index ].value;
-		      } 
-	      }
-	  }
+      // look for checked boxes;
+      for ( index = 0; index < form.PubMedHits.length; index++ ) {
+          if ( form.PubMedHits[ index ].checked ) {
+          allEmpty = false; //at least one box ticked
+              if (first == true) {
+              url = url + form.PubMedHits[ index ].value;
+              first = false;
+              } else if (first == false) {
+              url = url + "," + form.PubMedHits[ index ].value;
+              } 
+          }
+      }
       } else {
-	  // if only one hit was found we can\'t treat the form as a list:
+      // if only one hit was found we can\'t treat the form as a list:
           if ( form.PubMedHits.checked ) {
-	      allEmpty = false; //at least one box ticked
-		  url = url + form.PubMedHits.value;
-	  }
+          allEmpty = false; //at least one box ticked
+          url = url + form.PubMedHits.value;
+      }
       }
   } else {
       if ( form.NucleotideHits.length ) {
-	  // look for checked boxes;
-	  for ( index = 0; index < form.NucleotideHits.length; index++ ) {
-	      if ( form.NucleotideHits[ index ].checked ) {
-		  allEmpty = false; //at least one box ticked
-		      if (first == true) {
-			  url = url + form.NucleotideHits[ index ].value;
-			  first = false;
-		      } else if (first == false) {
-			  url = url + "," + form.NucleotideHits[ index ].value;
-		      } 
-	      }
-	  }
+      // look for checked boxes;
+      for ( index = 0; index < form.NucleotideHits.length; index++ ) {
+          if ( form.NucleotideHits[ index ].checked ) {
+          allEmpty = false; //at least one box ticked
+              if (first == true) {
+              url = url + form.NucleotideHits[ index ].value;
+              first = false;
+              } else if (first == false) {
+              url = url + "," + form.NucleotideHits[ index ].value;
+              } 
+          }
+      }
       } else {
-	  // if only one hit was found we can\'t treat the form as a list:
+      // if only one hit was found we can\'t treat the form as a list:
           if ( form.NucleotideHits.checked ) {
-	      allEmpty = false; //at least one box ticked
-		  url = url + form.NucleotideHits.value;
-	  }
+          allEmpty = false; //at least one box ticked
+          url = url + form.NucleotideHits.value;
+      }
       }
   }
 
@@ -622,28 +622,28 @@ function setFormat(choice) {
     var isPreNN6 = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) <= 4)
     switch (choice.value) {
         case "pubmed" :
-	    var formatList = new Array("Abstract", "DocSum", "Brief", "Citation", "MEDLINE", "XML", "ASN1", "ExternalLink")
-	    break
+        var formatList = new Array("Abstract", "DocSum", "Brief", "Citation", "MEDLINE", "XML", "ASN1", "ExternalLink")
+        break
         case "nucleotide" :
-	    var formatList = new Array("GenBank", "DocSum", "Brief", "ASN1", "FASTA", "ExternalLink", "XML")
-	    break
+        var formatList = new Array("GenBank", "DocSum", "Brief", "ASN1", "FASTA", "ExternalLink", "XML")
+        break
         default:
-	    alert("Database \'" + choice + "\' not known!")
+        alert("Database \'" + choice + "\' not known!")
     }
     var listlength = formatList.length
     var listObj = document.forms[0].NCBIFormat
     // filter out old browsers
     if (listObj.type) {
-	// empty options from list
-	listObj.length = 0
-	// create new option object for each entry
-	for (var i = 0; i < listlength; i++) {
-	    listObj.options[i] = new Option(formatList[i])
-	}
-	listObj.options[0].selected = true
-	if (isPreNN6) {
-	    history.go(0)
-	}
+    // empty options from list
+    listObj.length = 0
+    // create new option object for each entry
+    for (var i = 0; i < listlength; i++) {
+        listObj.options[i] = new Option(formatList[i])
+    }
+    listObj.options[0].selected = true
+    if (isPreNN6) {
+        history.go(0)
+    }
     }
 }
 
@@ -659,18 +659,18 @@ function ncbi_query(form) {
     
     if (search.length > 0) 
     {
-	url = url + "&term=" + search;
-	allEmpty = false;
+    url = url + "&term=" + search;
+    allEmpty = false;
     }
 
     if ( allEmpty )
     {
-	alert( "No search term specified!");
+    alert( "No search term specified!");
     }
     else
     {
-	document.gotoNCBI.action=url;
-	document.gotoNCBI.submit();
+    document.gotoNCBI.action=url;
+    document.gotoNCBI.submit();
     }
 }
 //-->
@@ -702,71 +702,71 @@ GetOptions('add_path', \$PARAM{'add_path'},  # this option is dealt with in BEGI
            'replace_header', \$unused,
            'decap', \$unused,
            'break=i', \$PARAM{'break'},
-	   'h', \$help,
-	   'help', \$help,
-	   'head=s',\$PARAM{'header'},
-	   'c=s', \$config_file,
-	   'check', \$PARAM{'check'},
+           'h', \$help,
+           'help', \$help,
+           'head=s',\$PARAM{'header'},
+           'c=s', \$config_file,
+           'check', \$PARAM{'check'},
            'copyright', \$copyright,
-	   'd=s', \$PARAM{'work_dir'},
-	   'db=s', \$PARAM{'database'},
-	   'extra_query=s', \$PARAM{'extra_query'},
-	   'extra_range=i', \$PARAM{'extra_range'},
+           'd=s', \$PARAM{'work_dir'},
+           'db=s', \$PARAM{'database'},
+           'extra_query=s', \$PARAM{'extra_query'},
+           'extra_range=i', \$PARAM{'extra_range'},
            'force_mail', \$PARAM{'force_mail'},
            'format|results_format=s', \$PARAM{'results_format'},
            'from_quick', \$PARAM{'from_quick'},
            'from|from_date=s', \$PARAM{'from_date'},
-	   'fullmax=s', \$PARAM{'fullmax'},
-	   'getmax=i', \$PARAM{'getmax'},
-	   'i', \$PARAM{'include_config'},
+           'fullmax=s', \$PARAM{'fullmax'},
+           'getmax=i', \$PARAM{'getmax'},
+           'i', \$PARAM{'include_config'},
            'id=s', \$PARAM{'id'},
            'indent=i', \$PARAM{'indent'},
-	   'l=s', \$PARAM{'log_file'},
+           'l=s', \$PARAM{'log_file'},
            'log', \$PARAM{'log_queries'},
-	   'lynx=s', \$PARAM{'lynx'},
+           'lynx=s', \$PARAM{'lynx'},
            'mail_only=i', \$PARAM{'mail_only'},
-	   'mail=s', \$PARAM{'mail'},         
-	   'mail_ascii=s', \$PARAM{'mail_ascii'},
+           'mail=s', \$PARAM{'mail'},         
+           'mail_ascii=s', \$PARAM{'mail_ascii'},
            'mail_features|mail_feature=s', \$PARAM{'mail_features'},
-	   'mail_simple=s', \$PARAM{'mail_simple'},
+           'mail_simple=s', \$PARAM{'mail_simple'},
            'mail_results_format=s', \$PARAM{'mail_results_format'},
            'mog', \$PARAM{'log_mail'},
-	   'mute', \$PARAM{'mute'},
+           'mute', \$PARAM{'mute'},
            'n=s', \$PARAM{'neighbour_URL'},
-	   'notify=s', \$PARAM{'notify'},
-	   'no_test', \$PARAM{'no_test'},
-	   'os=s', \$PARAM{'system'},
-	   'out=s', \$PARAM{'html_file'},
-	   'pic=s', \$PARAM{'pic'},
-	   'p=s', \$PARAM{'proxy'},
-	   'pp=i', \$PARAM{'proxy_port'},
-	   'pauth=s', \$PARAM{'proxy_auth'},
-	   'ppass=s', \$PARAM{'proxy_pass'},
-	   'pre=s', \$PARAM{'prefix'},
-	   'quickstart', \$PARAM{'quickstart'},
-	   'relentrezdate=s', \$PARAM{'relentrezdate'},
-	   'red=s', \$PARAM{'relentrezdate'},
+           'notify=s', \$PARAM{'notify'},
+           'no_test', \$PARAM{'no_test'},
+           'os=s', \$PARAM{'system'},
+           'out=s', \$PARAM{'html_file'},
+           'pic=s', \$PARAM{'pic'},
+           'p=s', \$PARAM{'proxy'},
+           'pp=i', \$PARAM{'proxy_port'},
+           'pauth=s', \$PARAM{'proxy_auth'},
+           'ppass=s', \$PARAM{'proxy_pass'},
+           'pre=s', \$PARAM{'prefix'},
+           'quickstart', \$PARAM{'quickstart'},
+           'relentrezdate=s', \$PARAM{'relentrezdate'},
+           'red=s', \$PARAM{'relentrezdate'},
            'relay|mail_relay=s', \$PARAM{'mail_relay'},
            'retry=i', \$PARAM{'retry'},
-	   'q=s', \$PARAM{'search_URL'},
-	   'r=s', \$PARAM{'retrieve_URL'},
-	   's=s', \$PARAM{'cmd_query'},
+           'q=s', \$PARAM{'search_URL'},
+           'r=s', \$PARAM{'retrieve_URL'},
+           's=s', \$PARAM{'cmd_query'},
            'spacer=s', \$PARAM{'spacer'},
-	   't=i', \$PARAM{'time_out'},
+           't=i', \$PARAM{'time_out'},
            'to|to_date=s', \$PARAM{'to_date'},
            'tool=s', \$PARAM{'tool'},
            'touch=s', \$PARAM{'touch'},
-	   'u=s', \$PARAM{'test_URL'},
-	   'v', \$PARAM{'verbose'},
-	   'verbose', \$PARAM{'verbose'},
-	   'viewdays=i', \$PARAM{'viewdays'},
+           'u=s', \$PARAM{'test_URL'},
+           'v', \$PARAM{'verbose'},
+           'verbose', \$PARAM{'verbose'},
+           'viewdays=i', \$PARAM{'viewdays'},
            'bg=s', \$PARAM{'bg'},
            'proj=s', \$PARAM{'proj'},
            'icon=s', \$PARAM{'icon'},
-	   'version', \$version,
+           'version', \$version,
            'simulation|sim|simulate=s', \$simulation,
            'sim_file|simulation_file=s', \$simulation_file,
-	   );
+       );
 
 
 if ($help) {
@@ -814,9 +814,9 @@ Please specify one of the following OS via comand line option '-os' :
 if ($PARAM{'work_dir'}) {
     $PARAM{'work_dir'} .= $joiner unless ($PARAM{'work_dir'} =~ /$joiner$/);
     if ($PARAM{'system'} =~ /win/i) {
-	# special treatment for windows paths
-	# (due to joiner symbol \)
-	$PARAM{'work_dir'} =~ s/\\\\/\\/g;
+    # special treatment for windows paths
+    # (due to joiner symbol \)
+    $PARAM{'work_dir'} =~ s/\\\\/\\/g;
     }
 }
 
@@ -825,7 +825,7 @@ if ($PARAM{'work_dir'}) {
 if ($config_file) {
     $cmd_line_cfg_file = 1;
     if (-r $config_file) {
-	&read_config;
+    &read_config;
     }
 } else {
     # default configuration file consists of prefix + '.config'
@@ -841,29 +841,29 @@ if (-r $PARAM{'work_dir'}.$config_file) {
 unless ($config_read) {
         # try the home-directory
     if (-r $ENV{'HOME'}.$joiner.$config_file) {
-	$config_file = $ENV{'HOME'}.$joiner.$config_file;
-	&read_config;
+    $config_file = $ENV{'HOME'}.$joiner.$config_file;
+    &read_config;
     } elsif (-r $cwd.$joiner.$config_file) {
-	# try the current working directory    
-	$config_file = $cwd.$joiner.$config_file;
-	&read_config;
+    # try the current working directory    
+    $config_file = $cwd.$joiner.$config_file;
+    &read_config;
     } else {
-	# configuration file cannot be read
-	# die unless all mandatory variables are set
-	if (&empty_vars(@expect_val)) {
-	    unless ($PARAM{'check'}) {
-		print STDERR "$prog_name ERROR: Can not read configuration file \'$config_file\' from $cwd\ncommand line parameters were:";
-		foreach (@arg_tmp) {
-		    print STDERR " $_";
-		}
-		print STDERR "\n\n";
+    # configuration file cannot be read
+    # die unless all mandatory variables are set
+    if (&empty_vars(@expect_val)) {
+        unless ($PARAM{'check'}) {
+        print STDERR "$prog_name ERROR: Can not read configuration file \'$config_file\' from $cwd\ncommand line parameters were:";
+        foreach (@arg_tmp) {
+            print STDERR " $_";
+        }
+        print STDERR "\n\n";
                 print "Please read instructions in readme file\nor at http://www.pubcrawler.ie!\n\n";
                 sleep 3;
-		exit;
-	    }
-	} else {
-	    warn "$prog_name WARNING: Can not read configuration file \'$config_file\' from $cwd" unless ($PARAM{'check'});
-	}
+        exit;
+        }
+    } else {
+        warn "$prog_name WARNING: Can not read configuration file \'$config_file\' from $cwd" unless ($PARAM{'check'});
+    }
     }
 }
 
@@ -976,69 +976,69 @@ if (($PARAM{'system'} =~ /macos/i or $^O =~ /macos/i) and $PARAM{'prompt'} eq '1
 
     #### fetch command line options again####
     GetOptions('h', \$help,
-	       'help', \$help,
-	       'head=s',\$PARAM{'header'},
-	       'c=s', \$config_file,
-	       'check', \$PARAM{'check'},
+           'help', \$help,
+           'head=s',\$PARAM{'header'},
+           'c=s', \$config_file,
+           'check', \$PARAM{'check'},
                'copyright', \$copyright,
-	       'd=s', \$PARAM{'work_dir'},
-	       'db=s', \$PARAM{'database'},
-	       'extra_query=s', \$PARAM{'extra_query'},
-	       'extra_range=i', \$PARAM{'extra_range'},
+           'd=s', \$PARAM{'work_dir'},
+           'db=s', \$PARAM{'database'},
+           'extra_query=s', \$PARAM{'extra_query'},
+           'extra_range=i', \$PARAM{'extra_range'},
                'force_mail', \$PARAM{'force_mail'},
                'format|results_format=s', \$PARAM{'results_format'},
                'from_quick', \$PARAM{'from_quick'},
                'from=s', \$PARAM{'from_date'},
-	       'fullmax=s', \$PARAM{'fullmax'},
-	       'getmax=i', \$PARAM{'getmax'},
-	       'i', \$PARAM{'include_config'},
+           'fullmax=s', \$PARAM{'fullmax'},
+           'getmax=i', \$PARAM{'getmax'},
+           'i', \$PARAM{'include_config'},
                'id=s', \$PARAM{'id'},
                'indent=i', \$PARAM{'indent'},
-	       'l=s', \$PARAM{'log_file'},
-	       'lynx=s', \$PARAM{'lynx'},
-	       'mail=s', \$PARAM{'mail'},
-      	       'mail_ascii=s', \$PARAM{'mail_ascii'},
+           'l=s', \$PARAM{'log_file'},
+           'lynx=s', \$PARAM{'lynx'},
+           'mail=s', \$PARAM{'mail'},
+               'mail_ascii=s', \$PARAM{'mail_ascii'},
                'mail_features=s', \$PARAM{'mail_features'},
-	       'mail_simple=s', \$PARAM{'mail_simple'},
+           'mail_simple=s', \$PARAM{'mail_simple'},
                'mail_results_format=s', \$PARAM{'mail_results_format'},
-	       'mute', \$PARAM{'mute'},
+           'mute', \$PARAM{'mute'},
                'n=s', \$PARAM{'neighbour_URL'},
-	       'notify=s', \$PARAM{'notify'},
-	       'no_test', \$PARAM{'no_test'},
-	       'os=s', \$PARAM{'system'},
-	       'out=s', \$PARAM{'html_file'},
-	       'p=s', \$PARAM{'proxy'},
-	       'pp=i', \$PARAM{'proxy_port'},
-	       'pauth=s', \$PARAM{'proxy_auth'},
-	       'ppass=s', \$PARAM{'proxy_pass'},
-	       'pre=s', \$PARAM{'prefix'},
-	       'quickstart', \$PARAM{'quickstart'},
-	       'relentrezdate=s', \$PARAM{'relentrezdate'},
-	       'red=s', \$PARAM{'relentrezdate'},
+           'notify=s', \$PARAM{'notify'},
+           'no_test', \$PARAM{'no_test'},
+           'os=s', \$PARAM{'system'},
+           'out=s', \$PARAM{'html_file'},
+           'p=s', \$PARAM{'proxy'},
+           'pp=i', \$PARAM{'proxy_port'},
+           'pauth=s', \$PARAM{'proxy_auth'},
+           'ppass=s', \$PARAM{'proxy_pass'},
+           'pre=s', \$PARAM{'prefix'},
+           'quickstart', \$PARAM{'quickstart'},
+           'relentrezdate=s', \$PARAM{'relentrezdate'},
+           'red=s', \$PARAM{'relentrezdate'},
                'relay|mail_relay=s', \$PARAM{'mail_relay'},
                'retry=i', \$PARAM{'retry'},
-	       'q=s', \$PARAM{'search_URL'},
-	       'r=s', \$PARAM{'retrieve_URL'},
-	       's=s', \$PARAM{'cmd_query'},
+           'q=s', \$PARAM{'search_URL'},
+           'r=s', \$PARAM{'retrieve_URL'},
+           's=s', \$PARAM{'cmd_query'},
                'spacer=s', \$PARAM{'spacer'},
-	       't=i', \$PARAM{'time_out'},
+           't=i', \$PARAM{'time_out'},
                'tool=s', \$PARAM{'tool'},
                'to=s', \$PARAM{'to_date'},
                'touch=s', \$PARAM{'touch'},
-	       'u=s', \$PARAM{'test_URL'},
-	       'v', \$PARAM{'verbose'},
-	       'verbose', \$PARAM{'verbose'},
-	       'viewdays=i', \$PARAM{'viewdays'},
-	       'version', \$version
-	       );
+           'u=s', \$PARAM{'test_URL'},
+           'v', \$PARAM{'verbose'},
+           'verbose', \$PARAM{'verbose'},
+           'viewdays=i', \$PARAM{'viewdays'},
+           'version', \$version
+           );
 
     if (defined $help) {
-	print STDERR "$USAGE";
-	exit($EXIT_SUCCESS);
+    print STDERR "$USAGE";
+    exit($EXIT_SUCCESS);
     }
     if ($version) {
-	print STDERR "\nThis is PubCrawler version $version_number\n\n";
-	exit($EXIT_SUCCESS);
+    print STDERR "\nThis is PubCrawler version $version_number\n\n";
+    exit($EXIT_SUCCESS);
     }
     
     # resolve '.' (current working directory)
@@ -1066,7 +1066,7 @@ $PARAM{'mail_simple'} = '1' if ($PARAM{'mail_ascii'});
 
 if ($PARAM{'id'} ne '') {
     if ($PARAM{'log_queries'} or $PARAM{'log_mail'}) {
-	$log_id = $PARAM{'id'};
+    $log_id = $PARAM{'id'};
     }
 #    $PARAM{'id'} = "for $PARAM{'id'}";
 }
@@ -1125,7 +1125,7 @@ if ($PARAM{'relentrezdate'} !~ /\d/i) {
     $PARAM{'relentrezdate'} = $1;
     $date_type = $2;
     if ($date_type =~ /^y/i) {
-	$PARAM{'relentrezdate'} *= 365;
+    $PARAM{'relentrezdate'} *= 365;
     } # otherwise assuming days
 }
 
@@ -1146,7 +1146,7 @@ $PARAM{'neighbour_URL'} = $neighbour_URL_def if ($PARAM{'neighbour_URL'} eq '');
 if (@_ = &empty_vars(@expect_val,'system')) {
     print STDERR "$prog_name ERROR $PARAM{'id'}: no value set for the following variable(s):\n";
     foreach (@_) {
-	print STDERR "\t$_\n";
+    print STDERR "\t$_\n";
     }
     print STDERR "\nPlease check your configuration file or use command line options!\n";
     exit($EXIT_FAILURE);
@@ -1160,38 +1160,38 @@ chdir "$PARAM{'work_dir'}" or
 my $ip = '';
 if ($PARAM{'mail_only'} =~ /\d/) {
     if ($ip eq '') {
-	$ip = `hostname -i`;
-	# use only first part in case more than one are specified
-	($ip) = split / /, $ip;
-	unless ($? == 0) {
-	    $ip = `hostname`;
-	}
+    $ip = `hostname -i`;
+    # use only first part in case more than one are specified
+    ($ip) = split / /, $ip;
+    unless ($? == 0) {
+        $ip = `hostname`;
+    }
     }
     $ip =~ s/\s$//g;
     ($mday,$mon,$year) = (localtime(time))[3,4,5];
     $mon++;
     $year += 1900;
     foreach ($mday,$mon){
-	if (length($_) == 1) {
-	    $_ = "0".$_;
-	}
+    if (length($_) == 1) {
+        $_ = "0".$_;
+    }
     }
     
     $mail_log = "/tmp/mails_$year$mon${mday}_$ip";
     unless (-e $mail_log) {
-	system "touch $mail_log; chmod 666 $mail_log";
+    system "touch $mail_log; chmod 666 $mail_log";
     }
     unless (-w $mail_log) {
-	warn "Can't write to $mail_log: $?\n";
-	$PARAM{'log_mail'} = '';
+    warn "Can't write to $mail_log: $?\n";
+    $PARAM{'log_mail'} = '';
     }
 
     &mail_service;
 
     # delete any temporary files
     if (-e $tmp_file) {
-	sleep 5;
-	unlink $tmp_file;
+    sleep 5;
+    unlink $tmp_file;
     }
     if (-e $tmp_file.'.mail') {
         sleep 5;
@@ -1215,7 +1215,7 @@ if ($PARAM{'mail_only'} =~ /\d/) {
 unless ($PARAM{'verbose'}) {        
     $PARAM{'log_file'} = "$PARAM{'prefix'}_log.html" unless ($PARAM{'log_file'});
     open (LOGFILE,">$PARAM{'log_file'}") ||
-	die "$prog_name ERROR:cannot open log file ($PARAM{'log_file'}):$!";
+    die "$prog_name ERROR:cannot open log file ($PARAM{'log_file'}):$!";
     select (LOGFILE);
     print "<HTML><title>PubCrawler log file</title>
           <h2>PubCrawler logfile</h2><pre>";
@@ -1255,7 +1255,7 @@ if ($PARAM{'cmd_query'}) {
     %aliases = ();
     %query = ();
     push @{ $aliases{$cmd_alias} }, $PARAM{'cmd_query'};
-    $query{$PARAM{'cmd_query'}}{'ALIAS'} = $cmd_alias;	    
+    $query{$PARAM{'cmd_query'}}{'ALIAS'} = $cmd_alias;      
     $query{$PARAM{'cmd_query'}}{'DB'} = $cmd_db;
     $query{$PARAM{'cmd_query'}}{'ORIG'} = $cmd_query_orig;
 }
@@ -1317,66 +1317,66 @@ if ($PARAM{'touch'}) {
     # use only first part in case more than one are specified
     ($ip) = split / /, $ip;
     unless ($? == 0) {
-	$ip = `hostname`;
+    $ip = `hostname`;
     }
     system "touch $PARAM{'touch'}/$ip";
 }
 
 if ($PARAM{'log_queries'}) {
     if ($ip eq '') {
-	$ip = `hostname -i`;
-	# use only first part in case more than one are specified
-	($ip) = split / /, $ip;
-	unless ($? == 0) {
-	    $ip = `hostname`;
-	}
+    $ip = `hostname -i`;
+    # use only first part in case more than one are specified
+    ($ip) = split / /, $ip;
+    unless ($? == 0) {
+        $ip = `hostname`;
+    }
     }
     $ip =~ s/\s$//g;
     ($mday,$mon,$year) = (localtime(time))[3,4,5];
     $mon++;
     $year += 1900;
     foreach ($mday,$mon){
-	if (length($_) == 1) {
-	    $_ = "0".$_;
-	}
+    if (length($_) == 1) {
+        $_ = "0".$_;
+    }
     }
     
     $query_log = "/tmp/queries_$year$mon${mday}_$ip";
     unless (-e $query_log) {
-	system "touch $query_log; chmod 666 $query_log";
+    system "touch $query_log; chmod 666 $query_log";
     }
     unless (-w $query_log) {
-	warn "Can't write to $query_log: $?\n";
-	$PARAM{'log_queries'} = '';
+    warn "Can't write to $query_log: $?\n";
+    $PARAM{'log_queries'} = '';
     }
 }
     
 if ($PARAM{'log_mail'}) {
     if ($ip eq '') {
-	$ip = `hostname -i`;
-	# use only first part in case more than one are specified
-	($ip) = split / /, $ip;
-	unless ($? == 0) {
-	    $ip = `hostname`;
-	}
+    $ip = `hostname -i`;
+    # use only first part in case more than one are specified
+    ($ip) = split / /, $ip;
+    unless ($? == 0) {
+        $ip = `hostname`;
+    }
     }
     $ip =~ s/\s$//g;
     ($mday,$mon,$year) = (localtime(time))[3,4,5];
     $mon++;
     $year += 1900;
     foreach ($mday,$mon){
-	if (length($_) == 1) {
-	    $_ = "0".$_;
-	}
+    if (length($_) == 1) {
+        $_ = "0".$_;
+    }
     }
     
     $mail_log = "/tmp/mails_$year$mon${mday}_$ip";
     unless (-e $mail_log) {
-	system "touch $mail_log; chmod 666 $mail_log";
+    system "touch $mail_log; chmod 666 $mail_log";
     }
     unless (-w $mail_log) {
-	warn "Can't write to $mail_log: $?\n";
-	$PARAM{'log_mail'} = '';
+    warn "Can't write to $mail_log: $?\n";
+    $PARAM{'log_mail'} = '';
     }
 }
 
@@ -1389,16 +1389,16 @@ if ($PARAM{'from_date'} =~ /\d{4,}/) {
     $date_range_msg = "<H4>Date range: from $PARAM{'from_date'} to ";
     $date_range = '&mindate='.(substr $PARAM{'from_date'}, 0, 4,'');
     if (length($PARAM{'from_date'}) > 1) {
-	$date_range .= '/'.(substr $PARAM{'from_date'}, 0, 2,'');
-	if (length($PARAM{'from_date'}) > 1) {
-	    $date_range .= '/'.(substr $PARAM{'from_date'}, 0, 2,'');
-	} else {
-	    $date_range = '';
-	    $date_range_msg = '';
-	}
+    $date_range .= '/'.(substr $PARAM{'from_date'}, 0, 2,'');
+    if (length($PARAM{'from_date'}) > 1) {
+        $date_range .= '/'.(substr $PARAM{'from_date'}, 0, 2,'');
     } else {
-	$date_range = '';
-	$date_range_msg = '';
+        $date_range = '';
+        $date_range_msg = '';
+    }
+    } else {
+    $date_range = '';
+    $date_range_msg = '';
     }
 }
 unless ($PARAM{'to_date'} =~ /\d{4,}/) {
@@ -1417,16 +1417,16 @@ if ($PARAM{'to_date'} =~ /\d{4,}/) {
     $date_range_msg .= "$PARAM{'to_date'}</H4>";
     $date_range .= '&maxdate='.(substr $PARAM{'to_date'}, 0, 4,'');
     if (length($PARAM{'to_date'}) > 1) {
-	$date_range .= '/'.(substr $PARAM{'to_date'}, 0, 2,'');
-	if (length($PARAM{'to_date'}) > 1) {
-	    $date_range .= '/'.(substr $PARAM{'to_date'}, 0, 2,'');
-	} else {
-	    $date_range = '';
-	    $date_range_msg = '';
-	}
+    $date_range .= '/'.(substr $PARAM{'to_date'}, 0, 2,'');
+    if (length($PARAM{'to_date'}) > 1) {
+        $date_range .= '/'.(substr $PARAM{'to_date'}, 0, 2,'');
     } else {
-	$date_range = '';
-	$date_range_msg = '';
+        $date_range = '';
+        $date_range_msg = '';
+    }
+    } else {
+    $date_range = '';
+    $date_range_msg = '';
     }
 }    
 my $date_range_msg_mail = $date_range_msg;
@@ -1442,17 +1442,17 @@ foreach $query (@query_order) {
     # first visit to NCBI for each query to get UIDs
     my $hits = 0;
     if ($simulation) {
-	@uid_list = split /,/, $simulation;
-	$hits = @uid_list;
-	$err_msg = '';
+    @uid_list = split /,/, $simulation;
+    $hits = @uid_list;
+    $err_msg = '';
     } elsif ($simulation_file) {
-	$hits = 2;
-	@uid_list = (1,1);
-	$PARAM{'break'} = 0;
+    $hits = 2;
+    @uid_list = (1,1);
+    $PARAM{'break'} = 0;
     } else {
-	($hits,
-	 $err_msg,
-	 @uid_list) = &first_visit($db,$query);
+    ($hits,
+     $err_msg,
+     @uid_list) = &first_visit($db,$query);
     }
 
         # space requests at $PARAM{'break'} seconds interval...
@@ -1497,40 +1497,40 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
     my $warn_entry = 0;
     my $first_visit_error = 0;
     foreach $query ( @{ $aliases{$alias} } ) {
-	$query_out = "'".$query{$query}{'ORIG'}." '";
+    $query_out = "'".$query{$query}{'ORIG'}." '";
 
-	if ($query{$query}{'ERR'}) {
+    if ($query{$query}{'ERR'}) {
 
-	    # an erorr was returned from the first query
-	    push @hit_numbers, "No hits for $query_out\n<BR><B>Message from NCBI:</B> ".$query{$query}{'ERR'};
-	    push @hit_numbers_mail, "No hits for $query_out${break}${boldIn}Message from NCBI:${boldOut} ".$query{$query}{'ERR'};
-	    $word = $word{$query{$query}{'DB'}} unless ($word);
+        # an erorr was returned from the first query
+        push @hit_numbers, "No hits for $query_out\n<BR><B>Message from NCBI:</B> ".$query{$query}{'ERR'};
+        push @hit_numbers_mail, "No hits for $query_out${break}${boldIn}Message from NCBI:${boldOut} ".$query{$query}{'ERR'};
+        $word = $word{$query{$query}{'DB'}} unless ($word);
             $first_visit_error++;
 
-	} else {
+    } else {
 
-	    # more hits available than limit:
-	    if ($query{$query}{'HITS'} >= $PARAM{'getmax'}) {
+        # more hits available than limit:
+        if ($query{$query}{'HITS'} >= $PARAM{'getmax'}) {
 
-		# report number of hits after first visit
-	        push @hit_numbers, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after <B>first</B> visit for $query_out";
-		push @hit_numbers, "<B>Warning:</B> retrieved max number of items for this query!";
-	        push @hit_numbers_mail, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after ${boldIn}first${boldOut} visit for $query_out";
-		push @hit_numbers_mail, "${boldIn}Warning:${boldOut} retrieved max number of items for this query!";
+        # report number of hits after first visit
+            push @hit_numbers, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after <B>first</B> visit for $query_out";
+        push @hit_numbers, "<B>Warning:</B> retrieved max number of items for this query!";
+            push @hit_numbers_mail, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after ${boldIn}first${boldOut} visit for $query_out";
+        push @hit_numbers_mail, "${boldIn}Warning:${boldOut} retrieved max number of items for this query!";
 
-		$warn_entry++;
+        $warn_entry++;
 
-	    } elsif ($query{$query}{'HITS'} > 0) {
+        } elsif ($query{$query}{'HITS'} > 0) {
 
-		# report number of hits after first visit
+        # report number of hits after first visit
                 # only when the second query produced results
-	        push @hit_numbers, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after <B>first</B> visit for $query_out";
-	        push @hit_numbers_mail, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after ${boldIn}first${boldOut} visit for $query_out";
-	    }
-	    push @uid_list, @{ $query{$query}{'UIDS'} };
-	    $db = $query{$query}{'DB'} unless ($db);
-	    $word = $word{$query{$query}{'DB'}} unless ($word);
-	}
+            push @hit_numbers, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after <B>first</B> visit for $query_out";
+            push @hit_numbers_mail, "$query{$query}{'HITS'} hit".($query{$query}{'HITS'}==1?'':'s')." after ${boldIn}first${boldOut} visit for $query_out";
+        }
+        push @uid_list, @{ $query{$query}{'UIDS'} };
+        $db = $query{$query}{'DB'} unless ($db);
+        $word = $word{$query{$query}{'DB'}} unless ($word);
+    }
     }
 
     # at this stage, $db is one of the known_searchtypes
@@ -1538,33 +1538,33 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
     # whatever was encountered first, in case of multiple queries for the same alias
     my $neighbour_hood_search = 0;
     if ($db =~ /_neighbour/) {
-	$neighbour_hood_search = 1;
+    $neighbour_hood_search = 1;
     } elsif ($db eq 'nucleotide') {
-	$sequence_search = 1;
+    $sequence_search = 1;
    }
     
     my $warn_text = '';
     my $warn_text_mail = '';
     my $warn_insert = 'older';
     if (-s $PARAM{'database'}
-	or
-	-s "$PARAM{'prefix'}.db") {
-	if ($neighbour_hood_search) {
-	    $warn_insert = 'less significant';
-	}
-	$warn_text = "${rarr}${space}Increase value of <I>getmax</I> (currently $PARAM{'getmax'}) via command-line option or in configuration file for additional ($warn_insert) results.\n";
-	$warn_text_mail = "${rarr}${space}Increase value of ${itIn}getmax${itOut} (currently $PARAM{'getmax'}) via command-line option or in configuration file for additional ($warn_insert) results.\n";
+    or
+    -s "$PARAM{'prefix'}.db") {
+    if ($neighbour_hood_search) {
+        $warn_insert = 'less significant';
+    }
+    $warn_text = "${rarr}${space}Increase value of <I>getmax</I> (currently $PARAM{'getmax'}) via command-line option or in configuration file for additional ($warn_insert) results.\n";
+    $warn_text_mail = "${rarr}${space}Increase value of ${itIn}getmax${itOut} (currently $PARAM{'getmax'}) via command-line option or in configuration file for additional ($warn_insert) results.\n";
     } else {
-	$warn_text = "<BR>\n${rarr}${space}The number of results exceeded <I>getmax</I> (currently $PARAM{'getmax'}), this is not unusual for database initialisation. It means, however, that some $warn_insert reports are not shown.\n";
-	$warn_text_mail = "<BR>\n${rarr}${space}The number of results exceeded ${itIn}getmax${itOut} (currently $PARAM{'getmax'}), this is not unusual for database initialisation. It means, however, that some $warn_insert reports are not shown.\n";
+    $warn_text = "<BR>\n${rarr}${space}The number of results exceeded <I>getmax</I> (currently $PARAM{'getmax'}), this is not unusual for database initialisation. It means, however, that some $warn_insert reports are not shown.\n";
+    $warn_text_mail = "<BR>\n${rarr}${space}The number of results exceeded ${itIn}getmax${itOut} (currently $PARAM{'getmax'}), this is not unusual for database initialisation. It means, however, that some $warn_insert reports are not shown.\n";
     }
 
     if ($warn_entry) {
-	# there was at least one query that hit the limit
-	push @hit_numbers, "<BR>$warn_text";
-	push @getmax_warning, $warn_text;
-	push @hit_numbers_mail, "${break}$warn_text_mail";
-	push @getmax_warning_mail, $warn_text_mail;
+    # there was at least one query that hit the limit
+    push @hit_numbers, "<BR>$warn_text";
+    push @getmax_warning, $warn_text;
+    push @hit_numbers_mail, "${break}$warn_text_mail";
+    push @getmax_warning_mail, $warn_text_mail;
     }
 
     my @status_message = ();
@@ -1572,81 +1572,81 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
 
     my ($result,$result_mail);
 
-    if (@uid_list) {	
-	   # extract all suitable uids
-	print "\ndetermining new reports for $alias\n";
-	@uid_list = &list_crunch($alias,@uid_list);
-	# @uid_list could be empty now
-	# (if all entries are older than viewdays + 3)
-	# but &second_visit will deal with this...
-	print "\n=====\n$alias:\nmaking second HTTP connection to retrieve complete records.\n";
-	   # retrieve full records and
+    if (@uid_list) {    
+       # extract all suitable uids
+    print "\ndetermining new reports for $alias\n";
+    @uid_list = &list_crunch($alias,@uid_list);
+    # @uid_list could be empty now
+    # (if all entries are older than viewdays + 3)
+    # but &second_visit will deal with this...
+    print "\n=====\n$alias:\nmaking second HTTP connection to retrieve complete records.\n";
+       # retrieve full records and
            # space requests at $PARAM{'break'} seconds interval...
         print "sleeping for $PARAM{'break'} seconds...\n";
         sleep($PARAM{'break'});
-	$db = 'nucleotide' if ($db eq 'genbank');
-	$db = $back_match{$db} if ($db =~ /_neighbour/);
+    $db = 'nucleotide' if ($db eq 'genbank');
+    $db = $back_match{$db} if ($db =~ /_neighbour/);
 
-	# at this stage, db can be either of
-	# 'pubmed' or 'nucleotide'
+    # at this stage, db can be either of
+    # 'pubmed' or 'nucleotide'
 
-	($result,$result_mail) = &second_visit($alias,$db,$word,@uid_list);
+    ($result,$result_mail) = &second_visit($alias,$db,$word,@uid_list);
         $result_mail_records .= $result_mail;
 
     } else {
 
-	# No hits after first visit
+    # No hits after first visit
 
-	$result .=
-	    &tab('TR')
-	    .&tab('TD');
-	    
+    $result .=
+        &tab('TR')
+        .&tab('TD');
+        
         $no_html = &set_flag;
-	$result_mail .=
-	    &tab('TR')
-	    .&tab('TD');
+    $result_mail .=
+        &tab('TR')
+        .&tab('TD');
         $no_html = 0;
-	    
-	$hits{$alias} = 0;
-	if (@getmax_warning) {
-	    push @status_message, "No new records retrieved for \'$alias\'", @getmax_warning;
-	    push @status_message_mail, "No new records retrieved for \'$alias\'", @getmax_warning_mail;
-	} elsif ($query{@{ $aliases{$alias} }[0]}{'ERR'} =~ /Neighbourhood search for GenBank <B>currently disabled<\/B>/) {
-	    push @status_message, $query{@{ $aliases{$alias} }[0]}{'ERR'};
-	    push @status_message_mail, $query{@{ $aliases{$alias} }[0]}{'ERR'};
-	} elsif ($query{@{ $aliases{$alias} }[0]}{'ERR'} =~ /No Documents Found/
-		 or
-		 $query{@{ $aliases{$alias} }[0]}{'ERR'} !~ /\w/) {
-	    push @status_message, "No matching documents found in Entrez for the last <B>$PARAM{'relentrezdate'} days</B>";
-	    push @status_message_mail, "No matching documents found in Entrez for the last ${boldIn}$PARAM{'relentrezdate'} days${boldOut}";
-	} elsif ($query{@{ $aliases{$alias} }[0]}{'ERR'} =~ /\w/) {
-	    push @status_message, "The following error message was received: $query{@{ $aliases{$alias} }[0]}{'ERR'}";
-	    push @status_message_mail, "The following error message was received: $query{@{ $aliases{$alias} }[0]}{'ERR'}";
-	} else {
-	    push @status_message, "No new records retrieved for \'$alias\'. ".'<B>Possible network failure.</B>';
-	    push @status_message_mail, "No new records retrieved for \'$alias\'. ".'${boldIn}Possible network failure.${boldOut}';
-	    if ($PARAM{'quickstart'}) {
-		push @status_message, "<B>-\&gt<A HREF=\"http://pubcrawler.gen.tcd.ie/quickstart.html\">Restart your jobs manually\!</A></B>";
+        
+    $hits{$alias} = 0;
+    if (@getmax_warning) {
+        push @status_message, "No new records retrieved for \'$alias\'", @getmax_warning;
+        push @status_message_mail, "No new records retrieved for \'$alias\'", @getmax_warning_mail;
+    } elsif ($query{@{ $aliases{$alias} }[0]}{'ERR'} =~ /Neighbourhood search for GenBank <B>currently disabled<\/B>/) {
+        push @status_message, $query{@{ $aliases{$alias} }[0]}{'ERR'};
+        push @status_message_mail, $query{@{ $aliases{$alias} }[0]}{'ERR'};
+    } elsif ($query{@{ $aliases{$alias} }[0]}{'ERR'} =~ /No Documents Found/
+         or
+         $query{@{ $aliases{$alias} }[0]}{'ERR'} !~ /\w/) {
+        push @status_message, "No matching documents found in Entrez for the last <B>$PARAM{'relentrezdate'} days</B>";
+        push @status_message_mail, "No matching documents found in Entrez for the last ${boldIn}$PARAM{'relentrezdate'} days${boldOut}";
+    } elsif ($query{@{ $aliases{$alias} }[0]}{'ERR'} =~ /\w/) {
+        push @status_message, "The following error message was received: $query{@{ $aliases{$alias} }[0]}{'ERR'}";
+        push @status_message_mail, "The following error message was received: $query{@{ $aliases{$alias} }[0]}{'ERR'}";
+    } else {
+        push @status_message, "No new records retrieved for \'$alias\'. ".'<B>Possible network failure.</B>';
+        push @status_message_mail, "No new records retrieved for \'$alias\'. ".'${boldIn}Possible network failure.${boldOut}';
+        if ($PARAM{'quickstart'}) {
+        push @status_message, "<B>-\&gt<A HREF=\"http://pubcrawler.gen.tcd.ie/quickstart.html\">Restart your jobs manually\!</A></B>";
                 my $text_insert = "<A HREF=\"http://pubcrawler.gen.tcd.ie/quickstart.html\">Restart your jobs manually\!</A>";
                 unless ($mail_features{'html'}) {
                     $text_insert = "Restart your jobs manually at http://pubcrawler.gen.tcd.ie/quickstart.html";
                 }
-		push @status_message_mail, "${boldIn}${rarr}$text_insert${boldOut}";
-		$net_failure = 1;
-	    }
-	}
-	push @status_message, "<BR>Database for this entry not updated.\n";
-	push @status_message_mail, "${break}Database for this entry not updated.\n";
-	$result .= 
-	    ${space}
-	    .&tab('/TD')
-	    .&tab('/TR');
+        push @status_message_mail, "${boldIn}${rarr}$text_insert${boldOut}";
+        $net_failure = 1;
+        }
+    }
+    push @status_message, "<BR>Database for this entry not updated.\n";
+    push @status_message_mail, "${break}Database for this entry not updated.\n";
+    $result .= 
+        ${space}
+        .&tab('/TD')
+        .&tab('/TR');
 
         $no_html = &set_flag;
-	$result_mail .= 
-	    ${space}
-	    .&tab('/TD')
-	    .&tab('/TR');
+    $result_mail .= 
+        ${space}
+        .&tab('/TD')
+        .&tab('/TR');
         $no_html = 0;
     }
 
@@ -1660,19 +1660,19 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
     $quot_alias =~ s/\"/&quot;/g;
     
     $result_collection .= "\n<!-- Results for $alias -->"
-	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
-	.&tab('TD')
-	."<H3><font color=\"#ffffff\">::::::</font>&nbsp;<A NAME=\"$quot_alias\">Results for \'$alias\' at $word</A></H3>"
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR')
-	.&tab('TD')
-	.&tab('TABLE',' bgcolor="#efefef" WIDTH="100%"')
-	.&tab('TR')
-	.&tab('TD')
-	.'&nbsp;'
-	.&tab('/TD')
-	.&tab('TD'); # grey box for status messages
+    .&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
+    .&tab('TD')
+    ."<H3><font color=\"#ffffff\">::::::</font>&nbsp;<A NAME=\"$quot_alias\">Results for \'$alias\' at $word</A></H3>"
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR')
+    .&tab('TD')
+    .&tab('TABLE',' bgcolor="#efefef" WIDTH="100%"')
+    .&tab('TR')
+    .&tab('TD')
+    .'&nbsp;'
+    .&tab('/TD')
+    .&tab('TD'); # grey box for status messages
     
     my $text_insert = "<H3><font color=\"#ffffff\">::::::</font>&nbsp;<A NAME=\"$quot_alias\">Results for \'$alias\' at $word</A></H3>";
     unless (defined $mail_features{'html'}) {
@@ -1681,19 +1681,19 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
 
     $no_html = &set_flag;
     $result_collection_mail .= "\n"
-	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
-	.&tab('TD')
-	.$text_insert
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR')
-	.&tab('TD')
-	.&tab('TABLE',' bgcolor="#efefef" WIDTH="100%"')
-	.&tab('TR')
-	.&tab('TD')
-	.${space}
-	.&tab('/TD')
-	.&tab('TD'); # grey box for status messages
+    .&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
+    .&tab('TD')
+    .$text_insert
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR')
+    .&tab('TD')
+    .&tab('TABLE',' bgcolor="#efefef" WIDTH="100%"')
+    .&tab('TR')
+    .&tab('TD')
+    .${space}
+    .&tab('/TD')
+    .&tab('TD'); # grey box for status messages
      $no_html = 0;
 
 
@@ -1707,102 +1707,102 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
          $result_collection .= $add;
          if ($mail_features{'html'}) {
              $result_collection_mail .= $add;
-         }	    
+         }      
     }
 
     if ($hits{$alias}) {
-	$result_collection .= join "<BR>\n", @hit_numbers; 
-	$result_collection_mail .= join "${break}", @hit_numbers_mail; 
+    $result_collection .= join "<BR>\n", @hit_numbers; 
+    $result_collection_mail .= join "${break}", @hit_numbers_mail; 
     } else {
-	$result_collection .= join "<BR>\n", @status_message;
-	$result_collection_mail .= join "${break}", @status_message_mail;
+    $result_collection .= join "<BR>\n", @status_message;
+    $result_collection_mail .= join "${break}", @status_message_mail;
     }
 
     $result_collection .=
-	&tab('/TD')
-	.&tab('TD')
-	.'&nbsp;'
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('/TABLE') # this closes off the table with the grey status bar
-	.&tab('/TD')
-	.&tab('/TR');
+    &tab('/TD')
+    .&tab('TD')
+    .'&nbsp;'
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('/TABLE') # this closes off the table with the grey status bar
+    .&tab('/TD')
+    .&tab('/TR');
 
     $no_html = &set_flag;
     $result_collection_mail .=
-	&tab('/TD')
-	.&tab('TD')
-	.${space}
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('/TABLE') # this closes off the table with the grey status bar
-	.&tab('/TD')
-	.&tab('/TR');
+    &tab('/TD')
+    .&tab('TD')
+    .${space}
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('/TABLE') # this closes off the table with the grey status bar
+    .&tab('/TD')
+    .&tab('/TR');
     $no_html = 0;
 
     if ($hits{$alias}) {
 
-	my $sorted_by = '';
-	if ($hits{$alias} > 2) {
-	    $sorted_by = ', sorted by ';
-	    if ($neighbour_hood_search) {
-		$sorted_by .= 'significance';
-	    } else {
+    my $sorted_by = '';
+    if ($hits{$alias} > 2) {
+        $sorted_by = ', sorted by ';
+        if ($neighbour_hood_search) {
+        $sorted_by .= 'significance';
+        } else {
                 if ($sequence_search) {
-		    $sorted_by .= 'Modification date';
+            $sorted_by .= 'Modification date';
                 } else {
-		    $sorted_by .= 'Entrez date';
+            $sorted_by .= 'Entrez date';
                 }
-	    }
-	}
+        }
+    }
 
-	$result_collection .=
-	    &tab('TR',' bgcolor="LIGHTGREY"')
-	    .&tab('TD')
-	    ."<h4>&nbsp;Today\'s new results ($hits{$alias} item"
-	    .($hits{$alias} > 1 ? 's' : '')
-	    ." in total"
-	    .$sorted_by
-	    ."):</h4>"
-	    .&tab('/TD')
-	    .&tab('/TR'); # this closes off the dark grey row 
+    $result_collection .=
+        &tab('TR',' bgcolor="LIGHTGREY"')
+        .&tab('TD')
+        ."<h4>&nbsp;Today\'s new results ($hits{$alias} item"
+        .($hits{$alias} > 1 ? 's' : '')
+        ." in total"
+        .$sorted_by
+        ."):</h4>"
+        .&tab('/TD')
+        .&tab('/TR'); # this closes off the dark grey row 
 
         $no_html = &set_flag;
-	$result_collection_mail .=
-	    &tab('TR',' bgcolor="LIGHTGREY"')
-	    .&tab('TD')
-	    ."\n${h4In}${space}Today\'s new results ($hits{$alias} item"
-	    .($hits{$alias} > 1 ? 's' : '')
-	    ." in total"
-	    .$sorted_by
-	    ."):${h4Out}"
-	    .&tab('/TD')
-	    .&tab('/TR'); # this closes off the blue row 
+    $result_collection_mail .=
+        &tab('TR',' bgcolor="LIGHTGREY"')
+        .&tab('TD')
+        ."\n${h4In}${space}Today\'s new results ($hits{$alias} item"
+        .($hits{$alias} > 1 ? 's' : '')
+        ." in total"
+        .$sorted_by
+        ."):${h4Out}"
+        .&tab('/TD')
+        .&tab('/TR'); # this closes off the blue row 
          $no_html = 0;
     }
 
     # listing of hits:
-    $result_collection .= $result;	
-    $result_collection_mail .= $result_mail;	
+    $result_collection .= $result;  
+    $result_collection_mail .= $result_mail;    
     
-	# add a spacer line
+    # add a spacer line
     $result_collection .= 
-	&tab('TR')
-	.&tab('TD');
+    &tab('TR')
+    .&tab('TD');
 
     $no_html = &set_flag;
     $result_collection_mail .= 
-	&tab('TR')
-	.&tab('TD');
+    &tab('TR')
+    .&tab('TD');
     $no_html = 0;
 
     # back to top link after each section
 #    $text_insert = 
-#	    &tab('TR')
-#	    .&tab('TD')
-#	    ."<CENTER><A HREF=\"#TOP\">[back to top]</A></CENTER><BR>\n"
-#	    .&tab('/TD')
-#	    .&tab('/TR');
+#       &tab('TR')
+#       .&tab('TD')
+#       ."<CENTER><A HREF=\"#TOP\">[back to top]</A></CENTER><BR>\n"
+#       .&tab('/TD')
+#       .&tab('/TR');
 #   
 #    $result_collection .= $text_insert;
 #    unless (defined $mail_features{'html'}) {
@@ -1814,14 +1814,14 @@ for (my $i = 0; $i <= $#alias_order; $i++) {
 #    $no_html = 0;
    
     $result_collection .= '<BR>'
-	.&tab('/TD')
-	.&tab('/TR')
-	."\n<!-- End of results for $alias -->\n";    
+    .&tab('/TD')
+    .&tab('/TR')
+    ."\n<!-- End of results for $alias -->\n";    
 
     $no_html = &set_flag;
     $result_collection_mail .= "${break}"
-	.&tab('/TD')
-	.&tab('/TR');    
+    .&tab('/TD')
+    .&tab('/TR');    
     $no_html = 0;
 }
 
@@ -1832,14 +1832,14 @@ $tmp_message_len += 2; # make sure all former temporary messages
 $indent = 6;
 $prev_indent = '-';
 &sys_print('OUT',"\n"
-	   .&tab('TR')
-	   .&tab('TD')
-	   ."<BR>$date_range_msg<H4>Index of PubCrawler results:</H4><UL>");
+       .&tab('TR')
+       .&tab('TD')
+       ."<BR>$date_range_msg<H4>Index of PubCrawler results:</H4><UL>");
 
 $no_html = &set_flag;
 $mail_results_file .= &tab('TR')
-	   .&tab('TD')
-	   ."${break}$date_range_msg_mail${h4In}Index of PubCrawler results:${h4Out}${ulIn}\n";
+       .&tab('TD')
+       ."${break}$date_range_msg_mail${h4In}Index of PubCrawler results:${h4Out}${ulIn}\n";
 $no_html = 0;
 
 $total_hits = 0;
@@ -1848,16 +1848,16 @@ foreach $alias (@alias_order) {
     my $hits_mail = $hits{$alias};
     $total_hits += $hits;
     if ($hits == 1) {
-	$hits_mail = "${boldIn}$hits${boldOut} new hit";
-	$hits = "<B>$hits</B> new hit";
+    $hits_mail = "${boldIn}$hits${boldOut} new hit";
+    $hits = "<B>$hits</B> new hit";
     } else {
-	if ($hits == 0) {
-	    $hits_mail = 'no new hits';
-	    $hits = 'no new hits';
-	} else {
-	    $hits_mail = "${boldIn}$hits${boldOut} new hits";
-	    $hits = "<B>$hits</B> new hits";
- 	}
+    if ($hits == 0) {
+        $hits_mail = 'no new hits';
+        $hits = 'no new hits';
+    } else {
+        $hits_mail = "${boldIn}$hits${boldOut} new hits";
+        $hits = "<B>$hits</B> new hits";
+    }
     }
         # number of hits for each alias
     $alias =~ s/\"/&quot;/g; 
@@ -1870,18 +1870,18 @@ foreach $alias (@alias_order) {
 }
 
 &sys_print('OUT',"\n</UL><BR>"
-	   ."\n<CENTER><A HREF=\"#retrieval\">[retrieval]</A> <A HREF=\"#query_box\">[query box]</A> <A HREF=\"#disclaimer\">[disclaimer and copyright]</A></CENTER><BR>"
-	   .&tab('/TD')
-	   .&tab('/TR'));
+       ."\n<CENTER><A HREF=\"#retrieval\">[retrieval]</A> <A HREF=\"#query_box\">[query box]</A> <A HREF=\"#disclaimer\">[disclaimer and copyright]</A></CENTER><BR>"
+       .&tab('/TD')
+       .&tab('/TR'));
 
 
 if ($mail_features{'html'}) {
     $mail_results_file .=  "${ulOut}${break}"
-	   ."<CENTER>"
+       ."<CENTER>"
            .($mail_features{'javascript'} ? "<A HREF=\"#retrieval\">[retrieval]</A> <A HREF=\"#query_box\">[query box]</A> " : '')
            ."<A HREF=\"#disclaimer\">[disclaimer and copyright]</A></CENTER><BR>"
-	   .&tab('/TD')
-	   .&tab('/TR');
+       .&tab('/TD')
+       .&tab('/TR');
 }
 
 
@@ -1924,13 +1924,13 @@ if ($PARAM{'system'} =~ /unix/i){
 
 if ($PARAM{'notify'} or $PARAM{'mail'} or $PARAM{'mail_ascii'} or $PARAM{'mail_simple'}) {
     if ($total_hits > 0) {
-	print "\nSending mail, total hits: $total_hits\n";
-	&mail_service;
+    print "\nSending mail, total hits: $total_hits\n";
+    &mail_service;
     } elsif ($PARAM{'force_mail'} or $net_failure) {
-	print "\nForcing mail, force_mail: $PARAM{'force_mail'}, net_failure: $net_failure, total hits: $total_hits\n";
-	&mail_service;
+    print "\nForcing mail, force_mail: $PARAM{'force_mail'}, net_failure: $net_failure, total hits: $total_hits\n";
+    &mail_service;
     } else {
-	print "\nNo mail sent, total hits: $total_hits\n";
+    print "\nNo mail sent, total hits: $total_hits\n";
     }
 }
 
@@ -1976,23 +1976,23 @@ sub start_results_file {
 
     my $username = '';
     if ($PARAM{'id'}) {
-	$username = "for $PARAM{'id'}";
+    $username = "for $PARAM{'id'}";
     }
 
     #header and trailer: copy header info if a header file exists:
     $PARAM{'header'} = "$PARAM{'prefix'}.header" unless ($PARAM{'header'});
     if (-e $PARAM{'header'}) {
-	open(HEADER,"$PARAM{'header'}") || 
-	    die "$prog_name ERROR: $PARAM{'header'} exists but cannot be opened.\n";
-	while (<HEADER>) {
-	    &sys_print('OUT',$_);
-	    $mail_results_file .= $_;
-	}
-	close HEADER;
-	print "\nwriting header data from $PARAM{'header'} to $PARAM{'html_file'}\n";
+    open(HEADER,"$PARAM{'header'}") || 
+        die "$prog_name ERROR: $PARAM{'header'} exists but cannot be opened.\n";
+    while (<HEADER>) {
+        &sys_print('OUT',$_);
+        $mail_results_file .= $_;
+    }
+    close HEADER;
+    print "\nwriting header data from $PARAM{'header'} to $PARAM{'html_file'}\n";
     } else {
 
-	$html_header = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
+    $html_header = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 <HTML>
 <HEAD>
 $css
@@ -2018,16 +2018,16 @@ $css
 ";
 
 
-	&sys_print('OUT',$html_header);
+    &sys_print('OUT',$html_header);
 
-	print "\nno header file; writing default header to $PARAM{'html_file'}\n";
-	
-	unless ($mail_features{'css'}) {
-	    $css = '';
-	}
-	
-	unless ($mail_features{'css'}) {
-	    $html_header_mail = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
+    print "\nno header file; writing default header to $PARAM{'html_file'}\n";
+    
+    unless ($mail_features{'css'}) {
+        $css = '';
+    }
+    
+    unless ($mail_features{'css'}) {
+        $html_header_mail = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 <HTML>
 <HEAD>
 <META NAME=\"ROBOTS\" CONTENT=\"NOFOLLOW\">
@@ -2035,24 +2035,24 @@ $css
 </HEAD>
 <BODY BGCOLOR=\"#FFFFFF\">
 \n";
-	} else {
-	    $html_header_mail = $html_header;
-	}
+    } else {
+        $html_header_mail = $html_header;
+    }
 
-	$mail_results_file .= $html_header_mail;
+    $mail_results_file .= $html_header_mail;
 
     }
     
     unless (defined $mail_features{'html'}) {
-	$mail_results_file = '';
+    $mail_results_file = '';
     }
     
     &sys_print('OUT',$javascript);
     
     
     if ($create_mail_file
-	and
-	defined $mail_features{'javascript'}) {
+    and
+    defined $mail_features{'javascript'}) {
         $mail_results_file .= $javascript;
     }
 
@@ -2080,32 +2080,32 @@ $css
 ";
     
     if ($PARAM{'pic'}) {
-#	$picture = "<A HREF=\"http://www.pubcrawler.ie\"><IMG BORDER=0 SRC=\"$PARAM{'pic'}\" ALT=\"LOGO\"></A>";
-	$picture = "<A HREF=\"http://www.$PARAM{'proj'}.org\"><IMG BORDER=0 SRC=\"$PARAM{'icon'}\" ALT=\"LOGO\"></A>";
+#   $picture = "<A HREF=\"http://www.pubcrawler.ie\"><IMG BORDER=0 SRC=\"$PARAM{'pic'}\" ALT=\"LOGO\"></A>";
+    $picture = "<A HREF=\"http://www.$PARAM{'proj'}.org\"><IMG BORDER=0 SRC=\"$PARAM{'icon'}\" ALT=\"LOGO\"></A>";
     } else {
-	$picture = $picture_replacement;
+    $picture = $picture_replacement;
     }
     
     my %user_links = (#'FAQ', 'http://pubcrawler.gen.tcd.ie/pubcrawler_www_faq.html', 
-		    #  'News', 'http://pubcrawler.gen.tcd.ie/webservice_news.html', 
-		   #   'WWW-Service', 'http://pubcrawler.gen.tcd.ie/www.html',
-		   #   'Settings', "http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler_www2.pl?submit=Log+in!&pc_user=$PARAM{'id'}",
-#		      'Queries', "http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler_buttons?submit=Modify+Queries&pc_name=$PARAM{'id'}",
-		   #   'WWW-Service', 'http://pubcrawler.gen.tcd.ie/www.html',
-		  #    'Previous&nbsp;Results', "http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler_buttons?submit=Previous+Results&pc_name=$PARAM{'id'}",
-		      );
+            #  'News', 'http://pubcrawler.gen.tcd.ie/webservice_news.html', 
+           #   'WWW-Service', 'http://pubcrawler.gen.tcd.ie/www.html',
+           #   'Settings', "http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler_www2.pl?submit=Log+in!&pc_user=$PARAM{'id'}",
+#             'Queries', "http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler_buttons?submit=Modify+Queries&pc_name=$PARAM{'id'}",
+           #   'WWW-Service', 'http://pubcrawler.gen.tcd.ie/www.html',
+          #    'Previous&nbsp;Results', "http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler_buttons?submit=Previous+Results&pc_name=$PARAM{'id'}",
+              );
     my  @user_links_order;# = ('FAQ', 'News');
     my $user_links = '';
 
     if ($PARAM{'id'}) {
-#	push @user_links_order, ('Profile', 'Queries');
-	push @user_links_order, ('Settings');
+#   push @user_links_order, ('Profile', 'Queries');
+    push @user_links_order, ('Settings');
     }
     push @user_links_order, ('WWW-Service', 'Previous&nbsp;Results');
     foreach (@user_links_order) {
-	my $link = $user_links{$_} or next;
-	$link = "<a href=\"$link\">$_</a>";
-	$user_links .= "\n<p><font color=\"#ffffff\">|__</font>&nbsp;$link</p>\n";
+    my $link = $user_links{$_} or next;
+    $link = "<a href=\"$link\">$_</a>";
+    $user_links .= "\n<p><font color=\"#ffffff\">|__</font>&nbsp;$link</p>\n";
     }
     
     my $extra_links = "
@@ -2165,42 +2165,42 @@ Execution of your PubCrawler jobs is currently in progress (started at <B>".(loc
 
     # assemble output for mail file
     if ($create_mail_file) {
-	$user_links = '';
-	
-	my $form = "<FORM NAME=\"myForm\" ACTION=\"http://www.ncbi.nlm.nih.gov/entrez/query.fcgi$PARAM{'extra_query'}\" method=\"POST\">";
-	unless ($mail_features{'javascript'}) {
-	    $form = '';
-	}
+    $user_links = '';
+    
+    my $form = "<FORM NAME=\"myForm\" ACTION=\"http://www.ncbi.nlm.nih.gov/entrez/query.fcgi$PARAM{'extra_query'}\" method=\"POST\">";
+    unless ($mail_features{'javascript'}) {
+        $form = '';
+    }
 
-	$picture = "<A HREF=\"http://www.pubcrawler.ie\"><IMG BORDER=0 SRC=\"$PARAM{'pic'}\" ALT=\"LOGO\"></A>";
-	unless ($mail_features{'images'}) {
-	    $picture = $picture_replacement;
-	    unless ($mail_features{'html'}) {
-		$picture = '';
-	    }
-	}
+    $picture = "<A HREF=\"http://www.pubcrawler.ie\"><IMG BORDER=0 SRC=\"$PARAM{'pic'}\" ALT=\"LOGO\"></A>";
+    unless ($mail_features{'images'}) {
+        $picture = $picture_replacement;
+        unless ($mail_features{'html'}) {
+        $picture = '';
+        }
+    }
 
-	if ($mail_features{'pubcrawler_links'}) {
-	    foreach (@user_links_order) {
-		my $link1 = $user_links{$_} or next;
-		$link1 = "<a href=\"$link1\">$_</a>";
-		if ($mail_features{'html'}) {
-		    $user_links .= "\n<p><font color=\"#ffffff\">|__</font>&nbsp;$link1</p>\n";
-		} else {		
-		    $user_links .= "\n|__ $_ ($user_links{$_})\n";
-		}
-	    }
+    if ($mail_features{'pubcrawler_links'}) {
+        foreach (@user_links_order) {
+        my $link1 = $user_links{$_} or next;
+        $link1 = "<a href=\"$link1\">$_</a>";
+        if ($mail_features{'html'}) {
+            $user_links .= "\n<p><font color=\"#ffffff\">|__</font>&nbsp;$link1</p>\n";
+        } else {        
+            $user_links .= "\n|__ $_ ($user_links{$_})\n";
+        }
+        }
 
-	    unless ($mail_features{'html'}) {
-		$picture = "\nPubCrawler\nIt goes to the library  - you go to the pub(TM)\n";
-	    }
-	} else {
-	    $picture = "\nPubCrawler\nIt goes to the library  - you go to the pub(TM)\n";
-	}
+        unless ($mail_features{'html'}) {
+        $picture = "\nPubCrawler\nIt goes to the library  - you go to the pub(TM)\n";
+        }
+    } else {
+        $picture = "\nPubCrawler\nIt goes to the library  - you go to the pub(TM)\n";
+    }
 
-	if ($mail_features{'html'}) {
-	    if ($mail_features{'pubcrawler_links'}) {
-		$mail_results_file .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"706\">
+    if ($mail_features{'html'}) {
+        if ($mail_features{'pubcrawler_links'}) {
+        $mail_results_file .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"706\">
    <tr>
 <!--
 left column
@@ -2260,8 +2260,8 @@ main column
 
        </tr>
 ";
-	    } else {
-		$mail_results_file .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\">
+        } else {
+        $mail_results_file .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\">
    <tr>
     <td>
      $form
@@ -2274,14 +2274,14 @@ main column
          </div>
         </td>
 
-       </tr>";	
-	    }
-	} else {
-	    my $dateline_txt = &timestamp('txt');
-	    $mail_results_file .= "${form}PubCrawler Results $username on $dateline_txt  ::::::
+       </tr>";  
+        }
+    } else {
+        my $dateline_txt = &timestamp('txt');
+        $mail_results_file .= "${form}PubCrawler Results $username on $dateline_txt  ::::::
 $picture$user_links$extra_links";
-	    
-	}
+        
+    }
     }
 }
 
@@ -2315,7 +2315,7 @@ sub sys_print {
     my $written = syswrite $fh,$message,$len;
 
     unless ($written == $len) {
-	die "Couldn't complete writing of $message $PARAM{'id'} to filehandle $fh: $!";
+    die "Couldn't complete writing of $message $PARAM{'id'} to filehandle $fh: $!";
     }
 }
     
@@ -2335,21 +2335,21 @@ sub compile_notification {
     # the name of the user might be appended
     # to the address (separated by '#' or '@@')
     if ($PARAM{'notify'} =~ /#/) {
-	($PARAM{'notify'}, $nick_name) = split /#/, $PARAM{'notify'};
+    ($PARAM{'notify'}, $nick_name) = split /#/, $PARAM{'notify'};
     } elsif ($PARAM{'notify'} =~ /@@/) {
-	($PARAM{'notify'}, $nick_name) = split /@@/, $PARAM{'notify'};
+    ($PARAM{'notify'}, $nick_name) = split /@@/, $PARAM{'notify'};
     }
 
     if ($nick_name) {
-	$nick_name =~ s/\"$//;
-	$for_name = "for $nick_name";
-	$note_link = "<A HREF=\"$link_gen/db/$nick_name\">$link_gen/db/$nick_name</A>";
-	unless ($mail_features{'html'}) {		
-	    $note_link = "$link_gen/db/$nick_name";
-	}
+    $nick_name =~ s/\"$//;
+    $for_name = "for $nick_name";
+    $note_link = "<A HREF=\"$link_gen/db/$nick_name\">$link_gen/db/$nick_name</A>";
+    unless ($mail_features{'html'}) {       
+        $note_link = "$link_gen/db/$nick_name";
+    }
     } else {
-	$for_name = '';
-	$note_link = "${boldIn}$link_gen/db/${itIn}user_name${itOut}${boldOut} (replace 'user_name' with the name you are registered with)";
+    $for_name = '';
+    $note_link = "${boldIn}$link_gen/db/${itIn}user_name${itOut}${boldOut} (replace 'user_name' with the name you are registered with)";
     }
     
     # write the message body to 
@@ -2362,38 +2362,38 @@ sub compile_notification {
     my $total_hits = "${boldIn}$total_hits${boldOut}";
     
     if ($PARAM{'force_mail'} and $total_hits eq "${boldIn}0${boldOut}" ) {
-	$total_hits .= " ${boldIn}(mail forced)${boldOut}";
+    $total_hits .= " ${boldIn}(mail forced)${boldOut}";
     }
     if ($net_failure) {
-	$total_hits .= " ${boldIn}Possible network failure!${boldOut}";
+    $total_hits .= " ${boldIn}Possible network failure!${boldOut}";
     }
     
     my $out_file = $PARAM{'html_file'}.'.mail';
     open (NOTE, ">$out_file")
-	or die "Can't write mail body to $out_file: $!\n";
-    if ($mail_features{'html'}) {	
-	print NOTE "<HTML><HEAD><TITLE>PubCrawler Notification</TITLE></HEAD>
-	<BODY BGCOLOR=#FFFFFF>
-	<H1>PubCrawler Notification $for_name</H1>
-	Your PubCrawler job finished at $date.
-	<BR>
-	Number of new hits: $total_hits
-	<BR>
-	<BR>\n";
+    or die "Can't write mail body to $out_file: $!\n";
+    if ($mail_features{'html'}) {   
+    print NOTE "<HTML><HEAD><TITLE>PubCrawler Notification</TITLE></HEAD>
+    <BODY BGCOLOR=#FFFFFF>
+    <H1>PubCrawler Notification $for_name</H1>
+    Your PubCrawler job finished at $date.
+    <BR>
+    Number of new hits: $total_hits
+    <BR>
+    <BR>\n";
     } else {
 
-	my $address_clean = $address;
-	($address_clean) = split /\#/, $address if ($address =~ /\#/);
-	($address_clean) = split /\@\@/, $address if ($address =~ /\@\@/);
+    my $address_clean = $address;
+    ($address_clean) = split /\#/, $address if ($address =~ /\#/);
+    ($address_clean) = split /\@\@/, $address if ($address =~ /\@\@/);
 
-	$address_clean = '"'.$address_clean.'"';
-	$address_clean =~ s/\"\"/\"/g;
+    $address_clean = '"'.$address_clean.'"';
+    $address_clean =~ s/\"\"/\"/g;
 
-	# we might have to escape single ticks unless it's done already
-	$address_clean =~ s/([^\\])'/$1\\'/g;
+    # we might have to escape single ticks unless it's done already
+    $address_clean =~ s/([^\\])'/$1\\'/g;
 
-	print NOTE "From: $sender\nTo: $address_clean\nSubject: $subject\n\n";
-	print NOTE "PubCrawler Notification $for_name
+    print NOTE "From: $sender\nTo: $address_clean\nSubject: $subject\n\n";
+    print NOTE "PubCrawler Notification $for_name
 
 Your PubCrawler job finished at $date.
 
@@ -2404,24 +2404,24 @@ Number of new hits: $total_hits\n\n";
 
     # the next string in particular is only
     # useful for people registered with WWW-PubCrawler
-    if ($mail_features{'pubcrawler_links'}) {	
-	my $link = "<a href=\"http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler.results\">http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler.results</a>";
-	unless ($mail_features{'html'}) {
-	    $link = 'http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler.results';
-	}
-	print NOTE "${break}${break}If you have ${boldIn}'Easy Check'${boldOut} activated, you can see PubCrawler's output at $link.";
-	$link = "<a href=\"http://pubcrawler.gen.tcd.ie/pubcrawler_www_faq.html\">FAQ</A>";
-	unless ($mail_features{'html'}) {
-	    $link = 'FAQ at http://pubcrawler.gen.tcd.ie/pubcrawler_www_faq.html';
-	}
-	print NOTE "${break}${break}${boldIn}NEW:${boldOut} For answers to frequently asked questions check out the $link!\n";
+    if ($mail_features{'pubcrawler_links'}) {   
+    my $link = "<a href=\"http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler.results\">http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler.results</a>";
+    unless ($mail_features{'html'}) {
+        $link = 'http://pubcrawler.gen.tcd.ie/cgi-bin/pubcrawler.results';
+    }
+    print NOTE "${break}${break}If you have ${boldIn}'Easy Check'${boldOut} activated, you can see PubCrawler's output at $link.";
+    $link = "<a href=\"http://pubcrawler.gen.tcd.ie/pubcrawler_www_faq.html\">FAQ</A>";
+    unless ($mail_features{'html'}) {
+        $link = 'FAQ at http://pubcrawler.gen.tcd.ie/pubcrawler_www_faq.html';
+    }
+    print NOTE "${break}${break}${boldIn}NEW:${boldOut} For answers to frequently asked questions check out the $link!\n";
     } 
 
     print NOTE "${break}${break}Have a nice day!\n";
     
-    if ($mail_features{'html'}) {	
-	# finish HTML-document
-	print NOTE "\n</BODY></HTML>\n";
+    if ($mail_features{'html'}) {   
+    # finish HTML-document
+    print NOTE "\n</BODY></HTML>\n";
     }
     
     close NOTE;
@@ -2443,7 +2443,7 @@ sub mail_service {
 
     my $check_string = '';
     if ($PARAM{'check'}) {
-	$check_string = ' (CHECK)';
+    $check_string = ' (CHECK)';
     }
 
     my $address = '';
@@ -2452,95 +2452,95 @@ sub mail_service {
 
     my $mail_only = 0;
     if ($PARAM{'mail_only'} =~ /\d/) {
-	$mail_only = 1;
-	$mail_file = $PARAM{'html_file'}.'.mail';
-	unless (-e $mail_file) {
-	    $mail_file = $PARAM{'html_file'};
-	}
+    $mail_only = 1;
+    $mail_file = $PARAM{'html_file'}.'.mail';
+    unless (-e $mail_file) {
+        $mail_file = $PARAM{'html_file'};
+    }
     }
 
-	# generate a string holding 
-	# subject of mail and address
+    # generate a string holding 
+    # subject of mail and address
     my $subject = "PubCrawler Results, $subj_date$check_string";
 
     if ($PARAM{'notify'}) {
 
-	$address = $PARAM{'notify'};
-	$tag = 'note';
+    $address = $PARAM{'notify'};
+    $tag = 'note';
 
-	$subject = "PubCrawler Notification, $subj_date$check_string";
+    $subject = "PubCrawler Notification, $subj_date$check_string";
 
-	$mail_file = &compile_notification($address,$subject) unless ($mail_only);
+    $mail_file = &compile_notification($address,$subject) unless ($mail_only);
 
     } elsif ($PARAM{'mail_ascii'}) {
-	$address = $PARAM{'mail_ascii'};
-	$tag = 'ascii';
+    $address = $PARAM{'mail_ascii'};
+    $tag = 'ascii';
     } elsif ($PARAM{'mail_simple'}) {
-	$address = $PARAM{'mail_simple'};
-	$tag = 'simple';
+    $address = $PARAM{'mail_simple'};
+    $tag = 'simple';
     } elsif ($PARAM{'mail'}) {
-	$address = $PARAM{'mail'};
-	$tag = 'full';
+    $address = $PARAM{'mail'};
+    $tag = 'full';
     }
 
     if ($address) {
-	# mail the whole output file
-	# as an ascii file
-	# do the conversion from HTML to ascii first
-	# and then proceed as with the normal mail function
-	
-	my $type = 'text/ascii';
-	if ($mail_features{'html'}) {	
-	    $type = 'text/html';
-	}
+    # mail the whole output file
+    # as an ascii file
+    # do the conversion from HTML to ascii first
+    # and then proceed as with the normal mail function
+    
+    my $type = 'text/ascii';
+    if ($mail_features{'html'}) {   
+        $type = 'text/html';
+    }
 
-	if ($copy_mail_file) {
-	    # all mail features activated
-	    # send the normal output file
-	    $mail_file = $PARAM{'html_file'};
-	} else {
-	    unless ($tag eq 'note'
-		    or
-		    $mail_only
-		    ) {
-		# produce mail file
-		$mail_file = $PARAM{'html_file'}.'.mail';
-		unless (open (OUT, ">$mail_file")) {
-		    warn "Can't write mail to $mail_file: $!\n";
-		    $mail_file = $PARAM{'html_file'};
-		} else {
-		    my $address_clean = $address;
-		    ($address_clean) = split /\#/, $address if ($address =~ /\#/);
-		    ($address_clean) = split /\@\@/, $address if ($address =~ /\@\@/);
+    if ($copy_mail_file) {
+        # all mail features activated
+        # send the normal output file
+        $mail_file = $PARAM{'html_file'};
+    } else {
+        unless ($tag eq 'note'
+            or
+            $mail_only
+            ) {
+        # produce mail file
+        $mail_file = $PARAM{'html_file'}.'.mail';
+        unless (open (OUT, ">$mail_file")) {
+            warn "Can't write mail to $mail_file: $!\n";
+            $mail_file = $PARAM{'html_file'};
+        } else {
+            my $address_clean = $address;
+            ($address_clean) = split /\#/, $address if ($address =~ /\#/);
+            ($address_clean) = split /\@\@/, $address if ($address =~ /\@\@/);
 
-		    $address_clean = '"'.$address_clean.'"';
-		    $address_clean =~ s/\"\"/\"/g;
-		    
-		    # we might have to escape single ticks unless it's done already
-		    $address_clean =~ s/([^\\])'/$1\\'/g;
-		    
-		    print OUT "From: $sender\nTo: $address_clean\nSubject: $subject\n\n" if ($type =~ /ascii/);
-		    print OUT $mail_results_file;
-		    close OUT;
-		}
-	    }
-	}	    
+            $address_clean = '"'.$address_clean.'"';
+            $address_clean =~ s/\"\"/\"/g;
+            
+            # we might have to escape single ticks unless it's done already
+            $address_clean =~ s/([^\\])'/$1\\'/g;
+            
+            print OUT "From: $sender\nTo: $address_clean\nSubject: $subject\n\n" if ($type =~ /ascii/);
+            print OUT $mail_results_file;
+            close OUT;
+        }
+        }
+    }       
 
-	$mail_len = &mail_results($mail_file,
-				  $address,
-				  " -m $type", 
-				  $subject);
- 	if ($PARAM{'log_mail'}) {
-	    &log_mail($time_1,$tag,$mail_len) unless ($PARAM{'mail_relay'});
-	}
+    $mail_len = &mail_results($mail_file,
+                  $address,
+                  " -m $type", 
+                  $subject);
+    if ($PARAM{'log_mail'}) {
+        &log_mail($time_1,$tag,$mail_len) unless ($PARAM{'mail_relay'});
+    }
    }
 
 
     if ($PARAM{'mail_relay'}) {
-	system "echo $total_hits_copy >> $PARAM{'mail_relay'}";
-	$PARAM{'mail_relay'} =~ s/(.*)\.(.*)/$1/;
-	system "mv $PARAM{'mail_relay'}.$2 $PARAM{'mail_relay'}";
-	return;
+    system "echo $total_hits_copy >> $PARAM{'mail_relay'}";
+    $PARAM{'mail_relay'} =~ s/(.*)\.(.*)/$1/;
+    system "mv $PARAM{'mail_relay'}.$2 $PARAM{'mail_relay'}";
+    return;
     }
 }
 
@@ -2556,9 +2556,9 @@ sub mail_results {
     my $size = 0;
 
     if ($address =~ /#/) {
-	($address, $nick_name) = split /#/, $address;
+    ($address, $nick_name) = split /#/, $address;
     } elsif ($address =~ /@@/) {
-	($address, $nick_name) = split /@@/, $address;
+    ($address, $nick_name) = split /@@/, $address;
     }
     
     $address = '"'.$address.'"';
@@ -2568,44 +2568,44 @@ sub mail_results {
     $address =~ s/([^\\])'/$1\\'/g;
 
     if ($nick_name) {
-	$nick_name =~ s/\"$//;    
-	$for_name = "for $nick_name";
+    $nick_name =~ s/\"$//;    
+    $for_name = "for $nick_name";
     } else {
-	$for_name = '';
+    $for_name = '';
     }
 
     unless ( -s "$file") {
-	    # results file is empty
-	    # send error message
-	$err_txt = "<HTML><HEAD><TITLE>PubCrawler Mailing Service</TITLE></HEAD>\n<BODY BGCOLOR=#FFFFFF>\n<H1>PubCrawler Mailing Service $for_name</H1>\n";
-	$err_txt .= "\nSorry, but your results file '$file' was empty.\n<BR>\nAn error must have occured during the execution of PubCrawler.\n";
-	$err_txt .= "<BR><BR>\nYou should check your result at http://pubcrawler.gen.tcd.ie/db/${for_name} and consider restarting them manually.\n";
-	$err_txt .= "<BR><BR>\nPlease inform $sender if this event should reoccur!\n";
-	    # finish HTML-document
-	$err_txt .= "\n</BODY></HTML>\n";
+        # results file is empty
+        # send error message
+    $err_txt = "<HTML><HEAD><TITLE>PubCrawler Mailing Service</TITLE></HEAD>\n<BODY BGCOLOR=#FFFFFF>\n<H1>PubCrawler Mailing Service $for_name</H1>\n";
+    $err_txt .= "\nSorry, but your results file '$file' was empty.\n<BR>\nAn error must have occured during the execution of PubCrawler.\n";
+    $err_txt .= "<BR><BR>\nYou should check your result at http://pubcrawler.gen.tcd.ie/db/${for_name} and consider restarting them manually.\n";
+    $err_txt .= "<BR><BR>\nPlease inform $sender if this event should reoccur!\n";
+        # finish HTML-document
+    $err_txt .= "\n</BODY></HTML>\n";
 
-	    # strip off HTML-tags, if ascii-results requested
-	if ($meta =~ /ascii/) {
-	    $err_txt =~ s/<[^>]*>//sg;
-	}
+        # strip off HTML-tags, if ascii-results requested
+    if ($meta =~ /ascii/) {
+        $err_txt =~ s/<[^>]*>//sg;
+    }
 
-	    # write message to file
-	open (MAIL, ">$tmp_file")
-	    or die "Can't write mail body to $tmp_file: $!\n";
+        # write message to file
+    open (MAIL, ">$tmp_file")
+        or die "Can't write mail body to $tmp_file: $!\n";
 
-	if ($meta =~ /ascii/) {
-	    print MAIL "From: $sender\nTo: $address\nSubject: $subject (ERROR)\n\n";
-	}
-	print MAIL $err_txt;
-	close MAIL;
+    if ($meta =~ /ascii/) {
+        print MAIL "From: $sender\nTo: $address\nSubject: $subject (ERROR)\n\n";
+    }
+    print MAIL $err_txt;
+    close MAIL;
 
-	$file = $tmp_file;
+    $file = $tmp_file;
     }
     
     # send mail!
     $mail_prog .= "$meta -s '$subject' -t $address -f $file";
     if ($meta =~ /ascii/) {
-	$mail_prog = "$sendmail $address < $file";
+    $mail_prog = "$sendmail $address < $file";
     }
     $time_1 = time if ($PARAM{'log_mail'});
     system "$mail_prog" unless($PARAM{'mail_relay'});
@@ -2643,74 +2643,74 @@ sub first_visit{
 
     # special treatment of relation-requests:
     if ($search_type =~ /rel(\w)/) {
-	$search_type = $1;
-	$neighbour_search = 1;
-	my $from_db = 'pubmed';
-	my $to_db = 'pubmed';
+    $search_type = $1;
+    $neighbour_search = 1;
+    my $from_db = 'pubmed';
+    my $to_db = 'pubmed';
 
-	if ($search_type eq 'n') {
-	    $add_reldate = 0;
-	    # neighbourhood search for GenBank not supported anymore
-	    my $msg_link = "$link_gen/webservice_news.html";
-#	    return (0,"Neighbourhood search for GenBank <B>currently disabled</B>, please see <A HREF=\"$msg_link\">WWWW-Service News</A> for details!",,);
-	    $from_db = 'nucleotide';
-	    $to_db = 'nucleotide';
-	}
-	$query =~ s/\+//g;
-	$term = "id=$query";
-	
-	$query_URL = $PARAM{'neighbour_URL'};
-	    # assemble docstring:
-	$docstring = join '&', ("dbfrom=$from_db",
-				"db=$to_db",
-				'cmd=neighbor',
-				'usehistory=n',
-				'mode=xml',
-#				'retmax='.$PARAM{'getmax'}, # doesn't work!
-				"tool=$PARAM{'tool'}",
-				"email=$sender",
-				"$term"
-				);
+    if ($search_type eq 'n') {
+        $add_reldate = 0;
+        # neighbourhood search for GenBank not supported anymore
+        my $msg_link = "$link_gen/webservice_news.html";
+#       return (0,"Neighbourhood search for GenBank <B>currently disabled</B>, please see <A HREF=\"$msg_link\">WWWW-Service News</A> for details!",,);
+        $from_db = 'nucleotide';
+        $to_db = 'nucleotide';
+    }
+    $query =~ s/\+//g;
+    $term = "id=$query";
+    
+    $query_URL = $PARAM{'neighbour_URL'};
+        # assemble docstring:
+    $docstring = join '&', ("dbfrom=$from_db",
+                "db=$to_db",
+                'cmd=neighbor',
+                'usehistory=n',
+                'mode=xml',
+#               'retmax='.$PARAM{'getmax'}, # doesn't work!
+                "tool=$PARAM{'tool'}",
+                "email=$sender",
+                "$term"
+                );
     } else {
 
-	$term = "term=$query";
-	# author name does not work at the nucleotide db
-	$term =~ s/\[author\+name\]/\[author\]/gi;
+    $term = "term=$query";
+    # author name does not work at the nucleotide db
+    $term =~ s/\[author\+name\]/\[author\]/gi;
 
-	$query_URL = $PARAM{'search_URL'};
-	# assemble docstring:
-	$docstring = join '&', ("db=$search_db{$search_type}",
-				'usehistory=n',
-				'mode=xml',
-				'retmax='.$PARAM{'getmax'},
-				"tool=$PARAM{'tool'}",
-				"email=$sender",
-				"$term");
+    $query_URL = $PARAM{'search_URL'};
+    # assemble docstring:
+    $docstring = join '&', ("db=$search_db{$search_type}",
+                'usehistory=n',
+                'mode=xml',
+                'retmax='.$PARAM{'getmax'},
+                "tool=$PARAM{'tool'}",
+                "email=$sender",
+                "$term");
     }
 
     
     if ($date_range) {
-	my $tmp_date_range = $date_range;
-	$tmp_date_range =~ s/XXX/$date_range{$search_type}/g;
-	$docstring .= $tmp_date_range;
-	if ($search_type eq 'n') {
-	    $docstring .= '&datetype=mdat';
-	} else {
-	    $docstring .= '&datetype=edat';
-	}
+    my $tmp_date_range = $date_range;
+    $tmp_date_range =~ s/XXX/$date_range{$search_type}/g;
+    $docstring .= $tmp_date_range;
+    if ($search_type eq 'n') {
+        $docstring .= '&datetype=mdat';
     } else {
-	if ($PARAM{'relentrezdate'} < 14408   #current limit (26/02/2000)
-	    and
-	    $add_reldate) { 
-	    # add relentrezdate or relmoddate, depending on database
-	    $docstring .= '&'.$date_limit{$search_type}."=$PARAM{'relentrezdate'}";
-	    if ($search_type eq 'n') {
-		$docstring .= '&datetype=mdat';
-	    } else {
-		$docstring .= '&datetype=edat';
-	    }
-	    # (leaving out date limit will act like 'no limit')
-	}
+        $docstring .= '&datetype=edat';
+    }
+    } else {
+    if ($PARAM{'relentrezdate'} < 14408   #current limit (26/02/2000)
+        and
+        $add_reldate) { 
+        # add relentrezdate or relmoddate, depending on database
+        $docstring .= '&'.$date_limit{$search_type}."=$PARAM{'relentrezdate'}";
+        if ($search_type eq 'n') {
+        $docstring .= '&datetype=mdat';
+        } else {
+        $docstring .= '&datetype=edat';
+        }
+        # (leaving out date limit will act like 'no limit')
+    }
     }
     
     
@@ -2723,56 +2723,56 @@ sub first_visit{
     ($uid_result,$connection_error) = &make_HTTP($query_URL,$docstring);
         # log query and traffic
     if ($PARAM{'log_queries'}) {
-	if ($PARAM{'from_quick'}) {
-	    &log_query($time_1,3,length($docstring),length($uid_result));
-	} else {
-	    &log_query($time_1,1,length($docstring),length($uid_result));
-	}
+    if ($PARAM{'from_quick'}) {
+        &log_query($time_1,3,length($docstring),length($uid_result));
+    } else {
+        &log_query($time_1,1,length($docstring),length($uid_result));
+    }
     }
 
     my $entrez_error = '';
     if ($uid_result =~ /<error>(.*)<\/error>/si) {
-	$entrez_error = $1;
-	if ($uid_result =~ /<errorlist>(.*)<\/errorlist>/si) {
-	    my $tmp_entrez_error = $1;
-	    if ($tmp_entrez_error =~ /<PhraseNotFound>/) {
-		$entrez_error = 'At least one of the phrases was not found.';
-	    }
-	}
+    $entrez_error = $1;
+    if ($uid_result =~ /<errorlist>(.*)<\/errorlist>/si) {
+        my $tmp_entrez_error = $1;
+        if ($tmp_entrez_error =~ /<PhraseNotFound>/) {
+        $entrez_error = 'At least one of the phrases was not found.';
+        }
+    }
     } 
     # retry in case Server Error occured
     while ( ( $uid_result =~ /Server Error/s
-	      or
-	      $connection_error
-	      or
-	      $uid_result !~ /<idlist>/si
-	     )
-	    and
-	    $retry_local < $PARAM{'retry'}
-	    and
-	    $entrez_error eq ''
-	   ) {
-	my $text = ($connection_error ?
-		    'Connection error' :
-		    'Server error');
-	$retry_local++;
-	my $time_now = localtime;
-	print "\nWARNING at $time_now: $text, starting retry $retry_local...\n";
-	warn "WARNING at $time_now $PARAM{'id'}: $text, retry $retry_local for query $query at first visit\n" if ($retry_local > 3);
+          or
+          $connection_error
+          or
+          $uid_result !~ /<idlist>/si
+         )
+        and
+        $retry_local < $PARAM{'retry'}
+        and
+        $entrez_error eq ''
+       ) {
+    my $text = ($connection_error ?
+            'Connection error' :
+            'Server error');
+    $retry_local++;
+    my $time_now = localtime;
+    print "\nWARNING at $time_now: $text, starting retry $retry_local...\n";
+    warn "WARNING at $time_now $PARAM{'id'}: $text, retry $retry_local for query $query at first visit\n" if ($retry_local > 3);
         print "sleeping for $PARAM{'break'} seconds...\n";
-        sleep($PARAM{'break'});	
-	$time_1 = time if ($PARAM{'log_queries'});
-	($uid_result,$connection_error) = &make_HTTP($query_URL,$docstring);
+        sleep($PARAM{'break'}); 
+    $time_1 = time if ($PARAM{'log_queries'});
+    ($uid_result,$connection_error) = &make_HTTP($query_URL,$docstring);
             # log query and traffic
-	if ($PARAM{'log_queries'}) {
-	    if ($PARAM{'from_quick'}) {
-		&log_query($time_1,'3.'.$retry_local,length($docstring),length($uid_result));
-	    } else {
-		&log_query($time_1,'1.'.$retry_local,length($docstring),length($uid_result));
-	    }
-	}
+    if ($PARAM{'log_queries'}) {
+        if ($PARAM{'from_quick'}) {
+        &log_query($time_1,'3.'.$retry_local,length($docstring),length($uid_result));
+        } else {
+        &log_query($time_1,'1.'.$retry_local,length($docstring),length($uid_result));
+        }
     }
-	
+    }
+    
     # write into output file how much has been done
 #    &update_output;
 
@@ -2780,39 +2780,39 @@ sub first_visit{
     my $uid_error = 0;
     my $target = 'idlist';
     if ($neighbour_search) {
-	$target = 'linksetdb';
+    $target = 'linksetdb';
     }
     if ($uid_result =~ /<$target>(.*)<\/$target>/si) {
-	$uid_result = $1;
+    $uid_result = $1;
     } else {
-	$uid_error = 1;
+    $uid_error = 1;
     }
 
     my $uid_counter = 0;
     unless ($uid_error) {
-	@tmp = ();
-	while ($uid_result =~ /<id>/si) {
-	    $uid_result =~ s/<id>(.*?)<\/id>//si;
+    @tmp = ();
+    while ($uid_result =~ /<id>/si) {
+        $uid_result =~ s/<id>(.*?)<\/id>//si;
 
-	    # since neighbour searches can not be shortened
-	    # to a max number of results
-	    # we have to do it here:
-	    $uid_counter++;
-	    if ($uid_counter > $PARAM{'getmax'}) {
-		last;
-	    }
-	    push @tmp, $1;
-	}
-	$uid_result = join ' ', @tmp;
-	$results_num = @tmp;
+        # since neighbour searches can not be shortened
+        # to a max number of results
+        # we have to do it here:
+        $uid_counter++;
+        if ($uid_counter > $PARAM{'getmax'}) {
+        last;
+        }
+        push @tmp, $1;
+    }
+    $uid_result = join ' ', @tmp;
+    $results_num = @tmp;
     }
 
     if ($uid_result =~ /<OutputMessage>(.*)<\/OutputMessage>/is) {
-	$uid_result = $1;
+    $uid_result = $1;
     }
 
     if ($entrez_error) {
-	$uid_result = $entrez_error;
+    $uid_result = $entrez_error;
     }
 
    # remove HTML tags from retrieved list of UIDs 
@@ -2822,29 +2822,29 @@ sub first_visit{
     
     #check for text (error message) instead of UID numbers in result:    
     if ($uid_result =~ /Can not find neighbor/s) {
-	my $msg_link = "$link_gen/neighbour_help.html";
-	$hits = 0;
-	$query_error_msg = "No neighbours found - please make sure you are using a PMID and not a Medline UI (see <A HREF=\"$msg_link\">Neighbour Help</A> for details!";
-	print "No neighbours found - possible use of UID instead of PMID!\n\n";
+    my $msg_link = "$link_gen/neighbour_help.html";
+    $hits = 0;
+    $query_error_msg = "No neighbours found - please make sure you are using a PMID and not a Medline UI (see <A HREF=\"$msg_link\">Neighbour Help</A> for details!";
+    print "No neighbours found - possible use of UID instead of PMID!\n\n";
     } elsif ($uid_result !~ /\d/s
-	or $uid_result =~ /Server Error/s	
-	or $connection_error){
-	$hits = 0;	
-	if ($uid_result =~ /[a-zA-Z]/s) {
-	    $query_error_msg = "'$uid_result' (from search: $query{$query}{'ORIG'})<br>";
-	    print "\ngot TEXT instead of UIDs from the query.\n\n";
-	}
+    or $uid_result =~ /Server Error/s   
+    or $connection_error){
+    $hits = 0;  
+    if ($uid_result =~ /[a-zA-Z]/s) {
+        $query_error_msg = "'$uid_result' (from search: $query{$query}{'ORIG'})<br>";
+        print "\ngot TEXT instead of UIDs from the query.\n\n";
+    }
     } else {
-	@tmp = split(/\s+/,$uid_result);   # @tmp is the list of 
-	                          # matching UIDs for this query
-	foreach (@tmp) {
-	    # drop everything that doesn't contain a digit
-	    if (/\d/) {
-		push @uids, $_;
-	    }
-	}
-	$hits = $#uids + 1; 
-#	print "UIDs from this query are: @uids \n\n";
+    @tmp = split(/\s+/,$uid_result);   # @tmp is the list of 
+                              # matching UIDs for this query
+    foreach (@tmp) {
+        # drop everything that doesn't contain a digit
+        if (/\d/) {
+        push @uids, $_;
+        }
+    }
+    $hits = $#uids + 1; 
+#   print "UIDs from this query are: @uids \n\n";
     }
     return($hits,$query_error_msg,@uids);
 }#return from sub first_visit
@@ -2862,21 +2862,21 @@ sub format_record {
     my $out = '';
 
     if ($format =~ /xml/i) {
-	$out = $record;
-	if ($html_formatting eq 'website'
-	    or
-	    $mail_features{'html'}) {
-	    $out .= '<BR><BR>';
-	}
-	return $out;
+    $out = $record;
+    if ($html_formatting eq 'website'
+        or
+        $mail_features{'html'}) {
+        $out .= '<BR><BR>';
+    }
+    return $out;
     }
     
     foreach my $line (split /\n/, $record) {
-	if ($line =~ /<Item Name="(.*?)" Type.*?>(.*)<\/Item>/) {
-	    push @{$record{$1}}, $2;
-	} elsif ($line =~ /<Id>(.*)<\/Id>/) {
-	    push @{$record{'PubMedId'}}, $1;
-	}
+    if ($line =~ /<Item Name="(.*?)" Type.*?>(.*)<\/Item>/) {
+        push @{$record{$1}}, $2;
+    } elsif ($line =~ /<Id>(.*)<\/Id>/) {
+        push @{$record{'PubMedId'}}, $1;
+    }
     }
 
     my @out = ();
@@ -2888,159 +2888,159 @@ sub format_record {
     # PubMed specifics
     if ($search_db eq 'pubmed') {
 
-	# first line:	
-	unless (defined @{$record{'Author'}}) {	    
-	    $out[0] = '[No authors listed]';
-	} else {
-	    $out[0] = join ', ', @{$record{'Author'}};
-	    $out[0] .= '.';
-	}
+    # first line:   
+    unless (defined @{$record{'Author'}}) {     
+        $out[0] = '[No authors listed]';
+    } else {
+        $out[0] = join ', ', @{$record{'Author'}};
+        $out[0] .= '.';
+    }
 
-	$ID = $record{'PubMedId'}[0] || '[No ID listed]';	
+    $ID = $record{'PubMedId'}[0] || '[No ID listed]';   
 
-	# Publication info varies depending on which fields are available:
-	my $pub_info = '';
-	if (defined $record{'Lang'}[0]
-	    and
-	    $record{'Lang'}[0] ne 'English') {
-	    $pub_info = ' '.$record{'Lang'}[0].'.';
-	} elsif (defined $record{'PubStatus'}[0]
-		 and
-		 $record{'PubStatus'}[0] eq 'aheadofprint') {
-	    $pub_info = " [Epub ahead of print]";
-	} elsif (defined $record{'PubType'}[0]
-		 and
-		 $record{'PubType'}[0] eq 'Review') {
-	    $pub_info = ' '.$record{'PubType'}[0].'.';
-	}
+    # Publication info varies depending on which fields are available:
+    my $pub_info = '';
+    if (defined $record{'Lang'}[0]
+        and
+        $record{'Lang'}[0] ne 'English') {
+        $pub_info = ' '.$record{'Lang'}[0].'.';
+    } elsif (defined $record{'PubStatus'}[0]
+         and
+         $record{'PubStatus'}[0] eq 'aheadofprint') {
+        $pub_info = " [Epub ahead of print]";
+    } elsif (defined $record{'PubType'}[0]
+         and
+         $record{'PubType'}[0] eq 'Review') {
+        $pub_info = ' '.$record{'PubType'}[0].'.';
+    }
 
-	$out[1] = $record{'Title'}[0] || '[No title listed]';
-	
-	$out[2] = "$record{'Source'}[0]. $record{'SO'}[0].$pub_info";
-	$out[3] = "PMID: $ID \[$record{'RecordStatus'}[0]]";
+    $out[1] = $record{'Title'}[0] || '[No title listed]';
+    
+    $out[2] = "$record{'Source'}[0]. $record{'SO'}[0].$pub_info";
+    $out[3] = "PMID: $ID \[$record{'RecordStatus'}[0]]";
 
-	if ($format =~ /brief/i) {
+    if ($format =~ /brief/i) {
 
-	    my @tmp = ($out[0]);
+        my @tmp = ($out[0]);
 
-	    # reduce authors names to 1
-	    if (defined $record{'Author'}) {
-		if (@{$record{'Author'}} > 1) {
-		    $tmp[0] = $record{'Author'}[0] . ' et al';	
-		}
-		$tmp[0] .= '.';
-	    } else {
-#		warn "No author for $out[0]";
-		sleep 0;
-	    }
-	    
-	    # shorten title
-	    $tmp[1] = $out[1];
-	    $tmp[1] =~ s/(.{29}).*/$1\.\.\./;
-	    
-	    $tmp[2] = "[PMID: $ID]";
+        # reduce authors names to 1
+        if (defined $record{'Author'}) {
+        if (@{$record{'Author'}} > 1) {
+            $tmp[0] = $record{'Author'}[0] . ' et al';  
+        }
+        $tmp[0] .= '.';
+        } else {
+#       warn "No author for $out[0]";
+        sleep 0;
+        }
+        
+        # shorten title
+        $tmp[1] = $out[1];
+        $tmp[1] =~ s/(.{29}).*/$1\.\.\./;
+        
+        $tmp[2] = "[PMID: $ID]";
 
-	    @out = @tmp;
-	} 
+        @out = @tmp;
+    } 
 
-	if ($mail_features{'entrez_links'}
-	    or
-	    $html_formatting eq 'website') {
-	    $related_items = "&nbsp;&nbsp;<A HREF=\"$related_article_link$ID\"><SMALL>Related&nbsp;Articles</SMALL></A>";
-	    unless ($mail_features{'html'}) {
-		$related_items = " Related Articles: $related_article_link$ID" unless ($html_formatting eq 'website');
-	    }
-	}
+    if ($mail_features{'entrez_links'}
+        or
+        $html_formatting eq 'website') {
+        $related_items = "&nbsp;&nbsp;<A HREF=\"$related_article_link$ID\"><SMALL>Related&nbsp;Articles</SMALL></A>";
+        unless ($mail_features{'html'}) {
+        $related_items = " Related Articles: $related_article_link$ID" unless ($html_formatting eq 'website');
+        }
+    }
 
     # GenBank specifics
     } elsif ($search_db eq 'nucleotide') {
 
-	$out[0] = $record{'Caption'}[0] || '[No Caption listed]';
-	$ID = $record{'Gi'}[0] || '[No Gi listed]';
-	$out[1] = $record{'Title'}[0] || '[No Title listed]';
-	$out[2] = $record{'Extra'}[0].'['.$record{'Gi'}[0].']';
+    $out[0] = $record{'Caption'}[0] || '[No Caption listed]';
+    $ID = $record{'Gi'}[0] || '[No Gi listed]';
+    $out[1] = $record{'Title'}[0] || '[No Title listed]';
+    $out[2] = $record{'Extra'}[0].'['.$record{'Gi'}[0].']';
 
-	if ($format =~ /brief/i) {
+    if ($format =~ /brief/i) {
 
-	    my @tmp = ($out[0]);
+        my @tmp = ($out[0]);
 
-	    # shorten title
-	    $tmp[1] = $out[1];
-	    $tmp[1] =~ s/(.{17}).*/$1\.\.\./;
-	    
-	    $tmp[2] = "[gi:$ID]";
+        # shorten title
+        $tmp[1] = $out[1];
+        $tmp[1] =~ s/(.{17}).*/$1\.\.\./;
+        
+        $tmp[2] = "[gi:$ID]";
 
-	    @out = @tmp;
-	} 
+        @out = @tmp;
+    } 
 
     } else {
-	return "ERROR: unknown database: '$search_db'\n";
+    return "ERROR: unknown database: '$search_db'\n";
     }
 
     if ($add_link eq 'website') {
-	$out[0] = "<A HREF=\"$abstract_link{$search_db}$ID\">$out[0]</A>";
+    $out[0] = "<A HREF=\"$abstract_link{$search_db}$ID\">$out[0]</A>";
     } else {
-	if ($mail_features{'entrez_links'}) {
-	    if ($mail_features{'html'}) {
-		$out[0] = "<A HREF=\"$abstract_link{$search_db}$ID\">$out[0]</A>";
-	    } else {
-		push @out, "Link: $abstract_link{$search_db}$ID";
-	    }
-	}
+    if ($mail_features{'entrez_links'}) {
+        if ($mail_features{'html'}) {
+        $out[0] = "<A HREF=\"$abstract_link{$search_db}$ID\">$out[0]</A>";
+        } else {
+        push @out, "Link: $abstract_link{$search_db}$ID";
+        }
+    }
     }
 
     my $counter = "$num: ";
     unless ($mail_features{'text'}) {
-	$counter = '' unless ($add_link eq 'website');
+    $counter = '' unless ($add_link eq 'website');
     }
 
     my ($font_up,$font_down,$font_end);
     my $line_break = "\n";
     if ($html_form) {
-	$counter = "$html_form\"$ID\">$counter";
+    $counter = "$html_form\"$ID\">$counter";
     }
 
     if ($format =~ /brief/i) {
-	$out[0] .= '.' if ($search_db eq 'nucleotide');
-	$out[0] .= ' ';
-	my $brief = join '', @out;
-	@out = ($brief);
+    $out[0] .= '.' if ($search_db eq 'nucleotide');
+    $out[0] .= ' ';
+    my $brief = join '', @out;
+    @out = ($brief);
     }
 
     my $end = "\n";
     if ($html_formatting) {
-	$counter = &tab('TR').
-	    &tab('TD',' WIDTH="49" NOWRAP VALIGN=TOP ALIGN=LEFT')
-	    ."<B>$counter&nbsp;</B>"
-	    .&tab('/TD')
-	    .&tab('TD',' ALIGN=LEFT');
-#	$font_up = '<font size="+1">';
-#	$font_down = '<font size="-1">';
-#	$font_end = '</font>';
-#	$font_down = '<small>';
-#	$font_end = '</small>';
-	$out[0] = 
-	    $out[0]
-	    .&tab('/TD')
-	    .&tab('TD', ' VALIGN=TOP ALIGN=RIGHT')
-	    .$related_items;
+    $counter = &tab('TR').
+        &tab('TD',' WIDTH="49" NOWRAP VALIGN=TOP ALIGN=LEFT')
+        ."<B>$counter&nbsp;</B>"
+        .&tab('/TD')
+        .&tab('TD',' ALIGN=LEFT');
+#   $font_up = '<font size="+1">';
+#   $font_down = '<font size="-1">';
+#   $font_end = '</font>';
+#   $font_down = '<small>';
+#   $font_end = '</small>';
+    $out[0] = 
+        $out[0]
+        .&tab('/TD')
+        .&tab('TD', ' VALIGN=TOP ALIGN=RIGHT')
+        .$related_items;
 
-	$line_break = 
-	    &tab('/TD')
-	    .&tab('/TR') 
-	    .&tab('TR')
-	    .&tab('TD')
-	    .'&nbsp;'
-	    .&tab('/TD')
-	    .&tab('TD', ' COLSPAN=2');
-	$end = 
-	    "<BR><BR>"
-	    .&tab('/TD')
-	    .&tab('/TR');
+    $line_break = 
+        &tab('/TD')
+        .&tab('/TR') 
+        .&tab('TR')
+        .&tab('TD')
+        .'&nbsp;'
+        .&tab('/TD')
+        .&tab('TD', ' COLSPAN=2');
+    $end = 
+        "<BR><BR>"
+        .&tab('/TD')
+        .&tab('/TR');
     } else {
-	$counter = "\n".$counter;
-	$related_items =~ s/\&nbsp;//g;
-	push @out, $related_items if ($related_items);
+    $counter = "\n".$counter;
+    $related_items =~ s/\&nbsp;//g;
+    push @out, $related_items if ($related_items);
     }
     $out[0] = $counter.$out[0];
 
@@ -3073,13 +3073,13 @@ sub list_crunch{
     # check if query is a neighbourhoodsearch
     # in which case the previous hits should be kept:
     foreach my $query ( @{ $aliases{$alias} } ) {
-	if ($query{$query}{'DB'} =~ /rel/
-	    or
-	    $query{$query}{'DB'} =~ /neighbour/) {
-	    $delete_forget = 0;
-	    $sort_by_age = 0;
-	    last;
-	}
+    if ($query{$query}{'DB'} =~ /rel/
+        or
+        $query{$query}{'DB'} =~ /neighbour/) {
+        $delete_forget = 0;
+        $sort_by_age = 0;
+        last;
+    }
     }
     
 #strip extra characters from UIDlist
@@ -3089,32 +3089,32 @@ sub list_crunch{
 #list_shrunk has no duplicate entries
 #    $prev="";
 #    foreach (reverse sort(@uid_list)) {
-#	unless ($_ eq $prev) {push(@list_shrunk,$_);}
-#	$prev=$_;
+#   unless ($_ eq $prev) {push(@list_shrunk,$_);}
+#   $prev=$_;
 #    }
 
     # changed this to avoid sorting, which would mess up order of neighbourhood results
     foreach (@uid_list) { 
-	unless (defined $done{$_}) {
-	    $done{$_}++;
-	    push @list_shrunk, $_;
-	}
+    unless (defined $done{$_}) {
+        $done{$_}++;
+        push @list_shrunk, $_;
+    }
     }
     @uid_list=@list_shrunk;
     undef @list_shrunk;
     
     if ($date_range) {
 
-	print " - skipped because of date range!\n";
-	# specific date was set - don't filter old articles
-	$alias_global = $alias;    
-	$now = sprintf "%.2f",(time/86400); # round value ...
-	foreach (@uid_list) {
-	    ${ $db{$alias} }{$_} = $now;
-	    $age{$_} = 0;	    
-	}
-	@goget = sort by_time_first_seen_and_uid @uid_list;
-	return(@goget);
+    print " - skipped because of date range!\n";
+    # specific date was set - don't filter old articles
+    $alias_global = $alias;    
+    $now = sprintf "%.2f",(time/86400); # round value ...
+    foreach (@uid_list) {
+        ${ $db{$alias} }{$_} = $now;
+        $age{$_} = 0;       
+    }
+    @goget = sort by_time_first_seen_and_uid @uid_list;
+    return(@goget);
     }
 
 # Log file contains UIDs and the time (Unix, Win, or Mac time stamp) 
@@ -3140,34 +3140,34 @@ sub list_crunch{
 # add to database as appropriate
 # note: time_first_seen{} is local to this subroutine; age{} is global
     foreach $uid (@uid_list){
-	next unless ($uid =~ /\d/);
-	unless (${ $db{$alias} }{$uid}) { ${ $db{$alias} }{$uid} = $now; }
-	$age{$uid} = $now - ${ $db{$alias} }{$uid};
-	print "uid: $uid time_first_seen: ${ $db{$alias} }{$uid} age: $age{$uid} ";
-	if ($age{$uid} <= $lifespan) {
-	    push(@goget,$uid);  #goget is the list of UIDs to get 
-	                        #on the 2nd visits
-	    print "\n";
+    next unless ($uid =~ /\d/);
+    unless (${ $db{$alias} }{$uid}) { ${ $db{$alias} }{$uid} = $now; }
+    $age{$uid} = $now - ${ $db{$alias} }{$uid};
+    print "uid: $uid time_first_seen: ${ $db{$alias} }{$uid} age: $age{$uid} ";
+    if ($age{$uid} <= $lifespan) {
+        push(@goget,$uid);  #goget is the list of UIDs to get 
+                            #on the 2nd visits
+        print "\n";
         } else {
-	    print "is too old.\n";
+        print "is too old.\n";
         }
-	if ($age{$uid} > $forget) {
-	    print "forgetting it.\n";
+    if ($age{$uid} > $forget) {
+        print "forgetting it.\n";
             #avoid huge database files
             # but keep for neighbourhood search
-	    if ($delete_forget) {
-		delete ${ $db{$alias} }{$uid}; 
-	    } else {
-		print "keeping entries for neighbourhood search ($alias, $query{$aliases{$alias}[0]}{DB})\n";
+        if ($delete_forget) {
+        delete ${ $db{$alias} }{$uid}; 
+        } else {
+        print "keeping entries for neighbourhood search ($alias, $query{$aliases{$alias}[0]}{DB})\n";
            }
-	}
+    }
     }
 
     # sort by age unless we are dealing with 
     # specially sorted id's from neighbourhood search
     if ($sort_by_age) {
-	$alias_global = $alias;    
-	@goget = sort by_time_first_seen_and_uid @goget;
+    $alias_global = $alias;    
+    @goget = sort by_time_first_seen_and_uid @goget;
     }
 
     return(@goget);
@@ -3182,7 +3182,7 @@ sub list_crunch{
 #           $PARAM{'viewdays'}(global) %age (from &list_crunch) $PARAM{'retrieve_URL'}(global
 # returns: $second_visit_result
 sub second_visit {
-	    
+        
     my $alias = shift;
     my $search_type = shift;
     my $word = shift;
@@ -3212,333 +3212,333 @@ sub second_visit {
 
     for ($day=0; $day <= $PARAM{'viewdays'}; $day++){
         $button = '';
-	@query_big = ();
-	foreach (@query_list){
-	    if ($day == int(($age{$_} + 0.5))) { #0.5 term is to prevent age of
-		                               #0.99 days being rounded down,etc
-		push(@query_big,$_);
-	    }
-	}
-	# shorten query list if too long...
-	if ($day == 0) {
-	        # assemble $PARAM{'fullmax'} of uids to uid string
-	    @query_list_1day = splice(@query_big, 0, $PARAM{'fullmax'});
-	    $dispmax = $PARAM{'fullmax'};
-	    $counter = $PARAM{'fullmax'} + 1;
+    @query_big = ();
+    foreach (@query_list){
+        if ($day == int(($age{$_} + 0.5))) { #0.5 term is to prevent age of
+                                       #0.99 days being rounded down,etc
+        push(@query_big,$_);
+        }
+    }
+    # shorten query list if too long...
+    if ($day == 0) {
+            # assemble $PARAM{'fullmax'} of uids to uid string
+        @query_list_1day = splice(@query_big, 0, $PARAM{'fullmax'});
+        $dispmax = $PARAM{'fullmax'};
+        $counter = $PARAM{'fullmax'} + 1;
 
-	    if ($simulation_file) {
-		@query_list_1day = (1,1);
-	    }
-	    
-	} else {
-	        # assemble $PARAM{'extra_range'} of uids to uid string
-	    @query_list_1day = splice(@query_big, 0, $PARAM{'extra_range'});
-	    $dispmax = $PARAM{'extra_range'};
-	    $counter = $PARAM{'extra_range'} + 1;
-	}
+        if ($simulation_file) {
+        @query_list_1day = (1,1);
+        }
+        
+    } else {
+            # assemble $PARAM{'extra_range'} of uids to uid string
+        @query_list_1day = splice(@query_big, 0, $PARAM{'extra_range'});
+        $dispmax = $PARAM{'extra_range'};
+        $counter = $PARAM{'extra_range'} + 1;
+    }
 
-	unless (@query_list_1day) {
-	    next unless ($day == 0);
-	}
+    unless (@query_list_1day) {
+        next unless ($day == 0);
+    }
 
-	$uidstring=join(',', @query_list_1day);
-	    	
-	my $search_db = $search_type;
-#	if ($search_db eq 'nucleotide') {
-#	    $search_db = 'sequence';
-#	}
-	$docstring = join '&', ("db=$search_db",
-				"id=$uidstring",
-				"tool=$PARAM{'tool'}",
-				"email=$sender",
-				"retmax=$dispmax",
-				'retmode=xml'
-				);
-	
-	print "$day days old:  $uidstring\n";
+    $uidstring=join(',', @query_list_1day);
+            
+    my $search_db = $search_type;
+#   if ($search_db eq 'nucleotide') {
+#       $search_db = 'sequence';
+#   }
+    $docstring = join '&', ("db=$search_db",
+                "id=$uidstring",
+                "tool=$PARAM{'tool'}",
+                "email=$sender",
+                "retmax=$dispmax",
+                'retmode=xml'
+                );
+    
+    print "$day days old:  $uidstring\n";
 
-	if ($day == 0){
-	    $second_visit_result .= 
-		&tab('TR')
-		.&tab('TD')
-		.'<BR>';
+    if ($day == 0){
+        $second_visit_result .= 
+        &tab('TR')
+        .&tab('TD')
+        .'<BR>';
 
             $no_html = &set_flag;
-	    $second_visit_result_mail .= 
-		&tab('TR')
-		.&tab('TD')
-		.${break};
+        $second_visit_result_mail .= 
+        &tab('TR')
+        .&tab('TD')
+        .${break};
             $no_html = 0;
 
-	    #zero-day-old records: retrieve them
-	    $hits{$alias} = $#query_big + $#query_list_1day + 2;
-	    unless ($#query_list_1day < 0){
-		# get the results of the HTTP-request
-		# requires: $PARAM{'retrieve_URL'}(global) $docstring   
-		# produces: $uid_result
-		$second_visit_result .= 
-		    &tab('TABLE', ' WIDTH="100%" CELLSPACING="0" CELLPADDING="0"');
+        #zero-day-old records: retrieve them
+        $hits{$alias} = $#query_big + $#query_list_1day + 2;
+        unless ($#query_list_1day < 0){
+        # get the results of the HTTP-request
+        # requires: $PARAM{'retrieve_URL'}(global) $docstring   
+        # produces: $uid_result
+        $second_visit_result .= 
+            &tab('TABLE', ' WIDTH="100%" CELLSPACING="0" CELLPADDING="0"');
 
                 $no_html = &set_flag;
-		$second_visit_result_mail .= 
-		    &tab('TABLE', ' WIDTH="100%" CELLSPACING="0" CELLPADDING="0"');
+        $second_visit_result_mail .= 
+            &tab('TABLE', ' WIDTH="100%" CELLSPACING="0" CELLPADDING="0"');
                 $no_html = 0;
 
-		print "retrieving full reports from NCBI\nURL:\n$PARAM{'retrieve_URL'}?$docstring\n";		
-		$time_1 = time if ($PARAM{'log_queries'});
+        print "retrieving full reports from NCBI\nURL:\n$PARAM{'retrieve_URL'}?$docstring\n";       
+        $time_1 = time if ($PARAM{'log_queries'});
 
-		if ($simulation_file) {
-		    $tmp_result = '';
-		    if (open (IN, "$simulation_file")) {
-			while (<IN>) {
-			    $tmp_result .= $_;
-			}
-			close IN;
-		    }
-		} else {
-		    ($tmp_result,$connection_error) = &make_HTTP($PARAM{'retrieve_URL'},$docstring);
-		}
+        if ($simulation_file) {
+            $tmp_result = '';
+            if (open (IN, "$simulation_file")) {
+            while (<IN>) {
+                $tmp_result .= $_;
+            }
+            close IN;
+            }
+        } else {
+            ($tmp_result,$connection_error) = &make_HTTP($PARAM{'retrieve_URL'},$docstring);
+        }
 
-		    # log query and traffic
-		if ($PARAM{'log_queries'}) {
-		    if ($PARAM{'from_quick'}) {
-			&log_query($time_1,4,length($docstring),length($tmp_result));
-		    } else {
-			&log_query($time_1,2,length($docstring),length($tmp_result));
-		    }
-		}
+            # log query and traffic
+        if ($PARAM{'log_queries'}) {
+            if ($PARAM{'from_quick'}) {
+            &log_query($time_1,4,length($docstring),length($tmp_result));
+            } else {
+            &log_query($time_1,2,length($docstring),length($tmp_result));
+            }
+        }
 
-		    # retry in case Server Error occured
-		while ( ( $tmp_result =~ /Server Error/s
-			  or
-			  $connection_error
-			  or
-			  $tmp_result !~ /<esummaryresult>/si
-			  )
-			and
-			$retry_local < $PARAM{'retry'}
-			) {
-		    my $text = ($connection_error ?
-				'Connection error' :
-				'Server error');
-		    $retry_local++;
-		    my $time_now = localtime;
-		    print "\nWARNING at $time_now: $text, starting retry $retry_local...\n";
-		    warn "WARNING at $time_now $PARAM{'id'}: $text, retry $retry_local for query $uidstring at second visit\n";
-		    print "sleeping for $PARAM{'break'} seconds...\n";
-		    sleep($PARAM{'break'});	
-		    $time_1 = time if ($PARAM{'log_queries'});
-		    ($tmp_result,$connection_error) = &make_HTTP($PARAM{'retrieve_URL'},$docstring);
-		        # log query and traffic
-		    if ($PARAM{'log_queries'}) {
-			if ($PARAM{'from_quick'}) {
-			    &log_query($time_1,'4.'.$retry_local,length($docstring),length($tmp_result));
-			} else {
-			    &log_query($time_1,'2.'.$retry_local,length($docstring),length($tmp_result));
-			}
-		    }
-		}
+            # retry in case Server Error occured
+        while ( ( $tmp_result =~ /Server Error/s
+              or
+              $connection_error
+              or
+              $tmp_result !~ /<esummaryresult>/si
+              )
+            and
+            $retry_local < $PARAM{'retry'}
+            ) {
+            my $text = ($connection_error ?
+                'Connection error' :
+                'Server error');
+            $retry_local++;
+            my $time_now = localtime;
+            print "\nWARNING at $time_now: $text, starting retry $retry_local...\n";
+            warn "WARNING at $time_now $PARAM{'id'}: $text, retry $retry_local for query $uidstring at second visit\n";
+            print "sleeping for $PARAM{'break'} seconds...\n";
+            sleep($PARAM{'break'}); 
+            $time_1 = time if ($PARAM{'log_queries'});
+            ($tmp_result,$connection_error) = &make_HTTP($PARAM{'retrieve_URL'},$docstring);
+                # log query and traffic
+            if ($PARAM{'log_queries'}) {
+            if ($PARAM{'from_quick'}) {
+                &log_query($time_1,'4.'.$retry_local,length($docstring),length($tmp_result));
+            } else {
+                &log_query($time_1,'2.'.$retry_local,length($docstring),length($tmp_result));
+            }
+            }
+        }
 
-		# write into output file how much has been done
-#		&update_output;
+        # write into output file how much has been done
+#       &update_output;
 
-		my $counter2 = 0;
+        my $counter2 = 0;
 
-		unless ($tmp_result =~ /<\/eSummaryResult>/si) {
-		    print STDERR "$PARAM{'id'} No end tag for results from query $alias!\n";
-		    # put into log file
-		    print "No end tag for results from query $alias:\n$tmp_result\n\n";
-		    $tmp_result = "<BR><CENTER><BIG><B>Received only partial results for this query - check logfile for content</B></BIG></CENTER><BR>\n";
-		    if ($PARAM{'quickstart'}) {
-			$tmp_result .= "\n<CENTER><BIG><B>PubCrawler advises:</B>\n<B>-\&gt  <A HREF=\"http://pubcrawler.gen.tcd.ie/quickstart.html\">restart your jobs manually!</A></B></BIG></CENTER><BR>\n" ;
-			$net_failure = 1;
-			$advise = 1;
-		    }
-		} else {
-		    # parse XML results
-		    if ($tmp_result =~ /<eSummaryResult>(.*)<\/eSummaryResult>/si) {
-			$tmp_result = $1;
-			if ($tmp_result =~ /<ERROR>(.*)<\/ERROR>/i) {
-			    $second_visit_result .= "ERROR: $1\n";
-			    $second_visit_result_mail .= "ERROR: $1\n";
-			}
-			while ($tmp_result =~ /<DocSum>/si) {
-			    $tmp_result =~ s/<DocSum>(.*?)<\/DocSum>//si;
-			    my $tmp_record = $1;
-			    my $checkbox = $checkbox_name{$search_type};
-			    $second_visit_result .= &format_record($search_type,$PARAM{'results_format'},$tmp_record,++$counter2,$checkbox,'website','website');
+        unless ($tmp_result =~ /<\/eSummaryResult>/si) {
+            print STDERR "$PARAM{'id'} No end tag for results from query $alias!\n";
+            # put into log file
+            print "No end tag for results from query $alias:\n$tmp_result\n\n";
+            $tmp_result = "<BR><CENTER><BIG><B>Received only partial results for this query - check logfile for content</B></BIG></CENTER><BR>\n";
+            if ($PARAM{'quickstart'}) {
+            $tmp_result .= "\n<CENTER><BIG><B>PubCrawler advises:</B>\n<B>-\&gt  <A HREF=\"http://pubcrawler.gen.tcd.ie/quickstart.html\">restart your jobs manually!</A></B></BIG></CENTER><BR>\n" ;
+            $net_failure = 1;
+            $advise = 1;
+            }
+        } else {
+            # parse XML results
+            if ($tmp_result =~ /<eSummaryResult>(.*)<\/eSummaryResult>/si) {
+            $tmp_result = $1;
+            if ($tmp_result =~ /<ERROR>(.*)<\/ERROR>/i) {
+                $second_visit_result .= "ERROR: $1\n";
+                $second_visit_result_mail .= "ERROR: $1\n";
+            }
+            while ($tmp_result =~ /<DocSum>/si) {
+                $tmp_result =~ s/<DocSum>(.*?)<\/DocSum>//si;
+                my $tmp_record = $1;
+                my $checkbox = $checkbox_name{$search_type};
+                $second_visit_result .= &format_record($search_type,$PARAM{'results_format'},$tmp_record,++$counter2,$checkbox,'website','website');
 
-			    unless ($mail_features{'javascript'}) {
-				$checkbox = '';
-			    }
-			    my $mail_record = &format_record($search_type,$PARAM{'mail_results_format'},$tmp_record,$counter2,$checkbox,$mail_features{'html'},$mail_features{'entrez_links'});
-			    if ($mail_features{'text'}) {
-				$second_visit_result_mail .= $mail_record;
-			    } else {
-				$full_records_mail .= $mail_record;
-			    }
-			}
-		    } else {
-			warn;
-		    }
-		}
-		    
-		if ($counter2 > 1) {
-		    $second_visit_result .= 
-			&tab('TR')
-			.&tab('TD', ' COLSPAN=3')
-			."\n<A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$counter2\&list_uids=$uidstring\">Retrieve this group of hits</A><BR>"
-			.&tab('/TD')
-			.&tab('/TR');
-		    
-		    # mail file:
-		    my $insert_text = '';
-		    if ($mail_features{'entrez_links'}) {
-			$insert_text = "\n<A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$counter2\&list_uids=$uidstring\">Retrieve this group of hits</A><BR>";
-			unless ($mail_features{'html'}) {
-			    $insert_text = "\nRetrieval of above hits: $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$counter2\&list_uids=$uidstring";;
-			}
-		    }
+                unless ($mail_features{'javascript'}) {
+                $checkbox = '';
+                }
+                my $mail_record = &format_record($search_type,$PARAM{'mail_results_format'},$tmp_record,$counter2,$checkbox,$mail_features{'html'},$mail_features{'entrez_links'});
+                if ($mail_features{'text'}) {
+                $second_visit_result_mail .= $mail_record;
+                } else {
+                $full_records_mail .= $mail_record;
+                }
+            }
+            } else {
+            warn;
+            }
+        }
+            
+        if ($counter2 > 1) {
+            $second_visit_result .= 
+            &tab('TR')
+            .&tab('TD', ' COLSPAN=3')
+            ."\n<A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$counter2\&list_uids=$uidstring\">Retrieve this group of hits</A><BR>"
+            .&tab('/TD')
+            .&tab('/TR');
+            
+            # mail file:
+            my $insert_text = '';
+            if ($mail_features{'entrez_links'}) {
+            $insert_text = "\n<A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$counter2\&list_uids=$uidstring\">Retrieve this group of hits</A><BR>";
+            unless ($mail_features{'html'}) {
+                $insert_text = "\nRetrieval of above hits: $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$counter2\&list_uids=$uidstring";;
+            }
+            }
 
                     $no_html = &set_flag;
-		    $second_visit_result_mail .= 
-			&tab('TR')
-			.&tab('TD', ' COLSPAN=3')
-			.$insert_text
-			.&tab('/TD')
-			.&tab('/TR');
+            $second_visit_result_mail .= 
+            &tab('TR')
+            .&tab('TD', ' COLSPAN=3')
+            .$insert_text
+            .&tab('/TD')
+            .&tab('/TR');
                     $no_html = 0;
-		}
+        }
 
-		$second_visit_result .= 
-		    &tab('/TABLE');
+        $second_visit_result .= 
+            &tab('/TABLE');
 
                 $no_html = &set_flag;
-		$second_visit_result_mail .= 
-		    &tab('/TABLE');
+        $second_visit_result_mail .= 
+            &tab('/TABLE');
                 $no_html = 0;
 
-	    } else { # unless ($#query_list_1day < 0){
-		$second_visit_result .= "<b>No new records for \'$alias\' today</b><BR>";
-		$second_visit_result_mail .= "${boldIn}No new records for \'$alias\' today${boldOut}${break}";		
-	    }
+        } else { # unless ($#query_list_1day < 0){
+        $second_visit_result .= "<b>No new records for \'$alias\' today</b><BR>";
+        $second_visit_result_mail .= "${boldIn}No new records for \'$alias\' today${boldOut}${break}";      
+        }
 
-	} else { # if ($day == 0){
+    } else { # if ($day == 0){
 
-	    $second_visit_result .=
-		&tab('TR')
-		.&tab('TD');
+        $second_visit_result .=
+        &tab('TR')
+        .&tab('TD');
 
             $no_html = &set_flag;
-	    $second_visit_result_mail .=
-		&tab('TR')
-		.&tab('TD');
+        $second_visit_result_mail .=
+        &tab('TR')
+        .&tab('TD');
             $no_html = 0;
 
-	    #older records: make a hypertext link to them, if they exist
-	    unless ($#query_list_1day == -1){
-		my $retrieve_number = @query_list_1day;
-		$number_of_1day_records = $#query_list_1day + 1;
-		$button = "\nMORE: $day-day-old records for \'$alias\'  <A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\">("
-		    .($#query_big >= 0?"1 - ":"")
-		    ."$number_of_1day_records)</A> ";
+        #older records: make a hypertext link to them, if they exist
+        unless ($#query_list_1day == -1){
+        my $retrieve_number = @query_list_1day;
+        $number_of_1day_records = $#query_list_1day + 1;
+        $button = "\nMORE: $day-day-old records for \'$alias\'  <A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\">("
+            .($#query_big >= 0?"1 - ":"")
+            ."$number_of_1day_records)</A> ";
 
-#		$button =~ s/ /\&nbsp;/g;
-#		$button =~ s/<A\&nbsp;HREF/<A HREF/g;
+#       $button =~ s/ /\&nbsp;/g;
+#       $button =~ s/<A\&nbsp;HREF/<A HREF/g;
 
-		$second_visit_result .= $button;
-		
-		if ($mail_features{'entrez_links'}) {
-		    if ($mail_features{'html'}) {
-			# keep button as it is
-		    } else {
-			$button = "\nMORE: $day-day-old records for \'$alias\'("
-			    .($#query_big >= 0?"1 - ":"")
-			    ."$number_of_1day_records),  $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring";
-		    } 
-		} else {
-		    $button = "\nMORE: $day-day-old records for \'$alias\'("
-			    .($#query_big >= 0 ? "1 - " : '')
-			    ."$number_of_1day_records)";
-		}
-		$second_visit_result_mail .= $button;
-	    }
-	}
-	# create buttons for excessive entries
-	while (@query_big) {
-	    @query_tmp = splice(@query_big, 0, $PARAM{'extra_range'});
-	    my $retrieve_number = @query_tmp;
-	    $uidstring=join(',', @query_tmp);
-	    $docstring = join '&', ('cmd=Retrieve',
-				    "db=$search_type",
-				    "list_uids=$uidstring",
-				    "dopt=$dopt",
-				    "tool=$PARAM{'tool'}",
-				    "dispmax=$PARAM{'extra_range'}"
-				    );
-	    $number_of_1day_records = $counter + $#query_tmp;
-	        # create a link for excessive reports...
-	    my $more_text;
-	    my $more_text_mail;
-	    my $button_mail;
-	    if ($button) {
-	        $button = "  <A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\">($counter - $number_of_1day_records)</A>";
+        $second_visit_result .= $button;
+        
+        if ($mail_features{'entrez_links'}) {
+            if ($mail_features{'html'}) {
+            # keep button as it is
+            } else {
+            $button = "\nMORE: $day-day-old records for \'$alias\'("
+                .($#query_big >= 0?"1 - ":"")
+                ."$number_of_1day_records),  $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring";
+            } 
+        } else {
+            $button = "\nMORE: $day-day-old records for \'$alias\'("
+                .($#query_big >= 0 ? "1 - " : '')
+                ."$number_of_1day_records)";
+        }
+        $second_visit_result_mail .= $button;
+        }
+    }
+    # create buttons for excessive entries
+    while (@query_big) {
+        @query_tmp = splice(@query_big, 0, $PARAM{'extra_range'});
+        my $retrieve_number = @query_tmp;
+        $uidstring=join(',', @query_tmp);
+        $docstring = join '&', ('cmd=Retrieve',
+                    "db=$search_type",
+                    "list_uids=$uidstring",
+                    "dopt=$dopt",
+                    "tool=$PARAM{'tool'}",
+                    "dispmax=$PARAM{'extra_range'}"
+                    );
+        $number_of_1day_records = $counter + $#query_tmp;
+            # create a link for excessive reports...
+        my $more_text;
+        my $more_text_mail;
+        my $button_mail;
+        if ($button) {
+            $button = "  <A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\">($counter - $number_of_1day_records)</A>";
 
-		if ($mail_features{'entrez_links'}) {
-		    if ($mail_features{'html'}) {
-			$button_mail = $button;
-		    } else {
-			$button_mail = " ($counter - $number_of_1day_records): $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\n";
-		    }
-		} else {
-		    $button_mail = " ($counter - $number_of_1day_records)";
-		}
-	    } else {
-		if ($day > 0) {
-		    $more_text = "\nMORE: $day-day-old records";
-		    $more_text_mail = "\nMORE: $day-day-old records";
-		} else {
-		    $more_text = "\n<B>MORE: $day-day-old records</B>";
-		    $more_text_mail = "\n${boldIn}MORE: $day-day-old records${boldOut}";
-		}
-	        $button = "$more_text for \'$alias\'  <A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\">($counter - $number_of_1day_records)</A>";
+        if ($mail_features{'entrez_links'}) {
+            if ($mail_features{'html'}) {
+            $button_mail = $button;
+            } else {
+            $button_mail = " ($counter - $number_of_1day_records): $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\n";
+            }
+        } else {
+            $button_mail = " ($counter - $number_of_1day_records)";
+        }
+        } else {
+        if ($day > 0) {
+            $more_text = "\nMORE: $day-day-old records";
+            $more_text_mail = "\nMORE: $day-day-old records";
+        } else {
+            $more_text = "\n<B>MORE: $day-day-old records</B>";
+            $more_text_mail = "\n${boldIn}MORE: $day-day-old records${boldOut}";
+        }
+            $button = "$more_text for \'$alias\'  <A HREF=\"$summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\">($counter - $number_of_1day_records)</A>";
 
-		if ($mail_features{'entrez_links'}) {
-		    if ($mail_features{'html'}) {
-			$button_mail = $button;		
-		    } else {    
-			$button_mail = "$more_text_mail for \'$alias\'  ($counter - $number_of_1day_records): $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\n";
-		    }
-		} else {
-		    $button_mail = "$more_text_mail for \'$alias\'  ($counter - $number_of_1day_records)";
-		}
-	    }
-#	    $button =~ s/ /\&nbsp;/g;
-#	    $button =~ s/<A\&nbsp;HREF/<A HREF/g;
-	    $second_visit_result .= $button;
+        if ($mail_features{'entrez_links'}) {
+            if ($mail_features{'html'}) {
+            $button_mail = $button;     
+            } else {    
+            $button_mail = "$more_text_mail for \'$alias\'  ($counter - $number_of_1day_records): $summary_link\&db=$retrieve_db{$search_type}\&dispmax=$retrieve_number\&list_uids=$uidstring\n";
+            }
+        } else {
+            $button_mail = "$more_text_mail for \'$alias\'  ($counter - $number_of_1day_records)";
+        }
+        }
+#       $button =~ s/ /\&nbsp;/g;
+#       $button =~ s/<A\&nbsp;HREF/<A HREF/g;
+        $second_visit_result .= $button;
 
-	    # mail file:
-	    $second_visit_result_mail .= $button_mail;
-	    
-	    $counter = $number_of_1day_records + 1;
-	}	
-	$second_visit_result .=
-	    &tab('/TD')
-	    .&tab('/TR');
+        # mail file:
+        $second_visit_result_mail .= $button_mail;
+        
+        $counter = $number_of_1day_records + 1;
+    }   
+    $second_visit_result .=
+        &tab('/TD')
+        .&tab('/TR');
 
         $no_html = &set_flag;
-	$second_visit_result_mail .=
-	    &tab('/TD')
-	    .&tab('/TR');
+    $second_visit_result_mail .=
+        &tab('/TD')
+        .&tab('/TR');
         $no_html = 0;
-	
+    
     }
 #    $second_visit_result .= 
-#	&tab('/TD')
-#	.&tab('/TR');
+#   &tab('/TD')
+#   .&tab('/TR');
 
     unless ($mail_features{'text'}) {
-	$second_visit_result_mail = $full_records_mail;
+    $second_visit_result_mail = $full_records_mail;
     }
 
     return ($second_visit_result,$second_visit_result_mail);
@@ -3561,13 +3561,13 @@ sub by_time_first_seen_and_uid {
     }elsif ( ${ $db{$alias_global} }{$a} < ${ $db{$alias_global} }{$b} ) {
         return 1;
     }elsif ( ${ $db{$alias_global} }{$a} == ${ $db{$alias_global} }{$b} ) {
-	if ($a < $b) {
-	    return 1;
-	}elsif ($a==$b) {
-	    0;
-	}elsif ($a > $b) {
-	    return -1;
-	}
+    if ($a < $b) {
+        return 1;
+    }elsif ($a==$b) {
+        0;
+    }elsif ($a > $b) {
+        return -1;
+    }
     }
 }#return from sub by_time_first_seen_and_uid
     
@@ -3584,7 +3584,7 @@ sub trailer {
     my $trailer = '';
 
     if ($mail_version) {
-	$no_html = &set_flag;
+    $no_html = &set_flag;
     }
 
 
@@ -3621,7 +3621,7 @@ For your convenience, the following form allows to carry out searches at the US 
 </select>
 <input name=\"orig_db\" type=\"hidden\" value=\"PubMed\"></small>
 for
-<input name=\"term\" size=\"45\" type=\"TEXT\" value=\"<insert search and click on 'Go' (do not use return key)>\">						
+<input name=\"term\" size=\"45\" type=\"TEXT\" value=\"<insert search and click on 'Go' (do not use return key)>\">                     
 <input type=\"button\" value=\"Go\" onClick=\"ncbi_query(this.form);\">
 <input name=\"Clear\" type=\"button\" value=\"Clear\" onClick=\"this.form.term.value='';this.form.term.focus();\">
 </td>
@@ -3657,8 +3657,8 @@ PubCrawler was developed and is hosted by <A HREF=\"http://wolfe.gen.tcd.ie\">Ke
 
  
     if ($mail_version) {
-	unless ($mail_features{'html'}) {
-	    $disclaimer = "
+    unless ($mail_features{'html'}) {
+        $disclaimer = "
 
 PubCrawler was developed and is hosted by Ken Wolfe\'s lab in the Genetics Department, Trinity College Dublin, Ireland. 
 It has no affiliation with NCBI.
@@ -3668,9 +3668,9 @@ All records stem from the National Library of Medicine and were retrieved by Pub
 Please take a look at NCBI\'s Disclaimer for more information about their disclaimers and copyrights.
 
 ";
-	}
     }
-	
+    }
+    
     my $generated = "<small>generated by <a href=\"$home_link\">PubCrawler version $version_number</a> on $timestamp</small>";
     my $back_to_top = "<CENTER><A HREF=\"#TOP\">[back to top]</A></CENTER><BR>\n";
     my $disclaimer_header = "<H3><font color=\"#ffffff\">::::::</font>&nbsp;<A NAME=\"disclaimer\">Disclaimer and Copyright</A></H3>";
@@ -3680,130 +3680,130 @@ Please take a look at NCBI\'s Disclaimer for more information about their discla
     my $ncbi_buttons_out = $ncbi_buttons;
 
     if ($mail_version) {
-	
-	$ncbi_buttons_out = "<CENTER><A HREF=\"#query_box\">[next]</A>&nbsp;<A HREF=\"#TOP\">[top]</A></CENTER>\n$ncbi_buttons\n" if ($mail_features{'text'});
-	unless ($mail_features{'html'}) {
-	    $ncbi_buttons_out = '';
-	    $query_box = '';
-	    $generated = "generated by PubCrawler version $version_number on $timestamp";
-	    $back_to_top = '';
-	    $disclaimer_header = "\n\n:::::: Disclaimer and Copyright";
-	    $query_box_header = '';
-	    $retrieval_header = '';
-	}
-	
-	unless ($mail_features{'javascript'}) {
-	    $ncbi_buttons_out = '';
-	    $query_box = '';
-	    $form_end = '';
-	    $query_box_header = '';
-	    $retrieval_header = '';
-	}
+    
+    $ncbi_buttons_out = "<CENTER><A HREF=\"#query_box\">[next]</A>&nbsp;<A HREF=\"#TOP\">[top]</A></CENTER>\n$ncbi_buttons\n" if ($mail_features{'text'});
+    unless ($mail_features{'html'}) {
+        $ncbi_buttons_out = '';
+        $query_box = '';
+        $generated = "generated by PubCrawler version $version_number on $timestamp";
+        $back_to_top = '';
+        $disclaimer_header = "\n\n:::::: Disclaimer and Copyright";
+        $query_box_header = '';
+        $retrieval_header = '';
+    }
+    
+    unless ($mail_features{'javascript'}) {
+        $ncbi_buttons_out = '';
+        $query_box = '';
+        $form_end = '';
+        $query_box_header = '';
+        $retrieval_header = '';
+    }
     } else {
-	$ncbi_buttons_out = "<CENTER><A HREF=\"#query_box\">[next]</A>&nbsp;<A HREF=\"#TOP\">[top]</A></CENTER>\n$ncbi_buttons\n";
+    $ncbi_buttons_out = "<CENTER><A HREF=\"#query_box\">[next]</A>&nbsp;<A HREF=\"#TOP\">[top]</A></CENTER>\n$ncbi_buttons\n";
     }
 
     unless ($mail_version) {
-	$trailer = "\n<!-- Trailer -->";
+    $trailer = "\n<!-- Trailer -->";
     }
 
     $trailer = 
-	&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
-	.&tab('TD')
-	.$retrieval_header
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR')
-	.&tab('TD')
-	.$ncbi_buttons_out
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
-	.&tab('TD')
-	.$query_box_header
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR')
-	.&tab('TD')
-	.$query_box
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
-	.&tab('TD')
-	.$disclaimer_header
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR')
-	.&tab('TD')
-	.$disclaimer
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR')
-	.&tab('TD')
-	.$back_to_top
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('TR')
-	.&tab('TD')
-	.$generated;
+    &tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
+    .&tab('TD')
+    .$retrieval_header
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR')
+    .&tab('TD')
+    .$ncbi_buttons_out
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
+    .&tab('TD')
+    .$query_box_header
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR')
+    .&tab('TD')
+    .$query_box
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR'," bgcolor=\"$PARAM{'bg'}\"")
+    .&tab('TD')
+    .$disclaimer_header
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR')
+    .&tab('TD')
+    .$disclaimer
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR')
+    .&tab('TD')
+    .$back_to_top
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('TR')
+    .&tab('TD')
+    .$generated;
 
     my $ref = basename $PARAM{'html_file'};
     
     if ($PARAM{'system'} eq 'unix') {
-	$hostname = `hostname` || 'no hostname defined';
-	chomp $hostname;
-	$hostname = "\n<!-- host: $hostname -->\n";
+    $hostname = `hostname` || 'no hostname defined';
+    chomp $hostname;
+    $hostname = "\n<!-- host: $hostname -->\n";
     }
     
     if ($backup_file) {
-	my $text = "<small>, <B>(access to <a href=\"$backup_file\">previous results</a>)</B></small>$hostname\n";
-	if ($mail_version) {
-	    unless ($mail_features{'html'}) {
-		$text = ", previous results at $backup_file";
-	    }
-	}
-	# if the pubcrawler links were chosen
-	# we don't need it here because it exists 
-	# in the left bar already
-	if ($mail_features{'pubcrawler_links'}) {
-	    $text = '';
-	}
-	$trailer .= " $text\n";
-	
+    my $text = "<small>, <B>(access to <a href=\"$backup_file\">previous results</a>)</B></small>$hostname\n";
+    if ($mail_version) {
+        unless ($mail_features{'html'}) {
+        $text = ", previous results at $backup_file";
+        }
+    }
+    # if the pubcrawler links were chosen
+    # we don't need it here because it exists 
+    # in the left bar already
+    if ($mail_features{'pubcrawler_links'}) {
+        $text = '';
+    }
+    $trailer .= " $text\n";
+    
     }
 
     if ($PARAM{'include_config'} =~ /^y|1/i ) {
-	    # append configuration file:
-	my $text = "<HR>PubCrawler configuration file (<B>".(basename $config_file)."</B>) reads:<BR>\n";
-	if ($mail_version) {
-	    unless ($mail_features{'html'}) {
-		$text = "\nPubCrawler configuration file (".(basename $config_file).") reads:\n";
-	    }
-	}
+        # append configuration file:
+    my $text = "<HR>PubCrawler configuration file (<B>".(basename $config_file)."</B>) reads:<BR>\n";
+    if ($mail_version) {
+        unless ($mail_features{'html'}) {
+        $text = "\nPubCrawler configuration file (".(basename $config_file).") reads:\n";
+        }
+    }
 
-	my $append = 
-	    &tab('TABLE',' bgcolor="#efefef" WIDTH="95%"')
-	    .&tab('TR')
-	    .&tab('TD')
-	    .$text;
+    my $append = 
+        &tab('TABLE',' bgcolor="#efefef" WIDTH="95%"')
+        .&tab('TR')
+        .&tab('TD')
+        .$text;
 
-	open (CONFIG,"$config_file") ||
-	    die "$prog_name ERROR $PARAM{'id'}: cannot open configuration file $config_file";
-	while (<CONFIG>){
-	    next if (/^</);
-	    if ($mail_version) {
-		$append .= "$_${break}";
-	    } else {
-		$append .= "$_<br>";
-	    }
-	}
-	close (CONFIG);
-	$append .= &tab('/TD')
-	    .&tab('/TR')
-	    .&tab('/TABLE'); # this closes off the table with config info
+    open (CONFIG,"$config_file") ||
+        die "$prog_name ERROR $PARAM{'id'}: cannot open configuration file $config_file";
+    while (<CONFIG>){
+        next if (/^</);
+        if ($mail_version) {
+        $append .= "$_${break}";
+        } else {
+        $append .= "$_<br>";
+        }
+    }
+    close (CONFIG);
+    $append .= &tab('/TD')
+        .&tab('/TR')
+        .&tab('/TABLE'); # this closes off the table with config info
 
 
-	$trailer .= $append;
+    $trailer .= $append;
 
     }
 
@@ -3811,27 +3811,27 @@ Please take a look at NCBI\'s Disclaimer for more information about their discla
     my $div = "\n</DIV>";
 
     if ($mail_version) {
-	unless ($mail_features{'html'}) {
-	    $separator = '';
-	    $div = '';
-	}
+    unless ($mail_features{'html'}) {
+        $separator = '';
+        $div = '';
+    }
     }
     $trailer .= 
-	&tab('/TD')
-	.&tab('/TR')
-	.$separator
-	.&tab('/TABLE')
-	.$div
-	.$form_end
-	.&tab('/TD')
-	.&tab('/TR')
-	.&tab('/TABLE');
+    &tab('/TD')
+    .&tab('/TR')
+    .$separator
+    .&tab('/TABLE')
+    .$div
+    .$form_end
+    .&tab('/TD')
+    .&tab('/TR')
+    .&tab('/TABLE');
 
     my $end_tags = "\n</BODY>\n</HTML>\n";
     if ($mail_version) {
-	unless ($mail_features{'html'}) {
-	    $end_tags = '';
-	}
+    unless ($mail_features{'html'}) {
+        $end_tags = '';
+    }
     }
 
     $trailer .= $end_tags;
@@ -3844,9 +3844,9 @@ Please take a look at NCBI\'s Disclaimer for more information about their discla
 
 sub set_flag {
     if ($mail_features{'html'}) {
-	return 0;
+    return 0;
     } else {
-	return 1;
+    return 1;
     }
 }
 
@@ -3858,21 +3858,21 @@ sub tab {
     my $addition = shift || '';
 
     if ($no_html) {
-	return '';
+    return '';
     }
 
     if ($indent < 0) {
-	$indent = 0;
+    $indent = 0;
     }
 
     if ($content =~ /^\//) {
-	if ($prev_indent eq '+') {
-	    $indent--;	    
-	}
+    if ($prev_indent eq '+') {
+        $indent--;      
+    }
     } else {
-	if ($prev_indent eq '-') {
-	    $indent++;
-	}
+    if ($prev_indent eq '-') {
+        $indent++;
+    }
     }
 
     my $out = "\n";
@@ -3880,11 +3880,11 @@ sub tab {
     $out .= "<$content$addition>";
 
     if ($content =~ /^\//) {
-	$indent--;
-	$prev_indent = '-';
+    $indent--;
+    $prev_indent = '-';
     } else {
-	$indent++;
-	$prev_indent = '+';
+    $indent++;
+    $prev_indent = '+';
     }
     
     return $out;
@@ -3899,43 +3899,43 @@ sub timestamp{
     my $mode = shift || '';
     my ($sec,$min,$hour,$mday,$mon,$year,$wday)=localtime(time);
     foreach ($hour, $min, $sec){
-	if (length($_) == 1) {
-	    $_ = "0".$_;
-	}
+    if (length($_) == 1) {
+        $_ = "0".$_;
+    }
     }
           # match number of day to explicit name
     my $dayname = 
-	('Sunday',
-	 'Monday',
-	 'Tuesday',
-	 'Wednesday',
-	 'Thursday',
-	 'Friday',
-	 'Saturday')[$wday];
+    ('Sunday',
+     'Monday',
+     'Tuesday',
+     'Wednesday',
+     'Thursday',
+     'Friday',
+     'Saturday')[$wday];
           # match number of month to explicit name
     my $monthname =
-	('Jan',
-	 'Feb',
-	 'Mar',
-	 'Apr',
-	 'May',
-	 'June',
-	 'July',
-	 'Aug',
-	 'Sept',
-	 'Oct',
-	 'Nov',
-	 'Dec')[$mon];
+    ('Jan',
+     'Feb',
+     'Mar',
+     'Apr',
+     'May',
+     'June',
+     'July',
+     'Aug',
+     'Sept',
+     'Oct',
+     'Nov',
+     'Dec')[$mon];
         # change year to four-digit style
     $year+=1900;
         # return dateline and timestamp
     if ($mode eq 'mail') {
-	return "$mday $monthname";
+    return "$mday $monthname";
     } elsif ($mode eq 'txt') {
-	return "$dayname $mday $monthname $year";
+    return "$dayname $mday $monthname $year";
     } else {
-	return("<A NAME=\"TOP\">$dayname $mday $monthname $year</A>", 
-	       "$dayname $mday $monthname $year at $hour:$min:$sec $timezone");
+    return("<A NAME=\"TOP\">$dayname $mday $monthname $year</A>", 
+           "$dayname $mday $monthname $year at $hour:$min:$sec $timezone");
     }
 }#return from sub timestamp
     
@@ -3954,15 +3954,15 @@ sub make_HTTP {
     my $connection_error = 0;
 
     if ($PARAM{'lynx'}) {
-	# make internet-connection through 
-	# alternative command-line browser:
-	unless ($PARAM{'system'} =~ /unix/i) {
-	    die "$prog_name ERROR: system call for \'Lynx\' only works for unix";
-	} else {
-	    $request_string = $request_URL.'?'.$request_string;
-	    $rescontent = `$PARAM{'lynx'} -source \'$request_string\'`;
-	    return $rescontent;
-	}	
+    # make internet-connection through 
+    # alternative command-line browser:
+    unless ($PARAM{'system'} =~ /unix/i) {
+        die "$prog_name ERROR: system call for \'Lynx\' only works for unix";
+    } else {
+        $request_string = $request_URL.'?'.$request_string;
+        $rescontent = `$PARAM{'lynx'} -source \'$request_string\'`;
+        return $rescontent;
+    }   
     }
         # initialize user agent
     my $ua = new LWP::UserAgent;
@@ -3971,32 +3971,32 @@ sub make_HTTP {
     $ua->timeout($PARAM{'time_out'});
         # set proxy
     if ($proxy_string) {
-	$ua->proxy(http  => "$proxy_string");
+    $ua->proxy(http  => "$proxy_string");
     }
         # initialize request
     if ($request_URL eq $PARAM{'search_URL'}) {
-#	or 
-#	$request_URL eq $PARAM{'neighbour_URL'}) {
-	# unfortunately POST doesn't seem to work for searching
-	$req = new HTTP::Request GET => $request_URL.'?'.$request_string;
+#   or 
+#   $request_URL eq $PARAM{'neighbour_URL'}) {
+    # unfortunately POST doesn't seem to work for searching
+    $req = new HTTP::Request GET => $request_URL.'?'.$request_string;
     } else {
-	# use POST method for retrieving reports
-	$req = new HTTP::Request POST => $request_URL;
-	$req->content_type('application/x-www-form-urlencoded');
-	$req->content($request_string);
+    # use POST method for retrieving reports
+    $req = new HTTP::Request POST => $request_URL;
+    $req->content_type('application/x-www-form-urlencoded');
+    $req->content($request_string);
     }
 
     $req->proxy_authorization_basic("$PARAM{'proxy_auth'}", "$PARAM{'proxy_pass'}") 
-	if ($PARAM{'proxy_pass'} and $PARAM{'proxy_auth'});
+    if ($PARAM{'proxy_pass'} and $PARAM{'proxy_auth'});
 
         # get result of request
     my $res = $ua->request($req);
     if ($res->is_success) {
-	#print "\n res content \n";
-	#print $res->content;
+    #print "\n res content \n";
+    #print $res->content;
     } else {
-	$connection_error = 1;
-	print "No reply to HTTP-request - bad luck this time\n";
+    $connection_error = 1;
+    print "No reply to HTTP-request - bad luck this time\n";
     }
 
     $rescontent = $res->content;
@@ -4006,7 +4006,7 @@ sub make_HTTP {
 
     # holdings change
     if ($PARAM{'tool'} =~ /holding=/i) {
-	$rescontent =~ s/($retrieve_URL_def\?)/$1tool=$PARAM{'tool'}\&/sig;
+    $rescontent =~ s/($retrieve_URL_def\?)/$1tool=$PARAM{'tool'}\&/sig;
     }
     return($rescontent,$connection_error);
 }#end of sub make_HTTP
@@ -4014,10 +4014,10 @@ sub make_HTTP {
 #############################################################
     
 sub connection_test{
-	# tests if test_URL can be reached through proxy...
+    # tests if test_URL can be reached through proxy...
     if ($PARAM{'no_test'}) {
-	print "suppressed!\n";
-	return 0;
+    print "suppressed!\n";
+    return 0;
     }
     my $proxy_tmp = shift;
     my $url = shift;
@@ -4029,12 +4029,12 @@ sub connection_test{
     my $req = new HTTP::Request 'GET',"$url";
     
     $req->proxy_authorization_basic("$PARAM{'proxy_auth'}", "$PARAM{'proxy_pass'}") 
-	if ($PARAM{'proxy_pass'} and $PARAM{'proxy_auth'} and ($proxy_tmp ne 'no_proxy'));
+    if ($PARAM{'proxy_pass'} and $PARAM{'proxy_auth'} and ($proxy_tmp ne 'no_proxy'));
     my $res = $ua->request($req);
     if ($res->is_success) {
-	return 1;
+    return 1;
     } else {
-	return 0;
+    return 0;
     }
 }
 
@@ -4043,15 +4043,15 @@ sub update_output {
 
     $update_counter += $update_unit; 
     if ($update_counter > 101) {
-	warn "$update_counter done? No update for output file...\n";
-	return;
+    warn "$update_counter done? No update for output file...\n";
+    return;
     }
     $update_message = "<B>$update_counter\%</B> done";
     if (length($update_message) < $update_message_len) {
-	my $diff = $update_message_len - length($update_message);
-	for (my $i = 0; $i < $diff; $i++) {
-	    $update_message .= ' ';
-	}
+    my $diff = $update_message_len - length($update_message);
+    for (my $i = 0; $i < $diff; $i++) {
+        $update_message .= ' ';
+    }
     }
         # write to output file
     sysseek(OUT,"-$update_message_len",2);
@@ -4059,9 +4059,9 @@ sub update_output {
     $update_message_len = length($update_message);
     &sys_print('OUT',"$update_message");
 }
-	
+    
 sub proxy_setting{    
-	# configure proxy and check if internet access provided...
+    # configure proxy and check if internet access provided...
         # writes into global $proxy_string
 
     return if ($proxy_string); #configured already
@@ -4076,128 +4076,128 @@ sub proxy_setting{
     return if ($PARAM{'lynx'});
 
     unless ($PARAM{'no_test'}) {
-	if ($check_mode) {
-	    print STDERR "\n\t - checking internet access through proxy...";
-	} else {
-	    print STDERR "\nTesting internet access through proxy...\n" unless ($PARAM{'mute'});
-	}
+    if ($check_mode) {
+        print STDERR "\n\t - checking internet access through proxy...";
+    } else {
+        print STDERR "\nTesting internet access through proxy...\n" unless ($PARAM{'mute'});
+    }
     }
     # if the address of a proxy-configuration file is given
     # retrieve content to configure proxy settings...
     # (this is detected by a slash somewhere BEFORE the end of the string)
     if ($proxy_tmp =~ /\..*\/\w+/) {
-	@proxy_tried = ();
-	$proxy_conf = ($proxy_tmp =~ /^http:\/\//)?'':'http://' ;
-	$proxy_conf .= $proxy_tmp;
-	if ($PARAM{'proxy_port'}) {
-	    $proxy_conf .= ($PARAM{'proxy_port'} =~ /:(\d+)/)?$PARAM{'proxy_port'}:":$1";
-	}
+    @proxy_tried = ();
+    $proxy_conf = ($proxy_tmp =~ /^http:\/\//)?'':'http://' ;
+    $proxy_conf .= $proxy_tmp;
+    if ($PARAM{'proxy_port'}) {
+        $proxy_conf .= ($PARAM{'proxy_port'} =~ /:(\d+)/)?$PARAM{'proxy_port'}:":$1";
+    }
             # retrieve configuration data
-	@proxy_config = split /\n/, get("$proxy_conf"); 
+    @proxy_config = split /\n/, get("$proxy_conf"); 
 
-	# for more info on proxy auto configuration (Netscape) look up
-	# http://developer.netscape.com/docs/manuals/proxy/adminux/autoconf.htm
+    # for more info on proxy auto configuration (Netscape) look up
+    # http://developer.netscape.com/docs/manuals/proxy/adminux/autoconf.htm
 
-	foreach (@proxy_config) {
-	    my @tmp;
-	    # extract proxy autoconfig information
-	    next unless (/PROXY/);
-	    (undef,@tmp) = split /PROXY/;
-	        # if keyword 'PROXY' found...
-	    foreach (@tmp) {
-		my $server_test;
-		my $port_test;
-		    # ... check the next word for a pattern
-		    # that looks like server (+port) specification
-		if (/((\w+\.)+\w+)(:\d+)?/) {
-		    $server_test = $1;
-		    $port_test = $3;
-		    # test connection to proxy...
-		    $proxy_string = 'http://'.$server_test.$port_test.'/';
-		    return if ($PARAM{'no_test'});			
-		    if (&connection_test($proxy_string,$PARAM{'test_URL'})
-			or $PARAM{'test_URL'} eq '') {
-			last; # found a working proxy -> exiting test
-			      # (or can't test it)
-		    } else {
-			push @proxy_tried, $proxy_string;
-			$proxy_string = '';
-		    }
-		}
-		last if ($proxy_string);
-	    }
-	    last if ($proxy_string);
-	}
-	return if ($PARAM{'no_test'});
-	if ($proxy_string) {
-	    if ($check_mode) {
-		unless ($PARAM{'test_URL'}) {
-		    print STDERR "no test-URL available!\n";
-		} else {
-		    print STDERR "alright\n";
-		}
-	    } elsif (! $PARAM{'mute'}) {
-		unless ($PARAM{'test_URL'}) {
-		    print STDERR "No test-URL available!\n";
-		    print STDERR "Proxy setting: $proxy_string\n";
-		} else {
-		    print STDERR "Successfully received the test URL!\n";
-		    print STDERR "Internet access through proxy ($proxy_string) seems o.k.\n";
-		}
-		    print STDERR "Continuing with program...\n";
-	    }
-	} else {
-	    if ($check_mode) {
-		$error++;
-		print STDERR "\n\t   ERROR $error: Can\'t configure proxy!\n";
-		push @error, "Problems encountered when trying to access the test-URL.\n\tPlease check the test-URL:\n\t\'$PARAM{'test_URL'}\'\n\tand your proxy settings (command line or ".(&line_number($config_file,'^proxy\b')).')'.($proxy_tmp?":\n\t\'$proxy_tmp\'".($PARAM{'proxy_port'}?", \'$PARAM{'proxy_port'}\'":"")." evaluated to \'$proxy_string\'":"");
-	    } else {
-		print STDERR "\n\nERROR $PARAM{'id'}:\n";
-		print STDERR "Could not configure proxy from \'$proxy_tmp\'\n";
-		foreach (@proxy_tried) {
-		    print STDERR "Tried proxy $_ without success\n";
-		}
-		print STDERR "Please check your proxy configuration or the test URL\n($PARAM{'test_URL'})\n";
-		exit $EXIT_FAILURE;
-	    }
-	}
+    foreach (@proxy_config) {
+        my @tmp;
+        # extract proxy autoconfig information
+        next unless (/PROXY/);
+        (undef,@tmp) = split /PROXY/;
+            # if keyword 'PROXY' found...
+        foreach (@tmp) {
+        my $server_test;
+        my $port_test;
+            # ... check the next word for a pattern
+            # that looks like server (+port) specification
+        if (/((\w+\.)+\w+)(:\d+)?/) {
+            $server_test = $1;
+            $port_test = $3;
+            # test connection to proxy...
+            $proxy_string = 'http://'.$server_test.$port_test.'/';
+            return if ($PARAM{'no_test'});          
+            if (&connection_test($proxy_string,$PARAM{'test_URL'})
+            or $PARAM{'test_URL'} eq '') {
+            last; # found a working proxy -> exiting test
+                  # (or can't test it)
+            } else {
+            push @proxy_tried, $proxy_string;
+            $proxy_string = '';
+            }
+        }
+        last if ($proxy_string);
+        }
+        last if ($proxy_string);
+    }
+    return if ($PARAM{'no_test'});
+    if ($proxy_string) {
+        if ($check_mode) {
+        unless ($PARAM{'test_URL'}) {
+            print STDERR "no test-URL available!\n";
+        } else {
+            print STDERR "alright\n";
+        }
+        } elsif (! $PARAM{'mute'}) {
+        unless ($PARAM{'test_URL'}) {
+            print STDERR "No test-URL available!\n";
+            print STDERR "Proxy setting: $proxy_string\n";
+        } else {
+            print STDERR "Successfully received the test URL!\n";
+            print STDERR "Internet access through proxy ($proxy_string) seems o.k.\n";
+        }
+            print STDERR "Continuing with program...\n";
+        }
     } else {
-	# test if given proxy server (and port) is working...
-	$proxy_string = 'http://' unless ($proxy_tmp =~ /^http:\/\//);
-	$proxy_string .= $proxy_tmp;
-	if ($PARAM{'proxy_port'}) {
-	    $proxy_string .= ($PARAM{'proxy_port'} =~ /:(\d+)/)?$PARAM{'proxy_port'}:":$PARAM{'proxy_port'}";
-	}
-	$proxy_string .= '/' unless ($proxy_string =~ /\/$/);
-	return if ($PARAM{'no_test'});
-	if ($PARAM{'test_URL'} eq '') {
-	    if ($check_mode) {
-		print STDERR "no test-URL available!\n";
-	    } elsif (! $PARAM{'mute'}) {
-		print STDERR "No test-URL available!\n";
-		print STDERR "Proxy setting: $proxy_string\n";
-		print STDERR "Continuing with program...\n";
-	    }
-	} elsif (&connection_test($proxy_string,$PARAM{'test_URL'})) {
-	    if ($check_mode) {
-		print STDERR "alright\n";
-	    } elsif (! $PARAM{'mute'}) {
-		print STDERR "Successfully received the test URL!\n";
-		print STDERR "Internet access through proxy ($proxy_string) seems o.k.\n";
-		print STDERR "Continuing with program...\n";
-	    }
-	} else {
-	    if ($check_mode) {
-		$error++;
-		print STDERR "\n\t   ERROR $error $PARAM{'id'}: Can\'t reach test-URL!\n";
-		push @error, "Problems encountered when trying to access the test-URL.\n\tPlease check the test-URL:\n\t\'$PARAM{'test_URL'}\'\n\tand your proxy settings (command line or ".(&line_number($config_file,'^proxy\b')).")".($proxy_tmp?":\n\t\'$proxy_tmp\'".($PARAM{'proxy_port'}?", \'$PARAM{'proxy_port'}\'":"")." evaluated to \'$proxy_string\'":"");
-	    } else {
-		print STDERR "\n\nERROR $PARAM{'id'}:\n";
-		print STDERR "Problems with proxy ($proxy_string) encountered:\n";
-		print STDERR "Please check your proxy entries or the test URL\n($PARAM{'test_URL'})\n";
-		exit $EXIT_FAILURE;
-	    }
-	}
+        if ($check_mode) {
+        $error++;
+        print STDERR "\n\t   ERROR $error: Can\'t configure proxy!\n";
+        push @error, "Problems encountered when trying to access the test-URL.\n\tPlease check the test-URL:\n\t\'$PARAM{'test_URL'}\'\n\tand your proxy settings (command line or ".(&line_number($config_file,'^proxy\b')).')'.($proxy_tmp?":\n\t\'$proxy_tmp\'".($PARAM{'proxy_port'}?", \'$PARAM{'proxy_port'}\'":"")." evaluated to \'$proxy_string\'":"");
+        } else {
+        print STDERR "\n\nERROR $PARAM{'id'}:\n";
+        print STDERR "Could not configure proxy from \'$proxy_tmp\'\n";
+        foreach (@proxy_tried) {
+            print STDERR "Tried proxy $_ without success\n";
+        }
+        print STDERR "Please check your proxy configuration or the test URL\n($PARAM{'test_URL'})\n";
+        exit $EXIT_FAILURE;
+        }
+    }
+    } else {
+    # test if given proxy server (and port) is working...
+    $proxy_string = 'http://' unless ($proxy_tmp =~ /^http:\/\//);
+    $proxy_string .= $proxy_tmp;
+    if ($PARAM{'proxy_port'}) {
+        $proxy_string .= ($PARAM{'proxy_port'} =~ /:(\d+)/)?$PARAM{'proxy_port'}:":$PARAM{'proxy_port'}";
+    }
+    $proxy_string .= '/' unless ($proxy_string =~ /\/$/);
+    return if ($PARAM{'no_test'});
+    if ($PARAM{'test_URL'} eq '') {
+        if ($check_mode) {
+        print STDERR "no test-URL available!\n";
+        } elsif (! $PARAM{'mute'}) {
+        print STDERR "No test-URL available!\n";
+        print STDERR "Proxy setting: $proxy_string\n";
+        print STDERR "Continuing with program...\n";
+        }
+    } elsif (&connection_test($proxy_string,$PARAM{'test_URL'})) {
+        if ($check_mode) {
+        print STDERR "alright\n";
+        } elsif (! $PARAM{'mute'}) {
+        print STDERR "Successfully received the test URL!\n";
+        print STDERR "Internet access through proxy ($proxy_string) seems o.k.\n";
+        print STDERR "Continuing with program...\n";
+        }
+    } else {
+        if ($check_mode) {
+        $error++;
+        print STDERR "\n\t   ERROR $error $PARAM{'id'}: Can\'t reach test-URL!\n";
+        push @error, "Problems encountered when trying to access the test-URL.\n\tPlease check the test-URL:\n\t\'$PARAM{'test_URL'}\'\n\tand your proxy settings (command line or ".(&line_number($config_file,'^proxy\b')).")".($proxy_tmp?":\n\t\'$proxy_tmp\'".($PARAM{'proxy_port'}?", \'$PARAM{'proxy_port'}\'":"")." evaluated to \'$proxy_string\'":"");
+        } else {
+        print STDERR "\n\nERROR $PARAM{'id'}:\n";
+        print STDERR "Problems with proxy ($proxy_string) encountered:\n";
+        print STDERR "Please check your proxy entries or the test URL\n($PARAM{'test_URL'})\n";
+        exit $EXIT_FAILURE;
+        }
+    }
     }
 }
 
@@ -4231,289 +4231,289 @@ Please press <return> to continue...
     my $header_rec = "The header-file you specified (\'$PARAM{'header'}\') could not be found or read.\n\tPlease make sure that the path is specified correctly\n\t- either via command line option\n\t  e.g. $program -head \'/home/user/header.file\'\n\t- or ".(&line_number($config_file,'^\s*#*\s*header\b'))."\n\t  e.g. header /home/user/header.file\n\tand that the file is readable\n\t(under Unix: chmod +r $PARAM{'header'})";
     my $read_config_rec = "Your configuration file '$config_file' is not readable.\n\tPlease change the permissions\n\t(on Unix: chmod +r $config_file)\n\tor specify a different file either through the command line option \'-c\'\n\te.g. $program -c <config_file>\n\tor ".(&line_number($config_file,'^\s*#*\s*config_file\b'))."\n\te.g. config_file /home/user/$prog_name.config";
     print "Start checking...\n";
-	
+    
     # OPERATING SYSTEM:
     if ($PARAM{'system'} =~ /win|macos|$unix_flav/i) {
-	print " - operating system defined as \'$orig_system\', alright\n";
+    print " - operating system defined as \'$orig_system\', alright\n";
     } else {
-	$error++;
-	print "   ERROR $error: bad value for variable \$PARAM{'system'}: \'$orig_system\'!\n";
-	push (@error, $system_rec);
+    $error++;
+    print "   ERROR $error: bad value for variable \$PARAM{'system'}: \'$orig_system\'!\n";
+    push (@error, $system_rec);
     }
 
     # WORKING DIRECTORY:
     unless ($PARAM{'work_dir'}) {
-	print " - no working directory set, using the current directory, alright\n";
-	$PARAM{'work_dir'}=$cwd;
+    print " - no working directory set, using the current directory, alright\n";
+    $PARAM{'work_dir'}=$cwd;
     }
     print " - checking your working directory: \'$PARAM{'work_dir'}\'...\n";
     sleep($pause);
     if (! -e $PARAM{'work_dir'}) {
-	$error++;
-	print "\t   ERROR $error: Working directory \'$PARAM{'work_dir'}\' does not exist!\n";
-	push (@error, $mk_dir_rec);	
+    $error++;
+    print "\t   ERROR $error: Working directory \'$PARAM{'work_dir'}\' does not exist!\n";
+    push (@error, $mk_dir_rec); 
     } elsif (! -w $PARAM{'work_dir'}) {
-	$error++;
-	print "\t   ERROR $error: Can not write to working directory!\n";
-	push (@error, $write_dir_rec);	    
+    $error++;
+    print "\t   ERROR $error: Can not write to working directory!\n";
+    push (@error, $write_dir_rec);      
     } elsif (! -r $PARAM{'work_dir'}) {
-	$error++;
-	print "\t   ERROR $error: Can not read from working directory!\n";
-	push (@error, $read_dir_rec);	    	    
+    $error++;
+    print "\t   ERROR $error: Can not read from working directory!\n";
+    push (@error, $read_dir_rec);               
     } else {
-	print "\t - \'$PARAM{'work_dir'}\' is fully accessible, alright\n";
-	$dir_ok = '1';
+    print "\t - \'$PARAM{'work_dir'}\' is fully accessible, alright\n";
+    $dir_ok = '1';
     }
 
     # CONFIGURATION FILE:
     print " - checking your configuration file \'$config_file\'...\n";
     sleep($pause);
     if ($cmd_line_cfg_file and $config_read) {
-	print "\t - configuration file is readable, alright\n";
+    print "\t - configuration file is readable, alright\n";
     } else {
         # first look in the working directory
-	$orig_dir = $cwd;
-	chdir($PARAM{'work_dir'});
-	if (-e "$config_file") {
-	    if (-r "$config_file") {
-		print "\t - configuration file accessible from your working directory, alright\n";
-	    } else {
-		@_ = &empty_vars(@expect_val);
-		if (@_ > 0) {
-		    $error++;
-		    print "\t   ERROR $error: Can not read your configuration file \'$config_file\' in $PARAM{'work_dir'}!\n";
-		    push (@error, $read_config_rec);	
-		} else {
-		    print "\t   WARNING: mandatory variables are set but no configuration file could be read in $PARAM{'work_dir'}!\n";
-		    $warning++;
-		}   
-	    } 			    
-	} else {
-	    chdir($orig_dir);
-	    if (-e "$config_file") {
-		if (-r "$config_file") {
-		    print "\t - configuration file accessible from your current working directory, alright\n";
-		} else {
-		    if (@_ = &empty_vars(@expect_val)) {
-			$error++;
-			print "\t   ERROR $error: Can not read your configuration file \'$config_file\' in $orig_dir!\n";
-			push (@error, $read_config_rec);	
-		    } else {
-			print "\t   WARNING: mandatory variables are set but no configuration file could be read in $orig_dir!\n";
-			$warning++;
-		    }    		
-		}
-	    } else {
-		@_ = &empty_vars(@expect_val);
-		if (scalar(@_) > 0) {
-		    $error++;
-		    print "\t   ERROR $error: Can not find your configuration file \'$config_file\'!\n";
-		    push (@error, "No configuration file for $prog_name could be found.\n\tPlease make sure that a file called \'$PARAM{'prefix'}.config\'\n\tis located in your current directory ($cwd)\n\tor in your working directory (\'$PARAM{'work_dir'}\')\n\tor in your home directory (\'$ENV{HOME}\')\n\tor specify a file on the command line\n\te.g. \'$program -c <config.file>\'");	    
-		} else {
-		    print "\t   WARNING: mandatory variables are set but no configuration file could be found!\n";
-		    $warning++;
-		}
-		chdir($orig_dir);
-		$orig_dir = '';
-	    }
-	}
+    $orig_dir = $cwd;
+    chdir($PARAM{'work_dir'});
+    if (-e "$config_file") {
+        if (-r "$config_file") {
+        print "\t - configuration file accessible from your working directory, alright\n";
+        } else {
+        @_ = &empty_vars(@expect_val);
+        if (@_ > 0) {
+            $error++;
+            print "\t   ERROR $error: Can not read your configuration file \'$config_file\' in $PARAM{'work_dir'}!\n";
+            push (@error, $read_config_rec);    
+        } else {
+            print "\t   WARNING: mandatory variables are set but no configuration file could be read in $PARAM{'work_dir'}!\n";
+            $warning++;
+        }   
+        }               
+    } else {
+        chdir($orig_dir);
+        if (-e "$config_file") {
+        if (-r "$config_file") {
+            print "\t - configuration file accessible from your current working directory, alright\n";
+        } else {
+            if (@_ = &empty_vars(@expect_val)) {
+            $error++;
+            print "\t   ERROR $error: Can not read your configuration file \'$config_file\' in $orig_dir!\n";
+            push (@error, $read_config_rec);    
+            } else {
+            print "\t   WARNING: mandatory variables are set but no configuration file could be read in $orig_dir!\n";
+            $warning++;
+            }           
+        }
+        } else {
+        @_ = &empty_vars(@expect_val);
+        if (scalar(@_) > 0) {
+            $error++;
+            print "\t   ERROR $error: Can not find your configuration file \'$config_file\'!\n";
+            push (@error, "No configuration file for $prog_name could be found.\n\tPlease make sure that a file called \'$PARAM{'prefix'}.config\'\n\tis located in your current directory ($cwd)\n\tor in your working directory (\'$PARAM{'work_dir'}\')\n\tor in your home directory (\'$ENV{HOME}\')\n\tor specify a file on the command line\n\te.g. \'$program -c <config.file>\'");      
+        } else {
+            print "\t   WARNING: mandatory variables are set but no configuration file could be found!\n";
+            $warning++;
+        }
+        chdir($orig_dir);
+        $orig_dir = '';
+        }
+    }
     }
 
     if ($config_read) {
-	# check that all mandatory fields have values
-	$error_now = $error;
-	unless (defined $PARAM{'html_file'} and $PARAM{'html_file'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: no file name specified for output HTML!\n";
-	    push (@error, "Please specify a file name for output HTML\n\tthrough a statement like \'html_file ${prog_name}_result.html\' in your configuration file\n\tor through the comand line option '-out ${prog_name}_result.html'");
-	} 
+    # check that all mandatory fields have values
+    $error_now = $error;
+    unless (defined $PARAM{'html_file'} and $PARAM{'html_file'} ne '') {
+        $error++;
+        print "\t   ERROR $error: no file name specified for output HTML!\n";
+        push (@error, "Please specify a file name for output HTML\n\tthrough a statement like \'html_file ${prog_name}_result.html\' in your configuration file\n\tor through the comand line option '-out ${prog_name}_result.html'");
+    } 
 
-	unless (defined $PARAM{'relentrezdate'} and $PARAM{'relentrezdate'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: no maximum age for database entries specified !\n";
-	    push (@error, "Please specify a maximum age for database entries (in days)\n\tby including a line like \'relentrezdate 180\' in your configuration file\n\tor through the comand line option '-relentrezdate 180'.\n\tOther valid entries are '1 year','2 years','5 years','10 years','no limit'");
-	}
+    unless (defined $PARAM{'relentrezdate'} and $PARAM{'relentrezdate'} ne '') {
+        $error++;
+        print "\t   ERROR $error: no maximum age for database entries specified !\n";
+        push (@error, "Please specify a maximum age for database entries (in days)\n\tby including a line like \'relentrezdate 180\' in your configuration file\n\tor through the comand line option '-relentrezdate 180'.\n\tOther valid entries are '1 year','2 years','5 years','10 years','no limit'");
+    }
     
-	unless (defined $PARAM{'fullmax'} and $PARAM{'fullmax'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: no maximum retrieval number of full reports specified !\n";
-	    push (@error, "Please specify a maximum number for for retrieval of full reports\n\tby including a line like \'fullmax 20\' in your configuration file\n\tor through the comand line option '-fullmax 20'.");
-	}	    
+    unless (defined $PARAM{'fullmax'} and $PARAM{'fullmax'} ne '') {
+        $error++;
+        print "\t   ERROR $error: no maximum retrieval number of full reports specified !\n";
+        push (@error, "Please specify a maximum number for for retrieval of full reports\n\tby including a line like \'fullmax 20\' in your configuration file\n\tor through the comand line option '-fullmax 20'.");
+    }       
     
-	unless (defined $PARAM{'search_URL'} and $PARAM{'search_URL'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: no URL for query specified !\n";
-	    push (@error, "Please specify a URL for the queries to be carried out\n\tby including a line like 'search_URL $search_URL_def'\n\tin your configuration file\n\tor through the comand line option '-q $search_URL_def'.");
-	}	    
-    	unless (defined $PARAM{'retrieve_URL'} and $PARAM{'retrieve_URL'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: no URL for report retrieval specified !\n";
-	    push (@error, "Please specify a URL for the reports to be retrieved from\n\tby including a line like 'retrieve_URL $retrieve_URL_def'\n\tin your configuration file\n\tor through the comand line option '-r $retrieve_URL_def'.");
-	}	    
-    	unless (defined $PARAM{'getmax'} and $PARAM{'getmax'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: no maximum number of entries specified !\n";
-	    push (@error, "Please specify a maximum number for database entries (in days)\n\tby including a line like \'getmax 200\' in your configuration file\n\tor through the comand line option '-getmax 200'.");
-	}	    
-	unless (defined $PARAM{'viewdays'} and $PARAM{'viewdays'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: no value for viewdays specified !\n";
-	    push (@error, "Please specify a value for number of days that an entry will be shown\n\tby including a line like \'viewdays 5\' in your configuration file\n\tor through the comand line option '-viewdays 5'.");
-	}
+    unless (defined $PARAM{'search_URL'} and $PARAM{'search_URL'} ne '') {
+        $error++;
+        print "\t   ERROR $error: no URL for query specified !\n";
+        push (@error, "Please specify a URL for the queries to be carried out\n\tby including a line like 'search_URL $search_URL_def'\n\tin your configuration file\n\tor through the comand line option '-q $search_URL_def'.");
+    }       
+        unless (defined $PARAM{'retrieve_URL'} and $PARAM{'retrieve_URL'} ne '') {
+        $error++;
+        print "\t   ERROR $error: no URL for report retrieval specified !\n";
+        push (@error, "Please specify a URL for the reports to be retrieved from\n\tby including a line like 'retrieve_URL $retrieve_URL_def'\n\tin your configuration file\n\tor through the comand line option '-r $retrieve_URL_def'.");
+    }       
+        unless (defined $PARAM{'getmax'} and $PARAM{'getmax'} ne '') {
+        $error++;
+        print "\t   ERROR $error: no maximum number of entries specified !\n";
+        push (@error, "Please specify a maximum number for database entries (in days)\n\tby including a line like \'getmax 200\' in your configuration file\n\tor through the comand line option '-getmax 200'.");
+    }       
+    unless (defined $PARAM{'viewdays'} and $PARAM{'viewdays'} ne '') {
+        $error++;
+        print "\t   ERROR $error: no value for viewdays specified !\n";
+        push (@error, "Please specify a value for number of days that an entry will be shown\n\tby including a line like \'viewdays 5\' in your configuration file\n\tor through the comand line option '-viewdays 5'.");
+    }
 
-	unless (defined $PARAM{'include_config'} and $PARAM{'include_config'} ne '') {
-	    $error++;
-	    print "\t   ERROR $error: handling of configuration file is not specified !\n";
-	    push (@error, "Please specify if your configuration file should be appended to your output file\n\tby including a line like \'include_config Y\' in your configuration file\n\tor through the comand line option '-i'.");
-	}
-	foreach (@warning) {
-	    print "\t   WARNING: $_";
-	}
-	if ($error == $error_now) {
-	    if (@warning) {
-		print "\t - ambiguities found in configuration file\n";
-	    } else {
-		print "\t - configuration file looks fine\n";
-	    }
-	}
+    unless (defined $PARAM{'include_config'} and $PARAM{'include_config'} ne '') {
+        $error++;
+        print "\t   ERROR $error: handling of configuration file is not specified !\n";
+        push (@error, "Please specify if your configuration file should be appended to your output file\n\tby including a line like \'include_config Y\' in your configuration file\n\tor through the comand line option '-i'.");
+    }
+    foreach (@warning) {
+        print "\t   WARNING: $_";
+    }
+    if ($error == $error_now) {
+        if (@warning) {
+        print "\t - ambiguities found in configuration file\n";
+        } else {
+        print "\t - configuration file looks fine\n";
+        }
+    }
     }
     sleep($pause);
 
     # DATABASE FILES
     if ($dir_ok) {
-	print " - checking database..." ;
-	sleep($pause);
+    print " - checking database..." ;
+    sleep($pause);
     }
     $db_file = ($PARAM{'database'} or "$PARAM{'prefix'}.db");
     if ($PARAM{'work_dir'} ne $cwd) {
-	chdir $PARAM{'work_dir'};
+    chdir $PARAM{'work_dir'};
     }
     if (-e "$db_file" and $dir_ok) {
-	unless (-w "$db_file") {
-	    $error++;
-	    print "\n\t   ERROR $error: Can\'t write to database \'$db_file\'!\n";
-	    push (@error, "Please make your database writeable (chmod +w $db_file)\n");
-	} else {
-	    print "alright\n";
-	}
+    unless (-w "$db_file") {
+        $error++;
+        print "\n\t   ERROR $error: Can\'t write to database \'$db_file\'!\n";
+        push (@error, "Please make your database writeable (chmod +w $db_file)\n");
     } else {
-	print "\n\t - no database file found (\'$db_file\')\n\t - WARNING: initialization might take up a lot of space!\n" if ($dir_ok);
-	$warning++;
+        print "alright\n";
+    }
+    } else {
+    print "\n\t - no database file found (\'$db_file\')\n\t - WARNING: initialization might take up a lot of space!\n" if ($dir_ok);
+    $warning++;
     }
     # reverse changes to cwd and config_file
     if ($orig_dir) {
-	chdir($orig_dir);
-	$orig_dir = '';
-	$config_file = '';
-    }	    
+    chdir($orig_dir);
+    $orig_dir = '';
+    $config_file = '';
+    }       
 
     # HEADER:
     print " - checking header...\n";
     sleep($pause);
     if (-e $PARAM{'work_dir'}.$joiner.$PARAM{'header'} and $PARAM{'header'}) {
-	$check_header = $PARAM{'work_dir'}.$joiner.$PARAM{'header'};
+    $check_header = $PARAM{'work_dir'}.$joiner.$PARAM{'header'};
     } else {
-	$check_header = $PARAM{'header'};
+    $check_header = $PARAM{'header'};
     }
     if ($check_header) {
-	print "\t - trying to read file \'$PARAM{'header'}\'...";
-	if (-r $check_header) {
-	    print "alright\n";
-	} else {
-	    $error++;
-	    print "\n\t   ERROR $error: Can not read file \'$check_header\'!\n";
-	    push (@error, $header_rec);
-	}
+    print "\t - trying to read file \'$PARAM{'header'}\'...";
+    if (-r $check_header) {
+        print "alright\n";
     } else {
-	print "\t - using automatically generated header for output file, alright\n";
+        $error++;
+        print "\n\t   ERROR $error: Can not read file \'$check_header\'!\n";
+        push (@error, $header_rec);
+    }
+    } else {
+    print "\t - using automatically generated header for output file, alright\n";
     }    
-	
+    
     # INTERNET CONNECTION
     print STDERR " - checking the internet connection...";
     unless ($PARAM{'test_URL'}) {
-	print STDERR "\n\t - WARNING: no test URL available, cannot carry out test!\n";
-	$warning++;
+    print STDERR "\n\t - WARNING: no test URL available, cannot carry out test!\n";
+    $warning++;
     } else {
-	if ($PARAM{'lynx'}) {
-	    my $rescontent = `$PARAM{'lynx'} -source \'$PARAM{'test_URL'}\'`;
-	    if ($rescontent =~ /\s*^\w+\: Can\'t access startfile/ or $rescontent eq '') {
-		$error++;
-		print "\n\t - Error $error: Can\'t reach test-URL!\n";
-		push @error, "Problems encountered when trying to access the test-URL.\n\tPlease check the test-URL:\n\t\'$PARAM{'test_URL'}\'\n\tor the configuration of \'$PARAM{'lynx'}\'";
-	    } else {
-		print "alright\n";
-	    }
-	} elsif ($PARAM{'proxy'}) {
-	    if ($PARAM{'no_test'}) {
-		print STDERR "\n\t - disabeling \'no_test\'-setting for check...";
-		$PARAM{'no_test'} = 0;
-	    }
-	    foreach my $proxy_tmp (split /,/, $PARAM{'proxy'}) {
-		&proxy_setting($proxy_tmp,'check');
-	    }
-#	    &proxy_setting('check');
-	} else {
-	    if (&connection_test('no_proxy',$PARAM{'test_URL'})) {
-		print "alright\n";
-	    } else {
-		$error++;
-		print "\n\t - Error $error: Can\'t reach test-URL!\n";
+    if ($PARAM{'lynx'}) {
+        my $rescontent = `$PARAM{'lynx'} -source \'$PARAM{'test_URL'}\'`;
+        if ($rescontent =~ /\s*^\w+\: Can\'t access startfile/ or $rescontent eq '') {
+        $error++;
+        print "\n\t - Error $error: Can\'t reach test-URL!\n";
+        push @error, "Problems encountered when trying to access the test-URL.\n\tPlease check the test-URL:\n\t\'$PARAM{'test_URL'}\'\n\tor the configuration of \'$PARAM{'lynx'}\'";
+        } else {
+        print "alright\n";
+        }
+    } elsif ($PARAM{'proxy'}) {
+        if ($PARAM{'no_test'}) {
+        print STDERR "\n\t - disabeling \'no_test\'-setting for check...";
+        $PARAM{'no_test'} = 0;
+        }
+        foreach my $proxy_tmp (split /,/, $PARAM{'proxy'}) {
+        &proxy_setting($proxy_tmp,'check');
+        }
+#       &proxy_setting('check');
+    } else {
+        if (&connection_test('no_proxy',$PARAM{'test_URL'})) {
+        print "alright\n";
+        } else {
+        $error++;
+        print "\n\t - Error $error: Can\'t reach test-URL!\n";
                 $proxy_err = "Problems encountered when trying to access the test-URL.\n\tPlease check the test-URL:\n\t\'$PARAM{'test_URL'}\'\n\t";
                 if ($PARAM{'proxy'}) {
                     $proxy_err .= "and your proxy settings (command line or line ".(&line_number($config_file,\'^\s*#*\s*proxy\b'))." of this script)".($PARAM{'proxy'}?":\n\t\'$PARAM{'proxy'}\'".($PARAM{'proxy_port'}?", \'$PARAM{'proxy_port'}\'":"")." evaluated to \'$proxy_string\'":"");
                 } else {
                     $proxy_err .= "and consider using a proxy-server (using command line option \'-p\' \n\tor setting value for \'proxy\' ".(&line_number($config_file,'^\s*#*\s*proxy\b')).".";
                 }
-		push @error, $proxy_err; 
-	    }
-	}
+        push @error, $proxy_err; 
+        }
+    }
     }
 
-	
+    
     # E-MAIL SERVICE
     if ($PARAM{'notify'} or $PARAM{'mail'}) {
-	print STDERR " - checking e-mail service...";
-	sleep($pause);
-	&mail_service;
-	if ($PARAM{'notify'}) {
-	    print STDERR "\n\t - notification has been sent to $PARAM{'notify'}!\n";
-	} else {
-	    print STDERR "\n\t - results have been sent to $PARAM{'mail'}!\n";
-	}
+    print STDERR " - checking e-mail service...";
+    sleep($pause);
+    &mail_service;
+    if ($PARAM{'notify'}) {
+        print STDERR "\n\t - notification has been sent to $PARAM{'notify'}!\n";
+    } else {
+        print STDERR "\n\t - results have been sent to $PARAM{'mail'}!\n";
+    }
     }
 
     # GIVE RECOMMENDATIONS:
     if ($error > 0) {
-	print "\n$error ";
-	print ($error > 1?'errors have ':'error has ');
-	print "been detected!\nSome suggestions will be made next on how to solve any problems.\n\nPlease press <return> to continue...";
-	<>;
-	my $tip = 1;
-	foreach (@error) {
-	    print "\nTIP $tip: $_\n";
-	    unless ($tip >= $error) {
-		print "\nPress <return> to see next tip...";
-		<>;
-	    }
-	    $tip++;
-	}
-	print "\nPress <return> to finish...";
-	<>;
-	print "\nPlease run \'$program -check\' again after any changes made!\n\nEnd of check!\n\n";
+    print "\n$error ";
+    print ($error > 1?'errors have ':'error has ');
+    print "been detected!\nSome suggestions will be made next on how to solve any problems.\n\nPlease press <return> to continue...";
+    <>;
+    my $tip = 1;
+    foreach (@error) {
+        print "\nTIP $tip: $_\n";
+        unless ($tip >= $error) {
+        print "\nPress <return> to see next tip...";
+        <>;
+        }
+        $tip++;
+    }
+    print "\nPress <return> to finish...";
+    <>;
+    print "\nPlease run \'$program -check\' again after any changes made!\n\nEnd of check!\n\n";
     } else {
-	print "\nEnd of check, no error detected.";
-	if ($warning > 0) {
-	    print " $warning warning".($warning > 1?"s.":".");
-	}
-	print "\nWith this setup the program should run without problems.\n\n";
+    print "\nEnd of check, no error detected.";
+    if ($warning > 0) {
+        print " $warning warning".($warning > 1?"s.":".");
+    }
+    print "\nWith this setup the program should run without problems.\n\n";
     }
     print "*** For information on configuring PubCrawler visit\n";
     print "*** $link_gen/pubcrawler_download.html\n\n";
 
     # delete temporary file
     if (-e $tmp_file) {
-	sleep 3;
-	unlink $tmp_file;
+    sleep 3;
+    unlink $tmp_file;
     }
 
     exit($EXIT_SUCCESS);
@@ -4530,14 +4530,14 @@ sub line_number {
     
     open (IN, "$file") or return 'in your configuration file';;
     while (<IN>) {
-	$line++;
-	if (/$pattern/) {
-	    return "at line $line of your configuration file";
-	}
+    $line++;
+    if (/$pattern/) {
+        return "at line $line of your configuration file";
+    }
     }
     return 'in your configuration file';
 }
-	
+    
 
 ################################################################################
 
@@ -4552,16 +4552,16 @@ sub read_db {
     return unless (-e "$db_file");
 
     open (DB, "$db_file") 
-	or die "$prog_name ERROR: cannot open database \'$db_file\' ";
+    or die "$prog_name ERROR: cannot open database \'$db_file\' ";
 #    $^W = 0; # switch off warning
     while (<DB>) {
-	chomp;
-	  # identify alias by percent sign at beginning of line
-	if (/^%(.*)/) {	    
-	    $alias = $1;
-	} elsif (/\d/) {
-	    ($uid,$age) = split;
-	    ${ $db{$alias} }{$uid} = $age;
+    chomp;
+      # identify alias by percent sign at beginning of line
+    if (/^%(.*)/) {     
+        $alias = $1;
+    } elsif (/\d/) {
+        ($uid,$age) = split;
+        ${ $db{$alias} }{$uid} = $age;
         }
     }
 #    $^W = $warn_stat; # set back warning status
@@ -4580,24 +4580,24 @@ sub save_db {
 
     return if ($PARAM{'cmd_query'});
     open(LOG,">$db_file.temp") ||
-	 die "$prog_name ERROR: cannot write to database file $db_file.temp";
+     die "$prog_name ERROR: cannot write to database file $db_file.temp";
     
     foreach $alias (keys %aliases) {
-	print LOG '%'."$alias\n";
-	foreach $uid (keys %{ $db{$alias} }) {
-	    print LOG "$uid\t${ $db{$alias} }{$uid}\n";
-	}
+    print LOG '%'."$alias\n";
+    foreach $uid (keys %{ $db{$alias} }) {
+        print LOG "$uid\t${ $db{$alias} }{$uid}\n";
+    }
     }
     close(LOG);
 
     if ($PARAM{'system'} =~ /win/i) {
-	    # under Windows, the former database has to be
-	    # (re)moved before another file can take its name...
-	move("$db_file", "$db_file.bak") or 
-	    warn "Can not move $db_file to $db_file.bak\n";
+        # under Windows, the former database has to be
+        # (re)moved before another file can take its name...
+    move("$db_file", "$db_file.bak") or 
+        warn "Can not move $db_file to $db_file.bak\n";
     }
     rename("$db_file.temp","$db_file") ||
-	warn "$prog_name ERROR: cannot rename temp database file";
+    warn "$prog_name ERROR: cannot rename temp database file";
 }
 
 ################################################################################
@@ -4613,134 +4613,134 @@ sub read_config {
     my $line = 0;
     my %found = ();
     my $open_result;
-	
+    
     return if ($config_read);
 
     $open_result = open (CONFIG,"$config_file");
     unless ($open_result) {
-	if ($PARAM{'check'}) {
-	    return;
-	} else {
-	    die "$prog_name ERROR: cannot open configuration file $config_file";
-	}
+    if ($PARAM{'check'}) {
+        return;
+    } else {
+        die "$prog_name ERROR: cannot open configuration file $config_file";
+    }
     }
 
     my @mail_features = ();
 
   WHILE:while (<CONFIG>){
-	
+    
         $line++;
-	($_) = split (/\#/);             # remove comments
-	next unless ($_);
-	($_, undef) = split (/\</, $_, 2);             # remove HTML-tags
+    ($_) = split (/\#/);             # remove comments
+    next unless ($_);
+    ($_, undef) = split (/\</, $_, 2);             # remove HTML-tags
         s/\s*$//;                        # clean end of line from white-space
-	next unless (/\w/);              # skip empty lines
-	s/\s+/ /g;                       # reduce multiple whitespaces 
-	                                 # to single spaces
-	unless (/^\s*$known_searchtypes\s+(.*)/) {      #load general setup data	    
-	    ($field,$val)=split(/\s+/, $_, 2);
-		    # strip any leading or ending quotes
-		$field =~ s/^'|"//;
+    next unless (/\w/);              # skip empty lines
+    s/\s+/ /g;                       # reduce multiple whitespaces 
+                                     # to single spaces
+    unless (/^\s*$known_searchtypes\s+(.*)/) {      #load general setup data        
+        ($field,$val)=split(/\s+/, $_, 2);
+            # strip any leading or ending quotes
+        $field =~ s/^'|"//;
                 $field =~ s/"|'$//;
 
-	        # check if user is allowed to change
+            # check if user is allowed to change
                 # value of this variable
-	    unless (grep /\Q$field/, (@expect_val,@allowed_var)) {
-		print STDERR "$prog_name WARNING $PARAM{'id'}: Invalid variable name: $field at line $line of config-file, skipping!\n" unless ($PARAM{'mute'});
-		$warning++;
-		next;
-	    }
+        unless (grep /\Q$field/, (@expect_val,@allowed_var)) {
+        print STDERR "$prog_name WARNING $PARAM{'id'}: Invalid variable name: $field at line $line of config-file, skipping!\n" unless ($PARAM{'mute'});
+        $warning++;
+        next;
+        }
 
-	        # skip if value has been set
-	        # by command line option already:
-	    next if ($PARAM{$field} or $PARAM{$field} eq '0');         
-	                                 
-	    if (defined $val) {
-		    # strip any leading or ending quotes
-		$val =~ s/^'|"//;
+            # skip if value has been set
+            # by command line option already:
+        next if ($PARAM{$field} or $PARAM{$field} eq '0');         
+                                     
+        if (defined $val) {
+            # strip any leading or ending quotes
+        $val =~ s/^'|"//;
                 $val =~ s/"|'$//;
                     # convert leading tilde to HOME-directory
                 $val =~ s/^~/$ENV{'HOME'}/ if ($ENV{'HOME'});
                     # set value
-		if ($field eq 'mail_feature') {
-		    push @mail_features, $val;
-		} else {
-		    $PARAM{$field} = $val;
-		}
+        if ($field eq 'mail_feature') {
+            push @mail_features, $val;
+        } else {
+            $PARAM{$field} = $val;
+        }
             }
-	} else {                        
+    } else {                        
                 # extract database, query and alias:
-	    $searchtype = $1; #($known_searchtypes are in brackets)
-	    $_ = $2;        #load string following search type
-	    if (/^\'/) {    #look for alias
-		if (s/'/'/g > 2) {
-		    if ($PARAM{'check'}) {
-			push @warning, "Too many aliases declared for $_\n";
-			$warning++;
-		    } else {
-			print STDERR "$prog_name WARNING $PARAM{'id'}: Too many aliases declared, dismissing $_!\n" unless ($PARAM{'mute'});
-		    }
-		}
-		(undef,$alias,$_) = split /\'/, $_, 3;
-	    } else {        # use query for alias if none specified
-		$alias = $_;
-	    }
-	        # standard format for queries:
+        $searchtype = $1; #($known_searchtypes are in brackets)
+        $_ = $2;        #load string following search type
+        if (/^\'/) {    #look for alias
+        if (s/'/'/g > 2) {
+            if ($PARAM{'check'}) {
+            push @warning, "Too many aliases declared for $_\n";
+            $warning++;
+            } else {
+            print STDERR "$prog_name WARNING $PARAM{'id'}: Too many aliases declared, dismissing $_!\n" unless ($PARAM{'mute'});
+            }
+        }
+        (undef,$alias,$_) = split /\'/, $_, 3;
+        } else {        # use query for alias if none specified
+        $alias = $_;
+        }
+            # standard format for queries:
             my $query_orig = $_;  # store original query
-	    s/^\s*//;      # delete leading white space
+        s/^\s*//;      # delete leading white space
                 # avoid sending [all fields] delimiter
                 # without them we avoid MeSH-checking
                 # and get all hits
                 # (worked for 'horizontal gene transfer')
             s/\[ *all( fields)? *\]//gi;
-	    s/\s+/\+/g;    #put in plusses
- 	    $query = uc;                #convert to all uppercase
+        s/\s+/\+/g;    #put in plusses
+        $query = uc;                #convert to all uppercase
 
-	        # check if query exists already
-	    if ($query{$query}) {
-		if (($query{$query}{'ALIAS'} eq $alias) and
-		    ($query{$query}{'DB'} eq $searchtype)) {
-		    if ($PARAM{'check'}) {
-			push @warning, "Double entrance for $query\n"; 
-			$warning++;
-		    } else {
-			print STDERR "$prog_name WARNING $PARAM{'id'}: Double entrance for $query, dismissing one\n" unless ($PARAM{'mute'});
-		    }
-		} else {
-		    $query .= '#2';
-		}
-	    }
-	        # store query:
-	    push @query_order, $query;
-	    $query{$query}{'ALIAS'} = $alias;	    
-	    $query{$query}{'DB'} = $searchtype;
+            # check if query exists already
+        if ($query{$query}) {
+        if (($query{$query}{'ALIAS'} eq $alias) and
+            ($query{$query}{'DB'} eq $searchtype)) {
+            if ($PARAM{'check'}) {
+            push @warning, "Double entrance for $query\n"; 
+            $warning++;
+            } else {
+            print STDERR "$prog_name WARNING $PARAM{'id'}: Double entrance for $query, dismissing one\n" unless ($PARAM{'mute'});
+            }
+        } else {
+            $query .= '#2';
+        }
+        }
+            # store query:
+        push @query_order, $query;
+        $query{$query}{'ALIAS'} = $alias;       
+        $query{$query}{'DB'} = $searchtype;
             $query{$query}{'ORIG'} = $query_orig;
 
-	        # group queries according to their alias:
+            # group queries according to their alias:
             my $item;
-	    foreach $item (@{ $aliases{$alias} }) {
-		   # make sure they all query the same database
-		if ($query{$item}{'DB'} ne $searchtype) {
-		    if ($PARAM{'check'}) {
-			push @warning, "Ambiguous entry for alias \'$alias\',\n\t      temporarily modifying one to $query.\n"; 
-			$warning++;
-		    } else {
-			print STDERR "$prog_name WARNING $PARAM{'id'}: Database of query $query differs from other queries with same alias, temporarily modifying alias.\n" unless ($PARAM{'mute'});
-		    }
-		    # query has #2 added, use this as a key instead of $alias
-		    push @{ $aliases{$query} }, $query;
-		    $query{$query}{'ALIAS'} = $query;
-		    next WHILE;
-		}
-	    }
-	       # if we got here, all databases for queries sharing this alias
-	       # are the same and we can safely add this query...
+        foreach $item (@{ $aliases{$alias} }) {
+           # make sure they all query the same database
+        if ($query{$item}{'DB'} ne $searchtype) {
+            if ($PARAM{'check'}) {
+            push @warning, "Ambiguous entry for alias \'$alias\',\n\t      temporarily modifying one to $query.\n"; 
+            $warning++;
+            } else {
+            print STDERR "$prog_name WARNING $PARAM{'id'}: Database of query $query differs from other queries with same alias, temporarily modifying alias.\n" unless ($PARAM{'mute'});
+            }
+            # query has #2 added, use this as a key instead of $alias
+            push @{ $aliases{$query} }, $query;
+            $query{$query}{'ALIAS'} = $query;
+            next WHILE;
+        }
+        }
+           # if we got here, all databases for queries sharing this alias
+           # are the same and we can safely add this query...
             unless ($found{$alias}) {
-	        push @alias_order, $alias;
-		$found{$alias} = '1';
-	    }
-	    push @{ $aliases{$alias} }, $query;
-	}
+            push @alias_order, $alias;
+        $found{$alias} = '1';
+        }
+        push @{ $aliases{$alias} }, $query;
+    }
     }
 #    $^W = $warn_stat;      # set back warning status       
     close (CONFIG);
@@ -4749,50 +4749,50 @@ sub read_config {
     # (this is mainly for the webservice):
     my $file = "$config_file.add";
     if (open (CONFIG, $file)) {
-	$line = 0;
+    $line = 0;
       WHILE:while (<CONFIG>){
-	  chomp;
-	  $line++;
-	  ($_) = split (/\#/);             # remove comments
-	  next unless ($_);
-	  ($_, undef) = split (/\</, $_, 2);             # remove HTML-tags
-	  s/\s*$//;                        # clean end of line from white-space
-	  next unless (/\w/);              # skip empty lines
-	  s/\s+/ /g;                       # reduce multiple whitespaces 
-	                                   # to single spaces
+      chomp;
+      $line++;
+      ($_) = split (/\#/);             # remove comments
+      next unless ($_);
+      ($_, undef) = split (/\</, $_, 2);             # remove HTML-tags
+      s/\s*$//;                        # clean end of line from white-space
+      next unless (/\w/);              # skip empty lines
+      s/\s+/ /g;                       # reduce multiple whitespaces 
+                                       # to single spaces
 
-	  my ($field,$val) = split / = /, $_, 2;
-	  next unless ($val =~ /\w/);
+      my ($field,$val) = split / = /, $_, 2;
+      next unless ($val =~ /\w/);
 
-	  # skip if value has been set
-	  # by command line option already:
-	  next if ($PARAM{$field} or $PARAM{$field} eq '0');         
+      # skip if value has been set
+      # by command line option already:
+      next if ($PARAM{$field} or $PARAM{$field} eq '0');         
 
-	  # strip any leading or ending quotes
-	  $val =~ s/^\'|\"//;
-	  $val =~ s/\"|\'$//;
+      # strip any leading or ending quotes
+      $val =~ s/^\'|\"//;
+      $val =~ s/\"|\'$//;
 
-	  if ($field eq 'mail_feature') {
-	      push @mail_features, $val;
-	  } else {
-	      $PARAM{$field} = $val;
-	  }
+      if ($field eq 'mail_feature') {
+          push @mail_features, $val;
+      } else {
+          $PARAM{$field} = $val;
       }
-	close CONFIG;
-	
+      }
+    close CONFIG;
+    
     }
 
     if (@mail_features) {
-	$PARAM{'mail_features'} = (join ',', @mail_features) unless ($PARAM{'mail_features'});
+    $PARAM{'mail_features'} = (join ',', @mail_features) unless ($PARAM{'mail_features'});
     }    
     
     if ($PARAM{'work_dir'}) {
-	$PARAM{'work_dir'} .= $joiner unless ($PARAM{'work_dir'} =~ /$joiner$/);
-	if ($PARAM{'system'} =~ /win/i) {
-	    # special treatment for windows paths
-	    # (due to joiner symbol \)
-	    $PARAM{'work_dir'} =~ s/\\\\/\\/g;
-	}
+    $PARAM{'work_dir'} .= $joiner unless ($PARAM{'work_dir'} =~ /$joiner$/);
+    if ($PARAM{'system'} =~ /win/i) {
+        # special treatment for windows paths
+        # (due to joiner symbol \)
+        $PARAM{'work_dir'} =~ s/\\\\/\\/g;
+    }
     }
 
     $config_read = 1;
@@ -4807,7 +4807,7 @@ sub empty_vars {
     my @no_val = ();
 
     foreach (@expect_val) {
-	push (@no_val, $_) unless (length($PARAM{$_}));
+    push (@no_val, $_) unless (length($PARAM{$_}));
     }
     return @no_val;
 }
@@ -4881,10 +4881,10 @@ PubCrawler - Automated Retrieval of PubMed and GenBank Reports
     -mute    suppresses messages to STDERR
     -n       URL where neighbourhood searches are directed to
     -notify  e-mail address for notification
-	     (optionally append '#' or '@@' and user name)
+         (optionally append '#' or '@@' and user name)
     -no_test skips the proxy-test
     -os      operating system (some badly configured versions of Perl need  
-	     this to be set explicitly -> 'MacOS', 'Win', and 'Unix')
+         this to be set explicitly -> 'MacOS', 'Win', and 'Unix')
     -out     name of file for HTML-output
     -p       proxy
     -pp      proxy port
@@ -4895,7 +4895,7 @@ PubCrawler - Automated Retrieval of PubMed and GenBank Reports
     -r       specify a URL, that will be used for retrieving
              new hits from NCBI
     -relentrezdate maximum age (relative date of publication in days) 
-	     of a document to be retrieved
+         of a document to be retrieved
              other valid entries: '1 year','2 years','5 years','10 years','no limit'
     -retry   specify how often PubCrawler should retry queries in case of
              server errors (default = 0)
