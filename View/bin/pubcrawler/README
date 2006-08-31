@@ -1,0 +1,21 @@
+this directory contains:
+  - pubcrawlerOriginal.pl    : the pubcrawler.pl as download from pubcrawler 
+  - pubcrawlerApi.pl         : a modified version of that for the Api project
+  - pubcrawlerXXXX.sh        : a project specific .sh to call the .pl file
+  - pubcrawler.config.sample : in the target dir, copy this to 
+                               pubcrawler.config and change the last few lines
+                               (its obvious how)
+  - spacer.gif               : a 1x1 pixel spacer needed by pubcrawler
+
+
+to install pubcrawler in an Api site:
+  1) make the directory my_web_dir/Common  (a dir in which Common resources are kept)
+  2) cp -r ApiCommonWebsite/View/bin/pubcrawler my_web_dir/Common
+  3) copy the pubcrawler.config.sample to pubcrawler.config and change the
+     last few lines
+  4) test by running pubcrawlerMYPROJECT.sh.  it should produce a log, db and
+     index.html file.   look at the index.html in your browser
+  5) add the following to the chrontab file (to have it run nightly):
+    00 3 * * * root my_web_dir/Common/pubcrawler/pubcrawlerMYPROJECT.sh
+                               
+  

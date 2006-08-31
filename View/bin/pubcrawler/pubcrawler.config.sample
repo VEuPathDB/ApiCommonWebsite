@@ -237,7 +237,7 @@ pubmed 'New PubMed articles on Plasmodium' Plasmodium [ALL]
 
 
 # The next query searches GenBank for all new Plasmodium sequences
-genbank 'New Genbank sequences on Plasmodium' Plasmodium [ALL]
+genbank 'New Genbank sequences for Plasmodium' Plasmodium [ALL]
 
 
 
