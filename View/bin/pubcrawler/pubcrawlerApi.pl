@@ -1985,6 +1985,7 @@ sub start_results_file {
     open(HEADER,"$PARAM{'header'}") || 
         die "$prog_name ERROR: $PARAM{'header'} exists but cannot be opened.\n";
     while (<HEADER>) {
+	    $_ =~ s/\$\$([^\$]+)\$\$/$PARAM{$1}/ge; # macro substitution
         &sys_print('OUT',$_);
         $mail_results_file .= $_;
     }
