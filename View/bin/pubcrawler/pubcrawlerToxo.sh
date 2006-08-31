@@ -1,6 +1,6 @@
 #!/bin/bash
 
-webDir=/www/toxoodb.org
+webDir=/www/toxodb.org
 bgColor="#2ccfff"  
 project=ToxoDB
 icon=images/toxodb_logo.gif
