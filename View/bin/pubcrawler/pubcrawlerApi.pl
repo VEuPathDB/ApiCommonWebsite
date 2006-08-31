@@ -2004,14 +2004,9 @@ $css
 \n
 <table align=\"center\" WIDTH='640' cellpadding='0' cellspacing='0'>
 <tr>
-<!--#include virtual=\"/include/left-image.html\" -->
+<td align='right' width=\"20\"><img src=\"$PARAM{'icon'}\"></td>
 <td ALIGN=\"center\" valign=\"middle\">
 <b><font face=\"Arial,Helvetica\" size=+2>&nbsp;$PARAM{'proj'} PubMed and Entrez Updates&nbsp;</font></b>
-</td>
-<td align='right' width=\"20\"><img src=\"$PARAM{'icon'}\"></td>
-</tr>
-<tr><td colspan=\"3\">
-<!--#include virtual=\"/include/toolbar.html\" -->
 </td>
 </tr>
 </table>
