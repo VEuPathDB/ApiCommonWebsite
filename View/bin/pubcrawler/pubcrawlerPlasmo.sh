@@ -1,9 +1,9 @@
 #!/bin/bash
 
 webDir=/www/plasmodb.org
-bgColor="#9ccfff"
+bgColor="#bbaacc"
 project=PlasmoDB
-icon=images/plasmodb_logo.gif
+icon=/plasmo/images/plasmodb_logo.gif
 
 PC_SCRIPT=$webDir/Common/pubcrawler/pubcrawlerApi.pl
 CONFIG=$webDir/Common/pubcrawler/pubcrawler.config
