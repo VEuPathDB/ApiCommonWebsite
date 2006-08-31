@@ -23,3 +23,10 @@ to install pubcrawler in an Api site:
           00 3 * * * root my_web_dir/Common/pubcrawler/pubcrawlerMYPROJECT.sh
 
 
+options:
+
+    * use the 'header' option in the config file to override the default html 
+      header. Simple macro substitution with variables in the header is allowed.
+      For example, $$icon$$ is substituted with the value of the icon parameter
+      specified on the command line (-icon) or in the config file (icon).
+      
