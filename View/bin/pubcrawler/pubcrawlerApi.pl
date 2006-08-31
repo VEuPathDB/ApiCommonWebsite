@@ -349,7 +349,6 @@ my @expect_val = qw(
              relentrezdate 
              viewdays 
              bg
-             icon
              proj
          );
 
@@ -1047,6 +1046,8 @@ if (($PARAM{'system'} =~ /macos/i or $^O =~ /macos/i) and $PARAM{'prompt'} eq '1
     # default prefix is program name up to last dot
     $PARAM{'prefix'} = $prog_name unless ($PARAM{'prefix'});
 }
+
+$PARAM{'icon'} = $PARAM{'icon'} || $PARAM{'spacer'} || 'http://pubcrawler.gen.tcd.ie/pics/spacer.gif';
 
 # modify query URLs if extra_query was specified
 if ($PARAM{'extra_query'}) {
@@ -2076,8 +2077,7 @@ $css
 ";
     
     if ($PARAM{'pic'}) {
-#   $picture = "<A HREF=\"http://www.pubcrawler.ie\"><IMG BORDER=0 SRC=\"$PARAM{'pic'}\" ALT=\"LOGO\"></A>";
-    $picture = "<A HREF=\"http://www.$PARAM{'proj'}.org\"><IMG BORDER=0 SRC=\"$PARAM{'icon'}\" ALT=\"LOGO\"></A>";
+       $picture = "<A HREF=\"http://www.pubcrawler.ie\"><IMG BORDER=0 SRC=\"$PARAM{'pic'}\" ALT=\"LOGO\"></A>";
     } else {
     $picture = $picture_replacement;
     }
