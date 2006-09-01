@@ -2010,7 +2010,7 @@ $css
 <b><font face=\"Arial,Helvetica\" size=+2>&nbsp;$PARAM{'proj'} PubMed and Entrez Updates&nbsp;</font></b>
 </td>
 </tr>
-<tr><td><a href=\"http://www.$$PARAM{proj}.org\">>>PlasmoDB Home</a></td></tr>
+<tr><td><a href=\"http://www.$$PARAM{proj}.org\">>>$PARAM{'proj'} Home</a></td></tr>
 </table>
 
 ";
