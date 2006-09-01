@@ -2005,12 +2005,13 @@ $css
 \n
 <table align=\"center\" WIDTH='640' cellpadding='0' cellspacing='0'>
 <tr>
-<td align='right' width=\"20\"><a href=\"http://www.$$PARAM{proj}.org\"><img border="0" src=\"$PARAM{'icon'}\"></a></td>
+<td align='right' width=\"20\"><a href=\"http://www.$PARAM{proj}.org\"><img border=\"0\" src=\"$PARAM{'icon'}\"></a></td>
 <td ALIGN=\"center\" valign=\"middle\">
 <b><font face=\"Arial,Helvetica\" size=+2>&nbsp;$PARAM{'proj'} PubMed and Entrez Updates&nbsp;</font></b>
+
 </td>
 </tr>
-<tr><td><a href=\"http://www.$$PARAM{proj}.org\">>>$PARAM{'proj'} Home</a></td></tr>
+<tr><td><a href=\"http://www.$PARAM{proj}.org\">>>$PARAM{'proj'} Home</a></td></tr>
 </table>
 
 ";
