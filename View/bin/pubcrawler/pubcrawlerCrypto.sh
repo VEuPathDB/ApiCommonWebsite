@@ -1,10 +1,10 @@
 #!/bin/bash
 
-webDir=/var/www/cryptodb.org
-bgColor="#9ccfff"
+workingDir=/var/www/cryptodb.org/Common/pubcrawler
+bgColor="#FFCCCC"
 project=CryptoDB
-icon=/images/CmurisSEM1_color_tiny.gif
+icon=/images/cryptodb_logo.gif
 
-PC_SCRIPT=$webDir/Common/pubcrawler/pubcrawlerApi.pl
-CONFIG=$webDir/Common/pubcrawler/pubcrawler.config
-perl $PC_SCRIPT -mute -c $CONFIG -bg $bgColor -proj $project -icon $icon
+PC_SCRIPT=$workingDir/pubcrawlerApi.pl
+CONFIG=$workingDir/pubcrawler.config
+perl $PC_SCRIPT -d $workingDir -mute -c $CONFIG -bg $bgColor -proj $project -icon $icon

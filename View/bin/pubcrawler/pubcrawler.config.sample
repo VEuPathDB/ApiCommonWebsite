@@ -79,7 +79,7 @@ retrieve_URL ''
           # defaults to 
           # http://www.ncbi.nlm.nih.gov/entrez/query.fcgi
 
-work_dir /www/plasmodb.org/PubCrawler                        
+#work_dir 
     # specify a directory in which databases, output and log file 
     # will be located
     # if no value given, the current working directory will be used
