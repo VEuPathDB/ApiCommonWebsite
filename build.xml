@@ -129,7 +129,7 @@
         <arg path="${cgibinTargetDir}"/>
         <arg value="-N"/>
         <arg value="-i"/>
-        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse_img_1_64.patch"/>
+        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/gbrowse_img_1_64.patch"/>
     </exec>
     <!-- replacement for gbrowse_img config and lib dirs -->
     <replace file="${cgibinTargetDir}/gbrowse_img" 
@@ -147,7 +147,7 @@
         <arg path="${cgibinTargetDir}"/>
         <arg value="-N"/>
         <arg value="-i"/>
-        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse_1_64_presets.patch"/>
+        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/gbrowse_1_64_presets.patch"/>
     </exec>
     <!-- replacement for gbrowse_img config and lib dirs -->
     <replace file="${cgibinTargetDir}/gbrowse" 
@@ -165,7 +165,7 @@
         <arg path="${confTargetDir}/gbrowse.conf/languages"/>
         <arg value="-N"/>
         <arg value="-i"/>
-        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/POSIX.pm_1_64_presets.patch"/>
+        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/POSIX.pm_1_64_presets.patch"/>
     </exec>
 
   </target>
