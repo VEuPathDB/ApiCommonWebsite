@@ -86,6 +86,9 @@ public class ProcessAddCommentAction extends Action {
         String commentTarget = request.getParameter("commentTargetId");
         String stableId = request.getParameter("stableId");
         
+        String extDbName = request.getParameter ("externalDbName");
+        String extDbVersion = request.getParameter ("externalDbVersion");
+        
         String locType = request.getParameter ("locType");
         String coordinateType = null;
         boolean reversed = false;
@@ -113,6 +116,7 @@ public class ProcessAddCommentAction extends Action {
         comment.setHeadline(headline);
         comment.setContent(content);
         comment.setLocations(reversed, locations, coordinateType);
+        comment.addExternalDatabase(extDbName, extDbVersion);
 
         // add the comment
         factory.addComment(comment);

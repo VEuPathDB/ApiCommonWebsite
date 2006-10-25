@@ -66,6 +66,9 @@ public class ShowAddCommentAction extends Action {
         
 		request.setAttribute ("stableId", stableId);
 		request.setAttribute ("commentTarget", commentTarget);
+		request.setAttribute("externalDbName", request.getParameter("externalDbName"));
+		request.setAttribute("externalDbVersion", request.getParameter("externalDbVersion"));
+		
         // redirect back to the referer page
         return forward;
     }

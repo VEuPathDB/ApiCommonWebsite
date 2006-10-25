@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.RDBMSPlatformI;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.implementation.SqlUtils;
@@ -25,10 +26,11 @@ import org.xml.sax.SAXException;
 public class CommentFactory {
 
     private static CommentFactory factory;
-
+    
+    private Logger logger = Logger.getLogger (CommentFactory.class); 
     private RDBMSPlatformI platform;
     private CommentConfig config;
-
+    
     public static void initialize(URL commentConfigXmlUrl)
             throws WdkModelException {
         try {
@@ -46,6 +48,7 @@ public class CommentFactory {
 
             // create a factory instance
             factory = new CommentFactory(platform, config);
+            
         } catch (InstantiationException ex) {
             throw new WdkModelException(ex);
         } catch (IllegalAccessException ex) {
@@ -151,7 +154,28 @@ public class CommentFactory {
             saveLocations(commentId, comment);
 
             // then add the eternal database information
+            
             saveExternalDbs(commentId, comment);
+            
+            String runOnComment = config.getRunOnComment();
+            if (runOnComment != null && runOnComment.length() > 0) {
+        		String dataDir = System.getenv().get("DATA_DIR");
+        		String gusHome = System.getenv().get("GUS_HOME");
+        		 
+        		String env[] = new String[1];
+        		env[0] = "GUS_HOME=" + gusHome;
+        		
+        		String cmd = gusHome + "/bin/" + runOnComment + " --outputDir " + dataDir + " --justComments --debug";
+        		logger.info ("addComment: Running '" + cmd + "' for the comment id: " + commentId);
+        		
+            	try {
+            		Runtime.getRuntime().exec(cmd, env);
+				} catch (Exception e) {
+					logger.warn ("addComment: Error in running command: " + e.getMessage());
+				}
+            }
+            	
+            
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         }
@@ -193,6 +217,9 @@ public class CommentFactory {
      * backward dblink requirement; The site should provide such information to
      * the comment factory in future releases.
      * 
+     * UPDATE: Assume that the Comment parameter already has the external database info filled in.
+     * Use the first extdb/versions (Is there a case at all where we need more than one ext db???)
+     * 
      * @param commentId
      * @param comment
      * @throws SQLException
@@ -206,35 +233,7 @@ public class CommentFactory {
 
         // get a set of matched external databases
         StringBuffer sql = new StringBuffer();
-        // sql.append("( SELECT DISTINCT ed.name AS external_database_name, "
-        // + " edr.version AS external_database_version ");
-        // sql.append(" FROM sres.ExternalDatabase" + dblink + " ed, ");
-        // sql.append(" sres.DbRef" + dblink + " dr, ");
-        // sql.append(" sres.ExternalDatabaseRelease" + dblink + " edr, ");
-        // sql.append(" dots.dbrefNaFeature" + dblink + " drnf, ");
-        // sql.append(" dots.GeneFeature" + dblink + " gf ");
-        // sql.append(" WHERE dr.external_database_release_id =
-        // edr.external_database_release_id "
-        // + " AND edr.external_database_id = ed.external_database_id "
-        // + " AND drnf.db_ref_id = dr.db_ref_id "
-        // + " AND drnf.na_feature_id = gf.na_feature_id ");
-        // sql.append(" AND gf.source_id = ?) ");
-        // sql.append("union "
-        // + "( SELECT DISTINCT ed.name AS external_database_name, "
-        // + " edr.version AS external_database_version ");
-        // sql.append(" FROM sres.ExternalDatabase" + dblink + " ed, ");
-        // sql.append("sres.DbRef" + dblink + " dr, ");
-        // sql.append(" sres.ExternalDatabaseRelease" + dblink + " edr, ");
-        // sql.append(" dots.dbrefNaSequence" + dblink + " drns, ");
-        // sql.append("dots.SplicedNaSequence" + dblink + " sns ");
-        // sql.append(" WHERE dr.external_database_release_id =
-        // edr.external_database_release_id "
-        // + " AND edr.external_database_id = ed.external_database_id "
-        // + " AND drns.db_ref_id = dr.db_ref_id "
-        // + " AND drns.na_sequence_id = sns.na_sequence_id ");
-        // sql.append(" AND sns.source_id = ?)");
-        // ResultSet rs = null;
-        // PreparedStatement ps = null;
+        
         PreparedStatement queryDb = null, insertDb = null, insertLink = null;
         try {
             // ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
@@ -267,8 +266,14 @@ public class CommentFactory {
             // String externalDbName = rs.getString("external_database_name");
             // String externalDbVersion =
             // rs.getString("external_database_version");
-            String externalDbName = "PlasmoDB_Temp";
-            String externalDbVersion = "ver_1.0";
+           // String externalDbName = "PlasmoDB_Temp";
+            //String externalDbVersion = "ver_1.0";
+            
+            //The external database info is provided by JSP
+            ExternalDatabase[] eds = comment.getExternalDbs();
+            String externalDbName = eds[0].getExternalDbName();
+            String externalDbVersion = eds[0].getExternalDbVersion();
+            
             int externalDbId;
 
             // check if the external db entry exists
@@ -332,6 +337,7 @@ public class CommentFactory {
             comment.setProjectVersion(rs.getString("project_version"));
             comment.setReviewStatus(rs.getString("review_status_id"));
             comment.setStableId(rs.getString("stable_id"));
+            
 
             // load locations
             loadLocations(commentId, comment);
