@@ -20,8 +20,9 @@ public class CommentConfig {
     private int maxIdle;
     private int minIdle;
     private int maxWait;
+    private String runOnComment;
 
-    /**
+	/**
      * @return Returns the platformClass.
      */
     public String getPlatformClass() {
@@ -188,5 +189,14 @@ public class CommentConfig {
     public void setProjectDbLink(String projectDbLink) {
         this.projectDbLink = projectDbLink;
     }
+    
+
+    public String getRunOnComment() {
+		return runOnComment;
+	}
+
+	public void setRunOnComment(String runOnInsertComment) {
+		this.runOnComment = runOnInsertComment;
+	}
     
 }
