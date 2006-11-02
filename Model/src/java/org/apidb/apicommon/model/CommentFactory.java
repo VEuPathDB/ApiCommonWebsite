@@ -158,7 +158,7 @@ public class CommentFactory {
             // then add the eternal database information
             
             saveExternalDbs(commentId, comment);
-            
+           
             extractCommentsTextSearchFile (config.getCommentTextFileDir());
             
         } catch (SQLException ex) {
@@ -499,7 +499,12 @@ public class CommentFactory {
     }
     
     public void extractCommentsTextSearchFile (String commentFileDir) {
-    	String schema = config.getCommentSchema();
+    	
+    	if (commentFileDir == null || commentFileDir.length() == 0) {
+    		logger.warn("extractCommentsTextSearchFile: not specified in comments-config.xml. Skipping...");
+    		return;
+    	}
+    	
     	DataSource dataSource = platform.getDataSource();
     	
     	//TODO: Are we being oracle specific by using regexp_replace?? 
