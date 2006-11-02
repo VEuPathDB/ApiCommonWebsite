@@ -20,7 +20,7 @@ public class CommentConfig {
     private int maxIdle;
     private int minIdle;
     private int maxWait;
-    private String runOnComment;
+    private String commentTextFileDir;
 
 	/**
      * @return Returns the platformClass.
@@ -189,14 +189,14 @@ public class CommentConfig {
     public void setProjectDbLink(String projectDbLink) {
         this.projectDbLink = projectDbLink;
     }
-    
 
-    public String getRunOnComment() {
-		return runOnComment;
+	public String getCommentTextFileDir() {
+		return commentTextFileDir;
 	}
 
-	public void setRunOnComment(String runOnInsertComment) {
-		this.runOnComment = runOnInsertComment;
+	public void setCommentTextFileDir(String commentTextFile) {
+		this.commentTextFileDir = commentTextFile;
 	}
+
     
 }

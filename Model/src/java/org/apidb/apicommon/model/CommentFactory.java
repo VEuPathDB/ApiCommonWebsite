@@ -3,6 +3,7 @@
  */
 package org.apidb.apicommon.model;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.RDBMSPlatformI;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.implementation.SqlUtils;
 import org.xml.sax.SAXException;
@@ -157,24 +159,7 @@ public class CommentFactory {
             
             saveExternalDbs(commentId, comment);
             
-            String runOnComment = config.getRunOnComment();
-            if (runOnComment != null && runOnComment.length() > 0) {
-        		String dataDir = System.getenv().get("DATA_DIR");
-        		String gusHome = System.getenv().get("GUS_HOME");
-        		 
-        		String env[] = new String[1];
-        		env[0] = "GUS_HOME=" + gusHome;
-        		
-        		String cmd = gusHome + "/bin/" + runOnComment + " --outputDir " + dataDir + " --justComments --debug";
-        		logger.info ("addComment: Running '" + cmd + "' for the comment id: " + commentId);
-        		
-            	try {
-            		Runtime.getRuntime().exec(cmd, env);
-				} catch (Exception e) {
-					logger.warn ("addComment: Error in running command: " + e.getMessage());
-				}
-            }
-            	
+            extractCommentsTextSearchFile (config.getCommentTextFileDir());
             
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
@@ -509,5 +494,47 @@ public class CommentFactory {
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         }
+        
+        extractCommentsTextSearchFile (config.getCommentTextFileDir());
+    }
+    
+    public void extractCommentsTextSearchFile (String commentFileDir) {
+    	String schema = config.getCommentSchema();
+    	DataSource dataSource = platform.getDataSource();
+    	
+    	//TODO: Are we being oracle specific by using regexp_replace?? 
+    	String getCommentsSql = "SELECT DISTINCT '', substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
+    						+ " gf.source_id, regexp_replace(c.content, '[[:space:]]', ' ') "
+    						+ " FROM logins.users@plasmodb.LOGIN_COMMENT u, "
+    						+ " comments.comments@plasmodb.LOGIN_COMMENT c, dots.GeneFeature gf, "
+    						+ " dots.NaSequence ns, sres.TaxonName tn "
+    						+ " WHERE u.email = c.email "
+    						+ " AND c.comment_target_id='gene' "
+    						+ " AND c.stable_id = gf.source_id "
+    						+ " AND c.review_status_id != 'rejected' "
+    						+ " AND gf.na_sequence_id = ns.na_sequence_id "
+    						+ " AND ns.taxon_id = tn.taxon_id "
+    						+ " AND tn.name_class = 'scientific name' "
+    						+ " ORDER BY substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), gf.source_id, "
+    						+ " regexp_replace(c.content, '[[:space:]]', ' ') ";
+    	
+    	try {
+    		ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
+    		String modelName = WdkModel.INSTANCE.getName();
+    		FileWriter fw = new FileWriter (commentFileDir + System.getProperty("file.separator") + modelName + "_comments.txt");
+    		while (rs.next()) {
+    			//String empty = rs.getString(1);
+    			String orgName = rs.getString(2);
+    			String sourceId = rs.getString(3);
+    			String comment = rs.getString(4);
+    			fw.write("\t" + orgName + "\t" + sourceId + " \t" + comment + "\n");
+    		}
+    		
+    		rs.close();
+    		fw.close();
+    	} catch (Exception e){
+    		//Is there a need to throw WDK exception? 
+    		logger.warn("Error in creating comments file: ", e);
+    	} 
     }
 }
