@@ -10,12 +10,71 @@
 <xmlAnswer>
 
    <record>
-       <attribute name="title">A fake tutorial</attribute>
-       <attribute name="description">Brian dancing to "Happy Birthday"</attribute>
-       <attribute name="projects">PlasmoDB,ToxoDB</attribute>
-       <attribute name="fileName">dancing.mov</attribute>
-       <attribute name="duration">2:00</attribute>
-       <attribute name="size">560k</attribute>
+       <attribute name="title">Introduction</attribute>
+       <attribute name="description">Introduction to the PlasmoDB functionality including the types of queries that can be run.</attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">plasmoIntroWithQueryGrid.mov</attribute>
+       <attribute name="duration">4:06</attribute>
+       <attribute name="size">32 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Query History</attribute>
+       <attribute name="description">
+         Using the query history to combine queries.
+       </attribute>
+       <attribute name="projects">PlasmoDB,ApiDB,CryptoDB,ToxoDB</attribute>
+       <attribute name="fileName">QHistory.mov</attribute>
+       <attribute name="duration">2:27 minutes</attribute>
+       <attribute name="size">5.6 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Candidate Vaccine Targets Query</attribute>
+       <attribute name="description">
+          Query to identify genes that are potential vaccine targets. 
+          Query includes secreted proteins, phylogenetic profile and expression profile queries.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">plasmoVaccineAntigens.mov</attribute>
+       <attribute name="duration">3:03 minutes</attribute>
+       <attribute name="size">24.8 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Candidate Vaccine Targets Query With SNPs</attribute>
+       <attribute name="description">
+          Query to identify genes that are potential vaccine targets. 
+          Query includes secreted proteins, phylogenetic profile, SNPs and expression profile queries.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">plasmoVaccineAntigensWithSnps.mov</attribute>
+       <attribute name="duration">5:21 minutes</attribute>
+       <attribute name="size">41.3 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Candidtate Drug Targets Query</attribute>
+       <attribute name="description">
+          Query to identify genes that are candidate drug targets. 
+          Query includes expression profile, proteomics evidence and GO function queries.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">plasmoDrugTargets.mov</attribute>
+       <attribute name="duration">2:56 minutes</attribute>
+       <attribute name="size">16.8 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Candidtate Drug Targets Query With SNPs</attribute>
+       <attribute name="description">
+          Query to identify genes that are candidate drug targets. 
+          Query includes expression profile, proteomics evidence, GO function  and SNP queries.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">plasmoDrugTargetsWithSnps.mov</attribute>
+       <attribute name="duration">5:21 minutes</attribute>
+       <attribute name="size">37 mb</attribute>
    </record>
 
 </xmlAnswer>
