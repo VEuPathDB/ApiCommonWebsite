@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">A fake tutorial</attribute>
+       <attribute name="description">Brian dancing to "Happy Birthday"</attribute>
+       <attribute name="projects">PlasmoDB,ToxoDB</attribute>
+       <attribute name="fileName">dancing.mov</attribute>
+       <attribute name="duration">2:00</attribute>
+       <attribute name="size">560k</attribute>
+   </record>
+
+</xmlAnswer>
