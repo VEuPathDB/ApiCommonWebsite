@@ -11,11 +11,20 @@
 
    <record>
        <attribute name="title">Introduction</attribute>
-       <attribute name="description">Introduction to the PlasmoDB functionality including the types of queries that can be run.</attribute>
+       <attribute name="description">Introduction to the PlasmoDB functionality.</attribute>
        <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">plasmoIntroWithQueryGrid.mov</attribute>
-       <attribute name="duration">4:06</attribute>
-       <attribute name="size">32 mb</attribute>
+       <attribute name="fileName">plasmoIntroduction.mov</attribute>
+       <attribute name="duration">2:31 minutes</attribute>
+       <attribute name="size">12.7 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Queries and Tools</attribute>
+       <attribute name="description">Introduction to the PlasmoDB queries and tools.</attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">plasmoQueries.mov</attribute>
+       <attribute name="duration">3:07 minutes</attribute>
+       <attribute name="size">25.3 mb</attribute>
    </record>
 
    <record>
@@ -54,7 +63,7 @@
    </record>
 
    <record>
-       <attribute name="title">Candidtate Drug Targets Query</attribute>
+       <attribute name="title">Candidate Drug Targets Query</attribute>
        <attribute name="description">
           Query to identify genes that are candidate drug targets. 
           Query includes expression profile, proteomics evidence and GO function queries.
@@ -66,7 +75,7 @@
    </record>
 
    <record>
-       <attribute name="title">Candidtate Drug Targets Query With SNPs</attribute>
+       <attribute name="title">Candidate Drug Targets Query With SNPs</attribute>
        <attribute name="description">
           Query to identify genes that are candidate drug targets. 
           Query includes expression profile, proteomics evidence, GO function  and SNP queries.
