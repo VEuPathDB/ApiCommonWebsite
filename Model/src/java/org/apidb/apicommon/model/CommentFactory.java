@@ -532,7 +532,7 @@ public class CommentFactory {
     			String orgName = rs.getString(2);
     			String sourceId = rs.getString(3);
     			String comment = rs.getString(4);
-    			fw.write("\t" + orgName + "\t" + sourceId + " \t" + comment + "\n");
+    			fw.write("\t" + orgName + "\t" + sourceId + "\t" + comment + "\n");
     		}
     		
     		rs.close();
