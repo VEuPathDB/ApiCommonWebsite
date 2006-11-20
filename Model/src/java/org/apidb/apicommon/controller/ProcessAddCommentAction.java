@@ -82,6 +82,11 @@ public class ProcessAddCommentAction extends Action {
         	headline = BBCode.getInstance().convertBBCodeToHtml(headline);
         
         String content = BBCode.getInstance().convertBBCodeToHtml(request.getParameter("content"));
+
+		if (headline == null && (content == null || content.length() == 0)) {
+	        request.setAttribute("submitStatus", "Error: Comment cannot be empty.");
+	        return forward;
+		}
         
         String commentTarget = request.getParameter("commentTargetId");
         String stableId = request.getParameter("stableId");
@@ -115,14 +120,20 @@ public class ProcessAddCommentAction extends Action {
         comment.setProjectVersion(projectVersion);
         comment.setHeadline(headline);
         comment.setContent(content);
-        comment.setLocations(reversed, locations, coordinateType);
+        try {
+        	comment.setLocations(reversed, locations, coordinateType);
+        } catch (Exception e) {
+        	request.setAttribute ("submitStatus", "Error in Location format. "
+        							+ "Please refer to the format examples on the Add Comment page");
+        	return forward;
+        }
         comment.addExternalDatabase(extDbName, extDbVersion);
 
         // add the comment
         factory.addComment(comment);
 
         // redirect back to the referer page
-        request.setAttribute("showThanks", "true");
+        request.setAttribute("submitStatus", "success");
         return forward;
     }
 
