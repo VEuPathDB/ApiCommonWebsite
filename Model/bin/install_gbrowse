@@ -1,0 +1,115 @@
+#!/bin/sh
+
+echo 'This is a prototype script for installing GBrowse.
+It is not yet adapted for general use.
+Exiting....'
+exit
+
+ROOT=/var/www/CryptoDB/msh
+
+cd $ROOT/src/Generic-Genome-Browser*
+
+export PERL5LIB=$ROOT/cgi-lib/
+
+perl -e 'use Bio::Perl 1.5' 2> /dev/null
+if [ "$?" -gt 0 ]; then
+    echo "BioPerl 1.5 or greater not found."
+    echo "(@INC contains:" `perl -e "print join ' ', @INC"` ")"
+    exit 1
+fi
+
+perl_makefile() {
+    perl Makefile.PL HTDOCS=$ROOT/html/    \
+                     CONF=$ROOT/conf       \
+                     CGIBIN=$ROOT/cgi-bin  \
+                     LIB=$ROOT/cgi-lib     \
+                     BIN=$ROOT/cgi-bin/    \
+                     NONROOT=1             \
+                     SELINUX=1 
+     
+    if [ "$?" -gt 0 ]; then
+        echo
+        echo "make test failed. unable to continue."
+        exit 1
+    fi
+}
+
+make_all() {
+    echo .......make.........
+    make
+    
+    if [ "$?" -gt 0 ]; then
+        echo
+        echo "make failed. unable to continue."
+        exit 1
+    fi
+}
+
+make_test() {
+    make test
+     
+    if [ "$?" -gt 0 ]; then
+        echo
+        echo "make test failed. Cowardly refusing to install."
+        exit 1
+    fi
+}
+
+install_das() {
+    rsync -Cvua --include=tags ${ROOT}/src/DAS ${ROOT}/cgi-lib
+}
+
+make_install() {
+    make install
+    install_das
+    if [ "$?" -gt 0 ]; then
+        echo
+        echo "Install failed to complete properly."
+        exit 1
+    fi
+}
+
+patch_all() {
+    patch -d $ROOT/cgi-bin -b -N -i $ROOT/src/gbrowse.patch/gbrowse/patches/gbrowse_img_1_64.patch
+    patch -d $ROOT/cgi-bin -b -N -i $ROOT/src/gbrowse.patch/gbrowse/patches/gbrowse_1_64_presets.patch
+    patch -d $ROOT/conf/gbrowse.conf/languages -b -N -i $ROOT/src/gbrowse.patch/gbrowse/patches/POSIX.pm_1_64_presets.patch
+}
+
+case "$1" in
+    make)
+        make clean
+        perl_makefile
+        make_all
+        ;;
+    make_test)
+        make clean
+        perl_makefile
+        make_all
+        make_test
+        ;;
+    make_install)
+        make clean
+        perl_makefile
+        make_all
+        make_test
+        make_install
+        ;;
+    make_install_patch)
+        make clean
+        perl_makefile
+        make_all
+        make_test
+        make_install
+        patch_all
+        ;;
+    patch_only)
+        patch_all
+        ;;
+    *)
+        echo $"Usage: install_gbrowse {make|make_test|make_install|make_install_patch|patch_only}"
+        exit 1
+esac
+
+
+
+exit 0
