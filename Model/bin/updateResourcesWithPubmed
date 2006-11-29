@@ -1,7 +1,7 @@
 #! /usr/bin/perl
 
 
-use lib "$ENV{PROJECT_HOME}/ApiCommonData/Load/lib/perl";
+use lib "$ENV{GUS_HOME}/lib/perl/ApiCommonWebsite/Model";
 use pcbiPubmed;
 use XMLUtils;
 use strict;
