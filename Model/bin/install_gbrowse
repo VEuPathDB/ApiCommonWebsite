@@ -1,30 +1,77 @@
 #!/bin/sh
 
-echo 'This is a prototype script for installing GBrowse.
-It is not yet adapted for general use.
-Exiting....'
-exit
+# Unpack and install GBrowse and BioPerl 5 from ApicommonWebsite archived 
+# files.
 
-ROOT=/var/www/CryptoDB/msh
+# Requires same webPropFile used in WDK build
 
-cd $ROOT/src/Generic-Genome-Browser*
 
-export PERL5LIB=$ROOT/cgi-lib/
+GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
+GBROWSE_TAR_FILE=Generic-Genome-Browser-1.64.tar.gz
+BIOPERL_TAR_FILE=bioperl_1.5_cvs_20061129.tgz
 
-perl -e 'use Bio::Perl 1.5' 2> /dev/null
-if [ "$?" -gt 0 ]; then
-    echo "BioPerl 1.5 or greater not found."
-    echo "(@INC contains:" `perl -e "print join ' ', @INC"` ")"
-    exit 1
-fi
+BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
-perl_makefile() {
-    perl Makefile.PL HTDOCS=$ROOT/html/    \
-                     CONF=$ROOT/conf       \
-                     CGIBIN=$ROOT/cgi-bin  \
-                     LIB=$ROOT/cgi-lib     \
-                     BIN=$ROOT/cgi-bin/    \
-                     NONROOT=1             \
+get_install_paths() {
+    WEB_PROP_FILE=$1
+    if [ ! -e "$WEB_PROP_FILE" ]; then 
+        echo "specified webPropFile '$WEB_PROP_FILE' not found"
+        exit 1
+    fi
+    eval `< $WEB_PROP_FILE`
+}
+
+unpack_gbrowse_src() {
+    if ! (
+        mkdir -p $BUILD_DIR && 
+        tar zxf \
+        $GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE \
+        --strip-path 1 \
+        -C $BUILD_DIR 2> /dev/null); then
+        echo "FATAL: Unable to un-tar Generic-Genome-Browser package '$GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE'. Exiting..."
+        exit 1
+    fi
+}
+
+post_install_clean() {
+    if [ ! -d "$BUILD_DIR" ]; then
+        return
+    fi
+    if ! rm -rf  $BUILD_DIR; then
+    echo "WARNING: Unable to remove temporary Gbrowse build directory '$BUILD_DIR'"
+    fi
+}
+
+# unpack and install pre-made BioPerl 5 into cgi-lib
+install_local_bioperl() {
+    if ! tar zxf \
+        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
+        -C $cgilibTargetDir 2> /dev/null; then
+        echo "FATAL: Unable to un-tar BioPerl package '$GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE'. Exiting..."
+        exit 1
+    fi
+}
+
+configure_gb() {
+    install_local_bioperl
+    
+    export PERL5LIB=$cgilibTargetDir:$PERL5LIB
+    if ! perl -e 'use Bio::Perl 1.5' 2> /dev/null; then
+        echo "BioPerl 1.5 or greater is required but not found."
+        echo "(@INC contains:" `perl -e "print join ' ', @INC"` ")"
+        exit 1
+    fi
+        
+    unpack_gbrowse_src
+    
+    cd $BUILD_DIR
+    
+    perl Makefile.PL HTDOCS=$webappTargetDir    \
+                     CONF=$confTargetDir        \
+                     CGIBIN=$cgibinTargetDir/cgi-bin       \
+                     LIB=$cgilibTargetDir       \
+                     BIN=$cgibinTargetDir       \
+                     NONROOT=1                  \
                      SELINUX=1 
      
     if [ "$?" -gt 0 ]; then
@@ -55,13 +102,8 @@ make_test() {
     fi
 }
 
-install_das() {
-    rsync -Cvua --include=tags ${ROOT}/src/DAS ${ROOT}/cgi-lib
-}
-
 make_install() {
     make install
-    install_das
     if [ "$?" -gt 0 ]; then
         echo
         echo "Install failed to complete properly."
@@ -70,46 +112,58 @@ make_install() {
 }
 
 patch_all() {
-    patch -d $ROOT/cgi-bin -b -N -i $ROOT/src/gbrowse.patch/gbrowse/patches/gbrowse_img_1_64.patch
-    patch -d $ROOT/cgi-bin -b -N -i $ROOT/src/gbrowse.patch/gbrowse/patches/gbrowse_1_64_presets.patch
-    patch -d $ROOT/conf/gbrowse.conf/languages -b -N -i $ROOT/src/gbrowse.patch/gbrowse/patches/POSIX.pm_1_64_presets.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_img_1_64.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_1_64_presets.patch
+    patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/POSIX.pm_1_64_presets.patch
 }
 
-case "$1" in
+
+usage() {
+    echo $"Usage: $(basename $0) {webPropFile} {make|make_test|make_install|make_install_patch|patch_only}"
+    exit 1
+}
+
+##################################################################
+
+if [ ! -n "$1" ] && [ ! -n "$2" ]; then
+    usage
+fi
+
+get_install_paths $1
+
+case "$2" in
     make)
-        make clean
-        perl_makefile
+        configure_gb    
         make_all
+        post_install_clean
         ;;
     make_test)
-        make clean
-        perl_makefile
+        configure_gb    
         make_all
         make_test
+        post_install_clean
         ;;
     make_install)
-        make clean
-        perl_makefile
+        configure_gb    
         make_all
         make_test
         make_install
+        post_install_clean
         ;;
     make_install_patch)
-        make clean
-        perl_makefile
+        configure_gb    
         make_all
         make_test
         make_install
         patch_all
+        post_install_clean
         ;;
     patch_only)
         patch_all
         ;;
     *)
-        echo $"Usage: install_gbrowse {make|make_test|make_install|make_install_patch|patch_only}"
-        exit 1
+        usage
+        ;;
 esac
-
-
 
 exit 0
