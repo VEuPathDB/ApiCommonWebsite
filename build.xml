@@ -79,7 +79,10 @@
   >
 
     <ant target="defaultProjectInstall"/>
-
+    
+    <!-- remove conflicting jar file -->
+    <delete file="${targetDir}/lib/java/servlet-api-2.4.jar" />
+    
   </target>
 
 
