@@ -1,0 +1,42 @@
+#!/usr/bin/perl
+
+use strict;
+use lib $ENV{GUS_HOME};
+use DBI;
+use ApiCommonWebsite::Model::ModelConfig;
+
+if (!$ARGV[0]) {die "usage: resetCache modelName\n";}
+my $model = $ARGV[0];
+
+my $c = new ApiCommonWebsite::Model::ModelConfig($model);
+
+
+my $dbh = DBI->connect(
+    $c->{dbiDsn},
+    $c->{login},
+    $c->{password},
+    { PrintError => 1,
+      RaiseError => 0
+    }
+) or die "Can't connect to the database: $DBI::errstr\n";;
+
+my $sql = q(select table_name from all_tables where owner='GUSPRODREADONLY' and table_name like 'QUERY_RESULT_%');
+
+my $sth = $dbh->prepare($sql);
+$sth->execute();
+my $sth2;
+
+while (my @row = $sth->fetchrow_array) {
+    $sth2 = $dbh->prepare("drop table $row[0]");
+    $sth2->execute();
+    print $row[0] . "\n";
+}
+
+$sth->finish();
+$sth2->finish();
+
+my $sql = q(delete from queryinstance);
+$sth = $dbh->prepare($sql);
+$sth->execute();
+$sth->finish();
+
