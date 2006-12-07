@@ -20,7 +20,10 @@ my $dbh = DBI->connect(
     }
 ) or die "Can't connect to the database: $DBI::errstr\n";;
 
-my $sql = q(select table_name from all_tables where owner='GUSPRODREADONLY' and table_name like 'QUERY_RESULT_%');
+my $sql = qq(select table_name from all_tables where UPPER(owner) like UPPER('@{[$c->{login}]}') and table_name like 'QUERY_RESULT_%');
+
+
+
 
 my $sth = $dbh->prepare($sql);
 $sth->execute();
