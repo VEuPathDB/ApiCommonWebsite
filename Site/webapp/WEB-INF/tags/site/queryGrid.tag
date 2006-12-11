@@ -12,13 +12,13 @@
 
 <tr><td colspan="3">  
    
-<div class="smallBlack" align="right">
-Availability: 
-<img src='/images/apidb_letter.jpg' border='0' alt='apidb'/> = ApiDB 
-<img src='/images/cryptodb_letter.jpg' border='0' alt='cryptodb' /> = CryptoDB 
-<img src='/images/plasmodb_letter.jpg' border='0' alt='plasmodb' /> = PlasmoDB 
+<div class="smallBlack" align="middle">
+<b>Query Availability:</b> &nbsp;&nbsp; &nbsp;
+<img src='/images/apidb_letter.jpg' border='0' alt='apidb'/> = ApiDB &nbsp;&nbsp;
+<img src='/images/cryptodb_letter.jpg' border='0' alt='cryptodb' /> = CryptoDB &nbsp;&nbsp;
+<img src='/images/plasmodb_letter.jpg' border='0' alt='plasmodb' /> = PlasmoDB &nbsp;&nbsp;
 <img src='/images/toxodb_letter.jpg' border='0' alt='toxodb' /> = ToxoDB 
-&nbsp; &nbsp;
+
 </div>
 </td>
 </tr>
@@ -36,7 +36,9 @@ Availability:
         <td valign="top">
             <table width="100%" border="0" cellspacing="2" cellpadding="0">
                 <tr class="queryGridTitle">
+                
                     <site:queryGridMakeTitle qcat="Genomic Position" qtype="Gene"/>
+                
                 </tr>
                 <tr>
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByLocation" linktext="Chromosomal Location" existsOn="A C P T"/>
