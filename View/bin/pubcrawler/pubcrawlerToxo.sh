@@ -1,7 +1,7 @@
 #!/bin/bash
 
 workingDir=/www/toxodb.org/Common/pubcrawler
-bgColor="#2ccfff"
+bgColor="#cd919e"
 project=ToxoDB
 icon=/toxo/images/toxodb_logo.gif
 
