@@ -18,7 +18,7 @@ get_install_paths() {
         echo "specified webPropFile '$WEB_PROP_FILE' not found"
         exit 1
     fi
-    eval `< $WEB_PROP_FILE`
+    source $WEB_PROP_FILE
 }
 
 mkdirs() {
