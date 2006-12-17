@@ -21,6 +21,13 @@ get_install_paths() {
     eval `< $WEB_PROP_FILE`
 }
 
+mkdirs() {
+    mkdir $htdocsTargetDir 2>/dev/null
+    mkdir $cgibinTargetDir 2>/dev/null
+    mkdir $cgilibTargetDir 2>/dev/null
+    mkdir $confTargetDir 2>/dev/null
+}
+
 unpack_gbrowse_src() {
     if ! (
         mkdir -p $BUILD_DIR && 
@@ -48,11 +55,17 @@ install_local_bioperl() {
         $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
         -C $cgilibTargetDir 2> /dev/null; then
         echo "FATAL: Unable to un-tar BioPerl package '$GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE'. Exiting..."
+        echo "tar zxf \
+        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
+        -C $cgilibTargetDir"
         exit 1
     fi
 }
 
 configure_gb() {
+
+    mkdirs
+    
     install_local_bioperl
     
     export PERL5LIB=$cgilibTargetDir:$PERL5LIB
@@ -68,7 +81,7 @@ configure_gb() {
     
     perl Makefile.PL HTDOCS=$webappTargetDir    \
                      CONF=$confTargetDir        \
-                     CGIBIN=$cgibinTargetDir/cgi-bin       \
+                     CGIBIN=$cgibinTargetDir    \
                      LIB=$cgilibTargetDir       \
                      BIN=$cgibinTargetDir       \
                      NONROOT=1                  \
