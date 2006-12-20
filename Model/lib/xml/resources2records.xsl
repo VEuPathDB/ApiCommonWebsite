@@ -31,12 +31,28 @@
     <xsl:attribute name="name">organisms</xsl:attribute>
     <xsl:value-of select="@organisms"/>
     </xsl:element>
-
+    
     <xsl:element name="attribute">
     <xsl:attribute name="name">category</xsl:attribute>
     <xsl:value-of select="$category"/>
     </xsl:element>
 
+	<xsl:choose>
+		<xsl:when test="@display">
+		<xsl:element name="attribute">
+		<xsl:attribute name="name">display</xsl:attribute>
+		<xsl:value-of select="@display"/>
+		</xsl:element>
+		</xsl:when>
+		
+		<xsl:otherwise>
+		<xsl:element name="attribute">
+	    <xsl:attribute name="name">display</xsl:attribute>
+	    <xsl:text>true</xsl:text>
+	    </xsl:element>
+		</xsl:otherwise>
+	</xsl:choose>
+	
     <xsl:if test="count(description)=0">
         <attribute name="description"></attribute>
     </xsl:if>
