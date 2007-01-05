@@ -200,7 +200,7 @@ function showParameter(isShow)
                    <table border="0" cellspacing="0" cellpadding="0">
                       <tr>
                          <td align="right" valign="top"><i>Query</i></td>
-                         <td>&nbsp;:&nbsp;</td>
+                         <td valign="top">&nbsp;:&nbsp;</td>
                          <td>${wdkQuestionName}</td>
                       </tr>
                       <c:forEach items="${qParamsMap}" var="p">
@@ -210,7 +210,7 @@ function showParameter(isShow)
                          <c:if test="${qP.isVisible}">
                             <tr>
                                <td align="right" valign="top"><i>${qP.prompt}</i></td>
-                               <td>&nbsp;:&nbsp;</td>
+                               <td valign="top">&nbsp;:&nbsp;</td>
                                <td>${aP}</td>
                             </tr>
                          </c:if>
