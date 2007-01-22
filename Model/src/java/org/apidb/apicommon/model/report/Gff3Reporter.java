@@ -3,10 +3,14 @@
  */
 package org.apidb.apicommon.model.report;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.gusdb.wdk.model.Answer;
+import org.gusdb.wdk.model.AttributeField;
 import org.gusdb.wdk.model.AttributeFieldValue;
 import org.gusdb.wdk.model.RecordInstance;
 import org.gusdb.wdk.model.TableFieldValue;
@@ -19,7 +23,22 @@ import org.gusdb.wdk.model.report.Reporter;
  */
 public class Gff3Reporter extends Reporter {
 
-    private final String newline = System.getProperty("line.separator");
+    private static final String newline = System.getProperty("line.separator");
+
+    private static Set<String> skippedGeneAttributes = new HashSet<String>();
+    private static Set<String> skippedSequenceAttributes = new HashSet<String>();
+
+    static {
+        String[] skGeneAttrs = new String[] { "primary_key", "product",
+                "protein_sequence", "transcript_sequence", "start_min",
+                "end_max", "strand", "sequence_id", "cds" };
+        for (String skGeneAttr : skGeneAttrs)
+            skippedGeneAttributes.add(skGeneAttr);
+
+        String[] skSeqAttrs = new String[] { "organism" };
+        for (String skSeqAttr : skSeqAttrs)
+            skippedSequenceAttributes.add(skSeqAttr);
+    }
 
     /*
      * (non-Javadoc)
@@ -27,58 +46,118 @@ public class Gff3Reporter extends Reporter {
      * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
      */
     public String format(Answer answer) throws WdkModelException {
-        StringBuffer result = new StringBuffer();
+        StringBuffer header = new StringBuffer();
 
         // output the header
-        result.append("##gff-version\t3" + newline);
-        result.append("##feature-ontology\tso.obo" + newline);
-        result.append("##attribute-ontology\tgff3_attributes.obo" + newline);
+        header.append("##gff-version\t3" + newline);
+        header.append("##feature-ontology\tso.obo" + newline);
+        header.append("##attribute-ontology\tgff3_attributes.obo" + newline);
 
         // iterate on each record, and format the result
+        StringBuffer annotation = new StringBuffer();
+        StringBuffer fasta = new StringBuffer();
+        fasta.append("##FASTA" + newline);
+
         String rcName = answer.getQuestion().getRecordClass().getFullName();
         while (answer.hasMoreRecordInstances()) {
             RecordInstance record = answer.getNextRecordInstance();
-            if (rcName.equals("GeneRecordClasses.GeneRecordClass")) formatGeneRecord(
-                    record, result);
-            else formatSequenceRecord(record, result);
+            if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
+                formatGeneRecord(record, annotation, fasta);
+            } else {
+                formatSequenceRecord(record, header, annotation, fasta);
+            }
         }
+        StringBuffer result = new StringBuffer();
+        result.append(header);
+        result.append(annotation);
+        result.append(fasta);
         return result.toString();
     }
 
-    private void formatGeneRecord(RecordInstance record, StringBuffer result)
+    private void formatGeneRecord(RecordInstance record,
+            StringBuffer annotation, StringBuffer fasta)
             throws WdkModelException {
         // print the attributes for the record
-        result.append(getValue(record.getAttributeValue("gff_seqid")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_source")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_type")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_fstart")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_fend")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_score")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_strand")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_phase")) + "\t");
-        result.append("ID=" + getValue(record.getAttributeValue("gff_attr_id")));
-        result.append(";Name="
+        annotation.append(getValue(record.getAttributeValue("gff_seqid"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_source"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_type")) + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_fstart"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_fend")) + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_score"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_strand"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_phase"))
+                + "\t");
+        annotation.append("ID="
+                + getValue(record.getAttributeValue("gff_attr_id")));
+        annotation.append(";Name="
                 + getValue(record.getAttributeValue("gff_attr_name")));
-        result.append(";description="
+        annotation.append(";description="
                 + getValue(record.getAttributeValue("gff_attr_description")));
-        result.append(newline);
+
+        // output all report-maker attributes
+        Map<String, AttributeField> attributes = record.getRecordClass().getReportMakerAttributeFieldMap();
+        for (String attrName : attributes.keySet()) {
+            if (skippedGeneAttributes.contains(attrName)) continue;
+            String attrValue = getValue(record.getAttributeValue(attrName));
+            if (attrValue == null || attrValue.trim().length() == 0) continue;
+            annotation.append(";" + attrName + "=" + attrValue);
+        }
+        annotation.append(newline);
+
+        // get GO terms
+        TableFieldValue goTerms = record.getTableValue("GoTerms");
+        Iterator it = goTerms.getRows();
+        StringBuffer sbGoTerms = new StringBuffer();
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String goTerm = getValue(row.get("go_id")).trim();
+            if (sbGoTerms.length() > 0) sbGoTerms.append(",");
+            sbGoTerms.append(goTerm);
+        }
+        goTerms.getClose();
+
+        // get EC numbers
+        TableFieldValue ecNumbers = record.getTableValue("EcNumber");
+        it = ecNumbers.getRows();
+        StringBuffer sbEcNumbers = new StringBuffer();
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String ecNumber = getValue(row.get("ec_number")).trim();
+            if (sbEcNumbers.length() > 0) sbEcNumbers.append(",");
+            sbEcNumbers.append(ecNumber);
+        }
+        ecNumbers.getClose();
 
         // print RNAs
         TableFieldValue rnas = record.getTableValue("gff_GeneRnas");
-        Iterator it = rnas.getRows();
+        it = rnas.getRows();
         while (it.hasNext()) {
             Map<String, Object> row = (Map<String, Object>) it.next();
-            result.append(getValue(row.get("seqid")) + "\t");
-            result.append(getValue(row.get("source")) + "\t");
-            result.append(getValue(row.get("type")) + "\t");
-            result.append(getValue(row.get("fstart")) + "\t");
-            result.append(getValue(row.get("fend")) + "\t");
-            result.append(getValue(row.get("score")) + "\t");
-            result.append(getValue(row.get("strand")) + "\t");
-            result.append(getValue(row.get("phase")) + "\t");
-            result.append("ID=" + getValue(row.get("attr_id")));
-            result.append(";Parent=" + getValue(row.get("attr_parent")));
-            result.append(newline);
+            annotation.append(getValue(row.get("seqid")) + "\t");
+            annotation.append(getValue(row.get("source")) + "\t");
+            annotation.append(getValue(row.get("type")) + "\t");
+            annotation.append(getValue(row.get("fstart")) + "\t");
+            annotation.append(getValue(row.get("fend")) + "\t");
+            annotation.append(getValue(row.get("score")) + "\t");
+            annotation.append(getValue(row.get("strand")) + "\t");
+            annotation.append(getValue(row.get("phase")) + "\t");
+            annotation.append("ID=" + getValue(row.get("attr_id")));
+            annotation.append(";Name=" + getValue(row.get("attr_name")));
+            annotation.append(";Parent=" + getValue(row.get("attr_parent")));
+            annotation.append(";description="
+                    + getValue(row.get("attr_description")));
+            annotation.append(";locus=" + getValue(row.get("attr_locus")));
+            annotation.append(";Dbxref=" + getValue(row.get("attr_dbxref")));
+            if (sbGoTerms.length() > 0)
+                annotation.append(";Ontology_term=" + sbGoTerms.toString());
+            if (sbEcNumbers.length() > 0)
+                annotation.append(";ec_number=" + sbGoTerms.toString());
+            annotation.append(newline);
         }
         rnas.getClose();
 
@@ -87,17 +166,28 @@ public class Gff3Reporter extends Reporter {
         it = cdss.getRows();
         while (it.hasNext()) {
             Map<String, Object> row = (Map<String, Object>) it.next();
-            result.append(getValue(row.get("seqid")) + "\t");
-            result.append(getValue(row.get("source")) + "\t");
-            result.append(getValue(row.get("type")) + "\t");
-            result.append(getValue(row.get("fstart")) + "\t");
-            result.append(getValue(row.get("fend")) + "\t");
-            result.append(getValue(row.get("score")) + "\t");
-            result.append(getValue(row.get("strand")) + "\t");
-            result.append(getValue(row.get("phase")) + "\t");
-            result.append("ID=" + getValue(row.get("attr_id")));
-            result.append(";Parent=" + getValue(row.get("attr_parent")));
-            result.append(newline);
+            String cdsId = getValue(row.get("attr_id"));
+            annotation.append(getValue(row.get("seqid")) + "\t");
+            annotation.append(getValue(row.get("source")) + "\t");
+            annotation.append(getValue(row.get("type")) + "\t");
+            annotation.append(getValue(row.get("fstart")) + "\t");
+            annotation.append(getValue(row.get("fend")) + "\t");
+            annotation.append(getValue(row.get("score")) + "\t");
+            annotation.append(getValue(row.get("strand")) + "\t");
+            annotation.append(getValue(row.get("phase")) + "\t");
+            annotation.append("ID=" + cdsId);
+            annotation.append(";Parent=" + getValue(row.get("attr_parent")));
+            annotation.append(newline);
+
+            // output translated protein sequence in fasta
+            fasta.append(">" + cdsId + newline);
+            String sequence = getValue(row.get("protein_sequence"));
+            int offset = 0;
+            while (offset < sequence.length()) {
+                int endp = offset + Math.min(60, sequence.length() - offset);
+                fasta.append(sequence.substring(offset, endp) + newline);
+                offset = endp;
+            }
         }
         cdss.getClose();
 
@@ -106,50 +196,91 @@ public class Gff3Reporter extends Reporter {
         it = exons.getRows();
         while (it.hasNext()) {
             Map<String, Object> row = (Map<String, Object>) it.next();
-            result.append(getValue(row.get("seqid")) + "\t");
-            result.append(getValue(row.get("source")) + "\t");
-            result.append(getValue(row.get("type")) + "\t");
-            result.append(getValue(row.get("fstart")) + "\t");
-            result.append(getValue(row.get("fend")) + "\t");
-            result.append(getValue(row.get("score")) + "\t");
-            result.append(getValue(row.get("strand")) + "\t");
-            result.append(getValue(row.get("phase")) + "\t");
-            result.append("ID=" + getValue(row.get("attr_id")));
-            result.append(";Parent=" + getValue(row.get("attr_parent")));
-            result.append(newline);
+            annotation.append(getValue(row.get("seqid")) + "\t");
+            annotation.append(getValue(row.get("source")) + "\t");
+            annotation.append(getValue(row.get("type")) + "\t");
+            annotation.append(getValue(row.get("fstart")) + "\t");
+            annotation.append(getValue(row.get("fend")) + "\t");
+            annotation.append(getValue(row.get("score")) + "\t");
+            annotation.append(getValue(row.get("strand")) + "\t");
+            annotation.append(getValue(row.get("phase")) + "\t");
+            annotation.append("ID=" + getValue(row.get("attr_id")));
+            annotation.append(";Parent=" + getValue(row.get("attr_parent")));
+            annotation.append(newline);
         }
         exons.getClose();
     }
 
-    private void formatSequenceRecord(RecordInstance record, StringBuffer result) throws WdkModelException {
+    private void formatSequenceRecord(RecordInstance record,
+            StringBuffer header, StringBuffer annotation, StringBuffer fasta)
+            throws WdkModelException {
         // print the attributes for the record
-        result.append(getValue(record.getAttributeValue("gff_seqid")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_source")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_type")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_fstart")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_fend")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_score")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_strand")) + "\t");
-        result.append(getValue(record.getAttributeValue("gff_phase")) + "\t");
-        result.append("ID=" + getValue(record.getAttributeValue("gff_attr_id")));
-        result.append(";Name="
-                + getValue(record.getAttributeValue("gff_attr_name")));
-        result.append(";dbxref="
-                + getValue(record.getAttributeValue("gff_attr_dbxref")));
-        result.append(";molecule_type="
-                + getValue(record.getAttributeValue("gff_attr_molecule_type")));
-        result.append(";organism_name="
-                + getValue(record.getAttributeValue("gff_attr_organism_name")));
-        result.append(";translation_table="
-                + getValue(record.getAttributeValue("gff_attr_translation_table")));
-        result.append(newline);
+        String seqId = getValue(record.getAttributeValue("gff_seqid"));
+        String fstart = getValue(record.getAttributeValue("gff_fstart"));
+        String fend = getValue(record.getAttributeValue("gff_fend"));
 
+        // output header
+        header.append("##sequence-region\t" + seqId + "\t" + fstart + "\t"
+                + fend + newline);
+
+        // output annotation
+        annotation.append(seqId + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_source"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_type")) + "\t");
+        annotation.append(fstart + "\t");
+        annotation.append(fend + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_score"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_strand"))
+                + "\t");
+        annotation.append(getValue(record.getAttributeValue("gff_phase"))
+                + "\t");
+        annotation.append("ID="
+                + getValue(record.getAttributeValue("gff_attr_id")));
+        annotation.append(";Name="
+                + getValue(record.getAttributeValue("gff_attr_name")));
+        annotation.append(";dbxref="
+                + getValue(record.getAttributeValue("gff_attr_dbxref")));
+        annotation.append(";molecule_type="
+                + getValue(record.getAttributeValue("gff_attr_molecule_type")));
+        annotation.append(";organism_name="
+                + getValue(record.getAttributeValue("gff_attr_organism_name")));
+        annotation.append(";translation_table="
+                + getValue(record.getAttributeValue("gff_attr_translation_table")));
+        annotation.append(";topology="
+                + getValue(record.getAttributeValue("gff_attr_topology")));
+        annotation.append(";localization="
+                + getValue(record.getAttributeValue("gff_attr_localization")));
+        annotation.append(";size="
+                + getValue(record.getAttributeValue("gff_attr_size")));
+
+        // output all report-maker attributes
+        Map<String, AttributeField> attributes = record.getRecordClass().getReportMakerAttributeFieldMap();
+        for (String attrName : attributes.keySet()) {
+            if (skippedSequenceAttributes.contains(attrName)) continue;
+            String attrValue = getValue(record.getAttributeValue(attrName));
+            if (attrValue == null || attrValue.trim().length() == 0) continue;
+            annotation.append(";" + attrName + "=" + attrValue.trim());
+        }
+        annotation.append(newline);
+
+        // output genome sequence in fasta
+        String sequence = getValue(record.getAttributeValue("gff_sequence"));
+        fasta.append(">" + seqId + newline);
+        int offset = 0;
+        while (offset < sequence.length()) {
+            int endp = offset + Math.min(60, sequence.length() - offset);
+            fasta.append(sequence.substring(offset, endp) + newline);
+            offset = endp;
+        }
     }
 
     private String getValue(Object object) {
         if (object instanceof AttributeFieldValue) {
             AttributeFieldValue attrVal = (AttributeFieldValue) object;
             return attrVal.getValue().toString();
-        } else return object.toString();
+        } else if (object == null) return null;
+        else return object.toString();
     }
 }
