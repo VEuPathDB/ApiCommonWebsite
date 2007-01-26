@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.StringBufferInputStream;
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -50,9 +49,9 @@ public class Gff3Dumper {
 
         // get params
         String modelName = cmdArgs.get("-model");
-        String organism = cmdArgs.get("-organism");
+        String organismArg = cmdArgs.get("-organism");
         String configFile = cmdArgs.get("-config");
-        if (modelName == null || organism == null) {
+        if (modelName == null || organismArg == null) {
             System.err.println("Missing parameters.");
             printUsage();
             System.exit(-1);
@@ -68,6 +67,17 @@ public class Gff3Dumper {
         WdkModel wdkModel = WdkModel.construct(modelName);
         QuestionSet qset = wdkModel.getQuestionSet("DataDumpQuestions");
 
+        String[] organisms = organismArg.split(",");
+        for (String organism : organisms) {
+            dumpOrganism(qset, organism.trim(), config);
+        }
+    }
+
+    private static void dumpOrganism(QuestionSet qset, String organism,
+            Map<String, String> config) throws WdkUserException,
+            WdkModelException, IOException {
+
+        long start = System.currentTimeMillis();
         // TEST
         System.out.println("Collecting sequence data....");
 
@@ -125,6 +135,10 @@ public class Gff3Dumper {
         // TEST
         System.out.println("GFF3 file saved at " + gffFile.getAbsolutePath()
                 + ".");
+
+        long end = System.currentTimeMillis();
+        System.out.println("Time spent " + ((end - start) / 1000.0)
+                + " seconds.");
     }
 
     public static void printUsage() {

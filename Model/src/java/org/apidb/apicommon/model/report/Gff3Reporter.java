@@ -5,12 +5,10 @@ package org.apidb.apicommon.model.report;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.gusdb.wdk.model.Answer;
-import org.gusdb.wdk.model.AttributeField;
 import org.gusdb.wdk.model.AttributeFieldValue;
 import org.gusdb.wdk.model.RecordInstance;
 import org.gusdb.wdk.model.TableFieldValue;
@@ -98,20 +96,23 @@ public class Gff3Reporter extends Reporter {
                 + getValue(record.getAttributeValue("gff_attr_name")));
         annotation.append(";description="
                 + getValue(record.getAttributeValue("gff_attr_description")));
-
-        // output all report-maker attributes
-        Map<String, AttributeField> attributes = record.getRecordClass().getReportMakerAttributeFieldMap();
-        for (String attrName : attributes.keySet()) {
-            if (skippedGeneAttributes.contains(attrName)) continue;
-            String attrValue = getValue(record.getAttributeValue(attrName));
-            if (attrValue == null || attrValue.trim().length() == 0) continue;
-            annotation.append(";" + attrName + "=" + attrValue);
-        }
         annotation.append(newline);
+
+        // get dbxref terms
+        TableFieldValue dbxrefs = record.getTableValue("gff_GeneDbxrefs");
+        StringBuffer sbDbxrefs = new StringBuffer();
+        Iterator it = dbxrefs.getRows();
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String dbxref_value = getValue(row.get("gff_dbxref")).trim();
+            if (sbDbxrefs.length() > 0) sbDbxrefs.append(",");
+            sbDbxrefs.append(dbxref_value);
+        }
+        dbxrefs.getClose();
 
         // get GO terms
         TableFieldValue goTerms = record.getTableValue("GoTerms");
-        Iterator it = goTerms.getRows();
+        it = goTerms.getRows();
         StringBuffer sbGoTerms = new StringBuffer();
         while (it.hasNext()) {
             Map<String, Object> row = (Map<String, Object>) it.next();
@@ -138,6 +139,7 @@ public class Gff3Reporter extends Reporter {
         it = rnas.getRows();
         while (it.hasNext()) {
             Map<String, Object> row = (Map<String, Object>) it.next();
+            String rnaId = getValue(row.get("attr_id"));
             annotation.append(getValue(row.get("seqid")) + "\t");
             annotation.append(getValue(row.get("source")) + "\t");
             annotation.append(getValue(row.get("type")) + "\t");
@@ -146,18 +148,30 @@ public class Gff3Reporter extends Reporter {
             annotation.append(getValue(row.get("score")) + "\t");
             annotation.append(getValue(row.get("strand")) + "\t");
             annotation.append(getValue(row.get("phase")) + "\t");
-            annotation.append("ID=" + getValue(row.get("attr_id")));
+            annotation.append("ID=" + rnaId);
             annotation.append(";Name=" + getValue(row.get("attr_name")));
             annotation.append(";Parent=" + getValue(row.get("attr_parent")));
             annotation.append(";description="
                     + getValue(row.get("attr_description")));
             annotation.append(";locus=" + getValue(row.get("attr_locus")));
-            annotation.append(";Dbxref=" + getValue(row.get("attr_dbxref")));
+            // add other attributes
+            if (sbDbxrefs.length() > 0)
+                annotation.append(";Dbxref=" + sbDbxrefs.toString());
             if (sbGoTerms.length() > 0)
                 annotation.append(";Ontology_term=" + sbGoTerms.toString());
             if (sbEcNumbers.length() > 0)
-                annotation.append(";ec_number=" + sbGoTerms.toString());
+                annotation.append(";ec_number=" + sbEcNumbers.toString());
             annotation.append(newline);
+
+            // output translated protein sequence in fasta
+            fasta.append(">" + rnaId + newline);
+            String sequence = getValue(row.get("protein_sequence"));
+            int offset = 0;
+            while (offset < sequence.length()) {
+                int endp = offset + Math.min(60, sequence.length() - offset);
+                fasta.append(sequence.substring(offset, endp) + newline);
+                offset = endp;
+            }
         }
         rnas.getClose();
 
@@ -178,16 +192,6 @@ public class Gff3Reporter extends Reporter {
             annotation.append("ID=" + cdsId);
             annotation.append(";Parent=" + getValue(row.get("attr_parent")));
             annotation.append(newline);
-
-            // output translated protein sequence in fasta
-            fasta.append(">" + cdsId + newline);
-            String sequence = getValue(row.get("protein_sequence"));
-            int offset = 0;
-            while (offset < sequence.length()) {
-                int endp = offset + Math.min(60, sequence.length() - offset);
-                fasta.append(sequence.substring(offset, endp) + newline);
-                offset = endp;
-            }
         }
         cdss.getClose();
 
@@ -223,6 +227,18 @@ public class Gff3Reporter extends Reporter {
         header.append("##sequence-region\t" + seqId + "\t" + fstart + "\t"
                 + fend + newline);
 
+        // get dbxref terms
+        TableFieldValue dbxrefs = record.getTableValue("gff_SequenceDbxrefs");
+        StringBuffer sbDbxrefs = new StringBuffer();
+        Iterator it = dbxrefs.getRows();
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String dbxref_value = getValue(row.get("gff_dbxref")).trim();
+            if (sbDbxrefs.length() > 0) sbDbxrefs.append(",");
+            sbDbxrefs.append(dbxref_value);
+        }
+        dbxrefs.getClose();
+
         // output annotation
         annotation.append(seqId + "\t");
         annotation.append(getValue(record.getAttributeValue("gff_source"))
@@ -240,8 +256,9 @@ public class Gff3Reporter extends Reporter {
                 + getValue(record.getAttributeValue("gff_attr_id")));
         annotation.append(";Name="
                 + getValue(record.getAttributeValue("gff_attr_name")));
-        annotation.append(";dbxref="
-                + getValue(record.getAttributeValue("gff_attr_dbxref")));
+        // add dbxref
+        if (sbDbxrefs.length()>0)
+            annotation.append(";Dbxref=" + sbDbxrefs.toString());
         annotation.append(";molecule_type="
                 + getValue(record.getAttributeValue("gff_attr_molecule_type")));
         annotation.append(";organism_name="
@@ -255,14 +272,6 @@ public class Gff3Reporter extends Reporter {
         annotation.append(";size="
                 + getValue(record.getAttributeValue("gff_attr_size")));
 
-        // output all report-maker attributes
-        Map<String, AttributeField> attributes = record.getRecordClass().getReportMakerAttributeFieldMap();
-        for (String attrName : attributes.keySet()) {
-            if (skippedSequenceAttributes.contains(attrName)) continue;
-            String attrValue = getValue(record.getAttributeValue(attrName));
-            if (attrValue == null || attrValue.trim().length() == 0) continue;
-            annotation.append(";" + attrName + "=" + attrValue.trim());
-        }
         annotation.append(newline);
 
         // output genome sequence in fasta
