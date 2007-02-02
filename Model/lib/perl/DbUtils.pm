@@ -36,7 +36,10 @@ sub resolveOracleDSN {
     my ($class, $dsn) = @_;
     my ($scheme, $driver, $attr_string, $attr_hash, $driver_dsn) = DBI->parse_dsn($dsn);
     my $tnsname = $class->resolveOracleAlias($driver_dsn);
-    return "@{[($scheme)&&$scheme.':']}@{[($driver)&&$driver.'('.$attr_string.'):']}$tnsname";
+    return   ( ($scheme) && "$scheme:" ) .
+             ( ($driver) && "$driver"  ) .
+             ( ($attr_string) ? "($attr_string):" : ':'  ) .
+             $tnsname;
 }
 
 =head2 resolveOracleAlias
