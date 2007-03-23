@@ -3,14 +3,7 @@
  */
 package org.apidb.apicommon.model.report;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.StringReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,6 +14,7 @@ import org.gusdb.wdk.model.QuestionSet;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.report.Reporter;
 
 /**
  * @author xingao
@@ -86,8 +80,12 @@ public class Gff3Dumper {
         Map<String, Object> seqParams = new LinkedHashMap<String, Object>();
         seqParams.put("organism_with_sequences", organism);
         Answer sqlAnswer = seqQuestion.makeAnswer(seqParams, 1, 1);
-        String seqReport = sqlAnswer.getReport("gff3", config);
-
+        
+        ByteArrayOutputStream seqOut = new ByteArrayOutputStream();
+        Reporter seqReport = sqlAnswer.createReport("gff3", config);
+        seqReport.write( seqOut );
+        byte[] seqBuffer = seqOut.toByteArray();
+        
         // TEST
         System.out.println("Collecting gene data....");
 
@@ -96,14 +94,18 @@ public class Gff3Dumper {
         Map<String, Object> geneParams = new LinkedHashMap<String, Object>();
         geneParams.put("organism", organism);
         Answer geneAnswer = geneQuestion.makeAnswer(geneParams, 1, 1);
-        String geneReport = geneAnswer.getReport("gff3", config);
+        
+        ByteArrayOutputStream geneOut = new ByteArrayOutputStream();
+        Reporter geneReport = geneAnswer.createReport("gff3", config);
+        geneReport.write( geneOut );
+        byte[] geneBuffer = geneOut.toByteArray();
 
         // merge the result
         String fileName = organism.replaceAll("\\s+", "_");
         File gffFile = new File(fileName + ".gff");
         if (!gffFile.exists()) gffFile.createNewFile();
-        BufferedReader seqIn = new BufferedReader(new StringReader(seqReport));
-        BufferedReader geneIn = new BufferedReader(new StringReader(geneReport));
+        BufferedReader seqIn = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(seqBuffer)));
+        BufferedReader geneIn = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(geneBuffer)));
         PrintWriter gffOut = new PrintWriter(new FileWriter(gffFile));
         String line;
 

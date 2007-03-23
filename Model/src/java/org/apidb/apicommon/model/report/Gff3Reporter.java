@@ -3,6 +3,9 @@
  */
 package org.apidb.apicommon.model.report;
 
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -37,13 +40,17 @@ public class Gff3Reporter extends Reporter {
         for (String skSeqAttr : skSeqAttrs)
             skippedSequenceAttributes.add(skSeqAttr);
     }
+    
+    public Gff3Reporter(Answer answer) {
+        super(answer);
+    }
 
     /*
      * (non-Javadoc)
      * 
      * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
      */
-    public String format(Answer answer) throws WdkModelException {
+    public void write(OutputStream out) throws WdkModelException {
         StringBuffer header = new StringBuffer();
 
         // output the header
@@ -65,11 +72,14 @@ public class Gff3Reporter extends Reporter {
                 formatSequenceRecord(record, header, annotation, fasta);
             }
         }
-        StringBuffer result = new StringBuffer();
-        result.append(header);
-        result.append(annotation);
-        result.append(fasta);
-        return result.toString();
+        
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
+        writer.print(header);
+        writer.flush();
+        writer.print(annotation);
+        writer.flush();
+        writer.print(fasta);
+        writer.flush();
     }
 
     private void formatGeneRecord(RecordInstance record,
