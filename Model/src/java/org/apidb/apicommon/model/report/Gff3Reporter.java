@@ -128,7 +128,7 @@ public class Gff3Reporter extends Reporter {
             StringBuffer protein = new StringBuffer();
             StringBuffer codingSequence = new StringBuffer();
             Map< String, int[ ] > sequenceIds = new LinkedHashMap< String, int[ ] >();
-           
+            
             while ( answer.hasMoreRecordInstances() ) {
                 RecordInstance record = answer.getNextRecordInstance();
                 formatGeneRecord( record, annotation, transcript, protein,
@@ -355,22 +355,24 @@ public class Gff3Reporter extends Reporter {
         buffer.append( readField( object, "gff_score" ) + "\t" );
         buffer.append( readField( object, "gff_strand" ) + "\t" );
         buffer.append( readField( object, "gff_phase" ) + "\t" );
-        buffer.append( "ID=" + readField( object, "gff_attr_id" ) );
+        String id = readField( object, "gff_attr_id" );
+        buffer.append( "ID=" + id );
         
         String name = readField( object, "gff_attr_name" );
-        if ( name != null ) try {
+        if ( name == null ) name = id;
+        try {
             buffer.append( ";Name=" + URLEncoder.encode( name, "utf-8" ) );
         } catch ( UnsupportedEncodingException ex ) {
             ex.printStackTrace();
         }
         String description = readField( object, "gff_attr_description" );
-        if ( description != null )
-            try {
-                buffer.append( ";description="
-                        + URLEncoder.encode( description, "utf-8" ) );
-            } catch ( UnsupportedEncodingException ex ) {
-                ex.printStackTrace();
-            }
+        if ( description == null ) description = name;
+        try {
+            buffer.append( ";description="
+                    + URLEncoder.encode( description, "utf-8" ) );
+        } catch ( UnsupportedEncodingException ex ) {
+            ex.printStackTrace();
+        }
         String locusTag = readField( object, "gff_attr_locus_tag" );
         if ( locusTag != null ) buffer.append( ";locus_tag=" + locusTag );
         String size = readField( object, "gff_attr_size" );
