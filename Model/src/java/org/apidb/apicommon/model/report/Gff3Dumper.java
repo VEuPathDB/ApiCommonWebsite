@@ -3,7 +3,14 @@
  */
 package org.apidb.apicommon.model.report;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,7 +21,6 @@ import org.gusdb.wdk.model.QuestionSet;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.implementation.Oracle;
 import org.gusdb.wdk.model.report.Reporter;
 
 /**
@@ -37,26 +43,27 @@ public class Gff3Dumper {
             System.exit( -1 );
         }
         Map< String, String > cmdArgs = new HashMap< String, String >();
-        cmdArgs.put( args[ 0 ].trim().toLowerCase(), args[ 1 ].trim() );
-        cmdArgs.put( args[ 2 ].trim().toLowerCase(), args[ 3 ].trim() );
-        if ( args.length == 6 )
-            cmdArgs.put( args[ 4 ].trim().toLowerCase(), args[ 5 ].trim() );
+        for (int i = 0; i < args.length - 1; i += 2) {
+            cmdArgs.put(args[i].trim().toLowerCase(), args[i + 1].trim());
+        }
         
         // get params
         String modelName = cmdArgs.get( "-model" );
         String organismArg = cmdArgs.get( "-organism" );
-        String configFile = cmdArgs.get( "-config" );
+        String baseDir = cmdArgs.get("-dir");
         if ( modelName == null || organismArg == null ) {
             System.err.println( "Missing parameters." );
             printUsage();
             System.exit( -1 );
         }
+        if (baseDir == null || baseDir.length() == 0) baseDir = ".";
         
         // TEST
         System.out.println( "Initializing...." );
         
         // load config
-        Map< String, String > config = loadConfiguration( configFile );
+        Map< String, String > config = new LinkedHashMap< String, String >();
+        config.put( Reporter.FIELD_FORMAT, "text" );
         
         // construct wdkModel
         WdkModel wdkModel = WdkModel.construct( modelName );
@@ -64,13 +71,13 @@ public class Gff3Dumper {
         
         String[ ] organisms = organismArg.split( "," );
         for ( String organism : organisms ) {
-            dumpOrganism( qset, organism.trim(), config );
+            dumpOrganism( qset, organism.trim(), config, baseDir );
         }
         System.out.println("Finished.");
     }
     
     private static void dumpOrganism( QuestionSet qset, String organism,
-            Map< String, String > config ) throws WdkUserException,
+            Map< String, String > config, String baseDir ) throws WdkUserException,
             WdkModelException, IOException {
         
         long start = System.currentTimeMillis();
@@ -103,15 +110,18 @@ public class Gff3Dumper {
         geneReport.write( geneOut );
         byte[ ] geneBuffer = geneOut.toByteArray();
         
+        // decide the path-file name
+        File dir = new File(baseDir, organism.replace(' ', '_'));
+        if (!dir.exists() || !dir.isDirectory()) dir.mkdirs();
+        int pos = organism.indexOf(" ");
+        String fileName = organism;
+        if (pos >= 0)
+            fileName = organism.substring(0, 1).toLowerCase() + "_"
+                    + organism.substring(pos + 1);
+        fileName += ".gff";
+        File gffFile = new File(dir, fileName);
+
         // merge the result
-        StringBuffer name = new StringBuffer();
-        int pos = organism.indexOf( " " );
-        String fileName = ( pos < 0 ) ? organism
-                : organism.substring( 0, 1 ).toLowerCase()
-                        + organism.substring( pos );
-        fileName = fileName.replaceAll( "\\s+", "_" );
-        File gffFile = new File( fileName + ".gff" );
-        if ( !gffFile.exists() ) gffFile.createNewFile();
         BufferedReader seqIn = new BufferedReader( new InputStreamReader(
                 new ByteArrayInputStream( seqBuffer ) ) );
         BufferedReader geneIn = new BufferedReader( new InputStreamReader(
@@ -161,27 +171,4 @@ public class Gff3Dumper {
         System.out.println( "\t\t<organism_list>: a list of organism names, delimited by a comma" );
         System.out.println();
     }
-    
-    private static Map< String, String > loadConfiguration(
-            String configFileName ) throws IOException {
-        Map< String, String > config = new LinkedHashMap< String, String >();
-        
-        if ( configFileName == null || configFileName.length() == 0 )
-            return config;
-        
-        File configFile = new File( configFileName );
-        BufferedReader in = new BufferedReader( new InputStreamReader(
-                new FileInputStream( configFile ) ) );
-        String line;
-        while ( ( line = in.readLine() ) != null ) {
-            if ( line.trim().length() == 0 ) continue;
-            if ( line.charAt( 0 ) == '#' ) continue;
-            int pos = line.indexOf( "=" );
-            if ( pos < 0 ) config.put( line, null );
-            else config.put( line.substring( 0, pos ), line.substring( pos + 1 ) );
-        }
-        config.put( Reporter.FIELD_FORMAT, "text" );
-        return config;
-    }
-    
 }
