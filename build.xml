@@ -85,9 +85,7 @@
     
   </target>
 
-
  <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
-
   <target name="ApiCommonWebsite/Model-Installation">
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
@@ -115,7 +113,8 @@
 
   <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
                                                           WDK-WebInstallation,
-                                                          ApiCommonWebsite/Site-WebInstallation">
+                                                          ApiCommonWebsite/Site-WebInstallation,
+                                                          webXmlLink">
  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
@@ -172,6 +171,12 @@
     </exec>
 
   </target>
+
+  <target name="webXmlLink">
+    <symlink overwrite="true"
+      link="${targetDir}/config/web.xml" resource="${webappTargetDir}/WEB-INF/web.xml"/>
+  </target>
+
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
