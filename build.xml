@@ -113,8 +113,7 @@
 
   <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
                                                           WDK-WebInstallation,
-                                                          ApiCommonWebsite/Site-WebInstallation,
-                                                          webXmlLink">
+                                                          ApiCommonWebsite/Site-WebInstallation">
  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
@@ -170,13 +169,10 @@
         <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/POSIX.pm_1_64_presets.patch"/>
     </exec>
 
-  </target>
-
-  <target name="webXmlLink">
     <symlink overwrite="true"
       link="${targetDir}/config/web.xml" resource="${webappTargetDir}/WEB-INF/web.xml"/>
-  </target>
 
+  </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
