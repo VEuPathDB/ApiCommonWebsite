@@ -1,9 +1,9 @@
-package CryptoDBWebsite::View::CgiApp::SequenceRetrievalToolOrfs;
+package ApiCommonWebsite::View::CgiApp::SequenceRetrievalToolOrfs;
 
-@ISA = qw( CryptoDBWebsite::View::CgiApp );
+@ISA = qw( ApiCommonWebsite::View::CgiApp );
 
 use strict;
-use CryptoDBWebsite::View::CgiApp;
+use ApiCommonWebsite::View::CgiApp;
 
 use Bio::SeqIO;
 use Bio::Seq;
@@ -38,7 +38,7 @@ sub initInputId2OrfSourceId {
 
   my $sql = <<EOSQL;
 SELECT source_id, source_id
-FROM   dots.translatedaasequence
+FROM   dots.miscellaneous
 EOSQL
 
   my $sth = $dbh->prepare($sql);
@@ -108,15 +108,15 @@ SELECT tas.sequence,
        tn.name
 FROM dots.translatedaasequence tas,
      dots.translatedaafeature taf,
-     dots.transcript t,
+     dots.miscellaneous misc,
      sres.taxonname tn, 
      dots.externalnasequence enas
 WHERE taf.aa_sequence_id = tas.aa_sequence_id
-AND t.na_feature_id = taf.na_feature_id
-AND t.na_sequence_id = enas.na_sequence_id
+AND misc.na_feature_id = taf.na_feature_id
+AND misc.na_sequence_id = enas.na_sequence_id
 AND enas.taxon_id = tn.taxon_id
 AND tn.name_class = 'scientific name'
-AND upper(tas.source_id) = ?
+AND upper(misc.source_id) = ?
 EOSQL
 
   my $type = $self->{type};
