@@ -17,8 +17,8 @@ use strict;
 
 use CGI;
 
-use CBIL::Util::Disp;
-use CBIL::Util::Configuration;
+use ApiCommonWebsite::Model::ModelConfig;
+use ApiCommonWebsite::Model::WebXmlConfig;
 
 use DBI;
 use DBD::Oracle;
@@ -45,7 +45,11 @@ sub init {
 	 my $Self = shift;
 	 my $Args = ref $_[0] ? shift : {@_};
 
-	 $Self->setConfigFile           ( $Args->{ConfigFile          } );
+     my $Cfg = ApiCommonWebsite::Model::WebXmlConfig->new(
+            "$ENV{GUS_HOME}/config/web.xml"
+        );
+
+	 $Self->setModel           ( $Cfg->getModelName );
 
 	 return $Self;
 }
@@ -53,8 +57,8 @@ sub init {
 
 # ------------------------------ Accessors -------------------------------
 
-sub getConfigFile           { $_[0]->{'ConfigFile'        } }
-sub setConfigFile           { $_[0]->{'ConfigFile'        } = $_[1]; $_[0] }
+sub getModel           { $_[0]->{'Model'        } }
+sub setModel           { $_[0]->{'Model'        } = $_[1]; $_[0] }
 
 # ---------------------------------- go ----------------------------------
 
@@ -73,9 +77,7 @@ sub cla {
 
 	 my $Rv   = CGI->new();
 
-	 if (not defined scalar($Rv->param) ||
-			 defined $Rv->param('help')
-			) {
+	 if (defined $Rv->param('help')) {
 			usage();
 			exit(0);
 	 }
@@ -100,15 +102,13 @@ sub getQueryHandle {
 
    my $Rv;
 
-   my $_config = CBIL::Util::Configuration->new({ ConfigFile => $Self->getConfigFile(),
-                                                  Delimiter  => '\s*=\s*',
-                                                });
-
-   $Rv = DBI->connect( $_config->{dbiDsn},
-                       $_config->{databaseLogin},
-                       $_config->{databasePassword}
+   my $_config = new ApiCommonWebsite::Model::ModelConfig($Self->getModel());
+                       
+   $Rv = DBI->connect( $_config->getDbiDsn(),
+                       $_config->getLogin(),
+                       $_config->getPassword()
                      )
-   || die "unable to open db handle";
+   || die "unable to open db handle to ", $_config->getDbiDsn();
 
    # solve oracle clob problem; not that we're liable to need it...
    $Rv->{LongTruncOk} = 0;
@@ -122,29 +122,4 @@ sub getQueryHandle {
 # ========================================================================
 
 1;
-
-__END__
-
-# A heavier weight way to do this...
-
-use GUS::Supported::GusConfig;
-use GUS::ObjRelP::DbiDatabase;
-
-sub getQueryHandle {
-	 my $Self = shift;
-	 my $Rv;
-
-	 my $gusconfig = GUS::Supported::GusConfig->new($Self->getConfigFile());
-
-	 my $db = GUS::ObjRelP::DbiDatabase->new($gusconfig->getDbiDsn(),
-						 $gusconfig->getReadOnlyDatabaseLogin(),
-						 $gusconfig->getReadOnlyDatabasePassword,
-						 0,0,1,
-						 $gusconfig->getCoreSchemaName(),
-						 $gusconfig->getOracleDefaultRollbackSegment()
-						);
-	 $Rv = $db->getQueryHandle();
-
-	 return $Rv;
-}
 
