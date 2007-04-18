@@ -67,6 +67,9 @@ sub processParams {
 
   $self->{type} = 'protein' if (!$self->{type} || $self->{type} !~ /\S/);
 
+  $self->{upstreamOffset}   =~ s/[,.\s+]//g;
+  $self->{downstreamOffset} =~ s/[,.\s+]//g;
+  
   # check type
   my @validTypes = ('protein', 'CDS', 'genomic', 'processed_transcript');
   &error("'$self->{type}' is an invalid type") 

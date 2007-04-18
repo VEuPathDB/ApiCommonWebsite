@@ -64,6 +64,9 @@ sub validateParams {
 
   my $sourceIds = &validateIds($ids, $dbh);
 
+  $start =~ s/[,.+\s]//g;
+  $end =~ s/[,.+\s]//g;
+
   $start = 1 if (!$start || $start !~/\S/);
   $end = 100000000 if (!$end || $end !~ /\S/);
   &error("Start '$start' must be a number") unless $start =~ /^\d+$/;
