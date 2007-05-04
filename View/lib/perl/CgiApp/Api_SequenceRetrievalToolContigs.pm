@@ -21,8 +21,8 @@ sub run {
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 
   my $sql = <<EOSQL;
-SELECT s.source_id, nas.sequence, nas.description
-FROM dots.nasequence nas, 
+SELECT s.source_id, nas.sequence, bfmv.sequence_description
+FROM dots.nasequence nas, apidb.sequenceattributes bfmv,
     (SELECT na_sequence_id, source_id
       FROM dots.ExternalNaSequence 
       UNION
@@ -30,6 +30,7 @@ FROM dots.nasequence nas,
       FROM dots.VirtualSequence) s
 WHERE  upper(s.source_id) LIKE ?
  AND s.na_sequence_id = nas.na_sequence_id
+ AND bfmv.source_id = s.source_id
 EOSQL
 
   my $sth = $dbh->prepare($sql);
