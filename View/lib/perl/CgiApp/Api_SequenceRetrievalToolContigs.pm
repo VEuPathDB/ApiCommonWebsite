@@ -21,7 +21,7 @@ sub run {
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 
   my $sql = <<EOSQL;
-SELECT s.source_id, nas.sequence, bfmv.sequence_description
+SELECT s.source_id, nas.sequence, ' | ' || bfmv.sequence_description as description
 FROM dots.nasequence nas, apidb.sequenceattributes bfmv,
     (SELECT na_sequence_id, source_id
       FROM dots.ExternalNaSequence 
