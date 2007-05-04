@@ -3,7 +3,7 @@ package ApiCommonWebsite::View::CgiApp::Api_SequenceRetrievalToolOrfs;
 @ISA = qw( ApiCommonWebsite::View::CgiApp );
 
 use strict;
-use ApiCommonOBBWebsite::View::CgiApp;
+use ApiCommonWebsite::View::CgiApp;
 
 use Bio::SeqIO;
 use Bio::Seq;
