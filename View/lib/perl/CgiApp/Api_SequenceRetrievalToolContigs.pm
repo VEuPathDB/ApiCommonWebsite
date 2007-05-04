@@ -1,9 +1,9 @@
-package ApiDBWebsite::View::CgiApp::Api_SequenceRetrievalToolContigs;
+package ApiCommonWebsite::View::CgiApp::Api_SequenceRetrievalToolContigs;
 
-@ISA = qw( ApiDBWebsite::View::CgiApp );
+@ISA = qw( ApiCommonWebsite::View::CgiApp );
 
 use strict;
-use ApiDBWebsite::View::CgiApp;
+use ApiCommonWebsite::View::CgiApp;
 
 use Bio::SeqIO;
 use Bio::Seq;
