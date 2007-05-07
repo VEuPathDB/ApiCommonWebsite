@@ -108,8 +108,7 @@ public class ProcessAddCommentAction extends Action {
         String locations = request.getParameter("locations");
 
         String email = user.getEmail().trim().toLowerCase();
-        //String email = "someone@somewhere.com";
-        String projectName = wdkModel.getName();
+        String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion();
 
         // create a comment instance

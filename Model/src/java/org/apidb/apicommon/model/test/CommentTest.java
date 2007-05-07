@@ -23,9 +23,9 @@ public class CommentTest {
 
     private static String[] addKeys = { "email", "headline", "content",
             "projectName", "projectVersion", "stableId", "commentTarget",
-            "conceptual", "locations", "reversed", "coordinateType" };
+            "conceptual", "locations", "reversed", "coordinateType", "reviewStatus"};
     private static boolean[] addRequired = { true, false, true, true, true,
-            true, true, false, false, false, false };
+            true, true, false, false, false, false, false};
 
     private static Map<String, Boolean> addParams = new LinkedHashMap<String, Boolean>();
 
@@ -154,6 +154,7 @@ public class CommentTest {
         String locations = params.get("locations");
         String reversed = params.get("reversed");
         String coordinateType = params.get("coordinatetype");
+        String reviewStatus = params.get("reviewstatus");
 
         // create comment
         Comment comment = new Comment(email);
@@ -174,6 +175,9 @@ public class CommentTest {
             comment.setLocations(rev, locations, coordinateType);
         }
 
+        if (reviewStatus != null)
+        	comment.setReviewStatus(reviewStatus);
+        
         // add comment into database
         factory.addComment(comment);
 

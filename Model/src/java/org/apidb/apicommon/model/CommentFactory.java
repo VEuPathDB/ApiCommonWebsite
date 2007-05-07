@@ -3,6 +3,7 @@
  */
 package org.apidb.apicommon.model;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,6 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.RDBMSPlatformI;
-import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.implementation.SqlUtils;
 import org.xml.sax.SAXException;
@@ -144,7 +144,10 @@ public class CommentFactory {
             ps.setString(9, comment.getHeadline());
             ps.setString(10, comment.getContent());
             ps.setString(11, comment.getLocationString());
-            ps.setString(12, Comment.COMMENT_REVIEW_STATUS_UNKNOWN);
+            String rs = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0) 
+            			? comment.getReviewStatus()
+            			: Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
+            ps.setString(12, rs);
 
             ps.execute();
 
@@ -159,7 +162,9 @@ public class CommentFactory {
             
             saveExternalDbs(commentId, comment);
            
-            extractCommentsTextSearchFile (config.getCommentTextFileDir());
+            File cFile = new File (config.getCommentTextFileDir() + System.getProperty("file.separator")
+            						+ comment.getProjectName() + "_comments.txt");	
+            extractCommentsTextSearchFile (cFile);
             
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
@@ -255,9 +260,53 @@ public class CommentFactory {
             //String externalDbVersion = "ver_1.0";
             
             //The external database info is provided by JSP
+
+			String externalDbName, externalDbVersion;
             ExternalDatabase[] eds = comment.getExternalDbs();
-            String externalDbName = eds[0].getExternalDbName();
-            String externalDbVersion = eds[0].getExternalDbVersion();
+
+			if (eds != null && eds.length > 0) {
+            	externalDbName = eds[0].getExternalDbName();
+            	externalDbVersion = eds[0].getExternalDbVersion();
+			} else {
+				String getExtDbSql;
+				if (comment.getCommentTarget().contains("gene")) {
+					getExtDbSql = "SELECT ed.name, version "
+						+ "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
+						+ "dots.genefeature gf "
+						+ "WHERE ed.external_database_id = edr.external_database_id "
+						+ "AND gf.external_database_release_id = edr.external_database_release_id "
+						+ "AND gf.source_id=?";
+				} else {
+					String naSeqTable;
+					if (comment.getProjectName().equalsIgnoreCase("toxodb")) {
+					//toxo uses dots.virtualnasequence, others use dots.externalnasequence
+						naSeqTable = "DoTS.VirtualNaSequence";
+					} else {
+						naSeqTable = "DoTS.ExternalNASequence";	
+					}
+
+					getExtDbSql = "SELECT ed.name, version "
+						+ "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
+						+ naSeqTable + " ns "
+						+ "WHERE ed.external_database_id = edr.external_database_id "
+						+ "AND ns.external_database_release_id = edr.external_database_release_id "
+						+ "AND ns.source_id=?";
+				}
+
+				PreparedStatement ps = SqlUtils.getPreparedStatement (dataSource, 
+															getExtDbSql.toString());
+				ps.setString (1, comment.getStableId());
+
+				ResultSet rs = ps.executeQuery();
+	            if (!rs.next()) {
+                	System.err.println ("Error in executing getextdbsql");
+				}
+
+				externalDbName = rs.getString("name");
+				externalDbVersion = rs.getString("version");
+				System.out.println ("-- " + externalDbName + ", " + externalDbVersion);
+				comment.addExternalDatabase (externalDbName, externalDbVersion);
+			}
             
             int externalDbId;
 
@@ -477,8 +526,18 @@ public class CommentFactory {
         DataSource dataSource = platform.getDataSource();
 
         String where = " WHERE comment_id = " + commentId;
-
+        String projectName = "";
+        
         try {
+        	String findSql = "SELECT project_name FROM " + schema + ".comments" + where;
+        	ResultSet rs = SqlUtils.getResultSet(dataSource, findSql);
+        	if (!rs.next()) {
+        		logger.warn("DeleteComment: Did not find a comment for id " + commentId);
+        		return;
+        	}
+        	
+        	projectName = rs.getString(1);
+        	
             // delete the location information
             String sql = "DELETE FROM " + schema + ".locations" + where;
             SqlUtils.execute(dataSource, sql);
@@ -495,24 +554,26 @@ public class CommentFactory {
             throw new WdkModelException(ex);
         }
         
-        extractCommentsTextSearchFile (config.getCommentTextFileDir());
+        try {
+        	File cFile = new File (config.getCommentTextFileDir() + System.getProperty("file.separator")
+        								+ projectName + "_comments.txt");
+        	extractCommentsTextSearchFile (cFile);
+        } catch (Exception e) {
+        	logger.warn("Error in deleteComment", e);
+        }
+        
     }
     
-    public void extractCommentsTextSearchFile (String commentFileDir) {
-    	
-    	if (commentFileDir == null || commentFileDir.length() == 0) {
-    		logger.warn("extractCommentsTextSearchFile: not specified in comments-config.xml. Skipping...");
-    		return;
-    	}
+    public void extractCommentsTextSearchFile (File commentsFile) {
     	
     	DataSource dataSource = platform.getDataSource();
     	
     	//TODO: Are we being oracle specific by using regexp_replace?? 
     	String getCommentsSql = "SELECT DISTINCT '', substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
     						+ " gf.source_id, regexp_replace(c.content, '[[:space:]]', ' ') "
-    						+ " FROM logins.users@plasmodb.LOGIN_COMMENT u, "
-    						+ " comments.comments@plasmodb.LOGIN_COMMENT c, dots.GeneFeature gf, "
-    						+ " dots.NaSequence ns, sres.TaxonName tn "
+    						+ " FROM userLogins.users" + config.getProjectDbLink() + " u, "
+							+ config.getCommentSchema() + ".comments" + config.getProjectDbLink() 
+							+ " c, DoTS.GeneFeature gf, DoTS.NaSequence ns, SRes.TaxonName tn "
     						+ " WHERE u.email = c.email "
     						+ " AND c.comment_target_id='gene' "
     						+ " AND c.stable_id = gf.source_id "
@@ -525,8 +586,7 @@ public class CommentFactory {
     	
     	try {
     		ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
-    		String modelName = WdkModel.INSTANCE.getName();
-    		FileWriter fw = new FileWriter (commentFileDir + System.getProperty("file.separator") + modelName + "_comments.txt");
+    		FileWriter fw = new FileWriter (commentsFile);
     		while (rs.next()) {
     			//String empty = rs.getString(1);
     			String orgName = rs.getString(2);
