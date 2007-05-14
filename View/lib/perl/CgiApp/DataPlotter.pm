@@ -55,6 +55,7 @@ sub run {
 
 	 my $_qh         = $Self->getQueryHandle($Cgi);
 
+	 my $model          = $Cgi->param('model');
 	 my $type           = $Cgi->param('type');
 	 my $id             = $Cgi->param('id');
 	 my $sid            = $Cgi->param('sid');
@@ -66,8 +67,10 @@ sub run {
 
 	 my @errors;
 
-	 push(@errors, 'type must be supplied') if not defined $type;
-	 push(@errors, 'id must be supplied'  ) if not defined $id;
+	 push(@errors, 'model must be supplied') if not defined $model;
+	 push(@errors, $model . ' is an unallowed value for model arg') if ($model ne 'plasmo' and $model ne 'toxo');
+	 push(@errors, 'type must be supplied' ) if not defined $type;
+	 push(@errors, 'id must be supplied'   ) if not defined $id;
 
 	 if (@errors) {
 			die join("\n", @errors);
@@ -95,7 +98,13 @@ sub run {
 	 my @filesToDelete = ( $fmt_f );
 
 	 # graph package mode
-	 my $class = "ApiCommonWebsite::View::GraphPackage::$type";
+	 my $pkg;
+	 if ($model eq 'plasmo') {
+	   $pkg = "PlasmoDBWebsite";
+	 } elsif ($model eq 'toxo') {
+	   $pkg = "ToxoDBWebsite";
+	 }
+	 my $class = $pkg . "::View::GraphPackage::$type";
 	 my $_perl = qq{require $class; $class->new()};
 	 my $_gp   = eval $_perl;
 	 if ($@) {
