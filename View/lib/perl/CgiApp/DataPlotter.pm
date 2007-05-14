@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::CgiApp::DataPlotter;
+package ApiCommonWebsite::View::CgiApp::DataPlotter;
 @ISA = qw( ApiCommonWebsite::View::CgiApp );
 
 =pod
@@ -95,7 +95,7 @@ sub run {
 	 my @filesToDelete = ( $fmt_f );
 
 	 # graph package mode
-	 my $class = "PlasmoDBWebsite::View::GraphPackage::$type";
+	 my $class = "ApiCommonWebsite::View::GraphPackage::$type";
 	 my $_perl = qq{require $class; $class->new()};
 	 my $_gp   = eval $_perl;
 	 if ($@) {

@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::MultiScreen;
+package ApiCommonWebsite::View::MultiScreen;
 
 =pod
 

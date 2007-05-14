@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::Model::CannedQuery;
+package ApiCommonWebsite::Model::CannedQuery;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------

@@ -1,6 +1,6 @@
 
-package PlasmoDBWebsite::Model::CannedQuery::ElementNames;
-@ISA = qw( PlasmoDBWebsite::Model::CannedQuery );
+package ApiCommonWebsite::Model::CannedQuery::ElementNames;
+@ISA = qw( ApiCommonWebsite::Model::CannedQuery );
 
 =pod
 
@@ -29,7 +29,7 @@ use strict;
 
 use FileHandle;
 
-use PlasmoDBWebsite::Model::CannedQuery;
+use ApiCommonWebsite::Model::CannedQuery;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------

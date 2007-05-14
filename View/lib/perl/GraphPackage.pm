@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage;
+package ApiCommonWebsite::View::GraphPackage;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
@@ -127,7 +127,7 @@ sub pushIds {
 	 foreach my $key (keys %$Self) {
 			my $_attr = $Self->{$key};
 			if (ref $_attr &&
-					UNIVERSAL::isa($_attr, 'PlasmoDBWebsite::Model::CannedQuery'))
+					UNIVERSAL::isa($_attr, 'ApiCommonWebsite::Model::CannedQuery'))
       {
          if ($_attr->can('setId')) {
             $_attr->setId($Self->getId());

@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::Model::CannedQuery::ProfileSet;
+package ApiCommonWebsite::Model::CannedQuery::ProfileSet;
 
 =pod
 
@@ -26,8 +26,8 @@ The following macros must be available to execute this query.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::Model::CannedQuery );
-use PlasmoDBWebsite::Model::CannedQuery;
+@ISA = qw( ApiCommonWebsite::Model::CannedQuery );
+use ApiCommonWebsite::Model::CannedQuery;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------
