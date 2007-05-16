@@ -74,6 +74,7 @@
 
   <target name="ApiCommonWebsite-Installation" depends="WDK-Installation,
                                                        CBIL-Installation,
+                                                       ApiCommonWebsite/Site-Installation,
                                                        ApiCommonWebsite/Model-Installation,
                                                        ApiCommonWebsite/View-Installation"
   >

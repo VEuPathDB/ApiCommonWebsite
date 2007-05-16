@@ -77,6 +77,38 @@ sub prepareDictionary {
 	 return $Rv;
 }
 
+# ------------------------------ getValues -------------------------------
+
+=pod
+
+=head2 getValues
+
+Override super class getValues call.
+
+=cut
+
+sub getValues {
+   my $Self = shift;
+	 my $Qh   = shift;
+	 my $Dict = shift;
+
+   my @Rv;
+
+	 # prepare dictionary
+	 $Dict = $Self->prepareDictionary($Dict);
+
+	 # execute SQL and get result
+	 my $_sql = $Self->getExpandedSql($Dict);
+	 my $_sh  = $Qh->prepare($_sql);
+   $_sh->execute();
+	 while (my $_row = $_sh->fetchrow_hashref()) {
+      $Rv[$_row->{ELEMENT_ORDER}] = $_row->{NAME};
+   }
+   $_sh->finish();
+
+   return wantarray ? @Rv : \@Rv;
+}
+
 # ========================================================================
 # ---------------------------- End of Package ----------------------------
 # ========================================================================
