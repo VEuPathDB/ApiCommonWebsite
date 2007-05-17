@@ -105,11 +105,8 @@ sub handleNonGenomic {
   if ($self->{type} eq "protein") {
     $sql = <<EOSQL;
 SELECT tas.sequence, bfmv.product, bfmv.organism
-FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv,
-     (SELECT na_sequence_id, taxon_id
-      FROM dots.ExternalNaSequence) s
+FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv
 WHERE  tas.source_id = bfmv.source_id
-AND s.na_sequence_id = tas.aa_sequence_id
 AND upper(bfmv.source_id) = ?
 EOSQL
   } elsif ($self->{type} eq "processed_transcript") {
@@ -131,7 +128,7 @@ FROM apidb.geneattributes bfmv, dots.splicednasequence s, sres.sequenceontology 
 WHERE upper(bfmv.source_id) = ?
 AND bfmv.source_id = s.source_id
 AND s.sequence_ontology_id = so.sequence_ontology_id
-AND so.term_name = 'cds'
+AND so.term_name = 'CDS'
 EOSQL
   }
 
