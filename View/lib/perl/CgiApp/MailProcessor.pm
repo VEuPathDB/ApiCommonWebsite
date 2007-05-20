@@ -3,9 +3,19 @@ package ApiCommonWebsite::View::CgiApp::MailProcessor;
 
 use strict;
 use CGI;
+use CGI::Carp qw(fatalsToBrowser set_message);
 use Mail::Send;
 use Mail::Sendmail;
 
+BEGIN {
+   sub handle_errors {
+      my $msg = shift;
+      print "<h1>Error</h1>";
+      print "<p>$msg</p>";
+  }
+  set_message(\&handle_errors);
+}
+    
 my $MAIL_PROCESSOR_EMAIL = 'apache@pcbi.upenn.edu';
 
 sub go {
@@ -29,6 +39,18 @@ sub go {
 
     my $message = join("", @{ $cgi->{'message'} or [] });
 
+    # quick patch to avoid email header injection. Needs review.
+    my $disallowed = '[\]\[\(\)<>|;\^,\/\n\r]';
+    $to =~ m/$disallowed/ &&
+        die("disallowed character '$&' in To line: '$to'\n");
+    $cc =~ m/$disallowed/ &&
+        die("disallowed character '$&' in Cc line: '$cc'\n");
+    $replyTo =~ m/$disallowed/ &&
+        die("disallowed character '$&' in ReplyTo line: '$replyTo'\n");
+    $subject =~ m/[\n\r]/ &&
+        die("disallowed character '$&' in Subject line: '$subject'\n");
+
+    
     # testing mode
     # $cc = 'ygan@pcbi.upenn.edu';
     # $to = 'ygan@pcbi.upenn.edu';
