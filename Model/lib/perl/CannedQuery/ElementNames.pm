@@ -102,7 +102,8 @@ sub getValues {
 	 my $_sh  = $Qh->prepare($_sql);
    $_sh->execute();
 	 while (my $_row = $_sh->fetchrow_hashref()) {
-      $Rv[$_row->{ELEMENT_ORDER}] = $_row->{NAME};
+      push(@Rv, $_row);
+      #$Rv[$_row->{ELEMENT_ORDER}]->{NAME} = $_row->{NAME};
    }
    $_sh->finish();
 

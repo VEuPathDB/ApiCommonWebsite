@@ -1,5 +1,5 @@
+
 package ApiCommonWebsite::View::CgiApp::DataPlotter;
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
 
 =pod
 
@@ -40,6 +40,10 @@ Program takes these parameters:
 # ========================================================================
 
 use strict;
+
+use vars qw( @ISA );
+
+@ISA = qw( ApiCommonWebsite::View::CgiApp );
 
 use ApiCommonWebsite::View::CgiApp;
 

@@ -45,9 +45,9 @@ sub init {
 	 my $Self = shift;
 	 my $Args = ref $_[0] ? shift : {@_};
 
-     my $Cfg = ApiCommonWebsite::Model::WebXmlConfig->new(
-            "$ENV{GUS_HOME}/config/web.xml"
-        );
+   my $Cfg = ApiCommonWebsite::Model::WebXmlConfig->new(
+                                                        "$ENV{GUS_HOME}/config/web.xml"
+                                                       );
 
 	 $Self->setModel           ( $Cfg->getModelName );
 

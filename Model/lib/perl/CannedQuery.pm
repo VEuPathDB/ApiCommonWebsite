@@ -332,6 +332,7 @@ sub makeTabFile {
 
 	 # write rows
 	 foreach my $_row (@_rows) {
+      next unless $_row;
 			my @_row = map { defined $_row->{$_} ? $_row->{$_} : '' } @keys;
 			print $_fh join("\t", @_row), "\n";
 	 }
