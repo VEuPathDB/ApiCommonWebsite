@@ -100,9 +100,11 @@ sub makeR {
       my %tag_dict;
       my @tags;
       my $_rx = $Self->getTagRx();
-      for (my $i = 1; $i < @$_names; $i++) {
-         my ($tag, $rep) = $_names->[$i] =~ /$_rx/;#/(.+)\s+(rep\d+)$/;
-         $group_dict[$i] = $tag;
+      for (my $i = 0; $i < @$_names; $i++) {
+         my $eo_i = $_names->[$i]->{ELEMENT_ORDER};
+         my $name = $_names->[$i]->{NAME};
+         my ($tag, $rep) = $name =~ /$_rx/;#/(.+)\s+(rep\d+)$/;
+         $group_dict[$eo_i] = $tag;
          $tag_dict{$tag} = 1;
       }
       @tags = sort keys %tag_dict;
