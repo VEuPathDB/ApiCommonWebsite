@@ -20,7 +20,11 @@ my $dbh = DBI->connect(
     }
 ) or die "Can't connect to the database: $DBI::errstr\n";;
 
-my $sql = qq(select table_name from all_tables where UPPER(owner) like UPPER('@{[$c->{login}]}') and table_name like 'QUERY_RESULT_%');
+my $sql = qq(
+   select table_name 
+   from all_tables 
+   where UPPER(owner) like UPPER('@{[$c->{login}]}') 
+   and table_name like 'QUERY_RESULT_%');
 
 
 
@@ -36,9 +40,14 @@ while (my @row = $sth->fetchrow_array) {
 }
 
 $sth->finish();
-$sth2->finish();
+$sth2->finish() if $sth2;
 
-my $sql = q(delete from queryinstance);
+$sql = q(delete from sorting_index);
+$sth = $dbh->prepare($sql);
+$sth->execute();
+$sth->finish();
+
+$sql = q(delete from queryinstance);
 $sth = $dbh->prepare($sql);
 $sth->execute();
 $sth->finish();
