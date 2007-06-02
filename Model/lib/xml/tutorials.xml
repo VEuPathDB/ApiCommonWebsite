@@ -13,18 +13,18 @@
        <attribute name="title">Introduction</attribute>
        <attribute name="description">Introduction to the PlasmoDB functionality.</attribute>
        <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">plasmoIntroduction.mov</attribute>
-       <attribute name="duration">2:31 minutes</attribute>
-       <attribute name="size">12.7 mb</attribute>
+       <attribute name="fileName">Intro_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:33 minutes</attribute>
+       <attribute name="size">15.2 mb</attribute>
    </record>
 
    <record>
        <attribute name="title">Queries and Tools</attribute>
        <attribute name="description">Introduction to the PlasmoDB queries and tools.</attribute>
        <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">plasmoQueries.mov</attribute>
-       <attribute name="duration">3:07 minutes</attribute>
-       <attribute name="size">25.3 mb</attribute>
+       <attribute name="fileName">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:12 minutes</attribute>
+       <attribute name="size">20 mb</attribute>
    </record>
 
    <record>
@@ -33,9 +33,9 @@
          Using the query history to combine queries.
        </attribute>
        <attribute name="projects">PlasmoDB,ApiDB,CryptoDB,ToxoDB</attribute>
-       <attribute name="fileName">QHistory.mov</attribute>
-       <attribute name="duration">2:27 minutes</attribute>
-       <attribute name="size">5.6 mb</attribute>
+       <attribute name="fileName">QueryHistory_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:47 minutes</attribute>
+       <attribute name="size">5 mb</attribute>
    </record>
 
    <record>
@@ -45,9 +45,9 @@
           Query includes secreted proteins, phylogenetic profile and expression profile queries.
        </attribute>
        <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">plasmoVaccineAntigens.mov</attribute>
-       <attribute name="duration">3:03 minutes</attribute>
-       <attribute name="size">24.8 mb</attribute>
+       <attribute name="fileName">VaccineCandidate_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:54 minutes</attribute>
+       <attribute name="size">17.9 mb</attribute>
    </record>
 
    <record>
@@ -57,9 +57,9 @@
           Query includes secreted proteins, phylogenetic profile, SNPs and expression profile queries.
        </attribute>
        <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">plasmoVaccineAntigensWithSnps.mov</attribute>
-       <attribute name="duration">5:21 minutes</attribute>
-       <attribute name="size">41.3 mb</attribute>
+       <attribute name="fileName">VaccineCAndidateWithSNPData_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:35 minutes</attribute>
+       <attribute name="size">5.5 mb</attribute>
    </record>
 
    <record>
@@ -69,9 +69,9 @@
           Query includes expression profile, proteomics evidence and GO function queries.
        </attribute>
        <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">plasmoDrugTargets.mov</attribute>
-       <attribute name="duration">2:56 minutes</attribute>
-       <attribute name="size">16.8 mb</attribute>
+       <attribute name="fileName">DrugTarget_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">2:01 minutes</attribute>
+       <attribute name="size">7.7 mb</attribute>
    </record>
 
    <record>
@@ -81,9 +81,64 @@
           Query includes expression profile, proteomics evidence, GO function  and SNP queries.
        </attribute>
        <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">plasmoDrugTargetsWithSnps.mov</attribute>
-       <attribute name="duration">5:21 minutes</attribute>
-       <attribute name="size">37 mb</attribute>
+       <attribute name="fileName">DrugTargetWithSNPData_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:41 minutes</attribute>
+       <attribute name="size">6.1 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Options to Download Results</attribute>
+       <attribute name="description">
+          Using the Download section to download query results and sequence data.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">DownloadResults_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">2:21 minutes</attribute>
+       <attribute name="size">25.9 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Introduction to the Genome Browser</attribute>
+       <attribute name="description">
+          Overview of features in the Genome Browser.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:29 minutes</attribute>
+       <attribute name="size">24.2 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">List of Gene Identifiers as Query Input</attribute>
+       <attribute name="description">
+          How to use a List of Gene Identifiers as Input to a Query.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">ListOfIDs_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">0:46 minutes</attribute>
+       <attribute name="size">3.2 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Predicted Protein Interaction</attribute>
+       <attribute name="description">
+         <![CDATA[Query to identify local and global protein interactions for <i>P. facliparum</i>.]]>
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">PredictedInteraction_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:26 minutes</attribute>
+       <attribute name="size">5.6 mb</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Query Result Column Management</attribute>
+       <attribute name="description">
+         Learn how to manage columns displayed in query results; adding columns, sorting columns and changing the column ordering.
+       </attribute>
+       <attribute name="projects">PlasmoDB</attribute>
+       <attribute name="fileName">ColumnManagement_PlasmoDB_5.3.mov</attribute>
+       <attribute name="duration">1:12 minutes</attribute>
+       <attribute name="size">8.3 mb</attribute>
    </record>
 
 </xmlAnswer>
