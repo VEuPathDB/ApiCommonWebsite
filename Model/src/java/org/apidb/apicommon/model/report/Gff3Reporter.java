@@ -8,16 +8,24 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.Answer;
 import org.gusdb.wdk.model.AttributeFieldValue;
+import org.gusdb.wdk.model.RDBMSPlatformI;
 import org.gusdb.wdk.model.RecordInstance;
 import org.gusdb.wdk.model.TableFieldValue;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.implementation.SqlUtils;
 import org.gusdb.wdk.model.report.Reporter;
 
 /**
@@ -25,54 +33,94 @@ import org.gusdb.wdk.model.report.Reporter;
  * 
  */
 public class Gff3Reporter extends Reporter {
-    
+
+    private static Logger logger = Logger.getLogger(Gff3Reporter.class);
+
+    private static final String NEW_LINE = System.getProperty("line.separator");
+
+    public static final String PROPERTY_TABLE_CACHE = "table_cache";
+    public static final String PROPERTY_RECORD_ID_COLUMN = "record_id_column";
+
+    public static final String PROPERTY_GFF_RECORD_NAME = "gff_record";
+    public static final String PROPERTY_GFF_TRANSCRIPT_NAME = "gff_transcript";
+    public static final String PROPERTY_GFF_PROTEIN_NAME = "gff_protein";
+
     public final static String FIELD_HAS_TRANSCRIPT = "hasTranscript";
     public final static String FIELD_HAS_PROTEIN = "hasProtein";
-    public final static String FIELD_HAS_CODING_SEQUENCE = "hasCodingSequence";
-    
-    private static final String newline = System.getProperty( "line.separator" );
-    
-    private static Logger logger = Logger.getLogger( Gff3Reporter.class );
-    
-    private boolean hasTranscript = false;
-    private boolean hasProtein = false;
-    private boolean hasCodingSequence = false;
-    
-    public Gff3Reporter( Answer answer ) {
-        super( answer );
+
+    private String tableCache;
+    private String recordIdColumn;
+    private String recordName;
+    private String proteinName;
+    private String transcriptName;
+
+    private boolean hasTranscript = true;
+    private boolean hasProtein = true;
+
+    public Gff3Reporter(Answer answer) {
+        super(answer);
     }
-    
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @throws WdkModelException
+     * @see org.gusdb.wdk.model.report.Reporter#setProperties(java.util.Map)
+     */
+    @Override
+    public void setProperties(Map<String, String> properties)
+            throws WdkModelException {
+        super.setProperties(properties);
+
+        // check required properties
+        tableCache = properties.get(PROPERTY_TABLE_CACHE);
+        recordIdColumn = properties.get(PROPERTY_RECORD_ID_COLUMN);
+        recordName = properties.get(PROPERTY_GFF_RECORD_NAME);
+        proteinName = properties.get(PROPERTY_GFF_PROTEIN_NAME);
+        transcriptName = properties.get(PROPERTY_GFF_TRANSCRIPT_NAME);
+
+        if (recordIdColumn == null || recordIdColumn.length() == 0)
+            throw new WdkModelException("The required property for reporter "
+                    + this.getClass().getName() + ", "
+                    + PROPERTY_RECORD_ID_COLUMN + ", is missing");
+        if (recordName == null || recordName.length() == 0)
+            throw new WdkModelException("The required property for reporter "
+                    + this.getClass().getName() + ", "
+                    + PROPERTY_GFF_RECORD_NAME + ", is missing");
+        if (proteinName == null || proteinName.length() == 0)
+            throw new WdkModelException("The required property for reporter "
+                    + this.getClass().getName() + ", "
+                    + PROPERTY_GFF_PROTEIN_NAME + ", is missing");
+        if (transcriptName == null || transcriptName.length() == 0)
+            throw new WdkModelException("The required property for reporter "
+                    + this.getClass().getName() + ", "
+                    + PROPERTY_GFF_PROTEIN_NAME + ", is missing");
+    }
+
     /*
      * (non-Javadoc)
      * 
      * @see org.gusdb.wdk.model.report.Reporter#configure(java.util.Map)
      */
     @Override
-    public void configure( Map< String, String > config ) {
-        super.configure( config );
-        
+    public void configure(Map<String, String> config) {
+        super.configure(config);
+
         // include transcript
-        if ( config.containsKey( FIELD_HAS_TRANSCRIPT ) ) {
-            String value = config.get( FIELD_HAS_TRANSCRIPT );
-            hasTranscript = ( value.equalsIgnoreCase( "yes" ) || value.equalsIgnoreCase( "true" ) ) ? true
+        if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
+            String value = config.get(FIELD_HAS_TRANSCRIPT);
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
                     : false;
         }
-        
+
         // include protein
-        if ( config.containsKey( FIELD_HAS_PROTEIN ) ) {
-            String value = config.get( FIELD_HAS_PROTEIN );
-            hasProtein = ( value.equalsIgnoreCase( "yes" ) || value.equalsIgnoreCase( "true" ) ) ? true
-                    : false;
-        }
-        
-        // include coding sequence
-        if ( config.containsKey( FIELD_HAS_CODING_SEQUENCE ) ) {
-            String value = config.get( FIELD_HAS_CODING_SEQUENCE );
-            hasCodingSequence = ( value.equalsIgnoreCase( "yes" ) || value.equalsIgnoreCase( "true" ) ) ? true
+        if (config.containsKey(FIELD_HAS_PROTEIN)) {
+            String value = config.get(FIELD_HAS_PROTEIN);
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
                     : false;
         }
     }
-    
+
     /*
      * (non-Javadoc)
      * 
@@ -80,13 +128,13 @@ public class Gff3Reporter extends Reporter {
      */
     @Override
     public String getHttpContentType() {
-        if ( format.equalsIgnoreCase( "text" ) ) {
+        if (format.equalsIgnoreCase("text")) {
             return "text/plain";
         } else { // use the default content type defined in the parent class
             return super.getHttpContentType();
         }
     }
-    
+
     /*
      * (non-Javadoc)
      * 
@@ -94,326 +142,517 @@ public class Gff3Reporter extends Reporter {
      */
     @Override
     public String getDownloadFileName() {
-        logger.info( "Internal format: " + format );
+        logger.info("Internal format: " + format);
         String name = answer.getQuestion().getName();
-        if ( format.equalsIgnoreCase( "text" ) ) {
+        if (format.equalsIgnoreCase("text")) {
             return name + ".gff";
         } else { // use the defaul file name defined in the parent
             return super.getDownloadFileName();
         }
     }
-    
+
     /*
      * (non-Javadoc)
      * 
      * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
      */
-    public void write( OutputStream out ) throws WdkModelException {
-        StringBuffer header = new StringBuffer();
-        
-        // output the header
-        header.append( "##gff-version\t3" + newline );
-        header.append( "##feature-ontology\tso.obo" + newline );
-        header.append( "##attribute-ontology\tgff3_attributes.obo" + newline );
-        
-        // iterate on each record, and format the result
-        StringBuffer annotation = new StringBuffer();
-        StringBuffer fasta = new StringBuffer();
-        
-        PrintWriter writer = new PrintWriter( new OutputStreamWriter( out ) );
-        
-        String rcName = answer.getQuestion().getRecordClass().getFullName();
-        if ( rcName.equals( "GeneRecordClasses.GeneRecordClass" ) ) {
-            StringBuffer transcript = new StringBuffer();
-            StringBuffer protein = new StringBuffer();
-            StringBuffer codingSequence = new StringBuffer();
-            Map< String, int[ ] > sequenceIds = new LinkedHashMap< String, int[ ] >();
-            
-            while ( answer.hasMoreRecordInstances() ) {
-                RecordInstance record = answer.getNextRecordInstance();
-                formatGeneRecord( record, annotation, transcript, protein,
-                        codingSequence, sequenceIds );
+    public void write(OutputStream out) throws WdkModelException {
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
+
+        // write header
+        writeHeader(writer, answer);
+
+        // write record
+        answer = answer.newAnswer();
+        writeRecords(writer, answer);
+
+        // write sequence
+        answer = answer.newAnswer();
+        writeSequences(writer, answer);
+    }
+
+    private void writeHeader(PrintWriter writer, Answer answer)
+            throws WdkModelException {
+        writer.println("##gff-version\t3");
+        writer.println("##feature-ontology\tso.obo");
+        writer.println("##attribute-ontology\tgff3_attributes.obo");
+        writer.flush();
+
+        // get the sequence regions
+        Map<String, int[]> regions = new LinkedHashMap<String, int[]>();
+        while (answer.hasMoreRecordInstances()) {
+            RecordInstance record = answer.getNextRecordInstance();
+            String seqId = getValue(record.getAttributeValue("gff_seqid"));
+            int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
+            int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));
+            if (regions.containsKey(seqId)) {
+                int[] region = regions.get(seqId);
+                if (region[0] > start) region[0] = start;
+                if (region[1] < stop) region[1] = stop;
+                regions.put(seqId, region);
+            } else {
+                int[] region = { start, stop };
+                regions.put(seqId, region);
             }
-            
-            // put sequence id into the header
-            for ( String seqId : sequenceIds.keySet() ) {
-                int[ ] region = sequenceIds.get( seqId );
-                header.append( "##sequence-region\t" + seqId + "\t"
-                        + region[ 0 ] + "\t" + region[ 1 ] + newline );
-            }
-            
-            // put sequences together
-            if ( hasTranscript || hasProtein || hasCodingSequence )
-                fasta.append( "##FASTA" + newline );
-            if ( hasTranscript ) fasta.append( transcript );
-            if ( hasProtein ) fasta.append( protein );
-            if ( hasCodingSequence ) fasta.append( codingSequence );
-        } else {
-            while ( answer.hasMoreRecordInstances() ) {
-                RecordInstance record = answer.getNextRecordInstance();
-                formatSequenceRecord( record, header, annotation, fasta );
-            }
-            annotation.append( "##FASTA" + newline );
         }
-        writer.print( header );
-        writer.flush();
-        writer.print( annotation );
-        writer.flush();
-        writer.print( fasta );
+
+        // put sequence id into the header
+        for (String seqId : regions.keySet()) {
+            int[] region = regions.get(seqId);
+            writer.println("##sequence-region\t" + seqId + "\t" + region[0]
+                    + "\t" + region[1]);
+        }
         writer.flush();
     }
-    
-    private void formatGeneRecord( RecordInstance record,
-            StringBuffer annotation, StringBuffer transcript,
-            StringBuffer protein, StringBuffer codingSequence,
-            Map< String, int[ ] > sequenceIds ) throws WdkModelException {
-        // get sequence id
-        String seqId = getValue( record.getAttributeValue( "gff_seqid" ) );
-        int start = Integer.parseInt( getValue( record.getAttributeValue( "gff_fstart" ) ) );
-        int stop = Integer.parseInt( getValue( record.getAttributeValue( "gff_fend" ) ) );
-        if ( sequenceIds.containsKey( seqId ) ) {
-            int[ ] region = sequenceIds.get( seqId );
-            if ( region[ 0 ] > start ) region[ 0 ] = start;
-            if ( region[ 1 ] < stop ) region[ 1 ] = stop;
-            sequenceIds.put( seqId, region );
-        } else {
-            int[ ] region = { start, stop };
-            sequenceIds.put( seqId, region );
+
+    private void writeRecords(PrintWriter writer, Answer answer)
+            throws WdkModelException {
+        String rcName = answer.getQuestion().getRecordClass().getFullName();
+        WdkModel wdkModel = answer.getQuestion().getWdkModel();
+        RDBMSPlatformI platform = wdkModel.getPlatform();
+
+        // check if we need to use project id
+        boolean hasProjectId = answer.hasProjectId();
+
+        // check if we need to insert into cache
+        PreparedStatement psCache = null;
+        PreparedStatement psCheck = null;
+        try {
+            if (tableCache != null) {
+                // want to cache the table content
+                DataSource dataSource = platform.getDataSource();
+                psCache = SqlUtils.getPreparedStatement(dataSource,
+                        "INSERT INTO " + tableCache + " (" + recordIdColumn
+                                + ", table_name, row_count, content"
+                                + (hasProjectId ? ", project_id)" : ")")
+                                + " VALUES (?, ?, ?, ?"
+                                + (hasProjectId ? ", ?)" : ")"));
+                psCheck = SqlUtils.getPreparedStatement(dataSource, "SELECT "
+                        + "count(*) AS cache_count FROM " + tableCache
+                        + " WHERE " + recordIdColumn + " = ? "
+                        + " AND table_name IN ('" + recordName + "')"
+                        + (hasProjectId ? " AND project_id = ?" : ""));
+            }
+
+            while (answer.hasMoreRecordInstances()) {
+                RecordInstance record = answer.getNextRecordInstance();
+
+                StringBuffer recordBuffer = new StringBuffer();
+
+                // read and format record content
+                if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
+                    formatSequenceRecord(record, recordBuffer);
+                } else if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
+                    formatGeneRecord(record, recordBuffer);
+                } else {
+                    throw new WdkModelException("Unsupported record type: "
+                            + rcName);
+                }
+                String content = recordBuffer.toString();
+
+                // check if the record has been cached
+                psCheck.setString(1, record.getPrimaryKey().getRecordId());
+                if (hasProjectId) {
+                    String projectId = record.getPrimaryKey().getProjectId();
+                    psCheck.setString(2, projectId);
+                }
+                boolean hasCached = false;
+                ResultSet rs = psCheck.executeQuery();
+                try {
+                    rs.next();
+                    int count = rs.getInt("cache_count");
+                    if (count > 0) hasCached = true;
+                } finally {
+                    rs.close();
+                }
+
+                // check if needs to insert into cache table
+                if (tableCache != null && !hasCached) {
+                    // save into table cache
+                    String recordId = record.getPrimaryKey().getRecordId();
+                    psCache.setString(1, recordId);
+                    psCache.setString(2, recordName);
+                    psCache.setInt(3, 1);
+                    platform.updateClobData(psCache, 4, content, false);
+                    if (hasProjectId) {
+                        String projectId = record.getPrimaryKey().getProjectId();
+                        psCache.setString(5, projectId);
+                    }
+                    psCache.executeUpdate();
+                }
+
+                // output the result
+                writer.print(content);
+                writer.flush();
+            }
+        } catch (SQLException ex) {
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeStatement(psCheck);
+                SqlUtils.closeStatement(psCache);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
         }
-        
-        // print the attributes for the record
-        readCommonFields( record, annotation );
-        
-        // get GO terms
-        TableFieldValue goTerms = record.getTableValue( "GoTerms" );
-        Iterator it = goTerms.getRows();
-        StringBuffer sbGoTerms = new StringBuffer();
-        while ( it.hasNext() ) {
-            Map< String, Object > row = ( Map< String, Object > ) it.next();
-            String goTerm = getValue( row.get( "go_id" ) ).trim();
-            if ( sbGoTerms.length() > 0 ) sbGoTerms.append( "," );
-            sbGoTerms.append( goTerm );
-        }
-        goTerms.getClose();
-        
+    }
+
+    private void formatGeneRecord(RecordInstance record,
+            StringBuffer recordBuffer) throws WdkModelException {
+        // get common fields from the record
+        readCommonFields(record, recordBuffer);
+
+        // get the rest of the attributes
+        String locusTag = readField(record, "gff_attr_locus_tag");
+        if (locusTag != null) recordBuffer.append(";locus_tag=" + locusTag);
+        String size = readField(record, "gff_attr_size");
+        if (size != null) recordBuffer.append(";size=" + size);
+
         // get aliases
-        TableFieldValue alias = record.getTableValue( "Aliases" );
+        TableFieldValue alias = record.getTableValue("GeneGffAliases");
         StringBuffer sbAlias = new StringBuffer();
-        it = alias.getRows();
-        while ( it.hasNext() ) {
-            Map< String, Object > row = ( Map< String, Object > ) it.next();
-            String alias_value = getValue( row.get( "alias" ) ).trim();
-            if ( sbAlias.length() > 0 ) sbAlias.append( "," );
-            sbAlias.append( alias_value );
+        Iterator it = alias.getRows();
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String alias_value = getValue(row.get("gff_alias")).trim();
+            if (sbAlias.length() > 0) sbAlias.append(",");
+            sbAlias.append(alias_value);
         }
         alias.getClose();
-        if ( sbAlias.length() > 0 )
-            annotation.append( ";Alias=" + sbAlias.toString() );
-        
+        if (sbAlias.length() > 0)
+            recordBuffer.append(";Alias=" + sbAlias.toString());
+
+        recordBuffer.append(NEW_LINE);
+
+        // get GO terms
+        TableFieldValue goTerms = record.getTableValue("GeneGffGoTerms");
+        it = goTerms.getRows();
+        StringBuffer sbGoTerms = new StringBuffer();
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String goTerm = getValue(row.get("gff_go_id")).trim();
+            if (sbGoTerms.length() > 0) sbGoTerms.append(",");
+            sbGoTerms.append(goTerm);
+        }
+        goTerms.getClose();
+
         // get dbxref terms
-        TableFieldValue dbxrefs = record.getTableValue( "gff_GeneDbxrefs" );
+        TableFieldValue dbxrefs = record.getTableValue("GeneGffDbxrefs");
         StringBuffer sbDbxrefs = new StringBuffer();
         it = dbxrefs.getRows();
-        while ( it.hasNext() ) {
-            Map< String, Object > row = ( Map< String, Object > ) it.next();
-            String dbxref_value = getValue( row.get( "gff_dbxref" ) ).trim();
-            if ( sbDbxrefs.length() > 0 ) sbDbxrefs.append( "," );
-            sbDbxrefs.append( dbxref_value );
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String dbxref_value = getValue(row.get("gff_dbxref")).trim();
+            if (sbDbxrefs.length() > 0) sbDbxrefs.append(",");
+            sbDbxrefs.append(dbxref_value);
         }
         dbxrefs.getClose();
-        
-        annotation.append( newline );
-        
+
         // print RNAs
-        TableFieldValue rnas = record.getTableValue( "gff_GeneRnas" );
+        TableFieldValue rnas = record.getTableValue("GeneGffRnas");
         it = rnas.getRows();
-        while ( it.hasNext() ) {
-            Map< String, Object > row = ( Map< String, Object > ) it.next();
-            String rnaId = getValue( row.get( "gff_attr_id" ) );
-            
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+
             // read common fields
-            readCommonFields( row, annotation );
+            readCommonFields(row, recordBuffer);
+
             // read other fields
-            annotation.append( ";Parent=" + readField( row, "gff_attr_parent" ) );
-            
+            recordBuffer.append(";Parent=" + readField(row, "gff_attr_parent"));
+
             // add GO terms in mRNA
-            if ( sbGoTerms.length() > 0 )
-                annotation.append( ";Ontology_term=" + sbGoTerms.toString() );
-            
+            if (sbGoTerms.length() > 0)
+                recordBuffer.append(";Ontology_term=" + sbGoTerms.toString());
+
             // add dbxref in mRNA
-            if ( sbDbxrefs.length() > 0 )
-                annotation.append( ";Dbxref=" + sbDbxrefs.toString() );
-            
-            annotation.append( newline );
-            
-            String sequence = getValue( row.get( "gff_transcript_sequence" ) );
-            if ( hasTranscript && sequence != null ) {
-                transcript.append( ">" + rnaId + newline );
-                transcript.append( formatSequence( sequence ) );
-            }
+            if (sbDbxrefs.length() > 0)
+                recordBuffer.append(";Dbxref=" + sbDbxrefs.toString());
+
+            recordBuffer.append(NEW_LINE);
         }
         rnas.getClose();
-        
+
         // print CDSs
-        TableFieldValue cdss = record.getTableValue( "gff_GeneCdss" );
+        TableFieldValue cdss = record.getTableValue("GeneGffCdss");
         it = cdss.getRows();
-        while ( it.hasNext() ) {
-            Map< String, Object > row = ( Map< String, Object > ) it.next();
-            String cdsId = getValue( row.get( "gff_attr_id" ) );
-            
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+
             // read common fields
-            readCommonFields( row, annotation );
+            readCommonFields(row, recordBuffer);
+
             // read other fields
-            annotation.append( ";Parent=" + readField( row, "gff_attr_parent" ) );
-            
-            annotation.append( newline );
-            
-            String sequence = getValue( row.get( "gff_coding_sequence" ) );
-            if ( hasCodingSequence && sequence != null ) {
-                codingSequence.append( ">" + cdsId + newline );
-                codingSequence.append( formatSequence( sequence ) );
-            }
-            sequence = getValue( row.get( "gff_protein_sequence" ) );
-            if ( hasProtein && sequence != null ) {
-                protein.append( ">" + cdsId + newline );
-                protein.append( formatSequence( sequence ) );
-            }
+            recordBuffer.append(";Parent=" + readField(row, "gff_attr_parent"));
+
+            recordBuffer.append(NEW_LINE);
         }
         cdss.getClose();
-        
+
         // print EXONs
-        TableFieldValue exons = record.getTableValue( "gff_GeneExons" );
+        TableFieldValue exons = record.getTableValue("GeneGffExons");
         it = exons.getRows();
-        while ( it.hasNext() ) {
-            Map< String, Object > row = ( Map< String, Object > ) it.next();
-            
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+
             // read common fields
-            readCommonFields( row, annotation );
+            readCommonFields(row, recordBuffer);
+
             // read other fields
-            annotation.append( ";Parent=" + readField( row, "gff_attr_parent" ) );
-            
-            annotation.append( newline );
+            recordBuffer.append(";Parent=" + readField(row, "gff_attr_parent"));
+
+            recordBuffer.append(NEW_LINE);
         }
         exons.getClose();
     }
-    
-    private void formatSequenceRecord( RecordInstance record,
-            StringBuffer header, StringBuffer annotation,
-            StringBuffer genomeSequence ) throws WdkModelException {
-        // print the attributes for the record
-        String seqId = getValue( record.getAttributeValue( "gff_seqid" ) );
-        String fstart = getValue( record.getAttributeValue( "gff_fstart" ) );
-        String fend = getValue( record.getAttributeValue( "gff_fend" ) );
-        
-        // output header
-        header.append( "##sequence-region\t" + seqId + "\t" + fstart + "\t"
-                + fend + newline );
-        
-        // read common fields
-        readCommonFields( record, annotation );
-        
+
+    private void formatSequenceRecord(RecordInstance record,
+            StringBuffer recordBuffer) throws WdkModelException {
+        // get common fields from the record
+        readCommonFields(record, recordBuffer);
+
         // read other fields
-        annotation.append( ";molecule_type="
-                + readField( record, "gff_attr_molecule_type" ) );
-        annotation.append( ";organism_name="
-                + readField( record, "gff_attr_organism_name" ) );
-        annotation.append( ";translation_table="
-                + readField( record, "gff_attr_translation_table" ) );
-        annotation.append( ";topology="
-                + readField( record, "gff_attr_topology" ) );
-        annotation.append( ";localization="
-                + readField( record, "gff_attr_localization" ) );
-        
+        recordBuffer.append(";molecule_type="
+                + readField(record, "gff_attr_molecule_type"));
+        recordBuffer.append(";organism_name="
+                + readField(record, "gff_attr_organism_name"));
+        recordBuffer.append(";translation_table="
+                + readField(record, "gff_attr_translation_table"));
+        recordBuffer.append(";topology="
+                + readField(record, "gff_attr_topology"));
+        recordBuffer.append(";localization="
+                + readField(record, "gff_attr_localization"));
+
         // get dbxref terms
-        TableFieldValue dbxrefs = record.getTableValue( "gff_SequenceDbxrefs" );
+        TableFieldValue dbxrefs = record.getTableValue("SequenceGffDbxrefs");
         StringBuffer sbDbxrefs = new StringBuffer();
         Iterator it = dbxrefs.getRows();
-        while ( it.hasNext() ) {
-            Map< String, Object > row = ( Map< String, Object > ) it.next();
-            String dbxref_value = getValue( row.get( "gff_dbxref" ) ).trim();
-            if ( sbDbxrefs.length() > 0 ) sbDbxrefs.append( "," );
-            sbDbxrefs.append( dbxref_value );
+        while (it.hasNext()) {
+            Map<String, Object> row = (Map<String, Object>) it.next();
+            String dbxref_value = getValue(row.get("gff_dbxref")).trim();
+            if (sbDbxrefs.length() > 0) sbDbxrefs.append(",");
+            sbDbxrefs.append(dbxref_value);
         }
         dbxrefs.getClose();
-        if ( sbDbxrefs.length() > 0 )
-            annotation.append( ";Dbxref=" + sbDbxrefs.toString() );
-        
-        annotation.append( newline );
-        
-        // output genome sequence in fasta
-        genomeSequence.append( ">" + seqId + newline );
-        genomeSequence.append( formatSequence( getValue( record.getAttributeValue( "gff_sequence" ) ) ) );
+        if (sbDbxrefs.length() > 0)
+            recordBuffer.append(";Dbxref=" + sbDbxrefs.toString());
+
+        recordBuffer.append(NEW_LINE);
     }
-    
-    private void readCommonFields( Object object, StringBuffer buffer )
+
+    private void writeSequences(PrintWriter writer, Answer answer)
             throws WdkModelException {
-        buffer.append( readField( object, "gff_seqid" ) + "\t" );
-        buffer.append( readField( object, "gff_source" ) + "\t" );
-        buffer.append( readField( object, "gff_type" ) + "\t" );
-        buffer.append( readField( object, "gff_fstart" ) + "\t" );
-        buffer.append( readField( object, "gff_fend" ) + "\t" );
-        buffer.append( readField( object, "gff_score" ) + "\t" );
-        buffer.append( readField( object, "gff_strand" ) + "\t" );
-        buffer.append( readField( object, "gff_phase" ) + "\t" );
-        String id = readField( object, "gff_attr_id" );
-        buffer.append( "ID=" + id );
-        
-        String name = readField( object, "gff_attr_name" );
-        if ( name == null ) name = id;
+        String rcName = answer.getQuestion().getRecordClass().getFullName();
+        WdkModel wdkModel = answer.getQuestion().getWdkModel();
+        RDBMSPlatformI platform = wdkModel.getPlatform();
+
+        // check if we need to use project id
+        boolean hasProjectId = answer.hasProjectId();
+
+        writer.println("##FASTA");
+
+        // check if we need to insert into cache
+        PreparedStatement psCache = null;
+        PreparedStatement psCheck = null;
         try {
-            buffer.append( ";Name=" + URLEncoder.encode( name, "utf-8" ) );
-        } catch ( UnsupportedEncodingException ex ) {
-            ex.printStackTrace();
+            if (tableCache != null) {
+                // want to cache the table content
+                DataSource dataSource = platform.getDataSource();
+                psCache = SqlUtils.getPreparedStatement(dataSource,
+                        "INSERT INTO " + tableCache + " (" + recordIdColumn
+                                + ", table_name, row_count, content"
+                                + (hasProjectId ? ", project_id)" : ")")
+                                + " VALUES (?, ?, ?, ?"
+                                + (hasProjectId ? ", ?)" : ")"));
+                psCheck = SqlUtils.getPreparedStatement(dataSource, "SELECT "
+                        + "count(*) AS cache_count FROM " + tableCache
+                        + " WHERE " + recordIdColumn + " = ? "
+                        + " AND table_name IN ('" + transcriptName + "', '"
+                        + proteinName + "')"
+                        + (hasProjectId ? " AND project_id = ?" : ""));
+            }
+
+            while (answer.hasMoreRecordInstances()) {
+                RecordInstance record = answer.getNextRecordInstance();
+
+                // read and format record content
+                if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
+                    // get genome sequence
+                    String sequence = getValue(record.getAttributeValue("gff_sequence"));
+                    if (sequence != null && sequence.length() > 0) {
+                        // output the sequence
+                        writer.print(sequence);
+                        writer.flush();
+                    }
+                } else if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
+                    boolean hasCached = false;
+                    // get transcript, if needed
+                    if (hasTranscript) {
+                        String sequence = getValue(record.getAttributeValue("gff_transcript_sequence"));
+                        if (sequence != null && sequence.length() > 0) {
+                            String recordId = record.getPrimaryKey().getRecordId();
+                            sequence = formatSequence(recordId, sequence);
+
+                            // check if the record has been cached
+                            psCheck.setString(1,
+                                    record.getPrimaryKey().getRecordId());
+                            if (hasProjectId) {
+                                String projectId = record.getPrimaryKey().getProjectId();
+                                psCheck.setString(2, projectId);
+                            }
+                            ResultSet rs = psCheck.executeQuery();
+                            try {
+                                rs.next();
+                                int count = rs.getInt("cache_count");
+                                if (count > 0) hasCached = true;
+                            } finally {
+                                rs.close();
+                            }
+
+                            // check if needs to insert into cache table
+                            if (tableCache != null && !hasCached) {
+                                // save into table cache
+                                psCache.setString(1, recordId);
+                                psCache.setString(2, transcriptName);
+                                psCache.setInt(3, 1);
+                                platform.updateClobData(psCache, 4, sequence,
+                                        false);
+                                if (hasProjectId) {
+                                    String projectId = record.getPrimaryKey().getProjectId();
+                                    psCache.setString(5, projectId);
+                                }
+                                psCache.executeUpdate();
+                            }
+
+                            // output the sequence
+                            writer.print(sequence);
+                            writer.flush();
+                        }
+                    }
+
+                    // get protein sequence, if needed
+                    if (hasProtein) {
+                        // print CDSs
+                        TableFieldValue cdss = record.getTableValue("GeneGffCdss");
+                        Iterator it = cdss.getRows();
+                        while (it.hasNext()) {
+                            Map<String, Object> row = (Map<String, Object>) it.next();
+
+                            String sequence = getValue(row.get("gff_protein_sequence"));
+                            if (sequence != null && sequence.length() > 0) {
+                                String recordId = record.getPrimaryKey().getRecordId();
+                                String cdsId = readField(row, "gff_attr_id");
+                                sequence = formatSequence(cdsId, sequence);
+
+                                // check if needs to insert into cache table
+                                if (tableCache != null && !hasCached) {
+                                    // save into table cache
+
+                                    psCache.setString(1, recordId);
+                                    psCache.setString(2, proteinName);
+                                    psCache.setInt(3, 1);
+                                    platform.updateClobData(psCache, 4,
+                                            sequence, false);
+                                    if (hasProjectId) {
+                                        String projectId = record.getPrimaryKey().getProjectId();
+                                        psCache.setString(5, projectId);
+                                    }
+                                    psCache.executeUpdate();
+                                }
+
+                                // output the sequence
+                                writer.print(sequence);
+                                writer.flush();
+                            }
+                        }
+                        cdss.getClose();
+                    }
+                } else {
+                    throw new WdkModelException("Unsupported record type: "
+                            + rcName);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                if (psCache != null) psCache.close();
+                if (psCheck != null) psCheck.close();
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
         }
-        String description = readField( object, "gff_attr_description" );
-        if ( description == null ) description = name;
-        try {
-            buffer.append( ";description="
-                    + URLEncoder.encode( description, "utf-8" ) );
-        } catch ( UnsupportedEncodingException ex ) {
-            ex.printStackTrace();
-        }
-        String locusTag = readField( object, "gff_attr_locus_tag" );
-        if ( locusTag != null ) buffer.append( ";locus_tag=" + locusTag );
-        String size = readField( object, "gff_attr_size" );
-        if ( size != null ) buffer.append( ";size=" + size );
     }
-    
-    private String readField( Object object, String field )
+
+    private void readCommonFields(Object object, StringBuffer buffer)
+            throws WdkModelException {
+        buffer.append(readField(object, "gff_seqid") + "\t");
+        buffer.append(readField(object, "gff_source") + "\t");
+        buffer.append(readField(object, "gff_type") + "\t");
+        buffer.append(readField(object, "gff_fstart") + "\t");
+        buffer.append(readField(object, "gff_fend") + "\t");
+        buffer.append(readField(object, "gff_score") + "\t");
+        buffer.append(readField(object, "gff_strand") + "\t");
+        buffer.append(readField(object, "gff_phase") + "\t");
+        String id = readField(object, "gff_attr_id");
+        buffer.append("ID=" + id);
+
+        String name = readField(object, "gff_attr_name");
+        if (name == null) name = id;
+        try {
+            buffer.append(";Name=" + URLEncoder.encode(name, "utf-8"));
+        } catch (UnsupportedEncodingException ex) {
+            ex.printStackTrace();
+        }
+
+        String description = readField(object, "gff_attr_description");
+        if (description == null) description = name;
+        try {
+            buffer.append(";description="
+                    + URLEncoder.encode(description, "utf-8"));
+        } catch (UnsupportedEncodingException ex) {
+            ex.printStackTrace();
+        }
+
+        buffer.append(";size=" + readField(object, "gff_attr_size"));
+    }
+
+    private String readField(Object object, String field)
             throws WdkModelException {
         Object value;
-        if ( object instanceof RecordInstance ) {
-            RecordInstance record = ( RecordInstance ) object;
-            value = record.getAttributeValue( field );
+        if (object instanceof RecordInstance) {
+            RecordInstance record = (RecordInstance) object;
+            value = record.getAttributeValue(field);
         } else {
-            Map< String, Object > row = ( Map< String, Object > ) object;
-            value = row.get( field );
+            Map<String, Object> row = (Map<String, Object>) object;
+            value = row.get(field);
         }
-        return getValue( value );
+        return getValue(value);
     }
-    
-    private String getValue( Object object ) {
+
+    private String getValue(Object object) {
         String value;
-        if ( object instanceof AttributeFieldValue ) {
-            AttributeFieldValue attrVal = ( AttributeFieldValue ) object;
+        if (object == null) {
+            return null;
+        } else if (object instanceof AttributeFieldValue) {
+            AttributeFieldValue attrVal = (AttributeFieldValue) object;
             value = attrVal.getValue().toString();
-        } else if ( object == null ) return null;
-        else {
+        } else {
             value = object.toString();
         }
         value = value.trim();
-        if ( value.length() == 0 ) return null;
+        if (value.length() == 0) return null;
         return value;
     }
-    
-    private String formatSequence( String sequence ) {
-        if ( sequence == null ) return null;
-        
+
+    private String formatSequence(String id, String sequence) {
+        if (sequence == null) return null;
+
         StringBuffer buffer = new StringBuffer();
+        buffer.append(">" + id + NEW_LINE);
         int offset = 0;
-        while ( offset < sequence.length() ) {
-            int endp = offset + Math.min( 60, sequence.length() - offset );
-            buffer.append( sequence.substring( offset, endp ) + newline );
+        while (offset < sequence.length()) {
+            int endp = offset + Math.min(60, sequence.length() - offset);
+            buffer.append(sequence.substring(offset, endp) + NEW_LINE);
             offset = endp;
         }
         return buffer.toString();
