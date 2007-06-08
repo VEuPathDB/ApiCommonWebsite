@@ -91,7 +91,7 @@ public class Gff3Dumper {
         Answer sqlAnswer = seqQuestion.makeAnswer(seqParams, 1, 1);
 
         ByteArrayOutputStream seqOut = new ByteArrayOutputStream();
-        Reporter seqReport = sqlAnswer.createReport("gff3", config);
+        Reporter seqReport = sqlAnswer.createReport("gff3Dump", config);
         seqReport.write(seqOut);
         byte[] seqBuffer = seqOut.toByteArray();
 
@@ -106,7 +106,7 @@ public class Gff3Dumper {
 
         ByteArrayOutputStream geneOut = new ByteArrayOutputStream();
         config.put(Gff3Reporter.FIELD_HAS_PROTEIN, "yes");
-        Reporter geneReport = geneAnswer.createReport("gff3", config);
+        Reporter geneReport = geneAnswer.createReport("gff3Dump", config);
         geneReport.write(geneOut);
         byte[] geneBuffer = geneOut.toByteArray();
 
