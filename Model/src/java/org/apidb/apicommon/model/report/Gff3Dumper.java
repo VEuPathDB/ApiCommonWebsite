@@ -91,7 +91,7 @@ public class Gff3Dumper {
         Answer sqlAnswer = seqQuestion.makeAnswer(seqParams, 1, 1);
 
         ByteArrayOutputStream seqOut = new ByteArrayOutputStream();
-        Reporter seqReport = sqlAnswer.createReport("gff3Dump", config);
+        Reporter seqReport = sqlAnswer.createReport("gff3", config);
         seqReport.write(seqOut);
         byte[] seqBuffer = seqOut.toByteArray();
 
