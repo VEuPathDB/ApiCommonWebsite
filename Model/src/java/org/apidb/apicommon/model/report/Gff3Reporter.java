@@ -79,22 +79,6 @@ public class Gff3Reporter extends Reporter {
         proteinName = properties.get(PROPERTY_GFF_PROTEIN_NAME);
         transcriptName = properties.get(PROPERTY_GFF_TRANSCRIPT_NAME);
 
-        if (recordIdColumn == null || recordIdColumn.length() == 0)
-            throw new WdkModelException("The required property for reporter "
-                    + this.getClass().getName() + ", "
-                    + PROPERTY_RECORD_ID_COLUMN + ", is missing");
-        if (recordName == null || recordName.length() == 0)
-            throw new WdkModelException("The required property for reporter "
-                    + this.getClass().getName() + ", "
-                    + PROPERTY_GFF_RECORD_NAME + ", is missing");
-        if (proteinName == null || proteinName.length() == 0)
-            throw new WdkModelException("The required property for reporter "
-                    + this.getClass().getName() + ", "
-                    + PROPERTY_GFF_PROTEIN_NAME + ", is missing");
-        if (transcriptName == null || transcriptName.length() == 0)
-            throw new WdkModelException("The required property for reporter "
-                    + this.getClass().getName() + ", "
-                    + PROPERTY_GFF_PROTEIN_NAME + ", is missing");
     }
 
     /*
@@ -251,19 +235,22 @@ public class Gff3Reporter extends Reporter {
                 String content = recordBuffer.toString();
 
                 // check if the record has been cached
-                psCheck.setString(1, record.getPrimaryKey().getRecordId());
-                if (hasProjectId) {
-                    String projectId = record.getPrimaryKey().getProjectId();
-                    psCheck.setString(2, projectId);
-                }
                 boolean hasCached = false;
-                ResultSet rs = psCheck.executeQuery();
-                try {
-                    rs.next();
-                    int count = rs.getInt("cache_count");
-                    if (count > 0) hasCached = true;
-                } finally {
-                    rs.close();
+
+                if (tableCache != null) {
+                    psCheck.setString(1, record.getPrimaryKey().getRecordId());
+                    if (hasProjectId) {
+                        String projectId = record.getPrimaryKey().getProjectId();
+                        psCheck.setString(2, projectId);
+                    }
+                    ResultSet rs = psCheck.executeQuery();
+                    try {
+                        rs.next();
+                        int count = rs.getInt("cache_count");
+                        if (count > 0) hasCached = true;
+                    } finally {
+                        rs.close();
+                    }
                 }
 
                 // check if needs to insert into cache table
@@ -493,19 +480,21 @@ public class Gff3Reporter extends Reporter {
                             sequence = formatSequence(recordId, sequence);
 
                             // check if the record has been cached
-                            psCheck.setString(1,
+                            if (tableCache != null) {
+                                psCheck.setString(1,
                                     record.getPrimaryKey().getRecordId());
-                            if (hasProjectId) {
-                                String projectId = record.getPrimaryKey().getProjectId();
-                                psCheck.setString(2, projectId);
-                            }
-                            ResultSet rs = psCheck.executeQuery();
-                            try {
-                                rs.next();
-                                int count = rs.getInt("cache_count");
-                                if (count > 0) hasCached = true;
-                            } finally {
-                                rs.close();
+                                if (hasProjectId) {
+                                    String projectId = record.getPrimaryKey().getProjectId();
+                                    psCheck.setString(2, projectId);
+                                }
+                                ResultSet rs = psCheck.executeQuery();
+                                try {
+                                    rs.next();
+                                    int count = rs.getInt("cache_count");
+                                    if (count > 0) hasCached = true;
+                                } finally {
+                                    rs.close();
+                                }
                             }
 
                             // check if needs to insert into cache table
