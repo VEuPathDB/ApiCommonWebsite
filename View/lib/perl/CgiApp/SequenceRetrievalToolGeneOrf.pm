@@ -12,8 +12,13 @@ my $START = 'Start';
 my $END = 'End';
 
 ##
-## NOTE: this SRT makes the icky assumption that there is a 1-1 relationship between genes and 
+## PROBLEM NOTE: this SRT makes the icky assumption that there is a 1-1 relationship between genes and 
 ## proteins, transcripts and CDSs.
+##
+## PROBLEM NOTE: the ORF queries are not robust:  they assume that source_id is unique in 
+## dots.miscellaneous and that the translation of the orf has the same source_id
+##
+## PROBLEM NOTE: the queries for the portal also rely on dubious source_id joins
 ##
 
 sub run {
@@ -78,7 +83,10 @@ sub processParams {
     unless $self->{downstreamOffset} =~ /^-?\d+$/;
 }
 
-my $geneProteinSql = <<EOSQL;
+my $componentSql;
+my $portalSql;
+
+$componentSql->{geneProteinSql} = <<EOSQL;
 SELECT gf.source_id, tas.sequence, gf.product, tn.name
 FROM   dots.translatedaasequence tas, dots.genefeature gf, sres.taxonname tn,
        dots.translatedaafeature taf, dots.transcript t, apidb.geneid gi
@@ -91,7 +99,7 @@ AND tas.taxon_id = tn.taxon_id
 AND tn.name_class = 'scientific name'
 EOSQL
 
-my $orfProteinSql = <<EOSQL;
+$componentSql->{orfProteinSql} = <<EOSQL;
 SELECT misc.source_id, tas.sequence,
        tas.description as product,
        tn.name
@@ -106,7 +114,7 @@ WHERE misc.source_id = ?
   AND tn.name_class = 'scientific name'
 EOSQL
 
-my $transcriptSql = <<EOSQL;
+$componentSql->{transcriptSql} = <<EOSQL;
 SELECT gf.source_id, sns.sequence, gf.product, tn.name
 FROM dots.SplicedNaSequence sns,  dots.genefeature gf,
      sres.taxonname tn, dots.transcript t, apidb.geneid gi
@@ -118,7 +126,7 @@ AND sns.taxon_id = tn.taxon_id
 AND tn.name_class = 'scientific name'
 EOSQL
 
-my $cdsSql = <<EOSQL;
+$componentSql->{cdsSql} = <<EOSQL;
 SELECT gf.source_id, SUBSTR(s.sequence,
               tf.translation_start,
               tf.translation_stop - tf.translation_start + 1)
@@ -135,18 +143,62 @@ AND s.taxon_id = tn.taxon_id
 AND tn.name_class = 'scientific name'
 EOSQL
 
+$portalSql->{geneProteinSql} = <<EOSQL;
+SELECT bfmv.source_id, tas.sequence, bfmv.product, bfmv.organism
+FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv, apidb.geneid gi
+WHERE gi.id = ?
+AND bfmv.source_id = gi.gene
+AND tas.source_id = bfmv.source_id
+EOSQL
+
+$portalSql->{orfProteinSql} = <<EOSQL;
+SELECT  bfmv.source_id, tas.sequence,
+       CASE bfmv.is_reversed 
+	   WHEN 0 THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
+	   ELSE 'nt ' || bfmv.end_max || '-' || bfmv.start_min || ' of ' || bfmv.nas_id 
+       END as product,
+       bfmv.organism
+FROM apidb.orfattributes bfmv, dots.translatedaasequence tas
+WHERE tas.source_id = ?
+AND bfmv.source_id = tas.source_id
+EOSQL
+
+$portalSql->{transcriptSql} = <<EOSQL;
+SELECT sns.sequence, bfmv.product, bfmv.organism
+FROM dots.splicednasequence sns, apidb.geneattributes bfmv, sres.sequenceontology so,
+     dots.externalnasequence s, apidb.geneid gi
+WHERE gi.id = lower(?)
+AND bfmv.source_id = gi.gene
+AND s.source_id = bfmv.sequence_id
+AND sns.source_id = bfmv.source_id
+AND so.sequence_ontology_id = sns.sequence_ontology_id
+AND so.term_name = 'processed_transcript'
+EOSQL
+
+$portalSql->{cdsSql} = <<EOSQL;
+SELECT s.sequence, bfmv.product, bfmv.organism
+FROM apidb.geneattributes bfmv, dots.splicednasequence s, sres.sequenceontology so,
+     apidb.geneid gi
+WHERE gi.id = lower(?)
+AND bfmv.source_id = gi.gene
+AND s.source_id = bfmv.source_id
+AND so.sequence_ontology_id = s.sequence_ontology_id
+AND so.term_name = 'CDS'
+EOSQL
 
 sub handleNonGenomic {
   my ($self, $dbh, $seqIO) = @_;
 
   my $sql;
   my $type = $self->{type};
+  my $site = $self->{isApiDB}? $portalSql : $componentSql;
   if ($type eq "protein") {
-      $sql = $self->{geneOrOrf} eq 'gene'? $geneProteinSql : $orfProteinSql;
+      $sql = $self->{geneOrOrf} eq 'gene'?
+	$site->{geneProteinSql} : $site->{orfProteinSql};
   } elsif ($type eq "processed_transcript") {
-      $sql = $transcriptSql;
+      $sql = $site->{transcriptSql};
   } else { # CDS
-      $sql = $cdsSql;
+      $sql = $site->{cdsSql};
   }
   if ($type eq 'processed_transcript') {
     $type = 'processed transcript';
@@ -180,7 +232,7 @@ sub handleGenomic {
   my $startRev = "least(l.$beginAnchRev - $beginOffset, l.$endAnchRev - $endOffset)";
   my $endRev = "greatest(l.$beginAnchRev - $beginOffset, l.$endAnchRev - $endOffset)";
 
-  my $geneGenomicSql = <<EOSQL;
+$componentSql->{geneGenomicSql} = <<EOSQL;
 select gf.source_id, s.source_id, tn.name, gf.product, l.start_min, l.end_max, l.is_reversed, 
      CASE WHEN l.is_reversed = 1
      THEN substr(s.sequence, $startRev, ($endRev - $startRev + 1))
@@ -196,7 +248,7 @@ AND tn.taxon_id = s.taxon_id
 AND tn.name_class = 'scientific name'
 EOSQL
 
-  my $orfGenomicSql = <<EOSQL;
+$componentSql->{orfGenomicSql} = <<EOSQL;
 select misc.source_id, s.source_id, tn.name, '', l.start_min, l.end_max, l.is_reversed, 
      CASE WHEN l.is_reversed = 1
      THEN substr(s.sequence, $startRev, ($endRev - $startRev + 1))
@@ -209,14 +261,45 @@ AND l.na_feature_id = misc.na_feature_id
 AND s.na_sequence_id = misc.na_sequence_id
 AND tn.taxon_id = s.taxon_id
 AND tn.name_class = 'scientific name'
+EOSQL
 
+$portalSql->{geneGenomicSql} = <<EOSQL;
+select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product, bfmv.start_min, bfmv.end_max,
+     DECODE(gf.strand,'reverse',1,'forward',0) as is_reversed,
+     CASE WHEN l.is_reversed = 1
+     THEN substr(s.sequence, $startRev, ($endRev - $startRev + 1))
+     ELSE substr(s.sequence, $start, ($end - $start + 1))
+     END as sequence
+FROM apidb.geneattributes bfmv, apidb.geneid gi,
+     dots.externalNaSequence s
+WHERE gi.id = lower(?)
+AND bfmv.source_id = gi.gene
+AND s.source_id = bfmv.sequence_id
+EOSQL
+
+$portalSql->{orfGenomicSql} = <<EOSQL;
+select bfmv.source_id, s.source_id, bfmv.organism, 
+     CASE bfmv.is_reversed
+     WHEN 0 THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
+     ELSE 'nt ' || bfmv.end_max || '-' || bfmv.start_min || ' of ' || bfmv.nas_id 
+     END as product,
+     bfmv.start_min, bfmv.end_max,
+     DECODE(gf.strand,'reverse',1,'forward',0) as is_reversed,
+     CASE WHEN l.is_reversed = 1
+     THEN substr(s.sequence, $startRev, ($endRev - $startRev + 1))
+     ELSE substr(s.sequence, $start, ($end - $start + 1))
+     END as sequence
+FROM apidb.orfattributes bfmv, dots.externalNaSequence s
+WHERE bfmv.source_id = ?
+AND s.source_id = bfmv.sequence_id
 EOSQL
 
   my $sql;
+  my $site = $self->{isApiDB}? $portalSql : $componentSql;
   if ($self->{geneOrOrf} eq "gene") {
-      $sql = $geneGenomicSql;
+      $sql = $site->{geneGenomicSql};
   } else {
-      $sql = $orfGenomicSql;
+      $sql = $site->{orfGenomicSql};
   }
 
 #     (SELECT na_sequence_id, taxon_id, source_id, sequence
