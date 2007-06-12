@@ -460,6 +460,7 @@ public class Gff3Reporter extends Reporter {
 
             while (answer.hasMoreRecordInstances()) {
                 RecordInstance record = answer.getNextRecordInstance();
+                String recordId = record.getPrimaryKey().getRecordId();
 
                 // read and format record content
                 if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
@@ -476,7 +477,6 @@ public class Gff3Reporter extends Reporter {
                     if (hasTranscript) {
                         String sequence = getValue(record.getAttributeValue("gff_transcript_sequence"));
                         if (sequence != null && sequence.length() > 0) {
-                            String recordId = record.getPrimaryKey().getRecordId();
                             sequence = formatSequence(recordId, sequence);
 
                             // check if the record has been cached
@@ -520,16 +520,24 @@ public class Gff3Reporter extends Reporter {
 
                     // get protein sequence, if needed
                     if (hasProtein) {
-                        // print CDSs
+                        // get the first CDS id
+                        String cdsId = null;
                         TableFieldValue cdss = record.getTableValue("GeneGffCdss");
                         Iterator it = cdss.getRows();
+                        if (it.hasNext()) {
+                            Map<String, Object> row = (Map<String, Object>) it.next();
+                            cdsId = readField(row, "gff_attr_id");
+                        }
+                        cdss.getClose();
+                        
+                        // print CDSs
+                        TableFieldValue rnas = record.getTableValue("GeneGffRnas");
+                        it = rnas.getRows();
                         while (it.hasNext()) {
                             Map<String, Object> row = (Map<String, Object>) it.next();
 
                             String sequence = getValue(row.get("gff_protein_sequence"));
-                            if (sequence != null && sequence.length() > 0) {
-                                String recordId = record.getPrimaryKey().getRecordId();
-                                String cdsId = readField(row, "gff_attr_id");
+                            if (cdsId != null && sequence != null && sequence.length() > 0) {
                                 sequence = formatSequence(cdsId, sequence);
 
                                 // check if needs to insert into cache table
@@ -553,7 +561,7 @@ public class Gff3Reporter extends Reporter {
                                 writer.flush();
                             }
                         }
-                        cdss.getClose();
+                        rnas.getClose();
                     }
                 } else {
                     throw new WdkModelException("Unsupported record type: "
