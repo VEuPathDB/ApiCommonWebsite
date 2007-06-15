@@ -54,8 +54,8 @@ public class Gff3Reporter extends Reporter {
     private String proteinName;
     private String transcriptName;
 
-    private boolean hasTranscript = true;
-    private boolean hasProtein = true;
+    private boolean hasTranscript = false;
+    private boolean hasProtein = false;
 
     public Gff3Reporter(Answer answer) {
         super(answer);
