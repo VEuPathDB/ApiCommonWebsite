@@ -12,19 +12,27 @@
    <record>
        <attribute name="title">Introduction</attribute>
        <attribute name="description">Introduction to the PlasmoDB functionality.</attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">Intro_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:33 minutes</attribute>
-       <attribute name="size">15.2 mb</attribute>
+       <table name="files">
+         <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">Intro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:33 minutes</attribute>
+           <attribute name="size">15.2 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
        <attribute name="title">Queries and Tools</attribute>
        <attribute name="description">Introduction to the PlasmoDB queries and tools.</attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:12 minutes</attribute>
-       <attribute name="size">20 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:12 minutes</attribute>
+           <attribute name="size">20 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -32,10 +40,20 @@
        <attribute name="description">
          Using the query history to combine queries.
        </attribute>
-       <attribute name="projects">PlasmoDB,ApiDB,CryptoDB,ToxoDB</attribute>
-       <attribute name="fileName">QueryHistory_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:47 minutes</attribute>
-       <attribute name="size">5 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">QueryHistory_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:47 minutes</attribute>
+           <attribute name="size">5 mb</attribute>
+         </row>
+          <row>
+           <attribute name="projects">ApiDB,CryptoDB,ToxoDB</attribute>
+           <attribute name="fileName">QueryHistory_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:47 minutes</attribute>
+           <attribute name="size">5 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -44,10 +62,14 @@
           Query to identify genes that are potential vaccine targets. 
           Query includes secreted proteins, phylogenetic profile and expression profile queries.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">VaccineCandidate_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:54 minutes</attribute>
-       <attribute name="size">17.9 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">VaccineCandidate_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:54 minutes</attribute>
+           <attribute name="size">17.9 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -56,10 +78,14 @@
           Query to identify genes that are potential vaccine targets. 
           Query includes secreted proteins, phylogenetic profile, SNPs and expression profile queries.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">VaccineCAndidateWithSNPData_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:35 minutes</attribute>
-       <attribute name="size">5.5 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">VaccineCAndidateWithSNPData_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:35 minutes</attribute>
+           <attribute name="size">5.5 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -68,10 +94,14 @@
           Query to identify genes that are candidate drug targets. 
           Query includes expression profile, proteomics evidence and GO function queries.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">DrugTarget_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">2:01 minutes</attribute>
-       <attribute name="size">7.7 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">DrugTarget_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">2:01 minutes</attribute>
+           <attribute name="size">7.7 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -80,10 +110,14 @@
           Query to identify genes that are candidate drug targets. 
           Query includes expression profile, proteomics evidence, GO function  and SNP queries.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">DrugTargetWithSNPData_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:41 minutes</attribute>
-       <attribute name="size">6.1 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">DrugTargetWithSNPData_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:41 minutes</attribute>
+           <attribute name="size">6.1 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -91,10 +125,14 @@
        <attribute name="description">
           Using the Download section to download query results and sequence data.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">DownloadResults_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">2:21 minutes</attribute>
-       <attribute name="size">25.9 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">DownloadResults_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">2:21 minutes</attribute>
+           <attribute name="size">25.9 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -102,10 +140,14 @@
        <attribute name="description">
           Overview of features in the Genome Browser.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:29 minutes</attribute>
-       <attribute name="size">24.2 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:29 minutes</attribute>
+           <attribute name="size">24.2 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -113,10 +155,14 @@
        <attribute name="description">
           How to use a List of Gene Identifiers as Input to a Query.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">ListOfIDs_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">0:46 minutes</attribute>
-       <attribute name="size">3.2 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">ListOfIDs_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">0:46 minutes</attribute>
+           <attribute name="size">3.2 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -124,10 +170,14 @@
        <attribute name="description">
          <![CDATA[Query to identify local and global protein interactions for <i>P. facliparum</i>.]]>
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">PredictedInteraction_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:26 minutes</attribute>
-       <attribute name="size">5.6 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">PredictedInteraction_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:26 minutes</attribute>
+           <attribute name="size">5.6 mb</attribute>
+         </row>
+       </table>
    </record>
 
    <record>
@@ -135,10 +185,14 @@
        <attribute name="description">
          Learn how to manage columns displayed in query results; adding columns, sorting columns and changing the column ordering.
        </attribute>
-       <attribute name="projects">PlasmoDB</attribute>
-       <attribute name="fileName">ColumnManagement_PlasmoDB_5.3.mov</attribute>
-       <attribute name="duration">1:12 minutes</attribute>
-       <attribute name="size">8.3 mb</attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">ColumnManagement_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:12 minutes</attribute>
+           <attribute name="size">8.3 mb</attribute>
+         </row>
+       </table>
    </record>
 
 </xmlAnswer>
