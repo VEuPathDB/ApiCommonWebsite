@@ -468,6 +468,7 @@ public class Gff3Reporter extends Reporter {
                     String sequence = getValue(record.getAttributeValue("gff_sequence"));
                     if (sequence != null && sequence.length() > 0) {
                         // output the sequence
+                        sequence = formatSequence(recordId, sequence);
                         writer.print(sequence);
                         writer.flush();
                     }
