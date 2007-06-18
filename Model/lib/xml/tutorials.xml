@@ -19,6 +19,18 @@
            <attribute name="duration">1:33 minutes</attribute>
            <attribute name="size">15.2 mb</attribute>
          </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">Intro_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">1:19 minutes</attribute>
+           <attribute name="size">8.9 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">Intro_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">1:25 minutes</attribute>
+           <attribute name="size">12.4 mb</attribute>
+         </row>
        </table>
    </record>
 
@@ -31,6 +43,12 @@
            <attribute name="fileName">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
            <attribute name="duration">1:12 minutes</attribute>
            <attribute name="size">20 mb</attribute>
+         </row>
+	  <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">QueriesAndTools_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">1:17 minutes</attribute>
+           <attribute name="size">20.7 mb</attribute>
          </row>
        </table>
    </record>
@@ -48,10 +66,16 @@
            <attribute name="size">5 mb</attribute>
          </row>
           <row>
-           <attribute name="projects">ApiDB,CryptoDB,ToxoDB</attribute>
-           <attribute name="fileName">QueryHistory_PlasmoDB_5.3.mov</attribute>
-           <attribute name="duration">1:47 minutes</attribute>
-           <attribute name="size">5 mb</attribute>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">QueryHistory_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">1:18 minutes</attribute>
+           <attribute name="size">15.2 mb</attribute>
+         </row>
+	  <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">QueryHistory_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">1:05 minutes</attribute>
+           <attribute name="size">4.1 mb</attribute>
          </row>
        </table>
    </record>
@@ -81,7 +105,7 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">VaccineCAndidateWithSNPData_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName">VaccineCandidateWithSNPData_PlasmoDB_5.3.mov</attribute>
            <attribute name="duration">1:35 minutes</attribute>
            <attribute name="size">5.5 mb</attribute>
          </row>
@@ -132,6 +156,12 @@
            <attribute name="duration">2:21 minutes</attribute>
            <attribute name="size">25.9 mb</attribute>
          </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">DownloadResults_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">2:15 minutes</attribute>
+           <attribute name="size">14.9 mb</attribute>
+         </row>
        </table>
    </record>
 
@@ -147,6 +177,12 @@
            <attribute name="duration">1:29 minutes</attribute>
            <attribute name="size">24.2 mb</attribute>
          </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">1:32 minutes</attribute>
+           <attribute name="size">15.2 mb</attribute>
+         </row>
        </table>
    </record>
 
@@ -161,6 +197,18 @@
            <attribute name="fileName">ListOfIDs_PlasmoDB_5.3.mov</attribute>
            <attribute name="duration">0:46 minutes</attribute>
            <attribute name="size">3.2 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">ListOfIDs_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">0:50 minutes</attribute>
+           <attribute name="size">4 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ToxooDB</attribute>
+           <attribute name="fileName">ListOfIDs_ToxoDB_5.3.mov</attribute>
+           <attribute name="duration">0:44 minutes</attribute>
+           <attribute name="size">2.7 mb</attribute>
          </row>
        </table>
    </record>
@@ -192,7 +240,32 @@
            <attribute name="duration">1:12 minutes</attribute>
            <attribute name="size">8.3 mb</attribute>
          </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">ColumnManagement_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">0:55 minutes</attribute>
+           <attribute name="size">3.6 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CyrptoDB</attribute>
+           <attribute name="fileName">ColumnManagement_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">1:05 minutes</attribute>
+           <attribute name="size">5.5 mb</attribute>
+         </row>
        </table>
    </record>
-
+    <record>
+       <attribute name="title">Expression Queries for ToxoDB</attribute>
+       <attribute name="description">
+          Query to identify differential expression amongst strains (RH, Prugniaud, VEG) or within the RH (Type I) grown in either high glucose or no glucose. Query to determine the expression percentile of genes from either the RH, Prugniaud or VEG strains.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">ExpressionQueries_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">1:45 minutes</attribute>
+           <attribute name="size">12.9 mb</attribute>
+         </row>
+       </table>
+   </record>
 </xmlAnswer>
