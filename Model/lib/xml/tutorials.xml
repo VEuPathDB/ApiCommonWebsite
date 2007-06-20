@@ -11,7 +11,7 @@
 
    <record>
        <attribute name="title">Introduction</attribute>
-       <attribute name="description">Introduction to the PlasmoDB functionality.</attribute>
+       <attribute name="description">Introduction to the site's functionality.</attribute>
        <table name="files">
          <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -36,7 +36,7 @@
 
    <record>
        <attribute name="title">Queries and Tools</attribute>
-       <attribute name="description">Introduction to the PlasmoDB queries and tools.</attribute>
+       <attribute name="description">Introduction to the queries and tools.</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -205,7 +205,7 @@
            <attribute name="size">4 mb</attribute>
          </row>
 	 <row>
-           <attribute name="projects">ToxooDB</attribute>
+           <attribute name="projects">ToxoDB</attribute>
            <attribute name="fileName">ListOfIDs_ToxoDB_5.3.mov</attribute>
            <attribute name="duration">0:44 minutes</attribute>
            <attribute name="size">2.7 mb</attribute>
