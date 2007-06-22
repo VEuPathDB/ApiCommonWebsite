@@ -31,6 +31,12 @@
            <attribute name="duration">1:25 minutes</attribute>
            <attribute name="size">12.4 mb</attribute>
          </row>
+          <row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName">Intro_ApiDB.mov</attribute>
+           <attribute name="duration">2:51 minutes</attribute>
+           <attribute name="size">14.5 mb</attribute>
+         </row>
        </table>
    </record>
 
@@ -49,6 +55,12 @@
            <attribute name="fileName">QueriesAndTools_CryptoDB_3.5.mov</attribute>
            <attribute name="duration">1:17 minutes</attribute>
            <attribute name="size">20.7 mb</attribute>
+         </row>
+         <row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName">QueriesAndTools_ApiDB.mov</attribute>
+           <attribute name="duration">3:57 minutes</attribute>
+           <attribute name="size">15.7 mb</attribute>
          </row>
        </table>
    </record>
@@ -76,6 +88,12 @@
            <attribute name="fileName">QueryHistory_CryptoDB_3.5.mov</attribute>
            <attribute name="duration">1:05 minutes</attribute>
            <attribute name="size">4.1 mb</attribute>
+         </row>
+<row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName">QueryHistory_ApiDB.mov</attribute>
+           <attribute name="duration">1:57 minutes</attribute>
+           <attribute name="size">4.5 mb</attribute>
          </row>
        </table>
    </record>
@@ -206,7 +224,7 @@
          </row>
 	 <row>
            <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">ListOfIDs_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName">ListOfIDs_ToxoDB_5.3.mov</attribute>
            <attribute name="duration">0:44 minutes</attribute>
            <attribute name="size">2.7 mb</attribute>
          </row>
@@ -251,6 +269,12 @@
            <attribute name="fileName">ColumnManagement_CryptoDB_3.5.mov</attribute>
            <attribute name="duration">1:05 minutes</attribute>
            <attribute name="size">5.5 mb</attribute>
+         </row>
+<row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName">ColumnManagement_ApiDB.mov</attribute>
+           <attribute name="duration">2:25 minutes</attribute>
+           <attribute name="size">6.4 mb</attribute>
          </row>
        </table>
    </record>
