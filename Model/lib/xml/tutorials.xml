@@ -89,14 +89,131 @@
            <attribute name="duration">1:05 minutes</attribute>
            <attribute name="size">4.1 mb</attribute>
          </row>
-<row>
+	 <row>
            <attribute name="projects">ApiDB.org</attribute>
            <attribute name="fileName">QueryHistory_ApiDB.mov</attribute>
-           <attribute name="duration">1:57 minutes</attribute>
-           <attribute name="size">4.5 mb</attribute>
+           <attribute name="duration">3:02 minutes</attribute>
+           <attribute name="size">9.3 mb</attribute>
          </row>
        </table>
    </record>
+
+   <record>
+       <attribute name="title">Introduction to the Genome Browser</attribute>
+       <attribute name="description">
+          Overview of features in the Genome Browser.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:29 minutes</attribute>
+           <attribute name="size">24.2 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">1:32 minutes</attribute>
+           <attribute name="size">15.2 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+   <record>
+       <attribute name="title">Options to Download Results</attribute>
+       <attribute name="description">
+          Using the Download section to download query results and sequence data.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">DownloadResults_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">2:21 minutes</attribute>
+           <attribute name="size">25.9 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">DownloadResults_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">2:15 minutes</attribute>
+           <attribute name="size">14.9 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ApiDB</attribute>
+           <attribute name="fileName">DownloadResults_ApiDB</attribute>
+           <attribute name="duration">2:25 minutes</attribute>
+           <attribute name="size">14.3 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+   <record>
+       <attribute name="title">List of Gene Identifiers as Query Input</attribute>
+       <attribute name="description">
+          How to use a List of Gene Identifiers as Input to a Query.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">ListOfIDs_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">0:46 minutes</attribute>
+           <attribute name="size">3.2 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">ListOfIDs_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">0:50 minutes</attribute>
+           <attribute name="size">4 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">ListOfIDs_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">0:44 minutes</attribute>
+           <attribute name="size">2.7 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ApiDB</attribute>
+           <attribute name="fileName">ListOfIDs_ApiDB.mov</attribute>
+           <attribute name="duration">1:40 minutes</attribute>
+           <attribute name="size">7.1 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+   <record>
+       <attribute name="title">Query Result Column Management</attribute>
+       <attribute name="description">
+         Learn how to manage columns displayed in query results; adding columns, sorting columns and changing the column ordering.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName">ColumnManagement_PlasmoDB_5.3.mov</attribute>
+           <attribute name="duration">1:12 minutes</attribute>
+           <attribute name="size">8.3 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName">ColumnManagement_ToxoDB_4.2.mov</attribute>
+           <attribute name="duration">0:55 minutes</attribute>
+           <attribute name="size">3.6 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName">ColumnManagement_CryptoDB_3.5.mov</attribute>
+           <attribute name="duration">1:05 minutes</attribute>
+           <attribute name="size">5.5 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName">ColumnManagement_ApiDB.mov</attribute>
+           <attribute name="duration">2:25 minutes</attribute>
+           <attribute name="size">6.4 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+
 
    <record>
        <attribute name="title">Candidate Vaccine Targets Query</attribute>
@@ -163,75 +280,6 @@
    </record>
 
    <record>
-       <attribute name="title">Options to Download Results</attribute>
-       <attribute name="description">
-          Using the Download section to download query results and sequence data.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">DownloadResults_PlasmoDB_5.3.mov</attribute>
-           <attribute name="duration">2:21 minutes</attribute>
-           <attribute name="size">25.9 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">DownloadResults_ToxoDB_4.2.mov</attribute>
-           <attribute name="duration">2:15 minutes</attribute>
-           <attribute name="size">14.9 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
-       <attribute name="title">Introduction to the Genome Browser</attribute>
-       <attribute name="description">
-          Overview of features in the Genome Browser.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
-           <attribute name="duration">1:29 minutes</attribute>
-           <attribute name="size">24.2 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
-           <attribute name="duration">1:32 minutes</attribute>
-           <attribute name="size">15.2 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
-       <attribute name="title">List of Gene Identifiers as Query Input</attribute>
-       <attribute name="description">
-          How to use a List of Gene Identifiers as Input to a Query.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">ListOfIDs_PlasmoDB_5.3.mov</attribute>
-           <attribute name="duration">0:46 minutes</attribute>
-           <attribute name="size">3.2 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">ListOfIDs_CryptoDB_3.5.mov</attribute>
-           <attribute name="duration">0:50 minutes</attribute>
-           <attribute name="size">4 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">ListOfIDs_ToxoDB_4.2.mov</attribute>
-           <attribute name="duration">0:44 minutes</attribute>
-           <attribute name="size">2.7 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
        <attribute name="title">Predicted Protein Interaction</attribute>
        <attribute name="description">
          <![CDATA[Query to identify local and global protein interactions for <i>P. facliparum</i>.]]>
@@ -246,38 +294,8 @@
        </table>
    </record>
 
-   <record>
-       <attribute name="title">Query Result Column Management</attribute>
-       <attribute name="description">
-         Learn how to manage columns displayed in query results; adding columns, sorting columns and changing the column ordering.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">ColumnManagement_PlasmoDB_5.3.mov</attribute>
-           <attribute name="duration">1:12 minutes</attribute>
-           <attribute name="size">8.3 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">ColumnManagement_ToxoDB_4.2.mov</attribute>
-           <attribute name="duration">0:55 minutes</attribute>
-           <attribute name="size">3.6 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">ColumnManagement_CryptoDB_3.5.mov</attribute>
-           <attribute name="duration">1:05 minutes</attribute>
-           <attribute name="size">5.5 mb</attribute>
-         </row>
-<row>
-           <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName">ColumnManagement_ApiDB.mov</attribute>
-           <attribute name="duration">2:25 minutes</attribute>
-           <attribute name="size">6.4 mb</attribute>
-         </row>
-       </table>
-   </record>
+
+
     <record>
        <attribute name="title">Expression Queries for ToxoDB</attribute>
        <attribute name="description">
