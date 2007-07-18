@@ -570,19 +570,20 @@ public class CommentFactory {
     	
     	//TODO: Are we being oracle specific by using regexp_replace?? 
     	String getCommentsSql = "SELECT DISTINCT '', substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
-    						+ " gf.source_id, regexp_replace(c.content, '[[:space:]]', ' ') "
-    						+ " FROM userLogins.users" + config.getProjectDbLink() + " u, "
-							+ config.getCommentSchema() + ".comments" + config.getProjectDbLink() 
-							+ " c, DoTS.GeneFeature gf, DoTS.NaSequence ns, SRes.TaxonName tn "
-    						+ " WHERE u.email = c.email "
-    						+ " AND c.comment_target_id='gene' "
-    						+ " AND c.stable_id = gf.source_id "
-    						+ " AND c.review_status_id != 'rejected' "
-    						+ " AND gf.na_sequence_id = ns.na_sequence_id "
-    						+ " AND ns.taxon_id = tn.taxon_id "
-    						+ " AND tn.name_class = 'scientific name' "
-    						+ " ORDER BY substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), gf.source_id, "
-    						+ " regexp_replace(c.content, '[[:space:]]', ' ') ";
+	    + " gf.source_id, "
+	    + " regexp_replace(c.content || ' (' || u.first_name || ' ' || u.last_name || ')', '[[:space:]]', ' ') "
+	    + " FROM userLogins.users" + config.getProjectDbLink() + " u, "
+	    + config.getCommentSchema() + ".comments" + config.getProjectDbLink() 
+	    + " c, DoTS.GeneFeature gf, DoTS.NaSequence ns, SRes.TaxonName tn "
+	    + " WHERE u.email = c.email "
+	    + " AND c.comment_target_id='gene' "
+	    + " AND c.stable_id = gf.source_id "
+	    + " AND c.review_status_id != 'rejected' "
+	    + " AND gf.na_sequence_id = ns.na_sequence_id "
+	    + " AND ns.taxon_id = tn.taxon_id "
+	    + " AND tn.name_class = 'scientific name' "
+	    + " ORDER BY substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), gf.source_id, "
+	    + " regexp_replace(c.content, '[[:space:]]', ' ') ";
     	
     	try {
     		ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
