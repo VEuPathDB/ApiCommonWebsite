@@ -583,7 +583,7 @@ public class CommentFactory {
 	    + " AND ns.taxon_id = tn.taxon_id "
 	    + " AND tn.name_class = 'scientific name' "
 	    + " ORDER BY substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), gf.source_id, "
-	    + " regexp_replace(c.content, '[[:space:]]', ' ') ";
+	    + " regexp_replace(c.content || ' (' || u.first_name || ' ' || u.last_name || ')', '[[:space:]]', ' ') ";
     	
     	try {
     		ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
