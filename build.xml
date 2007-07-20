@@ -118,11 +118,16 @@
  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
+
     <ant target="defaultWebComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
 
+    <available file="${webappTargetDir}/WEB-INF/classes/logging.properties" property="juliLog.present"/>
+<echo>julilog present: ${juliLog.present}</echo>
+    <antcall target="setJuliLog"/>
+    
     <!-- get the orginal gbrowse_img code and patch it -->
     <copy file="${projectsDir}/ApiCommonWebsite/Site/cgi-bin/gbrowse_img_1_64" 
           tofile="${cgibinTargetDir}/gbrowse_img" overwrite="true"/>
@@ -174,6 +179,13 @@
       link="${targetDir}/config/web.xml" resource="${webappTargetDir}/WEB-INF/web.xml"/>
 
   </target>
+
+  <target name="setJuliLog" if="juliLog.present">
+    <dirname  property="webappDir" file="${webappTargetDir}"/>
+    <basename property="webapp" file="${webappDir}"/>
+    <replace file="${webappTargetDir}/WEB-INF/classes/logging.properties" token="@WEBAPP@" value="${webapp}"/>
+  </target>
+  
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
