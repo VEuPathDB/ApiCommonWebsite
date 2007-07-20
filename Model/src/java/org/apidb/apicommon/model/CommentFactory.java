@@ -567,7 +567,9 @@ public class CommentFactory {
     public void extractCommentsTextSearchFile (File commentsFile) {
     	
     	DataSource dataSource = platform.getDataSource();
-    	
+
+    	logger.info("extracting flatfile " + commentsFile);
+
     	//TODO: Are we being oracle specific by using regexp_replace?? 
     	String getCommentsSql = "SELECT DISTINCT '', substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
 	    + " gf.source_id, "
@@ -585,6 +587,8 @@ public class CommentFactory {
 	    + " ORDER BY substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), gf.source_id, "
 	    + " regexp_replace(c.content || ' (' || u.first_name || ' ' || u.last_name || ')', '[[:space:]]', ' ') ";
     	
+	logger.info("flatfile extraction SQL: " + getCommentsSql);
+
     	try {
     		ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
     		FileWriter fw = new FileWriter (commentsFile);
