@@ -180,7 +180,7 @@ sub getSimpleValues {
 	 $_sh->finish();
 
    if ($rows_n == 0) {
-      print STDERR join("\t", ref $Self, 'no rows returned for query', $Self->getName(), $_sql);
+      die join("\t", ref $Self, 'no rows returned for query', $Self->getName(), $_sql);
    }
 
 	 return wantarray ? @Rv : \@Rv;
@@ -251,7 +251,7 @@ sub getCollatedValues {
 	 $_sh->finish();
 
    if ($rows_n == 0) {
-      print STDERR join("\t", ref $Self, 'no rows returned for query', $Self->getName(), $_sql);
+      die join("\t", ref $Self, 'no rows returned for query', $Self->getName(), $_sql);
    }
 
 	 # re-format table to rows
