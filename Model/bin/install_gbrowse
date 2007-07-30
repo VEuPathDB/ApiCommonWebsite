@@ -79,7 +79,7 @@ configure_gb() {
     
     cd $BUILD_DIR
     
-    perl Makefile.PL HTDOCS=$webappTargetDir    \
+    perl Makefile.PL HTDOCS=$htdocsTargetDir    \
                      CONF=$confTargetDir        \
                      CGIBIN=$cgibinTargetDir    \
                      LIB=$cgilibTargetDir       \
