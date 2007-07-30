@@ -60,7 +60,7 @@ sub resolveOracleDSN {
 sub resolveOracleAlias {
     my ($class, $alias) = @_;
     return qx{ 
-        $ENV{ORACLE_HOME}/bin/tnsping $alias | \
+        $ENV{ORACLE_HOME}/bin/tnsping '$alias' | \
         grep 'Attempting to contact' | \
         sed 's/Attempting to contact //'
     };
