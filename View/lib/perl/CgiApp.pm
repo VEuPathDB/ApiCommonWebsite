@@ -49,7 +49,7 @@ sub init {
                                                         "$ENV{GUS_HOME}/config/web.xml"
                                                        );
 
-	 $Self->setModel           ( $Cfg->getModelName );
+	 $Self->setModel           ( $Cfg->getModel );
 
 	 return $Self;
 }
