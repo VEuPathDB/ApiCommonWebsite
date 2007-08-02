@@ -8,7 +8,7 @@ sub new {
     my $self = {};
     bless $self;
    
-    my $cfg = XMLin("$ENV{GUS_HOME}/config/${model}-config.xml");
+    my $cfg = XMLin("$ENV{GUS_HOME}/config/${model}Model-config.xml");
     
     for (keys %$cfg) {
         $self->{$_} = $cfg->{$_}
@@ -65,13 +65,13 @@ __END__
 
 =head1 NAME
 
-ApiCommonWebsite::Model::ModelConfig - access to WDK model-config.xml properties
+ApiCommonWebsite::Model::ModelConfig - access to WDK Model-config.xml properties
 
 =head1 SYNOPSIS
 
     use ApiCommonWebsite::Model::ModelConfig;
 
-    my $cfg = new ApiCommonWebsite::Model::ModelConfig('toyModel');
+    my $cfg = new ApiCommonWebsite::Model::ModelConfig('TrichDB');
     
     my $username = $cfg->getLogin;
     my $password = $cfg->getPassword;
@@ -82,24 +82,24 @@ ApiCommonWebsite::Model::ModelConfig - access to WDK model-config.xml properties
 
     You may also access by property name:
         $cfg->{login}
-    but be aware that if the property name changes in the model-config.xml you
+    but be aware that if the property name changes in the Model-config.xml you
     will need to update every script that uses this accessor.
     
     $cfg->{connectionUrl} is the JDBC connection string as written in the 
-    model-config.xml.
+    Model-config.xml.
     $cfg->{dbiDsn} is the Perl DBI version translated from the 
     connectionUrl property.
     
 =head1 DESCRIPTION
 
-Provides Perl access to properties in a WDK model-config.xml file.
+Provides Perl access to properties in a WDK Model-config.xml file.
 
 =head1 BUGS
 
 The conversion of the JDBC connectionUrl to Perl DBI only works for Oracle
 thin driver syntax, and even then not for all allowed syntax.
 Assumes connection strings of the format
-  jdbc:oracle:thin:@hostname.uga.edu:1521:toysite
+  jdbc:oracle:thin:@hostname.uga.edu:1521:trichsite
 
 =head1 AUTHOR 
 
@@ -111,10 +111,11 @@ Mark Heiges, mheiges@uga.edu
 
 =head2 new
 
- Usage   : my $cfg = new ApiCommonWebsite::Model::ModelConfig('toyModel');
+ Usage   : my $cfg = new ApiCommonWebsite::Model::ModelConfig('TrichDB');
  Returns : object containing data parsed from the model configuration file.
- Args    : the name of the model. This is used to find the Model's 
-           configuration XML file ($GUS_HOME/config/{model}-config.xml)
+ Args    : the name of the model. This follows the name convention used for
+           the WDK commandline utilities. This is used to find the Model's 
+           configuration XML file ($GUS_HOME/config/{model}Model-config.xml)
 
 =head2 getLogin
  
@@ -129,13 +130,13 @@ Mark Heiges, mheiges@uga.edu
 =head2 getDbiDsn
  
  Usage : my $dsn = $cfg->getDbiDsn;
- Returns : perl dbi connection string. converted from the jdbc connection URL in the model-config.xml
- Example : dbi:Oracle:host=redux.rcc.uga.edu;sid=toysite
+ Returns : perl dbi connection string. converted from the jdbc connection URL in the Model-config.xml
+ Example : dbi:Oracle:host=redux.rcc.uga.edu;sid=trichsite
  
 =head2 getConnectionUrl
  
  Usage : my $jdbcUrl = $cfg->getConnectionUrl;
- Returns : original jdbc connection string from model-config.xml
+ Returns : original jdbc connection string from Model-config.xml
 
 
 
