@@ -25,10 +25,6 @@ sub new {
 }
 
 
-sub getModelConfigBasename { basename($_[0]->getWdkModelConfigXml()) }
-
-sub getModelName { scalar fileparse($_[0]->getWdkModelXml(), '.xml') }
-
 # context params
 sub getGusHome { $_[0]->{'context-param'}->{'GUS_HOME'}->{'param-value'} }
 sub getModel { $_[0]->{'context-param'}->{'model'}->{'param-value'} }
