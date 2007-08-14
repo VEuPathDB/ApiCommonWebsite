@@ -39,6 +39,7 @@ public class Gff3Reporter extends Reporter {
     private static final String NEW_LINE = System.getProperty("line.separator");
 
     public static final String PROPERTY_TABLE_CACHE = "table_cache";
+    public static final String PROPERTY_PROJECT_ID_COLUMN = "project_id_column";
     public static final String PROPERTY_RECORD_ID_COLUMN = "record_id_column";
 
     public static final String PROPERTY_GFF_RECORD_NAME = "gff_record";
@@ -49,6 +50,7 @@ public class Gff3Reporter extends Reporter {
     public final static String FIELD_HAS_PROTEIN = "hasProtein";
 
     private String tableCache;
+    private String projectIdColumn;
     private String recordIdColumn;
     private String recordName;
     private String proteinName;
@@ -75,6 +77,7 @@ public class Gff3Reporter extends Reporter {
         // check required properties
         tableCache = properties.get(PROPERTY_TABLE_CACHE);
         recordIdColumn = properties.get(PROPERTY_RECORD_ID_COLUMN);
+        projectIdColumn = properties.get(PROPERTY_PROJECT_ID_COLUMN);
         recordName = properties.get(PROPERTY_GFF_RECORD_NAME);
         proteinName = properties.get(PROPERTY_GFF_PROTEIN_NAME);
         transcriptName = properties.get(PROPERTY_GFF_TRANSCRIPT_NAME);
@@ -208,14 +211,14 @@ public class Gff3Reporter extends Reporter {
                 psCache = SqlUtils.getPreparedStatement(dataSource,
                         "INSERT INTO " + tableCache + " (" + recordIdColumn
                                 + ", table_name, row_count, content"
-                                + (hasProjectId ? ", project_id)" : ")")
+                                + (hasProjectId ? ", "+projectIdColumn+")" : ")")
                                 + " VALUES (?, ?, ?, ?"
                                 + (hasProjectId ? ", ?)" : ")"));
                 psCheck = SqlUtils.getPreparedStatement(dataSource, "SELECT "
                         + "count(*) AS cache_count FROM " + tableCache
                         + " WHERE " + recordIdColumn + " = ? "
                         + " AND table_name IN ('" + recordName + "')"
-                        + (hasProjectId ? " AND project_id = ?" : ""));
+                        + (hasProjectId ? " AND "+projectIdColumn+" = ?" : ""));
             }
 
             while (answer.hasMoreRecordInstances()) {
@@ -290,6 +293,8 @@ public class Gff3Reporter extends Reporter {
         readCommonFields(record, recordBuffer);
 
         // get the rest of the attributes
+        String webId = readField(record, "gff_attr_web_id");
+        if (webId != null) recordBuffer.append(";web_id=" + webId);
         String locusTag = readField(record, "gff_attr_locus_tag");
         if (locusTag != null) recordBuffer.append(";locus_tag=" + locusTag);
         String size = readField(record, "gff_attr_size");
@@ -398,6 +403,8 @@ public class Gff3Reporter extends Reporter {
         readCommonFields(record, recordBuffer);
 
         // read other fields
+        String webId = readField(record, "gff_attr_web_id");
+        if (webId != null) recordBuffer.append(";web_id=" + webId);
         recordBuffer.append(";molecule_type="
                 + readField(record, "gff_attr_molecule_type"));
         recordBuffer.append(";organism_name="
@@ -447,7 +454,7 @@ public class Gff3Reporter extends Reporter {
                 psCache = SqlUtils.getPreparedStatement(dataSource,
                         "INSERT INTO " + tableCache + " (" + recordIdColumn
                                 + ", table_name, row_count, content"
-                                + (hasProjectId ? ", project_id)" : ")")
+                                + (hasProjectId ? ", "+projectIdColumn+")" : ")")
                                 + " VALUES (?, ?, ?, ?"
                                 + (hasProjectId ? ", ?)" : ")"));
                 psCheck = SqlUtils.getPreparedStatement(dataSource, "SELECT "
@@ -455,7 +462,7 @@ public class Gff3Reporter extends Reporter {
                         + " WHERE " + recordIdColumn + " = ? "
                         + " AND table_name IN ('" + transcriptName + "', '"
                         + proteinName + "')"
-                        + (hasProjectId ? " AND project_id = ?" : ""));
+                        + (hasProjectId ? " AND "+projectIdColumn+" = ?" : ""));
             }
 
             while (answer.hasMoreRecordInstances()) {
