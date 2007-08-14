@@ -17,7 +17,6 @@ import java.util.Map;
 
 import org.gusdb.wdk.model.Answer;
 import org.gusdb.wdk.model.Question;
-import org.gusdb.wdk.model.QuestionSet;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -67,16 +66,15 @@ public class Gff3Dumper {
 
         // construct wdkModel
         WdkModel wdkModel = WdkModel.construct(modelName);
-        QuestionSet qset = wdkModel.getQuestionSet("DataDumpQuestions");
 
         String[] organisms = organismArg.split(",");
         for (String organism : organisms) {
-            dumpOrganism(qset, organism.trim(), config, baseDir);
+            dumpOrganism(wdkModel, organism.trim(), config, baseDir);
         }
         System.out.println("Finished.");
     }
 
-    private static void dumpOrganism(QuestionSet qset, String organism,
+    private static void dumpOrganism(WdkModel wdkModel, String organism,
             Map<String, String> config, String baseDir)
             throws WdkUserException, WdkModelException, IOException {
 
@@ -85,9 +83,9 @@ public class Gff3Dumper {
         System.out.println("Collecting sequence data....");
 
         // ask sequence dumper question
-        Question seqQuestion = qset.getQuestion("SequenceGffQuestion");
+        Question seqQuestion = (Question)wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion"); 
         Map<String, Object> seqParams = new LinkedHashMap<String, Object>();
-        seqParams.put("organism_with_sequences", organism);
+        seqParams.put("organism", organism);
         Answer sqlAnswer = seqQuestion.makeAnswer(seqParams, 1, 1);
 
         ByteArrayOutputStream seqOut = new ByteArrayOutputStream();
@@ -99,7 +97,7 @@ public class Gff3Dumper {
         System.out.println("Collecting gene data....");
 
         // ask gene dumper question
-        Question geneQuestion = qset.getQuestion("GeneGffQuestion");
+        Question geneQuestion = (Question)wdkModel.resolveReference("GeneDumpQuestions.GeneDumpQuestion");
         Map<String, Object> geneParams = new LinkedHashMap<String, Object>();
         geneParams.put("organism", organism);
         Answer geneAnswer = geneQuestion.makeAnswer(geneParams, 1, 1);
