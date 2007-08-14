@@ -16,12 +16,32 @@ Form a super-class for all cgi-bin webapps.
 use strict;
 
 use CGI;
+use CGI::Carp qw(fatalsToBrowser set_message);
 
 use ApiCommonWebsite::Model::ModelConfig;
-use ApiCommonWebsite::Model::WebXmlConfig;
 
 use DBI;
 use DBD::Oracle;
+
+# ========================================================================
+# ----------------------------- BEGIN Block ------------------------------
+# ========================================================================
+BEGIN {
+    # Carp callback for sending fatal messages to browser
+    sub handle_errors {
+        my ($msg) = @_;
+        print "<h3>Oops</h3>";
+        my $isPublicSite = $ENV{'SERVER_NAME'} =~ 
+           m/
+             ^(qa|www|.*patch.*\.)?  # optional hostname
+             [^\.]+                  # single subdomain
+             \.org/x;
+       ($isPublicSite) ?
+           print "<p>There was a problem running this service." :
+           print "<p>Got an error: <pre>$msg</pre>";
+    }
+    set_message(\&handle_errors);
+}
 
 # ========================================================================
 # ------------------------------ Main Body -------------------------------
@@ -44,12 +64,11 @@ sub new {
 sub init {
 	 my $Self = shift;
 	 my $Args = ref $_[0] ? shift : {@_};
-
-   my $Cfg = ApiCommonWebsite::Model::WebXmlConfig->new(
-                                                        "$ENV{GUS_HOME}/config/web.xml"
-                                                       );
-
-	 $Self->setModel           ( $Cfg->getModel );
+     
+     my $projectId = $Self->cla()->param('project_id') 
+            or die "project_id parameter not defined\n";
+     
+	 $Self->setProjectId( $projectId );
 
 	 return $Self;
 }
@@ -57,8 +76,8 @@ sub init {
 
 # ------------------------------ Accessors -------------------------------
 
-sub getModel           { $_[0]->{'Model'        } }
-sub setModel           { $_[0]->{'Model'        } = $_[1]; $_[0] }
+sub getProjectId           { $_[0]->{'Model'} }
+sub setProjectId           { $_[0]->{'Model'} = $_[1]; $_[0] }
 
 # ---------------------------------- go ----------------------------------
 
@@ -102,7 +121,7 @@ sub getQueryHandle {
 
    my $Rv;
 
-   my $_config = new ApiCommonWebsite::Model::ModelConfig($Self->getModel());
+   my $_config = new ApiCommonWebsite::Model::ModelConfig($Self->getProjectId());
                        
    $Rv = DBI->connect( $_config->getDbiDsn(),
                        $_config->getLogin(),
