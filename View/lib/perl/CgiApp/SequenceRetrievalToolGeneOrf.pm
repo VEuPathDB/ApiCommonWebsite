@@ -196,7 +196,7 @@ sub handleNonGenomic {
 
   my $sql;
   my $type = $self->{type};
-  my $site = ($self->getModel() =~ /api/)? $portalSql : $componentSql;
+  my $site = ($self->getModel() =~ /^api/i)? $portalSql : $componentSql;
 
 
   if ($type eq "protein") {
