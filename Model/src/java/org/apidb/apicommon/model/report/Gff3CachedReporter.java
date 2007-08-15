@@ -47,8 +47,8 @@ public class Gff3CachedReporter extends Reporter {
     private boolean hasTranscript = false;
     private boolean hasProtein = false;
 
-    public Gff3CachedReporter(Answer answer) {
-        super(answer);
+    public Gff3CachedReporter(Answer answer, int startIndex, int endIndex) {
+        super(answer, startIndex, endIndex);
     }
 
     /**
@@ -102,15 +102,15 @@ public class Gff3CachedReporter extends Reporter {
         // include transcript
         if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
             String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
 
         // include protein
         if (config.containsKey(FIELD_HAS_PROTEIN)) {
             String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
     }
 
@@ -136,10 +136,10 @@ public class Gff3CachedReporter extends Reporter {
     @Override
     public String getDownloadFileName() {
         logger.info("Internal format: " + format);
-        String name = answer.getQuestion().getName();
+        String name = getQuestion().getName();
         if (format.equalsIgnoreCase("text")) {
             return name + ".gff";
-        } else { // use the defaul file name defined in the parent
+        } else { // use the default file name defined in the parent
             return super.getDownloadFileName();
         }
     }
@@ -153,24 +153,21 @@ public class Gff3CachedReporter extends Reporter {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
 
         // this reporter only works for GeneRecordClasses.GeneRecordClass
-        String rcName = answer.getQuestion().getRecordClass().getFullName();
+        String rcName = getQuestion().getRecordClass().getFullName();
         if (!rcName.equals("GeneRecordClasses.GeneRecordClass"))
             throw new WdkModelException("Unsupported record type: " + rcName);
 
         // write header
-        writeHeader(writer, answer);
+        writeHeader(writer);
 
         // write record
-        answer = answer.newAnswer();
-        writeRecords(writer, answer);
+        writeRecords(writer);
 
         // write sequence
-        answer = answer.newAnswer();
-        if (hasTranscript || hasProtein) writeSequences(writer, answer);
+        if (hasTranscript || hasProtein) writeSequences(writer);
     }
 
-    private void writeHeader(PrintWriter writer, Answer answer)
-            throws WdkModelException {
+    private void writeHeader(PrintWriter writer) throws WdkModelException {
         writer.println("##gff-version\t3");
         writer.println("##feature-ontology\tso.obo");
         writer.println("##attribute-ontology\tgff3_attributes.obo");
@@ -178,19 +175,24 @@ public class Gff3CachedReporter extends Reporter {
 
         // get the sequence regions
         Map<String, int[]> regions = new LinkedHashMap<String, int[]>();
-        while (answer.hasMoreRecordInstances()) {
-            RecordInstance record = answer.getNextRecordInstance();
-            String seqId = getValue(record.getAttributeValue("gff_seqid"));
-            int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
-            int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));
-            if (regions.containsKey(seqId)) {
-                int[] region = regions.get(seqId);
-                if (region[0] > start) region[0] = start;
-                if (region[1] < stop) region[1] = stop;
-                regions.put(seqId, region);
-            } else {
-                int[] region = { start, stop };
-                regions.put(seqId, region);
+
+        // get page based answers with a maximum size (defined in
+        // PageAnswerIterator)
+        for (Answer answer : this) {
+            while (answer.hasMoreRecordInstances()) {
+                RecordInstance record = answer.getNextRecordInstance();
+                String seqId = getValue(record.getAttributeValue("gff_seqid"));
+                int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
+                int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));
+                if (regions.containsKey(seqId)) {
+                    int[] region = regions.get(seqId);
+                    if (region[0] > start) region[0] = start;
+                    if (region[1] < stop) region[1] = stop;
+                    regions.put(seqId, region);
+                } else {
+                    int[] region = { start, stop };
+                    regions.put(seqId, region);
+                }
             }
         }
 
@@ -203,14 +205,13 @@ public class Gff3CachedReporter extends Reporter {
         writer.flush();
     }
 
-    private void writeRecords(PrintWriter writer, Answer answer)
-            throws WdkModelException {
+    private void writeRecords(PrintWriter writer) throws WdkModelException {
         // construct the SQL to retrieve table cache
-        String answerCache = answer.getCacheTableName();
-        String indexColumn = answer.getResultIndexColumn();
-        String sortingColumn = answer.getSortingIndexColumn();
-        int sortingIndex = answer.getSortingIndex();
-        boolean hasProjectId = answer.hasProjectId();
+        String answerCache = getCacheTableName();
+        String indexColumn = getResultIndexColumn();
+        String sortingColumn = getSortingIndexColumn();
+        int sortingIndex = getSortingIndex();
+        boolean hasProjectId = hasProjectId();
 
         StringBuffer sql = new StringBuffer("SELECT tc.content");
         sql.append(" FROM " + answerCache + " ac, " + tableCache + " tc");
@@ -220,7 +221,7 @@ public class Gff3CachedReporter extends Reporter {
         if (hasProjectId) sql.append(" AND tc.project_id = ac.project_id");
         sql.append(" ORDER BY ac." + indexColumn);
 
-        RDBMSPlatformI platform = answer.getQuestion().getWdkModel().getPlatform();
+        RDBMSPlatformI platform = getQuestion().getWdkModel().getPlatform();
 
         // get the result from database
         ResultSet rsTable = null;
@@ -244,8 +245,7 @@ public class Gff3CachedReporter extends Reporter {
         }
     }
 
-    private void writeSequences(PrintWriter writer, Answer answer)
-            throws WdkModelException {
+    private void writeSequences(PrintWriter writer) throws WdkModelException {
         // construct in clause
         StringBuffer sqlIn = new StringBuffer();
         if (hasTranscript) sqlIn.append("'" + transcriptName + "'");
@@ -255,11 +255,11 @@ public class Gff3CachedReporter extends Reporter {
         }
 
         // construct the SQL to retrieve table cache
-        String answerCache = answer.getCacheTableName();
-        String indexColumn = answer.getResultIndexColumn();
-        String sortingColumn = answer.getSortingIndexColumn();
-        int sortingIndex = answer.getSortingIndex();
-        boolean hasProjectId = answer.hasProjectId();
+        String answerCache = getCacheTableName();
+        String indexColumn = getResultIndexColumn();
+        String sortingColumn = getSortingIndexColumn();
+        int sortingIndex = getSortingIndex();
+        boolean hasProjectId = hasProjectId();
 
         StringBuffer sql = new StringBuffer("SELECT tc.content");
         sql.append(" FROM " + answerCache + " ac, " + tableCache + " tc");
@@ -269,7 +269,7 @@ public class Gff3CachedReporter extends Reporter {
         if (hasProjectId) sql.append(" AND tc.project_id = ac.project_id");
         sql.append(" ORDER BY ac." + indexColumn + " ASC, tc.table_name ASC");
 
-        RDBMSPlatformI platform = answer.getQuestion().getWdkModel().getPlatform();
+        RDBMSPlatformI platform = getQuestion().getWdkModel().getPlatform();
 
         writer.println("##FASTA");
 

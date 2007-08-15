@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.Answer;
 import org.gusdb.wdk.model.AttributeFieldValue;
+import org.gusdb.wdk.model.Question;
 import org.gusdb.wdk.model.RDBMSPlatformI;
 import org.gusdb.wdk.model.RecordInstance;
 import org.gusdb.wdk.model.TableFieldValue;
@@ -59,8 +60,8 @@ public class Gff3Reporter extends Reporter {
     private boolean hasTranscript = false;
     private boolean hasProtein = false;
 
-    public Gff3Reporter(Answer answer) {
-        super(answer);
+    public Gff3Reporter(Answer answer, int startIndex, int endIndex) {
+        super(answer, startIndex, endIndex);
     }
 
     /**
@@ -96,15 +97,15 @@ public class Gff3Reporter extends Reporter {
         // include transcript
         if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
             String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
 
         // include protein
         if (config.containsKey(FIELD_HAS_PROTEIN)) {
             String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
     }
 
@@ -130,10 +131,10 @@ public class Gff3Reporter extends Reporter {
     @Override
     public String getDownloadFileName() {
         logger.info("Internal format: " + format);
-        String name = answer.getQuestion().getName();
+        String name = getQuestion().getName();
         if (format.equalsIgnoreCase("text")) {
             return name + ".gff";
-        } else { // use the defaul file name defined in the parent
+        } else { // use the default file name defined in the parent
             return super.getDownloadFileName();
         }
     }
@@ -147,19 +148,17 @@ public class Gff3Reporter extends Reporter {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
 
         // write header
-        writeHeader(writer, answer);
+        writeHeader(writer);
+        
+        // write records
+        writeRecords(writer);
 
-        // write record
-        answer = answer.newAnswer();
-        writeRecords(writer, answer);
-
-        // write sequence
-        answer = answer.newAnswer();
-        writeSequences(writer, answer);
+        // write sequences
+        writer.println("##FASTA");
+        writeSequences(writer);
     }
 
-    private void writeHeader(PrintWriter writer, Answer answer)
-            throws WdkModelException {
+    void writeHeader(PrintWriter writer) throws WdkModelException {
         writer.println("##gff-version\t3");
         writer.println("##feature-ontology\tso.obo");
         writer.println("##attribute-ontology\tgff3_attributes.obo");
@@ -167,19 +166,24 @@ public class Gff3Reporter extends Reporter {
 
         // get the sequence regions
         Map<String, int[]> regions = new LinkedHashMap<String, int[]>();
-        while (answer.hasMoreRecordInstances()) {
-            RecordInstance record = answer.getNextRecordInstance();
-            String seqId = getValue(record.getAttributeValue("gff_seqid"));
-            int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
-            int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));
-            if (regions.containsKey(seqId)) {
-                int[] region = regions.get(seqId);
-                if (region[0] > start) region[0] = start;
-                if (region[1] < stop) region[1] = stop;
-                regions.put(seqId, region);
-            } else {
-                int[] region = { start, stop };
-                regions.put(seqId, region);
+
+        // get page based answers with a maximum size (defined in
+        // PageAnswerIterator)
+        for (Answer answer : this) {
+            while (answer.hasMoreRecordInstances()) {
+                RecordInstance record = answer.getNextRecordInstance();
+                String seqId = getValue(record.getAttributeValue("gff_seqid"));
+                int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
+                int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));
+                if (regions.containsKey(seqId)) {
+                    int[] region = regions.get(seqId);
+                    if (region[0] > start) region[0] = start;
+                    if (region[1] < stop) region[1] = stop;
+                    regions.put(seqId, region);
+                } else {
+                    int[] region = { start, stop };
+                    regions.put(seqId, region);
+                }
             }
         }
 
@@ -192,14 +196,14 @@ public class Gff3Reporter extends Reporter {
         writer.flush();
     }
 
-    private void writeRecords(PrintWriter writer, Answer answer)
-            throws WdkModelException {
-        String rcName = answer.getQuestion().getRecordClass().getFullName();
-        WdkModel wdkModel = answer.getQuestion().getWdkModel();
+    void writeRecords(PrintWriter writer) throws WdkModelException {
+        Question question = getQuestion();
+        String rcName = question.getRecordClass().getFullName();
+        WdkModel wdkModel = question.getWdkModel();
         RDBMSPlatformI platform = wdkModel.getPlatform();
 
         // check if we need to use project id
-        boolean hasProjectId = answer.hasProjectId();
+        boolean hasProjectId = hasProjectId();
 
         // check if we need to insert into cache
         PreparedStatement psCache = null;
@@ -208,72 +212,82 @@ public class Gff3Reporter extends Reporter {
             if (tableCache != null) {
                 // want to cache the table content
                 DataSource dataSource = platform.getDataSource();
-                psCache = SqlUtils.getPreparedStatement(dataSource,
-                        "INSERT INTO " + tableCache + " (" + recordIdColumn
-                                + ", table_name, row_count, content"
-                                + (hasProjectId ? ", "+projectIdColumn+")" : ")")
-                                + " VALUES (?, ?, ?, ?"
-                                + (hasProjectId ? ", ?)" : ")"));
+                psCache = SqlUtils.getPreparedStatement(dataSource, "INSERT "
+                        + "INTO " + tableCache + " (" + recordIdColumn
+                        + ", table_name, row_count, content"
+                        + (hasProjectId ? ", " + projectIdColumn + ")" : ")")
+                        + " VALUES (?, ?, ?, ?" + (hasProjectId ? ", ?)" : ")"));
                 psCheck = SqlUtils.getPreparedStatement(dataSource, "SELECT "
-                        + "count(*) AS cache_count FROM " + tableCache
-                        + " WHERE " + recordIdColumn + " = ? "
-                        + " AND table_name IN ('" + recordName + "')"
-                        + (hasProjectId ? " AND "+projectIdColumn+" = ?" : ""));
+                        + "count(*) AS cache_count FROM "
+                        + tableCache
+                        + " WHERE "
+                        + recordIdColumn
+                        + " = ? "
+                        + " AND table_name IN ('"
+                        + recordName
+                        + "')"
+                        + (hasProjectId ? " AND " + projectIdColumn + " = ?"
+                                : ""));
             }
 
-            while (answer.hasMoreRecordInstances()) {
-                RecordInstance record = answer.getNextRecordInstance();
+            // get page based answers with a maximum size (defined in
+            // PageAnswerIterator)
+            for (Answer answer : this) {
+                while (answer.hasMoreRecordInstances()) {
+                    RecordInstance record = answer.getNextRecordInstance();
 
-                StringBuffer recordBuffer = new StringBuffer();
+                    StringBuffer recordBuffer = new StringBuffer();
 
-                // read and format record content
-                if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
-                    formatSequenceRecord(record, recordBuffer);
-                } else if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
-                    formatGeneRecord(record, recordBuffer);
-                } else {
-                    throw new WdkModelException("Unsupported record type: "
-                            + rcName);
-                }
-                String content = recordBuffer.toString();
-
-                // check if the record has been cached
-                boolean hasCached = false;
-
-                if (tableCache != null) {
-                    psCheck.setString(1, record.getPrimaryKey().getRecordId());
-                    if (hasProjectId) {
-                        String projectId = record.getPrimaryKey().getProjectId();
-                        psCheck.setString(2, projectId);
+                    // read and format record content
+                    if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
+                        formatSequenceRecord(record, recordBuffer);
+                    } else if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
+                        formatGeneRecord(record, recordBuffer);
+                    } else {
+                        throw new WdkModelException("Unsupported record type: "
+                                + rcName);
                     }
-                    ResultSet rs = psCheck.executeQuery();
-                    try {
-                        rs.next();
-                        int count = rs.getInt("cache_count");
-                        if (count > 0) hasCached = true;
-                    } finally {
-                        rs.close();
-                    }
-                }
+                    String content = recordBuffer.toString();
 
-                // check if needs to insert into cache table
-                if (tableCache != null && !hasCached) {
-                    // save into table cache
-                    String recordId = record.getPrimaryKey().getRecordId();
-                    psCache.setString(1, recordId);
-                    psCache.setString(2, recordName);
-                    psCache.setInt(3, 1);
-                    platform.updateClobData(psCache, 4, content, false);
-                    if (hasProjectId) {
-                        String projectId = record.getPrimaryKey().getProjectId();
-                        psCache.setString(5, projectId);
-                    }
-                    psCache.executeUpdate();
-                }
+                    // check if the record has been cached
+                    boolean hasCached = false;
 
-                // output the result
-                writer.print(content);
-                writer.flush();
+                    if (tableCache != null) {
+                        psCheck.setString(1,
+                                record.getPrimaryKey().getRecordId());
+                        if (hasProjectId) {
+                            String projectId = record.getPrimaryKey().getProjectId();
+                            psCheck.setString(2, projectId);
+                        }
+                        ResultSet rs = psCheck.executeQuery();
+                        try {
+                            rs.next();
+                            int count = rs.getInt("cache_count");
+                            if (count > 0) hasCached = true;
+                        } finally {
+                            rs.close();
+                        }
+                    }
+
+                    // check if needs to insert into cache table
+                    if (tableCache != null && !hasCached) {
+                        // save into table cache
+                        String recordId = record.getPrimaryKey().getRecordId();
+                        psCache.setString(1, recordId);
+                        psCache.setString(2, recordName);
+                        psCache.setInt(3, 1);
+                        platform.updateClobData(psCache, 4, content, false);
+                        if (hasProjectId) {
+                            String projectId = record.getPrimaryKey().getProjectId();
+                            psCache.setString(5, projectId);
+                        }
+                        psCache.executeUpdate();
+                    }
+
+                    // output the result
+                    writer.print(content);
+                    writer.flush();
+                }
             }
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
@@ -433,16 +447,14 @@ public class Gff3Reporter extends Reporter {
         recordBuffer.append(NEW_LINE);
     }
 
-    private void writeSequences(PrintWriter writer, Answer answer)
-            throws WdkModelException {
-        String rcName = answer.getQuestion().getRecordClass().getFullName();
-        WdkModel wdkModel = answer.getQuestion().getWdkModel();
+    void writeSequences(PrintWriter writer) throws WdkModelException {
+        Question question = getQuestion();
+        String rcName = question.getRecordClass().getFullName();
+        WdkModel wdkModel = question.getWdkModel();
         RDBMSPlatformI platform = wdkModel.getPlatform();
 
         // check if we need to use project id
-        boolean hasProjectId = answer.hasProjectId();
-
-        writer.println("##FASTA");
+        boolean hasProjectId = hasProjectId();
 
         // check if we need to insert into cache
         PreparedStatement psCache = null;
@@ -451,109 +463,75 @@ public class Gff3Reporter extends Reporter {
             if (tableCache != null) {
                 // want to cache the table content
                 DataSource dataSource = platform.getDataSource();
-                psCache = SqlUtils.getPreparedStatement(dataSource,
-                        "INSERT INTO " + tableCache + " (" + recordIdColumn
-                                + ", table_name, row_count, content"
-                                + (hasProjectId ? ", "+projectIdColumn+")" : ")")
-                                + " VALUES (?, ?, ?, ?"
-                                + (hasProjectId ? ", ?)" : ")"));
+                psCache = SqlUtils.getPreparedStatement(dataSource, "INSERT "
+                        + "INTO " + tableCache + " (" + recordIdColumn
+                        + ", table_name, row_count, content"
+                        + (hasProjectId ? ", " + projectIdColumn + ")" : ")")
+                        + " VALUES (?, ?, ?, ?" + (hasProjectId ? ", ?)" : ")"));
                 psCheck = SqlUtils.getPreparedStatement(dataSource, "SELECT "
-                        + "count(*) AS cache_count FROM " + tableCache
-                        + " WHERE " + recordIdColumn + " = ? "
-                        + " AND table_name IN ('" + transcriptName + "', '"
-                        + proteinName + "')"
-                        + (hasProjectId ? " AND "+projectIdColumn+" = ?" : ""));
+                        + "count(*) AS cache_count FROM "
+                        + tableCache
+                        + " WHERE "
+                        + recordIdColumn
+                        + " = ? "
+                        + " AND table_name IN ('"
+                        + transcriptName
+                        + "', '"
+                        + proteinName
+                        + "')"
+                        + (hasProjectId ? " AND " + projectIdColumn + " = ?"
+                                : ""));
             }
 
-            while (answer.hasMoreRecordInstances()) {
-                RecordInstance record = answer.getNextRecordInstance();
-                String recordId = record.getPrimaryKey().getRecordId();
+            // get page based answers with a maximum size (defined in
+            // PageAnswerIterator)
+            for (Answer answer : this) {
+                while (answer.hasMoreRecordInstances()) {
+                    RecordInstance record = answer.getNextRecordInstance();
+                    String recordId = record.getPrimaryKey().getRecordId();
 
-                // read and format record content
-                if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
-                    // get genome sequence
-                    String sequence = getValue(record.getAttributeValue("gff_sequence"));
-                    if (sequence != null && sequence.length() > 0) {
-                        // output the sequence
-                        sequence = formatSequence(recordId, sequence);
-                        writer.print(sequence);
-                        writer.flush();
-                    }
-                } else if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
-                    boolean hasCached = false;
-                    // get transcript, if needed
-                    if (hasTranscript) {
-                        String sequence = getValue(record.getAttributeValue("gff_transcript_sequence"));
+                    // read and format record content
+                    if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
+                        // get genome sequence
+                        String sequence = getValue(record.getAttributeValue("gff_sequence"));
                         if (sequence != null && sequence.length() > 0) {
-                            sequence = formatSequence(recordId, sequence);
-
-                            // check if the record has been cached
-                            if (tableCache != null) {
-                                psCheck.setString(1,
-                                    record.getPrimaryKey().getRecordId());
-                                if (hasProjectId) {
-                                    String projectId = record.getPrimaryKey().getProjectId();
-                                    psCheck.setString(2, projectId);
-                                }
-                                ResultSet rs = psCheck.executeQuery();
-                                try {
-                                    rs.next();
-                                    int count = rs.getInt("cache_count");
-                                    if (count > 0) hasCached = true;
-                                } finally {
-                                    rs.close();
-                                }
-                            }
-
-                            // check if needs to insert into cache table
-                            if (tableCache != null && !hasCached) {
-                                // save into table cache
-                                psCache.setString(1, recordId);
-                                psCache.setString(2, transcriptName);
-                                psCache.setInt(3, 1);
-                                platform.updateClobData(psCache, 4, sequence,
-                                        false);
-                                if (hasProjectId) {
-                                    String projectId = record.getPrimaryKey().getProjectId();
-                                    psCache.setString(5, projectId);
-                                }
-                                psCache.executeUpdate();
-                            }
-
                             // output the sequence
+                            sequence = formatSequence(recordId, sequence);
                             writer.print(sequence);
                             writer.flush();
                         }
-                    }
+                    } else if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
+                        boolean hasCached = false;
+                        // get transcript, if needed
+                        if (hasTranscript) {
+                            String sequence = getValue(record.getAttributeValue("gff_transcript_sequence"));
+                            if (sequence != null && sequence.length() > 0) {
+                                sequence = formatSequence(recordId, sequence);
 
-                    // get protein sequence, if needed
-                    if (hasProtein) {
-                        // get the first CDS id
-                        String cdsId = null;
-                        TableFieldValue cdss = record.getTableValue("GeneGffCdss");
-                        Iterator it = cdss.getRows();
-                        if (it.hasNext()) {
-                            Map<String, Object> row = (Map<String, Object>) it.next();
-                            cdsId = readField(row, "gff_attr_id");
-                        }
-                        cdss.getClose();
-                        
-                        // print CDSs
-                        TableFieldValue rnas = record.getTableValue("GeneGffRnas");
-                        it = rnas.getRows();
-                        while (it.hasNext()) {
-                            Map<String, Object> row = (Map<String, Object>) it.next();
-
-                            String sequence = getValue(row.get("gff_protein_sequence"));
-                            if (cdsId != null && sequence != null && sequence.length() > 0) {
-                                sequence = formatSequence(cdsId, sequence);
+                                // check if the record has been cached
+                                if (tableCache != null) {
+                                    psCheck.setString(
+                                            1,
+                                            record.getPrimaryKey().getRecordId());
+                                    if (hasProjectId) {
+                                        String projectId = record.getPrimaryKey().getProjectId();
+                                        psCheck.setString(2, projectId);
+                                    }
+                                    ResultSet rs = psCheck.executeQuery();
+                                    try {
+                                        rs.next();
+                                        int count = rs.getInt("cache_count");
+                                        if (count > 0) hasCached = true;
+                                    } finally {
+                                        rs.close();
+                                    }
+                                }
 
                                 // check if needs to insert into cache table
                                 if (tableCache != null && !hasCached) {
                                     // save into table cache
-
                                     psCache.setString(1, recordId);
-                                    psCache.setString(2, proteinName);
+                                    psCache.setString(2, transcriptName);
                                     psCache.setInt(3, 1);
                                     platform.updateClobData(psCache, 4,
                                             sequence, false);
@@ -569,11 +547,57 @@ public class Gff3Reporter extends Reporter {
                                 writer.flush();
                             }
                         }
-                        rnas.getClose();
+
+                        // get protein sequence, if needed
+                        if (hasProtein) {
+                            // get the first CDS id
+                            String cdsId = null;
+                            TableFieldValue cdss = record.getTableValue("GeneGffCdss");
+                            Iterator it = cdss.getRows();
+                            if (it.hasNext()) {
+                                Map<String, Object> row = (Map<String, Object>) it.next();
+                                cdsId = readField(row, "gff_attr_id");
+                            }
+                            cdss.getClose();
+
+                            // print CDSs
+                            TableFieldValue rnas = record.getTableValue("GeneGffRnas");
+                            it = rnas.getRows();
+                            while (it.hasNext()) {
+                                Map<String, Object> row = (Map<String, Object>) it.next();
+
+                                String sequence = getValue(row.get("gff_protein_sequence"));
+                                if (cdsId != null && sequence != null
+                                        && sequence.length() > 0) {
+                                    sequence = formatSequence(cdsId, sequence);
+
+                                    // check if needs to insert into cache table
+                                    if (tableCache != null && !hasCached) {
+                                        // save into table cache
+
+                                        psCache.setString(1, recordId);
+                                        psCache.setString(2, proteinName);
+                                        psCache.setInt(3, 1);
+                                        platform.updateClobData(psCache, 4,
+                                                sequence, false);
+                                        if (hasProjectId) {
+                                            String projectId = record.getPrimaryKey().getProjectId();
+                                            psCache.setString(5, projectId);
+                                        }
+                                        psCache.executeUpdate();
+                                    }
+
+                                    // output the sequence
+                                    writer.print(sequence);
+                                    writer.flush();
+                                }
+                            }
+                            rnas.getClose();
+                        }
+                    } else {
+                        throw new WdkModelException("Unsupported record type: "
+                                + rcName);
                     }
-                } else {
-                    throw new WdkModelException("Unsupported record type: "
-                            + rcName);
                 }
             }
         } catch (SQLException ex) {
