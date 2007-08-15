@@ -3,18 +3,15 @@
  */
 package org.apidb.apicommon.model.report;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.Answer;
 import org.gusdb.wdk.model.Question;
 import org.gusdb.wdk.model.WdkModel;
@@ -27,6 +24,8 @@ import org.gusdb.wdk.model.report.Reporter;
  * 
  */
 public class Gff3Dumper {
+
+    private static final Logger logger = Logger.getLogger(Gff3Dumper.class);
 
     /**
      * @param args
@@ -58,7 +57,7 @@ public class Gff3Dumper {
         if (baseDir == null || baseDir.length() == 0) baseDir = ".";
 
         // TEST
-        System.out.println("Initializing....");
+        logger.info("Initializing....");
 
         // load config
         Map<String, String> config = new LinkedHashMap<String, String>();
@@ -77,38 +76,10 @@ public class Gff3Dumper {
     private static void dumpOrganism(WdkModel wdkModel, String organism,
             Map<String, String> config, String baseDir)
             throws WdkUserException, WdkModelException, IOException {
-
         long start = System.currentTimeMillis();
-        // TEST
-        System.out.println("Collecting sequence data....");
-
-        // ask sequence dumper question
-        Question seqQuestion = (Question)wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion"); 
-        Map<String, Object> seqParams = new LinkedHashMap<String, Object>();
-        seqParams.put("organism", organism);
-        Answer sqlAnswer = seqQuestion.makeAnswer(seqParams, 1, 1);
-
-        ByteArrayOutputStream seqOut = new ByteArrayOutputStream();
-        Reporter seqReport = sqlAnswer.createReport("gff3", config);
-        seqReport.write(seqOut);
-        byte[] seqBuffer = seqOut.toByteArray();
-
-        // TEST
-        System.out.println("Collecting gene data....");
-
-        // ask gene dumper question
-        Question geneQuestion = (Question)wdkModel.resolveReference("GeneDumpQuestions.GeneDumpQuestion");
-        Map<String, Object> geneParams = new LinkedHashMap<String, Object>();
-        geneParams.put("organism", organism);
-        Answer geneAnswer = geneQuestion.makeAnswer(geneParams, 1, 1);
-
-        ByteArrayOutputStream geneOut = new ByteArrayOutputStream();
-        config.put(Gff3Reporter.FIELD_HAS_PROTEIN, "yes");
-        Reporter geneReport = geneAnswer.createReport("gff3Dump", config);
-        geneReport.write(geneOut);
-        byte[] geneBuffer = geneOut.toByteArray();
 
         // decide the path-file name
+        logger.info("Preparing gff file....");
         File dir = new File(baseDir, organism.replace(' ', '_'));
         if (!dir.exists() || !dir.isDirectory()) dir.mkdirs();
         int pos = organism.indexOf(" ");
@@ -118,47 +89,53 @@ public class Gff3Dumper {
                     + organism.substring(pos + 1);
         fileName += ".gff";
         File gffFile = new File(dir, fileName);
+        PrintWriter writer = new PrintWriter(new FileWriter(gffFile));
 
-        // merge the result
-        BufferedReader seqIn = new BufferedReader(new InputStreamReader(
-                new ByteArrayInputStream(seqBuffer)));
-        BufferedReader geneIn = new BufferedReader(new InputStreamReader(
-                new ByteArrayInputStream(geneBuffer)));
-        PrintWriter gffOut = new PrintWriter(new FileWriter(gffFile));
-        String line;
+        // prepare reporters
+        logger.info("Preparing reporters....");
 
-        // read headers, and annotations from sequence gff
-        while ((line = seqIn.readLine()) != null) {
-            line = line.trim();
-            if (line.equalsIgnoreCase("##FASTA")) break;
-            gffOut.println(line);
-        }
-        gffOut.flush();
+        Map<String, Object> params = new LinkedHashMap<String, Object>();
+        params.put("organism", organism);
 
-        // read annotations from gene gff
-        while ((line = geneIn.readLine()) != null) {
-            line = line.trim();
-            if (line.startsWith("##") && !line.equalsIgnoreCase("##FASTA"))
-                continue;
-            gffOut.println(line);
-        }
-        gffOut.flush();
+        Question seqQuestion = (Question) wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion");
+        Answer sqlAnswer = seqQuestion.makeAnswer(params, 1, 1);
+        Gff3Reporter seqReport = (Gff3Reporter) sqlAnswer.createReport("gff3",
+                config);
 
-        // append genomic sequence
-        while ((line = seqIn.readLine()) != null) {
-            line = line.trim();
-            gffOut.println(line);
-        }
-        gffOut.flush();
-        gffOut.close();
+        Question geneQuestion = (Question) wdkModel.resolveReference("GeneDumpQuestions.GeneDumpQuestion");
+        Answer geneAnswer = geneQuestion.makeAnswer(params, 1, 1);
+        config.put(Gff3Reporter.FIELD_HAS_PROTEIN, "yes");
+        Gff3Reporter geneReport = (Gff3Reporter) geneAnswer.createReport(
+                "gff3Dump", config);
 
-        // TEST
-        System.out.println("GFF3 file saved at " + gffFile.getAbsolutePath()
-                + ".");
+        // collect the header from sequence reporter
+        logger.info("Collecting header....");
+        seqReport.writeHeader(writer);
+
+        // collect the sequence records
+        logger.info("Collecting sequence records....");
+        seqReport.writeRecords(writer);
+
+        // collect the gene records
+        logger.info("Collecting gene records....");
+        geneReport.writeHeader(writer);
+
+        // collect the protein sequences
+        logger.info("Collecting protein sequences....");
+        writer.println("##FASTA");
+        geneReport.writeSequences(writer);
+
+        // collect the genomic sequences
+        logger.info("Collecting genomic sequences....");
+        seqReport.writeSequences(writer);
+
+        writer.flush();
+        writer.close();
 
         long end = System.currentTimeMillis();
-        System.out.println("Time spent " + ((end - start) / 1000.0)
-                + " seconds.");
+        System.out.println("GFF3 file saved at " + gffFile.getAbsolutePath()
+                + ".");
+        logger.info("Time spent " + ((end - start) / 1000.0) + " seconds.");
     }
 
     public static void printUsage() {
