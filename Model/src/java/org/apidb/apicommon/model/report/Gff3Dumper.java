@@ -118,7 +118,7 @@ public class Gff3Dumper {
 
         // collect the gene records
         logger.info("Collecting gene records....");
-        geneReport.writeHeader(writer);
+        geneReport.writeRecords(writer);
 
         // collect the protein sequences
         logger.info("Collecting protein sequences....");
