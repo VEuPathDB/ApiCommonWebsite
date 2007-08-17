@@ -317,9 +317,9 @@ public class Gff3Reporter extends Reporter {
         // get aliases
         TableFieldValue alias = record.getTableValue("GeneGffAliases");
         StringBuffer sbAlias = new StringBuffer();
-        Iterator it = alias.getRows();
+        Iterator<Map<String, Object> > it = alias.getRows();
         while (it.hasNext()) {
-            Map<String, Object> row = (Map<String, Object>) it.next();
+            Map<String, Object> row = it.next();
             String alias_value = getValue(row.get("gff_alias")).trim();
             if (sbAlias.length() > 0) sbAlias.append(",");
             sbAlias.append(alias_value);
@@ -335,7 +335,7 @@ public class Gff3Reporter extends Reporter {
         it = goTerms.getRows();
         StringBuffer sbGoTerms = new StringBuffer();
         while (it.hasNext()) {
-            Map<String, Object> row = (Map<String, Object>) it.next();
+            Map<String, Object> row = it.next();
             String goTerm = getValue(row.get("gff_go_id")).trim();
             if (sbGoTerms.length() > 0) sbGoTerms.append(",");
             sbGoTerms.append(goTerm);
@@ -347,7 +347,7 @@ public class Gff3Reporter extends Reporter {
         StringBuffer sbDbxrefs = new StringBuffer();
         it = dbxrefs.getRows();
         while (it.hasNext()) {
-            Map<String, Object> row = (Map<String, Object>) it.next();
+            Map<String, Object> row = it.next();
             String dbxref_value = getValue(row.get("gff_dbxref")).trim();
             if (sbDbxrefs.length() > 0) sbDbxrefs.append(",");
             sbDbxrefs.append(dbxref_value);
@@ -358,7 +358,7 @@ public class Gff3Reporter extends Reporter {
         TableFieldValue rnas = record.getTableValue("GeneGffRnas");
         it = rnas.getRows();
         while (it.hasNext()) {
-            Map<String, Object> row = (Map<String, Object>) it.next();
+            Map<String, Object> row = it.next();
 
             // read common fields
             readCommonFields(row, recordBuffer);
@@ -382,7 +382,7 @@ public class Gff3Reporter extends Reporter {
         TableFieldValue cdss = record.getTableValue("GeneGffCdss");
         it = cdss.getRows();
         while (it.hasNext()) {
-            Map<String, Object> row = (Map<String, Object>) it.next();
+            Map<String, Object> row = it.next();
 
             // read common fields
             readCommonFields(row, recordBuffer);
@@ -398,7 +398,7 @@ public class Gff3Reporter extends Reporter {
         TableFieldValue exons = record.getTableValue("GeneGffExons");
         it = exons.getRows();
         while (it.hasNext()) {
-            Map<String, Object> row = (Map<String, Object>) it.next();
+            Map<String, Object> row = it.next();
 
             // read common fields
             readCommonFields(row, recordBuffer);
@@ -433,9 +433,9 @@ public class Gff3Reporter extends Reporter {
         // get dbxref terms
         TableFieldValue dbxrefs = record.getTableValue("SequenceGffDbxrefs");
         StringBuffer sbDbxrefs = new StringBuffer();
-        Iterator it = dbxrefs.getRows();
+        Iterator<Map<String, Object>>  it = dbxrefs.getRows();
         while (it.hasNext()) {
-            Map<String, Object> row = (Map<String, Object>) it.next();
+            Map<String, Object> row = it.next();
             String dbxref_value = getValue(row.get("gff_dbxref")).trim();
             if (sbDbxrefs.length() > 0) sbDbxrefs.append(",");
             sbDbxrefs.append(dbxref_value);
@@ -488,7 +488,7 @@ public class Gff3Reporter extends Reporter {
             for (Answer answer : this) {
                 while (answer.hasMoreRecordInstances()) {
                     RecordInstance record = answer.getNextRecordInstance();
-                    String recordId = record.getPrimaryKey().getRecordId();
+                    String recordId = getValue(record.getAttributeValue("gff_attr_id"));
 
                     // read and format record content
                     if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
@@ -553,9 +553,9 @@ public class Gff3Reporter extends Reporter {
                             // get the first CDS id
                             String cdsId = null;
                             TableFieldValue cdss = record.getTableValue("GeneGffCdss");
-                            Iterator it = cdss.getRows();
+                            Iterator<Map<String, Object>> it = cdss.getRows();
                             if (it.hasNext()) {
-                                Map<String, Object> row = (Map<String, Object>) it.next();
+                                Map<String, Object> row = it.next();
                                 cdsId = readField(row, "gff_attr_id");
                             }
                             cdss.getClose();
@@ -564,7 +564,7 @@ public class Gff3Reporter extends Reporter {
                             TableFieldValue rnas = record.getTableValue("GeneGffRnas");
                             it = rnas.getRows();
                             while (it.hasNext()) {
-                                Map<String, Object> row = (Map<String, Object>) it.next();
+                                Map<String, Object> row = it.next();
 
                                 String sequence = getValue(row.get("gff_protein_sequence"));
                                 if (cdsId != null && sequence != null
