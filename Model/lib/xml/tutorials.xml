@@ -32,8 +32,14 @@
            <attribute name="size">12.4 mb</attribute>
          </row>
           <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">ApiDB</attribute>
            <attribute name="fileName">Intro_ApiDB.mov</attribute>
+           <attribute name="duration">2:51 minutes</attribute>
+           <attribute name="size">14.5 mb</attribute>
+         </row>
+          <row>
+           <attribute name="projects">GiardiaDB</attribute>
+           <attribute name="fileName">Intro_GiardiaDB.mov</attribute>
            <attribute name="duration">2:51 minutes</attribute>
            <attribute name="size">14.5 mb</attribute>
          </row>
@@ -57,7 +63,7 @@
            <attribute name="size">20.7 mb</attribute>
          </row>
          <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">ApiDB</attribute>
            <attribute name="fileName">QueriesAndTools_ApiDB.mov</attribute>
            <attribute name="duration">3:57 minutes</attribute>
            <attribute name="size">15.7 mb</attribute>
@@ -90,7 +96,7 @@
            <attribute name="size">4.1 mb</attribute>
          </row>
 	 <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">ApiDB</attribute>
            <attribute name="fileName">QueryHistory_ApiDB.mov</attribute>
            <attribute name="duration">3:02 minutes</attribute>
            <attribute name="size">9.3 mb</attribute>
@@ -204,7 +210,7 @@
            <attribute name="size">5.5 mb</attribute>
          </row>
 	 <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">ApiDB</attribute>
            <attribute name="fileName">ColumnManagement_ApiDB.mov</attribute>
            <attribute name="duration">2:25 minutes</attribute>
            <attribute name="size">6.4 mb</attribute>
