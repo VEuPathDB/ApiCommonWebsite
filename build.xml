@@ -179,12 +179,6 @@
         <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/POSIX.pm_1_64_presets.patch"/>
     </exec>
 
-    <exec executable="ln">
-      <arg value="-nsf"/>
-      <arg value="${webappTargetDir}/WEB-INF/web.xml"/>
-      <arg value="${targetDir}/config/web.xml"/>
-    </exec>
-
   </target>
 
   <target name="setJuliLog" if="juliLog.present">
