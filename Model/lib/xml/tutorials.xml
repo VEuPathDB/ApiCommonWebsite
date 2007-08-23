@@ -15,25 +15,33 @@
        <table name="files">
          <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">Intro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">Intro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">Intro_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">Intro_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:33 minutes</attribute>
            <attribute name="size">15.2 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">Intro_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.mov">Intro_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.avi">Intro_ToxoDB_4.2.avi</attribute>
+           <attribute name="fileName.flv">Intro_ToxoDB_4.2.flv</attribute>
            <attribute name="duration">1:19 minutes</attribute>
            <attribute name="size">8.9 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">Intro_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.mov">Intro_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">Intro_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">Intro_CryptoDB_3.5.flv</attribute>
            <attribute name="duration">1:25 minutes</attribute>
            <attribute name="size">12.4 mb</attribute>
          </row>
           <row>
            <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName">Intro_ApiDB.mov</attribute>
+           <attribute name="fileName.mov">Intro_ApiDB.mov</attribute>
+           <attribute name="fileName.avi">Intro_ApiDB.avi</attribute>
+           <attribute name="fileName.flv">Intro_ApiDB.flv</attribute>
            <attribute name="duration">2:51 minutes</attribute>
            <attribute name="size">14.5 mb</attribute>
          </row>
@@ -46,19 +54,25 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">QueriesAndTools_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">QueriesAndTools_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:12 minutes</attribute>
            <attribute name="size">20 mb</attribute>
          </row>
 	  <row>
            <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">QueriesAndTools_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.mov">QueriesAndTools_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">QueriesAndTools_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">QueriesAndTools_CryptoDB_3.5.flv</attribute>
            <attribute name="duration">1:17 minutes</attribute>
            <attribute name="size">20.7 mb</attribute>
          </row>
          <row>
            <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName">QueriesAndTools_ApiDB.mov</attribute>
+           <attribute name="fileName.mov">QueriesAndTools_ApiDB.mov</attribute>
+           <attribute name="fileName.avi">QueriesAndTools_ApiDB.avi</attribute>
+           <attribute name="fileName.flv">QueriesAndTools_ApiDB.flv</attribute>
            <attribute name="duration">3:57 minutes</attribute>
            <attribute name="size">15.7 mb</attribute>
          </row>
@@ -73,25 +87,33 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">QueryHistory_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">QueryHistory_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">QueryHistory_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">QueryHistory_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:47 minutes</attribute>
            <attribute name="size">5 mb</attribute>
          </row>
           <row>
            <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">QueryHistory_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.mov">QueryHistory_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.avi">QueryHistory_ToxoDB_4.2.avi</attribute>
+           <attribute name="fileName.flv">QueryHistory_ToxoDB_4.2.flv</attribute>
            <attribute name="duration">1:18 minutes</attribute>
            <attribute name="size">15.2 mb</attribute>
          </row>
 	  <row>
            <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">QueryHistory_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.mov">QueryHistory_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">QueryHistory_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">QueryHistory_CryptoDB_3.5.flv</attribute>
            <attribute name="duration">1:05 minutes</attribute>
            <attribute name="size">4.1 mb</attribute>
          </row>
 <row>
            <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName">QueryHistory_ApiDB.mov</attribute>
+           <attribute name="fileName.mov">QueryHistory_ApiDB.mov</attribute>
+           <attribute name="fileName.avi">QueryHistory_ApiDB.avi</attribute>
+           <attribute name="fileName.flv">QueryHistory_ApiDB.flv</attribute>
            <attribute name="duration">1:57 minutes</attribute>
            <attribute name="size">4.5 mb</attribute>
          </row>
@@ -107,7 +129,9 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">VaccineCandidate_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">VaccineCandidate_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">VaccineCandidate_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">VaccineCandidate_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:54 minutes</attribute>
            <attribute name="size">17.9 mb</attribute>
          </row>
@@ -123,7 +147,9 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">VaccineCandidateWithSNPData_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">VaccineCandidateWithSNPData_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">VaccineCandidateWithSNPData_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">VaccineCandidateWithSNPData_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:35 minutes</attribute>
            <attribute name="size">5.5 mb</attribute>
          </row>
@@ -139,7 +165,9 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">DrugTarget_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">DrugTarget_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">DrugTarget_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">DrugTarget_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">2:01 minutes</attribute>
            <attribute name="size">7.7 mb</attribute>
          </row>
@@ -155,7 +183,9 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">DrugTargetWithSNPData_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">DrugTargetWithSNPData_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">DrugTargetWithSNPData_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">DrugTargetWithSNPData_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:41 minutes</attribute>
            <attribute name="size">6.1 mb</attribute>
          </row>
@@ -170,13 +200,17 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">DownloadResults_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">DownloadResults_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">DownloadResults_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">DownloadResults_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">2:21 minutes</attribute>
            <attribute name="size">25.9 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">DownloadResults_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.mov">DownloadResults_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.avi">DownloadResults_ToxoDB_4.2.avi</attribute>
+           <attribute name="fileName.flv">DownloadResults_ToxoDB_4.2.flv</attribute>
            <attribute name="duration">2:15 minutes</attribute>
            <attribute name="size">14.9 mb</attribute>
          </row>
@@ -191,13 +225,17 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">GenomeBrowserIntro_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">GenomeBrowserIntro_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:29 minutes</attribute>
            <attribute name="size">24.2 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.mov">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">GenomeBrowserIntro_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">GenomeBrowserIntro_CryptoDB_3.5.flv</attribute>
            <attribute name="duration">1:32 minutes</attribute>
            <attribute name="size">15.2 mb</attribute>
          </row>
@@ -212,19 +250,25 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">ListOfIDs_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">ListOfIDs_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">ListOfIDs_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">ListOfIDs_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">0:46 minutes</attribute>
            <attribute name="size">3.2 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName">ListOfIDs_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.mov">ListOfIDs_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">ListOfIDs_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">ListOfIDs_CryptoDB_3.5.flv</attribute>
            <attribute name="duration">0:50 minutes</attribute>
            <attribute name="size">4 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">ListOfIDs_ToxoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">ListOfIDs_ToxoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">ListOfIDs_ToxoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">ListOfIDs_ToxoDB_5.3.flv</attribute>
            <attribute name="duration">0:44 minutes</attribute>
            <attribute name="size">2.7 mb</attribute>
          </row>
@@ -239,7 +283,9 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">PredictedInteraction_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">PredictedInteraction_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">PredictedInteraction_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">PredictedInteraction_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:26 minutes</attribute>
            <attribute name="size">5.6 mb</attribute>
          </row>
@@ -254,25 +300,33 @@
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName">ColumnManagement_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.mov">ColumnManagement_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_PlasmoDB_5.3.flv</attribute>
            <attribute name="duration">1:12 minutes</attribute>
            <attribute name="size">8.3 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">ColumnManagement_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.mov">ColumnManagement_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_ToxoDB_4.2.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_ToxoDB_4.2.flv</attribute>
            <attribute name="duration">0:55 minutes</attribute>
            <attribute name="size">3.6 mb</attribute>
          </row>
 	 <row>
            <attribute name="projects">CyrptoDB</attribute>
-           <attribute name="fileName">ColumnManagement_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.mov">ColumnManagement_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_CryptoDB_3.5.flv</attribute>
            <attribute name="duration">1:05 minutes</attribute>
            <attribute name="size">5.5 mb</attribute>
          </row>
 <row>
            <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName">ColumnManagement_ApiDB.mov</attribute>
+           <attribute name="fileName.mov">ColumnManagement_ApiDB.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_ApiDB.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_ApiDB.flv</attribute>
            <attribute name="duration">2:25 minutes</attribute>
            <attribute name="size">6.4 mb</attribute>
          </row>
@@ -286,7 +340,9 @@
        <table name="files">
           <row>
            <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName">ExpressionQueries_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.mov">ExpressionQueries_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.avi">ExpressionQueries_ToxoDB_4.2.avi</attribute>
+           <attribute name="fileName.flv">ExpressionQueries_ToxoDB_4.2.flv</attribute>
            <attribute name="duration">1:45 minutes</attribute>
            <attribute name="size">12.9 mb</attribute>
          </row>
