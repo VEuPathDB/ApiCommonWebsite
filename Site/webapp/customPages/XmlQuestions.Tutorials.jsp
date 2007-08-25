@@ -69,11 +69,13 @@
             <c:set var="fileFormat" value="QuickTime"/>
           </c:if>
 --%>
- <font size="-1">
-          <a href="<c:url value="/tutorials/${fileNameMov}"/>" target="tutorial">view in QuickTime format</a> ---&nbsp;
-          <a href="<c:url value="/tutorials/${fileNameAvi}"/>" target="tutorial">view in Ms Windows format</a> ---&nbsp;
-          <a href="<c:url value="/tutorials/${fileNameFlv}"/>" target="tutorial">view in Flash Video format</a> ---&nbsp;
-          Duration: ${duration}&nbsp;&nbsp;&nbsp;Size: ${size}</font>
+ <font size="-1">View in
+          <a href="<c:url value="/tutorials/${fileNameMov}"/>" target="tutorial"> QuickTime format (.mov)</a> ---&nbsp;
+          <a href="<c:url value="/tutorials/${fileNameAvi}"/>" target="tutorial"> Ms Windows format (.avi)</a> ---&nbsp;
+          <a href="<c:url value="/flv_player/flvplayer.swf?file=/tutorials/${fileNameFlv}&autostart=true"/>" 
+			target="tutorial"> Flash Video format (.flv)</a> ---&nbsp;
+          Duration: ${duration}&nbsp;&nbsp;&nbsp;Size: ${size}
+ </font>
 
           <c:set var="fileNumber" value="${fileNumber+1}"/>
         </c:if>
