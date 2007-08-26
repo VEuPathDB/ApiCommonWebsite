@@ -121,6 +121,149 @@
    </record>
 
    <record>
+       <attribute name="title">Introduction to the Genome Browser</attribute>
+       <attribute name="description">
+          Overview of features in the Genome Browser.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName.mov">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">GenomeBrowserIntro_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">GenomeBrowserIntro_PlasmoDB_5.3.flv</attribute>
+           <attribute name="duration">1:29 minutes</attribute>
+           <attribute name="size">24.2 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName.mov">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">GenomeBrowserIntro_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">GenomeBrowserIntro_CryptoDB_3.5.flv</attribute>
+           <attribute name="duration">1:32 minutes</attribute>
+           <attribute name="size">15.2 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+   <record>
+       <attribute name="title">Options to Download Results</attribute>
+       <attribute name="description">
+          Using the Download section to download query results and sequence data.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName.mov">DownloadResults_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">DownloadResults_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">DownloadResults_PlasmoDB_5.3.flv</attribute>
+           <attribute name="duration">2:21 minutes</attribute>
+           <attribute name="size">25.9 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName.mov">DownloadResults_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.avi">DownloadResults_ToxoDB_4.2.avi</attribute>
+           <attribute name="fileName.flv">DownloadResults_ToxoDB_4.2.flv</attribute>
+           <attribute name="duration">2:15 minutes</attribute>
+           <attribute name="size">14.9 mb</attribute>
+         </row>
+ <row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName.mov">DownloadResults_ApiDB.mov</attribute>
+<attribute name="fileName.avi">DownloadResults_ApiDB.avi</attribute>
+<attribute name="fileName.flv">DownloadResults_ApiDB.flv</attribute>
+           <attribute name="duration">2:25 minutes</attribute>
+           <attribute name="size">14.3 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+  
+
+   <record>
+       <attribute name="title">List of Gene Identifiers as Query Input</attribute>
+       <attribute name="description">
+          How to use a List of Gene Identifiers as Input to a Query.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName.mov">ListOfIDs_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">ListOfIDs_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">ListOfIDs_PlasmoDB_5.3.flv</attribute>
+           <attribute name="duration">0:46 minutes</attribute>
+           <attribute name="size">3.2 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="fileName.mov">ListOfIDs_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">ListOfIDs_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">ListOfIDs_CryptoDB_3.5.flv</attribute>
+           <attribute name="duration">0:50 minutes</attribute>
+           <attribute name="size">4 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName.mov">ListOfIDs_ToxoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">ListOfIDs_ToxoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">ListOfIDs_ToxoDB_5.3.flv</attribute>
+           <attribute name="duration">0:44 minutes</attribute>
+           <attribute name="size">2.7 mb</attribute>
+         </row>
+ <row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName.mov">ListOfIDs_ApiDB.mov</attribute>
+<attribute name="fileName.avi">ListOfIDs_ApiDB.avi</attribute>
+<attribute name="fileName.flv">ListOfIDs_ApiDB.flv</attribute>
+           <attribute name="duration">1:40 minutes</attribute>
+           <attribute name="size">7.1 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+  
+   <record>
+       <attribute name="title">Query Result Column Management</attribute>
+       <attribute name="description">
+         Learn how to manage columns displayed in query results; adding columns, sorting columns and changing the column ordering.
+       </attribute>
+       <table name="files">
+          <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName.mov">ColumnManagement_PlasmoDB_5.3.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_PlasmoDB_5.3.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_PlasmoDB_5.3.flv</attribute>
+           <attribute name="duration">1:12 minutes</attribute>
+           <attribute name="size">8.3 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">ToxoDB</attribute>
+           <attribute name="fileName.mov">ColumnManagement_ToxoDB_4.2.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_ToxoDB_4.2.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_ToxoDB_4.2.flv</attribute>
+           <attribute name="duration">0:55 minutes</attribute>
+           <attribute name="size">3.6 mb</attribute>
+         </row>
+	 <row>
+           <attribute name="projects">CyrptoDB</attribute>
+           <attribute name="fileName.mov">ColumnManagement_CryptoDB_3.5.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_CryptoDB_3.5.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_CryptoDB_3.5.flv</attribute>
+           <attribute name="duration">1:05 minutes</attribute>
+           <attribute name="size">5.5 mb</attribute>
+         </row>
+<row>
+           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="fileName.mov">ColumnManagement_ApiDB.mov</attribute>
+           <attribute name="fileName.avi">ColumnManagement_ApiDB.avi</attribute>
+           <attribute name="fileName.flv">ColumnManagement_ApiDB.flv</attribute>
+           <attribute name="duration">2:25 minutes</attribute>
+           <attribute name="size">6.4 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+ <record>
        <attribute name="title">Candidate Vaccine Targets Query</attribute>
        <attribute name="description">
           Query to identify genes that are potential vaccine targets. 
@@ -192,106 +335,7 @@
        </table>
    </record>
 
-   <record>
-       <attribute name="title">Options to Download Results</attribute>
-       <attribute name="description">
-          Using the Download section to download query results and sequence data.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">DownloadResults_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">DownloadResults_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">DownloadResults_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">2:21 minutes</attribute>
-           <attribute name="size">25.9 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName.mov">DownloadResults_ToxoDB_4.2.mov</attribute>
-           <attribute name="fileName.avi">DownloadResults_ToxoDB_4.2.avi</attribute>
-           <attribute name="fileName.flv">DownloadResults_ToxoDB_4.2.flv</attribute>
-           <attribute name="duration">2:15 minutes</attribute>
-           <attribute name="size">14.9 mb</attribute>
-         </row>
- <row>
-           <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName">DownloadResults_ApiDB.mov</attribute>
-<attribute name="fileName">DownloadResults_ApiDB.avi</attribute>
-<attribute name="fileName">DownloadResults_ApiDB.flv</attribute>
-           <attribute name="duration">2:25 minutes</attribute>
-           <attribute name="size">14.3 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
-       <attribute name="title">Introduction to the Genome Browser</attribute>
-       <attribute name="description">
-          Overview of features in the Genome Browser.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">GenomeBrowserIntro_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">GenomeBrowserIntro_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">GenomeBrowserIntro_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:29 minutes</attribute>
-           <attribute name="size">24.2 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName.mov">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">GenomeBrowserIntro_CryptoDB_3.5.avi</attribute>
-           <attribute name="fileName.flv">GenomeBrowserIntro_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">1:32 minutes</attribute>
-           <attribute name="size">15.2 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
-       <attribute name="title">List of Gene Identifiers as Query Input</attribute>
-       <attribute name="description">
-          How to use a List of Gene Identifiers as Input to a Query.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">ListOfIDs_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">ListOfIDs_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">ListOfIDs_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">0:46 minutes</attribute>
-           <attribute name="size">3.2 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">CryptoDB</attribute>
-           <attribute name="fileName.mov">ListOfIDs_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">ListOfIDs_CryptoDB_3.5.avi</attribute>
-           <attribute name="fileName.flv">ListOfIDs_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">0:50 minutes</attribute>
-           <attribute name="size">4 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName.mov">ListOfIDs_ToxoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">ListOfIDs_ToxoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">ListOfIDs_ToxoDB_5.3.flv</attribute>
-           <attribute name="duration">0:44 minutes</attribute>
-           <attribute name="size">2.7 mb</attribute>
-         </row>
- <row>
-           <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName">ListOfIDs_ApiDB.mov</attribute>
-<attribute name="fileName">ListOfIDs_ApiDB.avi</attribute>
-<attribute name="fileName">ListOfIDs_ApiDB.flv</attribute>
-           <attribute name="duration">1:40 minutes</attribute>
-           <attribute name="size">7.1 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
+ <record>
        <attribute name="title">Predicted Protein Interaction</attribute>
        <attribute name="description">
          <![CDATA[Query to identify local and global protein interactions for <i>P. facliparum</i>.]]>
@@ -308,46 +352,7 @@
        </table>
    </record>
 
-   <record>
-       <attribute name="title">Query Result Column Management</attribute>
-       <attribute name="description">
-         Learn how to manage columns displayed in query results; adding columns, sorting columns and changing the column ordering.
-       </attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">ColumnManagement_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">ColumnManagement_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">ColumnManagement_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:12 minutes</attribute>
-           <attribute name="size">8.3 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName.mov">ColumnManagement_ToxoDB_4.2.mov</attribute>
-           <attribute name="fileName.avi">ColumnManagement_ToxoDB_4.2.avi</attribute>
-           <attribute name="fileName.flv">ColumnManagement_ToxoDB_4.2.flv</attribute>
-           <attribute name="duration">0:55 minutes</attribute>
-           <attribute name="size">3.6 mb</attribute>
-         </row>
-	 <row>
-           <attribute name="projects">CyrptoDB</attribute>
-           <attribute name="fileName.mov">ColumnManagement_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">ColumnManagement_CryptoDB_3.5.avi</attribute>
-           <attribute name="fileName.flv">ColumnManagement_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">1:05 minutes</attribute>
-           <attribute name="size">5.5 mb</attribute>
-         </row>
-<row>
-           <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName.mov">ColumnManagement_ApiDB.mov</attribute>
-           <attribute name="fileName.avi">ColumnManagement_ApiDB.avi</attribute>
-           <attribute name="fileName.flv">ColumnManagement_ApiDB.flv</attribute>
-           <attribute name="duration">2:25 minutes</attribute>
-           <attribute name="size">6.4 mb</attribute>
-         </row>
-       </table>
-   </record>
+
     <record>
        <attribute name="title">Expression Queries for ToxoDB</attribute>
        <attribute name="description">
