@@ -51,9 +51,9 @@ sub go {
         die("disallowed character '$&' in Subject line: '$subject'\n");
 
     
-    # testing mode
-    # $cc = 'ygan@pcbi.upenn.edu';
-    # $to = 'ygan@pcbi.upenn.edu';
+    # testing mode ($cc instead of help@ email, $to instead of bugzilla's email)
+    #$cc = 'aurreco@uga.edu';
+    #$to = 'aurreco@uga.edu';
 
     my $metaInfo = ""
         . "ReplyTo: $replyTo" . "\n"
@@ -61,13 +61,24 @@ sub go {
 	. "Browser information: $browser" . "\n"
 	. "Referer page: $referer";
 
+
     my $cfmMsg;
+
+# sending email to the user so he/she has a record
     if($cc) {
-      $cfmMsg = sendMail($replyTo, $cc, $subject, $replyTo, $metaInfo, $message);
+      $cfmMsg = sendMail($replyTo, $replyTo, $subject, $replyTo, $metaInfo, $message);
+    } else {
+      $cfmMsg = "warning: did not cc user because no email was provided\n";
+    }
+
+# sending email to help@site
+ if($cc) {
+      $cfmMsg .= "\n\n" . sendMail($replyTo, $cc, $subject, $replyTo, $metaInfo, $message);
     } else {
       $cfmMsg = "warning: did not cc support because no support email is provided\n";
     }
 
+#sending email to bugzilla
     my $short_desc = $subject;
     $subject = "Bugzilla [$subject]";
     if ($to && $subject) {
@@ -94,8 +105,12 @@ sub go {
 
     $cfmMsg .= "\n\nPlease use you browser's back button to go back to the website.";
 
-    print $cgi->header('text/html');
-    print "<pre>$cfmMsg</pre>";
+
+#    print $cgi->header('text/html');
+#    print "<pre>$cfmMsg</pre>";
+
+    # apache understands /a/ as current webapp
+    print $cgi->redirect("http://" . $ENV{'SERVER_NAME'} . "/a/helpback.jsp");
 }
 
 sub sendMail { return &_cpanMailSendmail(@_); }
