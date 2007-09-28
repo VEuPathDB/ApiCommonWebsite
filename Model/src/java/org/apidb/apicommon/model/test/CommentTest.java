@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.apidb.apicommon.model.Comment;
 import org.apidb.apicommon.model.CommentFactory;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 
 /**
@@ -18,8 +19,6 @@ import org.gusdb.wdk.model.WdkModelException;
  * 
  */
 public class CommentTest {
-
-    public static final String CONFIG_XML = "comment-config.xml";
 
     private static String[] addKeys = { "email", "headline", "content",
             "projectName", "projectVersion", "stableId", "commentTarget",
@@ -73,16 +72,18 @@ public class CommentTest {
             System.exit(-1);
         }
 
+        // get the projectId
+        String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
+        String projectId = args[0].trim();
+        
         // determine the command
-        String cmd = args[0].trim();
-        String[] subArgs = new String[args.length - 1];
-        System.arraycopy(args, 1, subArgs, 0, subArgs.length);
+        String cmd = args[1].trim();
+        String[] subArgs = new String[args.length - 2];
+        System.arraycopy(args, 2, subArgs, 0, subArgs.length);
 
         // initialize comment factory
-        File configDir = new File(System.getProperties().getProperty(
-                "configDir"));
-        File configFile = new File(configDir, CONFIG_XML);
-        CommentFactory.initialize(configFile.toURL());
+        File configFile = new File(gusHome, "/config/" + projectId + "/comment-config.xml");
+        CommentFactory.initialize(configFile);
         factory = CommentFactory.getInstance();
 
         if (cmd.equalsIgnoreCase("add")) {

@@ -17,7 +17,7 @@ public class Comment {
 
 	public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
     
-    private String commentId;
+    private int commentId;
     private String email;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
@@ -75,7 +75,7 @@ public class Comment {
     /**
      * @return Returns the commentId.
      */
-    public String getCommentId() {
+    public int getCommentId() {
         return commentId;
     }
 
@@ -85,7 +85,7 @@ public class Comment {
     /**
      * @param commentId The commentId to set.
      */
-    void setCommentId(String commentId) {
+    void setCommentId(int commentId) {
         this.commentId = commentId;
     }
 
