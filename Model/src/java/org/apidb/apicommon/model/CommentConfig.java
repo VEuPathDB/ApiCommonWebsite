@@ -13,6 +13,7 @@ public class CommentConfig {
     private String connectionUrl;
     private String login;
     private String password;
+    private String userLoginSchema;
     private String commentSchema;
     private String projectDbLink;
     private int initialSize;
@@ -22,7 +23,7 @@ public class CommentConfig {
     private int maxWait;
     private String commentTextFileDir;
 
-	/**
+    /**
      * @return Returns the platformClass.
      */
     public String getPlatformClass() {
@@ -31,7 +32,7 @@ public class CommentConfig {
 
     /**
      * @param platformClass
-     *            The platformClass to set.
+     *          The platformClass to set.
      */
     public void setPlatformClass(String platformClass) {
         this.platformClass = platformClass;
@@ -50,7 +51,7 @@ public class CommentConfig {
 
     /**
      * @param commentSchema
-     *            The commentSchema to set.
+     *          The commentSchema to set.
      */
     public void setCommentSchema(String commentSchema) {
         this.commentSchema = commentSchema;
@@ -65,7 +66,7 @@ public class CommentConfig {
 
     /**
      * @param connectionUrl
-     *            The connectionUrl to set.
+     *          The connectionUrl to set.
      */
     public void setConnectionUrl(String connectionUrl) {
         this.connectionUrl = connectionUrl;
@@ -80,7 +81,7 @@ public class CommentConfig {
 
     /**
      * @param login
-     *            The login to set.
+     *          The login to set.
      */
     public void setLogin(String login) {
         this.login = login;
@@ -95,7 +96,7 @@ public class CommentConfig {
 
     /**
      * @param password
-     *            The password to set.
+     *          The password to set.
      */
     public void setPassword(String password) {
         this.password = password;
@@ -110,7 +111,7 @@ public class CommentConfig {
 
     /**
      * @param initialSize
-     *            The initialSize to set.
+     *          The initialSize to set.
      */
     public void setInitialSize(int initialSize) {
         this.initialSize = initialSize;
@@ -125,7 +126,7 @@ public class CommentConfig {
 
     /**
      * @param maxActive
-     *            The maxActive to set.
+     *          The maxActive to set.
      */
     public void setMaxActive(int maxActive) {
         this.maxActive = maxActive;
@@ -140,7 +141,7 @@ public class CommentConfig {
 
     /**
      * @param maxIdle
-     *            The maxIdle to set.
+     *          The maxIdle to set.
      */
     public void setMaxIdle(int maxIdle) {
         this.maxIdle = maxIdle;
@@ -155,7 +156,7 @@ public class CommentConfig {
 
     /**
      * @param maxWait
-     *            The maxWait to set.
+     *          The maxWait to set.
      */
     public void setMaxWait(int maxWait) {
         this.maxWait = maxWait;
@@ -170,12 +171,12 @@ public class CommentConfig {
 
     /**
      * @param minIdle
-     *            The minIdle to set.
+     *          The minIdle to set.
      */
     public void setMinIdle(int minIdle) {
         this.minIdle = minIdle;
     }
-    
+
     /**
      * @return Returns the projectDbLink.
      */
@@ -184,19 +185,26 @@ public class CommentConfig {
     }
 
     /**
-     * @param projectDbLink The projectDbLink to set.
+     * @param projectDbLink
+     *          The projectDbLink to set.
      */
     public void setProjectDbLink(String projectDbLink) {
         this.projectDbLink = projectDbLink;
     }
 
-	public String getCommentTextFileDir() {
-		return commentTextFileDir;
-	}
+    public String getCommentTextFileDir() {
+        return commentTextFileDir;
+    }
 
-	public void setCommentTextFileDir(String commentTextFile) {
-		this.commentTextFileDir = commentTextFile;
-	}
+    public void setCommentTextFileDir(String commentTextFile) {
+        this.commentTextFileDir = commentTextFile;
+    }
 
-    
+    public String getUserLoginSchema() {
+        return userLoginSchema;
+    }
+
+    public void setUserLoginSchema(String userLoginSchema) {
+        this.userLoginSchema = userLoginSchema;
+    }
 }

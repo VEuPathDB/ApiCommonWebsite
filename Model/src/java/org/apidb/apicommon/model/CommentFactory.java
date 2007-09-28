@@ -6,7 +6,6 @@ package org.apidb.apicommon.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,29 +27,30 @@ import org.xml.sax.SAXException;
 public class CommentFactory {
 
     private static CommentFactory factory;
-    
-    private Logger logger = Logger.getLogger (CommentFactory.class); 
+
+    private Logger logger = Logger.getLogger(CommentFactory.class);
     private RDBMSPlatformI platform;
     private CommentConfig config;
-    
-    public static void initialize(URL commentConfigXmlUrl)
+
+    public static void initialize(File commentConfigXmlFile)
             throws WdkModelException {
         try {
             // parse and load the configuration
-            CommentConfig config = CommentConfigParser.parseXmlFile(commentConfigXmlUrl);
+            CommentConfig config = CommentConfigParser
+                    .parseXmlFile(commentConfigXmlFile);
 
             // create a platform object
             RDBMSPlatformI platform = (RDBMSPlatformI) Class.forName(
                     config.getPlatformClass()).newInstance();
-            platform.init(config.getConnectionUrl(), config.getLogin(),
-                    config.getPassword(), config.getMinIdle(),
-                    config.getMaxIdle(), config.getMaxWait(),
-                    config.getMaxActive(), config.getInitialSize(),
-                    commentConfigXmlUrl.getFile());
+            platform.init(config.getConnectionUrl(), config.getLogin(), config
+                    .getPassword(), config.getMinIdle(), config.getMaxIdle(),
+                    config.getMaxWait(), config.getMaxActive(), config
+                            .getInitialSize(), commentConfigXmlFile
+                            .getAbsolutePath());
 
             // create a factory instance
             factory = new CommentFactory(platform, config);
-            
+
         } catch (InstantiationException ex) {
             throw new WdkModelException(ex);
         } catch (IllegalAccessException ex) {
@@ -107,7 +107,8 @@ public class CommentFactory {
             // close the connection
             try {
                 SqlUtils.closeResultSet(rs);
-            } catch (SQLException e) {}
+            } catch (SQLException e) {
+            }
         }
         return target;
     }
@@ -119,21 +120,22 @@ public class CommentFactory {
         // get a new comment id
         try {
             // DataSource dataSource = platform.getDataSource();
-            String commentId = platform.getNextId(schema, "comments");
+            int commentId = Integer.parseInt(platform.getNextId(schema, "comments"));
 
-            ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(),
-                    "INSERT INTO "
-                            + schema
-                            + ".comments (comment_id, email, "
-                            + "comment_date, comment_target_id, stable_id, conceptual, "
-                            + "project_name, project_version, headline, content, "
-                            + "location_string, review_status_id) "
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            ps = SqlUtils
+                    .getPreparedStatement(
+                            platform.getDataSource(),
+                            "INSERT INTO "
+                                    + schema
+                                    + ".comments (comment_id, email, "
+                                    + "comment_date, comment_target_id, stable_id, conceptual, "
+                                    + "project_name, project_version, headline, content, "
+                                    + "location_string, review_status_id) "
+                                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 
             long currentMillis = System.currentTimeMillis();
 
-            ps.setInt(1, Integer.parseInt(commentId));
+            ps.setInt(1, commentId);
             ps.setString(2, comment.getEmail());
             ps.setDate(3, new java.sql.Date(currentMillis));
             ps.setString(4, comment.getCommentTarget());
@@ -142,11 +144,12 @@ public class CommentFactory {
             ps.setString(7, comment.getProjectName());
             ps.setString(8, comment.getProjectVersion());
             ps.setString(9, comment.getHeadline());
-            ps.setString(10, comment.getContent());
+            // ps.setString(10, comment.getContent());
+            platform.updateClobData(ps, 10, comment.getContent(), false);
             ps.setString(11, comment.getLocationString());
-            String rs = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0) 
-            			? comment.getReviewStatus()
-            			: Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
+            String rs = (comment.getReviewStatus() != null && comment
+                    .getReviewStatus().length() > 0) ? comment
+                    .getReviewStatus() : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
             ps.setString(12, rs);
 
             ps.execute();
@@ -159,19 +162,21 @@ public class CommentFactory {
             saveLocations(commentId, comment);
 
             // then add the eternal database information
-            
+
             saveExternalDbs(commentId, comment);
-           
-            File cFile = new File (config.getCommentTextFileDir() + System.getProperty("file.separator")
-            						+ comment.getProjectName() + "_comments.txt");	
-            extractCommentsTextSearchFile (cFile);
-            
+
+            File cFile = new File(config.getCommentTextFileDir()
+                    + System.getProperty("file.separator")
+                    + comment.getProjectName() + "_comments.txt");
+            extractCommentsTextSearchFile(cFile);
+
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw new WdkModelException(ex);
         }
     }
 
-    private void saveLocations(String commentId, Comment comment)
+    private void saveLocations(int commentId, Comment comment)
             throws SQLException {
         String schema = config.getCommentSchema();
 
@@ -188,7 +193,7 @@ public class CommentFactory {
             Location[] locations = comment.getLocations();
             for (Location location : locations) {
                 String locationId = platform.getNextId(schema, "locations");
-                statement.setInt(1, Integer.parseInt(commentId));
+                statement.setInt(1, commentId);
                 statement.setInt(2, Integer.parseInt(locationId));
                 statement.setLong(3, location.getLocationStart());
                 statement.setLong(4, location.getLocationEnd());
@@ -207,14 +212,15 @@ public class CommentFactory {
      * backward dblink requirement; The site should provide such information to
      * the comment factory in future releases.
      * 
-     * UPDATE: Assume that the Comment parameter already has the external database info filled in.
-     * Use the first extdb/versions (Is there a case at all where we need more than one ext db???)
+     * UPDATE: Assume that the Comment parameter already has the external
+     * database info filled in. Use the first extdb/versions (Is there a case at
+     * all where we need more than one ext db???)
      * 
      * @param commentId
      * @param comment
      * @throws SQLException
      */
-    private void saveExternalDbs(String commentId, Comment comment)
+    private void saveExternalDbs(int commentId, Comment comment)
             throws SQLException {
         String schema = config.getCommentSchema();
         // String dblink = config.getProjectDbLink();
@@ -223,7 +229,7 @@ public class CommentFactory {
 
         // get a set of matched external databases
         StringBuffer sql = new StringBuffer();
-        
+
         PreparedStatement queryDb = null, insertDb = null, insertLink = null;
         try {
             // ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
@@ -244,70 +250,74 @@ public class CommentFactory {
             sql.append("INSERT INTO " + schema + ".external_databases ");
             sql.append("(external_database_id, external_database_name, "
                     + "external_database_version) VALUES (?, ?, ?)");
-            insertDb = SqlUtils.getPreparedStatement(dataSource, sql.toString());
+            insertDb = SqlUtils
+                    .getPreparedStatement(dataSource, sql.toString());
 
             sql = new StringBuffer();
             sql.append("INSERT INTO " + schema + ".comment_external_database ");
             sql.append("(external_database_id, comment_id) VALUES (?, ?)");
-            insertLink = SqlUtils.getPreparedStatement(dataSource,
-                    sql.toString());
+            insertLink = SqlUtils.getPreparedStatement(dataSource, sql
+                    .toString());
 
             // while (rs.next()) {
             // String externalDbName = rs.getString("external_database_name");
             // String externalDbVersion =
             // rs.getString("external_database_version");
-           // String externalDbName = "PlasmoDB_Temp";
-            //String externalDbVersion = "ver_1.0";
-            
-            //The external database info is provided by JSP
+            // String externalDbName = "PlasmoDB_Temp";
+            // String externalDbVersion = "ver_1.0";
 
-			String externalDbName, externalDbVersion;
+            // The external database info is provided by JSP
+
+            String externalDbName, externalDbVersion;
             ExternalDatabase[] eds = comment.getExternalDbs();
 
-			if (eds != null && eds.length > 0) {
-            	externalDbName = eds[0].getExternalDbName();
-            	externalDbVersion = eds[0].getExternalDbVersion();
-			} else {
-				String getExtDbSql;
-				if (comment.getCommentTarget().contains("gene")) {
-					getExtDbSql = "SELECT ed.name, version "
-						+ "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
-						+ "dots.genefeature gf "
-						+ "WHERE ed.external_database_id = edr.external_database_id "
-						+ "AND gf.external_database_release_id = edr.external_database_release_id "
-						+ "AND gf.source_id=?";
-				} else {
-					String naSeqTable;
-					if (comment.getProjectName().equalsIgnoreCase("toxodb")) {
-					//toxo uses dots.virtualnasequence, others use dots.externalnasequence
-						naSeqTable = "DoTS.VirtualNaSequence";
-					} else {
-						naSeqTable = "DoTS.ExternalNASequence";	
-					}
+            if (eds != null && eds.length > 0) {
+                externalDbName = eds[0].getExternalDbName();
+                externalDbVersion = eds[0].getExternalDbVersion();
+            } else {
+                String getExtDbSql;
+                if (comment.getCommentTarget().contains("gene")) {
+                    getExtDbSql = "SELECT ed.name, version "
+                            + "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
+                            + "dots.genefeature gf "
+                            + "WHERE ed.external_database_id = edr.external_database_id "
+                            + "AND gf.external_database_release_id = edr.external_database_release_id "
+                            + "AND gf.source_id=?";
+                } else {
+                    String naSeqTable;
+                    if (comment.getProjectName().equalsIgnoreCase("toxodb")) {
+                        // toxo uses dots.virtualnasequence, others use
+                        // dots.externalnasequence
+                        naSeqTable = "DoTS.VirtualNaSequence";
+                    } else {
+                        naSeqTable = "DoTS.ExternalNASequence";
+                    }
 
-					getExtDbSql = "SELECT ed.name, version "
-						+ "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
-						+ naSeqTable + " ns "
-						+ "WHERE ed.external_database_id = edr.external_database_id "
-						+ "AND ns.external_database_release_id = edr.external_database_release_id "
-						+ "AND ns.source_id=?";
-				}
+                    getExtDbSql = "SELECT ed.name, version "
+                            + "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
+                            + naSeqTable
+                            + " ns "
+                            + "WHERE ed.external_database_id = edr.external_database_id "
+                            + "AND ns.external_database_release_id = edr.external_database_release_id "
+                            + "AND ns.source_id=?";
+                }
 
-				PreparedStatement ps = SqlUtils.getPreparedStatement (dataSource, 
-															getExtDbSql.toString());
-				ps.setString (1, comment.getStableId());
+                PreparedStatement ps = SqlUtils.getPreparedStatement(
+                        dataSource, getExtDbSql.toString());
+                ps.setString(1, comment.getStableId());
 
-				ResultSet rs = ps.executeQuery();
-	            if (!rs.next()) {
-                	System.err.println ("Error in executing getextdbsql");
-				}
+                ResultSet rs = ps.executeQuery();
+                if (!rs.next()) {
+                    System.err.println("Error in executing getextdbsql");
+                }
 
-				externalDbName = rs.getString("name");
-				externalDbVersion = rs.getString("version");
-				System.out.println ("-- " + externalDbName + ", " + externalDbVersion);
-				comment.addExternalDatabase (externalDbName, externalDbVersion);
-			}
-            
+                externalDbName = rs.getString("name");
+                externalDbVersion = rs.getString("version");
+                System.out.println("-- " + externalDbName + ", "
+                        + externalDbVersion);
+                comment.addExternalDatabase(externalDbName, externalDbVersion);
+            }
+
             int externalDbId;
 
             // check if the external db entry exists
@@ -328,7 +338,7 @@ public class CommentFactory {
 
             // add the reference link
             insertLink.setInt(1, externalDbId);
-            insertLink.setInt(2, Integer.parseInt(commentId));
+            insertLink.setInt(2, commentId);
             insertLink.execute();
             // }
         } finally {
@@ -340,19 +350,19 @@ public class CommentFactory {
         }
     }
 
-    public Comment getComment(String commentId) throws WdkModelException {
+    public Comment getComment(int commentId) throws WdkModelException {
         String schema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT * FROM " + schema + ".comments ");
-        sql.append("WHERE comment_id = ?");
+        sql.append("comment_id = ?");
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
 
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                    sql.toString());
-            ps.setString(1, commentId);
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql
+                    .toString());
+            ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
             if (!rs.next())
@@ -371,7 +381,6 @@ public class CommentFactory {
             comment.setProjectVersion(rs.getString("project_version"));
             comment.setReviewStatus(rs.getString("review_status_id"));
             comment.setStableId(rs.getString("stable_id"));
-            
 
             // load locations
             loadLocations(commentId, comment);
@@ -391,7 +400,7 @@ public class CommentFactory {
         }
     }
 
-    private void loadLocations(String commentId, Comment comment)
+    private void loadLocations(int commentId, Comment comment)
             throws SQLException {
         String schema = config.getCommentSchema();
 
@@ -404,9 +413,9 @@ public class CommentFactory {
         PreparedStatement ps = null;
         try {
 
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                    sql.toString());
-            ps.setString(1, commentId);
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql
+                    .toString());
+            ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -421,12 +430,13 @@ public class CommentFactory {
         }
     }
 
-    private void loadExternalDbs(String commentId, Comment comment)
+    private void loadExternalDbs(int commentId, Comment comment)
             throws SQLException {
         String schema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT ed.external_database_name, ed.external_database_version ");
+        sql
+                .append("SELECT ed.external_database_name, ed.external_database_version ");
         sql.append("FROM " + schema + ".external_databases ed, ");
         sql.append(schema + ".comment_external_database ced ");
         sql.append("WHERE ced.comment_id = ?");
@@ -435,14 +445,15 @@ public class CommentFactory {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                    sql.toString());
-            ps.setString(1, commentId);
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql
+                    .toString());
+            ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 String externalDbName = rs.getString("external_database_name");
-                String externalDbVersion = rs.getString("external_database_version");
+                String externalDbVersion = rs
+                        .getString("external_database_version");
                 comment.addExternalDatabase(externalDbName, externalDbVersion);
             }
         } finally {
@@ -503,7 +514,7 @@ public class CommentFactory {
         try {
             rs = SqlUtils.getResultSet(dataSource, sql.toString());
             while (rs.next()) {
-                String commentId = rs.getString("comment_id");
+                int commentId = rs.getInt("comment_id");
                 Comment comment = factory.getComment(commentId);
                 comments.add(comment);
             }
@@ -527,17 +538,19 @@ public class CommentFactory {
 
         String where = " WHERE comment_id = " + commentId;
         String projectName = "";
-        
+
         try {
-        	String findSql = "SELECT project_name FROM " + schema + ".comments" + where;
-        	ResultSet rs = SqlUtils.getResultSet(dataSource, findSql);
-        	if (!rs.next()) {
-        		logger.warn("DeleteComment: Did not find a comment for id " + commentId);
-        		return;
-        	}
-        	
-        	projectName = rs.getString(1);
-        	
+            String findSql = "SELECT project_name FROM " + schema + ".comments"
+                    + where;
+            ResultSet rs = SqlUtils.getResultSet(dataSource, findSql);
+            if (!rs.next()) {
+                logger.warn("DeleteComment: Did not find a comment for id "
+                        + commentId);
+                return;
+            }
+
+            projectName = rs.getString(1);
+
             // delete the location information
             String sql = "DELETE FROM " + schema + ".locations" + where;
             SqlUtils.execute(dataSource, sql);
@@ -553,58 +566,66 @@ public class CommentFactory {
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         }
-        
+
         try {
-        	File cFile = new File (config.getCommentTextFileDir() + System.getProperty("file.separator")
-        								+ projectName + "_comments.txt");
-        	extractCommentsTextSearchFile (cFile);
+            File cFile = new File(config.getCommentTextFileDir()
+                    + System.getProperty("file.separator") + projectName
+                    + "_comments.txt");
+            extractCommentsTextSearchFile(cFile);
         } catch (Exception e) {
-        	logger.warn("Error in deleteComment", e);
+            logger.warn("Error in deleteComment", e);
         }
-        
+
     }
-    
-    public void extractCommentsTextSearchFile (File commentsFile) {
-    	
-    	DataSource dataSource = platform.getDataSource();
 
-    	logger.info("extracting flatfile " + commentsFile);
+    public void extractCommentsTextSearchFile(File commentsFile) {
 
-    	//TODO: Are we being oracle specific by using regexp_replace?? 
-    	String getCommentsSql = "SELECT DISTINCT '', substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
-	    + " gf.source_id, "
-	    + " regexp_replace(c.content || ' (' || u.first_name || ' ' || u.last_name || ')', '[[:space:]]', ' ') "
-	    + " FROM userLogins.users" + config.getProjectDbLink() + " u, "
-	    + config.getCommentSchema() + ".comments" + config.getProjectDbLink() 
-	    + " c, DoTS.GeneFeature gf, DoTS.NaSequence ns, SRes.TaxonName tn "
-	    + " WHERE u.email = c.email "
-	    + " AND c.comment_target_id='gene' "
-	    + " AND c.stable_id = gf.source_id "
-	    + " AND c.review_status_id != 'rejected' "
-	    + " AND gf.na_sequence_id = ns.na_sequence_id "
-	    + " AND ns.taxon_id = tn.taxon_id "
-	    + " AND tn.name_class = 'scientific name' "
-	    + " ORDER BY substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), gf.source_id, "
-	    + " regexp_replace(c.content || ' (' || u.first_name || ' ' || u.last_name || ')', '[[:space:]]', ' ') ";
-    	
-	logger.info("flatfile extraction SQL: " + getCommentsSql);
+        DataSource dataSource = platform.getDataSource();
 
-    	try {
-    		ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
-    		FileWriter fw = new FileWriter (commentsFile);
-    		while (rs.next()) {
-    			//String empty = rs.getString(1);
-    			String orgName = rs.getString(2);
-    			String sourceId = rs.getString(3);
-    			String comment = rs.getString(4);
-    			fw.write("\t" + orgName + "\t" + sourceId + "\t" + comment + "\n");
-    		}
-    		
-    		rs.close();
-    		fw.close();
-    	} catch (Exception e){
-    		//Is there a need to throw WDK exception? 
-    		logger.warn("Error in creating comments file: ", e);
-    	} 
+        logger.info("extracting flatfile " + commentsFile);
+
+        // TODO: Are we being oracle specific by using regexp_replace??
+        String getCommentsSql = "SELECT DISTINCT '', "
+                + "substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
+                + " gf.source_id, "
+                + " regexp_replace(c.content || ' (' || u.first_name || ' ' "
+                + "|| u.last_name || ')', '[[:space:]]', ' ') " + " FROM "
+                + config.getUserLoginSchema() + ".users"
+                + config.getProjectDbLink() + " u, "
+                + config.getCommentSchema() + ".comments"
+                + config.getProjectDbLink()
+                + " c, DoTS.GeneFeature gf, DoTS.NaSequence ns, "
+                + "SRes.TaxonName tn " + " WHERE u.email = c.email "
+                + " AND c.comment_target_id='gene' "
+                + " AND c.stable_id = gf.source_id "
+                + " AND c.review_status_id != 'rejected' "
+                + " AND gf.na_sequence_id = ns.na_sequence_id "
+                + " AND ns.taxon_id = tn.taxon_id "
+                + " AND tn.name_class = 'scientific name' " + " ORDER BY "
+                + "substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
+                + "gf.source_id, "
+                + " regexp_replace(c.content || ' (' || u.first_name || ' ' "
+                + "|| u.last_name || ')', '[[:space:]]', ' ') ";
+
+        logger.info("flatfile extraction SQL: " + getCommentsSql);
+
+        try {
+            ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
+            FileWriter fw = new FileWriter(commentsFile);
+            while (rs.next()) {
+                // String empty = rs.getString(1);
+                String orgName = rs.getString(2);
+                String sourceId = rs.getString(3);
+                String comment = rs.getString(4);
+                fw.write("\t" + orgName + "\t" + sourceId + "\t" + comment
+                        + "\n");
+            }
+
+            rs.close();
+            fw.close();
+        } catch (Exception e) {
+            // Is there a need to throw WDK exception?
+            logger.warn("Error in creating comments file: ", e);
+        }
     }
 }

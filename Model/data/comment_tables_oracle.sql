@@ -48,6 +48,8 @@ GRANT select on comments.review_status to GUS_R;
 CREATE TABLE comments.comments
 (
   comment_id NUMBER(10) NOT NULL,
+  PREV_COMMENT_ID NUMBER(10),
+  PREV_SCHEMA VARCHAR2(50),          
   email varchar(255),
   comment_date date,
   comment_target_id varchar(20),
@@ -56,9 +58,10 @@ CREATE TABLE comments.comments
   project_name varchar(200),
   project_version varchar(100),
   headline varchar(2000),
-  content varchar(4000),
   review_status_id varchar(20),
   accepted_version varchar(100),
+  LOCATION_STRING VARCHAR2(1000),
+  content clob,
   CONSTRAINT comments_pkey PRIMARY KEY (comment_id),
   CONSTRAINT comments_ct_id_fkey FOREIGN KEY (comment_target_id)
       REFERENCES comments.comment_target (comment_target_id),
@@ -75,6 +78,7 @@ CREATE TABLE comments.external_databases
   external_database_id NUMBER(10) NOT NULL,
   external_database_name varchar(200),
   external_database_version varchar(200),
+  PREV_SCHEMA VARCHAR2(50),          
   CONSTRAINT external_databases_pkey PRIMARY KEY (external_database_id)
 );
 
@@ -90,6 +94,8 @@ CREATE TABLE comments.locations
   location_end NUMBER(12),
   coordinate_type VARCHAR(20),
   is_reverse NUMBER(1),
+  PREV_COMMENT_ID NUMBER(10),
+  PREV_SCHEMA VARCHAR2(50),  
   CONSTRAINT locations_pkey PRIMARY KEY (comment_id, location_id),
   CONSTRAINT locations_comment_id_fkey FOREIGN KEY (comment_id)
       REFERENCES comments.comments (comment_id)
