@@ -120,7 +120,8 @@ public class CommentFactory {
         // get a new comment id
         try {
             // DataSource dataSource = platform.getDataSource();
-            int commentId = Integer.parseInt(platform.getNextId(schema, "comments"));
+            int commentId = Integer.parseInt(platform.getNextId(schema,
+                    "comments"));
 
             ps = SqlUtils
                     .getPreparedStatement(
@@ -219,9 +220,10 @@ public class CommentFactory {
      * @param commentId
      * @param comment
      * @throws SQLException
+     * @throws WdkModelException
      */
     private void saveExternalDbs(int commentId, Comment comment)
-            throws SQLException {
+            throws SQLException, WdkModelException {
         String schema = config.getCommentSchema();
         // String dblink = config.getProjectDbLink();
         // String stableId = comment.getStableId();
@@ -302,17 +304,22 @@ public class CommentFactory {
                             + "AND ns.source_id=?";
                 }
 
-                PreparedStatement ps = SqlUtils.getPreparedStatement(
-                        dataSource, getExtDbSql.toString());
-                ps.setString(1, comment.getStableId());
+                ResultSet rs = null;
+                try {
+                    PreparedStatement ps = SqlUtils.getPreparedStatement(
+                            dataSource, getExtDbSql.toString());
+                    ps.setString(1, comment.getStableId());
 
-                ResultSet rs = ps.executeQuery();
-                if (!rs.next()) {
-                    System.err.println("Error in executing getextdbsql");
+                    rs = ps.executeQuery();
+                    if (!rs.next())
+                        throw new WdkModelException(
+                                "Error in executing getextdbsql");
+
+                    externalDbName = rs.getString("name");
+                    externalDbVersion = rs.getString("version");
+                } finally {
+                    if (rs != null) SqlUtils.closeResultSet(rs);
                 }
-
-                externalDbName = rs.getString("name");
-                externalDbVersion = rs.getString("version");
                 System.out.println("-- " + externalDbName + ", "
                         + externalDbVersion);
                 comment.addExternalDatabase(externalDbName, externalDbVersion);
@@ -351,11 +358,14 @@ public class CommentFactory {
     }
 
     public Comment getComment(int commentId) throws WdkModelException {
+        logger.debug("Getting comment: " + commentId);
+
         String schema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT * FROM " + schema + ".comments ");
-        sql.append("comment_id = ?");
+        sql.append("WHERE comment_id = ?");
+
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
@@ -375,12 +385,14 @@ public class CommentFactory {
             comment.setCommentDate(rs.getDate("comment_date"));
             comment.setCommentTarget(rs.getString("comment_target_id"));
             comment.setConceptual(rs.getBoolean("conceptual"));
-            comment.setContent(rs.getString("content"));
             comment.setHeadline(rs.getString("headline"));
             comment.setProjectName(rs.getString("project_name"));
             comment.setProjectVersion(rs.getString("project_version"));
             comment.setReviewStatus(rs.getString("review_status_id"));
             comment.setStableId(rs.getString("stable_id"));
+
+            // get clob content
+            comment.setContent(platform.getClobData(rs, "content"));
 
             // load locations
             loadLocations(commentId, comment);
@@ -390,6 +402,7 @@ public class CommentFactory {
 
             return comment;
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw new WdkModelException(ex);
         } finally {
             try {
@@ -532,7 +545,7 @@ public class CommentFactory {
         return array;
     }
 
-    public void deleteComment(String commentId) throws WdkModelException {
+    public void deleteComment(int commentId) throws WdkModelException {
         String schema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
 

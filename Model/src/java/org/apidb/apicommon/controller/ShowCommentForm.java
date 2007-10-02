@@ -4,15 +4,19 @@ import org.apache.struts.action.ActionForm;
 
 public class ShowCommentForm extends ActionForm {
 
-    private int commentId;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4308700939338194047L;
+    private String commentId;
     private String stableId;
     private String projectId;
 
-    public int getCommentId() {
+    public String getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(int commentId) {
+    public void setCommentId(String commentId) {
         this.commentId = commentId;
     }
 

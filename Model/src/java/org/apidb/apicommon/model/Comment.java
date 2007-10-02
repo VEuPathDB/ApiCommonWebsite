@@ -15,8 +15,8 @@ import org.gusdb.wdk.model.WdkModelException;
  */
 public class Comment {
 
-	public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
-    
+    public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
+
     private int commentId;
     private String email;
     /**
@@ -54,13 +54,18 @@ public class Comment {
 
     private List<ExternalDatabase> externalDbs;
 
+    // the user name and organization are filled in later from wdkModel, and
+    // they are only for display purpose
+    private String userName;
+    private String organization;
+
     public Comment(String email) {
         this.email = email;
         locations = new ArrayList<Location>();
         externalDbs = new ArrayList<ExternalDatabase>();
 
         // setup default values
-        commentTarget = " ";
+        commentTarget = "gene";
         conceptual = false;
         commentDate = new Date();
         stableId = " ";
@@ -70,8 +75,7 @@ public class Comment {
         content = " ";
         reviewStatus = Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
     }
-    
-    
+
     /**
      * @return Returns the commentId.
      */
@@ -79,17 +83,13 @@ public class Comment {
         return commentId;
     }
 
-
-
-    
     /**
-     * @param commentId The commentId to set.
+     * @param commentId
+     *          The commentId to set.
      */
     void setCommentId(int commentId) {
         this.commentId = commentId;
     }
-
-
 
     /**
      * @return Returns the commentDate.
@@ -100,7 +100,7 @@ public class Comment {
 
     /**
      * @param commentDate
-     *            The commentDate to set.
+     *          The commentDate to set.
      */
     public void setCommentDate(Date commentDate) {
         this.commentDate = commentDate;
@@ -115,7 +115,7 @@ public class Comment {
 
     /**
      * @param commentTarget
-     *            The commentTarget to set.
+     *          The commentTarget to set.
      */
     public void setCommentTarget(String commentTarget) {
         this.commentTarget = qualify(commentTarget);
@@ -130,7 +130,7 @@ public class Comment {
 
     /**
      * @param conceptual
-     *            The conceptual to set.
+     *          The conceptual to set.
      */
     public void setConceptual(boolean conceptual) {
         this.conceptual = conceptual;
@@ -145,7 +145,7 @@ public class Comment {
 
     /**
      * @param content
-     *            The content to set.
+     *          The content to set.
      */
     public void setContent(String content) {
         this.content = qualify(content);
@@ -169,7 +169,7 @@ public class Comment {
 
     /**
      * @param headline
-     *            The headline to set.
+     *          The headline to set.
      */
     public void setHeadline(String headline) {
         this.headline = qualify(headline);
@@ -184,7 +184,7 @@ public class Comment {
 
     /**
      * @param projectName
-     *            The projectName to set.
+     *          The projectName to set.
      */
     public void setProjectName(String projectName) {
         this.projectName = projectName;
@@ -199,7 +199,7 @@ public class Comment {
 
     /**
      * @param projectVersion
-     *            The projectVersion to set.
+     *          The projectVersion to set.
      */
     public void setProjectVersion(String projectVersion) {
         this.projectVersion = projectVersion;
@@ -214,7 +214,7 @@ public class Comment {
 
     /**
      * @param reviewStatus
-     *            The reviewStatus to set.
+     *          The reviewStatus to set.
      */
     public void setReviewStatus(String reviewStatus) {
         this.reviewStatus = qualify(reviewStatus);
@@ -229,7 +229,7 @@ public class Comment {
 
     /**
      * @param stableId
-     *            The stableId to set.
+     *          The stableId to set.
      */
     public void setStableId(String stableId) {
         this.stableId = qualify(stableId);
@@ -274,7 +274,7 @@ public class Comment {
         locations.toArray(array);
         return array;
     }
-    
+
     public String getLocationString() {
         if (locations.isEmpty()) return " ";
         StringBuffer sb = new StringBuffer();
@@ -284,11 +284,9 @@ public class Comment {
         for (int i = 1; i < locations.size(); i++) {
             sb.append(", " + locations.get(i));
         }
-        
-        if (location.isReversed()) 
-        	sb.append(" (reverse strand)");
-        else
-        	sb.append (" (forward strand)");
+
+        if (location.isReversed()) sb.append(" (reverse strand)");
+        else sb.append(" (forward strand)");
         return sb.toString();
     }
 
@@ -309,9 +307,8 @@ public class Comment {
 
     private String qualify(String content) {
         // replace all single quotes with two single quotes
-    	if (content == null)
-    		content = "";
-        //content = content.replaceAll("'", "''");
+        if (content == null) content = "";
+        // content = content.replaceAll("'", "''");
         return content;
     }
 
@@ -347,5 +344,35 @@ public class Comment {
         sb.append("\n");
         sb.append("Content:\t" + content + "\n\n");
         return sb.toString();
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName
+     *          the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /**
+     * @return the organization
+     */
+    public String getOrganization() {
+        return organization;
+    }
+
+    /**
+     * @param organization
+     *          the organization to set
+     */
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 }

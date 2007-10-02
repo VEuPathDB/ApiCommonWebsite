@@ -9,6 +9,10 @@ import org.apidb.apicommon.model.CommentFactory;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 
+/**
+ * @author xingao the base class for all comment actions; it will initialize and
+ *         load the comment factory.
+ */
 public abstract class CommentAction extends Action {
 
     public static final String LOCATION_COORDINATETYPE_PROTEIN = "protein";
@@ -23,10 +27,13 @@ public abstract class CommentAction extends Action {
             ServletContext application = getServlet().getServletContext();
 
             // get the gus_home & project id
-            String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
-            String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
-            
-            File configFile = new File(gusHome + "/config/" + projectId + "/comment-config.xml");
+            String gusHome = application.getRealPath(application
+                    .getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
+            String projectId = application
+                    .getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+
+            File configFile = new File(gusHome + "/config/" + projectId
+                    + "/comment-config.xml");
             CommentFactory.initialize(configFile);
             factory = CommentFactory.getInstance();
         }
