@@ -212,7 +212,7 @@ public class CommentTest {
 
     public static void deleteComment(Map<String, String> params)
             throws WdkModelException {
-        String commentId = params.get("commentid");
+        int commentId = Integer.parseInt(params.get("commentid"));
 
         factory.deleteComment(commentId);
 
