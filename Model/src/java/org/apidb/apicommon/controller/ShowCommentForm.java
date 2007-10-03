@@ -8,17 +8,8 @@ public class ShowCommentForm extends ActionForm {
      * 
      */
     private static final long serialVersionUID = -4308700939338194047L;
-    private String commentId;
     private String stableId;
     private String projectId;
-
-    public String getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(String commentId) {
-        this.commentId = commentId;
-    }
 
     public String getProjectId() {
         return projectId;

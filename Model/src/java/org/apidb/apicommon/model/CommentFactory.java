@@ -358,8 +358,6 @@ public class CommentFactory {
     }
 
     public Comment getComment(int commentId) throws WdkModelException {
-        logger.debug("Getting comment: " + commentId);
-
         String schema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();

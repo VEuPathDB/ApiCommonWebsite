@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 public class CommentFactoryGetTest {
 
     private static final String SAMPLE_EMAIL = "sample@email";
-    private static final String SAMPLE_STABLE_ID = "PF11_0344";
+    private static final String SAMPLE_STABLE_ID = "SAMPLE_0344";
     private static final String SAMPLE_PROJECT_VERSION = "1.1";
     private static final String SAMPLE_COMMENT_TARGET = "gene";
     private static final String SAMPLE_KEYWORD = "test";
@@ -96,4 +96,19 @@ public class CommentFactoryGetTest {
                 SAMPLE_EXTERNAL_DATABASE_VERSION, exdbs[0]
                         .getExternalDbVersion());
     }
+
+    @Test
+    public void testQueryCommentByStableId() throws WdkModelException {
+        Comment[] array = factory.queryComments(null, null, SAMPLE_STABLE_ID,
+                null, null, null);
+        // TEST
+        assertEquals("comment count", 1, array.length);
+        assertEquals("comment id", commentId, array[0].getCommentId());
+
+        // try to get nothing
+        array = factory.queryComments(null, null, "NON_EXIST_STABLE_ID", null,
+                null, null);
+        assertEquals("comment count", 0, array.length);
+    }
+
 }
