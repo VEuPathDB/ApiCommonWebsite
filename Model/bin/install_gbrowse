@@ -84,6 +84,7 @@ configure_gb() {
                      CGIBIN=$cgibinTargetDir    \
                      LIB=$cgilibTargetDir       \
                      BIN=$cgibinTargetDir       \
+                     PREFIX=$GUS_HOME \
                      NONROOT=1                  \
                      SELINUX=1 
      
