@@ -63,12 +63,6 @@ public class ShowCommentAction extends CommentAction {
             commentPage = File.separator + DEFAULT_COMMENT_PAGE;
         }
         
-        // append comment anchor, if comment_id exist
-        String commentId = commentForm.getCommentId();
-        if (commentId != null && commentId.length() > 0) {
-            commentPage += "#" + commentId;
-        }
-        
         // redirect to the show comments page
         return new ActionForward(commentPage, false);
     }
