@@ -71,7 +71,7 @@
 --%>
  <font size="-1">View in
           <a href="<c:url value="/tutorials/${fileNameMov}"/>" target="tutorial"> QuickTime format (.mov)</a> ---&nbsp;
-          <a href="<c:url value="/tutorials/${fileNameAvi}"/>" target="tutorial"> Ms Windows format (.avi)</a> ---&nbsp;
+          <a href="<c:url value="/tutorials/${fileNameAvi}"/>" target="tutorial"> Ms Windows format (.wmv)</a> ---&nbsp;
           <a href="<c:url value="/flv_player/flvplayer.swf?file=/tutorials/${fileNameFlv}&autostart=true"/>" 
 			target="tutorial"> Flash Video format (.flv)</a> ---&nbsp;
           Duration: ${duration}&nbsp;&nbsp;&nbsp;Size: ${size}
