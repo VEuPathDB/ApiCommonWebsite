@@ -14,7 +14,32 @@
                  parentUrl="/showQuestionSetsFlat.do"
                  divisionName="BLAST Question"
                  division="queries_tools"/>
+<script type="text/javascript">
 
+function CalculateBlastAlgorithm(){
+    	var queryType = document.getElementById('BlastQueryType');
+   	var targetType = document.getElementById('BlastDatabaseTypeGene');
+	var qType = queryType.options[queryType.selectedIndex].text;
+	var dbType = targetType.options[targetType.selectedIndex].text;
+	var bp;
+	if (qType == "DNA") {
+            if (dbType == "Proteins" || dbType == "ORF" ) {
+		bp = "blastx";
+	    } else if (dbType == "Translated") {
+                bp = "tblastx";
+	    } else { bp = "blastn"; }
+	    
+	} else if (qType == "Protein") {
+            if ( dbType == "Proteins" || dbType == "ORF" ) {
+		bp = "blastp";
+            } else { bp = "tblastn"; }
+	}
+	
+	document.getElementById('BlastAlgorithm').value = bp;
+
+}
+
+</script>
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 
  <tr>
@@ -39,8 +64,10 @@
 
   <!-- an individual param (can not use fullName, w/ '.', for mapped props) -->
   <c:set value="${qP.name}" var="pNam"/>
-  <tr><td align="right"><b><jsp:getProperty name="qP" property="prompt"/></b></td>
-
+  <tr><td align="right"><b>
+<c:if test="${qP.isVisible == true}">
+<jsp:getProperty name="qP" property="prompt"/></b></td>
+</c:if>
   <!-- choose between flatVocabParam and straight text or number param -->
   <c:choose>
     <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.FlatVocabParamBean'}">
@@ -54,8 +81,18 @@
           <c:when test="${pNam == 'BlastQuerySequence'}">
             <html:textarea property="myProp(${pNam})"  styleId="${qP.id}" cols="50" rows="4"/>
           </c:when>
-          <c:otherwise>
-            <html:text property="myProp(${pNam})" styleId="${qP.id}" />
+   <%--       <c:when test="${pNam == 'BlastAlgorithm'}">
+            <input name="myProp(${pNam})"  id="BlastAlgorithm" type="hidden"/>
+          </c:when>--%>
+          <c:otherwise> 
+          <c:choose>
+          <c:when test="${qP.isVisible == false}">
+            <html:hidden property="myProp(${pNam})" styleId="${qP.id}" />
+          </c:when>
+	  <c:otherwise>
+	    <html:text property="myProp(${pNam})" styleId="${qP.id}" />
+          </c:otherwise>
+          </c:choose>
           </c:otherwise>
         </c:choose>
       </td>
@@ -76,7 +113,7 @@
   <tr><td><html:hidden property="altPageSize" value="1000000"/></td>
   		<td>
   		<table><tr>
-  		<td><html:submit property="questionSubmit" value="Get Answer"/></td>
+  		<td><html:submit property="questionSubmit" onclick="CalculateBlastAlgorithm()" value="Get Answer"/></td>
 		<td><input type="button" value="Clear Sequence" onClick="this.form.elements[4].value='';"/></td>
 		<td><html:reset>Reset All</html:reset></td>
         </tr></table>
