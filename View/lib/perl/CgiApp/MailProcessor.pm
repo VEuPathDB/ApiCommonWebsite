@@ -6,6 +6,7 @@ use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
 use Mail::Send;
 use Mail::Sendmail;
+use ApiCommonWebsite::View::CgiApp::SpamCan;
 
 BEGIN {
    sub handle_errors {
@@ -29,7 +30,7 @@ sub go {
     my $cc2 = join("", @{ $cgi->{'cc2'} });
     my $cc = "$cc1$cc2";
     my $subject = join("", @{ $cgi->{'subject'} });
-    my $replyTo = join("", @{ $cgi->{'replyTo'} or ['anonymous']});
+    my $replyTo = join("", @{ $cgi->{'replyTo'} or ['anonymous']}) || 'anonymous';
     my $privacy = join("", @{ $cgi->{'privacy'} or [] });
     my $website = join("", @{ $cgi->{'website'} or [$ENV{SERVER_NAME}] });
     my $version = join("", @{ $cgi->{'version'} or [] });
@@ -52,15 +53,24 @@ sub go {
 
     
     # testing mode ($cc instead of help@ email, $to instead of bugzilla's email)
-    #$cc = 'aurreco@uga.edu';
-    #$to = 'aurreco@uga.edu';
+    #$cc = 'mheiges@gmail.com';
+    #$to = 'mheiges@uga.edu';
+
+    # flag messages having known spam formats
+    my $spamcan = ApiCommonWebsite::View::CgiApp::SpamCan->new();
+    my $isSpam = $spamcan->tastesLikeSpam($replyTo, $subject, $message);
+    my $spamWarning;
+    if ($isSpam) {
+        $subject = "[spam?] $subject";
+        $spamWarning = "THIS MESSAGE HAS BEEN FLAGGED AS POSSIBLE SPAM BY APIDB MAILPROCESSOR AND HAS NOT BEEN RECORDED IN BUGZILLA\n\n";
+    }
 
     my $metaInfo = ""
+        . $spamWarning    
         . "ReplyTo: $replyTo" . "\n"
         . "Privacy preference: $privacy" . "\n"
-	. "Browser information: $browser" . "\n"
-	. "Referer page: $referer";
-
+        . "Browser information: $browser" . "\n"
+        . "Referer page: $referer";
 
     my $cfmMsg;
 
@@ -81,7 +91,7 @@ sub go {
 #sending email to bugzilla
     my $short_desc = $subject;
     $subject = "Bugzilla [$subject]";
-    if ($to && $subject) {
+    if ($to && $subject && ! $isSpam) {
       # for auto submission to bugzilla
       $metaInfo = ""
         . '@product      = ' . "SupportRequests" . "\n"
