@@ -18,19 +18,32 @@
 
 function CalculateBlastAlgorithm(){
     	var queryType = document.getElementById('BlastQueryType');
-   	var targetType = document.getElementById('BlastDatabaseTypeGene');
+   	var targetType = document.getElementById('BlastDatabaseType');
 	var qType = queryType.options[queryType.selectedIndex].text;
 	var dbType = targetType.options[targetType.selectedIndex].text;
 	var bp;
-	if (qType == "DNA") {
-            if (dbType == "Proteins" || dbType == "ORF" ) {
+//	if (qType.toLowerCase() == "dna") {
+//            if (dbType.toLowerCase() == "proteins" || dbType.toLowerCase() == "orf" ) {
+//		bp = "blastx";
+//	    } else if (dbType.toLowerCase() == "translated") {
+ //               bp = "tblastx";
+//	    } else { bp = "blastn"; }
+//	    
+//	} else if (qType.toLowerCase() == "protein") {
+ //           if ( dbType.toLowerCase() == "proteins" || dbType.toLowerCase().toLowerCase() == "orf" ) {
+//		bp = "blastp";
+ //           } else { bp = "tblastn"; }
+//	}
+	
+	if (qType.search(/dna/i) != -1) {
+            if (dbType.search(/proteins/i) != -1 || dbType.search(/orf/i) != -1) {
 		bp = "blastx";
-	    } else if (dbType == "Translated") {
+	    } else if (dbType.search(/translated/i) != -1) {
                 bp = "tblastx";
 	    } else { bp = "blastn"; }
 	    
-	} else if (qType == "Protein") {
-            if ( dbType == "Proteins" || dbType == "ORF" ) {
+	} else if (qType.search(/protein/i) != -1) {
+            if ( dbType.search(/proteins/i) != -1 || dbType.search(/orf/i) != -1 ) {
 		bp = "blastp";
             } else { bp = "tblastn"; }
 	}
