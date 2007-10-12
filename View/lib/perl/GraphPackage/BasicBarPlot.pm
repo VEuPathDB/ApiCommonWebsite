@@ -95,40 +95,55 @@ sub makeR {
 
    else {
 
-      # [i] = tag for statistics
-      my @group_dict;
-      my %tag_dict;
+      # data we need to get for plot
       my @tags;
-      my $_rx = $Self->getTagRx();
-      for (my $i = 0; $i < @$_names; $i++) {
-         my $eo_i = $_names->[$i]->{ELEMENT_ORDER};
-         my $name = $_names->[$i]->{NAME};
-         my ($tag, $rep) = $name =~ /$_rx/;#/(.+)\s+(rep\d+)$/;
-         $group_dict[$eo_i] = $tag;
-         $tag_dict{$tag} = 1;
-      }
-      @tags = sort keys %tag_dict;
-
-      # {tag} = [ data ]
-      my %data_dict;
-
-      # {tag} = average
-      my %avg_dict;
-
-      # {tag} = stddev
-      my $std_dict;
-
-      foreach my $_datum (@$_data) {
-         my $tag = $group_dict[$_datum->{ELEMENT_ORDER}];
-         push(@{$data_dict{$tag}}, $_datum->{VALUE});
-      }
-
       my @avg;
       my @std;
 
-      for (my $i = 0; $i < @tags; $i++) {
-         $avg[$i] = CBIL::Util::V::average(@{$data_dict{$tags[$i]}});
-         $std[$i] = sqrt(CBIL::Util::V::variance(@{$data_dict{$tags[$i]}}));
+      # do we need to extract a tag from replicate info?
+      if (my $_rx = $Self->getTagRx()) {
+
+         # [i] = tag for statistics
+         my @group_dict;
+
+         # { } = 
+         my %tag_dict;
+
+         # consider each name
+         for (my $i = 0; $i < @$_names; $i++) {
+            my $eo_i = $_names->[$i]->{ELEMENT_ORDER};
+            my $name = $_names->[$i]->{NAME};
+            my ($tag, $rep) = $name =~ /$_rx/;#/(.+)\s+(rep\d+)$/;
+            $group_dict[$eo_i] = $tag;
+            $tag_dict{$tag} = 1;
+         }
+         @tags = sort keys %tag_dict;
+
+         # {tag} = [ data ]
+         my %data_dict;
+
+         # {tag} = average
+         my %avg_dict;
+
+         # {tag} = stddev
+         my $std_dict;
+
+         foreach my $_datum (@$_data) {
+            my $tag = $group_dict[$_datum->{ELEMENT_ORDER}];
+            push(@{$data_dict{$tag}}, $_datum->{VALUE});
+         }
+
+         for (my $i = 0; $i < @tags; $i++) {
+            $avg[$i] = CBIL::Util::V::average(@{$data_dict{$tags[$i]}});
+            $std[$i] = sqrt(CBIL::Util::V::variance(@{$data_dict{$tags[$i]}}));
+         }
+      }
+
+      # take the data as it is
+      else {
+         @tags = map { $_->{NAME}  } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_names;
+         @avg  = map { $_->{VALUE} } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_data;
+         @std  = (0) x scalar @tags;
       }
 
       my $tags_n = scalar @tags;
@@ -138,6 +153,9 @@ sub makeR {
       my $std    = join(', ', @std);
       my $colors = join(', ', map { $_ =~ /\(/ ? $_ : "'$_'" } @{$Self->getColors()});
       my $ylab   = $Self->getYaxisLabel();
+
+      #print STDERR "STD=$std\n";
+      #print STDERR "AVG=$avg\n";
 
       my $_mS = ApiCommonWebsite::View::MultiScreen->new
       ( Parts => [ { Name => 'hist',   Size => 275 },
@@ -201,8 +219,8 @@ if ($isVis_b{hist} == 1) {
 
   par(mar       = c(8,4,1,1));
 
-  d.min = min(0, the.avg - the.std);
-  d.max = max(1.05 * (the.avg + the.std));
+  d.min = min(1.1 * (the.avg - the.std), 0);
+  d.max = max(1.1 * (the.avg + the.std), 0);
 
   c <- barplot(the.avg,
                names.arg = the.tags,
