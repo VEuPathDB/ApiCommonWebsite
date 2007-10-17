@@ -168,7 +168,17 @@ public class CommentFactory {
             
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
+        } finally {
+            // close the connection
+            try {
+                SqlUtils.closeStatement(ps);
+            } catch (SQLException e) {}
         }
+        
+        // print out the connections
+        int active = platform.getActiveCount();
+        int idle = platform.getIdleCount();
+        logger.info("Comment Connections: active=" + active + ", idle=" + idle);
     }
 
     private void saveLocations(String commentId, Comment comment)
@@ -225,6 +235,7 @@ public class CommentFactory {
         StringBuffer sql = new StringBuffer();
         
         PreparedStatement queryDb = null, insertDb = null, insertLink = null;
+        ResultSet rsDb = null, rs = null;
         try {
             // ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
             // ps.setString(1, stableId);
@@ -297,7 +308,7 @@ public class CommentFactory {
 															getExtDbSql.toString());
 				ps.setString (1, comment.getStableId());
 
-				ResultSet rs = ps.executeQuery();
+				rs = ps.executeQuery();
 	            if (!rs.next()) {
                 	System.err.println ("Error in executing getextdbsql");
 				}
@@ -313,7 +324,7 @@ public class CommentFactory {
             // check if the external db entry exists
             queryDb.setString(1, externalDbName);
             queryDb.setString(2, externalDbVersion);
-            ResultSet rsDb = queryDb.executeQuery();
+            rsDb = queryDb.executeQuery();
             if (!rsDb.next()) { // no entry, add one
                 externalDbId = Integer.parseInt(platform.getNextId(schema,
                         "external_databases"));
@@ -333,8 +344,8 @@ public class CommentFactory {
             // }
         } finally {
             // close statements and result set
-            // SqlUtils.closeResultSet(rs);
-            SqlUtils.closeStatement(queryDb);
+            if (rs != null) SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSet(rsDb);
             SqlUtils.closeStatement(insertDb);
             SqlUtils.closeStatement(insertLink);
         }
@@ -589,8 +600,9 @@ public class CommentFactory {
     	
 	logger.info("flatfile extraction SQL: " + getCommentsSql);
 
+        ResultSet rs = null;
     	try {
-    		ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
+    		rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
     		FileWriter fw = new FileWriter (commentsFile);
     		while (rs.next()) {
     			//String empty = rs.getString(1);
@@ -605,6 +617,13 @@ public class CommentFactory {
     	} catch (Exception e){
     		//Is there a need to throw WDK exception? 
     		logger.warn("Error in creating comments file: ", e);
-    	} 
+    	} finally {
+            try {
+                SqlUtils.closeResultSet(rs);
+            } catch (SQLException ex) {
+                logger.warn("Error in creating comments file: ", ex);
+            }
+        }
+
     }
 }
