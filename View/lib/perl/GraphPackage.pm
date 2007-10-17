@@ -102,7 +102,7 @@ sub run {
    my $rProg = defined $ENV{R_PROGRAM} ? $ENV{R_PROGRAM} : 'R';
 
    #my $rvs_t   = time();
-   system "$rProg --vanilla --slave < $r_f >&2";
+   system "$rProg --vanilla --slave < $r_f >/dev/null";
    #print STDERR join("\t", 'RVS', time() - $rvs_t), "\n";
 
    return @Rv;
