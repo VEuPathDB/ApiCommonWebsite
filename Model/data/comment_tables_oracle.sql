@@ -141,6 +141,8 @@ GRANT select on comments2.external_databases_pkseq to GUS_R;
 
 insert into comments2.comment_target values ('gene', 'Gene Feature', 0);
 
+insert into comments2.comment_target values ('protein', 'Protein Sequence', 0);
+
 insert into comments2.comment_target values ('genome', 'Genome Sequence', 1);
 
 insert into comments2.review_status values ('unknown', 'the comment has not been reviewed (by default)');
