@@ -36,17 +36,16 @@ public class CommentFactory {
             throws WdkModelException {
         try {
             // parse and load the configuration
-            CommentConfig config = CommentConfigParser
-                    .parseXmlFile(commentConfigXmlFile);
+            CommentConfig config = CommentConfigParser.parseXmlFile(commentConfigXmlFile);
 
             // create a platform object
             RDBMSPlatformI platform = (RDBMSPlatformI) Class.forName(
                     config.getPlatformClass()).newInstance();
-            platform.init(config.getConnectionUrl(), config.getLogin(), config
-                    .getPassword(), config.getMinIdle(), config.getMaxIdle(),
-                    config.getMaxWait(), config.getMaxActive(), config
-                            .getInitialSize(), commentConfigXmlFile
-                            .getAbsolutePath());
+            platform.init(config.getConnectionUrl(), config.getLogin(),
+                    config.getPassword(), config.getMinIdle(),
+                    config.getMaxIdle(), config.getMaxWait(),
+                    config.getMaxActive(), config.getInitialSize(),
+                    commentConfigXmlFile.getAbsolutePath());
 
             // create a factory instance
             factory = new CommentFactory(platform, config);
@@ -84,12 +83,12 @@ public class CommentFactory {
 
         ResultSet rs = null;
         CommentTarget target = null;
-        PreparedStatement ps = null;
         String query = null;
         try {
             query = "SELECT * FROM " + schema
                     + ".comment_target WHERE comment_target_id=?";
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), query);
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), query);
             ps.setString(1, internalValue);
             rs = ps.executeQuery();
             if (!rs.next())
@@ -100,14 +99,14 @@ public class CommentFactory {
             target = new CommentTarget(internalValue);
             target.setDisplayName(rs.getString("comment_target_name"));
             target.setRequireLocation((rs.getInt("require_location") != 0));
-
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         } finally {
             // close the connection
             try {
                 SqlUtils.closeResultSet(rs);
-            } catch (SQLException e) {
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
             }
         }
         return target;
@@ -123,16 +122,14 @@ public class CommentFactory {
             int commentId = Integer.parseInt(platform.getNextId(schema,
                     "comments"));
 
-            ps = SqlUtils
-                    .getPreparedStatement(
-                            platform.getDataSource(),
-                            "INSERT INTO "
-                                    + schema
-                                    + ".comments (comment_id, email, "
-                                    + "comment_date, comment_target_id, stable_id, conceptual, "
-                                    + "project_name, project_version, headline, content, "
-                                    + "location_string, review_status_id) "
-                                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), 
+                    "INSERT INTO "
+                            + schema
+                            + ".comments (comment_id, email, "
+                            + "comment_date, comment_target_id, stable_id, conceptual, "
+                            + "project_name, project_version, headline, content, "
+                            + "location_string, review_status_id) "
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 
             long currentMillis = System.currentTimeMillis();
 
@@ -148,9 +145,8 @@ public class CommentFactory {
             // ps.setString(10, comment.getContent());
             platform.updateClobData(ps, 10, comment.getContent(), false);
             ps.setString(11, comment.getLocationString());
-            String rs = (comment.getReviewStatus() != null && comment
-                    .getReviewStatus().length() > 0) ? comment
-                    .getReviewStatus() : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
+            String rs = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0) ? comment.getReviewStatus()
+                    : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
             ps.setString(12, rs);
 
             ps.execute();
@@ -174,6 +170,15 @@ public class CommentFactory {
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeStatement(ps);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+            
+            // print connection status
+            printStatus();
         }
     }
 
@@ -232,7 +237,8 @@ public class CommentFactory {
         // get a set of matched external databases
         StringBuffer sql = new StringBuffer();
 
-        PreparedStatement queryDb = null, insertDb = null, insertLink = null;
+        PreparedStatement insertDb = null, insertLink = null;
+        ResultSet rsDb = null;
         try {
             // ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
             // ps.setString(1, stableId);
@@ -246,20 +252,20 @@ public class CommentFactory {
             sql.append("FROM " + schema + ".external_databases ");
             sql.append("WHERE external_database_name = ? "
                     + "AND external_database_version = ?");
-            queryDb = SqlUtils.getPreparedStatement(dataSource, sql.toString());
+            PreparedStatement queryDb = SqlUtils.getPreparedStatement(
+                    dataSource, sql.toString());
 
             sql = new StringBuffer();
             sql.append("INSERT INTO " + schema + ".external_databases ");
             sql.append("(external_database_id, external_database_name, "
                     + "external_database_version) VALUES (?, ?, ?)");
-            insertDb = SqlUtils
-                    .getPreparedStatement(dataSource, sql.toString());
+            insertDb = SqlUtils.getPreparedStatement(dataSource, sql.toString());
 
             sql = new StringBuffer();
             sql.append("INSERT INTO " + schema + ".comment_external_database ");
             sql.append("(external_database_id, comment_id) VALUES (?, ?)");
-            insertLink = SqlUtils.getPreparedStatement(dataSource, sql
-                    .toString());
+            insertLink = SqlUtils.getPreparedStatement(dataSource,
+                    sql.toString());
 
             // while (rs.next()) {
             // String externalDbName = rs.getString("external_database_name");
@@ -318,7 +324,7 @@ public class CommentFactory {
                     externalDbName = rs.getString("name");
                     externalDbVersion = rs.getString("version");
                 } finally {
-                    if (rs != null) SqlUtils.closeResultSet(rs);
+                    SqlUtils.closeResultSet(rs);
                 }
                 System.out.println("-- " + externalDbName + ", "
                         + externalDbVersion);
@@ -330,7 +336,7 @@ public class CommentFactory {
             // check if the external db entry exists
             queryDb.setString(1, externalDbName);
             queryDb.setString(2, externalDbVersion);
-            ResultSet rsDb = queryDb.executeQuery();
+            rsDb = queryDb.executeQuery();
             if (!rsDb.next()) { // no entry, add one
                 externalDbId = Integer.parseInt(platform.getNextId(schema,
                         "external_databases"));
@@ -341,7 +347,6 @@ public class CommentFactory {
             } else { // has entry, get the external_database_id
                 externalDbId = rsDb.getInt("external_database_id");
             }
-            rsDb.close();
 
             // add the reference link
             insertLink.setInt(1, externalDbId);
@@ -350,8 +355,7 @@ public class CommentFactory {
             // }
         } finally {
             // close statements and result set
-            // SqlUtils.closeResultSet(rs);
-            SqlUtils.closeStatement(queryDb);
+            SqlUtils.closeResultSet(rsDb);
             SqlUtils.closeStatement(insertDb);
             SqlUtils.closeStatement(insertLink);
         }
@@ -365,11 +369,9 @@ public class CommentFactory {
         sql.append("WHERE comment_id = ?");
 
         ResultSet rs = null;
-        PreparedStatement ps = null;
         try {
-
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql
-                    .toString());
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -408,6 +410,9 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
+            
+            // print connection status
+            printStatus();
         }
     }
 
@@ -419,13 +424,11 @@ public class CommentFactory {
         sql.append("SELECT location_start, location_end, is_reverse, ");
         sql.append("coordinate_type FROM " + schema + ".locations ");
         sql.append("WHERE comment_id = ?");
+
         ResultSet rs = null;
-
-        PreparedStatement ps = null;
         try {
-
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql
-                    .toString());
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -446,25 +449,22 @@ public class CommentFactory {
         String schema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
-        sql
-                .append("SELECT ed.external_database_name, ed.external_database_version ");
+        sql.append("SELECT ed.external_database_name, ed.external_database_version ");
         sql.append("FROM " + schema + ".external_databases ed, ");
         sql.append(schema + ".comment_external_database ced ");
         sql.append("WHERE ced.comment_id = ?");
         sql.append(" AND ced.external_database_id = ed.external_database_id");
 
-        PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), sql
-                    .toString());
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 String externalDbName = rs.getString("external_database_name");
-                String externalDbVersion = rs
-                        .getString("external_database_version");
+                String externalDbVersion = rs.getString("external_database_version");
                 comment.addExternalDatabase(externalDbName, externalDbVersion);
             }
         } finally {
@@ -537,9 +537,13 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
+            
+            // print connection status
+            printStatus();
         }
         Comment[] array = new Comment[comments.size()];
         comments.toArray(array);
+        
         return array;
     }
 
@@ -550,10 +554,11 @@ public class CommentFactory {
         String where = " WHERE comment_id = " + commentId;
         String projectName = "";
 
+        ResultSet rs = null;
         try {
             String findSql = "SELECT project_name FROM " + schema + ".comments"
                     + where;
-            ResultSet rs = SqlUtils.getResultSet(dataSource, findSql);
+            rs = SqlUtils.getResultSet(dataSource, findSql);
             if (!rs.next()) {
                 logger.warn("DeleteComment: Did not find a comment for id "
                         + commentId);
@@ -576,6 +581,15 @@ public class CommentFactory {
             SqlUtils.execute(dataSource, sql);
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeResultSet(rs);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+            
+            // print connection status
+            printStatus();
         }
 
         try {
@@ -620,8 +634,9 @@ public class CommentFactory {
 
         logger.info("flatfile extraction SQL: " + getCommentsSql);
 
+        ResultSet rs = null;
         try {
-            ResultSet rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
+            rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
             FileWriter fw = new FileWriter(commentsFile);
             while (rs.next()) {
                 // String empty = rs.getString(1);
@@ -632,11 +647,25 @@ public class CommentFactory {
                         + "\n");
             }
 
-            rs.close();
             fw.close();
-        } catch (Exception e) {
+        } catch (Exception ex) {
             // Is there a need to throw WDK exception?
-            logger.warn("Error in creating comments file: ", e);
+            logger.warn("Error in creating comments file: ", ex);
+        } finally {
+            try {
+                SqlUtils.closeResultSet(rs);
+            } catch (SQLException ex) {
+                logger.warn("Error in creating comments file: ", ex);
+            }
+            
+            // print connection status
+            printStatus();
         }
+    }
+    
+    private void printStatus() {
+        int active = platform.getActiveCount();
+        int idle = platform.getIdleCount();
+        logger.info("Comment connections: active=" + active + ", idle=" + idle);
     }
 }
