@@ -1,9 +1,10 @@
 package ApiCommonWebsite::View::CgiApp::MultipleAlignmentMercatorMavid;
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
+use base qw( ApiCommonWebsite::View::CgiApp );
 
 use strict;
 
 use Bio::SeqIO;
+use Bio::Seq;
 
 sub new {
   my $self = shift()->SUPER::new();
@@ -12,12 +13,14 @@ sub new {
 
   $self->{mercator_output_dir} = $mercatorOutputDir;
   $self->{cndsrc_bin} = $cndsrcBin;
+  
+  return $self;
 }
 
 #--------------------------------------------------------------------------------
 
 sub getMercatorOutputDir {$_[0]->{mercator_output_dir}}
-sub getCndsrcBin {$_[0]->{cndscr_bin}}
+sub getCndsrcBin {$_[0]->{cndsrc_bin}}
 
 #--------------------------------------------------------------------------------
 
@@ -28,19 +31,29 @@ sub run {
 
   print STDOUT $cgi->header('text/plain');
 
-  my ($ref, $contig, $start, $stop, $strand) = validateParams($cgi, $dbh);
+  my ($ref, $contig, $start, $stop, $strand, $type) = validateParams($cgi, $dbh);
   my ($agpDir, $alignDir, $sliceAlign, $fa2clustal) = $self->validateMacros();
 
-  my $multiFasta = makeAlignment($alignDir, $agpDir, $fa2clustal, $sliceAlign, $ref, $contig, $start, $stop, $strand);
+  my $multiFasta = makeAlignment($alignDir, $agpDir, $sliceAlign, $ref, $contig, $start, $stop, $strand);
 
-  print STDOUT $multiFasta;
+  if($type eq 'fasta_ungapped') {
+      my $seqs = &makeUngappedSeqs($multiFasta);
+      
+      my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+      foreach my $seq(@$seqs) {
+	  $seqIO->write_seq($seq);
+      }
+      $seqIO->close();
+  }
+  elsif($type eq 'clustal') {
+      my $clustal = &makeClustal($fa2clustal, $multiFasta, $cgi);
+      print STDOUT $clustal;
+  }
+  else {
+      print STDOUT $multiFasta;
+  }
+
   exit(0);
-
-  #my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
-  #$seqIO->write_seq($bioSeq);
-  #$seqIO->close();
-
-  #exit(0);
 }
 
 #--------------------------------------------------------------------------------
@@ -54,6 +67,7 @@ sub validateMacros {
   my $cndsrcBin = $self->getCndsrcBin();
   my $sliceAlignment = "$cndsrcBin/sliceAlignment";
   my $fa2clustal = "$cndsrcBin/fa2clustal";
+
 
   unless(-e $cndsrcBin) {
     error("cndsrc Bin directory does not exist [$cndsrcBin]");
@@ -90,8 +104,18 @@ sub validateParams {
 
   &validateContig($contig, $dbh);
 
-  unless($strand eq '-' || $strand eq '+') {
-    error("unrecognized strand [$strand]\n");
+  if($strand eq 'forward') {
+      $strand = '+';
+  }
+  elsif($strand eq 'reverse') {
+      $strand = '-';
+  }
+  else {
+    &error("unrecognized strand [$strand]\n");
+  }
+
+  unless($type eq 'clustal' || $type eq 'fasta_gapped' || $type eq 'fasta_ungapped') {
+      &error("Invalid Type [$type]... expected clustal,fasta_gapped,fastaungapped");
   }
 
   $start =~ s/[,.+\s]//g;
@@ -104,7 +128,7 @@ sub validateParams {
   if ($start < 1 || $stop < 1 || $stop <= $start) {
     &error("Start and End must be positive, and Start must be less than End");
   }
-  return ($genome, $contig, $start, $stop, $strand);
+  return ($genome, $contig, $start, $stop, $strand, $type);
 }
 
 #--------------------------------------------------------------------------------
@@ -126,7 +150,7 @@ EOSQL
   $sth->execute(uc($contig));
 
   unless(my ($id) = $sth->fetchrow_array()) {
-    &error("Invalid source ID:  $contig\n");
+    #&error("Invalid source ID:  $contig\n");
   }
   $sth->finish();
 
@@ -170,18 +194,18 @@ sub replaceAssembled {
       my $newStart = $start < $assemblyStart ? $contigStart : $start - $assemblyStart + $contigStart ;
       my $newStop = $stop > $assemblyStop ? $contigStop : $stop - $assemblyStart + $contigStart; 
 
-      push(@v, "$contig:$newStart-$newStop$strand");
+      push(@v, "$contig:$newStart-$newStop($strand)");
     }
   }
   close FILE;
 
-  return join(';', @v);
+  return ">$genome " . join(';', @v);
 }
 
 #--------------------------------------------------------------------------------
 
 sub makeAlignment {
-  my ($alignDir, $agpDir, $fa2clustal, $sliceAlign, $referenceGenome, $queryContig, $queryStart, $queryStop, $queryStrand) = @_;
+  my ($alignDir, $agpDir, $sliceAlign, $referenceGenome, $queryContig, $queryStart, $queryStop, $queryStrand) = @_;
 
   my $command = "$sliceAlign $alignDir $referenceGenome '$queryContig' $queryStart $queryStop $queryStrand";
 
@@ -203,7 +227,68 @@ sub makeAlignment {
     }
   }
 
-  return join("\n", @lines);
+  return join("\n", @lines) . "\n";
+}
+
+#--------------------------------------------------------------------------------
+
+sub makeClustal {
+    my ($fa2clustal, $multiFasta, $cgi) =  @_;
+
+    my $rv;
+
+    my $genome = $cgi->param('genome');
+
+    # Print the deflines on top of the clustal output
+    my @lines = split(/\n/, $multiFasta);
+
+    foreach my $line (@lines) {
+	if($line =~ s/^>//) {
+	    $rv = "$rv$line\n";
+	}
+    }
+
+    my $command = "echo '$multiFasta'|fa2clustal";
+
+    my $clustal = `$command`;
+
+    return "\n$rv$clustal\n";
+}
+
+#--------------------------------------------------------------------------------
+
+sub makeUngappedSeqs {
+    my ($multiFasta) = @_;
+
+    my @lines = split(/\n/, $multiFasta);
+    
+    my @rv;
+
+    my ($defline, $seq, $start);
+    foreach my $line (@lines) {
+	if($line =~ /^>/) {
+	    if($start) {
+		my $bioSeq = Bio::Seq->new(-description => $defline, 
+					   -seq => $seq,
+					   -alphabet => "dna");
+		push(@rv, $bioSeq);
+	    }
+	    $start = 1;
+	    $defline = $line;
+	    $defline =~ s/^>//;
+	    $seq = "";
+	}
+	else {
+	    $line =~ s/-//g;
+	    $seq = $seq . $line;
+	}
+    }
+    # dont' forget the last one...
+    my $bioSeq = Bio::Seq->new(-display_id => $defline, 
+			       -seq => $seq,
+			       -alphabet => "dna");
+    push(@rv, $bioSeq);
+    return \@rv;
 }
 
 #--------------------------------------------------------------------------------
