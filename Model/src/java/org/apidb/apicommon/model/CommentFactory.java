@@ -609,28 +609,20 @@ public class CommentFactory {
 
         logger.info("extracting flatfile " + commentsFile);
 
-        // TODO: Are we being oracle specific by using regexp_replace??
-        String getCommentsSql = "SELECT DISTINCT '', "
-                + "substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
-                + " gf.source_id, "
-                + " regexp_replace(c.content || ' (' || u.first_name || ' ' "
-                + "|| u.last_name || ')', '[[:space:]]', ' ') " + " FROM "
-                + config.getUserLoginSchema() + ".users"
-                + config.getProjectDbLink() + " u, "
-                + config.getCommentSchema() + ".comments"
-                + config.getProjectDbLink()
-                + " c, DoTS.GeneFeature gf, DoTS.NaSequence ns, "
-                + "SRes.TaxonName tn " + " WHERE u.email = c.email "
+        String getCommentsSql = "SELECT "
+                + "substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1), "
+                + "c.stable_id, c.content, "
+                + "u.first_name || ' ' || u.last_name || ', ' || u.title || ', ' || u.organization "
+                + "FROM "
+                + config.getUserLoginSchema() + ".users u,"
+                + config.getCommentSchema() + ".comments c"
+                + "WHERE u.email(+) = c.email "
                 + " AND c.comment_target_id='gene' "
-                + " AND c.stable_id = gf.source_id "
                 + " AND c.review_status_id != 'rejected' "
-                + " AND gf.na_sequence_id = ns.na_sequence_id "
-                + " AND ns.taxon_id = tn.taxon_id "
-                + " AND tn.name_class = 'scientific name' " + " ORDER BY "
-                + "substr(tn.name, 1, instr(tn.name || '  ', ' ', 1, 2)-1), "
-                + "gf.source_id, "
-                + " regexp_replace(c.content || ' (' || u.first_name || ' ' "
-                + "|| u.last_name || ')', '[[:space:]]', ' ') ";
+                + " AND project_name = '" + config.getProjectId() + "' "
+                + "ORDER BY substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1), "
+                + " c.stable_id, "
+                + " u.first_name || ' ' || u.last_name || ', ' || u.title || ', ' || u.organization ";
 
         logger.info("flatfile extraction SQL: " + getCommentsSql);
 
@@ -639,12 +631,9 @@ public class CommentFactory {
             rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
             FileWriter fw = new FileWriter(commentsFile);
             while (rs.next()) {
-                // String empty = rs.getString(1);
-                String orgName = rs.getString(2);
-                String sourceId = rs.getString(3);
-                String comment = rs.getString(4);
-                fw.write("\t" + orgName + "\t" + sourceId + "\t" + comment
-                        + "\n");
+                fw.write("\t" + rs.getString(1) + "\t" + rs.getString(2)
+			 + "\t" + rs.getString(3).replaceAll("\\s+", " ") + "\t"
+			 + rs.getString(4).replaceAll("\\s+", " ") + "\n");
             }
 
             fw.close();

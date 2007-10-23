@@ -16,6 +16,7 @@ public class CommentConfig {
     private String userLoginSchema;
     private String commentSchema;
     private String projectDbLink;
+    private String projectId;
     private int initialSize;
     private int maxActive;
     private int maxIdle;
@@ -190,6 +191,21 @@ public class CommentConfig {
      */
     public void setProjectDbLink(String projectDbLink) {
         this.projectDbLink = projectDbLink;
+    }
+
+    /**
+     * @return Returns the projectId.
+     */
+    public String getProjectId() {
+        return projectId;
+    }
+
+    /**
+     * @param projectId
+     *          The projectId to set.
+     */
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     public String getCommentTextFileDir() {
