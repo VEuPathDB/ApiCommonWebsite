@@ -39,7 +39,7 @@ EOSQL
     if (my ($id, $seq, $desc) = $sth->fetchrow_array()) {
 
       $desc .= " | $start to $end";
-      $desc .= " (reversed)" if ($revComp);
+      $desc .= " (reverse-complement)" if ($revComp);
       my $bioSeq = Bio::Seq->new(-display_id => $id, -seq => $seq,
 				 -description => $desc, -alphabet => "dna");
       my $maxEnd = $end > $bioSeq->length()? $bioSeq->length() : $end;
