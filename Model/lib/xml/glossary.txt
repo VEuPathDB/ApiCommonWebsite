@@ -43,7 +43,8 @@ cDNA microarray	Collection of microscopic cDNA spots commonly representing singl
 CDS	Coding sequence. Region of nucleotides that corresponds to the sequence of amino acids in a predicted protein and that includes start and stop codons. Unexpressed sequences, including the 5'-UTR, the 3'-UTR, and introns, are not included within a CDS. The CDS usually does not correspond to the actual mRNA sequence
 
 Centromere	Region of the chromosome or chromosomal structure essential for division and retention of the chromosome within the cell; the point of a chromosome where the spindle fibers attach to pull the chromosome apart during cell divisionChromosome	Macromolecule of DNA constituting the physical organization of DNA in a cell
-Coil	"Three-dimensional spiral structure, in this case a protein macromolecules"
+
+Coil	Three-dimensional spiral structure, in this case a protein macromolecules
 
 Contig	Contiguous genomic sequence assembled from overlapping primary sequences representing overlapping regions of a particular chromosome
 
@@ -71,7 +72,7 @@ Expression level	Level at which an mRNA or protein is present in a sample. Value
 
 Expression profile	Pattern of expression of one or more genes or proteins over time or a set of experimental conditions, for example during development, drug treatment, or as result of a genetic mutation such as a knockout <font color="red">J said ask Greg</font>
 
-Expression profile correlation	Method for correlation of gene expression profiles with gene ontology annotations developed for the purpose of identifying groups of genes, pathways, and processes concertedly reacting to experimental perturbations"	group genes with shared expression profile; similar ones cluster togther; ask how well a seq fits that profile
+Expression profile correlation	Method for correlation of gene expression profiles with gene ontology annotations developed for the purpose of identifying groups of genes, pathways, and processes concertedly reacting to experimental perturbations
 
 Expression timing	Timing of gene expression during a developmental, metabolic, regulatory, or other biological process or response
 
@@ -115,7 +116,7 @@ GPI anchor	C-terminal post-translational modification of many eukaryotic protein
 
 HMM	Hidden Markov model. Statistical model in which the system being modeled is assumed to be a Markov process with unknown parameters, and the challenge is to determine the hidden parameters from the observable parameters. The extracted model parameters can then be used to perform further analysis, for example for pattern recognition applications
 
-Homolog	"Related by evolutionary descent, either between species (ortholog) or within a species (paralog)
+Homolog	Related by evolutionary descent, either between species (ortholog) or within a species (paralog)
 
 Hydropathy	Hydropathicity. Degree to which a peptide or protein is likely to be soluble in water. Protein hydropathy plots can be useful in predicting transmembrane domains, potential antigenic sites, and regions that are likely to be exposed on the protein's surface
 
@@ -211,7 +212,7 @@ RefSeqs	NCBI reference sequences. A curated nonredundant collection of sequences
 
 Repeat regions	Sequences present in many identical or highly similar copies in the genome
 
-RNA predictions Predictions of genes that encode non-protein encoding RNA's such as tRNA, snoRNA, rRNA, etc
+RNA predictions	Predictions of genes that encode non-protein encoding RNA's such as tRNA, snoRNA, rRNA, etc
 
 rRNA	Ribosomal RNA. Component of the ribosomes, which function in protein synthesis
 
@@ -265,8 +266,9 @@ TrichDB
 
 tRNA	Transfer RNA. Small RNA chain (73-93 nucleotides) that transfers a specific amino acid to a growing polypeptide chain at the ribosomal site of protein synthesis during translation. A three-base region, the anticodon, pairs to the corresponding three-base codon region on the template mRNA. Each type of tRNA molecule can be attached to only one type of amino acid, but because the genetic code contains multiple codons that specify the same amino acid, tRNA molecules bearing different anticodons may also carry the same amino acid
 
-TWINSCAN gene models	Gene models generated using TWINSCAN, a tool that integrates traditional probability models (such as those underlying GENSCAN and FGENESH) with information from alignments between two genomes. TWINSCAN is based on the idea that functional sequences show different patterns of evolutionary conservation than sequences under little selective pressure, such as the central regions of introns. TWINSCAN is designed for the analysis of high-throughput genomic sequences containing an unknown number of genes"	
-UniGene	"Project and database at NCBI aimed at defining gene-oriented clusters of expressed sequence tags (ESTs). Sets of ESTs are clustered based on strong sequence homology in an attempt to define a specific, nonredundant cluster for each transcript in a tissue or genome. Each UniGene cluster contains sequences that represent a unique gene in addition to information about the tissue types in which the gene has been expressed and map location 
+TWINSCAN gene models	Gene models generated using TWINSCAN, a tool that integrates traditional probability models (such as those underlying GENSCAN and FGENESH) with information from alignments between two genomes. TWINSCAN is based on the idea that functional sequences show different patterns of evolutionary conservation than sequences under little selective pressure, such as the central regions of introns. TWINSCAN is designed for the analysis of high-throughput genomic sequences containing an unknown number of genes
+
+UniGene	Project and database at NCBI aimed at defining gene-oriented clusters of expressed sequence tags (ESTs). Sets of ESTs are clustered based on strong sequence homology in an attempt to define a specific, nonredundant cluster for each transcript in a tissue or genome. Each UniGene cluster contains sequences that represent a unique gene in addition to information about the tissue types in which the gene has been expressed and map location 
 	
 UTR	Untranslated region. Section of messenger RNA (mRNA) that either precedes (5' UTR) or follows (3' UTR) the coding region and is not itself translated. The UTR contains several regulatory regions, including the polyadenylation (polyA) site in the 3' UTR, sequences involved in the initiation of translation (in the 5' UTR), and binding regions for proteins and other regulatory molecules in both the 3' and 5' UTR
 	
