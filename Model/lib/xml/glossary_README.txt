@@ -1,9 +1,17 @@
-the definitive version of the glossary is glossary.txt. 
+This README pertains to the glossary files glossary.txt and glossary.xml
 
-the perl script ApiCommonData/Load/bin converts the .txt to wdk .xml
+- glossary.txt:  the definitive version of the glossary. you may edit this one.
+- glossary.xml:  generated from glossary.txt.  you may not edit this one.
 
-for now, this needs to be done manually when glossary.txt is edited.
+to update the glossary:
+  - edit glossary.txt
+  - run glossaryTextToXml to generate glossary.xml (ApiCommonData/Load/bin)
+  - now you have a wdk-compatible xml record file.  do the usual build, wdkXmlQuestion, jsp thing
+  - when satisfied check both the .txt and .xml into svn
 
-if this proves to be a maintenance problem, we'll need to port the conversion to xsl and invoke it automatically from the wdk.
+if this proves to be a maintenance problem, we'll need to port the generator to xsl and invoke it automatically from the wdk. 
 
-note: if the txt file is read back into excel, then when it returns, run dos2unix on it.
+Notes
+ - glossary.txt was orginally created by manually migrating Yolanda's excel version into text format, with some clean up along the way.
+- if for any reason going back into excel (and then returning to text) is required, be sure to use dos2unix (or similar) to correct DOS newlines
+
