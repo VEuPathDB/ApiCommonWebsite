@@ -4,11 +4,11 @@
 
 AA sequence	Amino acid sequence
 
-Affymetrix genotyped SNP probes	Probes on Affymetrix SNP (single nucleotide polymorphism) arrays, which are used for SNP genotyping. See SNP genotyping and Affymetrix microarray technology (see Affymetrix microarray technology) and http://www.affymetrix.com/technology/mrd_technology.affx
+Affymetrix genotyped SNP probes	Probes on Affymetrix SNP (single nucleotide polymorphism) arrays, which are used for SNP genotyping. See SNP genotyping and Affymetrix microarray technology (see <a href="http://www.affymetrix.com/technology/mrd_technology.affx">www.affymetrix.com/technology/mrd_technology.affx</a>)
 
-Affymetrix microarray technology	Array manufacturing technology developed by Affymetrix. Combines semiconductor fabrication techniques, solid phase chemistry, combinatorial chemistry, molecular biology, and robotics to generate a photolithographic manufacturing process in which oligonucleotides are synthesized directly on a chip (http://www.affymetrix.com/technology/manufacturing/index.affx)
+Affymetrix microarray technology	Array manufacturing technology developed by Affymetrix. Combines semiconductor fabrication techniques, solid phase chemistry, combinatorial chemistry, molecular biology, and robotics to generate a photolithographic manufacturing process in which oligonucleotides are synthesized directly on a chip (<a href="http://www.affymetrix.com/technology/manufacturing/index.affx">www.affymetrix.com/technology/manufacturing/index.affx</a>)
 
-Affymetrix probes	Probe on an Affymetrix microarray designed to determine whether or not the complementary sequence of RNA or DNA is present in a sample. Generally 25 nucleotides in length (25-mers), their short length provides higher specificity than longer probes. See Affymetrix microarray technology. For more information about Affymetrix probes, see http://www.affymetrix.com/technology/design/index.affx
+Affymetrix probes	Probe on an Affymetrix microarray designed to determine whether or not the complementary sequence of RNA or DNA is present in a sample. Generally 25 nucleotides in length (25-mers), their short length provides higher specificity than longer probes. See Affymetrix microarray technology. For more information about Affymetrix probes, see <a href="http://www.affymetrix.com/technology/design/index.affx">www.affymetrix.com/technology/design/index.affx</a>
 
 amitochondriate
 
@@ -78,7 +78,7 @@ Expression timing	Timing of gene expression during a developmental, metabolic, r
 
 Gametocyte	Eukaryotic germ cell that divides by mitosis to generate other gametocytes or by meiosis to generate gametes. Male gametocytes are called spermatocytes, and female gametocytes are called oocytes. Term often used to describe gametocytes of Plasmodium
 
-GBrowse	Interactive genome browser developed by the Generic Model Organism Database (GMOD) project (http://www.gmod.org) that can be customized to show selected chromosomal features as well as display user-provided annotations
+GBrowse	Interactive genome browser developed by the Generic Model Organism Database (GMOD) project (<a href="http://www.gmod.org">www.gmod.org</a>) that can be customized to show selected chromosomal features as well as display user-provided annotations
 
 GBrowse track	In the GBrowse viewer, a line of data that corresponds to a particular type of genomic information or feature and distinguished by a particular shape or color
 
@@ -86,7 +86,7 @@ GenBank protein record	Protein sequence file in the GenBank database generally d
 
 Gene	Fundamental physical and functional unit of heredity. Ordered sequence of nucleotides located in a particular position on a particular chromosome that encodes a specific functional product, such as a protein or RNA molecule. A gene may have a number of parts, including the promoter region, untranslated regions (5' and 3' UTRs), introns, and exons<font color="red">Link an image? From SRT tool?</font>
 
-GeneDB	Project developed by the Sanger Institute Pathogen Sequencing Unit (PSU) and aimed at developing and maintaining curated database resources for all projects handled by the PSU. The database is accessible at http://www.genedb.org
+GeneDB	Project developed by the Sanger Institute Pathogen Sequencing Unit (PSU) and aimed at developing and maintaining curated database resources for all projects handled by the PSU. The database is accessible at <a href="http://www.genedb.org">www.genedb.org</a>
 
 Genetic markers	Known DNA sequences that can be identified by a simple assay. Generally genetic variations caused by mutation or alterations in loci that can be observed, examples include restriction length polymorphisms (RFLPs), short tandem repeats (STRs), variable number tandem repeats (VNTRs), short DNA sequences surrounding single base-pair changes (single nucleotide polymorphisms, or SNPs) or longer microsatellite sequences
 
@@ -126,7 +126,7 @@ Intersect	Similar to the Boolean operator "AND" (see Boolean), an action used in
 
 Join	Similar to the Boolean operator "UNION" (see Boolean), an action used in the query history to combine query sets. For example, to conbine result sets X and Y, type, "X JOIN Y"
 
-KEGG map	Metabolic or regulatory interaction pathway generated by the Kyoto Encyclopedia of Genes and Genomes (KEGG) or by the use of their tools. (http://www.genome.jp/kegg/)
+KEGG map	Metabolic or regulatory interaction pathway generated by the Kyoto Encyclopedia of Genes and Genomes (KEGG) or by the use of their tools. (<a href="http://www.genome.jp/kegg/">www.genome.jp/kegg</a>)
 
 Locus	Position on a chromosome of a gene, feature (such as a telomere), or other chromosomal marker; also, the DNA at that position. The use of locus is sometimes restricted to mean expressed DNA regions
 
@@ -164,19 +164,19 @@ Ortholog group	Orthologous genes shared by group of organisms; the group of gene
 
 Orthology-based phylogenetic profile	Tool used to find genes that are present or not present in a desired group of organisms on the tree of life (currently computed for 81 complete genomes); The user has control over the profile and whether or not genes must be found, or not found in any particular group of organisms, e.g. in Apicomplexa but not mammals.  Taxa can also be marked as indifferent, i.e. it doesn't matter if the gene is also found in plants.  Ortholog and paralog relationships are determined with the OrthoMCL algorithm
 
-OrthoMCL	Genome-scale algorithm for grouping orthologous protein sequences. It provides genes shared by two or more species/genomes and also genes representing species-specific gene expansion families. Therefore, it serves as a utility for automated eukaryotic genome annotation and phylogenetic profiling. Available at http://orthomcl.cbil.upenn.edu
+OrthoMCL	Genome-scale algorithm for grouping orthologous protein sequences. It provides genes shared by two or more species/genomes and also genes representing species-specific gene expansion families. Therefore, it serves as a utility for automated eukaryotic genome annotation and phylogenetic profiling. Available at <a href="http://orthomcl.cbil.upenn.edu">orthomcl.cbil.upenn.edu</a>
 
 Paralog	Related by gene duplication within a genome; originated by duplication and then diverged from the parent copy by mutation and selection or drift
 
 PATS	Neural network analysis tool that identifies amino acid sequences within a query sequence that are potentially targeted to the apicoplast matrix of Plasmodium falciparum
 
-PDB 3D structure	Three-dimensional macromolecular structure in the Protein Data Bank (PDB) (http://www.pdb.org).  obtained by one of three methods: X-ray crystallography (over 80%), solution nuclear magnetic resonance (NMR) (about 16%), or theoretical modeling (2%). A few structures were determined by other methods
+PDB 3D structure	Three-dimensional macromolecular structure in the Protein Data Bank (PDB) (<a href="http://www.pdb.org">www.pdb.org</a>).  obtained by one of three methods: X-ray crystallography (over 80%), solution nuclear magnetic resonance (NMR) (about 16%), or theoretical modeling (2%). A few structures were determined by other methods
 
 Pearson correlation	Pearson Product Moment Correlation, the most common measure of the correlation between two variables. Reflects the degree of linear relationship between two variables and ranges from +1 to -1, with a correlation of +1 indicating a perfect positive linear relationship between variables
 
 Peptide mass fingerprinting	Analytical technique for protein identification wherein an unknown protein of interest is cleaved into peptides by a protease such as trypsin, and the peptides resulting from this cleavage are analyzed using a mass spectrometric method such as MALDI-TOF or ESI-TOF. The masses derived for the peptides are then compared to a database containing known protein sequences or even to the genome. Computer programs theoretically cut the protein sequences in the database into peptides with the same protease (for example trypsin), and calculate the absolute masses of the peptides from each protein. They then compare the masses of the peptides of the unknown protein to the theoretical peptide masses of each protein encoded in the genome. The results are statistically analyzed to find the best match
 
-Pfam domain	"Conserved protein region in the Pfam database (http://pfam.janelia.org), a collection of multiple sequence alignments and hidden Markov models covering many common protein families. The alignments may represent evolutionarily conserved structures that may shed light on protein function. Profile hidden Markov models (profile HMMs) built from the Pfam alignments can be useful for associating a new protein to a known protein family, even if the homology is weak. Unlike standard pairwise alignment methods (for example, BLAST and FASTA), Pfam HMMs deal sensibly with multidomain proteins
+Pfam domain	"Conserved protein region in the Pfam database (<a href="http://pfam.janelia.orgpfam.janelia.org"></a>), a collection of multiple sequence alignments and hidden Markov models covering many common protein families. The alignments may represent evolutionarily conserved structures that may shed light on protein function. Profile hidden Markov models (profile HMMs) built from the Pfam alignments can be useful for associating a new protein to a known protein family, even if the homology is weak. Unlike standard pairwise alignment methods (for example, BLAST and FASTA), Pfam HMMs deal sensibly with multidomain proteins
 
 Phylogeny	Historical relationships among lineages of organisms or their parts, including their genes
 
@@ -186,7 +186,7 @@ PlasmoCyc	Database/utility built by analyzing the genomes of the Plasmodium spec
 
 PlasmoDB
 
-ProDom	Database of protein domain families generated from the global comparison of all available protein sequences (http://prodom.prabi.fr)
+ProDom	Database of protein domain families generated from the global comparison of all available protein sequences (<a href="http://prodom.prabi.fr">prodom.prabi.fr</a>)
 
 Promoter	Regulatory region of DNA located upstream (towards the 5' region) of a gene and providing a control point for regulated gene transcription
 
@@ -198,7 +198,7 @@ Proteomics	The large-scale study of proteins, particularly of the full set of pr
 
 Pseudogene	Defunct relatives of known genes that have lost their protein-coding ability or are otherwise no longer expressed in the cell. Although they may have some gene-like features (such as promoters, CpG islands, and splice sites), they are nonetheless considered nonfunctional due to their lack of protein-coding ability resulting from various genetic disablements (stop codons, frameshifts, or a lack of transcription) or their inability to function as an RNA (such as with rRNA pseudogenes)
 
-PubCrawler	Free service that scans daily updates to the NCBI Medline (PubMed) and GenBank databases and alerts users to any relevant updates. Available at http://pubcrawler.gen.tcd.ie/
+PubCrawler	Free service that scans daily updates to the NCBI Medline (PubMed) and GenBank databases and alerts users to any relevant updates. Available at <a href="http://pubcrawler.gen.tcd.ie">pubcrawler.gen.tcd.ie</a>
 
 Query	Sequence or term used in a database search. For example, the sequence submitted for a BLAST search is the query sequence
 
@@ -230,7 +230,7 @@ SNP density	Amount  or number of single nucleotide polymorphisms (SNPs) in a reg
 
 SNP genotyping	Identifying and mapping single nucleotide polymorphisms (SNPs) in an effort to determine the genotype members of a species. SNPs usually consist of two alleles (where the rare allele frequency is ? 1%), are evolutionarily conserved, and are the most common type of genetic variation. See Genotyping
 
-SNPs	Single nucleotide polymorphisms. Small genetic changes or variations that can occur within a DNA sequence, for example when a single nucleotide, such as an A, replaces one of the other three nucleotide letters C, G, or T. Most SNPs are found outside of coding sequences, but SNPs found within a coding sequence are more likely to alter the biological function of a protein. SNPs may be synonymous (generating a conservative change not altering the amino acid sequence) or they can be non-synonymous and change the amino acid that is encoded
+SNP	Single nucleotide polymorphism. Small genetic changes or variations that can occur within a DNA sequence, for example when a single nucleotide, such as an A, replaces one of the other three nucleotide letters C, G, or T. Most SNPs are found outside of coding sequences, but SNPs found within a coding sequence are more likely to alter the biological function of a protein. SNPs may be synonymous (generating a conservative change not altering the amino acid sequence) or they can be non-synonymous and change the amino acid that is encoded
 
 snRNA	Small nuclear RNA. Class of small RNA molecules found within the nucleus, transcribed by RNA polymerase II or III, and involved in a variety of important processes such as RNA splicing (removal of introns from hnRNA), regulation of transcription factors (7SK RNA) or RNA polymerase II (B2 RNA), and maintaining telomeres. They are always associated with specific proteins, and the complexes are referred to as small nuclear ribonucleoproteins (snRNP) or snurps. These elements are rich in uridine content. A large group of snRNAs known as small nucleolar RNAs (snoRNAs) are small RNA molecules that play an essential role in RNA biogenesis and chemical modification of ribosomal RNAs (rRNAs) and other RNA genes (tRNA and snRNAs). They are located in the nucleus and the cajal bodies of eukaryotic cells (the major sites of RNA synthesis)
 
