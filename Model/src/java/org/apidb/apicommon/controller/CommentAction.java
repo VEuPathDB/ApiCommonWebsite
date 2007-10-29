@@ -1,7 +1,5 @@
 package org.apidb.apicommon.controller;
 
-import java.io.File;
-
 import javax.servlet.ServletContext;
 
 import org.apache.struts.action.Action;
@@ -32,9 +30,7 @@ public abstract class CommentAction extends Action {
             String projectId = application
                     .getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
 
-            File configFile = new File(gusHome + "/config/" + projectId
-                    + "/comment-config.xml");
-            CommentFactory.initialize(configFile);
+            CommentFactory.initialize(gusHome, projectId);
             factory = CommentFactory.getInstance();
         }
         return factory;

@@ -13,16 +13,15 @@ public class CommentConfig {
     private String connectionUrl;
     private String login;
     private String password;
-    private String userLoginSchema;
-    private String commentSchema;
-    private String projectDbLink;
-    private String projectId;
+    private String commentSchema = "";
     private int initialSize;
     private int maxActive;
     private int maxIdle;
     private int minIdle;
     private int maxWait;
     private String commentTextFileDir;
+    private String userLoginSchema = "";
+    private String userLoginDbLink = "";
 
     /**
      * @return Returns the platformClass.
@@ -43,11 +42,7 @@ public class CommentConfig {
      * @return Returns the commentSchema.
      */
     public String getCommentSchema() {
-        if (commentSchema == null) {
-            return "";
-        } else {
-            return commentSchema;
-        }
+        return commentSchema;
     }
 
     /**
@@ -55,7 +50,10 @@ public class CommentConfig {
      *          The commentSchema to set.
      */
     public void setCommentSchema(String commentSchema) {
-        this.commentSchema = commentSchema;
+        if (commentSchema != null && commentSchema.length() > 0) {
+            this.commentSchema = (commentSchema.endsWith(".")) ? commentSchema
+                    : commentSchema + ".";
+        }
     }
 
     /**
@@ -178,36 +176,6 @@ public class CommentConfig {
         this.minIdle = minIdle;
     }
 
-    /**
-     * @return Returns the projectDbLink.
-     */
-    public String getProjectDbLink() {
-        return projectDbLink;
-    }
-
-    /**
-     * @param projectDbLink
-     *          The projectDbLink to set.
-     */
-    public void setProjectDbLink(String projectDbLink) {
-        this.projectDbLink = projectDbLink;
-    }
-
-    /**
-     * @return Returns the projectId.
-     */
-    public String getProjectId() {
-        return projectId;
-    }
-
-    /**
-     * @param projectId
-     *          The projectId to set.
-     */
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
-    }
-
     public String getCommentTextFileDir() {
         return commentTextFileDir;
     }
@@ -221,6 +189,27 @@ public class CommentConfig {
     }
 
     public void setUserLoginSchema(String userLoginSchema) {
-        this.userLoginSchema = userLoginSchema;
+        if (userLoginSchema != null && userLoginSchema.length() > 0) {
+            this.userLoginSchema = (userLoginSchema.endsWith(".")) ? userLoginSchema
+                    : userLoginSchema + ".";
+        }
+    }
+
+    /**
+     * @return the userLoginDbLink
+     */
+    public String getUserLoginDbLink() {
+        return userLoginDbLink;
+    }
+
+    /**
+     * @param userLoginDbLink
+     *          the userLoginDbLink to set
+     */
+    public void setUserLoginDbLink(String userLoginDbLink) {
+        if (userLoginDbLink != null && userLoginDbLink.length() > 0) {
+            this.userLoginDbLink = (userLoginDbLink.startsWith("@")) ? userLoginDbLink
+                    : "@" + userLoginDbLink;
+        }
     }
 }

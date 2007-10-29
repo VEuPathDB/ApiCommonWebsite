@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+        <element name="commentConfig">
+            <attribute name="login" />
+            <attribute name="password" />
+            <attribute name="connectionUrl" />
+             <attribute name="platformClass" />
+            <attribute name="initialSize">
+                <data type="unsignedShort"/>
+            </attribute>
+            <attribute name="maxActive">
+                <data type="unsignedShort" />
+            </attribute>
+            <attribute name="maxIdle">
+                <data type="unsignedShort" />
+            </attribute>
+            <attribute name="minIdle">
+                <data type="unsignedShort" />
+            </attribute>
+            <attribute name="maxWait">
+                <data type="unsignedShort" />
+            </attribute>
+            <attribute name="commentSchema" />
+            <attribute name="commentTextFileDir" />
+            <attribute name="userLoginSchema" />
+            <attribute name="userLoginDbLink" />
+        </element>
+    </start>
+
+</grammar>

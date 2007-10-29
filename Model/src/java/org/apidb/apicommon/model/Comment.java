@@ -50,6 +50,11 @@ public class Comment {
      */
     private String reviewStatus;
 
+    /**
+     * The organism name the comment's stable id belongs to
+     */
+    private String organism;
+
     private List<Location> locations;
 
     private List<ExternalDatabase> externalDbs;
@@ -329,6 +334,7 @@ public class Comment {
         sb.append("ProjectVersion:\t" + projectVersion + "\n");
         sb.append("Headline:\t" + headline + "\n");
         sb.append("ReviewStatus:\t" + reviewStatus + "\n");
+        sb.append("Organism:\t" + organism + "\n");
         sb.append("Locations:\t");
         for (Location loc : locations) {
             sb.append(loc.getLocationStart() + "-" + loc.getLocationEnd());
@@ -374,5 +380,20 @@ public class Comment {
      */
     public void setOrganization(String organization) {
         this.organization = organization;
+    }
+
+    /**
+     * @return the organism
+     */
+    public String getOrganism() {
+        return organism;
+    }
+
+    /**
+     * @param organism
+     *          the organism to set
+     */
+    public void setOrganism(String organism) {
+        this.organism = organism;
     }
 }
