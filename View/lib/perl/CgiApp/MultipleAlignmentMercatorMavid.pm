@@ -181,6 +181,7 @@ sub replaceAssembled {
     my $contig = $ar[5];
     my $contigStart = $ar[6];
     my $contigStop = $ar[7];
+    my $contigStrand = $ar[8];
 
     next unless($type eq 'D');
     my $shift = $assemblyStart - $contigStart;
@@ -191,10 +192,25 @@ sub replaceAssembled {
     if($assembly eq $input && 
        (($start >= $assemblyStart && $start <= $assemblyStop) || ($stop >= $assemblyStart && $stop <= $assemblyStop))) {
       
-      my $newStart = $start < $assemblyStart ? $contigStart : $start - $assemblyStart + $contigStart ;
-      my $newStop = $stop > $assemblyStop ? $contigStop : $stop - $assemblyStart + $contigStart; 
+        my ($newStart, $newStop, $newStrand);
 
-      push(@v, "$contig:$newStart-$newStop($strand)");
+        if($contigStrand eq '+') {
+          $newStart = $start < $assemblyStart ? $contigStart : $start - $assemblyStart + $contigStart + 1;
+          $newStop = $stop > $assemblyStop ? $contigStop : $stop - $assemblyStart + $contigStart; 
+          $newStrand = $contigStrand;
+        }
+        else {
+          $newStart = $start < $assemblyStart ? $contigStop : $assemblyStop - $start + $contigStart - 1;
+          $newStop = $stop > $assemblyStop ? $contigStart : $assemblyStop - $stop + $contigStart;  
+          $newStrand = $strand eq '+' ? '-' : '+';
+        }
+
+	if($newStart <= $newStop) {
+	    push(@v, "$contig:$newStart-$newStop($newStrand)");
+	}
+	else {
+	    push(@v, "$contig:$newStop-$newStart($newStrand)");
+	}
     }
   }
   close FILE;
