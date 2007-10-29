@@ -3,34 +3,45 @@
  */
 package org.apidb.apicommon.model;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 import org.apache.commons.digester.Digester;
 import org.gusdb.wdk.model.ModelConfig;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.XmlParser;
 import org.xml.sax.SAXException;
 
 /**
  * @author xingao
  * 
  */
-public class CommentConfigParser {
+public class CommentConfigParser extends XmlParser {
 
-    public static CommentConfig parseXmlFile(File commentConfigXmlFile)
-            throws SAXException, IOException {
-        Digester digester = configureDigester();
-        return (CommentConfig) digester.parse(commentConfigXmlFile);
+    public CommentConfigParser(String gusHome) throws SAXException, IOException {
+        super(gusHome, "lib/rng/comment-config.rng");
     }
 
-    public static CommentConfig parseXmlFile(URL commentConfigXmlFile)
-            throws SAXException, IOException {
-        Digester digester = configureDigester();
-        return (CommentConfig) digester.parse(commentConfigXmlFile.openStream());
+    /**
+     * @param projectId
+     * @return the relative path from $GUS_HOME to the config file
+     */
+    public String getConfigFile(String projectId) {
+        return "config/" + projectId + "/comment-config.xml";
     }
 
-    private static Digester configureDigester() {
+    public CommentConfig parseConfig(String projectId) throws SAXException,
+            IOException, WdkModelException {
+        // validate the configuration file
+        URL configURL = makeURL(gusHome, getConfigFile(projectId));
+        if (!validate(configURL))
+            throw new WdkModelException("Relax-NG validation failed on "
+                    + configURL.toExternalForm());
 
+        return (CommentConfig) digester.parse(configURL.openStream());
+    }
+
+    protected Digester configureDigester() {
         Digester digester = new Digester();
         digester.setValidating(false);
 
@@ -38,17 +49,5 @@ public class CommentConfigParser {
         digester.addSetProperties("commentConfig");
 
         return digester;
-    }
-
-    public static void main(String[] args) {
-        try {
-            File commentConfigXmlFile = new File(args[0]);
-            CommentConfig commentConfig = parseXmlFile(commentConfigXmlFile);
-
-            System.out.println(commentConfig.toString());
-
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        }
     }
 }

@@ -9,8 +9,9 @@
         maxIdle="3"
         minIdle="3"
         maxWait="120"
-        commentSchema="comment_schema_name"
+        commentSchema="comment_schema_name, ending '.' is optional"
 		commentTextFileDir="store_comments_flatfile(s)_in_this_dir"
-        projectDbLink="dblink_to_gus_schema" />
+		userLoginScheme="schema_to_user_login_tables, ending '.' is optional"
+        userLoginDbLink="dblink_to_gus_schema, leading '@' is optional" />
 
 <!-- commentTextFileDir should be the same as DataDir attribute in axis wsf-config/textSearch-config.xml -->

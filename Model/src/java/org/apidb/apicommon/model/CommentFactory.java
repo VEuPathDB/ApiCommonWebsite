@@ -6,6 +6,7 @@ package org.apidb.apicommon.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,11 +33,12 @@ public class CommentFactory {
     private RDBMSPlatformI platform;
     private CommentConfig config;
 
-    public static void initialize(File commentConfigXmlFile)
+    public static void initialize(String gusHome, String projectId)
             throws WdkModelException {
         try {
             // parse and load the configuration
-            CommentConfig config = CommentConfigParser.parseXmlFile(commentConfigXmlFile);
+            CommentConfigParser parser = new CommentConfigParser(gusHome);
+            CommentConfig config = parser.parseConfig(projectId);
 
             // create a platform object
             RDBMSPlatformI platform = (RDBMSPlatformI) Class.forName(
@@ -45,7 +47,7 @@ public class CommentFactory {
                     config.getPassword(), config.getMinIdle(),
                     config.getMaxIdle(), config.getMaxWait(),
                     config.getMaxActive(), config.getInitialSize(),
-                    commentConfigXmlFile.getAbsolutePath());
+                    parser.getConfigFile(projectId));
 
             // create a factory instance
             factory = new CommentFactory(platform, config);
@@ -77,7 +79,6 @@ public class CommentFactory {
 
     public CommentTarget getCommentTarget(String internalValue)
             throws WdkModelException {
-        String schema = config.getCommentSchema();
 
         // load the comment target definition of the given internal value
 
@@ -85,8 +86,8 @@ public class CommentFactory {
         CommentTarget target = null;
         String query = null;
         try {
-            query = "SELECT * FROM " + schema
-                    + ".comment_target WHERE comment_target_id=?";
+            query = "SELECT * FROM " + config.getCommentSchema()
+                    + "comment_target WHERE comment_target_id=?";
             PreparedStatement ps = SqlUtils.getPreparedStatement(
                     platform.getDataSource(), query);
             ps.setString(1, internalValue);
@@ -113,23 +114,22 @@ public class CommentFactory {
     }
 
     public void addComment(Comment comment) throws WdkModelException {
-        String schema = config.getCommentSchema();
+        String commentSchema = config.getCommentSchema();
 
         PreparedStatement ps = null;
         // get a new comment id
         try {
             // DataSource dataSource = platform.getDataSource();
-            int commentId = Integer.parseInt(platform.getNextId(schema,
+            int commentId = Integer.parseInt(platform.getNextId(commentSchema,
                     "comments"));
 
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), 
-                    "INSERT INTO "
-                            + schema
-                            + ".comments (comment_id, email, "
-                            + "comment_date, comment_target_id, stable_id, conceptual, "
-                            + "project_name, project_version, headline, content, "
-                            + "location_string, review_status_id) "
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    "INSERT INTO " + commentSchema + "comments (comment_id, "
+                            + "email, comment_date, comment_target_id, "
+                            + "stable_id, conceptual, project_name, "
+                            + "project_version, headline, content, "
+                            + "location_string, review_status_id, organism) "
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             long currentMillis = System.currentTimeMillis();
 
@@ -142,14 +142,15 @@ public class CommentFactory {
             ps.setString(7, comment.getProjectName());
             ps.setString(8, comment.getProjectVersion());
             ps.setString(9, comment.getHeadline());
-            // ps.setString(10, comment.getContent());
             platform.updateClobData(ps, 10, comment.getContent(), false);
             ps.setString(11, comment.getLocationString());
-            String rs = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0) ? comment.getReviewStatus()
+            String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0) ? comment.getReviewStatus()
                     : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
-            ps.setString(12, rs);
+            ps.setString(12, reviewStatus);
+            ps.setString(13, comment.getOrganism());
 
-            ps.execute();
+            int result = ps.executeUpdate();
+            logger.debug("Inserted comment row: " + result);
 
             // update the fields of comment
             comment.setCommentDate(new java.util.Date(currentMillis));
@@ -162,10 +163,8 @@ public class CommentFactory {
 
             saveExternalDbs(commentId, comment);
 
-            File cFile = new File(config.getCommentTextFileDir()
-                    + System.getProperty("file.separator")
-                    + comment.getProjectName() + "_comments.txt");
-            extractCommentsTextSearchFile(cFile);
+            // append this comment to the external file
+            appendCommentToFile(commentId);
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -176,7 +175,7 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-            
+
             // print connection status
             printStatus();
         }
@@ -184,11 +183,11 @@ public class CommentFactory {
 
     private void saveLocations(int commentId, Comment comment)
             throws SQLException {
-        String schema = config.getCommentSchema();
+        String commentSchema = config.getCommentSchema();
 
         // construct sql
         StringBuffer sql = new StringBuffer();
-        sql.append("INSERT INTO " + schema + ".locations (comment_id, ");
+        sql.append("INSERT INTO " + commentSchema + "locations (comment_id, ");
         sql.append("location_id, location_start, location_end, is_reverse, ");
         sql.append("coordinate_type) VALUES (?, ?, ?, ?, ?, ?)");
         PreparedStatement statement = null;
@@ -198,7 +197,8 @@ public class CommentFactory {
 
             Location[] locations = comment.getLocations();
             for (Location location : locations) {
-                String locationId = platform.getNextId(schema, "locations");
+                String locationId = platform.getNextId(commentSchema,
+                        "locations");
                 statement.setInt(1, commentId);
                 statement.setInt(2, Integer.parseInt(locationId));
                 statement.setLong(3, location.getLocationStart());
@@ -229,144 +229,94 @@ public class CommentFactory {
      */
     private void saveExternalDbs(int commentId, Comment comment)
             throws SQLException, WdkModelException {
-        String schema = config.getCommentSchema();
+        String commentSchema = config.getCommentSchema();
         // String dblink = config.getProjectDbLink();
         // String stableId = comment.getStableId();
         DataSource dataSource = platform.getDataSource();
 
-        // get a set of matched external databases
-        StringBuffer sql = new StringBuffer();
+        // construct sqls
+        StringBuffer sqlQueryDb = new StringBuffer();
+        sqlQueryDb.append("SELECT external_database_id ");
+        sqlQueryDb.append("FROM " + commentSchema + "external_databases ");
+        sqlQueryDb.append("WHERE external_database_name = ? ");
+        sqlQueryDb.append("AND external_database_version = ?");
 
-        PreparedStatement insertDb = null, insertLink = null;
-        ResultSet rsDb = null;
+        StringBuffer sqlInsertDb = new StringBuffer();
+        sqlInsertDb.append("INSERT INTO " + commentSchema
+                + "external_databases ");
+        sqlInsertDb.append("(external_database_id, external_database_name, ");
+        sqlInsertDb.append("external_database_version) VALUES (?, ?, ?)");
+
+        StringBuffer sqlInsertLink = new StringBuffer();
+        sqlInsertLink.append("INSERT INTO " + commentSchema
+                + "comment_external_database ");
+        sqlInsertLink.append("(external_database_id, comment_id) ");
+        sqlInsertLink.append("VALUES (?, ?)");
+
+        PreparedStatement psQUeryDb = null, psInsertDb = null, psInsertLink = null;
         try {
-            // ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
-            // ps.setString(1, stableId);
-            // ps.setString (2, stableId);
-            //        	
-            // rs = ps.executeQuery();
-
             // construct prepared statements
-            sql = new StringBuffer();
-            sql.append("SELECT external_database_id ");
-            sql.append("FROM " + schema + ".external_databases ");
-            sql.append("WHERE external_database_name = ? "
-                    + "AND external_database_version = ?");
-            PreparedStatement queryDb = SqlUtils.getPreparedStatement(
-                    dataSource, sql.toString());
+            psQUeryDb = SqlUtils.getPreparedStatement(dataSource,
+                    sqlQueryDb.toString());
 
-            sql = new StringBuffer();
-            sql.append("INSERT INTO " + schema + ".external_databases ");
-            sql.append("(external_database_id, external_database_name, "
-                    + "external_database_version) VALUES (?, ?, ?)");
-            insertDb = SqlUtils.getPreparedStatement(dataSource, sql.toString());
+            psInsertDb = SqlUtils.getPreparedStatement(dataSource,
+                    sqlInsertDb.toString());
 
-            sql = new StringBuffer();
-            sql.append("INSERT INTO " + schema + ".comment_external_database ");
-            sql.append("(external_database_id, comment_id) VALUES (?, ?)");
-            insertLink = SqlUtils.getPreparedStatement(dataSource,
-                    sql.toString());
+            psInsertLink = SqlUtils.getPreparedStatement(dataSource,
+                    sqlInsertLink.toString());
 
-            // while (rs.next()) {
-            // String externalDbName = rs.getString("external_database_name");
-            // String externalDbVersion =
-            // rs.getString("external_database_version");
-            // String externalDbName = "PlasmoDB_Temp";
-            // String externalDbVersion = "ver_1.0";
-
-            // The external database info is provided by JSP
-
-            String externalDbName, externalDbVersion;
-            ExternalDatabase[] eds = comment.getExternalDbs();
-
-            if (eds != null && eds.length > 0) {
-                externalDbName = eds[0].getExternalDbName();
-                externalDbVersion = eds[0].getExternalDbVersion();
-            } else {
-                String getExtDbSql;
-                if (comment.getCommentTarget().contains("gene")) {
-                    getExtDbSql = "SELECT ed.name, version "
-                            + "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
-                            + "dots.genefeature gf "
-                            + "WHERE ed.external_database_id = edr.external_database_id "
-                            + "AND gf.external_database_release_id = edr.external_database_release_id "
-                            + "AND gf.source_id=?";
-                } else {
-                    String naSeqTable;
-                    if (comment.getProjectName().equalsIgnoreCase("toxodb")) {
-                        // toxo uses dots.virtualnasequence, others use
-                        // dots.externalnasequence
-                        naSeqTable = "DoTS.VirtualNaSequence";
-                    } else {
-                        naSeqTable = "DoTS.ExternalNASequence";
-                    }
-
-                    getExtDbSql = "SELECT ed.name, version "
-                            + "FROM sres.externaldatabase ed, sres.externaldatabaserelease edr, "
-                            + naSeqTable
-                            + " ns "
-                            + "WHERE ed.external_database_id = edr.external_database_id "
-                            + "AND ns.external_database_release_id = edr.external_database_release_id "
-                            + "AND ns.source_id=?";
-                }
-
-                ResultSet rs = null;
+            // add every external database record into the database
+            for (ExternalDatabase externalDb : comment.getExternalDbs()) {
+                psQUeryDb.setString(1, externalDb.getExternalDbName());
+                psQUeryDb.setString(2, externalDb.getExternalDbVersion());
+                ResultSet rsQueryDb = null;
+                int externalDbId;
                 try {
-                    PreparedStatement ps = SqlUtils.getPreparedStatement(
-                            dataSource, getExtDbSql.toString());
-                    ps.setString(1, comment.getStableId());
-
-                    rs = ps.executeQuery();
-                    if (!rs.next())
-                        throw new WdkModelException(
-                                "Error in executing getextdbsql");
-
-                    externalDbName = rs.getString("name");
-                    externalDbVersion = rs.getString("version");
+                    rsQueryDb = psQUeryDb.executeQuery();
+                    if (!rsQueryDb.next()) {
+                        // external database entry doesn't exist
+                        externalDbId = Integer.parseInt(platform.getNextId(
+                                commentSchema, "external_databases"));
+                        psInsertDb.setInt(1, externalDbId);
+                        psInsertDb.setString(2, externalDb.getExternalDbName());
+                        psInsertDb.setString(3,
+                                externalDb.getExternalDbVersion());
+                        psInsertDb.execute();
+                    } else { // has entry, get the external_database_id
+                        externalDbId = rsQueryDb.getInt("external_database_id");
+                    }
                 } finally {
-                    SqlUtils.closeResultSet(rs);
+                    // the ResultSet is closed manually, instead of using
+                    // SqlUtilssince we need to keep the underline statement
+                    // open during the for loop
+                    rsQueryDb.close();
                 }
-                System.out.println("-- " + externalDbName + ", "
-                        + externalDbVersion);
-                comment.addExternalDatabase(externalDbName, externalDbVersion);
+
+                // add the reference link
+                psInsertLink.setInt(1, externalDbId);
+                psInsertLink.setInt(2, commentId);
+                psInsertLink.execute();
             }
-
-            int externalDbId;
-
-            // check if the external db entry exists
-            queryDb.setString(1, externalDbName);
-            queryDb.setString(2, externalDbVersion);
-            rsDb = queryDb.executeQuery();
-            if (!rsDb.next()) { // no entry, add one
-                externalDbId = Integer.parseInt(platform.getNextId(schema,
-                        "external_databases"));
-                insertDb.setInt(1, externalDbId);
-                insertDb.setString(2, externalDbName);
-                insertDb.setString(3, externalDbVersion);
-                insertDb.execute();
-            } else { // has entry, get the external_database_id
-                externalDbId = rsDb.getInt("external_database_id");
-            }
-
-            // add the reference link
-            insertLink.setInt(1, externalDbId);
-            insertLink.setInt(2, commentId);
-            insertLink.execute();
-            // }
         } finally {
             // close statements and result set
-            SqlUtils.closeResultSet(rsDb);
-            SqlUtils.closeStatement(insertDb);
-            SqlUtils.closeStatement(insertLink);
+            SqlUtils.closeStatement(psQUeryDb);
+            SqlUtils.closeStatement(psInsertDb);
+            SqlUtils.closeStatement(psInsertLink);
         }
     }
 
     public Comment getComment(int commentId) throws WdkModelException {
-        String schema = config.getCommentSchema();
-
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT * FROM " + schema + ".comments ");
-        sql.append("WHERE comment_id = ?");
+        sql.append("SELECT c.email, c.comment_date, c.comment_target_id, ");
+        sql.append("c.conceptual, c.headline, c.project_name, ");
+        sql.append("c.project_version, c.review_status_id, c.stable_id, ");
+        sql.append("substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1) as organism, ");
+        sql.append("u.first_name || ' ' || u.last_name || ', ' || u.title  as user_name, ");
+        sql.append("u.organization, c.content FROM ");
+        sql.append(config.getCommentSchema() + "comments c, ");
+        sql.append(config.getUserLoginSchema() + "users u ");
+        sql.append("WHERE c.email = u.email ");
+        sql.append("AND c.comment_id = ? ");
 
         ResultSet rs = null;
         try {
@@ -390,6 +340,9 @@ public class CommentFactory {
             comment.setProjectVersion(rs.getString("project_version"));
             comment.setReviewStatus(rs.getString("review_status_id"));
             comment.setStableId(rs.getString("stable_id"));
+            comment.setOrganism(rs.getString("organism"));
+            comment.setUserName(rs.getString("user_name"));
+            comment.setOrganization(rs.getString("organization"));
 
             // get clob content
             comment.setContent(platform.getClobData(rs, "content"));
@@ -410,7 +363,7 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-            
+
             // print connection status
             printStatus();
         }
@@ -418,11 +371,10 @@ public class CommentFactory {
 
     private void loadLocations(int commentId, Comment comment)
             throws SQLException {
-        String schema = config.getCommentSchema();
-
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT location_start, location_end, is_reverse, ");
-        sql.append("coordinate_type FROM " + schema + ".locations ");
+        sql.append("coordinate_type FROM ");
+        sql.append(config.getCommentSchema() + "locations ");
         sql.append("WHERE comment_id = ?");
 
         ResultSet rs = null;
@@ -446,12 +398,12 @@ public class CommentFactory {
 
     private void loadExternalDbs(int commentId, Comment comment)
             throws SQLException {
-        String schema = config.getCommentSchema();
+        String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT ed.external_database_name, ed.external_database_version ");
-        sql.append("FROM " + schema + ".external_databases ed, ");
-        sql.append(schema + ".comment_external_database ced ");
+        sql.append("FROM " + commentSchema + "external_databases ed, ");
+        sql.append(commentSchema + "comment_external_database ced ");
         sql.append("WHERE ced.comment_id = ?");
         sql.append(" AND ced.external_database_id = ed.external_database_id");
 
@@ -475,50 +427,52 @@ public class CommentFactory {
     public Comment[] queryComments(String email, String projectName,
             String stableId, String conceptual, String reviewStatus,
             String keyword) throws WdkModelException {
-        String schema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
 
         StringBuffer where = new StringBuffer();
         if (email != null) {
             email = email.replace('*', '%');
             email = email.replaceAll("'", "");
-            where.append(" email like '" + email + "'");
+            where.append(" c.email like '" + email + "'");
         }
         if (projectName != null) {
             projectName = projectName.replace('*', '%');
             projectName = projectName.replaceAll("'", "");
             if (where.length() > 0) where.append(" AND");
-            where.append(" project_name like '" + projectName + "'");
+            where.append(" c.project_name like '" + projectName + "'");
         }
         if (stableId != null) {
             stableId = stableId.replace('*', '%');
             stableId = stableId.replaceAll("'", "");
             if (where.length() > 0) where.append(" AND ");
-            where.append(" stable_id like '" + stableId + "'");
+            where.append(" c.stable_id like '" + stableId + "'");
         }
         if (conceptual != null) {
             boolean concpt = Boolean.parseBoolean(conceptual);
             if (where.length() > 0) where.append(" AND ");
-            where.append(" conceptual like " + concpt);
+            where.append(" c.conceptual like " + concpt);
         }
         if (reviewStatus != null) {
             reviewStatus = stableId.replace('*', '%');
             reviewStatus = stableId.replaceAll("'", "");
             if (where.length() > 0) where.append(" AND ");
-            where.append(" review_status like '" + reviewStatus + "'");
+            where.append(" c.review_status like '" + reviewStatus + "'");
         }
         if (keyword != null) {
             keyword = stableId.replace('*', '%');
             keyword = stableId.replaceAll("'", "");
             if (where.length() > 0) where.append(" AND ");
-            where.append(" (headline like '" + keyword);
-            where.append("' OR content like '" + keyword + "')");
+            where.append(" (c.headline like '" + keyword);
+            where.append("' OR c.content like '" + keyword + "')");
         }
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT comment_id FROM " + schema + ".comments");
-        if (where.length() > 0) sql.append(" WHERE " + where.toString());
-        sql.append(" ORDER BY comment_id");
+        sql.append("SELECT c.comment_id FROM ");
+        sql.append(config.getCommentSchema() + "comments c, ");
+        sql.append(config.getUserLoginSchema() + "users u ");
+        sql.append("WHERE c.email = u.email ");
+        if (where.length() > 0) sql.append(" AND " + where.toString());
+        sql.append(" ORDER BY c.organism ASC, c.stable_id ASC, c.comment_date DESC");
 
         List<Comment> comments = new ArrayList<Comment>();
         ResultSet rs = null;
@@ -526,7 +480,7 @@ public class CommentFactory {
             rs = SqlUtils.getResultSet(dataSource, sql.toString());
             while (rs.next()) {
                 int commentId = rs.getInt("comment_id");
-                Comment comment = factory.getComment(commentId);
+                Comment comment = getComment(commentId);
                 comments.add(comment);
             }
         } catch (SQLException ex) {
@@ -537,48 +491,50 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-            
+
             // print connection status
             printStatus();
         }
         Comment[] array = new Comment[comments.size()];
         comments.toArray(array);
-        
+
         return array;
     }
 
     public void deleteComment(int commentId) throws WdkModelException {
-        String schema = config.getCommentSchema();
+        String commentSchema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
-
-        String where = " WHERE comment_id = " + commentId;
-        String projectName = "";
 
         ResultSet rs = null;
         try {
-            String findSql = "SELECT project_name FROM " + schema + ".comments"
-                    + where;
-            rs = SqlUtils.getResultSet(dataSource, findSql);
+            rs = SqlUtils.getResultSet(dataSource, "SELECT project_name FROM "
+                    + commentSchema + "comments WHERE comment_id = "
+                    + commentId);
             if (!rs.next()) {
                 logger.warn("DeleteComment: Did not find a comment for id "
                         + commentId);
                 return;
             }
 
-            projectName = rs.getString(1);
+            String projectId = rs.getString("project_name");
 
             // delete the location information
-            String sql = "DELETE FROM " + schema + ".locations" + where;
+            String sql = "DELETE FROM " + commentSchema + "locations "
+                    + "WHERE comment_id = " + commentId;
             SqlUtils.execute(dataSource, sql);
 
             // delete associated external database info
-            sql = "DELETE FROM " + schema + ".comment_external_database"
-                    + where;
+            sql = "DELETE FROM " + commentSchema + "comment_external_database "
+                    + "WHERE comment_id = " + commentId;
             SqlUtils.execute(dataSource, sql);
 
             // delete comment information
-            sql = "DELETE FROM " + schema + ".comments" + where;
+            sql = "DELETE FROM " + commentSchema + "comments "
+                    + " WHERE comment_id = " + commentId;
             SqlUtils.execute(dataSource, sql);
+
+            // regenerate the output file
+            extractComments(projectId);
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         } finally {
@@ -587,71 +543,67 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-            
-            // print connection status
-            printStatus();
-        }
 
-        try {
-            File cFile = new File(config.getCommentTextFileDir()
-                    + System.getProperty("file.separator") + projectName
-                    + "_comments.txt");
-            extractCommentsTextSearchFile(cFile);
-        } catch (Exception e) {
-            logger.warn("Error in deleteComment", e);
-        }
-
-    }
-
-    public void extractCommentsTextSearchFile(File commentsFile) {
-
-        DataSource dataSource = platform.getDataSource();
-
-        logger.info("extracting flatfile " + commentsFile);
-
-        String getCommentsSql = "SELECT "
-                + "substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1), "
-                + "c.stable_id, c.content, "
-                + "u.first_name || ' ' || u.last_name || ', ' || u.title || ', ' || u.organization "
-                + "FROM "
-                + config.getUserLoginSchema() + ".users u,"
-                + config.getCommentSchema() + ".comments c"
-                + "WHERE u.email(+) = c.email "
-                + " AND c.comment_target_id='gene' "
-                + " AND c.review_status_id != 'rejected' "
-                + " AND project_name = '" + config.getProjectId() + "' "
-                + "ORDER BY substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1), "
-                + " c.stable_id, "
-                + " u.first_name || ' ' || u.last_name || ', ' || u.title || ', ' || u.organization ";
-
-        logger.info("flatfile extraction SQL: " + getCommentsSql);
-
-        ResultSet rs = null;
-        try {
-            rs = SqlUtils.getResultSet(dataSource, getCommentsSql);
-            FileWriter fw = new FileWriter(commentsFile);
-            while (rs.next()) {
-                fw.write("\t" + rs.getString(1) + "\t" + rs.getString(2)
-			 + "\t" + rs.getString(3).replaceAll("\\s+", " ") + "\t"
-			 + rs.getString(4).replaceAll("\\s+", " ") + "\n");
-            }
-
-            fw.close();
-        } catch (Exception ex) {
-            // Is there a need to throw WDK exception?
-            logger.warn("Error in creating comments file: ", ex);
-        } finally {
-            try {
-                SqlUtils.closeResultSet(rs);
-            } catch (SQLException ex) {
-                logger.warn("Error in creating comments file: ", ex);
-            }
-            
             // print connection status
             printStatus();
         }
     }
-    
+
+    /**
+     * Append the a comment to the output file for the project
+     * 
+     * @param comment
+     * @throws WdkModelException
+     */
+    private void appendCommentToFile(int commentId) throws WdkModelException {
+        PrintWriter writer;
+        Comment comment = getComment(commentId);
+        try {
+            writer = new PrintWriter(new FileWriter(
+                    getOutputFile(comment.getProjectName()), true));
+        } catch (IOException ex) {
+            throw new WdkModelException(ex);
+        }
+        writeCommentToFile(comment, writer);
+
+        writer.close();
+    }
+
+    private void writeCommentToFile(Comment comment, PrintWriter writer)
+            throws WdkModelException {
+        writer.print("\t" + comment.getOrganism());
+        writer.print("\t" + comment.getStableId());
+        String content = comment.getContent();
+        writer.print("\t" + content.replaceAll("\\s+", " "));
+        String userInfo = comment.getUserName() + ", "
+                + comment.getOrganization();
+        writer.println("\t" + userInfo.replaceAll("\\s+", " "));
+        writer.flush();
+    }
+
+    public void extractComments(String projectId) throws WdkModelException {
+        // get comment list
+        Comment[] comments = queryComments(null, projectId, null, null, null,
+                null);
+
+        // replace the existing file (not appending)
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(
+                    getOutputFile(projectId), false));
+            for (Comment comment : comments) {
+                writeCommentToFile(comment, writer);
+            }
+            writer.close();
+        } catch (IOException ex) {
+            throw new WdkModelException(ex);
+        }
+    }
+
+    private File getOutputFile(String projectId) {
+        return new File(config.getCommentTextFileDir() + "/" + projectId
+                + "_comments.txt");
+    }
+
     private void printStatus() {
         int active = platform.getActiveCount();
         int idle = platform.getIdleCount();

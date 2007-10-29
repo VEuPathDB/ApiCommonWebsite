@@ -23,6 +23,7 @@ public class AddCommentForm extends ActionForm {
     private String reversed;
     private String locations;
     private String refererUrl;
+    private String organism;
 
     /**
      * @return Returns the content.
@@ -120,5 +121,19 @@ public class AddCommentForm extends ActionForm {
      */
     public void setRefererUrl(String refererUrl) {
         this.refererUrl = refererUrl;
+    }
+
+    /**
+     * @return the organism
+     */
+    public String getOrganism() {
+        return organism;
+    }
+
+    /**
+     * @param organism the organism to set
+     */
+    public void setOrganism(String organism) {
+        this.organism = organism;
     }
 }

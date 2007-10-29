@@ -19,13 +19,11 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
  * 
  */
 public class ProcessAddCommentAction extends CommentAction {
-    
 
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         // get comment factory, and initialize it if necessary
-        
 
         // get the referer link
         String referer = (String) request.getParameter(CConstants.WDK_REFERER_URL_KEY);
@@ -34,7 +32,7 @@ public class ProcessAddCommentAction extends CommentAction {
         int index = referer.lastIndexOf("/");
         referer = referer.substring(index);
         ActionForward forward = new ActionForward(referer, false);
-        //forward.setRedirect(true);
+        // forward.setRedirect(true);
 
         WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
                 CConstants.WDK_MODEL_KEY);
@@ -43,43 +41,44 @@ public class ProcessAddCommentAction extends CommentAction {
                 CConstants.WDK_USER_KEY);
         // if the user is null or is a guest, fail
         if (user == null || user.getGuest()) {
-			//This is the case where the session times out while the user is on the
-			//comment form page, or someone maliciously trying to post to the comment form
-			//action directly. Return to the add comments page, where it is handled correctly.
-           return forward;
+            // This is the case where the session times out while the user is on
+            // the
+            // comment form page, or someone maliciously trying to post to the
+            // comment form
+            // action directly. Return to the add comments page, where it is
+            // handled correctly.
+            return forward;
         }
 
-        //get all the parameters
-        //HTML sanitization need to be enabled only for headline and content.
+        // get all the parameters
+        // HTML sanitization need to be enabled only for headline and content.
         String headline = request.getParameter("headline");
-        if (headline.trim().length() == 0)
-        	headline = null;
-        else
-        	headline = BBCode.getInstance().convertBBCodeToHtml(headline);
-        
-        String content = BBCode.getInstance().convertBBCodeToHtml(request.getParameter("content"));
+        if (headline.trim().length() == 0) headline = null;
+        else headline = BBCode.getInstance().convertBBCodeToHtml(headline);
 
-		if (headline == null && (content == null || content.length() == 0)) {
-	        request.setAttribute("submitStatus", "Error: Comment cannot be empty.");
-	        return forward;
-		}
-        
+        String content = BBCode.getInstance().convertBBCodeToHtml(
+                request.getParameter("content"));
+
+        if (headline == null && (content == null || content.length() == 0)) {
+            request.setAttribute("submitStatus",
+                    "Error: Comment cannot be empty.");
+            return forward;
+        }
+
         String commentTarget = request.getParameter("commentTargetId");
         String stableId = request.getParameter("stableId");
-        
-        String extDbName = request.getParameter ("externalDbName");
-        String extDbVersion = request.getParameter ("externalDbVersion");
-        
-        String locType = request.getParameter ("locType");
+        String organism = request.getParameter("organism");
+
+        String extDbName = request.getParameter("externalDbName");
+        String extDbVersion = request.getParameter("externalDbVersion");
+
+        String locType = request.getParameter("locType");
         String coordinateType = null;
         boolean reversed = false;
-        if (locType.startsWith("genome")) { 
-        	coordinateType = LOCATION_COORDINATETYPE_GENOME;
-        	if (locType.endsWith("r"))
-        		reversed = true; 
-        }
-        else
-        	coordinateType = LOCATION_COORDINATETYPE_PROTEIN;
+        if (locType.startsWith("genome")) {
+            coordinateType = LOCATION_COORDINATETYPE_GENOME;
+            if (locType.endsWith("r")) reversed = true;
+        } else coordinateType = LOCATION_COORDINATETYPE_PROTEIN;
 
         String locations = request.getParameter("locations");
 
@@ -94,13 +93,16 @@ public class ProcessAddCommentAction extends CommentAction {
         comment.setProjectName(projectName);
         comment.setProjectVersion(projectVersion);
         comment.setHeadline(headline);
+        comment.setOrganism(organism);
         comment.setContent(content);
         try {
-        	comment.setLocations(reversed, locations, coordinateType);
+            comment.setLocations(reversed, locations, coordinateType);
         } catch (Exception e) {
-        	request.setAttribute ("submitStatus", "Error in Location format. "
-        							+ "Please refer to the format examples on the Add Comment page");
-        	return forward;
+            request.setAttribute(
+                    "submitStatus",
+                    "Error in Location format. "
+                            + "Please refer to the format examples on the Add Comment page");
+            return forward;
         }
         comment.addExternalDatabase(extDbName, extDbVersion);
 

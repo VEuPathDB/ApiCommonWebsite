@@ -10,11 +10,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apidb.apicommon.model.Comment;
-import org.apidb.apicommon.model.CommentComposer;
 import org.apidb.apicommon.model.CommentFactory;
 import org.gusdb.wdk.controller.ApplicationInitListener;
 import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class ShowCommentAction extends CommentAction {
 
@@ -32,9 +30,6 @@ public class ShowCommentAction extends CommentAction {
             throws Exception {
         ServletContext application = getServlet().getServletContext();
 
-        WdkModelBean wdkModel = ( WdkModelBean ) application.getAttribute(
-                CConstants.WDK_MODEL_KEY );
-
         // get the factory
         CommentFactory factory = getCommentFactory();
 
@@ -42,9 +37,6 @@ public class ShowCommentAction extends CommentAction {
         ShowCommentForm commentForm = (ShowCommentForm) form;
         Comment[] comments = factory.queryComments(null, commentForm
                 .getProjectId(), commentForm.getStableId(), null, null, null);
-        
-        // fill in user name and organization
-        CommentComposer.fillUserInfo(comments, wdkModel.getModel());
         
         // set for the forwarding page
         request.setAttribute(COMMENT_LIST_KEY, comments);

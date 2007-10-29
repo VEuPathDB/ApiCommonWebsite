@@ -50,10 +50,12 @@ public class ShowAddCommentAction extends CommentAction {
         // get parameters
         String stableId = request.getParameter("stableId");
         String commentTargetId = request.getParameter("commentTargetId");
+        String organism = request.getParameter("organism");
 
         // get comment target
         CommentTarget commentTarget = factory.getCommentTarget(commentTargetId);
-
+    
+        request.setAttribute("organism", organism);
         request.setAttribute("stableId", stableId);
         request.setAttribute("commentTarget", commentTarget);
         request.setAttribute("externalDbName", request
