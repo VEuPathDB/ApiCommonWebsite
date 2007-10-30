@@ -84,7 +84,24 @@
     <!-- remove conflicting jar file -->
     <delete file="${targetDir}/lib/java/servlet-api-2.4.jar" />
     
+    <antcall target="ApiCommonWebsite-Glossary"/>
+
   </target>
+
+
+ <target name="ApiCommonWebsite-Glossary">
+    <mapper id="glossmapper" type="glob" from="*.txt" to="${targetDir}/lib/xml/*.xml"/>
+
+    <echo message="Running glossaryTextToXml glossary.txt > glossary.xml"/>
+    <apply executable="${targetDir}/bin/glossaryTextToXml" verbose="true">
+        <filelist dir="${targetDir}/lib/xml" files="glossary.txt"/>
+        <redirector>
+            <outputmapper refid="glossmapper"/>
+        </redirector>
+    </apply>
+  </target>
+
+
 
  <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
   <target name="ApiCommonWebsite/Model-Installation">
