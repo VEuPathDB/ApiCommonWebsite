@@ -22,6 +22,7 @@ get_install_paths() {
 }
 
 mkdirs() {
+    echo "INSTALL: making install directories...."
     mkdir $htdocsTargetDir 2>/dev/null
     mkdir $cgibinTargetDir 2>/dev/null
     mkdir $cgilibTargetDir 2>/dev/null
@@ -29,6 +30,7 @@ mkdirs() {
 }
 
 unpack_gbrowse_src() {
+    echo "INSTALL: unpacking gbrowse source...."
     if ! (
         mkdir -p $BUILD_DIR && 
         tar zxf \
@@ -51,6 +53,8 @@ post_install_clean() {
 
 # unpack and install pre-made BioPerl 5 into cgi-lib
 install_local_bioperl() {
+    echo "INSTALL: installing bioperl...."
+    echo "tar zxf $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE"
     if ! tar zxf \
         $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
         -C $cgilibTargetDir 2> /dev/null; then
@@ -64,6 +68,7 @@ install_local_bioperl() {
 
 configure_gb() {
 
+    
     mkdirs
     
     install_local_bioperl
@@ -78,6 +83,8 @@ configure_gb() {
     unpack_gbrowse_src
     
     cd $BUILD_DIR
+
+    echo "INSTALL: perl Makefile.pl..."
     
     perl Makefile.PL HTDOCS=$htdocsTargetDir    \
                      CONF=$confTargetDir        \
@@ -96,7 +103,7 @@ configure_gb() {
 }
 
 make_all() {
-    echo .......make.........
+    echo "INSTALL: make all..."
     make
     
     if [ "$?" -gt 0 ]; then
@@ -107,6 +114,7 @@ make_all() {
 }
 
 make_test() {
+    echo "INSTALL: make test..."
     make test
      
     if [ "$?" -gt 0 ]; then
@@ -117,6 +125,7 @@ make_test() {
 }
 
 make_install() {
+    echo "INSTALL: make install..."
     make install
     if [ "$?" -gt 0 ]; then
         echo
@@ -126,6 +135,7 @@ make_install() {
 }
 
 patch_all() {
+    echo "INSTALL: patching..."
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_img_1_64.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_1_64_presets.patch
     patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/POSIX.pm_1_64_presets.patch
