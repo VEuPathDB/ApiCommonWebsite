@@ -314,7 +314,8 @@ public class CommentFactory {
         sql.append("u.first_name || ' ' || u.last_name || ', ' || u.title  as user_name, ");
         sql.append("u.organization, c.content FROM ");
         sql.append(config.getCommentSchema() + "comments c, ");
-        sql.append(config.getUserLoginSchema() + "users u ");
+        sql.append(config.getUserLoginSchema() + "users"
+                + config.getUserLoginDbLink() + " u ");
         sql.append("WHERE c.email = u.email ");
         sql.append("AND c.comment_id = ? ");
 
@@ -469,7 +470,8 @@ public class CommentFactory {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT c.comment_id FROM ");
         sql.append(config.getCommentSchema() + "comments c, ");
-        sql.append(config.getUserLoginSchema() + "users u ");
+        sql.append(config.getUserLoginSchema() + "users"
+                + config.getUserLoginDbLink() + " u ");
         sql.append("WHERE c.email = u.email ");
         if (where.length() > 0) sql.append(" AND " + where.toString());
         sql.append(" ORDER BY c.organism ASC, c.stable_id ASC, c.comment_date DESC");
