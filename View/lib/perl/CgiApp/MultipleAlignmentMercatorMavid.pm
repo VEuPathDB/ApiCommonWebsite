@@ -264,7 +264,7 @@ sub makeClustal {
 	}
     }
 
-    my $command = "echo '$multiFasta'|fa2clustal";
+    my $command = "echo '$multiFasta'|$fa2clustal";
 
     my $clustal = `$command`;
 
