@@ -34,6 +34,15 @@ sub run {
   my ($ref, $contig, $start, $stop, $strand, $type) = validateParams($cgi, $dbh);
   my ($agpDir, $alignDir, $sliceAlign, $fa2clustal) = $self->validateMacros();
 
+  if(my ($mapHash) = $self->validateMapCoordinates($alignDir, $start, $stop)) {
+    my $mapStart = $mapHash->{start};
+    my $mapStop = $mapHash->{stop};
+
+    print STDOUT "The Genomic Coordinates provided fall outside a mapped region\n\n";
+    print STDOUT "$contig is mapped between $mapStart and $mapStop\n";
+    exit(0);
+  }
+
   my $multiFasta = makeAlignment($alignDir, $agpDir, $sliceAlign, $ref, $contig, $start, $stop, $strand);
 
   if($type eq 'fasta_ungapped') {
@@ -54,6 +63,46 @@ sub run {
   }
 
   exit(0);
+}
+
+#--------------------------------------------------------------------------------
+
+sub validateMapCoordinates {
+  my ($alignDir, $query, $start, $stop) = @_;
+
+  my $mapfile = "$alignDir/map";
+  unless(-e $mapfile) {
+    &error("Map file $mapfile does not exist");
+  }
+
+  open(MAP, $mapfile) or error("Cannot open file $mapfile for reading: $!");
+
+  my %mapped;
+
+  while(<MAP>) {
+    chomp;
+
+    my @a = split(/\t/, $_);
+
+    my $contig = $a[1];
+    my $mapStart = $a[2];
+    my $mapStop = $a[3];
+
+    if(my $hash = $mapped{$contig}) {
+      $mapped{$contig}->{start} = $hash->{start} <= $mapStart ? $hash->{start} ? $mapStart;
+      $mapped{$contig}->{stop} = $hash->{stop} >= $mapStop ? $hash->{stop} ? $mapStop;
+    }
+    else {
+      $mapped{$contig} = {start => $mapStart, stop => $mapStop};
+    }
+  }
+  close MAP;
+
+  if(my $rv = $mapped{$query}) {
+    return $rv;
+  }
+
+  &error("Could not find [$query] in the map file... perhaps this is not from the reference strain?\n");
 }
 
 #--------------------------------------------------------------------------------
@@ -164,7 +213,7 @@ sub replaceAssembled {
 
   my $fn = "$agpDir/$genome" . ".agp";
 
-  open(FILE, $fn) or die "Cannot open file $fn for reading:$!";
+  open(FILE, $fn) or error("Cannot open file $fn for reading:$!");
 
   my @v;
 
@@ -187,7 +236,7 @@ sub replaceAssembled {
     my $shift = $assemblyStart - $contigStart;
     my $checkShift = $assemblyStop - $contigStop;
 
-    die "Cannot determine shift" unless($shift == $checkShift);
+    error "Cannot determine shift" unless($shift == $checkShift);
 
     if($assembly eq $input && 
        (($start >= $assemblyStart && $start <= $assemblyStop) || ($stop >= $assemblyStart && $stop <= $assemblyStop))) {
