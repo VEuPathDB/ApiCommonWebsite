@@ -34,11 +34,10 @@ sub run {
   my ($ref, $contig, $start, $stop, $strand, $type) = validateParams($cgi, $dbh);
   my ($agpDir, $alignDir, $sliceAlign, $fa2clustal) = $self->validateMacros();
 
-  if(my ($mapHash) = $self->validateMapCoordinates($alignDir, $start, $stop)) {
-    my $mapStart = $mapHash->{start};
-    my $mapStop = $mapHash->{stop};
+  my ($mapStart, $mapStop) = &validateMapCoordinates($alignDir, $contig, $start, $stop);
 
-    print STDOUT "The Genomic Coordinates provided fall outside a mapped region\n\n";
+  if($mapStart && $mapStop) {
+    print STDOUT "The Genomic Coordinates provided fall outside a mapped region!\n\n";
     print STDOUT "$contig is mapped between $mapStart and $mapStop\n";
     exit(0);
   }
@@ -61,7 +60,6 @@ sub run {
   else {
       print STDOUT $multiFasta;
   }
-
   exit(0);
 }
 
@@ -89,8 +87,8 @@ sub validateMapCoordinates {
     my $mapStop = $a[3];
 
     if(my $hash = $mapped{$contig}) {
-      $mapped{$contig}->{start} = $hash->{start} <= $mapStart ? $hash->{start} ? $mapStart;
-      $mapped{$contig}->{stop} = $hash->{stop} >= $mapStop ? $hash->{stop} ? $mapStop;
+      $mapped{$contig}->{start} = $hash->{start} < $mapStart ? $hash->{start} : $mapStart;
+      $mapped{$contig}->{stop} = $hash->{stop} > $mapStop ? $hash->{stop} : $mapStop;
     }
     else {
       $mapped{$contig} = {start => $mapStart, stop => $mapStop};
@@ -98,11 +96,16 @@ sub validateMapCoordinates {
   }
   close MAP;
 
-  if(my $rv = $mapped{$query}) {
-    return $rv;
+  unless($mapped{$query}) {
+    &error("Could not find [$query] in the map file... perhaps this is not from the reference strain?\n");
   }
 
-  &error("Could not find [$query] in the map file... perhaps this is not from the reference strain?\n");
+  my $mapStart = $mapped{$query}->{start};
+  my $mapStop = $mapped{$query}->{stop};
+
+  if($start > $mapStop || $stop < $mapStart) {
+    return($mapStart, $mapStop);
+  }
 }
 
 #--------------------------------------------------------------------------------
@@ -236,7 +239,7 @@ sub replaceAssembled {
     my $shift = $assemblyStart - $contigStart;
     my $checkShift = $assemblyStop - $contigStop;
 
-    error "Cannot determine shift" unless($shift == $checkShift);
+    &error("Cannot determine shift") unless($shift == $checkShift);
 
     if($assembly eq $input && 
        (($start >= $assemblyStart && $start <= $assemblyStop) || ($stop >= $assemblyStart && $stop <= $assemblyStop))) {
@@ -317,7 +320,7 @@ sub makeClustal {
 
     my $clustal = `$command`;
 
-    return "\n$rv$clustal\n";
+    return "\n$rv\n\n$clustal\n";
 }
 
 #--------------------------------------------------------------------------------
