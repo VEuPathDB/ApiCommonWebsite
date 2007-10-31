@@ -27,6 +27,8 @@ sub getCndsrcBin {$_[0]->{cndsrc_bin}}
 sub run {
   my ($self, $cgi) = @_;
 
+  $| = 1;
+
   my $dbh = $self->getQueryHandle($cgi);
 
   print STDOUT $cgi->header('text/plain');
@@ -55,7 +57,6 @@ sub run {
   }
   elsif($type eq 'clustal') {
       my $clustal = &makeClustal($fa2clustal, $multiFasta, $cgi);
-      print STDOUT $clustal;
   }
   else {
       print STDOUT $multiFasta;
@@ -310,18 +311,95 @@ sub makeClustal {
     # Print the deflines on top of the clustal output
     my @lines = split(/\n/, $multiFasta);
 
+    my ($actualStart, $actualStop, $actualStrand);
+
     foreach my $line (@lines) {
 	if($line =~ s/^>//) {
-	    $rv = "$rv$line\n";
+	    print STDOUT "$line\n";
+
+            if($line =~ /^$genome [\w\d]+:(\d+)-(\d+)\(([+-])\)/) {
+              $actualStart = $1;
+              $actualStop = $2;
+              $actualStrand = $3;
+            }
 	}
     }
 
-    my $command = "echo '$multiFasta'|$fa2clustal";
+    print STDOUT "\n";
 
-    my $clustal = `$command`;
+    # Should try to capture the output of fa2clustal and add numbers but...this doesn't work for > 30,000 bases
+    #my $command = "perl -e 'print \"$multiFasta\"'|$fa2clustal";
+    #my $clustal = `$command`;
+    #my $clustalMod = &addPositions($clustal, $actualStart, $actualStop, $actualStrand, $genome);
 
-    return "\n$rv\n\n$clustal\n";
+    # This is a bit of a hack because I couldn't get the stuff above to work
+    my $perlCommand = "perl -e 'my \$start=$actualStart; 
+                                my \$stop=$actualStop;
+                                my \$strand=\"$actualStrand\";
+                                while(<>) {
+                                  chomp;
+                                  if(/^$genome\\s+(.+)\$/) {
+                                    my \$seq = \$1;
+                                    my \$n = length \$seq;
+                                    my \$nGaps = \$seq =~ tr/-/ /;
+                                    my \$offset = \$n - \$nGaps;
+                                   if(\$strand eq \"-\" && \$offset > 0) {
+                                     \$stop = \$stop - \$offset;
+                                     print \$_ . \" \$stop\\n\";
+                                   }
+                                   elsif(\$strand eq \"+\" && \$offset > 0) {
+                                     \$start = \$start + \$offset;
+                                     print \$_ . \" \$start\\n\";
+                                   }
+                                   else {
+                                     print \"\$_\\n\";
+                                   }
+                                 }
+                                 else {
+                                   print \"\$_\\n\";
+                                 }
+                               }'";
+
+#    print STDERR $perlCommand;
+
+    open PIPE, "|$fa2clustal|$perlCommand" or die "Cannot open pipe:$!";
+    print PIPE $multiFasta;
+    close PIPE;
+
 }
+
+#--------------------------------------------------------------------------------
+
+sub addPositions {
+  my ($clustal, $start, $stop, $strand, $genome) = @_;
+
+  my @lines = split(/\n/, $clustal);
+
+  for(my $i = 0; $i < scalar(@lines); $i++) {
+    my $line = $lines[$i];
+
+    next unless($line =~ /^$genome\s+(.+)$/);
+    my $seq = $1;
+
+    my $n = length $seq;
+    my $nGaps = $seq =~ tr/-/ /;
+
+    my $offset = $n - $nGaps;
+    next if($offset == 0);
+
+    if($strand eq '-') {
+      $stop = $stop - $offset;
+      $lines[$i] = "$lines[$i]  $stop";
+    }
+    else {
+      $start = $start + $offset;
+      $lines[$i] = "$lines[$i]  $start";
+    }
+  }
+
+  return join("\n", @lines);
+}
+
 
 #--------------------------------------------------------------------------------
 
