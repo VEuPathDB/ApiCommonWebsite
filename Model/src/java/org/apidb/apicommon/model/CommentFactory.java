@@ -163,9 +163,12 @@ public class CommentFactory {
 
             saveExternalDbs(commentId, comment);
 
-            // append this comment to the external file
-            appendCommentToFile(commentId);
-
+            // get a new comment in order to fetch the user info
+            Comment newComment = getComment(commentId);
+            appendCommentToFile(newComment);
+            
+            comment.setUserName(newComment.getUserName());
+            comment.setOrganization(newComment.getOrganization());
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new WdkModelException(ex);
@@ -557,9 +560,9 @@ public class CommentFactory {
      * @param comment
      * @throws WdkModelException
      */
-    private void appendCommentToFile(int commentId) throws WdkModelException {
+    private void appendCommentToFile(Comment comment) throws WdkModelException {
         PrintWriter writer;
-        Comment comment = getComment(commentId);
+        
         try {
             writer = new PrintWriter(new FileWriter(
                     getOutputFile(comment.getProjectName()), true));
@@ -602,8 +605,7 @@ public class CommentFactory {
     }
 
     private File getOutputFile(String projectId) {
-        return new File(config.getCommentTextFileDir() + "/" + projectId
-                + "_comments.txt");
+        return new File(config.getCommentTextFileDir() + "/comments.txt");
     }
 
     private void printStatus() {
