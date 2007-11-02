@@ -6,21 +6,7 @@ use strict;
 use Bio::SeqIO;
 use Bio::Seq;
 
-sub new {
-  my $self = shift()->SUPER::new();
-
-  my ($mercatorOutputDir, $cndsrcBin) = @_;
-
-  $self->{mercator_output_dir} = $mercatorOutputDir;
-  $self->{cndsrc_bin} = $cndsrcBin;
-  
-  return $self;
-}
-
-#--------------------------------------------------------------------------------
-
-sub getMercatorOutputDir {$_[0]->{mercator_output_dir}}
-sub getCndsrcBin {$_[0]->{cndsrc_bin}}
+use ApiCommonWebsite::Model::ModelProp;
 
 #--------------------------------------------------------------------------------
 
@@ -32,7 +18,7 @@ sub run {
   print STDOUT $cgi->header('text/plain');
 
   my ($contig, $start, $stop, $strand, $type) = validateParams($cgi, $dbh);
-  my ($agpDir, $alignDir, $sliceAlign, $fa2clustal) = $self->validateMacros();
+  my ($agpDir, $alignDir, $sliceAlign, $fa2clustal) = &validateMacros($cgi);
 
   my ($genome, $assembly, $assemblyStart, $assemblyStop, $assemblyStrand) = &translateCoordinates($contig, $agpDir, $start, $stop, $strand);
   my ($mapStart, $mapStop) = &validateMapCoordinates($genome, $alignDir, $assembly, $assemblyStart, $assemblyStop);
@@ -189,15 +175,16 @@ sub validateMapCoordinates {
 #--------------------------------------------------------------------------------
 
 sub validateMacros {
-  my ($self) = @_;
+  my ($cgi) = @_;
 
-  my $mercatorOutputDir = $self->getMercatorOutputDir();
+  my $project = $cgi->param('project_id');
+  my $props =  ApiCommonWebsite::Model::ModelProp->new($project);
+  my $mercatorOutputDir = $props->{MERCATOR_OUTPUT_DIR};
+  my $cndsrcBin =  $props->{CNDSRC_BIN};
+
   my $alignmentsDir = "$mercatorOutputDir/alignments";
-
-  my $cndsrcBin = $self->getCndsrcBin();
   my $sliceAlignment = "$cndsrcBin/sliceAlignment";
   my $fa2clustal = "$cndsrcBin/fa2clustal";
-
 
   unless(-e $cndsrcBin) {
     error("cndsrc Bin directory does not exist [$cndsrcBin]");
