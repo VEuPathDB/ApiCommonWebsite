@@ -15,13 +15,13 @@ sub run {
 
   my $dbh = $self->getQueryHandle($cgi);
 
-  print STDOUT $cgi->header('text/plain');
-
-  my ($contig, $start, $stop, $strand, $type) = validateParams($cgi, $dbh);
+  my ($contig, $start, $stop, $strand, $type) = &validateParams($cgi, $dbh);
   my ($agpDir, $alignDir, $sliceAlign, $fa2clustal) = &validateMacros($cgi);
 
   my ($genome, $assembly, $assemblyStart, $assemblyStop, $assemblyStrand) = &translateCoordinates($contig, $agpDir, $start, $stop, $strand);
   my ($mapStart, $mapStop) = &validateMapCoordinates($genome, $alignDir, $assembly, $assemblyStart, $assemblyStop);
+
+  &createHeader($cgi, $type, $genome, $contig, $start, $stop, $strand);
 
   if($mapStart && $mapStop) {
     print STDOUT "The Genomic Coordinates provided fall outside a mapped region!\n\n";
@@ -41,12 +41,36 @@ sub run {
       $seqIO->close();
   }
   elsif($type eq 'clustal') {
-      my $clustal = &makeClustal($fa2clustal, $multiFasta, $cgi, $genome);
+    my $clustal = &makeClustal($cgi, $multiFasta, $genome);
+
+    print STDOUT $cgi->end_html();
   }
   else {
       print STDOUT $multiFasta;
   }
+
   exit(0);
+}
+
+#--------------------------------------------------------------------------------
+
+sub createHeader {
+  my ($cgi, $type, $genome, $contig, $start, $stop, $strand) = @_;
+
+  my $title = "mercator-MAVID $genome $contig$start-$stop($strand)";
+
+  if($type eq 'clustal') {
+    # little style sheet for coloring the html
+    my @css = <DATA>;
+
+    print STDOUT $cgi->header();
+    print STDOUT $cgi->start_html(-title => $title,
+                                  -style  => {-code => join('', @css)},
+                                 );
+  }
+  else {
+    print STDOUT $cgi->header('text/plain');
+  }
 }
 
 #--------------------------------------------------------------------------------
@@ -359,103 +383,135 @@ sub makeAlignment {
 #--------------------------------------------------------------------------------
 
 sub makeClustal {
-  my ($fa2clustal, $multiFasta, $cgi, $genome) =  @_;
+  my ($cgi, $multiFasta, $referenceGenome) =  @_;
 
-  my $rv;
-
-  # Print the deflines on top of the clustal output
   my @lines = split(/\n/, $multiFasta);
 
-  my ($actualStart, $actualStop, $actualStrand);
+  my ($start, $stop, $strand, $thisGenome, $count);
+
+  my (%allSequences, @genomes);
 
   foreach my $line (@lines) {
-    if($line =~ s/^>//) {
-      print STDOUT "$line\n";
+    next unless($line);
+    if($line =~ /^>(([\w\d_]+) [\w\d]+:(\d+)-(\d+)\(([+-])\))/ || $line =~ /^>(.+)/) {
+      $thisGenome = $1;
+      push(@genomes, $thisGenome);
 
-      if($line =~ /^$genome [\w\d]+:(\d+)-(\d+)\(([+-])\)/) {
-        $actualStart = $1;
-        $actualStop = $2;
-        $actualStrand = $3;
-
-        $actualStart-- if($actualStrand eq '+');
-        $actualStop++ if($actualStrand eq '-');
+      my $genome = $2;
+      if($genome eq $referenceGenome) {
+        $start = $3 - 1;;
+        $stop = $4 + 1;
+        $strand = $5;
       }
+
+      print STDOUT "$line</br>\n";
+    }
+    else {
+      push(@{$allSequences{$thisGenome}}, $line);
+      $count++
     }
   }
+  $count = $count / scalar(keys(%allSequences));
+  print STDOUT "</br>\n";
 
-  print STDOUT "\n";
-
-  # Should try to capture the output of fa2clustal and add numbers but...this doesn't work for > 30,000 bases
-  #my $command = "perl -e 'print \"$multiFasta\"'|$fa2clustal";
-  #my $clustal = `$command`;
-  #my $clustalMod = &addPositions($clustal, $actualStart, $actualStop, $actualStrand, $genome);
-
-  # This is a bit of a hack because I couldn't get the stuff above to work
-  my $perlCommand = "perl -e 'my \$start=$actualStart; 
-                                my \$stop=$actualStop;
-                                my \$strand=\"$actualStrand\";
-                                while(<>) {
-                                  chomp;
-                                  if(/^$genome\\s+(.+)\$/) {
-                                    my \$seq = \$1;
-                                    my \$n = length \$seq;
-                                    my \$nGaps = \$seq =~ tr/-/ /;
-                                    my \$offset = \$n - \$nGaps;
-                                   if(\$strand eq \"-\" && \$offset > 0) {
-                                     \$stop = \$stop - \$offset;
-                                     print \$_ . \" \$stop\\n\";
-                                   }
-                                   elsif(\$strand eq \"+\" && \$offset > 0) {
-                                     \$start = \$start + \$offset;
-                                     print \$_ . \" \$start\\n\";
-                                   }
-                                   else {
-                                     print \"\$_\\n\";
-                                   }
-                                 }
-                                 else {
-                                   print \"\$_\\n\";
-                                 }
-                               }'";
-
-  #    print STDERR $perlCommand;
-  open PIPE, "|$fa2clustal|$perlCommand" or die "Cannot open pipe:$!";
-  print PIPE $multiFasta;
-  close PIPE;
+  &printClustal(\%allSequences, $start, $stop, $strand, $referenceGenome, $count, \@genomes);
 }
 
 #--------------------------------------------------------------------------------
 
-sub addPositions {
-  my ($clustal, $start, $stop, $strand, $genome) = @_;
+sub printClustal {
+  my ($allSequences, $start, $stop, $strand, $referenceGenome, $count, $genomes) = @_;
 
-  my @lines = split(/\n/, $clustal);
+  my @genomes = @$genomes;
+  my $colWidth = 15;
 
-  for(my $i = 0; $i < scalar(@lines); $i++) {
-    my $line = $lines[$i];
+  my $referenceCursor;
 
-    next unless($line =~ /^$genome\s+(.+)$/);
-    my $seq = $1;
+  for my $i (0..$count-1) {
+    my %sequenceLines = ();
+    foreach my $genome (@genomes) {
 
-    my $n = length $seq;
-    my $nGaps = $seq =~ tr/-/ /;
+      my @allLines = @{$allSequences->{$genome}};
+      $sequenceLines{$genome} = $allLines[$i];
 
-    my $offset = $n - $nGaps;
-    next if($offset == 0);
+      # Keep track of the Reference Genome Positions
+      if($genome =~ /$referenceGenome/) {
+        my $seq = $allLines[$i];
+        my $n = length $seq;
+        my $nGaps = $seq =~ tr/-/ /;
 
-    if($strand eq '-') {
-      $stop = $stop - $offset;
-      $lines[$i] = "$lines[$i]  $stop";
+        my $offset = $n - $nGaps;
+        next if($offset == 0);
+
+        if($strand eq '-') {
+          $stop = $stop - $offset;
+          $referenceCursor = $stop;
+        }
+        else {
+          $start = $start + $offset;
+          $referenceCursor = $start;
+        }
+      }
     }
-    else {
-      $start = $start + $offset;
-      $lines[$i] = "$lines[$i]  $start";
+
+    my $markup = &markupSequences(\%sequenceLines, $referenceGenome);
+
+    foreach my $genome (@genomes) {
+      $genome =~ /^([\w\d_]+)/;
+      my @genomeChars = split('', $1);
+      for(0..$colWidth) {
+        my $char = defined($genomeChars[$_]) ? $genomeChars[$_] : '&nbsp';
+        print STDOUT $1 eq $referenceGenome ? "<b class=\"maroon\">$char</b>" : $char;
+      }
+
+      if($genome =~ /$referenceGenome/) {
+        print STDOUT $markup->{$genome}. " $referenceCursor". "</br>";
+      }
+      else {
+        print STDOUT $markup->{$genome}."</br>";
+      }
     }
+    print STDOUT "</br>";
   }
 
-  return join("\n", @lines);
 }
 
+#--------------------------------------------------------------------------------
+
+sub markupSequences {
+  my ($sequences, $reference) = @_;
+
+  my (@referenceBases, %markedUpSequences);
+
+  # find the reference first
+  foreach my $genome (keys %$sequences) {
+    next unless($genome =~ /^$reference/);
+
+    @referenceBases = split('', $sequences->{$genome});
+  }
+
+  # compare each non reference base to the reference at that position
+  foreach my $genome (keys %$sequences) {
+    if($genome =~ /^$reference/) {
+      $markedUpSequences{$genome} = $sequences->{$genome};
+    }
+    else {
+      my @nonRefBases = split('', $sequences->{$genome});
+
+      unless(scalar @referenceBases == scalar @nonRefBases) {
+        &error("Error in the number of bases for $genome");
+      }
+
+      for(my $i = 0; $i < scalar(@nonRefBases); $i++) {
+        next if($nonRefBases[$i] eq $referenceBases[$i] || $nonRefBases[$i] eq '-');
+        $nonRefBases[$i] = "<b class=\"red\">$nonRefBases[$i]</b>";
+
+      }
+      $markedUpSequences{$genome} = join('', @nonRefBases);
+    }
+  }
+  return \%markedUpSequences;
+}
 
 #--------------------------------------------------------------------------------
 
@@ -503,3 +559,23 @@ sub error {
 }
 
 1;
+
+__DATA__
+body
+{
+font-family: courier, 'serif'; 
+font-size: 100%;
+background-color: #ffffff;
+}
+b.red
+{
+font-family: courier, 'serif';
+font-weight: normal;
+color:#FF0000; 
+}
+b.maroon
+{
+font-family: courier, 'serif';
+font-weight: normal;
+color:#800000; 
+}
