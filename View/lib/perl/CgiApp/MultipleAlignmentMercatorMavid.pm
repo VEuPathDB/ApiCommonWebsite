@@ -21,13 +21,11 @@ sub run {
   my ($genome, $assembly, $assemblyStart, $assemblyStop, $assemblyStrand) = &translateCoordinates($contig, $agpDir, $start, $stop, $strand);
   my ($mapStart, $mapStop) = &validateMapCoordinates($genome, $alignDir, $assembly, $assemblyStart, $assemblyStop);
 
-  &createHeader($cgi, $type, $genome, $contig, $start, $stop, $strand);
-
   if($mapStart && $mapStop) {
-    print STDOUT "The Genomic Coordinates provided fall outside a mapped region!\n\n";
-    print STDOUT "$contig is mapped between $mapStart and $mapStop\n";
-    exit(0);
+    &error("Your Genomic Coordinates fall outside a mapped region!\n\n$contig is mapped between $mapStart and $mapStop");
   }
+
+  &createHeader($cgi, $type, $genome, $contig, $start, $stop, $strand);
 
   my $multiFasta = makeAlignment($alignDir, $agpDir, $sliceAlign, $genome, $assembly, $assemblyStart, $assemblyStop, $assemblyStrand);
 
@@ -42,13 +40,11 @@ sub run {
   }
   elsif($type eq 'clustal') {
     my $clustal = &makeClustal($cgi, $multiFasta, $genome);
-
     print STDOUT $cgi->end_html();
   }
   else {
-      print STDOUT $multiFasta;
+    print STDOUT $multiFasta;
   }
-
   exit(0);
 }
 
@@ -559,8 +555,7 @@ sub makeUngappedSeqs {
 sub error {
   my ($msg) = @_;
 
-  print "ERROR: $msg\n\n";
-  exit(1);
+  die "ERROR: $msg\n\n";
 }
 
 1;
