@@ -481,7 +481,7 @@ sub printClustal {
 sub markupSequences {
   my ($sequences, $reference) = @_;
 
-  my (@referenceBases, %markedUpSequences);
+  my (@referenceBases, %positions, %markedUpSequences);
 
   # find the reference first
   foreach my $genome (keys %$sequences) {
@@ -490,26 +490,31 @@ sub markupSequences {
     @referenceBases = split('', $sequences->{$genome});
   }
 
-  # compare each non reference base to the reference at that position
+  # find the positions where the non reference differ from the reference
   foreach my $genome (keys %$sequences) {
-    if($genome =~ /^$reference/) {
-      $markedUpSequences{$genome} = $sequences->{$genome};
+    next if($genome =~ /^$reference/);
+
+    my @nonRefBases = split('', $sequences->{$genome});
+
+    unless(scalar @referenceBases == scalar @nonRefBases) {
+      &error("Error in the number of bases for $genome");
     }
-    else {
-      my @nonRefBases = split('', $sequences->{$genome});
-
-      unless(scalar @referenceBases == scalar @nonRefBases) {
-        &error("Error in the number of bases for $genome");
-      }
-
-      for(my $i = 0; $i < scalar(@nonRefBases); $i++) {
-        next if($nonRefBases[$i] eq $referenceBases[$i] || $nonRefBases[$i] eq '-');
-        $nonRefBases[$i] = "<b class=\"red\">$nonRefBases[$i]</b>";
-
-      }
-      $markedUpSequences{$genome} = join('', @nonRefBases);
+    for(my $i = 0; $i < scalar(@nonRefBases); $i++) {
+      next if($nonRefBases[$i] eq $referenceBases[$i] || $nonRefBases[$i] eq '-' || $referenceBases[$i] eq '-');
+      $positions{$i} = 1;
     }
   }
+
+  # if there was a difference... change all the colors
+  foreach my $genome (keys %$sequences) {
+    my @bases = split('', $sequences->{$genome});
+
+    for(my $i = 0; $i < scalar(@bases); $i++) {
+      $bases[$i] = "<b class=\"red\">$bases[$i]</b>" if($positions{$i});
+    }
+    $markedUpSequences{$genome} = join('', @bases);
+  }
+
   return \%markedUpSequences;
 }
 
