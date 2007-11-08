@@ -268,11 +268,7 @@ sub validateContig {
 
   my $sql = <<EOSQL;
 SELECT s.source_id 
-FROM (SELECT source_id
-      FROM dots.ExternalNaSequence
-      UNION
-      SELECT source_id
-      FROM dots.VirtualSequence) s
+FROM dots.NaSequence s
 WHERE  upper(s.source_id) = ?
 EOSQL
 
