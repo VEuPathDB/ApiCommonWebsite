@@ -21,15 +21,9 @@ sub run {
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 
   my $sql = <<EOSQL;
-SELECT s.source_id, nas.sequence, ' | ' || bfmv.sequence_description as description
-FROM dots.nasequence nas, apidb.sequenceattributes bfmv,
-    (SELECT na_sequence_id, source_id
-      FROM dots.ExternalNaSequence 
-      UNION
-      SELECT na_sequence_id, source_id
-      FROM dots.VirtualSequence) s
+SELECT s.source_id, s.sequence, ' | ' || bfmv.sequence_description as description
+FROM dots.nasequence s, apidb.sequenceattributes bfmv,
 WHERE  upper(s.source_id) LIKE ?
- AND s.na_sequence_id = nas.na_sequence_id
  AND bfmv.source_id = s.source_id
 EOSQL
 
@@ -85,11 +79,7 @@ sub validateIds {
 
   my $sql = <<EOSQL;
 SELECT s.source_id 
-FROM (SELECT source_id
-      FROM dots.ExternalNaSequence
-      UNION
-      SELECT source_id
-      FROM dots.VirtualSequence) s
+FROM dots.NaSequence s
 WHERE  upper(s.source_id) = ?
 EOSQL
 
