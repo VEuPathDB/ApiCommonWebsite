@@ -227,7 +227,7 @@ sub handleNonGenomic {
 sub handleGenomic {
   my ($self, $dbh, $seqIO) = @_;
 
-  my $seqTable = ($self->getModel() =~ /toxo/)?
+  my $seqTable = ($self->getModel() =~ /toxo/i)?
     'dots.VirtualSequence' : 'dots.ExternalNaSequence';
 
   my $beginAnch = 0;
