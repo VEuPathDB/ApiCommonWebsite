@@ -396,7 +396,7 @@ sub makeClustal {
         $strand = $5;
       }
 
-      print STDOUT "$line</br>\n";
+      print STDOUT "$line<br />\n";
     }
     else {
       push(@{$allSequences{$thisGenome}}, $line);
@@ -404,7 +404,7 @@ sub makeClustal {
     }
   }
   $count = $count / scalar(keys(%allSequences));
-  print STDOUT "</br>\n";
+  print STDOUT "<br />\n";
 
   &printClustal(\%allSequences, $start, $stop, $strand, $referenceGenome, $count, \@genomes);
 }
@@ -452,18 +452,18 @@ sub printClustal {
       $genome =~ /^([\w\d_]+)/;
       my @genomeChars = split('', $1);
       for(0..$colWidth) {
-        my $char = defined($genomeChars[$_]) ? $genomeChars[$_] : '&nbsp';
+        my $char = defined($genomeChars[$_]) ? $genomeChars[$_] : '&nbsp;';
         print STDOUT $1 eq $referenceGenome ? "<b class=\"maroon\">$char</b>" : $char;
       }
 
       if($genome =~ /$referenceGenome/) {
-        print STDOUT $markup->{$genome}. " $referenceCursor". "</br>";
+        print STDOUT $markup->{$genome}. " $referenceCursor". "<br />";
       }
       else {
-        print STDOUT $markup->{$genome}."</br>";
+        print STDOUT $markup->{$genome}."<br />";
       }
     }
-    print STDOUT "</br>";
+    print STDOUT "<br />";
   }
 
 }
