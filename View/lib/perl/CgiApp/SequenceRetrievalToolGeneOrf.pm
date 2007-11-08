@@ -227,9 +227,6 @@ sub handleNonGenomic {
 sub handleGenomic {
   my ($self, $dbh, $seqIO) = @_;
 
-  my $seqTable = ($self->getModel() =~ /toxo/i)?
-    'dots.VirtualSequence' : 'dots.ExternalNaSequence';
-
   my $beginAnch = 0;
   my $endAnch = 0;
   my $beginAnchRev = 0;
@@ -279,7 +276,7 @@ select gf.source_id, s.source_id, tn.name, gf.product, l.start_min, l.end_max, l
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
 FROM dots.genefeature gf, dots.nalocation l, apidb.geneid gi,
-     sres.taxonname tn, $seqTable s
+     sres.taxonname tn, dots.NASequence s
 WHERE gi.id = lower(?)
 AND gf.source_id = gi.gene
 AND l.na_feature_id = gf.na_feature_id
@@ -295,7 +292,7 @@ select misc.source_id, s.source_id, tn.name, '', l.start_min, l.end_max, l.is_re
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
 FROM dots.miscellaneous misc, dots.nalocation l,
-     sres.taxonname tn, $seqTable s
+     sres.taxonname tn, dots.NASequence s
 WHERE misc.source_id = ?
 AND l.na_feature_id = misc.na_feature_id
 AND s.na_sequence_id = misc.na_sequence_id
@@ -312,7 +309,7 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product, bfmv.start_min,
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
 FROM apidb.geneattributes bfmv, apidb.geneid gi,
-     $seqTable s
+     dots.NASequence s
 WHERE gi.id = lower(?)
 AND bfmv.source_id = gi.gene
 AND s.source_id = bfmv.sequence_id
@@ -329,7 +326,7 @@ select bfmv.source_id, s.source_id, bfmv.organism,
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
-FROM apidb.orfattributes bfmv, $seqTable s
+FROM apidb.orfattributes bfmv, dots.NASequence s
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 EOSQL
