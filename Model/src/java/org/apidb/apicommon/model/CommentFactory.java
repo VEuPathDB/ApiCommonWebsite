@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,7 +136,7 @@ public class CommentFactory {
 
             ps.setInt(1, commentId);
             ps.setString(2, comment.getEmail());
-            ps.setDate(3, new java.sql.Date(currentMillis));
+            ps.setTimestamp(3, new Timestamp(currentMillis));
             ps.setString(4, comment.getCommentTarget());
             ps.setString(5, comment.getStableId());
             ps.setBoolean(6, comment.isConceptual());
@@ -336,7 +337,7 @@ public class CommentFactory {
             // construct a comment object
             Comment comment = new Comment(rs.getString("email"));
             comment.setCommentId(commentId);
-            comment.setCommentDate(rs.getDate("comment_date"));
+            comment.setCommentDate(rs.getTimestamp("comment_date"));
             comment.setCommentTarget(rs.getString("comment_target_id"));
             comment.setConceptual(rs.getBoolean("conceptual"));
             comment.setHeadline(rs.getString("headline"));
