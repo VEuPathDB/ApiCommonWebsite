@@ -152,3 +152,7 @@ insert into comments2.review_status values ('not_spam', 'the comment has been re
 insert into comments2.review_status values ('spam', 'the comment has been reviewed internally, and determined as a spam');
 
 insert into comments2.review_status values ('adopted', 'the comment has been adopted by the sequencing center');
+
+insert into comments2.review_status values ('task', 'the comment is an assigned task');
+
+commit;
