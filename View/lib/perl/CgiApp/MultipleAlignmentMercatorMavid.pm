@@ -358,8 +358,9 @@ sub makeAlignment {
   for(my $i = 0; $i < scalar (@lines); $i++) {
     my $line = $lines[$i];
 
-    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />([a-zA-Z1-9_]+) ([\w\d]+):(\d+)-(\d+)([-+])/;
+    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />([a-zA-Z0-9_]+) ([\w\d]+):(\d+)-(\d+)([-+])/;
     next unless($genome);
+
     my $replaced = &replaceAssembled($agpDir, $genome, $assembled, $start, $stop, $strand);
 
     $lines[$i] = $replaced;
@@ -415,7 +416,7 @@ sub printClustal {
   my ($allSequences, $start, $stop, $strand, $referenceGenome, $count, $genomes) = @_;
 
   my @genomes = @$genomes;
-  my $colWidth = 15;
+  my $colWidth = 20;
 
   my $referenceCursor;
 
