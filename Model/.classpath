@@ -7,7 +7,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/WDK Model"/>
 	<classpathentry kind="lib" path="/WDK Model/lib/java/commons-digester-1.7.jar"/>
 	<classpathentry kind="lib" path="/WDK Controller/lib/java/jstl.jar"/>
-	<classpathentry kind="lib" path="/WSF - Plugin/lib/java/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="/WSF - Plugin/lib/java/servlet-api-2.4.jar"/>
 	<classpathentry kind="lib" path="/WDK Controller/lib/java/struts-1.1.jar"/>
 	<classpathentry kind="lib" path="/WSF - Service/lib/java/junit-4.3.1.jar"/>
@@ -17,5 +16,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/WDK Model/lib/java/db_driver/pg74jdbc3.jar"/>
+	<classpathentry kind="lib" path="/WSF - Plugin/lib/java/log4j-1.2.15.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
