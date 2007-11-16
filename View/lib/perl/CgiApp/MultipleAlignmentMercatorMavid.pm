@@ -474,7 +474,7 @@ sub printClustal {
 sub markupSequences {
   my ($sequences, $reference) = @_;
 
-  my (@referenceBases, %positions, %markedUpSequences);
+  my (@referenceBases, %markedUpSequences);
 
   # find the reference first
   foreach my $genome (keys %$sequences) {
@@ -485,27 +485,22 @@ sub markupSequences {
 
   # find the positions where the non reference differ from the reference
   foreach my $genome (keys %$sequences) {
-    next if($genome =~ /^$reference/);
-
-    my @nonRefBases = split('', $sequences->{$genome});
-
-    unless(scalar @referenceBases == scalar @nonRefBases) {
-      &error("Error in the number of bases for $genome");
+    if($genome =~ /^$reference/) {
+      $markedUpSequences{$genome} = $sequences->{$genome};
     }
-    for(my $i = 0; $i < scalar(@nonRefBases); $i++) {
-      next if($nonRefBases[$i] eq $referenceBases[$i] || $nonRefBases[$i] eq '-' || $referenceBases[$i] eq '-');
-      $positions{$i} = 1;
-    }
-  }
+    else {
+      my @nonRefBases = split('', $sequences->{$genome});
 
-  # if there was a difference... change all the colors
-  foreach my $genome (keys %$sequences) {
-    my @bases = split('', $sequences->{$genome});
+      unless(scalar @referenceBases == scalar @nonRefBases) {
+        &error("Error in the number of bases for $genome");
+      }
+      for(my $i = 0; $i < scalar(@nonRefBases); $i++) {
+        next if($nonRefBases[$i] eq $referenceBases[$i] || $nonRefBases[$i] eq '-' || $referenceBases[$i] eq '-');
 
-    for(my $i = 0; $i < scalar(@bases); $i++) {
-      $bases[$i] = "<b class=\"red\">$bases[$i]</b>" if($positions{$i});
+        $nonRefBases[$i] = "<b class=\"red\">$nonRefBases[$i]</b>";
+      }
+      $markedUpSequences{$genome} = join('', @nonRefBases);
     }
-    $markedUpSequences{$genome} = join('', @bases);
   }
 
   return \%markedUpSequences;
@@ -562,17 +557,21 @@ body
 {
 font-family: courier, 'serif'; 
 font-size: 100%;
-background-color: #ffffff;
+font-weight: bold;
+background-color: #F8F8FF;
 }
 b.red
 {
 font-family: courier, 'serif';
-font-weight: normal;
-color:#FF0000; 
+font-weight: bold;
+color:#FF1800; 
 }
 b.maroon
 {
 font-family: courier, 'serif';
-font-weight: normal;
-color:#800000; 
+font-weight: bold;
+color:#8B0000; 
 }
+
+
+
