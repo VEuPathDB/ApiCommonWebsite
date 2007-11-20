@@ -4,13 +4,16 @@
 # Currently uses sqlplus client and therefore only good for Oracle DBs.
 
 use strict;
+use Getopt::Long;
 use DBI 1.43;
 use File::Basename; 
 use ApiCommonWebsite::Model::ModelConfig;
 
-$ARGV[0] or usage();
+my $model;
+GetOptions ('model=s' => \$model);
 
-my $model = $ARGV[0];
+$model or usage();
+
 
 my $c = new ApiCommonWebsite::Model::ModelConfig($model);
 
