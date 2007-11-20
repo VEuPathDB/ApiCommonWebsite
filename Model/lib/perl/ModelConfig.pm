@@ -66,8 +66,9 @@ sub _jdbc2dbi {
 }
 
 sub _dbi2connectString {
-    $_[0] =~ s/dbi:Oracle://;
-    return $_[0];
+    my ($str) = @_;
+    $str =~ s/dbi:Oracle://;
+    return $str;
 }
 
 1;
