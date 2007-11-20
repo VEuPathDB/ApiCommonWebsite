@@ -19,6 +19,8 @@ sub new {
     
     $self->{dbiDsn} = _jdbc2dbi($self->{connectionUrl});
 
+    $self->{connectString} = _dbi2connectString($self->{dbiDsn});
+
     return $self;
 }
 
@@ -36,6 +38,7 @@ sub getMaxActive          { $_[0]->{maxActive} }
 sub getMinIdle            { $_[0]->{minIdle} }
 sub getInitialSize        { $_[0]->{initialSize} }
 sub getWebServiceUrl      { $_[0]->{webServiceUrl} }
+sub getConnectString      { $_[0]->{connectString} }
 
 sub _jdbc2dbi {
 # convert Oracle thin jdbc driver syntax to dbi syntax
@@ -60,6 +63,11 @@ sub _jdbc2dbi {
         $jdbc =~ m/thin:[^@]*@(.+)/;
         return "dbi:Oracle:$1";
     }
+}
+
+sub _dbi2connectString {
+    $_[0] =~ s/dbi:Oracle://;
+    return $_[0];
 }
 
 1;
@@ -140,6 +148,11 @@ Mark Heiges, mheiges@uga.edu
  
  Usage : my $jdbcUrl = $cfg->getConnectionUrl;
  Returns : original jdbc connection string from model-config.xml
+
+=head2 getConnectString
+ 
+ Usage : my $connect = $cfg->getConnectString;
+ Returns : connect string suitable for non-DBI cases (e.g. sqlplus)
 
 
 
