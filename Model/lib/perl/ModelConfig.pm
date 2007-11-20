@@ -8,7 +8,10 @@ sub new {
     my $self = {};
     bless $self;
    
-    my $cfg = XMLin("$ENV{GUS_HOME}/config/${model}/model-config.xml");
+    my $modelconfig = "$ENV{GUS_HOME}/config/${model}/model-config.xml";
+    (-e $modelconfig) or die "File not found: $modelconfig\n";
+
+    my $cfg = XMLin($modelconfig);
     
     for (keys %$cfg) {
         $self->{$_} = $cfg->{$_}
