@@ -1,0 +1,40 @@
+#!/usr/bin/perl 
+
+# log in to database as defined in $GUS_HOME/<MODEL>/model-config 
+# Currently uses sqlplus client and therefore only good for Oracle DBs.
+
+use strict;
+use DBI 1.43;
+use File::Basename; 
+use ApiCommonWebsite::Model::ModelConfig;
+
+$ARGV[0] or usage();
+
+my $model = $ARGV[0];
+
+my $c = new ApiCommonWebsite::Model::ModelConfig($model);
+
+exec <<"EOF";
+$ENV{ORACLE_HOME}/bin/sqlplus \\
+$c->{login}/\\
+$c->{password}\\
+\@$c->{connectString}
+EOF
+
+
+
+
+sub usage {
+    my $this = basename($0);
+    print <<"EOF";
+
+usage: $this -model model_name
+
+Options:
+ -model <model>    the name of the model.  This is used to find the Model
+                   config file (\$GUS_HOME/config/model_name-config.xml)
+
+EOF
+
+    exit 1;
+}
