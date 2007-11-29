@@ -309,7 +309,7 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product, bfmv.start_min,
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
 FROM apidb.geneattributes bfmv, apidb.geneid gi,
-     dots.NASequence s
+     dots.externalNaSequence s 
 WHERE gi.id = lower(?)
 AND bfmv.source_id = gi.gene
 AND s.source_id = bfmv.sequence_id
@@ -326,7 +326,7 @@ select bfmv.source_id, s.source_id, bfmv.organism,
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
-FROM apidb.orfattributes bfmv, dots.NASequence s
+FROM apidb.orfattributes bfmv, dots.externalNaSequence s 
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 EOSQL
