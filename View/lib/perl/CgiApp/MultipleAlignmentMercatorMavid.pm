@@ -142,7 +142,7 @@ sub translateCoordinates {
   close DIR;
 
   unless($genome) {
-    &error("Genome not found for source_id $contig");
+    &userError("$contig was not found in any of the genomes which were input to mercator.\n\nUse the chromosome id for scaffolds which have been assembled into chromosomes");
   }
   return($genome, $assembly, $start, $stop, $strand);
 }
@@ -570,12 +570,7 @@ sub makeUngappedSeqs {
 sub error {
   my ($msg) = @_;
 
-  # Not sure why... but the newline characters at the begining and end are needed
-  print start_html;
-  print header;
-  print "\nERROR: $msg<br/><br/>Please complain about this <a href=\"/$webapp/help.jsp\">here</a>\n";
-  print end_html;
-  exit;
+  die "ERROR: $msg\n\nPlease report this error.  \nMake sure to include the error message, contig_id, start and end positions.\n";
 }
 
 sub userError {
