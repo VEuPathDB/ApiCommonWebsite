@@ -8,6 +8,23 @@ use Bio::Seq;
 
 use ApiCommonWebsite::Model::ModelProp;
 
+use CGI::Carp qw(fatalsToBrowser set_message);
+
+
+my $webapp;
+
+# ========================================================================
+# ----------------------------- BEGIN Block ------------------------------
+# ========================================================================
+BEGIN {
+    # Carp callback for sending fatal messages to browser
+    sub handle_errors {
+        my ($msg) = @_;
+        print "<p><pre>$msg</pre></p>";
+    }
+    set_message(\&handle_errors);
+}
+
 #--------------------------------------------------------------------------------
 
 sub run {
@@ -22,7 +39,7 @@ sub run {
   my ($mapStart, $mapStop) = &validateMapCoordinates($genome, $alignDir, $assembly, $assemblyStart, $assemblyStop);
 
   if($mapStart && $mapStop) {
-    &error("Your Genomic Coordinates fall outside a mapped region!\n\n$contig is mapped between $mapStart and $mapStop");
+    &userError("Your Genomic Coordinates fall outside a mapped region!\n\n$contig is mapped between $mapStart and $mapStop");
   }
 
   &createHeader($cgi, $type, $genome, $contig, $start, $stop, $strand);
@@ -105,7 +122,7 @@ sub translateCoordinates {
       $assembly = $assemblyName;
 
       if($start > $contigStop || $stop < $contigStart) {
-        &error("Please enter coordinates between $contigStart-$contigStop for $contig");
+        &userError("Please enter coordinates between $contigStart-$contigStop for $contig");
       }
 
       # The -1 is because sliceAlign has a 1 off error
@@ -181,7 +198,7 @@ sub validateMapCoordinates {
   close MAP;
 
   unless($mapped{$query}) {
-    &error("The coordinates $start-$stop fall outside a mapped region.");
+    &userError("There is no alignment data available for this Genomic Sequence:  $query.\n\nGenomic sequences with few or no genes will not be mapped.");
   }
 
   my $mapStart = $mapped{$query}->{start};
@@ -201,6 +218,12 @@ sub validateMacros {
   my $props =  ApiCommonWebsite::Model::ModelProp->new($project);
   my $mercatorOutputDir = $props->{MERCATOR_OUTPUT_DIR};
   my $cndsrcBin =  $props->{CNDSRC_BIN};
+
+  $webapp = $props->{WEBAPP_NAME};
+
+  unless($webapp) {
+    error("webapp not defined in the model config");
+  }
 
   my $alignmentsDir = "$mercatorOutputDir/alignments";
   my $sliceAlignment = "$cndsrcBin/sliceAlignment";
@@ -245,7 +268,7 @@ sub validateParams {
   }
 
   unless($type eq 'clustal' || $type eq 'fasta_gapped' || $type eq 'fasta_ungapped') {
-      &error("Invalid Type [$type]... expected clustal,fasta_gapped,fastaungapped");
+      &userError("Invalid Type [$type]... expected clustal,fasta_gapped,fastaungapped");
   }
 
   $start =~ s/[,.+\s]//g;
@@ -253,10 +276,10 @@ sub validateParams {
 
   $start = 1 if (!$start || $start !~/\S/);
   $stop = 1000000 if (!$stop || $stop !~ /\S/);
-  &error("Start '$start' must be a number") unless $start =~ /^\d+$/;
-  &error("End '$stop' must be a number") unless $stop =~ /^\d+$/;
+  &userError("Start '$start' must be a number") unless $start =~ /^\d+$/;
+  &userError("End '$stop' must be a number") unless $stop =~ /^\d+$/;
   if ($start < 1 || $stop < 1 || $stop <= $start) {
-    &error("Start and End must be positive, and Start must be less than End");
+    &userError("Start and End must be positive, and Start must be less than End");
   }
   return ($contig, $start, $stop, $strand, $type);
 }
@@ -276,7 +299,7 @@ EOSQL
   $sth->execute(uc($contig));
 
   unless(my ($id) = $sth->fetchrow_array()) {
-    &error("Invalid source ID:  $contig\n");
+    &userError("Invalid source ID:  $contig\n");
   }
   $sth->finish();
 
@@ -492,7 +515,7 @@ sub markupSequences {
       my @nonRefBases = split('', $sequences->{$genome});
 
       unless(scalar @referenceBases == scalar @nonRefBases) {
-        &error("Error in the number of bases for $genome");
+        &error("Wrong number of bases for $genome");
       }
       for(my $i = 0; $i < scalar(@nonRefBases); $i++) {
         next if($nonRefBases[$i] eq $referenceBases[$i] || $nonRefBases[$i] eq '-' || $referenceBases[$i] eq '-');
@@ -547,7 +570,18 @@ sub makeUngappedSeqs {
 sub error {
   my ($msg) = @_;
 
-  die "ERROR: $msg\n\n";
+  # Not sure why... but the newline characters at the begining and end are needed
+  print start_html;
+  print header;
+  print "\nERROR: $msg<br/><br/>Please complain about this <a href=\"/$webapp/help.jsp\">here</a>\n";
+  print end_html;
+  exit;
+}
+
+sub userError {
+  my ($msg) = @_;
+
+  die "$msg\n\nPlease Try again!\n";
 }
 
 1;
