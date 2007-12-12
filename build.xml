@@ -7,21 +7,21 @@
   <target name="WDK-Installation">
     <ant antfile="../WDK/build.xml" target="WDK-Installation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-14"/>
+      <property name="version" value="WDK_version_1-15"/>
     </ant>
   </target>  
 
   <target name="CBIL-Installation">
     <ant antfile="../CBIL/build.xml" target="CBIL-Installation">
       <property name="project" value="CBIL"/>
-      <property name="version" value="internal/api-september-2007"/>
+      <property name="version" value="internal/api-dec-2007"/>
     </ant>
   </target>  
 
   <target name="WDK-WebInstallation">
     <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-14"/>
+      <property name="version" value="WDK_version_1-15"/>
     </ant>
   </target>  
 
@@ -29,7 +29,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-14"/>
+      <property name="version" value="WDK_version_1-15"/>
     </ant>
   </target>  
 
@@ -37,7 +37,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false"> 
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
       <property name="project" value="CBIL"/>
-      <property name="version" value="internal/api-september-2007"/>
+      <property name="version" value="internal/api-dec-2007"/>
     </ant>
   </target>    
 
