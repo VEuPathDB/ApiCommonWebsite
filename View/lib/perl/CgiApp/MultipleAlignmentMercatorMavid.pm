@@ -11,8 +11,6 @@ use ApiCommonWebsite::Model::ModelProp;
 use CGI::Carp qw(fatalsToBrowser set_message);
 
 
-my $webapp;
-
 # ========================================================================
 # ----------------------------- BEGIN Block ------------------------------
 # ========================================================================
@@ -218,12 +216,6 @@ sub validateMacros {
   my $props =  ApiCommonWebsite::Model::ModelProp->new($project);
   my $mercatorOutputDir = $props->{MERCATOR_OUTPUT_DIR};
   my $cndsrcBin =  $props->{CNDSRC_BIN};
-
-  $webapp = $props->{WEBAPP_NAME};
-
-  unless($webapp) {
-    error("webapp not defined in the model config");
-  }
 
   my $alignmentsDir = "$mercatorOutputDir/alignments";
   my $sliceAlignment = "$cndsrcBin/sliceAlignment";
