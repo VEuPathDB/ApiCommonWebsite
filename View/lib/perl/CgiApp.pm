@@ -7,6 +7,11 @@ package ApiCommonWebsite::View::CgiApp;
 
 Form a super-class for all cgi-bin webapps.
 
+Note: you will have a cgi-bin command that wraps your CgiApp subclass.  To
+call that cgi-bin command from the command line (for testing), use this
+syntax:
+  mycmd myparam1=some_value myparam2=some_value 
+
 =cut
 
 # ========================================================================
