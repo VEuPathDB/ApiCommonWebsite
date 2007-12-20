@@ -9,7 +9,7 @@ use SOAP::Lite;
 use CGI::Session;
 use XML::XPath;
 use XML::XPath::XMLParser;
-use lib '/var/www/CryptoDB/cryptodb.hwang4.0/cgi-lib/x86_64-linux-thread-multi/';
+use lib $ENV{CGILIB};
 use Bio::Graphics::Browser::PadAlignment;
 
 sub run {
