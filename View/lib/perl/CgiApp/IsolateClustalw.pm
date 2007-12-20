@@ -9,7 +9,7 @@ use SOAP::Lite;
 use CGI::Session;
 use XML::XPath;
 use XML::XPath::XMLParser;
-use lib '/var/www/CryptoDB/cryptodb3.5.hwang/cgi-lib';
+use lib '/var/www/CryptoDB/cryptodb.hwang4.0/cgi-lib/x86_64-linux-thread-multi/';
 use Bio::Graphics::Browser::PadAlignment;
 
 sub run {
@@ -53,8 +53,8 @@ FROM   dots.externalnasequence etn,
 			 SRes.ExternalDatabase edb
 WHERE  edr.external_database_id = edb.external_database_id
 	AND edr.external_database_release_id = etn.external_database_release_id
-	AND edb.name = 'Isolates Data Test4'
-	AND edr.version = '2007-11-02'
+	AND edb.name = 'Isolates Data'
+	AND edr.version = '2007-12-12'
 	AND etn.source_id in ($ids)
 EOSQL
 
