@@ -2,6 +2,7 @@ package ApiCommonWebsite::Model::ModelConfig;
 
 use strict;
 use XML::Simple;
+use ApiCommonWebsite::Model::DbUtils qw(jdbc2oracleDbi dbi2connectString);
 
 sub new {
     my ($class, $model) = @_;
@@ -17,61 +18,25 @@ sub new {
         $self->{$_} = $cfg->{$_}
     }
     
-    $self->{dbiDsn} = _jdbc2dbi($self->{connectionUrl});
+    $self->{dbiDsn} = jdbc2oracleDbi($self->{connectionUrl});
 
-    $self->{connectString} = _dbi2connectString($self->{dbiDsn});
+    ($self->{connectString} = $self->{dbiDsn}) =~ s/dbi:Oracle://;
 
     return $self;
 }
 
-sub getDbiDsn             { $_[0]->{dbiDsn} }
-sub getLogin              { $_[0]->{login} }
-sub getPassword           { $_[0]->{password} }
-sub getConnectionUrl      { $_[0]->{connectionUrl} }
-sub getQueryInstanceTable { $_[0]->{queryInstanceTable} }
-sub getQueryHistoryTable  { $_[0]->{historyTable} }
-sub getPlatformClass      { $_[0]->{platformClass} }
-sub getMaxQueryParams     { $_[0]->{maxQueryParams} }
-sub getMaxIdle            { $_[0]->{maxIdle} }
-sub getMaxWait            { $_[0]->{maxWait} }
-sub getMaxActive          { $_[0]->{maxActive} }
-sub getMinIdle            { $_[0]->{minIdle} }
-sub getInitialSize        { $_[0]->{initialSize} }
-sub getWebServiceUrl      { $_[0]->{webServiceUrl} }
-sub getConnectString      { $_[0]->{connectString} }
-
-sub _jdbc2dbi {
-# convert Oracle thin jdbc driver syntax to dbi syntax
-
-    my ($jdbc) = @_;
-    
-    if ($jdbc =~ m/thin:[^@]*@([^:]+):([^:]+):([^:]+)/) {
-        # jdbc:oracle:thin:@redux.rcc.uga.edu:1521:cryptoB
-        my ($host, $port, $sid) = $jdbc =~ m/thin:[^@]*@([^:]+):([^:]+):([^:]+)/;
-        return "dbi:Oracle:host=$host;sid=$sid;port=$port";
-    } elsif ($jdbc =~ m/@\(DESCRIPTION/i) {    
-        # jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=redux.rcc.uga.edu)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cryptoB.rcc.uga.edu)))
-        my ($tns) = $jdbc =~ m/[^@]+@(.+)/;
-        return "dbi:Oracle:$tns";
-    } elsif ($jdbc =~ m/:oci:@/) {
-       # jdbc:oracle:oci:@toxoprod
-       my ($sid) = $jdbc =~ m/:oci:@(.+)/;
-        return "dbi:Oracle:$sid";
-    } else {
-        # last ditch effort.
-        # jdbc:oracle:thin:@kiwi.rcr.uga.edu/cryptoB.kiwi.rcr.uga.edu
-        $jdbc =~ m/thin:[^@]*@(.+)/;
-        return "dbi:Oracle:$1";
-    }
+sub AUTOLOAD {
+    my $attr = our $AUTOLOAD;
+    $attr =~ s/.*:://;
+    $attr =~ s/get([A-Z])/$1/;
+    $attr = lcfirst($attr);
+    $_[0]->{ $attr } || die "`$attr' not defined.";
 }
 
-sub _dbi2connectString {
-    my ($str) = @_;
-    $str =~ s/dbi:Oracle://;
-    return $str;
-}
 
 1;
+
+
 
 __END__
 
@@ -93,13 +58,11 @@ ApiCommonWebsite::Model::ModelConfig - access to WDK model-config.xml properties
     
 
     You may also access by property name:
-        $cfg->{login}
-    but be aware that if the property name changes in the model-config.xml you
-    will need to update every script that uses this accessor.
+        $cfg->login
     
-    $cfg->{connectionUrl} is the JDBC connection string as written in the 
+    $cfg->connectionUrl is the JDBC connection string as written in the 
     model-config.xml.
-    $cfg->{dbiDsn} is the Perl DBI version translated from the 
+    $cfg->dbiDsn is the Perl DBI version translated from the 
     connectionUrl property.
     
 =head1 DESCRIPTION
