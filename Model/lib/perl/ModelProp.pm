@@ -19,6 +19,12 @@ sub new {
     return $self;
 }
 
+sub AUTOLOAD {
+    my $attr = our $AUTOLOAD;
+    $attr =~ s/.*:://;
+    $attr =~ s/get([A-Z])/$1/;
+    $_[0]->{ $attr } || die "`$attr' not defined.";
+}
 
 sub _parseProp {
     my ($self, $propfile) = @_;
