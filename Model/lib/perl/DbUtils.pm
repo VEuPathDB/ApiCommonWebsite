@@ -1,5 +1,6 @@
 package ApiCommonWebsite::Model::DbUtils;
-use Exporter 'import';
+require Exporter;
+@ISA = qw(Exporter);
 @EXPORT_OK = qw(
     resolveOracleDSN
     resolveOracleAlias
