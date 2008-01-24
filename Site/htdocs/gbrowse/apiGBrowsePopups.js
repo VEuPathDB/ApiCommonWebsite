@@ -7,7 +7,7 @@ function twoColRow(left, right) {
 }
 
 // Gene title
-function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, isPseudo) {
+function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, isPseudo, score) {
   
   // expand minimalist input data
   var cdsLink = "<a href=../../../cgi-bin/geneSrt?project_id=" + projectId
@@ -27,6 +27,9 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   rows.push(twoColRow('Gene Type', type));
   rows.push(twoColRow('Description', product));
   rows.push(twoColRow('Location', loc));
+  if (score) {
+    rows.push(twoColRow('Score', score));
+  }
   rows.push(twoColRow('Download', download)); 
 
 //  tip.T_BGCOLOR = 'lightskyblue';
