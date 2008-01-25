@@ -161,7 +161,10 @@
 <%-- if queryGrid, add <hr class="brown" above, to separate the quick tools from the query grid --%>
 <%-- if queryGrid, add old queries for plasmo and toxo after the query grid  --%>
 
+<c:if test = "${project == 'PlasmoDB'}">
 <tr bgcolor=#98FB98><td colspan="4">The <i>Plasmodium falicparum</i> genome reannotation is in progress. Click <b><a href="showQuestion.do?questionFullName=GeneQuestions.GenesWithModifiedAnnotation">here to query</a></b> for genes with updated annotation.</td></tr>
+</c:if>
+
 <tr><td colspan="4">
 <site:questionList/>
 
