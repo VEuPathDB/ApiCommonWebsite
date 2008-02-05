@@ -403,7 +403,7 @@ function reviseBooleanQuery(type, expression) {
       <td>
          <font class="medium">
             <a name='nodelete'><b>*</b></a> 
-            If you want to delete a query, you must first delete all other boolean queries that uses this one as a component.
+            If you want to delete a query, you must first delete any boolean queries that use this one as a component.
          </font>
       </td>
    </tr>
