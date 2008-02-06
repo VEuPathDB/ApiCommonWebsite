@@ -25,5 +25,25 @@
     name/value pairs are stored in 'var' attribute.
     property file name is specified in 'propfile' attribute.
     </info>
-  </tag>         
+  </tag> 
+  <tag>
+    <name>configurations</name>
+    <tagclass> org.apidb.apicommon.taglib.ConfigParser</tagclass>
+    <bodycontent>scriptless</bodycontent>
+    <attribute>
+        <name>var</name>
+        <required>true</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+        <name>configfile</name>
+        <required>true</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <info>
+    Parse config file and place name/value into page scope.
+    name/value pairs are stored in 'var' attribute.
+    property file name is specified in 'propfile' attribute.
+    </info>
+  </tag>        
 </taglib>
