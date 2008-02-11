@@ -488,7 +488,7 @@ public class Gff3Reporter extends Reporter {
             for (Answer answer : this) {
                 while (answer.hasMoreRecordInstances()) {
                     RecordInstance record = answer.getNextRecordInstance();
-                    String recordId = getValue(record.getAttributeValue("gff_attr_id"));
+                    String recordId = record.getPrimaryKey().getRecordId();
 
                     // read and format record content
                     if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
@@ -510,9 +510,7 @@ public class Gff3Reporter extends Reporter {
 
                                 // check if the record has been cached
                                 if (tableCache != null) {
-                                    psCheck.setString(
-                                            1,
-                                            record.getPrimaryKey().getRecordId());
+                                    psCheck.setString(1,recordId);
                                     if (hasProjectId) {
                                         String projectId = record.getPrimaryKey().getProjectId();
                                         psCheck.setString(2, projectId);
@@ -584,7 +582,15 @@ public class Gff3Reporter extends Reporter {
                                             String projectId = record.getPrimaryKey().getProjectId();
                                             psCache.setString(5, projectId);
                                         }
+					try{
                                         psCache.executeUpdate();
+					}finally{
+					    String projectId = record.getPrimaryKey().getProjectId();
+					    System.out.println(recordId+":"+projectId+":"+proteinName);
+
+					}
+
+
                                     }
 
                                     // output the sequence
