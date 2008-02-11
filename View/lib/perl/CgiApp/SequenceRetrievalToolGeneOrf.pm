@@ -93,9 +93,8 @@ my $portalSql;
 $componentSql->{geneProteinSql} = <<EOSQL;
 SELECT gf.source_id, tas.sequence, gf.product, tn.name
 FROM   dots.translatedaasequence tas, dots.genefeature gf, sres.taxonname tn,
-       dots.translatedaafeature taf, dots.transcript t, apidb.geneid gi
-WHERE gi.id = lower(?)
-AND gf.source_id = gi.gene
+       dots.translatedaafeature taf, dots.transcript t
+WHERE gf.source_id = ?
 AND t.parent_id = gf.na_feature_id
 AND taf.na_feature_id = t.na_feature_id
 AND tas.aa_sequence_id = taf.aa_sequence_id
@@ -121,9 +120,8 @@ EOSQL
 $componentSql->{transcriptSql} = <<EOSQL;
 SELECT gf.source_id, sns.sequence, gf.product, tn.name
 FROM dots.SplicedNaSequence sns,  dots.genefeature gf,
-     sres.taxonname tn, dots.transcript t, apidb.geneid gi
-WHERE gi.id = lower(?)
-AND gf.source_id = gi.gene
+     sres.taxonname tn, dots.transcript t
+WHERE gf.source_id = ?
 AND t.parent_id = gf.na_feature_id
 AND sns.na_sequence_id = t.na_sequence_id
 AND sns.taxon_id = tn.taxon_id
@@ -136,10 +134,9 @@ SELECT gf.source_id, SUBSTR(s.sequence,
               tf.translation_stop - tf.translation_start + 1)
          AS sequence,
        gf.product, tn.name
-FROM dots.genefeature gf, dots.transcript t, apidb.geneid gi,
+FROM dots.genefeature gf, dots.transcript t,
      sres.taxonname tn, dots.splicednasequence s, dots.TranslatedAaFeature tf
-WHERE gi.id = lower(?)
-AND gf.source_id = gi.gene
+WHERE gf.source_id = ?
 AND t.parent_id = gf.na_feature_id
 AND s.na_sequence_id = t.na_sequence_id
 AND t.na_feature_id = tf.na_feature_id 
@@ -149,9 +146,8 @@ EOSQL
 
 $portalSql->{geneProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, tas.sequence, bfmv.product, bfmv.organism
-FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv, apidb.geneid gi
-WHERE gi.id = lower(?)
-AND bfmv.source_id = gi.gene
+FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv
+WHERE bfmv.source_id = ?
 AND tas.source_id = bfmv.source_id
 EOSQL
 
@@ -170,9 +166,8 @@ EOSQL
 $portalSql->{transcriptSql} = <<EOSQL;
 SELECT bfmv.source_id, sns.sequence, bfmv.product, bfmv.organism
 FROM dots.splicednasequence sns, apidb.geneattributes bfmv, 
-     sres.sequenceontology so, apidb.geneid gi
-WHERE gi.id = lower(?)
-AND bfmv.source_id = gi.gene
+     sres.sequenceontology so
+WHERE bfmv.source_id = ?
 AND sns.source_id = bfmv.source_id
 AND so.sequence_ontology_id = sns.sequence_ontology_id
 AND so.term_name = 'processed_transcript'
@@ -180,10 +175,8 @@ EOSQL
 
 $portalSql->{cdsSql} = <<EOSQL;
 SELECT bfmv.source_id, s.sequence, bfmv.product, bfmv.organism
-FROM apidb.geneattributes bfmv, dots.splicednasequence s, sres.sequenceontology so,
-     apidb.geneid gi
-WHERE gi.id = lower(?)
-AND bfmv.source_id = gi.gene
+FROM apidb.geneattributes bfmv, dots.splicednasequence s, sres.sequenceontology so
+WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.source_id
 AND so.sequence_ontology_id = s.sequence_ontology_id
 AND so.term_name = 'CDS'
@@ -198,21 +191,30 @@ sub handleNonGenomic {
   my $type = $self->{type};
   my $site = ($self->getModel() =~ /^api/i)? $portalSql : $componentSql;
 
+  my $inputIds = $self->{inputIds};
+  my $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
 
-  if ($type eq "protein") {
-      $sql = $self->{geneOrOrf} eq 'gene'?
-	$site->{geneProteinSql} : $site->{orfProteinSql};
-  } elsif ($type eq "processed_transcript") {
-      $sql = $site->{transcriptSql};
-  } else { # CDS
-      $sql = $site->{cdsSql};
+  if($type eq "protein" && $self->{geneOrOrf} eq 'gene') {
+    $sql = $site->{geneProteinSql}
   }
-  if ($type eq 'processed_transcript') {
+  # use the input ids directly
+  elsif($type eq "protein" && $self->{geneOrOrf} ne 'gene') {
+    $sql = $site->{orfProteinSql};
+    $ids = $inputIds;
+  } 
+  elsif ($type eq "processed_transcript") {
+    $sql = $site->{transcriptSql};
     $type = 'processed transcript';
+  } 
+  else { # CDS
+    $sql = $site->{cdsSql};
   }
+
+
+  &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
 
   my $sth = $dbh->prepare($sql);
-  for my $inputId (@{$self->{inputIds}}) {
+  for my $inputId (@$ids) {
     $sth->execute($inputId);
     my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array();
     my $descrip = " | $organism | $product | $type ";
@@ -222,6 +224,37 @@ sub handleNonGenomic {
     }
     $self->writeSeq($seqIO, $seq, $descrip, $geneOrfSourceId, 1, length($seq), 0);
   }
+}
+
+sub mapGeneFeatureSourceIds {
+  my ($self, $inputIds, $dbh) = @_;
+
+  my $sql = "select source_id from dots.GENEFEATURE where lower(source_id) = lower(?)";
+  my $sh = $dbh->prepare($sql);
+
+  my @ids;
+
+  foreach my $in (@{$inputIds}) {
+    $sh->execute($in);
+
+    my $best;
+    while(my ($sourceId) = $sh->fetchrow_array()) {
+      $best = $sourceId;
+    }
+
+    unless($best) {
+      my $sh = $dbh->prepare("select gene from apidb.geneid where lower(id) = lower(?)");
+      $sh->execute($in);
+
+      while(my ($sourceId) = $sh->fetchrow_array()) {
+        $best = $sourceId;
+      }
+    }
+
+    push @ids, $best if($best);
+  }
+  return \@ids;
+
 }
 
 sub handleGenomic {
