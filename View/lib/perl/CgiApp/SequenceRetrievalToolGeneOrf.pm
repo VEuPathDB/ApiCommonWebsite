@@ -291,18 +291,18 @@ sub handleGenomic {
   my $endRev = "";
   
 # Comment out if using componentSql
-#if($self->getModel() =~ /api/) {
+if($self->getModel() =~ /api/) {
       $start = "(bfmv.$beginAnch + $beginOffset)";
       $end = "(bfmv.$endAnch + $endOffset)";
       $startRev = "(bfmv.$endAnchRev - $endOffset)";
       $endRev = "(bfmv.$beginAnchRev - $beginOffset)";
-# }
-# else {
-#     $start = "(l.$beginAnch + $beginOffset)";
-#     $end = "(l.$endAnch + $endOffset)";
-#     $startRev = "(l.$endAnchRev - $endOffset)";
-#     $endRev = "(l.$beginAnchRev - $beginOffset)";
-# }
+ }
+ else {
+     $start = "(l.$beginAnch + $beginOffset)";
+     $end = "(l.$endAnch + $endOffset)";
+     $startRev = "(l.$endAnchRev - $endOffset)";
+     $endRev = "(l.$beginAnchRev - $beginOffset)";
+   }
 
 
 $componentSql->{geneGenomicSql} = <<EOSQL;
@@ -311,10 +311,9 @@ select gf.source_id, s.source_id, tn.name, gf.product, l.start_min, l.end_max, l
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
-FROM dots.genefeature gf, dots.nalocation l, apidb.geneid gi,
-     sres.taxonname tn, $seqTable s
-WHERE gi.id = lower(?)
-AND gf.source_id = gi.gene
+FROM dots.genefeature gf, dots.nalocation l,
+     sres.taxonname tn, dots.VirtualSequence s
+WHERE gf.source_id = ?
 AND l.na_feature_id = gf.na_feature_id
 AND s.na_sequence_id = gf.na_sequence_id
 AND tn.taxon_id = s.taxon_id
@@ -370,20 +369,26 @@ EOSQL
   my $sql;
 
 #  CAN COMPONENT SITES USE PORTAL SQL FOR GENOMIC GENES AND ORFS?
-#  my $site = ($self->getModel() =~ /api/)? $portalSql : $componentSql;
-  my $site = $portalSql;
+  my $site = ($self->getModel() =~ /api/)? $portalSql : $componentSql;
+#  my $site = $portalSql;
 
+  my $inputIds = $self->{inputIds};
+  my $ids;
 
   if ($self->{geneOrOrf} eq "gene") {
       $sql = $site->{geneGenomicSql};
+      $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh); 
   } else {
       $sql = $site->{orfGenomicSql};
+      $ids = $inputIds;
   }
+
+  &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
 
   my @invalidIds;
   my $sth = $dbh->prepare($sql);
 
-  foreach my $inputId (@{$self->{inputIds}}) {
+  foreach my $inputId (@$ids) {
     $sth->execute($inputId);
     my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $seq)
       = $sth->fetchrow_array();
