@@ -34,11 +34,8 @@ sub run {
   my ($agpDir, $alignDir, $sliceAlign, $fa2clustal) = &validateMacros($cgi);
 
   my ($genome, $assembly, $assemblyStart, $assemblyStop, $assemblyStrand) = &translateCoordinates($contig, $agpDir, $start, $stop, $strand);
-  my ($mapStart, $mapStop) = &validateMapCoordinates($genome, $alignDir, $assembly, $assemblyStart, $assemblyStop);
 
-  if($mapStart && $mapStop) {
-    &userError("Your Genomic Coordinates fall outside a mapped region!\n\n$contig is mapped between $mapStart and $mapStop");
-  }
+  &validateMapCoordinates($genome, $alignDir, $assembly, $assemblyStart, $assemblyStop, $agpDir);
 
   &createHeader($cgi, $type, $genome, $contig, $start, $stop, $strand);
 
@@ -148,7 +145,7 @@ sub translateCoordinates {
 #--------------------------------------------------------------------------------
 
 sub validateMapCoordinates {
-  my ($genome, $alignDir, $query, $start, $stop) = @_;
+  my ($genome, $alignDir, $query, $start, $stop, $agpDir) = @_;
 
   my $mapfile = "$alignDir/map";
   my $genomesFile = "$alignDir/genomes";
@@ -203,7 +200,10 @@ sub validateMapCoordinates {
   my $mapStop = $mapped{$query}->{stop};
 
   if($start > $mapStop || $stop < $mapStart) {
-    return($mapStart, $mapStop);
+    my $mappedCoord = replaceAssembled($agpDir, $genome, $query, $mapStart, $mapStop, '+');
+    my ($junk, $included) = split(' ', $mappedCoord);
+
+    userError("Whoops!  Those Coordinates fall outside a mapped region!\nThe available region for this contig is:  $included");
   }
 }
 
@@ -331,7 +331,9 @@ sub replaceAssembled {
     &error("Cannot determine shift") unless($shift == $checkShift);
 
     if($assembly eq $input && 
-       (($start >= $assemblyStart && $start <= $assemblyStop) || ($stop >= $assemblyStart && $stop <= $assemblyStop))) {
+       (($start >= $assemblyStart && $start <= $assemblyStop) || 
+        ($stop >= $assemblyStart && $stop <= $assemblyStop) ||
+        ($start < $assemblyStart && $stop > $assemblyStop ))) {
       
       my ($newStart, $newStop, $newStrand);
 
@@ -431,7 +433,7 @@ sub printClustal {
   my ($allSequences, $start, $stop, $strand, $referenceGenome, $count, $genomes) = @_;
 
   my @genomes = @$genomes;
-  my $colWidth = 20;
+  my $colWidth = 22;
 
   my $referenceCursor;
 
