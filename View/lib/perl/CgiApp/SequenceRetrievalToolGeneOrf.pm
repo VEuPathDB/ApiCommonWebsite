@@ -253,6 +253,7 @@ sub mapGeneFeatureSourceIds {
 
     push @ids, $best if($best);
   }
+
   return \@ids;
 
 }
@@ -312,7 +313,7 @@ select gf.source_id, s.source_id, tn.name, gf.product, l.start_min, l.end_max, l
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
 FROM dots.genefeature gf, dots.nalocation l,
-     sres.taxonname tn, dots.VirtualSequence s
+     sres.taxonname tn, $seqTable s
 WHERE gf.source_id = ?
 AND l.na_feature_id = gf.na_feature_id
 AND s.na_sequence_id = gf.na_sequence_id
@@ -372,15 +373,13 @@ EOSQL
   my $site = ($self->getModel() =~ /api/)? $portalSql : $componentSql;
 #  my $site = $portalSql;
 
-  my $inputIds = $self->{inputIds};
-  my $ids;
+  my $ids = $self->{inputIds};
 
   if ($self->{geneOrOrf} eq "gene") {
       $sql = $site->{geneGenomicSql};
-      $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh); 
+      $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /api/);
   } else {
       $sql = $site->{orfGenomicSql};
-      $ids = $inputIds;
   }
 
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
