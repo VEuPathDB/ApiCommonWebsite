@@ -28,8 +28,6 @@ sub run {
 
   print $cgi->header('text/plain');
 
-
-
   $self->processParams($cgi, $dbh);
 
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
@@ -292,7 +290,7 @@ sub handleGenomic {
   my $endRev = "";
   
 # Comment out if using componentSql
-if($self->getModel() =~ /api/) {
+if($self->getModel() =~ /^api/i) {
       $start = "(bfmv.$beginAnch + $beginOffset)";
       $end = "(bfmv.$endAnch + $endOffset)";
       $startRev = "(bfmv.$endAnchRev - $endOffset)";
@@ -370,14 +368,14 @@ EOSQL
   my $sql;
 
 #  CAN COMPONENT SITES USE PORTAL SQL FOR GENOMIC GENES AND ORFS?
-  my $site = ($self->getModel() =~ /api/)? $portalSql : $componentSql;
+  my $site = ($self->getModel() =~ /^api/i) ? $portalSql : $componentSql;
 #  my $site = $portalSql;
 
   my $ids = $self->{inputIds};
 
   if ($self->{geneOrOrf} eq "gene") {
       $sql = $site->{geneGenomicSql};
-      $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /api/);
+      $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /^api/i);
   } else {
       $sql = $site->{orfGenomicSql};
   }
@@ -385,12 +383,12 @@ EOSQL
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
 
   my @invalidIds;
-  my $sth = $dbh->prepare($sql);
+  my $sth = $dbh->prepare($sql) or &error($DBI::errstr);
 
   foreach my $inputId (@$ids) {
     $sth->execute($inputId);
     my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $seq)
-      = $sth->fetchrow_array();
+      = $sth->fetchrow_array() ;
     if (!$geneOrfSourceId) {
       push(@invalidIds, $inputId);
     } else {
