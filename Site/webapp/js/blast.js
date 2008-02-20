@@ -41,6 +41,7 @@ window.onload = function(){
 	else if(target == 'ORF') clickDefault('ORF','type');
 	else if(target == 'EST') clickDefault('EST','type');
 	else if(target == 'SEQ') clickDefault('Genome','type');
+	else if(target == 'ISOLATE') clickDefault('Isolates','type');
 
 	if(parseUrl('-filter') != ""){
            revise = true;
@@ -96,6 +97,8 @@ function changeQuestion(){
 	}
 	var questionName;
 	if (blastDb.indexOf("est") >= 0){
+		questionName = "EstQuestions.EstsBySimilarity";
+	} else 	if (blastDb.indexOf("assem") >= 0){
 		questionName = "EstQuestions.EstsBySimilarity";
 	} else 	if (blastDb.indexOf("orf") >= 0){
 		questionName = "OrfQuestions.OrfsBySimilarity";
@@ -413,5 +416,14 @@ function checkSequenceLength(){
 	}else{
 		document.getElementById('short_sequence_warning').innerHTML = "";
 	}
+}
+
+function selectAll_None(val){
+	var orgSel = document.getElementById('BlastOrganism');
+	var orgs = orgSel.options;
+	for(i=0;i<orgs.length;i++){
+		orgs[i].selected = val;
+	}
+	updateOrganism();
 }
  
