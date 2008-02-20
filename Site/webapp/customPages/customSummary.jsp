@@ -495,7 +495,7 @@ function resetAttr() {
               <c:choose>
 <c:when test = "${primaryKey.projectId == 'ApiDB'}">
                   <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=nucleotide&cmd=search&term=${primaryKey.recordId}" 
-			target="ncbi">ApiDB:${primaryKey.recordId}</a>
+			>ApiDB:${primaryKey.recordId}</a>
                 </c:when>
                 <c:when test = "${primaryKey.projectId == 'CryptoDB'}">
                   <a href="http://www.cryptodb.org/cryptodb/showRecord.do?name=${recNam}&project_id=&primary_key=${primaryKey.recordId}" 
