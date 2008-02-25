@@ -17,7 +17,13 @@
     taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" 
 %><%@ 
     taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" 
-%><c:set 
+%><%@ 
+    taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"
+%><%-- 
+    setLocale req. for date parsing when client browser (e.g. curl) doesn't send locale 
+--%><fmt:setLocale 
+    value="en-US"
+/><c:set 
     var="wdkModel" value="${applicationScope.wdkModel}"
 /><c:set 
     var="xmlAnswer" value="${requestScope.wdkXmlAnswer}"
@@ -30,8 +36,10 @@
 /><c:set
     var="linkTmpl" 
     value="${scheme}://${serverName}${contextPath}/showXmlDataContent.do?name=XmlQuestions.News"
+/><c:set
+    var="dateStringPattern" value="dd MMMM yyyy HH:mm"
 /><?xml version="1.0" encoding="UTF-8"?>
-<rss version="0.91">
+<rss version="2.0">
 <channel>
     <title>${xmlAnswer.question.displayName}</title>
     <link>${linkTmpl}</link>
@@ -39,18 +47,22 @@
     <language>en</language>
     
 <c:forEach items="${xmlAnswer.recordInstances}" var="record">
+  <fmt:parseDate pattern="${dateStringPattern}" var="pdate" value="${record.attributesMap['date']}" parseLocale="en_US"/> 
+  <fmt:formatDate value="${pdate}" pattern="EEE, dd MMM yyyy HH:mm:ss zzz" var="fdate"/>
   <c:set var="headline" value="${ fn:escapeXml( record.attributesMap['headline'] ) }"/>
   <c:set var="tag"      value="${ fn:escapeXml( record.attributesMap['tag']      ) }"/>
   <c:set var="date"     value="${ fn:escapeXml( record.attributesMap['date']     ) }"/>
   <c:set var="item"     value="${ fn:escapeXml( record.attributesMap['item']     ) }"/>
+  <c:set var="tag"      value="${ fn:replace(tag, ' ', '%20') }"/>
     <item>
         <title>${headline}</title>
         <link>${linkTmpl}&amp;tag=${tag}</link>
         <description>  
         ${item}
         &lt;br /&gt;
-        ${date} 
+        <fmt:formatDate value="${pdate}" pattern="d MMMM yyyy"/>
         </description>
+        <pubDate>${fdate}</pubDate>
     </item>
 </c:forEach>
 
