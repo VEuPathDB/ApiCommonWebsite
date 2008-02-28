@@ -42,7 +42,7 @@ Parameter Value: <c:out value='${p.value}'/>
 ************************************************
 <h3>Stacktrace</h3>
 
-<wdk:errors />
+<wdk:errors showStackTrace="true" />
 </body></html>
 </c:set>
 
