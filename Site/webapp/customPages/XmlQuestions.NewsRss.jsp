@@ -63,7 +63,6 @@
         <fmt:formatDate value="${pdate}" pattern="d MMMM yyyy"/>
         </description>
         <pubDate>${fdate}</pubDate>
-        <author>${wdkModel.displayName}</author>
     </item>
 </c:forEach>
 
