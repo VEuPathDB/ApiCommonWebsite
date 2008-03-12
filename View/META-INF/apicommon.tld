@@ -70,7 +70,8 @@
     </attribute>
     <attribute>
         <description>
-        Name of variable to which the HTTP status code is assigned.
+        Name of variable to which the HTTP status code is assigned. A code
+        of -1 is assigned if a valid status code can not be retreived.
         </description>
         <name>var</name>
         <required>false</required>
@@ -80,22 +81,34 @@
         <description>
         How long to wait, in milliseconds, for a server to return data after 
         a connection is made.
-        A timeout of zero, the default, is interpreted as an infinite timeout.
+        A timeout of zero is interpreted as an infinite timeout. The default 
+        readTimeout is 0.
         Throws an exception if timeout is exceeded.
         </description>
         <name>readTimeout</name>
         <required>false</required>
-        <rtexprvalue>false</rtexprvalue>
+        <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
         <description>
         How long to wait, in milliseconds, to open a connection.
-        A timeout of zero, the default, is interpreted as an infinite timeout.
+        A timeout of zero is interpreted as an infinite timeout. The default
+        connectTimeout is 0.
         Throws an exception if timeout is exceeded.
         </description>
         <name>connectTimeout</name>
         <required>false</required>
-        <rtexprvalue>false</rtexprvalue>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+        Sets whether HTTP redirects (requests with response code 3xx) should 
+        be automatically followed. Valid values are 'true' or 'false'. 
+        The default is true.
+        </description>
+        <name>followRedirect</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
     </attribute>
   </tag>
 

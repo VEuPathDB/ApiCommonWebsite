@@ -25,6 +25,7 @@ public class HttpStatus extends SimpleTagSupport {
     protected String var;
     protected int readTimeout = 0;
     protected int connectTimeout = 0;
+    protected boolean followRedirect = true;
     protected int varScope;
 
     public HttpStatus() {
@@ -37,6 +38,10 @@ public class HttpStatus extends SimpleTagSupport {
     
     public void setVar(String var) throws JspException {
         this.var = var;
+    }
+
+    public void setFollowRedirect(boolean followRedirect) throws JspException {
+        this.followRedirect = followRedirect;
     }
     
     public void setReadTimeout(int readTimeout) throws JspException {
@@ -59,6 +64,7 @@ public class HttpStatus extends SimpleTagSupport {
 
             if ( connection instanceof HttpURLConnection) {
                 HttpURLConnection httpConnection = (HttpURLConnection) connection;
+                httpConnection.setInstanceFollowRedirects(followRedirect);
                 int code = httpConnection.getResponseCode();
                 if (var != null) getJspContext().setAttribute(var, code, varScope); 
             } else {
