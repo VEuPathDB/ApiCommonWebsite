@@ -7,6 +7,11 @@
    <uri>http://apidb.org/taglib</uri>
 
   <tag>
+    <description>
+    Parse property file and place name/value into page scope.
+    name/value pairs are stored in 'var' attribute.
+    property file name is specified in 'propfile' attribute.
+    </description>
     <name>properties</name>
     <tagclass> org.apidb.apicommon.taglib.PropertiesParser</tagclass>
     <bodycontent>scriptless</bodycontent>
@@ -20,13 +25,14 @@
         <required>true</required>
         <rtexprvalue>false</rtexprvalue>
     </attribute>
-    <info>
-    Parse property file and place name/value into page scope.
+  </tag> 
+
+  <tag>
+    <description>
+    Parse config file and place name/value into page scope.
     name/value pairs are stored in 'var' attribute.
     property file name is specified in 'propfile' attribute.
-    </info>
-  </tag> 
-  <tag>
+    </description>
     <name>configurations</name>
     <tagclass> org.apidb.apicommon.taglib.ConfigParser</tagclass>
     <bodycontent>scriptless</bodycontent>
@@ -40,10 +46,57 @@
         <required>true</required>
         <rtexprvalue>false</rtexprvalue>
     </attribute>
-    <info>
-    Parse config file and place name/value into page scope.
-    name/value pairs are stored in 'var' attribute.
-    property file name is specified in 'propfile' attribute.
-    </info>
-  </tag>        
+  </tag>
+  
+  <tag>
+    <description>
+    Get HTTP headers for given URL. This is handy for checking if a remote site
+    is responding. Connect and data read timeouts are adjustable. The status 
+    code can be assigned to a variable in the JSP page scope. Exceptions are
+    thrown for timeouts and other errors, so use with a catch is recommended.
+    </description>
+    <name>httpstatus</name>
+    <tagclass> org.apidb.apicommon.taglib.HttpStatus</tagclass>
+    <bodycontent>scriptless</bodycontent>
+    <attribute>
+        <description>
+        HTTP headers will be fetched for this url. Must be an 'http://'
+        scheme (connection/read timeout settings are ignored for https). Other
+        schemes (e.g. ftp://) will cause an exception.
+        </description>
+        <name>url</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+        Name of variable to which the HTTP status code is assigned.
+        </description>
+        <name>var</name>
+        <required>false</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+        How long to wait, in milliseconds, for a server to return data after 
+        a connection is made.
+        A timeout of zero, the default, is interpreted as an infinite timeout.
+        Throws an exception if timeout is exceeded.
+        </description>
+        <name>readTimeout</name>
+        <required>false</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+        How long to wait, in milliseconds, to open a connection.
+        A timeout of zero, the default, is interpreted as an infinite timeout.
+        Throws an exception if timeout is exceeded.
+        </description>
+        <name>connectTimeout</name>
+        <required>false</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
 </taglib>
