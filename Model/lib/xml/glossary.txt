@@ -160,7 +160,7 @@ Ortholog group	Orthologous genes shared by group of organisms; the group of gene
 	
 Orthology-based phylogenetic profile	Tool used to find genes that are present or not present in a desired group of organisms on the tree of life (currently computed for 81 complete genomes). The user has control over the profile and over whether or not genes must be found in any particular group of organisms (for example, in Apicomplexa but not in mammals). Taxa can also be marked as indifferent (for example, it does not matter if the gene is also found in plants). Ortholog and paralog relationships are determined using the OrthoMCL algorithm.
 	
-OrthoMCL	Genome-scale algorithm for grouping orthologous protein sequences. It provides genes shared by two or more species/genomes and also genes representing species-specific gene expansion families. Therefore, it serves as a utility for automated eukaryotic genome annotation and phylogenetic profiling. Available at <a href="http://orthomcl.cbil.upenn.edu">orthomcl.cbil.upenn.edu</a>
+OrthoMCL	Genome-scale algorithm for grouping orthologous protein sequences. It provides genes shared by two or more species/genomes and also genes representing species-specific gene expansion families. Therefore, it serves as a utility for automated eukaryotic genome annotation and phylogenetic profiling. Available at <a href="http://orthomcl.org">orthomcl.org</a>
 	
 Paralog	Related by gene duplication within a genome; originated by duplication and then diverged from the parent copy by mutation and selection or drift.
 	
