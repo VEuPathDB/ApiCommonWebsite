@@ -4,13 +4,6 @@
   <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
-  <target name="WDK-Installation">
-    <ant antfile="../WDK/build.xml" target="WDK-Installation">
-      <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-15"/>
-    </ant>
-  </target>  
-
   <target name="CBIL-Installation">
     <ant antfile="../CBIL/build.xml" target="CBIL-Installation">
       <property name="project" value="CBIL"/>
@@ -18,16 +11,15 @@
     </ant>
   </target>  
 
-  <target name="WDK-WebInstallation">
-    <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
-      <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-15"/>
+  <target name="ApiCommonData/Model-Installation">
+    <ant antfile="../ApiCommonData/build.xml" target="ApiCommonData/Model-Installation">
+      <property name="project" value="ApiCommonData"/>
+      <property name="version" value="api-dec-2007"/>
     </ant>
   </target>  
 
-  <target name="WDK-Checkout" unless="WDK.present"> 
-    <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
+  <target name="WDK-WebInstallation">
+    <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
       <property name="project" value="WDK"/>
       <property name="version" value="WDK_version_1-15"/>
     </ant>
@@ -40,7 +32,15 @@
       <property name="version" value="internal/api-mar-2008"/>
     </ant>
   </target>    
-
+    
+  <target name="ApiCommonData-Checkout" unless="ApiCommonData.present"> 
+    <ant target="defaultProjectCheckout" inheritAll="false">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonData"/>
+      <property name="project" value="ApiCommonData"/>
+      <property name="version" value="api-dec-2007"/>
+      <property name="excludeChildren" value="true"/>
+    </ant>
+  </target>
   
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
@@ -49,8 +49,10 @@
   <target name="ApiCommonWebsite-ChildCheckout">
     <available file="../WDK" type="dir" property="WDK.present" />
     <available file="../CBIL" type="dir" property="CBIL.present" />
+    <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
     <antcall target="WDK-Checkout" />
     <antcall target="CBIL-Checkout" />
+    <antcall target="ApiCommonData-Checkout"/>
   </target>
   
   
@@ -72,12 +74,11 @@
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
-  <target name="ApiCommonWebsite-Installation" depends="WDK-Installation,
-                                                       CBIL-Installation,
-                                                       ApiCommonWebsite/Site-Installation,
-                                                       ApiCommonWebsite/Model-Installation,
-                                                       ApiCommonWebsite/View-Installation"
-  >
+  <target name="ApiCommonWebsite-Installation" depends="CBIL-Installation,
+                                                        ApiCommonData/Model-Installation,
+                                                        ApiCommonWebsite/Site-Installation,
+                                                        ApiCommonWebsite/Model-Installation,
+                                                        ApiCommonWebsite/View-Installation">
 
     <ant target="defaultProjectInstall"/>
     
@@ -131,8 +132,8 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
-                                                          WDK-WebInstallation,
-                                                          ApiCommonWebsite/Site-WebInstallation">
+                                                           WDK-WebInstallation,
+                                                           ApiCommonWebsite/Site-WebInstallation">
  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
