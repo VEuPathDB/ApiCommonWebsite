@@ -47,10 +47,8 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-ChildCheckout">
-    <available file="../WDK" type="dir" property="WDK.present" />
     <available file="../CBIL" type="dir" property="CBIL.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
-    <antcall target="WDK-Checkout" />
     <antcall target="CBIL-Checkout" />
     <antcall target="ApiCommonData-Checkout"/>
   </target>
