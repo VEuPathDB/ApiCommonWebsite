@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -97,15 +99,15 @@ public class Gff3Reporter extends Reporter {
         // include transcript
         if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
             String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
-                    ? true : false;
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
         }
 
         // include protein
         if (config.containsKey(FIELD_HAS_PROTEIN)) {
             String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
-                    ? true : false;
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
         }
     }
 
@@ -149,7 +151,7 @@ public class Gff3Reporter extends Reporter {
 
         // write header
         writeHeader(writer);
-        
+
         // write records
         writeRecords(writer);
 
@@ -317,7 +319,7 @@ public class Gff3Reporter extends Reporter {
         // get aliases
         TableFieldValue alias = record.getTableValue("GeneGffAliases");
         StringBuffer sbAlias = new StringBuffer();
-        Iterator<Map<String, Object> > it = alias.getRows();
+        Iterator<Map<String, Object>> it = alias.getRows();
         while (it.hasNext()) {
             Map<String, Object> row = it.next();
             String alias_value = getValue(row.get("gff_alias")).trim();
@@ -333,14 +335,18 @@ public class Gff3Reporter extends Reporter {
         // get GO terms
         TableFieldValue goTerms = record.getTableValue("GeneGffGoTerms");
         it = goTerms.getRows();
-        StringBuffer sbGoTerms = new StringBuffer();
+        Set<String> termSet = new LinkedHashSet<String>();
         while (it.hasNext()) {
             Map<String, Object> row = it.next();
             String goTerm = getValue(row.get("gff_go_id")).trim();
-            if (sbGoTerms.length() > 0) sbGoTerms.append(",");
-            sbGoTerms.append(goTerm);
+            termSet.add(goTerm);
         }
         goTerms.getClose();
+        StringBuffer sbGoTerms = new StringBuffer();
+        for (String termName : termSet) {
+            if (sbGoTerms.length() > 0) sbGoTerms.append(",");
+            sbGoTerms.append(termName);
+        }
 
         // get dbxref terms
         TableFieldValue dbxrefs = record.getTableValue("GeneGffDbxrefs");
@@ -433,7 +439,7 @@ public class Gff3Reporter extends Reporter {
         // get dbxref terms
         TableFieldValue dbxrefs = record.getTableValue("SequenceGffDbxrefs");
         StringBuffer sbDbxrefs = new StringBuffer();
-        Iterator<Map<String, Object>>  it = dbxrefs.getRows();
+        Iterator<Map<String, Object>> it = dbxrefs.getRows();
         while (it.hasNext()) {
             Map<String, Object> row = it.next();
             String dbxref_value = getValue(row.get("gff_dbxref")).trim();
@@ -510,7 +516,7 @@ public class Gff3Reporter extends Reporter {
 
                                 // check if the record has been cached
                                 if (tableCache != null) {
-                                    psCheck.setString(1,recordId);
+                                    psCheck.setString(1, recordId);
                                     if (hasProjectId) {
                                         String projectId = record.getPrimaryKey().getProjectId();
                                         psCheck.setString(2, projectId);
@@ -582,14 +588,15 @@ public class Gff3Reporter extends Reporter {
                                             String projectId = record.getPrimaryKey().getProjectId();
                                             psCache.setString(5, projectId);
                                         }
-					try{
-                                        psCache.executeUpdate();
-					}finally{
-					    String projectId = record.getPrimaryKey().getProjectId();
-					    System.out.println(recordId+":"+projectId+":"+proteinName);
+                                        try {
+                                            psCache.executeUpdate();
+                                        } finally {
+                                            String projectId = record.getPrimaryKey().getProjectId();
+                                            System.out.println(recordId + ":"
+                                                    + projectId + ":"
+                                                    + proteinName);
 
-					}
-
+                                        }
 
                                     }
 
