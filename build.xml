@@ -18,6 +18,13 @@
     </ant>
   </target>  
 
+  <target name="WDK-Installation">
+    <ant antfile="../WDK/build.xml" target="WDK-Installation">
+      <property name="project" value="WDK"/>
+      <property name="version" value="WDK_version_1-15"/>
+    </ant>
+  </target>  
+
   <target name="WDK-WebInstallation">
     <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
       <property name="project" value="WDK"/>
@@ -41,15 +48,26 @@
       <property name="excludeChildren" value="true"/>
     </ant>
   </target>
-  
+ 
+  <target name="WDK-Checkout" unless="WDK.present"> 
+    <ant target="defaultProjectCheckout" inheritAll="false">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
+      <property name="project" value="WDK"/>
+      <property name="version" value="WDK_version_1-15"/>
+      <property name="useBranch" value=""/>
+    </ant>
+  </target>  
+ 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-ChildCheckout">
     <available file="../CBIL" type="dir" property="CBIL.present" />
+    <available file="../WDK" type="dir" property="WDK.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
     <antcall target="CBIL-Checkout" />
+    <antcall target="WDK-Checkout" />
     <antcall target="ApiCommonData-Checkout"/>
   </target>
   
@@ -73,6 +91,7 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-Installation" depends="CBIL-Installation,
+                                                        WDK-Installation,
                                                         ApiCommonData/Model-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
