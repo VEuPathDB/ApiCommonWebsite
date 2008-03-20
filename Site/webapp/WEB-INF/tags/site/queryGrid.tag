@@ -42,7 +42,7 @@
 <tr><td colspan="3">  
     <div class="smallBlack" align="middle">
 	<b>Query Availability: </b> &nbsp; click on &nbsp; 
-	<img src='<c:url value="/images/apidb_letter.gif" />' border='0' alt='apidb'/> &nbsp; to access a query in <b><a href="http://apidb.org">ApiDB.org</a></b>
+	<img src='<c:url value="/images/apidb_letter.gif" />' border='0' alt='apidb'/> &nbsp; to access a query in <b><a href="http://eupathdb.org">EuPathDB.org</a></b>
 	</div>
 </td></tr>
 </c:if>
