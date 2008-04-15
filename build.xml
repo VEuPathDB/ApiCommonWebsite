@@ -14,21 +14,21 @@
   <target name="ApiCommonData/Model-Installation">
     <ant antfile="../ApiCommonData/build.xml" target="ApiCommonData/Model-Installation">
       <property name="project" value="ApiCommonData"/>
-      <property name="version" value="api-dec-2007"/>
+      <property name="version" value="trunk"/>
     </ant>
   </target>  
 
   <target name="WDK-Installation">
     <ant antfile="../WDK/build.xml" target="WDK-Installation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-17"/>
+      <property name="version" value="WDK_version_1-171_filter"/>
     </ant>
   </target>  
 
   <target name="WDK-WebInstallation">
     <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-17"/>
+      <property name="version" value="WDK_version_1-17-1_filter"/>
     </ant>
   </target>  
 
@@ -44,7 +44,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonData"/>
       <property name="project" value="ApiCommonData"/>
-      <property name="version" value="api-dec-2007"/>
+      <property name="version" value="trunk"/>
       <property name="excludeChildren" value="true"/>
     </ant>
   </target>
@@ -53,7 +53,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-17"/>
+      <property name="version" value="WDK_version_1-17-1_filter"/>
       <property name="useBranch" value=""/>
     </ant>
   </target>  
