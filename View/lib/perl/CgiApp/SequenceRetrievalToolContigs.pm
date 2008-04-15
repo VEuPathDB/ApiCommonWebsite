@@ -16,30 +16,39 @@ sub run {
 
   print $cgi->header('text/plain');
 
-  my ($sourceIds, $start, $end, $revComp) = validateParams($cgi, $dbh);
+  my ($sourceIds, $starts, $ends, $revComps) = validateParams($cgi, $dbh);
 
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 
   my $sql = <<EOSQL;
-SELECT s.source_id, s.sequence, ' | ' || s.description as description
-FROM dots.nasequence s 
+SELECT s.source_id, nas.sequence, ' | ' || bfmv.sequence_description as description
+FROM dots.nasequence nas, apidb.sequenceattributes bfmv,
+    (SELECT na_sequence_id, source_id
+      FROM dots.ExternalNaSequence 
+      UNION
+      SELECT na_sequence_id, source_id
+      FROM dots.VirtualSequence) s
 WHERE  upper(s.source_id) LIKE ?
+ AND s.na_sequence_id = nas.na_sequence_id
+ AND bfmv.source_id = s.source_id
 EOSQL
 
   my $sth = $dbh->prepare($sql);
 
-  for my $sourceId (@$sourceIds) {
-    $sth->execute(uc($sourceId));
+  my $count = @$sourceIds;
+
+  for (my $i=0; $i < $count; ++$i) {
+    $sth->execute(uc($$sourceIds[$i]));
     if (my ($id, $seq, $desc) = $sth->fetchrow_array()) {
 
-      $desc .= " | $start to $end";
-      $desc .= " (reverse-complement)" if ($revComp);
+      $desc .= " | $$starts[$i] to $$ends[$i]";
+      $desc .= " (reverse-complement)" if ($$revComps[$i]);
       my $bioSeq = Bio::Seq->new(-display_id => $id, -seq => $seq,
 				 -description => $desc, -alphabet => "dna");
-      my $maxEnd = $end > $bioSeq->length()? $bioSeq->length() : $end;
+      my $maxEnd = $$ends[$i] > $bioSeq->length()? $bioSeq->length() : $$ends[$i];
 
-      $bioSeq = $bioSeq->trunc($start, $maxEnd);
-      $bioSeq = $bioSeq->revcom() if ($revComp);
+      $bioSeq = $bioSeq->trunc($$starts[$i], $maxEnd);
+      $bioSeq = $bioSeq->revcom() if ($$revComps[$i]);
       $seqIO->write_seq($bioSeq);
     }
   }
@@ -56,8 +65,6 @@ sub validateParams {
   my $end         = $cgi->param('end');
   my $revComp     = $cgi->param('revComp');
 
-  my $sourceIds = &validateIds($ids, $dbh);
-
   $start =~ s/[,.+\s]//g;
   $end =~ s/[,.+\s]//g;
 
@@ -66,25 +73,58 @@ sub validateParams {
   &error("Start '$start' must be a number") unless $start =~ /^\d+$/;
   &error("End '$end' must be a number") unless $end =~ /^\d+$/;
   if ($start < 1 || $end < 1 || $end <= $start) {
-    &error("Start and End must be positive, and Start must be less than End");
+      &error("Start and End must be positive, and Start must be less than End (in global parameters)");
   }
-  return ($sourceIds, $start, $end, $revComp);
+  
+  my ($sourceIds, $starts, $ends, $revComps) = &validateIds($ids, $start, $end, $revComp, $dbh);
+  
+  return ($sourceIds, $starts, $ends, $revComps);
 }
 
 sub validateIds {
-  my ($inputIdsString, $dbh) = @_;
-
-  my @inputIds = split(" ", $inputIdsString);
+  my ($inputIdsString, $start, $end, $revComp, $dbh) = @_;
+  
+  my @inputInfo = split('\n', $inputIdsString);
+  my @inputIds;
+  my @starts;
+  my @ends;
+  my @revComps;
 
   my $sql = <<EOSQL;
 SELECT s.source_id 
-FROM dots.NaSequence s
+FROM (SELECT source_id
+      FROM dots.ExternalNaSequence
+      UNION
+      SELECT source_id
+      FROM dots.VirtualSequence) s
 WHERE  upper(s.source_id) = ?
 EOSQL
 
   my @badIds;
   my $sth = $dbh->prepare($sql);
-  foreach my $inputId (@inputIds) {
+  foreach my $input (@inputInfo) {
+    my $inputId;
+    if ($input =~ /^(\w+)/) {
+	$inputId = $1;
+	push(@inputIds, $inputId);
+    }
+    if ($input =~ /reverse/) {
+	push(@revComps, 1);
+    }
+    else {
+        push(@revComps, $revComp);
+    }
+    if ($input =~ /\((\d+)\.\.(\d+)\)/) {
+	if ($1 < 1 || $2 < 1 || $2 <= $1) {
+	    &error("Start and End must be positive, and Start must be less than End for sequence:  $inputId");
+	}
+        push(@starts, $1);
+        push(@ends, $2);
+    }
+    else {
+        push(@starts, $start);
+	push(@ends, $end);
+    }
     $sth->execute(uc($inputId));
     next if (my ($id) = $sth->fetchrow_array());
     push(@badIds, $inputId);
@@ -93,7 +133,7 @@ EOSQL
     my $msg = 
     &error("Invalid IDs:\n" . join("  \n", @badIds));
   }
-  return \@inputIds;
+  return (\@inputIds, \@starts, \@ends, \@revComps);
 }
 
 sub error {

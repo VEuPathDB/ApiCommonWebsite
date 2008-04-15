@@ -8,8 +8,10 @@ use ApiCommonWebsite::View::CgiApp;
 use Bio::SeqIO;
 use Bio::Seq;
 
+my $CODESTART = 'cStart';
 my $START = 'Start';
 my $END = 'End';
+my $CODEEND = 'cEnd';
 
 ##
 ## PROBLEM NOTE: this SRT makes the icky assumption that there is a 1-1 relationship between genes and 
@@ -52,6 +54,8 @@ sub processParams {
   $self->{downstreamOffset} = $cgi->param('downstreamOffset');
   $self->{upstreamAnchor}   = $cgi->param('upstreamAnchor');
   $self->{downstreamAnchor} = $cgi->param('downstreamAnchor');
+  $self->{upstreamSign}     = $cgi->param('upstreamSign');
+  $self->{downstreamSign}   = $cgi->param('downstreamSign');
   my @inputIds              = split(" ", $cgi->param('ids'));
   $self->{inputIds}         = \@inputIds;
 
@@ -60,19 +64,24 @@ sub processParams {
   $self->{upstreamOffset}   =~ s/[,.\s+]//g;
   $self->{downstreamOffset} =~ s/[,.\s+]//g;
   
+  $self->{upstreamOffset} = ($self->{upstreamSign} eq 'minus') ? -$self->{upstreamOffset} : $self->{upstreamOffset};
+  $self->{downstreamOffset} = ($self->{downstreamSign} eq 'minus') ? -$self->{downstreamOffset} : $self->{downstreamOffset};
+  
   # check type
   my @validTypes = ('protein', 'CDS', 'genomic', 'processed_transcript');
   &error("'$self->{type}' is an invalid type") 
     unless grep {$self->{type} eq $_} @validTypes;
 
   # check anchors
-  my @validAnchors = ($START, $END);
+  my @validAnchors = ($START, $CODESTART, $CODEEND, $END);
+  #my @validAnchors = ($START, $END);
   &error("'$self->{upstreamAnchor}' is an invalid anchor")
     unless grep {$self->{upstreamAnchor} eq $_} @validAnchors;
   &error("'$self->{downstreamAnchor}' is an invalid anchor")
     unless grep {$self->{downstreamAnchor} eq $_} @validAnchors;
   &error("Illegal anchor combination: stop before start")
-    if ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $START);
+      if ((($self->{upstreamAnchor} eq $END || $self->{upstreamAnchor} eq $CODEEND) && ($self->{downstreamAnchor} eq $START || $self->{downstreamAnchor} eq $CODESTART)) || ($self->{upstreamAnchor} eq $CODESTART && $self->{downstreamAnchor} eq $START) || ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $CODEEND));
+      #if ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $START);
 
   # check offsets
   $self->{upstreamOffset} = 0
@@ -86,7 +95,7 @@ sub processParams {
 }
 
 my $componentSql;
-my $portalSql;
+my $sqlQueries;
 
 $componentSql->{geneProteinSql} = <<EOSQL;
 SELECT gf.source_id, tas.sequence, gf.product, tn.name
@@ -142,14 +151,14 @@ AND s.taxon_id = tn.taxon_id
 AND tn.name_class = 'scientific name'
 EOSQL
 
-$portalSql->{geneProteinSql} = <<EOSQL;
+$sqlQueries->{geneProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, tas.sequence, bfmv.product, bfmv.organism
 FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv
 WHERE bfmv.source_id = ?
 AND tas.source_id = bfmv.source_id
 EOSQL
 
-$portalSql->{orfProteinSql} = <<EOSQL;
+$sqlQueries->{orfProteinSql} = <<EOSQL;
 SELECT  bfmv.source_id, tas.sequence,
        CASE bfmv.is_reversed 
 	   WHEN 0 THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
@@ -161,7 +170,7 @@ WHERE tas.source_id = ?
 AND bfmv.source_id = tas.source_id
 EOSQL
 
-$portalSql->{transcriptSql} = <<EOSQL;
+$sqlQueries->{transcriptSql} = <<EOSQL;
 SELECT bfmv.source_id, sns.sequence, bfmv.product, bfmv.organism
 FROM dots.splicednasequence sns, apidb.geneattributes bfmv, 
      sres.sequenceontology so
@@ -171,7 +180,7 @@ AND so.sequence_ontology_id = sns.sequence_ontology_id
 AND so.term_name = 'processed_transcript'
 EOSQL
 
-$portalSql->{cdsSql} = <<EOSQL;
+$sqlQueries->{cdsSql} = <<EOSQL;
 SELECT bfmv.source_id, s.sequence, bfmv.product, bfmv.organism
 FROM apidb.geneattributes bfmv, dots.splicednasequence s, sres.sequenceontology so
 WHERE bfmv.source_id = ?
@@ -180,14 +189,12 @@ AND so.sequence_ontology_id = s.sequence_ontology_id
 AND so.term_name = 'CDS'
 EOSQL
 
-
-
 sub handleNonGenomic {
   my ($self, $dbh, $seqIO) = @_;
 
   my $sql;
   my $type = $self->{type};
-  my $site = ($self->getModel() =~ /^api/i)? $portalSql : $componentSql;
+  my $site = ($self->getModel() =~ /^api/i)? $sqlQueries : $componentSql;
 
   my $inputIds = $self->{inputIds};
   my $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
@@ -267,19 +274,10 @@ sub handleGenomic {
   my $beginAnchRev = 0;
   my $endAnchRev = 0;
 
-# Comment out if using componentSql
-#if($self->getModel() =~ /api/) {
-     $beginAnch = $self->{upstreamAnchor} eq $START? 'start_min' : 'end_max';
-     $endAnch = $self->{downstreamAnchor} eq $START? 'start_min' : 'end_max';
-     $beginAnchRev = $self->{upstreamAnchor} eq $START? 'end_max' : 'start_min';
-     $endAnchRev = $self->{downstreamAnchor} eq $START? 'end_max' : 'start_min';
-#}
-#  else {
-#      $beginAnch = $self->{upstreamAnchor} eq $START? 'start_min' : 'end_min';
-#      $endAnch = $self->{downstreamAnchor} eq $START? 'start_min' : 'end_min';
-#      $beginAnchRev = $self->{upstreamAnchor} eq $START? 'end_min' : 'start_min';
-#      $endAnchRev = $self->{downstreamAnchor} eq $START? 'end_min' : 'start_min';
-#  }
+  $beginAnch = $self->{upstreamAnchor} eq $START ? 'start_min' : $self->{upstreamAnchor} eq $END ? 'end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
+  $endAnch = $self->{downstreamAnchor} eq $START ? 'start_min' : $self->{downstreamAnchor} eq $END ? 'end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
+  $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'end_max' : $self->{upstreamAnchor} eq $END ? 'start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
+  $endAnchRev = $self->{downstreamAnchor} eq $START ? 'end_max' : $self->{downstreamAnchor} eq $END ? 'start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
 
   my $beginOffset = $self->{upstreamOffset};
   my $endOffset = $self->{downstreamOffset};
@@ -289,54 +287,14 @@ sub handleGenomic {
   my $startRev = "";
   my $endRev = "";
   
-# Comment out if using componentSql
-if($self->getModel() =~ /^api/i) {
-      $start = "(bfmv.$beginAnch + $beginOffset)";
-      $end = "(bfmv.$endAnch + $endOffset)";
-      $startRev = "(bfmv.$endAnchRev - $endOffset)";
-      $endRev = "(bfmv.$beginAnchRev - $beginOffset)";
- }
- else {
-     $start = "(l.$beginAnch + $beginOffset)";
-     $end = "(l.$endAnch + $endOffset)";
-     $startRev = "(l.$endAnchRev - $endOffset)";
-     $endRev = "(l.$beginAnchRev - $beginOffset)";
-   }
+  $start = "(bfmv.$beginAnch + $beginOffset)";
+  $end = "(bfmv.$endAnch + $endOffset)";
+  $startRev = "(bfmv.$endAnchRev - $endOffset)";
+  $endRev = "(bfmv.$beginAnchRev - $beginOffset)";
 
-
-$componentSql->{geneGenomicSql} = <<EOSQL;
-select gf.source_id, s.source_id, tn.name, gf.product, l.start_min, l.end_max, l.is_reversed, 
-     CASE WHEN l.is_reversed = 1
-     THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
-     ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
-     END as sequence
-FROM dots.genefeature gf, dots.nalocation l,
-     sres.taxonname tn, $seqTable s
-WHERE gf.source_id = ?
-AND l.na_feature_id = gf.na_feature_id
-AND s.na_sequence_id = gf.na_sequence_id
-AND tn.taxon_id = s.taxon_id
-AND tn.name_class = 'scientific name'
-EOSQL
-
-$componentSql->{orfGenomicSql} = <<EOSQL;
-select misc.source_id, s.source_id, tn.name, '', l.start_min, l.end_max, l.is_reversed, 
-     CASE WHEN l.is_reversed = 1
-     THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
-     ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
-     END as sequence
-FROM dots.miscellaneous misc, dots.nalocation l,
-     sres.taxonname tn, $seqTable s
-WHERE misc.source_id = ?
-AND l.na_feature_id = misc.na_feature_id
-AND s.na_sequence_id = misc.na_sequence_id
-AND tn.taxon_id = s.taxon_id
-AND tn.name_class = 'scientific name'
-EOSQL
-
-
-$portalSql->{geneGenomicSql} = <<EOSQL;
-select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product, bfmv.start_min, bfmv.end_max, 
+$sqlQueries->{geneGenomicSql} = <<EOSQL;
+select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
+     bfmv.start_min, bfmv.end_max,
      DECODE(bfmv.strand,'reverse',1,'forward',0) as is_reversed,
      CASE WHEN bfmv.strand = 'reverse'
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
@@ -349,7 +307,7 @@ AND bfmv.source_id = gi.gene
 AND s.source_id = bfmv.sequence_id
 EOSQL
 
-$portalSql->{orfGenomicSql} = <<EOSQL;
+$sqlQueries->{orfGenomicSql} = <<EOSQL;
 select bfmv.source_id, s.source_id, bfmv.organism, 
      CASE WHEN bfmv.is_reversed = 0
      THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
@@ -367,17 +325,13 @@ EOSQL
 
   my $sql;
 
-#  CAN COMPONENT SITES USE PORTAL SQL FOR GENOMIC GENES AND ORFS?
-  my $site = ($self->getModel() =~ /^api/i) ? $portalSql : $componentSql;
-#  my $site = $portalSql;
-
   my $ids = $self->{inputIds};
 
   if ($self->{geneOrOrf} eq "gene") {
-      $sql = $site->{geneGenomicSql};
+      $sql = $sqlQueries->{geneGenomicSql};
       $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /^api/i);
   } else {
-      $sql = $site->{orfGenomicSql};
+      $sql = $sqlQueries->{orfGenomicSql};
   }
 
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
