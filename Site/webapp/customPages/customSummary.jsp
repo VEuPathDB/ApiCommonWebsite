@@ -316,12 +316,14 @@ function parse_Url( url, parameter_name )
                    <a href="showQuestion.do?questionFullName=${qName}${qurlParams}&questionSubmit=Get+Answer&goto_summary=0">
 	           Revise query</a>
 	       </c:if>
+	<!--	&nbsp;|&nbsp;
+		<a href="javascript:void(0)" id="filter_link">Filter results</a>-->
        </td>
     </tr>
 </table>
 
 
-<hr>
+<hr><site:FilterInterface/>
 
 <!-- handle empty result set situation -->
 <c:choose>
