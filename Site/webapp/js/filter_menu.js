@@ -16,7 +16,10 @@ $(document).ready(function(){
 			//	alert("AJAX CALL BEING MADE!!!");
 			//},
 			success: function(data){
-				$("#query_form").html($("form",data).attr("action","/cryptodb.caryp_filter/processFilter.do"));
+				var quesForm = $("form",data);
+				quesForm.prepend("<input type='radio' name='myProp(bool_expr)'/>&nbsp;AND&nbsp;<input type='radio' name='myProp(bool_expr)'>&nbsp;OR&nbsp;<input type='radio' name='myProp(bool_expr)'>&nbsp;NOT&nbsp<br>");
+				quesForm.attr("action","/cryptodb.caryp_filter/processFilter.do");
+				$("#query_form").html(quesForm);
 			},
 			error: function(data, msg, e){
 				alert("ERROR \n "+ msg + "\n" + e);
