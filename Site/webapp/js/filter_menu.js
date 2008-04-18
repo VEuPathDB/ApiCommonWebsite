@@ -17,8 +17,9 @@ $(document).ready(function(){
 			//},
 			success: function(data){
 				var quesForm = $("form",data);
-				quesForm.prepend("<input type='radio' name='myProp(bool_expr)'/>&nbsp;AND&nbsp;<input type='radio' name='myProp(bool_expr)'>&nbsp;OR&nbsp;<input type='radio' name='myProp(bool_expr)'>&nbsp;NOT&nbsp<br>");
-				quesForm.attr("action","/cryptodb.caryp_filter/processFilter.do");
+				quesForm.prepend("<input type='radio' name='myProp(booleanExpression)'/>&nbsp;AND&nbsp;<input type='radio' name='myProp(booleanExpression)'>&nbsp;OR&nbsp;<input type='radio' name='myProp(booleanExpression)'>&nbsp;NOT&nbsp<br>");
+				var action = quesForm.attr("action").replace(/processQuestion/,"processFilter");
+				quesForm.attr("action",action);
 				$("#query_form").html(quesForm);
 			},
 			error: function(data, msg, e){
