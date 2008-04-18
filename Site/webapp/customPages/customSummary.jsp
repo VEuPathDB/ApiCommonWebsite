@@ -215,7 +215,7 @@ function parse_Url( url, parameter_name )
              <div id="nameInput" style="display:none">
                 <table border='0' cellspacing='2' cellpadding='0'>
                    <tr>
-                      <td><input name='wdk_history_id' type='hidden' value="${history.historyId}"/></td>
+                      <td><input id='history_id' name='wdk_history_id' type='hidden' value="${history.historyId}"/></td>
                       <td><input id='customHistoryName' name='customHistoryName' type='text' size='50' 
                                 maxLength='2000' value="${history.customName}"/></td>
                       <td><input type='submit' value='Update'></td>
