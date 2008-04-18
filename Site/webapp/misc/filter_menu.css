@@ -63,5 +63,6 @@
 }
 
 .radio {
-	align: center;
+	position: relative;
+	left: 181px;
 }
