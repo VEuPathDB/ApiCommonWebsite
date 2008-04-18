@@ -167,6 +167,14 @@
     <available file="${webappTargetDir}/WEB-INF/classes/log4j.properties" property="log4j.present"/>
     <echo>log4j present: ${log4j.present}</echo>
     <antcall target="setLog4j"/>
+
+    <!-- replacement for dataPlotter file used to do expression graph -->
+    <replace file="${cgibinTargetDir}/dataPlotter.pl" 
+      token="@rProgram@" 
+      value="${rProgram}"/>
+    <replace file="${cgibinTargetDir}/dataPlotter.pl" 
+      token="@cgilibTargetDir@" 
+      value="${cgilibTargetDir}"/>
     
     <!-- get the orginal gbrowse_img code and patch it -->
     <copy file="${projectsDir}/ApiCommonWebsite/Site/cgi-bin/gbrowse_img_1_64" 
