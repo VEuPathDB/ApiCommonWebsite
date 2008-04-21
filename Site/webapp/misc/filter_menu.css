@@ -1,8 +1,12 @@
 #filter_div {
-	border: solid thin black;
 	width: 100%;
 	min-height: 16em;
 	max-height: 101em;
+}
+
+#instructions {
+	position: relative;
+	left: 70px;
 }
 
 #filter_div td {
@@ -10,7 +14,6 @@
 }
 
 #query_selection {
-	border: thin solid black;
 	height: 15.27em;
 	left: 0.25em;
 	position:relative;
@@ -25,7 +28,6 @@
 	left:1em;
 	top:0.2em;
 	width:60.75em;
-	border: solid thin black;
 }
 
 #query_selection ul {
@@ -65,4 +67,10 @@
 .radio {
 	position: relative;
 	left: 181px;
+}
+ #question_title {
+	position:relative;
+	left: 65px;
+	top:4px;
+	font-size: 26px;
 }
