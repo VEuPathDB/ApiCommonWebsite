@@ -6,6 +6,7 @@
 	<p><a href="#" id="filter_link">Create Filter</a></p>
 </div><!-- End Crumb Div -->
 <div id="filter_div">
+<span id="instructions">Choose a query to use as a filter form the list below.  The individual queries will expand when you mouse over the categories.</span>
 <table>
 <tr>
 <td>
@@ -22,7 +23,7 @@
 	<li><a href="#">Gene Attributes</a>
 		<ul>
 			<li><a href="showQuestion.do?questionFullName=GeneQuestions.GenesByGeneType">Type (e.g. rRNA, tRNA)</a></li>
-			<li><a href="showQuestion.do?questionFullName=GeneQuestions.GenesbyExonCount">Exon/Intron Structure</a></li>
+			<li><a href="showQuestion.do?questionFullName=GeneQuestions.GenesByExonCount">Exon/Intron Structure</a></li>
 		</ul>
 	</li>
 	<li><a href="#">Other Attributes</a>
@@ -96,7 +97,6 @@
 </td>
 <td>
 <div id="query_form">
-	This is where the Query Form will be displayed
 </div><!-- End of Query Form Div -->
 </td>
 </tr>
