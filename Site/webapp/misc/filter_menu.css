@@ -1,7 +1,7 @@
 #filter_div {
 	width: 100%;
 	min-height: 16em;
-	max-height: 101em;
+	max-height: 101px;
 }
 
 #instructions {
@@ -23,11 +23,14 @@
 
 #query_form {
 	position: relative;
-	min-height:15.25em;
 	max-height:100em;
 	left:1em;
 	top:0.2em;
-	width:60.75em;
+	min-width: 873px;
+	max-width: 100%;
+	background-color: lightGrey;
+	border: solid thin black;
+	padding-bottom: 8px;
 }
 
 #query_selection ul {
@@ -64,9 +67,10 @@
 	color:red;
 }
 
-.radio {
+#close_filter_query {
 	position: relative;
-	left: 181px;
+	left: 5px;
+	top:3px;
 }
  #question_title {
 	position:relative;
@@ -74,3 +78,5 @@
 	top:4px;
 	font-size: 26px;
 }
+
+
