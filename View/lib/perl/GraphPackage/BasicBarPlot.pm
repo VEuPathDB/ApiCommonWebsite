@@ -222,6 +222,17 @@ if ($isVis_b{hist} == 1) {
   d.min = min(1.1 * (the.avg - the.std), 0);
   d.max = max(1.1 * (the.avg + the.std), 0);
 
+  d.min.default = -1;
+  d.max.default = 1;
+
+  if(d.min > d.min.default) {
+    d.min = d.min.default;
+  }
+
+  if(d.max < d.max.default) {
+    d.max = d.max.default;
+  }
+
   c <- barplot(the.avg,
                names.arg = the.tags,
                col       = the.colors,
