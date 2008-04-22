@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -T
 
 # Simple cgi script for testing cgi or mod-perl Apache::Registry configurations
 # and ApiCommonWebsite::Model::ModelConfig. 
@@ -6,7 +6,7 @@
 # Requires WDK model-config file for DBI connection strings.
 
 use strict;
-use lib $ENV{GUS_HOME};
+use lib map { /(.*)/ } split /:/ => $ENV{PERL5LIB}; # untaint PERL5LIB
 use DBI;
 use CGI qw/:standard/;
 use CGI::Carp qw(fatalsToBrowser set_message);

@@ -4,6 +4,7 @@
 
 package ApiCommonWebsite::View::CgiApp::SimpleDbQuery;
 @ISA = qw( ApiCommonWebsite::View::CgiApp );
+delete @ENV{qw(PATH)};
 
 use strict;
 use ApiCommonWebsite::View::CgiApp;
@@ -26,7 +27,9 @@ sub run {
   
   $sth->finish();
   
-  chomp(my $this = `basename $0`);
+  $0 =~ m/(.+)/;
+  my $scriptname = $1;
+  chomp(my $this = `/bin/basename $scriptname`);
   print "<p>$this running under @{[ 
       ($ENV{MOD_PERL}) ? 
           'mod_perl' :
