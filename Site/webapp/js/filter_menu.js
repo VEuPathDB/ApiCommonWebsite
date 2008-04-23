@@ -2,7 +2,6 @@
 $(document).ready(function(){
 	$("#filter_div").hide();
 	$("#query_form").hide();
-	
 	$(".top_nav ul li a").click(function(){
 		
 		var url = $(this).attr("href");
@@ -33,7 +32,8 @@ $(document).ready(function(){
 				quesForm.attr("action",action);
 				$("#query_form").html(close_link);
 				$("#query_form").append(quesForm);
-				$("#query_form").show();
+				$("#query_selection").fadeOut("normal");
+				$("#query_form").fadeIn("normal");
 			},
 			error: function(data, msg, e){
 				alert("ERROR \n "+ msg + "\n" + e);
@@ -56,5 +56,7 @@ $(document).ready(function(){
 });
 
 function close(){
-	$("#query_form").hide();
+	$("#query_form").fadeOut("normal");
+	$("#query_selection").fadeIn("normal");
+	$("#instructions").text("Choose a query to use as a filter from the list below.  The individual queries will expad when you mouse over the categories");
 }

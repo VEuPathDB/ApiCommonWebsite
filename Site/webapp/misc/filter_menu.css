@@ -1,7 +1,6 @@
 #filter_div {
 	width: 100%;
-	min-height: 16em;
-	max-height: 101px;
+	min-height: 50px;
 }
 
 #instructions {
@@ -14,7 +13,6 @@
 }
 
 #query_selection {
-	height: 15.27em;
 	left: 0.25em;
 	position:relative;
 	top: 0.25em;
@@ -22,15 +20,15 @@
 }
 
 #query_form {
-	position: relative;
-	max-height:100em;
-	left:1em;
-	top:0.2em;
+	position: absolute;
+	left:135px;
+	top:279px;
 	min-width: 873px;
-	max-width: 100%;
+	max-width: 84%;
 	background-color: lightGrey;
 	border: solid thin black;
 	padding-bottom: 8px;
+	z-index: 99;
 }
 
 #query_selection ul {
@@ -51,9 +49,15 @@
 	width:10em;
 	text-align:right;
 	z-index:99;
+	padding-right: 13px;
 }
 
+#query_selection .top_nav li:hover {
+	background-color: lightGrey;
+} 
+
 #query_selection .top_nav li ul li {
+	background-color: lightGrey;
 	text-align:left;
 	width:12em;
 }
