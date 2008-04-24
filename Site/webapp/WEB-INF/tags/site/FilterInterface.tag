@@ -47,12 +47,8 @@
 
 
 
-<script type="text/javascript" src="js/lib/jquery-1.2.3.js"></script>
-<script type="text/javascript" src="js/filter_menu.js"></script>
-<link rel="StyleSheet" href="misc/filter_menu.css" type="text/css"/>
-<div id="crumb_div">
-	<p><a href="#" id="filter_link">Create Filter</a></p>
-</div><!-- End Crumb Div -->
+<script type="text/javascript" src="js/lib/jqDnR.js"></script>
+<a href="#" id="filter_link">Create Filter</a>
 <div id="filter_div">
 <span id="instructions">Choose a query to use as a filter from the list below.  The individual queries will expand when you mouse over the categories.</span>
 
@@ -71,7 +67,7 @@
 
 </ul>
 </div><!-- End of Query Selection Div -->
-<div id="query_form">
+<div id="query_form" class="jqDnR">
 </div><!-- End of Query Form Div -->
 </div><!-- End of Filter div -->
-<hr id="bottom_filter_line">
+

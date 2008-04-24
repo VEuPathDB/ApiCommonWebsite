@@ -28,7 +28,7 @@
 	background-color: lightGrey;
 	border: solid thin black;
 	padding-bottom: 8px;
-	z-index: 99;
+	z-index: 90;
 }
 
 #query_selection ul {
@@ -67,20 +67,39 @@
 	top:0;
 }
 
-.red {
-	color:red;
-}
-
 #close_filter_query {
 	position: relative;
-	left: 5px;
+	left: 20px;
 	top:3px;
 }
- #question_title {
+#question_title {
 	position:relative;
 	left: 65px;
 	top:4px;
 	font-size: 26px;
 }
 
+#bread_crumb_div {
+	
+}
 
+#crumb_details {
+	background-color: lightYellow;
+	border: solid black;
+	position: absolute;
+	z-index: 99;
+}
+
+.dragHandle {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: Grey;
+	height: 20px;
+	width: 20px;
+	cursor: move;
+}
+
+#bread_crumb_div td {
+	vertical-align: top;
+}

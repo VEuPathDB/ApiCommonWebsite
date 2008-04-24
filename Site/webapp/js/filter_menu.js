@@ -1,5 +1,7 @@
 
 $(document).ready(function(){
+
+	$("div#crumb_details").hide();
 	$("#filter_div").hide();
 	$("#query_form").hide();
 	$(".top_nav ul li a").click(function(){
@@ -12,9 +14,6 @@ $(document).ready(function(){
 		$.ajax({
 			url: url,
 			dataType:"html",
-			//beforeSend: function(req){
-			//	alert("AJAX CALL BEING MADE!!!");
-			//},
 			success: function(data){
 				var historyId = $("#history_id").val();
 				var close_link = "<a id='close_filter_query' href='javascript:close()'>close[x]</a>";
@@ -31,8 +30,14 @@ $(document).ready(function(){
 				
 				quesForm.attr("action",action);
 				$("#query_form").html(close_link);
+				$("#query_form").append("<img class='dragHandle' src='images/HAND.png'/>");
 				$("#query_form").append(quesForm);
 				$("#query_selection").fadeOut("normal");
+				$("#query_form").css({
+					top: "163px",
+					left: "140px"
+				});
+				$("#query_form").jqDrag(".dragHandle");
 				$("#query_form").fadeIn("normal");
 			},
 			error: function(data, msg, e){
@@ -49,11 +54,25 @@ $(document).ready(function(){
 			$(this).text("Cancel [X]");
 	}else{
 			$("#filter_div").fadeOut("normal");
+			$("#query_selection").show();
+			$("#query_form").hide();
 			$(this).text("Create Filter");
 	}
 	});
+
+	$(".crumb").bind("mouseenter",function(){
+		$("#crumb_details",this).fadeIn("fast");
+	}).bind("mouseleave",function(){
+		$("#crumb_details",this).fadeOut("fast");
+	});
+
+//	$("#crumb_details").mouseover(function(){
+//		$(this).filter("#crumb_detail").show();
+//	}).mouseout(function(){
+//		$(this).hide();
+//	});
 	
-});
+}); // End of Ready Function
 
 function close(){
 	$("#query_form").fadeOut("normal");
