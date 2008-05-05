@@ -31,11 +31,19 @@ mkdirs() {
 
 unpack_gbrowse_src() {
     echo "INSTALL: unpacking gbrowse source...."
+    
+    # tar-1.14 uses --strip-path, tar-1.14.90+ uses --strip-components
+    if [ $( tar --strip-path 2>&1 | grep -q 'unrecognized option' ) ]; then
+        strip_opt='--strip-components'
+    else
+        strip_opt='--strip-path'
+    fi
+    
     if ! (
         mkdir -p $BUILD_DIR && 
         tar zxf \
         $GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE \
-        --strip-path 1 \
+        $strip_opt 1 \
         -C $BUILD_DIR 2> /dev/null); then
         echo "FATAL: Unable to un-tar Generic-Genome-Browser package '$GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE'. Exiting..."
         exit 1
