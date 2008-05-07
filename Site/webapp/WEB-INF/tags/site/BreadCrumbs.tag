@@ -33,23 +33,35 @@
               description="RecordClass Object for the Answer"
 %>
 
+<%@ attribute name="protocol"
+	      type="org.gusdb.wdk.model.jspwrap.ProtocolBean"
+              required="false"
+              description="Protocol from the SummaryPage"
+%>
+
 <script type="text/javascript" src="js/lib/jquery-1.2.3.js"></script>
 <script type="text/javascript" src="js/filter_menu.js"></script>
 <link rel="StyleSheet" href="misc/filter_menu.css" type="text/css"/>
 
 <div id="bread_crumb_div">
   <table><tr>
-  <td><div class="crumb"> <a class="crumb_name" href="javascript:void(0)">${history.customName}</a>&nbsp;&nbsp;<b>&gt;</b>
+
+<c:set var="steps" value="${protocol.allSteps}" />
+<c:forEach items="${steps}" var="step">
+	
+
+  <td><div class="crumb"> 
+
+<a class="crumb_name" href="javascript:void(0)">${step.customName}</a>&nbsp;&nbsp;<b>&gt;</b>
    <div id="crumb_details">
 	
-  
-
-
-
     <b>Details:&nbsp; </b>
-          <!-- a section to display/hide params -->
-            <div id="showParamArea" style="background:#EEEEEE;">
-             <c:choose>
+
+	${step.details}
+        
+	  <!-- a section to display/hide params -->
+          <!-- <div id="showParamArea" style="background:#EEEEEE;">
+             < c:choose>
                  <c:when test="${wdkAnswer.isBoolean}">
                         <div>
                                 <%-- boolean question --%>
@@ -79,12 +91,13 @@
               <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
                  <site:apidbSummary/>
              </c:if>
-          </c:if>
+          </c:if> -->
            
    </div><!--End Crumb_Detail-->
  </div><!-- End Crumb --><td>
 
 <td>
+</c:forEach>
 <div id="filter_link_div">
 <site:FilterInterface model="${model}" recordClass="${recordClass}"/>
 </div>

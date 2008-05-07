@@ -15,9 +15,12 @@
 <c:set var="qName" value="${wdkAnswer.question.fullName}" />
 <c:set var="modelName" value="${applicationScope.wdkModel.name}" />
 <c:set var="summaryUrl" value="${wdk_summary_url}" />
+<c:set var="model" value="${applicationScope.wdkModel}" />
 <c:set var="commandUrl">
     <c:url value="/processSummary.do?${wdk_query_string}" />
 </c:set>
+
+<c:set var="protocol" value="${requestScope.wdkProtocol}" />
 
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
 <c:set var="project" value="${props['PROJECT_ID']}" />
@@ -202,7 +205,7 @@ function parse_Url( url, parameter_name )
 //-->
 </script>
 
-
+<input type="hidden" id="history_id" value="${history.historyId}">
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBorders> 
 
  <tr>
@@ -210,108 +213,17 @@ function parse_Url( url, parameter_name )
 
 
 <!-- display question and param values and result size for wdkAnswer -->
-<table border="0" width="100%" cellspacing="1" cellpadding="1">
-    <c:set var="paddingStyle" value="" />
-    <c:if test="${history.boolean}">
-       <c:set var="paddingStyle" value="style='padding-left:40px;'" />
-    </c:if>
-    
-    <!-- display query name -->
-    <tr>
-       <td valign="top" align="right" width="10" nowrap><b>Query:&nbsp; </b></td>
-          <html:form method="get" action="/renameHistory.do">
-       <td valign="top" align="left" ${paddingStyle}>
-             <div id="nameText" onclick="enableRename()">
-                <table border='0' cellspacing='2' cellpadding='0'>
-                   <tr>
-                      <td align="left">${history.customName}</td>
-                      <td align="right"><input type="button" value="Rename" onclick="enableRename()" /></td>
-                   </tr>
-                </table>
-             </div>
-             <div id="nameInput" style="display:none">
-                <table border='0' cellspacing='2' cellpadding='0'>
-                   <tr>
-                      <td><input id='history_id' name='wdk_history_id' type='hidden' value="${history.historyId}"/></td>
-                      <td><input id='customHistoryName' name='customHistoryName' type='text' size='50' 
-                                maxLength='2000' value="${history.customName}"/></td>
-                      <td><input type='submit' value='Update'></td>
-                      <td><input type='reset' value='Cancel' onclick="disableRename()"/></td>
-                   </tr>
-                </table>
-             </div>
-       </td>
-          </html:form>
-    </tr>
 
-    <!-- display parameters -->
-    <tr>
-       <td valign="top" align="right" width="10" nowrap><b>Details:&nbsp; </b></td>
-       <td align="left" valign="bottom">
-          <div ${paddingStyle} id="showParamLink">
-                <c:choose>
-                   <c:when test="${showParam == 'yes'}">
-                      <a href="#" onclick="return showParameter('no');">Hide</a>
-                   </c:when>
-                   <c:otherwise>
-                      <a href="#" onclick="return showParameter('yes');">Show</a>
-                   </c:otherwise>
-                </c:choose>
-            </div>
-       </td>
-    </tr>
-    <tr>
-       <td></td>
-       <td ${paddingStyle}>
-          <!-- a section to display/hide params -->
-          <c:choose>
-             <c:when test="${showParam == 'yes'}">
-                <div id="showParamArea" style="background:#EEEEEE;">
-             </c:when>
-             <c:otherwise>
-                <div id="showParamArea" style="display:none; background:#EEEEEE;">
-             </c:otherwise>
-          </c:choose>
-                    <c:choose>
-                        <c:when test="${wdkAnswer.isBoolean}">
-                            <div>
-                                <%-- boolean question --%>
-                                <nested:root name="wdkAnswer">
-                                    <jsp:include page="/WEB-INF/includes/bqShowNode.jsp"/>
-                                </nested:root>
-	                        </div>
-                        </c:when>
-                        <c:otherwise>
-                            <wdk:showParams wdkAnswer="${wdkAnswer}" />
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-       </td>
-    </tr>
-    
-    <!-- display result size -->
-    <tr>
-       <td valign="top" align="right" width="10" nowrap><b>Results:&nbsp; </b></td>
-       <td valign="top" align="left" ${paddingStyle}>
-          ${wdkAnswer.resultSize}
 
- <c:if test="${wdkAnswer.resultSize == 0}">
-              <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-                 <site:apidbSummary/>
-             </c:if>
-   </c:if>
+<hr>
 
-          <c:if test="${wdkAnswer.resultSize > 0}">
-             (showing ${wdk_paging_start} to ${wdk_paging_end})
-              <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-                 <site:apidbSummary/>
-             </c:if>
-          </c:if>
-       </td>
-    </tr>
-    <tr>
-       <td colspan="2" align="left">
-           <a href="downloadHistoryAnswer.do?wdk_history_id=${historyId}">
+
+<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" protocol="${protocol}"/>
+
+<hr id="bottom_filter_line">
+<!--<site:FilterInterface model="${model}" recordClass="${wdkAnswer.recordClass}"/>-->
+
+<a href="downloadHistoryAnswer.do?wdk_history_id=${historyId}">
                Download</a>&nbsp;|&nbsp;
            <a href="<c:url value="/showQueryHistory.do"/>">Combine with other results</a>
 	       
@@ -333,14 +245,7 @@ function parse_Url( url, parameter_name )
                    <a href="showQuestion.do?questionFullName=${qName}${qurlParams}&questionSubmit=Get+Answer&goto_summary=0">
 	           Revise query</a>
 	       </c:if>
-	<!--	&nbsp;|&nbsp;
-		<a href="javascript:void(0)" id="filter_link">Filter results</a>-->
-       </td>
-    </tr>
-</table>
 
-
-<hr><site:FilterInterface/>
 
 <!-- handle empty result set situation -->
 <c:choose>
