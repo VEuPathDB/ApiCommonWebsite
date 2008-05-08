@@ -33,7 +33,7 @@ unpack_gbrowse_src() {
     echo "INSTALL: unpacking gbrowse source...."
     
     # tar-1.14 uses --strip-path, tar-1.14.90+ uses --strip-components
-    if [ $( tar --strip-path 2>&1 | grep -q 'unrecognized option' ) ]; then
+    if $( tar --strip-path 2>&1 | grep -q 'unrecognized option' ); then
         strip_opt='--strip-components'
     else
         strip_opt='--strip-path'
