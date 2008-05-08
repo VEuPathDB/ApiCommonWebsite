@@ -16,6 +16,12 @@
               description="RecordClass Object for the Answer"
 %>
 
+<%@ attribute name="protocol"
+	      type="org.gusdb.wdk.model.jspwrap.ProtocolBean"
+              required="false"
+              description="protocol for this result"
+%>
+<span id="proto" style="display: none">${protocol}</span>
 <c:set var="recClass" value="${recordClass.fullName}" />
 <c:set var="qSetName" value="none" />
 <c:choose>

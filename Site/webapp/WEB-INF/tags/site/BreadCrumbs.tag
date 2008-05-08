@@ -99,7 +99,7 @@
 <td>
 </c:forEach>
 <div id="filter_link_div">
-<site:FilterInterface model="${model}" recordClass="${recordClass}"/>
+<site:FilterInterface model="${model}" recordClass="${recordClass}" protocol="${protocol}"/>
 </div>
 </td></tr></table>
 
