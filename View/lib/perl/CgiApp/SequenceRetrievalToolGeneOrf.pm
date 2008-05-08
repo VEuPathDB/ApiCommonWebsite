@@ -266,7 +266,7 @@ sub mapGeneFeatureSourceIds {
 sub handleGenomic {
   my ($self, $dbh, $seqIO) = @_;
 
-  my $seqTable = ($self->getModel() =~ /toxo/i)?
+  my $seqTable = ($self->getModel() =~ /toxo|giardia/i)?
     'dots.VirtualSequence' : 'dots.ExternalNaSequence';
 
   my $beginAnch = 0;
