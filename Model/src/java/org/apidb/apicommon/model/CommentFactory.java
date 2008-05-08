@@ -320,7 +320,7 @@ public class CommentFactory {
         sql.append(config.getCommentSchema() + "comments c, ");
         sql.append(config.getUserLoginSchema() + "users"
                 + config.getUserLoginDbLink() + " u ");
-        sql.append("WHERE c.email = u.email ");
+        sql.append("WHERE lower(c.email) = lower(u.email) ");
         sql.append("AND c.comment_id = ? ");
 
         ResultSet rs = null;
@@ -438,7 +438,7 @@ public class CommentFactory {
         if (email != null) {
             email = email.replace('*', '%');
             email = email.replaceAll("'", "");
-            where.append(" c.email like '" + email + "'");
+            where.append(" lower(c.email) like lower('" + email + "')");
         }
         if (projectName != null) {
             projectName = projectName.replace('*', '%');
@@ -476,7 +476,7 @@ public class CommentFactory {
         sql.append(config.getCommentSchema() + "comments c, ");
         sql.append(config.getUserLoginSchema() + "users"
                 + config.getUserLoginDbLink() + " u ");
-        sql.append("WHERE c.email = u.email ");
+        sql.append("WHERE lower(c.email) = lower(u.email) ");
         if (where.length() > 0) sql.append(" AND " + where.toString());
         sql.append(" ORDER BY c.organism ASC, c.stable_id ASC, c.comment_date DESC");
 
