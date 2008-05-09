@@ -52,7 +52,7 @@
               description="context of page in the whole website"
 %>
 
-<table border="0" cellspacing="0" cellpadding="4" width="162" align="left" class="withThinBrownBorder">
+<table border="0" cellspacing="0" cellpadding="4" width="162" align="center" class="withThinBrownBorder">
 <tr><c:choose>
         <c:when test="${division == null || division == 'home'}">
             <td class="bordersSpecial" align="center">
@@ -233,24 +233,20 @@
 
 
 
- 
+  <hr class="brown">
+
+  <table border="0" width="162" cellpadding="5" align="center" class="withThinBrownBorder">
+	  <tr>
+	    <td>
+		<site:login/>
+	    </td>
+	  </tr>
+  </table>
 
   <hr class="brown">
 
 
-  <table border="0" width="162" cellpadding="3" align="left" class="withThinBrownBorder">
-
-
- <tr>
-	    <td>
-	<site:login/>
-	    </td>
-	  </tr>
-
- <tr><td><hr class="brown">
-</td></tr>
-
-
+  <table border="0" width="162" cellpadding="5" align="center" class="withThinBrownBorder">
    <tr><td>
          <div class=small>
 
