@@ -53,6 +53,8 @@ CryptoCyc	Database/utility built by analyzing the Cryptosporidium genome with SR
 Curated annotation	Annotation made under the supervision of a curator as opposed to a purely computational prediction. Curated predictions often contain combinations of different types of evidence to support the annotation.
 	
 Dalton	Unit of mass abbreviated Da and used to express atomic and molecular masses.
+
+Deprecated gene	Genes in GiardiaDB with little or no evidence (similarities / expression) that overlapped (or were subsumed by) larger genes for which there was evidence such as protein similarities, expression evidence from EST alignments, SAGE or proteomics data were marked as deprecated.  These genes will likely be removed in a subsequent release of GiardiaDB (and in GenBank) unless additional evidence is provided indicating they should be moved into the real gene category.
 	
 DNA/GC content	Content of guanine (G) and cytosine (C) in a fragment of DNA or a genome. Because GC pairs are more thermostable compared to the AT pairs, it was commonly believed that GC content played a vital part in adaptation to high temperatures, a hypothesis that has been refuted. In the genome browser, the DNA/GC content track displays a GC content graph of the reference sequence at low magnifications and the DNA sequence itself at higher magnifications.
 	
