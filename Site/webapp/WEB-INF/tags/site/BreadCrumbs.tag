@@ -48,7 +48,6 @@
 
 <c:set var="steps" value="${protocol.allSteps}" />
 <c:forEach items="${steps}" var="step">
-	
 
   <td><div class="crumb"> 
 

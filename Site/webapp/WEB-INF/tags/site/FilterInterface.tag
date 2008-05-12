@@ -21,7 +21,7 @@
               required="false"
               description="protocol for this result"
 %>
-<span id="proto" style="display: none">${protocol}</span>
+<span id="proto" style="display: none">${protocol.protocolId}</span>
 <c:set var="recClass" value="${recordClass.fullName}" />
 <c:set var="qSetName" value="none" />
 <c:choose>
