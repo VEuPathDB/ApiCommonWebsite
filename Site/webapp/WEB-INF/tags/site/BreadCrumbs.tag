@@ -42,7 +42,7 @@
 <script type="text/javascript" src="js/lib/jquery-1.2.3.js"></script>
 <script type="text/javascript" src="js/filter_menu.js"></script>
 <link rel="StyleSheet" href="misc/filter_menu.css" type="text/css"/>
-
+<c:set var="stepNumber" value="0" />
 <div id="bread_crumb_div">
   <table><tr>
 
@@ -51,7 +51,7 @@
 
   <td><div class="crumb"> 
 
-<a class="crumb_name" href="javascript:void(0)">${step.customName}</a>&nbsp;&nbsp;<b>&gt;</b>
+<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>&nbsp;&nbsp;<b>&gt;</b>
    <div id="crumb_details">
 	
     <b>Details:&nbsp; </b>
@@ -96,6 +96,7 @@
  </div><!-- End Crumb --><td>
 
 <td>
+<c:set var="stepNumber" value="${stepNumber+1}" />
 </c:forEach>
 <div id="filter_link_div">
 <site:FilterInterface model="${model}" recordClass="${recordClass}" protocol="${protocol}"/>
