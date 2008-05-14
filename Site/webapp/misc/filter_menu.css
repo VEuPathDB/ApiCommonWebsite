@@ -83,11 +83,16 @@
 	
 }
 
-#crumb_details {
+.crumb_details {
 	background-color: lightYellow;
 	border: solid black;
 	position: absolute;
 	z-index: 99;
+}
+
+.operation {
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 .dragHandle {

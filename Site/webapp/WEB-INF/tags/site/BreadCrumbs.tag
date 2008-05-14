@@ -49,15 +49,32 @@
 <c:set var="steps" value="${protocol.allSteps}" />
 <c:forEach items="${steps}" var="step">
 
-  <td><div class="crumb"> 
+  <td>
 
-<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>&nbsp;&nbsp;<b>&gt;</b>
-   <div id="crumb_details">
+  <c:choose>
+     <c:when test="${step.isFirstStep}">
+        <div class="crumb"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
+     </c:when>
+     <c:otherwise>
+        <div class="operation"><b>${step.operation}</b></div></td>
+        <td><div class="crumb"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
+     </c:otherwise>
+  </c:choose>
+
+   <div class="crumb_details">
 	
-    <b>Details:&nbsp; </b>
+    <p><b>Details:&nbsp;</b><pre>${step.details}</pre></p>
 
-	${step.details}
-        
+    <c:choose>
+       <c:when test="${step.isFirstStep}">
+           <p><b>Results:&nbsp;</b>${step.filterResultSize}</p>
+       </c:when>
+       <c:otherwise>
+           <p><b>Results:&nbsp;</b>${step.filterResultSize}</p>
+           <p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}</p>
+       </c:otherwise>
+    </c:choose>
+          
 	  <!-- a section to display/hide params -->
           <!-- <div id="showParamArea" style="background:#EEEEEE;">
              < c:choose>
@@ -93,11 +110,12 @@
           </c:if> -->
            
    </div><!--End Crumb_Detail-->
- </div><!-- End Crumb --><td>
-
-<td>
+ </div><!-- End Crumb -->
+</td>
 <c:set var="stepNumber" value="${stepNumber+1}" />
 </c:forEach>
+<td><b>&gt;</b></td>
+<td>
 <div id="filter_link_div">
 <site:FilterInterface model="${model}" recordClass="${recordClass}" protocol="${protocol}"/>
 </div>

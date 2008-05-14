@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-	$("div#crumb_details").hide();
+	$("div.crumb_details").hide();
 	$("#filter_div").hide();
 	$("#query_form").hide();
 	$(".top_nav ul li a").click(function(){
@@ -62,13 +62,13 @@ $(document).ready(function(){
 	});
 
 	$(".crumb").bind("mouseenter",function(){
-		$("#crumb_details",this).fadeIn("fast");
+		$(".crumb_details",this).fadeIn("fast");
 	}).bind("mouseleave",function(){
-		$("#crumb_details",this).fadeOut("fast");
+		$(".crumb_details",this).fadeOut("fast");
 	});
 
-//	$("#crumb_details").mouseover(function(){
-//		$(this).filter("#crumb_detail").show();
+//	$(".crumb_details").mouseover(function(){
+//		$(this).filter(".crumb_detail").show();
 //	}).mouseout(function(){
 //		$(this).hide();
 //	});
