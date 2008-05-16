@@ -56,7 +56,7 @@
         <div class="crumb"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
      </c:when>
      <c:otherwise>
-        <div class="operation"><b>${step.operation}</b></div></td>
+        <div class="operation ${step.operation}"></div></td>
         <td><div class="crumb"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
      </c:otherwise>
   </c:choose>
