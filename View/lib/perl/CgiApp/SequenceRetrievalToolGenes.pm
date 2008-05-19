@@ -16,7 +16,14 @@ sub run {
 
   my $dbh = $self->getQueryHandle($cgi);
 
-  print $cgi->header('text/plain');
+  my $save = $cgi->param('save');
+
+  if ($save) {
+      print $cgi->header('application/x-download');
+  }
+  else {
+      print $cgi->header('text/plain');
+  }
 
   $self->processParams($cgi, $dbh);
 

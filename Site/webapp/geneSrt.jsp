@@ -58,7 +58,8 @@
                              <input name="downstreamOffset" value="0" size="6"> residues</td></tr>
     </table></td></tr>
         <input type="hidden" name="project_id" value="${wdkModel.name}"/>
-        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
+        <td align="center" style="width:50px;"><input name="go" value="Get Sequences" type="submit"/></td>
+        <td align="center"><input name="save" value="Save to File" type="submit"/></td></tr>
 
     </table>
   </form>
