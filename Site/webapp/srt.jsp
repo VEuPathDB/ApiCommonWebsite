@@ -119,9 +119,9 @@ function setEnable(flag) {
     </table>
         </td>
     </tr>
-
-        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
-
+      <td align="center" style="width:50px;"><input name="go" value="Get Sequences" type="submit"/></td>
+          <td align="center"><input name="save" value="Save to File" type="submit"/></td></tr>
+      
     </table>
   </form>
 
@@ -150,8 +150,8 @@ function setEnable(flag) {
                              <input name="end" value="10000" size="6"></td></tr>
         <tr><td><a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a></td></tr>
     </table></td></tr>
-
-        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
+ <td align="center" style="width:50px;"><input name="go" value="Get Sequences" type="submit"/></td>
+          <td align="center"><input name="save" value="Save to File" type="submit"/></td></tr>
 
     </table>
   </form>
@@ -196,8 +196,8 @@ function setEnable(flag) {
                              <input name="downstreamOffset" value="0" size="6"> residues</td></tr>
          <tr><td><a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a></td></tr>
    </table></td></tr>
-
-        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
+ <td align="center" style="width:50px;"><input name="go" value="Get Sequences" type="submit"/></td>
+          <td align="center"><input name="save" value="Save to File" type="submit"/></td></tr>
 
     </table>
 <hr>
