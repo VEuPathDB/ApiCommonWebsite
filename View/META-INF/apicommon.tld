@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<taglib>
+   <tlibversion>1.1</tlibversion>
+   <jspversion>2.0</jspversion> 
+   <info>ApiCommon tag library</info>
+   <uri>http://apidb.org/taglib</uri>
+
+  <tag>
+    <description>
+    Parse property file and place name/value into page scope.
+    name/value pairs are stored in 'var' attribute.
+    property file name is specified in 'propfile' attribute.
+    </description>
+    <name>properties</name>
+    <tagclass> org.apidb.apicommon.taglib.PropertiesParser</tagclass>
+    <bodycontent>scriptless</bodycontent>
+    <attribute>
+        <name>var</name>
+        <required>true</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+        <name>propfile</name>
+        <required>true</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag> 
+
+</taglib>

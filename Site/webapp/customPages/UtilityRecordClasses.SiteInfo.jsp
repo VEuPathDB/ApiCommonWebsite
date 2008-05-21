@@ -1,50 +1,9 @@
-<%--
-Required query:
-        <sqlQuery name="CurrentInstance" isCacheable='false'>
-            <paramRef ref="params.primaryKey"/> 
-            <column name="global_name" />
-            <column name="host_name" />
-            <column name="address" />
-            <column name="version" />
-            <column name="system_date" />
-            <column name="login" />
-           <sql> 
-            <![CDATA[           
-            select 
-                global_name, 
-                ver.banner version,
-                UTL_INADDR.get_host_name as host_name,
-                UTL_INADDR.get_host_address as address,
-                to_char(sysdate, 'Dy DD-Mon-YYYY HH24:MI:SS') as system_date,
-                sys_context('USERENV', 'SESSION_USER') as login
-            from global_name, v$version ver
-            where lower(ver.banner) like '%oracle%'
-             ]]>
-           </sql>
-        </sqlQuery>
-
-
-OPTIONAL, to test dblink. Allowed column names are
-cryptolink, plasmolink, toxolink 
-       <sqlQuery name="PingPlasmo" isCacheable='false'>
-            <paramRef ref="params.primaryKey"/> 
-            <column name="plasmolink" />
-            <sql> 
-            <![CDATA[           
-            select 
-                global_name as plasmolink
-            from global_name@plasmo
-             ]]>
-           </sql>
-        </sqlQuery>
-
-
---%>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="w"   uri="http://www.servletsuite.com/servlets/wraptag" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="api" uri="http://apidb.org/taglib" %>
 
 <c:choose> 
 <%-- this choose block is a crude effort to prevent data display
@@ -64,18 +23,26 @@ including authentication.
 <%/* display page header with recordClass type in banner */%>
 <c:set value="${wdkRecord.recordClass.type}" var="recordType"/>
 
-<c:set var="dateFormatStr" value="EEE dd MMM yyyy h:mm:ss a"/>
+<c:set var="dateFormatStr" value="EEE dd MMM yyyy h:mm a"/>
 
 <html>
 <head>
 <title>${pageContext.request.serverName} Site Info</title>
+<script type='text/javascript' src='/a/js/overlib.js'></script>
 <script type='text/javascript' src='/a/js/prototype.js'></script>
 <script type='text/javascript' src='/a/js/scriptaculous.js'></script>
 <%-- http://wiki.script.aculo.us/scriptaculous/show/Effect.toggle --%>
 
 <script type="text/javascript">
-
+var ol_textcolor = "#003366";
+var ol_fgcolor = "#ffffff";
+var ol_bgcolor = "#003366";
+var ol_texsize = "11px";
+var ol_cellpad = "5";
+var ol_height = -1;
+var ol_vpos = ABOVE;
 </script>
+
 <style type="text/css">
 <!--
 body {
@@ -84,6 +51,13 @@ body {
 
 a { color: #2F4F4F }
 
+h2 {
+   border-width:2px 0;
+   border-style:solid;
+   border-color:#C28547;
+   padding-left: 5px;
+   }
+   
 h3 {
 	background: #336699;
 	color: white;
@@ -100,8 +74,17 @@ p {
 	margin: 12px 8px;
 }
 
+table.p {
+	font-size: 12px;
+	margin: 12px 8px;
+}
+
+td.p {
+    padding-left: 10px; 
+}
+
 tr.rowMedium {
-    background-color: #FFFFFF;
+    background-color: #C4CFCB;
     color: black;
     font-family: arial;
 	font-size: 10pt;
@@ -155,118 +138,161 @@ tr.headerRow  td,th {
 <b>Oracle Version</b>: ${wdkRecord.attributes['version'].value}<br>
 
 <b>Available DBLinks</b>: <site:dataTable tblName="AllDbLinks"/>
-<p>
-<c:if test="${!empty wdkRecord.recordClass.attributeFields['cryptolink']}">
-    <br>
-    <b>CryptoDB dblink:</b>
-    <c:catch var="e">
-        ${wdkRecord.attributes['cryptolink'].value}
-    </c:catch>
-    <c:if test="${e!=null}">
-        <font color="#CC0033">not responding</font>
-    </c:if>
-</c:if>
-
-<c:if test="${!empty wdkRecord.recordClass.attributeFields['plasmolink']}">
-    <br>
-    <b>PlasmoDB dblink:</b>
-    <c:catch var="e">
-        ${wdkRecord.attributes['plasmolink'].value}
-    </c:catch>
-    <c:if test="${e!=null}">
-        <font color="#CC0033">not responding</font>
-    </c:if>
-</c:if>
-
-<c:if test="${!empty wdkRecord.recordClass.attributeFields['plasmolink2']}">
-    <br>
-    
-    <c:catch var="e">
-
-        ${wdkRecord.attributes['plasmolink2'].value}
-    </c:catch>
-    <c:if test="${e!=null}">
-        ${e}<br>
-        <font color="#CC0033">not responding</font>
-    </c:if>
-</c:if>
-
-<c:if test="${!empty wdkRecord.recordClass.attributeFields['toxolink']}">
-    <br>
-    <b>ToxoDB dblink:</b>
-    <c:catch var="e">
-        ${wdkRecord.attributes['toxolink'].value}
-    </c:catch>
-    <c:if test="${e!=null}">
-        <font color="#CC0033">not responding</font>
-    </c:if>
-</c:if>
-
-<c:if test="${!empty wdkRecord.recordClass.attributeFields['toxolink2']}">
-    <br>
-    
-    <c:catch var="e">
-        ${wdkRecord.attributes['toxolink2'].value}
-    </c:catch>
-    <c:if test="${e!=null}">
-        ${e}<br>
-        <font color="#CC0033">not responding</font>
-    </c:if>
-
-    <br><br>
-    (TEST1 --> DBC2<br>
-    TEST2 --> THEMIS<br>
-    TEST3 --> DBC1)<br>
-
-</c:if>
+</p>
 
 <h2>Tomcat</h2>
+
+<table class='p' border='0' cellpadding='0' cellspacing='0'>
+<tr><td><b>Instance:</b></td><td class="p"><%= System.getProperty("instance.name") %></td></tr>
+<tr><td><b>Instance uptime:</b></td><td class="p"><%= uptimeText(application, pageContext) %></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td><b>Webapp:</b> </td><td class="p">${pageContext.request.contextPath}</td></tr>
+<tr><td><b>Webapp uptime:</b></td><td class="p"><%= webappUptime(application, pageContext ) %></td></tr>
+</table>
 <p>
-<b>Instance:</b> <%= System.getProperty("instance.name") %></br>
-<b>Instance Uptime:</b> <%= uptime() %><br> 
-<b>Web App:</b> ${pageContext.request.contextPath}<br>
-<b>Last webapp reload:</b> <%= lastReload(application, pageContext ) %>
-<br>
-<b><a href="#" onclick="Effect.toggle('element-blind','blind'); return false">JSP Classpath &#8593;&#8595;</a></b>
-<div id="element-blind" style="padding: 5px; display: none"><div>
+<b><a href="#" onclick="Effect.toggle('classpathlist','blind'); return false">Webapp Classpath &#8593;&#8595;</a></b>
+<div id="classpathlist" style="padding: 5px; display: none;"><div>
 ${fn:replace(applicationScope['org.apache.catalina.jsp_classpath'], ':', '<br>')}
 </div></div>
 </p>
 
 <h2>WDK</h2>
-<p>
-<c:if test="${!empty wdkRecord.recordClass.attributeFields['userlink']}">
-<b>DB Link to User login, registration and comments Database:</b> 
+
+<table class='p' border='0' cellpadding='0' cellspacing='0'>
 <c:catch var="e">
-        ${wdkRecord.attributes['userlink'].value}
-    </c:catch>
-    <c:if test="${e!=null}">
-        ${e}<br>
-        <font color="#CC0033">not responding</font>
-    </c:if>
+<c:if test="${!empty wdkRecord.recordClass.attributeFields['cache_count']}">
+ <tr><td><b>Cache table count</b>:</td><td class="p">${wdkRecord.attributes['cache_count'].value}</td></tr>
+</c:if>
+</c:catch>
+<c:if test="${e!=null}"> 
+    <tr><td><font color="red">Cache tables information not available. Did you run wdkCache?</font></td></tr>
 </c:if>
 
+<tr><td>&nbsp;</td></tr>
+
+<tr><td>
 <c:if test="${!empty wdkRecord.recordClass.attributeFields['apicommMacro']}">
-<p>
-<b>ApiComm Macro</b>: ${wdkRecord.attributes['apicommMacro'].value}<br>
+    <b>LOGIN_DBLINK Macro</b>
+    <a href='javascript:void()' 
+        onmouseover="return overlib(
+         '@LOGIN_DBLINK@ as defined in WDK Record scope.<br>' +
+         '(<i>cf.</i> the \'Available DBLinks\' table.)'
+        )"
+        onmouseout = "return nd();"><sup>[?]</sup></a>:
+    </td><td  class="p" valign="bottom">
+        ${wdkRecord.attributes['apicommMacro'].value}
 </c:if>
-
+</td></tr>
 <c:if test="${!empty wdkRecord.recordClass.attributeFields['apicomm_global_name']}">
+    <tr><td>
+   <b>ApiComm dblink global_name</b>
+    <a href='javascript:void()' 
+        onmouseover="return overlib(
+         'result of <i>select global_name from global_name${wdkRecord.attributes['apicommMacro'].value}</i>'
+        )"
+        onmouseout = "return nd();"><sup>[?]</sup></a>:  
+    </td><td class="p" valign="bottom"> 
     <c:catch var="e">
-   <b>ApiComm dblink global_name</b>:  ${wdkRecord.attributes['apicomm_global_name'].value}<br>
+        ${wdkRecord.attributes['apicomm_global_name'].value}
     </c:catch>
     <c:if test="${e!=null}">
         <font color="#CC0033">${e}</font>
     </c:if>
-</c:if><br>
-
-<c:catch var="e">
-<c:if test="${!empty wdkRecord.recordClass.attributeFields['cache_count']}">
- <b>Cache Tables:</b> ${wdkRecord.attributes['cache_count'].value}
+    </td></tr>
 </c:if>
+
+</table>
+
+
+<h2>Build State</h2>
+<p>
+  <c:catch var="e">
+  <api:properties var="build" propfile="WEB-INF/wdk-model/config/.build.info" />
+  
+  Last build  was a '<b>${build['!Last.build.component']}</b> 
+  <b>${build['!Last.build.initialTarget']}</b>' 
+  on <b>${build['!Last.build.timestamp']}</b>
+  <a href='javascript:void()'
+        onmouseover="return overlib('A given build may not refresh all project components. ' + 
+        'For example, a \'ApiCommonData/Model install\' does not build any WDK code.<br>' +
+        'See Build Details for a cummulative record of past builds.')"
+        onmouseout = "return nd();"><sup>[?]</sup></a>
+
+  <br>
+
+  <b><a href="#" 
+        onclick="Effect.toggle('buildtime','blind'); return false">
+  Component Build Details &#8593;&#8595;</a></b>
+
+  <div id="buildtime" style="padding: 5px; display: none"><div>
+  <font size='-1'>A given build may not refresh all project components.<br>
+  The following is a cummulative record of past builds.</font>
+  
+      <c:set var="i" value="0"/>
+
+      <table border="0" cellspacing="3" cellpadding="2">
+      <tr class="secondary3">
+      <th align="left"><font size="-2">component</font></th>
+      <th align="left"><font size="-2">build time</font></th>
+      </tr>
+      <c:forEach items="${build}" var="p">
+      <c:if test="${fn:contains(p.key, '.buildtime')}">
+  
+          <c:choose>
+            <c:when test="${i % 2 == 0}"><tr class="rowLight"></c:when>
+            <c:otherwise><tr class="rowMedium"></c:otherwise>
+          </c:choose>
+  
+          <td><pre>${fn:replace(fn:replace(p.key, ".buildtime", ""), ".", "/")}</pre></td>
+          <td><pre>${p.value}</pre></td>
+        </tr>
+        <c:set var="i" value="${i +  1}"/>
+      </c:if>
+      </c:forEach>
+      </table>
+  
+  </div></div>
+
+  <p>
+
+  <b><a href="#" onclick="Effect.toggle('svnstate','blind'); return false">
+  Svn Working Directory State &#8593;&#8595;</a></b>
+  <div id="svnstate" style="padding: 5px; display: none"><div>
+  <font size='-1'>State at build time. Uncommitted files are highlighted. Files may have been committed
+  since this state was recorded.</font>
+  
+      <table class='p' border='1' cellspacing='0'>
+      <c:forEach items="${build}" var="p">
+      
+      <c:if test="${fn:contains(p.key, '.svn.') && p.value != '' && p.value != 'NA' }">
+          <c:choose>
+          <c:when test="${fn:contains(p.key, '.svn.status')}">
+            <c:set var="bgcolor" value="bgcolor='#FFFF99'"/>
+            <c:set var="key">
+            ${fn:replace(fn:replace(p.key, ".svn.status", " status"), ".", "/")}
+            </c:set>
+          </c:when>
+          <c:otherwise>
+            <c:set var="key">
+            ${fn:replace(fn:replace(p.key, ".svn.info", ""), ".", "/")}
+            </c:set>
+          </c:otherwise>          
+          </c:choose>
+      <tr ${bgcolor}>
+          <td><pre>${key}</pre></td>
+        <td><pre>${p.value}</pre></td>
+      </tr>
+          <c:remove var="bgcolor"/>
+      </c:if>
+      </c:forEach>
+      </table>
+      
+  </div></div>
+
 </c:catch>
-<c:if test="${e!=null}"> 
-    <font color="red">Cache tables information not available. Did you run wdkCache?</font>
+<c:if test="${e!=null}">
+    <font size="-1" color="#CC0033">build info not available (check WEB-INF/wdk-model/config/.build.info)</font>
 </c:if>
 
 </body>
@@ -278,13 +304,109 @@ ${fn:replace(applicationScope['org.apache.catalina.jsp_classpath'], ':', '<br>')
 
 
 <%!
-public String uptime() {
+public String webappUptime(ServletContext application, PageContext pageContext) {
+  try {
+    java.text.DateFormat formatter = new java.text.SimpleDateFormat( 
+                        (String)pageContext.getAttribute("dateFormatStr") );
+
+    File jspFile = (File)application.getAttribute("javax.servlet.context.tempdir");
+    java.util.Date lastModified = new Date(jspFile.lastModified());
+    
+    long milliseconds = System.currentTimeMillis() - lastModified.getTime();
+     
+    int days    = (int)(milliseconds / (1000*60*60*24))     ;
+    int hours   = (int)(milliseconds / (1000*60*60   )) % 24;
+    int minutes = (int)(milliseconds / (1000*60      )) % 60;
+    int seconds = (int)(milliseconds / (1000         )) % 60;
+
+    String uptimeSince = (String)formatter.format(new Date(jspFile.lastModified()));
+    String uptimeBrief = uptimeBrief(days, hours, minutes, seconds);
+   
+    return uptimeBrief + " (since " + uptimeSince + ")";
+  } catch (Exception e) {
+    return "Error: " + e;
+  }
+}
+%>
+
+
+<%!
+public String uptimeText(ServletContext application, PageContext pageContext) {
+  try {
+
+    String uptime = elapsedTimeSinceTomcatJVMStart();
+    uptime = uptime.trim();
+    
+    java.util.regex.Pattern pat;
+    java.util.regex.Matcher m;
+
+    int days    = 0;
+    int hours   = 0;
+    int minutes = 0;
+    int seconds = 0;
+ 
+    pat = java.util.regex.Pattern.compile("^(?:(\\d+)-)?(?:(\\d+):)?(\\d+):(\\d+)$");
+    m = pat.matcher(uptime);
+
+    if (m.find()) {
+      if (m.group(1) != null) days    = Integer.parseInt(m.group(1));
+      if (m.group(2) != null) hours   = Integer.parseInt(m.group(2));
+      if (m.group(3) != null) minutes = Integer.parseInt(m.group(3));
+      if (m.group(4) != null) seconds = Integer.parseInt(m.group(4));
+    } else {
+        throw new Exception();
+    }
+        
+    String uptimeSince = uptimeSince(days, hours, minutes, seconds, (String)pageContext.getAttribute("dateFormatStr") );
+    String uptimeBrief = uptimeBrief(days, hours, minutes, seconds);
+    
+    return uptimeBrief + " (since " + uptimeSince + ")";
+
+  } catch (Exception e) {
+    return "<font color='red'>Error: unable to determine start time</font>";
+  }
+}
+%>
+
+<%!
+public String uptimeSince(int days, int hours, int minutes, int seconds, String fmt) {
+  java.util.Calendar calendar = java.util.Calendar.getInstance();
+   
+  calendar.add(Calendar.DAY_OF_MONTH, -days);
+  calendar.add(Calendar.HOUR,         -hours);
+  calendar.add(Calendar.MINUTE,       -minutes);
+  calendar.add(Calendar.SECOND,       -seconds);
+  
+  java.util.Date startTime = calendar.getTime();
+
+  java.text.DateFormat formatter = new java.text.SimpleDateFormat(fmt);
+
+  return (String)formatter.format(startTime) ;
+}
+%>
+
+<%!
+public String uptimeBrief(int days, int hours, int minutes, int seconds) {
+  String uptimeBrief = "";
+  if (days != 0)
+    uptimeBrief = days + "d " + hours + "h";
+  else if (hours != 0)
+    uptimeBrief = hours + "h " + minutes + "m";
+  else if (seconds != 0)
+    uptimeBrief = minutes + "m " + seconds + "s";
+  
+  return uptimeBrief;
+}
+%>
+
+<%!
+public String elapsedTimeSinceTomcatJVMStart() throws Exception {
   try {
     String result;
     Vector commands=new Vector();
     commands.add("/bin/bash");
     commands.add("-c");
-    commands.add("ps -o etime $PPID | grep -v ELAPSED | sed 's/\\s*//g' | sed 's/\\(.*\\)-\\(.*\\):\\(.*\\):\\(.*\\)/\\1d \\2h/; s/\\(.*\\):\\(.*\\):\\(.*\\)/\\1h \\2m/; s/\\(.*\\):\\(.*\\)/\\1m \\2s/'");
+    commands.add("ps -o etime $PPID | tail -n1");
     
     ProcessBuilder pb=new ProcessBuilder(commands);  
     Process pr=pb.start();
@@ -302,26 +424,11 @@ public String uptime() {
     }
     return result;
     } catch (Exception e) {
-    return "Error: " + e;
+    throw e;
   }
 }
 %>
 
-
-
-<%!
-public String lastReload(ServletContext application, PageContext pageContext) {
-  try {
-   File jspFile = (File)application.getAttribute("javax.servlet.context.tempdir");
-   java.text.DateFormat formatter = new java.text.SimpleDateFormat( 
-                        (String)pageContext.getAttribute("dateFormatStr") );
-
-   return (String)formatter.format(new Date(jspFile.lastModified()));
-  } catch (Exception e) {
-    return "Error: " + e;
-  }
-}
-%>
 
 </c:otherwise>
 </c:choose>
