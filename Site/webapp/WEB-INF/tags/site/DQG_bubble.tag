@@ -1,0 +1,93 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%@ attribute name="banner" 
+ 			  type="java.lang.String"
+			  required="true" 
+			  description="Image to be displayed as the title of the bubble"
+%>
+
+<%@ attribute name="alt_banner" 
+ 			  type="java.lang.String"
+			  required="true" 
+			  description="String to be displayed as the title of the bubble"
+%>
+
+<%@ attribute name="questionSets" 
+ 			  type="java.lang.String"
+			  required="false" 
+			  description="Class of queries to be displayed in the bubble"
+%>
+
+<c:set var="wdkModel" value="${applicationScope.wdkModel}" />
+<c:set var="qSetNames" value="${fn:split(questionSets,',')}" />
+<div id="3columndiv">
+
+<img src="/assets/images/crypto/${banner}" alt="${alt_banner}" width="247" height="46" />
+<c:choose>
+	<c:when test="${questionSets == null}">
+		<site:DQG_info />
+	</c:when>
+	<c:when test="${fn:length(qSetNames) > 1}">
+		<div id="info">
+			<ul class="heading_list">
+				<c:forEach items="${qSetNames}" var="qSetName">
+					<c:set var="qSet" value="${wdkModel.questionSetsMap[qSetName]}" />
+					<li><a class="heading" href="javascript:void(0)">${qSet.displayName}</a>
+						<div class="sub_list">
+							<ul>
+								<c:set var="questions" value="${qSet.questions}" />
+								<c:forEach items="${questions}" var="q">
+									<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
+								</c:forEach>
+							</ul>
+						</div>
+					</li>
+				</c:forEach>
+			</ul>	
+			
+			<span class="small_links">
+				<a href="true">show All</a>
+				<a href="false">hide All</a>
+			</span><br>
+			
+			<div id="mysearchhist">
+				<a href="#">My Saved Searches: 0</a>
+			</div>
+    	</div>
+	</c:when>
+	<c:otherwise>
+		<div id="info">
+			<ul class="heading_list">
+				<c:set var="qSet" value="${wdkModel.questionSetsMap[questionSets]}" />
+				<c:set var="qByCat" value="${qSet.questionsByCategory}" />
+				<c:forEach items="${qByCat}" var="cat">
+					<li>
+						<a class="heading" href="javascript:void(0)">${cat.key}</a>
+						<div class="sub_list">
+							<ul>
+								<c:forEach items="${cat.value}" var="q">
+									<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
+								</c:forEach>
+							</ul>
+						</div>
+					</li>
+				</c:forEach>
+			</ul>	
+			
+			<span class="small_links">
+				<a href="true">show All</a>
+				<a href="false">hide All</a>
+			</span><br>
+			
+			<div id="mysearchhist">
+				<a href="#">My Saved Searches: 0</a>
+			</div>
+    	</div>
+	</c:otherwise>
+</c:choose>	
+
+<img src="/assets/images/bubble_bottom.png" width="247" height="35" />
+</div>

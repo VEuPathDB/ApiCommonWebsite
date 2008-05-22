@@ -51,15 +51,7 @@
 
   <td>
 
-  <c:choose>
-     <c:when test="${step.isFirstStep}">
-        <div class="crumb"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
-     </c:when>
-     <c:otherwise>
-        <div class="operation ${step.operation}"></div></td>
-        <td><div class="crumb"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
-     </c:otherwise>
-  </c:choose>
+	<site:Step step="${step}" protocol="${protocol}" stepNum="${stepNumber}"/>
 
    <div class="crumb_details">
 	
@@ -114,7 +106,8 @@
 </td>
 <c:set var="stepNumber" value="${stepNumber+1}" />
 </c:forEach>
-<td><b>&gt;</b></td>
+
+<td><b>&nbsp;&nbsp;</b></td>
 <td>
 <div id="filter_link_div">
 <site:FilterInterface model="${model}" recordClass="${recordClass}" protocol="${protocol}"/>
