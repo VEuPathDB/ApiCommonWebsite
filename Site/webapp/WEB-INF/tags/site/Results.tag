@@ -91,10 +91,10 @@
   </table>
 
 <!-- content of current page -->
-<table width="100%" border="0" cellpadding="3" cellspacing="0">
+<table class="results" width="100%" border="0" cellpadding="3" cellspacing="0">
 
 
-<tr class="headerRow">
+<tr class="headerrow">
   <c:forEach items="${wdkAnswer.summaryAttributes}" var="sumAttrib">
     <th align="center" valign="middle">
       ${sumAttrib.displayName}
@@ -102,7 +102,7 @@
   </c:forEach>
 </tr>
 
-<tr class="headerButtonRow">
+<tr class="subheaderrow">
 
     <c:set var="sortingAttrNames" value="${wdkAnswer.sortingAttributeNames}" />
     <c:set var="sortingAttrOrders" value="${wdkAnswer.sortingAttributeOrders}" />
@@ -221,8 +221,8 @@
 <c:forEach items="${wdkAnswer.records}" var="record">
 
 <c:choose>
-  <c:when test="${i % 2 == 0}"><tr class="rowLight"></c:when>
-  <c:otherwise><tr class="rowMedium"></c:otherwise>
+  <c:when test="${i % 2 == 0}"><tr class="lines"></c:when>
+  <c:otherwise><tr class="linesalt"></c:otherwise>
 </c:choose>
 
   <c:set var="j" value="0"/>
