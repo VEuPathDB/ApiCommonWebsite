@@ -58,7 +58,8 @@
         <tr><td><a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a></td></tr>
     </table></td></tr>
 
-        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
+        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td>
+        <td align="center"><input name="save" value="Save to File" type="submit"/></td></tr>
 
     </table>
   </form>
