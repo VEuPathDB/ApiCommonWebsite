@@ -36,6 +36,7 @@ sub go {
     my $version = join("", @{ $cgi->{'version'} or [] });
     my $browser = join("", @{ $cgi->{'browser'} or [$ENV{HTTP_USER_AGENT}] });
     my $referer = join("", @{ $cgi->{'referer'} or [$ENV{HTTP_REFERER}] });
+    my $ipaddr  = join("", @{ $cgi->{'ipaddr'} or [$ENV{REMOTE_ADDR}] });
     my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'supportform@apidb.org' });
 
     my $message = join("", @{ $cgi->{'message'} or [] });
@@ -102,7 +103,8 @@ sub go {
         . '@bug_severity = ' . "feature" . "\n"
         . '@rep_platform = ' . "all" . "\n"
         . '@op_sys       = ' . "all" . "\n"
-        . "\n" . $metaInfo;
+        . "\n" . $metaInfo . "\n"
+        . "Client IP Address: $ipaddr\n";
       $cfmMsg .= "\n\n" . sendMail($reporterEmail, $to, $subject, $replyTo, $metaInfo, $message);
 
     } elsif  ($subject) {
