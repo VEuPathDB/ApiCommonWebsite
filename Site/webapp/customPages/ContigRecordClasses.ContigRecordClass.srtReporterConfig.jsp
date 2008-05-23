@@ -62,8 +62,8 @@
         </table>
     </td></tr>
 
-        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
-
+        <td align="center"><input name="go" value="Get Sequences" type="submit"/></td>
+        <td align="center"><input name="save" value="Save to File" type="submit"/></td></tr>
     </table>
   </form>
 

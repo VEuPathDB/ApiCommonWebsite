@@ -58,7 +58,8 @@
                 <td align="left">
                                  <input name="start" value="1" size="6"> to
                                  <input name="end" value="10000" size="6"></td></tr>
-            <tr><td align="left"><input name="go" value="Get Sequences" type="submit"/></td></tr>        
+            <tr><td align="left" style="width: 50px;"><input name="go" value="Get Sequences" type="submit"/></td>     
+        <td align="left"><input name="save" value="Save to File" type="submit"/></td></tr>   
         </table>
     </td></tr>
 
