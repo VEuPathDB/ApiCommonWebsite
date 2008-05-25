@@ -225,6 +225,20 @@
 
   </target>
 
+  <target name="ApiCommonWebsite/View-WebInstallation">
+
+    <ant target="defaultComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="View"/>
+    </ant>
+    
+    <ant target="defaultWebComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="View"/>
+    </ant>
+    
+  </target>
+
   <target name="setJuliLog" if="juliLog.present">
     <dirname  property="webappDir" file="${webappTargetDir}"/>
     <basename property="webapp" file="${webappDir}"/>
