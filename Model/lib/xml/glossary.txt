@@ -158,7 +158,7 @@ Oligonucleotide microarray	Collection of microscopic oligonucleotide spots array
 
 Open Reading Frame	see ORF
 	
-ORF	amino acid sequences computed by translating the six frames of raw genomic sequence using the standard genetic code. We save the translated sequences having at least 50 amino acids. The sequences are not human reviewed. ORF's do not necessarily begin with methionine residues, but they all terminate with a stop codons.
+ORF	amino acid sequences computed by translating the six frames of raw genomic sequence using the standard genetic code. We save the translated sequences having at least 50 amino acids. The sequences are not annotated nor human reviewed. ORF's do not necessarily begin with methionine residues, but they all terminate with a stop codons.
 
 	
 Ortholog	Same gene in different organisms; having evolved from the same ancestral locus.
