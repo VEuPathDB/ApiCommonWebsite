@@ -225,7 +225,7 @@
 
   </target>
 
-  <target name="ApiCommonWebsite/View-WebInstallation">
+  <target name="ApiCommonWebsite/View-WebInstallation" depends="ApiCommonWebsite/Model-Installation">
 
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>

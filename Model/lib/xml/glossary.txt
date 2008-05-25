@@ -155,6 +155,11 @@ Nucmer	NUCleotide MUMmer. Part of the MUMmer alignment package (<a href="www.tig
 Oligo	Oligonucleotide. Short sequence of DNA or RNA, typically of 20-70 nucleotides.
 	
 Oligonucleotide microarray	Collection of microscopic oligonucleotide spots arrayed on a solid surface by covalent attachment to chemically suitable matrices. Used for expression profiling, the monitoring of the expression levels of hundreds or thousands of genes simultaneously. Probes for oligonucleotide microarrays are designed to match parts of known or predicted mRNAs.
+
+Open Reading Frame	see ORF
+	
+ORF	amino acid sequences computed by translating the six frames of raw genomic sequence using the standard genetic code. We save the translated sequences having at least 50 amino acids. The sequences are not human reviewed. ORF's do not necessarily begin with methionine residues, but they all terminate with a stop codons.
+
 	
 Ortholog	Same gene in different organisms; having evolved from the same ancestral locus.
 	
