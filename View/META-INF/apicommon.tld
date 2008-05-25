@@ -112,16 +112,4 @@
     </attribute>
   </tag>
 
-<tag>
-    <name>whileWdkTable</name>
-    <tag-class>org.apidb.apicommon.taglib.WdkTable</tag-class>
-    <body-content>scriptless</body-content>
-    <attribute>
-        <name>var</name>
-        <required>true</required>
-        <rtexprvalue>true</rtexprvalue>
-    </attribute>
-</tag>
-    
-    
 </taglib>
