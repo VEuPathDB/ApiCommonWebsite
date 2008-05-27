@@ -21,7 +21,7 @@ exec <<"EOF";
 $ENV{ORACLE_HOME}/bin/sqlplus \\
 $c->{login}/\\
 $c->{password}\\
-\@$c->{connectString}
+\@'$c->{connectString}'
 EOF
 
 
