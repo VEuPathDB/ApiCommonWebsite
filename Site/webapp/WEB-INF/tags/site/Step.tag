@@ -18,17 +18,39 @@
               required="true"
               description="Number of this step in the protocol"
 %>
-
-<link rel="stylesheet" type="text/css" href="../assets/css/filter_menu.css">
+<c:set var="stepName" value="${step.customName}" />
+<c:if test="${fn:length(stepName) > 15}">
+	<c:set var="stepName" value="${fn:substring(stepName,0,12)}..."/>
+</c:if>
 
 <c:choose>
 	<c:when test="${step.isFirstStep}">
-		<div class="arrowgrey"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
+		<div id="current" class="row2 col1 size1">
+			<h3>
+				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}">${stepName}</a>
+			</h3>
+			<c:if test="${step.nextStep != null}">
+				<ul>
+					<li class='right width1'><span>&nbsp;</span></li>
+				</ul>
+			</c:if>
+		</div>
 	</c:when>
 	<c:otherwise>
-		<div class="operation ${step.operation}"></div>
-		</td>
-		<td>
-			<div class="arrowgrey"><a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNumber}">${step.customName}</a>
+		<div class='row1 size1' style='left:${stepNum * 18 - 8}em'>
+			<h3>
+				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}">${stepName}</a>
+			</h3>
+			<ul>
+				<li class='right-down width2'><span>&nbsp;</span></li>
+			</ul>
+		</div>
+		<div class="row2 size2 operation ${step.operation}" style="left:${stepNum * 18}em; top: 5em; border: none">
+			<c:if test="${step.nextStep != null}">
+				<ul>
+					<li class='right width15'><span>&nbsp;</span></li>
+				</ul>
+			</c:if>
+		</div>
 	</c:otherwise>
 </c:choose>

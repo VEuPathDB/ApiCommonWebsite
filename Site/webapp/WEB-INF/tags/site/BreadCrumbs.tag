@@ -39,80 +39,24 @@
               description="Protocol from the SummaryPage"
 %>
 
+<link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css">
+<link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
+
 <script type="text/javascript" src="js/lib/jquery-1.2.3.js"></script>
 <script type="text/javascript" src="js/filter_menu.js"></script>
-<link rel="StyleSheet" href="misc/filter_menu.css" type="text/css"/>
 <c:set var="stepNumber" value="0" />
 <div id="bread_crumb_div">
-  <table><tr>
-
-<c:set var="steps" value="${protocol.allSteps}" />
-<c:forEach items="${steps}" var="step">
-
-  <td>
-
-	<site:Step step="${step}" protocol="${protocol}" stepNum="${stepNumber}"/>
-
-   <div class="crumb_details">
-	
-    <p><b>Details:&nbsp;</b><pre>${step.details}</pre></p>
-
-    <c:choose>
-       <c:when test="${step.isFirstStep}">
-           <p><b>Results:&nbsp;</b>${step.filterResultSize}</p>
-       </c:when>
-       <c:otherwise>
-           <p><b>Results:&nbsp;</b>${step.filterResultSize}</p>
-           <p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}</p>
-       </c:otherwise>
-    </c:choose>
-          
-	  <!-- a section to display/hide params -->
-          <!-- <div id="showParamArea" style="background:#EEEEEE;">
-             < c:choose>
-                 <c:when test="${wdkAnswer.isBoolean}">
-                        <div>
-                                <%-- boolean question --%>
-                                <nested:root name="wdkAnswer">
-                                    <jsp:include page="/WEB-INF/includes/bqShowNode.jsp"/>
-                                </nested:root>
-	                        </div>
-                        </c:when>
-                        <c:otherwise>
-                            <wdk:showParams wdkAnswer="${wdkAnswer}" />
-                        </c:otherwise>
-              </c:choose>
-             </div>
-    
-    <!-- display result size -->
-    <b>Results:&nbsp; </b>
-          ${wdkAnswer.resultSize}
-
- <c:if test="${wdkAnswer.resultSize == 0}">
-              <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-                 <site:apidbSummary/>
-             </c:if>
-   </c:if>
-
-          <c:if test="${wdkAnswer.resultSize > 0}">
-             (showing ${wdk_paging_start} to ${wdk_paging_end})
-              <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-                 <site:apidbSummary/>
-             </c:if>
-          </c:if> -->
-           
-   </div><!--End Crumb_Detail-->
- </div><!-- End Crumb -->
-</td>
-<c:set var="stepNumber" value="${stepNumber+1}" />
-</c:forEach>
-
-<td><b>&nbsp;&nbsp;</b></td>
-<td>
+	<div id="diagram">
+		<c:set var="steps" value="${protocol.allSteps}" />
+		<c:forEach items="${steps}" var="step">
+			<site:Step step="${step}" protocol="${protocol}" stepNum="${stepNumber}"/>
+			<c:set var="stepNumber" value="${stepNumber+1}" />
+		</c:forEach>
+	</div>
+</div>
 <div id="filter_link_div">
 <site:FilterInterface model="${model}" recordClass="${recordClass}" protocol="${protocol}"/>
 </div>
-</td></tr></table>
 
 </div><!-- End Bread_Crumb_Div -->
 
