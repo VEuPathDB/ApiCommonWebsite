@@ -28,7 +28,14 @@ sub run {
 
   my $dbh = $self->getQueryHandle($cgi);
 
-  print $cgi->header('text/plain');
+  my $type = $cgi->param('downloadType');
+
+  if ($type && $type eq "text") {
+      print $cgi->header('application/x-download');
+  }
+  else {
+      print $cgi->header('text/plain');
+  }
 
   $self->processParams($cgi, $dbh);
 
