@@ -91,7 +91,7 @@
   </table>
 
 <!-- content of current page -->
-<table class="results" width="100%" border="0" cellpadding="3" cellspacing="0">
+<table width="100%" border="0" cellpadding="3" cellspacing="0">
 
 
 <tr class="headerrow">
