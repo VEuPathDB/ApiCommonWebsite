@@ -5,7 +5,7 @@
 <!-- dynamic query grid code -->
 <script defer type="text/javascript" src="/assets/js/dqg.js"></script>
 <!-- dynamic query grid code -->
-<script defer type="text/javascript" src="/assets/js/lib/jquery.dimensions.js"></script>
+<script defer type="text/javascript" src="/assets/js/step.js"></script>
 <!-- dynamic query grid code -->
 <script defer type="text/javascript" src="/assets/js/lib/jquery.accordion.js"></script>
 
