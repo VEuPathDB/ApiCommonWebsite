@@ -24,6 +24,9 @@ body {
 		height: 159px;
 		background-image: url(/assets/images/crypto/backgroundtop.jpg);
 	}
+#header p {
+		font-size: 10px;
+	}
 
 -->
 </style>
@@ -38,6 +41,9 @@ body {
 #header {
 	height: 104px;
 	background-image: url(/assets/images/crypto/backgroundtop_s.jpg);
+}
+#header p {
+	font-size: 9px;
 }
 -->
 </style>
@@ -54,7 +60,7 @@ body {
   	<p><img src="/assets/images/crypto/title1.png" alt="CryptoDB" width="398" height="87" align="left" /></p>
   </c:if>
   <c:if test="${refer != 'home'}">
-	<p><a href="http://www.cryptodb.org"><img src="/assets/images/crypto/title_s.png" alt="CryptoDB" width="256" height="56" align="left" /></a></ p>
+	<p><a href="/"><img src="/assets/images/crypto/title_s.png" alt="CryptoDB" width="256" height="56" align="left" /></a></ p>
   </c:if>
   <p>&nbsp;</p>
   <p>Version 3.8<br />

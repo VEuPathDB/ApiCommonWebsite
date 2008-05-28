@@ -9,7 +9,10 @@
 
   <div id="contentcolumn">
 	<div class="innertube">
-	  <h1>Using ${applicationScope.wdkModel.name}</h1>
+<!--	  <h1>Using ${applicationScope.wdkModel.name}</h1>-->
+
+		<p align="center"><span class="large">Tools:</span> <a href="#"><strong>Genome Browser</strong></a>, <a href="#"><strong>PubMed and Entrez</strong></a>, <a href="#"><strong>BLAST</strong></a>, and <a href="#"><strong>CryptoCyc</strong></a></p> <br>
+		
 	  <div id="half_right">
 	    <form id="form2" name="form1" method="post" action="">
           <label>Text Search:
@@ -58,7 +61,7 @@
   </tr>
 </table>
 
-		<site:tools />
+	
 
 	</div>
   	</div>

@@ -124,7 +124,7 @@ a:hover, a:active {
 }
 
 #mysearchhist {
-	width: 100%x;
+	width: 100%;
 	text-align: center;
 	background-image: url(../images/crypto/bubble_my_searchbox.png);
 	background-repeat: repeat-x;
@@ -135,7 +135,7 @@ a:hover, a:active {
 }
 
 .innertube{
-margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
+	margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 }
 
 #half_left {
@@ -235,7 +235,18 @@ margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 	margin-left: 10px;
 }
 
-
+#infobottom {
+	width: 209px;
+	min-height: 40px;
+	background-image: url(../images/bubble_bottom.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding-top: 2px;
+	padding-right: 19px;
+	padding-bottom: 30px;
+	padding-left: 19px;
+}
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -253,6 +264,8 @@ margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 	font-size: 12px;
 	font-weight: bold;
 	color: #FFFFFF;
+	z-index: 51;
+
 }
 
 #nav a:link, #nav a:visited {
@@ -260,24 +273,27 @@ margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 	width: auto;
 	color: #FFFFFF;
 	text-decoration: none;
+	z-index: 51;
 }
 #nav a:hover, #nav a:active {
 	display: block;
 	width: auto;
 	color: #560000;
 	text-decoration: none;
+	z-index: 51;
 }
 
 #nav li {
 	float: left;
 	width: auto;
+	z-index: 51;
 }
 
 #nav li ul {  /* second-level lists */
 	position: absolute;
 	width: 16em;
 	left: -999em;
-    font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: normal;
 	background-color: #FFFFFF;
@@ -290,23 +306,27 @@ margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 	padding: 6px 6px 6px 18px;
 	line-height: 14px;
 	list-style-image: url(../images/crypto/bullet_arrow.gif);
+	z-index: 51;
 }
 
 #nav li:hover ul ul, #nav li:hover ul ul ul, #nav li.sfhover ul ul, #nav li.sfHover ul ul ul {
 	left: -999em;
+	z-index: 51;
 }
 
 #nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li.sfhover ul, #nav li li.sfhover ul, #nav li li li.sfHover ul {
 	left: auto;
+	z-index: 51;
 }
 
 #nav li li ul a:hover + ul{
 	left:auto;
+	z-index: 51;
 }
 
 #nav li:hover ul {
 	left: auto;
-	
+	z-index: 51;
 }
 
 #nav li ul a:link, #nav li ul a:visited {
@@ -314,6 +334,7 @@ margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 	text-decoration: none;
 	padding: 2px;
 	width: 16em;
+	z-index: 51;
 }
 
 #nav li ul a:hover, #nav li ul a:active {
@@ -323,17 +344,20 @@ margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 	background-color: #FFFFFF;
 	width: 16em;
 	display: block;
+	z-index: 51;
 }
 
 #nav li ul ul {/*   third-and-above-level lists */
 	margin: -2em 0 0 16em;
+	z-index: 51;
 }
-
+	
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =Menu Lists
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 
 #menu_lefttop {
 	width: 220px;
@@ -363,9 +387,11 @@ margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 	color: #CCCCCC;
 	display: block;
 	}	
+	
 #menu_lefttop div {
 	height: auto;
 }
+
 #menu_lefttop div ul{  /* second-level lists */
 	width: 191px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -484,15 +510,19 @@ h2 {
 	margin-bottom: 11px;
 }
 
-.18fnt {
+.large {
 	font-size: 18px;
 	font-weight: bold;
 	line-height: 23px;
 }
-.22fnt {
+.larger {
 	font-size: 22px;
 	font-weight: bold;
 	line-height: 28px;
+}
+
+.small {
+	font-size: 10px;	
 }
 
 .subcolor {
@@ -522,7 +552,7 @@ h2 {
 	 =TABLES 
 	 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/*
+
 table .3column {
 	clear: both;
 }
@@ -583,6 +613,10 @@ td.lines {
 	padding: 4px;
 }
 
+td.lines {
+	padding: 4px;
+}
+
 td.linesalt {
 	background-color: #EEEEEE;
 	padding: 4px;
@@ -596,7 +630,7 @@ tr.linesalt {
 	background-color: #EEEEEE;
 	padding: 4px;
 }
-*/
+
 
 table .3column {
 	clear: both;

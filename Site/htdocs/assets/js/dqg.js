@@ -10,7 +10,7 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$("span.small_links a").click(function(){
+	$("p.small a").click(function(){
 		var val = $(this).attr("href");
 		var headList = $(this).parent().siblings("ul.heading_list");
 		if(val == "true"){

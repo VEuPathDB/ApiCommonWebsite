@@ -32,6 +32,7 @@
 	</c:when>
 	<c:when test="${fn:length(qSetNames) > 1}">
 		<div id="info">
+			<p class="small" align="center"><a href="false">Hide all</a> | <a href="true">Show all</a></p>
 			<ul class="heading_list">
 				<c:forEach items="${qSetNames}" var="qSetName">
 					<c:set var="qSet" value="${wdkModel.questionSetsMap[qSetName]}" />
@@ -45,21 +46,18 @@
 							</ul>
 						</div>
 					</li>
-				</c:forEach>
-			</ul>	
-			
-			<span class="small_links">
-				<a href="true">show All</a>
-				<a href="false">hide All</a>
-			</span><br>
-			
+				</c:forEach>	
+			</ul>
+		</div>
+		<div id="infobottom">
 			<div id="mysearchhist">
-				<a href="#">My Saved Searches: 0</a>
+				<a href="#">My Search History: 0</a>
 			</div>
-    	</div>
+		</div>
 	</c:when>
 	<c:otherwise>
 		<div id="info">
+			<p class="small" align="center"><a href="false">Hide all</a> | <a href="true">Show all</a></p>
 			<ul class="heading_list">
 				<c:set var="qSet" value="${wdkModel.questionSetsMap[questionSets]}" />
 				<c:set var="qByCat" value="${qSet.questionsByCategory}" />
@@ -76,18 +74,14 @@
 					</li>
 				</c:forEach>
 			</ul>	
-			
-			<span class="small_links">
-				<a href="true">show All</a>
-				<a href="false">hide All</a>
-			</span><br>
-			
+		</div>
+		<div id="infobottom">
 			<div id="mysearchhist">
-				<a href="#">My Saved Searches: 0</a>
+				<a href="#">My Search History: 0</a>
 			</div>
     	</div>
 	</c:otherwise>
 </c:choose>	
 
-<img src="/assets/images/bubble_bottom.png" width="247" height="35" />
+<!--<img src="/assets/images/bubble_bottom.png" width="247" height="35" />-->
 </div>

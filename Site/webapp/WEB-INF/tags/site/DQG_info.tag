@@ -24,5 +24,7 @@
           <li><span class="subcolor">Genome Version: </span>1 (03/04)</li>
           </ul>
       </li>
-      </ul>
-  </div><!--end info-->
+	</ul>
+</div>
+<div id="infobottom">
+</div><!--end info-->
