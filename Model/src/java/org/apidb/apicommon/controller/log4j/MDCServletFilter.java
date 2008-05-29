@@ -30,8 +30,10 @@ public class MDCServletFilter implements Filter {
                        FilterChain chain) 
               throws IOException, ServletException {
     try {
-    
-      MDC.put("ipAddress", request.getRemoteAddr() );
+      
+	  String ipAddress = request.getRemoteAddr();
+      if (ipAddress != null) 
+          MDC.put("ipAddress", ipAddress);
 
       // Continue processing the rest of the filter chain.
       chain.doFilter(request, response);
