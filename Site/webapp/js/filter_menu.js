@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 				$("input[value=Get Answer]",quesForm).val("Run Filter");
 
-				$("table:first",quesForm).prepend("<tr><td valign='top' align='right'><b>Operator</b></td><td><input type='radio' name='myProp(booleanExpression)' value='" + historyId + " AND' checked='checked'/>&nbsp;AND&nbsp;<input type='radio' name='myProp(booleanExpression)' value='" + historyId + " OR'>&nbsp;OR&nbsp;<input type='radio' name='myProp(booleanExpression)' value='" + historyId + " NOT'>&nbsp;NOT&nbsp</td></tr>");
+				$("table:first",quesForm).prepend("<tr><td valign='top' align='right' style='padding: 5px 0;'><b>Operator</b></td><td><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + historyId + " AND' checked='checked'/>&nbsp;AND&nbsp</li><li class='operation INTERSECT'/><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + historyId + " OR'>&nbsp;OR&nbsp;</li><li class='operation UNION'/><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + historyId + " NOT'>&nbsp;NOT&nbsp</li><li class='operation MINUS'/></ul></div></td></tr>");
 
 				var action = quesForm.attr("action").replace(/processQuestion/,"processFilter");
 					
