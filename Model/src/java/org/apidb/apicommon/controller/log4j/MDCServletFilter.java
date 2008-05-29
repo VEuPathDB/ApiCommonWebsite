@@ -2,6 +2,8 @@ package org.apidb.apicommon.controller.log4j;
 
 import java.io.*;
 import javax.servlet.*;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.MDC;
 
 /**
@@ -29,16 +31,32 @@ public class MDCServletFilter implements Filter {
                        ServletResponse response,
                        FilterChain chain) 
               throws IOException, ServletException {
-    try {
+              
+    String ipAddress;
+    String sessionId;
     
-      MDC.put("ipAddress", request.getRemoteAddr() );
+    try {
+      
+      ipAddress = request.getRemoteAddr();
+      if (ipAddress != null)
+          MDC.put("ipAddress", ipAddress);
 
+      HttpSession session = ((HttpServletRequest)request).getSession(false);
+      if (session != null) {
+        sessionId = session.getId();
+        MDC.put("sessionId", sessionId);
+      }
+      
       // Continue processing the rest of the filter chain.
       chain.doFilter(request, response);
 
     } finally {
-      // always clean up the variables associated with this request
-      MDC.remove("ipAddress");
+    /** should remove data at the end, but if I do that then
+        internal classes don't get the info. But, hey, what 
+        harm can not cleaning do? **/
+      //MDC.remove("ipAddress");
+      //MDC.remove("sessionId");
+      
     }
   }
 }
