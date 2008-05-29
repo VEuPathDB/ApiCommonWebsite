@@ -37,8 +37,7 @@ public class MDCServletFilter implements Filter {
       chain.doFilter(request, response);
 
     } finally {
-      // always clean up the variables associated with this request
-      MDC.remove("ipAddress");
+      //MDC.remove("ipAddress");
     }
   }
 }
