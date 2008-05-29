@@ -44,7 +44,8 @@ public class MDCServletFilter implements Filter {
       HttpSession session = ((HttpServletRequest)request).getSession(false);
       if (session != null) {
         sessionId = session.getId();
-        MDC.put("sessionId", sessionId);
+        if (sessionId != null)
+            MDC.put("sessionId", sessionId);
       }
       
       // Continue processing the rest of the filter chain.
