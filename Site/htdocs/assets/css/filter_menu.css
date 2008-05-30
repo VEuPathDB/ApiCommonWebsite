@@ -79,6 +79,20 @@
 	font-size: 26px;
 }
 
+.form_subtitle {
+	position:relative;
+	left: 20px;
+	top:4px;
+	font-size: 20px;
+}
+
+#form_title {
+	position:relative;
+	left: 65px;
+	top:4px;
+	font-size: 26px;
+}
+
 #bread_crumb_div {
 	
 }
@@ -122,4 +136,32 @@ background: url(http://ctreatma.cryptodb.org/images/operationIcons.gif);
 
 #bread_crumb_div td {
 	vertical-align: top;
+}
+
+
+#operations ul li {
+	float: left;
+	margin: 2px 0;
+}
+
+#operations .opcheck {
+        clear: left;
+}
+
+.filter {
+	border: 1px solid black;
+}
+
+.filter.params {
+	width:63%;
+	float:left;
+	padding: 0;
+	margin: 4px 2% 4px 4%;
+}
+
+.filter.operators {
+	width:24%;
+	float:right;
+	padding: 0;
+	margin: 4px 4% 4px 0;
 }
