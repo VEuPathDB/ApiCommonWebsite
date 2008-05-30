@@ -358,7 +358,6 @@ a:hover, a:active {
 	 =Menu Lists
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-
 #menu_lefttop {
 	width: 220px;
 }
@@ -402,6 +401,17 @@ a:hover, a:active {
 	list-style-image: url(../images/crypto/bullet_arrow.gif);
 }
 
+#menu_lefttop_drop {
+   width: 191px;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12px;
+   font-weight: normal;
+   padding: 6px;
+   line-height: 15px;
+   border-width: 1px;
+   border-color: 630d0d;
+   background-color: #FFFFFF;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =Search Boxes
@@ -443,7 +453,7 @@ a:hover, a:active {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =Arrow Chains 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/	
-
+/*
 #arrowwrap {
 	height: 29px;
 }
@@ -490,6 +500,58 @@ a:hover, a:active {
 .arrowred a:hover {
 	color: #CCCCCC;
 }
+*/
+
+.chain_background {
+   background: #ededed
+}
+
+.arrowgrey {
+   padding: 4px;
+   background: #d0cfcf;
+   text-align: left;
+   border-width: 1px;
+   border-color: #848484;
+}
+
+.arrowgrey_drk {
+   padding: 4px;
+   background: #b8b8b8;
+   text-align: left;
+   border-width: 1px;
+   border-color: #848484;
+}
+
+.arrowred {
+   padding: 6px 14px 4px 8px;
+   text-align: left;
+   background-image: url(../images/arrow_red.gif);
+   background-repeat: no-repeat;
+   background-position: right;   }
+
+.arrowgrey a:hover {
+   color: #FFFFFF;
+}
+
+.arrowgrey_drk a:hover {
+   color: #FFFFFF;
+}
+
+.arrowred a:link, .arrowred a:visited{
+   color: white;
+}
+
+.arrowred a:hover {
+   color: #CCCCCC;
+}
+
+.selectedarrow {
+   padding: 4px;
+   background: #ea9797;
+   text-align: left;
+   border-width: 1px;
+   border-color: #b16565;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =Fonts 
@@ -534,18 +596,20 @@ h2 {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =FOOTER 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+	
 #footer{
-	width: 75%;
-	text-align: center;
-	background-color:#FFFFFF;
-	background-image: url(../images/crypto/footer.png);
-	background-repeat: repeat-x;
-	color: #505050;
-	padding: 9px;
-	line-height: 1.2em;
-	clear: both;
+   font-size: 10px;
+   width: 75%;
+   text-align: center;
+   background-color:#FFFFFF;
+   background-image: url(../images/crypto/footer.png);
+   background-repeat: repeat-x;
+   color: #505050;
+   padding: 9px;
+   line-height: 1.2em;
+   clear: both;
 }
+	
 	
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -692,4 +756,10 @@ clear {
 
 .small_links {
 	font-size: 9px;
+}
+
+.help_div {
+	background-color: lightYellow;
+	width: 50px;
+	height: 20px;
 }

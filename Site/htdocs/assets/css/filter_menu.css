@@ -63,7 +63,7 @@
 }
 
 #query_selection .top_nav li:hover ul{
-	left:8em;
+	left:10.5em;
 	top:0;
 }
 
@@ -122,13 +122,4 @@ background: url(http://ctreatma.cryptodb.org/images/operationIcons.gif);
 
 #bread_crumb_div td {
 	vertical-align: top;
-}
-
-#operations ul li {
-	float: left;
-	margin: 2px 0;
-}
-
-#operations .opcheck {
-        clear: left;
 }

@@ -14,7 +14,7 @@
       We need to use ems, because the border width counts in the box size
       (except in IE5.x/Win, of course).  It will affect arrow lengths. */
    #diagram div {
-     border: 0.05em solid #000;
+     border: 2px solid #000;
    }
 
    /* All DIVs and list items in the diagram are absolutely positioned. */
@@ -96,15 +96,15 @@
      left:          100%;
      margin-bottom: 0.05em;
      margin-left:   0em;
-     border-top: 0.05em solid #000;
-     border-right:   0.05em solid #000;
+     border-top: 0.25em solid #000;
+     border-right:   0.25em solid #000;
    }
 
 	#diagram .right { /* Straight horizontal transition, left to right. */
      top:           0;
      left:          100%;
      margin-left:   0.05em;
-     border-bottom: 0.05em solid #000;
+     border-bottom: 0.25em solid #000;
    }
    #diagram .right a {
      top:  0;
@@ -116,9 +116,9 @@
 	#diagram .right-down span {
      bottom:       0;
      left:         1.45em;
-     border-top:    0.5em solid #000;
+     border-top:    0.6em solid #000;
      border-right:  0.3em solid #fff;
-     border-left:   0.3em solid #fff;
+     border-left:   0.5em solid #fff;
    }
 
 	* html #diagram .right-down span  {
@@ -129,10 +129,10 @@
 	}
    #diagram .right span {
      right:         0;
-     bottom:        -0.3em;
+     bottom:        -0.4em;
      border-top:    0.3em solid #fff;
-     border-bottom: 0.3em solid #fff;
-     border-left:   0.5em solid #000;
+     border-bottom: 0.4em solid #fff;
+     border-left:   0.6em solid #000;
    }
 
    * html #diagram .right span {
@@ -148,7 +148,7 @@
    
    .col1 { left: 1em }
    
-   .size1 { width: 8em }
+   .size1 { width: 8em; height: 3em; }
    .size2 { width: 2em }
 
    .height1 { height: 3.9em }
@@ -188,4 +188,33 @@
 	.operation.MINUS {
 		
 		background: url(/assets/images/operationIcons.gif);
+	}
+	
+	.operation.UNION.selected {
+		background: url(/assets/images/operationIcons_pink.gif) 0px -48px;
+	}
+
+	.operation.INTERSECT.selected {
+		height: 24px;
+		background: url(/assets/images/operationIcons_pink.gif) 0px -24px;
+	}
+
+	.operation.MINUS.selected {
+		
+		background: url(/assets/images/operationIcons_pink.gif);
+	}
+
+	span.stepNumber {
+		position: absolute;
+		top:8.25em;
+		font-weight:bold;
+	}
+	
+	span.resultCount {
+		font-size:10px;
+		font-style: italic;
+	}
+	
+	div.arrowgrey span.resultCount{
+		padding-left: 6px;
 	}
