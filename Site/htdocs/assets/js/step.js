@@ -37,8 +37,8 @@ $("#diagram").ready(function(){
 				className = "selectedarrow";
 			else
 	 			className = "selected";
-		}
 		element = $("div#diagram div#step_" + stepnumber);
+		}
 	}
 	element.addClass(className);
 	//END HIGH LIGHTING CODE
