@@ -15,6 +15,24 @@
 <c:choose>
 	<c:when test="${wdkAnswer.recordClass.fullName == 'GeneRecordClasses.GeneRecordClass'}">
 		<c:set var="type" value="Gene" />
+	</c:when>
+	<c:when test="${wdkAnswer.recordClass.fullName == 'SequenceRecordClasses.SequenceRecordClass'}">
+		<c:set var="type" value="Sequence" />
+	</c:when>
+	<c:when test="${wdkAnswer.recordClass.fullName == 'EstRecordClasses.EstRecordClass'}">
+		<c:set var="type" value="EST" />
+	</c:when>
+	<c:when test="${wdkAnswer.recordClass.fullName == 'OrfRecordClasses.OrfRecordClass'}">
+		<c:set var="type" value="ORF" />
+	</c:when>
+	<c:when test="${wdkAnswer.recordClass.fullName == 'SnpRecordClasses.SnpRecordClass'}">
+		<c:set var="type" value="SNP" />
+	</c:when>
+	<c:when test="${wdkAnswer.recordClass.fullName == 'AssemblyRecordClasses.AssemblyRecordClass'}">
+		<c:set var="type" value="Assembly" />
+	</c:when>
+	<c:when test="${wdkAnswer.recordClass.fullName == 'IsolateRecordClasses.IsolateRecordClass'}">
+		<c:set var="type" value="Isolate" />
 	</c:when>	
 </c:choose>
 
@@ -33,3 +51,4 @@
 		</div>
 	</div>
 </div>
+<site:footer />

@@ -6,12 +6,12 @@
 <div id="menubar">
 
 <ul id="nav">
-<li><a href="<c:url value="/queries_tools.jsp"/>">Searches &amp; Tools<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a>
+<li><a href="#">Searches &amp; Tools<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a>
   <site:drop_down_QG />
 </li>
 <li>
-	<a href="<c:url value="/showQueryHistory.do"/>">
-		<div id="mysearch">My Searches: 0</div>
+	<a href="#">
+		<div id="mysearch">My Saved Searches: 0</div>
 	</a>
 </li>
 <li><a href="#"><img src="/assets/images/menu_divider4.png" width="20" height="11" />Data Sources<img src="/assets/images/menu_divider.png" width="24" height="11" /></a>

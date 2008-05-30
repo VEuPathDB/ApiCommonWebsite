@@ -42,10 +42,10 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css">
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
 
-<script type="text/javascript" src="js/lib/jquery-1.2.3.js"></script>
-<script type="text/javascript" src="js/filter_menu.js"></script>
+<script type="text/javascript" src="/assets/js/lib/jquery-1.2.3.js"></script>
+<script type="text/javascript" src="/assets/js/filter_menu.js"></script>
 <c:set var="stepNumber" value="0" />
-<div id="bread_crumb_div">
+<div class="chain_background" id="bread_crumb_div">
 	<div id="diagram">
 		<c:set var="steps" value="${protocol.allSteps}" />
 		<c:forEach items="${steps}" var="step">

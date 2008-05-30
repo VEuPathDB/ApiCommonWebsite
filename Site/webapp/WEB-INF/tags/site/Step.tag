@@ -36,38 +36,40 @@
 
 <c:choose>
 	<c:when test="${step.isFirstStep}">
-		<div id="current" class="row2 col1 size1">
+		<div id="step_${stepNum}" class="row2 col1 size1 arrowgrey">
 			<h3>
 				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}">${stepName}</a><br>
 			</h3>
 			<site:StepDetail step="${step}"/>
-			Results:&nbsp;${step.filterResultSize}
+			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>			
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li class='right width1'><span>&nbsp;</span></li>
 				</ul>
 			</c:if>
 		</div>
+		<span class="stepNumber"style="left:3em;">Step&nbsp;${stepNum + 1}</span>
 	</c:when>
 	<c:otherwise>
-		<div class='row1 size1' style='left:${left_offset - 8}em'>
+		<div id="step_${stepNum}_sub" class='row1 size1 arrowgrey' style='left:${left_offset - 8}em'>
 			<h3>
 				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}&subquery=true">${stepName}</a><br>
 			</h3>
 			<site:StepDetail step="${step}"/>
-			Results:&nbsp;${step.subQueryResultSize}
+			<span class="resultCount">Results:&nbsp;${step.subQueryResultSize}</span>
 			<ul>
 				<li class='right-down width2'><span>&nbsp;</span></li>
 			</ul>
 		</div>
-		<div class="row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 5em; border: none">
+		<div id="step_${stepNum}" class="row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 5em; border: none">
 			<a class="operation" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}"><img src="/assets/images/transparent1.gif"/></a><br>
-			Step ${stepNum}<br>Results:&nbsp;${step.filterResultSize}
+			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li class='right width15'><span>&nbsp;</span></li>
 				</ul>
 			</c:if>
 		</div>
+		<span class="stepNumber" style="left:${left_offset}em">Step&nbsp;${stepNum + 1}</span>
 	</c:otherwise>
 </c:choose>
