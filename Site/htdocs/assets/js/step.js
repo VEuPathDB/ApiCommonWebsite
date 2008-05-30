@@ -12,7 +12,12 @@ $("#diagram").ready(function(){
 		a.click();
 	});
 	
-	var stepnumber = parseUrl("step")[0];
+	//HIGH LIGHTING CODE
+	var stepnumber = parseUrl("step");
+	if(stepnumber == "")
+		stepnumber = -1;
+	else
+		stepnumber = stepnumber[0];
 	var subquery = parseUrl("subquery");
 	if(subquery == 'false' || subquery.length == 0)
 		subquery = false;
@@ -20,17 +25,24 @@ $("#diagram").ready(function(){
 		subquery = true;
 	var className = "";
 	var element = "";
-	if(subquery){
-		className = "selectedarrow";
-		element = $("div#diagram div#step_" + stepnumber + "_sub");
+	if(stepnumber == -1){
+		className = "selected";
+		element = $("div#diagram div:last");
 	}else{
-		if(stepnumber == 0)
+		if(subquery){
 			className = "selectedarrow";
-		else
-	 		className = "selected";
+			element = $("div#diagram div#step_" + stepnumber + "_sub");
+		}else{
+			if(stepnumber == 0)
+				className = "selectedarrow";
+			else
+	 			className = "selected";
+		}
 		element = $("div#diagram div#step_" + stepnumber);
 	}
 	element.addClass(className);
+	//END HIGH LIGHTING CODE
+	
 });
 
 
