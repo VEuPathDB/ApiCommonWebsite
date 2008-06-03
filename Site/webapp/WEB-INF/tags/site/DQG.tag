@@ -11,7 +11,7 @@
 	<div class="innertube">
 <!--	  <h1>Using ${applicationScope.wdkModel.name}</h1>-->
 
-		<p align="center"><span class="large">Tools:</span> <a href="#"><strong>Genome Browser</strong></a>, <a href="#"><strong>PubMed and Entrez</strong></a>, <a href="#"><strong>BLAST</strong></a>, and <a href="#"><strong>CryptoCyc</strong></a></p> <br>
+		<p align="center"><span class="large"></span> <a href="#"><strong>BLAST</strong></a> &nbsp;|&nbsp; <a href="#"><strong>Sequence Retrieval</strong></a> &nbsp;|&nbsp; <a href="#"><strong>PubMed and Entrez</strong></a> &nbsp;|&nbsp; <a href="#"><strong>GBrowse</strong></a> &nbsp;|&nbsp; <a href="#"><strong>CryptoCyc</strong></a></p> <br>
 		
 	  <div id="half_right">
 	    <form id="form2" name="form1" method="post" action="">
@@ -23,7 +23,7 @@
 	  </div>
 	  <div id="half_left">
 	    <form id="form1" name="form1" method="post" action="">
-	      <label><strong>Search by:: </strong>Gene ID:
+	      <label>Gene ID:
 	        <input name="Gene_ID" type="text" class="search-box" id="Gene_ID" />
           </label>
           <img src="/assets/images/mag_glass.png" alt="SEARCH!" width="23" height="23" class="img_align_middle" />

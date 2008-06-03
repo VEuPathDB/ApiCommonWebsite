@@ -7,7 +7,7 @@
 				<div><ul>
 					<li><a href="#">CryptoDB 3.7 is released with isolates and<em> C. muris</em> ESTs</a><br />(19 February 2008)</li>
 					<li><a href="#">CryptoDB 3.6 is released with SNP data from <em>C. parvum</em> IOWA, MD, TU114 strains</a><br />(6 December 2007)</li>
-					<li><a href="#">Status of the <em>C. muris</em> Genome Sequencing Project </a><br />A preliminary assembly of C. muris was obtained at approximately 4.5 X coverage, and reveals a ~9Mb genome with average cytosine-guanine content (%GC) of ~28.5 %. This assembly is based on ~50,000 reads obtained mostly from a small-insert library and a fosmid library. This assembly is estimated to contain ~ 92% of the ~9Mb genome, and consists of 927 contigs arranged into 595 scaffolds.<br />(18 June 2007)</li>
+					<li><a href="#">Status of the <em>C. muris</em> Genome Sequencing Project </a><br />(18 June 2007)</li>
 				</ul></div>
 				<img src="/assets/images/crypto/menu_lft1.png" width="208" height="12" />
 				<a class="heading" href="#">Web Tutorials</a>
@@ -19,7 +19,7 @@
 						<li>List of Gene Identifiers as Query Input<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
 				</ul></div>
 				<img src="/assets/images/crypto/menu_lft1.png" width="208" height="12" />
-				<a class="heading" href="#">Related Sites</a>
+				<a class="heading" href="#">Community Links</a>
 				<div><ul>
 						<li><a href="#"> EuPathDB.org</a></li>
 						<li><a href="#">PlasmoDB.org</a></li>
