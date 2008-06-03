@@ -26,7 +26,8 @@
 	min-width: 900px;
 	max-width: 78%;
 	background-color: #FFFFFF;
-	background-image: url(../images/crypto/footer.png);
+	background-image: url(../images/filter_top.gif);
+/*	background-image: url(../images/crypto/footer.png);*/
 	background-repeat: repeat-x;
 	border: 1px solid #345d9b;	
 	padding-bottom: 8px;
@@ -95,37 +96,8 @@
 	font-size: 26px;
 }
 
-#bread_crumb_div {
-	
-}
 
-.crumb_details {
-	background-color: lightYellow;
-	border: solid black;
-	position: absolute;
-	z-index: 99;
-}
-/*
-.operation {
-	height: 21px;
-	width: 32px;
-	margin-top: -4px;
-	margin-left: 2px;
-	margin-right: 2px;
-}
 
-.operation.UNION {
-background: url(http://ctreatma.cryptodb.org/images/operationIcons.gif) 0px -48px;
-}
-
-.operation.INTERSECT {
-background: url(http://ctreatma.cryptodb.org/images/operationIcons.gif) 0px -24px;
-}
-
-.operation.MINUS {
-background: url(http://ctreatma.cryptodb.org/images/operationIcons.gif);
-}
-*/
 .dragHandle {
 	position: absolute;
 	top: 0px;
@@ -134,10 +106,6 @@ background: url(http://ctreatma.cryptodb.org/images/operationIcons.gif);
 	height: 20px;
 	width: 20px;
 	cursor: move;
-}
-
-#bread_crumb_div td {
-	vertical-align: top;
 }
 
 #operations {

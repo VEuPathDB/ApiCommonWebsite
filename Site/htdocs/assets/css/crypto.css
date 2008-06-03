@@ -742,6 +742,51 @@ tr.lines td, tr.linesalt td {
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    =RED BUTTON
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+a.redbutton {
+   color: white;
+/*   display: block;*/
+/*   float: left;*/
+   font: normal 13px arial, sans-serif;
+   height: 40px;
+   margin-right: 6px;
+   padding-right: 3px; /* sliding doors padding */
+   text-decoration: none;
+   background-attachment: scroll;
+   background-color: transparent;
+/*   background-image: url(../images/redboxa.gif);*/
+   background-repeat: no-repeat;
+   background-position: right top;   
+   width: 95px;
+}
+
+a.redbutton span {
+ /*  display: block;*/
+   line-height: 13px;
+   padding: 14px 15px 13px 18px;
+   background-color: transparent;
+   background-image: url(../images/redboxb.gif);
+   background-repeat: no-repeat;
+}
+
+a.redbutton:active {
+   background-position: bottom right;
+   color: #cecece;
+   outline: none; /* hide dotted outline in Firefox */
+}
+
+a.redbutton:active span {
+   background-position: bottom left;
+   padding: 15px 15px 12px 18px; /* push text down 1px */
+}
+
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =MISC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
