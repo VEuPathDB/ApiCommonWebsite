@@ -19,26 +19,32 @@ $(document).ready(function(){
 				var historyId = $("#history_id").val();
 				var stepNum = $("#target_step").val() - 1;
 				var close_link = "<a id='close_filter_query' href='javascript:close()'>close[x]</a>";
-				var quesTitle = $("b font[size=+3]",data).parent().text().replace(/Identify Genes based on/,"");
+				var quesTitle = $("h1",data).text().replace(/Identify Genes based on/,"");
 				var quesForm = $("form",data);
 
 				$("input[value=Get Answer]",quesForm).val("Run Step");
-				$("div:last",quesForm).attr("style", "clear:both;");
+				$("div:last",quesForm).attr("align", "");
+				$("div:last",quesForm).attr("style", "float:left;margin: 45px 0 0 1%;");
 
                                 $("table:first", quesForm).wrap("<div class='filter params'></div>");
 				$("table:first", quesForm).attr("style", "margin-top:15px;");
 
+				// Bring in the advanced params, if exist, and remove styling
 				var advanced = $("#advancedParams_link",quesForm);
 				advanced = advanced.parent();
 				advanced.remove();
+				advanced.attr("style", "");
 				$(".filter.params", quesForm).append(advanced);
-				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>" + quesTitle + "</span><br>"); 
+				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Add&nbsp;Step&nbsp;" + (stepNum + 1) + ": " + quesTitle + "</span></br>");
+				//$(".filter.params", quesForm).prepend("<span class='form_subtitle'>" + quesTitle + "</span><br>"); 
 
-				quesForm.prepend("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + stepNum + "</span><table style='margin-top:15px;left:'><tr><td valign='top' align='right' style='padding: 5px 0 5px 70px;'><b>Operator</b></td><td><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " AND' checked='checked'/>&nbsp;AND&nbsp</li><li class='operation INTERSECT'/><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " OR'>&nbsp;OR&nbsp;</li><li class='operation UNION'/><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " NOT'>&nbsp;NOT&nbsp</li><li class='operation MINUS'/></ul></div></td></tr></table>");
-
+				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + (stepNum + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " OR'><li class='operation UNION'/><li>&nbsp;" + stepNum + "&nbsp;<b>UNION</b>&nbsp;" + (stepNum + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + (stepNum + 1) + "</li></ul></div></div>");
 				var action = quesForm.attr("action").replace(/processQuestion.do/,"processFilter.do?protocol=" + proto);
 					
-				quesForm.prepend("<span id='form_title'>Add A Step</span>");
+				quesForm.prepend("<hr style='width:99%'/>");
+				quesForm.prepend("<h1>Add&nbsp;Step</h1>");
+				//quesForm.prepend("<h1>Add&nbsp;Step&nbsp;" + (stepNum + 1) + "</h1>");
+
 				quesForm.attr("action",action);
 				$("#query_form").html(close_link);
 				$("#query_form").append("<img class='dragHandle' src='images/HAND.png'/>");

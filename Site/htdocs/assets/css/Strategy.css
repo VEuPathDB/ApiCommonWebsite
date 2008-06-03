@@ -111,6 +111,11 @@
      left: 100%;
    }
 
+   #strategy_name {
+	font-size: 12pt;
+	margin-right: 40px;
+   }
+
 	/* Arrowheads */
    
 	#diagram .right-down span {
@@ -154,18 +159,18 @@
    .height1 { height: 3.9em }
 
    .width1 {
-		width: 9em;
-		height: .44em;
+		width: 8.9em;
+		height: .3em;
 	 }
 	
 	.width15 {
-		width: 9em;
+		width: 8.9em;
 		height: 0em;
 	 }
 		
    .width2 { 
 		width: 1.75em;
-		height: 1.75em;	
+		height: 1.5em;	
 	 }
 	
 	.operation {

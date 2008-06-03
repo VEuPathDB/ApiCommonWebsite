@@ -10,6 +10,9 @@
 <c:set var="history" value="${requestScope.wdkHistory}"/>
 <c:set var="model" value="${applicationScope.wdkModel}" />
 <c:set var="protocol" value="${requestScope.wdkProtocol}" />
+<c:set var="commandUrl">
+    <c:url value="/processSummary.do?${wdk_query_string}" />
+</c:set>
 
 <c:set var="type" value="None" />
 <c:choose>
@@ -38,6 +41,30 @@
 
 <site:home_header refer="customSummary" />
 <site:menubar />
+
+<script type="text/javascript">
+<!--
+
+function addAttr() {
+    var attributeSelect = document.getElementById("addAttributes");
+    var index = attributeSelect.selectedIndex;
+    var attribute = attributeSelect.options[index].value;
+    
+    if (attribute.length == 0) return;
+
+    var url = "${commandUrl}&command=add&attribute=" + attribute;
+    window.location.href = url;
+}
+
+
+function resetAttr() {
+    if (confirm("Are you sure you want to reset the column configuration back to the default?")) {
+        var url = "${commandUrl}&command=reset";
+        window.location.href = url;
+    }
+}
+//-->
+</script>
 
 <div id="contentwrapper">
   	<div id="contentcolumn2">
