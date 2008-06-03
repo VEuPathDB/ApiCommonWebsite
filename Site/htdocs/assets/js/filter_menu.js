@@ -68,12 +68,12 @@ $(document).ready(function(){
 	$("#filter_link").click(function(){;
 		if($(this).text() == "Add Step"){
 			$("#filter_div").fadeIn("normal");
-			$(this).text("Cancel [X]");
+			$(this).html("<span>Cancel [X]</span>");
 	}else{
 			$("#filter_div").fadeOut("normal");
 			$("#query_selection").show();
 			$("#query_form").hide();
-			$(this).text("Add Step");
+			$(this).html("<span>Add Step</span>");
 	}
 	});
 

@@ -1,16 +1,25 @@
 $("#diagram").ready(function(){
+/*	
 	$(".crumb_name").mouseover(function(){
 		var detail = $(this).parent().siblings(".crumb_details");
-		detail.show();
-	}); 
-	$(".crumb_name").mouseout(function(){
-		var detail = $(this).parent().siblings(".crumb_details");
-		detail.hide();		
+		detail.addClass("myhover");
 	});
+	
+	$(".crumb_detail").mouseout(function(){
+		var detail = $(this).parent().siblings(".crumb_details");
+		detail.removeClass("myhover");
+	});
+*/	 
+/*	$(".crumb_name").mouseout(function(){
+		var detail = $(this).parent().siblings(".crumb_details");
+		detail.removeClass("myhover");		
+	});
+*/
 	$(".crumb").click(function(){
 		var a = $(this).children("h3").children("a");
 		a.click();
 	});
+	
 	
 	//HIGH LIGHTING CODE
 	var stepnumber = parseUrl("step");

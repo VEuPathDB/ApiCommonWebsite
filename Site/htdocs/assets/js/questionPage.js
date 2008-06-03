@@ -14,11 +14,20 @@ function showParamGroup(group, isShow)
     return false;
 }
 
-$(document).ready(function(){
+function toggleHelp(id)
+{
+	//var id = a-element.attr("href");
+	var ele = $("div#help_" + id);
+	ele.toggle();
+}
+
+/*$(document).ready(function(){
 	$(".help_div").hide();
 	$("a.help_link").click(function(){
 		var id = $(this).attr("href");
-		$(this).siblings("div#" + id).toggle();
+		var ele = $("div#" + id);
+		ele.toggle();
 		return false;
 	});
 });
+*/
