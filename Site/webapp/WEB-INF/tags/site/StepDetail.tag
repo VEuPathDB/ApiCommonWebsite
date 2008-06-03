@@ -9,26 +9,21 @@
               description="Step to be displayed by this tag"
 %>
 
-<c:set var="wdkAnswer" value="${requestScope.wdkAnswer}" />
-  <div class="crumb_details">
-	
-   <p><b>Details:&nbsp;</b><pre>${step.details}</pre></p>
+<c:set value="${step.filterHistory.answer.question.fullName}" var="questionName" />
+<c:set value="${step.filterHistory.answer.questionUrlParams}" var="urlParams"/>
+
+  <!--<div class="crumb_details">-->
+	<p>Details:<pre>${step.details}</pre></p>
 
    <c:choose>
       <c:when test="${step.isFirstStep}">
           <p><b>Results:&nbsp;</b>${step.filterResultSize}</p>
       </c:when>
       <c:otherwise>
-          <p><b>Step Results:&nbsp;</b>${step.filterResultSize}</p>
           <p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}</p>
       </c:otherwise>
    </c:choose>
-<!--
-<c:if test="${wdkAnswer.resultSize == 0}">
-             <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-                <site:apidbSummary/>
-            </c:if>
-</c:if>
--->
-          
-  </div><!--End Crumb_Detail-->
+   <div class="crumb_menu">
+		<a href="#">view</a>&nbsp;|&nbsp;<a href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0">edit</a>&nbsp;|&nbsp;<a href="#">delete</a>
+   </div>       
+ <!-- </div>End Crumb_Detail-->

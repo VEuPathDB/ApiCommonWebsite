@@ -38,9 +38,10 @@
 	<c:when test="${step.isFirstStep}">
 		<div id="step_${stepNum}" class="row2 col1 size1 arrowgrey">
 			<h3>
-				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}">${stepName}</a><br>
+				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}">${stepName}
+					<span><site:StepDetail step="${step}"/></span>
+				</a><br>
 			</h3>
-			<site:StepDetail step="${step}"/>
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>			
 			<c:if test="${step.nextStep != null}">
 				<ul>
@@ -53,9 +54,10 @@
 	<c:otherwise>
 		<div id="step_${stepNum}_sub" class='row1 size1 arrowgrey' style='left:${left_offset - 8}em'>
 			<h3>
-				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}&subquery=true">${stepName}</a><br>
+				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}&subquery=true">${stepName}
+					<span><site:StepDetail step="${step}"/></span>
+				</a><br>
 			</h3>
-			<site:StepDetail step="${step}"/>
 			<span class="resultCount">Results:&nbsp;${step.subQueryResultSize}</span>
 			<ul>
 				<li class='right-down width2'><span>&nbsp;</span></li>

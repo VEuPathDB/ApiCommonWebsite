@@ -9,7 +9,8 @@ $("#diagram").ready(function(){
 		var detail = $(this).parent().siblings(".crumb_details");
 		detail.removeClass("myhover");
 	});
-*/	 
+*/
+	 
 /*	$(".crumb_name").mouseout(function(){
 		var detail = $(this).parent().siblings(".crumb_details");
 		detail.removeClass("myhover");		
