@@ -45,6 +45,14 @@
            <attribute name="duration">2:51 minutes</attribute>
            <attribute name="size">14.5 mb</attribute>
          </row>
+<row>
+           <attribute name="projects">TrichDB.org</attribute>
+           <attribute name="fileName.mov">Intro_TrichDB_1.0.mov</attribute>
+ <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">unavailable</attribute>
+           <attribute name="duration">0:00 minutes</attribute>
+           <attribute name="size">00.0 mb</attribute>
+         </row>
        </table>
    </record>
 
@@ -85,13 +93,15 @@
            <attribute name="size">20 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">TrichDB</attribute>
-           <attribute name="fileName.mov">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">QueriesAndTools_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">QueriesAndTools_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:12 minutes</attribute>
-           <attribute name="size">20 mb</attribute>
+           <attribute name="projects">TrichDB.org</attribute>
+           <attribute name="fileName.mov">QueriesAndTools_TrichDB_1.0.mov</attribute>
+<attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">unavailable</attribute>
+
+           <attribute name="duration">0:00 minutes</attribute>
+           <attribute name="size">00.0 mb</attribute>
          </row>
+
        </table>
    </record>
 
