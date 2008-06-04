@@ -13,6 +13,11 @@
 
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 
+<c:set var="props" value="${applicationScope.wdkModel.properties}" />
+<c:set var="project" value="${props['PROJECT_ID']}" />
+
+
+
 <site:header title="${wdkModel.displayName} : Tutorials"
                  banner="${banner}"
                  parentDivision="${wdkModel.displayName}"
@@ -22,9 +27,15 @@
                  headElement="${headElement}" />
 
 
+<c:if test = "${project == 'GiardiaDB'}">
+The ${project} tutorials will be here soon. In the meantime we provide you with access to PlasmoDB.org and CryptoDB.org tutorials, websites that offer the same navigation and querying capabilities as in ${project}.org.
+<br>
+</c:if>
 
-The TrichDB tutorials will be here soon. In the meantime we provide you with access to PlasmoDB.org and CryptoDB.org tutorials, websites that offer the same navigation and querying capabilities as in TrichDB.org.
-<br> 
+<c:if test = "${project == 'TrichDB'}">
+We just updated the ${project} tutorials for Home Page and Queries and Tools!&nbsp;&nbsp;&nbsp; For the rest we still provide you with access to PlasmoDB.org and CryptoDB.org tutorials, websites that offer the same navigation and querying capabilities as in ${project}.org.
+<br><br>
+</c:if>
 
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 
@@ -74,11 +85,18 @@ The TrichDB tutorials will be here soon. In the meantime we provide you with acc
             <c:set var="fileFormat" value="QuickTime"/>
           </c:if>
 --%>
+
  <font size="-1">View in
-          <a href="<c:url value="/tutorials/${fileNameMov}"/>" target="tutorial"> QuickTime format (.mov)</a> ---&nbsp;
-          <a href="<c:url value="/tutorials/${fileNameAvi}"/>" target="tutorial"> Ms Windows format (.avi)</a> ---&nbsp;
-          <a href="<c:url value="/flv_player/flvplayer.swf?file=/tutorials/${fileNameFlv}&autostart=true"/>" 
+      <c:if test="${fileNameMov != 'unavailable'}">
+          <a href="http://apidb.org/tutorials/${fileNameMov}" target="tutorial"> QuickTime format (.mov)</a> ---&nbsp;
+      </c:if>
+      <c:if test="${fileNameAvi != 'unavailable'}">
+          <a href="http://apidb.org/tutorials/${fileNameAvi}" target="tutorial"> Ms Windows format (.wmv)</a> ---&nbsp;
+      </c:if>
+      <c:if test="${fileNameFlv != 'unavailable'}">
+          <a href="http://apidb.org/flv_player/flvplayer.swf?file=/tutorials/${fileNameFlv}&autostart=true"  
 			target="tutorial"> Flash Video format (.flv)</a> ---&nbsp;
+      </c:if>
           Duration: ${duration}&nbsp;&nbsp;&nbsp;Size: ${size}
  </font>
 
