@@ -46,9 +46,9 @@
 <script type="text/javascript" src="/assets/js/filter_menu.js"></script>
 <div class="strategy_controls"/>
      <span id="strategy_name"><b>Search Strategy</b>: ${protocol.name}</span>
-     <input type="submit" value="Save" name="saveStrategy"/>
-     <input type="submit" value="Export" name="exportStrategy"/>
-     <input type="submit" value="Start&nbsp;Over" name="newStrategy"/>
+     <input type="submit" value="Save" name="saveStrategy" disabled/>
+     <input type="submit" value="Export" name="exportStrategy" disabled/>
+     <input type="submit" value="Start&nbsp;Over" name="newStrategy" disabled/>
 </div>
 <hr/>
 <c:set var="stepNumber" value="0" />

@@ -54,7 +54,7 @@
 
 
 <script type="text/javascript" src="js/lib/jqDnR.js"></script>
-<a class="arrowred row2" href="#" id="filter_link" style="position:relative; top: -5em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;">Add Step</a>
+<input type="submit" id="filter_link" style="position: relative; top: -4.3em; left: ${protocol.length * 11.65 + 5}em;" value="Add Step"/>
 <div id="filter_div">
 <span id="instructions">Choose a query to use as a filter from the list below.  The individual queries will expand when you mouse over the categories.</span>
 

@@ -41,6 +41,10 @@
       
 -->
 
+<c:set var="commandUrl">
+    <c:url value="/processSummary.do?${wdk_query_string}" />
+</c:set>
+
 <div id="Workspace">
 <!-- handle empty result set situation -->
 <c:choose>
