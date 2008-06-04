@@ -21,9 +21,17 @@
               description="Number of this step in the protocol"
 %>
 
-
+<c:choose>
+<c:when test="${step.isFirstStep}">
 <c:set value="${step.filterHistory.answer.question.fullName}" var="questionName" />
 <c:set value="${step.filterHistory.answer.questionUrlParams}" var="urlParams"/>
+</c:when>
+<c:otherwise>
+<c:set value="${step.subQueryHistory.answer.question.fullName}" var="questionName" />
+<c:set value="${step.subQueryHistory.answer.questionUrlParams}" var="urlParams"/>
+</c:otherwise>
+</c:choose>
+
 <c:set var="subq" value="" />
   <div class="crumb_details" onmouseover="overdiv=1" onmouseout="overdiv=0; setTimeout('hideDetails()',50)">
 	<p>Details:<pre>${step.details}</pre></p>
