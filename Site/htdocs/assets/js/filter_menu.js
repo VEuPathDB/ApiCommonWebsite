@@ -4,8 +4,13 @@ function closeAll(){$("#filter_link").click();}
 function formatFilterForm(data, edit, reviseStep){
 	//edit = 0 ::: adding a new step
 	//edit = 1 ::: editing a current step
-
+				
 				var stepn = 0;
+				if(reviseStep != ""){
+					var parts = reviseStep.split(":");
+					stepn = parts[1];
+					reviseStep = parts[0];
+				}
 				var proto = $("#proto").text();
 				var pro_url = "";
 			if(edit == 0)
@@ -133,16 +138,17 @@ $(document).ready(function(){
 	});
 	
 	$("#filter_link").click(function(){;
-		if($(this).val() == "Cancel [X]"){
+		if($(this).text() == "Add Step"){
+			$("#filter_div").fadeIn("normal");
+			$(this).html("<span>Cancel [X]</span>");
+	}else{
 			$("#filter_div").fadeOut("normal");
 			$("#query_selection").show();
 			$("#query_form").hide();
-			$(this).val("Add Step");
-	}else{
-			$("#filter_div").fadeIn("normal");
-			$(this).val("Cancel [X]");
+			$(this).html("<span>Add Step</span>");
 	}
 	});
+
 	$(".crumb").bind("mouseenter",function(){
 		$(".crumb_details",this).fadeIn("fast");
 	}).bind("mouseleave",function(){

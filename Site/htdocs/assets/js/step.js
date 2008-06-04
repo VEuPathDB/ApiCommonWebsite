@@ -5,7 +5,9 @@ $("#diagram").ready(function(){
 		$("#filter_link").html("<span>Cancel [X]</span>");
 		hideDetails();
 		var url = $(this).attr("href");
-		var reviseStepNumber = $(this).attr("id");
+		var revisestep = $(this).attr("id");
+		var currentstep = parseUrl("step");
+		var reviseStepNumber = revisestep + ":" + currentstep;
 		$.ajax({
 			url: url,
 			dataType: "html",
