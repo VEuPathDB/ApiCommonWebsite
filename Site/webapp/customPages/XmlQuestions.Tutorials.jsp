@@ -21,6 +21,11 @@
                  division="tutorials"
                  headElement="${headElement}" />
 
+
+
+The TrichDB tutorials will be here soon. In the meantime we provide you with access to PlasmoDB.org and CryptoDB.org tutorials, websites that offer the same navigation and querying capabilities as in TrichDB.org.
+<br> 
+
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 
   <tr>
