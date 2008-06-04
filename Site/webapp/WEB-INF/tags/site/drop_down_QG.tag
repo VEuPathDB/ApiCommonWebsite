@@ -3,6 +3,7 @@
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:set var="CGI_URL" value="${wdkModel.properties['CGI_URL']}"/>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
 <c:set var="qSets" value="${wdkModel.questionSets}" />
 
@@ -37,10 +38,11 @@
 		</c:forEach>
 		<li><a href="#">Tools</a>
       		<ul>
-        		<li><a href="#"> BLAST</a></li>
-        		<li><a href="#">PubMed and Entrez</a></li>
-        		<li><a href="#">GBrowse</a></li>
-        		<li><a href="#">CryptoCyc</a></li>
+        		<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
+  			<li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
+        		<li><a href="#"> PubMed and Entrez</a></li>
+        		<li><a href="${CGI_URL}/gbrowse/cryptodb"> GBrowse</a></li>
+        		<li><a href="#"> CryptoCyc</a></li>
       		</ul>
 		</li>
 	</ul>
