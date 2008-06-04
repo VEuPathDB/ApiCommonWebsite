@@ -8,6 +8,8 @@
 <c:set var="qSets" value="${wdkModel.questionSets}" />
 
 	<ul>
+	<li><a href="<c:url value="/queries_tools.jsp"/>">All Searches</a>
+
 		<c:forEach items="${qSets}" var="qSet">
 		  <c:if test="${qSet.name == 'GeneQuestions' || qSet.name == 'GenomicSequenceQuestions' || qSet.name == 'EstQuestions' || qSet.name == 'SnpQuestions' || qSet.name == 'OrfQuestions' || qSet.name == 'IsolateQuestions'}">
 			<li><a href="#">${qSet.displayName}</a>

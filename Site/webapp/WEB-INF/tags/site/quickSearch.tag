@@ -53,7 +53,7 @@ ivax,Plasmodium yoelii"/>
 
 	  <div id="half_right">
           <html:form method="get" action="/processQuestionSetsFlat.do">
-          <label>Text Search:
+          <label>Keyword Search:
           <input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch">
           <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}">
           <input type="hidden" name="myMultiProp(text_fields)"
