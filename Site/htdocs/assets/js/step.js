@@ -1,27 +1,24 @@
 $("#diagram").ready(function(){
-/*	
-	$(".crumb_name").mouseover(function(){
-		var detail = $(this).parent().siblings(".crumb_details");
-		detail.addClass("myhover");
-	});
 	
-	$(".crumb_detail").mouseout(function(){
-		var detail = $(this).parent().siblings(".crumb_details");
-		detail.removeClass("myhover");
+	$("div.crumb_menu a.edit_step_link").click(function(){
+		$("div#filter_div").show();
+		$("#filter_link").html("<span>Cancel [X]</span>");
+		hideDetails();
+		var url = $(this).attr("href");
+		var reviseStepNumber = $(this).attr("id");
+		$.ajax({
+			url: url,
+			dataType: "html",
+			success: function(data){
+				formatFilterForm(data,1,reviseStepNumber);
+			},
+			error: function(data, msg, e){
+				alert("ERROR \n "+ msg + "\n" + e);
+			}
+		});
+		return false;
 	});
-*/
-	 
-/*	$(".crumb_name").mouseout(function(){
-		var detail = $(this).parent().siblings(".crumb_details");
-		detail.removeClass("myhover");		
-	});
-*/
-	$(".crumb").click(function(){
-		var a = $(this).children("h3").children("a");
-		a.click();
-	});
-	
-	
+
 	//HIGH LIGHTING CODE
 	var stepnumber = parseUrl("step");
 	if(stepnumber == "")
@@ -54,6 +51,18 @@ $("#diagram").ready(function(){
 	//END HIGH LIGHTING CODE
 	
 });
+
+var detail_div = "";
+overdiv = 0;
+function showDetails(det){
+	detail_div = $(".crumb_details",det);
+	detail_div.show();
+}
+
+function hideDetails(){
+	if(overdiv == "0") 
+		detail_div.hide();
+}
 
 
 function parseUrl(name){

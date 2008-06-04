@@ -231,23 +231,15 @@
 
 	.crumb_details {
 		background-color: lightYellow;
-		border: solid black;
-	}
-
-	.crumb_name span{
-		background-color: lightYellow;
 		color: #000000;
 		border: solid black;
 		position:absolute;
-		visibility: hidden;
-		left: -1000px;
+		z-index: 200;
 	}
 
-	.crumb_name:hover span{
-		visibility: visible;
-		top: 16px;
-		left:35px;
-		z-index: 200;
+	.crumb_menu {
+		background-color: Grey;
+		width: 100%;
 	}
 
 	#bread_crumb_div td {

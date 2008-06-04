@@ -38,9 +38,9 @@
 	<c:when test="${step.isFirstStep}">
 		<div id="step_${stepNum}" class="row2 col1 size1 arrowgrey">
 			<h3>
-				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}">${stepName}
-					<span><site:StepDetail step="${step}"/></span>
-				</a><br>
+				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}"
+					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',50)">${stepName}</a>
+				<site:StepDetail step="${step}" protocolNum="${protocol.protocolId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>			
 			<c:if test="${step.nextStep != null}">
@@ -54,9 +54,9 @@
 	<c:otherwise>
 		<div id="step_${stepNum}_sub" class='row1 size1 arrowgrey' style='left:${left_offset - 8}em'>
 			<h3>
-				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}&subquery=true">${stepName}
-					<span><site:StepDetail step="${step}"/></span>
-				</a><br>
+				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}&subquery=true"
+					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',50)">${stepName}</a>
+				<site:StepDetail step="${step}" protocolNum="${protocol.protocolId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">Results:&nbsp;${step.subQueryResultSize}</span>
 			<ul>
