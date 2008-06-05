@@ -15,37 +15,40 @@
 			  description="String to be displayed as the title of the bubble"
 %>
 
-<%@ attribute name="questionSets" 
+<%@ attribute name="recordClasses" 
  			  type="java.lang.String"
 			  required="false" 
 			  description="Class of queries to be displayed in the bubble"
 %>
 
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
-<c:set var="qSetNames" value="${fn:split(questionSets,',')}" />
+<c:set var="catMap" value="${wdkModel.questionsByCategory}" />
 <div id="3columndiv">
 
 <img src="/assets/images/crypto/${banner}" alt="${alt_banner}" width="247" height="46" />
 <c:choose>
-	<c:when test="${questionSets == null}">
+	<c:when test="${recordClasses == null}">
 		<site:DQG_info />
 	</c:when>
-	<c:when test="${fn:length(qSetNames) > 1}">
+	<c:when test="${recordClasses == 'others'}">
 		<div id="info">
 			<p class="small" align="center"><a href="false">Hide all</a> | <a href="true">Show all</a></p>
 			<ul class="heading_list">
-				<c:forEach items="${qSetNames}" var="qSetName">
-					<c:set var="qSet" value="${wdkModel.questionSetsMap[qSetName]}" />
-					<li><a class="heading" href="javascript:void(0)">${qSet.displayName}</a>
+				<c:forEach items="${catMap}" var="catByRec">
+				    <c:if test="${catByRec.key != 'GeneRecordClasses.GeneRecordClass'}">
+				      <c:set var="qByCat" value="${catByRec.value}" />
+				      <c:forEach items="${qByCat}" var="cat">
+					<li><a class="heading" href="javascript:void(0)">Identify&nbsp; ${cat.key}</a>
 						<div class="sub_list">
 							<ul>
-								<c:set var="questions" value="${qSet.questions}" />
-								<c:forEach items="${questions}" var="q">
+								<c:forEach items="${cat.value}" var="q">
 									<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
 								</c:forEach>
 							</ul>
 						</div>
 					</li>
+				      </c:forEach>
+				    </c:if>
 				</c:forEach>	
 			</ul>
 		</div>
@@ -59,8 +62,9 @@
 		<div id="info">
 			<p class="small" align="center"><a href="false">Hide all</a> | <a href="true">Show all</a></p>
 			<ul class="heading_list">
-				<c:set var="qSet" value="${wdkModel.questionSetsMap[questionSets]}" />
-				<c:set var="qByCat" value="${qSet.questionsByCategory}" />
+				
+				<c:set var="qByCat" value="${catMap['GeneRecordClasses.GeneRecordClass']}" />
+
 				<c:forEach items="${qByCat}" var="cat">
 					<li>
 						<a class="heading" href="javascript:void(0)">${cat.key}</a>

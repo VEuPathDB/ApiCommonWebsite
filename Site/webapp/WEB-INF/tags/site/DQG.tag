@@ -4,18 +4,31 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
+
 <div id="contentwrapper">
 
   <div id="contentcolumn">
 	<div class="innertube">
 <!--	  <h1>Using ${applicationScope.wdkModel.name}</h1>-->
 
-		<p align="center"><span class="large"></span><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a> &nbsp;|&nbsp;<a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a> &nbsp;|&nbsp; <a href="#"><strong>PubMed and Entrez</strong></a> &nbsp;|&nbsp; <a href="#"><strong>GBrowse</strong></a> &nbsp;|&nbsp; <a href="#"><strong>CryptoCyc</strong></a></p> <br>
+		<p align="center"><span class="large"></span> <a href="#"><strong>BLAST</strong></a> &nbsp;|&nbsp; <a href="#"><strong>Sequence Retrieval</strong></a> &nbsp;|&nbsp; <a href="#"><strong>PubMed and Entrez</strong></a> &nbsp;|&nbsp; <a href="#"><strong>GBrowse</strong></a> &nbsp;|&nbsp; <a href="#"><strong>CryptoCyc</strong></a></p> <br>
 		
-
-	<site:quickSearch />
-
-
+	  <div id="half_right">
+	    <form id="form2" name="form1" method="post" action="">
+          <label>Text Search:
+          <input name="Keyword" type="text" class="search-box" id="Keyword" />
+          </label>
+          <img src="/assets/images/mag_glass.png" alt="SEARCH!" width="23" height="23" class="img_align_middle" />
+                                                </form>
+	  </div>
+	  <div id="half_left">
+	    <form id="form1" name="form1" method="post" action="">
+	      <label>Gene ID:
+	        <input name="Gene_ID" type="text" class="search-box" id="Gene_ID" />
+          </label>
+          <img src="/assets/images/mag_glass.png" alt="SEARCH!" width="23" height="23" class="img_align_middle" />
+	    </form>
+      </div>
       
       <p>&nbsp;</p><p>&nbsp;</p>
       
@@ -29,14 +42,14 @@
        <site:DQG_bubble 
 				banner="bubble_id_genes_by.png" 
 				alt_banner="Identify Genes By:" 
-				questionSets="GeneQuestions"
+				recordClasses="genes"
 	   />
     </td>
     <td width="34%"  align="center">
        <site:DQG_bubble 
 				banner="bubble_id_other_data.png" 
 				alt_banner="Identify Other Data Types:" 
-				questionSets="IsolateQuestions,GenomicSequenceQuestions,SnpQuestions,EstQuestions,OrfQuestions"
+				recordClasses="others"
 		/>
     </td>
     <td width="33%"  align="center">
