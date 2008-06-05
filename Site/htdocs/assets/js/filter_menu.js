@@ -60,8 +60,8 @@ function formatFilterForm(data, edit, reviseStep){
 				$("#query_form").append(quesForm);
 				$("#query_selection").fadeOut("normal");
 				$("#query_form").css({
-					top: "336px",
-					left: "138px"
+					top: "337px",
+					left: "22px"
 				});
 				$("#query_form").jqDrag(".dragHandle");
 				$("#query_form").fadeIn("normal");
