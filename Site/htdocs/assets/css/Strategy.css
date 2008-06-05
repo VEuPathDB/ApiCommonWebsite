@@ -148,65 +148,79 @@
    }
 
    /* Rows, columns, heights, widths, and sizes. */
-   .row1 { top: 1em }
-   .row2 { top: 4.65em }
+   .row1 { top: 12px }
+   .row2 { top: 55px }
    
-   .col1 { left: 1em }
+   .col1 { left: 12px }
    
-   .size1 { width: 8em; height: 3em; }
+   .size1 { width: 96px; height: 38px; }
    .size2 { width: 2em }
 
    .height1 { height: 3.9em }
 
-   .width1 {
-		width: 8.9em;
-		height: .3em;
+   .rightarrow1 {
+		position: absolute;
+		left: 88px;
+		top: -33px;
+		z-index: 1;
 	 }
 	
-	.width15 {
-		width: 8.9em;
-		height: 0em;
+   .rightarrow2 {
+		position: absolute;
+		z-index: 1;
+		top: -36px;
+		left: 40px
 	 }
 		
-   .width2 { 
-		width: 1.75em;
-		height: 1.4em;	
+   .downarrow {
+		position: absolute;
+		left: 88px;
+		top: -17px;
+		z-index: 1; 	
 	 }
 	
 	.operation {
 		height: 21px;
-		width: 32px;
+		text-align: center;
+		width: 67px;
 		margin-top: -4px;
 		margin-left: 2px;
 		margin-right: 2px;
 	}
 	
 	.operation.UNION {
-		background: url(/assets/images/operationIcons.gif) 0px -48px;
+		height: 37px;
+		background: url(/assets/images/operationIcons.gif) -28px -66px;
 	}
 
 	.operation.INTERSECT {
-		height: 24px;
-		background: url(/assets/images/operationIcons.gif) 0px -24px;
+		height: 37px;
+		background: url(/assets/images/operationIcons.gif) -28px -33px;
 	}
 
 	.operation.MINUS {
-		
-		background: url(/assets/images/operationIcons.gif);
+		height: 37px;
+		background: url(/assets/images/operationIcons.gif) -28px 1px;
 	}
 	
 	.operation.UNION.selected {
-		background: url(/assets/images/operationIcons_pink.gif) 0px -48px;
+		height:; 37px;
+		background: url(/assets/images/operationIcons_pink.gif) -28px -66px;
 	}
 
 	.operation.INTERSECT.selected {
-		height: 24px;
-		background: url(/assets/images/operationIcons_pink.gif) 0px -24px;
+		height: 37px;
+		background: url(/assets/images/operationIcons_pink.gif) -28px -33px;
 	}
 
 	.operation.MINUS.selected {
-		
-		background: url(/assets/images/operationIcons_pink.gif);
+		height: 37px;
+		background: url(/assets/images/operationIcons_pink.gif) -28px 1px;
+	}
+
+	a.operation img {
+		height: 22px;
+		width: 67px;
 	}
 
 	span.stepNumber {
