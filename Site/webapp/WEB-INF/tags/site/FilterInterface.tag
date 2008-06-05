@@ -54,7 +54,7 @@
 
 
 <script type="text/javascript" src="js/lib/jqDnR.js"></script>
-<a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -5em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
+<a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -4.1em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
 <div id="filter_div">
 <span id="instructions">Choose a query to use as a filter from the list below.  The individual queries will expand when you mouse over the categories.</span>
 
