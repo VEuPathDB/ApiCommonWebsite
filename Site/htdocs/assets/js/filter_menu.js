@@ -10,6 +10,7 @@ function formatFilterForm(data, edit, reviseStep){
 					var parts = reviseStep.split(":");
 					stepn = parts[1];
 					reviseStep = parts[0];
+					isSub = parts[2];
 				}
 				var proto = $("#proto").text();
 				var pro_url = "";
@@ -17,7 +18,7 @@ function formatFilterForm(data, edit, reviseStep){
 				pro_url = "processFilter.do?protocol=" + proto;
 			else{
 				
-				pro_url = "processFilter.do?protocol=" + proto + "&revise=" + reviseStep + "&step=" + stepn;
+				pro_url = "processFilter.do?protocol=" + proto + "&revise=" + reviseStep + "&step=" + stepn + "&subquery=" + isSub;
 			}
 				var historyId = $("#history_id").val();
 				var stepNum = $("#target_step").val() - 1;

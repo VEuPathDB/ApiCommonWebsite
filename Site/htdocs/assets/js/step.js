@@ -7,7 +7,12 @@ $("#diagram").ready(function(){
 		var url = $(this).attr("href");
 		var revisestep = $(this).attr("id");
 		var currentstep = parseUrl("step");
-		var reviseStepNumber = revisestep + ":" + currentstep;
+		var isSub = parseUrl("subquery");
+		if(isSub == "" || isSub == "false")
+			isSub = "";
+		else
+			isSub = "true";
+		var reviseStepNumber = revisestep + ":" + currentstep + ":" + isSub;
 		$.ajax({
 			url: url,
 			dataType: "html",
