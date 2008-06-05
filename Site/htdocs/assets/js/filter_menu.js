@@ -138,14 +138,14 @@ $(document).ready(function(){
 	});
 	
 	$("#filter_link").click(function(){;
-		if($(this).text() == "Add Step"){
-			$("#filter_div").fadeIn("normal");
-			$(this).html("<span>Cancel [X]</span>");
-	}else{
+		if($(this).val() == "Cancel [X]"){
 			$("#filter_div").fadeOut("normal");
 			$("#query_selection").show();
 			$("#query_form").hide();
-			$(this).html("<span>Add Step</span>");
+			$(this).val("Add Step");
+	}else{
+			$("#filter_div").fadeIn("normal");
+			$(this).val("Cancel [X]");
 	}
 	});
 
