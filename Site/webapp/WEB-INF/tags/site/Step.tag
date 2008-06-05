@@ -45,7 +45,7 @@
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>			
 			<c:if test="${step.nextStep != null}">
 				<ul>
-					<li class='right width1'><span>&nbsp;</span></li>
+					<li><img class="rightarrow1" src="/assets/images/arrow_chain_right1.png"></li>
 				</ul>
 			</c:if>
 		</div>
@@ -60,7 +60,7 @@
 			</h3>
 			<span class="resultCount">Results:&nbsp;${step.subQueryResultSize}</span>
 			<ul>
-				<li class='right-down width2'><span>&nbsp;</span></li>
+				<li><img class="downarrow" src="/assets/images/arrow_chain_down.png"</li>
 			</ul>
 		</div>
 		<div id="step_${stepNum}" class="row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 5em; border: none">
@@ -68,10 +68,10 @@
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>
 			<c:if test="${step.nextStep != null}">
 				<ul>
-					<li class='right width15'><span>&nbsp;</span></li>
+					<li><img class="rightarrow2" src="/assets/images/arrow_chain_right2.png"></li>
 				</ul>
 			</c:if>
 		</div>
-		<span class="stepNumber" style="left:${left_offset}em">Step&nbsp;${stepNum + 1}</span>
+		<span class="stepNumber" style="left:${left_offset+1.3}em">Step&nbsp;${stepNum + 1}</span>
 	</c:otherwise>
 </c:choose>
