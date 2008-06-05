@@ -60,8 +60,8 @@ function formatFilterForm(data, edit, reviseStep){
 				$("#query_form").append(quesForm);
 				$("#query_selection").fadeOut("normal");
 				$("#query_form").css({
-					top: "163px",
-					left: "140px"
+					top: "336px",
+					left: "138px"
 				});
 				$("#query_form").jqDrag(".dragHandle");
 				$("#query_form").fadeIn("normal");
@@ -139,14 +139,14 @@ $(document).ready(function(){
 	});
 	
 	$("#filter_link").click(function(){;
-		if($(this).val() == "Cancel [X]"){
+		if($(this).text() == "Add Step"){
+			$("#filter_div").fadeIn("normal");
+			$(this).html("<span>Cancel [X]</span>");
+	}else{
 			$("#filter_div").fadeOut("normal");
 			$("#query_selection").show();
 			$("#query_form").hide();
-			$(this).val("Add Step");
-	}else{
-			$("#filter_div").fadeIn("normal");
-			$(this).val("Cancel [X]");
+			$(this).html("<span>Add Step</span>");
 	}
 	});
 
