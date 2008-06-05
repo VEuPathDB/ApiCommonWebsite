@@ -22,31 +22,9 @@
               description="protocol for this result"
 %>
 <span id="proto" style="display: none">${protocol.protocolId}</span>
+<c:set var="catMap" value="${model.questionsByCategory}" />
 <c:set var="recClass" value="${recordClass.fullName}" />
 <c:set var="qSetName" value="none" />
-<c:choose>
-	<c:when test="${fn:containsIgnoreCase(recClass,'GeneRecordClass')}">
-		<c:set var="qSetName" value="GeneQuestions" />
-	</c:when>
-	<c:when test="${fn:containsIgnoreCase(recClass,'SequenceRecordClass')}">
-		<c:set var="qSetName" value="GenomicSequenceQuestions" />
-	</c:when>
-	<c:when test="${fn:containsIgnoreCase(recClass,'EstRecordClass')}">
-		<c:set var="qSetName" value="EstQuestions" />
-	</c:when>
-	<c:when test="${fn:containsIgnoreCase(recClass,'SnpRecordClass')}">
-		<c:set var="qSetName" value="SnpQuestions" />
-	</c:when>
-	<c:when test="${fn:containsIgnoreCase(recClass,'IsolateRecordClass')}">
-		<c:set var="qSetName" value="IsolateQuestions" />
-	</c:when>
-	<c:when test="${fn:containsIgnoreCase(recClass,'AssemblyRecordClass')}">
-		<c:set var="qSetName" value="AssemblyQuestions" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="qSetName" value="NADA..NOTHING...NILL" />
-	</c:otherwise>
-</c:choose>
 <c:set var="qSets" value="${model.questionSetsMap}" />
 <c:set var="qSet" value="${qSets[qSetName]}" />
 <c:set var="qByCat" value="${qSet.questionsByCategory}" />
@@ -54,14 +32,14 @@
 
 
 <script type="text/javascript" src="js/lib/jqDnR.js"></script>
-<a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -4.1em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
+<a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -5em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
 <div id="filter_div">
 <span id="instructions">Choose a query to use as a filter from the list below.  The individual queries will expand when you mouse over the categories.</span>
 
 <div id="query_selection">
 <ul class="top_nav">
 
-
+<c:set var="qByCat" value="${catMap[recordClass.fullName]}" />
 <c:forEach items="${qByCat}" var="cat">
 	<li><a class="category" href="javascript:void(0)">${cat.key}</a>
 	<ul>
