@@ -69,9 +69,32 @@ function resetAttr() {
 <div id="contentwrapper">
   	<div id="contentcolumn2">
 		<div class="innertube">
-	  		<h1>${type} Results</h1>
+
+
+<div class="strategy_controls"/>
+<table width="100%">
+<tr>
+  <td width="50%">       <%--     <span id="strategy_name">  makes eh title move down..... --%>
+     <h1><b>My ${type} Search Strategy</b></h1>
+  </td>
+  <td width="50%" align="right">
+     <input type="submit" value="Save" name="saveStrategy" disabled/>
+     <input type="submit" value="Export" name="exportStrategy" disabled/>
+     <input type="submit" value="Start&nbsp;Over" name="newStrategy" disabled/>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<font size ="-2">Use a Search Strategy to get precise results.  Click on <font color="darkred"><b>Add Step</b></font> to refine your result set with an additional search.</font>
+</td>
+</tr>
+</table>
+</div>
+
+
+	  	
 			<input type="hidden" id="history_id" value="${history.historyId}"/>
-			<hr>
+
 		 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" protocol="${protocol}"/>
 			<hr>
 			<site:Results />
