@@ -141,12 +141,12 @@ $(document).ready(function(){
 	$("#filter_link").click(function(){;
 		if($(this).text() == "Add Step"){
 			$("#filter_div").fadeIn("normal");
-			$(this).html("<span>Cancel [X]</span>");
+			$(this).html("<span>Cancel [X]</span>"); 
 	}else{
 			$("#filter_div").fadeOut("normal");
 			$("#query_selection").show();
 			$("#query_form").hide();
-			$(this).html("<span>Add Step</span>");
+			$(this).html("<span>Add Step</span>"); 
 	}
 	});
 
