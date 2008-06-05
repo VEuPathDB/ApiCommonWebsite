@@ -3,48 +3,51 @@
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="CGI_URL" value="${wdkModel.properties['CGI_URL']}"/>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
-<c:set var="qSets" value="${wdkModel.questionSets}" />
+<c:set var="catMap" value="${wdkModel.questionsByCategory}" />
 
 	<ul>
-	<li><a href="<c:url value="/queries_tools.jsp"/>">All Searches</a>
-
-		<c:forEach items="${qSets}" var="qSet">
-		  <c:if test="${qSet.name == 'GeneQuestions' || qSet.name == 'GenomicSequenceQuestions' || qSet.name == 'EstQuestions' || qSet.name == 'SnpQuestions' || qSet.name == 'OrfQuestions' || qSet.name == 'IsolateQuestions'}">
-			<li><a href="#">${qSet.displayName}</a>
+		<c:forEach items="${catMap}" var="catByRec">
+		  <c:if test="${catByRec.key == 'GeneRecordClasses.GeneRecordClass' || catByRec.key == 'SequenceRecordClasses.SequenceRecordClass'  || catByRec.key == 'OrfRecordClasses.OrfRecordClass' || catByRec.key == 'EstRecordClasses.EstRecordClass' || catByRec.key == 'isolateRecordClasses.IsolateRecordClass' || catByRec.key == 'SnpRecordClasses.SnpRecordClass' }">
+		 <c:choose>
+		  <c:when test="${catByRec.key=='GeneRecordClasses.GeneRecordClass'}">
+			<li><a href="#">Identify Genes</a>
 				<ul>
-					<c:choose>
-						<c:when test="${qSet.name == 'GeneQuestions'}">
-							<c:set var="qByCat" value="${qSet.questionsByCategory}" />
-							<c:forEach items="${qByCat}" var="cat">
-								<li>
-									<a href="javascript:void(0)">${cat.key}</a>
-									<ul>
-										<c:forEach items="${cat.value}" var="q">
-											<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
-										</c:forEach>
-									</ul>
-								</li>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${qSet.questions}" var="q">
-								<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
+					<c:set var="qByCat" value="${catByRec.value}" />
+					<c:forEach items="${qByCat}" var="cat">
+						<li>
+							<a href="javascript:void(0)">${cat.key}</a>
+							<ul>
+								<c:forEach items="${cat.value}" var="q">
+									<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
+								</c:forEach>
+							</ul>
+						</li>
+					</c:forEach>
 				</ul>
 			</li>
-		  </c:if>
+		  </c:when>
+		  <c:otherwise>
+			<c:set var="qByCat" value="${catByRec.value}" />
+			<c:forEach items="${qByCat}" var="cat">
+			<li><a href="#">Identify&nbsp; ${cat.key}</a>
+				<ul>
+					<c:forEach items="${cat.value}" var="q">
+						<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
+					</c:forEach>
+				</ul>
+			</li>
+			</c:forEach>
+		  </c:otherwise>
+		 </c:choose>
+		 </c:if>
 		</c:forEach>
 		<li><a href="#">Tools</a>
       		<ul>
-        		<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
-  			<li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
-        		<li><a href="#"> PubMed and Entrez</a></li>
-        		<li><a href="${CGI_URL}/gbrowse/cryptodb"> GBrowse</a></li>
-        		<li><a href="#"> CryptoCyc</a></li>
+        		<li><a href="#"> BLAST</a></li>
+        		<li><a href="#">PubMed and Entrez</a></li>
+        		<li><a href="#">GBrowse</a></li>
+        		<li><a href="#">CryptoCyc</a></li>
       		</ul>
 		</li>
 	</ul>
