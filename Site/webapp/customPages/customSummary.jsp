@@ -75,7 +75,7 @@ function resetAttr() {
 <table width="100%">
 <tr>
   <td width="50%">       <%--     <span id="strategy_name">  makes eh title move down..... --%>
-     <h1><b>My ${type} Search Strategy</b></h1>
+     <h2><b>My ${type} Search Strategy and Results</b></h2>
   </td>
   <td width="50%" align="right">
      <input type="submit" value="Save" name="saveStrategy" disabled/>
