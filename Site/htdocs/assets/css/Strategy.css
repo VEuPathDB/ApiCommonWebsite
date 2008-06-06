@@ -281,4 +281,6 @@
 .crumb_details table {
 	margin: 0 5px;
 	line-height: 1;
+	border-collapse: separate;
+	border-spacing: 2px;
 }
