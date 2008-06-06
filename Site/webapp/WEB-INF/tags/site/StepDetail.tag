@@ -37,8 +37,8 @@
 
 <c:set var="subq" value="" />
   <div class="crumb_details" onmouseover="overdiv=1" onmouseout="overdiv=0; setTimeout('hideDetails()',50)">
-	<p class="question_name">Details&nbsp;for:&nbsp;<span>${displayName}</span></p>
-	<table style="margin: 0 5px;">
+	<p class="question_name"><span>${displayName}</span></p>
+	<table>
 	<c:forEach var="displayParam" items="${displayParams}">
 	     <tr class="param">
                 <td align="right" nowrap class="name">${displayParam.key}&nbsp;=</td>

@@ -278,6 +278,7 @@
 	font-weight: bold;
 }
 
-#step_details p {
-	margin: 0 auto;
+.crumb_details table {
+	margin: 0 5px;
+	line-height: 1;
 }
