@@ -42,10 +42,6 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css">
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
 
-<script type="text/javascript" src="/assets/js/lib/jquery-1.2.3.js"></script>
-<script type="text/javascript" src="/assets/js/filter_menu.js"></script>
-
-
 <c:set var="stepNumber" value="0" />
 <div class="chain_background" id="bread_crumb_div">
 	<div id="diagram">
