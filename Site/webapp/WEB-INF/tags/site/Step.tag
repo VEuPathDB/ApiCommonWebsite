@@ -29,7 +29,7 @@
 	</c:otherwise>
 </c:choose>
 
-<c:set var="stepName" value="${step.customName}" />
+<c:set var="stepName" value="${step.shortName}" />
 <c:if test="${fn:length(stepName) > 15}">
 	<c:set var="stepName" value="${fn:substring(stepName,0,12)}..."/>
 </c:if>
