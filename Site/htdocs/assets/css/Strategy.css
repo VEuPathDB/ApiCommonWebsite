@@ -244,7 +244,7 @@
 	}
 
 	.crumb_details {
-		background-color: lightYellow;
+		background-color: #eee;
 		color: #000000;
 		border: solid black;
 		position:absolute;
@@ -252,11 +252,32 @@
 	}
 
 	.crumb_menu {
-		background-color: Grey;
+		background-image:url(../images/crypto/trsubhead.png);	
 		width: 100%;
+		left: -2px;
 	}
 
 	#bread_crumb_div td {
 		vertical-align: top;
 	}
 
+.param {
+	margin: 0;
+	font-size: 12px;
+}
+
+.param .name {
+	font-weight: bold;
+}
+
+.question_name {
+	font-size: 14px;
+}
+
+.question_name span {
+	font-weight: bold;
+}
+
+#step_details p {
+	margin: 0 auto;
+}
