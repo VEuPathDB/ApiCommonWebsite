@@ -34,7 +34,7 @@
 
 <a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -4.1em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
 <div id="filter_div">
-<span id="instructions">Choose a query to use as a filter from the list below.  The individual queries will expand when you mouse over the categories.</span>
+<span id="instructions">Revise your results by adding steps from the list below.</span>
 
 <div id="query_selection">
 <ul class="top_nav">
