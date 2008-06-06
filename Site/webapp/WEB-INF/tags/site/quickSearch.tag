@@ -53,7 +53,7 @@ ivax,Plasmodium yoelii"/>
 
 	  <div id="half_right">
           <html:form method="get" action="/processQuestionSetsFlat.do">
-          <label>Keyword Search:
+          <label>Keyword Search:</label>
           <input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch">
           <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}">
           <input type="hidden" name="myMultiProp(text_fields)"
@@ -61,37 +61,18 @@ ivax,Plasmodium yoelii"/>
           <input type="hidden" name="myMultiProp(whole_words)" value="no">
           <input type="hidden" name="myProp(max_pvalue)" value="-30">
           <html:text property="myProp(GeneQuestions_GenesByTextSearch_${textParam.name})" value="${textParam.default}"/>
-          </label>
           <input type="hidden" name="questionSubmit" value="Get Answer">
 	  <input name="go" value="go" type="image" src="/assets/images/mag_glass.png" width="23" height="23" class="img_align_middle" >
           </html:form>
-<%--
-	  <form id="form2" name="form1" method="post" action="">
-          <label>Text Search:
-          <input name="Keyword" type="text" class="search-box" id="Keyword" />
-          </label>
-          <img src="/assets/images/mag_glass.png" alt="SEARCH!" width="23" height="23" class="img_align_middle" />
-          </form>
---%>
 	  </div>
 
 
 	  <div id="half_left">
           <html:form method="get" action="/processQuestionSetsFlat.do">
-          <label>Gene ID:
+          <label>Gene ID:</label>
           <input type="hidden" name="questionFullName" value="GeneQuestions.GeneBySingleLocusTag">
 	  <html:text property="myProp(GeneQuestions_GeneBySingleLocusTag_${geneIdParam.name})" value="${geneIdParam.default}" size="15"/>
-          </label>
 	  <input type="hidden" name="questionSubmit" value="Get Answer">
 	  <input name="go" value="go" type="image" src="/assets/images/mag_glass.png" width="23" height="23" class="img_align_middle" >
           </html:form>
-
-<%--
-	  <form id="form1" name="form1" method="post" action="">
-          <label>Gene ID:
-	  <input name="Gene_ID" type="text" class="search-box" id="Gene_ID" />
-          </label>
-          <img src="/assets/images/mag_glass.png" alt="SEARCH!" width="23" height="23" class="img_align_middle" />
-	  </form>
---%>
           </div>
