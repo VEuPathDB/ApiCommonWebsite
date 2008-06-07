@@ -85,7 +85,7 @@ function resetAttr() {
 </tr>
 <tr>
 <td colspan="2" align="center">
-<font size ="-2">Use a Search Strategy to get precise results.  Click on <font color="darkred"><b>Add Step</b></font> to refine your result set with an additional search.</font>
+<font size ="-2">Use a Search Strategy to get precise results.  Click on <font color="darkred"><b>Add Step</b></font> to refine your current result with an additional search.</font>
 </td>
 </tr>
 </table>
