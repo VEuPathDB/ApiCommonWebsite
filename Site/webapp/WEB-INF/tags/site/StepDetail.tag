@@ -70,10 +70,10 @@
                                       <jsp:setProperty name="qP" property="truncateLength" value="1000" />
                                       <c:choose>
                                         <c:when test="${fn:length(qP.decompressedValue) <= 50}">
-					  <td class="medium" nowrap>
+					  <td class="medium" nowrap align="left">
                                         </c:when>
                                         <c:otherwise>
-                                          <td class="medium">
+                                          <td class="medium" align="left">
                                         </c:otherwise>
                                       </c:choose>
                                       ${qP.decompressedValue}
@@ -100,9 +100,9 @@
       </c:otherwise>
    </c:choose>
    <div class="crumb_menu">
-		<a href="showSummary.do?protocol=${protocolNum}&step=${stepNum}${subq}">view</a>&nbsp;|&nbsp;
-		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}">edit</a>&nbsp;|&nbsp;
-		<span style="color:#888;">export</span>&nbsp;|&nbsp;
-		<span style="color:#888;">delete</span>
+		<a href="showSummary.do?protocol=${protocolNum}&step=${stepNum}${subq}">View</a>&nbsp;|&nbsp;
+		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}">Edit</a>&nbsp;|&nbsp;
+		<span style="color:#888;">Export</span>&nbsp;|&nbsp;
+		<span style="color:#888;">Delete</span>
    </div>       
   </div><!--End Crumb_Detail-->
