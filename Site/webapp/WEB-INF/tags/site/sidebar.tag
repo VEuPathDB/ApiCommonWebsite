@@ -4,14 +4,14 @@
 		<div id="menu_lefttop">
 				<img src="/assets/images/crypto/menu_lft1.png" width="208" height="12" />
 				<a class="heading" href="#">News</a>
-				<div><ul>
+				<div class="menu_lefttop_drop"><ul>
 					<li><a href="#">CryptoDB 3.7 is released with isolates and<em> C. muris</em> ESTs</a><br />(19 February 2008)</li>
 					<li><a href="#">CryptoDB 3.6 is released with SNP data from <em>C. parvum</em> IOWA, MD, TU114 strains</a><br />(6 December 2007)</li>
 					<li><a href="#">Status of the <em>C. muris</em> Genome Sequencing Project </a><br />(18 June 2007)</li>
 				</ul></div>
 				<img src="/assets/images/crypto/menu_lft1.png" width="208" height="12" />
 				<a class="heading" href="#">Web Tutorials</a>
-				<div><ul>
+				<div class="menu_lefttop_drop"><ul>
 						<li>Introduction<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
 						<li>Queries and Tools<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
 						<li>Query History<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
@@ -20,7 +20,7 @@
 				</ul></div>
 				<img src="/assets/images/crypto/menu_lft1.png" width="208" height="12" />
 				<a class="heading" href="#">Community Links</a>
-				<div><ul>
+				<div class="menu_lefttop_drop"><ul>
 						<li><a href="#"> EuPathDB.org</a></li>
 						<li><a href="#">PlasmoDB.org</a></li>
 						<li><a href="#">ToxoDB.org</a></li>
@@ -47,7 +47,7 @@
 				</ul></div>
 				<img src="/assets/images/crypto/menu_lft1.png" width="208" height="12" />
 				<a class="heading" href="#">Information and Help</a>
-				<div><ul>
+				<div class="menu_lefttop_drop"><ul>
 						<li> <a href="#">Glossary of Terms</a></li>
 						<li><a href="#">Website Usage Statistics</a></li>
 						<li><a href="#">Acknowledgements</a></li>

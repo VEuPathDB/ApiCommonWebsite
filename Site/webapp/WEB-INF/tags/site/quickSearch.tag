@@ -60,7 +60,7 @@ ivax,Plasmodium yoelii"/>
                value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions">
           <input type="hidden" name="myMultiProp(whole_words)" value="no">
           <input type="hidden" name="myProp(max_pvalue)" value="-30">
-          <html:text property="myProp(GeneQuestions_GenesByTextSearch_${textParam.name})" value="${textParam.default}"/>
+          <input type="text" class="search-box" name="myProp(GeneQuestions_GenesByTextSearch_${textParam.name})" value="${textParam.default}"/>
           <input type="hidden" name="questionSubmit" value="Get Answer">
 	  <input name="go" value="go" type="image" src="/assets/images/mag_glass.png" width="23" height="23" class="img_align_middle" >
           </html:form>
@@ -71,7 +71,7 @@ ivax,Plasmodium yoelii"/>
           <html:form method="get" action="/processQuestionSetsFlat.do">
           <label>Gene ID:</label>
           <input type="hidden" name="questionFullName" value="GeneQuestions.GeneBySingleLocusTag">
-	  <html:text property="myProp(GeneQuestions_GeneBySingleLocusTag_${geneIdParam.name})" value="${geneIdParam.default}" size="15"/>
+	  <input type="text" class="search-box" name="myProp(GeneQuestions_GeneBySingleLocusTag_${geneIdParam.name})" value="${geneIdParam.default}" size="15"/>
 	  <input type="hidden" name="questionSubmit" value="Get Answer">
 	  <input name="go" value="go" type="image" src="/assets/images/mag_glass.png" width="23" height="23" class="img_align_middle" >
           </html:form>
