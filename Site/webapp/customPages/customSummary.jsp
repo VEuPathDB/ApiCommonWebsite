@@ -81,11 +81,14 @@ function resetAttr() {
      <input type="submit" value="Save" name="saveStrategy" disabled/>
      <input type="submit" value="Export" name="exportStrategy" disabled/>
      <input type="submit" value="Start&nbsp;Over" name="newStrategy" disabled/>
+
+
+
 </td>
 </tr>
 <tr>
 <td colspan="2" align="center">
-<font size ="-2">Use a Search Strategy to get precise results.  Click on <font color="darkred"><b>Add Step</b></font> to refine your current result with an additional search.</font>
+<font size ="-2">Click on <font color="darkred"><b>Add Step</b></font> to refine your current result with an additional search. &nbsp;&nbsp;&nbsp;Mouse over a query name to <font color="darkred"><b>Edit</b></font> a query.</font>
 </td>
 </tr>
 </table>
