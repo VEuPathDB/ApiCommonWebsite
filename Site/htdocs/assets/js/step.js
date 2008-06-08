@@ -6,13 +6,16 @@ $("#diagram").ready(function(){
 		hideDetails();
 		var url = $(this).attr("href");
 		var revisestep = $(this).attr("id");
+		var parts = revisestep.split("|");
+		revisestep = parseInt(parts[0]);
+		var operation = parts[1];
 		var currentstep = parseUrl("step");
 		var isSub = parseUrl("subquery");
 		if(isSub == "" || isSub == "false")
 			isSub = "";
 		else
 			isSub = "true";
-		var reviseStepNumber = revisestep + ":" + currentstep + ":" + isSub;
+		var reviseStepNumber = revisestep + ":" + currentstep + ":" + isSub + ":" + operation;
 		$.ajax({
 			url: url,
 			dataType: "html",

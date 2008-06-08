@@ -4,13 +4,14 @@ function closeAll(){$("#filter_link").click();}
 function formatFilterForm(data, edit, reviseStep){
 	//edit = 0 ::: adding a new step
 	//edit = 1 ::: editing a current step
-				
+				var operation = "";
 				var stepn = 0;
 				if(reviseStep != ""){
 					var parts = reviseStep.split(":");
 					stepn = parts[1];
 					reviseStep = parseInt(parts[0]);
 					isSub = parts[2];
+					operation = parts[3];
 				}
 				var proto = $("#proto").text();
 				var pro_url = "";
@@ -52,7 +53,7 @@ function formatFilterForm(data, edit, reviseStep){
 			}
 			else {
 				if(reviseStep != 0){
-					$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
+					$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input id='INTERSECT' type='radio' name='myProp(booleanExpression)' value='" + proto + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='UNION' type='radio' name='myProp(booleanExpression)' value='" + proto + " OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='MINUS' type='radio' name='myProp(booleanExpression)' value='" + proto + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
 				}else{
 					$(".filter.params", quesForm).after("<input type='hidden' name='myProp(booleanExpression)' value='" + proto + " AND' />");
 				}
@@ -79,6 +80,9 @@ function formatFilterForm(data, edit, reviseStep){
 					top: "337px",
 					left: "22px"
 				});
+			if(edit == 1)
+				$("#query_form div#operations input#" + operation).attr('checked','checked'); 
+				
 				$("#query_form").jqDrag(".dragHandle");
 				$("#query_form").fadeIn("normal");
 }
