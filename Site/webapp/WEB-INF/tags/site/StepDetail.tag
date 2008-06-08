@@ -90,6 +90,7 @@
              </tr>
         </c:forEach> --%>
 	</table>
+   <c:set var="oper" value="" />
    <c:choose>
       <c:when test="${step.isFirstStep}">
           <p><b>Results:&nbsp;</b>${step.filterResultSize}</p>
@@ -97,11 +98,12 @@
       <c:otherwise>
           <p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}</p>
 	  <c:set var="subq" value="&subquery=true" />
+	  <c:set var="oper" value="${step.operation}" />
       </c:otherwise>
    </c:choose>
    <div class="crumb_menu">
 		<a href="showSummary.do?protocol=${protocolNum}&step=${stepNum}${subq}">View</a>&nbsp;|&nbsp;
-		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}">Edit</a>&nbsp;|&nbsp;
+		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 		<span style="color:#888;">Export</span>&nbsp;|&nbsp;
 		<span style="color:#888;">Delete</span>
    </div>       
