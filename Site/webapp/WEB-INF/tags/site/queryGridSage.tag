@@ -12,6 +12,7 @@
 
 
         <td width="50%" valign="top">
+<div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
 <tr>
@@ -30,12 +31,14 @@
 
                 
             </table>
+</div>
         </td>
 
 <%--	<td width="1" class="blueVcalLine"></td> --%>
 	<td width="1"></td>
 
         <td  width="50%" valign="top">
+<div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
 
@@ -52,6 +55,7 @@
         	
 
             </table>
+</div>
     	</td>
 
 

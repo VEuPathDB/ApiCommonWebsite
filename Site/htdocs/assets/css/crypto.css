@@ -138,6 +138,9 @@ a:hover, a:active {
 	margin: 6px; /*Margins for inner DIV inside each column (to provide padding)*/
 }
 
+
+
+
 #half_left {
 	width: 45%;
 	text-align: right;
@@ -648,6 +651,7 @@ tr.headerrow {
 	background-color: #EEEEEE;
 }
 
+
 td.subheaderrow {
 	font-size: 13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -671,8 +675,55 @@ tr.subheaderrow {
 	background-color: #EEEEEE;
 }
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =FOR QUERY GRID
+	 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.innertube2{
+	margin: 2px; /*Margins for inner DIV inside each column (to provide padding)*/
+}
+tr.headerrow2 td{
+	font-size: 14px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+        color: #5f140e;
+	background-image: url(../images/crypto/trheader.png);
+	background-repeat: repeat-x;
+	background-position: top;
+	padding: 4px;
+	background-color: #EEEEEE;
+}
 
-
+tr.subheaderrow2 td{
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #474747;
+	background-image: url(../images/crypto/trsubhead.png);
+	background-repeat: repeat-x;
+	background-position: top;
+	font-weight: bold;
+	padding: 4px;
+	background-color: #EEEEEE;
+}
+div.smallBlack { font-size: 8pt; color: black}
+a.queryGridInactive {
+        text-align:         center;
+        font-family:        Helvetica;
+        font-size:          10pt;
+        color:              #C8C8C8;
+}
+a.queryGridActive {
+        text-align:         center;
+        font-family:        Helvetica;
+        font-size:          10pt;
+        color:              #0b4796;
+}
+td.lines2 {
+	padding-top: 3px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =END OF TABLES FOR QUERY GRID
+	 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 td.lines {
 	padding: 4px;

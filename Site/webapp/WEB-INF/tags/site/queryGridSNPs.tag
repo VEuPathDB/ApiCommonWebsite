@@ -11,6 +11,7 @@
 
 
         <td  width="50%" valign="top">
+<div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <site:queryGridMakeUrl qset="SnpQuestions" qname="SnpBySourceId" linktext="SNP ID" existsOn="A C P T"/>
@@ -21,6 +22,7 @@
                     <site:queryGridMakeUrl qset="SnpQuestions" qname="SnpsByGeneId" linktext="Gene ID" existsOn="A C P T"/>
                 </tr>
             </table>
+</div>
         </td>
 
 <%--
@@ -29,6 +31,7 @@
 	<td width="1"></td>
 
         <td  width="50%" valign="top">
+<div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
                 <tr>
@@ -39,6 +42,7 @@
                 </tr>
 
             </table>
+</div>
         </td>
 
 </tr>

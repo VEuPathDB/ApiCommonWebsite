@@ -10,6 +10,7 @@
 <tr>
 
         <td width="50%" valign="top">
+<div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
  <tr>
                 <site:queryGridMakeUrl qset="AssemblyQuestions" qname="AssembliesByEstAccession" linktext="EST Accession" existsOn="A G"/>
@@ -23,11 +24,13 @@
                 </tr>
 
             </table>
+</div>
         </td>
 
 	<td width="0.5"></td>
 
         <td valign="top">
+<div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
                  <tr>
@@ -38,6 +41,7 @@
                 </tr>
 
             </table>
+</div>
         </td>
 
 
