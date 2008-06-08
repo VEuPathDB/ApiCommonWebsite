@@ -303,7 +303,7 @@ a:hover, a:active {
 	background-image: url(../images/dropdownmenu.jpg);
 	background-repeat: repeat-x;
 	background-position: top;
-	border-width: 0 1px 1px 1px;
+	border-width: 1px 1px 1px 1px;
 	border-style: solid;
 	border-color:#888888;
 	padding: 6px 6px 6px 18px;
@@ -399,22 +399,24 @@ a:hover, a:active {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: normal;
-	padding: 6px 6px 6px 20px;
+	padding: 6px 6px 6px 4px;
 	line-height: 15px;
-	list-style-image: url(../images/crypto/bullet_arrow.gif);
+/*	list-style-image: url(../images/crypto/bullet_arrow.gif); */
 }
 
-#menu_lefttop_drop {
-   width: 191px;
+.menu_lefttop_drop {
+   width: 194px;
    font-family: Arial, Helvetica, sans-serif;
    font-size: 12px;
    font-weight: normal;
    padding: 6px;
    line-height: 15px;
-   border-width: 1px;
+   border: 1px solid #360d0d;
    border-color: 630d0d;
    background-color: #FFFFFF;
+   margin: -5px 0px 5px;
 }
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =Search Boxes
