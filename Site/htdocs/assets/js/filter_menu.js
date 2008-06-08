@@ -9,7 +9,7 @@ function formatFilterForm(data, edit, reviseStep){
 				if(reviseStep != ""){
 					var parts = reviseStep.split(":");
 					stepn = parts[1];
-					reviseStep = parts[0];
+					reviseStep = parseInt(parts[0]);
 					isSub = parts[2];
 				}
 				var proto = $("#proto").text();
@@ -42,16 +42,32 @@ function formatFilterForm(data, edit, reviseStep){
 				advanced.remove();
 				advanced.attr("style", "");
 				$(".filter.params", quesForm).append(advanced);
+			if(edit == 0)
 				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Add&nbsp;Step&nbsp;" + (stepNum + 1) + ": " + quesTitle + "</span></br>");
+			else
+				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Edit&nbsp;Step&nbsp;" + (reviseStep + 1) + ": " + quesTitle + "</span></br>");
 				//$(".filter.params", quesForm).prepend("<span class='form_subtitle'>" + quesTitle + "</span><br>"); 
-
+			if(edit == 0){
 				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + (stepNum + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " OR'><li class='operation UNION'/><li>&nbsp;" + stepNum + "&nbsp;<b>UNION</b>&nbsp;" + (stepNum + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + (stepNum + 1) + "</li></ul></div></div>");
+			}
+			else {
+				if(reviseStep != 0){
+					$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + proto + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
+				}else{
+					$(".filter.params", quesForm).after("<input type='hidden' name='myProp(booleanExpression)' value='" + proto + " AND' />");
+				}
+			}
+				
 
 //				var action = quesForm.attr("action").replace(/processQuestion.do/,"processFilter.do?protocol=" + proto);
 				var action = quesForm.attr("action").replace(/processQuestion.do/,pro_url);
 
 				quesForm.prepend("<hr style='width:99%'/>");
+			if(edit == 0)
 				quesForm.prepend("<h1>Add&nbsp;Step</h1>");
+			else
+				quesForm.prepend("<h1>Edit&nbsp;Step</h1>");
+
 				//quesForm.prepend("<h1>Add&nbsp;Step&nbsp;" + (stepNum + 1) + "</h1>");
 
 				quesForm.attr("action",action);
