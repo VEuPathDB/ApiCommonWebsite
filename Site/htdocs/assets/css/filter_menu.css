@@ -13,10 +13,10 @@
 }
 
 #query_selection {
-	left: 0.25em;
+	left: 200px;
 	position:relative;
 	top: 0.25em;
-	width: 25.5em;
+	width: 13em;
 }
 
 #query_form {
@@ -35,11 +35,14 @@
 }
 
 #query_selection ul {
+	background-image: url(../images/new_step_menu.jpg);
 	list-style-type: none;
+	border: 1px solid #888;
+	padding: 3px;
 }
 
 #query_selection .top_nav {
-	line-height: 1.0;
+	line-height: 1.3;
 }
 
 #query_selection .top_nav ul {
@@ -49,7 +52,7 @@
 
 #query_selection .top_nav li { 
 	position:relative;
-	width:10em;
+	width:11em;
 	text-align:right;
 	z-index:99;
 	padding-right: 13px;
@@ -66,8 +69,8 @@
 }
 
 #query_selection .top_nav li:hover ul{
-	left:10.5em;
-	top:0;
+	left:11.25em;
+	top:-4px;
 }
 
 #close_filter_query {
