@@ -2,7 +2,7 @@ $("#diagram").ready(function(){
 	
 	$("div.crumb_menu a.edit_step_link").click(function(){
 		$("div#filter_div").show();
-		$("#filter_link").html("<span>Cancel [X]</span>");
+		$("#filter_link").html("<span>Close [X]</span>");
 		hideDetails();
 		var url = $(this).attr("href");
 		var revisestep = $(this).attr("id");
