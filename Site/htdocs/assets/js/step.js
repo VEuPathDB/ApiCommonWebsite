@@ -1,7 +1,7 @@
 $("#diagram").ready(function(){
 	
 	$("div.crumb_menu a.edit_step_link").click(function(){
-		$("div#filter_div").show();
+	//	$("div#filter_div").show();
 		$("#filter_link").html("<span>Close [X]</span>");
 		hideDetails();
 		var url = $(this).attr("href");
@@ -26,6 +26,7 @@ $("#diagram").ready(function(){
 				alert("ERROR \n "+ msg + "\n" + e);
 			}
 		});
+		$(this).parent().parent().hide();
 		return false;
 	});
 
