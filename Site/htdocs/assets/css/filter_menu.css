@@ -58,14 +58,21 @@
 	padding-right: 13px;
 }
 
+#query_selection .top_nav li a:link, #query_selection .top_nav li a:visited{
+	color:#414141;
+}
+
+#query_selection .top_nav li a:hover{
+	color:#B30101;
+	font-weight: bold;
+}
+
 #query_selection .top_nav li:hover {
-	background-color: lightGrey;
 } 
 
 #query_selection .top_nav li ul li {
-	background-color: lightGrey;
 	text-align:left;
-	width:12em;
+	width:250px;
 }
 
 #query_selection .top_nav li:hover ul{
