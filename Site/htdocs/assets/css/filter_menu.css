@@ -81,9 +81,9 @@
 }
 
 #close_filter_query {
-	position: relative;
-	left: 20px;
-	top:3px;
+	position: absolute;
+	right: 0px;
+	top:0px;
 }
 #question_title {
 	position:relative;
@@ -110,12 +110,18 @@
 
 .dragHandle {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: -40px;
+	left: -1px;
 	background-color: Grey;
-	height: 20px;
-	width: 20px;
+	height: 40px;
+	width: 100%;
+	background-image: url(../images/handbar.jpg);
 	cursor: move;
+	padding-top: 10px;
+	border-top: 1px solid #345D9B;
+	border-left: 1px solid #345D9B;
+	border-right: 1px solid #345D9B;
+	border-bottom: 1px solid #000000;
 }
 
 #operations {
@@ -137,6 +143,7 @@
 }
 
 .filter.params {
+	background-color: #fff;
 	width:63%;
 	float:left;
 	padding: 0;
@@ -144,6 +151,7 @@
 }
 
 .filter.operators {
+	background-color: #fff;
 	width:24%;
 	float:left;
 	padding: 0;
