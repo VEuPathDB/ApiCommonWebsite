@@ -34,7 +34,7 @@
 
 <a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -4.1em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
 <div id="filter_div">
-<span id="instructions">Choose a search to combine with your current result.</span>
+<span id="instructions"></span>
 
 <div id="query_selection">
 <ul class="top_nav">
@@ -51,7 +51,7 @@
 
 </ul>
 </div><!-- End of Query Selection Div -->
+</div><!-- End of Filter div -->
 <div id="query_form" class="jqDnR">
 </div><!-- End of Query Form Div -->
-</div><!-- End of Filter div -->
 
