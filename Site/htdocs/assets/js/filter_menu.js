@@ -24,11 +24,12 @@ function formatFilterForm(data, edit, reviseStep){
 				var historyId = $("#history_id").val();
 				var stepNum = $("#target_step").val() - 1;
 			if(edit == 0)
-				var close_link = "<a id='close_filter_query' href='javascript:close()'>close[x]</a>";
+				var close_link = "<a id='close_filter_query' href='javascript:close()'><img src='/assets/images/Close-X-box.png'/></a>";
 	 		else
-				var close_link = "<a id='close_filter_query' href='javascript:closeAll()'>close[x]</a>";
+				var close_link = "<a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png'/></a>";
 				var quesTitle = $("h1",data).text().replace(/Identify Genes based on/,"");
 				var quesForm = $("form",data);
+
 
 				$("input[value=Get Answer]",quesForm).val("Run Step");
 				$("div:last",quesForm).attr("align", "");
@@ -63,17 +64,20 @@ function formatFilterForm(data, edit, reviseStep){
 //				var action = quesForm.attr("action").replace(/processQuestion.do/,"processFilter.do?protocol=" + proto);
 				var action = quesForm.attr("action").replace(/processQuestion.do/,pro_url);
 
-				quesForm.prepend("<hr style='width:99%'/>");
+			//	quesForm.prepend("<hr style='width:99%'/>");
+				var formtitle = "";
 			if(edit == 0)
-				quesForm.prepend("<h1>Add&nbsp;Step</h1>");
+				formtitle = "<h1>Add&nbsp;Step</h1>"//quesForm.prepend("<h1>Add&nbsp;Step</h1>");
 			else
-				quesForm.prepend("<h1>Edit&nbsp;Step</h1>");
+				formtitle = "<h1>Edit&nbsp;Step</h1>"//quesForm.prepend("<h1>Edit&nbsp;Step</h1>");
 
 				//quesForm.prepend("<h1>Add&nbsp;Step&nbsp;" + (stepNum + 1) + "</h1>");
 
 				quesForm.attr("action",action);
-				$("#query_form").html(close_link);
-				$("#query_form").append("<img class='dragHandle' src='images/HAND.png'/>");
+
+				var header = "<span class='dragHandle'>" + formtitle + " " + close_link + "</span>";
+
+				$("#query_form").html(header);
 				$("#query_form").append(quesForm);
 				$("#query_selection").fadeOut("normal");
 				$("#query_form").css({
