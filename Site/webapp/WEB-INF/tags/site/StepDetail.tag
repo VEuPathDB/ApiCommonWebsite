@@ -105,6 +105,13 @@
 		<a href="showSummary.do?protocol=${protocolNum}&step=${stepNum}${subq}">View</a>&nbsp;|&nbsp;
 		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 		<span style="color:#888;">Export</span>&nbsp;|&nbsp;
-		<a href="processFilter.do?protocol=${protocolNum}&delete=${stepNum}" style="color:#888;">Delete</span>
+		<c:choose>
+		  <c:when test="${step.isFirstStep}">
+		    <span style="color:#888;">Delete</span>
+		  </c:when>
+		  <c:otherwise>
+	            <span><a href="processFilter.do?protocol=${protocolNum}&delete=${stepNum}">Delete</a></span>
+		  </c:otherwise>
+		</c:choose>
    </div>       
   </div><!--End Crumb_Detail-->
