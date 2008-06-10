@@ -105,6 +105,6 @@
 		<a href="showSummary.do?protocol=${protocolNum}&step=${stepNum}${subq}">View</a>&nbsp;|&nbsp;
 		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 		<span style="color:#888;">Export</span>&nbsp;|&nbsp;
-		<span style="color:#888;">Delete</span>
+		<a href="processFilter.do?protocol=${protocolNum}&delete=${stepNum}" style="color:#888;">Delete</span>
    </div>       
   </div><!--End Crumb_Detail-->
