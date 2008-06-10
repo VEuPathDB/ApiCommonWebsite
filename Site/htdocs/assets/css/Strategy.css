@@ -249,12 +249,15 @@
 		border: solid black;
 		position:absolute;
 		z-index: 200;
+		top: 57px;
+		left: 26px;
 	}
 
 	.crumb_menu {
 		background-image:url(../images/crypto/trsubhead.png);	
 		width: 100%;
 		left: -2px;
+		top: -29px;
 	}
 
 	#bread_crumb_div td {
