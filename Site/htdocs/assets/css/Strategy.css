@@ -148,41 +148,41 @@
    }
 
    /* Rows, columns, heights, widths, and sizes. */
-   .row1 { top: 12px }
-   .row2 { top: 55px }
+   .row1 { top: 1em }
+   .row2 { top: 4.6em }
    
-   .col1 { left: 12px }
+   .col1 { left: 1em }
    
-   .size1 { width: 96px; height: 38px; }
+   .size1 { width: 8em; height: 3em; }
    .size2 { width: 2em }
 
    .height1 { height: 3.9em }
 
    .rightarrow1 {
 		position: absolute;
-		left: 88px;
-		top: -33px;
+		left: 7.4em;
+		top: -2.7em;
 		z-index: 1;
 	 }
 	
    .rightarrow2 {
 		position: absolute;
 		z-index: 1;
-		top: -36px;
-		left: 40px
+		top: -3em;
+		left: 3.3em;
 	 }
 		
    .downarrow {
 		position: absolute;
-		left: 88px;
-		top: -17px;
+		left: 7.4em;
+		top: -1.4em;
 		z-index: 1; 	
 	 }
 	
 	.operation {
 		height: 21px;
 		text-align: center;
-		width: 67px;
+		width: 5.6em;
 		margin-top: -4px;
 		margin-left: 2px;
 		margin-right: 2px;
@@ -190,32 +190,32 @@
 	
 	.operation.UNION {
 		height: 37px;
-		background: url(/assets/images/operationIcons.gif) -28px -66px;
+		background: url(/assets/images/operationIcons.gif) no-repeat -28px -66px;
 	}
 
 	.operation.INTERSECT {
 		height: 37px;
-		background: url(/assets/images/operationIcons.gif) -28px -33px;
+		background: url(/assets/images/operationIcons.gif) no-repeat -28px -33px;
 	}
 
 	.operation.MINUS {
 		height: 37px;
-		background: url(/assets/images/operationIcons.gif) -28px 1px;
+		background: url(/assets/images/operationIcons.gif) no-repeat -28px 1px;
 	}
 	
 	.operation.UNION.selected {
 		height:; 37px;
-		background: url(/assets/images/operationIcons_pink.gif) -28px -66px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat -28px -66px;
 	}
 
 	.operation.INTERSECT.selected {
 		height: 37px;
-		background: url(/assets/images/operationIcons_pink.gif) -28px -33px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat -28px -33px;
 	}
 
 	.operation.MINUS.selected {
 		height: 37px;
-		background: url(/assets/images/operationIcons_pink.gif) -28px 1px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat -28px 1px;
 	}
 
 	a.operation img {
@@ -272,11 +272,24 @@
 
 .question_name {
 	font-size: 14px;
+	margin: 0px;
 }
 
 .question_name span {
 	font-weight: bold;
 }
+
+/*
+.crumb_details table {
+	margin: 0px 5px 0px 19px;
+}
+
+.crumb_details table td {
+	padding: 0px 0px 0px 0px;
+}
+
+#step_details p {
+	margin: 0 auto;*/
 
 .crumb_details table {
 	margin: 0 5px;
