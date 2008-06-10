@@ -44,8 +44,13 @@ $("#diagram").ready(function(){
 	var className = "";
 	var element = "";
 	if(stepnumber == -1){
-		className = "selected";
-		element = $("div#diagram div:last");
+		element = $("div#diagram div.box:last");
+		var n = element.attr("id");
+		n = parseInt(n.substring(5));
+		if(n == 0)
+			className = "selectedarrow";
+		else
+			className = "selected";
 	}else{
 		if(subquery){
 			className = "selectedarrow";

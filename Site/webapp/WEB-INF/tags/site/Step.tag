@@ -36,10 +36,10 @@
 
 <c:choose>
 	<c:when test="${step.isFirstStep}">
-		<div id="step_${stepNum}" class="row2 col1 size1 arrowgrey">
+		<div id="step_${stepNum}" class="box row2 col1 size1 arrowgrey">
 			<h3>
 				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}"
-					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',50)">${stepName}</a>
+					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
 				<site:StepDetail step="${step}" protocolNum="${protocol.protocolId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>			
@@ -55,7 +55,7 @@
 		<div id="step_${stepNum}_sub" class='row1 size1 arrowgrey' style='left:${left_offset - 8}em'>
 			<h3>
 				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}&subquery=true"
-					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',50)">${stepName}</a>
+					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
 				<site:StepDetail step="${step}" protocolNum="${protocol.protocolId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">Results:&nbsp;${step.subQueryResultSize}</span>
@@ -63,7 +63,7 @@
 				<li><img class="downarrow" src="/assets/images/arrow_chain_down.png"</li>
 			</ul>
 		</div>
-		<div id="step_${stepNum}" class="row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 5em; border: none">
+		<div id="step_${stepNum}" class="box row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 5em; border: none">
 			<a class="operation" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}"><img src="/assets/images/transparent1.gif"/></a><br>
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>
 			<c:if test="${step.nextStep != null}">
