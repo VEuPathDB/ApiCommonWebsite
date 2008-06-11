@@ -7,7 +7,7 @@
 
 <ul id="nav">
 <li><a href="<c:url value="/"/>">Home<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a></li>
-<li><a href="<c:url value="/queries_tools.jsp"/>">Searches &amp; Tools<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a>
+<li><a href="<c:url value="/queries_tools.jsp"/>">All Queries<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a>
   <site:drop_down_QG />
 </li>
 <li>
