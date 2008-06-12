@@ -11,8 +11,8 @@
 	<div class="innertube">
 <!--	  <h1>Using ${applicationScope.wdkModel.name}</h1>-->
 
-	<p align="center"><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a> &nbsp;|&nbsp;<a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a> &nbsp;|&nbsp; <a href="#"><strong>PubMed and Entrez</strong></a> &nbsp;|&nbsp; <a href="#"><strong>GBrowse</strong></a> &nbsp;|&nbsp; <a href="#"><strong>CryptoCyc</strong></a></p> <br>
-
+<!--	<p align="center"><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a> &nbsp;|&nbsp;<a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a> &nbsp;|&nbsp; <a href="#"><strong>PubMed and Entrez</strong></a> &nbsp;|&nbsp; <a href="#"><strong>GBrowse</strong></a> &nbsp;|&nbsp; <a href="#"><strong>CryptoCyc</strong></a></p> <br>
+-->
 	<site:quickSearch />
 		
 	  
@@ -42,7 +42,7 @@
     <td width="33%"  align="center">
        <site:DQG_bubble 
 				banner="bubble_id_third_option.png" 
-				alt_banner="Gene Data:"
+				alt_banner="Tools:"
        />
 	</td>
   </tr>

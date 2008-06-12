@@ -28,7 +28,7 @@
 <img src="/assets/images/crypto/${banner}" alt="${alt_banner}" width="247" height="46" />
 <c:choose>
 	<c:when test="${recordClasses == null}">
-		<site:DQG_info />
+		<site:DQG_tools />
 	</c:when>
 	<c:when test="${recordClasses == 'others'}">
 		<div id="info">
