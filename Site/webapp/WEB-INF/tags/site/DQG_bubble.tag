@@ -38,7 +38,7 @@
 				    <c:if test="${catByRec.key != 'GeneRecordClasses.GeneRecordClass'}">
 				      <c:set var="qByCat" value="${catByRec.value}" />
 				      <c:forEach items="${qByCat}" var="cat">
-					<li><a class="heading" href="javascript:void(0)">Identify&nbsp; ${cat.key}</a>
+					<li><img class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" />&nbsp;&nbsp;<a class="heading" href="javascript:void(0)">Identify&nbsp; ${cat.key}</a>
 						<div class="sub_list">
 							<ul>
 								<c:forEach items="${cat.value}" var="q">
@@ -67,6 +67,7 @@
 
 				<c:forEach items="${qByCat}" var="cat">
 					<li>
+						<img class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" />&nbsp;&nbsp;
 						<a class="heading" href="javascript:void(0)">${cat.key}</a>
 						<div class="sub_list">
 							<ul>
