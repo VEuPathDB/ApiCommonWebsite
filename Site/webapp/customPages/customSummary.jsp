@@ -100,7 +100,9 @@ function resetAttr() {
 
 		 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" protocol="${protocol}"/>
 			<hr>
+			<div id="Workspace">
 			<site:Results />
+			</div>
 		</div>
 	</div>
 </div>
