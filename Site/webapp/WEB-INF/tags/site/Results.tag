@@ -45,7 +45,7 @@
     <c:url value="/processSummary.do?${wdk_query_string}" />
 </c:set>
 
-<div id="Workspace">
+<!--<div id="Workspace">-->
 <!-- handle empty result set situation -->
 <c:choose>
   <c:when test='${wdkAnswer.resultSize == 0}'>
@@ -342,4 +342,4 @@
   <td valign=top class=dottedLeftBorder></td> 
 </tr>
 </table> 
-</div><!--END OF WORKSPACE DIV-->
+<!--</div>--> <!--END OF WORKSPACE DIV-->
