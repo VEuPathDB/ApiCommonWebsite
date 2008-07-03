@@ -199,7 +199,7 @@ sub validateMapCoordinates {
   my $mapStart = $mapped{$query}->{start};
   my $mapStop = $mapped{$query}->{stop};
 
-  if($start > $mapStop || $stop < $mapStart) {
+  if($start >= $mapStop || $stop <= $mapStart) {
     my $mappedCoord = replaceAssembled($agpDir, $genome, $query, $mapStart, $mapStop, '+');
     my ($junk, $included) = split(' ', $mappedCoord);
 
