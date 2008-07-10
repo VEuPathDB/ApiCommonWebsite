@@ -16,12 +16,12 @@
               description="RecordClass Object for the Answer"
 %>
 
-<%@ attribute name="protocol"
-	      type="org.gusdb.wdk.model.jspwrap.ProtocolBean"
+<%@ attribute name="strategy"
+	      type="org.gusdb.wdk.model.jspwrap.UserStrategyBean"
               required="false"
-              description="protocol for this result"
+              description="strategy for this result"
 %>
-<span id="proto" style="display: none">${protocol.protocolId}</span>
+<span id="proto" style="display: none">${strategy.strategyId}</span>
 <c:set var="catMap" value="${model.questionsByCategory}" />
 <c:set var="recClass" value="${recordClass.fullName}" />
 <c:set var="qSetName" value="none" />
@@ -32,7 +32,7 @@
 
 
 
-<a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -4.1em; left: ${protocol.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
+<a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -4.1em; left: ${strategy.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
 <div id="filter_div">
 <span id="instructions"></span>
 

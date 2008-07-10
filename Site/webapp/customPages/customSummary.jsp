@@ -9,7 +9,7 @@
 <c:set var="wdkAnswer" value="${requestScope.wdkAnswer}"/>
 <c:set var="history" value="${requestScope.wdkHistory}"/>
 <c:set var="model" value="${applicationScope.wdkModel}" />
-<c:set var="protocol" value="${requestScope.wdkProtocol}" />
+<c:set var="strategy" value="${requestScope.wdkStrategy}" />
 <c:set var="commandUrl">
     <c:url value="/processSummary.do?${wdk_query_string}" />
 </c:set>
@@ -96,9 +96,9 @@ function resetAttr() {
 
 
 	  	
-			<input type="hidden" id="history_id" value="${history.historyId}"/>
+			<input type="hidden" id="history_id" value="${history.userAnswerId}"/>
 
-		 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" protocol="${protocol}"/>
+		 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
 			<hr>
 			<div id="Workspace">
 			<site:Results />

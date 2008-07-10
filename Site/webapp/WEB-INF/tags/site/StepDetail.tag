@@ -8,32 +8,32 @@
               description="Step to be displayed by this tag"
 %>
 
-<%@ attribute name="protocolNum"
+<%@ attribute name="strategyNum"
 	      type="java.lang.String"
               required="true"
-              description="Protocol Including this Step"
+              description="Strategy Including this Step"
 %>
 
 <%@ attribute name="stepNum"
 	      type="java.lang.String"
               required="true"
-              description="Number of this step in the protocol"
+              description="Number of this step in the strategy"
 %>
 
 <c:choose>
 <c:when test="${step.isFirstStep}">
-<c:set value="${step.filterHistory.answer.question.fullName}" var="questionName" />
-<c:set value="${step.filterHistory.answer.question.displayName}" var="displayName"/>
-<c:set value="${step.filterHistory.answer.internalParams}" var="params"/>
-<c:set value="${step.filterHistory.answer.question.paramsMap}" var="displayParams"/>
-<c:set value="${step.filterHistory.answer.questionUrlParams}" var="urlParams"/>
+<c:set value="${step.filterUserAnswer.recordPage.question.fullName}" var="questionName" />
+<c:set value="${step.filterUserAnswer.recordPage.question.displayName}" var="displayName"/>
+<c:set value="${step.filterUserAnswer.recordPage.internalParams}" var="params"/>
+<c:set value="${step.filterUserAnswer.recordPage.question.paramsMap}" var="displayParams"/>
+<c:set value="${step.filterUserAnswer.recordPage.questionUrlParams}" var="urlParams"/>
 </c:when>
 <c:otherwise>
-<c:set value="${step.subQueryHistory.answer.question.fullName}" var="questionName" />
-<c:set value="${step.subQueryHistory.answer.question.displayName}" var="displayName"/>
-<c:set value="${step.subQueryHistory.answer.internalParams}" var="params"/>
-<c:set value="${step.subQueryHistory.answer.question.paramsMap}" var="displayParams"/>
-<c:set value="${step.subQueryHistory.answer.questionUrlParams}" var="urlParams"/>
+<c:set value="${step.childStepUserAnswer.recordPage.question.fullName}" var="questionName" />
+<c:set value="${step.childStepUserAnswer.recordPage.question.displayName}" var="displayName"/>
+<c:set value="${step.childStepUserAnswer.recordPage.internalParams}" var="params"/>
+<c:set value="${step.childStepUserAnswer.recordPage.question.paramsMap}" var="displayParams"/>
+<c:set value="${step.childStepUserAnswer.recordPage.questionUrlParams}" var="urlParams"/>
 </c:otherwise>
 </c:choose>
 
@@ -102,9 +102,9 @@
       </c:otherwise>
    </c:choose>
    <div class="crumb_menu">
-		<a href="showSummary.do?protocol=${protocolNum}&step=${stepNum}${subq}">View</a>&nbsp;|&nbsp;
+		<a class="view_step_link" href="showSummary.do?strategy=${strategyNum}&step=${stepNum}${subq}&resultsOnly=true">View</a>&nbsp;|&nbsp;
 		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 		<span style="color:#888;">Export</span>&nbsp;|&nbsp;
-	        <span><a href="deleteStep.do?protocol=${protocolNum}&delete=${stepNum}">Delete</a></span>
+	        <span><a href="deleteStep.do?strategy=${strategyNum}&delete=${stepNum}">Delete</a></span>
    </div>       
   </div><!--End Crumb_Detail-->

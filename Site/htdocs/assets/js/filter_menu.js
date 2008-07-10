@@ -16,10 +16,10 @@ function formatFilterForm(data, edit, reviseStep){
 				var proto = $("#proto").text();
 				var pro_url = "";
 			if(edit == 0)
-				pro_url = "processFilter.do?protocol=" + proto;
+				pro_url = "processFilter.do?strategy=" + proto;
 			else{
 				
-				pro_url = "processFilter.do?protocol=" + proto + "&revise=" + reviseStep + "&step=" + stepn + "&subquery=" + isSub;
+				pro_url = "processFilter.do?strategy=" + proto + "&revise=" + reviseStep + "&step=" + stepn + "&subquery=" + isSub;
 			}
 				var historyId = $("#history_id").val();
 				var stepNum = $("#target_step").val() - 1;
@@ -61,7 +61,7 @@ function formatFilterForm(data, edit, reviseStep){
 			}
 				
 
-//				var action = quesForm.attr("action").replace(/processQuestion.do/,"processFilter.do?protocol=" + proto);
+//				var action = quesForm.attr("action").replace(/processQuestion.do/,"processFilter.do?strategy=" + proto);
 				var action = quesForm.attr("action").replace(/processQuestion.do/,pro_url);
 
 			//	quesForm.prepend("<hr style='width:99%'/>");

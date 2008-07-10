@@ -9,15 +9,15 @@
               required="true"
               description="Step to be displayed by this tag"
 %>
-<%@ attribute name="protocol"
-	      type="org.gusdb.wdk.model.jspwrap.ProtocolBean"
+<%@ attribute name="strategy"
+	      type="org.gusdb.wdk.model.jspwrap.UserStrategyBean"
               required="true"
-              description="Protocol containing this Step"
+              description="Strategy containing this Step"
 %>
 <%@ attribute name="stepNum"
 	      type="java.lang.String"
               required="true"
-              description="Number of this step in the protocol"
+              description="Number of this step in the strategy"
 %>
 <c:set var="left_offset" value="0" />
 <c:choose>
@@ -38,9 +38,9 @@
 	<c:when test="${step.isFirstStep}">
 		<div id="step_${stepNum}" class="box row2 col1 size1 arrowgrey">
 			<h3>
-				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}"
+				<a class="crumb_name" href="showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true"
 					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
-				<site:StepDetail step="${step}" protocolNum="${protocol.protocolId}" stepNum="${stepNum}"/>
+				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>			
 			<c:if test="${step.nextStep != null}">
@@ -54,9 +54,9 @@
 	<c:otherwise>
 		<div id="step_${stepNum}_sub" class='row1 size1 arrowgrey' style='left:${left_offset - 8}em'>
 			<h3>
-				<a class="crumb_name" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}&subquery=true"
+				<a class="crumb_name" href="showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true"
 					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
-				<site:StepDetail step="${step}" protocolNum="${protocol.protocolId}" stepNum="${stepNum}"/>
+				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">Results:&nbsp;${step.subQueryResultSize}</span>
 			<ul>
@@ -64,7 +64,7 @@
 			</ul>
 		</div>
 		<div id="step_${stepNum}" class="box row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 5em; border: none">
-			<a class="operation" href="showSummary.do?protocol=${protocol.protocolId}&step=${stepNum}"><img src="/assets/images/transparent1.gif"/></a><br>
+			<a class="operation" href="showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true"><img src="/assets/images/transparent1.gif"/></a><br>
 			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>
 			<c:if test="${step.nextStep != null}">
 				<ul>

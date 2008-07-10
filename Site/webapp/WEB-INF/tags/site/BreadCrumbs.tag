@@ -10,13 +10,13 @@
 
 
 <%@ attribute name="history"
-	      type="org.gusdb.wdk.model.jspwrap.HistoryBean"
+	      type="org.gusdb.wdk.model.jspwrap.UserAnswerBean"
               required="false"
               description="history object for this question"
 %>
 
 <%@ attribute name="wdkAnswer"
-	      type="org.gusdb.wdk.model.jspwrap.AnswerBean"
+	      type="org.gusdb.wdk.model.jspwrap.RecordPageBean"
               required="false"
               description="Answer object for this question"
 %>
@@ -33,10 +33,10 @@
               description="RecordClass Object for the Answer"
 %>
 
-<%@ attribute name="protocol"
-	      type="org.gusdb.wdk.model.jspwrap.ProtocolBean"
+<%@ attribute name="strategy"
+	      type="org.gusdb.wdk.model.jspwrap.UserStrategyBean"
               required="false"
-              description="Protocol from the SummaryPage"
+              description="Strategy from the SummaryPage"
 %>
 
 <link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css">
@@ -45,9 +45,9 @@
 <c:set var="stepNumber" value="0" />
 <div class="chain_background" id="bread_crumb_div">
 	<div id="diagram">
-		<c:set var="steps" value="${protocol.allSteps}" />
+		<c:set var="steps" value="${strategy.allSteps}" />
 		<c:forEach items="${steps}" var="step">
-			<site:Step step="${step}" protocol="${protocol}" stepNum="${stepNumber}"/>
+			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
 			<c:set var="stepNumber" value="${stepNumber+1}" />
 		</c:forEach>
 	</div>
@@ -56,7 +56,7 @@
 <input type="hidden" id="target_step" value="${stepNumber+1}"/>
 
 <div id="filter_link_div">
-<site:FilterInterface model="${model}" recordClass="${recordClass}" protocol="${protocol}"/>
+<site:FilterInterface model="${model}" recordClass="${recordClass}" strategy="${strategy}"/>
 </div>
 
 </div><!-- End Bread_Crumb_Div -->
