@@ -401,20 +401,44 @@ sub makeClustal {
 
   my (%allSequences, @genomes);
 
+  print STDOUT "<table border=1 cellpadding='6px' RULES=GROUPS FRAMES=BOX valign='left'>\n";
+
+  print STDOUT"<tr><thead align='left'><th>Genome</th><th>Sequence</th><th>Start</th><th>End</th><th>Strand</th><th>#Nucleotides</th></tr></thead>\n";
+
   foreach my $line (@lines) {
     next unless($line);
-    if($line =~ /^>(([\w\d_]+) [\w\d]+:(\d+)-(\d+)\(([+-])\))/ || $line =~ /^>(.+)/) {
+    if($line =~ /^>(([\w\d_]+) ([\w\d\.]+):(\d+)-(\d+)\(([+-])\).*)/) {
       $thisGenome = $1;
       push(@genomes, $thisGenome);
 
       my $genome = $2;
+      my $genomicSequence = $3;
+
       if($genome eq $referenceGenome) {
-        $start = $3 - 1;;
-        $stop = $4 + 1;
-        $strand = $5;
+        $start = $4 - 1;
+        $stop = $5 + 1;
+        $strand =  $6;
       }
 
-      print STDOUT "$line<br />\n";
+      my @lineElements = split(/[ ;]/, $thisGenome);
+      for(my $i = 1; $i < scalar @lineElements; $i++) {
+        $lineElements[$i] =~ /([\w\d\.]+):(\d+)-(\d+)\(([+-])\)/;
+        my $tmpSequence = $1;
+        my $tmpStart = $2;
+        my $tmpStop = $3;
+        my $tmpStrand = $4;
+        my $tmpLength = $tmpStop - $tmpStart + 1;
+        print STDOUT"<tr><td>$genome</td><td>$tmpSequence</td><td>$tmpStart</td><td>$tmpStop</td><td>$tmpStrand</td><td>$tmpLength</td></tr>\n";
+      }
+
+    }
+    elsif($line =~ /^>(.+)/) {
+      $thisGenome = $1;
+      push(@genomes, $thisGenome);
+
+      my $emptyCell = 'N/A';
+
+      print STDOUT"<tr><td>$thisGenome</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td></tr>\n";
     }
     else {
       push(@{$allSequences{$thisGenome}}, $line);
@@ -422,7 +446,8 @@ sub makeClustal {
     }
   }
   $count = $count / scalar(keys(%allSequences));
-  print STDOUT "<br />\n";
+  print STDOUT "</table><br/>\n";
+
 
   &printClustal(\%allSequences, $start, $stop, $strand, $referenceGenome, $count, \@genomes);
 }
@@ -594,6 +619,12 @@ b.maroon
 font-family: courier, 'serif';
 font-weight: bold;
 color:#8B0000; 
+}
+tr 
+{
+font-family: courier, 'serif';
+font-weight: normal;
+font-size: 80%;
 }
 
 
