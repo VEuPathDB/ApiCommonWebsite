@@ -1,30 +1,27 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:set var="modelName" value="${applicationScope.wdkModel.name}" />
+<c:set var="sName" value="${fn:substringBefore(modelName,'DB')}" />
+<c:set var="cycName" value="${sName}Cyc" />
 <div id="info">
-    <ul>
-      <li><em>C. hominis
-        </em>
-        <ul>
-          <li><span class="subcolor">Taxon ID: </span>237895</li>
-          <li><span class="subcolor">Reference Strain: </span>TU502</li>
-          <li><span class="subcolor">Genome Version: </span>1 (10/04)</li>
-        </ul>
-      </li>
-      <li><em>C. muris
-        </em>
-        <ul>
-          
-          <li><span class="subcolor">Taxon ID: </span>5808</li>
-          <li><span class="subcolor">Genome Version: </span>1 (10/04)</li>
-          </ul>
-      </li>
-      <li><em>C. parvum IOWA
-        </em>
-        <ul>
-          <li><span class="subcolor">Taxon ID: </span>5807</li>
-          <li><span class="subcolor">Reference Strain: </span>IOWA</li>
-          <li><span class="subcolor">Genome Version: </span>1 (03/04)</li>
-          </ul>
-      </li>
-	</ul>
+    	<ul>
+		<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a>
+			<ul><li>Description</li></ul>
+		</li>
+		<li><a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a>
+			<ul><li>Description</li></ul>
+		</li>
+		<li><a href="#"><strong>PubMed and Entrez</strong></a>
+			<ul><li>Description</li></ul>
+		</li>
+		<li><a href="#"><strong>GBrowse</strong></a>
+			<ul><li>Description</li></ul>
+		</li>
+		<li><a href="#"><strong>${cycName}</strong></a>
+			<ul><li>Description</li></ul>
+		</li>
+    	</ul>
 </div>
 <div id="infobottom">
 </div><!--end info-->

@@ -8,30 +8,19 @@
 			  description="Page calling this tag"
 %>
 
+<c:set var="siteName" value="${applicationScope.wdkModel.name}" />
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>CryptoDB -- Cryptosporidium Genome Resources</title>
 <link href="/assets/css/crypto.css" rel="stylesheet" type="text/css" />
-<c:if test="${refer == 'home'}">
-<style type="text/css">
-<!--
-body {
-	background-image: url(/assets/images/crypto/background.jpg);
-	background-repeat: repeat-x;
-    }
-#header {
-		height: 159px;
-		background-image: url(/assets/images/crypto/backgroundtop.jpg);
-	}
-#header p {
-		font-size: 10px;
-	}
 
--->
-</style>
-</c:if>
-<c:if test="${refer != 'home'}">
+
+<link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
+<link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
+
+
 <style type="text/css">
 <!--
 body {
@@ -47,14 +36,13 @@ body {
 }
 -->
 </style>
-</c:if>
 
 <site:jscript />
 </head>
 
 <body>
 
-
+<%--
 <div id="header">
   <c:if test="${refer == 'home'}">
   	<p><img src="/assets/images/crypto/title1.png" alt="CryptoDB" width="398" height="87" align="left" /></p>
@@ -66,3 +54,16 @@ body {
   <p>Version 3.8<br />
     March 15, 2008</p>
 </div>
+--%>
+<div id="header2">
+       <div id="header_rt"><a href="#"><img src="../assets/images/partofeupath.png" alt="EuPathDB Homepage" width="148" height="23" /></a>
+       <div id="bottom">
+			<site:quickSearch />
+         <br />
+       <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Log In/Register</a></div>
+       </div>
+       <p><a href="http://www.cryptodb.org"><img src="../assets/images/crypto/title_s.png" alt="CryptoDB" width="318" height="64" align="left" /></a></p>
+ <p>&nbsp;</p>
+ <p>Version 3.8<br />
+   March 15, 2008</p>
+</div> 

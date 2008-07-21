@@ -21,7 +21,12 @@
               required="false"
               description="strategy for this result"
 %>
+<<<<<<< .mine
 <span id="proto" style="display: none">${strategy.strategyId}</span>
+<span id="last_step_id" style="display:none">${strategy.latestStep.filterUserAnswer.userAnswerId}</span>
+=======
+<span id="proto" style="display: none">${strategy.strategyId}</span>
+>>>>>>> .r22331
 <c:set var="catMap" value="${model.questionsByCategory}" />
 <c:set var="recClass" value="${recordClass.fullName}" />
 <c:set var="qSetName" value="none" />
@@ -31,8 +36,12 @@
 
 
 
+<<<<<<< .mine
+<a class="redbutton" onclick="this.blur()" href="javascript:openFilter(${protocol.length})" id="filter_link"><span>Add Step</span></a>
+=======
 
 <a class="redbutton" onclick="this.blur()" href="#" id="filter_link" style="position:relative; top: -4.1em; left: ${strategy.length * 11.65 + 5}em; color: #ffffff;"><span>Add Step</span></a>
+>>>>>>> .r22331
 <div id="filter_div">
 <span id="instructions"></span>
 

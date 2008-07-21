@@ -43,8 +43,8 @@
 		 </c:if>
 		</c:forEach>
 
-<li><a href="<c:url value="/queries_tools.jsp"/>">All Searches</a>
-		<li><a href="#">Tools</a>
+<li><a href="<c:url value="/queries_tools.jsp"/>">All Searches</a></li>
+		<%--<li><a href="#">Tools</a>
       		<ul>
 	<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
   			<li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
@@ -52,5 +52,5 @@
         		<li><a href="${CGI_URL}/gbrowse/cryptodb"> GBrowse</a></li>
         		<li><a href="#"> CryptoCyc</a></li>
       		</ul>
-		</li>
+		</li>--%>
 	</ul>

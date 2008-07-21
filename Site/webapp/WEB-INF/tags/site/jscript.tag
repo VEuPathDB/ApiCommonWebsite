@@ -15,9 +15,15 @@
 <!-- dynamic query grid code -->
 <script defer type="text/javascript" src="/assets/js/step.js"></script>
 <!-- dynamic query grid code -->
+<script defer type="text/javascript" src="/assets/js/pager.js"></script>
+<!-- dynamic query grid code -->
 <script defer type="text/javascript" src="/assets/js/questionPage.js"></script>
 <!-- dynamic query grid code -->
 <script defer type="text/javascript" src="/assets/js/Top_menu.js"></script>
+<!-- Results Page AJAX Javascript code -->
+<script defer type="text/javascript" src="/assets/js/results_page.js"></script>
+<!-- Record Page GBrowse Javascript code -->
+<script defer type="text/javascript" src="/gbrowse/wz_tooltip_3.45.js"></script>
 
 <script defer type="text/javascript" src="/assets/js/api.js"></script>
 <!-- fix to transparent png images in IE 7 -->

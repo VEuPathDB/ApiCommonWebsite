@@ -2,50 +2,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager" %>
 <%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
-<!--
-      <p>&nbsp;</p>
-	  <p>&nbsp;</p>
-	  <div align="center">
-	    <table width="90%" border="0">
-          <tr>
-            <td colspan="3" class="headerrow"><div align="center">Title of Table</div></td>
-          </tr>
-          <tr class="subheaderrow">
-            <td width="33%" class="subheaderrow">Subtitles</td>
-            <td width="34%">&nbsp;</td>
-            <td width="33%">&nbsp;</td>
-          </tr>
-          <tr>
-            <td width="33%" class="lines">Results 1</td>
-            <td width="34%">&nbsp;</td>
-            <td width="33%">&nbsp;</td>
-          </tr>
-          <tr>
-            <td width="33%" class="linesalt">Results 2</td>
-            <td width="34%">&nbsp;</td>
-            <td width="33%">&nbsp;</td>
-          </tr>
-          <tr>
-            <td width="33%" class="lines">Results 3</td>
-            <td width="34%">&nbsp;</td>
-            <td width="33%">&nbsp;</td>
-          </tr>
-        </table>
-	  </div>
-	  <div align="center"></div>
-	  <p>&nbsp;</p>
-      
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      
--->
+<%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
 
 <c:set var="commandUrl">
     <c:url value="/processSummary.do?${wdk_query_string}" />
 </c:set>
 
-<!--<div id="Workspace">-->
+
 <!-- handle empty result set situation -->
 <c:choose>
   <c:when test='${wdkAnswer.resultSize == 0}'>
@@ -77,7 +40,10 @@
         <!-- pager on top -->
         <wdk:pager pager_id="top"/> 
       </td>
-      <td nowrap align="right">
+      <td align="left">
+	      <input id="summary_view_button" disabled="disabled" type="submit" value="Summary View" onclick="ToggleGenePageView('')" />
+	  </td>
+	  <td nowrap align="right">
            <%-- display a list of sortable attributes --%>
            <c:set var="addAttributes" value="${wdkAnswer.displayableAttributes}" />
            <select id="addAttributes" onChange="addAttr()">
@@ -93,14 +59,43 @@
       </td>
     </tr>
   </table>
+<div id="primaryKey_div" style="display:none">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td valign="top" width="75px" style="background-color: #DDDDDD">
+<site:IdList />
+</td><td valign="top" >
 
+<div id="Record_Page_Div" style="display: none">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<c:set value="${wdkAnswer.summaryAttributes[0]}" var="sumAttrib"/>
+	<c:set var="attrName" value="${sumAttrib.name}" />
+	<tr class="headerrow">
+   		<th align="center" valign="middle">
+      		${sumAttrib.displayName} Record Page
+    	</th>
+	</tr>
+
+
+	<tr class="subheaderrow">
+   		<th align="center" valign="middle">
+      		<span id="record_cell_header" style="font-size: 18px;" >Gene ID </span>
+    	</th>
+	</tr>
+	<tr><td><div id="record_page_cell_div"></div></td></tr>
+</table>
+</div>
+
+</td></tr>
+</table>
+</div>
+<div id="Results_Pane" style="display: block">
 <!-- content of current page -->
 <table width="100%" border="0" cellpadding="3" cellspacing="0">
 
 
 <tr class="headerrow">
   <c:forEach items="${wdkAnswer.summaryAttributes}" var="sumAttrib">
-    <th align="center" valign="middle">
+    <th align="left" valign="middle">
       ${sumAttrib.displayName}
     </th>
   </c:forEach>
@@ -114,7 +109,7 @@
     <c:set var="j" value="0"/>
 
     <c:forEach items="${wdkAnswer.summaryAttributes}" var="sumAttrib">
-        <th align="center" valign="middle">
+        <th align="left" valign="middle">
             <c:set var="attrName" value="${sumAttrib.name}" />
       
             <table border="0" cellspacing="2" cellpadding="0">
@@ -266,9 +261,14 @@
 
             <c:otherwise>
 
+
+
               <%-- display a link to record page --%>
               <c:set value="${record.primaryKey}" var="primaryKey"/>
-              <a href="showRecord.do?name=${recNam}&project_id=${primaryKey.projectId}&primary_key=${primaryKey.recordId}">${fieldVal}</a>
+           <!--   <a href="showRecord.do?name=${recNam}&project_id=${primaryKey.projectId}&primary_key=${primaryKey.recordId}">${fieldVal}</a>-->
+				<span id="gene_id_${fieldVal}"> <a href="javascript:ToggleGenePageView('gene_id_${fieldVal}', 'showRecord.do?name=${recNam}&project_id=${primaryKey.projectId}&primary_key=${primaryKey.recordId}')">${fieldVal}</a></span>
+
+
 
             </c:otherwise>
         </c:choose>
@@ -326,7 +326,7 @@
 </table>
 </c:if>
 
-
+</div> <!-- END OF RESULTS PANE -->
 
 <br>
 
@@ -341,5 +341,4 @@
   </td>
   <td valign=top class=dottedLeftBorder></td> 
 </tr>
-</table> 
-<!--</div>--> <!--END OF WORKSPACE DIV-->
+</table>
