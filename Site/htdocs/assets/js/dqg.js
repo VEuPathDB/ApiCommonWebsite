@@ -21,7 +21,6 @@ $(document).ready(function(){
 		return false;
 	});
 
-
 	$("ul.heading_list li img.plus-minus").click(function(){
 		var sublist = $(this).parents("li").find("div.sub_list");
 		var img = $(this);
@@ -72,4 +71,3 @@ $(document).ready(function(){
 		return false;
 	});
 });
-

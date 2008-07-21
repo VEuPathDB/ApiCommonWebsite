@@ -30,6 +30,14 @@ $("#diagram").ready(function(){
 		return false;
 	});
 
+<<<<<<< .mine
+//	$("a.crumb_name, a.operation, a.view_step_link").click(function(){
+//		NewResults($(this)[0]);
+//		return false;
+//	});
+
+
+=======
 	$("a.crumb_name, a.operation, a.view_step_link").click(function(){
 		var classname = "selectedarrow";
 		if($(this).hasClass("operation"))
@@ -57,6 +65,7 @@ $("#diagram").ready(function(){
 	});
 
 
+>>>>>>> .r22341
 	//HIGH LIGHTING CODE
 	var stepnumber = parseUrl("step");
 	if(stepnumber == "")
@@ -126,3 +135,33 @@ function parseUrl(name){
  		return res;
 }
 
+function NewResults(ele,url){
+	var classname = "selectedarrow";
+	if($(ele).hasClass("operation"))
+		classname = "selected";
+	//var url = $(ele).attr("value");
+	//var url = ele.attr("value");
+	$.ajax({
+		url: url,
+		dataType: "html",
+		success: function(data){
+			$("div#Workspace").html(data);
+		},
+		error : function(data, msg, e){
+			  alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+	$("div.selectedarrow").removeClass("selectedarrow");
+	$("div.selected").removeClass("selected");
+	if($(ele).hasClass("crumb_name")){
+		$(ele).parent().parent().addClass(classname);
+		$(ele).siblings("div.crumb_details").hide();
+	}
+	else if($(ele).hasClass("operation")){
+		$(ele).parent().addClass(classname);
+	}
+	else if($(ele).hasClass("view_step_link")){
+		$(ele).parent().parent().parent().parent().addClass(classname);
+		$(ele).parent().parent().hide();	
+	}
+}
