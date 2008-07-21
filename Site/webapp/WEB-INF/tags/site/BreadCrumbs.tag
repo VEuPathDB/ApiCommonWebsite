@@ -36,11 +36,11 @@
 <%@ attribute name="strategy"
 	      type="org.gusdb.wdk.model.jspwrap.UserStrategyBean"
               required="false"
-              description="Strategy from the SummaryPage"
+              description="Protocol from the SummaryPage"
 %>
 
-<link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css">
-<link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
+<!--<link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
+<link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>-->
 
 <c:set var="stepNumber" value="0" />
 <div class="chain_background" id="bread_crumb_div">
@@ -53,11 +53,6 @@
 	</div>
 </div>
 
-<input type="hidden" id="target_step" value="${stepNumber+1}"/>
 
-<div id="filter_link_div">
-<site:FilterInterface model="${model}" recordClass="${recordClass}" strategy="${strategy}"/>
-</div>
 
-</div><!-- End Bread_Crumb_Div -->
 
