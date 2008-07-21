@@ -39,7 +39,7 @@ a:hover, a:active {
 	width: 100%;
 	height: 159px;
 	text-align: left;
-	background-image: url(../images/crypto/backgroundtop.jpg);
+	background-image: url(../images/crypto/backgroundtop_s.jpg);
 	background-repeat: no-repeat;
 }
 
@@ -51,8 +51,33 @@ a:hover, a:active {
 	text-align: left;
 	background-image: url(../images/crypto/backgroundtop_s.jpg);
 	background-repeat: no-repeat;
+	min-width: 1000px;
 }
 
+#header_rt {
+   color: #395b8e;
+   font-size: 12px;
+   width: 430px;
+   float: right;
+   text-align: right;
+   margin-right: 25px;
+}
+
+#header_rt a:link, #header_rt a:visited {
+   color: #395b8e;
+   text-decoration: none;
+}
+
+#header_rt a:hover, #header_rt a:active {
+   color: #FFFFFF;
+   text-decoration: none;
+}
+
+#header_rt #bottom {
+   width: 100%;
+   height: 50px;
+   margin-top: 18px;
+} 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =STRUCTURE 
@@ -211,17 +236,17 @@ a:hover, a:active {
 }
 
 #info {
-	width: 209px;
-	min-height: 240px;
-	background-image: url(../images/bubble_backgrnd.png);
-	background-repeat: repeat-y;
-	text-align: left;
-	padding-top: 2px;
-	padding-right: 19px;
-	padding-bottom: 0px;
-	padding-left: 19px;
+   width: 209px;
+   min-height: 240px;
+   height:auto;
+   background-image: url(../images/bubble_backgrnd.png);
+   background-repeat: repeat-y;
+   text-align: left;
+   padding-top: 2px;
+   padding-right: 19px;
+   padding-bottom: 0px;
+   padding-left: 19px;
 }
-
 
 #info li
 {
@@ -251,25 +276,30 @@ a:hover, a:active {
 	padding-left: 19px;
 }
 
+/* for Internet Explorer */
+/*\*/
+* html #info {
+height: 240px;
+}
+/**/
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =Top Menu Bar Dropdown List
 	
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-
 #nav, #nav ul {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-	line-height: 1;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	color: #FFFFFF;
-	z-index: 51;
-
-}
+   padding: 0;
+   margin: 0;
+   list-style: none;
+   line-height: 1;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 13px;
+   font-weight: bold;
+   color: #FFFFFF;
+   z-index: 51;
+} 
 
 #nav a:link, #nav a:visited {
 	display: block;
@@ -423,13 +453,14 @@ a:hover, a:active {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .search-box{
-	width: 14em;
-	padding: 2px;
-	color: #333333;
-	background-color: #EEEEEE;
-	border: solid 1px #b3b3b3;
-	font-size: 11px;
-}
+   width: 8em;
+   padding: 2px;
+   color: #5b5b5b;
+   background-color: #dae0e8;
+   border: solid 1px #5376ae;
+   font-size: 11px;
+   text-align: right;
+} 
 
 .search-box input{
 	font-family: Arial, Helvetica, sans-serif;
@@ -592,7 +623,22 @@ h2 {
 }
 
 .small {
-	font-size: 10px;	
+	font-size: 11px;	
+}
+
+.detail_link {
+	border: 2px solid #d8d8d8;
+	display: inline;
+	left: -999px;
+	position: relative;
+}
+
+.detail_link:link, .detail_link:visited{
+	color: #808080;
+}
+
+a.heading:hover + a.detail_link, .detail_link:hover {
+	left: -2px;
 }
 
 .subcolor {
@@ -772,6 +818,7 @@ tr.headerInternalRow td {
 }
 
 tr.lines {
+	background-color: #FFFFFF;
 }
 
 tr.linesalt {
@@ -825,12 +872,72 @@ a.redbutton:active span {
    padding: 14px 23px 11px 18px; /* push text down 1px */
 }
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =WorkSpace Divs 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+#record_page_cell_div {
+	margin-left: 20px;
+}	
 
+#Details_div {
+	position: absolute;
+	left: 143px;
+	top: 341px;
+	width: 96.6%;
+}
+
+#step_progress_bar {
+	position: relative;
+	left: 450px;
+	top: 65px;
+	width: 289px;
+	height: 20px;
+}
+
+#gene_page_progress_bar {
+	position: relative;
+	left: 450px;
+	top: 26px;
+	width: 289px;
+	height: 20px;
+}
+
+#graphic_span {
+	width: 289px;
+	height: 20px;
+	font-weight: bold;
+	color: #FFFFFF;
+	padding-top: 1px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.step {background-image: url(../images/loading_step.png);}
+.record {background-image: url(../images/loading.png);}
+
+#gene_page_progress_bar div#loading_span {
+	position: absolute;
+	left: 118px;
+	top: 3px;
+	font-weight: bold;
+	color: #FFFFFF;
+	z-index: 100;
+}
+
+#loading_step_div {
+	display: none;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =MISC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+span.marker a:link, span.marker a:visited {
+	padding-left: 15px;
+	font-weight: bold;
+	color: #7D0101;
+}
 
 clear {
 	clear: both;

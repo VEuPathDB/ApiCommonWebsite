@@ -251,6 +251,7 @@
 		z-index: 200;
 		top: 57px;
 		left: 26px;
+		display: none;
 	}
 
 	.crumb_menu {
