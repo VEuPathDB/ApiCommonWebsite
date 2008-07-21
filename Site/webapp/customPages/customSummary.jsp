@@ -69,8 +69,6 @@ function resetAttr() {
 <div id="contentwrapper">
   	<div id="contentcolumn2">
 		<div class="innertube">
-
-
 <div class="strategy_controls"/>
 <table width="100%">
 <tr>
@@ -94,16 +92,23 @@ function resetAttr() {
 </table>
 </div>
 
+<input type="hidden" id="history_id" value="${history.userAnswerId}"/>
+<div id="Strategies">
+	<div id="loading_step_div"></div>
+	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
+	<hr>
+</div>
 
-	  	
-			<input type="hidden" id="history_id" value="${history.userAnswerId}"/>
+<input type="hidden" id="target_step" value="${stepNumber+1}"/>
 
-		 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
-			<hr>
-			<div id="Workspace">
-			<site:Results />
-			</div>
-		</div>
-	</div>
+<div id="filter_link_div">
+	<site:FilterInterface model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
+</div>
+
+<div id="Workspace">
+<site:Results />
+</div>
+</div>
+</div>
 </div>
 <site:footer />
