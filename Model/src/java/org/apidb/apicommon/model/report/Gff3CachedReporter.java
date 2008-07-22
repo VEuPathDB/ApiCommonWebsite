@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.Answer;
+import org.gusdb.wdk.model.RecordPage;
 import org.gusdb.wdk.model.AttributeFieldValue;
 import org.gusdb.wdk.model.RDBMSPlatformI;
 import org.gusdb.wdk.model.RecordInstance;
@@ -47,7 +47,7 @@ public class Gff3CachedReporter extends Reporter {
     private boolean hasTranscript = false;
     private boolean hasProtein = false;
 
-    public Gff3CachedReporter(Answer answer, int startIndex, int endIndex) {
+    public Gff3CachedReporter(RecordPage answer, int startIndex, int endIndex) {
         super(answer, startIndex, endIndex);
     }
 
@@ -147,7 +147,7 @@ public class Gff3CachedReporter extends Reporter {
     /*
      * (non-Javadoc)
      * 
-     * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
+     * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.RecordPage)
      */
     public void write(OutputStream out) throws WdkModelException {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
@@ -177,8 +177,8 @@ public class Gff3CachedReporter extends Reporter {
         Map<String, int[]> regions = new LinkedHashMap<String, int[]>();
 
         // get page based answers with a maximum size (defined in
-        // PageAnswerIterator)
-        for (Answer answer : this) {
+        // PageRecordPageIterator)
+        for (RecordPage answer : this) {
             while (answer.hasMoreRecordInstances()) {
                 RecordInstance record = answer.getNextRecordInstance();
                 String seqId = getValue(record.getAttributeValue("gff_seqid"));
