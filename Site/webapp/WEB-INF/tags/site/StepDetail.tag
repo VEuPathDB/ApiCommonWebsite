@@ -102,13 +102,9 @@
       </c:otherwise>
    </c:choose>
    <div class="crumb_menu">
-<<<<<<< .mine
-		<a class="view_step_link" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">View</a>&nbsp;|&nbsp;
-=======
-		<a class="view_step_link" href="showSummary.do?strategy=${strategyNum}&step=${stepNum}${subq}&resultsOnly=true">View</a>&nbsp;|&nbsp;
->>>>>>> .r22331
-		<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
-		<span style="color:#888;">Export</span>&nbsp;|&nbsp;
-	        <span><a href="deleteStep.do?strategy=${strategyNum}&delete=${stepNum}">Delete</a></span>
+	<a class="view_step_link" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">View</a>&nbsp;|&nbsp;
+	<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
+	<span style="color:#888;">Export</span>&nbsp;|&nbsp;
+	<span><a href="deleteStep.do?strategy=${strategyNum}&delete=${stepNum}">Delete</a></span>
    </div>       
   </div><!--End Crumb_Detail-->

@@ -30,42 +30,11 @@ $("#diagram").ready(function(){
 		return false;
 	});
 
-<<<<<<< .mine
 //	$("a.crumb_name, a.operation, a.view_step_link").click(function(){
 //		NewResults($(this)[0]);
 //		return false;
 //	});
 
-
-=======
-	$("a.crumb_name, a.operation, a.view_step_link").click(function(){
-		var classname = "selectedarrow";
-		if($(this).hasClass("operation"))
-			classname = "selected";
-		var url = $(this).attr("href");
-		$.ajax({
-			url: url,
-			dataType: "html",
-			success: function(data){
-				$("div#Workspace").html(data);
-			},
-			error : function(data, msg, e){
-				  alert("ERROR \n "+ msg + "\n" + e);
-			}
-		});
-		$("div.selectedarrow").removeClass("selectedarrow");
-		$("div.selected").removeClass("selected");
-		if($(this).hasClass("crumb_name"))
-			$(this).parent().parent().addClass(classname);
-		else if($(this).hasClass("operation"))
-			$(this).parent().addClass(classname);
-		else if($(this).hasClass("view_step_link"))
-			$(this).parent().parent().parent().parent().addClass(classname);
-		return false;
-	});
-
-
->>>>>>> .r22341
 	//HIGH LIGHTING CODE
 	var stepnumber = parseUrl("step");
 	if(stepnumber == "")
