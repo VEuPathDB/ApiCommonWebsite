@@ -230,8 +230,9 @@
 	}
 	
 	span.resultCount {
-		font-size:10px;
+		font-size:11px;
 		font-style: italic;
+		font-weight: bold;
 	}
 	
 	div.arrowgrey span.resultCount{
