@@ -23,7 +23,10 @@ function formatFilterForm(data, edit, reviseStep){
 				pro_url = "processFilter.do?strategy=" + proto + "&revise=" + reviseStep + "&step=" + stepn + "&subquery=" + isSub;
 			}
 				var historyId = $("#history_id").val();
-				var stepNum = $("#target_step").val() - 1;
+				var stepNum = $("#target_step").val();
+				stepNum = parseInt(stepNum) + 1;
+				var prev_stepNum = stepNum - 1;
+				
 			if(edit == 0)
 				var close_link = "<a id='close_filter_query' href='javascript:close()'><img src='/assets/images/Close-X-box.png'/></a>";
 	 		else
@@ -47,12 +50,12 @@ function formatFilterForm(data, edit, reviseStep){
 				advanced.attr("style", "");
 				$(".filter.params", quesForm).append(advanced);
 			if(edit == 0)
-				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Add&nbsp;Step&nbsp;" + (stepNum + 1) + ": " + quesTitle + "</span></br>");
+				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Add&nbsp;Step&nbsp;" + stepNum + ": " + quesTitle + "</span></br>");
 			else
 				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Edit&nbsp;Step&nbsp;" + (reviseStep + 1) + ": " + quesTitle + "</span></br>");
 				//$(".filter.params", quesForm).prepend("<span class='form_subtitle'>" + quesTitle + "</span><br>"); 
 			if(edit == 0){
-				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + (stepNum + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + stepNum + "&nbsp;<b>UNION</b>&nbsp;" + (stepNum + 1) + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + (stepNum + 1) + "</li></ul></div></div>");
+				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + prev_stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
 			}
 			else {
 				if(reviseStep != 0){
@@ -255,6 +258,7 @@ function AddStepToStrategy(act){
 			var sub_step = $("div:first",data);
 			var step = $("div",data)[3];
 			var id = $(step).attr("id");
+			var stepNumber = $("span.stepNumber",data);
 			var sN = parseInt(id.substring(5));
 			var prev_step = sN - 1;
 			var arrow = "<ul><li>";
@@ -267,7 +271,9 @@ function AddStepToStrategy(act){
 			prev_box.append(arrow);
 			$("div#diagram").append(sub_step);
 			$("div#diagram").append($(step));
+			$("div#diagram").append(stepNumber);
 			$("div#step_"+sN+" a").click();
+			$("input#target_step").val(sN+1);
 		//	var new_url = $("div#step_"+sN+" a").attr("onclick");
 		//	new_url = new_url.substring(16);
 		//	NewResults($("div#step_"+sN)[0]);
