@@ -195,6 +195,7 @@ sub handleNonGenomic {
   my $sql;
   my $type = $self->{type};
   my $site = ($self->getModel() =~ /^api/i)? $portalSql : $componentSql;
+  #my $site = $portalSql;
 
   my $inputIds = $self->{inputIds};
   my $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
@@ -215,7 +216,6 @@ sub handleNonGenomic {
     $sql = $site->{cdsSql};
   }
 
-
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
 
   my $sth = $dbh->prepare($sql);
@@ -223,7 +223,7 @@ sub handleNonGenomic {
     $sth->execute($inputId);
     my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array();
     my $descrip = " | $organism | $product | $type ";
-
+  
     if ($inputId ne $geneOrfSourceId) {
       $descrip = " ($inputId) $descrip";
     }
@@ -234,26 +234,18 @@ sub handleNonGenomic {
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sql = "select source_id from dots.GENEFEATURE where lower(source_id) = lower(?)";
+  my $sql = "select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from apidb.GeneId where id = lower(?) order by matchiness desc) where rownum=1";
+
   my $sh = $dbh->prepare($sql);
 
   my @ids;
-
+ 
   foreach my $in (@{$inputIds}) {
     $sh->execute($in);
 
     my $best;
     while(my ($sourceId) = $sh->fetchrow_array()) {
       $best = $sourceId;
-    }
-
-    unless($best) {
-      my $sh = $dbh->prepare("select gene from apidb.geneid where lower(id) = lower(?)");
-      $sh->execute($in);
-
-      while(my ($sourceId) = $sh->fetchrow_array()) {
-        $best = $sourceId;
-      }
     }
 
     push @ids, $best if($best);
@@ -297,18 +289,18 @@ sub handleGenomic {
   my $endRev = "";
   
 # Comment out if using componentSql
-if($self->getModel() =~ /^api/i) {
+#if($self->getModel() =~ /api/) {
       $start = "(bfmv.$beginAnch + $beginOffset)";
       $end = "(bfmv.$endAnch + $endOffset)";
       $startRev = "(bfmv.$endAnchRev - $endOffset)";
       $endRev = "(bfmv.$beginAnchRev - $beginOffset)";
- }
- else {
-     $start = "(l.$beginAnch + $beginOffset)";
-     $end = "(l.$endAnch + $endOffset)";
-     $startRev = "(l.$endAnchRev - $endOffset)";
-     $endRev = "(l.$beginAnchRev - $beginOffset)";
-   }
+# }
+# else {
+#     $start = "(l.$beginAnch + $beginOffset)";
+#     $end = "(l.$endAnch + $endOffset)";
+#     $startRev = "(l.$endAnchRev - $endOffset)";
+#     $endRev = "(l.$beginAnchRev - $beginOffset)";
+# }
 
 
 $componentSql->{geneGenomicSql} = <<EOSQL;
@@ -317,9 +309,10 @@ select gf.source_id, s.source_id, tn.name, gf.product, l.start_min, l.end_max, l
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
-FROM dots.genefeature gf, dots.nalocation l,
+FROM dots.genefeature gf, dots.nalocation l, apidb.geneid gi,
      sres.taxonname tn, $seqTable s
-WHERE gf.source_id = ?
+WHERE gi.id = lower(?)
+AND gf.source_id = gi.gene
 AND l.na_feature_id = gf.na_feature_id
 AND s.na_sequence_id = gf.na_sequence_id
 AND tn.taxon_id = s.taxon_id
@@ -375,27 +368,23 @@ EOSQL
   my $sql;
 
 #  CAN COMPONENT SITES USE PORTAL SQL FOR GENOMIC GENES AND ORFS?
-  my $site = ($self->getModel() =~ /^api/i) ? $portalSql : $componentSql;
-#  my $site = $portalSql;
+#  my $site = ($self->getModel() =~ /api/)? $portalSql : $componentSql;
+  my $site = $portalSql;
 
-  my $ids = $self->{inputIds};
 
   if ($self->{geneOrOrf} eq "gene") {
       $sql = $site->{geneGenomicSql};
-      $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /^api/i);
   } else {
       $sql = $site->{orfGenomicSql};
   }
 
-  &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
-
   my @invalidIds;
-  my $sth = $dbh->prepare($sql) or &error($DBI::errstr);
+  my $sth = $dbh->prepare($sql);
 
-  foreach my $inputId (@$ids) {
+  foreach my $inputId (@{$self->{inputIds}}) {
     $sth->execute($inputId);
     my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $seq)
-      = $sth->fetchrow_array() ;
+      = $sth->fetchrow_array();
     if (!$geneOrfSourceId) {
       push(@invalidIds, $inputId);
     } else {
