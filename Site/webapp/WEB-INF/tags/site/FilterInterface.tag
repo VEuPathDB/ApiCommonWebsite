@@ -21,10 +21,8 @@
               required="false"
               description="strategy for this result"
 %>
-
 <span id="proto" style="display: none">${strategy.strategyId}</span>
 <span id="last_step_id" style="display:none">${strategy.latestStep.filterUserAnswer.userAnswerId}</span>
-
 <c:set var="catMap" value="${model.questionsByCategory}" />
 <c:set var="recClass" value="${recordClass.fullName}" />
 <c:set var="qSetName" value="none" />
@@ -35,9 +33,9 @@
 
 
 <a class="redbutton" onclick="this.blur()" href="javascript:openFilter(${protocol.length})" id="filter_link"><span>Add Step</span></a>
-
-<div id="filter_div">
-<span id="instructions"></span>
+<div id="query_form" class="jqDnR">
+<span class="dragHandle"><h1>Add&nbsp;Step</h1><a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png'/></a></span>
+<!--<div id="filter_div">-->
 
 <div id="query_selection">
 <ul class="top_nav">
@@ -47,14 +45,14 @@
 	<li><a class="category" href="javascript:void(0)">${cat.key}</a>
 	<ul>
 	<c:forEach items="${cat.value}" var="q">
-		<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
+		<li><a href="javascript:getQueryForm('showQuestion.do?questionFullName=${q.fullName}')">${q.displayName}</a></li>
 	</c:forEach>
 	</ul>
 </c:forEach>
 
 </ul>
 </div><!-- End of Query Selection Div -->
-</div><!-- End of Filter div -->
-<div id="query_form" class="jqDnR">
+<!--</div> End of Filter div -->
+<!--<div id="query_form" class="jqDnR">-->
 </div><!-- End of Query Form Div -->
 
