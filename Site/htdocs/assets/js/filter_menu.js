@@ -1,5 +1,5 @@
 
-function closeAll(){$("#filter_link").click();}
+function closeAll(){openFilter();}
 var _action = "";
 function formatFilterForm(data, edit, reviseStep){
 	//edit = 0 ::: adding a new step
@@ -8,9 +8,9 @@ function formatFilterForm(data, edit, reviseStep){
 				var stepn = 0;
 				if(reviseStep != ""){
 					var parts = reviseStep.split(":");
-					stepn = parts[1];
+					//stepn = parts[1];
 					reviseStep = parseInt(parts[0]);
-					isSub = parts[2];
+					isSub = true;//parts[2];
 					operation = parts[3];
 				}
 				var proto = $("#proto").text();
@@ -20,16 +20,17 @@ function formatFilterForm(data, edit, reviseStep){
 				pro_url = "processFilter.do?strategy=" + proto;
 			else{
 				
-				pro_url = "processFilter.do?strategy=" + proto + "&revise=" + reviseStep + "&step=" + stepn + "&subquery=" + isSub;
+				pro_url = "processFilter.do?strategy=" + proto + "&revise=" + reviseStep;// + "&step=" + stepn + "&subquery="; + isSub;
 			}
 				var historyId = $("#history_id").val();
 				var stepNum = $("#target_step").val();
 				stepNum = parseInt(stepNum) + 1;
 				var prev_stepNum = stepNum - 1;
 				
-			if(edit == 0)
-				var close_link = "<a id='close_filter_query' href='javascript:close()'><img src='/assets/images/Close-X-box.png'/></a>";
-	 		else
+			if(edit == 0){
+				var close_link = "<a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png'/></a>";
+				var back_link = "<a id='back_to_selection' href='javascript:close()'><img src='/assets/images/backbox.png'/></a>";
+	 		}else
 				var close_link = "<a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png'/></a>";
 				var quesTitle = $("h1",data).text().replace(/Identify Genes based on/,"");
 				var quesForm = $("form#form_question",data);
@@ -55,7 +56,7 @@ function formatFilterForm(data, edit, reviseStep){
 				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Edit&nbsp;Step&nbsp;" + (reviseStep + 1) + ": " + quesTitle + "</span></br>");
 				//$(".filter.params", quesForm).prepend("<span class='form_subtitle'>" + quesTitle + "</span><br>"); 
 			if(edit == 0){
-				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + prev_stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
+				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine Step " + prev_stepNum + " with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
 			}
 			else {
 				if(reviseStep != 0){
@@ -67,8 +68,10 @@ function formatFilterForm(data, edit, reviseStep){
 				
 			//	var action = quesForm.attr("action").replace(/processQuestion.do/,pro_url);
 			//	_action = action;
+			if(edit == 0)	
 				var action = "javascript:AddStepToStrategy('" + pro_url + "')";
-				quesForm.attr("action",action);
+			else
+				var action = "javascript:EditStep('" + pro_url + "', " + parseInt(revisestep) + ")";
 
 
 			//	quesForm.prepend("<hr style='width:99%'/>");
@@ -81,16 +84,18 @@ function formatFilterForm(data, edit, reviseStep){
 				//quesForm.prepend("<h1>Add&nbsp;Step&nbsp;" + (stepNum + 1) + "</h1>");
 
 				quesForm.attr("action",action);
-
+			if(edit == 0)
+				var header = "<span class='dragHandle'>" + back_link + " " + formtitle + " " + close_link + "</span>";
+			else
 				var header = "<span class='dragHandle'>" + formtitle + " " + close_link + "</span>";
-
+			
 				$("#query_form").html(header);
 				$("#query_form").append(quesForm);
 				$("#query_selection").fadeOut("normal");
-				$("#query_form").css({
-					top: "337px",
-					left: "22px"
-				});
+			//	$("#query_form").css({
+			//		top: "337px",
+			//		left: "22px"
+			//	});
 			if(edit == 1)
 				$("#query_form div#operations input#" + operation).attr('checked','checked'); 
 				
@@ -98,19 +103,8 @@ function formatFilterForm(data, edit, reviseStep){
 				$("#query_form").fadeIn("normal");
 }
 
-
-$(document).ready(function(){
-
-//	$("div.crumb_details").hide();
-//	$("#filter_div").hide();
-//	$("#query_form").hide();
-	$(".top_nav ul li a").click(function(){
-		
-		var url = $(this).attr("href");
-		//$.get(url, function(data){
-		//		$("#query_form").html(data);
-		//	}
-		//);
+//$(".top_nav ul li a").click(function(){
+function getQueryForm(url){	
 		$.ajax({
 			url: url,
 			dataType:"html",
@@ -121,9 +115,17 @@ $(document).ready(function(){
 				alert("ERROR \n "+ msg + "\n" + e);
 			}
 		});
-		$("#instructions").text("");
-		return false;
-	});
+}
+
+
+var original_Query_Form_Text;
+
+$(document).ready(function(){
+
+//	$("div.crumb_details").hide();
+//	$("#filter_div").hide();
+	original_Query_Form_Text = $("#query_form").html();
+	
 	
 	
 
@@ -159,21 +161,31 @@ $(document).ready(function(){
 
 function openFilter() {
 	var link = $("#filter_link");
-	if($(link).text() == "Add Step"){
-		$("#filter_div").fadeIn("normal");
-		$(link).html("<span>Close [X]</span>"); 
+	if($(link).attr("href") == "javascript:openFilter()"){
+//		$("#filter_div").fadeIn("normal");
+		$("#query_form").html(original_Query_Form_Text);
+		$("#query_form").css({
+			top: "337px",
+			left: "22px"
+		});
+		$("#query_form").show("normal");
+		$("#query_form").jqDrag(".dragHandle");
+		$(link).css({opacity:0.2});//html("<span>Close [X]</span>");
+		$(link).attr("href","javascript:void(0)");
 	}else{
-		$("#filter_div").fadeOut("normal");
-		$("#query_selection").show();
+		//$("#filter_div").fadeOut("normal");
+		//$("#query_selection").show();
 		$("#query_form").hide();
-		$(link).html("<span>Add Step</span>"); 
+		$(link).css({opacity:1.0});//html("<span>Add Step</span>"); 
+		$(link).attr("href","javascript:openFilter()");
 	}
 }
 
 function close(){
-	$("#query_form").fadeOut("normal");
-	$("#query_selection").fadeIn("normal");
-	$("#instructions").text("Revise your results by adding steps from the list below.");
+	$("#query_form").html(original_Query_Form_Text);//fadeOut("normal");
+	$("#query_form").jqDrag(".dragHandle");
+//	$("#query_selection").fadeIn("normal");
+//	$("#instructions").text("Revise your results by adding steps from the list below.");
 }
 
 

@@ -1,5 +1,4 @@
 #filter_div {
-	display: none;
 	width: 100%;
 	min-height: 50px;
 }
@@ -86,6 +85,13 @@
 	right: 0px;
 	top:0px;
 }
+
+#back_to_selection {
+	position: absolute;
+	left: 0px;
+	top:0px;
+}
+
 #question_title {
 	position:relative;
 	left: 65px;
@@ -162,7 +168,7 @@
 #filter_link {
 	position: relative;
 	float: right;
-	margin-right: 100px;
-	top: -110px;
+	margin-right: 5px;
+	top: -45px;
 	color: #FFFFFF;
 }
