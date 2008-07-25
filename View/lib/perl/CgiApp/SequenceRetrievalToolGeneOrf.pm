@@ -195,6 +195,7 @@ sub handleNonGenomic {
   my $sql;
   my $type = $self->{type};
   my $site = ($self->getModel() =~ /^api/i)? $portalSql : $componentSql;
+  #my $site = $portalSql;
 
   my $inputIds = $self->{inputIds};
   my $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
@@ -215,7 +216,6 @@ sub handleNonGenomic {
     $sql = $site->{cdsSql};
   }
 
-
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
 
   my $sth = $dbh->prepare($sql);
@@ -223,7 +223,7 @@ sub handleNonGenomic {
     $sth->execute($inputId);
     my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array();
     my $descrip = " | $organism | $product | $type ";
-
+  
     if ($inputId ne $geneOrfSourceId) {
       $descrip = " ($inputId) $descrip";
     }
@@ -234,11 +234,12 @@ sub handleNonGenomic {
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sql = "select source_id from dots.GENEFEATURE where lower(source_id) = lower(?)";
+  my $sql = "select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from apidb.GeneId where id = lower(?) order by matchiness desc) where rownum=1";
+
   my $sh = $dbh->prepare($sql);
 
   my @ids;
-
+ 
   foreach my $in (@{$inputIds}) {
     $sh->execute($in);
 
@@ -247,17 +248,9 @@ sub mapGeneFeatureSourceIds {
       $best = $sourceId;
     }
 
-    unless($best) {
-      my $sh = $dbh->prepare("select gene from apidb.geneid where lower(id) = lower(?)");
-      $sh->execute($in);
-
-      while(my ($sourceId) = $sh->fetchrow_array()) {
-        $best = $sourceId;
-      }
-    }
-
     push @ids, $best if($best);
   }
+
   return \@ids;
 
 }
