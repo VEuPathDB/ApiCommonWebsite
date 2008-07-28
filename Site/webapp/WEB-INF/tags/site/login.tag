@@ -88,6 +88,18 @@
        </td>
      </tr>
      <tr>
+       <td align="right">
+         <div class="small">
+           <input id="remember" type="checkbox" name="remember" size="11"/>
+         </div>
+       </td>
+       <td align="left">
+         <div class="small">
+           <b>Remember&nbsp;me</b>
+         </div>
+       </td>
+     </tr>
+     <tr>
         <td colspan="2" align="center" nowrap>
             <span class="small">
                <input type="submit" value="Login" id="login" style="width:76px;"/>
