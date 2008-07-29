@@ -48,7 +48,7 @@
     <li><a href="#">Standard Operating Procedures (SOPs)</a></li>
   </ul>
 </li>
-<li><a href="#">Download Files<img src="/assets/images/menu_divider.png" width="24" height="11" /></a>
+<li><a href="#">Download Files</a>
 
 <ul>
     <li><a href="#">Understanding Downloads</a></li>
