@@ -97,13 +97,13 @@
       </c:when>
       <c:otherwise>
           <p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}</p>
-	  <c:set var="subq" value="&subquery=true" />
-	  <c:set var="oper" value="${step.operation}" />
+	      <c:set var="subq" value="&subquery=true" />
+	      <c:set var="oper" value="${step.operation}" />
       </c:otherwise>
    </c:choose>
    <div class="crumb_menu">
-	<a class="view_step_link" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">View</a>&nbsp;|&nbsp;
-	<a class="edit_step_link" href="showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
+	<a class="view_step_link" onclick="NewResults(this,'showSummary.do?strategy=${strategyNum}&step=${stepNum}${subq}&resultsOnly=true')" href="javascript:void(0)">View</a>&nbsp;|&nbsp;
+	<a class="edit_step_link" href="javascript:void(0)" onclick="Edit_Step('showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0')" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 	<span style="color:#888;">Export</span>&nbsp;|&nbsp;
 	<span><a href="deleteStep.do?strategy=${strategyNum}&delete=${stepNum}">Delete</a></span>
    </div>       
