@@ -253,7 +253,7 @@
 		top: 57px;
 		left: 26px;
 		display: none;
-		width: 365px;
+		min-width: 365px;
 	}
 
 	.crumb_menu {
