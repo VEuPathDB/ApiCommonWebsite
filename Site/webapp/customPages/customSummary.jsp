@@ -76,17 +76,15 @@ function resetAttr() {
      <h2><b>My ${type} Search Strategy and Results</b></h2>
   </td>
   <td width="50%" align="right">
-     <input type="submit" value="Save" name="saveStrategy" disabled/>
-     <input type="submit" value="Export" name="exportStrategy" disabled/>
-     <input type="submit" value="Start&nbsp;Over" name="newStrategy" disabled/>
-
-
-
+     <input type="submit" value="New" name="newStrategy" disabled/>
+     <input type="submit" value="Open" name="openStrategy" disabled/>
+     
 </td>
 </tr>
 <tr>
 <td colspan="2" align="center">
-<font size ="-2">Click on <font color="darkred"><b>Add Step</b></font> to refine your current result with an additional search. &nbsp;&nbsp;&nbsp;Mouse over a query name to <font color="darkred"><b>Edit</b></font> a query.</font>
+<font size ="-2">Click on
+<a onclick="this.blur()" href="javascript:openFilter(${protocol.length})"><b style='color:darkred'>Add Step</b></a> to refine your current result with an additional search. &nbsp;&nbsp;&nbsp;Mouse over a query name to <font color="grey"><b>Edit</b></font> a query.</font>
 </td>
 </tr>
 </table>
