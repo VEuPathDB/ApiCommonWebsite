@@ -41,10 +41,10 @@
 
 <!--<link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>-->
-
 <c:set var="stepNumber" value="0" />
 <div class="chain_background" id="bread_crumb_div">
 	<div id="diagram">
+		<div id="strategy_name">Strategy&nbsp;${strategy.strategyId}<span><br>save as<br>export</span></div>
 		<c:set var="steps" value="${strategy.allSteps}" />
 		<c:forEach items="${steps}" var="step">
 			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>

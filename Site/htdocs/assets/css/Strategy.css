@@ -308,3 +308,15 @@
 	border-collapse: separate;
 	border-spacing: 2px;
 }
+
+#diagram div#strategy_name {
+	border: none;
+	right: 40px;
+	top: 5px;
+	text-align: right;
+}
+
+#diagram div#strategy_name span{
+	font-size: 10px;
+	color: #888;
+}
