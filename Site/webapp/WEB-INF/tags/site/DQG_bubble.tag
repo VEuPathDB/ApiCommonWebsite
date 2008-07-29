@@ -32,7 +32,7 @@
 	</c:when>
 	<c:when test="${recordClasses == 'others'}">
 		<div id="info">
-			<p class="small" align="center"><a href="false">Hide all</a> | <a href="true">Show all</a></p>
+			<p class="small" align="center"><a href="true">Expand</a> | <a href="false">Collapse</a></p>
 			<ul class="heading_list">
 				<c:forEach items="${catMap}" var="catByRec">
 				    <c:if test="${catByRec.key != 'GeneRecordClasses.GeneRecordClass'}">
@@ -60,7 +60,7 @@
 	</c:when>
 	<c:otherwise>
 		<div id="info">
-			<p class="small" align="center"><a href="false">Hide all</a> | <a href="true">Show all</a></p>
+			<p class="small" align="center"><a href="true">Expand</a> | <a href="false">Collapse</a></p>
 			<ul class="heading_list">
 				
 				<c:set var="qByCat" value="${catMap['GeneRecordClasses.GeneRecordClass']}" />
