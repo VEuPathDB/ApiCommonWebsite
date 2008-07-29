@@ -35,6 +35,10 @@ sub init {
 
    $Self->SUPER::init($Args);
 
+   # Defaults
+   $Self->{YMin} = -1;
+   $Self->{YMax} = 1;
+
    $Self->setNamesQuery           ( $Args->{NamesQuery} );
    $Self->setDataQuery            ( $Args->{DataQuery } );
    $Self->setYaxisLabel           ( $Args->{YaxisLabel          } );
@@ -61,6 +65,12 @@ sub setColors               { $_[0]->{'Colors'            } = $_[1]; $_[0] }
 sub getTagRx                { $_[0]->{'TagRx'             } }
 sub setTagRx                { $_[0]->{'TagRx'             } = $_[1]; $_[0] }
 
+sub getYMin                 { $_[0]->{'YMin'              } }
+sub setYMin                 { $_[0]->{'YMin'              } = $_[1]; $_[0] }
+
+sub getYMax                 { $_[0]->{'YMax'              } }
+sub setYMax                 { $_[0]->{'YMax'              } = $_[1]; $_[0] }
+
 # ========================================================================
 # ------------------------------- Methods --------------------------------
 # ========================================================================
@@ -69,6 +79,9 @@ sub makeR {
    my $Self = shift;
 
    my @Rv;
+
+   my $yMax = $Self->getYMax();
+   my $yMin = $Self->getYMin();
 
    my $id = $Self->getId();
 
@@ -222,8 +235,8 @@ if ($isVis_b{hist} == 1) {
   d.min = min(1.1 * (the.avg - the.std), 0);
   d.max = max(1.1 * (the.avg + the.std), 0);
 
-  d.min.default = -1;
-  d.max.default = 1;
+  d.min.default = $yMin;
+  d.max.default = $yMax;
 
   if(d.min > d.min.default) {
     d.min = d.min.default;
