@@ -19,6 +19,33 @@
               required="true"
               description="Number of this step in the strategy"
 %>
+
+<c:set var="type" value="None" />
+<c:choose>
+	<c:when test="${step.dataType == 'GeneRecordClasses.GeneRecordClass'}">
+		<c:set var="type" value="Genes" />
+	</c:when>
+	<c:when test="${step.dataType == 'SequenceRecordClasses.SequenceRecordClass'}">
+		<c:set var="type" value="Seq" />
+	</c:when>
+	<c:when test="${step.dataType == 'EstRecordClasses.EstRecordClass'}">
+		<c:set var="type" value="EST" />
+	</c:when>
+	<c:when test="${step.dataType == 'OrfRecordClasses.OrfRecordClass'}">
+		<c:set var="type" value="ORF" />
+	</c:when>
+	<c:when test="${step.dataType == 'SnpRecordClasses.SnpRecordClass'}">
+		<c:set var="type" value="SNP" />
+	</c:when>
+	<c:when test="${step.dataType == 'AssemblyRecordClasses.AssemblyRecordClass'}">
+		<c:set var="type" value="Assm" />
+	</c:when>
+	<c:when test="${step.dataType == 'IsolateRecordClasses.IsolateRecordClass'}">
+		<c:set var="type" value="Iso" />
+	</c:when>	
+</c:choose>
+
+
 <c:set var="left_offset" value="0" />
 <c:choose>
 	<c:when test="${stepNum == 1}">
@@ -42,7 +69,7 @@
 					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
-			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>			
+			<span class="resultCount">${step.filterResultSize}&nbsp;${type}</span>			
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li><img class="rightarrow1" src="/assets/images/arrow_chain_right1.png"></li>
@@ -58,14 +85,14 @@
 					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
-			<span class="resultCount">Results:&nbsp;${step.subQueryResultSize}</span>
+			<span class="resultCount">${step.subQueryResultSize}&nbsp;${type}</span>
 			<ul>
 				<li><img class="downarrow" src="/assets/images/arrow_chain_down.png"</li>
 			</ul>
 		</div>
 		<div id="step_${stepNum}" class="box row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 5em; border: none">
 			<a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)"><img src="/assets/images/transparent1.gif"/></a><br>
-			<span class="resultCount">Results:&nbsp;${step.filterResultSize}</span>
+			<span class="resultCount">${step.filterResultSize}&nbsp;${type}</span>
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li><img class="rightarrow2" src="/assets/images/arrow_chain_right2.png"></li>
