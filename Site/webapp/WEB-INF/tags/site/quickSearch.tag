@@ -53,7 +53,7 @@ ivax,Plasmodium yoelii"/>
 <%--
 	  <div id="half_right">
           <html:form method="get" action="/processQuestionSetsFlat.do">
-          <label>Keyword Search:</label>
+          <label>Text Search:</label>
           <input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch">
           <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}">
           <input type="hidden" name="myMultiProp(text_fields)"
@@ -91,7 +91,7 @@ ivax,Plasmodium yoelii"/>
 			 </div></td>
              <td width="189"><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
-          		<label>Keyword Search:</label>
+          		<label>Text Search:</label>
           		<input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch">
 		        <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}">
           		<input type="hidden" name="myMultiProp(text_fields)"

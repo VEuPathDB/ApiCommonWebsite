@@ -11,7 +11,7 @@
 		  <c:if test="${catByRec.key == 'GeneRecordClasses.GeneRecordClass' || catByRec.key == 'SequenceRecordClasses.SequenceRecordClass'  || catByRec.key == 'OrfRecordClasses.OrfRecordClass' || catByRec.key == 'EstRecordClasses.EstRecordClass' || catByRec.key == 'isolateRecordClasses.IsolateRecordClass' || catByRec.key == 'SnpRecordClasses.SnpRecordClass' }">
 		 <c:choose>
 		  <c:when test="${catByRec.key=='GeneRecordClasses.GeneRecordClass'}">
-			<li><a href="#">Identify Genes</a>
+			<li><a href="#">Search for Genes</a>
 				<ul>
 					<c:set var="qByCat" value="${catByRec.value}" />
 					<c:forEach items="${qByCat}" var="cat">
@@ -30,7 +30,7 @@
 		  <c:otherwise>
 			<c:set var="qByCat" value="${catByRec.value}" />
 			<c:forEach items="${qByCat}" var="cat">
-			<li><a href="#">Identify&nbsp; ${cat.key}</a>
+			<li><a href="#">Search for &nbsp; ${cat.key}</a>
 				<ul>
 					<c:forEach items="${cat.value}" var="q">
 						<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
@@ -43,7 +43,7 @@
 		 </c:if>
 		</c:forEach>
 
-<li><a href="<c:url value="/queries_tools.jsp"/>">All Searches</a></li>
+<li><a href="<c:url value="/queries_tools.jsp"/>">View all available searches</a></li>
 		<%--<li><a href="#">Tools</a>
       		<ul>
 	<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>

@@ -23,7 +23,7 @@
 <ul id="nav">
 <li><a href="<c:url value="/"/>">Home<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a>
 </li>
-<li><a href="<c:url value="/queries_tools.jsp"/>">All Queries<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a>
+<li><a href="<c:url value="/queries_tools.jsp"/>">New Search<img src="/assets/images/menu_divider3.png" width="20" height="11" /></a>
   <site:drop_down_QG />
 </li>
 <li>
@@ -42,12 +42,25 @@
 </li>
 <li><a href="#"><img src="/assets/images/menu_divider4.png" width="20" height="11" />Data Sources<img src="/assets/images/menu_divider.png" width="24" height="11" /></a>
   <ul>
-    <li><a href="#">Data contained in CryptoDB</a></li>
+    <li><a href="#">Data Detail</a></li>
+ <li><a href="#">Data Statistics</a></li>
     <li><a href="#">Analysis Methods</a></li>
     <li><a href="#">Standard Operating Procedures (SOPs)</a></li>
   </ul>
 </li>
-<li><a href="#">Download Files<img src="/assets/images/menu_divider.png" width="24" height="11" /></a></li>
+<li><a href="#">Download Files<img src="/assets/images/menu_divider.png" width="24" height="11" /></a>
+
+<ul>
+    <li><a href="#">Understanding Downloads</a></li>
+    <li><a href="#">Data Files</a></li>
+    <li><a href="#">Documents and Publications</a></li> 
+    <li><a href="#">Protocols and Methods</a></li>
+    <li><a href="#">Experimental Data</a></li>
+   
+  </ul>
+
+
+</li>
 
 <%--<li><a href="#">About ${siteName}<img src="/assets/images/menu_divider.png" width="24" height="11" /></a>
   <ul>

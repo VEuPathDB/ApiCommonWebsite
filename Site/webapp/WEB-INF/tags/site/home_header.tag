@@ -62,8 +62,10 @@ body {
          <br />
        <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Log In/Register</a></div>
        </div>
+
+
        <p><a href="http://www.cryptodb.org"><img src="../assets/images/crypto/title_s.png" alt="CryptoDB" width="318" height="64" align="left" /></a></p>
  <p>&nbsp;</p>
  <p>Version 3.8<br />
-   March 15, 2008</p>
+   October 15, 2008</p>
 </div> 
