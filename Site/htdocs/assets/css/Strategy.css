@@ -253,6 +253,7 @@
 		top: 57px;
 		left: 26px;
 		display: none;
+		width: 365px;
 	}
 
 	.crumb_menu {
@@ -260,6 +261,11 @@
 		width: 100%;
 		left: -2px;
 		top: -29px;
+		white-space: nowrap;
+	}
+
+	.crumb_menu span, .crumb_menu a {
+		font-size: 12px;
 	}
 
 	#bread_crumb_div td {
