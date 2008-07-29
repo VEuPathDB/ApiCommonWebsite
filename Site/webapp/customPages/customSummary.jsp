@@ -94,7 +94,6 @@ function resetAttr() {
 
 <input type="hidden" id="history_id" value="${history.userAnswerId}"/>
 <div id="Strategies">
-	<div id="loading_step_div"></div>
 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
 	<hr>
 </div>
@@ -111,4 +110,6 @@ function resetAttr() {
 </div>
 </div>
 </div>
+	<div id="loading_step_div"></div>
 <site:footer />
+
