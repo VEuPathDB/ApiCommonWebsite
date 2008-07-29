@@ -29,8 +29,9 @@
 	<div class="innertube">
 
 <%-- TOOLS --%>
+<%--
 	<p align="center"><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a> &nbsp;|&nbsp;<a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a> &nbsp;|&nbsp; <a href="#"><strong>PubMed and Entrez</strong></a> &nbsp;|&nbsp; <a href="#"><strong>GBrowse</strong></a> &nbsp;|&nbsp; <a href="#"><strong>CryptoCyc</strong></a></p> <br>
-
+--%>
 
 <%-- QUERIES --%>
 <%-- the cellspacing is what allows for separation between Genomic and SNP (EST and ORF) titles --%>
@@ -54,8 +55,8 @@
 
 <c:if test="${COMPONENT}">
 <tr><td colspan="3">  
-    <div class="smallBlack" align="left">
-	(click on &nbsp; 
+    <div class="smallBlack" align="middle">
+	(Click on &nbsp; 
 	<img src="/images/eupath_e.gif" border='0' alt='eupathdb'/> &nbsp; to access a query in <b><a href="http://eupathdb.org">EuPathDB.org</a></b>)
 	</div>
 </td></tr>
@@ -67,9 +68,11 @@
 
 <%-- portal does not need currently these queries in front page (home) --%>
 <c:if test="${COMPONENT || from != 'home'}">
+<%--
 <tr><td colspan="3" align="center">
  	<site:quickSearch/>
 </td></tr>
+--%>
 </c:if>
 
 
