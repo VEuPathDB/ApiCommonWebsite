@@ -102,7 +102,7 @@
       </c:otherwise>
    </c:choose>
    <div class="crumb_menu">
-   <span style="color:#888;">Name</span>&nbsp;|&nbsp;
+   <span style="color:#888;">Rename</span>&nbsp;|&nbsp;
 	<a class="view_step_link" onclick="NewResults(this,'showSummary.do?strategy=${strategyNum}&step=${stepNum}${subq}&resultsOnly=true')" href="javascript:void(0)">View</a>&nbsp;|&nbsp;
 <!--	<a class="edit_step_link" href="javascript:void(0)" onclick="Edit_Step(this,'showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0')" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;-->
 	<span style="color:#888;">Edit</span>&nbsp;|&nbsp;
