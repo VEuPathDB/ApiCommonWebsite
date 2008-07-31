@@ -71,8 +71,8 @@ sub setVisibleParts         { $_[0]->{'VisibleParts'                } = $_[1]; $
 sub getSecondaryId          { $_[0]->{'SecondaryId'                 } }
 sub setSecondaryId          { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
 
-sub getDataPlotterArg       { $_[0]->{'datPlotterArg'               } }
-sub getTypeArg              { $_[0]->{'datPlotterArg'               } }
+sub getDataPlotterArg       { $_[0]->{'dataPlotterArg'               } }
+sub getTypeArg              { $_[0]->{'dataPlotterArg'               } }
 
 # ========================================================================
 # ---------------------------- Object Methods ----------------------------
