@@ -66,6 +66,7 @@ sub run {
 	 my $format         = $Cgi->param('fmt')    || 'png';
 	 my $quiet_b        = $Cgi->param('quiet');
 	 my $save_b         = $Cgi->param('save');
+	 my $typeArg        = $Cgi->param('typeArg');
    my $thumbnail_b    = $Cgi->param('thumb');
    my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
@@ -111,10 +112,14 @@ sub run {
 	   $pkg = "GiardiaDBWebsite";
 	 }
 	 my $class = $pkg . "::View::GraphPackage::$type";
-	 my $_perl = qq{require $class; $class->new()};
-	 my $_gp   = eval $_perl;
+
+         eval "require $class";
+         my $_gp = eval {
+           $class->new({dataPlotterArg => $typeArg});
+         };
+
 	 if ($@) {
-			die "Unable to load driver for '$type' via '$_perl' : $@";
+           die "Unable to load driver for '$type' with arg $typeArg : $@";
 	 }
 
 	 $_gp->setQueryHandle($_qh);
