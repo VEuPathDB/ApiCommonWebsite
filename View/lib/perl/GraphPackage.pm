@@ -18,8 +18,9 @@ use Time::HiRes qw ( time );
 
 sub new {
    my $Class = shift;
+   my $Args = ref $_[0] ? shift :{};
 
-   my $Self = bless {}, $Class;
+   my $Self = bless $Args, $Class;
 
    $Self->init(@_);
 
@@ -67,8 +68,11 @@ sub setThumbnail            { $_[0]->{'Thumbnail'                   } = $_[1]; $
 sub getVisibleParts         { $_[0]->{'VisibleParts'                } }
 sub setVisibleParts         { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
 
-sub getSecondaryId          { $_[0]->{'SecondaryId'       } }
-sub setSecondaryId          { $_[0]->{'SecondaryId'       } = $_[1]; $_[0] }
+sub getSecondaryId          { $_[0]->{'SecondaryId'                 } }
+sub setSecondaryId          { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
+
+sub getDataPlotterArg       { $_[0]->{'datPlotterArg'               } }
+sub getTypeArg              { $_[0]->{'datPlotterArg'               } }
 
 # ========================================================================
 # ---------------------------- Object Methods ----------------------------
