@@ -12,7 +12,7 @@
 <c:set var="count" value="0"/>
 </c:when>
 <c:otherwise>
-<c:set var="count" value="${wdkUser.historyCount}"/>
+<c:set var="count" value="${wdkUser.strategyCount}"/>
 </c:otherwise>
 </c:choose>
 

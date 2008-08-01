@@ -24,6 +24,8 @@
 <script defer type="text/javascript" src="/assets/js/results_page.js"></script>
 <!-- Record Page GBrowse Javascript code -->
 <script defer type="text/javascript" src="/gbrowse/wz_tooltip_3.45.js"></script>
+<!-- history page code -->
+<script defer type="text/javascript" src="/assets/js/history.js"></script>
 
 <script defer type="text/javascript" src="/assets/js/api.js"></script>
 <!-- fix to transparent png images in IE 7 -->

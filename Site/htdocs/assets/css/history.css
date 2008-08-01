@@ -1,0 +1,59 @@
+ul#history_tabs {
+    border-bottom: 1px solid black;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    float:left;
+    margin:0;
+    padding:0 10px;
+    width: 98%;
+}
+
+#history_tabs li {
+    border-color:#BBBBBB;
+    border-style:solid;
+    border-width:1px 1px 0;
+    float:left;
+    margin:0;
+}
+
+#history_tabs a {
+    background:#EEEEEE none repeat scroll 0 0;
+    color:#0000CC;
+    display:block;
+    padding:0.24em 1em;
+    text-align:center;
+    text-decoration:none;
+    height:2em;
+    width:8.5em;
+}
+
+#history_tabs a:hover {
+    background:#DDDDFF none repeat scroll 0 0;
+}
+
+#history_tabs #selected {
+    border-color:#345D9B;
+}
+#history_tabs #selected a {
+    background:white none repeat scroll 0 0;
+    color:black;
+    font-weight:bold;
+    position:relative;
+    top:1px;
+}
+
+#history_table {
+    border:1px solid black;
+    clear:both;
+    padding:0 1em;
+}
+
+.history_panel {
+    display: none;
+}
+
+.history_panel.enabled {
+    display: inline;
+}
+
