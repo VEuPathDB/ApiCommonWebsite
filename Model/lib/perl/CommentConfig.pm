@@ -28,6 +28,7 @@ sub new {
 sub AUTOLOAD {
     my $attr = our $AUTOLOAD;
     $attr =~ s/.*:://;
+    return if $attr =~ /^[A-Z]+$/;  # skip methods such as DESTROY
     $attr =~ s/get([A-Z])/$1/;
     $attr = lcfirst($attr);
     $_[0]->{ $attr } || die "`$attr' not defined.";
