@@ -53,7 +53,7 @@ body {
        </div>
    </div>
 
-   <p><a href="http://www.cryptodb.org"><img src="../assets/images/crypto/title_s.png" alt="CryptoDB" 
+   <p><a href="/"><img src="../assets/images/crypto/title_s.png" alt="CryptoDB" 
 	width="318" height="64" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version 3.8<br />
