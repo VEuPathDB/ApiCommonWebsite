@@ -4,6 +4,16 @@
 <%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
 
+
+<%-- When implement visualizing multiple strategies, the name of the strategy (for the title) could cme from the step object probably --%>
+
+<%@ attribute name="strategyId"
+              required="true"
+              description="Strategy Id we are looking at"
+%>
+
+
+
 <c:set var="commandUrl">
     <c:url value="/processSummary.do?${wdk_query_string}" />
 </c:set>
@@ -15,6 +25,8 @@
     No results for your query
   </c:when>
   <c:otherwise>
+
+ <h2><b>${wdkAnswer.resultSize} Genes - Strategy ${strategyId} Step "yyy" </b></h2> 
 
 <!-- pager -->
 <pg:pager isOffset="true"

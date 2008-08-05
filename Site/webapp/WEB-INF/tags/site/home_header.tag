@@ -15,12 +15,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>CryptoDB -- Cryptosporidium Genome Resources</title>
 <link href="/assets/css/crypto.css" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" href="/assets/css/history.css" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
-<link rel="stylesheet" href="/assets/css/history.css" type="text/css"/>
-
 
 <style type="text/css">
 <!--
@@ -43,30 +40,22 @@ body {
 
 <body>
 
-<%--
-<div id="header">
-  <c:if test="${refer == 'home'}">
-  	<p><img src="/assets/images/crypto/title1.png" alt="CryptoDB" width="398" height="87" align="left" /></p>
-  </c:if>
-  <c:if test="${refer != 'home'}">
-	<p><a href="/"><img src="/assets/images/crypto/title_s.png" alt="CryptoDB" width="256" height="56" align="left" /></a></ p>
-  </c:if>
-  <p>&nbsp;</p>
-  <p>Version 3.8<br />
-    March 15, 2008</p>
-</div>
---%>
 <div id="header2">
-       <div id="header_rt"><a href="#"><img src="../assets/images/partofeupath.png" alt="EuPathDB Homepage" width="148" height="23" /></a>
+   <div id="header_rt"><a href="http://eupathdb.org"><img src="../assets/images/partofeupath.png" alt="EuPathDB Homepage" 
+	width="148" height="23" /></a>
        <div id="bottom">
-			<site:quickSearch />
-         <br />
-       <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Log In/Register</a></div>
+	  <site:quickSearch /><br />
+	  <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Log In/Register</a>
+	  <%-- possible style when a user is login....
+       	  <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Logout</a>
+ 	  <br /><b style='color:black'>John Doe</b> | <a href="#">Profile</a>
+	  --%>
        </div>
+   </div>
 
-
-       <p><a href="http://www.cryptodb.org"><img src="../assets/images/crypto/title_s.png" alt="CryptoDB" width="318" height="64" align="left" /></a></p>
- <p>&nbsp;</p>
- <p>Version 3.8<br />
+   <p><a href="http://www.cryptodb.org"><img src="../assets/images/crypto/title_s.png" alt="CryptoDB" 
+	width="318" height="64" align="left" /></a></p>
+   <p>&nbsp;</p>
+   <p>Version 3.8<br />
    October 15, 2008</p>
 </div> 

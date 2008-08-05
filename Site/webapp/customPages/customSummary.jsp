@@ -73,7 +73,7 @@ function resetAttr() {
 <table width="100%">
 <tr>
   <td width="50%">       <%--     <span id="strategy_name">  makes eh title move down..... --%>
-     <h2><b>My ${type} Search Strategy and Results</b></h2>
+     <h2><b>My Search Strategies</b></h2>
   </td>
   <td width="50%" align="right">
      <input type="submit" value="New" name="newStrategy" disabled/>
@@ -87,13 +87,16 @@ function resetAttr() {
 <a onclick="this.blur()" href="javascript:openFilter(${protocol.length})"><b style='color:darkred'>Add Step</b></a> to refine your current result with an additional search. &nbsp;&nbsp;&nbsp;Mouse over a query name to <font color="grey"><b>Edit</b></font> a query.</font>
 </td>
 </tr>
+
+
 </table>
+
 </div>
 
 <input type="hidden" id="history_id" value="${history.userAnswerId}"/>
 <div id="Strategies">
 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
-	<hr>
+	
 </div>
 
 <input type="hidden" id="target_step" value="${stepNumber+1}"/>
@@ -102,8 +105,10 @@ function resetAttr() {
 	<site:FilterInterface model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
 </div>
 
+<br>
+
 <div id="Workspace">
-<site:Results />
+<site:Results strategyId="${strategy.strategyId}"/>
 </div>
 </div>
 </div>
