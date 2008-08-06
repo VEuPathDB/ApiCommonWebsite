@@ -274,7 +274,6 @@ function AddStepToStrategy(act){
 			$("#last_step_id").text(lastStepId);
 			
 			$("#target_step").attr("value",last_step_number + 1);
-			$
 			$("#diagram div:last a").click();
 		},
 		error: function(data, msg, e){
@@ -335,4 +334,64 @@ function EditStep(url, step_number){
 	
 	$("#filter_link").css({opacity:1.0});//html("<span>Add Step</span>"); 
 	$("#filter_link").attr("href","javascript:openFilter()");
+}
+
+function DeleteStep(ele,url){
+	var deleted_step_id = url.substring(url.indexOf("step=") + 5);
+
+	$.ajax({
+		url: url,
+		type: "GET",
+		dataType:"html",
+		beforeSend: function(obj){
+				var pro_bar = "<div id='step_progress_bar'>" +
+							  "<div class='step' id='graphic_span'>Loading...</div></div>";
+				$("#loading_step_div").html(pro_bar).show("fast");
+				$("#graphic_span").css({opacity: 0.2});
+			  for(i = 0;i<100;i++){
+				$("#graphic_span").animate({
+					opacity: 1.0
+				},1000);
+				$("#graphic_span").animate({
+					opacity: 0.2
+				},1000); 
+			  }
+			},
+		success: function(data){
+			var diagram_divs = $("#diagram div");
+			var selected_div = "";
+			for(i=0; i < diagram_divs.length;i++){
+				var b = $(diagram_divs[i]);
+				if($(diagram_divs[i]).hasClass("selectedarrow") || $(diagram_divs[i]).hasClass("selected")){
+					selected_div = $(diagram_divs[i]).attr("id");
+				}
+			}
+			$("#loading_step_div").html("").hide("fast");
+			var new_dia = $("#diagram",data);
+			$("#diagram").html(new_dia.html());
+			
+			var new_steps = $("#diagram div");
+			if(new_steps.length > 4)
+				var last_step_sub = $(new_steps[new_steps.length - 4]);
+			else
+				var last_step_sub = $(new_steps[1]);
+			$("#target_step").attr("value",parseInt(last_step_sub.attr("id").substring(5,6)) + 1) ;
+			$("#last_step_id").text(last_step_sub.find("h3 a").attr("id").substring(7))
+			
+		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
+		    	if($("#diagram div").length > 4)
+					$("#diagram div.operation:last a").click();
+				else 
+					$("#diagram div#step_0 h3 a:first").click();
+			}else{
+				var selected_id = parseInt(selected_div.substring(5,6)) - 1;
+				selected_div = selected_div.substring(0,5) + selected_id + selected_div.substring(6);
+		    	$("#"+selected_div+" a:first").click();
+			}
+		
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
 }
