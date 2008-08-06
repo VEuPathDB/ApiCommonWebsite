@@ -1,34 +1,6 @@
 $("#diagram").ready(function(){
 	
-	$("div.crumb_menu a.edit_step_link").click(function(){
-	//	$("div#filter_div").show();
-		$("#filter_link").html("<span>Close [X]</span>");
-		hideDetails();
-		var url = $(this).attr("href");
-		var revisestep = $(this).attr("id");
-		var parts = revisestep.split("|");
-		revisestep = parseInt(parts[0]);
-		var operation = parts[1];
-		var currentstep = parseUrl("step");
-		var isSub = parseUrl("subquery");
-		if(isSub == "" || isSub == "false")
-			isSub = "";
-		else
-			isSub = "true";
-		var reviseStepNumber = revisestep + ":" + currentstep + ":" + isSub + ":" + operation;
-		$.ajax({
-			url: url,
-			dataType: "html",
-			success: function(data){
-				formatFilterForm(data,1,reviseStepNumber);
-			},
-			error: function(data, msg, e){
-				alert("ERROR \n "+ msg + "\n" + e);
-			}
-		});
-		$(this).parent().parent().hide();
-		return false;
-	});
+	
 
 //	$("a.crumb_name, a.operation, a.view_step_link").click(function(){
 //		NewResults($(this)[0]);
@@ -133,4 +105,41 @@ function NewResults(ele,url){
 		$(ele).parent().parent().parent().parent().addClass(classname);
 		$(ele).parent().parent().hide();	
 	}
+}
+
+function Edit_Step(ele,url){
+		$(ele).parent().parent().hide();
+		var link = $("#filter_link");
+		$(link).css({opacity:0.2});//html("<span>Close [X]</span>");
+		$(link).attr("href","javascript:void(0)");
+		hideDetails();
+		var revisestep = $(ele).attr("id");
+		var parts = revisestep.split("|");
+		revisestep = parseInt(parts[0]);
+		var operation = parts[1];
+		
+		
+//		var currentstep = parseUrl("step");
+//		var isSub = parseUrl("subquery");
+//		if(isSub == "" || isSub == "false")
+//			isSub = "";
+//		else
+//			isSub = "true";
+//		var reviseStepNumber = revisestep + ":" + currentstep + ":" + isSub + ":" + operation;
+		var reviseStepNumber = revisestep + ":0:0:" + operation;
+		$.ajax({
+			url: url,
+			dataType: "html",
+			success: function(data){
+				formatFilterForm(data,1,reviseStepNumber);
+			},
+			error: function(data, msg, e){
+				alert("ERROR \n "+ msg + "\n" + e);
+			}
+		});
+		$(this).parent().parent().hide();
+}
+
+function Delete_Step(ele,url){
+	
 }

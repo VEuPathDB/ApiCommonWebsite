@@ -56,11 +56,17 @@ function formatFilterForm(data, edit, reviseStep){
 				$(".filter.params", quesForm).prepend("<span class='form_subtitle'>Edit&nbsp;Step&nbsp;" + (reviseStep + 1) + ": " + quesTitle + "</span></br>");
 				//$(".filter.params", quesForm).prepend("<span class='form_subtitle'>" + quesTitle + "</span><br>"); 
 			if(edit == 0){
-				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine Step " + prev_stepNum + " with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
+				var previous_step_id = $("#step_"+prev_stepNum+"_sub a").attr("id");
+				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine Step " + prev_stepNum + " with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' /><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
 			}
 			else {
 				if(reviseStep != 0){
-					$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input id='INTERSECT' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' checked='checked'/><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='UNION' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='MINUS' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
+					if(reviseStep != 1)
+						var previous_step_id = $("#step_"+(reviseStep - 1)+"_sub a").attr("id");
+					else
+						var previous_step_id = $("#step_"+(reviseStep - 1)+" a").attr("id");						
+					lastStepId = previous_step_id.substring(7);
+					$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input id='INTERSECT' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' /><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='UNION' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='MINUS' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
 				}else{
 					$(".filter.params", quesForm).after("<input type='hidden' name='myProp(booleanExpression)' value='" + proto + " AND' />");
 				}
@@ -71,7 +77,7 @@ function formatFilterForm(data, edit, reviseStep){
 			if(edit == 0)	
 				var action = "javascript:AddStepToStrategy('" + pro_url + "')";
 			else
-				var action = "javascript:EditStep('" + pro_url + "', " + parseInt(revisestep) + ")";
+				var action = "javascript:EditStep('" + pro_url + "', " + parseInt(reviseStep) + ")";
 
 
 			//	quesForm.prepend("<hr style='width:99%'/>");
@@ -188,9 +194,7 @@ function close(){
 //	$("#instructions").text("Revise your results by adding steps from the list below.");
 }
 
-
-function AddStepToStrategy(act){
-	var url = act;	
+function parseInputs(){
 	var quesForm = $("form[name=questionForm]");
 	var inputs = $("input", quesForm);
 	var selects = $("select", quesForm);
@@ -225,26 +229,20 @@ function AddStepToStrategy(act){
 	    }
 	    isFirst = 0;
 	}
-//	if(selects.length > 0){
-		for(i=0;i<selects.length;i++){
+	for(i=0;i<selects.length;i++){
 			var sname = selects[i].name;
 			var svalue = selects[i].value;
 			if(isFirst == 1)
 				d = sname + "=" + svalue;
 		    else
 				d = d + "&" + sname + "=" + svalue;
-		}
-	//}
-	//else{
-	//	var sname = selects.attr("name");
-	//	var svalue = selects.attr("value");
-	//	if(isFirst == 1)
-	//		d = name + "=" + value;
-	 //   else
-		//	d = d + "&" + name + "=" + value;	
-	//}
-	
+	}
+	return d;
+}	
 
+function AddStepToStrategy(act){
+	var url = act;	
+	var d = parseInputs();
 	$.ajax({
 		url: url,
 		type: "POST",
@@ -265,30 +263,19 @@ function AddStepToStrategy(act){
 			  }
 			},
 		success: function(data){
-			var new_step_id = $("span#step_id",data).text();
-			$("#last_step_id").text(new_step_id);
-			var sub_step = $("div:first",data);
-			var step = $("div",data)[3];
-			var id = $(step).attr("id");
-			var stepNumber = $("span.stepNumber",data);
-			var sN = parseInt(id.substring(5));
-			var prev_step = sN - 1;
-			var arrow = "<ul><li>";
-			var prev_box = $("div#step_"+prev_step);
-			if(prev_step == 0)
-				arrow = arrow + "<img class='rightarrow1' src='/assets/images/arrow_chain_right1.png'/></li></ul>";
-			else
-				arrow = arrow + "<img class='rightarrow2' src='/assets/images/arrow_chain_right2.png'/></li></ul>";	
 			$("#loading_step_div").html("").hide("fast");
-			prev_box.append(arrow);
-			$("div#diagram").append(sub_step);
-			$("div#diagram").append($(step));
-			$("div#diagram").append(stepNumber);
-			$("div#step_"+sN+" a").click();
-			$("input#target_step").val(sN+1);
-		//	var new_url = $("div#step_"+sN+" a").attr("onclick");
-		//	new_url = new_url.substring(16);
-		//	NewResults($("div#step_"+sN)[0]);
+			var new_dia = $("#diagram",data);
+			$("#diagram").html(new_dia.html());
+			var last_step_number = $("#diagram div:last").attr("id");
+			last_step_number = parseInt(last_step_number.substring(5));
+			var step_divs = $("#diagram div");
+			var lastStepId = $(step_divs[step_divs.length - 4]).find("h3 a").attr("id");
+			lastStepId = lastStepId.substring(7);
+			$("#last_step_id").text(lastStepId);
+			
+			$("#target_step").attr("value",last_step_number + 1);
+			$
+			$("#diagram div:last a").click();
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
@@ -297,4 +284,55 @@ function AddStepToStrategy(act){
 	openFilter();
 }
 
-
+function EditStep(url, step_number){
+	$("#query_form").hide("fast");
+	var current_step = $("#step_" + step_number);
+	var current_sub_step = $("#step_" + step_number + "_sub");
+	
+	var d = parseInputs();
+		$.ajax({
+		url: url,
+		type: "POST",
+		dataType:"html",
+		data: d,
+		beforeSend: function(obj){
+				var pro_bar = "<div id='step_progress_bar'>" +
+							  "<div class='step' id='graphic_span'>Loading...</div></div>";
+				$("#loading_step_div").html(pro_bar).show("fast");
+				$("#graphic_span").css({opacity: 0.2});
+			  for(i = 0;i<100;i++){
+				$("#graphic_span").animate({
+					opacity: 1.0
+				},1000);
+				$("#graphic_span").animate({
+					opacity: 0.2
+				},1000);
+			  }
+			},
+		success: function(data){
+			var diagram_divs = $("#diagram div");
+			var selected_div = "";
+			for(i=0; i < diagram_divs.length;i++){
+				var b = $(diagram_divs[i]);
+				if($(diagram_divs[i]).hasClass("selectedarrow") || $(diagram_divs[i]).hasClass("selected")){
+					selected_div = $(diagram_divs[i]).attr("id");
+				}
+			}
+		
+					
+		
+			$("#loading_step_div").html("").hide("fast");
+			var new_dia = $("#diagram",data);
+			$("#diagram").html(new_dia.html());
+		    $("#"+selected_div+" a:first").click();
+		
+		
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+	
+	$("#filter_link").css({opacity:1.0});//html("<span>Add Step</span>"); 
+	$("#filter_link").attr("href","javascript:openFilter()");
+}
