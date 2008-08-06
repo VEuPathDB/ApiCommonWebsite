@@ -48,11 +48,11 @@
     <li><a href="#">Standard Operating Procedures (SOPs)</a></li>
   </ul>
 </li>
-<li><a href="#">Download Files</a>
+<li><a href="#">Download Files<img src="/assets/images/menu_divider.png" width="24" height="11" /></a>
 
 <ul>
     <li><a href="#">Understanding Downloads</a></li>
-    <li><a href="#">Bulk Data Files</a></li>
+    <li><a href="#">Data Files</a></li>
     <li><a href="#">Documents and Publications</a></li> 
     <li><a href="#">Protocols and Methods</a></li>
     <li><a href="#">Experimental Data</a></li>
