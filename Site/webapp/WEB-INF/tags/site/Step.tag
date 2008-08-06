@@ -66,7 +66,7 @@
 		<div id="step_${stepNum}" class="box row2 col1 size1 arrowgrey">
 			<h3>
 				<a id="stepId_${step.filterUserAnswer.userAnswerId}" class="crumb_name" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)"
-					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName} (${step.filterUserAnswer.userAnswerId})</a>
+					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">${step.filterResultSize}&nbsp;${type}</span>			
@@ -82,7 +82,7 @@
 		<div id="step_${stepNum}_sub" class='row1 size1 arrowgrey' style='left:${left_offset - 8}em'>
 			<h3>
 				<a id="stepId_${step.filterUserAnswer.userAnswerId}" class="crumb_name" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')" href="javascript:void(0)"
-					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName} (${step.filterUserAnswer.userAnswerId})</a>
+					onMouseOver="showDetails($(this).parent())" onMouseOut="setTimeout('hideDetails()',500)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount">${step.subQueryResultSize}&nbsp;${type}</span>

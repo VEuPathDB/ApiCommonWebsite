@@ -108,7 +108,8 @@
 	<!--<span style="color:#888;">Edit</span>&nbsp;|&nbsp;-->
 	<span style="color:#888;">Expand</span>&nbsp;|&nbsp;
 	<span style="color:#888;">Insert Before</span>&nbsp;|&nbsp;
-	<span style="color:#888;">Delete</span>&nbsp;|&nbsp;
+	<a class="delete_step_link" href="javascript:void(0)" onclick="DeleteStep(this,'deleteStep.do?strategy=${strategyNum}&step=${stepNum}')">Delete</a>&nbsp;|&nbsp;
+	<!--<span style="color:#888;">Delete</span>&nbsp;|&nbsp;-->
 	<span style="color:#888;">Download</span>
 <!--    <span><a href="deleteStep.do?strategy=${strategyNum}&delete=${stepNum}">Delete</a></span>-->
    </div>       
