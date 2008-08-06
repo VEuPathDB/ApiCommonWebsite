@@ -24,29 +24,29 @@ function enableRename(histId, name) {
    disableRename();
    
    currentStrategyId = histId;
-   var button = document.getElementById('btn_' + histId);
-   button.disabled = true;
+   //var button = document.getElementById('btn_' + histId);
+   //button.disabled = true;
+   //button.style.display = 'none';
    var text = document.getElementById('text_' + histId);
    text.style.display = 'none';
    var input = document.getElementById('input_' + histId);
-   input.innerHTML = "<table border='0' cellspacing='2' cellpadding='0'><tr>"
-                   + "<td><input name='strategy' type='hidden' value='" + histId + "'>"
-                   + "<input id='name' name='name' type='text' size='42' maxLength='2000' value='" + name + "'></td>" 
-                   + "<td><input type='submit' value='Update'></td>"
-                   + "<td><input type='reset' value='Cancel' onclick='disableRename()'>"
-                   + "</td></tr></table>";
+   input.innerHTML = "<input name='strategy' type='hidden' value='" + histId + "'>"
+                   + "<input id='name' name='name' type='text' size='42' maxLength='2000' value='" + name + "' style='margin-right:4px;'>" 
+                   + "<input type='submit' value='Update'>"
+                   + "<input type='reset' value='Cancel' onclick='disableRename()'>";
    input.style.display='block';
-   var nameBox = document.getElementById('customStrategyName');
+   var nameBox = document.getElementById('name');
    nameBox.select();
    nameBox.focus();
 }
 
 function disableRename() {
    if (currentStrategyId && currentStrategyId != '0') {
-      var button = document.getElementById('btn_' + currentStrategyId);
-      button.disabled = false;
+      //var button = document.getElementById('btn_' + currentStrategyId);
+      //button.disabled = false;
+      //button.style.display = '';
       var input = document.getElementById('input_' + currentStrategyId);
-      input.innerText = "";
+      input.innerText = '';
       input.style.display = 'none';
       var text = document.getElementById('text_' + currentStrategyId);
       text.style.display = 'block';
