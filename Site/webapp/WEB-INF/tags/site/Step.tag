@@ -21,26 +21,27 @@
 %>
 
 <c:set var="type" value="None" />
+<c:set var="step_dataType" value="${step.dataType}" />
 <c:choose>
-	<c:when test="${step.dataType == 'GeneRecordClasses.GeneRecordClass'}">
+	<c:when test="${step_dataType == 'GeneRecordClasses.GeneRecordClass'}">
 		<c:set var="type" value="Genes" />
 	</c:when>
-	<c:when test="${step.dataType == 'SequenceRecordClasses.SequenceRecordClass'}">
+	<c:when test="${step_dataType == 'SequenceRecordClasses.SequenceRecordClass'}">
 		<c:set var="type" value="Seq" />
 	</c:when>
-	<c:when test="${step.dataType == 'EstRecordClasses.EstRecordClass'}">
+	<c:when test="${step_dataType == 'EstRecordClasses.EstRecordClass'}">
 		<c:set var="type" value="EST" />
 	</c:when>
-	<c:when test="${step.dataType == 'OrfRecordClasses.OrfRecordClass'}">
+	<c:when test="${step_dataType == 'OrfRecordClasses.OrfRecordClass'}">
 		<c:set var="type" value="ORF" />
 	</c:when>
-	<c:when test="${step.dataType == 'SnpRecordClasses.SnpRecordClass'}">
+	<c:when test="${step_dataType == 'SnpRecordClasses.SnpRecordClass'}">
 		<c:set var="type" value="SNP" />
 	</c:when>
-	<c:when test="${step.dataType == 'AssemblyRecordClasses.AssemblyRecordClass'}">
+	<c:when test="${step_dataType == 'AssemblyRecordClasses.AssemblyRecordClass'}">
 		<c:set var="type" value="Assm" />
 	</c:when>
-	<c:when test="${step.dataType == 'IsolateRecordClasses.IsolateRecordClass'}">
+	<c:when test="${step_dataType == 'IsolateRecordClasses.IsolateRecordClass'}">
 		<c:set var="type" value="Iso" />
 	</c:when>	
 </c:choose>
