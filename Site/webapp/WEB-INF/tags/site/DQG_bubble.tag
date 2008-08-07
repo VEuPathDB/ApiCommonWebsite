@@ -24,7 +24,7 @@
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
 <c:set var="catMap" value="${wdkModel.questionsByCategory}" />
 <div id="3columndiv">
-<%-- PEPE --%>
+
 
 <img src="/assets/images/crypto/${banner}" alt="${alt_banner}" width="247" height="46" />
 <c:choose>
