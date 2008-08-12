@@ -65,6 +65,9 @@ sub setColors               { $_[0]->{'Colors'            } = $_[1]; $_[0] }
 sub getTagRx                { $_[0]->{'TagRx'             } }
 sub setTagRx                { $_[0]->{'TagRx'             } = $_[1]; $_[0] }
 
+sub getYScaleFactor         { $_[0]->{'YScaleFactor'      } }
+sub setYScaleFactor         { $_[0]->{'YScaleFactor'      } = $_[1]; $_[0] }
+
 sub getYMin                 { $_[0]->{'YMin'              } }
 sub setYMin                 { $_[0]->{'YMin'              } = $_[1]; $_[0] }
 
@@ -158,6 +161,11 @@ sub makeR {
          @avg  = map { $_->{VALUE} } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_data;
          @std  = (0) x scalar @tags;
       }
+
+      if(my $factor = $Self->getYScaleFactor()) {
+        @avg = map {$_ * $factor} @avg;
+      }
+
 
       my $tags_n = scalar @tags;
 
