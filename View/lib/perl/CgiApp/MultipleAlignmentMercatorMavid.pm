@@ -620,9 +620,9 @@ font-family: courier, 'serif';
 font-weight: bold;
 color:#8B0000; 
 }
-#tr 
-#{
-#font-family: courier, 'serif';
-#font-weight: normal;
-#font-size: 80%;
-#}
+tr 
+{
+font-family: courier, 'serif';
+font-weight: normal;
+font-size: 80%;
+}
