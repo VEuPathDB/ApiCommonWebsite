@@ -38,7 +38,8 @@
 </c:choose>
 
 <c:set var="subq" value="" />
-  <div class="crumb_details" onmouseover="overdiv=1" onmouseout="overdiv=0; setTimeout('hideDetails()',50)">
+<!--  <div class="crumb_details" onmouseover="overdiv=1" onmouseout="overdiv=0; setTimeout('hideDetails()',50)">-->
+	<div class="crumb_details">
 	<p class="question_name"><span>${displayName}</span></p>
 	<table>
                     <c:forEach items="${displayParams}" var="p">
@@ -93,24 +94,25 @@
    <c:set var="oper" value="" />
    <c:choose>
       <c:when test="${step.isFirstStep}">
-          <p><b>Results:&nbsp;</b>${step.filterResultSize}</p>
+          <p><b>Results:&nbsp;</b>${step.filterResultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
       </c:when>
       <c:otherwise>
-          <hr><p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}</p>
+          <hr><p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
 	      <c:set var="subq" value="&subquery=true" />
 	      <c:set var="oper" value="${step.operation}" />
       </c:otherwise>
    </c:choose>
    <div class="crumb_menu">
-   <span style="color:#888;">Name</span>&nbsp;|&nbsp;
+    <a class="rename_step_link" href="javascript:void(0)" onclick="Rename_Step(this)">Rename</a>&nbsp;|&nbsp;
 	<a class="view_step_link" onclick="NewResults(this,'showSummary.do?strategy=${strategyNum}&step=${stepNum}${subq}&resultsOnly=true')" href="javascript:void(0)">View</a>&nbsp;|&nbsp;
 	<a class="edit_step_link" href="javascript:void(0)" onclick="Edit_Step(this,'showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0')" id="${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 	<!--<span style="color:#888;">Edit</span>&nbsp;|&nbsp;-->
 	<span style="color:#888;">Expand</span>&nbsp;|&nbsp;
-	<span style="color:#888;">Insert Before</span>&nbsp;|&nbsp;
-	<a class="delete_step_link" href="javascript:void(0)" onclick="DeleteStep(this,'deleteStep.do?strategy=${strategyNum}&step=${stepNum}')">Delete</a>&nbsp;|&nbsp;
+	<a class="delete_step_link" href="javascript:void(0)" onclick="Insert_Step(this,'processFilter.do?strategy=${strategyNum}&insert=${stepNum}')">Insert Before</a>
+	<!--<span style="color:#888;">Insert Before</span>-->&nbsp;|&nbsp;
+	<a class="delete_step_link" href="javascript:void(0)" onclick="DeleteStep(this,'deleteStep.do?strategy=${strategyNum}&step=${stepNum}')">Delete</a>
+	<span style="float:right; position:absolute; right: 6px"><a href="javascript:void(0)" onclick="hideDetails(this)">[x]</a></span)
 	<!--<span style="color:#888;">Delete</span>&nbsp;|&nbsp;-->
-	<span style="color:#888;">Download</span>
 <!--    <span><a href="deleteStep.do?strategy=${strategyNum}&delete=${stepNum}">Delete</a></span>-->
    </div>       
   </div><!--End Crumb_Detail-->

@@ -32,7 +32,7 @@
 
 
 
-<a class="redbutton" onclick="this.blur()" href="javascript:openFilter(${protocol.length})" id="filter_link"><span>Add Step</span></a>
+<a class="redbutton" onclick="this.blur()" href="javascript:openFilter('add')" id="filter_link"><span>Add Step</span></a>
 <div id="query_form" class="jqDnR">
 <span class="dragHandle"><h1>Add&nbsp;Step</h1><a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png'/></a></span>
 <!--<div id="filter_div">-->

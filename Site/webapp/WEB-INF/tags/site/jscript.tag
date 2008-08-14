@@ -1,5 +1,10 @@
 <!-- JQuery Library -->
-<script defer type="text/javascript" src="/assets/js/lib/jquery-1.2.3.js"></script>
+<script defer type="text/javascript" src="/assets/js/lib/jquery-1.2.6.js"></script>
+<!-- JQuery Dialog Plugin -->
+<script type="text/javascript" src="/assets/js/lib/ui/ui.core.js"></script>
+<script type="text/javascript" src="/assets/js/lib/ui/ui.draggable.js"></script>
+<script type="text/javascript" src="/assets/js/lib/ui/ui.resizable.js"></script>
+<script type="text/javascript" src="/assets/js/lib/ui/ui.dialog.js"></script>
 <!-- JQuery Drag And Drop Plugin -->
 <script type="text/javascript" src="/assets/js/lib/jqDnR.js"></script>
 <!-- Prototype Library -->
@@ -14,8 +19,6 @@
 <script defer type="text/javascript" src="/assets/js/dqg.js"></script>
 <!-- dynamic query grid code -->
 <script defer type="text/javascript" src="/assets/js/step.js"></script>
-<!-- history page code -->
-<script defer type="text/javascript" src="/assets/js/history.js"></script>
 <!-- dynamic query grid code -->
 <script defer type="text/javascript" src="/assets/js/pager.js"></script>
 <!-- dynamic query grid code -->
@@ -26,6 +29,9 @@
 <script defer type="text/javascript" src="/assets/js/results_page.js"></script>
 <!-- Record Page GBrowse Javascript code -->
 <script defer type="text/javascript" src="/gbrowse/wz_tooltip_3.45.js"></script>
+<!-- history page code -->
+<script defer type="text/javascript" src="/assets/js/history.js"></script>
+
 
 <script defer type="text/javascript" src="/assets/js/api.js"></script>
 <!-- fix to transparent png images in IE 7 -->

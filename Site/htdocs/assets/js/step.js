@@ -1,6 +1,4 @@
 $("#diagram").ready(function(){
-	
-	
 
 //	$("a.crumb_name, a.operation, a.view_step_link").click(function(){
 //		NewResults($(this)[0]);
@@ -48,13 +46,27 @@ $("#diagram").ready(function(){
 var detail_div = "";
 overdiv = 0;
 function showDetails(det){
+/*	$(".crumb_details").hide();
 	detail_div = $(".crumb_details",det);
-	detail_div.show();
+	detail_div.show();*/
+	det = $(det).parent().parent().find("h3 div.crumb_details");
+	var disp = det.css("display");
+	var crumb_details = $("#diagram h3 div.crumb_details");
+	for(i=0;i<crumb_details.length;i++){
+		if($(crumb_details[i]).css("display") == "block")
+			$(crumb_details[i]).css("display", "none");
+	}
+	if(disp == "none")
+		det.show();
+	else
+		det.hide();
 }
 
-function hideDetails(){
-	if(overdiv == "0") 
-		detail_div.hide();
+function hideDetails(det){
+/*	if(overdiv == "0") 
+		detail_div.hide();*/
+	det = $(det).parent().parent().parent();
+	det.hide();
 }
 
 
@@ -140,6 +152,53 @@ function Edit_Step(ele,url){
 		$(this).parent().parent().hide();
 }
 
-function Delete_Step(ele,url){
-	
+function Insert_Step(ele,url){
+	$(ele).parent().parent().hide();
+	var sNumber = $(ele).parent().parent().parent().parent().attr("id");
+	sNumber = sNumber.substring(5,6);
+	openFilter(sNumber);
 }
+
+function Rename_Step(ele){
+	$(ele).parent().parent().hide();
+	var link = $(ele).parent().parent().parent().find("a:first");
+	link.html("<input id='new_name_box' type='text' value='"+link.text()+"' onblur='RenameStep(this)' onfocus='this.select()' onkeypress='blah(this,event)' size='10'/>");
+	$("#new_name_box").focus();
+}
+
+function blah(ele,evt){
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if(charCode == 13) $(ele).blur();
+}
+
+function RenameStep(ele){
+	var a = $(ele).parent();
+	var new_name = $(ele).val();
+	var x = $(ele).parent().attr("id");
+	x = x.substring(7);
+	var url = "renameUserAnswer.do?user_answer_id=" + x + "&customUserAnswerName=" + new_name;	
+	if(new_name.length > 14)
+		new_name = new_name.substring(0,12) + "...";
+	
+	$.ajax({
+			url: url,
+			dataType: "html",
+			success: function(data){
+				a.text(new_name);
+			},
+			error: function(data, msg, e){
+				alert("ERROR \n "+ msg + "\n" + e);
+			}
+		});
+}
+
+function toggleInfoPopup(ele, sh){
+	if(sh == 1)
+		$(ele).parent().find("div.info_link_pop_up_div").show("normal");
+	else
+		$(ele).parent().find("div.info_link_pop_up_div").hide("normal");
+}
+
+
+
+

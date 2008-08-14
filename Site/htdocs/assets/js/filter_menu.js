@@ -1,12 +1,17 @@
 
-function closeAll(){openFilter();}
+var isInsert = "";
+
+function closeAll(){openFilter("");}
 var _action = "";
 function formatFilterForm(data, edit, reviseStep){
 	//edit = 0 ::: adding a new step
 	//edit = 1 ::: editing a current step
 				var operation = "";
 				var stepn = 0;
-				if(reviseStep != ""){
+				var insert = "";
+				if(edit == 0){
+					insert = reviseStep;
+				}else{
 					var parts = reviseStep.split(":");
 					//stepn = parts[1];
 					reviseStep = parseInt(parts[0]);
@@ -17,9 +22,8 @@ function formatFilterForm(data, edit, reviseStep){
 				var lastStepId = $("#last_step_id").text();
 				var pro_url = "";
 			if(edit == 0)
-				pro_url = "processFilter.do?strategy=" + proto;
+				pro_url = "processFilter.do?strategy=" + proto + "&insert=" +insert;
 			else{
-				
 				pro_url = "processFilter.do?strategy=" + proto + "&revise=" + reviseStep;// + "&step=" + stepn + "&subquery="; + isSub;
 			}
 				var historyId = $("#history_id").val();
@@ -57,7 +61,8 @@ function formatFilterForm(data, edit, reviseStep){
 				//$(".filter.params", quesForm).prepend("<span class='form_subtitle'>" + quesTitle + "</span><br>"); 
 			if(edit == 0){
 				var previous_step_id = $("#step_"+prev_stepNum+"_sub a").attr("id");
-				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine Step " + prev_stepNum + " with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' /><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
+				//$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine Step " + prev_stepNum + " with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' /><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
+				$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine Step " + prev_stepNum + " with Step " + stepNum + "</span><div id='operations'><ul><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='AND' /><li class='operation INTERSECT'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>INTERSECT</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='OR'><li class='operation UNION'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>UNION</b>&nbsp;" + stepNum + "</li><li class='opcheck'><input type='radio' name='myProp(booleanExpression)' value='NOT'></li><li class='operation MINUS'/><li>&nbsp;" + prev_stepNum + "&nbsp;<b>MINUS</b>&nbsp;" + stepNum + "</li></ul></div></div>");
 			}
 			else {
 				if(reviseStep != 0){
@@ -66,9 +71,11 @@ function formatFilterForm(data, edit, reviseStep){
 					else
 						var previous_step_id = $("#step_"+(reviseStep - 1)+" a").attr("id");						
 					lastStepId = previous_step_id.substring(7);
-					$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input id='INTERSECT' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' /><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='UNION' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='MINUS' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
+					//$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input id='INTERSECT' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " AND' /><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='UNION' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='MINUS' type='radio' name='myProp(booleanExpression)' value='" + lastStepId + " NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
+					$(".filter.params", quesForm).after("<div class='filter operators'><span class='form_subtitle'>Combine with Step " + (reviseStep) + "</span><div id='operations'><ul><li class='opcheck'><input id='INTERSECT' type='radio' name='myProp(booleanExpression)' value='AND' /><li class='operation INTERSECT'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='UNION' type='radio' name='myProp(booleanExpression)' value='OR'><li class='operation UNION'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>UNION</b>&nbsp;" + (reviseStep + 1) + "</li><li class='opcheck'><input id='MINUS' type='radio' name='myProp(booleanExpression)' value='NOT'></li><li class='operation MINUS'/><li>&nbsp;" + (reviseStep) + "&nbsp;<b>MINUS</b>&nbsp;" + (reviseStep + 1) + "</li></ul></div></div>");
 				}else{
-					$(".filter.params", quesForm).after("<input type='hidden' name='myProp(booleanExpression)' value='" + proto + " AND' />");
+					//$(".filter.params", quesForm).after("<input type='hidden' name='myProp(booleanExpression)' value='" + proto + " AND' />");
+					$(".filter.params", quesForm).after("<input type='hidden' name='myProp(booleanExpression)' value='AND' />");
 				}
 			}
 				
@@ -115,7 +122,7 @@ function getQueryForm(url){
 			url: url,
 			dataType:"html",
 			success: function(data){
-				formatFilterForm(data,0,"");
+				formatFilterForm(data,0,isInsert);
 			},
 			error: function(data, msg, e){
 				alert("ERROR \n "+ msg + "\n" + e);
@@ -127,47 +134,18 @@ function getQueryForm(url){
 var original_Query_Form_Text;
 
 $(document).ready(function(){
-
-//	$("div.crumb_details").hide();
-//	$("#filter_div").hide();
-	original_Query_Form_Text = $("#query_form").html();
-	
-	
-	
-
-/*
-	$("#filter_link").click(function(){;
-		if($(this).text() == "Add Step"){
-			$("#filter_div").fadeIn("normal");
-			$(this).html("<span>Close [X]</span>"); 
-		}else{
-			$("#filter_div").fadeOut("normal");
-			$("#query_selection").show();
-			$("#query_form").hide();
-			$(this).html("<span>Add Step</span>"); 
-		}
-		return false;
-	});
-*/
-
-	$(".crumb").bind("mouseenter",function(){
-		$(".crumb_details",this).fadeIn("fast");
-	}).bind("mouseleave",function(){
-		$(".crumb_details",this).fadeOut("fast");
-	});
-
-//	$(".crumb_details").mouseover(function(){
-//		$(this).filter(".crumb_detail").show();
-//	}).mouseout(function(){
-//		$(this).hide();
-//	});
-	
+	original_Query_Form_Text = $("#query_form").html();	
 }); // End of Ready Function
 
 
-function openFilter() {
+function openFilter(IsIn) {
+	if(IsIn == "add")
+		isInsert = "";
+	else 
+		isInsert = IsIn;
+		
 	var link = $("#filter_link");
-	if($(link).attr("href") == "javascript:openFilter()"){
+	if($(link).attr("href") == "javascript:openFilter('add')"){
 //		$("#filter_div").fadeIn("normal");
 		$("#query_form").html(original_Query_Form_Text);
 		$("#query_form").css({
@@ -183,7 +161,7 @@ function openFilter() {
 		//$("#query_selection").show();
 		$("#query_form").hide();
 		$(link).css({opacity:1.0});//html("<span>Add Step</span>"); 
-		$(link).attr("href","javascript:openFilter()");
+		$(link).attr("href","javascript:openFilter('add')");
 	}
 }
 
@@ -269,7 +247,7 @@ function AddStepToStrategy(act){
 			var last_step_number = $("#diagram div:last").attr("id");
 			last_step_number = parseInt(last_step_number.substring(5));
 			var step_divs = $("#diagram div");
-			var lastStepId = $(step_divs[step_divs.length - 4]).find("h3 a").attr("id");
+			var lastStepId = $(step_divs[step_divs.length - 5]).find("h3 a").attr("id");
 			lastStepId = lastStepId.substring(7);
 			$("#last_step_id").text(lastStepId);
 			
@@ -372,7 +350,7 @@ function DeleteStep(ele,url){
 			
 			var new_steps = $("#diagram div");
 			if(new_steps.length > 4)
-				var last_step_sub = $(new_steps[new_steps.length - 4]);
+				var last_step_sub = $(new_steps[new_steps.length - 5]);
 			else
 				var last_step_sub = $(new_steps[1]);
 			$("#target_step").attr("value",parseInt(last_step_sub.attr("id").substring(5,6)) + 1) ;

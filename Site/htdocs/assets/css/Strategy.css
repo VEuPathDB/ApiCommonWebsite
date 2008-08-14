@@ -154,35 +154,39 @@
    .col1 { left: 1em }
    
    .size1 { width: 8em; height: 3em; }
-   .size2 { width: 2em }
+   .size2 { width: 8em; height: 3em;}
 
    .height1 { height: 3.9em }
 
    .rightarrow1 {
 		position: absolute;
 		left: 7.4em;
-		top: -2.7em;
+		top: -2.9em;
 		z-index: 1;
+		height: 11px;
+		width: 54px;
 	 }
 	
    .rightarrow2 {
 		position: absolute;
 		z-index: 1;
-		top: -3em;
-		left: 3.3em;
+		top: -3.1em;
+		left: 4.3em;
+		height: 10px;
+		width: 93px;
 	 }
 		
    .downarrow {
 		position: absolute;
-		left: 7.4em;
-		top: -1.4em;
+		left: 3.1em;
+		top: -0.6em;
 		z-index: 1; 	
 	 }
 	
 	.operation {
 		height: 21px;
 		text-align: center;
-		width: 5.6em;
+		width: 8em;/*5.6em;*/
 		margin-top: -4px;
 		margin-left: 2px;
 		margin-right: 2px;
@@ -190,37 +194,37 @@
 	
 	.operation.UNION {
 		height: 37px;
-		background: url(/assets/images/operationIcons.gif) no-repeat -28px -66px;
+		background: url(/assets/images/operationIcons.gif) no-repeat 0px -66px;
 	}
 
 	.operation.INTERSECT {
 		height: 37px;
-		background: url(/assets/images/operationIcons.gif) no-repeat -28px -33px;
+		background: url(/assets/images/operationIcons.gif) no-repeat 0px -33px;
 	}
 
 	.operation.MINUS {
 		height: 37px;
-		background: url(/assets/images/operationIcons.gif) no-repeat -28px 1px;
+		background: url(/assets/images/operationIcons.gif) no-repeat 0px 1px;
 	}
 	
 	.operation.UNION.selected {
-		height:; 37px;
-		background: url(/assets/images/operationIcons_pink.gif) no-repeat -28px -66px;
+		height: 37px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -66px;
 	}
 
 	.operation.INTERSECT.selected {
 		height: 37px;
-		background: url(/assets/images/operationIcons_pink.gif) no-repeat -28px -33px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -33px;
 	}
 
 	.operation.MINUS.selected {
 		height: 37px;
-		background: url(/assets/images/operationIcons_pink.gif) no-repeat -28px 1px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px 1px;
 	}
 
 	a.operation img {
 		height: 22px;
-		width: 67px;
+		width: 8em;
 	}
 
 	span.stepNumber {
@@ -245,6 +249,7 @@
 	}
 
 	.crumb_details {
+		display:none;
 		background-color: #eee;
 		color: #000000;
 		border: solid black;
@@ -319,4 +324,28 @@
 #diagram div#strategy_name span{
 	font-size: 10px;
 	color: #888;
+}
+
+#diagram h6.step_info_link {
+	border: none;
+	left: 86px;
+	top: -34px;
+	position: relative;
+}
+
+#diagram h6.step_info_link div.info_link_pop_up_div {
+	display: none;
+	background: lightYellow;
+	font-weight: normal;
+	font-size: 10px;
+	border: thin solid black;
+	color: #000000;
+}
+
+#diagram h6.step_info_link a:hover div.info_link_pop_up_div {
+	display: block;
+	position: relative;
+	top: -24px;
+	left: 15px;
+	z-index: 5;
 }

@@ -1,30 +1,7 @@
-var selected = [];
-
-$("#search_history").ready(function() {
-	$("tbody[id*='steps'] tr").each(function() {
-		this.style.display = "none";
-	});
-});
-
-function toggleSteps(strat) {
-	var img = $("img#img_" + strat);
-	if (img.hasClass("plus")) {
-		$("tbody#steps_" + strat + " tr").each(function() {
-							this.style.display = "";
-							});
-	        img[0].src = "/assets/images/sqr_bullet_minus.png";
-		img.removeClass("plus");
-		img.addClass("minus");
-	}
-	else {
-		$("tbody#steps_" + strat + " tr").each(function() {
-							this.style.display = "none"
-							});
-	        img[0].src = "/assets/images/sqr_bullet_plus.png";
-		img.removeClass("minus");
-		img.addClass("plus");
-	}
-}	
+// need functions for checkboxes
+// deleting strategies
+// changing panels
+selected = [];
 
 function selectAllHist() {
 	$("div.history_panel.enabled input:checkbox").attr("checked", "yes");
