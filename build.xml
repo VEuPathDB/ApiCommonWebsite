@@ -58,6 +58,16 @@
     </ant>
   </target>  
  
+  <target name="WSF-Checkout" unless="WSF.present">
+    <ant target="defaultProjectCheckout" inheritAll="false">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WSF" />
+      <property name="project" value="WDK"/>
+      <property name="version" value="WDK_version_1-17-2"/>
+      <property name="useBranch" value=""/>
+    </ant>
+  </target>
+
+
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
@@ -65,8 +75,10 @@
   <target name="ApiCommonWebsite-ChildCheckout">
     <available file="../CBIL" type="dir" property="CBIL.present" />
     <available file="../WDK" type="dir" property="WDK.present" />
+    <available file="../WSF" type="dir" property="WSF.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
     <antcall target="WDK-Checkout" />
+    <antcall target="WSF-Checkout" />
     <antcall target="CBIL-Checkout" />
     <antcall target="ApiCommonData-Checkout"/>
   </target>
