@@ -7,14 +7,14 @@
   <target name="CBIL-Installation">
     <ant antfile="../CBIL/build.xml" target="CBIL-Installation">
       <property name="project" value="CBIL"/>
-      <property name="version" value="internal/api-aug-2008"/>
+      <property name="version" value="internal/api-aug-08"/>
     </ant>
-  </target>  
+   </target>  
 
   <target name="ApiCommonData/Model-Installation">
     <ant antfile="../ApiCommonData/build.xml" target="ApiCommonData/Model-Installation">
       <property name="project" value="ApiCommonData"/>
-      <property name="version" value="api-aug-2008"/>
+      <property name="version" value="api-aug-08"/>
     </ant>
   </target>  
 
@@ -36,7 +36,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false"> 
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
       <property name="project" value="CBIL"/>
-      <property name="version" value="internal/api-aug-2008"/>
+      <property name="version" value="internal/api-aug-08"/>
     </ant>
   </target>    
     
@@ -44,7 +44,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonData"/>
       <property name="project" value="ApiCommonData"/>
-      <property name="version" value="api-aug-2008"/>
+      <property name="version" value="api-aug-08"/>
       <property name="excludeChildren" value="true"/>
     </ant>
   </target>
