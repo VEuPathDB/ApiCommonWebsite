@@ -24,27 +24,30 @@ function enableRename(histId, name) {
    disableRename();
    
    currentStrategyId = histId;
-   //var button = document.getElementById('btn_' + histId);
-   //button.disabled = true;
-   //button.style.display = 'none';
+   var button = document.getElementById('activate_' + histId);
+   button.style.display = 'none';
    var text = document.getElementById('text_' + histId);
    text.style.display = 'none';
+   var nameBox = document.getElementById('name_' + histId);
+   nameBox.innerHTML = "<input name='strategy' type='hidden' value='" + histId + "'>"
+                  + "<input id='name' name='name' type='text' size='42' maxLength='2000' value='" + name + "' style='margin-right:4px;'>" 
+   nameBox.style.display='block';
    var input = document.getElementById('input_' + histId);
-   input.innerHTML = "<input name='strategy' type='hidden' value='" + histId + "'>"
-                   + "<input id='name' name='name' type='text' size='42' maxLength='2000' value='" + name + "' style='margin-right:4px;'>" 
-                   + "<input type='submit' value='Update'>"
+   input.innerHTML = "<input type='submit' value='Update'>"
                    + "<input type='reset' value='Cancel' onclick='disableRename()'>";
    input.style.display='block';
-   var nameBox = document.getElementById('name');
+   nameBox = document.getElementById('name');
    nameBox.select();
    nameBox.focus();
 }
 
 function disableRename() {
    if (currentStrategyId && currentStrategyId != '0') {
-      //var button = document.getElementById('btn_' + currentStrategyId);
-      //button.disabled = false;
-      //button.style.display = '';
+      var button = document.getElementById('activate_' + currentStrategyId);
+      button.style.display = 'block';
+      var name = document.getElementById('name_' + currentStrategyId);
+      name.innerText = '';
+      name.style.display = 'none';
       var input = document.getElementById('input_' + currentStrategyId);
       input.innerText = '';
       input.style.display = 'none';

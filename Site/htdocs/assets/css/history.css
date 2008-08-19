@@ -1,5 +1,5 @@
 ul#history_tabs {
-    border-bottom: 1px solid black;
+    background-color:#E6EBF2;
     list-style-image:none;
     list-style-position:outside;
     list-style-type:none;
@@ -9,38 +9,28 @@ ul#history_tabs {
     width: 98%;
 }
 
-#history_tabs li {
-    border-color:#BBBBBB;
-    border-style:solid;
-    border-width:1px 1px 0;
+#history_tabs li {;
     float:left;
     margin:0;
 }
 
 #history_tabs a {
-    background:#EEEEEE none repeat scroll 0 0;
-    color:#0000CC;
+    color:#999999;
     display:block;
     padding:0.24em 1em;
     text-align:center;
     text-decoration:none;
-    height:2em;
-    width:8.5em;
 }
 
 #history_tabs a:hover {
-    background:#DDDDFF none repeat scroll 0 0;
+    color:#0000CC;
 }
 
-#history_tabs #selected {
-    border-color:#345D9B;
-}
 #history_tabs #selected a {
-    background:white none repeat scroll 0 0;
     color:black;
     font-weight:bold;
     position:relative;
-    top:1px;
+    text-decoration:underline;
 }
 
 #history_table {
