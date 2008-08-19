@@ -148,7 +148,7 @@
    }
 
    /* Rows, columns, heights, widths, and sizes. */
-   .row1 { top: 1em }
+   .row1 { top: 0.6em }
    .row2 { top: 4.6em }
    
    .col1 { left: 1em }
@@ -161,24 +161,24 @@
    .rightarrow1 {
 		position: absolute;
 		left: 7.4em;
-		top: -2.9em;
+		top: -3.2em;
 		z-index: 1;
 		height: 11px;
-		width: 54px;
+		width: 57px;
 	 }
 	
    .rightarrow2 {
 		position: absolute;
 		z-index: 1;
 		top: -3.1em;
-		left: 4.3em;
+		left: 4.5em;
 		height: 10px;
-		width: 93px;
+		width: 92px;
 	 }
 		
    .downarrow {
 		position: absolute;
-		left: 3.1em;
+		left: 3.2em;
 		top: -0.6em;
 		z-index: 1; 	
 	 }
@@ -192,34 +192,60 @@
 		margin-right: 2px;
 	}
 	
+	
 	.operation.UNION {
-		height: 37px;
-		background: url(/assets/images/operationIcons.gif) no-repeat 0px -66px;
+		border: 2px solid #FFFFFF;
+		height: 25px;
+		background: url(/assets/images/operationIcons.gif) no-repeat -28px -73px;
 	}
 
 	.operation.INTERSECT {
-		height: 37px;
-		background: url(/assets/images/operationIcons.gif) no-repeat 0px -33px;
+		border: 2px solid #FFFFFF;
+		height: 25px;
+		background: url(/assets/images/operationIcons.gif) no-repeat -28px -37px;
 	}
 
 	.operation.MINUS {
-		height: 37px;
-		background: url(/assets/images/operationIcons.gif) no-repeat 0px 1px;
+		border: 2px solid #FFFFFF;
+		height: 25px;
+		background: url(/assets/images/operationIcons.gif) no-repeat -28px -1px;
 	}
 	
-	.operation.UNION.selected {
+	
+	#diagram div.operation.UNION {
+		border: 2px solid #EDEDED;
 		height: 37px;
-		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -66px;
+		background: url(/assets/images/operationIcons.gif) no-repeat 0px -73px;
 	}
 
-	.operation.INTERSECT.selected {
+	#diagram div.operation.INTERSECT {
+		border: 2px solid #EDEDED;
 		height: 37px;
-		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -33px;
+		background: url(/assets/images/operationIcons.gif) no-repeat 0px -37px;
 	}
 
-	.operation.MINUS.selected {
+	#diagram div.operation.MINUS {
+		border: 2px solid #EDEDED;
 		height: 37px;
-		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px 1px;
+		background: url(/assets/images/operationIcons.gif) no-repeat 0px -1px;
+	}
+	
+	#diagram div.operation.UNION.selected {
+		border: 2px solid #ea9797;
+		height: 37px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -73px;
+	}
+
+	#diagram div.operation.INTERSECT.selected {
+		border: 2px solid #ea9797;
+		height: 37px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -37px;
+	}
+
+	#diagram div.operation.MINUS.selected {
+		border: 2px solid #ea9797;
+		height: 37px;
+		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -1px;
 	}
 
 	a.operation img {

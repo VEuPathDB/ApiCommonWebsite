@@ -43,12 +43,7 @@ $("#diagram").ready(function(){
 	
 });
 
-var detail_div = "";
-overdiv = 0;
 function showDetails(det){
-/*	$(".crumb_details").hide();
-	detail_div = $(".crumb_details",det);
-	detail_div.show();*/
 	det = $(det).parent().parent().find("h3 div.crumb_details");
 	var disp = det.css("display");
 	var crumb_details = $("#diagram h3 div.crumb_details");
@@ -63,30 +58,10 @@ function showDetails(det){
 }
 
 function hideDetails(det){
-/*	if(overdiv == "0") 
-		detail_div.hide();*/
 	det = $(det).parent().parent().parent();
 	det.hide();
 }
 
-
-function parseUrl(name){
- 	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
- 	var regexS = "[\\?&]"+name+"=([^&#]*)";
- 	var regex = new RegExp( regexS,"g" );
- 	var res = new Array();
- 	while (regex.lastIndex < window.location.href.length){
- 		var results = regex.exec( window.location.href );
- 		if( results != null )
- 			res.push(results[1]);
- 		else
- 			break;
- 	}
- 	if(res.length == 0)
- 		return "";
- 	else
- 		return res;
-}
 
 function NewResults(ele,url){
 	var classname = "selectedarrow";
@@ -129,15 +104,6 @@ function Edit_Step(ele,url){
 		var parts = revisestep.split("|");
 		revisestep = parseInt(parts[0]);
 		var operation = parts[1];
-		
-		
-//		var currentstep = parseUrl("step");
-//		var isSub = parseUrl("subquery");
-//		if(isSub == "" || isSub == "false")
-//			isSub = "";
-//		else
-//			isSub = "true";
-//		var reviseStepNumber = revisestep + ":" + currentstep + ":" + isSub + ":" + operation;
 		var reviseStepNumber = revisestep + ":0:0:" + operation;
 		$.ajax({
 			url: url,
@@ -166,11 +132,6 @@ function Rename_Step(ele){
 	$("#new_name_box").focus();
 }
 
-function blah(ele,evt){
-	var charCode = (evt.which) ? evt.which : evt.keyCode;
-	if(charCode == 13) $(ele).blur();
-}
-
 function RenameStep(ele){
 	var a = $(ele).parent();
 	var new_name = $(ele).val();
@@ -178,8 +139,7 @@ function RenameStep(ele){
 	x = x.substring(7);
 	var url = "renameUserAnswer.do?user_answer_id=" + x + "&customUserAnswerName=" + new_name;	
 	if(new_name.length > 14)
-		new_name = new_name.substring(0,12) + "...";
-	
+		new_name = new_name.substring(0,12) + "...";	
 	$.ajax({
 			url: url,
 			dataType: "html",
@@ -192,13 +152,29 @@ function RenameStep(ele){
 		});
 }
 
-function toggleInfoPopup(ele, sh){
-	if(sh == 1)
-		$(ele).parent().find("div.info_link_pop_up_div").show("normal");
-	else
-		$(ele).parent().find("div.info_link_pop_up_div").hide("normal");
+// Utility Functions
+
+function blah(ele,evt){
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if(charCode == 13) $(ele).blur();
 }
 
-
+function parseUrl(name){
+ 	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+ 	var regexS = "[\\?&]"+name+"=([^&#]*)";
+ 	var regex = new RegExp( regexS,"g" );
+ 	var res = new Array();
+ 	while (regex.lastIndex < window.location.href.length){
+ 		var results = regex.exec( window.location.href );
+ 		if( results != null )
+ 			res.push(results[1]);
+ 		else
+ 			break;
+ 	}
+ 	if(res.length == 0)
+ 		return "";
+ 	else
+ 		return res;
+}
 
 
