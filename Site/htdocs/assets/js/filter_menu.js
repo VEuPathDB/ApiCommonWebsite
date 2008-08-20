@@ -216,7 +216,7 @@ function AddStepToStrategy(act){
 			var last_step_number = $("#diagram div:last").attr("id");
 			last_step_number = parseInt(last_step_number.substring(5));
 			var step_divs = $("#diagram div");
-			var lastStepId = $(step_divs[step_divs.length - 5]).find("h3 a").attr("id");
+			var lastStepId = $(step_divs[step_divs.length - 4]).find("h3 a").attr("id");
 			lastStepId = lastStepId.substring(7);
 			$("#last_step_id").text(lastStepId);
 			

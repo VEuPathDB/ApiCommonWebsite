@@ -72,7 +72,7 @@
 				<!--<a id="stepId_${step.filterUserAnswer.userAnswerId}" class="crumb_name" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">${stepName}</a>-->
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
-			<span class="resultCount"><a href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')"> ${step.filterResultSize}&nbsp;${type}</a></span>			
+			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')"> ${step.filterResultSize}&nbsp;${type}</a></span>			
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li><img class="rightarrow1" src="/assets/images/arrow_chain_right3.png"></li>
@@ -90,7 +90,7 @@
 				<!--<a id="stepId_${step.filterUserAnswer.userAnswerId}" class="crumb_name" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')" href="javascript:void(0)">${stepName}</a>-->
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
-			<span class="resultCount"><a href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.subQueryResultSize}&nbsp;${type}</a></span>
+			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.subQueryResultSize}&nbsp;${type}</a></span>
 			<ul>
 				<li><img class="downarrow" src="/assets/images/arrow_chain_down2.png"</li>
 			</ul>
@@ -98,7 +98,7 @@
 		</div>
 		<div id="step_${stepNum}" class="box row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 4.5em;">
 			<a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)"><img src="/assets/images/transparent1.gif"/></a><br>
-			<span class="resultCount"><a onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">${step.filterResultSize}&nbsp;${type}</a></span>
+			<span class="resultCount"><a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">${step.filterResultSize}&nbsp;${type}</a></span>
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li><img class="rightarrow2" src="/assets/images/arrow_chain_right4.png"></li>

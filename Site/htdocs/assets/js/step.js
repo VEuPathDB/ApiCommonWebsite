@@ -81,12 +81,15 @@ function NewResults(ele,url){
 	});
 	$("div.selectedarrow").removeClass("selectedarrow");
 	$("div.selected").removeClass("selected");
-	if($(ele).hasClass("crumb_name")){
+	if($(ele).hasClass("results_link")){
 		$(ele).parent().parent().addClass(classname);
 		$(ele).siblings("div.crumb_details").hide();
 	}
 	else if($(ele).hasClass("operation")){
-		$(ele).parent().addClass(classname);
+		if($(ele).parent().hasClass("resultCount"))
+			$(ele).parent().parent().addClass(classname);
+		else
+			$(ele).parent().addClass(classname); 
 	}
 	else if($(ele).hasClass("view_step_link")){
 		$(ele).parent().parent().parent().parent().addClass(classname);
