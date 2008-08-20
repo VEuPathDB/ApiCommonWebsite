@@ -6,6 +6,7 @@ package org.apidb.apicommon.model.report;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
@@ -13,12 +14,18 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.Answer;
-import org.gusdb.wdk.model.AttributeFieldValue;
-import org.gusdb.wdk.model.RDBMSPlatformI;
+import org.gusdb.wdk.model.AttributeValue;
+import org.gusdb.wdk.model.RecordClass;
 import org.gusdb.wdk.model.RecordInstance;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.implementation.SqlUtils;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.dbms.CacheFactory;
+import org.gusdb.wdk.model.dbms.DBPlatform;
+import org.gusdb.wdk.model.dbms.ResultFactory;
+import org.gusdb.wdk.model.dbms.SqlUtils;
+import org.gusdb.wdk.model.query.QueryInstance;
 import org.gusdb.wdk.model.report.Reporter;
+import org.json.JSONException;
 
 /**
  * @author xingao
@@ -102,15 +109,15 @@ public class Gff3CachedReporter extends Reporter {
         // include transcript
         if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
             String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
-                    ? true : false;
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
         }
 
         // include protein
         if (config.containsKey(FIELD_HAS_PROTEIN)) {
             String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
-                    ? true : false;
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
         }
     }
 
@@ -149,7 +156,9 @@ public class Gff3CachedReporter extends Reporter {
      * 
      * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
      */
-    public void write(OutputStream out) throws WdkModelException {
+    public void write(OutputStream out) throws WdkModelException,
+            NoSuchAlgorithmException, SQLException, JSONException,
+            WdkUserException {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
 
         // this reporter only works for GeneRecordClasses.GeneRecordClass
@@ -167,7 +176,9 @@ public class Gff3CachedReporter extends Reporter {
         if (hasTranscript || hasProtein) writeSequences(writer);
     }
 
-    private void writeHeader(PrintWriter writer) throws WdkModelException {
+    private void writeHeader(PrintWriter writer) throws WdkModelException,
+            NoSuchAlgorithmException, SQLException, JSONException,
+            WdkUserException {
         writer.println("##gff-version\t3");
         writer.println("##feature-ontology\tso.obo");
         writer.println("##attribute-ontology\tgff3_attributes.obo");
@@ -179,8 +190,7 @@ public class Gff3CachedReporter extends Reporter {
         // get page based answers with a maximum size (defined in
         // PageAnswerIterator)
         for (Answer answer : this) {
-            while (answer.hasMoreRecordInstances()) {
-                RecordInstance record = answer.getNextRecordInstance();
+            for (RecordInstance record : answer.getRecordInstances()) {
                 String seqId = getValue(record.getAttributeValue("gff_seqid"));
                 int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
                 int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));
@@ -205,28 +215,36 @@ public class Gff3CachedReporter extends Reporter {
         writer.flush();
     }
 
-    private void writeRecords(PrintWriter writer) throws WdkModelException {
-        // construct the SQL to retrieve table cache
-        String answerCache = getCacheTableName();
-        String indexColumn = getResultIndexColumn();
-        String sortingColumn = getSortingIndexColumn();
-        int sortingIndex = getSortingIndex();
-        boolean hasProjectId = hasProjectId();
+    private void writeRecords(PrintWriter writer) throws WdkModelException,
+            NoSuchAlgorithmException, SQLException, JSONException,
+            WdkUserException {
+        // get primary key columns
+        RecordClass recordClass = getQuestion().getRecordClass();
+        String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
 
-        StringBuffer sql = new StringBuffer("SELECT tc.content");
-        sql.append(" FROM " + answerCache + " ac, " + tableCache + " tc");
-        sql.append(" WHERE tc." + recordIdColumn + " = ac." + recordIdColumn);
-        sql.append(" AND tc.table_name = '" + recordName + "'");
-        sql.append(" AND ac." + sortingColumn + " = " + sortingIndex);
-        if (hasProjectId) sql.append(" AND tc.project_id = ac.project_id");
-        sql.append(" ORDER BY ac." + indexColumn);
+        // get cache info
+        ResultFactory factory = wdkModel.getResultFactory();
+        QueryInstance instance = baseAnswer.getIdsQueryInstance();
+        String queryName = instance.getQuery().getFullName();
+        String cacheTable = CacheFactory.normalizeTableName(queryName);
+        int instanceId = factory.getInstanceId(instance);
 
-        RDBMSPlatformI platform = getQuestion().getWdkModel().getPlatform();
+        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
+        sql.append(" WHERE tc.table_name = '").append(recordName).append("'");
+        for (String column : pkColumns) {
+            sql.append(" AND tc.").append(column).append(" = ac.").append(
+                    column);
+        }
+        sql.append(" AND ac.").append(CacheFactory.COLUMN_INSTANCE_ID);
+        sql.append(" = ").append(instanceId);
+
+        DBPlatform platform = getQuestion().getWdkModel().getQueryPlatform();
 
         // get the result from database
         ResultSet rsTable = null;
         try {
-            rsTable = SqlUtils.getResultSet(platform.getDataSource(),
+            rsTable = SqlUtils.executeQuery(platform.getDataSource(),
                     sql.toString());
 
             while (rsTable.next()) {
@@ -245,7 +263,20 @@ public class Gff3CachedReporter extends Reporter {
         }
     }
 
-    private void writeSequences(PrintWriter writer) throws WdkModelException {
+    private void writeSequences(PrintWriter writer) throws WdkModelException,
+            NoSuchAlgorithmException, SQLException, JSONException,
+            WdkUserException {
+        // get primary key columns
+        RecordClass recordClass = getQuestion().getRecordClass();
+        String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
+
+        // get cache info
+        ResultFactory factory = wdkModel.getResultFactory();
+        QueryInstance instance = baseAnswer.getIdsQueryInstance();
+        String queryName = instance.getQuery().getFullName();
+        String cacheTable = CacheFactory.normalizeTableName(queryName);
+        int instanceId = factory.getInstanceId(instance);
+
         // construct in clause
         StringBuffer sqlIn = new StringBuffer();
         if (hasTranscript) sqlIn.append("'" + transcriptName + "'");
@@ -254,29 +285,25 @@ public class Gff3CachedReporter extends Reporter {
             sqlIn.append("'" + proteinName + "'");
         }
 
-        // construct the SQL to retrieve table cache
-        String answerCache = getCacheTableName();
-        String indexColumn = getResultIndexColumn();
-        String sortingColumn = getSortingIndexColumn();
-        int sortingIndex = getSortingIndex();
-        boolean hasProjectId = hasProjectId();
+        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
+        sql.append(" WHERE tc.table_name IN (").append(sqlIn).append(")");
+        for (String column : pkColumns) {
+            sql.append(" AND tc.").append(column).append(" = ac.").append(
+                    column);
+        }
+        sql.append(" AND ac.").append(CacheFactory.COLUMN_INSTANCE_ID);
+        sql.append(" = ").append(instanceId);
+        sql.append(" ORDER BY tc.table_name ASC");
 
-        StringBuffer sql = new StringBuffer("SELECT tc.content");
-        sql.append(" FROM " + answerCache + " ac, " + tableCache + " tc");
-        sql.append(" WHERE tc." + recordIdColumn + " = ac." + recordIdColumn);
-        sql.append(" AND tc.table_name IN (" + sqlIn.toString() + ")");
-        sql.append(" AND ac." + sortingColumn + " = " + sortingIndex);
-        if (hasProjectId) sql.append(" AND tc.project_id = ac.project_id");
-        sql.append(" ORDER BY ac." + indexColumn + " ASC, tc.table_name ASC");
-
-        RDBMSPlatformI platform = getQuestion().getWdkModel().getPlatform();
+        DBPlatform platform = getQuestion().getWdkModel().getQueryPlatform();
 
         writer.println("##FASTA");
 
         // get the result from database
         ResultSet rsTable = null;
         try {
-            rsTable = SqlUtils.getResultSet(platform.getDataSource(),
+            rsTable = SqlUtils.executeQuery(platform.getDataSource(),
                     sql.toString());
 
             while (rsTable.next()) {
@@ -295,15 +322,14 @@ public class Gff3CachedReporter extends Reporter {
         }
     }
 
-    private String getValue(Object object) {
+    private String getValue(AttributeValue attrVal)
+            throws NoSuchAlgorithmException, WdkModelException, SQLException,
+            JSONException, WdkUserException {
         String value;
-        if (object == null) {
+        if (attrVal == null) {
             return null;
-        } else if (object instanceof AttributeFieldValue) {
-            AttributeFieldValue attrVal = (AttributeFieldValue) object;
-            value = attrVal.getValue().toString();
         } else {
-            value = object.toString();
+            value = attrVal.getValue().toString();
         }
         value = value.trim();
         if (value.length() == 0) return null;

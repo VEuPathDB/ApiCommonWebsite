@@ -17,9 +17,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.RDBMSPlatformI;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.implementation.SqlUtils;
+import org.gusdb.wdk.model.dbms.DBPlatform;
+import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.xml.sax.SAXException;
 
 /**
@@ -31,7 +31,7 @@ public class CommentFactory {
     private static CommentFactory factory;
 
     private Logger logger = Logger.getLogger(CommentFactory.class);
-    private RDBMSPlatformI platform;
+    private DBPlatform platform;
     private CommentConfig config;
 
     public static void initialize(String gusHome, String projectId)
@@ -42,13 +42,12 @@ public class CommentFactory {
             CommentConfig config = parser.parseConfig(projectId);
 
             // create a platform object
-            RDBMSPlatformI platform = (RDBMSPlatformI) Class.forName(
+            DBPlatform platform = (DBPlatform) Class.forName(
                     config.getPlatformClass()).newInstance();
-            platform.init(config.getConnectionUrl(), config.getLogin(),
+            platform.initialize(config.getConnectionUrl(), config.getLogin(),
                     config.getPassword(), config.getMinIdle(),
                     config.getMaxIdle(), config.getMaxWait(),
-                    config.getMaxActive(), config.getInitialSize(),
-                    parser.getConfigFile(projectId));
+                    config.getMaxActive());
 
             // create a factory instance
             factory = new CommentFactory(platform, config);
@@ -73,7 +72,7 @@ public class CommentFactory {
         return factory;
     }
 
-    private CommentFactory(RDBMSPlatformI platform, CommentConfig config) {
+    private CommentFactory(DBPlatform platform, CommentConfig config) {
         this.platform = platform;
         this.config = config;
     }
@@ -121,8 +120,8 @@ public class CommentFactory {
         // get a new comment id
         try {
             // DataSource dataSource = platform.getDataSource();
-            int commentId = Integer.parseInt(platform.getNextId(commentSchema,
-                    "comments"));
+            int commentId = platform.getNextId(commentSchema,
+                    "comments");
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
                     "INSERT INTO " + commentSchema + "comments (comment_id, "
@@ -201,10 +200,10 @@ public class CommentFactory {
 
             Location[] locations = comment.getLocations();
             for (Location location : locations) {
-                String locationId = platform.getNextId(commentSchema,
+                int locationId = platform.getNextId(commentSchema,
                         "locations");
                 statement.setInt(1, commentId);
-                statement.setInt(2, Integer.parseInt(locationId));
+                statement.setInt(2, locationId);
                 statement.setLong(3, location.getLocationStart());
                 statement.setLong(4, location.getLocationEnd());
                 statement.setBoolean(5, location.isReversed());
@@ -279,8 +278,8 @@ public class CommentFactory {
                     rsQueryDb = psQUeryDb.executeQuery();
                     if (!rsQueryDb.next()) {
                         // external database entry doesn't exist
-                        externalDbId = Integer.parseInt(platform.getNextId(
-                                commentSchema, "external_databases"));
+                        externalDbId = platform.getNextId(
+                                commentSchema, "external_databases");
                         psInsertDb.setInt(1, externalDbId);
                         psInsertDb.setString(2, externalDb.getExternalDbName());
                         psInsertDb.setString(3,
@@ -483,7 +482,7 @@ public class CommentFactory {
         List<Comment> comments = new ArrayList<Comment>();
         ResultSet rs = null;
         try {
-            rs = SqlUtils.getResultSet(dataSource, sql.toString());
+            rs = SqlUtils.executeQuery(dataSource, sql.toString());
             while (rs.next()) {
                 int commentId = rs.getInt("comment_id");
                 Comment comment = getComment(commentId);
@@ -513,7 +512,7 @@ public class CommentFactory {
 
         ResultSet rs = null;
         try {
-            rs = SqlUtils.getResultSet(dataSource, "SELECT project_name FROM "
+            rs = SqlUtils.executeQuery(dataSource, "SELECT project_name FROM "
                     + commentSchema + "comments WHERE comment_id = "
                     + commentId);
             if (!rs.next()) {
@@ -527,17 +526,17 @@ public class CommentFactory {
             // delete the location information
             String sql = "DELETE FROM " + commentSchema + "locations "
                     + "WHERE comment_id = " + commentId;
-            SqlUtils.execute(dataSource, sql);
+            SqlUtils.executeUpdate(dataSource, sql);
 
             // delete associated external database info
             sql = "DELETE FROM " + commentSchema + "comment_external_database "
                     + "WHERE comment_id = " + commentId;
-            SqlUtils.execute(dataSource, sql);
+            SqlUtils.executeUpdate(dataSource, sql);
 
             // delete comment information
             sql = "DELETE FROM " + commentSchema + "comments "
                     + " WHERE comment_id = " + commentId;
-            SqlUtils.execute(dataSource, sql);
+            SqlUtils.executeUpdate(dataSource, sql);
 
             // regenerate the output file
             extractComments(projectId);

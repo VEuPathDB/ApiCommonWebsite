@@ -7,9 +7,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.Answer;
@@ -18,6 +24,8 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.report.Reporter;
+import org.json.JSONException;
+import org.xml.sax.SAXException;
 
 /**
  * @author xingao
@@ -32,9 +40,23 @@ public class Gff3Dumper {
      * @throws WdkModelException
      * @throws WdkUserException
      * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws JSONException
+     * @throws SQLException
+     * @throws SAXException
+     * @throws TransformerException
+     * @throws TransformerFactoryConfigurationError
+     * @throws ParserConfigurationException
+     * @throws NoSuchAlgorithmException
      */
     public static void main(String[] args) throws WdkModelException,
-            WdkUserException, IOException {
+            WdkUserException, IOException, NoSuchAlgorithmException,
+            ParserConfigurationException, TransformerFactoryConfigurationError,
+            TransformerException, SAXException, SQLException, JSONException,
+            InstantiationException, IllegalAccessException,
+            ClassNotFoundException {
         if (args.length != 4 && args.length != 6) {
             System.err.println("Invalid parameters.");
             printUsage();
@@ -75,7 +97,8 @@ public class Gff3Dumper {
 
     private static void dumpOrganism(WdkModel wdkModel, String organism,
             Map<String, String> config, String baseDir)
-            throws WdkUserException, WdkModelException, IOException {
+            throws WdkUserException, WdkModelException, IOException,
+            NoSuchAlgorithmException, SQLException, JSONException {
         long start = System.currentTimeMillis();
 
         // decide the path-file name
