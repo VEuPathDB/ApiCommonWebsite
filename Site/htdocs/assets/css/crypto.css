@@ -441,7 +441,7 @@ height: 240px;
    font-weight: normal;
    padding: 6px;
    line-height: 15px;
-   border: 1px solid #360d0d;
+   border: 1px solid #630d0d;
    border-color: 630d0d;
    background-color: #FFFFFF;
    margin: -5px 0px 5px;
@@ -588,6 +588,7 @@ height: 240px;
    border-width: 1px;
    border-color: #b16565;
 }
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =Fonts 
