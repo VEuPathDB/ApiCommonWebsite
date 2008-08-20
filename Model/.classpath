@@ -12,8 +12,9 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/files/oracle/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/WDK Model/lib/java/db_driver/pg74jdbc3.jar"/>
 	<classpathentry kind="lib" path="/WSF Plugin/lib/java/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="/WSF Plugin/lib/java/servlet-api-2.4.jar"/>
+	<classpathentry kind="lib" path="/WDK Model/lib/java/json-2.0.jar"/>
+	<classpathentry kind="lib" path="/WDK Model/lib/java/db_driver/postgresql-8.3-603.jdbc3.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
