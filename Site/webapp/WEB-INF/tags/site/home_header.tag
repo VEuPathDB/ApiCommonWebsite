@@ -42,7 +42,7 @@ body {
 
 <div id="header2">
    <div id="header_rt"><a href="http://eupathdb.org"><img src="../assets/images/partofeupath.png" alt="EuPathDB Homepage" 
-	width="148" height="23" /></a>
+	width="143" height="23" /></a>
        <div id="bottom">
 	  <site:quickSearch /><br />
 	  <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Log In/Register</a>
