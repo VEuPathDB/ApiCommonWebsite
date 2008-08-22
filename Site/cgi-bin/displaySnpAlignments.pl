@@ -31,7 +31,7 @@ my $db = new GUS::ObjRelP::DbiDatabase(
 my $dbh = $db->getQueryHandle(0);
 
 
-my @strains = ("3D7", "106_1", "7G8", "D10", "D6", "Dd2", "FCB", "FCC-2", "FCR3", "HB3", "K1", "Malayan", "RO-33", "SantaLucia", "Senegal3101", "Senegal3404", "Senegal3504", "Senegal5102", "V1_S");
+my @strains = ("3D7", "HB3", "Dd2", "7G8", "V1_S", "RO-33", "D10", "K1", "D6", "FCC-2", "FCB", "FCR3", "106_1", "SantaLucia", "Senegal3101", "Senegal3404", "Senegal3504", "Senegal5102", "Malayan");
 
 my ($chrNum, $snpLocation) = getParams($snpId);
 my %is_snpLocation = getSnpLocations($chrNum, $snpLocation, $width);
@@ -40,14 +40,17 @@ my $srcId;
 print "Content-type: text/html\n\n";
 print '<pre>';
 
-foreach my $str (sort @strains) {
+my $sql = "select source_id,dbms_lob.substr(sequence,2*$width,$snpLocation-$width) from dots.nasequence where source_id = ?";
+my $stmt = $dbh->prepare($sql);
+
+foreach my $str (@strains) {
   $srcId = $str ."." . $chrNum;  # as '3D7.5' for example
 
-  my $sql = "select source_id,substr(sequence,$snpLocation-$width,2*$width) from dots.nasequence where source_id = '$srcId'";
-  my $stmt = $dbh->prepareAndExecute($sql);
+  $stmt->execute($srcId);
 
   my %seqs;
   while(my ($sourceId,$sequence) = $stmt->fetchrow_array()) {
+    $sequence =~ s/-/\*/g;
     $seqs{$sourceId} = $sequence;
   }
 
