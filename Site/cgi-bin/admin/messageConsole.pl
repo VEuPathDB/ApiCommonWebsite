@@ -59,8 +59,8 @@ print <<_END_OF_TEXT_
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml" >
-	<head>
-	<title>AMS Console</title>
+        <head>
+        <title>AMS Console</title>
         <link href="/css/messageStyles.css" rel="stylesheet" type="text/css" />
         <script language="javascript">
          function submitWindow()
@@ -71,7 +71,7 @@ print <<_END_OF_TEXT_
              
            }
 
-	</script>
+        </script>
         <script language="javascript" type="text/javascript">
           function change_image(id,image_url)
           {
@@ -97,19 +97,19 @@ print <<_END_OF_TEXT_
         </script>
         </head>
         <body>
-	<!--Create column headers and border-->
-	<div style="position: relative; width: 80%; height: 60%; top: 5%; margin: 0 auto; text-align: center">
+        <!--Create column headers and border-->
+        <div style="position: relative; width: 80%; height: 60%; top: 5%; margin: 0 auto; text-align: center">
         <table> 
-	<tr class="header">
-	<th>Message ID</th>
-	<th>Message Text</th>
-	<th>Message Category</th>
+        <tr class="header">
+        <th>Message ID</th>
+        <th>Message Text</th>
+        <th>Message Category</th>
         <th>Projects</th>
-	<th>Start Date</th>
-	<th>Stop Date</th>
-	<th>Admin Comments</th>
+        <th>Start Date</th>
+        <th>Stop Date</th>
+        <th>Admin Comments</th>
         <th></th>
-	</tr>
+        </tr>
 _END_OF_TEXT_
 ;
 
@@ -123,20 +123,20 @@ _END_OF_TEXT_
           my @projects=&getProjects($row[0]);
           
         my $rowStyle;        
-	if ($i % 2==0){$rowStyle="alternate";}
+        if ($i % 2==0){$rowStyle="alternate";}
            else {$rowStyle="primary";}
 
          print <<_END_OF_TEXT_
         <!--Display database rows, alternating background color-->  
-	<tr class="$rowStyle">  
+        <tr class="$rowStyle">  
         <td> <a href=/cgi-bin/admin/messageInsert.pl?messageId=$row[0] onsubmit="return validate_form(this)" onClick="window.open('/cgi-bin/admin/messageInsert.pl?messageId=$row[0]','submitNew', 'width=500,height=730,toolbar=no, location=no, value=submitNew, directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=yes, resizable=no'); return false">$row[0]</a>
         </td>
-        <td class="message">$row[1]</td>
-	<td>$row[2]</td>
+        <td class="message">@{[$row[1] || '']}</td>
+        <td>@{[$row[2] || '']}</td>
         <td>@projects</td> 
-	<td>$row[3]</td>
-	<td>$row[4]</td>
-	<td class="message">$row[5]</td>
+        <td>@{[$row[3] || '']}</td>
+        <td>@{[$row[4] || '']}</td>
+        <td class="message">@{[$row[5] || '']}</td>
         <td>
             <img id="image_id" src="/images/deleteButtongs.png" onclick="confirmDelete($row[0])" 
             onmouseover="change_image(this, '/images/deleteButton.png')" 
@@ -161,7 +161,7 @@ print <<_END_OF_TEXT_
 </html>
 _END_OF_TEXT_
 ;
-     	 
+         
 
 
 ########################################
