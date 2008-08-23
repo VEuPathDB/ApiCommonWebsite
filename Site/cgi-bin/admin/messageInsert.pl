@@ -272,19 +272,19 @@ if ($query->param("messageId")){
 sub displayMessageForm{
 
         ## Render new submission form, or repopulate and display form with passed params if validation failed.
-         my $errorMessage=$_[0];
-         my $messageId=$_[1];
-         my $messageCategory=$_[2];
+         my $errorMessage=$_[0] || '';
+         my $messageId=$_[1] || '';
+         my $messageCategory=$_[2] || '';
          my (@selectedProjects)=@{($_[3])} if ($messageCategory); #Get selected projects from new message submit
-         my $messageText=$_[4];
-         my $cryptoBox=$_[5];
-         my $giardiaBox=$_[6];
-         my $plasmoBox=$_[7];
-         my $toxoBox=$_[8];
-         my $trichBox=$_[9];;
-         my $startDate=$_[10];
-         my $stopDate=$_[11];
-         my $adminComments=$_[12];
+         my $messageText=$_[4] || '';
+         my $cryptoBox=$_[5] || '';
+         my $giardiaBox=$_[6] || '';
+         my $plasmoBox=$_[7] || '';
+         my $toxoBox=$_[8] || '';
+         my $trichBox=$_[9] || '';
+         my $startDate=$_[10] || '';
+         my $stopDate=$_[11] || '';
+         my $adminComments=$_[12] || '';
  
          if(!$messageId){
          # Pre-check previously checked project boxes from a failed new message submission 
@@ -308,7 +308,7 @@ sub displayMessageForm{
           }
 
          # Display message ID in form if this is a message edit
-            my $idString;
+            my $idString = '';
             if ($messageId){
             $idString="<p><b>Message ID: $messageId</b></p>";
             }
@@ -505,7 +505,7 @@ sub confirmation(){
 my $messageType=$_[0];
 my $confirmation;
 
-if ($messageType eq "new"){$confirmation="Your message has been scheduled successfully.";}
+if ($messageType && $messageType eq "new"){$confirmation="Your message has been scheduled successfully.";}
    else {$confirmation="Revised message has been scheduled successfully.";}
 
     print<<_END_OF_TEXT_
