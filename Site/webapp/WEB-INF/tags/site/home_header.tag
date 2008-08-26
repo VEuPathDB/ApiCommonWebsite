@@ -42,14 +42,39 @@ body {
 
 <div id="header2">
    <div id="header_rt"><a href="http://eupathdb.org"><img src="../assets/images/partofeupath.png" alt="EuPathDB Homepage" 
-	width="143" height="23" /></a>
+	width="160" height="23" /></a>
        <div id="bottom">
 	  <site:quickSearch /><br />
-	  <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Log In/Register</a>
-	  <%-- possible style when a user is login....
-       	  <a href="#">About ${siteName}</a> | <a href="#">Help</a> | <a href="#">Contact Us</a> | <a href="#">Logout</a>
+	  <div id="nav_topdiv">
+      <ul id="nav_top">
+      <li>
+      <a href="#">About ${siteName}<img src="../assets/images/crypto/menu_divider5.png" width="17" height="9" /></a>
+      		<ul>
+          <li><a href="#">Who We Are</a></li>
+          <li><a href="#">What We Do</a></li>
+          <li><a href="#">What You Can Do Here</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Acknowledgements</a></li>
+        	</ul>
+        </li>
+      <li>
+      <a href="#">Help<img src="../assets/images/crypto/menu_divider5.png" width="17" height="9" /></a>
+      		<ul>
+          <li><a href="#">Web Tutorials</a></li>
+          <li><a href="#">Community Links</a></li>
+          <li><a href="#">Glossary of Terms</a></li>
+          <li><a href="#">Website Statistics</a></li>
+        	</ul>
+        </li>
+      <li>
+      <a href="#">Contact Us<img src="../assets/images/crypto/menu_divider5.png" width="17" height="9" /></a></li>
+      <li>
+      <a href="#">Log In/Register</a> <%-- possible style when a user is login....<a href="#">Logout</a>
  	  <br /><b style='color:black'>John Doe</b> | <a href="#">Profile</a>
-	  --%>
+	  --%></li>      
+      </ul>
+      </div>
+      	  
        </div>
    </div>
 
