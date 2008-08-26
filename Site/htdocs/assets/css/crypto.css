@@ -79,6 +79,108 @@ a:hover, a:active {
    margin-top: 18px;
 } 
 
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =HEADER DROPDOWN MENU
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/	
+#nav_topdiv {
+	float: right;
+	text-align: right;
+}
+
+#nav_top ul {
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #395b8e;
+	z-index: 52;
+	list-style-image: none;
+} 
+
+#nav_top a:link, #nav_top a:visited {
+	display: block;
+	width: auto;
+	color: #395b8e;
+	text-decoration: none;
+	z-index: 52;
+}
+#nav_top a:hover, #nav_top a:active {
+	display: block;
+	width: auto;
+	color: #FFFFFF;
+	text-decoration: none;
+	z-index: 52;
+}
+
+#nav_top li {
+	float: left;
+	width: auto;
+	z-index: 52;
+}
+
+#nav_top li ul {  /* second-level lists */
+	text-align: left;
+	position: absolute;
+	width: 13em;
+	left: -999em;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	background-color: #FFFFFF;
+	background-image: url(../images/crypto/footer.png);
+	background-repeat: repeat-x;
+	background-position: top;
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color:#395b8e;
+	padding: 6px 6px 6px 18px;
+	line-height: 14px;
+	list-style-image: url(../images/crypto/bullet_arrow.gif);
+	z-index: 52;
+}
+
+#nav_top li:hover ul ul, #nav_top li:hover ul ul ul, #nav_top li.sfhover ul ul, #nav_top li.sfHover ul ul ul {
+	left: -999em;
+	z-index: 52;
+}
+
+#nav_top li:hover ul, #nav_top li li:hover ul, #nav_top li li li:hover ul, #nav_top li.sfhover ul, #nav_top li li.sfhover ul, #nav li li li.sfHover ul {
+	left: auto;
+	z-index: 52;
+}
+
+#nav_top li li ul a:hover + ul{
+	left:auto;
+	z-index: 52;
+}
+
+#nav_top li:hover ul {
+	left: auto;
+	z-index: 52;
+}
+
+#nav_top li ul a:link, #nav_top li ul a:visited {
+	color: #395b8e;
+	text-decoration: none;
+	padding: 2px;
+	width: 13em;
+	z-index: 52;
+}
+
+#nav_top li ul a:hover, #nav_top li ul a:active {
+	color: #630d0d;
+	text-decoration: none;
+	padding: 2px;
+	background-color: #FFFFFF;
+	width: 13em;
+	display: block;
+	z-index: 52;
+}
+
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =STRUCTURE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/	
