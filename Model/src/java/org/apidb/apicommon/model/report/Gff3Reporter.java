@@ -462,8 +462,7 @@ public class Gff3Reporter extends Reporter {
             sqlInsert.append(", ").append(column);
         }
         sqlInsert.append(") VALUES (?, ?, ?");
-        for (@SuppressWarnings("unused")
-        String column : pkColumns) {
+        for (String column : pkColumns) {
             sqlInsert.append(", ?");
         }
         sqlInsert.append(")");
