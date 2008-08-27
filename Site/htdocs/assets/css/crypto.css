@@ -79,6 +79,19 @@ a:hover, a:active {
    margin-top: 18px;
 } 
 
+#toplink a:link, #toplink a:visited{
+	display: block;
+	width: 174px;
+	text-align: right;
+}
+
+#toplink a:hover {
+	display: block;
+	width: 174px;
+	text-align: right;
+	background-image: url(../images/crypto/partofeupath2.gif);
+}
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =HEADER DROPDOWN MENU
@@ -187,11 +200,11 @@ a:hover, a:active {
 
 #menubar {
 	min-width: 900px;
-	height: 18px;
+	height: 19px;
 	text-align: left;
 	background-image: url(../images/menu_bar.png);
 	background-repeat: repeat-x;
-	padding-top: 7px;
+	padding-top: 6px;
 	padding-left: 20px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	vertical-align: middle;
