@@ -41,8 +41,9 @@ body {
 <body>
 
 <div id="header2">
-   <div id="header_rt"><a href="http://eupathdb.org"><img src="../assets/images/partofeupath.png" alt="EuPathDB Homepage" 
-	width="160" height="23" /></a>
+   <div id="header_rt">
+   <div align="right"><div id="toplink"><a href="http://eupathdb.org"><img src="../assets/images/crypto/partofeupath.png" alt="EuPathDB Homepage" 
+	width="174" height="23" /></a></div></div>
        <div id="bottom">
 	  <site:quickSearch /><br />
 	  <div id="nav_topdiv">
