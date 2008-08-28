@@ -745,8 +745,8 @@ h2 {
 .detail_link {
 	border: 2px solid #d8d8d8;
 	display: inline;
-	left: -999px;
-	position: relative;
+	left: -9999px;
+	position: absolute;
 }
 
 .detail_link:link, .detail_link:visited{
@@ -755,6 +755,7 @@ h2 {
 
 a.heading:hover + a.detail_link, .detail_link:hover {
 	left: -2px;
+	position: relative;
 }
 
 .subcolor {
