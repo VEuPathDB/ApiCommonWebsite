@@ -52,7 +52,7 @@
               description="context of page in the whole website"
 %>
 
-<table border="0" cellspacing="0" cellpadding="4" width="90%" align="center" class="withThinBrownBorder">
+<table border="0" cellspacing="0" cellpadding="4" width="100%" align="center" class="withThinBrownBorder">
 <tr><c:choose>
         <c:when test="${division == null || division == 'home'}">
             <td class="bordersSpecial" align="center">
@@ -235,7 +235,7 @@
 
   <hr class="brown">
 
-  <table border="0" width="90%" cellpadding="5" align="center" class="withThinBrownBorder">
+  <table border="0" width="100%" cellpadding="5" align="center" class="withThinBrownBorder">
 	  <tr>
 	    <td>
 		<site:login/>
@@ -246,7 +246,7 @@
   <hr class="brown">
 
 
-  <table border="0" width="90%" cellpadding="5" align="center" class="withThinBrownBorder">
+  <table border="0" width="100%" cellpadding="5" align="center" class="withThinBrownBorder">
    <tr><td>
          <div class=small>
 
