@@ -40,7 +40,7 @@ public class ProcessAddCommentAction extends CommentAction {
         UserBean user = (UserBean) request.getSession().getAttribute(
                 CConstants.WDK_USER_KEY);
         // if the user is null or is a guest, fail
-        if (user == null || user.getGuest()) {
+        if (user == null || user.isGuest()) {
             // This is the case where the session times out while the user is on
             // the
             // comment form page, or someone maliciously trying to post to the
