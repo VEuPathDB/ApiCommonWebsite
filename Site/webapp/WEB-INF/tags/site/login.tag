@@ -49,7 +49,7 @@
        </td>
        <td align="left" colspan="2" nowrap>
          <div class="small">
-	   <input type="text" name="email" size="12">
+	   <input type="text" name="email" size="10">
          </div>
        </td>
      </tr>
