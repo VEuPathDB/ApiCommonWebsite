@@ -112,4 +112,97 @@
     </attribute>
   </tag>
 
+  <tag>
+      <name>whileRow</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.Row</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+      
+  <tag>
+      <name>whileColumn</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.Column</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+      
+  <tag>
+      <name>whileColumnHeader</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.ColumnHeader</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+      
+  <tag>
+      <name>table</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.Table</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>tableName</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+  
+  <tag>
+      <name>wdkRecord</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.WdkRecord</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <description>
+          The two-part name of the WDK record class. e.g. GeneRecordClasses.GeneRecordClass
+          </description>
+          <name>name</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <description>
+          Project ID for the record (e.g. PlasmoDB). Defaults to project id
+          defined in the wdk model.
+          </descrption>
+          <name>projectID</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <desciption>
+          Primary key for the desired record. e.g. a gene id like 'PF11_0344'.
+          Defaults to a single space (the wdk does not allow null primary keys
+          so the single space is a workaround).
+          </description>
+          <name>primaryKey</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <description>
+          Name of the request object to receive the wdk record. This is useful
+          if you want to combine multiple records in a single JSP. Just assign
+          each to their own recordKey.
+          Defaults to value of org.gusdb.wdk.controller.CConstants.WDK_RECORD_KEY .
+          </description>
+          <name>recordKey</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+    
 </taglib>
