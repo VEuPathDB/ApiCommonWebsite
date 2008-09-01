@@ -177,13 +177,13 @@
           <description>
           Project ID for the record (e.g. PlasmoDB). Defaults to project id
           defined in the wdk model.
-          </descrption>
+          </description>
           <name>projectID</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
       </attribute>
       <attribute>
-          <desciption>
+          <description>
           Primary key for the desired record. e.g. a gene id like 'PF11_0344'.
           Defaults to a single space (the wdk does not allow null primary keys
           so the single space is a workaround).
