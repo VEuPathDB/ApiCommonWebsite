@@ -59,15 +59,14 @@ sub go {
 
     # flag messages having known spam formats
     my $spamcan = ApiCommonWebsite::View::CgiApp::SpamCan->new();
-    my $isSpam = $spamcan->tastesLikeSpam($replyTo, $subject, $message);
+    my $isSpam = $spamcan->tastesLikeSpam($replyTo, $subject, $message, $ipaddr, $browser);
     my $spamWarning;
     if ($isSpam) {
         $subject = "[spam?] $subject";
-        $spamWarning = "THIS MESSAGE HAS BEEN FLAGGED AS POSSIBLE SPAM BY APIDB MAILPROCESSOR AND HAS NOT BEEN RECORDED IN BUGZILLA\n\n";
+        $spamWarning = "THIS MESSAGE HAS BEEN FLAGGED AS POSSIBLE SPAM BY THE APIDB MAILPROCESSOR AND NOT ENTERED IN BUGZILLA\n\n";
     }
 
     my $metaInfo = ""
-        . $spamWarning    
         . "ReplyTo: $replyTo" . "\n"
         . "Privacy preference: $privacy" . "\n"
         . "Browser information: $browser" . "\n"
@@ -84,7 +83,8 @@ sub go {
 
 # sending email to help@site
  if($cc) {
-      $cfmMsg .= "\n\n" . sendMail($replyTo, $cc, $subject, $replyTo, $metaInfo, $message);
+      my $internalMetaInfo = "${spamWarning}${metaInfo}";
+      $cfmMsg .= "\n\n" . sendMail($replyTo, $cc, $subject, $replyTo, $internalMetaInfo, $message);
     } else {
       $cfmMsg = "warning: did not cc support because no support email is provided\n";
     }

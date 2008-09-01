@@ -2,6 +2,7 @@ package ApiCommonWebsite::View::CgiApp::SpamCan;
 
 use strict;
 use HTML::Parser;
+use ApiCommonWebsite::View::CgiApp::Akismet;
 
 #
 # Register rule names and corresponding code references that
@@ -11,6 +12,7 @@ use HTML::Parser;
 #
 my %RULES = (
   Hello => \&hello,
+  Akismet => \&akismet,
 );
 
 
@@ -34,12 +36,40 @@ sub hello {
 }
 
 
+# Akismet is an online service that evaluates blog comment postings. 
+# http://akismet.com/
+sub akismet {
+    my ($replyTo, $subject, $message, $ipaddr, $browser) = @_;
 
+    my $akismet = ApiCommonWebsite::View::CgiApp::Akismet->new(
+        KEY => 'ed563771dff9',
+        URL => 'http://apidb.org/',
+    );
+    
+    (warn "Unable to establish Akismet check" and return 0) unless $akismet; # skip rule if Akismet's servers are down
 
+    my $answer = $akismet->check(
+        USER_IP                 => $ipaddr,
+        COMMENT_USER_AGENT      => $browser,
+        COMMENT_CONTENT         => $message,
+        COMMENT_AUTHOR_EMAIL    => $replyTo,
+    );
+    
+    my $warn = <<"EOF";
+No answer from Akismet
+        USER_IP                 => $ipaddr,
+        COMMENT_USER_AGENT      => $browser,
+        COMMENT_CONTENT         => $message,
+        COMMENT_AUTHOR_EMAIL    => $replyTo,
 
+EOF
+    (warn $warn and return 0) unless $answer;
+    
+    warn "akismet, is spam? $answer";
+    
+    return ($answer eq 'true') ? 1 : 0;
 
-
-
+}
 
 
 
@@ -49,10 +79,10 @@ sub hello {
 ################################################################
 
 sub tastesLikeSpam {
-  my ($self, $replyTo, $subject, $message) = @_;
-  
+  my ($self, $replyTo, $subject, $message, $ipaddr, $browser) = @_;
+
   map { 
-    return 1 if &{$RULES{$_}}($replyTo, $subject, $message);
+    return 1 if &{$RULES{$_}}($replyTo, $subject, $message, $ipaddr, $browser);
   } keys %RULES;
 
   return 0;
@@ -71,8 +101,6 @@ sub _linkCount {
   
   return $links;
 }
-
-
 
 
 sub new {
