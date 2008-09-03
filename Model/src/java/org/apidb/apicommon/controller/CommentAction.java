@@ -1,11 +1,21 @@
 package org.apidb.apicommon.controller;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletContext;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.struts.action.Action;
 import org.apidb.apicommon.model.CommentFactory;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.json.JSONException;
+import org.xml.sax.SAXException;
 
 /**
  * @author xingao the base class for all comment actions; it will initialize and
@@ -16,7 +26,12 @@ public abstract class CommentAction extends Action {
     public static final String LOCATION_COORDINATETYPE_PROTEIN = "protein";
     public static final String LOCATION_COORDINATETYPE_GENOME = "genome";
 
-    protected CommentFactory getCommentFactory() throws WdkModelException {
+    protected CommentFactory getCommentFactory() throws WdkModelException,
+            NoSuchAlgorithmException, ParserConfigurationException,
+            TransformerFactoryConfigurationError, TransformerException,
+            IOException, SAXException, SQLException, JSONException,
+            WdkUserException, InstantiationException, IllegalAccessException,
+            ClassNotFoundException {
         CommentFactory factory = null;
         try {
             factory = CommentFactory.getInstance();
@@ -25,10 +40,8 @@ public abstract class CommentAction extends Action {
             ServletContext application = getServlet().getServletContext();
 
             // get the gus_home & project id
-            String gusHome = application.getRealPath(application
-                    .getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
-            String projectId = application
-                    .getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+            String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
+            String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
 
             CommentFactory.initialize(gusHome, projectId);
             factory = CommentFactory.getInstance();
