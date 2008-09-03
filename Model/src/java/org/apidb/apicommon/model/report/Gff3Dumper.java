@@ -121,12 +121,12 @@ public class Gff3Dumper {
         params.put("organism", organism);
 
         Question seqQuestion = (Question) wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion");
-        Answer sqlAnswer = seqQuestion.makeAnswer(params, 1, 1);
+        Answer sqlAnswer = seqQuestion.makeAnswer(params);
         Gff3Reporter seqReport = (Gff3Reporter) sqlAnswer.createReport("gff3",
                 config);
 
         Question geneQuestion = (Question) wdkModel.resolveReference("GeneDumpQuestions.GeneDumpQuestion");
-        Answer geneAnswer = geneQuestion.makeAnswer(params, 1, 1);
+        Answer geneAnswer = geneQuestion.makeAnswer(params);
         config.put(Gff3Reporter.FIELD_HAS_PROTEIN, "yes");
         Gff3Reporter geneReport = (Gff3Reporter) geneAnswer.createReport(
                 "gff3Dump", config);
