@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,11 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.log4j.Logger;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
+import org.json.JSONException;
 import org.xml.sax.SAXException;
 
 /**
@@ -35,34 +42,26 @@ public class CommentFactory {
     private CommentConfig config;
 
     public static void initialize(String gusHome, String projectId)
-            throws WdkModelException {
-        try {
-            // parse and load the configuration
-            CommentConfigParser parser = new CommentConfigParser(gusHome);
-            CommentConfig config = parser.parseConfig(projectId);
+            throws NoSuchAlgorithmException, WdkModelException,
+            ParserConfigurationException, TransformerFactoryConfigurationError,
+            TransformerException, IOException, SAXException, SQLException,
+            JSONException, WdkUserException, InstantiationException,
+            IllegalAccessException, ClassNotFoundException {
+        WdkModel wdkModel = WdkModel.construct(projectId);
 
-            // create a platform object
-            DBPlatform platform = (DBPlatform) Class.forName(
-                    config.getPlatformClass()).newInstance();
-            platform.initialize(config.getConnectionUrl(), config.getLogin(),
-                    config.getPassword(), config.getMinIdle(),
-                    config.getMaxIdle(), config.getMaxWait(),
-                    config.getMaxActive());
+        // parse and load the configuration
+        CommentConfigParser parser = new CommentConfigParser(gusHome);
+        CommentConfig config = parser.parseConfig(projectId);
 
-            // create a factory instance
-            factory = new CommentFactory(platform, config);
+        // create a platform object
+        DBPlatform platform = (DBPlatform) Class.forName(
+                config.getPlatformClass()).newInstance();
+        platform.initialize(wdkModel, "Comment", config.getConnectionUrl(),
+                config.getLogin(), config.getPassword(), config.getMinIdle(),
+                config.getMaxIdle(), config.getMaxWait(), config.getMaxActive());
 
-        } catch (InstantiationException ex) {
-            throw new WdkModelException(ex);
-        } catch (IllegalAccessException ex) {
-            throw new WdkModelException(ex);
-        } catch (ClassNotFoundException ex) {
-            throw new WdkModelException(ex);
-        } catch (SAXException ex) {
-            throw new WdkModelException(ex);
-        } catch (IOException ex) {
-            throw new WdkModelException(ex);
-        }
+        // create a factory instance
+        factory = new CommentFactory(platform, config);
     }
 
     public static CommentFactory getInstance() throws WdkModelException {
@@ -120,8 +119,7 @@ public class CommentFactory {
         // get a new comment id
         try {
             // DataSource dataSource = platform.getDataSource();
-            int commentId = platform.getNextId(commentSchema,
-                    "comments");
+            int commentId = platform.getNextId(commentSchema, "comments");
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
                     "INSERT INTO " + commentSchema + "comments (comment_id, "
@@ -166,7 +164,7 @@ public class CommentFactory {
             // get a new comment in order to fetch the user info
             Comment newComment = getComment(commentId);
             appendCommentToFile(newComment);
-            
+
             comment.setUserName(newComment.getUserName());
             comment.setOrganization(newComment.getOrganization());
         } catch (SQLException ex) {
@@ -200,8 +198,7 @@ public class CommentFactory {
 
             Location[] locations = comment.getLocations();
             for (Location location : locations) {
-                int locationId = platform.getNextId(commentSchema,
-                        "locations");
+                int locationId = platform.getNextId(commentSchema, "locations");
                 statement.setInt(1, commentId);
                 statement.setInt(2, locationId);
                 statement.setLong(3, location.getLocationStart());
@@ -278,8 +275,8 @@ public class CommentFactory {
                     rsQueryDb = psQUeryDb.executeQuery();
                     if (!rsQueryDb.next()) {
                         // external database entry doesn't exist
-                        externalDbId = platform.getNextId(
-                                commentSchema, "external_databases");
+                        externalDbId = platform.getNextId(commentSchema,
+                                "external_databases");
                         psInsertDb.setInt(1, externalDbId);
                         psInsertDb.setString(2, externalDb.getExternalDbName());
                         psInsertDb.setString(3,
@@ -562,7 +559,7 @@ public class CommentFactory {
      */
     private void appendCommentToFile(Comment comment) throws WdkModelException {
         PrintWriter writer;
-        
+
         try {
             writer = new PrintWriter(new FileWriter(
                     getOutputFile(comment.getProjectName()), true));
