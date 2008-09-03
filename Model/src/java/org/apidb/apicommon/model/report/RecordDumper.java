@@ -150,7 +150,7 @@ public class RecordDumper {
         // ask the question
         Map<String, Object> params = new LinkedHashMap<String, Object>();
         params.put(organismParam, organism);
-        Answer sqlAnswer = question.makeAnswer(params, 1, 1);
+        Answer sqlAnswer = question.makeAnswer(params);
 
         // decide the path-file name
         File dir = new File(baseDir, organism.replace(' ', '_'));
