@@ -209,7 +209,7 @@
                 <tr class="queryGridTitle"><td colspan="3">Population Biology
                 </tr>
                 <tr>
-                    <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesBySnps" linktext="SNPs" existsOn="A C P T"/>
+                    <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesBySnps" linktext="Single Nucleotide Polymorphism (SNP)" existsOn="A C P T"/>
                 </tr>
             </table>
         </td>
