@@ -133,7 +133,7 @@ public class RecordDumper {
         }
 
         // get report maker attributes and tables
-        Map<String, Field> fields = question.getFields(FieldScope.ReportMaker);
+        Map<String, Field> fields = question.getFields(FieldScope.REPORT_MAKER);
         StringBuffer sbFields = new StringBuffer();
         for (String fieldName : fields.keySet()) {
             if (sbFields.length() > 0) sbFields.append(",");
