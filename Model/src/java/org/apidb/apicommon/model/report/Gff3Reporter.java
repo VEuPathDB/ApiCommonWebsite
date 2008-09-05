@@ -657,7 +657,9 @@ public class Gff3Reporter extends Reporter {
             return null;
         } else {
             AttributeValue attrVal = (AttributeValue) object;
-            value = attrVal.getValue().toString();
+            Object objValue = attrVal.getValue();
+            if (objValue == null) return null;
+            value = objValue.toString();
         }
         value = value.trim();
         if (value.length() == 0) return null;
