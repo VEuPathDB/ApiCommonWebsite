@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.RecordPage;
+import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.Question;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -98,14 +98,14 @@ public class Gff3Dumper {
         params.put("organism", organism);
 
         Question seqQuestion = (Question) wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion");
-        RecordPage sqlRecordPage = seqQuestion.makeRecordPage(params, 1, 1);
-        Gff3Reporter seqReport = (Gff3Reporter) sqlRecordPage.createReport("gff3",
+        AnswerValue sqlAnswerValue = seqQuestion.makeAnswerValue(params, 1, 1);
+        Gff3Reporter seqReport = (Gff3Reporter) sqlAnswerValue.createReport("gff3",
                 config);
 
         Question geneQuestion = (Question) wdkModel.resolveReference("GeneDumpQuestions.GeneDumpQuestion");
-        RecordPage geneRecordPage = geneQuestion.makeRecordPage(params, 1, 1);
+        AnswerValue geneAnswerValue = geneQuestion.makeAnswerValue(params, 1, 1);
         config.put(Gff3Reporter.FIELD_HAS_PROTEIN, "yes");
-        Gff3Reporter geneReport = (Gff3Reporter) geneRecordPage.createReport(
+        Gff3Reporter geneReport = (Gff3Reporter) geneAnswerValue.createReport(
                 "gff3Dump", config);
 
         // collect the header from sequence reporter

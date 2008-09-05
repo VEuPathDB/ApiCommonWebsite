@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.RecordPage;
+import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.Field;
 import org.gusdb.wdk.model.Question;
 import org.gusdb.wdk.model.WdkModel;
@@ -126,7 +126,7 @@ public class RecordDumper {
         // ask the question
         Map<String, Object> params = new LinkedHashMap<String, Object>();
         params.put(organismParam, organism);
-        RecordPage sqlRecordPage = question.makeRecordPage(params, 1, 1);
+        AnswerValue sqlAnswerValue = question.makeAnswerValue(params, 1, 1);
 
         // decide the path-file name
         File dir = new File(baseDir, organism.replace(' ', '_'));
@@ -141,7 +141,7 @@ public class RecordDumper {
 
         // output the result
         OutputStream out = new FileOutputStream(file);
-        Reporter seqReport = sqlRecordPage.createReport(reporterName, config);
+        Reporter seqReport = sqlAnswerValue.createReport(reporterName, config);
         seqReport.write(out);
         out.close();
 
