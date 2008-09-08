@@ -35,7 +35,7 @@ body {
 -->
 </style>
 
-<site:jscript />
+<site:jscript refer="${refer}"/>
 </head>
 
 <body>
