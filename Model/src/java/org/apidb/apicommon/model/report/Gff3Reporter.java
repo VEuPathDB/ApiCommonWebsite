@@ -232,7 +232,7 @@ public class Gff3Reporter extends Reporter {
         // construct query sql
         StringBuffer sqlQuery = new StringBuffer("SELECT ");
         sqlQuery.append("count(*) AS cache_count FROM ").append(tableCache);
-        sqlQuery.append(" WHERE table_name IN (").append(recordName).append(")");
+        sqlQuery.append(" WHERE table_name = '").append(recordName).append("'");
         for (String column : pkColumns) {
             sqlQuery.append(column).append(" = ?");
         }
