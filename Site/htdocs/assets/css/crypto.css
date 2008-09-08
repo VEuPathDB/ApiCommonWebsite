@@ -216,7 +216,7 @@ a:hover, a:active {
 	background-image: url(../images/crypto/my_hist_menubar.png);
 	background-repeat: repeat-x;
 	margin-top: -4px;
-	padding: 3px;
+	padding: 4px 3px 3px 3px;
 	border: 1px solid #6e2929;
 }
  
@@ -540,13 +540,14 @@ height: 240px;
 }
 
 #menu_lefttop div ul{  /* second-level lists */
-	width: 191px;
+	width: 179px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: normal;
 	padding: 6px 6px 6px 4px;
 	line-height: 15px;
-/*	list-style-image: url(../images/crypto/bullet_arrow.gif); */
+	list-style-position: inside;
+	list-style-type: square;
 }
 
 .menu_lefttop_drop {
