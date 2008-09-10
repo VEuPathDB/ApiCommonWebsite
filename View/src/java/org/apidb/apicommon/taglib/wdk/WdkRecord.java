@@ -1,8 +1,9 @@
 /**
 
-Create a WDK record of given 'name' and optional 'primaryKey' and
-optional 'projectID'. primaryKey defaults to primaryKey in model. 
-projectID defaults to a single space.
+Create a WDK record of given 'name' (e.g. GeneRecordClasses.GeneRecordClass).
+Accepts dynamic attibutes. This allows passing required attributes (e.g source_id and 
+project_id) to satisfy the given record. The attribute names defined in the JSP
+should match the names required by the record.
 
 Modeled after org.gusdb.wdk.controller.action.ShowRecordAction.
 
@@ -12,16 +13,23 @@ Usage in a JSP document:
   <c:set var="attrs" value="${wdkRecord.attributes}"/>
   ${attrs['primaryKey'].value}
 
+  <%-- mix in another record, for no good reason other than you can --%>
+  <api:wdkRecord name="GeneRecordClasses.GeneRecordClass" 
+     recordKey="generec" source_id="TGME49_039250" project_id='ToxoDB' />
+  <c:set var="geneattrs" value="${generec.attributes}"/>
+  ${generec['primaryKey'].value}
 **/
 
 package org.apidb.apicommon.taglib.wdk;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.ServletContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.JspException;
 
 import org.gusdb.wdk.controller.CConstants;
@@ -31,38 +39,51 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.WdkModelException;
 
-public class WdkRecord extends SimpleTagSupport {
+public class WdkRecord extends SimpleTagSupport 
+                   implements DynamicAttributes {
 
     private String name;
     private String projectID;
     private String primaryKey;
     private String recordKey;
     
+    private WdkModelBean wdkModel;
+    private LinkedHashMap dynamicAttrs;
+    
+    public WdkRecord() {
+        dynamicAttrs = new LinkedHashMap();
+    }
+    
     public void doTag() throws JspException {
         RecordBean wdkRecord = getRecord();
         if (recordKey == null) recordKey = CConstants.WDK_RECORD_KEY;
-        getRequest().setAttribute(recordKey, wdkRecord);
+        this.getRequest().setAttribute(recordKey, wdkRecord);
     }
 
     private RecordBean getRecord() throws JspException {
     
-        WdkModelBean wdkModel = (WdkModelBean) getContext().
+        wdkModel = (WdkModelBean) this.getContext().
                 getAttribute(CConstants.WDK_MODEL_KEY);
                 
-        try {
-            if (projectID == null) projectID = wdkModel.getProjectId();
-            if (primaryKey == null) primaryKey = " ";
+        setMinimumRecordKeys();
 
+        try {
             RecordClassBean wdkRecordClass = wdkModel.
                 findRecordClass(name);
 
             String[] pkColumns = wdkRecordClass.getPrimaryKeyColumns();
             Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
-            pkValues.put("project_id", projectID);
-            pkValues.put("source_id", primaryKey);
-            
-            RecordBean wdkRecord = wdkRecordClass.
-                makeRecord(pkValues);
+
+            for (String column : pkColumns) {
+                String value = (String) dynamicAttrs.get(column);
+                if (value == null)
+                    throw new WdkModelException("The required primary key value "
+                            + column + " for recordClass "
+                            + wdkRecordClass.getFullName() + " is missing.");
+                pkValues.put(column, value);
+            }
+
+            RecordBean wdkRecord = wdkRecordClass.makeRecord(pkValues);
             
             return wdkRecord;
 
@@ -79,7 +100,7 @@ public class WdkRecord extends SimpleTagSupport {
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
@@ -91,7 +112,35 @@ public class WdkRecord extends SimpleTagSupport {
     public void setRecordKey(String recordKey) {
         this.recordKey = recordKey;
     }
+    
+    public void setDynamicAttribute(String uri, 
+        String localName, Object value ) throws JspException {
+        dynamicAttrs.put(localName, value);
+    }
+    
+    /** 
+        The WDK requires certain key values for all records but those values
+        don't necessarily have meaning for some records. E.g. a primaryKey 
+        (aka source_id, aka id) is not used by UtilityRecordClasses.SiteInfo 
+         so we allow that to be optional in this API - set it to a space.
+         
+         project_id is required but can typically be obtained from the model.
+         
+         Also, this method masks the changing WDK API and proves
+         backward compatibility when possible.
+    **/
+    private void setMinimumRecordKeys() {
+        if (projectID == null) projectID = wdkModel.getProjectId();
+        if (primaryKey == null) primaryKey = " ";
 
+        if (dynamicAttrs.get("source_id") == null)
+            dynamicAttrs.put("source_id", primaryKey);
+
+        if (dynamicAttrs.get("project_id") == null)
+            dynamicAttrs.put("project_id", projectID);
+
+    }
+    
     private ServletRequest getRequest() {
         return ((PageContext)getJspContext()).getRequest();
     }
