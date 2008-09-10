@@ -122,7 +122,7 @@
 <%-- Genomic Sequences --%>
 <tr><td align="left" colspan="4"><b>Search Genomic Sequences</b></td></tr>
 
-<form name="questionForm" method="post" action="/a/processQuestion.do" enctype="multipart/form-data">
+<form name="questionForm" method="post" action="<c:url value="/processQuestion.do"/>" enctype="multipart/form-data">
 <input type="hidden" name="questionFullName" value="GenomicSequenceQuestions.SequenceBySourceId"/>
 <input type="hidden" name="sequenceId_radio" value='DATA' />
 <input type="hidden" id="sequenceId_type" name="sequenceId_type" value="DATA" />
