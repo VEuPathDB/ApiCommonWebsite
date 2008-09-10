@@ -234,7 +234,7 @@ public class Gff3Reporter extends Reporter {
         sqlQuery.append("count(*) AS cache_count FROM ").append(tableCache);
         sqlQuery.append(" WHERE table_name = '").append(recordName).append("'");
         for (String column : pkColumns) {
-            sqlQuery.append(column).append(" = ?");
+            sqlQuery.append(" AND ").append(column).append(" = ?");
         }
 
         // check if we need to insert into cache
