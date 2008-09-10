@@ -122,19 +122,22 @@
 <%-- Genomic Sequences --%>
 <tr><td align="left" colspan="4"><b>Search Genomic Sequences</b></td></tr>
 
-<html:form method="get" action="/processQuestionSetsFlat.do">
+<form name="questionForm" method="post" action="/a/processQuestion.do" enctype="multipart/form-data">
+<input type="hidden" name="questionFullName" value="GenomicSequenceQuestions.SequenceBySourceId"/>
+<input type="hidden" name="sequenceId_radio" value='DATA' />
+<input type="hidden" id="sequenceId_type" name="sequenceId_type" value="DATA" />
+
 <tr><td width="30"></td>
     <td align="left"><i>${seqBySourceIdQuestion.displayName}</i></td>
     <td align="right">
-        <input type="hidden" name="questionFullName" value="GenomicSequenceQuestions.SequenceBySourceId">
         ${sequenceIdParam.prompt}:
-        <html:text property="myProp(GenomicSequenceQuestions_SequenceBySourceId_${sequenceIdParam.name})"
-                   value="${sequenceIdParam.default}"  size="10"/>
+ <input type="text" name="sequenceId_data" value="${sequenceIdParam.default}"/>
     <td align="right" width="24">
         <input type="hidden" name="questionSubmit" value="Get Answer">
     <input name="go" value="go" type="image" src="<c:url value="/images/go.gif"/>" border="0" onmouseover="return true;">
 </td></tr>
-</html:form>
+</form>
+
 
 <%-- The rest --%>
 <tr><td align="left" colspan="4"><br><b>All available queries:</b></td></tr>
