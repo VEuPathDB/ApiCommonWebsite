@@ -1,13 +1,37 @@
-#!/bin/sh
+#!/bin/bash
 
 # Unpack and install R GDD library from ApicommonWebsite archived 
 # files.
 
 # Requires same webPropFile used in WDK build
 
+# only approved paths
+PATH=/usr/local/bin:/usr/bin:/bin
 
 GDD_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/R
 GDD_TAR_FILE=$( ls -C1 -t "$GDD_TAR_PATH"/GDD*.tgz | head -1 )
+
+
+# search for an R compiled for system architecture (e.g. i686, x86_64)
+set_R_path() {
+    local binlist="$(type -ap R)"
+    local arch=$(arch)
+    
+    while read r_path; do 
+        r_arch="$($r_path --vanilla --slave < <(echo 'R.Version()$arch'))"
+        
+        if [[ "$r_arch" =~ "$arch" ]]; then
+            export R_CMD=$r_path
+            echo "Using '$R_CMD'"
+            return
+        fi
+
+    done < <(echo "$binlist")
+
+    echo "FATAL: Required R version for $arch was not found. I looked at " >&2
+    echo "$binlist" >&2
+    exit 1    
+}
 
 get_install_paths() {
     WEB_PROP_FILE=$1
@@ -34,7 +58,7 @@ install() {
     
     mkdirs
     
-    R CMD INSTALL "$GDD_TAR_FILE" -l "$cgilibTargetDir/R"
+    $R_CMD CMD INSTALL "$GDD_TAR_FILE" -l "$cgilibTargetDir/R"
     
     if [ "$?" -gt 0 ]; then
         echo
@@ -84,6 +108,7 @@ get_install_paths $1
 
 case "$2" in
     install)
+        set_R_path
         install
         ;;
     *)
