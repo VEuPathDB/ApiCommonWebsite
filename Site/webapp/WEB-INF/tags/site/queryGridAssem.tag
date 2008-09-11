@@ -37,9 +37,13 @@
                     <site:queryGridMakeUrl qset="AssemblyQuestions" qname="AssembliesByLocation" linktext="Chromosomal Location" existsOn="A C G P T"/>
                 </tr>
 
+<c:if test="${modelName ne 'ToxoDB' && modelName ne 'TrichDB'}">
+
                 <tr>
                     <site:queryGridMakeUrl qset="UniversalQuestions" qname="UnifiedBlast" linktext="BLAST similarity" type="ASSEMBLIES" existsOn="A C G P T Tr"/>
                 </tr>
+</c:if>
+
             </table>
         </td>
 
