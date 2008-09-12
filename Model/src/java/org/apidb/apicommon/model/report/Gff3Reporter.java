@@ -16,6 +16,10 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.PatternSyntaxException;
+
 
 import javax.sql.DataSource;
 
@@ -686,11 +690,20 @@ public class Gff3Reporter extends Reporter {
         return value;
     }
 
-    private String formatSequence(String id, String sequence) {
+    private String formatSequence(String id, String sequence) throws PatternSyntaxException{
         if (sequence == null) return null;
 
-        StringBuffer buffer = new StringBuffer();
-        buffer.append(">apidb|" + id + NEW_LINE);
+	Pattern p = Pattern.compile("^apidb|");
+	Matcher m = p.matcher(id);
+
+
+	StringBuffer buffer = new StringBuffer();
+        
+	if(m.matches()){
+	    buffer.append(">" + id + NEW_LINE);	    
+	}else{
+	    buffer.append(">apidb|" + id + NEW_LINE);
+	}
         int offset = 0;
         while (offset < sequence.length()) {
             int endp = offset + Math.min(60, sequence.length() - offset);
