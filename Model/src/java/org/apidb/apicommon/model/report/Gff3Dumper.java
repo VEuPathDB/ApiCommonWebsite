@@ -118,7 +118,7 @@ public class Gff3Dumper {
         logger.info("Preparing reporters....");
 
         Map<String, Object> params = new LinkedHashMap<String, Object>();
-        params.put("organism", organism);
+        params.put("gff_organism", organism);
 
         Question seqQuestion = (Question) wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion");
         Answer sqlAnswer = seqQuestion.makeAnswer(params);
