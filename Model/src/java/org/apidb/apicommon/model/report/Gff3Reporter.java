@@ -673,10 +673,10 @@ public class Gff3Reporter extends Reporter {
         if (sequence == null) return null;
 
         StringBuffer buffer = new StringBuffer();
-        Pattern p = Pattern.compile("^apidb|");
+        Pattern p = Pattern.compile("^apidb\|");
 	Matcher m = p.matcher(id);
         
-	if(m.matches()){
+	if(m.find()){
 	    buffer.append(">" + id + NEW_LINE);
 	}else{
 	    buffer.append(">apidb|" + id + NEW_LINE);
