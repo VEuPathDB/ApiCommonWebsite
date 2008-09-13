@@ -693,7 +693,7 @@ public class Gff3Reporter extends Reporter {
     private String formatSequence(String id, String sequence) throws PatternSyntaxException{
         if (sequence == null) return null;
 
-	Pattern p = Pattern.compile("^apidb\|");
+	Pattern p = Pattern.compile("^apidb\\|");
 	Matcher m = p.matcher(id);
 
 
