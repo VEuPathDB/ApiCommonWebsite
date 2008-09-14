@@ -605,6 +605,10 @@ public class CommentFactory {
         return new File(config.getCommentTextFileDir() + "/comments.txt");
     }
 
+    public CommentConfig getCommentConfig() {
+        return config;
+    }
+    
     private void printStatus() {
         int active = platform.getActiveCount();
         int idle = platform.getIdleCount();
