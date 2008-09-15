@@ -6,13 +6,13 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.util.Iterator;
 import	java.util.Map.Entry;
 
-public class Column extends SimpleTagSupport {
+public class ColumnTag extends SimpleTagSupport {
     private Iterator iterator;
     private String var;
 
     public void doTag() throws JspException, IOException {
-        Row row = (Row)findAncestorWithClass(
-            this, Row.class);
+        RowTag row = (RowTag)findAncestorWithClass(
+            this, RowTag.class);
 
         iterator = row.getRow().entrySet().iterator();
         

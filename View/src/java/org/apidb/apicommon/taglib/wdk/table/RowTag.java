@@ -7,14 +7,14 @@ import java.util.Map;
 import java.util.Iterator;
 import org.gusdb.wdk.model.TableValue;
 
-public class Row extends SimpleTagSupport {
+public class RowTag extends SimpleTagSupport {
     private Iterator iterator;
     private String var;
     private Map row;
 
     public void doTag() throws JspException, IOException {
-        Table wdkTable = (Table)findAncestorWithClass(
-            this, Table.class);
+        TableTag wdkTable = (TableTag)findAncestorWithClass(
+            this, TableTag.class);
 
         iterator = wdkTable.getTableFieldValue().iterator();
         

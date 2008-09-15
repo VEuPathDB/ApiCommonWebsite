@@ -1,0 +1,11 @@
+package org.apidb.apicommon.taglib.wdk.info;
+
+import org.apidb.apicommon.taglib.wdk.WdkTagBase;
+
+public class TemplateTag extends WdkTagBase {
+
+    public void doTag() throws JspException {
+        super.doTag();
+    }
+    
+}
