@@ -22,18 +22,18 @@
 
 <c:choose>
 <c:when test="${step.isFirstStep}">
-<c:set value="${step.filterUserAnswer.recordPage.question.fullName}" var="questionName" />
-<c:set value="${step.filterUserAnswer.recordPage.question.displayName}" var="displayName"/>
-<c:set value="${step.filterUserAnswer.recordPage.internalParams}" var="params"/>
-<c:set value="${step.filterUserAnswer.recordPage.question.paramsMap}" var="displayParams"/>
-<c:set value="${step.filterUserAnswer.recordPage.questionUrlParams}" var="urlParams"/>
+<c:set value="${step.answerValue.question.fullName}" var="questionName" />
+<c:set value="${step.answerValue.question.displayName}" var="displayName"/>
+<c:set value="${step.answerValue.internalParams}" var="params"/>
+<c:set value="${step.answerValue.question.paramsMap}" var="displayParams"/>
+<c:set value="${step.answerValue.questionUrlParams}" var="urlParams"/>
 </c:when>
 <c:otherwise>
-<c:set value="${step.childStepUserAnswer.recordPage.question.fullName}" var="questionName" />
-<c:set value="${step.childStepUserAnswer.recordPage.question.displayName}" var="displayName"/>
-<c:set value="${step.childStepUserAnswer.recordPage.internalParams}" var="params"/>
-<c:set value="${step.childStepUserAnswer.recordPage.question.paramsMap}" var="displayParams"/>
-<c:set value="${step.childStepUserAnswer.recordPage.questionUrlParams}" var="urlParams"/>
+<c:set value="${step.childStep.answerValue.question.fullName}" var="questionName" />
+<c:set value="${step.childStep.answerValue.question.displayName}" var="displayName"/>
+<c:set value="${step.childStep.answerValue.internalParams}" var="params"/>
+<c:set value="${step.childStep.answerValue.question.paramsMap}" var="displayParams"/>
+<c:set value="${step.childStep.answerValue.questionUrlParams}" var="urlParams"/>
 </c:otherwise>
 </c:choose>
 
@@ -94,7 +94,7 @@
    <c:set var="oper" value="" />
    <c:choose>
       <c:when test="${step.isFirstStep}">
-          <p><b>Results:&nbsp;</b>${step.filterResultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
+          <p><b>Results:&nbsp;</b>${step.resultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
       </c:when>
       <c:otherwise>
           <hr><p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>

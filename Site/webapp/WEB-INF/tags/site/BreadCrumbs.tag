@@ -10,13 +10,13 @@
 
 
 <%@ attribute name="history"
-	      type="org.gusdb.wdk.model.jspwrap.UserAnswerBean"
+	      type="org.gusdb.wdk.model.jspwrap.StepBean"
               required="false"
               description="history object for this question"
 %>
 
 <%@ attribute name="wdkAnswer"
-	      type="org.gusdb.wdk.model.jspwrap.RecordPageBean"
+	      type="org.gusdb.wdk.model.jspwrap.AnswerValueBean"
               required="false"
               description="Answer object for this question"
 %>
@@ -34,7 +34,7 @@
 %>
 
 <%@ attribute name="strategy"
-	      type="org.gusdb.wdk.model.jspwrap.UserStrategyBean"
+	      type="org.gusdb.wdk.model.jspwrap.StrategyBean"
               required="false"
               description="Protocol from the SummaryPage"
 %>
