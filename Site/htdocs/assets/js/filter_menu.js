@@ -213,15 +213,15 @@ function AddStepToStrategy(act){
 			$("#loading_step_div").html("").hide("fast");
 			var new_dia = $("#diagram",data);
 			$("#diagram").html(new_dia.html());
-			var last_step_number = $("#diagram div:last").attr("id");
+			var last_step_number = $("#diagram div.venn:last").attr("id");
 			last_step_number = parseInt(last_step_number.substring(5));
-			var step_divs = $("#diagram div");
-			var lastStepId = $(step_divs[step_divs.length - 4]).find("h3 a").attr("id");
+			var step_divs = $("#diagram div.box");
+			var lastStepId = $(step_divs[step_divs.length - 1]).find("h3 a").attr("id");
 			lastStepId = lastStepId.substring(7);
 			$("#last_step_id").text(lastStepId);
 			
 			$("#target_step").attr("value",last_step_number + 1);
-			$("#diagram div:last a").click();
+			$("#diagram div.venn:last a").click();
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
