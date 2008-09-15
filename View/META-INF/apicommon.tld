@@ -114,7 +114,7 @@
 
   <tag>
       <name>whileRow</name>
-      <tagclass>org.apidb.apicommon.taglib.wdk.table.Row</tagclass>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.RowTag</tagclass>
       <bodycontent>scriptless</bodycontent>
       <attribute>
           <name>var</name>
@@ -125,7 +125,7 @@
       
   <tag>
       <name>whileColumn</name>
-      <tagclass>org.apidb.apicommon.taglib.wdk.table.Column</tagclass>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.ColumnTag</tagclass>
       <bodycontent>scriptless</bodycontent>
       <attribute>
           <name>var</name>
@@ -136,7 +136,7 @@
       
   <tag>
       <name>whileColumnHeader</name>
-      <tagclass>org.apidb.apicommon.taglib.wdk.table.ColumnHeader</tagclass>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.ColumnHeaderTag</tagclass>
       <bodycontent>scriptless</bodycontent>
       <attribute>
           <name>var</name>
@@ -147,7 +147,7 @@
       
   <tag>
       <name>table</name>
-      <tagclass>org.apidb.apicommon.taglib.wdk.table.Table</tagclass>
+      <tagclass>org.apidb.apicommon.taglib.wdk.table.TableTag</tagclass>
       <bodycontent>scriptless</bodycontent>
       <attribute>
           <name>var</name>
@@ -163,7 +163,7 @@
   
   <tag>
       <name>wdkRecord</name>
-      <tagclass>org.apidb.apicommon.taglib.wdk.WdkRecord</tagclass>
+      <tagclass>org.apidb.apicommon.taglib.wdk.WdkRecordTag</tagclass>
       <bodycontent>scriptless</bodycontent>
       <dynamic-attributes>true</dynamic-attributes>
       <attribute>
@@ -209,5 +209,49 @@
           <rtexprvalue>true</rtexprvalue>
       </attribute>
   </tag>
+
+  <tag>
+      <name>wdkCacheDB</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.info.CacheDbTag</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
     
+  <tag>
+      <name>modelConfig</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.info.ModelConfigTag</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
+  <tag>
+      <name>commentConfig</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.info.CommentConfigTag</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
+  <tag>
+      <name>webappInfo</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.info.WebappInfoTag</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
 </taglib>

@@ -9,7 +9,7 @@ import org.gusdb.wdk.model.TableValue;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.controller.CConstants;
 
-public class Table extends SimpleTagSupport {
+public class TableTag extends SimpleTagSupport {
     private String var;
     private TableValue tableFieldValue;
     public String tableName;

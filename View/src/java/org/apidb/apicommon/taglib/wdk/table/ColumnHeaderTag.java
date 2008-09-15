@@ -7,13 +7,13 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import org.gusdb.wdk.model.AttributeField;
 
-public class ColumnHeader extends SimpleTagSupport {
+public class ColumnHeaderTag extends SimpleTagSupport {
     private Iterator iterator;
     private String var;
 
     public void doTag() throws JspException, IOException {
-        Table wdkTable = (Table)findAncestorWithClass(
-            this, Table.class);
+        TableTag wdkTable = (TableTag)findAncestorWithClass(
+            this, TableTag.class);
 
         AttributeField hCol[] = wdkTable.getTableFieldValue().getTableField().getAttributeFields();
         

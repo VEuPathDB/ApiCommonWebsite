@@ -22,39 +22,36 @@ Usage in a JSP document:
 
 package org.apidb.apicommon.taglib.wdk;
 
-import java.util.Iterator;
+import org.apidb.apicommon.taglib.wdk.WdkTagBase;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.servlet.ServletRequest;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.ServletContext;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.JspException;
 
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.RecordClassBean;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.WdkModelException;
 
-public class WdkRecord extends SimpleTagSupport 
-                   implements DynamicAttributes {
+public class WdkRecordTag extends WdkTagBase 
+                       implements DynamicAttributes {
 
     private String name;
     private String projectID;
     private String primaryKey;
     private String recordKey;
     
-    private WdkModelBean wdkModel;
     private LinkedHashMap dynamicAttrs;
     
-    public WdkRecord() {
+    public WdkRecordTag() {
         dynamicAttrs = new LinkedHashMap();
     }
     
     public void doTag() throws JspException {
+        super.doTag();
+        
         RecordBean wdkRecord = getRecord();
         if (recordKey == null) recordKey = CConstants.WDK_RECORD_KEY;
         this.getRequest().setAttribute(recordKey, wdkRecord);
@@ -62,14 +59,10 @@ public class WdkRecord extends SimpleTagSupport
 
     private RecordBean getRecord() throws JspException {
     
-        wdkModel = (WdkModelBean) this.getContext().
-                getAttribute(CConstants.WDK_MODEL_KEY);
-                
         setMinimumRecordKeys();
 
         try {
-            RecordClassBean wdkRecordClass = wdkModel.
-                findRecordClass(name);
+            RecordClassBean wdkRecordClass = wdkModelBean.findRecordClass(name);
 
             String[] pkColumns = wdkRecordClass.getPrimaryKeyColumns();
             Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
@@ -130,7 +123,7 @@ public class WdkRecord extends SimpleTagSupport
          backward compatibility when possible.
     **/
     private void setMinimumRecordKeys() {
-        if (projectID == null) projectID = wdkModel.getProjectId();
+        if (projectID == null) projectID = wdkModelBean.getProjectId();
         if (primaryKey == null) primaryKey = " ";
 
         if (dynamicAttrs.get("source_id") == null)
@@ -140,15 +133,5 @@ public class WdkRecord extends SimpleTagSupport
             dynamicAttrs.put("project_id", projectID);
 
     }
-    
-    private ServletRequest getRequest() {
-        return ((PageContext)getJspContext()).getRequest();
-    }
-    
-    private ServletContext getContext() {
-        return ((PageContext)getJspContext()).
-                  getServletConfig().getServletContext();
-    }
-    
 
 }
