@@ -93,7 +93,7 @@ function resetAttr() {
 
 </div>
 
-<input type="hidden" id="history_id" value="${history.userAnswerId}"/>
+<input type="hidden" id="history_id" value="${history.stepId}"/>
 <div id="Strategies">
 	<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
 	
