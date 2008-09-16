@@ -97,7 +97,7 @@
           <p><b>Results:&nbsp;</b>${step.resultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
       </c:when>
       <c:otherwise>
-          <hr><p><b>Query Results:&nbsp;</b>${step.subQueryResultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
+          <hr><p><b>Query Results:&nbsp;</b>${step.childStep.resultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
 	      <c:set var="subq" value="&subquery=true" />
 	      <c:set var="oper" value="${step.operation}" />
       </c:otherwise>

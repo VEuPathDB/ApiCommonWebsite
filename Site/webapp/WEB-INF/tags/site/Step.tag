@@ -86,7 +86,7 @@
 				<a id="stepId_${step.answerValue.datasetId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
-			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.childSetp.resultSize}&nbsp;${type}</a></span>
+			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.childStep.resultSize}&nbsp;${type}</a></span>
 			<ul>
 				<li><img class="downarrow" src="/assets/images/arrow_chain_down2.png"</li>
 			</ul>
