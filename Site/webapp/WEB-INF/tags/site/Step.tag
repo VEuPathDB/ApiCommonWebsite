@@ -59,13 +59,16 @@
 	</c:otherwise>
 </c:choose>
 
-<c:set var="stepName" value="${step.shortDisplayName}" />
-<c:if test="${fn:length(stepName) > 15}">
-	<c:set var="stepName" value="${fn:substring(stepName,0,12)}..."/>
-</c:if>
+
 
 <c:choose>
 	<c:when test="${step.isFirstStep}">
+	
+	<c:set var="stepName" value="${step.shortDisplayName}" />
+	<c:if test="${fn:length(stepName) > 15}">
+		<c:set var="stepName" value="${fn:substring(stepName,0,12)}..."/>
+	</c:if>
+	
 		<div id="step_${stepNum}" class="box row2 col1 size1 arrowgrey">
 			<h3>
 				<a id="stepId_${step.answerValue.datasetId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
@@ -81,6 +84,12 @@
 		<span class="stepNumber"style="left:3em;">Step&nbsp;${stepNum + 1}</span>
 	</c:when>
 	<c:otherwise>
+	
+	<c:set var="stepName" value="${step.childStep.shortDisplayName}" />
+	<c:if test="${fn:length(stepName) > 15}">
+		<c:set var="stepName" value="${fn:substring(stepName,0,12)}..."/>
+	</c:if>
+	
 		<div id="step_${stepNum}_sub" class='box row1 size1 arrowgrey' style='left:${left_offset}em'>
 			<h3>
 				<a id="stepId_${step.answerValue.datasetId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
