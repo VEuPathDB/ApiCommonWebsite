@@ -19,7 +19,7 @@ $("#diagram").ready(function(){
 	var className = "";
 	var element = "";
 	if(stepnumber == -1){
-		element = $("div#diagram div.box:last");
+		element = $("div#diagram div.venn:last");
 		var n = element.attr("id");
 		n = parseInt(n.substring(5));
 		if(n == 0)
@@ -140,7 +140,7 @@ function RenameStep(ele){
 	var new_name = $(ele).val();
 	var x = $(ele).parent().attr("id");
 	x = x.substring(7);
-	var url = "renameUserAnswer.do?user_answer_id=" + x + "&customUserAnswerName=" + new_name;	
+	var url = "renameStep.do?user_answer_id=" + x + "&customUserAnswerName=" + new_name;	
 	if(new_name.length > 14)
 		new_name = new_name.substring(0,12) + "...";	
 	$.ajax({
