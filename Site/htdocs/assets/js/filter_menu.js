@@ -264,7 +264,7 @@ function EditStep(url, step_number){
 			$("#loading_step_div").html("").hide("fast");
 			var new_dia = $("#diagram",data);
 			$("#diagram").html(new_dia.html());
-		    $("#"+selected_div+" a:first").click();
+		    $("#"+selected_div+" span.resultCount a").click();
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
@@ -323,7 +323,7 @@ function DeleteStep(ele,url){
 			}else{
 				var selected_id = parseInt(selected_div.substring(5,6)) - 1;
 				selected_div = selected_div.substring(0,5) + selected_id + selected_div.substring(6);
-		    	$("#"+selected_div+" a:first").click();
+		    	$("#"+selected_div+" span.resultCount a").click();
 			}
 		
 		},
