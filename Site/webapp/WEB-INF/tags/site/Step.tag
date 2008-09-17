@@ -71,7 +71,7 @@
 	
 		<div id="step_${stepNum}" class="box row2 col1 size1 arrowgrey">
 			<h3>
-				<a id="stepId_${step.answerValue.datasetId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
+				<a id="stepId_${step.stepId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')"> ${step.resultSize}&nbsp;${type}</a></span>			
@@ -92,7 +92,7 @@
 	
 		<div id="step_${stepNum}_sub" class='box row1 size1 arrowgrey' style='left:${left_offset}em'>
 			<h3>
-				<a id="stepId_${step.answerValue.datasetId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
+				<a id="stepId_${step.stepId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
 			</h3>
 			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.childStep.resultSize}&nbsp;${type}</a></span>
