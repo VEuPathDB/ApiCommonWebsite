@@ -21,6 +21,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.CacheFactory;
 import org.gusdb.wdk.model.dbms.DBPlatform;
+import org.gusdb.wdk.model.dbms.QueryInfo;
 import org.gusdb.wdk.model.dbms.ResultFactory;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.query.QueryInstance;
@@ -109,15 +110,15 @@ public class Gff3CachedReporter extends Reporter {
         // include transcript
         if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
             String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
 
         // include protein
         if (config.containsKey(FIELD_HAS_PROTEIN)) {
             String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
     }
 
@@ -223,11 +224,12 @@ public class Gff3CachedReporter extends Reporter {
         String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
 
         // get cache info
-        ResultFactory factory = wdkModel.getResultFactory();
+        ResultFactory resultFactory = wdkModel.getResultFactory();
+        CacheFactory cacheFactory = resultFactory.getCacheFactory();
         QueryInstance instance = baseAnswer.getIdsQueryInstance();
-        String queryName = instance.getQuery().getFullName();
-        String cacheTable = CacheFactory.normalizeTableName(queryName);
-        int instanceId = factory.getInstanceId(instance);
+        QueryInfo queryInfo = cacheFactory.getQueryInfo(instance.getQuery());
+        String cacheTable = queryInfo.getCacheTable();
+        int instanceId = resultFactory.getInstanceId(instance);
 
         StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
@@ -271,11 +273,12 @@ public class Gff3CachedReporter extends Reporter {
         String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
 
         // get cache info
-        ResultFactory factory = wdkModel.getResultFactory();
+        ResultFactory resultFactory = wdkModel.getResultFactory();
+        CacheFactory cacheFactory = resultFactory.getCacheFactory();
         QueryInstance instance = baseAnswer.getIdsQueryInstance();
-        String queryName = instance.getQuery().getFullName();
-        String cacheTable = CacheFactory.normalizeTableName(queryName);
-        int instanceId = factory.getInstanceId(instance);
+        QueryInfo queryInfo = cacheFactory.getQueryInfo(instance.getQuery());
+        String cacheTable = queryInfo.getCacheTable();
+        int instanceId = resultFactory.getInstanceId(instance);
 
         // construct in clause
         StringBuffer sqlIn = new StringBuffer();
