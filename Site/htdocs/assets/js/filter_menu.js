@@ -221,7 +221,7 @@ function AddStepToStrategy(act){
 			$("#last_step_id").text(lastStepId);
 			
 			$("#target_step").attr("value",last_step_number + 1);
-			$("#diagram div.venn:last a").click();
+			$("#diagram div.venn:last a:first").click();
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
