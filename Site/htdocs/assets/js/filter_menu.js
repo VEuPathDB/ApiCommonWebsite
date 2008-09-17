@@ -307,19 +307,8 @@ function DeleteStep(ele,url){
 			var new_dia = $("#diagram",data);
 			$("#diagram").html(new_dia.html());
 			
-		//	var new_steps = $("#diagram div");
-		//	if(new_steps.length > 4)
-		//		var last_step_sub = $(new_steps[new_steps.length - 5]);
-		//	else
-		//		var last_step_sub = $(new_steps[1]);
-		//	$("#target_step").attr("value",parseInt(last_step_sub.attr("id").substring(5,6)) + 1) ;
-		//	$("#last_step_id").text(last_step_sub.find("h3 a").attr("id").substring(7))
-			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
-		    	if($("#diagram div").length > 4)
-					$("#diagram div.operation:last a").click();
-				else 
-					$("#diagram div#step_0 h3 a:first").click();
+					$("#diagram div.venn:last span.resultCount a").click();
 			}else{
 				var selected_id = parseInt(selected_div.substring(5,6)) - 1;
 				selected_div = selected_div.substring(0,5) + selected_id + selected_div.substring(6);
