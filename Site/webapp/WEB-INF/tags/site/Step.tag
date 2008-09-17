@@ -69,7 +69,7 @@
 		<c:set var="stepName" value="${fn:substring(stepName,0,12)}..."/>
 	</c:if>
 	
-		<div id="step_${stepNum}" class="box row2 col1 size1 arrowgrey">
+		<div id="step_${stepNum}" class="box venn row2 col1 size1 arrowgrey">
 			<h3>
 				<a id="stepId_${step.stepId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
