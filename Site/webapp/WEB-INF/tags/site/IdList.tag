@@ -7,14 +7,14 @@
 <table cellspacing="0" cellpadding="0" border="0" width="100%">
 <c:set value="${wdkAnswer.summaryAttributes[0]}" var="sumAttrib"/>
 <c:set var="attrName" value="${sumAttrib.name}" />
-<tr class="headerrow">
+<tr class="subheaderrow">
     <th align="left" valign="middle">
       ${sumAttrib.displayName}
     </th>
 </tr>
 
 
-<tr class="subheaderrow">
+<tr class="headerrow">
     <th align="left" valign="middle">
       <table border="0" cellspacing="2" cellpadding="0">
        <tr class="headerInternalRow">

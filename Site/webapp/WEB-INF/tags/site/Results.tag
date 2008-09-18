@@ -13,9 +13,10 @@
 %>
 
 
-
+<c:set var="qsp" value="${fn:split(wdk_query_string,'&')}" />
 <c:set var="commandUrl">
-    <c:url value="/processSummary.do?${wdk_query_string}" />
+<%--    <c:url value="/processSummary.do?${wdk_query_string}" />--%>
+		<c:url value="/processSummary.do?${qsp[0]}&${qsp[1]}&${qsp[2]}" />
 </c:set>
 
 
@@ -46,31 +47,6 @@
     <pg:param name="sort" id="pager" />
   </c:if>
 
-  <table cellspacing="0" cellpadding="0" border="0" width="100%">
-    <tr>
-      <td nowrap> 
-        <!-- pager on top -->
-        <wdk:pager pager_id="top"/> 
-      </td>
-      <td align="left">
-	      <input id="summary_view_button" disabled="disabled" type="submit" value="Summary View" onclick="ToggleGenePageView('')" />
-	  </td>
-	  <td nowrap align="right">
-           <%-- display a list of sortable attributes --%>
-           <c:set var="addAttributes" value="${wdkAnswer.displayableAttributes}" />
-           <select id="addAttributes" onChange="addAttr()">
-               <option value="">--- Add Column ---</option>
-               <c:forEach items="${addAttributes}" var="attribute">
-                 <option value="${attribute.name}">${attribute.displayName}</option>
-               </c:forEach>
-           </select>
-      </td>
-      <td nowrap align="right" width="5%">
-         &nbsp;
-         <input type="button" value="Reset Columns" onClick="resetAttr()" />
-      </td>
-    </tr>
-  </table>
 <div id="primaryKey_div" style="display:none">
 <table cellspacing="0" cellpadding="0" border="0" width="100%">
 <tr><td valign="top" width="75px" style="background-color: #DDDDDD">
@@ -81,14 +57,14 @@
 <table cellspacing="0" cellpadding="0" border="0" width="100%">
 	<c:set value="${wdkAnswer.summaryAttributes[0]}" var="sumAttrib"/>
 	<c:set var="attrName" value="${sumAttrib.name}" />
-	<tr class="headerrow">
+	<tr class="subheaderrow">
    		<th align="center" valign="middle">
       		${sumAttrib.displayName} Record Page
     	</th>
 	</tr>
 
 
-	<tr class="subheaderrow">
+	<tr class="headerrow">
    		<th align="center" valign="middle">
       		<span id="record_cell_header" style="font-size: 18px;" >Gene ID </span>
     	</th>
@@ -101,19 +77,84 @@
 </table>
 </div>
 <div id="Results_Pane" style="display: block">
+<table width="100%" border="0" cellpadding="3" cellspacing="0">
+	<tr class="subheaderrow">
+			<th align="left">
+			      <input id="summary_view_button" disabled="disabled" type="submit" value="Summary View" onclick="ToggleGenePageView('')" />
+			</th>
+			<th nowrap> 
+		        <wdk:pager pager_id="top"/> 
+		    </th>
+
+			<th nowrap align="right">
+		           <%-- display a list of sortable attributes --%>
+		           <c:set var="addAttributes" value="${wdkAnswer.displayableAttributes}" />
+		           <select id="addAttributes" onChange="addAttr()">
+		               <option value="">--- Add Column ---</option>
+		               <c:forEach items="${addAttributes}" var="attribute">
+		                 <option value="${attribute.name}">${attribute.displayName}</option>
+		               </c:forEach>
+		           </select>
+		    </th>
+		    <th nowrap align="right" width="5%">
+		         &nbsp;
+		         <input type="button" value="Reset Columns" onClick="resetAttr()" />
+		    </th>
+	</tr>
+</table>	
 <!-- content of current page -->
 <table width="100%" border="0" cellpadding="3" cellspacing="0">
-
-
+	<c:set var="sortingAttrNames" value="${wdkAnswer.sortingAttributeNames}" />
+    <c:set var="sortingAttrOrders" value="${wdkAnswer.sortingAttributeOrders}" />
 <tr class="headerrow">
   <c:forEach items="${wdkAnswer.summaryAttributes}" var="sumAttrib">
+	<c:set var="attrName" value="${sumAttrib.name}" />
     <th align="left" valign="middle">
-      ${sumAttrib.displayName}
+	<table border="0" cellspacing="2" cellpadding="0">
+	  <tr class="headerInternalRow">
+	   <td>
+		<c:choose>
+            <c:when test="${!sumAttrib.sortable}">
+                <img src="/assets/images/results_arrw_up_blk.png" border="0" />
+            </c:when>
+            <c:when test="${attrName == sortingAttrNames[0] && sortingAttrOrders[0]}">
+                <img src="/assets/images/results_arrw_up_gr.png" 
+                    title="Result is sorted by ${sumAttrib}" />
+            </c:when>
+            <c:otherwise>
+                <%-- display sorting buttons --%>
+                <a href="javascript:GetResultsPage('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=asc')"
+                    title="Sort by ${sumAttrib}">
+                    <img src="/assets/images/results_arrw_up.png" border="0" /></a>
+            </c:otherwise>
+        </c:choose>
+		</td><td rowspan="2" valign="middle">${sumAttrib.displayName}</td></tr>
+		<tr class="headerInternalRow"><td>
+			<c:choose>
+	            <c:when test="${!sumAttrib.sortable}">
+	                <img src="/assets/images/results_arrw_dwn_blk.png" border="0" />
+	            </c:when>
+	            <c:when test="${attrName == sortingAttrNames[0] && !sortingAttrOrders[0]}">
+	                <img src="/assets/images/results_arrw_dwn_gr.png" 
+	                    title="Result is sorted by ${sumAttrib}" />
+	            </c:when>
+	            <c:otherwise>
+	                <%-- display sorting buttons --%>
+	                <a href="javascript:GetResultsPage('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=desc')"
+	                    title="Sort by ${sumAttrib}">
+	                    <img src="/assets/images/results_arrw_dwn.png" border="0" /></a>
+	            </c:otherwise>
+	        </c:choose>
+		</td>
+		</tr>
+		</table>
+	
+      
     </th>
   </c:forEach>
 </tr>
 
-<tr class="subheaderrow">
+<!--<tr class="subheaderrow">
 
     <c:set var="sortingAttrNames" value="${wdkAnswer.sortingAttributeNames}" />
     <c:set var="sortingAttrOrders" value="${wdkAnswer.sortingAttributeOrders}" />
@@ -205,7 +246,7 @@
         </th>
         <c:set var="j" value="${j+1}"/>
     </c:forEach>
-</tr>
+</tr>-->
 
 
 <c:if test = "${cryptoIsolatesQuestion}">
