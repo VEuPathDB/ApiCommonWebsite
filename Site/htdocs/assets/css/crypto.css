@@ -48,11 +48,11 @@ a:hover, a:active {
 	color: #666666;
 	font-size: 8px;
 	width: 100%;
+	min-width: 900px;
 	height: 104px;
 	text-align: left;
 	background-image: url(../images/crypto/backgroundtop_s.jpg);
 	background-repeat: no-repeat;
-	min-width: 1000px;
 }
 
 #header_rt {
@@ -205,7 +205,7 @@ a:hover, a:active {
 	text-align: left;
 	background-image: url(../images/menu_bar.png);
 	background-repeat: repeat-x;
-	padding-top: 6px;
+	
 	padding-left: 20px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	vertical-align: middle;
@@ -411,6 +411,8 @@ height: 240px;
 #menu {
 	z-index: 500;
 	margin-left: -45px;
+	padding-top: 0px;
+	height: 20px;
 }
 
 #menu ul {
@@ -420,7 +422,14 @@ height: 240px;
 	line-height: 16px;
 	margin:0pt;
 	padding:0pt;
+	padding-top: 6px;
 	width: 10em;
+	border-top-width: 0px;
+	border-right-width: 2px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-style: solid;
+	border-color: #888888;
 	z-index: 500;
 }
 
@@ -884,6 +893,7 @@ tr.subheaderrow {
 	 =FOR QUERY GRID
 	 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 .innertube2{
 	margin: 2px; /*Margins for inner DIV inside each column (to provide padding)*/
 }
@@ -925,6 +935,7 @@ a.queryGridActive {
 td.lines2 {
 	padding-top: 3px;
 }
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =END OF TABLES FOR QUERY GRID
 	 
