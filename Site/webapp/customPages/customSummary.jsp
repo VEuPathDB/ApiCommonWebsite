@@ -53,14 +53,16 @@ function addAttr() {
     if (attribute.length == 0) return;
 
     var url = "${commandUrl}&command=add&attribute=" + attribute;
-    window.location.href = url;
+    GetResultsPage(url);
+	//window.location.href = url;
 }
 
 
 function resetAttr() {
     if (confirm("Are you sure you want to reset the column configuration back to the default?")) {
         var url = "${commandUrl}&command=reset";
-        window.location.href = url;
+        GetResultsPage(url);
+		//window.location.href = url;
     }
 }
 //-->
