@@ -79,6 +79,8 @@
     title="RSS Feed for ${wdkModel.displayName}" 
     href="${rssUrl}" />
 
+
+
   ${headElement}
 </head>
 

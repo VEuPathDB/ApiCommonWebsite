@@ -11,6 +11,24 @@
 <c:set var="siteName" value="${applicationScope.wdkModel.name}" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--[if IE]>
+<style type="text/css" media="screen">
+body {
+behavior: url(/assets/css/csshover.htc);
+font-size: 100%;
+}
+
+#menu ul li {float: left; width: 100%;}
+#menu ul li a {height: 1%;} 
+
+#menu a, #menu h2 {
+font: bold 0.7em/1.4em arial, helvetica, sans-serif;
+}
+</style>
+<![endif]-->
+
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>CryptoDB -- Cryptosporidium Genome Resources</title>
@@ -25,6 +43,9 @@ body {
 	background-image: url(/assets/images/crypto/background_s.jpg);
 	background-repeat: repeat-x;
     }
+body {
+behavior: url(/assets/css/csshover.htc);
+}
 #header {
 	height: 104px;
 	background-image: url(/assets/images/crypto/backgroundtop_s.jpg);
