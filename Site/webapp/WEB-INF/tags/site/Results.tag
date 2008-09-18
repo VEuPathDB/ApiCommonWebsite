@@ -16,7 +16,7 @@
 <c:set var="qsp" value="${fn:split(wdk_query_string,'&')}" />
 <c:set var="commandUrl">
 <%--    <c:url value="/processSummary.do?${wdk_query_string}" />--%>
-		<c:url value="/processSummary.do?${qsp[0]}&${qsp[1]}&${qsp[2]}" />
+		<c:url value="/processSummary.do?${qsp[0]}&${qsp[1]}&${qsp[2]}&${qsp[3]}" />
 </c:set>
 
 
@@ -107,6 +107,7 @@
 	<c:set var="sortingAttrNames" value="${wdkAnswer.sortingAttributeNames}" />
     <c:set var="sortingAttrOrders" value="${wdkAnswer.sortingAttributeOrders}" />
 <tr class="headerrow">
+	<c:set var="j" value="0"/>
   <c:forEach items="${wdkAnswer.summaryAttributes}" var="sumAttrib">
 	<c:set var="attrName" value="${sumAttrib.name}" />
     <th align="left" valign="middle">
@@ -128,7 +129,23 @@
                     <img src="/assets/images/results_arrw_up.png" border="0" /></a>
             </c:otherwise>
         </c:choose>
-		</td><td rowspan="2" valign="middle">${sumAttrib.displayName}</td></tr>
+		</td><td rowspan="2" valign="middle">${sumAttrib.displayName}</td>
+		<td rowspan="2">
+			    <c:if test="${j != 0}">
+                    <%-- display remove attribute buttons --%>
+                    <a href="javascript:void(0)">
+                        <img src="/assets/images/results_grip.png" border="0" /></a>
+                </c:if>
+   		</td>
+		<td rowspan="2">
+			    <c:if test="${j != 0}">
+                    <%-- display remove attribute buttons --%>
+                    <a href="javascript:GetResultsPage('${commandUrl}&command=remove&attribute=${attrName}')"
+                        title="Remove ${sumAttrib} column">
+                        <img src="/assets/images/results_x.png" border="0" /></a>
+                </c:if>
+   		</td>
+		</tr>
 		<tr class="headerInternalRow"><td>
 			<c:choose>
 	            <c:when test="${!sumAttrib.sortable}">
@@ -151,6 +168,7 @@
 	
       
     </th>
+<c:set var="j" value="${j+1}"/>
   </c:forEach>
 </tr>
 
