@@ -41,6 +41,7 @@ a:hover, a:active {
 	text-align: left;
 	background-image: url(../images/crypto/backgroundtop_s.jpg);
 	background-repeat: no-repeat;
+	min-width: 1000px;
 }
 
 #header2 {
@@ -96,20 +97,20 @@ a:hover, a:active {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =HEADER DROPDOWN MENU
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/	
-#nav_topdiv {
+#nav_top {
 	float: right;
 	text-align: right;
+	line-height: 1;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #395b8e;
+	z-index: 520;
 }
 
 #nav_top ul {
 	padding: 0;
 	margin: 0;
-	line-height: 1;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	font-weight: bold;
-	color: #395b8e;
-	z-index: 52;
+	z-index: 520;
 	list-style-image: none;
 } 
 
@@ -118,20 +119,20 @@ a:hover, a:active {
 	width: auto;
 	color: #395b8e;
 	text-decoration: none;
-	z-index: 52;
+	z-index: 520;
 }
 #nav_top a:hover, #nav_top a:active {
 	display: block;
 	width: auto;
 	color: #FFFFFF;
 	text-decoration: none;
-	z-index: 52;
+	z-index: 520;
 }
 
 #nav_top li {
 	float: left;
 	width: auto;
-	z-index: 52;
+	z-index: 520;
 }
 
 #nav_top li ul {  /* second-level lists */
@@ -152,27 +153,27 @@ a:hover, a:active {
 	padding: 6px 6px 6px 18px;
 	line-height: 14px;
 	list-style-image: url(../images/crypto/bullet_arrow.gif);
-	z-index: 52;
+	z-index: 520;
 }
 
 #nav_top li:hover ul ul, #nav_top li:hover ul ul ul, #nav_top li.sfhover ul ul, #nav_top li.sfHover ul ul ul {
 	left: -999em;
-	z-index: 52;
+	z-index: 520;
 }
 
-#nav_top li:hover ul, #nav_top li li:hover ul, #nav_top li li li:hover ul, #nav_top li.sfhover ul, #nav_top li li.sfhover ul, #nav li li li.sfHover ul {
+#nav_top li:hover ul, #nav_top li li:hover ul, #nav_top li li li:hover ul, #nav_top li.sfhover ul, #nav_top li li.sfhover ul, #nav_top li li li.sfHover ul {
 	left: auto;
-	z-index: 52;
+	z-index: 520;
 }
 
 #nav_top li li ul a:hover + ul{
 	left:auto;
-	z-index: 52;
+	z-index: 520;
 }
 
 #nav_top li:hover ul {
 	left: auto;
-	z-index: 52;
+	z-index: 520;
 }
 
 #nav_top li ul a:link, #nav_top li ul a:visited {
@@ -180,7 +181,7 @@ a:hover, a:active {
 	text-decoration: none;
 	padding: 2px;
 	width: 13em;
-	z-index: 52;
+	z-index: 520;
 }
 
 #nav_top li ul a:hover, #nav_top li ul a:active {
@@ -190,7 +191,7 @@ a:hover, a:active {
 	background-color: #FFFFFF;
 	width: 13em;
 	display: block;
-	z-index: 52;
+	z-index: 520;
 }
 
 
@@ -209,6 +210,7 @@ a:hover, a:active {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	vertical-align: middle;
 	clear: both;
+	z-index: 1;
 }
 
 #menubar #mysearch {
@@ -218,6 +220,7 @@ a:hover, a:active {
 	margin-top: -4px;
 	padding: 4px 3px 3px 3px;
 	border: 1px solid #6e2929;
+	z-index: 1;
 }
  
 #contentwrapper {
@@ -404,102 +407,134 @@ height: 240px;
 	
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#nav, #nav ul {
-   padding: 0;
-   margin: 0;
-   list-style: none;
-   line-height: 1;
-   font-family: Arial, Helvetica, sans-serif;
-   font-size: 13px;
-   font-weight: bold;
-   color: #FFFFFF;
-   z-index: 51;
-} 
 
-#nav a:link, #nav a:visited {
-	display: block;
-	width: auto;
+#menu {
+	z-index: 500;
+	margin-left: -45px;
+}
+
+#menu ul {
+	display:block;
+	text-align: center;
+	float:left;
+	line-height: 16px;
+	margin:0pt;
+	padding:0pt;
+	width: 10em;
+	z-index: 500;
+}
+
+#menu a, #menu h2 {
+	display:block;
+	line-height: 14px;
+	line-height: 1;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
 	color: #FFFFFF;
 	text-decoration: none;
-	z-index: 51;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	margin:0pt;
+	padding:0pt;
+	z-index: 500;
 }
-#nav a:hover, #nav a:active {
+
+#menu a:link, #menu a:visited {
+	color:#FFFFFF;
+	line-height: 14px;
+	width: auto;
+	text-decoration:none;
+	z-index: 500;
+}
+
+#menu a:hover, #menu a:active {
 	display: block;
+	line-height: 14px;
+	color:#560000;
 	width: auto;
-	color: #560000;
 	text-decoration: none;
-	z-index: 51;
+	z-index: 500;
 }
 
-#nav li {
+#menu li {
+	position:relative;
+	line-height: 14px;
+	font-weight:normal;
+	z-index: 500;
+}
+
+#menu ul ul {
 	float: left;
-	width: auto;
-	z-index: 51;
-}
-
-#nav li ul {  /* second-level lists */
 	position: absolute;
+	display: block;
+	text-align: left;
 	width: 16em;
-	left: -999em;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	font-weight: normal;
 	background-color: #FFFFFF;
 	background-image: url(../images/dropdownmenu.jpg);
 	background-repeat: repeat-x;
 	background-position: top;
-	border-width: 1px 1px 1px 1px;
+	border-width: 1px;
 	border-style: solid;
 	border-color:#888888;
-	padding: 6px 6px 6px 18px;
+	padding: 10px 6px 6px 18px;
 	line-height: 14px;
-	list-style-image: url(../images/crypto/bullet_arrow.gif);
-	z-index: 51;
+	z-index: 500;
 }
 
-#nav li:hover ul ul, #nav li:hover ul ul ul, #nav li.sfhover ul ul, #nav li.sfHover ul ul ul {
-	left: -999em;
-	z-index: 51;
-}
-
-#nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li.sfhover ul, #nav li li.sfhover ul, #nav li li li.sfHover ul {
-	left: auto;
-	z-index: 51;
-}
-
-#nav li li ul a:hover + ul{
-	left:auto;
-	z-index: 51;
-}
-
-#nav li:hover ul {
-	left: auto;
-	z-index: 51;
-}
-
-#nav li ul a:link, #nav li ul a:visited {
-	color: #414141;
-	text-decoration: none;
-	padding: 2px;
+#menu ul ul a:link, #menu ul ul a:visited{
+	left:100%;
 	width: 16em;
-	z-index: 51;
+	color: #414141;
+	font-weight: normal;
+	padding: 6px 6px 6px 6px;
+	line-height: 14px;
+	z-index: 500;
 }
 
-#nav li ul a:hover, #nav li ul a:active {
+#menu ul ul a:hover, #menu ul ul a:active{
+	left:100%;
+	margin-left: -2px;
+	width: 16em;
 	color: #b30101;
+	font-weight: normal;
+	background-color: #FFFFFF;
+	text-decoration: none;
+	padding: 6px 6px 6px 6px;
+	line-height: 14px;
+	display: block;
+	z-index: 500;
+}
+
+#menu ul ul ul {
+	left:100%;
+	width: 16em;
+	position:absolute;
+	top:0pt;
+	z-index: 500;
+}
+
+div#menu ul ul, div#menu ul li:hover ul ul, div#menu ul ul li:hover ul ul {
+	display:none;
+	width: 16em;
+	z-index: 500;
+}
+
+div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover ul {
+	display:block;
+	width: 18em;
 	text-decoration: none;
 	padding: 2px;
 	background-color: #FFFFFF;
-	width: 16em;
-	display: block;
-	z-index: 51;
+	z-index: 500;
 }
 
-#nav li ul ul {/*   third-and-above-level lists */
-	margin: -2em 0 0 16em;
-	z-index: 51;
-}
-	
+
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -508,6 +543,10 @@ height: 240px;
 
 #menu_lefttop {
 	width: 220px;
+	margin-top: 8px;
+	position: absolute;
+	left: 6px;
+	top: 129px;
 }
 
 #menu_lefttop a.heading {
@@ -1045,6 +1084,65 @@ a.redbutton:active span {
 #loading_step_div {
 	display: none;
 }
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =ABOUT US and HELP PAGES SIDEBAR
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.twoColHybLt #container_au { 
+	width: 100%;  /* this will create a container 100% of the browser width */
+	background: #FFFFFF;
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	border: 1px solid #000000;
+	text-align: left; /* this overrides the text-align: center on the body element. */
+} 
+
+.twoColHybLt #sidebar1 {
+	float: left; 
+	width: 12em;
+	color: #FFFFFF;
+	background-image: url(../images/crypto/aboutus.png);
+	background-repeat: repeat-y;
+	padding: 15px 0; /* top and bottom padding create visual space within this div  */
+}
+
+.twoColHybLt #sidebar1 h3, .twoColHybLt #sidebar1 p {
+	margin-left: 10px; /* the left and right margin should be given to every element that will be placed in the side columns */
+	margin-right: 10px;
+}
+
+.twoColHybLt #mainContent { 
+	margin: 0 20px 0 13em; /* the right margin can be given in percentages or pixels. It creates the space down the right side of the page. */
+} 
+
+/* Miscellaneous classes for reuse */
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 8px;
+}
+
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+/* To be placed with the <head>
+<!--[if IE]>
+<style type="text/css"> 
+.twoColHybLt #sidebar1 { padding-top: 30px; }
+.twoColHybLt #mainContent { zoom: 1; padding-top: 15px; }
+</style>
+<![endif]-->
+*/
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =MISC 
