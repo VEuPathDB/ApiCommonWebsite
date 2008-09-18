@@ -18,9 +18,9 @@ set_R_path() {
     local arch=$(arch)
     
     while read r_path; do 
-        r_arch="$($r_path --vanilla --slave < <(echo 'R.Version()$arch'))"
+        r_arch="$($r_path --vanilla --slave < <(echo 'R.Version()$arch') | cut -d'"' -f2)"
         
-        if [[ "$r_arch" =~ "$arch" ]]; then
+        if [[ "$arch" =~ "$r_arch" ]]; then
             export R_CMD=$r_path
             echo "Using '$R_CMD'"
             return
