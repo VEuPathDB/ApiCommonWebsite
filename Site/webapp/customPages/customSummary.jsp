@@ -86,7 +86,8 @@ function resetAttr() {
 <tr>
 <td colspan="2" align="center">
 <font size ="-2">Click on
-<a onclick="this.blur()" href="javascript:openFilter(${protocol.length})"><b style='color:darkred'>Add Step</b></a> to refine your current result with an additional search. &nbsp;&nbsp;&nbsp;Mouse over a query name to <font color="grey"><b>Edit</b></font> a query.</font>
+<a onclick="this.blur()" href="javascript:openFilter('add')"><b style='color:darkred'>Add Step</b></a> to refine your current result with an additional search.
+	&nbsp;&nbsp;&nbsp;Click on a query name to Edit a query.&nbsp;&nbsp;&nbsp;Click on the number of results to browse over the query results.
 </td>
 </tr>
 
