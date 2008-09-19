@@ -299,6 +299,27 @@ ${fn:replace(applicationScope['org.apache.catalina.jsp_classpath'], ':', '<br>')
       </c:forEach>
       </table>
       
+      <p>
+      Use the following commands from within your $PROJECT_HOME to switch it to match this site.
+      </p>
+      <table class='p' border='1' cellspacing='0' cellpadding='5'>
+      <tr><td class='monospaced'>
+         <c:forEach items="${build}" var="p">
+           <c:if test="${fn:contains(p.key, '.svn.info')}">
+              <c:set var="svnbranch">
+                ${fn:trim(
+                    fn:substringAfter(
+                        fn:substringBefore(p.value, "Revision: "), "URL: "))}
+              </c:set>
+              <c:set var="svnproject">
+                ${fn:replace(fn:replace(p.key, ".svn.info", ""), ".", "/")}
+              </c:set>
+            svn switch ${svnbranch} ${svnproject};<br>
+          </c:if>
+        </c:forEach>
+      </td></tr>
+      </table>
+      
   </div></div>
 
 </c:catch>
