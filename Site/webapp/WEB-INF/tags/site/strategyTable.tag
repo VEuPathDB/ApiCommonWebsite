@@ -16,10 +16,10 @@
               description="Currently active user object"
 %>
 
-<c:set var="strategies" value="${user.userStrategiesByCategory}"/>
+<c:set var="strategies" value="${user.strategiesByCategory}"/>
 <c:set var="modelName" value="${model.name}"/>
 <c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'cryptodb')}" />
-<c:set var="invalidStrategies" value="${user.invalidUserStrategies}" />
+<c:set var="invalidStrategies" value="${user.invalidStrategies}" />
 
 <h1>My Searches</h1>
 
@@ -36,7 +36,7 @@
   <c:set var="type" value="${strategyEntry.key}"/>
   <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
   <c:set var="histList" value="${strategyEntry.value}"/>
-  <c:set var="recDispName" value="${histList[0].latestStep.filterUserAnswer.recordPage.question.recordClass.type}"/>
+  <c:set var="recDispName" value="${histList[0].latestStep.answerValue.question.recordClass.type}"/>
   <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
 
   <c:set var="typeC" value="${typeC+1}"/>
@@ -71,7 +71,7 @@
     <c:set var="type" value="${strategyEntry.key}"/>
     <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
     <c:set var="histList" value="${strategyEntry.value}"/>
-    <c:set var="recDispName" value="${histList[0].latestStep.filterUserAnswer.recordPage.question.recordClass.type}"/>
+    <c:set var="recDispName" value="${histList[0].latestStep.answerValue.question.recordClass.type}"/>
     <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
 
     <c:set var="typeC" value="${typeC+1}"/>
@@ -127,17 +127,17 @@
                 </div>       
                 <div id="input_${strategyId}" style="display:none"></div>
               </td>
-	      <td align='right' nowrap>${strategy.latestStep.filterUserAnswer.lastRunTime}</td>
+	      <td align='right' nowrap>${strategy.latestStep.lastRunTime}</td>
 	      <td align='right' nowrap>
 	      <c:choose>
-	        <c:when test="${strategy.latestStep.filterUserAnswer.version == null || strategy.latestStep.filterUserAnswer.version eq ''}">${wdkModel.version}</c:when>
-                <c:otherwise>${strategy.latestStep.filterUserAnswer.version}</c:otherwise>
+	        <c:when test="${strategy.latestStep.version == null || strategy.latestStep.version eq ''}">${wdkModel.version}</c:when>
+                <c:otherwise>${strategy.latestStep.version}</c:otherwise>
               </c:choose>
               </td>
-              <td align='right' nowrap>${strategy.latestStep.filterUserAnswer.estimateSize}</td>
-              <c:set value="${strategy.latestStep.filterUserAnswer.recordPage.question.fullName}" var="qName" />
-              <c:set var="userAnswerId" value="${strategy.latestStep.filterUserAnswer.userAnswerId}"/>
-              <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${userAnswerId}">download</a></td>
+              <td align='right' nowrap>${strategy.latestStep.estimateSize}</td>
+              <c:set value="${strategy.latestStep.answerValue.question.fullName}" var="qName" />
+              <c:set var="stepId" value="${strategy.latestStep.stepId}"/>
+              <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${stepId}">download</a></td>
             </tr>
 	    <!-- begin rowgroup for strategy steps -->
 	    <c:set var="j" value="0"/>
@@ -152,16 +152,16 @@
                   <td colspan="4"></td>
 		  <c:choose>
                     <c:when test="${j == 0}">
-                      <td nowrap><ul style="margin-left: 10px;"><li style="float:left;">Step ${j + 1} (${step.filterUserAnswer.recordPage.resultSize}): ${step.customName}</li></ul></td>
+                      <td nowrap><ul style="margin-left: 10px;"><li style="float:left;">Step ${j + 1} (${step.answerValue.resultSize}): ${step.customName}</li></ul></td>
                     </c:when>
                     <c:otherwise>
                       <!-- only for boolean, need to check for transforms -->
                       <c:choose>
                       <c:when test="${j == 1}">
-                      <td nowrap><ul style="margin-left: 10px;"><li style="float:left;">Step ${j + 1} (${step.filterUserAnswer.recordPage.resultSize}): Step ${j}</li><li style="float:left;margin-top:-8px;" class="operation ${step.operation}" /><li style="float:left;">${step.customName}&nbsp;(${step.childStepUserAnswer.recordPage.resultSize})</li></ul></td>
+                      <td nowrap><ul style="margin-left: 10px;"><li style="float:left;">Step ${j + 1} (${step.answerValue.resultSize}): Step ${j}</li><li style="float:left;margin-top:-8px;" class="operation ${step.operation}" /><li style="float:left;">${step.childStep.customName}&nbsp;(${step.childStep.answerValue.resultSize})</li></ul></td>
                       </c:when>
                       <c:otherwise>
-                      <td nowrap><ul style="margin-left: 10px; margin-top:-12px;"><li style="float:left;">Step ${j + 1} (${step.filterUserAnswer.recordPage.resultSize}): Step ${j}</li><li style="float:left;margin-top:-8px;" class="operation ${step.operation}" /><li style="float:left;">${step.customName}&nbsp;(${step.childStepUserAnswer.recordPage.resultSize})</li></ul></td>
+                      <td nowrap><ul style="margin-left: 10px; margin-top:-12px;"><li style="float:left;">Step ${j + 1} (${step.answerValue.resultSize}): Step ${j}</li><li style="float:left;margin-top:-8px;" class="operation ${step.operation}" /><li style="float:left;">${step.childStep.customName}&nbsp;(${step.childStep.answerValue.resultSize})</li></ul></td>
                       </c:otherwise>
                       </c:choose>
                     </c:otherwise>
@@ -170,13 +170,13 @@
                   <%-- <td></td>
                   <td align="right" nowrap>
 	          <c:choose>
-	            <c:when test="${step.filterUserAnswer.version == null || step.filterUserAnswer.version eq ''}">${wdkModel.version}</c:when>
-                    <c:otherwise>${step.filterUserAnswer.version}</c:otherwise>
+	            <c:when test="${step.version == null || step.version eq ''}">${wdkModel.version}</c:when>
+                    <c:otherwise>${step.version}</c:otherwise>
                     </c:choose>
                   </td>
-                  <td align='right' nowrap>${step.filterUserAnswer.recordPage.resultSize}</td>
-                  <c:set var="userAnswerId" value="${step.filterUserAnswer.userAnswerId}"/>
-                  <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${userAnswerId}">download</a></td> --%>
+                  <td align='right' nowrap>${step.answerValue.resultSize}</td>
+                  <c:set var="stepId" value="${step.stepId}"/>
+                  <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${stepId}">download</a></td> --%>
                </tr>
                <%-- <c:if test="${step.childStep != null}">
                <c:choose>
@@ -184,18 +184,18 @@
                  <c:otherwise><tr class="linesalt" style="display:none;"></c:otherwise>
                </c:choose>
                   <td colspan="4"></td>
-                  <td nowrap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${step.childStepUserAnswer.customName}</td>
+                  <td nowrap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${step.childStep.customName}</td>
                   <!-- date? -->
                   <td></td>
                   <td align="right" nowrap>
 	          <c:choose>
-	            <c:when test="${step.childStepUserAnswer.version == null || step.childStepUserAnswer.version eq ''}">${wdkModel.version}</c:when>
-                    <c:otherwise>${step.childStepUserAnswer.version}</c:otherwise>
+	            <c:when test="${step.childStep.version == null || step.childStep.version eq ''}">${wdkModel.version}</c:when>
+                    <c:otherwise>${step.childStep.version}</c:otherwise>
                     </c:choose>
                   </td>
-                  <td align='right' nowrap>${step.childStepUserAnswer.estimateSize}</td>
-                  <c:set var="userAnswerId" value="${step.childStep.filterUserAnswer.userAnswerId}"/>
-                  <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${userAnswerId}">download</a></td>
+                  <td align='right' nowrap>${step.childStep.estimateSize}</td>
+                  <c:set var="stepId" value="${step.childStep.stepId}"/>
+                  <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${stepId}">download</a></td>
                </c:if> --%>
                <c:set var="j" value="${j + 1}"/>
                </c:forEach>
