@@ -15,8 +15,8 @@ GDD_TAR_FILE=$( ls -C1 -t "$GDD_TAR_PATH"/GDD*.tgz | head -1 )
 # search for an R compiled for system architecture (e.g. i686, x86_64)
 set_R_path() {
     local binlist="$(type -ap R)"
-    local arch=$(arch)
-    
+    local arch=$(uname -a)    
+
     while read r_path; do 
         r_arch="$($r_path --vanilla --slave < <(echo 'R.Version()$arch') | cut -d'"' -f2)"
         
