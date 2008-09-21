@@ -10,10 +10,7 @@
               description="component site"
 %>
 
-<c:set var="serverName" value="${pageContext.request.serverName}"/>
-
-<c:if test="${serverName != 'localhost' && serverName != '127.0.0.1'}">
+<c:catch>
 <c:import url="http://${pageContext.request.serverName}/cgi-bin/messageRead.pl?messageCategory=${messageCategory}&projectName=${projectName}">
 </c:import>
-</c:if>
-
+</c:catch>
