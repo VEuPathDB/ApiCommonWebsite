@@ -49,3 +49,39 @@ function LoadGenePage(url,dest_id) {
 
 }
 
+// FOLLOWING TAKEN FROM OLD CUSTOMSUMMARY
+
+function addAttr() {
+    var attributeSelect = document.getElementById("addAttributes");
+    var index = attributeSelect.selectedIndex;
+    var attribute = attributeSelect.options[index].value;
+    
+    if (attribute.length == 0) return;
+
+    var url = "${commandUrl}&command=add&attribute=" + attribute;
+    GetResultsPage(url);
+	//window.location.href = url;
+}
+
+
+function resetAttr() {
+    if (confirm("Are you sure you want to reset the column configuration back to the default?")) {
+        var url = "${commandUrl}&command=reset";
+        GetResultsPage(url);
+		//window.location.href = url;
+    }
+}
+
+function showPanel(panel) {
+	var hidePanel;
+	if (panel == 'strategy_results')
+		hidePanel = 'strategy_history';
+	else
+		hidePanel = 'strategy_results';
+
+	$("#" + hidePanel + "_tab").parent().attr("id", "");
+	$("#" + hidePanel).addClass("hidden");
+	$("#" + panel + "_tab").parent().attr("id", "selected");
+	$("#" + panel).removeClass("hidden");
+}
+		

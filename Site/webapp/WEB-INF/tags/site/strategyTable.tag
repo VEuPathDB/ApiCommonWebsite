@@ -21,7 +21,6 @@
 <c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'cryptodb')}" />
 <c:set var="invalidStrategies" value="${user.invalidStrategies}" />
 
-<h1>My Searches</h1>
 
 <!-- decide whether strategy is empty -->
 <c:choose>
@@ -53,7 +52,7 @@
   </c:forEach>
   </ul>
 <!-- should be a div instead of a table -->
-<table>
+<table class="clear_all">
    <tr>
       <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
           <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">select none</a></td>

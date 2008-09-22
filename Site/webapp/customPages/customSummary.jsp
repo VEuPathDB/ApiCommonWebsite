@@ -6,6 +6,15 @@
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="nested" uri="http://jakarta.apache.org/struts/tags-nested" %>
 
+<%-- from customQueryHistory --%>
+<!-- get wdkUser saved in session scope -->
+<c:set var="wdkUser" value="${sessionScope.wdkUser}"/>
+<c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
+<%-- end from customQueryHistory --%>
+
+<c:set var="dsCol" value="${param.dataset_column}"/>
+<c:set var="dsColVal" value="${param.dataset_column_label}"/>
+
 <c:set var="wdkAnswer" value="${requestScope.wdkAnswer}"/>
 <c:set var="history" value="${requestScope.wdkHistory}"/>
 <c:set var="model" value="${applicationScope.wdkModel}" />
@@ -42,35 +51,14 @@
 <site:home_header refer="customSummary" />
 <site:menubar />
 
-<script type="text/javascript">
-<!--
-
-function addAttr() {
-    var attributeSelect = document.getElementById("addAttributes");
-    var index = attributeSelect.selectedIndex;
-    var attribute = attributeSelect.options[index].value;
-    
-    if (attribute.length == 0) return;
-
-    var url = "${commandUrl}&command=add&attribute=" + attribute;
-    GetResultsPage(url);
-	//window.location.href = url;
-}
-
-
-function resetAttr() {
-    if (confirm("Are you sure you want to reset the column configuration back to the default?")) {
-        var url = "${commandUrl}&command=reset";
-        GetResultsPage(url);
-		//window.location.href = url;
-    }
-}
-//-->
-</script>
-
 <div id="contentwrapper">
   	<div id="contentcolumn2">
 		<div class="innertube">
+<ul id="strategy_tabs">
+   <li id="selected"><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Results View</a></li>
+   <li><a id="strategy_history_tab" onclick="this.blur()" href="javascript:showPanel('strategy_history')">History View</a></li>
+</ul>
+<div id="strategy_results">
 <div class="strategy_controls"/>
 <table width="100%">
 <tr>
@@ -112,10 +100,16 @@ function resetAttr() {
 
 <div id="Workspace">
 <site:Results strategyId="${strategy.strategyId}"/>
+</div> 
+</div><!-- end results view div -->
+<div id="strategy_history" class="hidden">
+<site:strategyTable model="${wdkModel}" user="${wdkUser}" />
+</div> <!-- end history view div -->
+
 </div>
 </div>
 </div>
-</div>
-	<div id="loading_step_div"></div>
+
+<div id="loading_step_div"></div>
 <site:footer />
 

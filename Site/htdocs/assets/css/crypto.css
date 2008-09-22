@@ -1184,3 +1184,48 @@ clear {
 	height: 20px;
 	display:none;
 }
+
+/* APPLICATION PAGE STYLES */
+ul#strategy_tabs {
+    border-bottom: 1px solid #CCCCCC;
+    margin:0;
+    padding:0 10px 1.73em;
+    width: 98%;
+}
+
+#strategy_tabs li {
+    display: inline;
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+}
+
+#strategy_tabs a:link, #strategy_tabs a:visited {
+    background: #E8EBF0;
+    border: 1px solid #CCCCCC;
+    color:#666666;
+    float: left;
+    margin-top: 2px;
+    padding:0.24em 1em;
+    text-align:center;
+    text-decoration:none;
+}
+
+#strategy_tabs a:hover {
+    color:#0000CC;
+}
+
+#strategy_tabs #selected a {
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    color: #000000;
+    font-weight:bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.clear_all {
+    clear: both;
+}

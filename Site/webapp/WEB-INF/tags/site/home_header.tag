@@ -63,7 +63,7 @@ behavior: url(/assets/css/csshover.htc);
 -->
 </style>
 
-<site:jscript />
+<site:jscript refer="${refer}"/>
 </head>
 
 <body>
