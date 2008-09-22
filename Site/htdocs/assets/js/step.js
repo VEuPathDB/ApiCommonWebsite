@@ -65,6 +65,36 @@ function hideDetails(det){
 
 function NewResults(ele,url){
 	var classname = "selectedarrow";
+	if($(ele).hasClass("view_step_link")){
+		var csn = $(ele).parent().parent().parent().parent().attr("id");
+		var dType = $(ele).parent().parent().parent().parent();
+		dType = $(dType).find("span.resultCount a");
+		dType = $(dType).html();
+	} else if($(ele).hasClass("operation") && $(ele).parent().hasClass("operation")){
+		var csn = $(ele).parent().attr("id");
+		var dType = $(ele).parent().find("span.resultCount a.operation").html();
+	}
+	else {
+		var csn = $(ele).parent().parent().attr("id");
+		var dType = $(ele).html();
+	}
+	csn = parseInt(csn.substring(5,6)) + 1;
+//	var dType = dType.split(" ")[1];
+	var parts = dType.split("&nbsp;");
+	if(parts[1] == "Genes")
+		dType = "Genes";
+	else if(parts[1] == "Seq")
+		dType = "Sequences";
+	else if(parts[1] == "EST")
+		dType = "ESTs";
+	else if(parts[1] == "SNP")
+		dType = "SNPs";
+	else if(parts[1] == "ORF")
+		dType = "ORFs";
+	else if(parts[1] == "Assm")
+		dType = "Assemblies";
+	else if(parts[1] == "Iso")
+		dType = "Isolates";
 	if($(ele).hasClass("operation"))
 		classname = "selected";
 	//var url = $(ele).attr("value");
@@ -74,6 +104,9 @@ function NewResults(ele,url){
 		dataType: "html",
 		success: function(data){
 			$("div#Workspace").html(data);
+			$("#text_data_type").html(dType);
+			$("#text_strategy_number").text($("#strategy_id_span").text());
+			$("#text_step_number").text(csn);
 		},
 		error : function(data, msg, e){
 			  alert("ERROR \n "+ msg + "\n" + e);

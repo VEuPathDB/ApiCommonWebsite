@@ -347,7 +347,7 @@
 	text-align: right;
 }
 
-#diagram div#strategy_name span{
+#diagram div#strategy_name span.strategy_small_text{
 	font-size: 10px;
 	color: #888;
 }
