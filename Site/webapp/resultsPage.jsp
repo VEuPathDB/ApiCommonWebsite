@@ -2,7 +2,7 @@
 <%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 
 <c:set var="strategy" value="${requestScope.wdkStrategy}" />
-<site:Results  strategyId="${strategy.strategyId}"/>
+<site:Results  strategy="${strategy}"/>
 
 
 
