@@ -28,6 +28,13 @@ font: bold 0.7em/1.4em arial, helvetica, sans-serif;
 </style>
 <![endif]-->
 
+<!--[if IE]>
+<style type="text/css"> 
+.twoColHybLt #sidebar1 { padding-top: 30px; }
+.twoColHybLt #mainContent { zoom: 1; padding-top: 15px; }
+</style>
+<![endif]-->
+
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -56,7 +63,7 @@ behavior: url(/assets/css/csshover.htc);
 -->
 </style>
 
-<site:jscript refer="${refer}"/>
+<site:jscript />
 </head>
 
 <body>
