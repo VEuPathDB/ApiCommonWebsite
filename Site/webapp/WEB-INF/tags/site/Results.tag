@@ -7,11 +7,36 @@
 
 <%-- When implement visualizing multiple strategies, the name of the strategy (for the title) could cme from the step object probably --%>
 
-<%@ attribute name="strategyId"
+<%@ attribute name="strategy"
+			  type="org.gusdb.wdk.model.jspwrap.StrategyBean"
               required="true"
               description="Strategy Id we are looking at"
 %>
-
+<c:set var="type" value="Results" />
+<c:set var="step_dataType" value="${strategy.latestStep.dataType}" />
+<c:choose>
+	<c:when test="${step_dataType == 'GeneRecordClasses.GeneRecordClass'}">
+		<c:set var="type" value="Genes" />
+	</c:when>
+	<c:when test="${step_dataType == 'SequenceRecordClasses.SequenceRecordClass'}">
+		<c:set var="type" value="Sequences" />
+	</c:when>
+	<c:when test="${step_dataType == 'EstRecordClasses.EstRecordClass'}">
+		<c:set var="type" value="EST" />
+	</c:when>
+	<c:when test="${step_dataType == 'OrfRecordClasses.OrfRecordClass'}">
+		<c:set var="type" value="ORF" />
+	</c:when>
+	<c:when test="${step_dataType == 'SnpRecordClasses.SnpRecordClass'}">
+		<c:set var="type" value="SNP" />
+	</c:when>
+	<c:when test="${step_dataType == 'AssemblyRecordClasses.AssemblyRecordClass'}">
+		<c:set var="type" value="Assemblies" />
+	</c:when>
+	<c:when test="${step_dataType == 'IsolateRecordClasses.IsolateRecordClass'}">
+		<c:set var="type" value="Isolates" />
+	</c:when>	
+</c:choose>
 
 <c:set var="qsp" value="${fn:split(wdk_query_string,'&')}" />
 <c:set var="commandUrl">
@@ -27,7 +52,7 @@
   </c:when>
   <c:otherwise>
 
- <h2><b>${wdkAnswer.resultSize} Genes - Strategy ${strategyId} Step "yyy" </b></h2> 
+ <h2><b>${wdkAnswer.resultSize} <span id="text_data_type">${type}</span> - Strategy <span id="text_strategy_number">${strategy.strategyId}</span> Step <span id="text_step_number">${strategy.length}</span></b></h2> 
 
 <!-- pager -->
 <pg:pager isOffset="true"

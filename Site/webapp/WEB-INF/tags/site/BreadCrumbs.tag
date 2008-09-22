@@ -44,7 +44,7 @@
 <c:set var="stepNumber" value="0" />
 <div class="chain_background" id="bread_crumb_div">
 	<div id="diagram">
-		<div id="strategy_name">Strategy&nbsp;${strategy.strategyId}<span><br>save as<br>export</span></div>
+		<div id="strategy_name">Strategy&nbsp;<span id="strategy_id_span">${strategy.strategyId}</span><span class="strategy_small_text"><br>save as<br>export</span></div>
 		<c:set var="steps" value="${strategy.allSteps}" />
 		<c:forEach items="${steps}" var="step">
 			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
