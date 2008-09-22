@@ -99,7 +99,7 @@
 <br>
 
 <div id="Workspace">
-<site:Results strategyId="${strategy.strategyId}"/>
+<site:Results strategy="${strategy}"/>
 </div> 
 </div><!-- end results view div -->
 <div id="strategy_history" class="hidden">
