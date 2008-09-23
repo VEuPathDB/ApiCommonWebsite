@@ -853,6 +853,7 @@ td.headerrow {
 
 
 tr.headerrow {
+	height: 29px;
 	font-size: 15px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #5f140e;
@@ -877,7 +878,8 @@ td.subheaderrow {
 }
 
 tr.subheaderrow {
-	font-size: 13px;
+	height:30px;
+	font-size: 14px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #474747;
 	background-image: url(../images/crypto/trsubhead.png);
@@ -971,9 +973,14 @@ table.results {
 	margin-top: 6px;
 }
 
+tr.subheaderrow th {
+	padding: 4px;
+	border-width: 2px 0 2px 0;
+	border-style: solid;
+	border-color: #5F140E;
+}
 
-
-tr.headerrow th, tr.subheaderrow th {
+tr.headerrow th { 
 	padding: 4px;
 	border-width: 2px 0 2px 0;
 	border-style: solid;
