@@ -32,8 +32,16 @@ font: bold 0.7em/1.4em arial, helvetica, sans-serif;
 <style type="text/css"> 
 .twoColHybLt #sidebar1 { padding-top: 30px; }
 .twoColHybLt #mainContent { zoom: 1; padding-top: 15px; }
+#menu_lefttop {
+	width: 220px;
+	margin-top: 8px;
+	position: absolute;
+	left: 6px;
+	top: 129px;
+	}
 </style>
 <![endif]-->
+
 
 
 <head>
