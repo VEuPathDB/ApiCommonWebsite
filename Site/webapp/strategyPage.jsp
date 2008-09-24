@@ -8,7 +8,7 @@
 <c:set var="model" value="${applicationScope.wdkModel}" />
 <c:set var="strategy" value="${requestScope.wdkStrategy}" />
 
-<site:BreadCrumbs history="${history}" wdkAnswer="${wdkAnswer}" model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}" />
+<site:BreadCrumbs strategy="${strategy}" />
 
 <%--<c:set var="step" value="${strategy.latestStep}" />
 <c:set var="stepNum" value="${strategy.length - 1}" />
