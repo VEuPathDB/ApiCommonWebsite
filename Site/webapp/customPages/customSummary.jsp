@@ -49,6 +49,11 @@
 </c:choose>
 
 <site:home_header refer="customSummary" />
+<script type="text/javascript" language="javascript">
+	$(document).ready(function(){
+		$("#diagram div.venn:last span.resultCount a").click();
+	});
+</script>
 <site:menubar />
 
 <div id="contentwrapper">
@@ -99,7 +104,7 @@
 <br>
 
 <div id="Workspace">
-<site:Results strategy="${strategy}"/>
+<%--<site:Results strategy="${strategy}"/>--%>
 </div> 
 </div><!-- end results view div -->
 <div id="strategy_history" class="hidden">
