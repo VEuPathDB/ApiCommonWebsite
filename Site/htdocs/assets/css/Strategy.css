@@ -1,9 +1,12 @@
+  
+
 /* The main diagram container needs to be positioned relatively, so that
       it's children can be positioned within it. */
    #diagram {
      position: relative;
      margin:   0 auto; /* Sorry, IE5.x/Win. */
-     left:    2em;
+     left:    0em;
+	 background-color: #EDEDED;
      height:   10em;
    }
 
