@@ -15,16 +15,22 @@ function formatFilterForm(data, edit, reviseStep){
 	var operation = "";
 	var stepn = 0;
 	var insert = "";
+	var proto = "";
 	if(edit == 0){
-		insert = reviseStep;
+		var parts = reviseStep.split(":");
+		insert = parts[1];
+		proto = parts[0];
 	}else{
 		var parts = reviseStep.split(":");
-		reviseStep = parseInt(parts[0]);
+		proto = parts[0];
+		reviseStep = parseInt(parts[1]);
 		isSub = true;
-		operation = parts[3];
+		operation = parts[4];
 	}
-	var proto = $("#proto").text();
-	var lastStepId = $("#last_step_id").text();
+	//var lastStepId = $("#last_step_id").text();
+	var lastStepId = $("#diagram_" + proto + " div.venn:last").attr("id");
+	lastStepId = lastStepId.substring(5);
+	
 	var pro_url = "";
 	if(edit == 0)
 		pro_url = "processFilter.do?strategy=" + proto + "&insert=" +insert;
@@ -32,7 +38,11 @@ function formatFilterForm(data, edit, reviseStep){
 		pro_url = "processFilter.do?strategy=" + proto + "&revise=" + reviseStep;// + "&step=" + stepn + "&subquery="; + isSub;
 	}
 	var historyId = $("#history_id").val();
-	var stepNum = $("#target_step").val();
+	
+	//var stepNum = $("#target_step").val();
+	var stepNum = $("#diagram_" + proto + " div.box:last h3 a,crumb_name").attr("id");
+	stepNum = stepNum.substring(7);
+	
 	stepNum = parseInt(stepNum) + 1;
 	var prev_stepNum = stepNum - 1;
 	if(edit == 0){
@@ -110,13 +120,12 @@ function getQueryForm(url){
 }
 
 function openFilter(IsIn) {
-	if(IsIn == "add")
-		isInsert = "";
-	else 
-		isInsert = IsIn;
-		
-	var link = $("#filter_link");
-	if($(link).attr("href") == "javascript:openFilter('add')"){
+	//if(IsIn.indexOf("add") != -1)
+	//	isInsert = "";
+	//else 
+	isInsert = IsIn;
+	var link = $(".filter_link");
+	if($(link).attr("href").indexOf("openFilter") != -1) {   //"javascript:openFilter('add')"){
 //		$("#filter_div").fadeIn("normal");
 		$("#query_form").html(original_Query_Form_Text);
 		$("#query_form").css({
@@ -132,7 +141,7 @@ function openFilter(IsIn) {
 		//$("#query_selection").show();
 		$("#query_form").hide();
 		$(link).css({opacity:1.0});//html("<span>Add Step</span>"); 
-		$(link).attr("href","javascript:openFilter('add')");
+		$(link).attr("href","javascript:openFilter('" + isInsert + "')");
 	}
 }
 
@@ -187,6 +196,13 @@ function parseInputs(){
 	return d;
 }	
 
+function InsertNewStrategy(data){
+	var new_dia_id = $(".diagram",data).attr("id");
+	new_dia_id = "#" + new_dia_id;
+	var new_dia = $(".diagram",data);
+	$(new_dia_id).html(new_dia.html());
+}
+
 function AddStepToStrategy(act){
 	var url = act;	
 	var d = parseInputs();
@@ -211,17 +227,9 @@ function AddStepToStrategy(act){
 			},
 		success: function(data){
 			$("#loading_step_div").html("").hide("fast");
-			var new_dia = $("#diagram",data);
-			$("#diagram").html(new_dia.html());
-			var last_step_number = $("#diagram div.venn:last").attr("id");
-			last_step_number = parseInt(last_step_number.substring(5));
-			var step_divs = $("#diagram div.box");
-			var lastStepId = $(step_divs[step_divs.length - 1]).find("h3 a").attr("id");
-			lastStepId = lastStepId.substring(7);
-			$("#last_step_id").text(lastStepId);
-			
-			$("#target_step").attr("value",last_step_number + 1);
-			$("#diagram div.venn:last a:first").click();
+			InsertNewStrategy(data);
+			var new_dia_id = $(".diagram",data).attr("id");
+			$("#" + new_dia_id + " div.venn:last span.resultCount a").click();
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
@@ -253,7 +261,8 @@ function EditStep(url, step_number){
 			  }
 			},
 		success: function(data){
-			var diagram_divs = $("#diagram div");
+			var diagramId = $(".diagram",data).attr("id");
+			var diagram_divs = $("#" + diagramId + " div");
 			var selected_div = "";
 			for(i=0; i < diagram_divs.length;i++){
 				var b = $(diagram_divs[i]);
@@ -262,8 +271,7 @@ function EditStep(url, step_number){
 				}
 			}
 			$("#loading_step_div").html("").hide("fast");
-			var new_dia = $("#diagram",data);
-			$("#diagram").html(new_dia.html());
+			InsertNewStrategy(data);
 		    $("#"+selected_div+" span.resultCount a").click();
 		},
 		error: function(data, msg, e){
@@ -295,7 +303,8 @@ function DeleteStep(ele,url){
 			  }
 			},
 		success: function(data){
-			var diagram_divs = $("#diagram div");
+			var diagramId = $(".diagram",data).attr("id");
+			var diagram_divs = $("#" + diagramId + " div");
 			var selected_div = "";
 			for(i=0; i < diagram_divs.length;i++){
 				var b = $(diagram_divs[i]);
@@ -304,8 +313,7 @@ function DeleteStep(ele,url){
 				}
 			}
 			$("#loading_step_div").html("").hide("fast");
-			var new_dia = $("#diagram",data);
-			$("#diagram").html(new_dia.html());
+			InsertNewStrategy(data);
 			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
 					$("#diagram div.venn:last span.resultCount a").click();

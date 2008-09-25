@@ -175,7 +175,7 @@
 	margin: 4px 1% 4px 0;
 }
 
-#filter_link {
+.filter_link {
 	position: relative;
 	float: right;
 	margin-right: 5px;

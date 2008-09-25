@@ -1,46 +1,5 @@
 $("#diagram").ready(function(){
-
-//	$("a.crumb_name, a.operation, a.view_step_link").click(function(){
-//		NewResults($(this)[0]);
-//		return false;
-//	});
-
-	//HIGH LIGHTING CODE
-	var stepnumber = parseUrl("step");
-	if(stepnumber == "")
-		stepnumber = -1;
-	else
-		stepnumber = stepnumber[0];
-	var subquery = parseUrl("subquery");
-	if(subquery == 'false' || subquery.length == 0)
-		subquery = false;
-	else
-		subquery = true;
-	var className = "";
-	var element = "";
-	if(stepnumber == -1){
-		element = $("div#diagram div.venn:last");
-		var n = element.attr("id");
-		n = parseInt(n.substring(5));
-		if(n == 0)
-			className = "selectedarrow";
-		else
-			className = "selected";
-	}else{
-		if(subquery){
-			className = "selectedarrow";
-			element = $("div#diagram div#step_" + stepnumber + "_sub");
-		}else{
-			if(stepnumber == 0)
-				className = "selectedarrow";
-			else
-	 			className = "selected";
-		element = $("div#diagram div#step_" + stepnumber);
-		}
-	}
-	element.addClass(className);
-	//END HIGH LIGHTING CODE
-	
+	$("div.diagram:first div.venn:last span.resultCount a").click();
 });
 
 function showDetails(det){
@@ -132,15 +91,16 @@ function NewResults(ele,url){
 
 function Edit_Step(ele,url){
 		$(ele).parent().parent().hide();
-		var link = $("#filter_link");
-		$(link).css({opacity:0.2});//html("<span>Close [X]</span>");
+		var link = $(".filter_link");
+		$(link).css({opacity:0.2});
 		$(link).attr("href","javascript:void(0)");
 		hideDetails();
 		var revisestep = $(ele).attr("id");
 		var parts = revisestep.split("|");
-		revisestep = parseInt(parts[0]);
-		var operation = parts[1];
-		var reviseStepNumber = revisestep + ":0:0:" + operation;
+		var strat = parts[0];
+		revisestep = parseInt(parts[1]);
+		var operation = parts[2];
+		var reviseStepNumber = strat + ":" + revisestep + ":0:0:" + operation;
 		$.ajax({
 			url: url,
 			dataType: "html",
@@ -156,9 +116,9 @@ function Edit_Step(ele,url){
 
 function Insert_Step(ele,url){
 	$(ele).parent().parent().hide();
-	var sNumber = $(ele).parent().parent().parent().parent().attr("id");
-	sNumber = sNumber.substring(5,6);
-	openFilter(sNumber);
+	var sNumber = $(ele).attr("id");
+	sNumber = sNumber.split("|");
+	openFilter(sNumber[0] + ":" + sNumber[1]);
 }
 
 function Rename_Step(ele){
@@ -195,18 +155,18 @@ function blah(ele,evt){
 	if(charCode == 13) $(ele).blur();
 }
 
-function parseUrl(name){
+function parseUrl(name,url){
  	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
  	var regexS = "[\\?&]"+name+"=([^&#]*)";
  	var regex = new RegExp( regexS,"g" );
  	var res = new Array();
- 	while (regex.lastIndex < window.location.href.length){
- 		var results = regex.exec( window.location.href );
+ 	//while (regex.lastIndex < url.length){
+ 		var results = regex.exec( url );
  		if( results != null )
  			res.push(results[1]);
- 		else
- 			break;
- 	}
+ 	//	else
+ 	//		break;
+ 	//}
  	if(res.length == 0)
  		return "";
  	else
