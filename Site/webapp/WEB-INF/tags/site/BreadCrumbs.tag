@@ -18,14 +18,14 @@
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>-->
 <c:set var="stepNumber" value="0" />
 <!--<div class="chain_background" id="bread_crumb_div">-->
-	<div id="diagram">
+	<div class="diagram" id="diagram_${strategy.strategyId}">
 		<div id="strategy_name">Strategy&nbsp;<span id="strategy_id_span">${strategy.strategyId}</span><span class="strategy_small_text"><br>save as<br>export</span></div>
 		<c:set var="steps" value="${strategy.allSteps}" />
 		<c:forEach items="${steps}" var="step">
 			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
 			<c:set var="stepNumber" value="${stepNumber+1}" />
 		</c:forEach>
-		<a class="redbutton" onclick="this.blur()" href="javascript:openFilter('add')" id="filter_link"><span>Add Step</span></a>
+		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${strategy.strategyId}:')" id="filter_link"><span>Add Step</span></a>
 	</div>
 <!--</div>-->
 
