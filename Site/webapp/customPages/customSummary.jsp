@@ -20,7 +20,7 @@
 <c:set var="model" value="${applicationScope.wdkModel}" />
 <c:set var="strategy" value="${requestScope.wdkStrategy}" />
 
-<c:set var="strategies" value="${sessionScope.wdkActiveStrategies}"/>
+<c:set var="strategies" value="${requestScope.wdkActiveStrategies}"/>
 
 <c:set var="commandUrl">
     <c:url value="/processSummary.do?${wdk_query_string}" />
@@ -95,7 +95,7 @@
 <input type="hidden" id="history_id" value="${history.stepId}"/>
 <div id="Strategies">
 	<c:forEach items="${strategies}" var="strat">
-		<site:BreadCrumbs strategy="${strat.value}"/>
+		<site:BreadCrumbs strategy="${strat}"/>
 		<br>
 	</c:forEach>
 </div>
