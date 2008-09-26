@@ -64,7 +64,7 @@
 		<div class="innertube">
 <ul id="strategy_tabs">
    <li id="selected"><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Results View</a></li>
-   <li><a id="strategy_history_tab" onclick="this.blur()" href="javascript:showPanel('strategy_history')">History View</a></li>
+   <li><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">History View</a></li>
 </ul>
 <div id="strategy_results">
 <div class="strategy_controls"/>
@@ -112,7 +112,7 @@
 <%--<site:Results strategy="${strategy}"/>--%>
 </div> 
 </div><!-- end results view div -->
-<div id="strategy_history" class="hidden">
+<div id="search_history" class="hidden">
 <site:strategyTable model="${wdkModel}" user="${wdkUser}" />
 </div> <!-- end history view div -->
 

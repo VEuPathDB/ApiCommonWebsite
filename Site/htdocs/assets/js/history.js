@@ -64,9 +64,8 @@ function deleteStrategies(url) {
 			url: url,
 			dataType: "html",
 			success: function(data) {
-				//$("div#menubar").html($("div#menubar", data));
-				//$("div#search_history").html($("div#search_history", data));
-				$(this).html(data);
+				$("#search_history").html($("#search_history", data).html());
+				$("#mysearch").html($("#mysearch", data).html());
 			},
 			error: function(data, msg, e) {
 				alert("ERROR \n " + msg + "\n" + e);
