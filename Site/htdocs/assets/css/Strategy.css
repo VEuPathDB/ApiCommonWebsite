@@ -1,8 +1,8 @@
-  
+
 
 /* The main diagram container needs to be positioned relatively, so that
       it's children can be positioned within it. */
-   #diagram {
+   .diagram {
      position: relative;
      margin:   0 auto; /* Sorry, IE5.x/Win. */
      left:    0em;
@@ -11,30 +11,30 @@
    }
 
    /* Turn off this Opera/Mozilla feature. */
-   #diagram abbr, #diagram acronym { border-bottom: 0 }
+   .diagram abbr, .diagram acronym { border-bottom: 0 }
 
    /* The top-level DIVs are the state boxes, which should have a border.
       We need to use ems, because the border width counts in the box size
       (except in IE5.x/Win, of course).  It will affect arrow lengths. */
-   #diagram div {
+   .diagram div {
      border: 2px solid #000;
    }
 
    /* All DIVs and list items in the diagram are absolutely positioned. */
-   #diagram div {
+   .diagram div {
      position: absolute;
      margin:   0;
      padding:  0;
    }
 	
-	#diagram div li {
+	.diagram div li {
 	  position: absolute;
 	  margin:   0.8em;
 	  padding:  0;
 	}
 
    /* State names will be centered within their boxes. */
-   #diagram h3 {
+   .diagram h3 {
      margin:      0;
      padding:     0;
      font-size:   1em;
@@ -51,7 +51,7 @@
    #current h3 { font-weight: bold }
 
    /* "Linked" states are indicated visually as state boxes. */
-   #diagram div li a {
+   .diagram div li a {
      display:          block;
      position:         absolute;
      border:           0.05em dotted #666;
@@ -63,7 +63,7 @@
    /* SPANs are used for hiding explanatory text that shouldn't be used in a
       CSS-aware environment.  Those SPANs are also used for creating the
       arrowheads on transition lines (see below). */
-   #diagram li span {
+   .diagram li span {
      position:    absolute;
      width:       0;
      height:      0;
@@ -71,12 +71,12 @@
    }
 
    /* IE5.x/Win is somewhat buggy.  Yes, really! */
-   * html #diagram li span {
+   * html .diagram li span {
      font-size:  0;
      f\ont-size: 1em;
    }
 
-   * html #diagram .right span {
+   * html .diagram .right span {
      width:   4px;
      w\idth:  0;
      height:  8px;
@@ -84,17 +84,17 @@
    }
 
    /* We'll use unordered lists for the transitions. */
-   #diagram ul {
+   .diagram ul {
      margin:     0;
      padding:    0;
      list-style: none inside;
    }
 
    /* IE6/Win completely freaks out without this. */
-   * html #diagram ul { width: 0 }
+   * html .diagram ul { width: 0 }
 
    /* Transition lines. */
-   #diagram .right-down { /* Angled transition, right and down. */
+   .diagram .right-down { /* Angled transition, right and down. */
      top:           50%;
      left:          100%;
      margin-bottom: 0.05em;
@@ -103,13 +103,13 @@
      border-right:   0.25em solid #000;
    }
 
-	#diagram .right { /* Straight horizontal transition, left to right. */
+	.diagram .right { /* Straight horizontal transition, left to right. */
      top:           0;
      left:          100%;
      margin-left:   0.05em;
      border-bottom: 0.25em solid #000;
    }
-   #diagram .right a {
+   .diagram .right a {
      top:  0;
      left: 100%;
    }
@@ -121,7 +121,7 @@
 
 	/* Arrowheads */
    
-	#diagram .right-down span {
+	.diagram .right-down span {
      bottom:       0;
      left:         1.45em;
      border-top:    0.6em solid #000;
@@ -129,13 +129,13 @@
      border-left:   0.5em solid #fff;
    }
 
-	* html #diagram .right-down span  {
+	* html .diagram .right-down span  {
 		left:          -4px;
 	    lef\t:         -0.3em;
 	    border-width:  4px 4px 0;
 	    b\order-width: 0.5em 0.3em 0;
 	}
-   #diagram .right span {
+   .diagram .right span {
      right:         0;
      bottom:        -0.4em;
      border-top:    0.3em solid #fff;
@@ -143,7 +143,7 @@
      border-left:   0.6em solid #000;
    }
 
-   * html #diagram .right span {
+   * html .diagram .right span {
      bottom:        -4px;
      b\ottom:       -0.3em;
      border-width:  4px 0 4px 4px;
@@ -215,37 +215,37 @@
 	}
 	
 	
-	#diagram div.operation.UNION {
+	.diagram div.operation.UNION {
 		border: 2px solid #EDEDED;
 		height: 37px;
 		background: url(/assets/images/operationIcons.gif) no-repeat 0px -73px;
 	}
 
-	#diagram div.operation.INTERSECT {
+	.diagram div.operation.INTERSECT {
 		border: 2px solid #EDEDED;
 		height: 37px;
 		background: url(/assets/images/operationIcons.gif) no-repeat 0px -37px;
 	}
 
-	#diagram div.operation.MINUS {
+	.diagram div.operation.MINUS {
 		border: 2px solid #EDEDED;
 		height: 37px;
 		background: url(/assets/images/operationIcons.gif) no-repeat 0px -1px;
 	}
 	
-	#diagram div.operation.UNION.selected {
+	.diagram div.operation.UNION.selected {
 		border: 2px solid #ea9797;
 		height: 37px;
 		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -73px;
 	}
 
-	#diagram div.operation.INTERSECT.selected {
+	.diagram div.operation.INTERSECT.selected {
 		border: 2px solid #ea9797;
 		height: 37px;
 		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -37px;
 	}
 
-	#diagram div.operation.MINUS.selected {
+	.diagram div.operation.MINUS.selected {
 		border: 2px solid #ea9797;
 		height: 37px;
 		background: url(/assets/images/operationIcons_pink.gif) no-repeat 0px -1px;
@@ -343,26 +343,26 @@
 	border-spacing: 2px;
 }
 
-#diagram div#strategy_name {
+.diagram div#strategy_name {
 	border: none;
 	right: 40px;
 	top: 5px;
 	text-align: right;
 }
 
-#diagram div#strategy_name span.strategy_small_text{
+.diagram div#strategy_name span.strategy_small_text{
 	font-size: 10px;
 	color: #888;
 }
 
-#diagram h6.step_info_link {
+.diagram h6.step_info_link {
 	border: none;
 	left: 86px;
 	top: -34px;
 	position: relative;
 }
 
-#diagram h6.step_info_link div.info_link_pop_up_div {
+.diagram h6.step_info_link div.info_link_pop_up_div {
 	display: none;
 	background: lightYellow;
 	font-weight: normal;
@@ -371,7 +371,7 @@
 	color: #000000;
 }
 
-#diagram h6.step_info_link a:hover div.info_link_pop_up_div {
+.diagram h6.step_info_link a:hover div.info_link_pop_up_div {
 	display: block;
 	position: relative;
 	top: -24px;
