@@ -7,13 +7,6 @@
 <c:set var="history" value="${requestScope.wdkHistory}" />
 <c:set var="model" value="${applicationScope.wdkModel}" />
 <c:set var="strategy" value="${requestScope.wdkStrategy}" />
-
+<div id="containerDiv">
 <site:BreadCrumbs strategy="${strategy}" />
-
-<%--<c:set var="step" value="${strategy.latestStep}" />
-<c:set var="stepNum" value="${strategy.length - 1}" />
-<div id="nothing">
-<span id="step_id">${step.filterUserAnswer.userAnswerId}</span> 
-<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNum}"/>
 </div>
---%>
