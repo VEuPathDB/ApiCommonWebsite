@@ -31,7 +31,7 @@
 	</li>
 	</ul>
 	<ul>
-	<li><a href="<c:url value="/showQueryHistory.do"/>"><div id="mysearch">My Searches: ${count}</div></a>
+	<li><a href="<c:url value="/showApplication.do?showHistory=true"/>"><div id="mysearch">My Searches: ${count}</div></a>
 	</li>
 	</ul>
 	<ul>

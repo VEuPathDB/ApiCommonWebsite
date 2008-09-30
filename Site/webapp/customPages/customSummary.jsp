@@ -19,7 +19,7 @@
 <c:set var="history" value="${requestScope.wdkHistory}"/>
 <c:set var="model" value="${applicationScope.wdkModel}" />
 <c:set var="strategy" value="${requestScope.wdkStrategy}" />
-
+<c:set var="showHist" value="${requestScope.showHistory}" />
 <c:set var="strategies" value="${requestScope.wdkActiveStrategies}"/>
 
 <c:set var="commandUrl">
@@ -63,10 +63,25 @@
   	<div id="contentcolumn2">
 		<div class="innertube">
 <ul id="strategy_tabs">
-   <li id="selected"><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Results View</a></li>
-   <li><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">History View</a></li>
+   <c:choose>
+     <c:when test="${showHist != null && showHist}">
+       <li><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Results View</a></li>
+       <li id="selected"><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">History View</a></li>
+     </c:when>
+     <c:otherwise>
+       <li id="selected"><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Results View</a></li>
+       <li><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">History View</a></li>
+     </c:otherwise>
+   </c:choose>
 </ul>
-<div id="strategy_results">
+<c:choose>
+  <c:when test="${showHist != null && showHist}">
+    <div id="strategy_results" class="hidden">
+  </c:when>
+  <c:otherwise>
+    <div id="strategy_results">
+  </c:otherwise>
+</c:choose>
 <div class="strategy_controls"/>
 <table width="100%">
 <tr>
@@ -112,7 +127,14 @@
 <%--<site:Results strategy="${strategy}"/>--%>
 </div> 
 </div><!-- end results view div -->
-<div id="search_history" class="hidden">
+<c:choose>
+  <c:when test="${showHist != null && showHist}">
+    <div id="search_history">
+  </c:when>
+  <c:otherwise>
+    <div id="search_history" class="hidden">
+  </c:otherwise>
+</c:choose>
 <site:strategyTable model="${wdkModel}" user="${wdkUser}" />
 </div> <!-- end history view div -->
 
