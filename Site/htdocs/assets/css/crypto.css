@@ -206,7 +206,7 @@ a:hover, a:active {
 	background-image: url(../images/menu_bar.png);
 	background-repeat: repeat-x;
 	
-	padding-left: 20px;
+	padding-left: 45px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	vertical-align: middle;
 	clear: both;
@@ -1011,7 +1011,7 @@ tr.lines td, tr.linesalt td {
 
 
 a.redbutton {
-   color: white;
+   color: #FFFFFF;
 /*   display: block;*/
 /*   float: left;*/
    font: normal 13px arial, sans-serif;
@@ -1021,13 +1021,15 @@ a.redbutton {
    background-attachment: scroll;
    background-color: transparent;
    background-position: right top;   
-   width: 95px;
+   width: 115px;
 }
 
 a.redbutton span {
+	color: #FFFFFF;
 	display: block;
    line-height: 13px;
    padding: 15px 23px 12px 18px;
+   text-decoration: none;
    background-color: transparent;
    background-image: url(../images/redboxb.gif);
    background-repeat: no-repeat;
