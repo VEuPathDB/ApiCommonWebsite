@@ -3,11 +3,11 @@ var isInsert = "";
 var _action = "";
 var original_Query_Form_Text;
 
-$(document).ready(function(){
-	original_Query_Form_Text = $("#query_form").html();	
-}); // End of Ready Function
+//$(document).ready(function(){
+//	original_Query_Form_Text = $("#query_form").html();	
+//});  End of Ready Function
 
-function closeAll(){openFilter("");}
+function closeAll(){openFilter(isInsert);}
 
 function formatFilterForm(data, edit, reviseStep){
 	//edit = 0 ::: adding a new step
@@ -97,13 +97,14 @@ function formatFilterForm(data, edit, reviseStep){
 		var header = "<span class='dragHandle'>" + back_link + " " + formtitle + " " + close_link + "</span>";
 	else
 		var header = "<span class='dragHandle'>" + formtitle + " " + close_link + "</span>";
-	$("#query_form").html(header);
-	$("#query_form").append(quesForm);
-	$("#query_selection").fadeOut("normal");
+		
+	$("#filter_link_div_" + proto + " #query_form").html(header);
+	$("#filter_link_div_" + proto + " #query_form").append(quesForm);
+	$("#filter_link_div_" + proto + " #query_form").fadeOut("normal");
 	if(edit == 1)
-		$("#query_form div#operations input#" + operation).attr('checked','checked'); 
-	$("#query_form").jqDrag(".dragHandle");
-	$("#query_form").fadeIn("normal");
+		$("#filter_link_div_" + proto + " #query_form div#operations input#" + operation).attr('checked','checked'); 
+	$("#filter_link_div_" + proto + " #query_form").jqDrag(".dragHandle");
+	$("#filter_link_div_" + proto + " #query_form").fadeIn("normal");
 }
 
 function getQueryForm(url){	
@@ -122,32 +123,42 @@ function getQueryForm(url){
 function openFilter(IsIn) {
 	//if(IsIn.indexOf("add") != -1)
 	//	isInsert = "";
-	//else 
+	//else
+	var strat_number = IsIn.split(":");
+	strat_number = strat_number[0]; 
 	isInsert = IsIn;
 	var link = $(".filter_link");
 	if($(link).attr("href").indexOf("openFilter") != -1) {   //"javascript:openFilter('add')"){
 //		$("#filter_div").fadeIn("normal");
-		$("#query_form").html(original_Query_Form_Text);
-		$("#query_form").css({
+		original_Query_Form_Text = $("#filter_link_div_" + strat_number + " #query_form").html();
+		$("#filter_link_div_" + strat_number + " #query_form").css({
 			top: "337px",
 			left: "22px"
 		});
-		$("#query_form").show("normal");
-		$("#query_form").jqDrag(".dragHandle");
-		$(link).css({opacity:0.2});//html("<span>Close [X]</span>");
-		$(link).attr("href","javascript:void(0)");
+		$("#filter_link_div_" + strat_number + " #query_form").show("normal");
+		$("#filter_link_div_" + strat_number + " #query_form").jqDrag(".dragHandle");
+		for(var i=0; i < link.length; i++){
+			$(link[i]).css({opacity:0.2});//html("<span>Close [X]</span>");
+			$(link[i]).attr("value",$(link[i]).attr("href"));
+			$(link[i]).attr("href","javascript:void(0)");
+		}
 	}else{
 		//$("#filter_div").fadeOut("normal");
 		//$("#query_selection").show();
-		$("#query_form").hide();
-		$(link).css({opacity:1.0});//html("<span>Add Step</span>"); 
-		$(link).attr("href","javascript:openFilter('" + isInsert + "')");
+		$("#filter_link_div_" + strat_number + " #query_form").html(original_Query_Form_Text);
+		$("#filter_link_div_" + strat_number + " #query_form").hide();
+		for(var i=0; i < link.length; i++){
+			$(link[i]).css({opacity:1.0});//html("<span>Add Step</span>"); 
+			$(link[i]).attr("href",$(link[i]).attr("value"));
+		}
 	}
 }
 
 function close(){
-	$("#query_form").html(original_Query_Form_Text);//fadeOut("normal");
-	$("#query_form").jqDrag(".dragHandle");
+	var strat_number = isInsert.split(":");
+	strat_number = strat_number[0]; 
+	$("#filter_link_div_" + strat_number + " #query_form").html(original_Query_Form_Text);//fadeOut("normal");
+	$("#filter_link_div_" + strat_number + " #query_form").jqDrag(".dragHandle");
 }
 
 function parseInputs(){
@@ -235,7 +246,7 @@ function AddStepToStrategy(act){
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});
-	openFilter();
+	openFilter(isInsert);
 }
 
 function EditStep(url, step_number){
