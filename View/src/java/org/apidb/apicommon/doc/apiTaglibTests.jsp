@@ -150,6 +150,8 @@ Configurations from WDK's ModelConfig class, generally representing values set i
 <hr>
 
 <h3>api:commentConfig</h3>
+not yet available, waiting for fix in WdkModel
+<%--
 <api:commentConfig var="commentConfig"/>
 <blockquote>
 connectionUrl: <b>${commentConfig.props['connectionUrl']}</b>
@@ -167,6 +169,7 @@ The CommentFactory instantiates CommentConfig on first page access requiring it 
 </pre>
 <p>
 <hr>
+--%>
 
 <h3>api:wdkCacheDB</h3>
 
