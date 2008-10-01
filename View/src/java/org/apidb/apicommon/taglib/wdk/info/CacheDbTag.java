@@ -45,7 +45,7 @@ public class CacheDbTag extends WdkTagBase {
         
         // derived from org.gusdb.wdk.model.user.AnswerFactory
         loginPlatform = wdkModel.getAuthenticationPlatform();
-        String answerSchema = wdkModel.getModelConfig().getAnswerSchema();
+        String answerSchema = wdkModel.getModelConfig().getUserDB().getWdkEngineSchema();
         
         setDbState();
         this.getRequest().setAttribute(var, this);
