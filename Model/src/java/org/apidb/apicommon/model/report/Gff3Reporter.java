@@ -227,7 +227,7 @@ public class Gff3Reporter extends Reporter {
             sqlInsert.append(", ").append(column);
         }
         sqlInsert.append(") VALUES (?, ?, ?");
-        for (String column : pkColumns) {
+        for (int i = 0; i < pkColumns.length; i++) {
             sqlInsert.append(", ?");
         }
         sqlInsert.append(")");
@@ -465,7 +465,7 @@ public class Gff3Reporter extends Reporter {
             sqlInsert.append(", ").append(column);
         }
         sqlInsert.append(") VALUES (?, ?, ?");
-        for (String column : pkColumns) {
+        for (int i = 0; i <pkColumns.length; i++) {
             sqlInsert.append(", ?");
         }
         sqlInsert.append(")");

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.apache.commons.digester.Digester;
-import org.gusdb.wdk.model.ModelConfig;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.XmlParser;
 import org.xml.sax.SAXException;
