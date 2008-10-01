@@ -78,14 +78,14 @@ behavior: url(/assets/css/csshover.htc);
 
 <div id="header2">
    <div id="header_rt">
-   <div align="right"><div id="toplink"><a href="http://eupathdb.org"><img src="../assets/images/crypto/partofeupath.png" alt="EuPathDB Homepage" 
+   <div align="right"><div id="toplink"><a href="http://eupathdb.org"><img src="../assets/images/crypto/partofeupath.png" alt="Link to EuPathDB homepage" 
 	width="174" height="23" /></a></div></div>
        <div id="bottom">
 	  <site:quickSearch /><br />
 	  <div id="nav_topdiv">
       <ul id="nav_top">
       <li>
-      <a href="#">About ${siteName}<img src="../assets/images/crypto/menu_divider5.png" width="17" height="9" /></a>
+      <a href="#">About ${siteName}<img src="../assets/images/crypto/menu_divider5.png" alt="" width="17" height="9" /></a>
       		<ul>
           <li><a href="#">Who We Are</a></li>
           <li><a href="#">What We Do</a></li>
@@ -95,7 +95,7 @@ behavior: url(/assets/css/csshover.htc);
         	</ul>
         </li>
       <li>
-      <a href="#">Help<img src="../assets/images/crypto/menu_divider5.png" width="17" height="9" /></a>
+      <a href="#">Help<img src="../assets/images/crypto/menu_divider5.png" alt="" width="17" height="9" /></a>
       		<ul>
           <li><a href="#">Web Tutorials</a></li>
           <li><a href="#">Community Links</a></li>
@@ -104,7 +104,7 @@ behavior: url(/assets/css/csshover.htc);
         	</ul>
         </li>
       <li>
-      <a href="#">Contact Us<img src="../assets/images/crypto/menu_divider5.png" width="17" height="9" /></a></li>
+      <a href="#">Contact Us<img src="../assets/images/crypto/menu_divider5.png" alt="" width="17" height="9" /></a></li>
       <li>
       <a href="#">Log In/Register</a> <%-- possible style when a user is login....<a href="#">Logout</a>
  	  <br /><b style='color:black'>John Doe</b> | <a href="#">Profile</a>
@@ -115,7 +115,7 @@ behavior: url(/assets/css/csshover.htc);
        </div>
    </div>
 
-   <p><a href="/"><img src="../assets/images/crypto/title_s.png" alt="CryptoDB" 
+   <p><a href="/"><img src="../assets/images/crypto/title_s.png" alt="Link to CryptoDB homepage" 
 	width="318" height="64" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version 3.8<br />

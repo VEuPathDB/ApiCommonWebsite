@@ -10,7 +10,7 @@
 
 <div id="footer">
 	<a href="http://www.eupathdb.org">
-		<img src="../assets/images/eupathdblink.png" alt="EuPathDB homepage" width="144" height="25" align="right" />
+		<img src="../assets/images/eupathdblink.png" alt="Link to EuPathDB homepage" width="144" height="25" align="right" />
 	</a>
 	&copy;2008  The EuPath Project Team:: 
 	<a href="http://www.cryptodb.org">CryptoDB.org</a> <br />
