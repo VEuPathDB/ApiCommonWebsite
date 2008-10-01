@@ -90,7 +90,7 @@
           <tr class="headerrow">
 	     <th>&nbsp;</th>
              <th>ID</th> 
-             <th>icon</th>
+             <th>View</th>
              <th>&nbsp;</th>
              <th>Strategy</th>
              <th>&nbsp;</th>

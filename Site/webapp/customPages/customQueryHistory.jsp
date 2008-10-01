@@ -17,11 +17,14 @@
 <div id="contentwrapper">
     <div id="contentcolumn2">
         <div class="innertube">
+<%-- repurpose this page for complete query history --%>
+<h1>All Queries</h1>
+<site:completeHistory model="${wdkModel}" user="${wdkUser}" />
 
-<div id="search_history">
+<%-- <div id="search_history">
 <h1>My Searches</h1>
 <site:strategyTable model="${wdkModel}" user="${wdkUser}" />
-</div>
+</div> --%>
 
 
         </div>
