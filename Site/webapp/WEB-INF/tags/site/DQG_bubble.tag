@@ -90,5 +90,5 @@
 	</c:otherwise>
 </c:choose>	
 
-<!--<img src="/assets/images/bubble_bottom.png" width="247" height="35" />-->
+<!--<img src="/assets/images/bubble_bottom.png" alt="" width="247" height="35" />-->
 </div>
