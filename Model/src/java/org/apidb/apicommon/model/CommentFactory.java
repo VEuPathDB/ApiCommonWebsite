@@ -56,9 +56,7 @@ public class CommentFactory {
         // create a platform object
         DBPlatform platform = (DBPlatform) Class.forName(
                 config.getPlatformClass()).newInstance();
-        platform.initialize(wdkModel, "Comment", config.getConnectionUrl(),
-                config.getLogin(), config.getPassword(), config.getMinIdle(),
-                config.getMaxIdle(), config.getMaxWait(), config.getMaxActive());
+        platform.initialize(wdkModel, "Comment", config);
 
         // create a factory instance
         factory = new CommentFactory(platform, config);
