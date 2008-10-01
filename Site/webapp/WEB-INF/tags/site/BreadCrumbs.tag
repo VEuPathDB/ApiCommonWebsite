@@ -27,6 +27,9 @@
 		</c:forEach>
 		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${strategy.strategyId}:')" id="filter_link"><span>Add Step</span></a>
 	</div>
+	<div class="filter_link_div" id="filter_link_div_${strategy.strategyId}">
+		<site:FilterInterface model="${applicationScope.wdkModel}" recordClass="${strategy.latestStep.dataType}" strategy="${strategy}"/>
+	</div>
 <!--</div>-->
 
 

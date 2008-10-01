@@ -11,8 +11,7 @@
 %>
 
 <%@ attribute name="recordClass"
-	      type="org.gusdb.wdk.model.jspwrap.RecordClassBean"
-              required="false"
+	          required="false"
               description="RecordClass Object for the Answer"
 %>
 
@@ -24,7 +23,7 @@
 <span id="proto" style="display: none">${strategy.strategyId}</span>
 <span id="last_step_id" style="display:none">${strategy.latestStep.stepId}</span>
 <c:set var="catMap" value="${model.questionsByCategory}" />
-<c:set var="recClass" value="${recordClass.fullName}" />
+<c:set var="recClass" value="${recordClass}" />
 <c:set var="qSetName" value="none" />
 <c:set var="qSets" value="${model.questionSetsMap}" />
 <c:set var="qSet" value="${qSets[qSetName]}" />
@@ -37,7 +36,7 @@
 <div id="query_selection">
 <ul class="top_nav">
 
-<c:set var="qByCat" value="${catMap[recordClass.fullName]}" />
+<c:set var="qByCat" value="${catMap[recordClass]}" />
 <c:forEach items="${qByCat}" var="cat">
 	<li><a class="category" href="javascript:void(0)">${cat.key}</a>
 	<ul>
