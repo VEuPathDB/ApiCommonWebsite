@@ -116,11 +116,11 @@
 </div>
 
 <input type="hidden" id="target_step" value="${stepNumber+1}"/>
-
+<%--
 <div id="filter_link_div">
 	<site:FilterInterface model="${model}" recordClass="${wdkAnswer.recordClass}" strategy="${strategy}"/>
 </div>
-
+--%>
 <br>
 
 <div id="Workspace">
