@@ -1,0 +1,119 @@
+#!/bin/bash
+
+# Unpack and install R GDD library from ApicommonWebsite archived 
+# files.
+
+# Requires same webPropFile used in WDK build
+
+# only approved paths
+PATH=/usr/local/bin:/usr/bin:/bin
+
+GDD_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/R
+GDD_TAR_FILE=$( ls -C1 -t "$GDD_TAR_PATH"/GDD*.tgz | head -1 )
+
+
+# search for an R compiled for system architecture (e.g. i686, x86_64)
+set_R_path() {
+    local binlist="$(type -ap R)"
+    local arch=$(arch)
+    
+    while read r_path; do 
+        r_arch="$($r_path --vanilla --slave < <(echo 'R.Version()$arch'))"
+        
+        if [[ "$r_arch" =~ "$arch" ]]; then
+            export R_CMD=$r_path
+            echo "Using '$R_CMD'"
+            return
+        fi
+
+    done < <(echo "$binlist")
+
+    echo "FATAL: Required R version for $arch was not found. I looked at " >&2
+    echo "$binlist" >&2
+    exit 1    
+}
+
+get_install_paths() {
+    WEB_PROP_FILE=$1
+    if [ ! -e "$WEB_PROP_FILE" ]; then
+        echo
+        echo "specified webPropFile '$WEB_PROP_FILE' not found"
+        echo
+        exit 1
+    fi
+    source $WEB_PROP_FILE
+}
+
+mkdirs() {
+    mkdir -p $cgilibTargetDir/R 2>/dev/null
+}
+
+install() {
+    test -x "$(which R 2>&-)" || {
+        echo
+        echo R not found
+        echo
+        exit 1
+    }
+    
+    mkdirs
+    
+    $R_CMD CMD INSTALL "$GDD_TAR_FILE" -l "$cgilibTargetDir/R"
+    
+    if [ "$?" -gt 0 ]; then
+        echo
+        echo "installation failed. unable to continue."
+        echo
+        exit 1
+    fi
+    
+    basefontmapping
+}
+
+basefontmapping() {
+    mapfile="$cgilibTargetDir/R/GDD/fonts/basefont.mapping"
+    
+    test -e $mapfile && mv $mapfile "${mapfile}.dist"
+    
+    cat > $mapfile <<FONTMAP
+# Font mappings for GDD
+#-----------------------
+
+# Default install for ApiDB project. See
+# basefont.mapping.dist for full example.
+
+base.norm:blue highway free.ttf
+base.bold:blue highway free bold.ttf
+base.bold:blue highway free.ttf
+base.ital:blue highway free.ttf
+base.bita:blue highway free bold.ttf
+base.bita:blue highway free.ttf
+FONTMAP
+}
+
+usage() {
+    echo
+    echo $"Usage: $(basename $0) /path/to/webapp.prop install"
+    echo
+    exit 1
+}
+
+##################################################################
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+    usage
+fi
+
+get_install_paths $1
+
+case "$2" in
+    install)
+        set_R_path
+        install
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+exit 0
