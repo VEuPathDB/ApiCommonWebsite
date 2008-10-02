@@ -13,10 +13,11 @@
 }
 
 #query_selection {
-	left: 200px;
+	left: 140px;
 	position:relative;
 	top: 0.25em;
-	width: 13em;
+	/*width: 13em;*/
+	width: 100%;
 }
 
 #query_form {
@@ -43,7 +44,9 @@
 }
 
 #query_selection table {
-	background-image: url(../images/new_step_menu.jpg);
+/*	background-image: url(../images/new_step_menu.jpg);*/
+	border-collapse: separate;
+	border-spacing: 10px;
 }
 
 
