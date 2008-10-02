@@ -6,22 +6,30 @@ use ApiCommonWebsite::Model::DbUtils qw(jdbc2oracleDbi dbi2connectString);
 
 sub new {
     my ($class, $model) = @_;
+
     my $self = {};
     bless $self;
-   
-    my $modelconfig = "$ENV{GUS_HOME}/config/${model}/model-config.xml";
-    (-e $modelconfig) or die "File not found: $modelconfig\n";
 
-    my $cfg = XMLin($modelconfig);
+    my $cfg;
     
-    for (keys %$cfg) {
-        $self->{$_} = $cfg->{$_}
+    if ( ref($model) eq 'HASH' ) {
+        $cfg = $model;
+    } else {
+        my $modelconfig = "$ENV{GUS_HOME}/config/${model}/model-config.xml";
+        (-e $modelconfig) or die "File not found: $modelconfig\n";
+        $cfg = XMLin($modelconfig);
     }
     
-    $self->{dbiDsn} = jdbc2oracleDbi($self->{connectionUrl});
-
-    ($self->{connectString} = $self->{dbiDsn}) =~ s/dbi:Oracle://;
-
+    for (keys %$cfg) {
+        $self->{$_} = $cfg->{$_};
+        if (ref($cfg->{$_}) eq 'HASH' && defined $cfg->{$_}->{connectionUrl}) {
+            # add entry for Perl DBI DSN. e.g. dbi:Oracle:toxo440s
+            $self->{$_}->{dbiDsn} = jdbc2oracleDbi($self->{$_}->{connectionUrl});
+            # add entry for connection string. e.g. toxo440s
+            ($self->{$_}->{connectString} = $self->{$_}->{dbiDsn}) =~ s/dbi:Oracle://;    
+        }
+    }
+    
     return $self;
 }
 
@@ -31,9 +39,36 @@ sub AUTOLOAD {
     return if $attr =~ /^[A-Z]+$/;  # skip methods such as DESTROY
     $attr =~ s/get([A-Z])/$1/;
     $attr = lcfirst($attr);
-    $_[0]->{ $attr } || die "`$attr' not defined.";
+    my $retVal = $_[0]->{ $attr } || die "`$attr' not defined.";
+    return (ref ($retVal) eq "HASH")
+        ? new ApiCommonWebsite::Model::ModelConfig($retVal)
+        : $retVal;
 }
 
+
+# return to appDb value, for backward compatibility
+sub getLogin {
+    my ($self) = @_;
+    ($self->{appDb})
+        ? $self->{appDb}->{login}
+        : $self->{login}
+}
+
+# return to appDb value, for backward compatibility
+sub getPassword {
+    my ($self) = @_;
+    ($self->{appDb})
+        ? $self->{appDb}->{password}
+        : $self->{password}
+}
+
+# return to appDb value, for backward compatibility
+sub getDbiDsn {
+    my ($self) = @_;
+    ($self->{appDb})
+        ? $self->{appDb}->{dbiDsn}
+        : $self->{dbiDsn}
+}
 
 1;
 
@@ -51,19 +86,21 @@ ApiCommonWebsite::Model::ModelConfig - access to WDK model-config.xml properties
 
     my $cfg = new ApiCommonWebsite::Model::ModelConfig('TrichDB');
     
-    my $username = $cfg->getLogin;
-    my $password = $cfg->getPassword;
-
-    Retrieve the JDBC connectionUrl converted to Perl DBI syntax:
-    my $dsn = $cfg->getDbiDsn;
+    my $username = $cfg->getAppDb->getLogin;
+    my $password = $cfg->getAppDb->getPassword;
+    my $emailSubject = $cfg->getEmailSubject;
     
+    Retrieve the JDBC connectionUrl converted to Perl DBI syntax:
+    my $dsn = $cfg->getAppDb->getDbiDsn;
 
     You may also access by property name:
-        $cfg->login
-    
-    $cfg->connectionUrl is the JDBC connection string as written in the 
+        $cfg->appDb->login
+        $cfg->userDb->login
+        $cfg->emailSubject
+        
+    $cfg->appDb->connectionUrl is the JDBC connection string as written in the 
     model-config.xml.
-    $cfg->dbiDsn is the Perl DBI version translated from the 
+    $cfg->apiDb->dbiDsn is the Perl DBI version translated from the 
     connectionUrl property.
     
 =head1 DESCRIPTION
@@ -73,9 +110,8 @@ Provides Perl access to properties in a WDK model-config.xml file.
 =head1 BUGS
 
 The conversion of the JDBC connectionUrl to Perl DBI only works for Oracle
-thin driver syntax, and even then not for all allowed syntax.
-Assumes connection strings of the format
-  jdbc:oracle:thin:@hostname.uga.edu:1521:trichsite
+thin driver syntax, and even then not for all allowed syntax. See 
+ApiCommonWebsite::Model::DbUtils for supported syntax.
 
 =head1 AUTHOR 
 
@@ -95,28 +131,28 @@ Mark Heiges, mheiges@uga.edu
 
 =head2 getLogin
  
- Usage : my $username = $cfg->getLogin;
+ Usage : my $username = $cfg->getAppDb->getLogin;
  Returns : login name for the database
  
 =head2 getPassword
  
- Usage : my $passwd = $cfg->getPassword;
+ Usage : my $passwd = $cfg->getAppDb->getPassword;
  Returns : login password for the database
  
 =head2 getDbiDsn
  
- Usage : my $dsn = $cfg->getDbiDsn;
+ Usage : my $dsn = $cfg->getAppDb->getDbiDsn;
  Returns : perl dbi connection string. converted from the jdbc connection URL in the model-config.xml
  Example : dbi:Oracle:host=redux.rcc.uga.edu;sid=trichsite
  
 =head2 getConnectionUrl
  
- Usage : my $jdbcUrl = $cfg->getConnectionUrl;
+ Usage : my $jdbcUrl = $cfg->getAppDb->getConnectionUrl;
  Returns : original jdbc connection string from model-config.xml
 
 =head2 getConnectString
  
- Usage : my $connect = $cfg->getConnectString;
+ Usage : my $connect = $cfg->getAppDb->getConnectString;
  Returns : connect string suitable for non-DBI cases (e.g. sqlplus)
 
 

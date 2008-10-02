@@ -12,9 +12,9 @@ my $c = new ApiCommonWebsite::Model::ModelConfig($model);
 
 
 my $dbh = DBI->connect(
-    $c->{dbiDsn},
-    $c->{login},
-    $c->{password},
+    $c->getDbiDsn,
+    $c->getLogin,
+    $c->getPassword,
     { PrintError => 1,
       RaiseError => 0
     }
@@ -23,7 +23,7 @@ my $dbh = DBI->connect(
 my $sql = qq(
    select table_name 
    from all_tables 
-   where UPPER(owner) like UPPER('@{[$c->{login}]}') 
+   where UPPER(owner) like UPPER('@{[$c->getLogin]}') 
    and table_name like 'QUERY_RESULT_%');
 
 

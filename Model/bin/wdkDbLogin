@@ -19,9 +19,9 @@ my $c = new ApiCommonWebsite::Model::ModelConfig($model);
 
 exec <<"EOF";
 $ENV{ORACLE_HOME}/bin/sqlplus \\
-$c->{login}/\\
-$c->{password}\\
-\@'$c->{connectString}'
+@{[$c->getAppDb->getLogin]}/\\
+@{[$c->getAppDb->getPassword]}\\
+\@'@{[$c->getAppDb->getConnectString]}'
 EOF
 
 
