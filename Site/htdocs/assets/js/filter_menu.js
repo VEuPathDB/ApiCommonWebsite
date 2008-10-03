@@ -7,6 +7,20 @@ var original_Query_Form_Text;
 //	original_Query_Form_Text = $("#query_form").html();	
 //});  End of Ready Function
 
+function closeStrategy(stratId){
+	var url = "closeStrategy.do?strategy=" + stratId;
+	$.ajax({
+		url: url,
+		dataType:"html",
+		success: function(data){
+			$("#diagram_" + stratId).hide("slow");
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+}
+
 function closeAll(){openFilter(isInsert);}
 
 function formatFilterForm(data, edit, reviseStep){
@@ -122,10 +136,12 @@ function getQueryForm(url){
 
 function OpenOperationBox(stratId) {
 	var selectedStrat = $("#filter_link_div_" + stratId + " select#selected_strategy").val();
-	var url = "\"processFilter.do?strategy=" + stratId + "&insert=&insertstrategy=" + selectedStrat +"\"";
+	var url = "\"processFilter.do?strategy=" + stratId + "&insert=&insertStrategy=" + selectedStrat +"\"";
+	var oform = "<form id='form_question' enctype='multipart/form-data' action='javascript:AddStepToStrategy(" + url + ")' method='post' name='questionForm'>";
+	var cform = "</form>";
 	var ops = "<div class='filter operators'><span class='form_subtitle'>Combine Strategy " + stratId + " with Strategy " + selectedStrat + "</span><div id='operations'><table><tr><td class='opcheck' valign='middle'><input type='radio' name='booleanExpression' value='AND' /></td><td class='operation INTERSECT'></td><td valign='middle'><b>INTERSECT</b></td></tr><tr><td class='opcheck'><input type='radio' name='booleanExpression' value='OR'></td><td class='operation UNION'></td><td><b>UNION</b></td></tr><tr><td class='opcheck'><input type='radio' name='booleanExpression' value='NOT'></td><td class='operation MINUS'></td><td><b>MINUS</b></td></tr></table></div></div>"
-	var button = "<br><br><input type='button' value='Add Strategy' onclick='AddStepToStrategy(" + url + ")' />";
-	ops = ops + button;
+	var button = "<br><br><input type='submit' value='Add Strategy' />";
+	ops = oform + ops + button + cform;
 	$("#filter_link_div_" + stratId + " #query_form").html(ops);
 }
 
