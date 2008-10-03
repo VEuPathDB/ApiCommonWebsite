@@ -19,6 +19,7 @@
 <c:set var="stepNumber" value="0" />
 <!--<div class="chain_background" id="bread_crumb_div">-->
 	<div class="diagram" id="diagram_${strategy.strategyId}">
+		<span class="closeStrategy"><a href="javascript:void(0)" onclick="closeStrategy(${strategy.strategyId})"><img src="/assets/images/Close-X.png" alt="click here to remove ${strategy.name} from the list"/></a></span>
 		<div id="strategy_name">${strategy.name}<span id="strategy_id_span" style="display:none">${strategy.strategyId}</span><span class="strategy_small_text"><br>save as<br>export</span></div>
 		<c:set var="steps" value="${strategy.allSteps}" />
 		<c:forEach items="${steps}" var="step">
