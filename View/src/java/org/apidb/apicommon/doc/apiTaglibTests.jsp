@@ -141,9 +141,11 @@ Configurations from WDK's ModelConfig class, generally representing values set i
 <pre>
 <blockquote>
 <c:forEach 
-    var="cfg" items="${modelConfig.props}"
+    var="section" items="${modelConfig.props}"
+><b>${section.key}</b><blockquote><c:forEach 
+    var="cfg" items="${section.value}"
 >${cfg.key} = ${fn:escapeXml(cfg.value)}
-</c:forEach>
+</c:forEach></blockquote></c:forEach>
 </blockquote>
 </pre>
 <p>
