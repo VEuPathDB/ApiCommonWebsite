@@ -53,8 +53,8 @@
          </c:choose>
             <td>${step.stepId}</td>
             <c:set var="dispName" value="${step.answerValue.question.displayName}"/>
-            <td width=450>${dispName}</td>
-            <td width=450>${recDispName}</td>
+            <td width>${dispName}</td>
+            <td width>${recDispName}</td>
 	    <td align='right' nowrap>${step.createdTime}</td>
 	    <td align='right' nowrap>
 	    <c:choose>
@@ -73,7 +73,46 @@
 </div>
 <!-- end of showing steps -->
 
+       <div>
+            <html:form method="get" action="/processBooleanExpression.do">
+               <span id="comb_title_${type}">Combine results</span>:
+               <span id="comb_input_${type}">
+                  <html:text property="booleanExpression" value=""/>
+               </span>
+
+               <c:if test="${showTransform}">
+                  <html:checkbox property="useBooleanFilter">On gene level</html:checkbox>
+               </c:if>
+               
+               <html:hidden property="historySectionId" value="${type}"/>
+               <html:submit property="submit" value="Get Combined Result"/>
+               <font size="-1">[eg: 1 or ((4 and 3) not 2)]</font>
+            </html:form>
+       </div>
+<table>
+   <tr>
+      <td>
+         <!-- display helper information -->
+         <font class="medium"><b>Understanding AND, OR and NOT</b>:</font>
+         <table border='0' cellspacing='3' cellpadding='0'>
+            <tr>
+               <td width='100'><font class="medium"><b>1 and 2</b></font></td>
+               <td><font class="medium">Genes that 1 and 2 have in common. You can also use "1 intersect 2".</font></td>
+            </tr>
+            <tr>
+               <td width='100'><font class="medium"><b>1 or 2</b></font></td>
+               <td><font class="medium">Genes present in 1 or 2, or both. You can also use "1 union 2".</font></td>
+            </tr>
+            <tr>
+               <td width='100'><font class="medium"><b>1 not 2</b></font></td>
+               <td><font class="medium">Genes in 1 but not in 2. You can also use "1 minus 2".</font></td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
   </c:otherwise>
 </c:choose> 
 <!-- end of deciding step emptiness -->
+
 
