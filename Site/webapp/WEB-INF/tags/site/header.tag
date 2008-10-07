@@ -95,9 +95,9 @@
 <c:set var="version" value="${wdkModel.version}"/>
 
 
-
-
-
+<c:if test="${fn:startsWith(pageContext.request.serverName, 'beta')}">
+<center><font size='-1' color='orange'>This is a pre-release version of ${wdkModel.name} that is under active development. There may be incomplete or inaccurate data and frequent site outages can be expected.</font></center>
+</c:if>
 
 <table width="100%" align="center" cellspacing="0" cellpadding="0" border="0">
 
@@ -138,7 +138,7 @@
 
 <%--Retrieve from DB and display site degraded message scheduled via announcements system--%>
 <c:set var="siteDegraded">
-  <site:announcement messageCategory="Degraded" projectName="PlasmoDB" />
+  <site:announcement messageCategory="Degraded" projectName="${project}" />
 </c:set>
 
 <c:if test="${siteDegraded != ''}">
@@ -154,7 +154,7 @@
 
 <%--Retrieve from DB and display site down message scheduled via announcements system--%> 
 <c:set var="siteDown">
-  <site:announcement messageCategory="Down" projectName="PlasmoDB" />
+  <site:announcement messageCategory="Down" projectName="${project}" />
 </c:set>
 
 <c:if test="${siteDown != ''}">
@@ -247,16 +247,14 @@ Features not yet available in PlasmoDB&nbsp;${version} may still be accessed via
 
 <%--Information message retrieved from DB via messaging system--%>
 <c:set var="siteInfo">
-  <site:announcement messageCategory="Information" projectName="PlasmoDB" />
+  <site:announcement messageCategory="Information" projectName="${project}" />
 </c:set>
 
-<c:if test = "${project == 'PlasmoDB'}">
-<div class="smallBlack2">
+<div class="smallApiBlue">
 <font face="Arial,Helvetica" >
 ${siteInfo}
 </font>
 </div>
-</c:if>
 
 
 </td>
