@@ -55,7 +55,7 @@
             <td align="left">
                              <input name="start" value="1" size="6"> to
                              <input name="end" value="10000" size="6"></td></tr>
-        <tr><td><a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a></td></tr>
+        <tr><td><a href="#help"><img src="images/toHelp.jpg" alt="Help" align="top" border='0'></a></td></tr>
     </table></td></tr>
 
         <td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>

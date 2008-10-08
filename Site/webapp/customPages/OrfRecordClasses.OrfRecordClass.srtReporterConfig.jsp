@@ -96,7 +96,7 @@ function setEnable(flag) {
             </td>
         </tr>
         <tr>
-            <td colspan="3"><a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a></td>
+            <td colspan="3"><a href="#help"><img src="images/toHelp.jpg" alt="Help" align="top" border='0'></a></td>
         </tr>
     </table>
         </td>
@@ -112,7 +112,7 @@ function setEnable(flag) {
 <b><a name="help">Help</a></b>
   <br>
   <br>
-<img src="images/genemodel.gif" align="top" > 
+<img src="images/genemodel.gif" alt="gene model" align="top" > 
 
 <br>
 Types of sequences:

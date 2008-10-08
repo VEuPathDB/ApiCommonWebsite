@@ -127,7 +127,7 @@
           <c:set var="anchorQp" value="HELP_${fromAnchorQ}_${pNam}"/>
           <c:set target="${helpQ}" property="${anchorQp}" value="${qP}"/>
           <a href="#${anchorQp}">
-          <img src='<c:url value="/images/toHelp.jpg"/>' border="0" alt="Help!"></a>
+          <img src='<c:url value="/images/toHelp.jpg"/>' border="0" alt="Help"></a>
       </td>
   </tr>
 </c:forEach>
