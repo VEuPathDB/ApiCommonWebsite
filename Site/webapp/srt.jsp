@@ -157,7 +157,7 @@ function setEnable2(flag) {
       <tr><td align="left"><input name="go" value="Get Sequences" type="submit"/></td></tr>
     </table>
   </form>
-<a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a>
+<a href="#help"><img src="images/toHelp.jpg" alt="Help" align="top" border='0'></a>
 
 <hr>
 
@@ -186,7 +186,7 @@ ${contigsIds3.default} reverse (100..2000)</textarea>
 
     </table>
   </form>
-<a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a>
+<a href="#help"><img src="images/toHelp.jpg" alt="Help" align="top" border='0'></a>
 
 <c:if test="${wdkModel.name eq 'ToxoDB' || wdkModel.name eq 'CryptoDB'}">
 
@@ -195,7 +195,7 @@ ${contigsIds3.default} reverse (100..2000)</textarea>
   <site:mercatorMAVID cgiUrl="${CGI_URL}" projectId="${wdkModel.name}" start="15,000" 
                       end="30,000" inputContig="1" contigId="${contigsIds.default}" cellPadding="2"/>
 
-<a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a>
+<a href="#help"><img src="images/toHelp.jpg" alt="Help" align="top" border='0'></a>
 </c:if>
 
 <hr>
@@ -266,14 +266,14 @@ ${contigsIds3.default} reverse (100..2000)</textarea>
     <tr><td align="left"><input name="go" value="Get Sequences" type="submit"/></td></tr>
     </table>
  </form>
-<a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a>
+<a href="#help"><img src="images/toHelp.jpg" alt="Help" align="top" border='0'></a>
 
 <hr>
 
 <b><a name="help">Help</a></b>
   <br>
   <br>
-<img src="images/genemodel.gif" align="top" > 
+<img src="images/genemodel.gif" alt="gene model" align="top" > 
 
 <br>
 Types of sequences:
