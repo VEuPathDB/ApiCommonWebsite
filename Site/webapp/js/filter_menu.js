@@ -31,7 +31,7 @@ $(document).ready(function(){
 				quesForm.prepend("<input name='myProp(protocol)' type='hidden' value='" + proto +"' />");
 				quesForm.attr("action",action);
 				$("#query_form").html(close_link);
-				$("#query_form").append("<img class='dragHandle' src='images/HAND.png'/>");
+				$("#query_form").append("<img class='dragHandle' alt='' src='images/HAND.png'/>");
 				$("#query_form").append(quesForm);
 				$("#query_selection").fadeOut("normal");
 				$("#query_form").css({
