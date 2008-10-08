@@ -39,7 +39,7 @@
 				    <c:if test="${catByRec.key != 'GeneRecordClasses.GeneRecordClass'}">
 				      <c:set var="qByCat" value="${catByRec.value}" />
 				      <c:forEach items="${qByCat}" var="cat">
-					<li><img class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" />&nbsp;&nbsp;<a class="heading" href="javascript:void(0)">Identify&nbsp; ${cat.key}</a><a class="detail_link small" href="categoryPage.jsp?record=${catByRec.key}&category=${cat.key}">details</a>
+					<li><img class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" alt="" />&nbsp;&nbsp;<a class="heading" href="javascript:void(0)">Identify&nbsp; ${cat.key}</a><a class="detail_link small" href="categoryPage.jsp?record=${catByRec.key}&category=${cat.key}">details</a>
 						<div class="sub_list">
 							<ul>
 								<c:forEach items="${cat.value}" var="q">
@@ -68,7 +68,7 @@
 
 				<c:forEach items="${qByCat}" var="cat">
 					<li>
-						<img class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" />&nbsp;&nbsp;
+						<img class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" alt="" />&nbsp;&nbsp;
 						<a class="heading" href="javascript:void(0)">${cat.key}</a>
 						<a class="detail_link small" href="categoryPage.jsp?record=GeneRecordClasses.GeneRecordClass&category=${cat.key}">details</a>
 						<div class="sub_list">

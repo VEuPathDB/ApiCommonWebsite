@@ -111,7 +111,7 @@
               <td>${strategyId}</td>
               <td>&nbsp;</td>
               <td>
-                 <img id="img_${strategyId}" class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" onclick="toggleSteps(${strategyId})"/>
+                 <img id="img_${strategyId}" class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" alt="" onclick="toggleSteps(${strategyId})"/>
               </td>
               <c:set var="dispNam" value="${strategy.name}"/>
               <td width=450>

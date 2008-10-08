@@ -113,7 +113,7 @@ var query = "${qName}";
 									<i>${flatVoc}</i>
 						    		</input>
 						    		<c:set var="myBox" value="${siteNam}.jpg"/>
-						    		&nbsp;&nbsp;<img src='<c:url value="/images/${myBox}"/>' width="10" height="10"/><br>
+						    		&nbsp;&nbsp;<img src='<c:url value="/images/${myBox}"/>' alt="" width="10" height="10"/><br>
 							</li>
 						</c:if>
 						<c:set var="i" value="${i+1}"/>
@@ -134,7 +134,7 @@ var query = "${qName}";
 						<li><input name="myMultiProp(${pNam})" value="${flatVoc}" id="${siteNumber}" type="checkbox" onclick="copySelectionColor(this,'${selectId}')" >
 							<i>${flatVoc}</i>
 							<c:set var="myBox" value="${site}.jpg"/>
-						    	&nbsp;&nbsp;<img src='<c:url value="/images/${myBox}"/>' width="10" height="10"/><br>
+						    	&nbsp;&nbsp;<img src='<c:url value="/images/${myBox}"/>' alt="" width="10" height="10"/><br>
 						</input></li>
 					  </c:if>
 					  <c:set var="i" value="${i+1}"/>

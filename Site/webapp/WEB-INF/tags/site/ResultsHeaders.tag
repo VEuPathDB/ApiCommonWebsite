@@ -37,10 +37,10 @@
                                 <%-- display arrange attribute buttons --%>
                                 <a href="${commandUrl}&command=arrange&attribute=${attrName}&left=true" 
                                    title="Move ${sumAttrib} left">
-                                    <img src="<c:url value='/images/move_left.gif' />" border="0" /></a>
+                                    <img src="<c:url value='/images/move_left.gif' />" alt="Move left" border="0" /></a>
                             </c:when>
                             <c:otherwise>
-                                <img src="<c:url value='/images/move_left_g.gif' />" border="0" />
+                                <img src="<c:url value='/images/move_left_g.gif' />" alt="Move left" border="0" />
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -48,34 +48,34 @@
                     <div>
                         <c:choose>
                             <c:when test="${!sumAttrib.sortable}">
-                                <img src="<c:url value='/images/sort_up_g.gif' />" border="0" />
+                                <img src="<c:url value='/images/sort_up_g.gif' />" alt="Sort up" border="0" />
                             </c:when>
                             <c:when test="${attrName == sortingAttrNames[0] && sortingAttrOrders[0]}">
-                                <img src="<c:url value='images/sort_up_h.gif' />" 
+                                <img src="<c:url value='images/sort_up_h.gif' />"  alt=""
                                     title="Result is sorted by ${sumAttrib}" />
                             </c:when>
                             <c:otherwise>
                                 <%-- display sorting buttons --%>
                                 <a href="${commandUrl}&command=sort&attribute=${attrName}&sortOrder=asc"
                                     title="Sort by ${sumAttrib}">
-                                    <img src="<c:url value='/images/sort_up.gif' />" border="0" /></a>
+                                    <img src="<c:url value='/images/sort_up.gif' />" alt="Sort up" border="0" /></a>
                             </c:otherwise>
                         </c:choose>
                     </div>
                     <div>
                         <c:choose>
                             <c:when test="${!sumAttrib.sortable}">
-                                <img src="<c:url value='/images/sort_down_g.gif' />" border="0" />
+                                <img src="<c:url value='/images/sort_down_g.gif' />" alt="Sort down" border="0" />
                             </c:when>
                             <c:when test="${attrName == sortingAttrNames[0] && !sortingAttrOrders[0]}">
-                                <img src="<c:url value='images/sort_down_h.gif' />" 
+                                <img src="<c:url value='images/sort_down_h.gif' />"  alt=""
                                     title="Result is reverse sorted by ${sumAttrib}" />
                             </c:when>
                             <c:otherwise>
                                 <%-- display sorting buttons --%>
                                 <a href="${commandUrl}&command=sort&attribute=${attrName}&sortOrder=desc"
                                     title="Reverse sort by ${sumAttrib}">
-                                    <img src="<c:url value='/images/sort_down.gif' />" border="0" /></a>
+                                    <img src="<c:url value='/images/sort_down.gif' />" alt="Sort down" border="0" /></a>
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -85,10 +85,10 @@
                             <c:when test="${j != 0 && j != fn:length(wdkAnswer.summaryAttributes) - 1}">
                                 <a href="${commandUrl}&command=arrange&attribute=${attrName}&left=false"
                                    title="Move ${sumAttrib} right">
-                                    <img src="<c:url value='/images/move_right.gif' />" border="0" /></a>
+                                    <img src="<c:url value='/images/move_right.gif' />" alt="Move right" border="0" /></a>
                             </c:when>
                             <c:otherwise>
-                                <img src="<c:url value='/images/move_right_g.gif' />" border="0" />
+                                <img src="<c:url value='/images/move_right_g.gif' />" alt="Move right" border="0" />
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -98,10 +98,10 @@
                                 <%-- display remove attribute buttons --%>
                                 <a href="${commandUrl}&command=remove&attribute=${attrName}"
                                     title="Remove ${sumAttrib} column">
-                                    <img src="<c:url value='/images/remove.gif' />" border="0" /></a>
+                                    <img src="<c:url value='/images/remove.gif' />" alt="remove" border="0" /></a>
                             </c:when>
                             <c:otherwise>
-                                <img src="<c:url value='/images/remove_g.gif' />" border="0" />
+                                <img src="<c:url value='/images/remove_g.gif' />" alt="remove" border="0" />
                             </c:otherwise>
                         </c:choose>
                     </td>
