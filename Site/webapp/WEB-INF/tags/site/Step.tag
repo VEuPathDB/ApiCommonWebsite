@@ -99,7 +99,7 @@
 		<c:set var="stepName" value="${fn:substring(stepName,0,12)}..."/>
 	</c:if>
 	
-		<div id="step_${stepNum}_sub" class='box row1 size1 arrowgrey' style='left:${left_offset}em'>${step.childStep.isCollapsible}
+		<div id="step_${stepNum}_sub" class='box row1 size1 arrowgrey' style='left:${left_offset}em'>
 			<h3>
 				<a id="stepId_${step.childStep.stepId}" class="crumb_name" onclick="showDetails(this)" href="javascript:void(0)">${stepName}</a>
 				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
