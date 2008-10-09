@@ -28,6 +28,7 @@
 <c:set var="qSets" value="${model.questionSetsMap}" />
 <c:set var="qSet" value="${qSets[qSetName]}" />
 <c:set var="qByCat" value="${qSet.questionsByCategory}" />
+<c:set var="user" value="${sessionScope.wdkUser}"/>
 
 <div id="query_form" class="jqDnR">
 <span class="dragHandle"><h1>Add&nbsp;Step</h1><a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png' alt='Close'/></a></span>
