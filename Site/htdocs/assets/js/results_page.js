@@ -75,7 +75,7 @@ function resetAttr() {
 function showPanel(panel) {
 	var hidePanel;
 	if (panel == 'strategy_results')
-		hidePanel = 'strategy_history';
+		hidePanel = 'search_history';
 	else
 		hidePanel = 'strategy_results';
 
