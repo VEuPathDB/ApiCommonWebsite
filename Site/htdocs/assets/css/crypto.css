@@ -52,12 +52,13 @@ img {
 	color: #666666;
 	font-size: 8px;
 	width: 100%;
-	min-width: 900px;
+	min-width: 950px;
 	height: 104px;
 	text-align: left;
 	background-image: url(../images/crypto/backgroundtop_s.jpg);
 	background-repeat: no-repeat;
 }
+
 
 #header_rt {
    color: #395b8e;
