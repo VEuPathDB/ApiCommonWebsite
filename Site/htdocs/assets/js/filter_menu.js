@@ -352,16 +352,32 @@ function DeleteStep(ele,url){
 			InsertNewStrategy(data);
 			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
-					$("#diagram div.venn:last span.resultCount a").click();
+					$("#"+diagramID+" div.venn:last span.resultCount a").click();
 			}else{
 				var selected_id = parseInt(selected_div.substring(5,6)) - 1;
 				selected_div = selected_div.substring(0,5) + selected_id + selected_div.substring(6);
-		    	$("#"+selected_div+" span.resultCount a").click();
+		    	$("#"+diagramID+" #"+selected_div+" span.resultCount a").click();
 			}
 		
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+}
+
+function ExpandStep(ele,url){
+	var parentStratNum = parseUrl("strategy",url);
+	var strat_div = $("#Strategies");
+	$.ajax({
+		url: url,
+		dataType: "html",
+		success: function(data){
+			var sub = $(".diagram",data);
+			strat_div.append(sub);
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n " + msg + "\n" + e);
 		}
 	});
 }
