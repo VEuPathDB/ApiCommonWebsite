@@ -76,7 +76,7 @@ public class WdkRecordTag extends WdkTagBase
                 pkValues.put(column, value);
             }
 
-            RecordBean wdkRecord = wdkRecordClass.makeRecord(pkValues);
+            RecordBean wdkRecord = new RecordBean(wdkRecordClass, pkValues);
             
             return wdkRecord;
 
