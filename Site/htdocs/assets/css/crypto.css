@@ -1169,6 +1169,63 @@ a.redbutton:active span {
 */
 
 
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =WARNING BOXES 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.infobox {
+	min-width: 900px;
+	margin: 6px 25px 0 6px; 
+	color: #093c8a;
+	background-color: #cdd9eb;
+	padding: 6px;
+	background-image: url(../images/infobox.jpg);
+	background-repeat: repeat-x;
+	text-align: left;
+	border: 1px solid #345d9b;
+	vertical-align: middle;
+}
+
+.infobox img {
+	margin-right: 12px;
+}
+
+.errorbox {
+	min-width: 900px;
+	margin: 6px 25px 0 6px; 
+	color: #c4000e;
+	background-color: #eec1c2;
+	padding: 6px;
+	background-image: url(../images/errorbox.jpg);
+	background-repeat: repeat-x;
+	text-align: left;
+	border: 1px solid #c4000d;
+	vertical-align: middle;
+}
+
+.errorbox img {
+	margin-right: 12px;
+}
+
+.warnbox {
+	min-width: 900px;
+	margin: 6px 25px 0 6px; 
+	color: #c4000e;
+	background-color: #edf0ac;
+	padding: 6px;
+	background-image: url(../images/warnbox.jpg);
+	background-repeat: repeat-x;
+	text-align: left;
+	border: 1px solid #f56614;
+	vertical-align: middle;
+}
+
+.warnbox img {
+	margin-right: 12px;
+}
+
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =MISC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
