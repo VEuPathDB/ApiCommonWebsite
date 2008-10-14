@@ -107,7 +107,7 @@
 	<a class="view_step_link" onclick="NewResults(this,'showSummary.do?strategy=${strategyNum}&step=${stepNum}${subq}&resultsOnly=true')" href="javascript:void(0)">View</a>&nbsp;|&nbsp;
 	<a class="edit_step_link" href="javascript:void(0)" onclick="Edit_Step(this,'showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0')" id="${strategyNum}|${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 	<!--<span style="color:#888;">Edit</span>&nbsp;|&nbsp;-->
-	<a class="expand_step_link" href="javascript:void(0)" onclick="Expand_Step(this,'expandStep.do?strategy=${strategyNum}&step=${step.stepId}')">Expand</a>&nbsp;|&nbsp;
+	<a class="expand_step_link" href="javascript:void(0)" onclick="Expand_Step(this,'expandStep.do?strategy=${strategyNum}&step=${step.childStep.stepId}')">Expand</a>&nbsp;|&nbsp;
 	<a class="insert_step_link" id="${strategyNum}|${stepNum}" href="javascript:void(0)" onclick="Insert_Step(this,'processFilter.do?strategy=${strategyNum}&insert=${stepNum}')">Insert Before</a>
 	<!--<span style="color:#888;">Insert Before</span>-->&nbsp;|&nbsp;
 	<a class="delete_step_link" href="javascript:void(0)" onclick="DeleteStep(this,'deleteStep.do?strategy=${strategyNum}&step=${stepNum}')">Delete</a>
