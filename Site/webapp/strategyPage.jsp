@@ -8,9 +8,6 @@
 <c:set var="model" value="${applicationScope.wdkModel}" />
 <c:set var="strategy" value="${requestScope.wdkStrategy}" />
 <c:set var="step" value="${requestScope.wdkStep}"/>
-<c:if test="${step != null}">
-	<c:set var="step" value="${strategy.latestStep}" />
-</c:if>
 <div id="containerDiv">
 <site:BreadCrumbs strategy="${strategy}" strat_step="${step}"/>
 </div>
