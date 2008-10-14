@@ -229,7 +229,7 @@ public class Gff3CachedReporter extends Reporter {
         QueryInstance instance = baseAnswer.getIdsQueryInstance();
         QueryInfo queryInfo = cacheFactory.getQueryInfo(instance.getQuery());
         String cacheTable = queryInfo.getCacheTable();
-        int instanceId = resultFactory.getInstanceId(instance);
+        int instanceId = instance.getInstanceId();
 
         StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
@@ -278,7 +278,7 @@ public class Gff3CachedReporter extends Reporter {
         QueryInstance instance = baseAnswer.getIdsQueryInstance();
         QueryInfo queryInfo = cacheFactory.getQueryInfo(instance.getQuery());
         String cacheTable = queryInfo.getCacheTable();
-        int instanceId = resultFactory.getInstanceId(instance);
+        int instanceId = instance.getInstanceId();
 
         // construct in clause
         StringBuffer sqlIn = new StringBuffer();
