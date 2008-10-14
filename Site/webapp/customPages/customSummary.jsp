@@ -105,12 +105,12 @@
 
 </table>
 
-</div>
+</div> 
 
 <input type="hidden" id="history_id" value="${history.stepId}"/>
 <div id="Strategies">
 	<c:forEach items="${strategies}" var="strat">
-		<site:BreadCrumbs strategy="${strat}"/>
+		<site:BreadCrumbs strategy="${strat}" strat_step="${strat.latestStep}"/>
 		<br>
 	</c:forEach>
 </div>
