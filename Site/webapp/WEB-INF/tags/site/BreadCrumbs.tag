@@ -10,7 +10,12 @@
 
 <%@ attribute name="strategy"
 	      type="org.gusdb.wdk.model.jspwrap.StrategyBean"
-              required="false"
+              required="true"
+              description="Protocol from the SummaryPage"
+%>
+<%@ attribute name="strat_step"
+	      type="org.gusdb.wdk.model.jspwrap.StepBean"
+              required="true"
               description="Protocol from the SummaryPage"
 %>
 
@@ -21,7 +26,7 @@
 	<div class="diagram" id="diagram_${strategy.strategyId}">
 		<span class="closeStrategy"><a href="javascript:void(0)" onclick="closeStrategy(${strategy.strategyId})"><img src="/assets/images/Close-X.png" alt="click here to remove ${strategy.name} from the list"/></a></span>
 		<div id="strategy_name">${strategy.name}<span id="strategy_id_span" style="display:none">${strategy.strategyId}</span><span class="strategy_small_text"><br>save as<br>export</span></div>
-		<c:set var="steps" value="${strategy.allSteps}" />
+		<c:set var="steps" value="${strat_step.allSteps}" />
 		<c:forEach items="${steps}" var="step">
 			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
 			<c:set var="stepNumber" value="${stepNumber+1}" />
@@ -29,7 +34,7 @@
 		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${strategy.strategyId}:')" id="filter_link"><span>Add Step</span></a>
 	</div>
 	<div class="filter_link_div" id="filter_link_div_${strategy.strategyId}">
-		<site:FilterInterface model="${applicationScope.wdkModel}" recordClass="${strategy.latestStep.dataType}" strategy="${strategy}"/>
+		<site:FilterInterface model="${applicationScope.wdkModel}" recordClass="${strat_step.dataType}" strategy="${strategy}"/>
 	</div>
 <!--</div>-->
 
