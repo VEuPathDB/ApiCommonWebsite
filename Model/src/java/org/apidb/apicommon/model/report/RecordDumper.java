@@ -22,6 +22,7 @@ import org.gusdb.wdk.model.Answer;
 import org.gusdb.wdk.model.Field;
 import org.gusdb.wdk.model.FieldScope;
 import org.gusdb.wdk.model.Question;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -86,7 +87,8 @@ public class RecordDumper {
         System.out.println("Initializing....");
 
         // construct wdkModel
-        WdkModel model = WdkModel.construct(modelName);
+        String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
+        WdkModel model = WdkModel.construct(modelName, gusHome);
 
         // get type list
         String[] types = typeArg.split(",");

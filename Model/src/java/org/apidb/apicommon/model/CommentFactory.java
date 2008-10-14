@@ -47,7 +47,7 @@ public class CommentFactory {
             TransformerException, IOException, SAXException, SQLException,
             JSONException, WdkUserException, InstantiationException,
             IllegalAccessException, ClassNotFoundException {
-        WdkModel wdkModel = WdkModel.construct(projectId);
+        WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
 
         // parse and load the configuration
         CommentConfigParser parser = new CommentConfigParser(gusHome);
