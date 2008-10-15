@@ -76,7 +76,7 @@ sub go {
 
 # sending email to the user so he/she has a record
     if($cc) {
-      $cfmMsg = sendMail($replyTo, $replyTo, $subject, $replyTo, $metaInfo, $message);
+      $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $message);
     } else {
       $cfmMsg = "warning: did not cc user because no email was provided\n";
     }
