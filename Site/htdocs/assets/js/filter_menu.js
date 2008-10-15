@@ -8,17 +8,23 @@ var original_Query_Form_Text;
 //});  End of Ready Function
 
 function closeStrategy(stratId){
-	var url = "closeStrategy.do?strategy=" + stratId;
-	$.ajax({
-		url: url,
-		dataType:"html",
-		success: function(data){
-			$("#diagram_" + stratId).hide("slow");
-		},
-		error: function(data, msg, e){
-			alert("ERROR \n "+ msg + "\n" + e);
-		}
-	});
+	if(stratId.indexOf("_") == -1){
+		var url = "closeStrategy.do?strategy=" + stratId;
+		$.ajax({
+			url: url,
+			dataType:"html",
+			success: function(data){
+				$("#diagram_" + stratId).hide("slow").remove();
+			},
+			error: function(data, msg, e){
+				alert("ERROR \n "+ msg + "\n" + e);
+			}
+		});
+	} else {
+		var parts = stratId.split("_");
+		$("#diagram_" + stratId).hide("slow").remove();
+		$("#diagram_" + parts[0]).css({ height: "10em" });
+	}
 }
 
 function closeAll(){openFilter(isInsert);}
