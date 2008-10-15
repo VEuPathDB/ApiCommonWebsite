@@ -369,12 +369,22 @@ function DeleteStep(ele,url){
 function ExpandStep(ele,url){
 	var parentStratNum = parseUrl("strategy",url);
 	var strat_div = $("#Strategies");
+	var parent_strat = $("#diagram_" + parentStratNum);
 	$.ajax({
 		url: url,
 		dataType: "html",
 		success: function(data){
 			var sub = $(".diagram",data);
-			strat_div.append(sub);
+			parent_strat.css({
+				height: "21em"
+			});
+			sub.css({
+				left: "36px",
+				width: "97%",
+				top: "118px"
+			});
+			//strat_div.append(sub);
+			parent_strat.append(sub);
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n " + msg + "\n" + e);
