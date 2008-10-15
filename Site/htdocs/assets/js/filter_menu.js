@@ -375,6 +375,7 @@ function ExpandStep(ele,url){
 		dataType: "html",
 		success: function(data){
 			var sub = $(".diagram",data);
+			var filter = $(".filter_link_div", data);
 			parent_strat.css({
 				height: "21em"
 			});
@@ -385,6 +386,7 @@ function ExpandStep(ele,url){
 			});
 			//strat_div.append(sub);
 			parent_strat.append(sub);
+			strat_div.append(filter);
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n " + msg + "\n" + e);
