@@ -135,7 +135,7 @@
     <div id="search_history" class="hidden">
   </c:otherwise>
 </c:choose>
-<site:strategyTable model="${wdkModel}" user="${wdkUser}" />
+<site:strategyHistory model="${wdkModel}" user="${wdkUser}" />
 </div> <!-- end history view div -->
 
 </div>

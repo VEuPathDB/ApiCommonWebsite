@@ -31,12 +31,12 @@ function selectNoneHist() {
 }
 
 function displayHist(type) {
-	if(!$("div#panel_" + type).hasClass("enabled")) {
-		$("li#selected").removeAttr("id");
+	if(!$("div.panel_" + type).hasClass("enabled")) {
+		$("li#selected_type").removeAttr("id");
 		$("div.history_panel.enabled").removeClass("enabled");
 		selectNoneHist();
-		$("a#tab_" + type).parent().attr("id", "selected");
-		$("div#panel_" + type).addClass("enabled");
+		$("a#tab_" + type).parent().attr("id", "selected_type");
+		$("div.panel_" + type).addClass("enabled");
 	}
 }
 
