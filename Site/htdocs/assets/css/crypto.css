@@ -825,7 +825,7 @@ a.heading:hover + a.detail_link, .detail_link:hover {
 #footer{
    font-size: 10px;
    width: 75%;
-   text-align: center;
+   text-align: right;
    background-color:#FFFFFF;
    background-image: url(../images/crypto/footer.png);
    background-repeat: repeat-x;
@@ -834,7 +834,9 @@ a.heading:hover + a.detail_link, .detail_link:hover {
    line-height: 1.2em;
    clear: both;
 }
-	
+	#footer img{
+   margin-left: 24px;
+}
 	
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1160,7 +1162,7 @@ a.redbutton:active span {
 }
 
 /* To be placed with the <head>
-<!--[if IE]>
+<!--[if lt IE 7]>
 <style type="text/css"> 
 .twoColHybLt #sidebar1 { padding-top: 30px; }
 .twoColHybLt #mainContent { zoom: 1; padding-top: 15px; }
