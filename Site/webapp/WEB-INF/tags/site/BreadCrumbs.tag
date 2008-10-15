@@ -18,22 +18,30 @@
               required="true"
               description="Protocol from the SummaryPage"
 %>
+<c:set var="sub"value="false" />
+<c:set var="stratName" value="${strategy.name}" />
+<c:set var="stratId" value="${strategy.strategyId}" />
+<c:if test="${strat_step.stepId != strategy.latestStep.stepId}">
+	<c:set var="sub" value="true" />
+	<c:set var="stratName" value="${strat_step.collapsedName}" />
+	<c:set var="stratId" value="${strategy.strategyId}_${strat_step.stepId}" />
+</c:if>
 
 <!--<link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>-->
 <c:set var="stepNumber" value="0" />
 <!--<div class="chain_background" id="bread_crumb_div">-->
-	<div class="diagram" id="diagram_${strategy.strategyId}">
-		<span class="closeStrategy"><a href="javascript:void(0)" onclick="closeStrategy(${strategy.strategyId})"><img src="/assets/images/Close-X.png" alt="click here to remove ${strategy.name} from the list"/></a></span>
-		<div id="strategy_name">${strategy.name}<span id="strategy_id_span" style="display:none">${strategy.strategyId}</span><span class="strategy_small_text"><br>save as<br>export</span></div>
+	<div class="diagram" id="diagram_${stratId}">
+		<span class="closeStrategy"><a href="javascript:void(0)" onclick="closeStrategy(${stratId})"><img src="/assets/images/Close-X.png" alt="click here to remove ${stratName} from the list"/></a></span>
+		<div id="strategy_name">${stratName}<span id="strategy_id_span" style="display:none">${stratId}</span><span class="strategy_small_text"><br>save as<br>export</span></div>
 		<c:set var="steps" value="${strat_step.allSteps}" />
 		<c:forEach items="${steps}" var="step">
 			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
 			<c:set var="stepNumber" value="${stepNumber+1}" />
 		</c:forEach>
-		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${strategy.strategyId}:')" id="filter_link"><span>Add Step</span></a>
+		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${stratId}:')" id="filter_link"><span>Add Step</span></a>
 	</div>
-	<div class="filter_link_div" id="filter_link_div_${strategy.strategyId}">
+	<div class="filter_link_div" id="filter_link_div_${stratId}">
 		<site:FilterInterface model="${applicationScope.wdkModel}" recordClass="${strat_step.dataType}" strategy="${strategy}"/>
 	</div>
 <!--</div>-->
