@@ -19,6 +19,12 @@ DROP TABLE locations;
 DROP TABLE comments;
 DROP TABLE comment_target;
 DROP TABLE review_status;
+
+
+DROP SEQUENCE locations_pkseq;
+DROP SEQUENCE external_databases_pkseq;
+DROP SEQUENCE comments_pkseq;
+
 */
 
 
@@ -61,6 +67,7 @@ CREATE TABLE comments2.comments
   review_status_id varchar(20),
   accepted_version varchar(100),
   LOCATION_STRING VARCHAR2(1000),
+  organism VARCHAR(50),
   content clob,
   CONSTRAINT comments_pkey PRIMARY KEY (comment_id),
   CONSTRAINT comments_ct_id_fkey FOREIGN KEY (comment_target_id)
