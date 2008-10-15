@@ -12,33 +12,56 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<!--[if IE]>
+<!--[if lt IE 7]>
 <style type="text/css" media="screen">
-body {
-behavior: url(/assets/css/csshover.htc);
-font-size: 100%;
-}
-
-#menu ul li {float: left; width: 100%;}
-#menu ul li a {height: 1%;} 
-
-#menu a, #menu h2 {
-font: bold 0.7em/1.4em arial, helvetica, sans-serif;
-}
-</style>
-<![endif]-->
-
-<!--[if IE]>
-<style type="text/css"> 
-.twoColHybLt #sidebar1 { padding-top: 30px; }
-.twoColHybLt #mainContent { zoom: 1; padding-top: 15px; }
-#menu_lefttop {
-	width: 220px;
-	margin-top: 8px;
-	position: absolute;
-	left: 6px;
-	top: 129px;
+	body {
+		behavior: url(/assets/css/csshover.htc);
+		font-size: 100%;
 	}
+
+	#menu ul li {
+		float: left; width: 100%;
+	}
+	
+	#menu ul li a {
+		height: 1%;
+	} 
+
+	#menu a, #menu h2 {
+		font: bold 0.7em/1.4em arial, helvetica, sans-serif;
+	}
+
+	.twoColHybLt #sidebar1 { 
+		padding-top: 30px; 
+	}
+	
+	.twoColHybLt #mainContent { 
+		zo
+		om: 1; padding-top: 15px; 
+	}
+	
+	#menu_lefttop {
+		width: 220px;
+		margin-top: 8px;
+		position: absolute;
+		left: 6px;
+		top: 129px;
+	}
+	
+	*html .rightarrow2 {
+		left: .5em;
+		top: -3.4em;
+	}
+	
+	*html .crumb_details {
+		width: 500px;
+		z-index: 999;
+	}
+	
+	*html .operation {
+		z-index: -1;
+	}
+		
 </style>
 <![endif]-->
 
