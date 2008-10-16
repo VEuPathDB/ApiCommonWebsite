@@ -16,7 +16,7 @@
       <tr class="headerrow">
 	<th>&nbsp;</th>
 	<%-- <th>ID</th> --%>
-        <th>View</th>
+        <th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>Strategy</th>
         <th>&nbsp;</th>
@@ -35,7 +35,23 @@
             </c:choose>
             <td><input type=checkbox id="${strategyId}" onclick="updateSelectedList()"/></td>
             <%-- <td>${strategyId}</td> --%>
-            <td>&nbsp;<!-- view icon/link goes in here --></td>
+            <%-- need to see if this strategy's id is in the session. --%>
+            <c:set var="active" value=""/>
+            <c:set var="activeStrategies" value="${sessionScope.wdkActiveStrategies}"/>
+            <c:forEach items="${activeStrategies}" var="id">
+              <c:if test="${strategyId == id}">
+                <c:set var="active" value="true"/>
+              </c:if>
+            </c:forEach>
+            <c:choose>
+              <c:when test="${active == ''}">
+                <td class="strat_inactive">
+              </c:when>
+              <c:otherwise>
+                <td class="strat_active">
+              </c:otherwise>
+            </c:choose>
+            <a href="javascript:void(0)" onclick="return false;"></a></td>
             <td>
               <img id="img_${strategyId}" class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" alt="" onclick="toggleSteps(${strategyId})"/>
             </td>

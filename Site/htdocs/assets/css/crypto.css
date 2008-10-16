@@ -1270,6 +1270,16 @@ clear {
 }
 
 /* APPLICATION PAGE STYLES */
+td.strat_active {
+    width: 30px;
+    background: url(/assets/images/eyeBlue.png) no-repeat 8px 8px;
+}
+
+td.strat_inactive {
+    width: 30px;
+    background: url(/assets/images/eyeGrey.png) no-repeat 8px 8px;
+}
+
 ul#strategy_tabs {
     border-bottom: 1px solid #CCCCCC;
     margin:0;
