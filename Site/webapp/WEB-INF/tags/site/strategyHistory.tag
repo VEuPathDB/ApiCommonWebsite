@@ -16,7 +16,8 @@
               description="Currently active user object"
 %>
 
-<c:set var="strategies" value="${user.strategiesByCategory}"/>
+<c:set var="strategiesMap" value="${user.strategiesByCategory}"/>
+<c:set var="invalidStrategies" value="${user.invalidStrategies}"/>
 <c:set var="modelName" value="${model.name}"/>
 <c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'cryptodb')}" />
 
@@ -29,7 +30,7 @@
   <c:set var="typeC" value="0"/>
   <!-- begin creating tabs for history sections -->
   <ul id="history_tabs">
-  <c:forEach items="${strategies}" var="strategyEntry">
+  <c:forEach items="${strategiesMap}" var="strategyEntry">
   <c:set var="type" value="${strategyEntry.key}"/>
   <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
   <c:set var="histList" value="${strategyEntry.value}"/>
@@ -48,6 +49,18 @@
   <a id="tab_${recTabName}" onclick="displayHist('${recTabName}')"
   href="javascript:void(0)">My&nbsp;${recDispName}&nbsp;Searches</a></li>
   </c:forEach>
+  <c:if test="${fn:length(invalidStrategies) > 0}">
+    <c:choose>
+      <c:when test="${typeC == 0}">
+        <li id="selected_type">
+      </c:when>
+      <c:otherwise>
+        <li>
+      </c:otherwise>
+    </c:choose>
+    <a id="tab_invalid" onclick="displayHist('invalid')"
+       href="javascript:void(0)">My$nbsp;Invalid&nbsp;Searches</a></li>
+  </c:if>
   </ul>
 
 <!-- should be a div instead of a table -->
@@ -63,12 +76,68 @@
    </tr>
 </table>
 
-<site:strategyTable strategies="${user.unsavedStrategiesByCategory}" />
-<site:strategyTable strategies="${user.savedStrategiesByCategory}" />
+<c:set var="typeC" value="0"/>
+<c:set var="strategiesMap" value="${user.unsavedStrategiesByCategory}"/>
+<!-- begin creating history sections to display strategies -->
+<c:forEach items="${strategiesMap}" var="strategyEntry">
+  <c:set var="type" value="${strategyEntry.key}"/>
+  <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
+  <c:set var="strategies" value="${strategyEntry.value}"/>
+  <c:set var="recDispName" value="${strategies[0].latestStep.answerValue.question.recordClass.type}"/>
+  <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
+
+  <c:set var="typeC" value="${typeC+1}"/>
+  <c:choose>
+    <c:when test="${typeC == 1}">
+      <div class="panel_${recTabName} history_panel enabled">
+    </c:when>
+    <c:otherwise>
+      <div class="panel_${recTabName} history_panel">
+    </c:otherwise> 
+  </c:choose>
+  <site:strategyTable strategies="${strategies}" />
+</div>
+</c:forEach>
+<!-- end of showing strategies grouped by RecordTypes -->
 
 
-<%-- how are we going to deal w/ invalid strategies?
-<site:strategyTable strategies="${user.invalidStrategies}" /> --%>
+<c:set var="typeC" value="0"/>
+<c:set var="strategiesMap" value="${user.savedStrategiesByCategory}"/>
+<!-- begin creating history sections to display strategies -->
+<c:forEach items="${strategiesMap}" var="strategyEntry">
+  <c:set var="type" value="${strategyEntry.key}"/>
+  <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
+  <c:set var="strategies" value="${strategyEntry.value}"/>
+  <c:set var="recDispName" value="${strategies[0].latestStep.answerValue.question.recordClass.type}"/>
+  <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
+
+  <c:set var="typeC" value="${typeC+1}"/>
+  <c:choose>
+    <c:when test="${typeC == 1}">
+      <div class="panel_${recTabName} history_panel enabled">
+    </c:when>
+    <c:otherwise>
+      <div class="panel_${recTabName} history_panel">
+    </c:otherwise> 
+  </c:choose>
+  <site:strategyTable strategies="${strategies}" />
+</div>
+</c:forEach>
+<!-- end of showing strategies grouped by RecordTypes -->
+
+<%-- invalid strategies, if any --%>
+<c:if test="${fn:length(invalidStrategies) > 0}">
+  <c:choose>
+    <c:when test="${typeC == 0}">
+      <div class="panel_invalid history_panel enabled">
+    </c:when>
+    <c:otherwise>
+      <div class="panel_invalid history_panel">
+    </c:otherwise>
+  </c:choose>
+    <site:strategyTable strategies="${user.invalidStrategies}" />
+  </div>
+</c:if>
 
 <table>
    <tr>

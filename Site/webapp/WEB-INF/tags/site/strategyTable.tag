@@ -5,32 +5,13 @@
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 
 <%@ attribute name="strategies"
-              type="java.util.Map"
+              type="java.util.List"
               required="false"
               description="Currently active user object"
 %>
-
-<c:set var="typeC" value="0"/>
-<!-- begin creating history sections to display strategies -->
-<c:forEach items="${strategies}" var="strategyEntry">
-  <c:set var="type" value="${strategyEntry.key}"/>
-  <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
-  <c:set var="histList" value="${strategyEntry.value}"/>
-  <c:set var="recDispName" value="${histList[0].latestStep.answerValue.question.recordClass.type}"/>
-  <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
-
-  <c:set var="typeC" value="${typeC+1}"/>
-  <c:choose>
-    <c:when test="${typeC == 1}">
-      <div class="panel_${recTabName} history_panel enabled">
-    </c:when>
-    <c:otherwise>
-      <div class="panel_${recTabName} history_panel">
-    </c:otherwise> 
-  </c:choose>
-   
-  <!-- begin of the html:form for rename query -->
-  <html:form method="get" action="/renameStrategy.do">
+ 
+<!-- begin of the html:form for rename query -->
+<html:form method="get" action="/renameStrategy.do">
     <table border="0" cellpadding="5" cellspacing="0">
       <tr class="headerrow">
 	<th>&nbsp;</th>
@@ -46,7 +27,7 @@
       </tr>
       <c:set var="i" value="0"/>
       <%-- begin of forEach unsaved strategy in the category --%>
-        <c:forEach items="${histList}" var="strategy">
+        <c:forEach items="${strategies}" var="strategy">
           <c:set var="strategyId" value="${strategy.strategyId}"/>
             <c:choose>
               <c:when test="${i % 2 == 0}"><tr class="lines"></c:when>
@@ -151,6 +132,3 @@
   </table>
   </html:form> 
   <!-- end of the html:form for rename query -->
-</div>
-</c:forEach>
-<!-- end of showing strategies grouped by RecordTypes -->
