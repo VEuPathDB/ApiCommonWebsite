@@ -211,8 +211,8 @@
   </tag>
 
   <tag>
-      <name>wdkCacheDB</name>
-      <tagclass>org.apidb.apicommon.taglib.wdk.info.CacheDbTag</tagclass>
+      <name>wdkUserDB</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.info.UserDbTag</tagclass>
       <bodycontent>scriptless</bodycontent>
       <attribute>
           <name>var</name>

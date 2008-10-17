@@ -169,6 +169,31 @@ public class WebappInfoTag extends SimpleTagSupport {
       }
     }
 
+    /**
+     *
+     * kinda hackish method for determining uptime of webapp... use the 
+     * timestamp on the app's tempdir ( $CATALINA_HOME/work/Catalina/localhost/$WEBAPP )
+     *
+     * This dir is created on deployment and touched on reload. The downside to this 
+     * simplistic approach is that, after deployment, the tempdir's timestamp is updated
+     * again once the first JSP page is loaded because an 'org' subdirectory is added to
+     * contain the compiled JSP cache. This throws off the calculation of the start time.
+     * One improvement can be made by precompiling a JSP page at load/deploy time.
+     * Add to the app's web.xml a load-on-startup directive for an existing JSP page. 
+     * This will cause the 'org' subdirectory to be created at startup rather than 
+     * being defered until first page load. For example,
+     *
+     *    <servlet>
+     *      <servlet-name>home.jsp</servlet-name>
+     *      <jsp-file>/home.jsp</jsp-file>
+     *      <load-on-startup>0</load-on-startup>
+     *    </servlet>
+     *
+     * If the webapp later makes other changes to the tempdir, as it might for
+     * temporary storage for file uploads, for example, then this trick for 
+     * determining uptime will be inaccurate.
+     *
+     */
     private void setWebappUptimeText(ServletContext application, PageContext pageContext) {
       try {
         java.text.DateFormat formatter = new java.text.SimpleDateFormat(dateFormatStr);
