@@ -90,7 +90,7 @@
               <c:otherwise><tr class="linesalt" style="display: none;"></c:otherwise>
             </c:choose>
             <!-- offer a rename here too? -->
-            <td colspan="4"></td>
+            <td colspan="3"></td>
             <c:choose>
               <c:when test="${j == 0}">
                 <td nowrap><ul style="margin-left: 10px;"><li style="float:left;">Step ${j + 1} (${step.answerValue.resultSize}): ${step.customName}</li></ul></td>

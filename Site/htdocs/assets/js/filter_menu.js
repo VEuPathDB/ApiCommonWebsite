@@ -27,6 +27,68 @@ function closeStrategy(stratId){
 	}
 }
 
+function showSaveForm(stratId){
+	if (stratId.indexOf("_") != -1){
+		stratId = stratId.split("_")[0];
+	}
+	$("div.save_strat_div").addClass("hidden");
+	var saveForm = $("div#save_strat_div_" + stratId);
+	saveForm.removeClass("hidden");
+}
+
+function validateSaveForm(form){
+	if (form.name.value == ""){
+		alert("You must specify a name for saving!");
+		return false;
+	}
+	return true;
+}
+
+function saveStrategy(stratId){
+	var saveForm = $("div#save_strat_div_" + stratId);
+	var name = $("input[name='name']",saveForm).attr("value");
+	var strategy = $("input[name='strategy']",saveForm).attr("value");
+	var url="renameStrategy.do?strategy=";
+	url = url + strategy + "&name=" + name;
+	$.ajax({
+		url: url,
+		dataType: "html",
+		success: function(data){
+			// reload strategy panel by stratId
+			newStrategy = $("div[id^='diagram_']", data).attr("id");
+			newStrategy = newStrategy.split("_")[1];
+			$("div#diagram_" + strategy).html($("div#diagram_" + newStrategy, data).html());
+			$("div[id^='diagram_" + strategy + "_']").each(function(){
+				refreshStrategy(this.id, newStrategy);
+			});
+			saveForm.addClass("hidden");
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+}
+
+function refreshStrategy(stratId, newStrategy){
+	var url="showStrategy.do?strategy=" + stratId;
+	var newStratId = stratId;
+	var arr = stratId.split("_");
+	if (newStrategy != arr[0]) {
+		arr[0] = newStrategy;
+		arr.join("_");
+	}
+	$.ajax({
+		url: url,
+		dataType: "html",
+		success: function(data){
+			$("div#diagram_" + stratId).html($("div#diagram_" + newStratId, data).html());
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+}
+
 function closeAll(){openFilter(isInsert);}
 
 function formatFilterForm(data, edit, reviseStep){
