@@ -9,7 +9,7 @@ in model-config.xml
 
 Example usage:
 <%@ taglib prefix="api" uri="http://apidb.org/taglib" %>
-<api:wdkCacheDB var="cacheTable"/>
+<api:wdkUserDb var="cacheTable"/>
 ${cacheTable.dbInfo['system_date']} 
 
 **/
@@ -31,7 +31,7 @@ import javax.sql.DataSource;
 import javax.servlet.jsp.JspException;
 
 
-public class CacheDbTag extends WdkTagBase {
+public class UserDbTag extends WdkTagBase {
 
     private String var;
     
