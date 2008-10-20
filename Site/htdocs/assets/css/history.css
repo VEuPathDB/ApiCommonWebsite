@@ -14,7 +14,7 @@ ul#history_tabs {
     margin:0;
 }
 
-#history_tabs a {
+#history_tabs li a {
     color:#999999;
     display:block;
     padding:0.24em 1em;
@@ -22,7 +22,7 @@ ul#history_tabs {
     text-decoration:none;
 }
 
-#history_tabs a:hover {
+#history_tabs li a:hover {
     color:#0000CC;
 }
 
@@ -45,5 +45,9 @@ ul#history_tabs {
 
 .history_panel.enabled {
     display: inline;
+}
+
+#cmplt_hist_link {
+    float: right;
 }
 

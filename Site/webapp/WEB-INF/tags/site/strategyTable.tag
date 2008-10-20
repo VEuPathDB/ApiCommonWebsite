@@ -78,7 +78,7 @@
             <td align='right' nowrap>${strategy.latestStep.estimateSize}</td>
             <c:set value="${strategy.latestStep.answerValue.question.fullName}" var="qName" />
             <c:set var="stepId" value="${strategy.latestStep.stepId}"/>
-            <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${stepId}">download</a></td>
+            <td nowrap><a href="downloadStep.do?step_id=${stepId}">download</a></td>
           </tr>
 	  <!-- begin rowgroup for strategy steps -->
           <c:set var="j" value="0"/>
@@ -117,7 +117,7 @@
             </td>
             <td align='right' nowrap>${step.answerValue.resultSize}</td>
               <c:set var="stepId" value="${step.stepId}"/>
-              <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${stepId}">download</a></td> --%>
+              <td nowrap><a href="downloadStep.do?step_id=${stepId}">download</a></td> --%>
         </tr>
         <%-- <c:if test="${step.childStep != null}">
          <c:choose>
@@ -136,7 +136,7 @@
          </td>
          <td align='right' nowrap>${step.childStep.estimateSize}</td>
            <c:set var="stepId" value="${step.childStep.stepId}"/>
-         <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${stepId}">download</a></td>
+         <td nowrap><a href="downloadStep.do?step_id=${stepId}">download</a></td>
         </c:if> --%>
         <c:set var="j" value="${j + 1}"/>
       </c:forEach>

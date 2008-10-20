@@ -64,7 +64,7 @@
             </td>
             <td align='right' nowrap>${step.estimateSize}</td>
             <c:set value="${step.answerValue.question.fullName}" var="qName" />
-            <td nowrap><a href="downloadUserAnswer.do?user_answer_id=${step.stepId}">download</a></td>
+            <td nowrap><a href="downloadStep.do?step_id=${step.stepId}">download</a></td>
          </tr>
          <c:set var="i" value="${i+1}"/>
        </c:forEach>

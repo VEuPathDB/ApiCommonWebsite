@@ -61,8 +61,8 @@
     <a id="tab_invalid" onclick="displayHist('invalid')"
        href="javascript:void(0)">My$nbsp;Invalid&nbsp;Searches</a></li>
   </c:if>
+  <a id="cmplt_hist_link" href="showQueryHistory.do">Complete History</a>
   </ul>
-
 <!-- should be a div instead of a table -->
 <table class="clear_all">
    <tr>
@@ -95,6 +95,7 @@
       <div class="panel_${recTabName} history_panel">
     </c:otherwise> 
   </c:choose>
+  <h2>In Progress</h2>
   <site:strategyTable strategies="${strategies}" />
 </div>
 </c:forEach>
@@ -120,6 +121,7 @@
       <div class="panel_${recTabName} history_panel">
     </c:otherwise> 
   </c:choose>
+  <h2>Saved</h2>
   <site:strategyTable strategies="${strategies}" />
 </div>
 </c:forEach>
