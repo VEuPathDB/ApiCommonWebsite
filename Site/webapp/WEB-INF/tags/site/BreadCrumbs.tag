@@ -34,7 +34,18 @@
 <!--<div class="chain_background" id="bread_crumb_div">-->
 	<div class="diagram" id="diagram_${stratId}">
 		<span class="closeStrategy"><a href="javascript:void(0)" onclick="closeStrategy('${stratId}')"><img src="/assets/images/Close-X.png" alt="click here to remove ${stratName} from the list"/></a></span>
-		<div id="strategy_name">${stratName}<span id="strategy_id_span" style="display:none">${stratId}</span><span class="strategy_small_text"><br><a class="save_strat_link" onclick="showSaveForm('${stratId}')" href="javascript:void(0)">save as</a><br>export</span></div>
+		<div id="strategy_name">${stratName}<span id="strategy_id_span" style="display:none">${stratId}</span><span class="strategy_small_text"><br><a class="save_strat_link" onclick="showSaveForm('${stratId}')" href="javascript:void(0)">save as</a>
+        <div class="save_strat_div" id="save_strat_div_${stratId}">
+            <span class="dragHandle">
+                 <h1>Save As</h1>
+                 <a class="close_window" href="javascript:closeSaveWindow('${stratId}')"><img alt="Close" src="/assets/images/Close-X-box.png"/></a>
+            </span>
+            <form action="javascript:saveStrategy('${stratId}')" onsubmit="return validateSaveForm(this);">
+                 <input type="hidden" name="strategy" value="${strategy.strategyId}" />
+                 <input type="text" name="name" value="${savedName}" />
+                 <input type="submit" value="Save"/>
+            </form>
+        </div><br>export</span></div>
 		<c:set var="steps" value="${strat_step.allSteps}" />
 		<c:forEach items="${steps}" var="step">
 			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
@@ -45,13 +56,6 @@
 	<div class="filter_link_div" id="filter_link_div_${stratId}">
 		<site:FilterInterface model="${applicationScope.wdkModel}" recordClass="${strat_step.dataType}" strategy="${strategy}"/>
 	</div>
-        <div class="save_strat_div hidden" id="save_strat_div_${stratId}">
-            <form action="javascript:saveStrategy('${stratId}')" onsubmit="return validateSaveForm(this);">
-                 <input type="hidden" name="strategy" value="${strategy.strategyId}" />
-                 <input type="text" name="name" value="${savedName}" />
-                 <input type="submit" value="Save"/>
-            </form>
-        </div>
 <!--</div>-->
 
 

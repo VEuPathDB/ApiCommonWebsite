@@ -27,13 +27,16 @@ function closeStrategy(stratId){
 	}
 }
 
+function closeSaveWindow(stratId){
+	$("div#save_strat_div_" + stratId).hide();
+}
+
 function showSaveForm(stratId){
 	if (stratId.indexOf("_") != -1){
 		stratId = stratId.split("_")[0];
 	}
-	$("div.save_strat_div").addClass("hidden");
-	var saveForm = $("div#save_strat_div_" + stratId);
-	saveForm.removeClass("hidden");
+	$("div.save_strat_div").hide()
+	$("div#save_strat_div_" + stratId).show();
 }
 
 function validateSaveForm(form){

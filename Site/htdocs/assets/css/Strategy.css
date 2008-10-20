@@ -382,3 +382,17 @@ span.closeStrategy {
 	left: 15px;
 	z-index: 5;
 }
+
+.diagram .save_strat_div {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 6em;
+	width: 21em;
+	background-color: #FFFFFF;
+	background-image: url(../images/filter_top.gif);
+	background-repeat: repeat-x;
+	border: 1px solid #345d9b;	
+	padding-bottom: 8px;
+	z-index: 90;
+}

@@ -2,21 +2,7 @@
 	width: 100%;
 	min-height: 50px;
 }
-
-.save_strat_div {
-	position: absolute;
-	left:135px;
-	top:279px;
-	width:200px;
-	background-color: #FFFFFF;
-	background-image: url(../images/filter_top.gif);
-	background-repeat: repeat-x;
-	border: 1px solid #345d9b;	
-	padding-bottom: 8px;
-	z-index: 90;
-}
 	
-
 #instructions {
 	position: relative;
 	left: 70px;
@@ -63,10 +49,6 @@
 	border-spacing: 10px;
 }
 
-
-
-
-
 #query_selection ul li ul{
 	z-index: 200;
 }
@@ -109,6 +91,12 @@
 }
 
 #close_filter_query {
+	position: absolute;
+	right: 0px;
+	top:0px;
+}
+
+.close_window {
 	position: absolute;
 	right: 0px;
 	top:0px;
