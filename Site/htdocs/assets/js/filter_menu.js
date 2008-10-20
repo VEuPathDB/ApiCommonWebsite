@@ -166,9 +166,9 @@ function formatFilterForm(data, edit, reviseStep){
 		}
 	}
 	if(edit == 0)	
-		var action = "javascript:AddStepToStrategy('" + pro_url + "')";
+		var action = "javascript:AddStepToStrategy('" + proto + "', '" + pro_url + "')";
 	else
-		var action = "javascript:EditStep('" + pro_url + "', " + parseInt(reviseStep) + ")";
+		var action = "javascript:EditStep('" + proto + "', '" + pro_url + "', " + parseInt(reviseStep) + ")";
 	var formtitle = "";
 	if(edit == 0)
 		formtitle = "<h1>Add&nbsp;Step</h1>";
@@ -300,14 +300,15 @@ function parseInputs(){
 	return d;
 }	
 
-function InsertNewStrategy(data){
+function InsertNewStrategy(proto, data){
 	var new_dia_id = $(".diagram",data).attr("id");
 	new_dia_id = "#" + new_dia_id;
 	var new_dia = $(".diagram",data);
-	$(new_dia_id).html(new_dia.html());
+	//$(new_dia_id).html(new_dia.html());
+	$("#diagram_" + proto).html(new_dia.html());
 }
 
-function AddStepToStrategy(act){
+function AddStepToStrategy(proto, act){
 	var url = act;	
 	var d = parseInputs();
 	$.ajax({
@@ -331,7 +332,7 @@ function AddStepToStrategy(act){
 			},
 		success: function(data){
 			$("#loading_step_div").html("").hide("fast");
-			InsertNewStrategy(data);
+			InsertNewStrategy(proto, data);
 			var new_dia_id = $(".diagram",data).attr("id");
 			$("#" + new_dia_id + " div.venn:last span.resultCount a").click();
 		},
@@ -342,7 +343,7 @@ function AddStepToStrategy(act){
 	openFilter(isInsert);
 }
 
-function EditStep(url, step_number){
+function EditStep(proto, url, step_number){
 	$("#query_form").hide("fast");
 	var d = parseInputs();
 		$.ajax({
@@ -375,7 +376,7 @@ function EditStep(url, step_number){
 				}
 			}
 			$("#loading_step_div").html("").hide("fast");
-			InsertNewStrategy(data);
+			InsertNewStrategy(proto, data);
 		    $("#"+selected_div+" span.resultCount a").click();
 		},
 		error: function(data, msg, e){
