@@ -35,7 +35,7 @@
             </c:choose>
             <td><input type=checkbox id="${strategyId}" onclick="updateSelectedList()"/></td>
             <%-- <td>${strategyId}</td> --%>
-            <%-- need to see if this strategy's id is in the session. --%>
+            <%-- need to see if this strategys id is in the session. --%>
             <c:set var="active" value=""/>
             <c:set var="activeStrategies" value="${sessionScope.wdkActiveStrategies}"/>
             <c:forEach items="${activeStrategies}" var="id">
@@ -45,13 +45,13 @@
             </c:forEach>
             <c:choose>
               <c:when test="${active == ''}">
-                <td class="strat_inactive">
+                <td id="eye_${strategy.strategyId}" class="strat_inactive">
               </c:when>
               <c:otherwise>
-                <td class="strat_active">
+                <td id="eye_${strategy.strategyId}" class="strat_active">
               </c:otherwise>
             </c:choose>
-            <a href="javascript:void(0)" onclick="return false;"></a></td>
+            <a href="javascript:void(0)" onclick="toggleEye(this,'${strategy.strategyId}')"><img src="/assets/images/transparent1.gif" alt="Toggle View of Strategy" /></a></td>
             <td>
               <img id="img_${strategyId}" class="plus-minus plus" src="/assets/images/sqr_bullet_plus.png" alt="" onclick="toggleSteps(${strategyId})"/>
             </td>
