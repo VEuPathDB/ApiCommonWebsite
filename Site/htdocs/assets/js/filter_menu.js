@@ -7,6 +7,21 @@ var original_Query_Form_Text;
 //	original_Query_Form_Text = $("#query_form").html();	
 //});  End of Ready Function
 
+function openStrategy(stratId){
+	var url = "showStrategy.do?strategy=" + stratId;
+	$.ajax({
+		url: url,
+		datatype:"html",
+		success: function(data){
+			InsertNewStrategy(stratId, data);
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+	$("#eye_" + stratId).removeClass("strat_inactive").addClass("strat_active");
+}
+
 function closeStrategy(stratId){
 	if(stratId.indexOf("_") == -1){
 		var url = "closeStrategy.do?strategy=" + stratId;
@@ -20,6 +35,7 @@ function closeStrategy(stratId){
 				alert("ERROR \n "+ msg + "\n" + e);
 			}
 		});
+		$("#eye_" + stratId).removeClass("strat_active").addClass("strat_inactive");
 	} else {
 		var parts = stratId.split("_");
 		$("#diagram_" + stratId).hide("slow").remove();
@@ -307,8 +323,13 @@ function InsertNewStrategy(proto, data){
 	var new_dia_id = $(".diagram",data).attr("id");
 	new_dia_id = "#" + new_dia_id;
 	var new_dia = $(".diagram",data);
-	//$(new_dia_id).html(new_dia.html());
-	$("#diagram_" + proto).html(new_dia.html());
+	if($("#diagram_" + proto).length != 0){
+		$("#diagram_" + proto).html(new_dia.html());
+	}else{
+		$("#Strategies").prepend(document.createElement("br"));
+		$("#Strategies").prepend(new_dia);
+		
+	}
 }
 
 function AddStepToStrategy(proto, act){
