@@ -86,13 +86,13 @@ function saveStrategy(stratId){
 }
 
 function refreshStrategy(stratId, newStrategy){
-	var url="showStrategy.do?strategy=" + stratId;
 	var newStratId = stratId;
 	var arr = stratId.split("_");
 	if (newStrategy != arr[0]) {
 		arr[0] = newStrategy;
-		arr.join("_");
+		newStratId = arr.join("_");
 	}
+	var url="showStrategy.do?strategy=" + newStratId;
 	$.ajax({
 		url: url,
 		dataType: "html",
@@ -319,9 +319,10 @@ function parseInputs(){
 function InsertNewStrategy(proto, data){
 	var new_dia_id = $(".diagram",data).attr("id");
 	new_dia_id = "#" + new_dia_id;
+	var new_proto = new_dia_id.substring(new_dia_id.indexOf("_") + 1);
 	var new_dia = $(".diagram",data);
 	var new_filter = $(".filter_link_div",data);
-	if($("#diagram_" + proto).length != 0){
+	if(new_dia_id != proto || $("#diagram_" + proto).length != 0){
 		$("#diagram_" + proto).html(new_dia.html());
 	}else{
 		$("#Strategies").prepend(document.createElement("br"));
