@@ -19,6 +19,10 @@
    .diagram div {
      border: 2px solid #000;
    }
+   
+   .sub_diagram div {
+     border: 2px solid #a0a0a0;
+   }
 
    /* All DIVs and list items in the diagram are absolutely positioned. */
    .diagram div {
