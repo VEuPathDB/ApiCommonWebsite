@@ -467,6 +467,13 @@ function ExpandStep(ele,url){
 		dataType: "html",
 		success: function(data){
 			var sub = $(".diagram",data);
+			sub.addClass("sub_diagram");
+			var parentStepId = sub.attr("id");
+			parentStepId = parentStepId.split("_")[2];
+			var parentStep = parent_strat.find("#stepId_" + parentStepId);
+			if(parentStep.attr("value") == false){
+				parentStep.text = 
+			}
 			var filter = $(".filter_link_div", data);
 			parent_strat.css({
 				height: "21em"
@@ -476,9 +483,9 @@ function ExpandStep(ele,url){
 				width: "97%",
 				top: "118px"
 			});
-			//strat_div.append(sub);
 			parent_strat.append(sub);
 			strat_div.append(filter);
+			
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n " + msg + "\n" + e);
