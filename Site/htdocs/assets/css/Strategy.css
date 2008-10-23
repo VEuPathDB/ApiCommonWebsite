@@ -20,7 +20,7 @@
      border: 2px solid #000;
    }
    
-   .sub_diagram div {
+   .diagram div.sub_diagram {
      border: 2px solid #a0a0a0;
    }
 
