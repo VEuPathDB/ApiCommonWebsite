@@ -49,7 +49,10 @@ function updateSelectedList() {
 	});
 }
 		
-
+function downloadStep(stepId) {
+	var url = "downloadStep.do?step_id=" + stepId;
+	window.location = url;
+}
 
 function deleteStrategies(url) {
 	// make sure something is selected.
