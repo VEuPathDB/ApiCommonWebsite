@@ -98,7 +98,7 @@ function setEnable(flag) {
             </td>
         </tr>
         <tr>
-            <td colspan="3"><a href="#help"><img src="images/toHelp.jpg" alt="Help" align="top" border='0'></a></td>
+            <td colspan="3"><a href="#help"><img src="/assets/images/help.png" alt="Help" align="top" border='0'></a></td>
         </tr>
     </table>
         </td>

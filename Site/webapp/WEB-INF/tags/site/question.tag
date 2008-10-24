@@ -112,7 +112,7 @@
                                     <c:set var="anchorQp" value="HELP_${fromAnchorQ}_${pNam}"/>
                                     <c:set target="${helpQ}" property="${anchorQp}" value="${qP}"/>
                                     <a href="#${anchorQp}">
-                                    <img valign="bottom" src='<c:url value="/images/toHelp.jpg"/>' border="0" alt="Help"></a><br>
+                                    <img valign="bottom" src="/assets/images/help.png" border="0" alt="Help"></a><br>
                                     <site:cardsOrgansimParamInput qp="${qP}" portals="${portalsProp}" />
                                     </td>
                                     </tr>
@@ -165,7 +165,7 @@
                         <c:set var="anchorQp" value="HELP_${fromAnchorQ}_${pNam}"/>
                         <c:set target="${helpQ}" property="${anchorQp}" value="${qP}"/>
                         <a class="help_link" href="${pNam}">
-                        	<img src='<c:url value="/images/toHelp.jpg"/>' border="0" alt="Help">
+                        	<img src="/assets/images/help.png" border="0" alt="Help">
 						</a>
 						<div class="help_div" id="${pNam}">
 						${qP.help}
