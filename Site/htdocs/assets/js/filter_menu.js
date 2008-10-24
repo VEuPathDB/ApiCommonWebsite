@@ -444,11 +444,11 @@ function DeleteStep(ele,url){
 			InsertNewStrategy(data);
 			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
-					$("#"+diagramID+" div.venn:last span.resultCount a").click();
+					$("#"+diagramId+" div.venn:last span.resultCount a").click();
 			}else{
 				var selected_id = parseInt(selected_div.substring(5,6)) - 1;
 				selected_div = selected_div.substring(0,5) + selected_id + selected_div.substring(6);
-		    	$("#"+diagramID+" #"+selected_div+" span.resultCount a").click();
+		    	$("#"+diagramId+" #"+selected_div+" span.resultCount a").click();
 			}
 		
 		},
@@ -468,12 +468,15 @@ function ExpandStep(ele,url){
 		success: function(data){
 			var sub = $(".diagram",data);
 			sub.addClass("sub_diagram");
-		//	var parentStepId = sub.attr("id");
-		//	parentStepId = parentStepId.split("_")[2];
-		//	var parentStep = parent_strat.find("#stepId_" + parentStepId);
-		//	if(parentStep.attr("value") == false){
-		//		parentStep.text = 
-		//	}
+			var parentStepId = sub.attr("id");
+			parentStepId = parentStepId.split("_")[2];
+			var parentStep = parent_strat.find("#stepId_" + parentStepId);
+			if(parentStep.find(".collapsible").html() == "false"){
+				var exName = sub.find("#strategy_name")[0].firstChild;
+				if(exName.length > 15)
+					exName = exName.nodeValue.substring(0,11) + "...";
+				parentStep.text(exName);
+			}
 			var filter = $(".filter_link_div", data);
 			parent_strat.css({
 				height: "21em"
