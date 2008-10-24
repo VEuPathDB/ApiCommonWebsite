@@ -20,10 +20,10 @@
         <th>&nbsp;</th>
         <th>Strategy</th>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
         <th>Date</th>
         <th>Version</th>
         <th>Size</th>
-        <th>&nbsp;</th>
       </tr>
       <c:set var="i" value="0"/>
       <%-- begin of forEach unsaved strategy in the category --%>
@@ -64,10 +64,12 @@
             </td>
             <td>
               <div id="activate_${strategyId}">
-                 <input type='button' value='Rename' onclick="enableRename('${strategyId}', '${strategy.name}')" />
+                 <input type='button' value='Save As' onclick="enableRename('${strategyId}', '${strategy.name}')" />
               </div>       
               <div id="input_${strategyId}" style="display:none"></div>
             </td>
+            <c:set var="stepId" value="${strategy.latestStep.stepId}"/>
+            <td nowrap><input type='button' value='Download' onclick="downloadStep('${stepId}')" /><%--<a href="downloadStep.do?step_id=${stepId}">download</a>--%></td>
 	    <td align='right' nowrap>${strategy.latestStep.lastRunTime}</td>
 	    <td align='right' nowrap>
 	    <c:choose>
@@ -77,8 +79,6 @@
             </td>
             <td align='right' nowrap>${strategy.latestStep.estimateSize}</td>
             <c:set value="${strategy.latestStep.answerValue.question.fullName}" var="qName" />
-            <c:set var="stepId" value="${strategy.latestStep.stepId}"/>
-            <td nowrap><a href="downloadStep.do?step_id=${stepId}">download</a></td>
           </tr>
 	  <!-- begin rowgroup for strategy steps -->
           <c:set var="j" value="0"/>

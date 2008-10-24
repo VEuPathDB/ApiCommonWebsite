@@ -45,7 +45,7 @@
                  <input type="text" name="name" value="${savedName}" />
                  <input type="submit" value="Save"/>
             </form>
-        </div><br>export</span></div>
+        </div><br><a href="javascript:showExportLink('${strat_step.answerId}')">export</a></span></div>
 		<c:set var="steps" value="${strat_step.allSteps}" />
 		<c:forEach items="${steps}" var="step">
 			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
