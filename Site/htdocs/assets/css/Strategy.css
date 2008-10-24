@@ -387,16 +387,47 @@ span.closeStrategy {
 	z-index: 5;
 }
 
-.diagram .save_strat_div {
+.diagram .modal_div {
 	display: none;
-	position: absolute;
-	right: 0;
-	top: 6em;
-	width: 21em;
 	background-color: #FFFFFF;
 	background-image: url(../images/filter_top.gif);
 	background-repeat: repeat-x;
 	border: 1px solid #345d9b;	
 	padding-bottom: 8px;
 	z-index: 90;
+}
+
+.modal_div .dragHandle {
+	top: -25px;
+	height: 13px;
+}
+
+.dragHandle .modal_name {
+	border: none;
+	top: 0;
+	width: 100%;
+}
+
+.diagram .save_strat {
+	position: absolute;
+	right: 0;
+	top: 5em;
+	width: 21em;
+}
+
+.diagram .export_link {
+	text-align: center;
+	position: absolute;
+	right: 0;
+	top: 6em;
+}
+
+.diagram .export_link p {
+	font-size: 10pt;
+	color: #000000;
+	padding: 5px;
+}
+
+.diagram .export_link input {
+	margin: 0 5px;
 }

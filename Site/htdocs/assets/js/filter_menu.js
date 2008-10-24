@@ -43,13 +43,20 @@ function closeStrategy(stratId){
 	}
 }
 
+function showExportLink(stratId){
+	closeModal();
+	var exportLink = $("div#export_link_div_" + stratId);
+	exportLink.show();
+}
+	
+
 function showSaveForm(stratId){
-	if (stratId.indexOf("_") != -1){
-		stratId = stratId.split("_")[0];
-	}
-	$("div.save_strat_div").addClass("hidden");
+	//if (stratId.indexOf("_") != -1){
+	//	stratId = stratId.split("_")[0];
+	//}
+	closeModal();
 	var saveForm = $("div#save_strat_div_" + stratId);
-	saveForm.removeClass("hidden");
+	saveForm.show();
 }
 
 function validateSaveForm(form){
@@ -58,6 +65,10 @@ function validateSaveForm(form){
 		return false;
 	}
 	return true;
+}
+
+function closeModal() {
+	$("div.modal_div").hide();
 }
 
 function saveStrategy(stratId){
