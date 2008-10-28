@@ -65,12 +65,12 @@
 <ul id="strategy_tabs">
    <c:choose>
      <c:when test="${showHist != null && showHist}">
-       <li><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Results View</a></li>
-       <li id="selected"><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">History View</a></li>
+       <li><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Run Strategies</a></li>
+       <li id="selected"><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">Browse Strategies</a></li>
      </c:when>
      <c:otherwise>
-       <li id="selected"><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Results View</a></li>
-       <li><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">History View</a></li>
+       <li id="selected"><a id="strategy_results_tab" onclick="this.blur()" href="javascript:showPanel('strategy_results')">Run Strategies</a></li>
+       <li><a id="search_history_tab" onclick="this.blur()" href="javascript:showPanel('search_history')">Browse Strategies</a></li>
      </c:otherwise>
    </c:choose>
 </ul>
