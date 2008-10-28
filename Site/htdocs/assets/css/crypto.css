@@ -646,7 +646,7 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 .search-box .submit{
 	padding: 3px 0;
 	color: white;
-	background: black;
+	background-color: black;
 }
 
 .img_align_middle {
@@ -708,12 +708,12 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 */
 
 .chain_background {
-   background: #ededed
+   background-color: #ededed
 }
 
 .arrowgrey {
    padding: 4px;
-   background: #d0cfcf;
+   background-color: #d0cfcf;
    text-align: left;
    border-width: 1px;
    border-color: #848484;
@@ -721,7 +721,7 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 
 .arrowgrey_drk {
    padding: 4px;
-   background: #b8b8b8;
+   background-color: #b8b8b8;
    text-align: left;
    border-width: 1px;
    border-color: #848484;
@@ -752,7 +752,7 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 
 .selectedarrow {
    padding: 4px;
-   background: #ea9797;
+   background-color: #ea9797;
    text-align: left;
    border-width: 1px;
    border-color: #b16565;
@@ -849,6 +849,7 @@ table .3column {
 }
 
 td.headerrow {
+	height: 29px;
 	font-size: 15px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #5f140e;
@@ -875,6 +876,7 @@ tr.headerrow {
 
 
 td.subheaderrow {
+	height: 30px;
 	font-size: 13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #474747;
@@ -973,7 +975,7 @@ tr.linesalt {
 }
 
 
-table .3column {
+table.3column {
 	clear: both;
 }
 
@@ -1119,7 +1121,7 @@ a.redbutton:active span {
 
 .twoColHybLt #container_au { 
 	width: 100%;  /* this will create a container 100% of the browser width */
-	background: #FFFFFF;
+	background-color: #FFFFFF;
 	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
 	border: 1px solid #000000;
 	text-align: left; /* this overrides the text-align: center on the body element. */
@@ -1295,7 +1297,7 @@ ul#strategy_tabs {
 }
 
 #strategy_tabs a:link, #strategy_tabs a:visited {
-    background: #E8EBF0;
+    background-color: #E8EBF0;
     border: 1px solid #CCCCCC;
     color:#666666;
     float: left;
@@ -1310,7 +1312,7 @@ ul#strategy_tabs {
 }
 
 #strategy_tabs #selected a {
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     border-bottom: 1px solid #FFFFFF;
     color: #000000;
     font-weight:bold;

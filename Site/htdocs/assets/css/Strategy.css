@@ -372,7 +372,7 @@ span.closeStrategy {
 
 .diagram h6.step_info_link div.info_link_pop_up_div {
 	display: none;
-	background: lightYellow;
+	background-color: lightYellow;
 	font-weight: normal;
 	font-size: 10px;
 	border: thin solid black;
