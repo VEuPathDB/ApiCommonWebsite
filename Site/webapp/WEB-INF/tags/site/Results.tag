@@ -114,7 +114,7 @@
 			<th nowrap align="right">
 		           <%-- display a list of sortable attributes --%>
 		           <c:set var="addAttributes" value="${wdkAnswer.displayableAttributes}" />
-		           <select id="addAttributes" onChange="addAttr()">
+		           <select id="addAttributes" onChange="addAttr('${commandUrl}')">
 		               <option value="">--- Add Column ---</option>
 		               <c:forEach items="${addAttributes}" var="attribute">
 		                 <option value="${attribute.name}">${attribute.displayName}</option>
@@ -123,7 +123,7 @@
 		    </th>
 		    <th nowrap align="right" width="5%">
 		         &nbsp;
-		         <input type="button" value="Reset Columns" onClick="resetAttr()" />
+		         <input type="button" value="Reset Columns" onClick="resetAttr('${commandUrl}')" />
 		    </th>
 	</tr>
 </table>	

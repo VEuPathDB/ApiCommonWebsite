@@ -51,22 +51,22 @@ function LoadGenePage(url,dest_id) {
 
 // FOLLOWING TAKEN FROM OLD CUSTOMSUMMARY
 
-function addAttr() {
+function addAttr(url) {
     var attributeSelect = document.getElementById("addAttributes");
     var index = attributeSelect.selectedIndex;
     var attribute = attributeSelect.options[index].value;
     
     if (attribute.length == 0) return;
 
-    var url = "${commandUrl}&command=add&attribute=" + attribute;
+    var url = url + "&command=add&attribute=" + attribute;
     GetResultsPage(url);
 	//window.location.href = url;
 }
 
 
-function resetAttr() {
+function resetAttr(url) {
     if (confirm("Are you sure you want to reset the column configuration back to the default?")) {
-        var url = "${commandUrl}&command=reset";
+        var url = url + "&command=reset";
         GetResultsPage(url);
 		//window.location.href = url;
     }
