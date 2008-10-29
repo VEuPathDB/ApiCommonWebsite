@@ -39,10 +39,22 @@
 </c:choose>
 
 <c:set var="qsp" value="${fn:split(wdk_query_string,'&')}" />
-<c:set var="commandUrl">
-<%--    <c:url value="/processSummary.do?${wdk_query_string}" />--%>
-		<c:url value="/processSummary.do?${qsp[0]}&${qsp[1]}&${qsp[2]}&${qsp[3]}" />
-</c:set>
+<c:set var="commandUrl" value="" />
+<c:forEach items="${qsp}" var="prm">
+  <c:if test="${fn:split(prm, '=')[0] eq 'strategy'}">
+    <c:set var="commandUrl" value="${commandUrl}${prm}&" />
+  </c:if>
+  <c:if test="${fn:split(prm, '=')[0] eq 'step'}">
+    <c:set var="commandUrl" value="${commandUrl}${prm}&" />
+  </c:if>
+  <c:if test="${fn:split(prm, '=')[0] eq 'subquery'}">
+    <c:set var="commandUrl" value="${commandUrl}${prm}&" />
+  </c:if>
+  <c:if test="${fn:split(prm, '=')[0] eq 'summary'}">
+    <c:set var="commandUrl" value="${commandUrl}${prm}&" />
+  </c:if>
+</c:forEach>
+<c:set var="commandUrl"><c:url value="/processSummary.do?${commandUrl}" /></c:set>
 
 
 <!-- handle empty result set situation -->
