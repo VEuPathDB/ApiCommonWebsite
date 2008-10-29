@@ -14,16 +14,16 @@
 <html:form method="get" action="/renameStrategy.do">
     <table border="0" cellpadding="5" cellspacing="0">
       <tr class="headerrow">
-	<th>&nbsp;</th>
-	<%-- <th>ID</th> --%>
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
-        <th>Strategy</th>
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
-        <th>Date</th>
-        <th>Version</th>
-        <th>Size</th>
+	<th scope="col">&nbsp;</th>
+	<%-- <th scope="col">ID</th> --%>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">Strategy</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">Date</th>
+        <th scope="col">Version</th>
+        <th scope="col">Size</th>
       </tr>
       <c:set var="i" value="0"/>
       <%-- begin of forEach unsaved strategy in the category --%>
@@ -33,7 +33,7 @@
               <c:when test="${i % 2 == 0}"><tr class="lines"></c:when>
               <c:otherwise><tr class="linesalt"></c:otherwise>
             </c:choose>
-            <td><input type=checkbox id="${strategyId}" onclick="updateSelectedList()"/></td>
+            <td scope="row"><input type=checkbox id="${strategyId}" onclick="updateSelectedList()"/></td>
             <%-- <td>${strategyId}</td> --%>
             <%-- need to see if this strategys id is in the session. --%>
             <c:set var="active" value=""/>
@@ -90,7 +90,7 @@
               <c:otherwise><tr class="linesalt" style="display: none;"></c:otherwise>
             </c:choose>
             <!-- offer a rename here too? -->
-            <td colspan="3"></td>
+            <td scope="row" colspan="3"></td>
             <c:choose>
               <c:when test="${j == 0}">
                 <td nowrap><ul style="margin-left: 10px;"><li style="float:left;">Step ${j + 1} (${step.answerValue.resultSize}): ${step.customName}</li></ul></td>
@@ -124,7 +124,7 @@
            <c:when test="${i % 2 == 0}"><tr class="lines" style="display:none;"></c:when>
            <c:otherwise><tr class="linesalt" style="display:none;"></c:otherwise>
          </c:choose>
-         <td colspan="4"></td>
+         <td scope="row" colspan="4"></td>
          <td nowrap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${step.childStep.customName}</td>
          <!-- date? -->
          <td></td>
