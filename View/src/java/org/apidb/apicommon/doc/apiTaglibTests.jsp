@@ -173,9 +173,9 @@ The CommentFactory instantiates CommentConfig on first page access requiring it 
 <hr>
 --%>
 
-<h3>api:wdkCacheDB</h3>
+<h3>api:wdkUserDB</h3>
 
-<api:wdkCacheDB var="cacheTable"/>
+<api:wdkUserDB var="cacheTable"/>
 <blockquote>
 Cache database service_name: <b>${cacheTable.dbInfo['service_name']}</b>
 </blockquote>
