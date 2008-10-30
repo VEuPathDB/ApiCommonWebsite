@@ -423,6 +423,7 @@ function EditStep(proto, url, step_number){
 
 function DeleteStep(ele,url){
 	var deleted_step_id = url.substring(url.indexOf("step=") + 5);
+	var stratId = url.substring(url.indexOf("strategy=") + 9, url.indexOf("strategy=") + 10);
 	$.ajax({
 		url: url,
 		type: "GET",
@@ -452,7 +453,7 @@ function DeleteStep(ele,url){
 				}
 			}
 			$("#loading_step_div").html("").hide("fast");
-			InsertNewStrategy(data);
+			InsertNewStrategy(stratId, data);
 			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
 					$("#"+diagramId+" div.venn:last span.resultCount a").click();
