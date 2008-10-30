@@ -150,7 +150,7 @@ function RenameStep(ele){
 
 function Expand_Step(ele, url){
 	$(ele).parent().parent().hide();
-	ExpandStep(ele,url);
+	ExpandStep(url);
 }
 
 // Utility Functions
