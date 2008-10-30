@@ -13,7 +13,7 @@ function openStrategy(stratId){
 		url: url,
 		datatype:"html",
 		success: function(data){
-			InsertNewStrategy(stratId, data, true);
+			InsertNewStrategy(stratId, data);
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
@@ -41,16 +41,22 @@ function closeStrategy(stratId){
 		$("#diagram_" + stratId).hide("slow").remove();
 		$("#diagram_" + parts[0]).css({ height: "10em" });
 	}
-	$("#filter_link_div_" + stratId).remove();
 }
 
+function showExportLink(stratId){
+	closeModal();
+	var exportLink = $("div#export_link_div_" + stratId);
+	exportLink.show();
+}
+	
+
 function showSaveForm(stratId){
-	if (stratId.indexOf("_") != -1){
-		stratId = stratId.split("_")[0];
-	}
-	$("div.save_strat_div").addClass("hidden");
+	//if (stratId.indexOf("_") != -1){
+	//	stratId = stratId.split("_")[0];
+	//}
+	closeModal();
 	var saveForm = $("div#save_strat_div_" + stratId);
-	saveForm.removeClass("hidden");
+	saveForm.show();
 }
 
 function validateSaveForm(form){
@@ -59,6 +65,10 @@ function validateSaveForm(form){
 		return false;
 	}
 	return true;
+}
+
+function closeModal() {
+	$("div.modal_div").hide();
 }
 
 function saveStrategy(stratId){
@@ -317,28 +327,7 @@ function parseInputs(){
 	return d;
 }	
 
-function InsertNewStrategy(proto, data, needFilter){
-	if(proto.indexOf("_") == -1){
-		var new_dia = $(".diagram",data);
-		if($("#diagram_" + proto).length != 0){
-			$("#diagram_" + proto).html(new_dia.html());
-		}else{
-			$("#Strategies").prepend(document.createElement("br"));
-			$("#Strategies").prepend(new_dia);
-		}
-		if(needFilter){
-			var new_filter = $(".filter_link_div",data);
-			$("#filter_link_div_" + proto).remove();
-			$("#Strategies").append(new_filter);
-		}
-	}else{
-		var parts = proto.split("_");
-		closeStrategy(proto);
-		InsertNewStrategy(parts[0], data, true);
-		var expandUrl = "expandStep.do?strategy=" + parts[0] + "&step=" + parts[1];
-		ExpandStep(expandUrl);
-	}
-/*	
+function InsertNewStrategy(proto, data){
 	var new_dia_id = $(".diagram",data).attr("id");
 	new_dia_id = "#" + new_dia_id;
 	var new_proto = new_dia_id.substring(new_dia_id.indexOf("_") + 1);
@@ -349,10 +338,8 @@ function InsertNewStrategy(proto, data, needFilter){
 	}else{
 		$("#Strategies").prepend(document.createElement("br"));
 		$("#Strategies").prepend(new_dia);
-		if(needFilter){
-			$("#Strategies").append(new_filter);
-		}
-	}*/
+		$("#Strategies").append(new_filter);
+	}
 }
 
 function AddStepToStrategy(proto, act){
@@ -379,7 +366,7 @@ function AddStepToStrategy(proto, act){
 			},
 		success: function(data){
 			$("#loading_step_div").html("").hide("fast");
-			InsertNewStrategy(proto, data, true);
+			InsertNewStrategy(proto, data);
 			var new_dia_id = $(".diagram",data).attr("id");
 			$("#" + new_dia_id + " div.venn:last span.resultCount a").click();
 		},
@@ -423,7 +410,7 @@ function EditStep(proto, url, step_number){
 				}
 			}
 			$("#loading_step_div").html("").hide("fast");
-			InsertNewStrategy(proto, data, false);
+			InsertNewStrategy(proto, data);
 		    $("#"+selected_div+" span.resultCount a").click();
 		},
 		error: function(data, msg, e){
@@ -456,7 +443,6 @@ function DeleteStep(ele,url){
 			},
 		success: function(data){
 			var diagramId = $(".diagram",data).attr("id");
-			var proto = diagramId.split("_")[1];
 			var diagram_divs = $("#" + diagramId + " div");
 			var selected_div = "";
 			for(i=0; i < diagram_divs.length;i++){
@@ -466,7 +452,7 @@ function DeleteStep(ele,url){
 				}
 			}
 			$("#loading_step_div").html("").hide("fast");
-			InsertNewStrategy(proto,data,true);
+			InsertNewStrategy(data);
 			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
 					$("#"+diagramId+" div.venn:last span.resultCount a").click();
@@ -483,7 +469,7 @@ function DeleteStep(ele,url){
 	});
 }
 
-function ExpandStep(url){
+function ExpandStep(ele,url){
 	var parentStratNum = parseUrl("strategy",url);
 	var strat_div = $("#Strategies");
 	var parent_strat = $("#diagram_" + parentStratNum);
@@ -513,6 +499,7 @@ function ExpandStep(url){
 			});
 			parent_strat.append(sub);
 			strat_div.append(filter);
+			
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n " + msg + "\n" + e);
