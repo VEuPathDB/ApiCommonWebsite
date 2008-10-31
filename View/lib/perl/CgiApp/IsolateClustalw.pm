@@ -66,11 +66,14 @@ EOSQL
     
   }
 
+  # The Link is used in CryptoDB v3.7 and previouse releases.
+  # ->service('http://staff.vbi.vt.edu/pathport/services/wsdls/beta/msa.wsdl')
   my $result = SOAP::Lite
-     ->service('http://staff.vbi.vt.edu/pathport/services/wsdls/beta/msa.wsdl')
-     -> nucleotide_Alignment( "$sequence", "ALIGNED", "", "15.00", "6.66", "15.00", "6.66", "30", "0.50", "iub", "iub");
+     ->service('http://ppdev.bioinformatics.vt.edu:6565/axis/services/msa?wsdl');
 
-  my $xml = XML::XPath->new(xml => $result);
+  my $alignment = $result->nucleotide_Alignment("$sequence", "ALIGNED", "", "15.00", "6.66", "15.00", "6.66", "30", "0.50", "iub", "iub");
+
+  my $xml = XML::XPath->new(xml => $alignment);
 
   my $nodes = $xml->find('/MSAML/alignment/sequence/seqname');
   my (@names, @aligns);
