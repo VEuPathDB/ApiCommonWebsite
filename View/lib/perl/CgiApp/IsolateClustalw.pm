@@ -28,14 +28,14 @@ sub run {
 sub processParams {
   my ($self, $cgi, $dbh) = @_;
   my $p = $cgi->param('isolate_ids');
-	$p =~ s/,$//;
+  $p =~ s/,$//;
   my @ids = split /,/, $p;
-	my $list;
-	foreach my $id (@ids){
+  my $list;
+  foreach my $id (@ids){
 
-	  $list = $list.  "'" . $id. "',";
-	}
-	$list =~ s/\,$//;
+    $list = $list.  "'" . $id. "',";
+  }
+  $list =~ s/\,$//;
 
   $self->{ids} = $list;
 
@@ -50,50 +50,50 @@ sub handleIsolates {
 SELECT etn.source_id, etn.sequence
 FROM   dots.externalnasequence etn,
        SRes.ExternalDatabaseRelease edr,
-			 SRes.ExternalDatabase edb
+       SRes.ExternalDatabase edb
 WHERE  edr.external_database_id = edb.external_database_id
-	AND edr.external_database_release_id = etn.external_database_release_id
-	AND edb.name = 'Isolates Data'
-	AND edr.version = '2007-12-12'
-	AND etn.source_id in ($ids)
+  AND edr.external_database_release_id = etn.external_database_release_id
+  AND edb.name = 'Isolates Data'
+  AND edr.version = '2007-12-12'
+  AND etn.source_id in ($ids)
 EOSQL
 
-	my $sequence;
+  my $sequence;
   my $sth = $dbh->prepare($sql);
   $sth->execute();
-	while(my ($id, $seq) = $sth->fetchrow_array()) {
+  while(my ($id, $seq) = $sth->fetchrow_array()) {
     $sequence .= ">$id\n$seq\n";
-	  
-	}
+    
+  }
 
   my $result = SOAP::Lite
-	   ->service('http://staff.vbi.vt.edu/pathport/services/wsdls/beta/msa.wsdl')
-		 -> nucleotide_Alignment( "$sequence", "ALIGNED", "", "15.00", "6.66", "15.00", "6.66", "30", "0.50", "iub", "iub");
+     ->service('http://staff.vbi.vt.edu/pathport/services/wsdls/beta/msa.wsdl')
+     -> nucleotide_Alignment( "$sequence", "ALIGNED", "", "15.00", "6.66", "15.00", "6.66", "30", "0.50", "iub", "iub");
 
-	my $xml = XML::XPath->new(xml => $result);
+  my $xml = XML::XPath->new(xml => $result);
 
-	my $nodes = $xml->find('/MSAML/alignment/sequence/seqname');
-	my (@names, @aligns);
+  my $nodes = $xml->find('/MSAML/alignment/sequence/seqname');
+  my (@names, @aligns);
 
-	foreach my $node($nodes->get_nodelist) {
-		push @names, $node->string_value();
-	}
+  foreach my $node($nodes->get_nodelist) {
+    push @names, $node->string_value();
+  }
 
-	$nodes = $xml->find('/MSAML/alignment/sequence/seq');
+  $nodes = $xml->find('/MSAML/alignment/sequence/seq');
 
-	foreach my $node($nodes->get_nodelist) {
-		my @arr = split /\s+/, $node->string_value();
-		push @aligns, \@arr,
-	}
+  foreach my $node($nodes->get_nodelist) {
+    my @arr = split /\s+/, $node->string_value();
+    push @aligns, \@arr,
+  }
 
-	$nodes = $xml->find('/MSAML/alignment/scoring/param');
+  $nodes = $xml->find('/MSAML/alignment/scoring/param');
 
-	my @ws_params;
-	foreach my $node($nodes->get_nodelist) {
-		push @ws_params, $node;
-	}
+  my @ws_params;
+  foreach my $node($nodes->get_nodelist) {
+    push @ws_params, $node;
+  }
 
-	my $size = @{$aligns[0]};
+  my $size = @{$aligns[0]};
 
   my @sequences;
   my @segments;
@@ -104,43 +104,43 @@ EOSQL
 
   foreach my $node($nodes->get_nodelist) {
     push @n, $node->string_value();
-	}
+  }
 
-	$nodes = $xml->find('/MSAML/alignment/sequence/seq');
+  $nodes = $xml->find('/MSAML/alignment/sequence/seq');
 
-	my $length;
+  my $length;
 
-	foreach my $node($nodes->get_nodelist) {
-	  my $seq = $node->string_value();
-		$seq =~ s/\s+//g;
-		$length = length $seq;
-		push @s, $seq;
-	}
+  foreach my $node($nodes->get_nodelist) {
+    my $seq = $node->string_value();
+    $seq =~ s/\s+//g;
+    $length = length $seq;
+    push @s, $seq;
+  }
 
-	$size = @n;
-	my $ct = 0;
+  $size = @n;
+  my $ct = 0;
 
-	for(my $i = 0; $i < $size; $i++) {
-		$ct += 1;
-		push @sequences, $n[$i];
-		push @sequences, $s[$i];
-		push @segments, [$n[$i], 0, $length, 0, $length] unless ($ct == 1);
-		#push @segments, [$n[$i], 0, $length, 0, $length];
-	}
+  for(my $i = 0; $i < $size; $i++) {
+    $ct += 1;
+    push @sequences, $n[$i];
+    push @sequences, $s[$i];
+    push @segments, [$n[$i], 0, $length, 0, $length] unless ($ct == 1);
+    #push @segments, [$n[$i], 0, $length, 0, $length];
+  }
 
   my $align = Bio::Graphics::Browser::PadAlignment->new(\@sequences,\@segments);
 
-	print "<table align=center><tr><td>";
-  print $cgi->pre($align->alignment( {}, { show_mismatches => 1,
-                                         show_similarities => 1, 
-																				 show_matches => 1})); 
-	print "<hr><pre>";
+  print "<table align=center><tr><td>";
+  print $cgi->pre($align->alignment( {}, { show_mismatches   => 1,
+                                           show_similarities => 1, 
+                                           show_matches      => 1})); 
+  print "<hr><pre>";
 
   foreach(@ws_params) { 
-	  print $_->string_value, "\n"; 
-	} 
-	
-	print "</pre></td></tr></table>";
+    print $_->string_value, "\n"; 
+  } 
+  
+  print "</pre></td></tr></table>";
 
 }
 
