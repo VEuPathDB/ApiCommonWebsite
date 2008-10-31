@@ -143,7 +143,21 @@ EOSQL
     print $_->string_value, "\n"; 
   } 
   
-  print "</pre></td></tr></table>";
+  print "</pre></td></tr>";
+
+  print "<tr><td><pre>Guide Tree</pre></td></tr>";
+  my @parts = $result->packager->parts;
+  foreach my $p (@parts) {
+    foreach(@$p) {
+      my $id = $_->head->get('Content-Id');
+      if($id =~ /tree/i) {
+        my $tree = $_->bodyhandle->as_string;
+        print "<tr><td><pre>$tree</pre></td></tr></table>";
+      }
+    }
+  }
+
+
 
 }
 
