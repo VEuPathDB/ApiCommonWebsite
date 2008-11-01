@@ -150,7 +150,7 @@ patch_all() {
     patch -d $cgilibTargetDir/${arch}-linux-thread-multi/Bio/Graphics -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/Browser.pm_v1.69.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/gbrowse_img_v1.69.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/gbrowse_v1.69_presets.patch
-    patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/POSIX.pm_1_64_presets.patch
+    patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/POSIX_v1.69_presets.patch
 }
 
 
