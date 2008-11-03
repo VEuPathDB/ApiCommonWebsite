@@ -57,7 +57,7 @@
             </span><p>Paste link in email:</p><input type="text" size="${fn:length(exportUrl)}" value="${exportUrl}" /></div></span></div>
 		<c:set var="steps" value="${strat_step.allSteps}" />
 		<c:forEach items="${steps}" var="step">
-			<site:Step step="${step}" strategy="${strategy}" stepNum="${stepNumber}"/>
+			<site:Step step="${step}" strategyId="${stratId}" stepNum="${stepNumber}"/>
 			<c:set var="stepNumber" value="${stepNumber+1}" />
 		</c:forEach>
 		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${stratId}:')" id="filter_link"><span>Add Step</span></a>

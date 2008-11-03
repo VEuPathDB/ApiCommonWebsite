@@ -9,8 +9,8 @@
               required="true"
               description="Step to be displayed by this tag"
 %>
-<%@ attribute name="strategy"
-	      type="org.gusdb.wdk.model.jspwrap.StrategyBean"
+<%@ attribute name="strategyId"
+	      type="java.lang.String" 
               required="true"
               description="Protocol containing this Step"
 %>
@@ -80,9 +80,9 @@
 					${stepName}
 					<span class="collapsible" style="display:none">${step.isCollapsible}</span>
 				</a>
-				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
+				<site:StepDetail step="${step}" strategyNum="${strategyId}" stepNum="${stepNum}"/>
 			</h3>
-			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')"> ${step.resultSize}&nbsp;${type}</a></span>			
+			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategyId}&step=${stepNum}&resultsOnly=true')"> ${step.resultSize}&nbsp;${type}</a></span>			
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li><img class="rightarrow1" src="/assets/images/arrow_chain_right3.png"></li>
@@ -108,16 +108,16 @@
 					${stepName}
 					<span class="collapsible" style="display:none">${step.childStep.isCollapsible}</span>
 				</a>
-				<site:StepDetail step="${step}" strategyNum="${strategy.strategyId}" stepNum="${stepNum}"/>
+				<site:StepDetail step="${step}" strategyNum="${strategyId}" stepNum="${stepNum}"/>
 			</h3>
-			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.childStep.resultSize}&nbsp;${type}</a></span>
+			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.childStep.resultSize}&nbsp;${type}</a></span>
 			<ul>
 				<li><img class="downarrow" src="/assets/images/arrow_chain_down2.png"</li>
 			</ul>
 		</div>
 		<div id="step_${stepNum}" class="venn row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 4.5em;">
-			<a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)"><img src="/assets/images/transparent1.gif"/></a><br>
-			<span class="resultCount"><a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategy.strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">${step.resultSize}&nbsp;${type}</a></span>
+			<a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)"><img src="/assets/images/transparent1.gif"/></a><br>
+			<span class="resultCount"><a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">${step.resultSize}&nbsp;${type}</a></span>
 			<c:if test="${step.nextStep != null}">
 				<ul>
 					<li><img class="rightarrow2" src="/assets/images/arrow_chain_right4.png"></li>
