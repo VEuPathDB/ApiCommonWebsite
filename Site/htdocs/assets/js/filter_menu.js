@@ -3,10 +3,6 @@ var isInsert = "";
 var _action = "";
 var original_Query_Form_Text;
 
-//$(document).ready(function(){
-//	original_Query_Form_Text = $("#query_form").html();	
-//});  End of Ready Function
-
 function openStrategy(stratId){
 	var url = "showStrategy.do?strategy=" + stratId;
 	$.ajax({
@@ -107,9 +103,10 @@ function refreshStrategy(stratId, newStrategy){
 	var url="showStrategy.do?strategy=" + newStratId;
 	$.ajax({
 		url: url,
+		async: false,
 		dataType: "html",
 		success: function(data){
-			$("div#diagram_" + stratId).html($("div#diagram_" + newStratId, data).html());
+			$("div#diagram_" + stratId).html($(".diagram", data).html());
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
@@ -344,10 +341,14 @@ function InsertNewStrategy(proto, data, needFilter){
 		}
 	}else{
 		var parts = proto.split("_");
-		closeStrategy(proto);
-		InsertNewStrategy(parts[0], data, true);
-		var expandUrl = "expandStep.do?strategy=" + parts[0] + "&step=" + parts[1];
-		ExpandStep(expandUrl);
+		//closeStrategy(proto);
+		refreshStrategy(parts[0],parts[0]);
+		var stepId = $("#diagram_"+parts[0]+" #step_"+parts[2]+"_sub h3 a[id^='stepId_']").attr("id").substring(7);
+		while (stepId == parts[1]){
+			stepId = $("#diagram_"+parts[0]+" #step_"+parts[2]+"_sub h3 a[id^='stepId_']").attr("id").substring(7);
+		}
+		var expandUrl = "expandStep.do?strategy="+parts[0]+"&step="+stepId;
+		ExpandStep(expandUrl); 
 	}
 /*	
 	var new_dia_id = $(".diagram",data).attr("id");
@@ -369,6 +370,14 @@ function InsertNewStrategy(proto, data, needFilter){
 function AddStepToStrategy(proto, act){
 	var url = act;	
 	var d = parseInputs();
+	if(proto.indexOf("_") != -1){
+		var strat_step = proto.split("_");
+		var oldStep = $("#diagram_"+strat_step[0]+" #stepId_"+strat_step[1]);
+		var stepIndex = $(oldStep).parent().parent().attr("id");
+		stepIndex = stepIndex.substring(5,stepIndex.indexOf("_sub"));
+		proto = proto+"_"+stepIndex;
+	}
+	
 	$.ajax({
 		url: url,
 		type: "POST",
@@ -441,8 +450,9 @@ function EditStep(proto, url, step_number){
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});
-	$("#filter_link").css({opacity:1.0});//html("<span>Add Step</span>"); 
-	$("#filter_link").attr("href","javascript:openFilter()");
+	//$("#filter_link").css({opacity:1.0});//html("<span>Add Step</span>"); 
+	//$("#filter_link").attr("href","javascript:openFilter()");
+	openFilter(proto+":");
 }
 
 function DeleteStep(ele,url){
