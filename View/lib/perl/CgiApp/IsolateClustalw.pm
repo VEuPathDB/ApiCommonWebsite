@@ -133,17 +133,12 @@ EOSQL
 
   my $align = Bio::Graphics::Browser::PadAlignment->new(\@sequences,\@segments);
 
-  print "<table align=center><tr><td>";
+  print "<table align=center width=800><tr><td>";
   print $cgi->pre($align->alignment( {}, { show_mismatches   => 1,
                                            show_similarities => 1, 
                                            show_matches      => 1})); 
-  print "<hr><pre>";
 
-  foreach(@ws_params) { 
-    print $_->string_value, "\n"; 
-  } 
-  
-  print "</pre></td></tr>";
+  print "</td></tr>";
 
   print "<tr><td><pre>Guide Tree</pre></td></tr>";
   my @parts = $result->packager->parts;
@@ -154,11 +149,20 @@ EOSQL
         my $tree = $_->bodyhandle->as_string;
         my $link = $self->writetree($tree);
         $self->printApplet($link);
-        print "<tr><td><pre>$tree</pre></td></tr>";
-        print "</table>";
+				$tree =~ s/\n/ /g;
+        print "<tr><td>$tree</td></tr>";
       }
     }
   }
+
+  print "<tr><td><hr><pre>";
+
+  foreach(@ws_params) { 
+    print $_->string_value, "\n"; 
+  } 
+  
+  print "</pre></td></tr>";
+  print "</table>";
 }
 
 sub printApplet {
