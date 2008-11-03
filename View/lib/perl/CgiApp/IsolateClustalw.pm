@@ -170,12 +170,12 @@ print <<EOF;
 <tr><td>
 <applet archive="forester.jar"
         code="org.forester.atv.ATVe.class"
-        codebase="/treetest/"
+        codebase="/"
         width="600"
         height="500"
         alt="ATVe is not working on your system (requires at least Sun Java 1.5)!">
         <param name="url_of_tree_to_load" value="http://$host/$link">
-        <param name="config_file" value="/treetest/_atv_configuration_ncbi_tax">
+        <param name="config_file" value="/_atv_configuration_ncbi_tax">
 </applet>
 </td></tr>
 EOF
