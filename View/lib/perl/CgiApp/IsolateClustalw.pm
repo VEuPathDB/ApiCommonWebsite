@@ -206,18 +206,8 @@ sub writetree {
 
 sub cleanup {
   my ($self, $dir) = @_;
-  opendir(DIR, $dir);
-  my @files = readdir(DIR);
-
-  foreach my $f (@files) {
-    next if ($f =~ /^\./);
-    my ($atime, $mtime) = (stat("$dir/$f"))[8,9];
-    warn "#### $atime, $mtime"
-
-  }
-  closedir(DIR);
-
-
+  my $cmd = "find $dir -mtime +10 -exec rm -f {} \\;";
+	system($cmd);
 }
 
 sub error {
