@@ -152,11 +152,70 @@ EOSQL
       my $id = $_->head->get('Content-Id');
       if($id =~ /tree/i) {
         my $tree = $_->bodyhandle->as_string;
-        print "<tr><td><pre>$tree</pre></td></tr></table>";
+        my $link = $self->writetree($tree);
+        $self->printApplet($link);
+        print "<tr><td><pre>$tree</pre></td></tr>";
+        print "</table>";
       }
     }
   }
+}
 
+sub printApplet {
+  my ($self, $link) = @_;
+
+  my $host = $ENV{'SERVER_NAME'};
+
+print <<EOF;
+<tr><td>
+<applet archive="forester.jar"
+        code="org.forester.atv.ATVe.class"
+        codebase="/treetest/"
+        width="600"
+        height="500"
+        alt="ATVe is not working on your system (requires at least Sun Java 1.5)!">
+        <param name="url_of_tree_to_load" value="http://$host/$link">
+        <param name="config_file" value="/treetest/_atv_configuration_ncbi_tax">
+</applet>
+</td></tr>
+EOF
+
+}
+
+sub writetree {
+
+  my ($self, $tree) = @_;
+
+  my $ROOT = $ENV{'DOCUMENT_ROOT'};
+
+  my $dir = "$ROOT/gbrowse/tmp/clustalw";
+
+  mkdir("$dir", 0755);
+  $self->cleanup($dir);
+
+  my $range = 10000000;
+  my $random = int(rand($range));
+
+  open(TREE, ">$dir/$random.tree");
+  print TREE $tree;
+  close(TREE); 
+
+  return "/gbrowse/tmp/clustalw/$random.tree";
+
+}
+
+sub cleanup {
+  my ($self, $dir) = @_;
+  opendir(DIR, $dir);
+  my @files = readdir(DIR);
+
+  foreach my $f (@files) {
+    next if ($f =~ /^\./);
+    my ($atime, $mtime) = (stat("$dir/$f"))[8,9];
+    warn "#### $atime, $mtime"
+
+  }
+  closedir(DIR);
 
 
 }
