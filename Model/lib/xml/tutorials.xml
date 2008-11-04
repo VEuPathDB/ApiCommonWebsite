@@ -15,7 +15,7 @@
        <table name="files">
          <row>
            <attribute name="projects">ApiDB.org,CryptoDB,PlasmoDB,ToxoDB</attribute>
-           <attribute name="fileName.mov">http://ascb.org/ibioseminars/roos/roos3a.cfm</attribute>
+           <attribute name="fileName.mov">http://ascb.org/ibioseminars/roos/roos3b.cfm</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">unavailable</attribute>
            <attribute name="duration">unavailable</attribute>
