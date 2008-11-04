@@ -79,13 +79,19 @@ function saveStrategy(stratId){
 		dataType: "html",
 		success: function(data){
 			// reload strategy panel by stratId
-			newStrategy = $("div[id^='diagram_']", data).attr("id");
-			newStrategy = newStrategy.split("_")[1];
-			$("div#diagram_" + strategy).html($("div#diagram_" + newStrategy, data).html());
-			$("div[id^='diagram_" + strategy + "_']").each(function(){
-				refreshStrategy(this.id, newStrategy);
-			});
-			saveForm.addClass("hidden");
+//			newStrategy = $("div[id^='diagram_']", data).attr("id");
+//			newStrategy = newStrategy.split("_")[1];
+			var strat_id_span = $("div#diagram_" + strategy + " #strategy_name span#strategy_id_span");
+			var small_links = $("div#diagram_" + strategy + " #strategy_name span.strategy_small_text");
+			$("div#diagram_" + strategy + " #strategy_name").text(name);
+			$("div#diagram_" + strategy + " #strategy_name").append(strat_id_span);
+			$("div#diagram_" + strategy + " #strategy_name").append(small_links);
+				
+//			$("div#diagram_" + strategy).html($("div#diagram_" + newStrategy, data).html());
+//			$("div[id^='diagram_" + strategy + "_']").each(function(){
+//				refreshStrategy(this.id, newStrategy);
+//			});
+			saveForm.css("display","none");;
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
