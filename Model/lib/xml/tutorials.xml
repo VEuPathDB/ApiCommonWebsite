@@ -10,6 +10,21 @@
 <xmlAnswer>
 
    <record>
+       <attribute name="title">Designing and mining pathogen genome databases: From genes to drugs and vaccines</attribute>
+       <attribute name="description">An iBioSeminars lecture series on Apicomplexan Parasites, Pathogen Genome Informatics, and the Evolution of Eukaryotic Organelles.</attribute>
+       <table name="files">
+         <row>
+           <attribute name="projects">ApiDB.org,CryptoDB,PlasmoDB,ToxoDB</attribute>
+           <attribute name="fileName.mov">http://ascb.org/ibioseminars/roos/roos3a.cfm</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">unavailable</attribute>
+           <attribute name="duration">unavailable</attribute>
+           <attribute name="size">unavailable</attribute>
+         </row>
+       </table>
+   </record>
+
+   <record>
        <attribute name="title">Introduction</attribute>
        <attribute name="description">Introduction to the site's functionality.</attribute>
        <table name="files">
