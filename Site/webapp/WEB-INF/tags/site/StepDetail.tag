@@ -97,10 +97,10 @@
    <c:set var="oper" value="" />
    <c:choose>
       <c:when test="${step.isFirstStep}">
-          <p><b>Results:&nbsp;</b>${step.resultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
+          <p><b>Results:&nbsp;</b>${step.resultSize}&nbsp;&nbsp;|&nbsp;<a href="downloadStep.do?step_id=${step.stepId}">Download</a></p>
       </c:when>
       <c:otherwise>
-          <hr><p><b>Query Results:&nbsp;</b>${step.childStep.resultSize}&nbsp;&nbsp;|&nbsp;<span style="color:#888;">Download</span></p>
+          <hr><p><b>Query Results:&nbsp;</b>${step.childStep.resultSize}&nbsp;&nbsp;|&nbsp;<a href="downloadStep.do?step_id=${step.childStep.stepId}">Download</a></p>
 	      <c:set var="subq" value="&subquery=true" />
 	      <c:set var="oper" value="${step.operation}" />
       </c:otherwise>
