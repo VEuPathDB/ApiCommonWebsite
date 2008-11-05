@@ -7,8 +7,8 @@
 
 
 GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
-GBROWSE_TAR_FILE=Generic-Genome-Browser-1.64.tar.gz
-BIOPERL_TAR_FILE=bioperl_1.5_cvs_20061129.tgz
+GBROWSE_TAR_FILE=Generic-Genome-Browser-1.69.tar.gz
+BIOPERL_TAR_FILE=bioperl_1.5_nightly_20080918.tgz
 
 BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
@@ -31,11 +31,19 @@ mkdirs() {
 
 unpack_gbrowse_src() {
     echo "INSTALL: unpacking gbrowse source...."
+    
+    # tar-1.14 uses --strip-path, tar-1.14.90+ uses --strip-components
+    if $( tar --strip-path 2>&1 | grep -q 'unrecognized option' ); then
+        strip_opt='--strip-components'
+    else
+        strip_opt='--strip-path'
+    fi
+    
     if ! (
         mkdir -p $BUILD_DIR && 
         tar zxf \
         $GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE \
-        --strip-path 1 \
+        $strip_opt 1 \
         -C $BUILD_DIR 2> /dev/null); then
         echo "FATAL: Unable to un-tar Generic-Genome-Browser package '$GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE'. Exiting..."
         exit 1
@@ -91,7 +99,8 @@ configure_gb() {
                      CGIBIN=$cgibinTargetDir    \
                      LIB=$cgilibTargetDir       \
                      BIN=$cgibinTargetDir       \
-                     PREFIX=$GUS_HOME \
+                     PREFIX=$GUS_HOME           \
+                     GBROWSE_ROOT=/gbrowse      \
                      NONROOT=1                  \
                      SELINUX=1 
      
@@ -135,10 +144,13 @@ make_install() {
 }
 
 patch_all() {
-    echo "INSTALL: patching..."
-    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_img_1_64.patch
-    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_1_64_presets.patch
-    patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/POSIX.pm_1_64_presets.patch
+    echo "INSTALL: patching...$cgibinTargetDir"
+    arch=$(arch)
+    [ "$arch" == "i686" ] && arch=i386
+    patch -d $cgilibTargetDir/${arch}-linux-thread-multi/Bio/Graphics -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/Browser.pm_v1.69.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/gbrowse_img_v1.69.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/gbrowse_v1.69_presets.patch
+    patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/POSIX_v1.69_presets.patch
 }
 
 
