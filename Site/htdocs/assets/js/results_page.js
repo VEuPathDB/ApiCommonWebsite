@@ -71,17 +71,4 @@ function resetAttr(url) {
 		//window.location.href = url;
     }
 }
-
-function showPanel(panel) {
-	var hidePanel;
-	if (panel == 'strategy_results')
-		hidePanel = 'search_history';
-	else
-		hidePanel = 'strategy_results';
-
-	$("#" + hidePanel + "_tab").parent().attr("id", "");
-	$("#" + hidePanel).addClass("hidden");
-	$("#" + panel + "_tab").parent().attr("id", "selected");
-	$("#" + panel).removeClass("hidden");
-}
 		

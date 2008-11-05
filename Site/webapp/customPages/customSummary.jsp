@@ -55,6 +55,14 @@
 <script type="text/javascript" language="javascript">
 	$(document).ready(function(){
 		$("#diagram div.venn:last span.resultCount a").click();
+		<c:choose>
+                  <c:when test="${showHist != null && showHist}">
+                    $("#search_history").show();
+                  </c:when>
+                  <c:otherwise>
+                    $("#strategy_results").show();
+                  </c:otherwise>
+                </c:choose>
 	});
 </script>
 <site:menubar />
@@ -74,14 +82,14 @@
      </c:otherwise>
    </c:choose>
 </ul>
-<c:choose>
-  <c:when test="${showHist != null && showHist}">
-    <div id="strategy_results" class="hidden">
-  </c:when>
+<%-- <c:choose>
+  <c:when test="${showHist != null && showHist}"> --%>
+    <div id="strategy_results">
+<%--  </c:when>
   <c:otherwise>
     <div id="strategy_results">
   </c:otherwise>
-</c:choose>
+</c:choose> --%>
 <div class="strategy_controls"/>
 <table width="100%">
 <tr>
@@ -127,14 +135,14 @@
 <%--<site:Results strategy="${strategy}"/>--%>
 </div> 
 </div><!-- end results view div -->
-<c:choose>
-  <c:when test="${showHist != null && showHist}">
+<%-- <c:choose>
+  <c:when test="${showHist != null && showHist}"> --%>
     <div id="search_history">
-  </c:when>
+<%--  </c:when>
   <c:otherwise>
     <div id="search_history" class="hidden">
   </c:otherwise>
-</c:choose>
+</c:choose> --%>
 <site:strategyHistory model="${wdkModel}" user="${wdkUser}" />
 </div> <!-- end history view div -->
 

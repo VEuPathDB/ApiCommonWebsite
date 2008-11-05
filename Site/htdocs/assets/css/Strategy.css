@@ -431,3 +431,7 @@ span.closeStrategy {
 .diagram .export_link input {
 	margin: 0 5px;
 }
+
+#strategy_results, #search_history {
+	display: none;
+} 

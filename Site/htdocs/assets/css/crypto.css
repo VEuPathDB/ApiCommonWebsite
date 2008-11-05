@@ -1318,10 +1318,6 @@ ul#strategy_tabs {
     font-weight:bold;
 }
 
-.hidden {
-    display: none;
-}
-
 .clear_all {
     clear: both;
 }
