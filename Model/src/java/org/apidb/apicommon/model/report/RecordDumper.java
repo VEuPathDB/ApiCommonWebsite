@@ -122,7 +122,7 @@ public class RecordDumper {
 
         // decide which question to use, and the name of the parameter.
         Question question = null;
-        final String organismParam = "organism";
+        final String organismParam = "gff_organism";
         String reporterName = null;
         if (type.equalsIgnoreCase("gene")) {
             question = (Question) wdkModel.resolveReference("GeneDumpQuestions.GeneDumpQuestion");
