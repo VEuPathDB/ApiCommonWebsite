@@ -167,56 +167,8 @@
     <available file="${webappTargetDir}/WEB-INF/classes/log4j.properties" property="log4j.present"/>
     <echo>log4j present: ${log4j.present}</echo>
     <antcall target="setLog4j"/>
-    
-    <!-- get the orginal gbrowse_img code and patch it -->
-    <copy file="${projectsDir}/ApiCommonWebsite/Site/cgi-bin/gbrowse_img_1_64" 
-          tofile="${cgibinTargetDir}/gbrowse_img" overwrite="true"/>
-    <exec executable="patch">
-        <arg value="-d"/>
-        <arg path="${cgibinTargetDir}"/>
-        <arg value="-N"/>
-        <arg value="-i"/>
-        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/gbrowse_img_1_64.patch"/>
-    </exec>
-    <!-- replacement for gbrowse_img config and lib dirs -->
-    <replace file="${cgibinTargetDir}/gbrowse_img" 
-       token="@confTargetDir@" 
-       value="${confTargetDir}"/>
-    <replace file="${cgibinTargetDir}/gbrowse_img" 
-       token="@cgilibTargetDir@" 
-       value="${cgilibTargetDir}"/>
-
-    <!-- get the orginal gbrowse code and patch it -->
-    <copy file="${projectsDir}/ApiCommonWebsite/Site/cgi-bin/gbrowse_1_64" 
-          tofile="${cgibinTargetDir}/gbrowse" overwrite="true"/>
-    <exec executable="patch">
-        <arg value="-d"/>
-        <arg path="${cgibinTargetDir}"/>
-        <arg value="-N"/>
-        <arg value="-i"/>
-        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/gbrowse_1_64_presets.patch"/>
-    </exec>
-    <!-- replacement for gbrowse_img config and lib dirs -->
-    <replace file="${cgibinTargetDir}/gbrowse" 
-       token="@confTargetDir@" 
-       value="${confTargetDir}"/>
-    <replace file="${cgibinTargetDir}/gbrowse" 
-       token="@cgilibTargetDir@" 
-       value="${cgilibTargetDir}"/>
-
-    <!-- get the orginal POSIX.pm code and patch it -->
-    <copy file="${projectsDir}/ApiCommonWebsite/Site/conf/gbrowse.conf/languages/POSIX.pm_1.64" 
-          tofile="${confTargetDir}/languages/POSIX.pm" overwrite="true"/>
-    <exec executable="patch">
-        <arg value="-d"/>
-        <arg path="${confTargetDir}/gbrowse.conf/languages"/>
-        <arg value="-N"/>
-        <arg value="-i"/>
-        <arg file="${projectsDir}/ApiCommonWebsite/Site/doc/gbrowse/patches/POSIX.pm_1_64_presets.patch"/>
-    </exec>
-
   </target>
-
+  
   <target name="setJuliLog" if="juliLog.present">
     <dirname  property="webappDir" file="${webappTargetDir}"/>
     <basename property="webapp" file="${webappDir}"/>
