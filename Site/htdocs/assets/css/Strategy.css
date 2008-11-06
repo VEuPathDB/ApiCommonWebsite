@@ -21,6 +21,9 @@
    }
    
    .diagram div.sub_diagram {
+	 left:36px;
+	 top:118px;
+	 width:97%;
      border: 2px solid #a0a0a0;
    }
 

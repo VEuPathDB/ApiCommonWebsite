@@ -130,6 +130,66 @@ function saveStrategy(stratId){
 		}
 	});
 }
+var recur_Count;
+var sub_strat_ids;
+var count;
+function Refresh(strategyId){
+	var parent_strat = $("#diagram_" + strategyId);
+	var subStrategies = $("#diagram_" + strategyId + " div[id^='diagram_" + strategyId + "_']");
+	sub_strat_ids = new Array();
+	count = 0;
+	if(subStrategies.length != 0){
+		var id_index_Map = {subid:"", subindex:""};
+		$(subStrategies).each(function(){
+			id_index_Map.subid = $(this).attr("id").substring(8);
+			var temp = $("#diagram_" + strategyId + " #stepId_" + id_index_Map.subid.split("_")[1]).parent().parent().attr("id");
+			id_index_Map.subindex = temp.substring(5,temp.indexOf("_sub"));
+			sub_strat_ids[count] = id_index_Map;
+			count++;
+		});
+	}
+	recur_Count = 0;
+	recursiveRefresh(strategyId);
+}
+
+function recursiveRefresh(stratId){
+	var parent_Strat = stratId;
+	if(stratId.indexOf("_") != -1){
+		parent_Strat = stratId.split("_")[0]
+	}
+	var url="showStrategy.do?strategy=" + stratId;
+	$.ajax({
+		url: url,
+		dataType: "html",
+		success: function(data){
+			if($("div#diagram_" + stratId).length != 0){
+				$("div#diagram_" + stratId).html($(".diagram", data).html());
+			}else{
+				var dia_id = stratId;
+				if(stratId.split("_").length > 1){
+					
+					$("#diagram_" + parent_Strat).append($(".diagram", data).addClass("sub_diagram"));
+					$("#Strategies").append($(".filter_link_div", data));
+				}else{
+					$("#Strategies").append($(".diagram", data));
+					$("#Strategies").append($(".filter_link_div", data));
+				}	
+			}
+			if(recur_Count != count){
+				var id = sub_strat_ids[recur_Count];
+				recur_Count++;
+				var new_step_id = $("#diagram_" + parent_Strat + " #step_" + id.subindex + "_sub h3 a[id^='stepId_']").attr("id").substring("7");
+				var parts = id.subid.split("_");
+				parts[1] = new_step_id;
+				var sub_diagram_id = parts.join("_");
+				recursiveRefresh(sub_diagram_id);
+			}
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+}
 
 function refreshStrategy(stratId, newStrategy){
 	var newStratId = stratId;
@@ -380,13 +440,7 @@ function InsertNewStrategy(proto, data, needFilter){
 	}else{
 		var parts = proto.split("_");
 		//closeStrategy(proto);
-		refreshStrategy(parts[0],parts[0]);
-		var stepId = $("#diagram_"+parts[0]+" #step_"+parts[2]+"_sub h3 a[id^='stepId_']").attr("id").substring(7);
-		while (stepId == parts[1]){
-			stepId = $("#diagram_"+parts[0]+" #step_"+parts[2]+"_sub h3 a[id^='stepId_']").attr("id").substring(7);
-		}
-		var expandUrl = "expandStep.do?strategy="+parts[0]+"&step="+stepId;
-		ExpandStep(expandUrl); 
+		Refresh(parts[0]);
 	}
 /*	
 	var new_dia_id = $(".diagram",data).attr("id");
@@ -568,11 +622,11 @@ function ExpandStep(url){
 			parent_strat.css({
 				height: "21em"
 			});
-			sub.css({
-				left: "36px",
-				width: "97%",
-				top: "118px"
-			});
+			//sub.css({
+			//	left: "36px",
+			//	width: "97%",
+			//	top: "118px"
+			//});
 			parent_strat.append(sub);
 			strat_div.append(filter);
 		},
