@@ -2,6 +2,7 @@
 var isInsert = "";
 var _action = "";
 var original_Query_Form_Text;
+var update_hist = false;
 
 function openStrategy(stratId){
 	var url = "showStrategy.do?strategy=" + stratId;
@@ -22,6 +23,36 @@ function showExportLink(stratId){
  	closeModal();
  	var exportLink = $("div#export_link_div_" + stratId);
  	exportLink.show();
+}
+
+function showPanel(panel) {
+	var hidePanel;
+	if (panel == 'strategy_results')
+		hidePanel = 'search_history';
+	else{
+		hidePanel = 'strategy_results';
+		updateHistory();
+	}
+	$("#" + hidePanel + "_tab").parent().attr("id", "");
+	$("#" + hidePanel).hide();
+	$("#" + panel + "_tab").parent().attr("id", "selected");
+	$("#" + panel).show();
+}
+
+function updateHistory(){
+	if(update_hist){
+		$.ajax({
+			url: "showQueryHistory.do",
+			dataType: "html",
+			success: function(data){
+				$("#search_history").html(data);
+				update_hist = false;
+			},
+			error: function(data, msg, e){
+				alert("ERROR \n "+ msg + "\n" + e);
+			}
+		});
+	}
 }
 
 function closeStrategy(stratId){
@@ -95,7 +126,8 @@ function saveStrategy(stratId){
 //			$("div[id^='diagram_" + strategy + "_']").each(function(){
 //				refreshStrategy(this.id, newStrategy);
 //			});
-			saveForm.css("display","none");;
+			saveForm.css("display","none");
+			update_hist = true;
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
@@ -472,6 +504,7 @@ function AddStepToStrategy(proto, act){
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});
+	update_hist = true;
 	openFilter(isInsert);
 }
 
@@ -518,6 +551,7 @@ function EditStep(proto, url, step_number){
 	//$("#filter_link").css({opacity:1.0});//html("<span>Add Step</span>"); 
 	//$("#filter_link").attr("href","javascript:openFilter()");
 	openFilter(proto+":");
+	update_hist = true;
 }
 
 function DeleteStep(ele,url){
@@ -567,6 +601,7 @@ function DeleteStep(ele,url){
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});
+	update_hist = true;
 }
 
 function ExpandStep(url){
@@ -613,4 +648,5 @@ function ExpandStep(url){
 			alert("ERROR \n " + msg + "\n" + e);
 		}
 	});
+	update_hist = true;
 }
