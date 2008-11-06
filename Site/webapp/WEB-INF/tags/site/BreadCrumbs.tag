@@ -60,7 +60,8 @@
 			<site:Step step="${step}" strategyId="${stratId}" stepNum="${stepNumber}"/>
 			<c:set var="stepNumber" value="${stepNumber+1}" />
 		</c:forEach>
-		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${stratId}:')" id="filter_link"><span>Add Step</span></a>
+		<site:Step step="${step}" strategyId="${stratId}" stepNum="${stepNumber}" button="true"/>
+		<%--<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${stratId}:')" id="filter_link"><span>Add Step</span></a>--%>
 	</div>
 	<div class="filter_link_div" id="filter_link_div_${stratId}">
 		<site:FilterInterface model="${applicationScope.wdkModel}" recordClass="${strat_step.dataType}" strategy="${strategy}"/>

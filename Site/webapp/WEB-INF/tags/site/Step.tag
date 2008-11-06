@@ -19,7 +19,11 @@
               required="true"
               description="Number of this step in the strategy"
 %>
-
+<%@ attribute name="button"
+	      type="java.lang.String"
+              required="false"
+              description="indicates to display the Red Button here"
+%>
 <c:set var="type" value="None" />
 <c:set var="step_dataType" value="${step.dataType}" />
 <c:choose>
@@ -62,6 +66,10 @@
 
 
 <c:choose> 
+	<c:when test="${button == 'true'}">
+		<a class="filter_link redbutton" onclick="this.blur()" href="javascript:openFilter('${strategyId}:')" id="filter_link" style="position: absolute; left:${left_offset}em; top: 4.25em;"><span>Add Step</span></a>
+	</c:when>
+
 	<c:when test="${step.isFirstStep}">
 	
 	<c:set var="stepName" value="${step.shortDisplayName}" />
