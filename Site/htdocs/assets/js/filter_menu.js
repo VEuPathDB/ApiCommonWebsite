@@ -2,7 +2,6 @@
 var isInsert = "";
 var _action = "";
 var original_Query_Form_Text;
-var update_hist = false;
 
 function openStrategy(stratId){
 	var url = "showStrategy.do?strategy=" + stratId;
@@ -25,36 +24,6 @@ function showExportLink(stratId){
  	exportLink.show();
 }
 
-function showPanel(panel) {
-	var hidePanel;
-	if (panel == 'strategy_results')
-		hidePanel = 'search_history';
-	else{
-		hidePanel = 'strategy_results';
-		updateHistory();
-	}
-	$("#" + hidePanel + "_tab").parent().attr("id", "");
-	$("#" + hidePanel).hide();
-	$("#" + panel + "_tab").parent().attr("id", "selected");
-	$("#" + panel).show();
-}
-
-function updateHistory(){
-	if(update_hist){
-		$.ajax({
-			url: "showQueryHistory.do",
-			dataType: "html",
-			success: function(data){
-				$("#search_history").html(data);
-				update_hist = false;
-			},
-			error: function(data, msg, e){
-				alert("ERROR \n "+ msg + "\n" + e);
-			}
-		});
-	}
-}
-			
 function closeStrategy(stratId){
 	if(stratId.indexOf("_") == -1){
 		var url = "closeStrategy.do?strategy=" + stratId;
@@ -72,7 +41,11 @@ function closeStrategy(stratId){
 	} else {
 		var parts = stratId.split("_");
 		$("#diagram_" + stratId).hide("slow").remove();
-		$("#diagram_" + parts[0]).css({ height: "10em" });
+		var ps_height = $("#diagram_" + parts[0]).css("height");
+		ps_height = ps_height.substring(0, ps_height.indexOf("px"));
+		ps_height = parseInt(ps_height) - 132;
+		ps_height = ps_height + "px";
+		$("#diagram_" + parts[0]).css({ height: ps_height });
 	}
 	$("#filter_link_div_" + stratId).remove();
 }
@@ -122,8 +95,7 @@ function saveStrategy(stratId){
 //			$("div[id^='diagram_" + strategy + "_']").each(function(){
 //				refreshStrategy(this.id, newStrategy);
 //			});
-			saveForm.css("display","none");
-			update_hist = true;
+			saveForm.css("display","none");;
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
@@ -168,7 +140,8 @@ function recursiveRefresh(stratId){
 				var dia_id = stratId;
 				if(stratId.split("_").length > 1){
 					
-					$("#diagram_" + parent_Strat).append($(".diagram", data).addClass("sub_diagram"));
+					$("#diagram_" + parent_Strat).append($(".diagram", data).addClass("sub_diagram").css({left: "36px",width: "97%",top: "118px"
+					}));
 					$("#Strategies").append($(".filter_link_div", data));
 				}else{
 					$("#Strategies").append($(".diagram", data));
@@ -499,7 +472,6 @@ function AddStepToStrategy(proto, act){
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});
-	update_hist = true;
 	openFilter(isInsert);
 }
 
@@ -546,7 +518,6 @@ function EditStep(proto, url, step_number){
 	//$("#filter_link").css({opacity:1.0});//html("<span>Add Step</span>"); 
 	//$("#filter_link").attr("href","javascript:openFilter()");
 	openFilter(proto+":");
-	update_hist = true;
 }
 
 function DeleteStep(ele,url){
@@ -596,7 +567,6 @@ function DeleteStep(ele,url){
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});
-	update_hist = true;
 }
 
 function ExpandStep(url){
@@ -619,14 +589,23 @@ function ExpandStep(url){
 				parentStep.text(exName);
 			}
 			var filter = $(".filter_link_div", data);
+			var ps_height = $("#diagram_" + parentStratNum).css("height");
+			ps_height = ps_height.substring(0, ps_height.indexOf("px"));
+			ps_height = parseInt(ps_height) + 132;
+			ps_height = ps_height + "px";
 			parent_strat.css({
-				height: "21em"
+				height: ps_height
 			});
-			//sub.css({
-			//	left: "36px",
-			//	width: "97%",
-			//	top: "118px"
-			//});
+		//	var last_child = $(parent_strat).children("div[id^='diagram_" + parentStratnum + "_']:last");
+		//	var cs_left = 0;
+		//	var cs_top = 0;
+		//	var cs_width = "97%";
+		//	if(last_child)
+			sub.css({
+				left: "36px",
+				width: "97%",
+				top: "118px"
+			});
 			parent_strat.append(sub);
 			strat_div.append(filter);
 		},
@@ -634,5 +613,4 @@ function ExpandStep(url){
 			alert("ERROR \n " + msg + "\n" + e);
 		}
 	});
-	update_hist = true;
 }

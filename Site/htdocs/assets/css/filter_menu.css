@@ -181,9 +181,9 @@
 }
 
 .filter_link {
-	position: relative;
+	/*position: relative;
 	float: right;
 	margin-right: 5px;
-	top: 65px;
+	top: 65px;*/
 	color: #FFFFFF;
 }

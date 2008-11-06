@@ -7,7 +7,7 @@
      margin:   0 auto; /* Sorry, IE5.x/Win. */
      left:    0em;
 	 background-color: #EDEDED;
-     height:   10em;
+     height:   120px;
    }
 
    /* Turn off this Opera/Mozilla feature. */
@@ -21,9 +21,7 @@
    }
    
    .diagram div.sub_diagram {
-	 left:36px;
-	 top:118px;
-	 width:97%;
+	position: relative;
      border: 2px solid #a0a0a0;
    }
 
@@ -434,7 +432,3 @@ span.closeStrategy {
 .diagram .export_link input {
 	margin: 0 5px;
 }
-
-#strategy_results, #search_history {
-	display: none;
-} 
