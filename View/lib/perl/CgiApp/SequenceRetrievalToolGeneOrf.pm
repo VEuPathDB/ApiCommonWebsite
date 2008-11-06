@@ -8,10 +8,10 @@ use ApiCommonWebsite::View::CgiApp;
 use Bio::SeqIO;
 use Bio::Seq;
 
-my $CODESTART = 'cStart';
+my $CODESTART = 'CodeStart';
 my $START = 'Start';
 my $END = 'End';
-my $CODEEND = 'cEnd';
+my $CODEEND = 'CodeEnd';
 
 ##
 ## PROBLEM NOTE: this SRT makes the icky assumption that there is a 1-1 relationship between genes and 
@@ -63,7 +63,7 @@ sub processParams {
   $self->{downstreamAnchor} = $cgi->param('downstreamAnchor');
   $self->{upstreamSign}     = $cgi->param('upstreamSign');
   $self->{downstreamSign}   = $cgi->param('downstreamSign');
-  my @inputIds              = split(" ", $cgi->param('ids'));
+  my @inputIds              = split(",", $cgi->param('ids'));
   $self->{inputIds}         = \@inputIds;
 
   $self->{type} = 'protein' if (!$self->{type} || $self->{type} !~ /\S/);
