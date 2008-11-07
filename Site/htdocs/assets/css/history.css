@@ -47,6 +47,16 @@ ul#history_tabs {
     display: inline;
 }
 
+.history_panel table li {
+    float:left;
+}
+
+.history_panel table li.operation {
+    border:none;
+    width:36px;
+    margin-top: -8px;
+}
+
 #cmplt_hist_link {
     float: right;
 }
