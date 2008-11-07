@@ -61,6 +61,10 @@
 	*html .operation {
 		z-index: -1;
 	}
+	
+	a.redbutton {
+		z-index: -1;
+	}
 		
 </style>
 <![endif]-->
