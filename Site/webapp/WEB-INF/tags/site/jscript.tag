@@ -22,6 +22,10 @@
 <c:if test="${refer == 'customSummary'}">
 	<!-- filter menu javascript -->
 	<script type="text/javascript" src="/assets/js/filter_menu.js"></script>
+	
+	<!-- Strategy Interaction javascript -->
+	<script type="text/javascript" src="/assets/js/StrategyAction.js"></script>
+	
  	<!-- hover for home page -->
 	<script type="text/javascript" src="/assets/js/sfhover.js"></script>
 </c:if>
