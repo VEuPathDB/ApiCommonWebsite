@@ -75,7 +75,7 @@ function showLoading(divId){
 	$(i).attr("height","23");
 	$(l).append(i);
 	$(l).css({
-		position: "relative",
+		position: "absolute",
 		left: "10px",
 		top: "10px"
 	});
@@ -136,6 +136,7 @@ function recursiveRefresh(stratId){
 		success: function(data){
 			if($("div#diagram_" + stratId).length != 0){
 				$("div#diagram_" + stratId).html($(".diagram", data).html());
+				showLoading(stratId);
 			}else{
 				var dia_id = stratId;
 				if(stratId.split("_").length > 1){
@@ -156,6 +157,8 @@ function recursiveRefresh(stratId){
 				parts[1] = new_step_id;
 				var sub_diagram_id = parts.join("_");
 				recursiveRefresh(sub_diagram_id);
+			}else{
+				$("#diagram_" + stratId.split("_")[0] + " span#loadingGIF").remove();
 			}
 		},
 		error: function(data, msg, e){
@@ -241,6 +244,7 @@ function EditStep(proto, url, step_number){
 				}
 			}
 			InsertNewStrategy(proto, data, false);
+			$("#diagram_" + proto.split("_")[0] + "span#loadingGIF").remove();
 		    $("#"+selected_div+" span.resultCount a").click();
 		},
 		error: function(data, msg, e){
@@ -252,6 +256,7 @@ function EditStep(proto, url, step_number){
 }
 
 function DeleteStep(ele,url){
+	$(ele).parent().parent().hide();
 	var deleted_step_id = url.substring(url.indexOf("step=") + 5);
 	var parentStratNum = parseUrl("strategy",url);
 	$.ajax({
@@ -273,6 +278,7 @@ function DeleteStep(ele,url){
 				}
 			}
 			InsertNewStrategy(proto,data,true);
+			$("#diagram_" + parentStratNum + "span#loadingGIF").remove();
 			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
 					$("#"+diagramId+" div.venn:last span.resultCount a").click();
