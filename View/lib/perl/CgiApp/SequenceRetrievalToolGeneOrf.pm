@@ -63,7 +63,7 @@ sub processParams {
   $self->{downstreamAnchor} = $cgi->param('downstreamAnchor');
   $self->{upstreamSign}     = $cgi->param('upstreamSign');
   $self->{downstreamSign}   = $cgi->param('downstreamSign');
-  my @inputIds              = split(",", $cgi->param('ids'));
+  my @inputIds              = split(/[,\s]+/, $cgi->param('ids'));
   $self->{inputIds}         = \@inputIds;
 
   $self->{type} = 'protein' if (!$self->{type} || $self->{type} !~ /\S/);
@@ -158,6 +158,7 @@ AND s.taxon_id = tn.taxon_id
 AND tn.name_class = 'scientific name'
 EOSQL
 
+
 $sqlQueries->{geneProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, tas.sequence, bfmv.product, bfmv.organism
 FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv
@@ -195,6 +196,7 @@ AND s.source_id = bfmv.source_id
 AND so.sequence_ontology_id = s.sequence_ontology_id
 AND so.term_name = 'CDS'
 EOSQL
+
 
 sub handleNonGenomic {
   my ($self, $dbh, $seqIO) = @_;
@@ -276,6 +278,8 @@ sub handleGenomic {
   my $seqTable = ($self->getModel() =~ /toxo|giardia/i)?
     'dots.VirtualSequence' : 'dots.ExternalNaSequence';
 
+  my $site = ($self->getModel() =~ /^api/i)? $sqlQueries : $componentSql;
+
   my $beginAnch = 0;
   my $endAnch = 0;
   my $beginAnchRev = 0;
@@ -298,6 +302,23 @@ sub handleGenomic {
   $end = "(bfmv.$endAnch + $endOffset)";
   $startRev = "(bfmv.$endAnchRev - $endOffset)";
   $endRev = "(bfmv.$beginAnchRev - $beginOffset)";
+
+$componentSql->{geneGenomicSql} = <<EOSQL;
+select gf.source_id, sa.source_id, sa.organism, gf.product,
+     bfmv.start_min, bfmv.end_max,
+     bfmv.is_reversed,
+     CASE WHEN bfmv.is_reversed = 1
+     THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
+     ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
+     END as sequence
+FROM dots.genefeature gf, apidb.featurelocation bfmv, apidb.sequenceattributes sa, dots.nasequence s
+WHERE gf.source_id = ?
+AND bfmv.is_top_level = 1
+AND gf.na_feature_id = bfmv.na_feature_id
+AND gf.na_sequence_id = sa.na_sequence_id
+AND s.na_sequence_id = sa.na_sequence_id
+EOSQL
+
 
 $sqlQueries->{geneGenomicSql} = <<EOSQL;
 select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
@@ -330,15 +351,17 @@ WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 EOSQL
 
+$componentSql->{orfGenomicSql} = $sqlQueries->{orfGenomicSql} ;
+
   my $sql;
 
   my $ids = $self->{inputIds};
 
   if ($self->{geneOrOrf} eq "gene") {
-      $sql = $sqlQueries->{geneGenomicSql};
+      $sql = $site->{geneGenomicSql};
       $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /^api/i);
   } else {
-      $sql = $sqlQueries->{orfGenomicSql};
+      $sql = $site->{orfGenomicSql};
   }
 
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
