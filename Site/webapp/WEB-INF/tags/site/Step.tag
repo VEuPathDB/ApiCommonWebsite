@@ -93,7 +93,7 @@
 			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategyId}&step=${stepNum}&resultsOnly=true')"> ${step.resultSize}&nbsp;${type}</a></span>			
 			<c:if test="${step.nextStep != null}">
 				<ul>
-					<li><img class="rightarrow1" src="/assets/images/arrow_chain_right3.png"></li>
+					<li><img class="rightarrow1" src="/assets/images/arrow_chain_right3.png" alt="input into"></li>
 				</ul>
 			</c:if>
 		</div>
@@ -120,7 +120,7 @@
 			</h3>
 			<span class="resultCount"><a class="results_link" href="javascript:void(0)" onclick="NewResults(this,'showSummary.do?strategy=${strategyId}&step=${stepNum}&subquery=true&resultsOnly=true')"> ${step.childStep.resultSize}&nbsp;${type}</a></span>
 			<ul>
-				<li><img class="downarrow" src="/assets/images/arrow_chain_down2.png"</li>
+				<li><img class="downarrow" src="/assets/images/arrow_chain_down2.png" alt="equals"></li>
 			</ul>
 		</div>
 		<div id="step_${stepNum}" class="venn row2 size2 operation ${step.operation}" style="left:${left_offset}em; top: 4.5em;">
@@ -128,7 +128,7 @@
 			<span class="resultCount"><a class="operation" onclick="NewResults(this,'showSummary.do?strategy=${strategyId}&step=${stepNum}&resultsOnly=true')" href="javascript:void(0)">${step.resultSize}&nbsp;${type}</a></span>
 			<c:if test="${step.nextStep != null}">
 				<ul>
-					<li><img class="rightarrow2" src="/assets/images/arrow_chain_right4.png"></li>
+					<li><img class="rightarrow2" src="/assets/images/arrow_chain_right4.png" alt="input into"></li>
 				</ul>
 			</c:if>
 		</div>
