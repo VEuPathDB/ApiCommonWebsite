@@ -315,7 +315,7 @@ FROM dots.genefeature gf, apidb.featurelocation bfmv, apidb.sequenceattributes s
 WHERE gf.source_id = ?
 AND bfmv.is_top_level = 1
 AND gf.na_feature_id = bfmv.na_feature_id
-AND gf.na_sequence_id = sa.na_sequence_id
+AND bfmv.na_sequence_id = sa.na_sequence_id
 AND s.na_sequence_id = sa.na_sequence_id
 EOSQL
 
