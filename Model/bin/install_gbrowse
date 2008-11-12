@@ -7,7 +7,7 @@
 
 
 GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
-GBROWSE_TAR_FILE=Generic-Genome-Browser-1.69.tar.gz
+GBROWSE_TAR_FILE=Generic-Genome-Browser-1.64.tar.gz
 BIOPERL_TAR_FILE=bioperl_1.5_nightly_20080918.tgz
 
 BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
@@ -147,10 +147,10 @@ patch_all() {
     echo "INSTALL: patching...$cgibinTargetDir"
     arch=$(arch)
     [ "$arch" == "i686" ] && arch=i386
-    patch -d $cgilibTargetDir/${arch}-linux-thread-multi/Bio/Graphics -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/Browser.pm_v1.69.patch
-    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/gbrowse_img_v1.69.patch
-    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/gbrowse_v1.69_presets.patch
-    patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.69/POSIX_v1.69_presets.patch
+    patch -d $cgilibTargetDir/${arch}-linux-thread-multi/Bio/Graphics -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.64/Browser.pm_1_64.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.64/gbrowse_img_1_64.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.64/gbrowse_1_64_presets.patch
+    patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.64/POSIX.pm_1_64_presets.patch
 }
 
 
