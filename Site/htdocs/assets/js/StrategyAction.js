@@ -83,23 +83,8 @@ function showLoading(divId){
 }
 
 function InsertNewStrategy(proto){
-/*	if(proto.indexOf("_") == -1){
-		var new_dia = $(".diagram",data);
-		if($("#diagram_" + proto).length != 0){
-			$("#diagram_" + proto).html(new_dia.html());
-		}else{
-			$("#Strategies").prepend(document.createElement("br"));
-			$("#Strategies").prepend(new_dia);
-		}
-		if(needFilter){
-			var new_filter = $(".filter_link_div",data);
-			$("#filter_link_div_" + proto).remove();
-			$("#Strategies").append(new_filter);
-		}
-	}else{*/
-		var parts = proto.split("_");
-		Refresh(parts[0]);
-	//}
+	var parts = proto.split("_");
+	Refresh(parts[0]);
 }
 
 var recur_Count;
@@ -111,8 +96,9 @@ function Refresh(strategyId){
 	sub_strat_ids = new Array();
 	count = 0;
 	if(subStrategies.length != 0){
-		var id_index_Map = {subid:"", subindex:""};
+		
 		$(subStrategies).each(function(){
+			var id_index_Map = {subid:"", subindex:""};
 			id_index_Map.subid = $(this).attr("id").substring(8);
 			var temp = $("#diagram_" + strategyId + " #stepId_" + id_index_Map.subid.split("_")[1]).parent().parent().attr("id");
 			id_index_Map.subindex = temp.substring(5,temp.indexOf("_sub"));
@@ -166,29 +152,6 @@ function recursiveRefresh(stratId){
 		}
 	});
 }
-/*
-function refreshStrategy(stratId, newStrategy){
-	var newStratId = stratId;
-	var arr = stratId.split("_");
-	if (newStrategy != arr[0]) {
-		arr[0] = newStrategy;
-		newStratId = arr.join("_");
-	}
-	var url="showStrategy.do?strategy=" + newStratId;
-	$.ajax({
-		url: url,
-		async: false,
-		dataType: "html",
-		success: function(data){
-			$("div#diagram_" + stratId).html($(".diagram", data).html());
-		},
-		error: function(data, msg, e){
-			alert("ERROR \n "+ msg + "\n" + e);
-		}
-	});
-}
-*/
-
 
 function AddStepToStrategy(proto, act){
 	var url = act;	
