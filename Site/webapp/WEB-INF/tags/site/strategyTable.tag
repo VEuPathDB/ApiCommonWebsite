@@ -9,6 +9,11 @@
               required="true"
               description="List of Strategy objects"
 %>
+<%@ attribute name="wdkUser"
+              type="org.gusdb.wdk.model.jspwrap.UserBean"
+              required="true"
+              description="Current User object"
+%>
  
 <!-- begin of the html:form for rename query -->
 <html:form method="get" action="/renameStrategy.do">
@@ -35,7 +40,7 @@
         <td scope="row"><input type=checkbox id="${strategyId}" onclick="updateSelectedList()"/></td>
         <%-- need to see if this strategys id is in the session. --%>
         <c:set var="active" value=""/>
-        <c:set var="activeStrategies" value="${sessionScope.wdkActiveStrategies}"/>
+        <c:set var="activeStrategies" value="${wdkUser.activeStrategies}"/>
         <c:forEach items="${activeStrategies}" var="id">
           <c:if test="${strategyId == id}">
             <c:set var="active" value="true"/>

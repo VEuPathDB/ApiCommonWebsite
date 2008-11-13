@@ -96,7 +96,7 @@
     </c:otherwise> 
   </c:choose>
   <h2>In Progress</h2>
-  <site:strategyTable strategies="${strategies}" />
+  <site:strategyTable strategies="${strategies}" wdkUser="${wdkUser}" />
 </div>
 </c:forEach>
 <!-- end of showing strategies grouped by RecordTypes -->
@@ -122,7 +122,7 @@
     </c:otherwise> 
   </c:choose>
   <h2>Saved</h2>
-  <site:strategyTable strategies="${strategies}" />
+  <site:strategyTable strategies="${strategies}" wdkUser="${wdkUser}" />
 </div>
 </c:forEach>
 <!-- end of showing strategies grouped by RecordTypes -->
@@ -137,7 +137,7 @@
       <div class="panel_invalid history_panel">
     </c:otherwise>
   </c:choose>
-    <site:strategyTable strategies="${user.invalidStrategies}" />
+    <site:strategyTable strategies="${user.invalidStrategies}" wdkUser="${wdkUser}" />
   </div>
 </c:if>
 
