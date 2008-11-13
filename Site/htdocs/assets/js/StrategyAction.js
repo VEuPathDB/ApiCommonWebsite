@@ -82,8 +82,8 @@ function showLoading(divId){
 	$(d).append(l);
 }
 
-function InsertNewStrategy(proto, data, needFilter){
-	if(proto.indexOf("_") == -1){
+function InsertNewStrategy(proto){
+/*	if(proto.indexOf("_") == -1){
 		var new_dia = $(".diagram",data);
 		if($("#diagram_" + proto).length != 0){
 			$("#diagram_" + proto).html(new_dia.html());
@@ -96,10 +96,10 @@ function InsertNewStrategy(proto, data, needFilter){
 			$("#filter_link_div_" + proto).remove();
 			$("#Strategies").append(new_filter);
 		}
-	}else{
+	}else{*/
 		var parts = proto.split("_");
 		Refresh(parts[0]);
-	}
+	//}
 }
 
 var recur_Count;
@@ -210,7 +210,7 @@ function AddStepToStrategy(proto, act){
 			showLoading(proto.split("_")[0]);
 		},
 		success: function(data){
-			InsertNewStrategy(proto, data, true);
+			InsertNewStrategy(proto);
 			var new_dia_id = $(".diagram",data).attr("id");
 			$("#" + new_dia_id + " div.venn:last span.resultCount a").click();
 		},
@@ -243,7 +243,7 @@ function EditStep(proto, url, step_number){
 					selected_div = $(diagram_divs[i]).attr("id");
 				}
 			}
-			InsertNewStrategy(proto, data, false);
+			InsertNewStrategy(proto);
 			$("#diagram_" + proto.split("_")[0] + "span#loadingGIF").remove();
 		    $("#"+selected_div+" span.resultCount a").click();
 		},
@@ -277,7 +277,7 @@ function DeleteStep(ele,url){
 					selected_div = $(diagram_divs[i]).attr("id");
 				}
 			}
-			InsertNewStrategy(proto,data,true);
+			InsertNewStrategy(proto);
 			$("#diagram_" + parentStratNum + "span#loadingGIF").remove();
 			
 		    if(selected_div == "step_"+deleted_step_id || selected_div == "step_"+deleted_step_id+"_sub"){
