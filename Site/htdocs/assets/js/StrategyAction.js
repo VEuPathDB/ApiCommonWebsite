@@ -41,24 +41,34 @@ function closeStrategy(stratId){
 	$("#filter_link_div_" + stratId).remove();
 }
 
-function saveStrategy(stratId){
+function saveStrategy(stratId, checkName){
 	var saveForm = $("div#save_strat_div_" + stratId);
 	var name = $("input[name='name']",saveForm).attr("value");
 	var strategy = $("input[name='strategy']",saveForm).attr("value");
 	var url="renameStrategy.do?strategy=";
-	url = url + strategy + "&name=" + name;
+	url = url + strategy + "&name=" + name + "&checkName=" + checkName;
 	$.ajax({
 		url: url,
 		dataType: "html",
 		success: function(data){
-			// reload strategy panel by stratId
-			var strat_id_span = $("div#diagram_" + strategy + " #strategy_name span#strategy_id_span");
-			var small_links = $("div#diagram_" + strategy + " #strategy_name span.strategy_small_text");
-			$("div#diagram_" + strategy + " #strategy_name").text(name);
-			$("div#diagram_" + strategy + " #strategy_name").append(strat_id_span);
-			$("div#diagram_" + strategy + " #strategy_name").append(small_links);
-			saveForm.css("display","none");
-			update_hist = true;
+			// reload strategy panel
+			if (data) {
+	                        var diagram = $("div.diagram", data);
+				// save successful, we got a diagram
+				$("div#diagram_" + strategy + " #strategy_name").html($("#strategy_name", diagram).html());
+				saveForm.hide()
+				update_hist = true;
+			}
+			else{
+				// data == "" -> save unsuccessful -> name collision
+				var overwrite = confirm("A strategy already exists with the name '" + name + ".' Do you want to overwrite the existing strategy?");
+				if (overwrite) {
+					saveStrategy(stratId, false);
+				}
+				else {
+					saveForm.hide();
+				}
+			}
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);

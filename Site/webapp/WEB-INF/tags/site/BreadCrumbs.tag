@@ -46,7 +46,7 @@
                  <div class="modal_name"><h1>Save As</h1></div>
                  <a class="close_window" href="javascript:closeModal()"><img alt="Close" src="/assets/images/Close-X-box.png"/></a>
             </span>
-            <form action="javascript:saveStrategy('${stratId}')" onsubmit="return validateSaveForm(this);">
+            <form action="javascript:saveStrategy('${stratId}', true)" onsubmit="return validateSaveForm(this);">
                  <input type="hidden" name="strategy" value="${strategy.strategyId}" />
                  <input type="text" name="name" value="${savedName}" />
                  <input type="submit" value="Save"/>
