@@ -111,9 +111,10 @@
 	<a class="edit_step_link" href="javascript:void(0)" onclick="Edit_Step(this,'showQuestion.do?questionFullName=${questionName}${urlParams}&questionSubmit=Get+Answer&goto_summary=0')" id="${strategyNum}|${stepNum}|${oper}">Edit</a>&nbsp;|&nbsp;
 	<!--<span style="color:#888;">Edit</span>&nbsp;|&nbsp;-->
 	<c:set var="expandUrl" value="expandStep.do?strategy=${strategyNum}&step=${step.childStep.stepId}&collapsedName=Expanded%20${step.childStep.answerValue.question.displayName}" />
-	<c:if test="${step.isCollapsible}">
-		<c:set var="expandUrl" value="expandStep.do?strategy=${strategyNum}&step=${step.childStep.stepId}" />
-	</c:if>
+<%--	<c:set var="expandUrl" value="expandStep.do?strategy=${strategyNum}&step=${step.childStep.stepId}" />
+	<c:if test="${!step.isCollapsible}">
+		<c:set var="expandUrl" value="expandStep.do?strategy=${strategyNum}&step=${step.childStep.stepId}&collapsedName=Expanded%20${step.childStep.answerValue.question.displayName}" />
+	</c:if>--%>
 	<a class="expand_step_link" href="javascript:void(0)" onclick="Expand_Step(this,'${expandUrl}')">Expand</a>&nbsp;|&nbsp;
 	<a class="insert_step_link" id="${strategyNum}|${stepNum}" href="javascript:void(0)" onclick="Insert_Step(this,'processFilter.do?strategy=${strategyNum}&insert=${stepNum}')">Insert Before</a>
 	<!--<span style="color:#888;">Insert Before</span>-->&nbsp;|&nbsp;
