@@ -353,7 +353,7 @@ function reviseBooleanQuery(type, expression) {
         <c:set var="filter" value="${wdkAnswer.filter}" />
         
         <td nowrap>
-            <<%-- check if we need to embed filter into view url --%>
+            <%-- check if we need to embed filter into view url --%>
             <c:set var="filterUrl">
                 <c:choose>
                     <c:when test="${filter == null}"></c:when>
