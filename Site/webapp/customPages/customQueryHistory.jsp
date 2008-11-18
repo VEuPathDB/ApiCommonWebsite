@@ -350,15 +350,24 @@ function reviseBooleanQuery(type, expression) {
         </c:if>
 --%>		
         <c:set value="${wdkAnswer.question.fullName}" var="qName" />
+        <c:set var="filter" value="${wdkAnswer.filter}" />
         
         <td nowrap>
+            <<%-- check if we need to embed filter into view url --%>
+            <c:set var="filterUrl">
+                <c:choose>
+                    <c:when test="${filter == null}"></c:when>
+                    <c:otherwise>&filter=${filter.name}</c:otherwise>
+                </c:choose>
+            </c:set>
+            
             <c:set var="surlParams">
                 <c:choose>
                     <c:when test="${history.boolean == false}">
-                        showSummary.do?questionFullName=${qName}${wdkAnswer.summaryUrlParams}&wdk_history_id=${historyId}
+                        showSummary.do?questionFullName=${qName}${wdkAnswer.summaryUrlParams}&wdk_history_id=${historyId}${filterUrl}
                     </c:when>
                     <c:otherwise>
-                        showSummary.do?wdk_history_id=${historyId}
+                        showSummary.do?wdk_history_id=${historyId}${filterUrl}
                     </c:otherwise>
                 </c:choose>
             </c:set>
@@ -391,7 +400,6 @@ function reviseBooleanQuery(type, expression) {
          <%-- display transform button for each history --%>
          <c:if test="${showTransform}">
            <c:set var="result">
-             <c:set var="filter" value="${wdkAnswer.filter}" />
              <c:choose>
                <c:when test="${filter == null}">
                  ${wdkAnswer.checksum}
