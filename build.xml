@@ -21,14 +21,14 @@
   <target name="WDK-Installation">
     <ant antfile="../WDK/build.xml" target="WDK-Installation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-17-2"/>
+      <property name="version" value="WDK_version_1-18"/>
     </ant>
   </target>  
 
   <target name="WDK-WebInstallation">
     <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-17-2"/>
+      <property name="version" value="WDK_version_1-18"/>
     </ant>
   </target>  
 
@@ -53,7 +53,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
       <property name="project" value="WDK"/>
-      <property name="version" value=""/>
+      <property name="version" value="WDK_version_1-18"/>
     </ant>
   </target>  
  
