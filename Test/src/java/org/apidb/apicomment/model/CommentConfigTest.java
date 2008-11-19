@@ -24,7 +24,7 @@ public class CommentConfigTest {
     public void testParseConfig() throws SAXException, IOException,
             WdkModelException {
         String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
-        String projectId = System.getProperty(Utilities.SYSTEM_PROPERTY_PROJECT_ID);
+        String projectId = System.getProperty(Utilities.ARGUMENT_PROJECT_ID);
 
         CommentConfigParser parser = new CommentConfigParser(gusHome);
         CommentConfig config = parser.parseConfig(projectId);
@@ -40,6 +40,5 @@ public class CommentConfigTest {
         assertTrue("maxIdle", config.getMaxIdle() >= config.getMinIdle());
         assertTrue("maxActive", config.getMaxActive() > 0);
         assertTrue("maxWait", config.getMaxWait() >= 0);
-        assertTrue("initialSize", config.getInitialSize() >= 0);
     }
 }

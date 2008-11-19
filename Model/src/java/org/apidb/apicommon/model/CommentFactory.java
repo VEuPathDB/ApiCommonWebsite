@@ -140,7 +140,8 @@ public class CommentFactory {
             ps.setString(9, comment.getHeadline());
             platform.updateClobData(ps, 10, comment.getContent(), false);
             ps.setString(11, comment.getLocationString());
-            String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0) ? comment.getReviewStatus()
+            String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0)
+                    ? comment.getReviewStatus()
                     : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
             ps.setString(12, reviewStatus);
             ps.setString(13, comment.getOrganism());
@@ -181,7 +182,7 @@ public class CommentFactory {
     }
 
     private void saveLocations(int commentId, Comment comment)
-            throws SQLException {
+            throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -606,7 +607,7 @@ public class CommentFactory {
     public CommentConfig getCommentConfig() {
         return config;
     }
-    
+
     private void printStatus() {
         int active = platform.getActiveCount();
         int idle = platform.getIdleCount();

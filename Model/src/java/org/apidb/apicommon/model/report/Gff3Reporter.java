@@ -24,7 +24,7 @@ import java.util.regex.PatternSyntaxException;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.Answer;
+import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.AttributeValue;
 import org.gusdb.wdk.model.Question;
 import org.gusdb.wdk.model.RecordClass;
@@ -60,8 +60,6 @@ public class Gff3Reporter extends Reporter {
     public final static String FIELD_HAS_PROTEIN = "hasProtein";
 
     private String tableCache;
-    private String projectIdColumn;
-    private String recordIdColumn;
     private String recordName;
     private String proteinName;
     private String transcriptName;
@@ -69,8 +67,8 @@ public class Gff3Reporter extends Reporter {
     private boolean hasTranscript = false;
     private boolean hasProtein = false;
 
-    public Gff3Reporter(Answer answer, int startIndex, int endIndex) {
-        super(answer, startIndex, endIndex);
+    public Gff3Reporter(AnswerValue answerValue, int startIndex, int endIndex) {
+        super(answerValue, startIndex, endIndex);
     }
 
     /**
@@ -86,8 +84,6 @@ public class Gff3Reporter extends Reporter {
 
         // check required properties
         tableCache = properties.get(PROPERTY_TABLE_CACHE);
-        recordIdColumn = properties.get(PROPERTY_RECORD_ID_COLUMN);
-        projectIdColumn = properties.get(PROPERTY_PROJECT_ID_COLUMN);
         recordName = properties.get(PROPERTY_GFF_RECORD_NAME);
         proteinName = properties.get(PROPERTY_GFF_PROTEIN_NAME);
         transcriptName = properties.get(PROPERTY_GFF_TRANSCRIPT_NAME);
@@ -106,15 +102,15 @@ public class Gff3Reporter extends Reporter {
         // include transcript
         if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
             String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
 
         // include protein
         if (config.containsKey(FIELD_HAS_PROTEIN)) {
             String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+                    ? true : false;
         }
     }
 
@@ -151,7 +147,8 @@ public class Gff3Reporter extends Reporter {
     /*
      * (non-Javadoc)
      * 
-     * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
+     * @see
+     * org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
      */
     public void write(OutputStream out) throws WdkModelException,
             NumberFormatException, NoSuchAlgorithmException, SQLException,
@@ -182,8 +179,8 @@ public class Gff3Reporter extends Reporter {
 
         // get page based answers with a maximum size (defined in
         // PageAnswerIterator)
-        for (Answer answer : this) {
-            for (RecordInstance record : answer.getRecordInstances()) {
+        for (AnswerValue answerValue : this) {
+            for (RecordInstance record : answerValue.getRecordInstances()) {
                 String seqId = getValue(record.getAttributeValue("gff_seqid"));
                 int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
                 int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));
@@ -255,8 +252,8 @@ public class Gff3Reporter extends Reporter {
 
             // get page based answers with a maximum size (defined in
             // PageAnswerIterator)
-            for (Answer answer : this) {
-                for (RecordInstance record : answer.getRecordInstances()) {
+            for (AnswerValue answerValue : this) {
+                for (RecordInstance record : answerValue.getRecordInstances()) {
 
                     StringBuffer recordBuffer = new StringBuffer();
 
@@ -272,12 +269,12 @@ public class Gff3Reporter extends Reporter {
                     String content = recordBuffer.toString();
 
                     // check if the record has been cached
-                    Map<String, Object> pkValues = record.getPrimaryKey().getValues();
+                    Map<String, String> pkValues = record.getPrimaryKey().getValues();
                     boolean hasCached = false;
 
                     if (tableCache != null) {
                         for (int index = 0; index < pkColumns.length; index++) {
-                            Object value = pkValues.get(pkColumns[index]);
+                            String value = pkValues.get(pkColumns[index]);
                             psQuery.setObject(index + 1, value);
                         }
                         ResultSet rs = psQuery.executeQuery();
@@ -465,7 +462,7 @@ public class Gff3Reporter extends Reporter {
             sqlInsert.append(", ").append(column);
         }
         sqlInsert.append(") VALUES (?, ?, ?");
-        for (int i = 0; i <pkColumns.length; i++) {
+        for (int i = 0; i < pkColumns.length; i++) {
             sqlInsert.append(", ?");
         }
         sqlInsert.append(")");
@@ -494,11 +491,11 @@ public class Gff3Reporter extends Reporter {
 
             // get page based answers with a maximum size (defined in
             // PageAnswerIterator)
-            for (Answer answer : this) {
-                for (RecordInstance record : answer.getRecordInstances()) {
-                    Map<String, Object> pkValues = record.getPrimaryKey().getValues();
+            for (AnswerValue answerValue : this) {
+                for (RecordInstance record : answerValue.getRecordInstances()) {
+                    Map<String, String> pkValues = record.getPrimaryKey().getValues();
                     // HACK
-                    String recordId = (String) pkValues.get("source_id");
+                    String recordId = pkValues.get("source_id");
 
                     // read and format record content
                     if (rcName.equals("SequenceRecordClasses.SequenceRecordClass")) {
@@ -669,18 +666,19 @@ public class Gff3Reporter extends Reporter {
         return value;
     }
 
-    private String formatSequence(String id, String sequence) throws PatternSyntaxException{
+    private String formatSequence(String id, String sequence)
+            throws PatternSyntaxException {
         if (sequence == null) return null;
 
         StringBuffer buffer = new StringBuffer();
         Pattern p = Pattern.compile("^apidb\\|");
-	Matcher m = p.matcher(id);
-        
-	if(m.find()){
-	    buffer.append(">" + id + NEW_LINE);
-	}else{
-	    buffer.append(">apidb|" + id + NEW_LINE);
-	}
+        Matcher m = p.matcher(id);
+
+        if (m.find()) {
+            buffer.append(">" + id + NEW_LINE);
+        } else {
+            buffer.append(">apidb|" + id + NEW_LINE);
+        }
         int offset = 0;
         while (offset < sequence.length()) {
             int endp = offset + Math.min(60, sequence.length() - offset);
