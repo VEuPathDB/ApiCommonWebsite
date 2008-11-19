@@ -6,16 +6,27 @@ package org.apidb.apicomment.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
 import org.apidb.apicommon.model.Comment;
 import org.apidb.apicommon.model.CommentFactory;
 import org.apidb.apicommon.model.ExternalDatabase;
 import org.apidb.apicommon.model.Location;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.json.JSONException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 /**
  * @author xingao
@@ -41,15 +52,20 @@ public class CommentFactoryGetTest {
     private int commentId;
 
     @BeforeClass
-    public static void loadFactory() throws WdkModelException {
+    public static void loadFactory() throws WdkModelException,
+            NoSuchAlgorithmException, ParserConfigurationException,
+            TransformerFactoryConfigurationError, TransformerException,
+            IOException, SAXException, SQLException, JSONException,
+            WdkUserException, InstantiationException, IllegalAccessException,
+            ClassNotFoundException {
         // get the projectId
         String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
-        projectId = System.getProperty(Utilities.SYSTEM_PROPERTY_PROJECT_ID);
+        projectId = System.getProperty(Utilities.ARGUMENT_PROJECT_ID);
 
         if (gusHome == null || projectId == null)
             throw new WdkModelException("The required system property "
                     + Utilities.SYSTEM_PROPERTY_GUS_HOME + " or "
-                    + Utilities.SYSTEM_PROPERTY_PROJECT_ID + " is missing.");
+                    + Utilities.ARGUMENT_PROJECT_ID + " is missing.");
 
         // initialize comment factory
         CommentFactory.initialize(gusHome, projectId);
@@ -67,8 +83,8 @@ public class CommentFactoryGetTest {
         comment.setContent("The content of a sample content");
         comment.addExternalDatabase(SAMPLE_EXTERNAL_DATABASE,
                 SAMPLE_EXTERNAL_DATABASE_VERSION);
-        comment.setLocations(SAMPLE_LOCATION_REVERSED, SAMPLE_LOCATION_START + "-"
-                + SAMPLE_LOCATION_END, SAMPLE_LOCATION_COORDINATE);
+        comment.setLocations(SAMPLE_LOCATION_REVERSED, SAMPLE_LOCATION_START
+                + "-" + SAMPLE_LOCATION_END, SAMPLE_LOCATION_COORDINATE);
 
         factory.addComment(comment);
 
@@ -103,10 +119,14 @@ public class CommentFactoryGetTest {
         // check the location information
         Location[] locations = comment.getLocations();
         assertEquals("location count", 1, locations.length);
-        assertEquals("location start", SAMPLE_LOCATION_START, locations[0].getLocationStart());
-        assertEquals("location end", SAMPLE_LOCATION_END, locations[0].getLocationEnd());
-        assertEquals("location coordinate", SAMPLE_LOCATION_COORDINATE, locations[0].getCoordinateType());
-        assertEquals("location reversed?", SAMPLE_LOCATION_REVERSED, locations[0].isReversed());
+        assertEquals("location start", SAMPLE_LOCATION_START,
+                locations[0].getLocationStart());
+        assertEquals("location end", SAMPLE_LOCATION_END,
+                locations[0].getLocationEnd());
+        assertEquals("location coordinate", SAMPLE_LOCATION_COORDINATE,
+                locations[0].getCoordinateType());
+        assertEquals("location reversed?", SAMPLE_LOCATION_REVERSED,
+                locations[0].isReversed());
     }
 
     @Test

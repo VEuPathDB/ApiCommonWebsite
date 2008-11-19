@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.Answer;
+import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.AttributeValue;
 import org.gusdb.wdk.model.RecordClass;
 import org.gusdb.wdk.model.RecordInstance;
@@ -55,8 +55,8 @@ public class Gff3CachedReporter extends Reporter {
     private boolean hasTranscript = false;
     private boolean hasProtein = false;
 
-    public Gff3CachedReporter(Answer answer, int startIndex, int endIndex) {
-        super(answer, startIndex, endIndex);
+    public Gff3CachedReporter(AnswerValue answerValue, int startIndex, int endIndex) {
+        super(answerValue, startIndex, endIndex);
     }
 
     /**
@@ -190,8 +190,8 @@ public class Gff3CachedReporter extends Reporter {
 
         // get page based answers with a maximum size (defined in
         // PageAnswerIterator)
-        for (Answer answer : this) {
-            for (RecordInstance record : answer.getRecordInstances()) {
+        for (AnswerValue answerValue : this) {
+            for (RecordInstance record : answerValue.getRecordInstances()) {
                 String seqId = getValue(record.getAttributeValue("gff_seqid"));
                 int start = Integer.parseInt(getValue(record.getAttributeValue("gff_fstart")));
                 int stop = Integer.parseInt(getValue(record.getAttributeValue("gff_fend")));

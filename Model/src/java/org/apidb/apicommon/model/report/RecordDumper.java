@@ -18,7 +18,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.Answer;
+import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.Field;
 import org.gusdb.wdk.model.FieldScope;
 import org.gusdb.wdk.model.Question;
@@ -150,9 +150,9 @@ public class RecordDumper {
         config.put(FullRecordReporter.FIELD_HAS_EMPTY_TABLE, "yes");
 
         // ask the question
-        Map<String, Object> params = new LinkedHashMap<String, Object>();
+        Map<String, String> params = new LinkedHashMap<String, String>();
         params.put(organismParam, organism);
-        Answer sqlAnswer = question.makeAnswer(params);
+        AnswerValue sqlAnswer = question.makeAnswerValue(params);
 
         // decide the path-file name
         File dir = new File(baseDir, organism.replace(' ', '_'));

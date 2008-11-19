@@ -18,7 +18,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.Answer;
+import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.Question;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
@@ -119,16 +119,16 @@ public class Gff3Dumper {
         // prepare reporters
         logger.info("Preparing reporters....");
 
-        Map<String, Object> params = new LinkedHashMap<String, Object>();
+        Map<String, String> params = new LinkedHashMap<String, String>();
         params.put("gff_organism", organism);
 
         Question seqQuestion = (Question) wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion");
-        Answer sqlAnswer = seqQuestion.makeAnswer(params);
+        AnswerValue sqlAnswer = seqQuestion.makeAnswerValue(params);
         Gff3Reporter seqReport = (Gff3Reporter) sqlAnswer.createReport("gff3",
                 config);
 
         Question geneQuestion = (Question) wdkModel.resolveReference("GeneDumpQuestions.GeneDumpQuestion");
-        Answer geneAnswer = geneQuestion.makeAnswer(params);
+        AnswerValue geneAnswer = geneQuestion.makeAnswerValue(params);
         config.put(Gff3Reporter.FIELD_HAS_PROTEIN, "yes");
         Gff3Reporter geneReport = (Gff3Reporter) geneAnswer.createReport(
                 "gff3Dump", config);
