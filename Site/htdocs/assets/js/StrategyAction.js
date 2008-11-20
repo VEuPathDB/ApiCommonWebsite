@@ -41,10 +41,15 @@ function closeStrategy(stratId){
 	$("#filter_link_div_" + stratId).remove();
 }
 
-function saveStrategy(stratId, checkName){
+function saveStrategy(stratId, checkName, form){
 	var saveForm = $("div#save_strat_div_" + stratId);
+	if (form) {
+		saveForm = $("#browse_rename");
+	}
 	var name = $("input[name='name']",saveForm).attr("value");
 	var strategy = $("input[name='strategy']",saveForm).attr("value");
+	$("div#diagram_" + strategy).block({message: "<h1>Saving...</h1>"});
+	$("div#search_history").block({message: "<h1>Saving...</h1>"});
 	var url="renameStrategy.do?strategy=";
 	url = url + strategy + "&name=" + name + "&checkName=" + checkName;
 	$.ajax({
@@ -53,24 +58,32 @@ function saveStrategy(stratId, checkName){
 		success: function(data){
 			// reload strategy panel
 			if (data) {
-	                        var diagram = $("div.diagram", data);
 				// save successful, we got a diagram
-				$("div#diagram_" + strategy + " #strategy_name").html($("#strategy_name", diagram).html());
-				saveForm.hide()
+	                        var new_diagram = $("div.diagram", data);
+				$("div#diagram_" + strategy + " #strategy_name").html($("#strategy_name", new_diagram).html());
 				update_hist = true;
+				if (form) {
+					disableRename();
+					updateHistory();
+				}
+				$("div#diagram_" + strategy).unblock();
+				$("div#search_history").unblock();
 			}
 			else{
 				// data == "" -> save unsuccessful -> name collision
-				var overwrite = confirm("A strategy already exists with the name '" + name + ".' Do you want to overwrite the existing strategy?");
-				if (overwrite) {
-					saveStrategy(stratId, false);
+				var message="<h1>A strategy already exists with the name '" + name + ".' Do you want to overwrite the existing strategy?</h1><input type='button' value='Yes' onclick='saveStrategy(" + strategy + ", false)'/><input type='button' value='No' onclick='$(\"div#diagram_" + strategy + "\").unblock();saveForm.hide();'/>";
+				if (form) {
+					message="<h1>A strategy already exists with the name '" + name + ".' Do you want to overwrite the existing strategy?</h1><input type='button' value='Yes' onclick='saveStrategy(" + strategy + ", false)'/><input type='button' value='No' onclick='$(\"div#diagram_" + strategy + "\").unblock();disableRename();'/>";
 				}
-				else {
-					saveForm.hide();
-				}
+				$("div#diagram_" + strategy).unblock();
+				$("div#search_history").unblock();
+				$("div#diagram_" + strategy).block({message: message});
+				$("div#search_history").block({message: message});
 			}
 		},
 		error: function(data, msg, e){
+			$("div#diagram_" + strategy).unblock();
+			$("div#search_history").unblock();
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});

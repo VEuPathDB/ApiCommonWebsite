@@ -26,14 +26,17 @@ function showPanel(panel) {
 
 function updateHistory(){
 	if(update_hist){
+		$("div#search_history").block();
 		$.ajax({
 			url: "showQueryHistory.do",
 			dataType: "html",
 			success: function(data){
 				$("#search_history").html(data);
+				$("div#search_history").unblock();
 				update_hist = false;
 			},
 			error: function(data, msg, e){
+				$("div#search_history").unblock();
 				alert("ERROR \n "+ msg + "\n" + e);
 			}
 		});
@@ -54,7 +57,8 @@ function closeModal(){
 
 function validateSaveForm(form){
 	if (form.name.value == ""){
-		alert("You must specify a name for saving!");
+		var message = "<h1>You must specify a name for saving!</h1><input type='button' value='OK' onclick='$(\"div#diagram_" + form.strategy.value + "\").unblock()'/>";
+		$("div#diagram_" + form.strategy.value).block({message: message});
 		return false;
 	}
 	return true;

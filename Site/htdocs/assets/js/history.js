@@ -82,20 +82,22 @@ function deleteStrategies(url) {
 
 var currentStrategyId = 0;
 
-function enableRename(histId, name) {
+function enableRename(stratId, name) {
    // close the previous one
    disableRename();
    
-   currentStrategyId = histId;
-   var button = document.getElementById('activate_' + histId);
+   currentStrategyId = stratId;
+   var form = document.getElementById('browse_rename');
+   form.action = "javascript:saveStrategy(" + stratId + ", true, this)";
+   var button = document.getElementById('activate_' + stratId);
    button.style.display = 'none';
-   var text = document.getElementById('text_' + histId);
+   var text = document.getElementById('text_' + stratId);
    text.style.display = 'none';
-   var nameBox = document.getElementById('name_' + histId);
-   nameBox.innerHTML = "<input name='strategy' type='hidden' value='" + histId + "'>"
+   var nameBox = document.getElementById('name_' + stratId);
+   nameBox.innerHTML = "<input name='strategy' type='hidden' value='" + stratId + "'>"
                   + "<input id='name' name='name' type='text' size='42' maxLength='2000' value='" + name + "' style='margin-right:4px;'>" 
    nameBox.style.display='block';
-   var input = document.getElementById('input_' + histId);
+   var input = document.getElementById('input_' + stratId);
    input.innerHTML = "<input type='submit' value='Update'>"
                    + "<input type='reset' value='Cancel' onclick='disableRename()'>";
    input.style.display='block';
@@ -106,6 +108,8 @@ function enableRename(histId, name) {
 
 function disableRename() {
    if (currentStrategyId && currentStrategyId != '0') {
+      var form = document.getElementById('browse_rename');
+      form.action = "javascript:return false;";
       var button = document.getElementById('activate_' + currentStrategyId);
       button.style.display = 'block';
       var name = document.getElementById('name_' + currentStrategyId);
