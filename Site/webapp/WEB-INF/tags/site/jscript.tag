@@ -12,6 +12,8 @@
 <c:if test="${refer == 'customSummary'}">
 	<!-- JQuery Drag And Drop Plugin -->
 	<script type="text/javascript" src="/assets/js/lib/jqDnR.js"></script>
+	<!-- JQuery BlockUI Plugin -->
+	<script type="text/javascript" src="/assets/js/lib/jquery.blockUI.js"></script>
 </c:if>
 
 <!-- Prototype Library -->
