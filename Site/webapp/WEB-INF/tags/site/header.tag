@@ -223,9 +223,11 @@ Features not yet available in PlasmoDB&nbsp;${version} may still be accessed via
 	  
           <div class="small" bgcolor="#aa0000">
 	   Features not yet available in ToxoDB ${version} may still be accessed via
-	    <a href="http://v3-0.toxodb.org/ToxoDB.shtml">ToxoDB 3.0</a>). </div>
+	    <a href="http://v3-0.toxodb.org/ToxoDB.shtml">ToxoDB 3.0</a>.
+	    <a href="http://v4-3.toxodb.org/">ToxoDB 4.3</a> remains available 
+	    for access to the previous annotation and genome assembly. </div>
 
-     	  
+
           <div class="small" bgcolor="#aa0000">Here is an 
 	  <a href="http://ancillary.toxodb.org/cgi-bin/gbrowse/ancillary/" target='new'> 
  	  <b>Ancillary GBrowse Site for <i>T. gondii</i></b></a>. 
