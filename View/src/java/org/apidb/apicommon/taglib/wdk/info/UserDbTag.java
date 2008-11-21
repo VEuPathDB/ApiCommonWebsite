@@ -1,7 +1,7 @@
 /**
 
 Runs sql queries against the DBPlatform returned by
-org.gusdb.wdk.model.WdkModel.getAuthenticationPlatform().
+org.gusdb.wdk.model.WdkModel.getUserPlatform().
 This should correspond to the value of authenticationConnectionUrl 
 in model-config.xml
 
@@ -44,7 +44,7 @@ public class UserDbTag extends WdkTagBase {
         super.doTag();
         
         // derived from org.gusdb.wdk.model.user.AnswerFactory
-        loginPlatform = wdkModel.getAuthenticationPlatform();
+        loginPlatform = wdkModel.getUserPlatform();
         String answerSchema = wdkModel.getModelConfig().getUserDB().getWdkEngineSchema();
         
         setDbState();
