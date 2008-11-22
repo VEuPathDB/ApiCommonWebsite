@@ -10,16 +10,15 @@
 <%-- initialize filter link variables --%>
 <c:set var="all_results" value=""/>
 <c:set var="ch_genes" value=""/>
-
 <c:set var="cp_genes" value=""/>
 <c:set var="gl_genes" value=""/>
 <c:set var="deprecated_genes" value=""/>
 <c:set var="pb_genes" value=""/>
+<c:set var="pc_genes" value=""/>
 <c:set var="pf_genes" value=""/>
 <c:set var="pk_genes" value=""/>
 <c:set var="pv_genes" value=""/>
 <c:set var="py_genes" value=""/>
-<c:set var="tg_genes" value=""/>
 <c:set var="toxo_genes" value=""/>
 <c:set var="toxo_instances" value=""/>
 <c:set var="neospora_genes" value=""/>

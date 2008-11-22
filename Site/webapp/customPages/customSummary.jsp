@@ -328,6 +328,7 @@ function parse_Url( url, parameter_name )
        <c:set var="stringOrg" value="${aP}"/>
        <c:set var="arrayOrg" value="${fn:split(aP,',')}"/>
        <c:if test="${fn:length(arrayOrg) == 1}">
+<%--
          <jsp:setProperty name="qP" property="paramValue" value="${aP}" />
          <c:set var="pValue" value="${qP.decompressedValue}" />
          <c:choose>
@@ -335,9 +336,12 @@ function parse_Url( url, parameter_name )
              <c:set var="stringOrg" value="${pValue}"/>
            </c:when>
            <c:otherwise>
+--%>
              <c:set value="true" var="oneOrg"/>
+<%--
            </c:otherwise>
            </c:choose>
+--%>
        </c:if>
    </c:if>
 </c:forEach>
@@ -354,7 +358,6 @@ function parse_Url( url, parameter_name )
                    <site:apidbSummary/>
                </c:if>
           </c:if>
-
        </td>
     </tr>
     <tr>
