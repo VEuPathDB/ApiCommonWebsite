@@ -328,14 +328,26 @@ function parse_Url( url, parameter_name )
        <c:set var="stringOrg" value="${aP}"/>
        <c:set var="arrayOrg" value="${fn:split(aP,',')}"/>
        <c:if test="${fn:length(arrayOrg) == 1}">
-           <c:set value="true" var="oneOrg"/>
+         <jsp:setProperty name="qP" property="paramValue" value="${aP}" />
+         <c:set var="pValue" value="${qP.decompressedValue}" />
+         <c:choose>
+           <c:when test="${fn:contains(pValue,',')}">
+             <c:set var="stringOrg" value="${pValue}"/>
+           </c:when>
+           <c:otherwise>
+             <c:set value="true" var="oneOrg"/>
+           </c:otherwise>
+           </c:choose>
        </c:if>
    </c:if>
 </c:forEach>
 
-<%-- for questions other than gene questions, where no filters are defined  --%>
-<%-- also for when the organism value is encoded, no filters  --%>
-<%-- also for when there is no organism parameter --%>
+
+
+<%-- Portal: use of summary counts  --%>
+<%-- - for questions other than gene questions, where no filters are currently defined  --%>
+<%-- - OR when there is only one organism requested (includes when org.value is encoded)  --%>
+<%-- - OR when there is no organism parameter --%>
 <%--  <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB') && !(isGeneRec)}">   --%>
           <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
                <c:if test="${(fn:length(recordClass.filters)==0) || oneOrg || !Org}">
@@ -422,7 +434,7 @@ function parse_Url( url, parameter_name )
 
 <c:when test="${modelName == 'ApiDB'}">
 
-<%-- if there is no parameter organism we need to check the question definition, to which organisms the question applies. For now we just display filters  --%>
+<%-- if there is no parameter organism we need to check the question definition, to which organisms the question applies. For now we display all filters  --%>
 <c:choose>
 <c:when test="${Org eq 'false'}"> 
     <br>There is no organism param<br>    
