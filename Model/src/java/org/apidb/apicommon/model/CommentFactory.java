@@ -138,7 +138,7 @@ public class CommentFactory {
             ps.setString(7, comment.getProjectName());
             ps.setString(8, comment.getProjectVersion());
             ps.setString(9, comment.getHeadline());
-            platform.updateClobData(ps, 10, comment.getContent(), false);
+            platform.setClobData(ps, 10, comment.getContent(), false);
             ps.setString(11, comment.getLocationString());
             String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0)
                     ? comment.getReviewStatus()
