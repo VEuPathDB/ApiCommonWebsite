@@ -291,7 +291,7 @@ public class Gff3Reporter extends Reporter {
                     if (tableCache != null && !hasCached) {
                         psInsert.setString(1, recordName);
                         psInsert.setInt(2, 1);
-                        platform.updateClobData(psInsert, 3, content, false);
+                        platform.setClobData(psInsert, 3, content, false);
                         for (int index = 0; index < pkColumns.length; index++) {
                             Object value = pkValues.get(pkColumns[index]);
                             psInsert.setObject(index + 4, value);
@@ -535,7 +535,7 @@ public class Gff3Reporter extends Reporter {
                                 if (tableCache != null && !hasCached) {
                                     psInsert.setString(1, transcriptName);
                                     psInsert.setInt(2, 1);
-                                    platform.updateClobData(psInsert, 3,
+                                    platform.setClobData(psInsert, 3,
                                             sequence, false);
                                     for (int index = 0; index < pkColumns.length; index++) {
                                         Object value = pkValues.get(pkColumns[index]);
@@ -574,7 +574,7 @@ public class Gff3Reporter extends Reporter {
                                         // save into table cache
                                         psInsert.setString(1, proteinName);
                                         psInsert.setInt(2, 1);
-                                        platform.updateClobData(psInsert, 3,
+                                        platform.setClobData(psInsert, 3,
                                                 sequence, false);
                                         for (int index = 0; index < pkColumns.length; index++) {
                                             Object value = pkValues.get(pkColumns[index]);
