@@ -181,6 +181,12 @@ img {
 	z-index: 520;
 }
 
+#nav_top li:hover ul.login {
+	right:25px;
+	width:auto;
+	list-style-image: none;
+}
+
 #nav_top li ul a:link, #nav_top li ul a:visited {
 	color: #395b8e;
 	text-decoration: none;
@@ -199,6 +205,13 @@ img {
 	z-index: 520;
 }
 
+#user_topdiv {
+       clear: both;
+}
+
+#user_topdiv strong {
+	color: black;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =STRUCTURE 
