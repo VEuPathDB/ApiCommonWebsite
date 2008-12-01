@@ -1,0 +1,40 @@
+/* STYLE FOR SHOW/HIDE HISTORY PANELS */
+.history_panel.enabled {
+  display:inline;
+}
+
+.history_panel {
+  display:none;
+}
+
+/* STYLE FOR HISTORY TABS */
+ul#history_tabs {
+  border-bottom:1px solid #CCCCCC;
+  margin:0;
+  padding:0 10px 1.73em;
+  width:1200px;
+}
+
+#history_tabs li {
+  display:inline;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+
+#history_tabs #selected a {
+  background:#FFFFFF none repeat scroll 0 0;
+  border-bottom:1px solid #FFFFFF;
+  color:#000000;
+  font-weight:bold;
+}
+
+#history_tabs a:link, #history_tabs a:visited {
+  background:#E8EBF0 none repeat scroll 0 0;
+  border:1px solid #CCCCCC;
+  color:#666666;
+  float:left;
+  padding:0.24em 1em;
+  text-align:center;
+  text-decoration:none;
+}
