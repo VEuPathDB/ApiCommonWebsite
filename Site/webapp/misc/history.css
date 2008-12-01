@@ -7,6 +7,10 @@
   display:none;
 }
 
+.clear_all {
+  clear: both;
+}
+
 /* STYLE FOR HISTORY TABS */
 ul#history_tabs {
   border-bottom:1px solid #CCCCCC;
