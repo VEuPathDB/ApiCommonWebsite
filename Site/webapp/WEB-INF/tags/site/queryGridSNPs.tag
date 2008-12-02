@@ -38,10 +38,10 @@
                     <site:queryGridMakeUrl qset="SnpQuestions" qname="SnpsByAlleleFrequency" linktext="Allele Frequency" existsOn="A P"/>
                 </tr>
                 <tr>
-                    <site:queryGridMakeUrl qset="SnpQuestions" qname="SnpsByIsolatePattern" linktext="Isolate Comparison" existsOn="P"/>
+                    <site:queryGridMakeUrl qset="SnpQuestions" qname="SnpsByIsolatePattern" linktext="Isolate Comparison" existsOn="A P"/>
                 </tr>
                 <tr>
-                    <site:queryGridMakeUrl qset="SnpQuestions" qname="SnpsByIsolateType" linktext="Isolate Assay" existsOn="P"/>
+                    <site:queryGridMakeUrl qset="SnpQuestions" qname="SnpsByIsolateType" linktext="Isolate Assay" existsOn="A P"/>
                 </tr>
 
             </table>
