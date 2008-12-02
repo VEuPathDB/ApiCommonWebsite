@@ -313,6 +313,7 @@ function parse_Url( url, parameter_name )
   <c:set var="recordClass" value="${wdkAnswer.recordClass}"/>
   <c:set var="rsName" value="${recordClass.fullName}"/>
   <c:set var="isGeneRec" value="${fn:containsIgnoreCase(rsName, 'GeneRecordClass')}"/>
+ <c:set var="isGenomicRec" value="${fn:containsIgnoreCase(rsName, 'SequenceRecordClass')}"/>
 
 <c:set value="${wdkAnswer.internalParams}" var="params"/>
 <c:set value="${wdkAnswer.question.paramsMap}" var="qParamsMap"/>
@@ -445,8 +446,12 @@ function parse_Url( url, parameter_name )
 <%--
 <c:if test="${oneOrg eq 'false' || fn:containsIgnoreCase(stringOrg, 'Giardia') || fn:containsIgnoreCase(stringOrg, 'Toxo')}">
 --%>
-
-   <site:apiFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
+<c:if test="${isGeneRec}">
+   <site:apiGeneFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
+</c:if>
+<c:if test="${isGenomicRec}">
+   <site:apiGenomicFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
+</c:if>
 
 <%--  </c:if>  --%>
 
