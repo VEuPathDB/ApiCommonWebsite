@@ -1,3 +1,194 @@
+var strats = new Array();
+var xmldoc = null
+
+$(document).ready(function(){
+	$("#Strategies div[id^='diagram_']").each(function(){
+		$.ajax({
+			url: "showStrategy.do?strategy=" + this.id.substring(8),
+			dataType: "XML",
+			success: function(data){
+				loadModel(data);
+			}
+		});
+	});
+});
+
+function loadModel(data){
+	var index = 0;
+	$("strategy",data).each(function(){
+		xmldoc = data;
+		strat = new Strategy(index, $(this).attr("id"), false);
+		strat.initSteps($("step",this));
+		strats.push(strat);
+		index++;
+	});
+}
+
+function displayModel(strat_id){
+	if(strats){
+		var strat = null;
+		if(strat_id < strats.length)
+			strat = strats[strat_id];
+		var div_strat = document.createElement("div");
+		$(div_strat).attr("id","diagram_" + strat.frontId).addClass("diagram");
+		$(div_strat).append(createStrategyName($("strategy#" + strat.backId,xmldoc), strat));
+		for(var j=0;j<strat.Steps.length;j++){
+			last = false;
+			if(j == strat.Steps.length - 1) 
+				last = true;
+			if(strat.Steps[j].back_boolean_Id == ""){
+				var xml_step = $("strategy#" + strat.backId + " step#" + strat.Steps[j].back_step_Id, xmldoc);
+				st = createStep(xml_step, strat.Steps[j], last);
+				$(div_strat).append(st[0]);
+				$(div_strat).append(st[1]);
+			}else {
+				var xml_step_boolean = $("strategy#" + strat.backId + " step#" + strat.Steps[j].back_boolean_Id, xmldoc);
+				var xml_step_operand = $("strategy#" + strat.backId + " step#" + strat.Steps[j].back_step_Id, xmldoc);
+				$(div_strat).append(createStep(xml_step_operand, strat.Steps[j], last)[0]);
+				strat.Steps[j].isboolean = true;
+				st = createStep(xml_step_boolean, strat.Steps[j], last);
+				$(div_strat).append(st[0]);
+				$(div_strat).append(st[1]);
+				strat.Steps[j].isboolean = false;
+			}
+		}
+		
+		buttonleft = offset(strat.Steps.length);
+		button = document.createElement('a');
+		$(button).attr("id","filter_link").attr("href","javascript:openFilter('" + strats.frontId + ":')").attr("onclick","this.blur()").addClass("filter_link redbutton");
+		$(button).html("<span>Add Step</span>");
+		$(button).css({ position: "absolute",
+						left: buttonleft + "em",
+						top: "4.5em"});
+		$(div_strat).append(button);
+	return div_strat;
+	}
+	return null;
+}
+
+function offset(index){
+		return (index * 11.3) - (index - 1);
+}
+
+function createStep(ele, step,isLast){
+	var name = $(ele).attr("name");
+	var shortName = $(ele).attr("shortName");
+	var collapsible = $(ele).attr("isCollapsed");
+	var resultSize = $(ele).attr("results");
+	var operation = $(ele).attr("operation");
+	var dataType = getDataType(ele);
+	var id = step.frontId;
+	var cl ="";
+	var inner = "";
+	if(step.back_boolean_Id == ""){
+		div_id = "step_" + id;
+		left = -1;
+		cl = "box venn row2 col1 size1 arrowgrey";
+		inner = ""+
+			"		<h3>"+
+			"			<a id='stepId_" + id + "' class='crumb_name' onclick='showDetails(this)' href='javascript:void(0)'>"+
+							shortName +
+			"				<span class='collapsible' style='display: none;'>" + collapsible + "</span>"+
+			"			</a>"+
+			"			<div class='crumb_details'></div>"+
+			"		</h3>"+
+			"		<span class='resultCount'><a class='results_link' href='javascript:void(0)' onclick='NewResults()'> " + resultSize + "&nbsp;" + dataType + "</a></span>";
+		if(!isLast){
+			inner = inner + 
+			"		<ul>"+
+			"			<li><img class='rightarrow1' src='/assets/images/arrow_chain_right3.png' alt='input into'></li>"+
+			"		</ul>";
+		}
+		stepNumber = document.createElement('span');
+		$(stepNumber).addClass('stepNumber').css({ left: "3.7em"}).text("Step " + (id + 1));
+	}else if(step.isboolean){
+		div_id = "step_" + id;
+		left = offset(id);	
+		cl = "venn row2 size2 operation " + operation;
+		inner = ""+
+			"			<a class='operation' onclick='NewResults()' href='javascript:void(0)'>"+
+			"				<img src='/assets/images/transparent1.gif'>"+
+			"			</a>"+
+			"			<span class='resultCount'>"+
+			"				<a class='operation' onclick='NewResults()' href='javascript:void(0)'>" + resultSize + "&nbsp;" + dataType + "</a>"+
+			"			</span>";
+		if(!isLast){
+			inner = inner + 
+			"			<ul>"+
+			"				<li><img class='rightarrow2' src='/assets/images/arrow_chain_right4.png' alt='input into'></li>"+
+			"			</ul>";
+		}
+		stepNumber = document.createElement('span');
+		$(stepNumber).addClass('stepNumber').css({ left: (left + 2.7) + "em"}).text("Step " + (id + 1));
+	}else{
+		div_id = "step_" + id + "_sub";
+		left = offset(id);
+		cl = "box row1 size1 arrowgrey";
+		inner = ""+
+			"		<h3>"+
+			"			<a id='stepId_" + id + "' class='crumb_name' onclick='showDetails(this)' href='javascript:void(0)'>"+
+							shortName +
+			"				<span class='collapsible' style='display: none;'>" + collapsible + "</span>"+
+			"			</a>"+
+			"			<div class='crumb_details'></div>"+
+			"		</h3>"+
+			"		<span class='resultCount'><a class='results_link' href='javascript:void(0)' onclick='NewResults()'> " + resultSize + "&nbsp;" + dataType + "</a></span>"+
+			"		<ul>"+
+			"			<li><img class='downarrow' src='/assets/images/arrow_chain_down2.png' alt='equals'></li>"+
+			"		</ul>";
+		stepNumber = null;
+	}
+	var divs = new Array();
+	var div_s = document.createElement("div");
+	if(left != -1){
+		$(div_s).attr("id", div_id).addClass(cl).html(inner);
+		$(div_s).css({ left: left + "em"});
+	}else{
+		$(div_s).attr("id", div_id).addClass(cl).html(inner);
+	}
+	divs.push(div_s);
+	divs.push(stepNumber);
+	return divs;
+}
+
+function createParameters(param){
+	
+}
+
+function createStrategyName(ele, strat){
+	var id = strat.backId;
+	var name = $(ele).attr("name");
+	
+	var div_sn = document.createElement("div");
+	$(div_sn).attr("id","strategy_name");
+	$(div_sn).html(name + "<span id='strategy_id_span' style='display: none;'>" + id + "</span>" +
+	"<span class='strategy_small_text'>" +
+	"<br/>" +
+	"<a class='save_strat_link' href='javascript:void(0)' onclick='showSaveForm('" + id + "')'>save as</a>" +
+	"<div id='save_strat_div_" + id + "' class='modal_div save_strat'>" +
+	"<span class='dragHandle'>" +
+	"<div class='modal_name'>"+ 
+	"</div>"+
+	"<a class='close_window' href='javascript:closeModal()'>"+
+	"</a>"+
+	"</span>"+
+	"<form onsubmit='return validateSaveForm(this);' action='javascript:saveStrategy('" + id + "', true)'>"+
+	"<input type='hidden' value='" + id + "' name='strategy'/>"+
+	"<input type='text' value='' name='name'/>"+
+	"<input type='submit' value='Save'/>"+
+	"</form>"+
+	"</div>"+
+	"<br/>"+
+	"<a href='javascript:showExportLink('" + id + "')'>export</a>"+
+	"<div id='export_link_div_" + id + "' class='modal_div export_link'>"+
+	"</div>"+
+	"</span>");
+	return div_sn;
+}
+
+///////// ^^^^^^^ NEW CODE ^^^^^   ///////////////////////////////// vvvvvv OLD CODE vvvvvvvv ///////////////////////////////////////////
+
+
 
 var isInsert = "";
 function openStrategy(stratId){
@@ -41,15 +232,10 @@ function closeStrategy(stratId){
 	$("#filter_link_div_" + stratId).remove();
 }
 
-function saveStrategy(stratId, checkName, form){
+function saveStrategy(stratId, checkName){
 	var saveForm = $("div#save_strat_div_" + stratId);
-	if (form) {
-		saveForm = $("#browse_rename");
-	}
 	var name = $("input[name='name']",saveForm).attr("value");
 	var strategy = $("input[name='strategy']",saveForm).attr("value");
-	$("div#diagram_" + strategy).block({message: "<h1>Saving...</h1>"});
-	$("div#search_history").block({message: "<h1>Saving...</h1>"});
 	var url="renameStrategy.do?strategy=";
 	url = url + strategy + "&name=" + name + "&checkName=" + checkName;
 	$.ajax({
@@ -58,32 +244,24 @@ function saveStrategy(stratId, checkName, form){
 		success: function(data){
 			// reload strategy panel
 			if (data) {
+	                        var diagram = $("div.diagram", data);
 				// save successful, we got a diagram
-	                        var new_diagram = $("div.diagram", data);
-				$("div#diagram_" + strategy + " #strategy_name").html($("#strategy_name", new_diagram).html());
+				$("div#diagram_" + strategy + " #strategy_name").html($("#strategy_name", diagram).html());
+				saveForm.hide()
 				update_hist = true;
-				if (form) {
-					disableRename();
-					updateHistory();
-				}
-				$("div#diagram_" + strategy).unblock();
-				$("div#search_history").unblock();
 			}
 			else{
 				// data == "" -> save unsuccessful -> name collision
-				var message="<h1>A strategy already exists with the name '" + name + ".' Do you want to overwrite the existing strategy?</h1><input type='button' value='Yes' onclick='saveStrategy(" + strategy + ", false)'/><input type='button' value='No' onclick='$(\"div#diagram_" + strategy + "\").unblock();saveForm.hide();'/>";
-				if (form) {
-					message="<h1>A strategy already exists with the name '" + name + ".' Do you want to overwrite the existing strategy?</h1><input type='button' value='Yes' onclick='saveStrategy(" + strategy + ", false)'/><input type='button' value='No' onclick='$(\"div#diagram_" + strategy + "\").unblock();disableRename();'/>";
+				var overwrite = confirm("A strategy already exists with the name '" + name + ".' Do you want to overwrite the existing strategy?");
+				if (overwrite) {
+					saveStrategy(stratId, false);
 				}
-				$("div#diagram_" + strategy).unblock();
-				$("div#search_history").unblock();
-				$("div#diagram_" + strategy).block({message: message});
-				$("div#search_history").block({message: message});
+				else {
+					saveForm.hide();
+				}
 			}
 		},
 		error: function(data, msg, e){
-			$("div#diagram_" + strategy).unblock();
-			$("div#search_history").unblock();
 			alert("ERROR \n "+ msg + "\n" + e);
 		}
 	});
@@ -147,6 +325,7 @@ function recursiveRefresh(stratId){
 				$("div#diagram_" + stratId).html($(".diagram", data).html());
 				showLoading(stratId);
 			}else{
+				$("#loadingGIF").remove();
 				var dia_id = stratId;
 				if(stratId.split("_").length > 1){
 					
@@ -190,15 +369,16 @@ function AddStepToStrategy(proto, act){
 	$.ajax({
 		url: url,
 		type: "POST",
-		dataType:"html",
+		dataType:"xml",
 		data: d,
 		beforeSend: function(){
 			showLoading(proto.split("_")[0]);
 		},
 		success: function(data){
-			InsertNewStrategy(proto);
-			var new_dia_id = $(".diagram",data).attr("id");
-			$("#" + new_dia_id + " div.venn:last span.resultCount a").click();
+			loadModel(data);
+			$("div#Strategies div#diagram_" + proto).remove();
+			$("div#Strategies"). append(displayModel(0));
+			$("#diagram_0 div.venn:last span.resultCount a").addClass("selected");//click();
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n "+ msg + "\n" + e);
