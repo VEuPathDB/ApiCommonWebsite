@@ -328,20 +328,18 @@ function parse_Url( url, parameter_name )
        <c:set var="stringOrg" value="${aP}"/>
        <c:set var="arrayOrg" value="${fn:split(aP,',')}"/>
        <c:if test="${fn:length(arrayOrg) == 1}">
-<%--
+
          <jsp:setProperty name="qP" property="paramValue" value="${aP}" />
          <c:set var="pValue" value="${qP.decompressedValue}" />
-         <c:choose>
+           <c:choose>
            <c:when test="${fn:contains(pValue,',')}">
              <c:set var="stringOrg" value="${pValue}"/>
            </c:when>
            <c:otherwise>
---%>
-             <c:set value="true" var="oneOrg"/>
-<%--
+                <c:set value="true" var="oneOrg"/> 
            </c:otherwise>
            </c:choose>
---%>
+
        </c:if>
    </c:if>
 </c:forEach>
@@ -350,11 +348,10 @@ function parse_Url( url, parameter_name )
 
 <%-- Portal: use of summary counts  --%>
 <%-- - for questions other than gene questions, where no filters are currently defined  --%>
-<%-- - OR when there is only one organism requested (includes when org.value is encoded)  --%>
 <%-- - OR when there is no organism parameter --%>
 <%--  <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB') && !(isGeneRec)}">   --%>
           <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-               <c:if test="${(fn:length(recordClass.filters)==0) || oneOrg || !Org}">
+                <c:if test="${(fn:length(recordClass.filters)==0) || !Org}">   
                    <site:apidbSummary/>
                </c:if>
           </c:if>
@@ -443,10 +440,16 @@ function parse_Url( url, parameter_name )
     <br>There is no organism param<br>    
 </c:when>
 <c:otherwise>
+
 <%-- if there are more than one organism values OR if it is Gl or Tg, we display filters --%>
+<%--
 <c:if test="${oneOrg eq 'false' || fn:containsIgnoreCase(stringOrg, 'Giardia') || fn:containsIgnoreCase(stringOrg, 'Toxo')}">
+--%>
+
    <site:apiFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
-</c:if>
+
+<%--  </c:if>  --%>
+
 </c:otherwise>
 </c:choose>
 
