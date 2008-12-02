@@ -434,30 +434,16 @@ function parse_Url( url, parameter_name )
 </c:when>
 
 <c:when test="${modelName == 'ApiDB'}">
+<%-- if there is no parameter organism we need to check the question definition, to which organisms the question applies. For now we display all filters or none  --%>
 
-<%-- if there is no parameter organism we need to check the question definition, to which organisms the question applies. For now we display all filters  --%>
-<c:choose>
-<c:when test="${Org eq 'false'}"> 
-    <br>There is no organism param<br>    
-</c:when>
-<c:otherwise>
-
-<%-- if there are more than one organism values OR if it is Gl or Tg, we display filters --%>
-<%--
-<c:if test="${oneOrg eq 'false' || fn:containsIgnoreCase(stringOrg, 'Giardia') || fn:containsIgnoreCase(stringOrg, 'Toxo')}">
---%>
-<c:if test="${isGeneRec}">
-   <site:apiGeneFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
-</c:if>
-<c:if test="${isGenomicRec}">
-   <site:apiGenomicFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
-</c:if>
-
-<%--  </c:if>  --%>
-
-</c:otherwise>
-</c:choose>
-
+<c:if test="${Org}"> 
+  <c:if test="${isGeneRec}">
+      <site:apiGeneFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
+  </c:if>
+  <c:if test="${isGenomicRec}">
+      <site:apiGenomicFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
+  </c:if>
+</c:if> 
 </c:when>
 
 <c:when test="${modelName == 'CryptoDB'}">
