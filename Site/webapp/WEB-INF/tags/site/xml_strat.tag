@@ -85,7 +85,7 @@
 										<c:set var="aP" value="${params[pNam]}"/>
 										<jsp:setProperty name="qP" property="paramValue" value="${aP}" />
 			                            <jsp:setProperty name="qP" property="truncateLength" value="1000" />
-										<param name="${pNam}" prompt="${qP.prompt}" value="${qP.decompressedValue}" className="${qP.class.name}"/>
+										<param name="${pNam}" prompt="${fn:escapeXml(qP.prompt)}" value="${qP.decompressedValue}" className="${qP.class.name}"/>
 									</c:forEach>
 								</params>
 							</step>
