@@ -8,7 +8,8 @@ $(document).ready(function(){
 	jQuery.each(init_strat_ids, function(){
 		$.ajax({
 			url: "showStrategy.do?strategy=" + this,
-			dataType: "XML",
+			type: "POST",
+			dataType: "xml",
 			success: function(data){
 				loadModel(data);
 			}
