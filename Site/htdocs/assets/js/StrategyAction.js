@@ -11,7 +11,8 @@ $(document).ready(function(){
 			type: "POST",
 			dataType: "xml",
 			success: function(data){
-				loadModel(data);
+				id = loadModel(data);
+				$("div#Strategies").append(displayModel(findStrategy(id)));
 			}
 		});
 	});
@@ -21,15 +22,18 @@ function loadModel(data){
 	var value = 0;
 	$("strategy",data).each(function(){
 		xmldoc = data;
-		strat = new Strategy(index, $(this).attr("id"), false);
+		var newId = isLoaded(parseInt($(this).attr("id")));
+		if(newId == -1)
+			newId = index;
+		strat = new Strategy(newId, $(this).attr("id"), false);
 		strat.initSteps($("step",this));
 		id = parseInt($(this).attr("id"));
 		if(isLoaded(id) != -1)
-			strats[i] = strat;
+			strats[findStrategy(newId)] = strat;
 		else
 			strats.push(strat);
-		$("#Strategies").append(displayModel(strat.frontId));
-		$("#Strategies").append("<br />");
+//		$("#Strategies").append(displayModel(findStrategy(strat.frontId)));
+//		$("#Strategies").append("<br />");
 		index++;
 		value = strat.frontId;
 	});
@@ -39,10 +43,19 @@ function loadModel(data){
 function isLoaded(id){
 	for(i=0;i<strats.length;i++){
 		if(strats[i].backId == id)
+			return strats[i].frontId;
+	} 
+	return -1;
+}
+
+function findStrategy(fId){
+	for(i=0;i<strats.length;i++){
+		if(strats[i].frontId == fId)
 			return i;
 	}
 	return -1;
 }
+
 
 function displayModel(strat_id){
 	if(strats){
@@ -50,7 +63,7 @@ function displayModel(strat_id){
 		if(strat_id < strats.length)
 			strat = strats[strat_id];
 		var div_strat = document.createElement("div");
-		$(div_strat).attr("id","diagram_" + strat.backId).addClass("diagram");
+		$(div_strat).attr("id","diagram_" + strat.frontId).addClass("diagram");
 		$(div_strat).append(createStrategyName($("strategy#" + strat.backId,xmldoc), strat));
 		for(var j=0;j<strat.Steps.length;j++){
 			last = false;
@@ -393,12 +406,12 @@ function AddStepToStrategy(act){
 		dataType:"xml",
 		data: d,
 		beforeSend: function(){
-			showLoading("1");
+			showLoading("0");
 		},
 		success: function(data){
 			stratId = loadModel(data);
 			$("div#Strategies div#diagram_" + stratId).remove();
-			$("div#Strategies"). append(displayModel(stratId));
+			$("div#Strategies"). append(displayModel(findStrategy(stratId)));
 			$("#diagram_0 div.venn:last span.resultCount a").addClass("selected");//click();
 		},
 		error: function(data, msg, e){
