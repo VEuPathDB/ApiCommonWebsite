@@ -180,13 +180,63 @@ function createStep(ele, step,isLast){
 	}else{
 		$(div_s).attr("id", div_id).addClass(cl).html(inner);
 	}
+	$(".crumb_details", div_s).replaceWith(createDetails(ele, step));
 	divs.push(div_s);
 	divs.push(stepNumber);
 	return divs;
 }
 
-function createParameters(param){
-	
+function createDetails(ele, step){
+	var detail_div = document.createElement('div');
+	$(detail_div).addClass("crumb_details").css({ display: "none" });
+	var name = $(ele).attr("name");
+	var shortName = $(ele).attr("shortName");
+	var collapsible = $(ele).attr("isCollapsed");
+	var resultSize = $(ele).attr("results");
+	var operation = $(ele).attr("operation");
+	var dataType = getDataType(ele);
+	var id = step.frontId;
+	var params_table = createParameters($("params", ele));
+	inner = ""+	
+		"		<p class='question_name'><span>" + name + "</span></p>"+
+		"		<table></table>"+
+		"		<p><b>Results:&nbsp;</b>" + resultSize + "&nbsp;" + dataType + "&nbsp;|&nbsp;<a href='downloadStep.do?step_id=" + id + "'>Download</a></p>"+
+		"		<div class='crumb_menu'>"+
+		"			<a class='rename_step_link' href='javascript:void(0)' onclick='Rename_Step(this)'>Rename</a>&nbsp;|&nbsp;"+
+		"			<a class='view_step_link' onclick='NewResults(this,'showSummary.do?strategy=1&amp;step=0&amp;resultsOnly=true')' href='javascript:void(0)'>View</a>&nbsp;|&nbsp;"+
+		"			<a class='edit_step_link' href='javascript:void(0)' onclick='Edit_Step(this,'showQuestion.do?questionFullName=GeneQuestions.GenesByLocation&amp;chromosomeOptional=C.p.+AAEE01000004+%28Chromosome+3%29&amp;end_point=0&amp;sequenceId=%28Example%3A+AAEE01000006%29&amp;start_point=1&amp;questionSubmit=Get+Answer&amp;goto_summary=0')' id='1|0|'>Edit</a>&nbsp;|&nbsp;"+
+		"			<a class='expand_step_link' href='javascript:void(0)' onclick='Expand_Step(this,'expandStep.do?strategy=1&amp;step=&amp;collapsedName=Expanded%20')'>Expand</a>&nbsp;|&nbsp;"+
+		"			<a class='insert_step_link' id='1|0' href='javascript:void(0)' onclick='Insert_Step(this,'processFilter.do?strategy=1&amp;insert=0')'>Insert Before</a>"+
+		"			&nbsp;|&nbsp;"+
+		"			<a class='delete_step_link' href='javascript:void(0)' onclick='DeleteStep(this,'deleteStep.do?strategy=1&amp;step=0')'>Delete</a>"+
+		"			<span style='float: right; position: absolute; right: 6px;'>"+
+		"				<a href='javascript:void(0)' onclick='hideDetails(this)'>[x]</a>"+
+		"			</span>"+
+		"		</div>";
+	$(detail_div).html(inner);
+	$("table", detail_div).replaceWith(params_table);
+	return detail_div;       
+}
+
+function createParameters(params){
+	var table = document.createElement('table');
+	$(params).children().each(function(){
+		var tr = document.createElement('tr');
+		var prompt = document.createElement('td');
+		var space = document.createElement('td');
+		var value = document.createElement('td');
+		$(prompt).addClass("medium").attr("align","right").attr("nowrap","nowrap").attr("valign","top");
+		$(prompt).html("<b><i>" + $(this).attr("prompt") + "</i></b>");
+		$(space).addClass("medium").attr("valign","top");
+		$(space).html("&nbsp;:&nbsp;");
+		$(value).addClass("medium").attr("align","left").attr("nowrap","nowrap");
+		$(value).html( $(this).attr("value") );
+		$(tr).append(prompt);
+		$(tr).append(space);
+		$(tr).append(value);
+		$(table).append(tr);
+	});
+	return table;
 }
 
 function createStrategyName(ele, strat){
