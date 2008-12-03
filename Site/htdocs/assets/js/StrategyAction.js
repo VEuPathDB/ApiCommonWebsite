@@ -17,15 +17,30 @@ $(document).ready(function(){
 });
 
 function loadModel(data){
+	var value = 0;
 	$("strategy",data).each(function(){
 		xmldoc = data;
 		strat = new Strategy(index, $(this).attr("id"), false);
 		strat.initSteps($("step",this));
-		strats.push(strat);
+		id = parseInt($(this).attr("id"));
+		if(isLoaded(id) != -1)
+			strats[i] = strat;
+		else
+			strats.push(strat);
 		$("#Strategies").append(displayModel(strat.frontId));
 		$("#Strategies").append("<br />");
 		index++;
+		value = strat.frontId;
 	});
+	return value;
+}
+
+function isLoaded(id){
+	for(i=0;i<strats.length;i++){
+		if(strats[i].backId == id)
+			return i;
+	}
+	return -1;
 }
 
 function displayModel(strat_id){
@@ -59,7 +74,8 @@ function displayModel(strat_id){
 		
 		buttonleft = offset(strat.Steps.length);
 		button = document.createElement('a');
-		$(button).attr("id","filter_link").attr("href","javascript:openFilter('" + strat.backId + ":')").attr("onclick","this.blur()").addClass("filter_link redbutton");
+		dType = $("step#" + strat.Steps[strat.Steps.length - 1].back_step_Id, xmldoc).attr("dataType");
+		$(button).attr("id","filter_link").attr("href","javascript:openFilter('" + dType + "'," + strat.frontId + ")").attr("onclick","this.blur()").addClass("filter_link redbutton");
 		$(button).html("<span>Add Step</span>");
 		$(button).css({ position: "absolute",
 						left: buttonleft + "em",
@@ -359,29 +375,29 @@ function recursiveRefresh(stratId){
 	});
 }
 
-function AddStepToStrategy(proto, act){
+function AddStepToStrategy(act){
 	var url = act;	
 	var d = parseInputs();
-	if(proto.indexOf("_") != -1){
+/*	if(proto.indexOf("_") != -1){
 		var strat_step = proto.split("_");
 		var oldStep = $("#diagram_"+strat_step[0]+" #stepId_"+strat_step[1]);
 		var stepIndex = $(oldStep).parent().parent().attr("id");
 		stepIndex = stepIndex.substring(5,stepIndex.indexOf("_sub"));
 		proto = proto+"_"+stepIndex;
 	}
-	
+*/	
 	$.ajax({
 		url: url,
 		type: "POST",
 		dataType:"xml",
 		data: d,
 		beforeSend: function(){
-			showLoading(proto.split("_")[0]);
+			showLoading("1");
 		},
 		success: function(data){
-			loadModel(data);
-			$("div#Strategies div#diagram_" + proto).remove();
-			$("div#Strategies"). append(displayModel(0));
+			stratId = loadModel(data);
+			$("div#Strategies div#diagram_" + stratId).remove();
+			$("div#Strategies"). append(displayModel(stratId));
 			$("#diagram_0 div.venn:last span.resultCount a").addClass("selected");//click();
 		},
 		error: function(data, msg, e){
@@ -389,7 +405,7 @@ function AddStepToStrategy(proto, act){
 		}
 	});
 	update_hist = true;
-	openFilter(isInsert);
+	closeAll();
 }
 
 function EditStep(proto, url, step_number){
