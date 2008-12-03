@@ -1,10 +1,13 @@
 var strats = new Array();
-var xmldoc = null
+var xmldoc = null;
+var init_strat_ids = new Array();
+var init_strat_order = new Array();
+var index = 0;
 
 $(document).ready(function(){
-	$("#Strategies div[id^='diagram_']").each(function(){
+	jQuery.each(init_strat_ids, function(){
 		$.ajax({
-			url: "showStrategy.do?strategy=" + this.id.substring(8),
+			url: "showStrategy.do?strategy=" + this,
 			dataType: "XML",
 			success: function(data){
 				loadModel(data);
@@ -14,12 +17,13 @@ $(document).ready(function(){
 });
 
 function loadModel(data){
-	var index = 0;
 	$("strategy",data).each(function(){
 		xmldoc = data;
 		strat = new Strategy(index, $(this).attr("id"), false);
 		strat.initSteps($("step",this));
 		strats.push(strat);
+		$("#Strategies").append(displayModel(strat.frontId));
+		$("#Strategies").append("<br />");
 		index++;
 	});
 }
@@ -30,7 +34,7 @@ function displayModel(strat_id){
 		if(strat_id < strats.length)
 			strat = strats[strat_id];
 		var div_strat = document.createElement("div");
-		$(div_strat).attr("id","diagram_" + strat.frontId).addClass("diagram");
+		$(div_strat).attr("id","diagram_" + strat.backId).addClass("diagram");
 		$(div_strat).append(createStrategyName($("strategy#" + strat.backId,xmldoc), strat));
 		for(var j=0;j<strat.Steps.length;j++){
 			last = false;
@@ -55,7 +59,7 @@ function displayModel(strat_id){
 		
 		buttonleft = offset(strat.Steps.length);
 		button = document.createElement('a');
-		$(button).attr("id","filter_link").attr("href","javascript:openFilter('" + strats.frontId + ":')").attr("onclick","this.blur()").addClass("filter_link redbutton");
+		$(button).attr("id","filter_link").attr("href","javascript:openFilter('" + strat.backId + ":')").attr("onclick","this.blur()").addClass("filter_link redbutton");
 		$(button).html("<span>Add Step</span>");
 		$(button).css({ position: "absolute",
 						left: buttonleft + "em",
@@ -164,7 +168,7 @@ function createStrategyName(ele, strat){
 	$(div_sn).html(name + "<span id='strategy_id_span' style='display: none;'>" + id + "</span>" +
 	"<span class='strategy_small_text'>" +
 	"<br/>" +
-	"<a class='save_strat_link' href='javascript:void(0)' onclick='showSaveForm('" + id + "')'>save as</a>" +
+	"<a class='save_strat_link' href='javascript:void(0)' onclick=\"showSaveForm('" + id + "')\">save as</a>" +
 	"<div id='save_strat_div_" + id + "' class='modal_div save_strat'>" +
 	"<span class='dragHandle'>" +
 	"<div class='modal_name'>"+ 
@@ -172,14 +176,14 @@ function createStrategyName(ele, strat){
 	"<a class='close_window' href='javascript:closeModal()'>"+
 	"</a>"+
 	"</span>"+
-	"<form onsubmit='return validateSaveForm(this);' action='javascript:saveStrategy('" + id + "', true)'>"+
+	"<form onsubmit='return validateSaveForm(this);' action=\"javascript:saveStrategy('" + id + "', true)\">"+
 	"<input type='hidden' value='" + id + "' name='strategy'/>"+
 	"<input type='text' value='' name='name'/>"+
 	"<input type='submit' value='Save'/>"+
 	"</form>"+
 	"</div>"+
 	"<br/>"+
-	"<a href='javascript:showExportLink('" + id + "')'>export</a>"+
+	"<a href=\"javascript:showExportLink('" + id + "')\">export</a>"+
 	"<div id='export_link_div_" + id + "' class='modal_div export_link'>"+
 	"</div>"+
 	"</span>");
