@@ -16,6 +16,7 @@
 <strategy name="${stratName}" id="${stratId}">
 	<c:forEach var="step" items="${first_step.allSteps}">
 		<c:set value="${step.stepId}" var="id" />
+		<c:set value="${step.answerId}" var="answerId" />
 		<c:set value="${step.customName}" var="customName" />
 		<c:set value="${step.isCollapsible}" var="collapsible" />
 		<c:set value="${step.collapsedName}" var="collapsedName" />
@@ -31,6 +32,7 @@
 		<c:set value="${step.isBoolean}" var="isboolean" />
 		<c:if test="${isboolean}">
 		<c:set value="${step.childStep.stepId}" var="child_id" />
+		<c:set value="${step.childStep.answerId}" var="child_answerId" />
 		<c:set value="${step.childStep.customName}" var="child_customName" />
 		<c:set value="${step.childStep.isCollapsible}" var="child_collapsible" />
 		<c:set value="${step.childStep.collapsedName}" var="child_collapsedName" />
@@ -62,6 +64,7 @@
 					<c:when test="${isboolean}">
 						<step name="${cName}"
 							 id="${id}"
+							 answerId="${answerId}"
 							 isCollapsed="${collapsible}"
 							 dataType="${dataType}"
 							 shortName="${sDName}"
@@ -74,6 +77,7 @@
 							<step name="${child_cName}"
 								 customName="${child_customName}"
 								 id="${child_id}"
+							 	answerId="${child_answerId}"
 								 isCollapsed="${child_collapsible}"
 								 dataType="${child_dataType}"
 								 shortName="${child_sDName}"
@@ -97,6 +101,7 @@
 						<step name="${cName}"
 							 customName="${customName}"
 							 id="${id}"
+							 answerId="${answerId}"
 							 isCollapsed="${collapsible}"
 							 dataType="${dataType}"
 							 shortName="${sDName}"

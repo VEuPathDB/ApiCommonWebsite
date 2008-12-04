@@ -16,7 +16,7 @@ Strategy.prototype.initSteps = function(steps){
 			var bbid = "";
 			if(this.parentNode.nodeName == "step")
 				bbid = $(this).parent().attr("id");
-			var s = new Step(f_index, $(this).attr("id"), bbid, "");
+			var s = new Step(f_index, $(this).attr("id"), bbid, "", $(this).attr("answerId"));
 			arr.push(s);
 			f_index++;
 		}
@@ -28,11 +28,12 @@ Strategy.prototype.initSteps = function(steps){
 Step Object and Functions
 ****************************************************/
 
-function Step(frontId, back_step_Id, back_boolean_Id, child_Strat_Id){
+function Step(frontId, back_step_Id, back_boolean_Id, child_Strat_Id, answerId){
 	this.frontId = frontId;
 	this.back_step_Id = back_step_Id;
 	this.back_boolean_Id = back_boolean_Id;
 	this.child_Strat_Id = null;
+	this.answerId = answerId;
 }
 Step.prototype.isboolean = false;
 Step.prototype.isSelected = false;

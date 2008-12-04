@@ -2,6 +2,7 @@ var strats = new Array();
 var xmldoc = null;
 var init_strat_ids = new Array();
 var init_strat_order = new Array();
+var exportBaseURL;
 var index = 0;
 
 $(document).ready(function(){
@@ -32,8 +33,6 @@ function loadModel(data){
 			strats[findStrategy(newId)] = strat;
 		else
 			strats.push(strat);
-//		$("#Strategies").append(displayModel(findStrategy(strat.frontId)));
-//		$("#Strategies").append("<br />");
 		index++;
 		value = strat.frontId;
 	});
@@ -258,7 +257,8 @@ function createParameters(params){
 function createStrategyName(ele, strat){
 	var id = strat.backId;
 	var name = $(ele).attr("name");
-	
+	var exportURL = exportBaseURL + getStep(strat.frontId, 0).answerId;	
+
 	var div_sn = document.createElement("div");
 	$(div_sn).attr("id","strategy_name");
 	$(div_sn).html(name + "<span id='strategy_id_span' style='display: none;'>" + id + "</span>" +
@@ -267,9 +267,11 @@ function createStrategyName(ele, strat){
 	"<a class='save_strat_link' href='javascript:void(0)' onclick=\"showSaveForm('" + id + "')\">save as</a>" +
 	"<div id='save_strat_div_" + id + "' class='modal_div save_strat'>" +
 	"<span class='dragHandle'>" +
-	"<div class='modal_name'>"+ 
+	"<div class='modal_name'>"+
+	"<h1>Save As</h1>" + 
 	"</div>"+
 	"<a class='close_window' href='javascript:closeModal()'>"+
+	"<img alt='Close' src='/assets/images/Close-X-box.png'/>" +
 	"</a>"+
 	"</span>"+
 	"<form onsubmit='return validateSaveForm(this);' action=\"javascript:saveStrategy('" + id + "', true)\">"+
@@ -280,7 +282,14 @@ function createStrategyName(ele, strat){
 	"</div>"+
 	"<br/>"+
 	"<a href=\"javascript:showExportLink('" + id + "')\">export</a>"+
-	"<div id='export_link_div_" + id + "' class='modal_div export_link'>"+
+	"<div class='modal_div export_link' id='export_link_div_" + id + "'>" +
+        "<span class='dragHandle'>" +
+        "<a class='close_window' href='javascript:closeModal()'>" +
+	"<img alt='Close' src='/assets/images/Close-X-box.png'/>" +
+	"</a>" +
+        "</span>" +
+	"<p>Paste link in email:</p>" +
+	"<input type='text' size=" + exportURL.length + " value=" + exportURL + " />" +
 	"</div>"+
 	"</span>");
 	return div_sn;
@@ -495,10 +504,8 @@ function saveStrategy(stratId, checkName){
 		success: function(data){
 			// reload strategy panel
 			if (data) {
-	                        var diagram = $("div.diagram", data);
-				// save successful, we got a diagram
-				$("div#diagram_" + strategy + " #strategy_name").html($("#strategy_name", diagram).html());
-				saveForm.hide()
+				saveForm.hide();
+				updateStrategies(data);
 				update_hist = true;
 			}
 			else{
