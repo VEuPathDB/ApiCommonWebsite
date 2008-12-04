@@ -83,7 +83,7 @@ function formatFilterForm(data, edit, reviseStep){
 		isSub = true;
 		operation = parts[4];
 	}*/
-	var stratBackId = getBackIdFromFrontId(strats, current_Front_Strategy_Id);
+	var stratBackId = getStrategy(current_Front_Strategy_Id).backId;
 	var pro_url = "";
 	if(edit == 0)
 		pro_url = "processFilter.do?strategy=" + stratBackId + "&insert=" +insert;

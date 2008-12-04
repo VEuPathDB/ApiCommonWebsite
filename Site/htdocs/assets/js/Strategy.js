@@ -35,11 +35,32 @@ function Step(frontId, back_step_Id, back_boolean_Id, child_Strat_Id){
 	this.child_Strat_Id = null;
 }
 Step.prototype.isboolean = false;
+Step.prototype.isSelected = false;
 
 /****************************************************
 Utility Functions
 *****************************************************/
 	
+function getStep(strat,id){
+	for(i=0;i<strats.length;i++){
+		if(strats[i].frontId == strat){
+			for(j=0;j<strats[i].Steps.length;j++){
+				if(strats[i].Steps[j].frontId == id)
+					return strats[i].Steps[j];
+			}
+		}
+	}
+	return false;
+}
+	
+function getStrategy(id){
+	for(i=0;i<strats.length;i++){
+		if(strats[i].frontId == id)
+			return strats[i];
+	}
+	return false;
+}
+
 function getDataType(ele){
 	var s = "";
 	if(parseInt($(ele).attr("results")) > 1)
@@ -47,12 +68,4 @@ function getDataType(ele){
 	var cl = $(ele).attr("dataType");
 	if(cl == "GeneRecordClasses.GeneRecordClass")
 		return "Gene" + s;
-}
-
-function getBackIdFromFrontId(strat_arr, id){
-	for(i=0;i<strat_arr.length;i++){
-		if(strat_arr[i].frontId == id)
-			return strat_arr[i].backId
-	}
-	return false;
 }
