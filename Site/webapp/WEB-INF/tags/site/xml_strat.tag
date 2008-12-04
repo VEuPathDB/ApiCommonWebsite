@@ -16,6 +16,7 @@
 <strategy name="${stratName}" id="${stratId}">
 	<c:forEach var="step" items="${first_step.allSteps}">
 		<c:set value="${step.stepId}" var="id" />
+		<c:set value="${step.customName}" var="customName" />
 		<c:set value="${step.isCollapsible}" var="collapsible" />
 		<c:set value="${step.collapsedName}" var="collapsedName" />
 		<c:set value="${step.shortDisplayName}" var="sDName" />
@@ -30,6 +31,7 @@
 		<c:set value="${step.isBoolean}" var="isboolean" />
 		<c:if test="${isboolean}">
 		<c:set value="${step.childStep.stepId}" var="child_id" />
+		<c:set value="${step.childStep.customName}" var="child_customName" />
 		<c:set value="${step.childStep.isCollapsible}" var="child_collapsible" />
 		<c:set value="${step.childStep.collapsedName}" var="child_collapsedName" />
 		<c:set value="${step.childStep.shortDisplayName}" var="child_sDName" />
@@ -70,6 +72,7 @@
 							 operation="${step.operation}">
 							
 							<step name="${child_cName}"
+								 customName="${child_customName}"
 								 id="${child_id}"
 								 isCollapsed="${child_collapsible}"
 								 dataType="${child_dataType}"
@@ -92,6 +95,7 @@
 					</c:when>
 					<c:otherwise>
 						<step name="${cName}"
+							 customName="${customName}"
 							 id="${id}"
 							 isCollapsed="${collapsible}"
 							 dataType="${dataType}"
@@ -101,6 +105,7 @@
 							 displayName="${displayName}"
 							 isboolean="${isboolean}">
 							<params>
+								<urlParams><![CDATA[${fn:escapeXml(urlParams)}]]></urlParams>
 								<c:forEach items="${displayParams}" var="p">
 			                        <c:set var="pNam" value="${p.key}"/>
 			                        <c:set var="qP" value="${p.value}"/>
