@@ -47,19 +47,7 @@
 		<c:set value="${step.childStep.answerValue.questionUrlParams}" var="urlParams"/>
 		<c:set value="${step.childStep.isBoolean}" var="child_isboolean" />
 		</c:if>
-		<%--	<c:choose>
-				<c:when test="${collapsible == true}">
-					<c:choose>
-						<c:when test="${step.isFirstStep}">
-							<site:xml_strat first-step="${step}" stratName="${collapsedName}" stratId="${stratId}_${id}" />
-						</c:when>
-						<c:otherwise>
-							<site:xml_strat first-step="${step.childStep}" stratName="${collapsedName}" stratId="${stratId}_${id}" />
-						</c:otherwise>
-					</c:choose>
-					<site:xml_strat first-step="{step}">
-				</c:when>
-				<c:otherwise>--%>
+	
 				<c:choose>
 					<c:when test="${isboolean}">
 						<step name="${cName}"
@@ -85,16 +73,30 @@
 								 questionName="${child_questionName}"
 								 displayName="${child_displayName}"
 								 isboolean="${child_isboolean}">
-								<params>
-									<c:forEach items="${displayParams}" var="p">
-				                        <c:set var="pNam" value="${p.key}"/>
-				                        <c:set var="qP" value="${p.value}"/>
-										<c:set var="aP" value="${params[pNam]}"/>
-										<jsp:setProperty name="qP" property="paramValue" value="${aP}" />
-			                            <jsp:setProperty name="qP" property="truncateLength" value="1000" />
-										<param name="${pNam}" prompt="${fn:escapeXml(qP.prompt)}" value="${qP.decompressedValue}" className="${qP.class.name}"/>
-									</c:forEach>
-								</params>
+									<c:choose>
+										<c:when test="${child_collapsible == true}">
+											<c:set var="step" value="${step.childStep}" scope="request" />
+											<c:set var="strat_Id" value="${stratId}_${child_id}" scope="request" />
+											<c:set var="strat_name" value="${child_collapsedName}" scope="request" />
+											<c:import url="/WEB-INF/includes/xml_recurse.jsp"/>
+											<c:remove var="step" scope="request"/>
+											<c:remove var="strat_Id" scope="request"/>
+											<c:remove var="strat_name" scope="request"/>
+										</c:when>
+										<c:otherwise>
+											<params>
+												<urlParams><![CDATA[${urlParams}]]></urlParams>
+												<c:forEach items="${displayParams}" var="p">
+							                        <c:set var="pNam" value="${p.key}"/>
+							                        <c:set var="qP" value="${p.value}"/>
+													<c:set var="aP" value="${params[pNam]}"/>
+													<jsp:setProperty name="qP" property="paramValue" value="${aP}" />
+						                            <jsp:setProperty name="qP" property="truncateLength" value="1000" />
+													<param name="${pNam}" prompt="${fn:escapeXml(qP.prompt)}" value="${qP.decompressedValue}" className="${qP.class.name}"/>
+												</c:forEach>
+											</params>
+										</c:otherwise>
+									</c:choose>
 							</step>
 					</c:when>
 					<c:otherwise>
@@ -109,21 +111,32 @@
 							 questionName="${questionName}"
 							 displayName="${displayName}"
 							 isboolean="${isboolean}">
-							<params>
-								<urlParams><![CDATA[${fn:escapeXml(urlParams)}]]></urlParams>
-								<c:forEach items="${displayParams}" var="p">
-			                        <c:set var="pNam" value="${p.key}"/>
-			                        <c:set var="qP" value="${p.value}"/>
-									<c:set var="aP" value="${params[pNam]}"/>
-									<jsp:setProperty name="qP" property="paramValue" value="${aP}" />
-		                            <jsp:setProperty name="qP" property="truncateLength" value="1000" />
-									<param name="${pNam}" prompt="${qP.prompt}" value="${qP.decompressedValue}" className="${qP.class.name}"/>
-								</c:forEach>
-							</params>
+								<c:choose>
+									<c:when test="${child_collapsible == true}">
+										<c:set var="step" value="${step.childStep}" scope="request" />
+										<c:set var="strat_Id" value="${stratId}_${child_id}" scope="request" />
+										<c:set var="strat_name" value="${child_collapsedName}" scope="request" />
+										<c:import url="/WEB-INF/includes/xml_recurse.jsp"/>
+										<c:remove var="step" scope="request"/>
+										<c:remove var="strat_Id" scope="request"/>
+										<c:remove var="strat_name" scope="request"/>
+									</c:when>
+									<c:otherwise>
+										<params>
+											<urlParams><![CDATA[${urlParams}]]></urlParams>
+											<c:forEach items="${displayParams}" var="p">
+						                        <c:set var="pNam" value="${p.key}"/>
+						                        <c:set var="qP" value="${p.value}"/>
+												<c:set var="aP" value="${params[pNam]}"/>
+												<jsp:setProperty name="qP" property="paramValue" value="${aP}" />
+					                            <jsp:setProperty name="qP" property="truncateLength" value="1000" />
+												<param name="${pNam}" prompt="${fn:escapeXml(qP.prompt)}" value="${qP.decompressedValue}" className="${qP.class.name}"/>
+											</c:forEach>
+										</params>
+									</c:otherwise>
+								</c:choose>
 					</c:otherwise>
 				</c:choose>
-			<%--	</c:otherwise>
-			</c:choose>--%>
 		</step>
 	</c:forEach>
 </strategy>
