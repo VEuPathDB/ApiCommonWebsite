@@ -34,13 +34,20 @@ Strategy.prototype.initSteps = function(steps){
 			var subStrat = $(this).children("strategy");
 			if(subStrat.length == 0)
 				subStrat = $(this).children("step").children("strategy");
-			index++;
-			var sStrat = new Strategy(index,$(subStrat).attr("id"),false);
+			var newId = isLoaded($(subStrat).attr("id"));
+			if(newId == -1){
+				index++;
+				newId = index;
+			}
+			var sStrat = new Strategy(newId,$(subStrat).attr("id"),false);
 			st.child_Strat_Id = sStrat.frontId;
 			subSteps = $(subStrat).children("step");
 			sStrat.initSteps(subSteps);
 			sStrat.subStratOf = cStrat.frontId;
-			strats.push(sStrat);
+			if(isLoaded(sStrat.backId) != -1)
+				strats[findStrategy(sStrat.frontId)] = sStrat;
+			else
+				strats.push(sStrat);
 		}
 		arr.push(st);
 		f_index++;
