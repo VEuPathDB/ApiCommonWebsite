@@ -19,7 +19,7 @@ Strategy.prototype.initSteps = function(steps){
 			var bbid = "";
 			if(this.parentNode.nodeName == "step")
 				bbid = $(this).parent().attr("id");
-			st = new Step(f_index, $(this).attr("id"), bbid, "");
+			st = new Step(f_index, $(this).attr("id"), bbid, "", $(this).attr("answerId"));
 		}else{
 			s = $(this).children("step");
 			if(s.length > 0){
@@ -27,7 +27,7 @@ Strategy.prototype.initSteps = function(steps){
 				var bbid = "";
 				if(s.parentNode.nodeName == "step")
 					bbid = $(s).parent().attr("id");
-				st = new Step(f_index, $(s).attr("id"), bbid, "");
+				st = new Step(f_index, $(s).attr("id"), bbid, "", $(this).attr("answerId"));
 			}
 		}
 		if($("strategy", this).length > 0){
