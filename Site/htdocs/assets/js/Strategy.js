@@ -7,19 +7,43 @@ function Strategy(frontId, backId, isDisplay){
 	this.backId = backId;
 	this.isDisplay = false;
 }
+Strategy.prototype.subStratOf = null;
 Strategy.prototype.Steps = new Array();
 Strategy.prototype.initSteps = function(steps){
 	var f_index = 0;
+	var cStrat = this;
 	var arr = new Array();
+	var st = null;
 	$(steps).each(function(){
 		if($(this).attr("isboolean") == "false"){
 			var bbid = "";
 			if(this.parentNode.nodeName == "step")
 				bbid = $(this).parent().attr("id");
-			var s = new Step(f_index, $(this).attr("id"), bbid, "", $(this).attr("answerId"));
-			arr.push(s);
-			f_index++;
+			st = new Step(f_index, $(this).attr("id"), bbid, "");
+		}else{
+			s = $(this).children("step");
+			if(s.length > 0){
+				s = s[0];
+				var bbid = "";
+				if(s.parentNode.nodeName == "step")
+					bbid = $(s).parent().attr("id");
+				st = new Step(f_index, $(s).attr("id"), bbid, "");
+			}
 		}
+		if($("strategy", this).length > 0){
+			var subStrat = $(this).children("strategy");
+			if(subStrat.length == 0)
+				subStrat = $(this).children("step").children("strategy");
+			index++;
+			var sStrat = new Strategy(index,$(subStrat).attr("id"),false);
+			st.child_Strat_Id = sStrat.frontId;
+			subSteps = $(subStrat).children("step");
+			sStrat.initSteps(subSteps);
+			sStrat.subStratOf = cStrat.frontId;
+			strats.push(sStrat);
+		}
+		arr.push(st);
+		f_index++;
 	});
 	this.Steps = arr;
 }
@@ -57,6 +81,14 @@ function getStep(strat,id){
 function getStrategy(id){
 	for(i=0;i<strats.length;i++){
 		if(strats[i].frontId == id)
+			return strats[i];
+	}
+	return false;
+}
+
+function getStrategyFromBackId(id){
+	for(i=0;i<strats.length;i++){
+		if(strats[i].backId == id)
 			return strats[i];
 	}
 	return false;

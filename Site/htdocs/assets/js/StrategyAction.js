@@ -13,7 +13,7 @@ $(document).ready(function(){
 			dataType: "xml",
 			success: function(data){
 				id = loadModel(data);
-				$("div#Strategies").append(displayModel(findStrategy(id)));
+				$("div#Strategies").append(displayModel(id));
 			}
 		});
 	});
@@ -21,13 +21,14 @@ $(document).ready(function(){
 
 function loadModel(data){
 	var value = 0;
-	$("strategy",data).each(function(){
+	$("root",data).children("strategy").each(function(){
 		xmldoc = data;
 		var newId = isLoaded(parseInt($(this).attr("id")));
 		if(newId == -1)
 			newId = index;
 		strat = new Strategy(newId, $(this).attr("id"), false);
-		strat.initSteps($("step",this));
+		steps = $(this).children("step");
+		strat.initSteps(steps);
 		id = parseInt($(this).attr("id"));
 		if(isLoaded(id) != -1)
 			strats[findStrategy(newId)] = strat;
@@ -59,10 +60,15 @@ function findStrategy(fId){
 function displayModel(strat_id){
 	if(strats){
 		var strat = null;
-		if(strat_id < strats.length)
-			strat = strats[strat_id];
+		strat = getStrategy(strat_id);
 		var div_strat = document.createElement("div");
 		$(div_strat).attr("id","diagram_" + strat.frontId).addClass("diagram");
+		var close_span = document.createElement('span');
+		$(close_span).addClass("closeStrategy").html(""+
+		"	<a onclick='closeStrategy(" + strat.frontId + ")' href='javascript:void(0)'>"+
+		"		<img alt='click here to remove strategy from the list' src='/assets/images/Close-X.png'/>"+
+		"	</a>");
+		$(div_strat).append(close_span);
 		$(div_strat).append(createStrategyName($("strategy#" + strat.backId,xmldoc), strat));
 		for(var j=0;j<strat.Steps.length;j++){
 			last = false;
@@ -321,6 +327,8 @@ function NewResults(f_strategyId, f_stepId, bool){//(ele,url){
 }
 
 function AddStepToStrategy(url){	
+	b_strategyId = parseUrl('strategy',url)[0];
+	f_strategyId = getStrategyFromBackId(b_strategyId).frontId;
 	var d = parseInputs();
 	$.ajax({
 		url: url,
@@ -328,10 +336,11 @@ function AddStepToStrategy(url){
 		dataType:"xml",
 		data: d,
 		beforeSend: function(){
-			showLoading("0");
+			showLoading(f_strategyId);
 		},
 		success: function(data){
 			updateStrategies(data);
+			removeLoading(f_strategyId);
 			$("#diagram_0 div.venn:last span.resultCount a").addClass("selected");//click();
 		},
 		error: function(data, msg, e){
@@ -348,10 +357,11 @@ function EditStep(proto, url, step_number){
 		$.ajax({
 		url: url,
 		type: "POST",
-		dataType:"html",
+		dataType:"xml",
 		data: d,
 		beforeSend: function(obj){
 				showLoading(proto.split("_")[0]);
+				$("div#step_" + step.frontId + " h3 div.crumb_details").hide();
 			},
 		success: function(data){
 			updateStrategies(data);
@@ -373,10 +383,11 @@ function DeleteStep(f_strategyId,f_stepId){
 	url = "deleteStep.do?strategy=" + strategy.backId + "&step=" + step.back_step_Id;
 	$.ajax({
 		url: url,
-		type: "GET",
-		dataType:"html",
+		type: "post",
+		dataType:"xml",
 		beforeSend: function(obj){
 				showLoading(f_strategyId);
+				$("div#step_" + step.frontId + " h3 div.crumb_details").hide();
 			},
 		success: function(data){
 				updateStrategies(data);
@@ -395,41 +406,19 @@ function ExpandStep(f_strategyId, f_stepId, collapsedName){
 	url = "expandStep.do?strategy=" + strategy.backId + "&step=" + step.back_step_Id + "&collapsedName=" + collapsedName;
 	$.ajax({
 		url: url,
-		dataType: "html",
+		type: "post",
+		dataType: "xml",
 		beforeSend: function(){
 			showLoading(f_strategyId);
+			$("div#step_" + step.frontId + "_sub h3 div.crumb_details").hide();
 		},
 		success: function(data){
-			loadModel(data);
-			x = 1;
-/*			var sub = $(".diagram",data);
-			sub.addClass("sub_diagram");
-			var parentStepId = sub.attr("id");
-			parentStepId = parentStepId.split("_")[2];
-			var parentStep = parent_strat.find("#stepId_" + parentStepId);
-			if(parentStep.find(".collapsible").html() == "false"){
-				var exName = sub.find("#strategy_name")[0].firstChild;
-				if(exName.length > 15)
-					exName = exName.nodeValue.substring(0,11) + "...";
-				parentStep.text(exName);
-			}
-			var filter = $(".filter_link_div", data);
-			var ps_height = $("#diagram_" + parentStratNum).css("height");
-			ps_height = ps_height.substring(0, ps_height.indexOf("px"));
-			ps_height = parseInt(ps_height) + 132;
-			ps_height = ps_height + "px";
-			parent_strat.css({
-				height: ps_height
-			});
-			sub.css({
-				left: "36px",
-				width: "97%",
-				top: "118px"
-			});
-			parent_strat.append(sub);
-			parent_strat.children("span#loadingGIF").remove();
-			strat_div.append(filter);
-			*/
+			x = loadModel(data);
+			st = getStep(x, f_stepId);
+			if(st.child_Strat_Id == null)
+				alert("There was an error in the Expand Operation for this step.  Please contact administrator.");
+			$("div#Strategies").append(displayModel(st.child_Strat_Id));
+			removeLoading(f_strategyId);
 		},
 		error: function(data, msg, e){
 			alert("ERROR \n " + msg + "\n" + e);
@@ -441,7 +430,7 @@ function ExpandStep(f_strategyId, f_stepId, collapsedName){
 function updateStrategies(data){
 	stratId = loadModel(data);
 	$("div#Strategies div#diagram_" + stratId).remove();
-	$("div#Strategies").append(displayModel(findStrategy(stratId)));
+	$("div#Strategies").append(displayModel(stratId));
 }
 
 
@@ -467,29 +456,19 @@ function openStrategy(stratId){
 }
 
 function closeStrategy(stratId){
-	if(stratId.indexOf("_") == -1){
-		var url = "closeStrategy.do?strategy=" + stratId;
-		$.ajax({
-			url: url,
-			dataType:"html",
-			success: function(data){
-				$("#diagram_" + stratId).hide("slow").remove();
-			},
-			error: function(data, msg, e){
-				alert("ERROR \n "+ msg + "\n" + e);
-			}
-		});
-		$("#eye_" + stratId).removeClass("strat_active").addClass("strat_inactive");
-	} else {
-		var parts = stratId.split("_");
-		$("#diagram_" + stratId).hide("slow").remove();
-		var ps_height = $("#diagram_" + parts[0]).css("height");
-		ps_height = ps_height.substring(0, ps_height.indexOf("px"));
-		ps_height = parseInt(ps_height) - 132;
-		ps_height = ps_height + "px";
-		$("#diagram_" + parts[0]).css({ height: ps_height });
-	}
-	$("#filter_link_div_" + stratId).remove();
+	strat = getStrategy(stratId);
+	var url = "closeStrategy.do?strategy=" + strat.backId;
+	$.ajax({
+		url: url,
+		dataType:"html",
+		success: function(data){
+			$("#diagram_" + stratId).hide("slow").remove();
+		},
+		error: function(data, msg, e){
+			alert("ERROR \n "+ msg + "\n" + e);
+		}
+	});
+	$("#eye_" + stratId).removeClass("strat_active").addClass("strat_inactive");
 }
 
 function saveStrategy(stratId, checkName){
@@ -539,6 +518,9 @@ function showLoading(divId){
 		top: "10px"
 	});
 	$(d).append(l);
+}
+function removeLoading(divId){
+	$("#diagram_" + divId + " span#loadingGIF").remove();
 }
 
 var recur_Count;
