@@ -7,7 +7,7 @@
 <%--------------------------------------------------------------------%>
 
 <c:choose>
-<c:when test = "${project == 'EuPathDB'}">
+<c:when test = "${project == 'ApiDB'}">
 
 <c:if test="${!empty helps}">
   <BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>

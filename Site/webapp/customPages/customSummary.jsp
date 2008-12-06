@@ -313,6 +313,7 @@ function parse_Url( url, parameter_name )
   <c:set var="recordClass" value="${wdkAnswer.recordClass}"/>
   <c:set var="rsName" value="${recordClass.fullName}"/>
   <c:set var="isGeneRec" value="${fn:containsIgnoreCase(rsName, 'GeneRecordClass')}"/>
+ <c:set var="isGenomicRec" value="${fn:containsIgnoreCase(rsName, 'SequenceRecordClass')}"/>
 
 <c:set value="${wdkAnswer.internalParams}" var="params"/>
 <c:set value="${wdkAnswer.question.paramsMap}" var="qParamsMap"/>
@@ -328,35 +329,35 @@ function parse_Url( url, parameter_name )
        <c:set var="stringOrg" value="${aP}"/>
        <c:set var="arrayOrg" value="${fn:split(aP,',')}"/>
        <c:if test="${fn:length(arrayOrg) == 1}">
-<%--
+
          <jsp:setProperty name="qP" property="paramValue" value="${aP}" />
          <c:set var="pValue" value="${qP.decompressedValue}" />
-         <c:choose>
+           <c:choose>
            <c:when test="${fn:contains(pValue,',')}">
              <c:set var="stringOrg" value="${pValue}"/>
            </c:when>
            <c:otherwise>
---%>
-             <c:set value="true" var="oneOrg"/>
-<%--
+                <c:set value="true" var="oneOrg"/> 
            </c:otherwise>
            </c:choose>
---%>
+
        </c:if>
    </c:if>
 </c:forEach>
 
 
 
-<%-- Portal: use of summary counts  --%>
-<%-- - for questions other than gene questions, where no filters are currently defined  --%>
-<%-- - OR when there is only one organism requested (includes when org.value is encoded)  --%>
-<%-- - OR when there is no organism parameter --%>
-<%--  <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB') && !(isGeneRec)}">   --%>
+<%-- Portal: use of summary counts 
+    - when no filters are defined  OR  when there is no organism parameter, AND
+    - when no location queries
+--%>
+
           <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-               <c:if test="${(fn:length(recordClass.filters)==0) || oneOrg || !Org}">
+             <c:if test="${!fn:containsIgnoreCase(history.customName, 'location')}">
+                <c:if test="${(fn:length(recordClass.filters)==0) || !Org}">   
                    <site:apidbSummary/>
                </c:if>
+             </c:if>
           </c:if>
        </td>
     </tr>
@@ -436,20 +437,23 @@ function parse_Url( url, parameter_name )
 </c:when>
 
 <c:when test="${modelName == 'ApiDB'}">
+<%-- Portal: use of summary counts 
+    - when there is no organism parameter (need to check the question definition, to which organisms the question applies), AND
+    - when no location queries OR Toxo is the organism
+--%>
 
-<%-- if there is no parameter organism we need to check the question definition, to which organisms the question applies. For now we display all filters  --%>
-<c:choose>
-<c:when test="${Org eq 'false'}"> 
-    <br>There is no organism param<br>    
-</c:when>
-<c:otherwise>
-<%-- if there are more than one organism values OR if it is Gl or Tg, we display filters --%>
-<c:if test="${oneOrg eq 'false' || fn:containsIgnoreCase(stringOrg, 'Giardia') || fn:containsIgnoreCase(stringOrg, 'Toxo')}">
-   <site:apiFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
-</c:if>
-</c:otherwise>
-</c:choose>
+<%-- if there is no parameter organism we need to check the question definition, to which organisms the question applies. For now we display all filters or none  --%>
 
+<c:if test="${Org}"> 
+ <c:if test="${fn:containsIgnoreCase(stringOrg, 'Toxo') || !fn:containsIgnoreCase(history.customName, 'location')}">
+  <c:if test="${isGeneRec}">
+      <site:apiGeneFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
+  </c:if>
+  <c:if test="${isGenomicRec}">
+      <site:apiGenomicFilters historyId="${historyId}" curFilter="${curFilter}" stringOrg="${stringOrg}"/>
+  </c:if>
+ </c:if> 
+</c:if> 
 </c:when>
 
 <c:when test="${modelName == 'CryptoDB'}">

@@ -82,7 +82,7 @@
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByESTOverlap" linktext="EST Evidence" existsOn="A C G P T Tr"/>
                 </tr>
                 <tr>
-                    <site:queryGridMakeUrl qset="InternalQuestions" qname="GenesBySageTagEvidence" linktext="SAGE Tag Evidence" existsOn="G P T"/>
+                    <site:queryGridMakeUrl qset="InternalQuestions" qname="GenesBySageTagEvidence" linktext="SAGE Tag Evidence" existsOn="A G P T"/>
                 </tr>
                 <tr>
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByChIPchip" linktext="ChIP chip Evidence" existsOn="A T"/> 
