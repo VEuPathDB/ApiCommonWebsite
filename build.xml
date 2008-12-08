@@ -47,6 +47,7 @@
       <property name="project" value="ApiCommonData"/>
       <property name="version" value=""/>
       <property name="excludeChildren" value="true"/>
+      <property name="useBranch" value="false"/>
     </ant>
   </target>
  
