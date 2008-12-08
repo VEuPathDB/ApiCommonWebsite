@@ -45,7 +45,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonData"/>
       <property name="project" value="ApiCommonData"/>
-      <property name="version" value=""/>
+      <property name="version" value="trunk"/>
       <property name="excludeChildren" value="true"/>
     </ant>
   </target>
