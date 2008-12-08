@@ -63,7 +63,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonWebService" />
       <property name="project" value="ApiCommonWebService"/>
-      <property name="version" value="WDK_version_1-18"/>
+      <property name="version" value="api-nov-08"/>
       <property name="useBranch" value=""/>
     </ant>
   </target>
