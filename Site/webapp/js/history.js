@@ -1,27 +1,37 @@
-selected = [];
+var selected = new Array();
 
 function selectAllHist() {
-	$("div.history_panel.enabled input:checkbox").attr("checked", "yes");
+	$("div.history_panel").each(function(){
+		var display = $(this).css("display");
+		if (display != 'none'){
+			$("input:checkbox", this).attr("checked", "yes");
+		}
+	});
 	updateSelectedList();
 }
 
 function selectNoneHist() {
 	$("div.history_panel input:checkbox").removeAttr("checked");
-	selected = [];
+	selected = new Array();
 }
 
 function displayHist(type) {
-	if(!$("div#panel_" + type).hasClass("enabled")) {
-		$("li#selected").removeAttr("id");
-		$("div.history_panel.enabled").removeClass("enabled");
-		selectNoneHist();
-		$("a#tab_" + type).parent().attr("id", "selected");
-		$("div#panel_" + type).addClass("enabled");
-	}
+	$("#selected").removeAttr("id");
+	$(".history_panel").hide();
+	selectNoneHist();
+	$("#history_tabs li").each(function() {
+		var id = $("a", this).attr("id");
+		if (id == 'tab_' + type) {
+			$(this).attr("id", "selected");
+		}
+	});
+	//$("#tab_" + type).parent().attr("id", "selected");
+	$("#panel_" + type).show();
 }
 
+
 function updateSelectedList() {
-	selected = [];
+	selected = new Array();
 	$("div.history_panel input:checkbox").each(function (i) {
 		if ($(this).attr("checked")) {
 			selected.push($(this).attr("id"));

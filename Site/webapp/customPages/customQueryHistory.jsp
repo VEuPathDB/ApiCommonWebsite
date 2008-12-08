@@ -179,7 +179,6 @@ function reviseBooleanQuery(type, expression) {
     <p><i>Note</i>: some of your saved queries are not compatible with the current
         version of ${wdkModel.displayName}.  See <a href="javascript:displayHist('incompatible');">Incompatible Queries</a>.</p>
 </c:if>
-
 <!-- decide whether history is empty -->
 <c:choose>
   <c:when test="${wdkUser == null || wdkUser.historyCount == 0}">
@@ -228,7 +227,8 @@ function reviseBooleanQuery(type, expression) {
 
 <c:set var="typeC" value="${typeC+1}"/>    <c:choose>
       <c:when test="${typeC == 1}">
-        <div id="panel_${recTabName}" class="history_panel enabled">
+        <div id="panel_${recTabName}" class="history_panel">
+        <c:set var="activePanel" value="panel_${recTabName}"/>
       </c:when>
       <c:otherwise>
         <div id="panel_${recTabName}" class="history_panel">
@@ -522,7 +522,8 @@ function reviseBooleanQuery(type, expression) {
       </td>
    </tr>
 </table>
-    <div id="panel_incompatible" class="history_panel enabled">
+    <div id="panel_incompatible" class="history_panel">
+    <c:set var="activePanel" value="panel_incompatible"/>
   </c:when>
   <c:otherwise>
     <div id="panel_incompatible" class="history_panel">
@@ -605,6 +606,11 @@ function reviseBooleanQuery(type, expression) {
 </tr>
 </table> 
 
+<script>
+	$(document).ready(function(){
+             $("#${activePanel}").show();
+	});
+</script>
 <script type='text/javascript' src='<c:url value="/js/history.js"/>'></script>
 
 <site:footer/>
