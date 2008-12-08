@@ -347,17 +347,28 @@ function parse_Url( url, parameter_name )
 
 
 
+
 <%-- Portal: use of summary counts 
     - when no filters are defined  OR  when there is no organism parameter, AND
-    - when no location queries
+    - when no location queries (excluding isolates by geographical location)
 --%>
 
           <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
-             <c:if test="${!fn:containsIgnoreCase(history.customName, 'location')}">
-                <c:if test="${(fn:length(recordClass.filters)==0) || !Org}">   
-                   <site:apidbSummary/>
-               </c:if>
-             </c:if>
+             
+             <c:choose>
+             <c:when test="${fn:containsIgnoreCase(history.customName, 'geographic location')}">
+               <site:apidbSummary/>
+             </c:when>
+             <c:otherwise>
+                <c:if test="${!fn:containsIgnoreCase(history.customName, 'location')}">
+                 <c:if test="${(fn:length(recordClass.filters)==0)}">
+                   <c:if test="${!Org}">  
+                      <site:apidbSummary/>
+                   </c:if>
+                 </c:if>
+                </c:if>
+             </c:otherwise>
+             </c:choose>
           </c:if>
        </td>
     </tr>
