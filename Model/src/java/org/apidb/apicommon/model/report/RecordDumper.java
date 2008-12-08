@@ -92,15 +92,6 @@ public class RecordDumper {
 
         // get type list
         String[] types = typeArg.split(",");
-        for (String type : types) {
-            type = type.trim();
-            if (!type.equalsIgnoreCase("sequence")
-                    && !type.equalsIgnoreCase("gene")) {
-                System.err.println("Unsupported record type: " + type);
-                printUsage();
-                System.exit(-1);
-            }
-        }
 
         String[] organisms = organismArg.split(",");
         for (String organism : organisms) {
@@ -130,8 +121,14 @@ public class RecordDumper {
         } else if (type.equalsIgnoreCase("sequence")) {
             question = (Question) wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion");
             reporterName = "fullRecord";
-        } else { // something wrong here, not supported record type
-            throw new WdkModelException("Unsupported Record Type: " + type);
+        } else {
+            String camelRecordType = type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
+            question = (Question) wdkModel.resolveReference(camelRecordType + "DumpQuestions." + camelRecordType + "DumpQuestion");
+            if (type.equalsIgnoreCase("isolate")) {
+               reporterName = "fullRecordDump";
+        } else {
+               reporterName = "fullRecord";
+            }
         }
 
         // get report maker attributes and tables
@@ -151,7 +148,7 @@ public class RecordDumper {
 
         // ask the question
         Map<String, String> params = new LinkedHashMap<String, String>();
-        params.put(organismParam, organism);
+        params.put(organismParam, organism); 
         AnswerValue sqlAnswer = question.makeAnswerValue(params);
 
         // decide the path-file name
