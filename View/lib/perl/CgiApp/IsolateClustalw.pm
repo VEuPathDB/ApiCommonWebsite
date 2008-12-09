@@ -48,14 +48,8 @@ sub handleIsolates {
 
   my $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
-FROM   dots.externalnasequence etn,
-       SRes.ExternalDatabaseRelease edr,
-       SRes.ExternalDatabase edb
-WHERE  edr.external_database_id = edb.external_database_id
-  AND edr.external_database_release_id = etn.external_database_release_id
-  AND edb.name = 'Isolates Data'
-  AND edr.version = '2007-12-12'
-  AND etn.source_id in ($ids)
+FROM   dots.externalnasequence etn
+WHERE etn.source_id in ($ids)
 EOSQL
 
   my $sequence;
