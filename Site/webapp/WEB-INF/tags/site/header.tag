@@ -75,8 +75,8 @@
    <c:set var="logo" value="/images/toxodb_logo-rotated.jpg"/>
    <c:set var="sidebarBgColor" value="white"/>
 </c:if>
- <link rel="StyleSheet" href="<c:url value="${stylesheet}" />" type="text/css">
-
+ <link rel="StyleSheet" href="<c:url value="${stylesheet}" />" type="text/css" />
+ <link type="text/css" href="<c:url value="/misc/history.css" />" rel="stylesheet" />
   <!--link type="text/css" rel="StyleSheet" href='<c:url value="/slider/css/winclassic.css"/>'-->
   <!--link rel="StyleSheet" href="<c:url value="/misc/custom-slider.css" />" type="text/css"-->
 

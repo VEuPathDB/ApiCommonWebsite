@@ -177,9 +177,8 @@ function reviseBooleanQuery(type, expression) {
 <!-- display a link to incompatible histories -->
 <c:if test="${fn:length(invalidHistories) > 0}">
     <p><i>Note</i>: some of your saved queries are not compatible with the current
-        version of ${wdkModel.displayName}.  See <a href="#incompatible">Incompatible Queries</a>.</p>
+        version of ${wdkModel.displayName}.  See <a href="javascript:displayHist('incompatible');">Incompatible Queries</a>.</p>
 </c:if>
-
 <!-- decide whether history is empty -->
 <c:choose>
   <c:when test="${wdkUser == null || wdkUser.historyCount == 0}">
@@ -214,18 +213,6 @@ function reviseBooleanQuery(type, expression) {
     <li><a id="tab_incompatible" onclick="displayHist('incompatible')" href="javascript:void(0)">Incompatible&nbsp;Queries</a></li>
   </c:if>
   </ul>
-<!-- select/delete controls, dreaded table layout -->
-<table class="clear_all">
-   <tr>
-      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
-          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
-      <td></td>
-      <td class="medium">
-         <!-- display "delete button" -->
-         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
-      </td>
-   </tr>
-</table>
 <c:set var="typeC" value="0"/> 
 <!-- begin creating divs to display history sections -->
 <c:forEach items="${histories}" var="historyEntry">
@@ -240,12 +227,26 @@ function reviseBooleanQuery(type, expression) {
 
 <c:set var="typeC" value="${typeC+1}"/>    <c:choose>
       <c:when test="${typeC == 1}">
-        <div id="panel_${recTabName}" class="history_panel enabled">
+        <div id="panel_${recTabName}" class="history_panel">
+        <c:set var="activePanel" value="panel_${recTabName}"/>
       </c:when>
       <c:otherwise>
         <div id="panel_${recTabName}" class="history_panel">
       </c:otherwise> 
     </c:choose>
+
+<!-- select/delete controls, dreaded table layout -->
+<table class="clear_all">
+   <tr>
+      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
+          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
+      <td></td>
+      <td class="medium">
+         <!-- display "delete button" -->
+         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
+      </td>
+   </tr>
+</table>
 
     <!-- begin of the html:form for rename query -->
     <html:form method="get" action="/renameHistory.do">
@@ -439,11 +440,19 @@ function reviseBooleanQuery(type, expression) {
        </table>
        </html:form> 
        <!-- end of the html:form for rename query -->
-       </div>
 
-</c:forEach>
-<!-- end of showing user answers grouped by RecordTypes -->
 
+<table>
+   <tr>
+      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
+          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
+      <td></td>
+      <td class="medium">
+         <!-- display "delete button" -->
+         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
+      </td>
+   </tr>
+</table>
        <div>
             <html:form method="get" action="/processBooleanExpression.do">
                <span id="comb_title_${type}">Combine results</span>:
@@ -461,129 +470,6 @@ function reviseBooleanQuery(type, expression) {
                <font size="-1">[eg: 1 or ((4 and 3) not 2)]</font>
             </html:form>
        </div>
-
-  </c:otherwise>
-</c:choose> 
-<!-- end of deciding history emptiness -->
-
-<!-- display invalid history list -->
-<c:set var="invalidHistories" value="${wdkUser.invalidHistories}" />
-<c:if test="${fn:length(invalidHistories) > 0}">
-  <c:choose>
-  <c:when test="${wdkUser.historyCount == 0}">
-    <ul id="history_tabs">
-    <li><a id="tab_incompatible" onclick="displayHist('incompatible')" href="javascript:void(0)">Incompatible&nbsp;Queries</a></li>
-    </ul>
-<!-- select/delete controls, dreaded table layout -->
-<table class="clear_all">
-   <tr>
-      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
-          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
-      <td></td>
-      <td class="medium">
-         <!-- display "delete button" -->
-         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
-      </td>
-   </tr>
-</table>
-    <div id="panel_incompatible" class="history_panel enabled">
-  </c:when>
-  <c:otherwise>
-    <div id="panel_incompatible" class="history_panel">
-  </c:otherwise>
-  </c:choose>
-    <p>This section lists your queries from previous versions of ${wdkModel.displayName} that
-        are no longer compatible with the current version of ${wdkModel.displayName}.  In most
-        cases, you will be able to work around the incompatibility by finding an
-        equivalent query in this version, and running it with similar parameter
-        values.</p>
-    <p>If you have problems <a href="<c:url value="help.jsp" />">drop us a line</a>.</p>
-
-    <table>
-
-        <tr class="headerRow">
-            <th onmouseover="hideAnyName()">&nbsp;</th>
-            <th>ID</th> 
-            <th onmouseover="hideAnyName()">Query</th>
-            <th onmouseover="hideAnyName()">Size</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-        </tr>
-
-        <c:forEach items="${invalidHistories}" var="history">
-            <tr>
-                <c:set var="historyId" value="${history.historyId}"/>
-                <jsp:setProperty name="history" property="nameTruncateTo" value="${NAME_TRUNC}"/>
-
-                <c:choose>
-                    <c:when test="${i % 2 == 0}"><tr class="rowLight"></c:when>
-                    <c:otherwise><tr class="rowMedium"></c:otherwise>
-                </c:choose>
-
-                <td><input type=checkbox id="${historyId}" onclick="updateSelectedList()"/></td>
-                <td class="medium">${historyId}
-	               <!-- begin of floating info box -->
-                   <div id="div_${historyId}" 
-	                    class="medium"
-                        style="display:none;font-size:8pt;width:610px;position:absolute;left:0;top:0;"
-                        onmouseover="hideAnyName()">
-                       <table cellpadding="2" cellspacing="0" border="0"bgcolor="#ffffCC">
-                           <tr>
-                              <td valign="top" align="right" width="10" class="medium" nowrap><b>Query&nbsp;:</b></td>
-                              <td valign="top" align="left" class="medium">${history.customName}</td>
-                           </tr>
-
-                           <c:set var="params" value="${history.params}"/>
-                           <c:set var="paramNames" value="${history.paramNames}"/>
-                           <c:forEach items="${params}" var="item">
-                               <c:set var="pName" value="${item.key}"/>
-                               <tr>
-                                  <td align="right" valign="top" class="medium" nowrap><i>${paramNames[pName]}</i> : </td>
-                                  <td class="medium">${item.value}</td>
-                               </tr>
-                           </c:forEach>
-                     </table>
-                   </div> 
-	               <!-- end of floating info box -->
-                </td>
-                <c:set var="dispNam" value="${history.truncatedName}"/>
-                <td onmouseover="displayName('${historyId}')" onmouseout="hideAnyName()">
-                    <div id="text_${historyId}">${dispNam}</div>
-                    <div id="input_${historyId}" style="display:none"></div>
-                </td>
-                <td align='right' onmouseover="hideAnyName()" nowrap>${history.estimateSize}</td>
-
-                <td nowrap>
-                    <c:set var="surlParams" value="showSummary.do?wdk_history_id=${historyId}" />
-                    <a href="${surlParams}">show</a>
-                </td>
-            </tr>
-            <c:set var="i" value="${i+1}"/>
-        </c:forEach>
-    </table>
-   </div>
-</c:if>
-
-<!-- end of display invalid history list -->
-
-  </td>
-  <td valign=top class=dottedLeftBorder></td> 
-</tr>
-</table> 
-<!-- <c:if test="${typeC != 1}"><hr></c:if> -->
-
-<c:if test="${fn:length(invalidHistories) > 0 || (wdkUser != null && wdkUser.historyCount != 0)}">
-<table>
-   <tr>
-      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
-          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
-      <td></td>
-      <td class="medium">
-         <!-- display "delete button" -->
-         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
-      </td>
-   </tr>
-</table>
 <table>
    <tr>
       <td>
@@ -606,7 +492,125 @@ function reviseBooleanQuery(type, expression) {
       </td>
    </tr>
 </table>
+       </div>
+
+</c:forEach>
+<!-- end of showing user answers grouped by RecordTypes -->
+
+
+  </c:otherwise>
+</c:choose> 
+<!-- end of deciding history emptiness -->
+
+<!-- display invalid history list -->
+<c:set var="invalidHistories" value="${wdkUser.invalidHistories}" />
+<c:if test="${fn:length(invalidHistories) > 0}">
+  <c:choose>
+  <c:when test="${wdkUser.historyCount == 0}">
+    <ul id="history_tabs">
+    <li id="selected"><a id="tab_incompatible" onclick="displayHist('incompatible')" href="javascript:void(0)">Incompatible&nbsp;Queries</a></li>
+    </ul>
+<!-- select/delete controls, dreaded table layout -->
+<table class="clear_all">
+   <tr>
+      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
+          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
+      <td></td>
+      <td class="medium">
+         <!-- display "delete button" -->
+         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
+      </td>
+   </tr>
+</table>
+    <div id="panel_incompatible" class="history_panel">
+    <c:set var="activePanel" value="panel_incompatible"/>
+  </c:when>
+  <c:otherwise>
+    <div id="panel_incompatible" class="history_panel">
+  </c:otherwise>
+  </c:choose>
+    <p>This section lists your queries from previous versions of ${wdkModel.displayName} that
+        are no longer compatible with the current version of ${wdkModel.displayName}.  In most
+        cases, you will be able to work around the incompatibility by finding an
+        equivalent query in this version, and running it with similar parameter
+        values.</p>
+    <p>If you have problems <a href="<c:url value="help.jsp" />">drop us a line</a>.</p>
+
+<table>
+   <tr>
+      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
+          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
+      <td></td>
+      <td class="medium">
+         <!-- display "delete button" -->
+         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
+      </td>
+   </tr>
+</table>
+
+    <table border="0" cellpadding="5" cellspacing="0">
+
+        <tr class="headerRow">
+            <th onmouseover="hideAnyName()">&nbsp;</th>
+            <th>ID</th> 
+            <th onmouseover="hideAnyName()">Query</th>
+            <th onmouseover="hideAnyName()">Size</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        <c:set var="i" value="0" />
+        <c:forEach items="${invalidHistories}" var="history">
+            <tr>
+                <c:set var="historyId" value="${history.historyId}"/>
+                <jsp:setProperty name="history" property="nameTruncateTo" value="${NAME_TRUNC}"/>
+
+                <c:choose>
+                    <c:when test="${i % 2 == 0}"><tr class="rowLight"></c:when>
+                    <c:otherwise><tr class="rowMedium"></c:otherwise>
+                </c:choose>
+
+                <td><input type=checkbox id="${historyId}" onclick="updateSelectedList()"/></td>
+                <td class="medium">${historyId}</td>
+                <c:set var="dispNam" value="${history.questionName}"/>
+                <td onmouseover="hideAnyName()" onmouseout="hideAnyName()">
+                    <div id="text_${historyId}">${dispNam}</div>
+                </td>
+                <td align='right' onmouseover="hideAnyName()" nowrap>${history.estimateSize}</td>
+
+                <td nowrap>
+                    <c:set var="surlParams" value="showSummary.do?wdk_history_id=${historyId}" />
+                    <a href="${surlParams}">show</a>
+                </td>
+            </tr>
+            <c:set var="i" value="${i+1}"/>
+        </c:forEach>
+    </table>
+<table>
+   <tr>
+      <td><a class="check_toggle" onclick="selectAllHist()" href="javascript:void(0)">select all</a>&nbsp|&nbsp;
+          <a class="check_toggle" onclick="selectNoneHist()" href="javascript:void(0)">clear all</a></td>
+      <td></td>
+      <td class="medium">
+         <!-- display "delete button" -->
+         <input type="button" value="Delete" onclick="deleteHistories('deleteHistory.do?wdk_history_id=')"/>
+      </td>
+   </tr>
+</table>
+   </div>
 </c:if>
+
+<!-- end of display invalid history list -->
+
+  </td>
+  <td valign=top class=dottedLeftBorder></td> 
+</tr>
+</table> 
+
+<script>
+	$(document).ready(function(){
+             $("#${activePanel}").show();
+	});
+</script>
 <script type='text/javascript' src='<c:url value="/js/history.js"/>'></script>
 
 <site:footer/>
