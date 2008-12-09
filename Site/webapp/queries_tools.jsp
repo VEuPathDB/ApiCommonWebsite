@@ -4,8 +4,8 @@
 <%@ taglib prefix="random" uri="http://jakarta.apache.org/taglibs/random-1.0" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<site:home_header refer="home"/>
+<site:home_header refer="queriesAndTools" />
 <site:menubar />
-<site:DQG />
+<site:queryGrid />
 <site:sidebar />
 <site:footer />
