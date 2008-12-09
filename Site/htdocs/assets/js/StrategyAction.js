@@ -158,7 +158,7 @@ function createStep(ele, step, isLast){
 		left = offset(id);	
 		cl = "venn row2 size2 operation " + operation;
 		inner = ""+
-			"			<a class='operation' onclick='NewResults()' href='javascript:void(0)'>"+
+			"			<a class='operation' onclick='NewResults(" + strategyId + "," + id + ", true)' href='javascript:void(0)'>"+
 			"				<img src='/assets/images/transparent1.gif'>"+
 			"			</a>"+
 			"			<span class='resultCount'>"+
