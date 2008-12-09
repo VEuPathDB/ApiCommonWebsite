@@ -23,6 +23,7 @@
 	</a>
 	&copy;2008  The EuPath Project Team:: 
 	<a href="http://www.cryptodb.org">${dispModelName}.org</a> <br />
+Trypanosome images are care of the Tarleton Research Group <br />
 	Please <a href="http://www.cryptodb.org/${dispModelName}/help.jsp">Contact Us</a> 
 	with any questions or concerns.
 </div>

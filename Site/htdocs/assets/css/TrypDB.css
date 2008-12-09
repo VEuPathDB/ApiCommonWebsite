@@ -15,12 +15,12 @@ body {
 }
 
 a:link, a:visited {
-	color: #0b4796;
+	color: #015f9a;
 	text-decoration: none;
 }
 
 a:hover, a:active {
-	color: #83a6d4;
+	color: #93c4e3;
 	text-decoration: underline;
 }
 #wrap {
@@ -43,7 +43,7 @@ img {
 	width: 100%;
 	height: 159px;
 	text-align: left;
-	background-image: url(../images/crypto/backgroundtop_s.jpg);
+	background-image: url(../images/TrypDB/backgroundtop_s.jpg);
 	background-repeat: no-repeat;
 	min-width: 1000px;
 }
@@ -55,13 +55,13 @@ img {
 	min-width: 950px;
 	height: 104px;
 	text-align: left;
-	background-image: url(../images/crypto/backgroundtop_s.jpg);
+	background-image: url(../images/TrypDB/backgroundtop_s.jpg);
 	background-repeat: no-repeat;
 }
 
 
 #header_rt {
-   color: #395b8e;
+   color: #95461a;
    font-size: 12px;
    width: 430px;
    float: right;
@@ -70,7 +70,7 @@ img {
 }
 
 #header_rt a:link, #header_rt a:visited {
-   color: #395b8e;
+   color: #95461a;
    text-decoration: none;
 }
 
@@ -95,7 +95,7 @@ img {
 	display: block;
 	width: 174px;
 	text-align: right;
-	background-image: url(../images/crypto/partofeupath2.gif);
+	background-image: url(../images/TrypDB/partofeupath2.gif);
 }
 
 
@@ -122,7 +122,7 @@ img {
 #nav_top a:link, #nav_top a:visited {
 	display: block;
 	width: auto;
-	color: #395b8e;
+	color: #97400e;
 	text-decoration: none;
 	z-index: 520;
 }
@@ -149,15 +149,15 @@ img {
 	font-size: 12px;
 	font-weight: normal;
 	background-color: #FFFFFF;
-	background-image: url(../images/crypto/footer.png);
+	background-image: url(../images/TrypDB/footer.png);
 	background-repeat: repeat-x;
 	background-position: top;
 	border-width: 1px 1px 1px 1px;
 	border-style: solid;
-	border-color:#395b8e;
+	border-color:#95461a;
 	padding: 6px 6px 6px 18px;
 	line-height: 14px;
-	list-style-image: url(../images/crypto/bullet_arrow.gif);
+	list-style-image: url(../images/TrypDB/bullet_arrow.gif);
 	z-index: 520;
 }
 
@@ -188,7 +188,7 @@ img {
 }
 
 #nav_top li ul a:link, #nav_top li ul a:visited {
-	color: #395b8e;
+	color: #95461a;
 	text-decoration: none;
 	padding: 2px;
 	width: 13em;
@@ -196,7 +196,7 @@ img {
 }
 
 #nav_top li ul a:hover, #nav_top li ul a:active {
-	color: #630d0d;
+	color: #013c63;
 	text-decoration: none;
 	padding: 2px;
 	background-color: #FFFFFF;
@@ -233,11 +233,11 @@ img {
 
 #menubar #mysearch {
 	width: auto;
-	background-image: url(../images/crypto/my_hist_menubar.png);
+	background-image: url(../images/TrypDB/my_hist_menubar.png);
 	background-repeat: repeat-x;
 	margin-top: -4px;
 	padding: 4px 3px 3px 3px;
-	border: 1px solid #6e2929;
+	border: 1px solid #175982;
 	z-index: 1;
 }
  
@@ -251,20 +251,20 @@ img {
 	min-width: 750px;
 	margin: 0 25px 0 226px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
 	background-color: #FFFFFF;
-	background-image: url(../images/crypto/footer.png);
+	background-image: url(../images/TrypDB/footer.png);
 	background-repeat: repeat-x;
 	text-align: left;
-	border: 1px solid #345d9b;
+	border: 1px solid #9e5933;
 }
 
 #contentcolumn2 {
 	min-width: 900px;
 	margin: 0 25px 0 6px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
 	background-color: #FFFFFF;
-	background-image: url(../images/crypto/footer.png);
+	background-image: url(../images/TrypDB/footer.png);
 	background-repeat: repeat-x;
 	text-align: left;
-	border: 1px solid #345d9b;
+	border: 1px solid #9e5933;
 }
 
 #leftcolumn {
@@ -287,9 +287,9 @@ img {
 #mysearchhist {
 	width: 100%;
 	text-align: center;
-	background-image: url(../images/crypto/bubble_my_searchbox.png);
+	background-image: url(../images/TrypDB/bubble_my_searchbox.png);
 	background-repeat: repeat-x;
-	border: 1px solid #aebed7;
+	border: 1px solid #dfbba6;
 	padding-top: 4px;
 	padding-bottom: 4px;
 	margin-top: 12px;
@@ -329,7 +329,7 @@ img {
 	text-align: left;
 	clear: both;
 	line-height: 1.3em;
-	background-image: url(../images/crypto/tools_bckgnd.jpg);
+	background-image: url(../images/TrypDB/tools_bckgnd.jpg);
 	background-repeat: no-repeat;
 	padding: 16px;
 	margin-top: 20px;
@@ -341,9 +341,9 @@ img {
 	float: left;
 	text-align: left;
 	line-height: 1.3em;
-	background-color: #bfccdf;
+	background-color: #edd9cd;
 	padding: 8px;
-	list-style-image: url(../images/crypto/bullet_arrow.gif);
+	list-style-image: url(../images/TrypDB/bullet_arrow.gif);
 	position: relative;
 }
 #about_us_right {
@@ -355,9 +355,9 @@ img {
 #pink_title {
 	font-size: 15px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	color: #5f140e;
+	color: #0f3e5c;
 	text-align: left;
-	background-image: url(../images/crypto/trheader.png);
+	background-image: url(../images/TrypDB/trheader.png);
 	background-repeat: repeat-x;
 	padding: 4px;
 	width: 100%;
@@ -481,7 +481,7 @@ height: 240px;
 #menu a:hover, #menu a:active {
 	display: block;
 	line-height: 14px;
-	color:#560000;
+	color:#003658;
 	width: auto;
 	text-decoration: none;
 	z-index: 500;
@@ -528,7 +528,7 @@ height: 240px;
 	left:100%;
 	margin-left: -2px;
 	width: 16em;
-	color: #b30101;
+	color: #0276be;
 	font-weight: normal;
 	background-color: #FFFFFF;
 	text-decoration: none;
@@ -584,7 +584,7 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 	voice-family: "\"}\"";
 	voice-family: inherit;
 	text-decoration: none;
-	background-image: url(../images/crypto/menu_lft2.png);
+	background-image: url(../images/TrypDB/menu_lft2.png);
 	background-repeat: no-repeat;
 	padding-right: 6px;
 	padding-left: 11px;
@@ -623,8 +623,7 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
    font-weight: normal;
    padding: 6px;
    line-height: 15px;
-   border: 1px solid #630d0d;
-   border-color: 630d0d;
+   border: 1px solid #0e4567;
    background-color: #FFFFFF;
    margin: -5px 0px 5px;
 }
@@ -638,8 +637,8 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
    width: 8em;
    padding: 2px;
    color: #5b5b5b;
-   background-color: #dae0e8;
-   border: solid 1px #5376ae;
+   background-color: #eadfd9;
+   border: solid 1px #a06442;
    font-size: 11px;
    text-align: right;
 } 
@@ -765,10 +764,10 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 
 .selectedarrow {
    padding: 4px;
-   background-color: #ea9797;
+   background-color: #9ccceb;
    text-align: left;
    border-width: 1px;
-   border-color: #b16565;
+   border-color: #5e92b3;
 }
 
 
@@ -780,7 +779,7 @@ h1 {
 	font-size: 20px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold;
-	color: #345d9b;
+	color: #a45d35;
 	text-align: center;
 	margin-bottom: 14px;
 }
@@ -789,7 +788,7 @@ h2 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	margin-bottom: 11px;
-  	color: #345d9b;
+  	color: #a45d35;
 	text-align: left;
 	margin-left: 11px;
 }
@@ -826,7 +825,7 @@ a.heading:hover + a.detail_link, .detail_link:hover {
 }
 
 .subcolor {
-	color: #714782
+	color: #4a8047
 }
 
 
@@ -840,7 +839,7 @@ a.heading:hover + a.detail_link, .detail_link:hover {
    width: 75%;
    text-align: right;
    background-color:#FFFFFF;
-   background-image: url(../images/crypto/footer.png);
+   background-image: url(../images/TrypDB/footer.png);
    background-repeat: repeat-x;
    color: #505050;
    padding: 9px;
@@ -865,8 +864,8 @@ td.headerrow {
 	height: 29px;
 	font-size: 15px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	color: #5f140e;
-	background-image: url(../images/crypto/trheader.png);
+	color: #0c3f60;
+	background-image: url(../images/TrypDB/trheader.png);
 	background-repeat: repeat-x;
 	background-position: top;
 	font-weight: bold;
@@ -878,8 +877,8 @@ tr.headerrow {
 	height: 29px;
 	font-size: 15px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	color: #5f140e;
-	background-image: url(../images/crypto/trheader.png);
+	color: #0c3f60;
+	background-image: url(../images/TrypDB/trheader.png);
 	background-repeat: repeat-x;
 	background-position: top;
 	font-weight: bold;
@@ -893,7 +892,7 @@ td.subheaderrow {
 	font-size: 13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #474747;
-	background-image: url(../images/crypto/trsubhead.png);
+	background-image: url(../images/TrypDB/trsubhead.png);
 	background-repeat: repeat-x;
 	background-position: top;
 	font-weight: bold;
@@ -905,7 +904,7 @@ tr.subheaderrow {
 	font-size: 14px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #474747;
-	background-image: url(../images/crypto/trsubhead.png);
+	background-image: url(../images/TrypDB/trsubhead.png);
 	background-repeat: repeat-x;
 	background-position: top;
 	font-weight: bold;
@@ -924,8 +923,8 @@ tr.subheaderrow {
 tr.headerrow2 td{
 	font-size: 14px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-        color: #5f140e;
-	background-image: url(../images/crypto/trheader.png);
+        color: #0c3f60;
+	background-image: url(../images/TrypDB/trheader.png);
 	background-repeat: repeat-x;
 	background-position: top;
 	padding: 4px;
@@ -936,7 +935,7 @@ tr.subheaderrow2 td{
 	font-size: 12px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #474747;
-	background-image: url(../images/crypto/trsubhead.png);
+	background-image: url(../images/TrypDB/trsubhead.png);
 	background-repeat: repeat-x;
 	background-position: top;
 	font-weight: bold;
@@ -954,7 +953,7 @@ a.queryGridActive {
         text-align:         center;
         font-family:        Helvetica;
         font-size:          10pt;
-        color:              #0b4796;
+        color:              #9f4510;
 }
 td.lines2 {
 	padding-top: 3px;
@@ -1000,14 +999,14 @@ tr.subheaderrow th {
 	padding: 4px;
 	border-width: 2px 0 2px 0;
 	border-style: solid;
-	border-color: #5F140E;
+	border-color: #0c3f60;
 }
 
 tr.headerrow th { 
 	padding: 4px;
 	border-width: 2px 0 2px 0;
 	border-style: solid;
-	border-color: #5F140E;
+	border-color: #0c3f60;
 }
 
 tr.headerInternalRow td {
@@ -1144,7 +1143,7 @@ a.redbutton:active span {
 	float: left; 
 	width: 12em;
 	color: #FFFFFF;
-	background-image: url(../images/crypto/aboutus.png);
+	background-image: url(../images/TrypDB/aboutus.jpg);
 	background-repeat: repeat-y;
 	padding: 15px 0; /* top and bottom padding create visual space within this div  */
 }
@@ -1249,7 +1248,7 @@ a.redbutton:active span {
 #adv_paging {
 	width: 225px;
 	padding: 6px;
-	background-color: #192a78;
+	background-color: #7a3b17;
 	color: #FFFFFF;
 }
 
@@ -1272,7 +1271,7 @@ a.redbutton:active span {
 span.marker a:link, span.marker a:visited {
 	padding-left: 15px;
 	font-weight: bold;
-	color: #7D0101;
+	color: #014c7c;
 }
 
 clear {
@@ -1321,7 +1320,7 @@ ul#strategy_tabs {
 }
 
 #strategy_tabs a:link, #strategy_tabs a:visited {
-    background-color: #E8EBF0;
+    background-color: #f2e9e4;
     border: 1px solid #CCCCCC;
     color:#666666;
     float: left;

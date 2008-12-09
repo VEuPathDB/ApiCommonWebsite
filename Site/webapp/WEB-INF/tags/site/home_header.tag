@@ -151,8 +151,14 @@ behavior: url(/assets/css/csshover.htc);
    </div>
 
    <p><a href="/"><img src="../assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
-	width="318" height="64" align="left" /></a></p>
+	width="282" height="72" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version 3.8<br />
    October 15, 2008</p>
 </div> 
+
+
+<%--
+crypto width="318" height="64"
+tryp          282           72
+--%>
