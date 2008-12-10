@@ -42,7 +42,10 @@ my $username = $c->getLogin;
 my $password = $c->getPassword;
 
 my $naSeqID = $q->param('id') || $ARGV[0];
-$naSeqID =~ s/[^\d]//g;
+#$naSeqID =~ s/[^\d]//g;
+$naSeqID =~ /\.(\d+)\.tmp/;
+$naSeqID = $1;
+
 exit if $naSeqID =~ /^\s*$/;
 
 # untaint
