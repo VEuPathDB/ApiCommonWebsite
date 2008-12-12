@@ -26,7 +26,7 @@ jQuery.fn.slowEach = function( interval, callback ) {
 
 jQuery(document).ready(function(){
   initialize();
-  jQuery.get("/js/country.xml",{},function(xml){
+  jQuery.get("/country.xml",{},function(xml){
     jQuery('country',xml).slowEach(200, function(i) {
        name = jQuery(this).find("name").text();
        count = jQuery(this).find("count").text();
