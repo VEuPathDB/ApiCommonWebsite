@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ attribute name="title"
               description="Value to appear in page's title"
@@ -150,15 +150,31 @@ behavior: url(/assets/css/csshover.htc);
        </div>
    </div>
 
+<%--
+crypto width="318" height="64"    version    date  
+tryp          282           72
+--%>
+<c:if test="${fn:containsIgnoreCase(project, 'CryptoDB')}">
+     <c:set var="width" value="318" />
+     <c:set var="height" value="64" />
+     <c:set var="version" value="4.0" />
+     <c:set var="date" value="January 15th, 2009" />
+</c:if>
+
+<c:if test="${fn:containsIgnoreCase(project, 'TrypDB')}">
+     <c:set var="width" value="282" />
+     <c:set var="height" value="72" />
+     <c:set var="version" value="1.0" />
+     <c:set var="date" value="January 15th, 2009" />
+</c:if>
+
+
+
    <p><a href="/"><img src="../assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
-	width="282" height="72" align="left" /></a></p>
+	width="%{width}" height="${height}" align="left" /></a></p>
    <p>&nbsp;</p>
-   <p>Version 3.8<br />
-   October 15, 2008</p>
+   <p>Version ${version}<br />
+   ${date}</p>
 </div> 
 
 
-<%--
-crypto width="318" height="64"
-tryp          282           72
---%>
