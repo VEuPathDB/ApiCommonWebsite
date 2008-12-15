@@ -12,7 +12,7 @@
 <div align="center">
 
 <div id="footer">
-    <a href="http://www.eupathdb.org"><img src="../assets/images/eupathdblink.png" alt="Link to EuPathDB homepage" width="144" height="25" align="right" /></a>	&copy;2008  The EuPath Project Team:: 
+    <a href="http://www.eupathdb.org"><img src="/assets/images/eupathdblink.png" alt="Link to EuPathDB homepage" width="144" height="25" align="right" border='0' /></a>	&copy;2008  The EuPath Project Team:: 
     <a href="http://www.cryptodb.org">${dispModelName}.org</a> <br />
     <c:if test="${fn:containsIgnoreCase(dispModelName, 'TrypDB')}">
        Trypanosome images are care of the Tarleton Research Group <br />
