@@ -16,6 +16,10 @@
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
 <c:set var="project" value="${props['PROJECT_ID']}" />
 
+<c:if test="${project == 'CryptoDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTMrNE2G2Bled15vogCImXw6TjMNBQeKxJGr2lD8yC0v8vilAhNZXuKjQ" /> 
+</c:if>
+
 <c:set var="headElement">
   <script src="js/lib/jquery-1.2.6.js" type="text/javascript"></script>
 <%--  <script src="js/prototype.js" type="text/javascript"></script>
@@ -23,7 +27,7 @@
   <script src="js/Top_menu.js" type="text/javascript"></script>
   <script src="js/treeControl.js" type="text/javascript"></script>
   <script type="text/javascript" src='<c:url value="/js/google_map.js"/>'></script>
-  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTMrNE2G2Bled15vogCImXw6TjMNBQeKxJGr2lD8yC0v8vilAhNZXuKjQ" type="text/javascript"></script>
+  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=${gkey}" type="text/javascript"></script>
   <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css" />
 </c:set>
 
