@@ -1345,3 +1345,7 @@ ul#strategy_tabs {
 .clear_all {
     clear: both;
 }
+
+.hidden {
+    display: none;
+}
