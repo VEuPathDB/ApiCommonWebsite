@@ -571,7 +571,7 @@ function reviseBooleanQuery(type, expression) {
 
                 <td><input type=checkbox id="${historyId}" onclick="updateSelectedList()"/></td>
                 <td class="medium">${historyId}</td>
-                <c:set var="dispNam" value="${history.questionName}"/>
+                <c:set var="dispNam" value="${history.customName}"/>
                 <td onmouseover="hideAnyName()" onmouseout="hideAnyName()">
                     <div id="text_${historyId}">${dispNam}</div>
                 </td>
