@@ -41,7 +41,7 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
    
      <tr>
-       <site:queryGridMakeUrl qset="UniversalQuestions" qname="UnifiedBlast" linktext="BLAST Similarity" type="ISOLATE" existsOn="A C P"  />
+       <site:queryGridMakeUrl qset="UniversalQuestions" qname="UnifiedBlast" linktext="BLAST/Reference Typing Tool" type="ISOLATE" existsOn="A C P"  />
      </tr>
      <tr>
        <site:queryGridMakeUrl qset="IsolateQuestions" qname="IsolateBySubmitter" linktext="Submitter" existsOn="A P"  />
