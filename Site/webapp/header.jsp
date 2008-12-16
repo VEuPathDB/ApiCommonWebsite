@@ -26,9 +26,13 @@
       </c:when>
   </c:choose>
 
+<c:set var="ftype" value="Download"/>
+<c:if test="${!empty param.ftype}">
+  <c:set var="ftype" value="${param.ftype}"/>
+</c:if>
 
 <site:header title="${title}"
-                 banner="${project} Download Files"
+                 banner="${project} ${ftype} Files"
                  isBannerImage="${isbannerimage}"
                  bannerSuperScript="<br><b><font size=\"+1\">Release ${version}</font></b>"
                 division="downloads"/>
