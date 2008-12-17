@@ -285,10 +285,10 @@ sub handleGenomic {
   my $beginAnchRev = 0;
   my $endAnchRev = 0;
 
-  $beginAnch = $self->{upstreamAnchor} eq $START ? 'start_min' : $self->{upstreamAnchor} eq $END ? 'end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
-  $endAnch = $self->{downstreamAnchor} eq $START ? 'start_min' : $self->{downstreamAnchor} eq $END ? 'end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
-  $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'end_max' : $self->{upstreamAnchor} eq $END ? 'start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
-  $endAnchRev = $self->{downstreamAnchor} eq $START ? 'end_max' : $self->{downstreamAnchor} eq $END ? 'start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'coding_start' : 'coding_end';
+  $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+  $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+  $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+  $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
 
   my $beginOffset = $self->{upstreamOffset};
   my $endOffset = $self->{downstreamOffset};
@@ -298,10 +298,10 @@ sub handleGenomic {
   my $startRev = "";
   my $endRev = "";
   
-  $start = "(bfmv.$beginAnch + $beginOffset)";
-  $end = "(bfmv.$endAnch + $endOffset)";
-  $startRev = "(bfmv.$endAnchRev - $endOffset)";
-  $endRev = "(bfmv.$beginAnchRev - $beginOffset)";
+  $start = "($beginAnch + $beginOffset)";
+  $end = "($endAnch + $endOffset)";
+  $startRev = "($endAnchRev - $endOffset)";
+  $endRev = "($beginAnchRev - $beginOffset)";
 
 $componentSql->{geneGenomicSql} = <<EOSQL;
 select gf.source_id, sa.source_id, sa.organism, gf.product,
