@@ -49,7 +49,7 @@ function createMarker(country, total) {
           marker = new GMarker(point);
           map.addOverlay(marker);
           GEvent.addListener(marker, "click", function() {
-            marker.openInfoWindowHtml(country + ' ' + total + ' isolates. <br />' + "<a href='http://hwang.cryptodb.org/cryptodb1.0.hwang/showSummary.do?questionFullName=IsolateQuestions.IsolateByCountry&myProp(country)="+country+"'> Click for Details</a>");
+            marker.openInfoWindowHtml(country + ' ' + total + ' isolates. <br />' + "<a href='http://hwang.cryptodb.org/cryptodb1.0.hwang/showSummary.do?questionFullName=IsolateQuestions.IsolateByCountry&myProp(country)="+country+"' target='_blank'> Click for Details</a>");
           });
         }
       }
