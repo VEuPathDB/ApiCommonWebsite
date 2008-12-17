@@ -20,6 +20,18 @@
   <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTMrNE2G2Bled15vogCImXw6TjMNBQeKxJGr2lD8yC0v8vilAhNZXuKjQ" /> 
 </c:if>
 
+<c:if test="${project == 'TrypDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahQfTyiCPQUnOzsY0LA3guBv57JS8hQmh7-mRxCKqgF9xnw9KeSWTMOlDQ" /> 
+</c:if>
+
+<c:if test="${project == 'PlasmoDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahQTcYCy8iFaEFUpq-RKhUlyaXswfRSkzh9P8XS6wfHjLQhH6aRG_redTg" /> 
+</c:if>
+
+<c:if test="${project == 'ToxoDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTbXWpA0E7vCdCxcYwpPwzMOEinFhTk3zvyW9eMl1CGc0wQabgrO2GHiA" /> 
+</c:if>
+
 <c:set var="headElement">
   <script src="js/lib/jquery-1.2.6.js" type="text/javascript"></script>
 <%--  <script src="js/prototype.js" type="text/javascript"></script>
