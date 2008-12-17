@@ -24,6 +24,10 @@
   <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahQfTyiCPQUnOzsY0LA3guBv57JS8hQmh7-mRxCKqgF9xnw9KeSWTMOlDQ" /> 
 </c:if>
 
+<c:if test="${project == 'TriTrypDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahQmNyKyPNKewvSPW8D9l70xLcmNexQvf8q73jRccaOpqPmRJWh2LUIiZw" /> 
+</c:if>
+
 <c:if test="${project == 'PlasmoDB'}">
   <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahQTcYCy8iFaEFUpq-RKhUlyaXswfRSkzh9P8XS6wfHjLQhH6aRG_redTg" /> 
 </c:if>
