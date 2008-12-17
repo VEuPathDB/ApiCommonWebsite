@@ -120,7 +120,7 @@ public class CommentFactory {
             int commentId = platform.getNextId(commentSchema, "comments");
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                    "INSERT INTO " + commentSchema + "comments (comment_id, "
+			    "INSERT INTO " + commentSchema + "comments (comment_id, "
                             + "email, comment_date, comment_target_id, "
                             + "stable_id, conceptual, project_name, "
                             + "project_version, headline, content, "
@@ -175,10 +175,50 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
+	}
+
+        try {
+            // make new comment searchable by Oracle Text by updating TextSearchableComment
+            int commentId = platform.getNextId(commentSchema, "comments");
+
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    "insert into apidb.TextSearchableComment (source_id, project_id, content)\n"
+                            + "select stable_id as source_id, project_name as project_id, headline || '|' || content || '|' || email as content\n"
+                            + "from comments2.comments\n"
+                            + "where comment_id = " + commentId);
+
+            int result = ps.executeUpdate();
+            logger.debug("Copied row to TextSearchableComment: " + result);
+
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    "drop index apidb.comments_text_ix;");
+
+            result = ps.executeUpdate();
+            logger.debug("Dropped index on TextSearchableComment: " + result);
+
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                     "create index apidb.comments_text_ix \n"
+                     + "on apidb.TextSearchableComment(content) \n"
+                     + "indextype is ctxsys.context \n"
+                     + "parameters('DATASTORE CTXSYS.DEFAULT_DATASTORE');");
+
+            result = ps.executeUpdate();
+            logger.debug("Created index on TextSearchableComment: " + result);
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeStatement(ps);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+	}
 
             // print connection status
             printStatus();
-        }
     }
 
     private void saveLocations(int commentId, Comment comment)
