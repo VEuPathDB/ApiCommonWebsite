@@ -32,6 +32,18 @@
   <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTbXWpA0E7vCdCxcYwpPwzMOEinFhTk3zvyW9eMl1CGc0wQabgrO2GHiA" /> 
 </c:if>
 
+<c:if test="${project == 'TrichDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahRSCt82dkWCAqFE56zpRs4AbpEIPRSHNK89x8bMeVWv17P80L7xUElmpw" /> 
+</c:if>
+
+<c:if test="${project == 'GiardiaDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTlNDst8dXAmD5YyQ2VVS97EWFghhQhZPGp197fIBaqTKkE2AWWB1m7xA" /> 
+</c:if>
+
+<c:if test="${project == 'EuPathDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahSsTM_yzu3s1MlIlYUNhUGVfJzobxRb1TdHaeE5y5bGlgFsG1VYMy7KCw" /> 
+</c:if>
+
 <c:set var="headElement">
   <script src="js/lib/jquery-1.2.6.js" type="text/javascript"></script>
 <%--  <script src="js/prototype.js" type="text/javascript"></script>
