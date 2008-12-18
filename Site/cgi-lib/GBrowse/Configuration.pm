@@ -61,7 +61,7 @@ sub link_target_ms_peptides {
 sub filter_to_depth {
     my ($self, $feat, $name, $depth) = @_;
     return 1 unless $depth;
-    my $span = $feat->{start} . '-' . $feat->{end} . ':' . $feat->{strand};
+    my $span = $feat->start . '-' . $feat->end . ':' . $feat->strand;
     $self->{$name}->{$span}++ < $depth;
 }
 
