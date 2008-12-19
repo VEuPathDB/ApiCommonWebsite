@@ -79,7 +79,7 @@ function setEnable2(flag) {
 <b><center>Download Sequences By <br>
 <a href="#gene">Gene IDs</a> | 
 <a href="#contig">Contig IDs</a> |  
-<c:if test="${wdkModel.name eq 'ToxoDB' || wdkModel.name eq 'CryptoDB'}">
+<c:if test="${wdkModel.name eq 'ToxoDB' || wdkModel.name eq 'CryptoDB' || wdkModel.name eq 'TriTrypDB'}">
 <a href="#mercator">Alignments</a> |
 </c:if>
 <a href="#orf">ORF IDs</a> </center></b><hr>
@@ -203,7 +203,7 @@ ${contigsIds3.default} reverse (100..2000)</textarea>
   </form>
 <a href="#help"><img src="images/toHelp.jpg" align="top" border='0'></a>
 
-<c:if test="${wdkModel.name eq 'ToxoDB' || wdkModel.name eq 'CryptoDB' || wdkModel.name eq 'PlasmoDB'}">
+<c:if test="${wdkModel.name eq 'ToxoDB' || wdkModel.name eq 'CryptoDB' || wdkModel.name eq 'PlasmoDB' || wdkModel.name eq 'TriTrypDB'}">
 
   <hr>
 <a name="mercator"></a>
