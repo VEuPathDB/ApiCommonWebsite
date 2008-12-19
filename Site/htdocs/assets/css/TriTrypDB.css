@@ -14,6 +14,10 @@ body {
 	white-space: normal;
 }
 
+td { 
+    padding: 5px 5px 5px 5px
+}
+
 a:link, a:visited {
 	color: #015f9a;
 	text-decoration: none;
