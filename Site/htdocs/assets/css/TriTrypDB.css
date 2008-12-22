@@ -1402,3 +1402,5 @@ tr.headerRow  td,th {
    border-color:#175982;  /*#6b7d70;*/
    padding-left: 5px;
 }
+.toggle {display: none;}
+.boggle {margin: 6px 20px 6px 20px; display: none;}
