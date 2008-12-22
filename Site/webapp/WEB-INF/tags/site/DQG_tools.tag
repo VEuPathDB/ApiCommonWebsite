@@ -12,7 +12,7 @@
 		<li><a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a>
 			<ul><li>Description</li></ul>
 		</li>
-		<li><a href="#"><strong>PubMed and Entrez</strong></a>
+		<li><a href="/common/PubCrawler/"><strong>PubMed and Entrez</strong></a>
 			<ul><li>Description</li></ul>
 		</li>
 		<li><a href="#"><strong>GBrowse</strong></a>

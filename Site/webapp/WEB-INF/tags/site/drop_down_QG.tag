@@ -48,7 +48,7 @@
       		<ul>
 	<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
   			<li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
-        		<li><a href="#"> PubMed and Entrez</a></li>
+        		<li><a href="/common/PubCrawler/"> PubMed and Entrez</a></li>
         		<li><a href="${CGI_URL}/gbrowse/cryptodb"> GBrowse</a></li>
         		<li><a href="#"> CryptoCyc</a></li>
       		</ul>
