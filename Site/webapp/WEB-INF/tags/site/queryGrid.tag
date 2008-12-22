@@ -28,6 +28,12 @@
 
 <%--------------------------------------------------------------------%>
 
+<div id="contentwrapper">
+  <div id="contentcolumn">
+	<div class="innertube">
+
+
+
 <%-- the cellspacing is what allows for separation between Genomic and SNP (EST and ORF) titles --%>
 <table width="100%" border="0" cellspacing="3" cellpadding="0">
 
@@ -167,3 +173,6 @@
 
 
 </table>
+	</div>
+  	</div>
+</div>
