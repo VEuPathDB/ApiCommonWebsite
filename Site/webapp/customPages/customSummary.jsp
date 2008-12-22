@@ -35,13 +35,9 @@
 <c:set value="${wdkAnswer.recordClass.type}" var="wdkAnswerType"/>
 
 
-<site:header title="${wdkModel.displayName} : Query Result"
-                 banner="${wdkAnswerType} Results"
-                 parentDivision="Queries & Tools"
-                 parentUrl="/showQuestionSetsFlat.do"
-                  divisionName="Summary Result"
-                 division="queries_tools"/>
-                 
+<site:home_header title="${wdkModel.displayName} : Query Result"
+                 refer="customSummary"/>
+<site:menubar/>                 
 <script language="JavaScript" type="text/javascript">
 <!--
 

@@ -76,14 +76,9 @@
 <c:if test="${recordType eq 'Assembly'}">
     <c:set var="recordType" value="Assemblie" />
 </c:if>
-<site:header title="${wdkModel.displayName} : ${wdkQuestion.displayName}"
-                 banner="Identify ${recordType}s based on ${wdkQuestion.displayName}"
-                 parentDivision="Queries & Tools"
-                 parentUrl="/showQuestionSetsFlat.do"
-                 divisionName="Question"
-                 division="queries_tools"
-         headElement="${headElement}"/>
-
+<site:home_header title="${wdkModel.displayName} : ${wdkQuestion.displayName}"
+ 		  refer="customQuestion"/>
+<site:menubar />
 
 
 <script language="JavaScript" type="text/javascript">
