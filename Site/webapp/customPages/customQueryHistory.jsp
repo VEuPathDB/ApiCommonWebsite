@@ -65,10 +65,9 @@ function displayName(histId) {
    if (mouseX == 0 && mouseY == 0) return;
    
    var name = document.getElementById('div_' + histId);
-   name.style.position = 'absolute';
-   name.style.left = mouseX+3;
-   name.style.top = mouseY+3;
-   name.style.display = 'block';
+   $(name).css("left", (mouseX+3) + "px");
+   $(name).css("top", (mouseY+3) + "px");
+   $(name).show();
 }
 
 function hideName(histId) {
@@ -77,7 +76,7 @@ function hideName(histId) {
    //alert(mouseX);
 
    var name = document.getElementById('div_' + histId);
-   name.style.display = 'none';
+   $(name).hide();
 }
 
 function hideAnyName() {
@@ -284,9 +283,9 @@ function reviseBooleanQuery(type, expression) {
 	        <!-- begin of floating info box -->
             <div id="div_${historyId}" 
 	             class="medium"
-                 style="display:none;font-size:8pt;width:610px;position:absolute;left:0;top:0;"
+                 style="display:none;font-size:8pt;width:610px;position:absolute;left:0;top:0;z-index:1000;"
                  onmouseover="hideAnyName()">
-                <table cellpadding="2" cellspacing="0" border="0"bgcolor="#ffffCC">
+                <table cellpadding="2" cellspacing="0" border="0" style="background-color:#ffffCC;">
                     <c:choose>
                         <c:when test="${history.boolean}">
                             <!-- boolean question -->
