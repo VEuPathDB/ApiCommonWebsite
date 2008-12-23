@@ -20,7 +20,8 @@
 <c:set var="project" value="${props['PROJECT_ID']}" />
 
 <c:set var="PORTAL" value="${ fn:containsIgnoreCase(modelName, 'api')    }"     />
-<c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich')   }"     />
+<c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich')  }"     />
+<c:set var="INDY" value="${fn:containsIgnoreCase(modelName, 'tritryp')}" />
 
 <%--------------------------------------------------------------------%>
 
@@ -58,6 +59,14 @@
     <div class="smallBlack" align="middle">
 	(Click on &nbsp; 
 	<img src="/images/eupath_e.gif" border='0' alt='eupathdb'/> &nbsp; to access a query in <b><a href="http://eupathdb.org">EuPathDB.org</a></b>)
+	</div>
+</td></tr>
+</c:if>
+
+<c:if test="${INDY}">
+<tr><td colspan="3">  
+    <div class="smallBlack" align="middle">
+	<br/>
 	</div>
 </td></tr>
 </c:if>
