@@ -1,3 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="project" value="${applicationScope.wdkModel.name}" />
+<c:set var="xqSetMap" value="${wdkModel.xmlQuestionSetsMap}"/>
+<c:set var="xqSet" value="${xqSetMap['XmlQuestions']}"/>
+<c:set var="xqMap" value="${xqSet.questionsMap}"/>
+<c:set var="newsQuestion" value="${xqMap['News']}"/>
+<c:set var="newsAnswer" value="${newsQuestion.fullAnswer}"/>
+<c:set var="dateStringPattern" value="dd MMMM yyyy HH:mm"/>
 
 <div id="leftcolumn">
 	<div class="innertube">
@@ -5,9 +15,35 @@
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">News</a>
 				<div class="menu_lefttop_drop"><ul>
-					<li><a href="#">TriTrypDBDB 3.7 is released with isolates and<em> C. muris</em> ESTs</a><br />(19 February 2008)</li>
-					<li><a href="#">TriTrypDBDB 3.6 is released with SNP data from <em>C. parvum</em> IOWA, MD, TU114 strains</a><br />(6 December 2007)</li>
-					<li><a href="#">Status of the <em>C. muris</em> Genome Sequencing Project </a><br />(18 June 2007)</li>
+                    <c:choose>
+                      <c:when test="${newsAnswer.resultSize < 1}">
+                        No news now, please check back later.<br>
+                      </c:when>
+                      <c:otherwise>
+                        <c:set var="i" value="1"/>
+                        <ul>
+                        <c:forEach items="${newsAnswer.recordInstances}" var="record">
+                        <c:if test="${i <= 4}">
+                          <c:set var="attrs" value="${record.attributesMap}"/>
+                          
+                          <fmt:parseDate pattern="${dateStringPattern}" 
+                                         var="pdate" value="${attrs['date']}"/> 
+                          <fmt:formatDate var="fdate" value="${pdate}" pattern="d MMMM yyyy"/>
+                    
+                          <li><b>${fdate}</b>
+                                 <a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.News#newsItem${i}"/>">
+                                   ${attrs['headline']}
+                                 </a></li>
+                        </c:if>
+                        <c:set var="i" value="${i+1}"/>
+                        </c:forEach>
+                        <li>
+                          <a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.News"/>"
+                             class="blue">All ${project} News</a>
+                        </li>
+                        </ul>
+                      </c:otherwise>
+                    </c:choose>
 				</ul></div>
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Web Tutorials</a>
