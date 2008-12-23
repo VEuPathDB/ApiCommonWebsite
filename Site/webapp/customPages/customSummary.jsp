@@ -23,7 +23,7 @@
 <c:set var="project" value="${props['PROJECT_ID']}" />
 
 <c:set var="dispModelName" value="${applicationScope.wdkModel.displayName}" />
-<c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'CryptoDB')  || fn:containsIgnoreCase(modelName, 'ToxoDB')}" />
+<c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'CryptoDB')  || fn:containsIgnoreCase(modelName, 'ToxoDB') || fn:containsIgnoreCase(modelName, 'TriTrypDB')}" />
 
 <c:set var="cryptoIsolatesQuestion" value="${fn:containsIgnoreCase(qName, 'Isolate') && fn:containsIgnoreCase(modelName, 'CryptoDB')}" />
 
