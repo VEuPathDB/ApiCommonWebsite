@@ -200,6 +200,10 @@ function parse_Url( url, parameter_name )
 <script type='text/javascript' src='<c:url value="/js/lib/jquery-1.2.6.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/js/strains.js"/>'></script>
 
+<div id="contentwrapper">
+  	<div id="contentcolumn2">
+		<div class="innertube">
+
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBorders> 
 
  <tr>
@@ -903,6 +907,10 @@ function parse_Url( url, parameter_name )
   </td>
   <td valign=top class=dottedLeftBorder></td> 
 </tr>
-</table> 
+</table>
+ 
+</div>
+</div>
+</div>
 
 <site:footer/>
