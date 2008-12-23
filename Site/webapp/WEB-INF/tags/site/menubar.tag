@@ -51,7 +51,7 @@
 	<ul>
 	<li><a href="#">Data Sources</a>
   		<ul>
-   			 <li><a href="#">Data Detail</a></li>
+   			 <li><a href="<c:url value='showXmlDataContent.do?name=XmlQuestions.DataSources'/>">Data Detail</a></li>
  			<li><a href="#">Data Statistics</a></li>
     		<li><a href="#">Analysis Methods</a></li>
     		<li><a href="#">Standard Operating Procedures (SOPs)</a></li>
@@ -63,7 +63,7 @@
 
 		<ul>
     		<li><a href="#">Understanding Downloads</a></li>
-    		<li><a href="#">Data Files</a></li>
+    		<li><a href="/common/downloads">Data Files</a></li>
     		<li><a href="#">Documents and Publications</a></li> 
     		<li><a href="#">Protocols and Methods</a></li>
     		<li><a href="#">Experimental Data</a></li>
