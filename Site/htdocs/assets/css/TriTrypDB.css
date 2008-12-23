@@ -1402,5 +1402,95 @@ tr.headerRow  td,th {
    border-color:#175982;  /*#6b7d70;*/
    padding-left: 5px;
 }
+
 .toggle {display: none;}
 .boggle {margin: 6px 20px 6px 20px; display: none;}
+
+.filter {
+   float:left;
+   margin-right: 30px;
+   margin-bottom: 5px;
+}
+
+.filter ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+.diagram {
+   background: transparent url(../images/venn_filters.png) repeat scroll 2px 0;
+   height: 100px;
+   width: 100px;
+}
+
+.diagram.top_selected {
+   background-position: 2px -108px;
+}
+
+.diagram.int_selected {
+   background-position: 2px -216px;
+}
+
+.diagram.btm_selected {
+   background-position: 2px -324px;
+}
+
+.labels {
+   margin-right: 3px;
+   height: 100px;
+}
+
+.filter.labels ul {
+   text-align: right;
+}
+
+.filter.diagram ul {
+   text-align: center;
+}
+
+.filter.diagram ul li {
+   margin-top: 10px;
+}
+
+.top_label {
+   margin-top: 16px;
+}
+
+.bottom_label {
+   margin-top: 24px;
+}
+
+.selected_filter {
+   position: absolute;
+   display: block;
+}
+
+.selected {
+   color: #000000;
+}
+
+td.selected {
+   background-color: #fffd60;
+}
+
+div.filter_details {
+   position: absolute;
+   background: #ffffCC;
+   border: 1px solid black;
+   padding: 0 3px;
+}
+
+span#toggle_filter {
+   font-family: Arial,Helvetica,Verdana;
+   color: #999999;
+   text-decoration: underline;
+}
+
+.clear_all {
+    clear: both;
+}
+
+.hidden {
+    display: none;
+}
