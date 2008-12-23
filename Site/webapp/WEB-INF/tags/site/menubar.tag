@@ -3,8 +3,7 @@
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="siteName" value="${applicationScope.wdkModel.name}" />
-
+<c:set var="project" value="${applicationScope.wdkModel.name}" />
 <c:set var="wdkUser" value="${sessionScope.wdkUser}"/>
 
 <c:choose>
@@ -40,8 +39,12 @@
 			<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
   			<li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
         	<li><a href="/common/PubCrawler/"> PubMed and Entrez</a></li>
-        	<li><a href="${CGI_URL}/gbrowse/cryptodb"> GBrowse</a></li>
-        	<li><a href="#"> CryptoCyc</a></li>
+        	<li><a href="/cgi-bin/gbrowse/"> GBrowse</a></li>
+        	<c:if test="${project != 'TriTrypDB' && 
+        	              project != 'GiardiaDB' && 
+        	              project != 'TrichDB'}">
+            	<li><a href="http://apicyc.apidb.org">ApiCyc</a></li>
+        	</c:if>
     	</ul>
 	</li>
 	</ul>
