@@ -110,6 +110,10 @@
 
 	<input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch">
         <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}">
+        <input type="hidden" name="myMultiProp(wdk_record_type)" value="gene">
+        <input type="hidden" name="myMultiProp(project_id)" value="${modelName}">
+        <input type="hidden" name="myMultiProp(Fields)"
+               value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions">
         <input type="hidden" name="myMultiProp(text_fields)"
                value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions">
         <input type="hidden" name="myMultiProp(whole_words)" value="no">
