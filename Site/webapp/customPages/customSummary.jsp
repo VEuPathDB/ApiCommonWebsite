@@ -443,6 +443,10 @@ function parse_Url( url, parameter_name )
     <site:giardiaFilters historyId="${historyId}" curFilter="${curFilter}"/>
 </c:when>
 
+<c:when test="${modelName == 'TriTrypDB'}">
+    <site:tritrypFilters historyId="${historyId}" curFilter="${curFilter}"/>
+</c:when>
+
 <c:when test="${modelName == 'ApiDB'}">
 <%-- Portal: use of summary counts 
     - when there is no organism parameter (need to check the question definition, to which organisms the question applies), AND
