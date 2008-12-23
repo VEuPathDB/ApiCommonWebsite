@@ -60,6 +60,8 @@
 
 <script type="text/javascript" src="/assets/js/api.js"></script>
 
+<script type="text/javascript" src="<c:url value='/js/treeControl.js'/>"></script>
+
 <!-- fix to transparent png images in IE 7 -->
 <!--[if lt IE 7.]>
 <script type="text/javascript" src="/assets/js/pngfix.js"></script>
