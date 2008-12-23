@@ -170,7 +170,7 @@ tryp          282           72
 
 
 
-   <p><a href="/"><img src="../assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
+   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
 	width="%{width}" height="${height}" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version ${version}<br />
