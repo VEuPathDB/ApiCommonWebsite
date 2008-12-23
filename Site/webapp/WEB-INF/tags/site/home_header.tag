@@ -125,7 +125,7 @@ behavior: url(/assets/css/csshover.htc);
           <li><a href="#">Who We Are</a></li>
           <li><a href="#">What We Do</a></li>
           <li><a href="#">What You Can Do Here</a></li>
-          <li><a href="#">News</a></li>
+          <li><a href="<c:url value='showXmlDataContent.do?name=XmlQuestions.News'/>">News</a></li>
           <li><a href="#">Acknowledgements</a></li>
         	</ul>
         </li>
