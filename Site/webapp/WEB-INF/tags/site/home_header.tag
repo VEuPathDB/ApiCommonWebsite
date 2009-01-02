@@ -109,11 +109,20 @@ behavior: url(/assets/css/csshover.htc);
 
 <body>
 
+
 <div id="header2">
    <div id="header_rt">
    <div align="right"><div id="toplink">
    <a href="#skip"><img src="/assets/images/transparent1.gif" alt="Skip navigational links" width="1" height="1" border="0" /></a>
-   <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage" /></a></div></div>
+   <c:choose>
+   <c:when test="${project == 'TriTrypDB'}">
+     <img  usemap="#partof" src="/assets/images/${project}/partofeupath.png" />
+   </c:when>
+   <c:otherwise>
+     <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
+   </c:otherwise>
+   </c:choose>
+   </div></div>
        <div id="bottom">
 	  <site:quickSearch /><br />
 	  <div id="nav_topdiv">
@@ -175,5 +184,13 @@ tryp          282           72
    <p>Version ${version}<br />
    ${date}</p>
 </div> 
+
+
+<c:if test="${project == 'TriTrypDB'}">
+  <map name="partof">
+  <area shape=rect coords="0,0 172,22" href="http://eupathdb.org" alt="EuPathDB home page">
+  <area shape=rect coords="310,0 380,22" href="http://www.genedb.org" alt="GeneDB home page">
+  </map>
+</c:if>
 
 
