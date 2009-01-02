@@ -1,4 +1,3 @@
-	
 @import url("reset.css");	
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,13 +90,13 @@ img {
 
 #toplink a:link, #toplink a:visited{
 	display: block;
-	width: 174px;
+	width: 381px;
 	text-align: right;
 }
 
 #toplink a:hover {
 	display: block;
-	width: 174px;
+	width: 381px;
 	text-align: right;
 	background-image: url(../images/TriTrypDB/partofeupath2.gif);
 }

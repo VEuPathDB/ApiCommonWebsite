@@ -113,8 +113,7 @@ behavior: url(/assets/css/csshover.htc);
    <div id="header_rt">
    <div align="right"><div id="toplink">
    <a href="#skip"><img src="/assets/images/transparent1.gif" alt="Skip navigational links" width="1" height="1" border="0" /></a>
-   <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage" 
-	width="174" height="23" /></a></div></div>
+   <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage" /></a></div></div>
        <div id="bottom">
 	  <site:quickSearch /><br />
 	  <div id="nav_topdiv">
