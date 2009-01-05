@@ -90,6 +90,9 @@ ivax,Plasmodium yoelii"/>
              <td width="216"><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label>Gene ID:</label>
+        <input type="hidden" name="myMultiProp(wdk_record_type)" value="gene">
+        <input type="hidden" name="myMultiProp(project_id)" value="${modelName}">
+        <input type="hidden" name="myMultiProp(text_search_fields)"
           		<input type="hidden" name="questionFullName" value="GeneQuestions.GeneBySingleLocusTag"/>
 	  			<input type="text" class="search-box" name="myProp(GeneQuestions_GeneBySingleLocusTag_${geneIdParam.name})" value="${geneIdParam.default}" size="15"/>
 	  			<input type="hidden" name="questionSubmit" value="Get Answer"/>
