@@ -40,14 +40,17 @@
         </c:when>
 
 	<c:when test="${fn:containsIgnoreCase(modelName, 'PlasmoDB')}">
-		<c:set var="listOrganisms" value="Plasmodium berghei,Plasmodium chabaudi,Plasmodium falciparum,Plasmodium knowlesi,Plasmodium v
-ivax,Plasmodium yoelii"/>
+		<c:set var="listOrganisms" value="Plasmodium berghei,Plasmodium chabaudi,Plasmodium falciparum,Plasmodium knowlesi,Plasmodium vivax,Plasmodium yoelii"/>
 	</c:when>
  <c:when test="${fn:containsIgnoreCase(modelName, 'GiardiaDB')}">
 		<c:set var="listOrganisms" value="Giardia lamblia"/>
 	</c:when>
  <c:when test="${fn:containsIgnoreCase(modelName, 'TrichDB')}">
 		<c:set var="listOrganisms" value="Trichomonas vaginalis"/>
+	</c:when>
+
+ <c:when test="${fn:containsIgnoreCase(modelName, 'TriTrypDB')}">
+		<c:set var="listOrganisms" value="Leishmania braziliensis,Leishmania infantum,Leishmania major,Trypanosoma brucei,Trypanosoma cruzi"/>
 	</c:when>
 
 </c:choose> 
