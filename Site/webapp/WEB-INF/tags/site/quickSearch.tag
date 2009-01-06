@@ -90,10 +90,7 @@ ivax,Plasmodium yoelii"/>
              <td width="216"><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label>Gene ID:</label>
-        <input type="hidden" name="myMultiProp(wdk_record_type)" value="gene">
-        <input type="hidden" name="myMultiProp(project_id)" value="${modelName}">
-        <input type="hidden" name="myMultiProp(text_search_fields)"
-          		<input type="hidden" name="questionFullName" value="GeneQuestions.GeneBySingleLocusTag"/>
+         		<input type="hidden" name="questionFullName" value="GeneQuestions.GeneBySingleLocusTag"/>
 	  			<input type="text" class="search-box" name="myProp(GeneQuestions_GeneBySingleLocusTag_${geneIdParam.name})" value="${geneIdParam.default}" size="15"/>
 	  			<input type="hidden" name="questionSubmit" value="Get Answer"/>
 	  			<input name="go" value="go" type="image" src="/assets/images/mag_glass.png" alt="Click to search" width="23" height="23" class="img_align_middle" />
@@ -102,7 +99,10 @@ ivax,Plasmodium yoelii"/>
              <td width="216"><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label>Text Search:</label>
-          		<input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch"/>
+        <input type="hidden" name="myMultiProp(wdk_record_type)" value="gene">
+        <input type="hidden" name="myMultiProp(project_id)" value="${modelName}">
+        <input type="hidden" name="myMultiProp(text_search_fields)"
+           		<input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch"/>
 		        <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}"/>
           		<input type="hidden" name="myMultiProp(text_fields)"
                		   value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions"/>
