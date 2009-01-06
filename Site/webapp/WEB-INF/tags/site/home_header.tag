@@ -18,7 +18,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<!--[if lt IE 7]>
+<!--[if IE]>
 <style type="text/css" media="screen">
 	body {
 		behavior: url(/assets/css/csshover.htc);
@@ -42,16 +42,45 @@
 	}
 	
 	.twoColHybLt #mainContent { 
-		zo
-		om: 1; padding-top: 15px; 
+		zoom: 1; padding-top: 15px; 
 	}
 	
 	#menu_lefttop {
-		width: 220px;
+		/*width: 220px;*/
 		margin-top: 8px;
 		position: absolute;
 		left: 6px;
 		top: 129px;
+	}
+	
+	*html .menu_lefttop_drop{
+		padding-left:8px;
+		padding-right:9px;
+	}
+	
+	*html #info {
+	   width: 250px;
+	   min-height: 240px;
+	   height:auto;
+	   background-image: /assets/images/bubble_backgrnd.png);
+	   background-repeat: repeat-y;
+	   text-align: left;
+	   padding-top: 2px;
+	   padding-left: 19px;
+	   z-index: 99;
+	}
+	
+	*html #infobottom{
+		width:250px;
+		margin:0px -3px 0px;
+	}
+	
+	*html table tr td{
+		vertical-align: top;
+	}
+	
+	*html #contentcolumn, *html #contentcolumn{
+		width:100%
 	}
 	
 	*html .rightarrow2 {
@@ -170,7 +199,7 @@ tryp          282           72
 </c:if>
 
 <c:if test="${fn:containsIgnoreCase(project, 'TriTrypDB')}">
-     <c:set var="width" value="282" />
+     <c:set var="width" value="320" />
      <c:set var="height" value="72" />
      <c:set var="version" value="1.0" />
      <c:set var="date" value="January 15th, 2009" />
@@ -179,7 +208,7 @@ tryp          282           72
 
 
    <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
-	width="%{width}" height="${height}" align="left" /></a></p>
+	width="${width}" height="${height}" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version ${version}<br />
    ${date}</p>
