@@ -15,12 +15,12 @@
   <script src="js/blast.js" type="text/javascript"></script>
 </c:set>
 <site:header title="${wdkModel.displayName} : BLAST"
-                 banner="${wdkQuestion.displayName}"
-                 parentDivision="Queries & Tools"
-                 parentUrl="/showQuestionSetsFlat.do"
-                 divisionName="BLAST"
-                 division="queries_tools"
-                 headElement="${headElement}"/>
+             headElement="${headElement}"
+/>
+
+<div id="contentwrapper">
+<div id="contentcolumn2">
+<div class="innertube">
 
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 
@@ -184,5 +184,9 @@
   <td valign=top class=dottedLeftBorder></td> 
 </tr>
 </table> 
+
+</div> <%-- class="innertube"   --%>
+</div> <%-- id="contentcolumn2" --%>
+</div> <%-- id="contentwrapper" --%>
 
 <site:footer/>

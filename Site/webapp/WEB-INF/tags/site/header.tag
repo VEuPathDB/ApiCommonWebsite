@@ -193,6 +193,7 @@ behavior: url(/assets/css/csshover.htc);
 </style>
 
 <site:jscript refer="${refer}"/>
+${headElement}
 </head>
 
 <body>
