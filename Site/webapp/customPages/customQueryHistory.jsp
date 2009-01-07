@@ -19,9 +19,9 @@
 <c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'cryptodb')}" />
 <c:set var="invalidHistories" value="${wdkUser.invalidHistories}" />
 
-<site:home_header title="${wdkModel.displayName} : Query History"
+<site:header title="${wdkModel.displayName} : Query History"
              refer="customQueryHistory"/>
-<site:menubar />                 
+
 
 
 <script type="text/javascript" lang="JavaScript 1.2">

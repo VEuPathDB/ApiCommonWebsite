@@ -5,8 +5,7 @@
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<site:home_header refer="customQuestion" />
-<site:menubar />
+<site:header refer="customQuestion" />
 <div id="contentwrapper">
   	<div id="contentcolumn2">
 		<div class="innertube">

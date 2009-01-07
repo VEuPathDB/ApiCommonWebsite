@@ -35,9 +35,9 @@
 <c:set value="${wdkAnswer.recordClass.type}" var="wdkAnswerType"/>
 
 
-<site:home_header title="${wdkModel.displayName} : Query Result"
+<site:header title="${wdkModel.displayName} : Query Result"
                  refer="customSummary"/>
-<site:menubar/>                 
+
 <script language="JavaScript" type="text/javascript">
 <!--
 
