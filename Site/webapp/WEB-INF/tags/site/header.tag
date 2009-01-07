@@ -1,43 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ attribute name="title"
               description="Value to appear in page's title"
 %>
+<%-----------------------------%>
+
 <%@ attribute name="banner"
-              required="true"
+              required="false"
               description="Value to appear at top of page"
 %>
 
-<%@ attribute name="isBannerImage"
+<%@ attribute name="bannerPreformatted"
               required="false"
-              description="flag to indicate whether banner is referring to graphics"
+              description="Value to appear at top of page"
 %>
 
-<%@ attribute name="bannerSuperScript"
+<%@ attribute name="logo"
               required="false"
-              description="additional banner part, e.g. release & release date"
+              description="relative url for logo to display, or no logo if set to 'none'"
 %>
 
 <%@ attribute name="parentDivision"
               required="false"
-              description="context of page for parent page in the whole website"
 %>
 
 <%@ attribute name="parentUrl"
               required="false"
-              description="URL for parent page"
 %>
 
 <%@ attribute name="divisionName"
               required="false"
-              description="context of page in the whole website"
 %>
 
 <%@ attribute name="division"
               required="false"
-              description="context of page in the whole website"
+%>
+
+<%@ attribute name="isBannerImage"
+              required="false"
+%>
+<%@ attribute name="releaseDate"
+              required="false"
+%>
+<%@ attribute name="bannerSuperScript"
+              required="false"
 %>
 
 <%@ attribute name="summary"
@@ -55,254 +64,222 @@
               description="additional body elements"
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<%---------------------------%>
+<%@ attribute name="refer" 
+ 			  type="java.lang.String"
+			  required="false" 
+			  description="Page calling this tag"
+%>
+
+<c:set var="props" value="${applicationScope.wdkModel.properties}" />
+<c:set var="project" value="${props['PROJECT_ID']}" />
+<c:set var="siteName" value="${applicationScope.wdkModel.name}" />
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--[if IE]>
+<style type="text/css" media="screen">
+	body {
+		behavior: url(/assets/css/csshover.htc);
+		font-size: 100%;
+	}
+
+	#menu ul li {
+		float: left; width: 100%;
+	}
+	
+	#menu ul li a {
+		height: 1%;
+	} 
+
+	#menu a, #menu h2 {
+		font: bold 0.7em/1.4em arial, helvetica, sans-serif;
+	}
+
+	.twoColHybLt #sidebar1 { 
+		padding-top: 30px; 
+	}
+	
+	.twoColHybLt #mainContent { 
+		zoom: 1; padding-top: 15px; 
+	}
+	
+	#menu_lefttop {
+		/*width: 220px;*/
+		margin-top: 8px;
+		position: absolute;
+		left: 6px;
+		top: 129px;
+	}
+	
+	*html .menu_lefttop_drop{
+		padding-left:8px;
+		padding-right:9px;
+	}
+	
+	*html #info {
+	   width: 250px;
+	   min-height: 240px;
+	   height:auto;
+	   background-image: /assets/images/bubble_backgrnd.png);
+	   background-repeat: repeat-y;
+	   text-align: left;
+	   padding-top: 2px;
+	   padding-left: 19px;
+	   z-index: 99;
+	}
+	
+	*html #infobottom{
+		width:250px;
+		margin:0px -3px 0px;
+	}
+	
+	*html table tr td{
+		vertical-align: top;
+	}
+	
+	*html #contentcolumn, *html #contentcolumn{
+		width:100%
+	}
+	
+	*html .rightarrow2 {
+		left: .5em;
+		top: -3.4em;
+	}
+	
+	*html .crumb_details {
+		width: 500px;
+		z-index: 999;
+	}
+	
+	*html .operation {
+		z-index: -1;
+	}
+	
+	a.redbutton {
+		z-index: -1;
+	}
+		
+</style>
+<![endif]-->
+
 
 
 <head>
-  <title>
-    <c:out value="${title}" default="${banner}" />
-  </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>${title}</title>
+<link href="/assets/css/${project}.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/assets/css/history.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
+<link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
 
- <c:set var="project" value="${wdkModel.name}"/>
-<c:if test = "${project == 'PlasmoDB'}">
-   <c:set var="stylesheet" value="/misc/plasmodb_style.css"/>
-   <c:set var="logo" value="/images/plasmodb_logo.gif"/>
-   <c:set var="sidebarBgColor" value="#dfdfef"/>
-</c:if>
-<c:if test = "${project == 'ToxoDB'}">
-   <c:set var="stylesheet" value="/misc/toxodb_style.css"/>
-   <c:set var="logo" value="/images/toxodb_logo-rotated.jpg"/>
-   <c:set var="sidebarBgColor" value="white"/>
-</c:if>
- <link rel="StyleSheet" href="<c:url value="${stylesheet}" />" type="text/css" />
- <link type="text/css" href="<c:url value="/misc/history.css" />" rel="stylesheet" />
-  <!--link type="text/css" rel="StyleSheet" href='<c:url value="/slider/css/winclassic.css"/>'-->
-  <!--link rel="StyleSheet" href="<c:url value="/misc/custom-slider.css" />" type="text/css"-->
+<style type="text/css">
+<!--
+body {
+	background-image: url(/assets/images/${project}/background_s.jpg);
+	background-repeat: repeat-x;
+    }
+body {
+behavior: url(/assets/css/csshover.htc);
+}
+#header {
+	height: 104px;
+	background-image: url(/assets/images/${project}/backgroundtop_s.jpg);
+}
+#header p {
+	font-size: 9px;
+}
+-->
+</style>
 
-  <!--script type="text/javascript" src='<c:url value="/slider/js/range.js"/>'></script-->
-  <!--script type="text/javascript" src='<c:url value="/slider/js/timer.js"/>'></script-->
-  <!--script type="text/javascript" src='<c:url value="/slider/js/slider.js"/>'></script-->
-  <script type="text/javascript" src='<c:url value="/js/api.js"/>'></script>
-<script type='text/javascript' src='<c:url value="/js/overlib.js"/>'></script>
-  <script type='text/javascript' src='<c:url value="/js/newwindow.js"/>'></script>
-
-  ${headElement}
+<site:jscript refer="${refer}"/>
 </head>
 
-<body ${bodyElement}>
-
-<c:set var="isHome" value="${ division == 'home' }"/>
-<c:set var="version" value="${wdkModel.version}"/>
+<body>
 
 
-<c:if test="${fn:startsWith(pageContext.request.serverName, 'beta')}">
-<center><font size='-1' color='orange'>This is a pre-release version of ${wdkModel.name} that is under active development. There may be incomplete or inaccurate data and frequent site outages can be expected.</font></center>
-</c:if>
+<div id="header2">
+   <div id="header_rt">
+   <div align="right"><div id="toplink">
+   <a href="#skip"><img src="/assets/images/transparent1.gif" alt="Skip navigational links" width="1" height="1" border="0" /></a>
+   <c:choose>
+   <c:when test="${project == 'TriTrypDB'}">
+     <img  usemap="#partof" src="/assets/images/${project}/partofeupath.png" />
+   </c:when>
+   <c:otherwise>
+     <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
+   </c:otherwise>
+   </c:choose>
+   </div></div>
+       <div id="bottom">
+	  <site:quickSearch /><br />
+	  <div id="nav_topdiv">
+      <ul id="nav_top">
+      <li>
+      <a href="#">About ${siteName}<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
+      		<ul>
+          <li><a href="#">Who We Are</a></li>
+          <li><a href="#">What We Do</a></li>
+          <li><a href="#">What You Can Do Here</a></li>
+          <li><a href="<c:url value='showXmlDataContent.do?name=XmlQuestions.News'/>">News</a></li>
+          <li><a href="#">Acknowledgements</a></li>
+        	</ul>
+        </li>
+      <li>
+      <a href="#">Help<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
+      		<ul>
+          <li><a href="#">Web Tutorials</a></li>
+          <li><a href="#">Community Links</a></li>
+          <li><a href="#">Glossary of Terms</a></li>
+          <li><a href="#">Website Statistics</a></li>
+        	</ul>
+        </li>
+      <li>
+      <a href="#">Contact Us<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
+      <li>
+      <a href="#">Log In/Register</a> <%-- possible style when a user is login....<a href="#">Logout</a>
+ 	  <br /><b style='color:black'>John Doe</b> | <a href="#">Profile</a>
+	  --%></li>      
+      </ul>
+      </div>
+      	  
+       </div>
+   </div>
 
-<table width="100%" align="center" cellspacing="0" cellpadding="0" border="0">
-
-<tr valign="middle">
-
-<%-- logo spanning two rows: banner (image or text depending on page) and (if home) intro text  --%>
-<%-- logo size could vary when not in home --%>
-
-    <td rowspan="2" width="162" align="center"><a href="<c:url value="/home.jsp" />">
-        <c:choose>
-          <c:when test="${ division == 'home'}">
-            <img src="${logo}" border="0" alt="Site logo"/></a>
-          </c:when>
-          <c:otherwise>
-            <img src="${logo}" border="0" alt="Site logo"/></a>
-          </c:otherwise>
-        </c:choose>
-    </td>
-
-<%-- banner  --%>
-    <td align="center" valign="middle">
-    <c:choose>
-        <c:when test="${isBannerImage}">
-            <img src="${banner}" alt="Page banner"/> 
-        </c:when>
-        <c:otherwise>
-            <c:choose>
-               <c:when test="${summary != null}">
-                  <h2>${banner}</h2>
-               </c:when>
-               <c:otherwise>
-                  <h1>${banner}</h1>
-               </c:otherwise>
-             </c:choose>
-        </c:otherwise>
-    </c:choose>
-    </td>
-
-<%--Retrieve from DB and display site degraded message scheduled via announcements system--%>
-<c:set var="siteDegraded">
-  <site:announcement messageCategory="Degraded" projectName="${project}" />
-</c:set>
-
-<c:if test="${siteDegraded != ''}">
-<div class="warningBox">
-  <div class="warningIcon">
-       <img src="/images/warningSign.png" alt="warningSign" />
-  </div>
-  <div class="warningMessage">
-      ${siteDegraded}
-  </div>
-</div>
-</c:if>
-
-<%--Retrieve from DB and display site down message scheduled via announcements system--%> 
-<c:set var="siteDown">
-  <site:announcement messageCategory="Down" projectName="${project}" />
-</c:set>
-
-<c:if test="${siteDown != ''}">
-<div class="downBox">
-  <div class="downIcon">
-       <img src="/images/stopSign.png" alt="stopSign" />
-  </div>
-  <div class="downMessage">
-       ${siteDown}
-  </div>
-</div>
-</c:if>
-
-
-<%-- Release number --%>
-    <td align="right" valign="down">
-<c:choose>
-    <c:when test="${bannerSuperScript != null}">
-        ${bannerSuperScript}&nbsp;&nbsp;&nbsp;
-    </c:when>
-    <%-- for pages other than home which do not use bannersuperscript (bigger font) --%>
-    <c:otherwise>
-         <b>Release ${version}&nbsp;&nbsp;&nbsp;</b>
-    </c:otherwise>
- </c:choose>
-    </td>   
- 
-</tr>
-
-<%-- intro text in home page, summary in record pages, or nothing in other pages --%>
-<c:choose>
-
-<c:when test="${ division == 'home'}">
-<tr>
-<td align="left" colspan="2">
-
-<c:if test = "${project == 'PlasmoDB'}">
-          <div class="small">
-          PlasmoDB.org hosts genomic and proteomic data (and more) for different species of the 
-	  parasitic eukaryote Plasmodium, the cause of Malaria. It brings together data provided by numerous laboratories worldwide (see the <a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.DataSources"/>">Data Sources</a> page), and adds its own data analysis.  Publications relying on  
-	  PlasmoDB should please <a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#citing"/>">acknowledge</a>
-          the database developers
-          and the scientists who have made their data available. PlasmoDB is part of an NIH/NIAID
-          funded <a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">Bioinformatics Resource Center</a>
-          to provide <a href="http://apidb.org/">Apicomplexan Database Resources</a>.
-
-	  <br><br>
-Features not yet available in PlasmoDB&nbsp;${version} may still be accessed via <a href="http://v4-4.plasmodb.org">PlasmoDB&nbsp;4.4</a>, and the results of PlasmoDB&nbsp;4.4 queries may be exported to PlasmoDB&nbsp;${version} (see <a href="http://v4-4.plasmodb.org/plasmodb/servlet/sv?page=history">PlasmoDB&nbsp;4.4 Query History</a>).
-          </div>
-
-         
-</c:if> 
-<c:if test = "${project == 'ToxoDB'}">
-
-        <div class="small" bgcolor="#aa0000">Welcome to ToxoDB!
-	 ToxoDB, the Toxoplasma gondii Genome resource, provides access to the  draft genome sequence of 
-	 the apicomplexan parasite <i>T. gondii</i> &nbsp; (ME49, GT1, VEG and RH (only Chr Ia and Chr Ib) strains).
-	 The whole genome shotgun sequence is generated by TIGR. 
-	 Publications exploiting ToxoDB should provide appropriate
-	 <a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#citing"/>">acknowledgment</a>
-	 to the database developers and those scientists who have made their data available on this site.
- 	 ToxoDB is part of an NIH/NIAID funded  Bioinformatics Resource Center 
-	 to provide <a href="http://apidb.org/">Apicomplexan Database Resources</a>.</div>
-
-	  
-          <div class="small" bgcolor="#aa0000">
-	   Features not yet available in ToxoDB ${version} may still be accessed via
-	    <a href="http://v3-0.toxodb.org/ToxoDB.shtml">ToxoDB 3.0</a>.
-	    <a href="http://v4-3.toxodb.org/">ToxoDB 4.3</a> remains available 
-	    for access to the previous annotation and genome assembly. </div>
-
-
-          <div class="small" bgcolor="#aa0000">Here is an 
-	  <a href="http://ancillary.toxodb.org/cgi-bin/gbrowse/ancillary/" target='new'> 
- 	  <b>Ancillary GBrowse Site for <i>T. gondii</i></b></a>. 
-	  <b>Please NOTE</b>: This site is outside of ToxoDB; it includes  additional data sets that will be 
-	   incorporated in ToxoDB eventually.</div>
-	
-
-
-</c:if> 
-
-<%-- colored box -- warnings and notices go here --%>
 <%--
-<div class="smallApiBlue">
-<font face="Arial,Helvetica" size="-1"  color="blue">
-&nbsp;&nbsp;As part of ongoing efforts to educate ApiDB users to take fullest advantage of database resources, we are pleased to announce the third annual ApiDB database workshop, scheduled for June 8-11, 2008. &nbsp;&nbsp;Please click <a href="http://apidb.org/workshop/2008/"><b>here</b></a> for further information.
-</font>
-</div>
+crypto width="318" height="64"    version    date  
+tryp          282           72
 --%>
+<c:if test="${fn:containsIgnoreCase(project, 'CryptoDB')}">
+     <c:set var="width" value="318" />
+     <c:set var="height" value="64" />
+     <c:set var="version" value="4.0" />
+     <c:set var="date" value="January 15th, 2009" />
+</c:if>
 
-
-<%--Information message retrieved from DB via messaging system--%>
-<c:set var="siteInfo">
-  <site:announcement messageCategory="Information" projectName="${project}" />
-</c:set>
-
-<div class="smallApiBlue">
-<font face="Arial,Helvetica" >
-${siteInfo}
-</font>
-</div>
-
-
-</td>
-</tr>
-</c:when>
+<c:if test="${fn:containsIgnoreCase(project, 'TriTrypDB')}">
+     <c:set var="width" value="320" />
+     <c:set var="height" value="72" />
+     <c:set var="version" value="1.0" />
+     <c:set var="date" value="January 15th, 2009" />
+</c:if>
 
 
 
-<c:otherwise>
-<tr>
-       <td align="left" colspan="2">
-         <c:if test="${summary != null}">
-           ${summary}
-         </c:if>         
-       </td>
-
-<%-- saves some space setting Release above as in home page
-       <td align="right" valign="bottom" width="100">
-          <c:if test="${division != 'home'}">
-            <b>Release ${version}&nbsp;&nbsp;</b>
-          </c:if>
-        </td>
---%>
-</tr>
-</c:otherwise>
-
-</c:choose>
-
-</table>
+   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
+	width="${width}" height="${height}" align="left" /></a></p>
+   <p>&nbsp;</p>
+   <p>Version ${version}<br />
+   ${date}</p>
+</div> 
 
 
-<%-- TABLE WITH sidebar and main page defined in the specific jsp --%>
-<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" >
-<tr>
-
-<%-- sidebar space --%>
-<c:choose>
-          <c:when test="${ division != 'help'}">
-             <td rowspan="8" width="162" valign="top" bgcolor="${sidebarBgColor}"><site:sideNavBar division="${division}"/></td>
-          </c:when>
-          <c:otherwise>
-            <td rowspan="8"></td>
-          </c:otherwise>
-</c:choose>
+<c:if test="${project == 'TriTrypDB'}">
+  <map name="partof">
+  <area shape=rect coords="0,0 172,22" href="http://eupathdb.org" alt="EuPathDB home page">
+  <area shape=rect coords="310,0 380,22" href="http://www.genedb.org" alt="GeneDB home page">
+  </map>
+</c:if>
 
 
-<%-- page itself, closed at footer.tag --%>
-<td valign="top">
+<site:menubar />
