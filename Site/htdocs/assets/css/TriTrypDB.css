@@ -1492,3 +1492,6 @@ span#toggle_filter {
 .hidden {
     display: none;
 }
+
+.fixed {font-family:courier, fixed-width, monospace; font-size:10pt; color:#000000;}
+
