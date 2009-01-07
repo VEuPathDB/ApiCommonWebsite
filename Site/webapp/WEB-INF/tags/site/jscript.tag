@@ -2,7 +2,7 @@
 
 <%@ attribute name="refer" 
  			  type="java.lang.String"
-			  required="true" 
+			  required="false" 
 			  description="Page calling this tag"
 %>
 <!-- JQuery Library -->
