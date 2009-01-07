@@ -19,7 +19,7 @@
 							<a href="javascript:void(0)">${cat.key}</a>
 							<ul>
 								<c:forEach items="${cat.value}" var="q">
-									<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
+									<li><a href="<c:url value="/showQuestion.do?questionFullName=${q.fullName}"/>">${q.displayName}</a></li>
 								</c:forEach>
 							</ul>
 						</li>
@@ -33,7 +33,7 @@
 			<li><a href="#">Search for &nbsp; ${cat.key}</a>
 				<ul>
 					<c:forEach items="${cat.value}" var="q">
-						<li><a href="showQuestion.do?questionFullName=${q.fullName}">${q.displayName}</a></li>
+						<li><a href="<c:url value="/showQuestion.do?questionFullName=${q.fullName}"/>">${q.displayName}</a></li>
 					</c:forEach>
 				</ul>
 			</li>
