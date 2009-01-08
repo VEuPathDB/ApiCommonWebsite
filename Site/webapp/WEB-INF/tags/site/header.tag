@@ -84,6 +84,10 @@
 		font-size: 100%;
 	}
 
+	*html .ts_ie {
+		margin-left:-20px;
+	}
+
 	#menu ul li {
 		float: left; width: 100%;
 	}
