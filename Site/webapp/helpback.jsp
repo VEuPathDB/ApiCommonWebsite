@@ -13,6 +13,11 @@
                  divisionName="Generic"
                  division="help feedback"/>
 
+
+<div id="contentwrapper">
+<div id="contentcolumn2">
+<div class="innertube">
+
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 
  <tr>
@@ -21,9 +26,7 @@
 <!-- begin page table -->
 
 <table border=0 width=100% cellpadding=10><tr><td valign=top>
-  <hr class=brown>
-<center><a href="javascript:window.close()">Close this window.</a></center>  
-    <hr class=brown>
+
 <font size ="-1">
 YOUR MESSAGE HAS BEEN SENT TO THE ${site} TEAM.<br>
 A copy has been sent to the email provided, for your records.
@@ -31,6 +34,10 @@ A copy has been sent to the email provided, for your records.
 </font>
 </td></tr>
 </table> 
+
+</div> <%-- class="innertube"   --%>
+</div> <%-- id="contentcolumn2" --%>
+</div> <%-- id="contentwrapper" --%>
 
 <site:footer/>
 
