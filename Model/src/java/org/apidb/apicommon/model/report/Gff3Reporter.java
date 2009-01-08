@@ -218,12 +218,15 @@ public class Gff3Reporter extends Reporter {
 
         // construct insert sql
         StringBuffer sqlInsert = new StringBuffer("INSERT INTO ");
-        sqlInsert.append(tableCache).append(" (");
+        sqlInsert.append(tableCache).append(" (wdk_table_id, ");
         sqlInsert.append("table_name, row_count, content");
         for (String column : pkColumns) {
             sqlInsert.append(", ").append(column);
         }
-        sqlInsert.append(") VALUES (?, ?, ?");
+        sqlInsert.append(") VALUES (");
+        sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression("apidb", "wdkTable"));
+        sqlInsert.append(", ");
+        sqlInsert.append("?, ?, ?");
         for (int i = 0; i < pkColumns.length; i++) {
             sqlInsert.append(", ?");
         }
