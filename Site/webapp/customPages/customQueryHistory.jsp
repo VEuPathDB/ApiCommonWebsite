@@ -16,7 +16,12 @@
 
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 <c:set var="modelName" value="${wdkModel.name}"/>
-<c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'cryptodb')}" />
+<c:set var="showOrthoLink" value="${
+    fn:containsIgnoreCase(modelName, 'plasmodb') || 
+    fn:containsIgnoreCase(modelName, 'apidb')    || 
+    fn:containsIgnoreCase(modelName, 'cryptodb') || 
+    fn:containsIgnoreCase(modelName, 'tritrypdb')
+}"/>
 <c:set var="invalidHistories" value="${wdkUser.invalidHistories}" />
 
 <site:header title="${wdkModel.displayName} : Query History"
