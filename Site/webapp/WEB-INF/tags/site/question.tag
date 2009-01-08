@@ -128,7 +128,7 @@
                                 <wdk:enumParamInput qp="${qP}" />
                             </td>
                         </c:when>
-                        <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.HistoryParamBean'}">
+                        <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.AnswerParamBean'}">
                             <td align="right" valign="top"><b>${qP.prompt}</b></td>
                             <td valign="top">
                                 <wdk:answerParamInput qp="${qP}" />
