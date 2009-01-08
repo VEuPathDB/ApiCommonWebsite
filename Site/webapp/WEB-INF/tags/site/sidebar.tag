@@ -14,7 +14,7 @@
 		<div id="menu_lefttop">
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">News</a>
-				<div class="menu_lefttop_drop"><ul>
+				<div class="menu_lefttop_drop">
                     <c:choose>
                       <c:when test="${newsAnswer.resultSize < 1}">
                         No news now, please check back later.<br>
@@ -44,7 +44,7 @@
                         </ul>
                       </c:otherwise>
                     </c:choose>
-				</ul></div>
+				</div>
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Web Tutorials</a>
 				<div class="menu_lefttop_drop"><ul>

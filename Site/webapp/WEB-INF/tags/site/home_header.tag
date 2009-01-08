@@ -55,7 +55,7 @@
 	
 	*html .menu_lefttop_drop{
 		padding-left:8px;
-		padding-right:9px;
+		padding-right:19px;
 	}
 	
 	*html #info {
