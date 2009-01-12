@@ -37,4 +37,6 @@
                  bannerSuperScript="<br><b><font size=\"+1\">Release ${version}</font></b>"
                 division="downloads"/>
 
-
+<div id="contentwrapper">
+  <div id="contentcolumn2">
+    <div class="innertube">
