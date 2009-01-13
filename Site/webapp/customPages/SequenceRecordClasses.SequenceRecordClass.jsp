@@ -19,10 +19,8 @@
 <c:set var="CPARVUMCONTIGS" value="${props['CPARVUMCONTIGS']}"/>
 <c:set var="CHOMINISCONTIGS" value="${props['CHOMINISCONTIGS']}"/>
 <c:set var="CMURISCONTIGS" value="${props['CMURISCONTIGS']}"/>
-<c:set var="CGI_URL" value="${props['CGI_URL']}"/>
 
 <c:set var="SRT_CONTIG_URL" value="/cgi-bin/contigSrt"/>
-<c:set var="CGI_URL" value="${applicationScope.wdkModel.properties['CGI_URL']}"/>
 
 <c:set var="externalDbName" value="${attrs['externalDbName'].value}" />
 <c:set var="organism" value="${wdkRecord.attributes['organism'].value}" />
@@ -113,7 +111,7 @@ ${id}
 
 <c:if test="${gtracks ne ''}">
     <c:set var="genomeContextUrl">
-    http://${pageContext.request.serverName}/${CGI_URL}/gbrowse_img/${projectIdLowerCase}/?name=${id}:1..${attrs['length'].value};hmap=gbrowse;type=${gtracks};width=640;embed=1;h_feat=${feature_source_id}@yellow
+    /cgi-bin/gbrowse_img/${projectIdLowerCase}/?name=${id}:1..${attrs['length'].value};hmap=gbrowse;type=${gtracks};width=640;embed=1;h_feat=${feature_source_id}@yellow
     </c:set>
     <c:set var="genomeContextImg">
         <noindex follow><center>
@@ -131,7 +129,7 @@ ${id}
 
         <c:set var="labels" value="${fn:replace(gtracks, '+', ';label=')}" />
         <c:set var="gbrowseUrl">
-            http://${pageContext.request.serverName}/${CGI_URL}/gbrowse/${projectIdLowerCase}/?name=${id}:1..${attrs['length'].value};label=${labels};h_feat=${id}@yellow
+            /cgi-bin/gbrowse/${projectIdLowerCase}/?name=${id}:1..${attrs['length'].value};label=${labels};h_feat=${id}@yellow
         </c:set>
         <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
 
@@ -182,7 +180,7 @@ ${externalLinks}
 <c:if test="${is_top_level eq '1' && ((projectId eq 'PlasmoDB' && fn:containsIgnoreCase(organism, 'falciparum')) || projectId eq 'TriTrypDB' || projectId eq 'CryptoDB' || projectId eq 'ToxoDB')}">
 
   <br />
-  <site:mercatorMAVID cgiUrl="${CGI_URL}" projectId="${projectId}" contigId="${id}"
+  <site:mercatorMAVID cgiUrl="/cgi-bin" projectId="${projectId}" contigId="${id}"
                         start="1" end="${attrs['length'].value}" bkgClass="secondary3" cellPadding="0"/>
 </c:if>
 </c:set>
