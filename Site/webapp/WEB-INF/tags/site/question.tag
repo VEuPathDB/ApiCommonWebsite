@@ -164,16 +164,17 @@
                     <td valign="top" width="50" nowrap>
                         <c:set var="anchorQp" value="HELP_${fromAnchorQ}_${pNam}"/>
                         <c:set target="${helpQ}" property="${anchorQp}" value="${qP}"/>
-                        <a class="help_link" href="${pNam}">
+                        <a class="help_link" href="javascript:toggleHelp('${pNam}')">
                         	<img src="/assets/images/help.png" border="0" alt="Help">
 						</a>
-						<div class="help_div" id="${pNam}">
-						${qP.help}
-						</div>
                     </td>
+                </tr>
+ 		<tr>
+                  <td align="center" valign="top" colspan="4">
+           	    <span class="help_span" id="help_${pNam}">${qP.help}</span>
+                  </td>
             </c:if>
                 </tr>
- 
             </c:otherwise> <%-- end visible param --%>
         </c:choose>
         
