@@ -173,6 +173,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>${title}</title>
 <link rel="icon" type="image/png" href="/assets/images/${project}/favicon.ico"> <%-- standard --%>
+<link href="/assets/css/AllSites.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="/assets/images/${project}/favicon.ico"> <%-- for IE7 --%>
 <link href="/assets/css/${project}.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/assets/css/history.css" type="text/css"/>

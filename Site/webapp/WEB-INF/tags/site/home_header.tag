@@ -110,6 +110,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>${title}</title>
 <link href="/assets/css/${project}.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/AllSites.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/assets/css/history.css" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
