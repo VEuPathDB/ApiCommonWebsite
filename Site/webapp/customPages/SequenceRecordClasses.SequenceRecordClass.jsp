@@ -111,7 +111,7 @@ ${id}
 
 <c:if test="${gtracks ne ''}">
     <c:set var="genomeContextUrl">
-    /cgi-bin/gbrowse_img/${projectIdLowerCase}/?name=${id}:1..${attrs['length'].value};hmap=gbrowse;type=${gtracks};width=640;embed=1;h_feat=${feature_source_id}@yellow
+    http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/${projectIdLowerCase}/?name=${id}:1..${attrs['length'].value};hmap=gbrowse;type=${gtracks};width=640;embed=1;h_feat=${feature_source_id}@yellow
     </c:set>
     <c:set var="genomeContextImg">
         <noindex follow><center>
