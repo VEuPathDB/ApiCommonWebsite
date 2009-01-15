@@ -81,9 +81,9 @@ ivax,Plasmodium yoelii"/>
           </div>
 --%>
 
-         <table width="432" border="0" cellpadding="3">
+         <table border="0" cellpadding="3">
            <tr>
-             <td width="216"><div align="right">
+             <td><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label>Gene ID:</label>
           		<input type="hidden" name="questionFullName" value="GeneQuestions.GeneBySingleLocusTag"/>
@@ -92,7 +92,7 @@ ivax,Plasmodium yoelii"/>
 	  			<input name="go" value="go" type="image" src="/assets/images/mag_glass.png" alt="Click to search" width="23" height="23" class="img_align_middle" />
           	   </html:form>
 			 </div></td>
-             <td width="216"><div align="right">
+             <td><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label>Text Search:</label>
         <input type="hidden" name="myMultiProp(wdk_record_type)" value="gene">
