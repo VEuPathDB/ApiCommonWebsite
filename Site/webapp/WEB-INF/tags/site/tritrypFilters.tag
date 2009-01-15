@@ -62,8 +62,8 @@
     <th><i>L. infantum</i></th>
     <th><i>L. major</i></th>
     <th><i>T. brucei</i></th>
-    <th><i>T. cruzi esmeralda</i></th>
-    <th><i>T. cruzi non-esmeralda-like</i></th>
+    <th><i>T. cruzi esmeraldo</i></th>
+    <th><i>T. cruzi non-esmeraldo-like</i></th>
     <th><i></i></th>
   </tr>
   <tr align="center">
