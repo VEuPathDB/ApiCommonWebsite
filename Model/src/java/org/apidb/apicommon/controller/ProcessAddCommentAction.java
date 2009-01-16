@@ -23,6 +23,7 @@ public class ProcessAddCommentAction extends CommentAction {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        try {
         // get comment factory, and initialize it if necessary
 
         // get the referer link
@@ -112,5 +113,9 @@ public class ProcessAddCommentAction extends CommentAction {
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");
         return forward;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw ex;
+        }
     }
 }
