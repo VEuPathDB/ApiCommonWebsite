@@ -64,7 +64,6 @@
     <th><i>T. brucei</i></th>
     <th><i>T. cruzi esmeraldo</i></th>
     <th><i>T. cruzi non-esmeraldo-like</i></th>
-    <th><i></i></th>
   </tr>
   <tr align="center">
     <c:choose>
