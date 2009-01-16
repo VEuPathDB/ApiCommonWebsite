@@ -30,8 +30,6 @@ public class CommentConfigTest {
         CommentConfig config = parser.parseConfig(projectId);
 
         // validate the content of the the config
-        assertTrue("commentTextFileDir",
-                config.getCommentTextFileDir().length() > 0);
         assertTrue("connectionUrl", config.getConnectionUrl().length() > 0);
         assertTrue("login", config.getLogin().length() > 0);
         assertTrue("password", config.getPassword().length() > 0);
