@@ -46,6 +46,8 @@ public class Gff3CachedReporter extends Reporter {
     public final static String FIELD_HAS_TRANSCRIPT = "hasTranscript";
     public final static String FIELD_HAS_PROTEIN = "hasProtein";
 
+    public final static String COLUMN_CONTENT = "content";
+
     private String tableCache;
     private String recordIdColumn;
     private String recordName;
@@ -231,7 +233,7 @@ public class Gff3CachedReporter extends Reporter {
         String cacheTable = queryInfo.getCacheTable();
         int instanceId = instance.getInstanceId();
 
-        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        StringBuffer sql = new StringBuffer("SELECT " + COLUMN_CONTENT + " FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
         sql.append(" WHERE tc.table_name = '").append(recordName).append("'");
         for (String column : pkColumns) {
@@ -288,7 +290,7 @@ public class Gff3CachedReporter extends Reporter {
             sqlIn.append("'" + proteinName + "'");
         }
 
-        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        StringBuffer sql = new StringBuffer("SELECT " + COLUMN_CONTENT + " FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
         sql.append(" WHERE tc.table_name IN (").append(sqlIn).append(")");
         for (String column : pkColumns) {
