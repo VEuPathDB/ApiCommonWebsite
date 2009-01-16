@@ -13,6 +13,9 @@
 <c:set var="tbr_genes" value=""/>
 <c:set var="tce_genes" value=""/>
 <c:set var="tcne_genes" value=""/>
+<c:set var="tcu_genes" value=""/>
+<c:set var="tc_distinct_genes" value=""/>
+<c:set var="tritryp_distinct_genes" value=""/>
 
 <%-- check for filter link cache --%>
 <c:set var="answerCache" value="${sessionScope.answer_cache}"/>
@@ -29,6 +32,9 @@
     <c:choose>
       <c:when test="${cacheItem.key == 'all_results'}">
         <c:set var="all_results" value="${cacheItem.value}"/>
+      </c:when>
+      <c:when test="${cacheItem.key == 'tritryp_distinct_genes'}">
+        <c:set var="tritryp_distinct_genes" value="${cacheItem.value}"/>
       </c:when>
       <c:when test="${cacheItem.key == 'lbr_genes'}">
         <c:set var="lbr_genes" value="${cacheItem.value}"/>
@@ -48,6 +54,12 @@
       <c:when test="${cacheItem.key == 'tcne_genes'}">
         <c:set var="tcne_genes" value="${cacheItem.value}"/>
       </c:when>
+      <c:when test="${cacheItem.key == 'tcu_genes'}">
+        <c:set var="tcu_genes" value="${cacheItem.value}"/>
+      </c:when>
+      <c:when test="${cacheItem.key == 'tc_distinct_genes'}">
+        <c:set var="tc_distinct_genes" value="${cacheItem.value}"/>
+      </c:when>
     </c:choose>
     </c:forEach>
   </c:if>
@@ -58,12 +70,15 @@
 <table cellpadding="5" border="1">
   <tr>
     <th>All</th>
+    <th>Distinct TriTryp</th>
     <th><i>L. braziliensis</i></th>
     <th><i>L. infantum</i></th>
     <th><i>L. major</i></th>
     <th><i>T. brucei</i></th>
     <th><i>T. cruzi esmeraldo</i></th>
     <th><i>T. cruzi non-esmeraldo-like</i></th>
+    <th><i>T. cruzi unassigned</i></th>
+    <th><i>Distinct T. cruzi</i></th>
   </tr>
   <tr align="center">
     <c:choose>
@@ -77,6 +92,22 @@
           </c:when>
           <c:otherwise>
             <td><a class="filter_link" href="getFilterLink.do?wdk_history_id=${historyId}&filter=all_results">&nbsp;</a>
+          </c:otherwise>
+        </c:choose>
+      </c:otherwise>
+    </c:choose></td>
+
+    <c:choose>
+      <c:when test="${curFilter eq 'tritryp_distinct_genes'}">
+        <td class="selected">${wdkHistory.filterSize}
+      </c:when>
+      <c:otherwise>
+	<c:choose>
+          <c:when test="${tritryp_distinct_genes != ''}">
+            <td>${tritryp_distinct_genes}
+          </c:when>
+          <c:otherwise>
+            <td><a class="filter_link" href="getFilterLink.do?wdk_history_id=${historyId}&filter=tritryp_distinct_genes">&nbsp;</a>
           </c:otherwise>
         </c:choose>
       </c:otherwise>
@@ -174,6 +205,38 @@
           </c:when>
           <c:otherwise>
             <td><a class="filter_link" href="getFilterLink.do?wdk_history_id=${historyId}&filter=tcne_genes">&nbsp;</a>
+          </c:otherwise>
+        </c:choose>
+      </c:otherwise>
+    </c:choose></td>
+
+    <c:choose>
+      <c:when test="${curFilter eq 'tcu_genes'}">
+        <td class="selected">${wdkHistory.filterSize}
+      </c:when>
+      <c:otherwise>
+	<c:choose>
+          <c:when test="${tcu_genes != ''}">
+            <td>${tcu_genes}
+          </c:when>
+          <c:otherwise>
+            <td><a class="filter_link" href="getFilterLink.do?wdk_history_id=${historyId}&filter=tcu_genes">&nbsp;</a>
+          </c:otherwise>
+        </c:choose>
+      </c:otherwise>
+    </c:choose></td>
+
+    <c:choose>
+      <c:when test="${curFilter eq 'tc_distinct_genes'}">
+        <td class="selected">${wdkHistory.filterSize}
+      </c:when>
+      <c:otherwise>
+	<c:choose>
+          <c:when test="${tc_distinct_genes != ''}">
+            <td>${tc_distinct_genes}
+          </c:when>
+          <c:otherwise>
+            <td><a class="filter_link" href="getFilterLink.do?wdk_history_id=${historyId}&filter=tc_distinct_genes">&nbsp;</a>
           </c:otherwise>
         </c:choose>
       </c:otherwise>
