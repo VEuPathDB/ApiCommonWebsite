@@ -3,10 +3,7 @@
  */
 package org.apidb.apicommon.model;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -162,7 +159,6 @@ public class CommentFactory {
 
             // get a new comment in order to fetch the user info
             Comment newComment = getComment(commentId);
-            appendCommentToFile(newComment);
 
             comment.setUserName(newComment.getUserName());
             comment.setOrganization(newComment.getOrganization());
@@ -557,8 +553,6 @@ public class CommentFactory {
                 return;
             }
 
-            String projectId = rs.getString("project_name");
-
             // delete the location information
             String sql = "DELETE FROM " + commentSchema + "locations "
                     + "WHERE comment_id = " + commentId;
@@ -575,7 +569,6 @@ public class CommentFactory {
             SqlUtils.executeUpdate(dataSource, sql);
 
             // regenerate the output file
-            extractComments(projectId);
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         } finally {
@@ -588,60 +581,6 @@ public class CommentFactory {
             // print connection status
             printStatus();
         }
-    }
-
-    /**
-     * Append the a comment to the output file for the project
-     * 
-     * @param comment
-     * @throws WdkModelException
-     */
-    private void appendCommentToFile(Comment comment) throws WdkModelException {
-        PrintWriter writer;
-
-        try {
-            writer = new PrintWriter(new FileWriter(
-                    getOutputFile(comment.getProjectName()), true));
-        } catch (IOException ex) {
-            throw new WdkModelException(ex);
-        }
-        writeCommentToFile(comment, writer);
-
-        writer.close();
-    }
-
-    private void writeCommentToFile(Comment comment, PrintWriter writer)
-            throws WdkModelException {
-        writer.print("\t" + comment.getOrganism());
-        writer.print("\t" + comment.getStableId());
-        String content = comment.getContent();
-        writer.print("\t" + content.replaceAll("\\s+", " "));
-        String userInfo = comment.getUserName() + ", "
-                + comment.getOrganization();
-        writer.println("\t" + userInfo.replaceAll("\\s+", " "));
-        writer.flush();
-    }
-
-    public void extractComments(String projectId) throws WdkModelException {
-        // get comment list
-        Comment[] comments = queryComments(null, projectId, null, null, null,
-                null);
-
-        // replace the existing file (not appending)
-        try {
-            PrintWriter writer = new PrintWriter(new FileWriter(
-                    getOutputFile(projectId), false));
-            for (Comment comment : comments) {
-                writeCommentToFile(comment, writer);
-            }
-            writer.close();
-        } catch (IOException ex) {
-            throw new WdkModelException(ex);
-        }
-    }
-
-    private File getOutputFile(String projectId) {
-        return new File(config.getCommentTextFileDir() + "/comments.txt");
     }
 
     public CommentConfig getCommentConfig() {
