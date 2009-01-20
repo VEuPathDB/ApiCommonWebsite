@@ -46,6 +46,8 @@ public class Gff3CachedReporter extends Reporter {
     public final static String FIELD_HAS_TRANSCRIPT = "hasTranscript";
     public final static String FIELD_HAS_PROTEIN = "hasProtein";
 
+    private final static String COLUMN_CONTENT = "content";
+
     private String tableCache;
     private String recordIdColumn;
     private String recordName;
@@ -55,7 +57,8 @@ public class Gff3CachedReporter extends Reporter {
     private boolean hasTranscript = false;
     private boolean hasProtein = false;
 
-    public Gff3CachedReporter(AnswerValue answerValue, int startIndex, int endIndex) {
+    public Gff3CachedReporter(AnswerValue answerValue, int startIndex,
+            int endIndex) {
         super(answerValue, startIndex, endIndex);
     }
 
@@ -155,7 +158,8 @@ public class Gff3CachedReporter extends Reporter {
     /*
      * (non-Javadoc)
      * 
-     * @see org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
+     * @see
+     * org.gusdb.wdk.model.report.IReporter#format(org.gusdb.wdk.model.Answer)
      */
     public void write(OutputStream out) throws WdkModelException,
             NoSuchAlgorithmException, SQLException, JSONException,
@@ -231,7 +235,8 @@ public class Gff3CachedReporter extends Reporter {
         String cacheTable = queryInfo.getCacheTable();
         int instanceId = instance.getInstanceId();
 
-        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        StringBuffer sql = new StringBuffer("SELECT " + COLUMN_CONTENT
+                + " FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
         sql.append(" WHERE tc.table_name = '").append(recordName).append("'");
         for (String column : pkColumns) {
@@ -288,7 +293,8 @@ public class Gff3CachedReporter extends Reporter {
             sqlIn.append("'" + proteinName + "'");
         }
 
-        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        StringBuffer sql = new StringBuffer("SELECT " + COLUMN_CONTENT
+                + " FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
         sql.append(" WHERE tc.table_name IN (").append(sqlIn).append(")");
         for (String column : pkColumns) {

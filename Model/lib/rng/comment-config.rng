@@ -5,7 +5,6 @@
         <element name="commentConfig">
             <!-- comment specific properties -->
             <attribute name="commentSchema" />
-            <attribute name="commentTextFileDir" />
             <attribute name="userLoginSchema" />
             <attribute name="userLoginDbLink" />
             
