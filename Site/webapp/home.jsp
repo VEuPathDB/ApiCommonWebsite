@@ -46,7 +46,7 @@
              refer="home"/>
 
 <site:menubar />
-<site:siteAnnounce />
+<site:siteAnnounce refer="home"/>
 <site:DQG />
 <site:sidebar />
 <site:footer />
