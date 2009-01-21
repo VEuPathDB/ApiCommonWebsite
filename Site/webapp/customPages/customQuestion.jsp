@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <site:header refer="customQuestion" />
+<site:siteAnnounce refer="" />
 <div id="contentwrapper">
   	<div id="contentcolumn2">
 		<div class="innertube">
