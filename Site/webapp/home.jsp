@@ -42,10 +42,11 @@
                  bannerSuperScript="<br><b><font size=\"+1\">Release ${version}</font></b>"
                 division="home"  -->
 
-<site:header title="${title}" 
+<site:home_header title="${title}" 
              refer="home"/>
 
-
+<site:menubar />
+<site:siteAnnounce />
 <site:DQG />
 <site:sidebar />
 <site:footer />
