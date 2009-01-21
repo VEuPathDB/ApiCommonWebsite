@@ -344,16 +344,6 @@ function reviseBooleanQuery(type, expression) {
         </td>
         <td align='right' onmouseover="hideAnyName()" nowrap>${history.estimateSize}</td>
 
-<%--
-        <c:if test="${isGeneRec && showOrthoLink}">
-           
-           <td nowrap>
-                <c:set var="dsColUrl" 
-                       value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&historyId=${wdkUser.signature}:${historyId}&questionSubmit=Get+Answer&goto_summary=0"/>
-                <a href='<c:url value="${dsColUrl}"/>'>${dsColVal}</a>
-           </td>	    
-        </c:if>
---%>		
         <c:set value="${wdkAnswer.question.fullName}" var="qName" />
         <c:set var="filter" value="${wdkAnswer.filter}" />
         
@@ -393,18 +383,7 @@ function reviseBooleanQuery(type, expression) {
 	        </c:choose>
          </td>
 
-         <c:if test="${isGeneRec && showOrthoLink}">
-           
-           <td nowrap>
-                <c:set var="dsColUrl" 
-                       value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&geneHistoryId=${wdkUser.signature}:${historyId}&questionSubmit=Get+Answer&goto_summary=0"/>
-                <a href='<c:url value="${dsColUrl}"/>'>${dsColVal}</a>
-           </td>	    
-         </c:if>
-
-         <%-- display transform button for each history --%>
-         <c:if test="${showTransform}">
-           <c:set var="result">
+         <c:set var="result">
              <c:choose>
                <c:when test="${filter == null}">
                  ${wdkAnswer.checksum}
@@ -413,7 +392,19 @@ function reviseBooleanQuery(type, expression) {
                  ${wdkAnswer.checksum}:${filter.name}
                </c:otherwise>
              </c:choose>
-           </c:set>
+         </c:set>
+
+         <c:if test="${isGeneRec && showOrthoLink}">
+           
+           <td nowrap>
+                <c:set var="dsColUrl" 
+                       value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>
+                <a href='<c:url value="${dsColUrl}"/>'>${dsColVal}</a>
+           </td>	    
+         </c:if>
+
+         <%-- display transform button for each history --%>
+         <c:if test="${showTransform}">
            <td nowrap>
                <c:set var="expandUrl" 
                       value="showSummary.do?questionFullName=InternalQuestions.GenesByExpandResult&myProp%28gene_result%29=${result}"/>
@@ -421,7 +412,7 @@ function reviseBooleanQuery(type, expression) {
            </td>	    
            <td nowrap>
                <c:set var="transformUrl" 
-                      value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologTransform&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>
+                      value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>
                <a href='<c:url value="${transformUrl}"/>'>Orthologs</a>
            </td>	    
          </c:if>

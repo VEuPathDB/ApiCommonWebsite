@@ -394,22 +394,27 @@ function parse_Url( url, parameter_name )
                    </c:otherwise>
                  </c:choose>
                </c:set>
+
+               <c:set var="result">
+                 <c:choose>
+                   <c:when test="${filter == null}">
+                     ${wdkAnswer.checksum}
+                   </c:when>
+                   <c:otherwise>
+                     ${wdkAnswer.checksum}:${filter.name}
+                   </c:otherwise>
+                 </c:choose>
+               </c:set>
                
-               <c:choose>
-                 <c:when test="${modelName eq 'ToxoDB'}">
+               <c:if test="${modelName eq 'ToxoDB'}">
                    <c:set var="expandUrl" 
                           value="showSummary.do?questionFullName=InternalQuestions.GenesByExpandResult&myProp%28gene_result%29=${result}"/>
                    <a href='<c:url value="${expandUrl}"/>'>Expand</a>
                    &nbsp;|&nbsp;
-                   <c:set var="transformUrl" 
-                          value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologTransform&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>
-                   <a href='<c:url value="${transformUrl}"/>'>Orthologs</a>
-                 </c:when>
-                 <c:otherwise>
-                   <c:set var="dsColUrl" value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&geneHistoryId=${wdkUser.signature}:${historyId}&plasmodb_dataset=${datasetId}&questionSubmit=Get+Answer&goto_summary=0"/>
-                   <a href='<c:url value="${dsColUrl}"/>'>Orthologs</a>
-                 </c:otherwise>
-               </c:choose>
+               </c:if>
+               
+               <c:set var="dsColUrl" value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>
+               <a href='<c:url value="${dsColUrl}"/>'>Orthologs</a>
            </c:if>
            
            <c:set value="${wdkAnswer.question.fullName}" var="qName" />
