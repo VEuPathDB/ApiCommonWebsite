@@ -1,26 +1,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
 
-
+<%@ attribute name="refer"
+              required="true"
+              description="page calling this tag"
+%>
 
 <c:set var="project" value="${wdkModel.name}"/>
+<c:set var="homeClass" value=""/>
+<c:if test="${refer == 'home'}">
+
+<c:set var="homeClass" value="home"/>
 
 <%--Information message retrieved from DB via messaging system--%>
 <c:set var="siteInfo">
   <site:announcement messageCategory="Information" projectName="${project}" />
 </c:set>
-
 <c:if test="${siteInfo != ''}">
-<div class="infobox">
-  <div class="warningIcon">
-       <img src="/images/clearInfoIcon.png" alt="warningSign" />
-  </div>
-  <div class="warningMessage">
+<div class="info announcebox ${homeClass}">
+<!--  <div class="warningIcon">-->
+<table><tr><td>
+	       <img src="/images/clearInfoIcon.png" alt="warningSign" />
+<!--  </div>--></td><td>
+  <span class="warningMessage">
       ${siteInfo}
-  </div>
+  </span></td></tr></table>
 </div>
 </c:if>
 
+</c:if>
 
 <%--Retrieve from DB and display site degraded message scheduled via announcements system--%>
 <c:set var="siteDegraded">
@@ -28,13 +36,12 @@
 </c:set>
 
 <c:if test="${siteDegraded != ''}">
-<div class="warnbox">
-  <div class="warningIcon">
+<div class="warn announcebox ${homeClass}">
+  <table><tr><td>
        <img src="/images/warningSign.png" alt="warningSign" />
-  </div>
-  <div class="warningMessage">
-      ${siteDegraded}
-  </div>
+	</td><td><span class="warningMessage">
+      ${siteDegraded}</span>
+  	</td></tr></table>
 </div>
 </c:if>
 
