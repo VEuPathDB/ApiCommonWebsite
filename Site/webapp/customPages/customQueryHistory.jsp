@@ -604,6 +604,7 @@ function reviseBooleanQuery(type, expression) {
 <script>
 	$(document).ready(function(){
              $("#${activePanel}").show();
+             currentPanel = "${activePanel}";
 	});
 </script>
 <script type='text/javascript' src='<c:url value="/js/history.js"/>'></script>

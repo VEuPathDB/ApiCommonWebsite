@@ -1,4 +1,5 @@
 var selected = new Array();
+var currentPanel;
 
 function selectAllHist() {
 	$("div.history_panel").each(function(){
@@ -22,10 +23,10 @@ function displayHist(type) {
 	$("#history_tabs li").each(function() {
 		var id = $("a", this).attr("id");
 		if (id == 'tab_' + type) {
+			if (!currentPanel || currentPanel != type) currentPanel = id;
 			$(this).attr("id", "selected");
 		}
 	});
-	//$("#tab_" + type).parent().attr("id", "selected");
 	$("#panel_" + type).show();
 }
 
@@ -52,7 +53,13 @@ function deleteHistories(url) {
 			url: url,
 			dataType: "html",
 			success: function(data) {
-				$("body").html(data, "body");
+				$("div#mysearch").html($("div#mysearch",data).html());
+				$("div.innertube").html($("div.innertube",data).html());
+				if ($("#" + currentPanel).length == 0) {
+					var type = $("#history_tabs a:first").attr("id").substr(4);
+					displayHist(type);
+				} else
+					$("#" + currentPanel).show();
 			},
 			error: function(data, msg, e) {
 				alert("ERROR \n " + msg + "\n" + e);
