@@ -76,7 +76,7 @@
     <th><i>L. major</i></th>
     <th><i>T. brucei</i></th>
     <th><i>T. cruzi esmeraldo</i></th>
-    <th><i>T. cruzi non-esmeraldo-like</i></th>
+    <th><i>T. cruzi non-esmeraldo</i></th>
     <th><i>T. cruzi unassigned</i></th>
     <th><i>Distinct T. cruzi</i></th>
   </tr>
