@@ -1423,7 +1423,7 @@ tr.headerRow  td,th {
    border-width:2px 0;
    border-style:solid;
    border-color:#175982;  /*#6b7d70;*/
-   padding: 5px;
+   padding: 3px;
 }
 
 .toggle {display: none;}

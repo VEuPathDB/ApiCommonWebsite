@@ -67,7 +67,7 @@
 
 <!-- display basic filters -->
 <div class="filter">
-<table cellpadding="5" border="1">
+<table border="1">
   <tr>
     <th rowspan=2 align="center">All<br>Results</th>
     <th rowspan=2 align="center">Ortholog<br>Groups</th>
