@@ -414,6 +414,10 @@ img {
 	padding-left: 19px;
 }
 
+#infobottom.tools {
+	padding-bottom: 0px;
+}
+
 /* for Internet Explorer */
 /*\*/
 * html #info {
@@ -1267,6 +1271,15 @@ a.redbutton:active span {
 	background-color: #7a3b17;
 	color: #FFFFFF;
 }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =used in help.jsp, classic bullet list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#cirbulletlist ul {
+	list-style-type: disc;
+}
+
+
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

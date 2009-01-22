@@ -252,11 +252,17 @@ ${headElement}
         	</ul>
         </li>
       <li>
-      <a href="<c:url value="/help.jsp"/>">Contact Us<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
+      <a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">
+		Contact Us<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
       <li>
-      <a href="#">Log In/Register</a> <%-- possible style when a user is login....<a href="#">Logout</a>
- 	  <br /><b style='color:black'>John Doe</b> | <a href="#">Profile</a>
-	  --%></li>      
+      <a href="#">Log In/Register</a> 
+
+      <%-- possible style when a user is login....
+      <a href="#">Logout</a><br />
+      <b style='color:black'>John Doe</b> | <a href="#">Profile</a>
+       --%>
+
+      </li>      
       </ul>
       </div>
       	  

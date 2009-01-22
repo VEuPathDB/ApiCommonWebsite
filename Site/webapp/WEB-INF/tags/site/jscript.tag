@@ -69,3 +69,7 @@
 <script type="text/javascript" src="/assets/js/pngfix.js"></script>
 <![endif]-->
 
+<!-- js for Contact Us window -->
+<script type='text/javascript' src='<c:url value="/js/newwindow.js"/>'></script>
+
+

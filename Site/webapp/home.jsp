@@ -10,43 +10,31 @@
 
  <c:choose>
       <c:when test = "${project == 'CryptoDB'}">
-             <c:set var="title" value="CryptoDB title....."/>
-<!-- previous header attributes
-             <c:set var="banner" value="<font size=\"+6\" face='Trebuchet MS,Arial,GillSans Ultra Bold,Trebuchet MS,Arial,Verdana,Sans-serif'>ToxoDB</font>"/>
-             <c:set var="isbannerimage" value="false"/>
-             <c:set var="gbrowsepath" value="/gbrowse/toxodb"/>
-             <c:set var="cycname" value="ToxoCyc"/>
-             <c:set var="cycpath" value="TOXO"/>
-             <c:set var="organismlist" value="Toxoplasma gondii"/>
--->
-
+             <c:set var="title" value="CryptoDB : The Cryptosporidium genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'GiardiaDB'}">
+             <c:set var="title" value="GiardiaDB : The Giardia genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'PlasmoDB'}">
+             <c:set var="title" value="PlasmoDB : The Plasmodium genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'ToxoDB'}">
+             <c:set var="title" value="ToxoDB : The Toxoplasma genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'TrichDB'}">
+             <c:set var="title" value="TrichDB : The Trichomonas genome resource"/>
       </c:when>
       <c:when test = "${project == 'TriTrypDB'}">
-             <c:set var="title" value="TriTrypDB title..."/>
-<!--
-             <c:set var="banner" value="/images/plasmodbBanner.jpg"/>
-             <c:set var="isbannerimage" value="true"/>
-             <c:set var="gbrowsepath" value="/gbrowse/plasmodb"/>
-             <c:set var="cycname" value="PlasmoCyc"/>
-             <c:set var="cycpath" value="PLASMO"/>
-             <c:set var="organismlist" value="Plasmodium falciparum,Plasmodium vivax,Plasmodium yoelii,Plasmodium berghei,Plasmodium chabaudi,Plasmodium knowlesi"/>
--->
-
+             <c:set var="title" value="TriTrypDB: The Kinetoplastid genome resource"/>
       </c:when>
   </c:choose>
 
 
-
- <!--         banner="${banner}"
-                 isBannerImage="${isbannerimage}"
-                 bannerSuperScript="<br><b><font size=\"+1\">Release ${version}</font></b>"
-                division="home"  -->
-
-<site:home_header title="${title}" 
+<%-- header includes menubar and announcements tags --%>
+<%-- refer is used to determine which announcements are shown --%>
+<site:header title="${title}" 
              refer="home"/>
 
-<site:menubar />
-<site:siteAnnounce refer="home"/>
 <site:DQG />
 <site:sidebar />
 <site:footer />
