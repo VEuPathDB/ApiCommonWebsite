@@ -69,16 +69,20 @@
 <div class="filter">
 <table cellpadding="5" border="1">
   <tr>
-    <th>All</th>
-    <th>Distinct TriTryp</th>
-    <th><i>L. braziliensis</i></th>
-    <th><i>L. infantum</i></th>
-    <th><i>L. major</i></th>
-    <th><i>T. brucei</i></th>
-    <th><i>T. cruzi esmeraldo</i></th>
-    <th><i>T. cruzi non-esmeraldo</i></th>
-    <th><i>T. cruzi unassigned</i></th>
-    <th><i>Distinct T. cruzi</i></th>
+    <th rowspan=2 align="center">All<br>Results</th>
+    <th rowspan=2 align="center">Ortholog<br>Groups</th>
+    <th colspan=3 align="center"><i>Leishmania </i></th>
+    <th rowspan=2 align="center"><i>Trypanosoma<br>brucei</i></th>
+    <th colspan=4 align="center"><i>Trypanosoma cruzi</i></th>
+  </tr>
+  <tr>
+    <th><i>braziliensis</i></th>
+    <th><i>infantum</i></th>
+    <th><i>major</i></th>
+    <th>Distinct genes</th>
+    <th>esmeraldo</th>
+    <th>non-esmeraldo</th>
+    <th>unassigned</th>
   </tr>
   <tr align="center">
     <c:choose>
