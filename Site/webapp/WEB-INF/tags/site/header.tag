@@ -6,7 +6,13 @@
 <%@ attribute name="title"
               description="Value to appear in page's title"
 %>
-<%-----------------------------%>
+<%@ attribute name="refer" 
+ 			  type="java.lang.String"
+			  required="false" 
+			  description="Page calling this tag"
+%>
+
+<%-------- OLD set of attributes, not being used at the moment   ---------------------%>
 
 <%@ attribute name="banner"
               required="false"
@@ -65,11 +71,7 @@
 %>
 
 <%---------------------------%>
-<%@ attribute name="refer" 
- 			  type="java.lang.String"
-			  required="false" 
-			  description="Page calling this tag"
-%>
+
 
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
 <c:set var="project" value="${props['PROJECT_ID']}" />
@@ -168,14 +170,18 @@
 <![endif]-->
 
 
-
+<%--------------------------- HEAD of HTML doc ---------------------%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>${title}</title>
+
 <link rel="icon" type="image/png" href="/assets/images/${project}/favicon.ico"> <%-- standard --%>
-<link href="/assets/css/AllSites.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="/assets/images/${project}/favicon.ico"> <%-- for IE7 --%>
+
+<%-- these were in reverse order in previous header --%>
+<link href="/assets/css/AllSites.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/${project}.css" rel="stylesheet" type="text/css" />
+
 <link rel="stylesheet" href="/assets/css/history.css" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="/assets/css/Strategy.css" />
 <link rel="StyleSheet" href="/assets/css/filter_menu.css" type="text/css"/>
@@ -200,11 +206,14 @@ behavior: url(/assets/css/csshover.htc);
 </style>
 
 <site:jscript refer="${refer}"/>
+
+<%-- not in use currently --%>
 ${headElement}
 </head>
 
-<body>
 
+<%--------------------------- BODY of HTML doc ---------------------%>
+<body>
 
 <div id="header2">
    <div id="header_rt">
@@ -254,10 +263,7 @@ ${headElement}
        </div>
    </div>
 
-<%--
-crypto width="318" height="64"    version    date  
-tryp          282           72
---%>
+
 <c:if test="${fn:containsIgnoreCase(project, 'CryptoDB')}">
      <c:set var="width" value="318" />
      <c:set var="height" value="64" />
@@ -291,3 +297,4 @@ tryp          282           72
 
 
 <site:menubar />
+<site:siteAnnounce  refer="${refer}"/>

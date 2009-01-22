@@ -7,21 +7,21 @@
 <div id="info">
     	<ul>
 		<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a>
-			<ul><li>Description</li></ul>
+			<ul><li>Identify Sequence Similarities</li></ul>
 		</li>
 		<li><a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a>
-			<ul><li>Description</li></ul>
+			<ul><li>Retrieve Specific Sequences using IDs and coordinates</li></ul>
 		</li>
 		<li><a href="/common/PubCrawler/"><strong>PubMed and Entrez</strong></a>
-			<ul><li>Description</li></ul>
+			<ul><li>View the Latest Trypanosoma and Leishmania Pubmed and Entrez Results</li></ul>
 		</li>
 		<li><a href="#"><strong>GBrowse</strong></a>
-			<ul><li>Description</li></ul>
+			<ul><li>View Sequences and Features in the GMOD Genome Browser</li></ul>
 		</li>
 		<li><a href="#"><strong>${cycName}</strong></a>
-			<ul><li>Description</li></ul>
+			<ul><li>Explore Automatically Defined Metabolic Pathways</li></ul>
 		</li>
     	</ul>
 </div>
-<div id="infobottom">
+<div id="infobottom" class="tools">
 </div><!--end info-->

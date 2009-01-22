@@ -8,27 +8,27 @@
 
 <c:set var="project" value="${wdkModel.name}"/>
 <c:set var="homeClass" value=""/>
+
 <c:if test="${refer == 'home'}">
+  <c:set var="homeClass" value="home"/>
 
-<c:set var="homeClass" value="home"/>
-
-<%--Information message retrieved from DB via messaging system--%>
-<c:set var="siteInfo">
+  <%--Information message retrieved from DB via messaging system--%>
+  <c:set var="siteInfo">
   <site:announcement messageCategory="Information" projectName="${project}" />
-</c:set>
-<c:if test="${siteInfo != ''}">
-<div class="info announcebox ${homeClass}">
-<!--  <div class="warningIcon">-->
-<table><tr><td>
-	       <img src="/images/clearInfoIcon.png" alt="warningSign" />
-<!--  </div>--></td><td>
-  <span class="warningMessage">
-      ${siteInfo}
-  </span></td></tr></table>
-</div>
-</c:if>
+  </c:set>
 
-</c:if>
+  <c:if test="${siteInfo != ''}">
+    <div class="info announcebox ${homeClass}">
+    <table><tr><td>
+	         <img src="/images/clearInfoIcon.png" alt="warningSign" /></td>
+               <td>
+                 <span class="warningMessage">${siteInfo}</span>
+    </td></tr></table>
+    </div>
+  </c:if>  <%-- if there are information announcements --%>
+
+</c:if>  <%-- if home page --%>
+
 
 <%--Retrieve from DB and display site degraded message scheduled via announcements system--%>
 <c:set var="siteDegraded">
@@ -38,10 +38,10 @@
 <c:if test="${siteDegraded != ''}">
 <div class="warn announcebox ${homeClass}">
   <table><tr><td>
-       <img src="/images/warningSign.png" alt="warningSign" />
-	</td><td><span class="warningMessage">
-      ${siteDegraded}</span>
-  	</td></tr></table>
+               <img src="/images/warningSign.png" alt="warningSign" /></td>
+             <td>
+               <span class="warningMessage">${siteDegraded}</span>
+   </td></tr></table>
 </div>
 </c:if>
 
@@ -53,11 +53,8 @@
 
 <c:if test="${siteDown != ''}">
 <div class="errorbox">
-  <div class="downIcon">
-       <img src="/images/stopSign.png" alt="stopSign" />
-  </div>
-  <div class="downMessage">
-       ${siteDown}
-  </div></div>
+  <div class="downIcon"><img src="/images/stopSign.png" alt="stopSign" /></div>
+  <div class="downMessage">${siteDown}</div>
+</div>
 </c:if>
 

@@ -6,12 +6,12 @@
 
 
 <div id="contentwrapper">
+<div id="contentcolumn">
+<div class="innertube">
 
-  <div id="contentcolumn">
-	<div class="innertube">
-      <p>&nbsp;</p>
-      <table width="100%" border="0" class="3column">
-  <tr>
+<p>&nbsp;</p>
+<table width="100%" border="0" class="3column">
+<tr>
     <td width="33%" align="center">
 	   <c:set var="qSetName" value="GeneQuestions" />
        <site:DQG_bubble 
@@ -33,11 +33,9 @@
 				alt_banner="Tools:"
        />
 	</td>
-  </tr>
+</tr>
 </table>
 
-	
-
-	</div>
-  	</div>
+</div>
+</div>
 </div>
