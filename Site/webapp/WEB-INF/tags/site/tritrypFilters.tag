@@ -183,6 +183,22 @@
     </c:choose></td>
 
     <c:choose>
+      <c:when test="${curFilter eq 'tc_distinct_genes'}">
+        <td class="selected">${wdkHistory.filterSize}
+      </c:when>
+      <c:otherwise>
+	<c:choose>
+          <c:when test="${tc_distinct_genes != ''}">
+            <td>${tc_distinct_genes}
+          </c:when>
+          <c:otherwise>
+            <td><a class="filter_link" href="getFilterLink.do?wdk_history_id=${historyId}&filter=tc_distinct_genes">&nbsp;</a>
+          </c:otherwise>
+        </c:choose>
+      </c:otherwise>
+    </c:choose></td>
+
+    <c:choose>
       <c:when test="${curFilter eq 'tce_genes'}">
         <td class="selected">${wdkHistory.filterSize}
       </c:when>
@@ -230,21 +246,6 @@
       </c:otherwise>
     </c:choose></td>
 
-    <c:choose>
-      <c:when test="${curFilter eq 'tc_distinct_genes'}">
-        <td class="selected">${wdkHistory.filterSize}
-      </c:when>
-      <c:otherwise>
-	<c:choose>
-          <c:when test="${tc_distinct_genes != ''}">
-            <td>${tc_distinct_genes}
-          </c:when>
-          <c:otherwise>
-            <td><a class="filter_link" href="getFilterLink.do?wdk_history_id=${historyId}&filter=tc_distinct_genes">&nbsp;</a>
-          </c:otherwise>
-        </c:choose>
-      </c:otherwise>
-    </c:choose></td>
 
 
 
