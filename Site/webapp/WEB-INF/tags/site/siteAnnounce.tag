@@ -12,7 +12,7 @@
 <c:set var="homeClass" value=""/>
 
 
-<c:if test="${refer == 'home'}">
+<c:if test="${refer == 'home' || refer == 'home2'}">
   <c:set var="homeClass" value="home"/>
 </c:if>
 
