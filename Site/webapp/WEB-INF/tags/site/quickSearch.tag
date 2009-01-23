@@ -103,9 +103,11 @@
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label><b>Text Search:</b></label>
           <c:set var="textFields" value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions"/>
+    <c:choose> 
           <c:when test="${fn:containsIgnoreCase(modelName, 'TriTrypDB')}">
              <c:set var="textFields" value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions,Phenotype"/>
           </c:when>
+    </c:choose> 
            		<input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch"/>
 		        <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}"/>
           		<input type="hidden" name="myMultiProp(text_fields)" value="${textFields}"/>
