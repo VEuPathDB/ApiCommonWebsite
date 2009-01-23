@@ -162,7 +162,7 @@ public class CommentFactory {
 
             // get a new comment in order to fetch the user info
             Comment newComment = getComment(commentId);
-            appendCommentToFile(newComment);
+            // not anymore: appendCommentToFile(newComment);
 
             comment.setUserName(newComment.getUserName());
             comment.setOrganization(newComment.getOrganization());
