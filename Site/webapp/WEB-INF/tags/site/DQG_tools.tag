@@ -18,9 +18,19 @@
 		<li><a href="#"><strong>GBrowse</strong></a>
 			<ul><li>View Sequences and Features in the GMOD Genome Browser</li></ul>
 		</li>
+
+<c:choose>
+<c:when test="${sName != 'TriTryp'}">
 		<li><a href="#"><strong>${cycName}</strong></a>
 			<ul><li>Explore Automatically Defined Metabolic Pathways</li></ul>
 		</li>
+</c:when>
+<c:otherwise>   <%----- fill in 3 empty lines to keep buckets aligned -----%>
+	        <li>&nbsp;<ul><li>&nbsp;<br>&nbsp;</li></ul></li> 
+
+</c:otherwise>
+</c:choose>
+
     	</ul>
 </div>
 <div id="infobottom" class="tools">
