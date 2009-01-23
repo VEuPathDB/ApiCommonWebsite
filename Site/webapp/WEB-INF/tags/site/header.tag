@@ -276,7 +276,7 @@ ${headElement}
  <c:choose>
     <c:when test="${wdkUser == null || wdkUser.guest == true}">
     
-      <%--------------- Construct link to login page -------------%>  
+      <%--------------- Construct links to login/register/profile/logout pages -------------%>  
         <%-- 
             urlencode the enclosing page's URL and append as a parameter 
             in the queryString. site:requestURL compensates
