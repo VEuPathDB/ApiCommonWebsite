@@ -96,9 +96,9 @@ ivax,Plasmodium yoelii"/>
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label>Text Search:</label>
         <c:set var="textFields" value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions"/>
-        <c:when test="${fn:containsIgnoreCase(modelName, 'TriTrypDB')}">
-		<c:set var="textFields" value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions,Phenotype"/>
-	</c:when>
+        <c:if test="${fn:containsIgnoreCase(modelName, 'TriTrypDB')}">
+    		<c:set var="textFields" value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions,Phenotype"/>
+	   </c:if>
           		<input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch"/>
 		        <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}"/>
           		<input type="hidden" name="myMultiProp(text_fields)"
