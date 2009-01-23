@@ -12,7 +12,7 @@
 			  description="Page calling this tag"
 %>
 
-<%-------- OLD set of attributes, not being used at the moment   ---------------------%>
+<%-------- OLD set of attributes, only division being used by login   ---------------------%>
 
 <%@ attribute name="banner"
               required="false"
@@ -217,21 +217,37 @@ ${headElement}
 
 <div id="header2">
    <div id="header_rt">
+
    <div align="right"><div id="toplink">
+    <%------ skip skips to menubar.tag ----%>
    <a href="#skip"><img src="/assets/images/transparent1.gif" alt="Skip navigational links" width="1" height="1" border="0" /></a>
+
+
+   <c:if test="${project == 'TriTrypDB'}">
+     <map name="partof">
+     <area shape=rect coords="0,0 172,22" href="http://eupathdb.org" alt="EuPathDB home page">
+     <area shape=rect coords="310,0 380,22" href="http://www.genedb.org" alt="GeneDB home page">
+     </map>
+   </c:if>
+
+
    <c:choose>
    <c:when test="${project == 'TriTrypDB'}">
-     <img  usemap="#partof" src="/assets/images/${project}/partofeupath.png" />
+     <img  usemap="#partof" src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/>
    </c:when>
    <c:otherwise>
      <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
    </c:otherwise>
    </c:choose>
    </div></div>
-       <div id="bottom">
-	  <site:quickSearch /><br />
-	  <div id="nav_topdiv">
-      <ul id="nav_top">
+       
+
+    <div id="bottom">
+      <site:quickSearch /><br />
+
+<%---------------------- Small Menu Options on Header  ------------------%>
+      <div id="nav_topdiv">
+           <ul id="nav_top">
       <li>
       <a href="#">About ${siteName}<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
       		<ul>
@@ -241,7 +257,7 @@ ${headElement}
           <li><a href="<c:url value='showXmlDataContent.do?name=XmlQuestions.News'/>">News</a></li>
           <li><a href="#">Acknowledgements</a></li>
         	</ul>
-        </li>
+      </li>
       <li>
       <a href="#">Help<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
       		<ul>
@@ -250,57 +266,92 @@ ${headElement}
           <li><a href="#">Glossary of Terms</a></li>
           <li><a href="#">Website Statistics</a></li>
         	</ul>
-        </li>
+      </li>
       <li>
       <a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">
 		Contact Us<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
-      <li>
-      <a href="#">Log In/Register</a> 
+ 
 
-      <%-- possible style when a user is login....
-      <a href="#">Logout</a><br />
-      <b style='color:black'>John Doe</b> | <a href="#">Profile</a>
-       --%>
+ <c:choose>
+    <c:when test="${wdkUser == null || wdkUser.guest == true}">
+    
+      <%--------------- Construct link to login page -------------%>  
+        <%-- 
+            urlencode the enclosing page's URL and append as a parameter 
+            in the queryString. site:requestURL compensates
+            for Struts' url mangling when forward in invoked.
+        --%>
+        <c:url value="login.jsp" var="loginUrl">
+           <c:param name="originUrl" value="${originRequestUrl}"/> 
+        </c:url>
+        <%-- 
+            urlencode the login page's URL and append as a parameter 
+            in the queryString.
+            If login fails, user returns to the refererUrl. If login
+            succeeds, user should return to originUrl.
+        --%>
+        <c:url var="loginJsp" value='login.jsp'/>
+        <c:url value="${loginUrl}" var="loginUrl">
+           <c:param name="refererUrl" value="${loginJsp}"/> 
+        </c:url>
+<%--        
+        <c:if test="${division ne 'login'}">
+--%>
+          <li>
+            <a href="${loginUrl}" id='login'>Login<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
+          <li>
+          <a href="<c:url value='showRegister.do'/>" id='register'>Register</a></li>
 
-      </li>      
-      </ul>
-      </div>
+        
+    </c:when>
+    <c:otherwise>
+       <c:url value="processLogout.do" var="logoutUrl">
+          <c:param name="refererUrl" value="${originRequestUrl}"/> 
+       </c:url>
+
+          <li>
+            <a href="<c:url value='/showProfile.do'/>" id='profile'>${wdkUser.firstName} ${wdkUser.lastName}'s Profile<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
+          <li>
+            <a href="<c:url value='${logoutUrl}' />" id='logout'>Logout</a></li>
+
+    </c:otherwise>
+  </c:choose>
+
+
+           </ul>
+
+      </div>  <%-- id="nav_top" --%>
       	  
-       </div>
-   </div>
+   </div>  <%-- id="bottom"    --%>
+   </div>  <%-- id="header_rt" --%>
 
+<%------------- TOP HEADER:  SITE logo and DATE _______  is a EuPathDB Project  ----------------%>
 
-<c:if test="${fn:containsIgnoreCase(project, 'CryptoDB')}">
+   <c:if test="${fn:containsIgnoreCase(project, 'CryptoDB')}">
      <c:set var="width" value="318" />
      <c:set var="height" value="64" />
      <c:set var="version" value="4.0" />
      <c:set var="date" value="January 15th, 2009" />
-</c:if>
+   </c:if>
 
-<c:if test="${fn:containsIgnoreCase(project, 'TriTrypDB')}">
+   <c:if test="${fn:containsIgnoreCase(project, 'TriTrypDB')}">
      <c:set var="width" value="320" />
      <c:set var="height" value="72" />
      <c:set var="version" value="1.0" />
      <c:set var="date" value="January 15th, 2009" />
-</c:if>
-
-
+   </c:if>
 
    <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
 	width="${width}" height="${height}" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version ${version}<br />
    ${date}</p>
-</div> 
+
+</div>  <%-- id="header2" --%>
 
 
-<c:if test="${project == 'TriTrypDB'}">
-  <map name="partof">
-  <area shape=rect coords="0,0 172,22" href="http://eupathdb.org" alt="EuPathDB home page">
-  <area shape=rect coords="310,0 380,22" href="http://www.genedb.org" alt="GeneDB home page">
-  </map>
-</c:if>
 
+<%------------- REST OF PAGE  ----------------%>
 
 <site:menubar />
 <site:siteAnnounce  refer="${refer}"/>

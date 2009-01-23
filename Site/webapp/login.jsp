@@ -7,6 +7,11 @@
              banner="ApiDB Account Login"
              division="login"/>
 
+<div id="contentwrapper">
+        <div id="contentcolumn2">
+                <div class="innertube">
+
+
 <c:choose>
   <c:when test="${param.originUrl != null}">
     <c:set var="originUrl" value="${param.originUrl}" scope="request"/>
@@ -30,7 +35,7 @@
   </c:otherwise>
 </c:choose>
 
-<body bgcolor='#ffffff'>
+
 <p><b>Login</b> so you can:
 <ul>
 <li>comment on genes and sequences
@@ -48,5 +53,9 @@
   </tr>
 </table>-->
 
-</body>
-</html>
+
+                </div>
+        </div>
+</div>
+<site:footer />
+
