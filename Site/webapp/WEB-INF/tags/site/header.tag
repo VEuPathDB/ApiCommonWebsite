@@ -271,7 +271,8 @@ ${headElement}
       <a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">
 		Contact Us<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
  
-
+ 
+ <site:requestURL/>
  <c:choose>
     <c:when test="${wdkUser == null || wdkUser.guest == true}">
     
