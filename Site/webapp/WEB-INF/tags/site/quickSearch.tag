@@ -95,14 +95,14 @@ ivax,Plasmodium yoelii"/>
              <td><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label>Text Search:</label>
-        <input type="hidden" name="myMultiProp(wdk_record_type)" value="gene">
-        <input type="hidden" name="myMultiProp(project_id)" value="${modelName}">
-        <input type="hidden" name="myMultiProp(text_search_fields)"
-               value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions">
+        <c:set var="textFields" value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions"/>
+        <c:when test="${fn:containsIgnoreCase(modelName, 'TriTrypDB')}">
+		<c:set var="textFields" value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions,Phenotype"/>
+	</c:when>
           		<input type="hidden" name="questionFullName" value="GeneQuestions.GenesByTextSearch"/>
 		        <input type="hidden" name="myMultiProp(${orgParam.name})" value="${listOrganisms}"/>
           		<input type="hidden" name="myMultiProp(text_fields)"
-               		   value="Gene product,Gene notes,User comments,Protein domain names and descriptions,EC descriptions,GO terms and definitions"/>
+               		   value="${textFields}"/>
           		<input type="hidden" name="myMultiProp(whole_words)" value="no"/>
           		<input type="hidden" name="myProp(max_pvalue)" value="-30"/>
           		<input type="text" class="search-box" name="myProp(GeneQuestions_GenesByTextSearch_${textParam.name})" value="${textParam.default}"/>
