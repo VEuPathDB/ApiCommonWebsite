@@ -57,29 +57,17 @@
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Community Links</a>
 				<div class="menu_lefttop_drop"><ul>
-						<li><a href="#"> EuPathDB.org</a></li>
-						<li><a href="#">PlasmoDB.org</a></li>
-						<li><a href="#">ToxoDB.org</a></li>
-						<li><a href="#">ApiEST-DB</a></li>
-						<li><a href="#"> C. parvum Genomic DNA Sequence Demonstration Project at Univ. of Minnesota</a></li>
-						<li><a href="#">C. parvum Genome Mapping Project at Cambridge</a></li>
-						<li><a href="#">University of Oklahoma's Advanced Center for Genome Technology</a></li>
-						<li><a href="#">Stanford Human Genome Center</a></li>
-						<li><a href="#">Stanford Genome Technology Center</a></li>
-						<li><a href="#">Whitehead Institute for Biomedical Research/MIT Center for Genome Research</a></li>
-						<li><a href="#">Baylor College of Medicine Human Genome Sequencing Center</a></li>
-						<li><a href="#">The Institute for Genomic Research</a></li>
-						<li><a href="#">Oak Ridge National Laboratory Section of Computational Biology</a></li>
-						<li><a href="#">The Sanger Centre</a></li>
-						<li><a href="#">DOE Joint Genome Institute</a></li>
-						<li><a href="#">The University of Washington Genome Center</a></li>
-						<li><a href="#">Washington University in St. Louis Genome Sequencing Center</a></li>
-						<li><a href="#">MCV-VCU Massey Cancer Center Nucleic Acids Research Facility</a></li>
-						<li><a href="#">National Center for Biotechnology Information</a></li>
-						<li><a href="#"> Minnesota TriTrypDBsporidium parvum Genome Project</a></li>
-						<li><a href="#">TriTrypDBsporidium hominis Research at the Virginia Commonwealth University Center for the Study of Biologial Complexity </a></li>
-						<li><a href="#"> VBI PathInfo</a></li>
-						<li><a href="#">Chartered Institute of Environmental Health </a></li>
+					<li><a href="http://www.genedb.org/">GeneDB</a></li>
+					<li><a href="http://www.EuPathDB.org/">EuPathDB</a></li>
+					<li><a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a></li>
+					<li><a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a></li>
+					<li><a href="http://www.wellcome.ac.uk/index.htm">The Wellcome Trust</a></li>
+					<li><a href="http://www.who.int/trypanosomiasis_african/en/index.html">Human African Trypanosomiasis</a></li>
+					<li><a href="http://www.who.int/neglected_diseases/diseases/chagas/en/">Chagas Disease - American Trypanosomiasis</a></li>
+					<li><a href="http://www.who.int/leishmaniasis/en/">Leishmaniasis</a></li>
+					<li><a href="http://tryps.rockefeller.edu/">TrypsRU</a></li>
+
+					<br><a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;"><b>If you have a link that you think would be useful for the community, please send us a note.</b></a>
 				</ul></div>
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Information and Help</a>
