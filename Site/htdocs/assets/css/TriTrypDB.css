@@ -1424,6 +1424,7 @@ tr.headerRow  td,th {
    border-style:solid;
    border-color:#175982;  /*#6b7d70;*/
    padding: 3px;
+   vertical-align: middle;
 }
 
 .toggle {display: none;}
