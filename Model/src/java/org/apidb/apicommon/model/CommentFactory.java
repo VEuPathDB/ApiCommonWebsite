@@ -109,6 +109,7 @@ public class CommentFactory {
 
     public void addComment(Comment comment) throws WdkModelException {
         String commentSchema = config.getCommentSchema();
+        String userSchema = config.getUserLoginSchema();
 
         PreparedStatement ps = null;
         // get a new comment id
@@ -170,10 +171,40 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
+	}
+
+        try {
+            // make new comment searchable by Oracle Text by updating TextSearchableComment
+	    String insertSql = new String(
+                    "insert into apidb.TextSearchableComment (comment_id, source_id, project_id, organism, content) \n"
+                            + "select c.comment_id, c.stable_id, c.project_name, c.organism, \n"
+                            + "c.headline || '|' || c.content || '|' || \n"
+                            + "u.first_name || ' ' || u.last_name || '(' || u.organization || ')' \n"
+                            + "from " + commentSchema + "comments c, " + userSchema + "users u \n"
+                            + "where c.email = u.email(+) \n"
+                            + "  and c.comment_id in \n"
+                            + "      (select comment_id from " + commentSchema + "comments minus select comment_id from apidb.TextSearchableComment)");
+
+	    //                            + "  and c.comment_id = " + commentId);
+
+	    logger.debug("insert SQL: " + insertSql);
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), insertSql);
+            int result = ps.executeUpdate();
+            logger.debug("Copied row to TextSearchableComment: " + result);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeStatement(ps);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+	}
 
             // print connection status
             printStatus();
-        }
     }
 
     private void saveLocations(int commentId, Comment comment)
