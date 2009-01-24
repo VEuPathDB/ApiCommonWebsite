@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+<!--
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         ]]>
+       </attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+          ]]>
+       </attribute>
+    </record>
+-->
+
+
+     <record>
+       <attribute name="headline">
+         <![CDATA[
+        Beta version of TriTrypDB 1.0 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       23 January 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       23January2009TriTrypDBbeta
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the release of a beta version of TriTrypDB.  We expect TriTrypDB to remain in beta for 2-3 weeks to allow us to iron out any issues while at the same time providing you with access to the site and its tools.  If you find any problems or want different functionality, please click the contact us link and let us know so we can improve the site!<br><br>
+
+
+&#x2023;This release includes:<br><br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Sequenced and annotated genomes from <i>T. brucei</i>, <i>T. cruzi</i>, <i>L. major</i>, <i>L. infantum</i> and <i>L. braziliensis</i>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Expressed Sequence tag (EST) evidence from dbEST.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Proteomics evidence from multiple sources including pre-publication.  These include mass evidence from <i>T. cruzi</i>, <i>T. brucei</i> and <i>L. infantum</i>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Assembly of the <i>T. cruzi</i> scaffolds into chromosomes and separation into Esmeraldo and non-Esmeraldo haplotypes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Synteny between the five TriTryp species.<br><br>
+&#x2023;The data included in TriTrypDB can be queried in many ways.  For example, genes can be identified by:<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Annotated name and/or GeneID.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Various features of the gene or its product.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Protein motifs or BLAST similarity.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Transcriptional or translational state (based on experimental data available).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Predicted putative function (GO terms and EC numbers).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Phenotypic profile.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#x2022;Evolutionary profile.<br><br>
+
+ ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+         Kinetoplastid Molecular Cell Biology Meeting III
+         ]]>
+       </attribute>
+       <attribute name="date">
+       20 January 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       20January2009KMCBMIII
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+The 3rd kinetoplastid molecular cell biology meeting will be held from April 26-29th, 2009 in Woods Hole, Massachusetts, USA.
+ ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+         The 4th World Congress on Leishmaniasis
+         ]]>
+       </attribute>
+       <attribute name="date">
+       20 January 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       20January20094thWorldCongressonLeishmaniasis 
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+The 4th World Congress on Leishmaniasis will be held from February 3rd -7th, 2009 in Lucknow, India.  For more information click <a href="http://www.worldleish4.org/">here</a>.
+ ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB to take on the kinetoplastida
+         ]]>
+       </attribute>
+       <attribute name="date">
+       1 November 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       1November2008GatesFoundation
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to report
+an award from the <a href="http://www.gatesfoundation.org">Bill & Melinda Gates Foundation</a> in support of a
+TriTrypDB component of the <a href="http://eupathdb.org/">EuPathDB</a> family of databases,
+encompassing <i>Leishmania</i> species, <i>Trypanosoma brucei</i>, and
+<i>Trypanosoma cruzi</i>.  A coordinated award from the<a href="http://www.wellcome.ac.uk/"> Wellcome Trust</a>
+will permit enhanced annotation of kinetoplastid parasites. 
+These projects represent a collaborative effort between the
+GeneDB team (at the Wellcome Trust Sanger Institute), colleagues
+at the <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a>, and the EuPathDB
+team -- an NIAID-supported Bioinformatics Resource Center. Look
+for the first release of TriTrypDB in Jan 2009!
+
+ ]]>
+       </attribute>
+    </record>
+
+</xmlAnswer>
+

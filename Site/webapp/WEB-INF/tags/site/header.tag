@@ -251,20 +251,28 @@ ${headElement}
       <li>
       <a href="#">About ${siteName}<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
       		<ul>
+	     <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#generalinfo"/>">General Information</a></li
+   	     <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#funding"/>">Funding</a></li>
+	     <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#organisms"/>">Organisms in TriTrypDB</a></li>
+	     <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#use"/>">How to use this resource</a></li>
+             <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#citing"/>">How to cite us</a></li>
+
+<%-- 
           <li><a href="#">Who We Are</a></li>
           <li><a href="#">What We Do</a></li>
           <li><a href="#">What You Can Do Here</a></li>
           <li><a href="<c:url value='showXmlDataContent.do?name=XmlQuestions.News'/>">News</a></li>
           <li><a href="#">Acknowledgements</a></li>
+--%>
         	</ul>
       </li>
       <li>
       <a href="#">Help<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
       		<ul>
-          <li><a href="#">Web Tutorials</a></li>
-          <li><a href="#">Community Links</a></li>
-          <li><a href="#">Glossary of Terms</a></li>
-          <li><a href="#">Website Statistics</a></li>
+          <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Tutorials"/>">Web Tutorials</a></li>
+          <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.ExternalLinks"/>">Community Links</a></li>
+          <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Glossary"/>">Glossary of Terms</a></li>
+          <li><a href="/awstats/awstats.pl?config=tritrypdb.org">Website Statistics</a></li>
         	</ul>
       </li>
       <li>

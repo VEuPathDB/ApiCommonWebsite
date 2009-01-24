@@ -15,6 +15,9 @@
 		<div id="menu_lefttop">
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">News</a>
+
+
+<%--------------  NEWS ---------------------------------------------%>
 				<div class="menu_lefttop_drop">
                     <c:choose>
                       <c:when test="${newsAnswer.resultSize < 1}">
@@ -46,6 +49,26 @@
                       </c:otherwise>
                     </c:choose>
 				</div>
+
+<%--------------  COMMUNITY LINKS ---------------------------------------------%>
+				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
+				<a class="heading" href="#">Community Links</a>
+				<div class="menu_lefttop_drop"><ul>
+					<li><a href="http://www.genedb.org/">GeneDB</a></li>
+					<li><a href="http://www.EuPathDB.org/">EuPathDB</a></li>
+					<li><a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a></li>
+					<li><a href="http://www.wellcome.ac.uk/index.htm">The Wellcome Trust</a></li>
+					<li><a href="http://www.who.int/trypanosomiasis_african/en/index.html">Human African Trypanosomiasis</a></li>
+					<li><a href="http://www.who.int/neglected_diseases/diseases/chagas/en/">Chagas Disease - American Trypanosomiasis</a></li>
+					<li><a href="http://www.who.int/leishmaniasis/en/">Leishmaniasis</a></li>
+					<li><a href="http://tryps.rockefeller.edu/">TrypsRU</a></li>
+
+					<br><a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;"><b>If you have a link that you think would be useful for the community, please send us a note.</b></a>
+				</ul></div>
+
+
+
+<%--------------  TUTORIALS ---------------------------------------------%>
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Web Tutorials</a>
 				<div class="menu_lefttop_drop"><ul>
@@ -71,33 +94,19 @@ The TriTrypDB tutorials will be here soon. In the meantime we provide you with a
 			<%--	<site:tutorials/>   --%>
 				</ul></div>
 
-				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
-				<a class="heading" href="#">Community Links</a>
-				<div class="menu_lefttop_drop"><ul>
-					<li><a href="http://www.genedb.org/">GeneDB</a></li>
-					<li><a href="http://www.EuPathDB.org/">EuPathDB</a></li>
-					<li><a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a></li>
-					<li><a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a></li>
-					<li><a href="http://www.wellcome.ac.uk/index.htm">The Wellcome Trust</a></li>
-					<li><a href="http://www.who.int/trypanosomiasis_african/en/index.html">Human African Trypanosomiasis</a></li>
-					<li><a href="http://www.who.int/neglected_diseases/diseases/chagas/en/">Chagas Disease - American Trypanosomiasis</a></li>
-					<li><a href="http://www.who.int/leishmaniasis/en/">Leishmaniasis</a></li>
-					<li><a href="http://tryps.rockefeller.edu/">TrypsRU</a></li>
 
-					<br><a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;"><b>If you have a link that you think would be useful for the community, please send us a note.</b></a>
-				</ul></div>
+
+<%--------------  INFO AND HELP ---------------------------------------------%>
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Information and Help</a>
 				<div class="menu_lefttop_drop"><ul>
-						<li><a href="#">Glossary of Terms</a></li>
-						<li><a href="#">Website Usage Statistics</a></li>
-						<li><a href="#">Acknowledgements</a></li>
-						<li><a href="#">Contact Us</a></li>
+						<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Glossary"/>">Glossary of Terms</a></li>
+						<li><a href="/awstats/awstats.pl?config=tritrypdb.org">Website Usage Statistics</a></li>
+						<li><a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">Contact Us</a></li>
 				</ul></div>
+
+
 		</div>
 	</div>
 </div>
-</body>
-
-</html>	
 	
