@@ -175,35 +175,22 @@ public class CommentFactory {
 
         try {
             // make new comment searchable by Oracle Text by updating TextSearchableComment
-            int commentId = platform.getNextId(commentSchema, "comments");
-
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+	    String insertSql = new String(
                     "insert into apidb.TextSearchableComment (comment_id, source_id, project_id, organism, content) \n"
-                            + "select c.comment_id, c.stable_id as source_id, c.project_name as c.project_id, c.organism, \n"
+                            + "select c.comment_id, c.stable_id, c.project_name, c.organism, \n"
                             + "c.headline || '|' || c.content || '|' || \n"
-                            + "u.first_name || ' ' || u.last_name || '(' || u.organization || ')' as content\n"
+                            + "u.first_name || ' ' || u.last_name || '(' || u.organization || ')' \n"
                             + "from " + commentSchema + "comments c, " + userSchema + "users u \n"
                             + "where c.email = u.email(+) \n"
-                            + "  and c.comment_id = " + commentId);
+                            + "  and c.comment_id in \n"
+                            + "      (select comment_id from " + commentSchema + "comments minus select comment_id from apidb.TextSearchableComment)");
 
+	    //                            + "  and c.comment_id = " + commentId);
+
+	    logger.debug("insert SQL: " + insertSql);
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), insertSql);
             int result = ps.executeUpdate();
             logger.debug("Copied row to TextSearchableComment: " + result);
-
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                    "drop index apidb.comments_text_ix;");
-
-            result = ps.executeUpdate();
-            logger.debug("Dropped index on TextSearchableComment: " + result);
-
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                     "create index apidb.comments_text_ix \n"
-                     + "on apidb.TextSearchableComment(content) \n"
-                     + "indextype is ctxsys.context \n"
-                     + "parameters('DATASTORE CTXSYS.DEFAULT_DATASTORE');");
-
-            result = ps.executeUpdate();
-            logger.debug("Created index on TextSearchableComment: " + result);
-
 
         } catch (SQLException ex) {
             ex.printStackTrace();
