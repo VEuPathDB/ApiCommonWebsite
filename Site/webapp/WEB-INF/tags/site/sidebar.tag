@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
 
 <c:set var="project" value="${applicationScope.wdkModel.name}" />
 <c:set var="xqSetMap" value="${wdkModel.xmlQuestionSetsMap}"/>
@@ -48,12 +49,28 @@
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Web Tutorials</a>
 				<div class="menu_lefttop_drop"><ul>
-						<li>Introduction<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
-						<li>Queries and Tools<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
-						<li>Query History<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
-						<li>Introduction to the Genome Browser<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
-						<li>List of Gene Identifiers as Query Input<br />(<a href="#">Quick Time</a>) (<a href="#">Windows Media</a>) (<a href="#">Flash</a>)</li>
+The TriTrypDB tutorials will be here soon. In the meantime we provide you with access to PlasmoDB and CryptoDB tutorials, websites that offer similar navigation and querying capabilities.<br><br>
+						<li>Queries and Tools<br />(<a href="http://apidb.org/tutorials/QueriesAndTools_PlasmoDB_5.3.mov">Quick Time</a>) 
+								(<a href="http://apidb.org/tutorials/QueriesAndTools_PlasmoDB_5.3.avi">Windows Media</a>) 
+								(<a href="http://apidb.org/flv_player/flvplayer.swf?file=/tutorials/QueriesAndTools_PlasmoDB_5.3.flv&autostart=true">Flash</a>)</li>
+						<li>Query History<br />(<a href="http://apidb.org/tutorials/QueryHistory_CryptoDB_3.5.mov">Quick Time</a>) 
+								(<a href="http://apidb.org/tutorials/QueryHistory_CryptoDB_3.5.wmv">Windows Media</a>) 
+								(<a href="http://apidb.org/flv_player/flvplayer.swf?file=/tutorials/QueryHistory_CryptoDB_3.5.flv&autostart=true">Flash</a>)</li>
+						<li>Introduction to the Genome Browser<br />(<a href="http://apidb.org/tutorials/GenomeBrowserIntro_CryptoDB_3.5.mov">Quick Time</a>) 
+								(<a href="http://apidb.org/tutorials/GenomeBrowserIntro_CryptoDB_3.5.avi">Windows Media</a>) 
+								(<a href="http://apidb.org/flv_player/flvplayer.swf?file=/tutorials/GenomeBrowserIntro_CryptoDB_3.5.flv&autostart=true">Flash</a>)</li>
+     						<li>Options to Download Results<br />(<a href="http://apidb.org/tutorials/DownloadResults_PlasmoDB_5.3.mov">Quick Time</a>)
+								(<a href="http://apidb.org/tutorials/DownloadResults_PlasmoDB_5.3.avi">Windows Media</a>) 
+								(<a href="http://apidb.org/flv_player/flvplayer.swf?file=/tutorials/DownloadResults_PlasmoDB_5.3.flv&autostart=true">Flash</a>)</li>
+						<li>List of Gene Identifiers as Query Input<br />(<a href="http://apidb.org/tutorials/ListOfIDs_PlasmoDB_5.3.mov">Quick Time</a>) 
+								(<a href="http://apidb.org/tutorials/ListOfIDs_PlasmoDB_5.3.avi">Windows Media</a>) 
+								(<a href="http://apidb.org/flv_player/flvplayer.swf?file=/tutorials/ListOfIDs_PlasmoDB_5.3.flv&autostart=true">Flash</a>)</li>
+						<li>Query Result Column Management<br />(<a href="http://apidb.org/tutorials/ColumnManagement_PlasmoDB_5.3.mov">Quick Time</a>)
+								(<a href="http://apidb.org/tutorials/ColumnManagement_PlasmoDB_5.3.avi">Windows Media</a>) 
+								(<a href="http://apidb.org/flv_player/flvplayer.swf?file=/tutorials/ColumnManagement_PlasmoDB_5.3.flv&autostart=true">Flash</a>)</li>
+			<%--	<site:tutorials/>   --%>
 				</ul></div>
+
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Community Links</a>
 				<div class="menu_lefttop_drop"><ul>
@@ -72,7 +89,7 @@
 				<img src="/assets/images/TriTrypDB/menu_lft1.png" alt="" width="208" height="12" />
 				<a class="heading" href="#">Information and Help</a>
 				<div class="menu_lefttop_drop"><ul>
-						<li> <a href="#">Glossary of Terms</a></li>
+						<li><a href="#">Glossary of Terms</a></li>
 						<li><a href="#">Website Usage Statistics</a></li>
 						<li><a href="#">Acknowledgements</a></li>
 						<li><a href="#">Contact Us</a></li>
