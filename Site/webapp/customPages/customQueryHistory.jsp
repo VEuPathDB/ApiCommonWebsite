@@ -127,7 +127,26 @@ function disableRename() {
 function deleteHistory(historyId, customName) {
     var agree=confirm("Are you sure you want to delete the query history:\n[#"
                       + historyId + "] \"" + customName + "\"?");
-    return (agree)? true : false ;
+
+    if (agree) {
+	url = "deleteHistory.do?wdk_history_id=" + historyId;
+	$.ajax({
+		url: url,
+		dataType: "html",
+		success: function(data) {
+			$("div#mysearch").html($("div#mysearch",data).html());
+			$("div.innertube").html($("div.innertube",data).html());
+			if ($("#" + currentPanel).length == 0) {
+				var type = $("#history_tabs a:first").attr("id").substr(4);
+				displayHist(type);
+			} else
+				$("#" + currentPanel).show();
+		},
+		error: function(data, msg, e) {
+			alert("ERROR \n " + msg + "\n" + e);
+		}
+	});
+    }
 }
 
 function deleteAllHistories() {
@@ -270,6 +289,7 @@ function reviseBooleanQuery(type, expression) {
             <th>&nbsp;</th>
             <th>&nbsp;</th>
           </c:if>
+          <th>&nbsp;</th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
@@ -416,6 +436,10 @@ function reviseBooleanQuery(type, expression) {
                <a href='<c:url value="${transformUrl}"/>'>Orthologs</a>
            </td>	    
          </c:if>
+
+         <td>
+           <a href="javascript:deleteHistory(${historyId},'${history.customName}')">delete</a>
+         </td>
         </tr>
         <c:set var="i" value="${i+1}"/>
        </c:forEach>
