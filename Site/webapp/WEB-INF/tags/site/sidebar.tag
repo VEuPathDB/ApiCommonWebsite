@@ -61,7 +61,10 @@
 					<li><a href="http://www.who.int/trypanosomiasis_african/en/index.html">Human African Trypanosomiasis</a></li>
 					<li><a href="http://www.who.int/neglected_diseases/diseases/chagas/en/">Chagas Disease - American Trypanosomiasis</a></li>
 					<li><a href="http://www.who.int/leishmaniasis/en/">Leishmaniasis</a></li>
-					<li><a href="http://tryps.rockefeller.edu/">TrypsRU</a></li>
+					<li><a href="http://www.who.int/tdr/">WHO/TDR</a></li>
+                                        <li><a href="http://www.vsgdb.net/">VSG-DB</a></li>
+                                        <li><a href="http://trypanofan.path.cam.ac.uk/trypanofan/main/">TrypanoFAN</a></li>
+                                        <li><a href="http://tryps.rockefeller.edu/">TrypsRU</a></li>
 
 					<br><a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;"><b>If you have a link that you think would be useful for the community, please send us a note.</b></a>
 				</ul></div>
