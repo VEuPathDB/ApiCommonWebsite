@@ -153,7 +153,7 @@ function storeIntelligentCookie(name, value) {
     }
 }
 
-function uncheck(notFirst) {
+function uncheckFields(notFirst) {
     var form = document.downloadConfigForm;
     var cb = form.selectedFields;
     if (notFirst) {
