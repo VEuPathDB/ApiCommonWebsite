@@ -13,7 +13,7 @@
 			<ul><li>Retrieve Specific Sequences using IDs and coordinates</li></ul>
 		</li>
 		<li><a href="/common/PubCrawler/"><strong>PubMed and Entrez</strong></a>
-			<ul><li>View the Latest Trypanosoma and Leishmania Pubmed and Entrez Results</li></ul>
+			<ul><li>View the Latest <i>Trypanosoma</i> and <i>Leishmania</i> Pubmed and Entrez Results</li></ul>
 		</li>
 		<li><a href="#"><strong>GBrowse</strong></a>
 			<ul><li>View Sequences and Features in the GMOD Genome Browser</li></ul>
