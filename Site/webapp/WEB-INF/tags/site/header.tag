@@ -169,6 +169,30 @@
 </style>
 <![endif]-->
 
+<%------------------ setting title --------------%>
+ 
+<c:if test="${title == null}">
+<c:choose>
+      <c:when test = "${project == 'CryptoDB'}">
+             <c:set var="title" value="CryptoDB : The Cryptosporidium genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'GiardiaDB'}">
+             <c:set var="title" value="GiardiaDB : The Giardia genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'PlasmoDB'}">
+             <c:set var="title" value="PlasmoDB : The Plasmodium genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'ToxoDB'}">
+             <c:set var="title" value="ToxoDB : The Toxoplasma genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'TrichDB'}">
+             <c:set var="title" value="TrichDB : The Trichomonas genome resource"/>
+      </c:when>
+      <c:when test = "${project == 'TriTrypDB'}">
+             <c:set var="title" value="TriTrypDB: The Kinetoplastid genome resource"/>
+      </c:when>
+</c:choose>
+</c:if>
 
 <%--------------------------- HEAD of HTML doc ---------------------%>
 <head>
@@ -364,3 +388,9 @@ ${headElement}
 
 <site:menubar />
 <site:siteAnnounce  refer="${refer}"/>
+
+<c:if test="${refer != 'home' && refer != 'home2'}">
+	<div id="contentwrapper">
+	<div id="contentcolumn2">
+	<div class="innertube">
+</c:if>

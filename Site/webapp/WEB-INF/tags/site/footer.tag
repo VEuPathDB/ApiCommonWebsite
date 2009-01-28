@@ -3,6 +3,14 @@
 <%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
+<%------------ divs defined in header.tag for all pages but home/home2  -----------%>
+<c:if test="${refer != 'home' && refer != 'home2'}">
+</div> <%-- class="innertube"   --%>
+</div> <%-- id="contentcolumn2" --%>
+</div> <%-- id="contentwrapper" --%>
+</c:if>
+
 <c:set var="dispModelName" value="${applicationScope.wdkModel.displayName}" />
  <c:if test="${fn:containsIgnoreCase(dispModelName, 'ApiDB')}">
      <c:set var="dispModelName" value="EupathDB" />
@@ -17,5 +25,8 @@
 </div>
 
 </div>
+
+
+
 </body>
 </html>

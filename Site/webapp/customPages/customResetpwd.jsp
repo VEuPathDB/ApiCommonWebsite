@@ -15,11 +15,6 @@
                  division="profile"/>
 
 
-<div id="contentwrapper">
-        <div id="contentcolumn2">
-                <div class="innertube">
-
-
 
 <!-- display page header with recordClass type in banner -->
 <c:set value="${wdkRecord.recordClass.type}" var="recordType"/>
@@ -84,10 +79,5 @@
 </c:choose>
 
 </div>
-
-                </div>
-        </div>
-</div>
-
 
 <site:footer/>

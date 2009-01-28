@@ -60,10 +60,6 @@ function validateFields(e)
 //-->
 </script>
 
-<div id="contentwrapper">
-        <div id="contentcolumn2">
-                <div class="innertube">
-
 
 <!-- get user object from session scope -->
 <c:set var="wdkUser" value="${sessionScope.wdkUser}"/>
@@ -256,9 +252,7 @@ How we will use your name and institution:
 <li>nothing else.  We will not release your name or institution.  
 </ul>
 
-                </div>
-        </div>
-</div>
+
 
 
 <site:footer/>

@@ -185,9 +185,6 @@ function reviseBooleanQuery(type, expression) {
 </script>
 <script type='text/javascript' src='<c:url value="/js/lib/jquery-1.2.6.js"/>'></script>
 
-<div id="contentwrapper">
-<div id="contentcolumn2">
-<div class="innertube">
 
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBorders> 
 
@@ -632,9 +629,5 @@ function reviseBooleanQuery(type, expression) {
 	});
 </script>
 <script type='text/javascript' src='<c:url value="/js/history.js"/>'></script>
-
-</div> <%-- class="innertube"   --%>
-</div> <%-- id="contentcolumn2" --%>
-</div> <%-- id="contentwrapper" --%>
 
 <site:footer/>

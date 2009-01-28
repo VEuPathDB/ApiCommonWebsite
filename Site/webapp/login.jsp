@@ -7,10 +7,6 @@
              banner="ApiDB Account Login"
              division="login"/>
 
-<div id="contentwrapper">
-        <div id="contentcolumn2">
-                <div class="innertube">
-
 
 <c:choose>
   <c:when test="${param.originUrl != null}">
@@ -54,8 +50,5 @@
 </table>-->
 
 
-                </div>
-        </div>
-</div>
 <site:footer />
 

@@ -8,11 +8,6 @@
 <%-- header includes menubar and announcements tags --%>
 <site:header refer="" />
 
-<div id="contentwrapper">
-  	<div id="contentcolumn2">
-		<div class="innertube">
-			<site:question />
-		</div>
-	</div>
-</div>
+<site:question />
+
 <site:footer />
