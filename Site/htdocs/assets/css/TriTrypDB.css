@@ -618,8 +618,10 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 	font-weight: normal;
 	padding: 6px 6px 6px 4px;
 	line-height: 15px;
-	list-style-position: inside;
+	list-style-position: outside;
 	list-style-type: square;
+	margin-left:  1em;
+	padding-left: 0;
 }
 
 .menu_lefttop_drop {
@@ -1277,6 +1279,9 @@ a.redbutton:active span {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #cirbulletlist ul {
 	list-style-type: disc;
+	margin-left:  1em;
+	padding-left: 1em;
+	list-style-position: outside;
 }
 
 

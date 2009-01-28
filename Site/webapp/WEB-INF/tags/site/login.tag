@@ -25,7 +25,7 @@
 <c:remove var="originUrl"  scope="session"/>
 <c:remove var="refererUrl" scope="session"/>
 
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="50%">
 <c:choose>
   <c:when test="${wdkUser != null && wdkUser.guest != true}">
 
@@ -80,7 +80,7 @@
      <tr>
        <td align="left">
          <div class="small">
-           <input id="email" type="text" name="email" size="11">
+           <input id="email" type="text" name="email" size="30">
          </td><td>
          <div class="small">
            <input id="password" type="password" name="password" size="11">

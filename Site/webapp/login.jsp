@@ -33,11 +33,14 @@
 
 
 <p><b>Login</b> so you can:
+
+<div id="cirbulletlist">
 <ul>
 <li>comment on genes and sequences
 <li>have your query history remembered from session to session
 <li>set site preferences (future release)
 </ul>
+</div>
 
 <p>
 
