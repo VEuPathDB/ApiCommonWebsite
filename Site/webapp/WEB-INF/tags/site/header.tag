@@ -171,7 +171,7 @@
 
 <%------------------ setting title --------------%>
  
-<c:if test="${title == null}">
+<c:if test="${title == null && banner == null} ">
 <c:choose>
       <c:when test = "${project == 'CryptoDB'}">
              <c:set var="title" value="CryptoDB : The Cryptosporidium genome resource"/>
@@ -197,7 +197,9 @@
 <%--------------------------- HEAD of HTML doc ---------------------%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>${title}</title>
+<title>
+<c:out value="${title}" default="${banner}" />
+</title>
 
 <link rel="icon" type="image/png" href="/assets/images/${project}/favicon.ico"> <%-- standard --%>
 <link rel="shortcut icon" href="/assets/images/${project}/favicon.ico"> <%-- for IE7 --%>
@@ -285,7 +287,7 @@ ${headElement}
           <li><a href="#">Who We Are</a></li>
           <li><a href="#">What We Do</a></li>
           <li><a href="#">What You Can Do Here</a></li>
-          <li><a href="<c:url value='showXmlDataContent.do?name=XmlQuestions.News'/>">News</a></li>
+          <li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.News'/>">News</a></li>
           <li><a href="#">Acknowledgements</a></li>
 --%>
         	</ul>

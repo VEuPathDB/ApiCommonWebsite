@@ -18,8 +18,9 @@
 
 <div align="center">
 
+
 <div id="footer">
-    <a href="http://www.eupathdb.org"><img src="/assets/images/eupathdblink.png" alt="Link to EuPathDB homepage" width="144" height="25" align="right" border='0' /></a>	&copy;2008  The EuPath Project Team:: 
+    <a href="http://www.eupathdb.org"><img src="/assets/images/eupathdblink.png" alt="Link to EuPathDB homepage" width="144" height="25" align="right" border='0' /></a>	&copy;2009  The EuPath Project Team:: 
     <a href="http://${fn:toLowerCase(dispModelName)}.org">${dispModelName}.org</a> <br />
     Please <a href="<c:url value="/help.jsp"/>">Contact Us</a> with any questions or concerns.
 </div>

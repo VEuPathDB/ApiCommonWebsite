@@ -6,17 +6,12 @@
 <%@ taglib prefix="nested" uri="http://jakarta.apache.org/struts/tags-nested" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- get wdkXmlAnswer saved in request scope -->
 <c:set var="xmlAnswer" value="${requestScope.wdkXmlAnswer}"/>
-
 <c:set var="banner" value="${wdkModel.displayName} ${xmlAnswer.question.displayName}"/>
 
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
-
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
 <c:set var="project" value="${props['PROJECT_ID']}" />
-
-
 
 <site:header title="${wdkModel.displayName} : Tutorials"
                  banner="${banner}"
@@ -26,7 +21,7 @@
                  division="tutorials"
                  headElement="${headElement}" />
 
-<c:if test = "${project == 'GiardiaDB'}">
+<c:if test = "${project == 'GiardiaDB' || project == 'TriTrypDB'}">
 The ${project} tutorials will be here soon. In the meantime we provide you with access to PlasmoDB.org and CryptoDB.org tutorials, websites that offer the same navigation and querying capabilities as in ${project}.org.
 <br>
 </c:if>

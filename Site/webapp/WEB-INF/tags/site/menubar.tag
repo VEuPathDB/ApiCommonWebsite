@@ -51,8 +51,8 @@
 	<ul>
 	<li><a href="#">Data Sources</a>
   		<ul>
-   			 <li><a href="<c:url value='showXmlDataContent.do?name=XmlQuestions.DataSources'/>">Data Detail</a></li>
- 	    		<li><a href="#">Analysis Methods</a></li>
+   			 <li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.DataSources'/>">Data Detail</a></li>
+ 	    		<li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.Methods'/>">Analysis Methods</a></li>
 <%--
    		<li><a href="#">Data Statistics</a></li>
                 <li><a href="#">Standard Operating Procedures (SOPs)</a></li>
