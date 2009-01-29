@@ -672,6 +672,7 @@ div#menu ul li:hover ul, div#menu ul ul li:hover ul, div#menu ul ul ul li:hover 
 .img_align_middle {
 	white-space: normal;
 	margin-bottom: -4px;
+	background-color: transparent;
 }
 
 
