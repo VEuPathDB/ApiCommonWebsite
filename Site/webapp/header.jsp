@@ -3,15 +3,14 @@
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:set var="props" value="${applicationScope.wdkModel.properties}" />
+<c:set var="project" value="${props['PROJECT_ID']}" />
 
-<c:set var="ftype" value="Download"/>
+<c:set var="ftype" value="Error Page"/>
 <c:if test="${!empty param.ftype}">
-  <c:set var="ftype" value="${param.ftype}"/>
+  <c:set var="ftype" value="${param.ftype} Files"/>
 </c:if>
 
-<%-- used by gbrowse and other pages via /html/include/fancy*IndexHeader.shtml ----%>
-<site:header     banner="${project} ${ftype} Files"
-                 isBannerImage="${isbannerimage}"
-                 bannerSuperScript="<br><b><font size=\"+1\">Release ${version}</font></b>"
-                 division="downloads"/>
+<%-- used by gbrowse and error pages directly, and by community files and download files pages via /html/include/fancy*IndexHeader.shtml ----%>
+<site:header     banner="${project} ${ftype}" />
 
