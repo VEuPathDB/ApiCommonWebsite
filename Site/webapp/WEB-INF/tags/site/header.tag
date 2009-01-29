@@ -12,7 +12,7 @@
 			  description="Page calling this tag"
 %>
 
-<%-------- OLD set of attributes, only division being used by login   ---------------------%>
+<%-------- OLD set of attributes,  division being used by login, banner by many pages   ---------------------%>
 
 <%@ attribute name="banner"
               required="false"
@@ -86,8 +86,8 @@
 		font-size: 100%;
 	}
 
-	*html .ts_ie {
-		margin-left:-20px;
+	.ts_ie {
+		margin-left:-15px;
 	}
 
 	#menu ul li {
@@ -170,8 +170,10 @@
 <![endif]-->
 
 <%------------------ setting title --------------%>
- 
-<c:if test="${title == null && banner == null} ">
+
+<c:if test="${title == null} ">
+
+
 <c:choose>
       <c:when test = "${project == 'CryptoDB'}">
              <c:set var="title" value="CryptoDB : The Cryptosporidium genome resource"/>
@@ -192,11 +194,13 @@
              <c:set var="title" value="TriTrypDB: The Kinetoplastid genome resource"/>
       </c:when>
 </c:choose>
+
 </c:if>
 
 <%--------------------------- HEAD of HTML doc ---------------------%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 <title>
 <c:out value="${title}" default="${banner}" />
 </title>

@@ -5,7 +5,7 @@
 <%@ taglib prefix="random" uri="http://jakarta.apache.org/taglibs/random-1.0" %><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%-- TRANSPARENT PNGS for IE6 --%>
-<script defer type="text/javascript" src="/assets/js/pngfix.js"></script>
+<%--  <script defer type="text/javascript" src="/assets/js/pngfix.js"></script>   --%>
 
 <%-- get wdkModel saved in application scope --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
