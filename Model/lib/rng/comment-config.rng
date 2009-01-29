@@ -5,12 +5,17 @@
         <element name="commentConfig">
             <!-- comment specific properties -->
             <attribute name="commentSchema" />
-            <attribute name="userFileSchema" />
-            <attribute name="userFileUploadDir" />
             <attribute name="commentTextFileDir" />
             <attribute name="userLoginSchema" />
             <attribute name="userLoginDbLink" />
             
+            <optional>
+              <attribute name="userFileSchema" />
+            </optional>
+            <optional>
+              <attribute name="userFileUploadDir" />
+            </optional>
+
             <!-- common properties, exact copy from DBBaseContent -->
             <attribute name="login" />
             <attribute name="password" />
