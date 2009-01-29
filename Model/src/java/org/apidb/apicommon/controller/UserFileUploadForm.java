@@ -8,7 +8,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
-public class CommunityUploadForm extends ActionForm {
+public class UserFileUploadForm extends ActionForm {
 
     private FormFile file;
     

@@ -1,8 +1,16 @@
 package org.apidb.apicommon.controller;
 
-import  org.apidb.apicommon.controller.CommunityUploadForm;
+import org.apidb.apicommon.model.UserFileUploadException;
 
 import java.io.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import org.json.JSONException;
+import org.xml.sax.SAXException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +24,16 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
 import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 
-public class CommunityUploadAction extends Action {
+import org.apidb.apicommon.model.UserFile;
+import org.apidb.apicommon.model.UserFileFactory;
+
+public class UserFileUploadAction extends Action {
 
     public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
@@ -34,13 +48,13 @@ public class CommunityUploadAction extends Action {
         referer = referer.substring(index);
         ActionForward forward = new ActionForward(referer, false);
 
-        CommunityUploadForm cuForm = (CommunityUploadForm)form;
+        UserFileUploadForm cuForm = (UserFileUploadForm)form;
 
-        FormFile file      = cuForm.getFile();
-        String contentType = file.getContentType();
-        String fileName    = file.getFileName();
-        int fileSize       = file.getFileSize();
-        byte[] fileData    = file.getFileData();
+        FormFile formFile      = cuForm.getFile();
+        String contentType = formFile.getContentType();
+        String fileName    = formFile.getFileName();
+        int fileSize       = formFile.getFileSize();
+        byte[] fileData    = formFile.getFileData();
 
         // user and project metadata code pilfered from 
         // org.apidb.apicommon.controller.ProcessAddCommentAction
@@ -60,7 +74,17 @@ public class CommunityUploadAction extends Action {
         String email = user.getEmail().trim().toLowerCase();
         String userUID = user.getSignature().trim();
         String projectName = wdkModel.getDisplayName();
-        String projectVersion = wdkModel.getVersion();
+        String projectVersion = wdkModel.getVersion();        
+
+        UserFile userFile = new UserFile(userUID);
+        userFile.setFileName(fileName);
+        userFile.setFileData(fileData);
+        userFile.setContentType(contentType);
+        userFile.setFileSize(fileSize);
+        userFile.setEmail(email);
+        userFile.setUserUID(userUID);
+        userFile.setProjectVersion(projectName);
+        userFile.setProjectVersion(projectVersion);
 
         System.out.println("contentType " + contentType);
         System.out.println("fileName " + fileName);
@@ -70,28 +94,38 @@ public class CommunityUploadAction extends Action {
         System.out.println("projectName " + projectName);
         System.out.println("projectVersion " + projectVersion);
         
-        String filePath = getServlet().getServletContext().getRealPath("/") +"upload";
-
-        if(!fileName.equals("")){  
-            System.out.println("Server path:" +filePath);
-            //Create file
-            File fileOnDisk = new File(filePath, fileName);
-            //If file does not exists create file                      
-            if(!fileOnDisk.exists()){
-              FileOutputStream fileOutStream = new FileOutputStream(fileOnDisk);
-              fileOutStream.write(file.getFileData());
-              fileOutStream.flush();
-              fileOutStream.close();
-            }  
-    
-    
-        }
+        getUserFileFactory().addUserFile(userFile);
+        
         //Set file name to the request object
         request.setAttribute("fileName",fileName);
         request.setAttribute("fileSize",fileSize);
 
         return new ActionForward("/communityUploadResult.jsp",true);
     }
+
+    protected UserFileFactory getUserFileFactory() throws WdkModelException,
+            NoSuchAlgorithmException, ParserConfigurationException,
+            TransformerFactoryConfigurationError, TransformerException,
+            IOException, SAXException, SQLException, JSONException,
+            WdkUserException, InstantiationException, IllegalAccessException,
+            ClassNotFoundException {
+        UserFileFactory factory = null;
+        try {
+            factory = UserFileFactory.getInstance();
+        } catch (WdkModelException ex) {
+            // the comment factory is not initialized yet, do it
+            ServletContext application = getServlet().getServletContext();
+
+            // get the gus_home & project id
+            String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
+            String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+
+            UserFileFactory.initialize(gusHome, projectId);
+            factory = UserFileFactory.getInstance();
+        }
+        return factory;
+    }
+
 }
 
 /**

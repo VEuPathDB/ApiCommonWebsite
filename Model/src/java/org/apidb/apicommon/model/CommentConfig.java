@@ -15,6 +15,8 @@ public class CommentConfig extends ModelConfigDB {
     private String commentTextFileDir;
     private String userLoginSchema = "";
     private String userLoginDbLink = "";
+    private String userFileSchema = "";
+    private String userFileUploadDir = "";
 
     /**
      * @return Returns the commentSchema.
@@ -70,4 +72,24 @@ public class CommentConfig extends ModelConfigDB {
                     : "@" + userLoginDbLink;
         }
     }
+    
+    public String getUserFileSchema() {
+        return userFileSchema;
+    }
+
+    public void setUserFileSchema(String commentSchema) {
+        if (userFileSchema != null && userFileSchema.length() > 0) {
+            this.userFileSchema = (userFileSchema.endsWith(".")) ? userFileSchema
+                    : userFileSchema + ".";
+        }
+    }
+
+    public String getUserFileUploadDir() {
+        return userFileUploadDir;
+    }
+
+    public void setUserFileUploadDir(String userFileUploadDir) {
+        this.userFileUploadDir = userFileUploadDir;
+    }
+
 }

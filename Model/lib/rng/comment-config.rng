@@ -5,6 +5,8 @@
         <element name="commentConfig">
             <!-- comment specific properties -->
             <attribute name="commentSchema" />
+            <attribute name="userFileSchema" />
+            <attribute name="userFileUploadDir" />
             <attribute name="commentTextFileDir" />
             <attribute name="userLoginSchema" />
             <attribute name="userLoginDbLink" />
