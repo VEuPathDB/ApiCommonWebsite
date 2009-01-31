@@ -245,6 +245,9 @@ ${headElement}
 <%--------------------------- BODY of HTML doc ---------------------%>
 <body>
 
+<%-- added for overLIB --%>
+<div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
+
 <div id="header2">
    <div id="header_rt">
 

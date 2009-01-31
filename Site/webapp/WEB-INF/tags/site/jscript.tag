@@ -72,4 +72,5 @@
 <!-- js for Contact Us window -->
 <script type='text/javascript' src='<c:url value="/js/newwindow.js"/>'></script>
 
-
+<!-- js for popups in query grid and other.... -->
+<script type='text/javascript' src='<c:url value="/js/overlib.js"/>'></script>
