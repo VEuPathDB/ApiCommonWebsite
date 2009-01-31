@@ -24,7 +24,7 @@
 <c:set var="INDY" value="${fn:containsIgnoreCase(modelName, 'tritryp')}" />
 
 <%--------------------------------------------------------------------%>
-
+<%-- these divs are needed because they do NOT come from header.... problem associated with having a sidebar --%>
 <div id="contentwrapper">
   <div id="contentcolumn">
 	<div class="innertube">
@@ -37,7 +37,7 @@
 <%-- QUERIES --%>
 <%-- the cellspacing is what allows for separation between Genomic and SNP (EST and ORF) titles --%>
 <%-- with new UI design the cellspacing/cellpdding of the table seems useless, innertube2 class provdes the padding --%>
-<table width="100%" border="0" cellspacing="150" cellpadding="100">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
 
 <c:if test="${PORTAL}">
