@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+<!--
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         ]]>
+       </attribute>
+       <attribute name="date">
+       </attribute>
+       <attribute name="tag">
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+-->
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 4.0 (beta) released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       17 January 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       17JanuaryRelease40Beta
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+       We are please to announce the release of CryptoDB 4.0 as a beta version to allow expedited access to our users, while at the same time allowing us to continue minor development.
+       <p>
+       This release features several new data sets (including several that were graciously provided prepublication to CryptoDB) and enhancements.
+       <p>
+       New data data sets:
+       <ul>
+         <li> The fully sequenced and annotated genome of <i>Cryptosporidium muris</i>.</li>
+         <li> More Isolate data -- CryptoDB now includes 2290 isolate records.</li>
+         <li> New proteomics data for <i>C. parvum</i>.</li>
+       </ul>
+       <p>
+       New features and enhancements:
+       <ul>
+        <li> Improved text search capability providing scored results.</li>
+        <li> Improved result summary pages that also include results filtered against all <i>Cryptosporidium</i> in CryptoDB.</li>
+        <li> A dramatically revamped isolate query section.  In particular, this includes a vastly improved organization of isolates to allow more useful queries.  Our Geographic location query now includes a map to allow visualization of isolate location by country or continent.</li>
+        <li> Blast can now be performed against reference isolates only which should facilitate typing.</li>
+        <li>Reference RFLP gel images are now made available via CryptoDB (a link from the isolate section).</li>
+       </ul>
+       ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 3.7 is released with isolates and <i>C. muris</i> ESTs
+         ]]>
+       </attribute>
+       <attribute name="date">
+       19 February 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       19February2008Release37
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+The ApiDB team is pleased to announce the release of CryptoDB 3.7
+<p>
+New features include:
+    <ul>
+	<li>records for 756 <i>Cryptosporidium</i> isolates. Queries are available for searching isolate records by ID,  
+host of origin, isolate species, and several other characteristics.  
+For the full set of search options, see the "Identify Isolates by:"  
+category on the web site's front page. Multiple isolate sequences can  
+be readily aligned with ClustalW from the query result page.
+<li>also included are 27,498 <i>C. muris</i> oocyst ESTs aligned to the <i>C. muris</i> 
+draft genome.
+<li>alignments of contigs of <i>C. parvum</i>, <i>C. muris</i> and <i>C. hominis</i> have been  
+remade using the Mercator orthology mapping program and the MAVID  
+multiple global alignment program. These alignments are available in  
+the Genome Browser.
+    </ul>
+ ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 3.6 is released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       6 December 2007 00:00
+       </attribute>
+       <attribute name="tag">
+       5December2007Release36
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+The ApiDB team is pleased to announce the release of CryptoDB 3.6
+<p>
+New features include:
+    <ul>
+	<li>SNP data from <i>C. parvum</i> IOWA, MD, TU114 strains</li>
+	<li>View and download multiple sequence alignments between <i>parvum</i>, <i>hominis</i> and <i>muris</i> with polymorphisms highlighted.</li>
+	<li>More than 10,000 ESTs from the <a href="http://fullmal.hgc.jp/cp/index.html">Full-Cryptosporidium cDNA Database</a> have been added</li>
+	<li>Additional Mass Spec data has been loaded (will have better descriptions of samples before release).</li>
+	<li>All BLAST queries consolidated to a single interface.</li>
+	<li>Querying with a single identifier goes directly to the gene page rather than the summary results page.</li>
+    </ul>
+
+   ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         Status of the <i>C. muris</i> Genome Sequencing Project
+         ]]>
+       </attribute>
+       <attribute name="date">
+       18 June 2007 00:00
+       </attribute>
+       <attribute name="tag">
+       18June2007CmurisStatus
+       </attribute>
+ <!--  announcement verbiage by Joana C. Silva, TIGR (with slight edits by CryptoDB) -->
+       <attribute name="item">           
+         <![CDATA[
+         A preliminary assembly of <i>C. muris</i> was obtained at approximately 
+         4.5 X coverage, and
+reveals a ~9Mb genome with average cytosine-guanine content (%GC) of ~28.5
+%. This assembly is based on ~50,000 reads obtained mostly from a
+small-insert library and a fosmid library. This assembly is estimated to
+contain ~ 92% of the ~9Mb genome, and consists of 927 contigs arranged into
+595 scaffolds.
+<p>
+Final assembly, to be released in late summer, will include an additional 2X
+coverage obtained from a medium insert library and possibly >5X additional
+coverage obtained with 454 pyrosequencing technology. The final assembly is
+expected to contain > 99% of the genome.
+<p>
+Sequencing from the cDNA library provided by Giovanni Widmer is underway.
+Average insert length is 1,600 bp. If the library is shown to be random, an
+expected >30,000 EST reads will be obtained.
+<p>
+More information is 
+available on the project's website
+(<a href="http://msc.tigr.org/c_muris/index.shtml">http://msc.tigr.org/c_muris/index.shtml</a>).
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 3.5 is released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       18 June 2007 00:00
+       </attribute>
+       <attribute name="tag">
+       18June2007Release35
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+         New data and queries in CryptoDB 3.5:
+<ul>
+<li>Proteomics data provided by two labs (Wastling, et al. (updated from CryptoDB 3.4) and Snelling, et al. (new data)) have been loaded, and 
+these are visible on the Genome Sequence Browser. Queries to find genes, or ORFs, that show evidence of protein expression based on Mass Spec analyses are also available.</li>
+<li><i>C. muris</i> contigs from first draft assembly and translated open reading frames.</li>
+<li>Interproscan analysis of <i>Cryptosporidium</i> proteins.</li>
+</ul>
+<p>
+New features in CryptoDB 3.5:
+<ul>
+<li>We have added <a href="showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorial movies</a> to help you learn about the functionality of our site. 
+If there are additional tutorials you would like to see added please submit a request via our <a href="help.jsp">support page</a>.</li>
+<li>Most of the queries have been reorganized to make them more intuitive. Some include a new "Advanced Parameters" section. See for example "Identify Genes based on EST evidence."
+<li>The columns displayed in query result pages are improved.  The result pages also offer options for sorting, adding new columns, and moving columns around.
+<li>Downloading results is improved. A choice of formats is provided including tab-delimited, text, GFF, and FASTA to meet different needs.
+  <ul>
+  <li>Tab delimited provides an expanded list of annotations that can be directly exported as an Excel spreadsheet.
+  <li>Text provides a detailed summary for each gene including protein structures, notes, sequence, and many other choices.
+  <li> GFF is a format recognized by many applications such as the genome browser, gbrowse.
+  <li> FASTA also provides a common format used for BLAST and other applications. The FASTA option provides the functionality of the SRT (sequence retrieval tool).
+  </ul>
+</ul>
+
+          ]]>
+       </attribute>
+    </record>
+
+  
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB Workshop, June 3-6, 2007
+         ]]>
+       </attribute>
+       <attribute name="date">
+       4 December 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       4Dec2006Workshop
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
+at the University of Georgia, Athens, GA, USA.
+<p />
+The workshop will be a 3.5 day 
+introduction to apicomplexan database resources that are part of the <a
+href="http://www.brc-central.org/cgi-bin/brc-central/brc_central.cgi">ApiDB Bioinformatics Resource Center</a> (
+<a href="http://apidb.org">ApiDB.org</a>, 
+<a href="http://plasmodb.org">PlasmoDB.org</a>, 
+<a href="http://toxodb.org">ToxoDB.org</a>, 
+<a href="http://cryptodb.org">CryptoDB.org</a>)
+<p />
+The application deadline is January 19, 2007 (<a href="http://apidb.org/workshop/2007/register.php">Application</a>).
+Please
+<a href="http://apidb.org/workshop/2007/">click here</a> for further
+information and to register.
+         ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+       NIAID funds <i>Cryptosporidium muris</i> genome sequencing project
+    ]]>
+       </attribute>
+       <attribute name="date">
+       21 November 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       21Nov2006muris
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+The <b><i>Cryptosporidium muris</i> genome sequencing project</b> has been funded by the
+National Institute of Allergy and Infections Diseases (NIAID), through the
+Microbial Sequencing Center program at the Institute for Genomic Research
+(TIGR). This project aims at obtaining a high-quality assembly of <i>C. muris</i>
+genome based on 8X sequence coverage, as well as the comparative automated
+and manual curation of gene structure predictions of all three
+<i>Cryptosporidium</i> genomes sequenced to date. More information is 
+available on the project's website
+(<a href="http://msc.tigr.org/c_muris/index.shtml">http://msc.tigr.org/c_muris/index.shtml</a>).
+All sequence reads and traces will be deposited with GenBank and the genome
+assemblies and annotations will be deposited with GenBank and CryptoDB.
+    ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">
+       CryptoDB 3.4 is released
+       </attribute>
+       <attribute name="date">
+       17 November 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       17Nov2006release34
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+         New data and queries in CryptoDB 3.4:
+<ul>
+<li> Preview release of <i>Cryptosporidium</i> sporozoite <b>proteomic data</b> from MS/MS analysis. 
+A significantly more comprehensive study is in preparation.</li>
+<li>BLAST and protein motif searches are now saved in your query history, 
+permitting the results to be combined with other queries.</li>
+<li> A new User Login process. This will allow for:
+  <ul>
+  <li> making use of the new <b>Persistent Query History</b> functionality, i.e. retrieve your past searches for 
+       current use, as well as save further searches for the future.</li>
+  <li> using the "<b>Add a Comment</b>" facility, for commenting on genes and contigs.</li>
+  <li> adding yourself to mailing list of CryptoDB, and other ApiDB member sites.</li>
+  </ul>
+</ul>
+<li>RNA trancripts are now available on gene record pages for non-protein-coding genes</li>
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       WU-BLAST updated for CryptoDB BLAST Tool
+       </attribute>
+       <attribute name="date">06 July 2006 00:00</attribute>
+       <attribute name="tag">06Jul2006blastupdate</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The WU-BLAST programs supporting the CryptoDB BLAST tool were upgraded on 6 July 2006.
+<p>
+The current version is:<br>
+<b>2.0MP-WashU [04-May-2006] [linux26-i786-ILP32F64 2006-05-09T12:19:58]</b>
+<p>
+(The former version was 
+2.0MP-WashU [16-Mar-2005] [linux26-i686-ILP32F64 2005-03-16T08:14:50] )
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">CryptoDB will be closed for maintenance Tuesday, April 25, 2006</attribute>
+       <attribute name="date">20 April 2006 00:00</attribute>
+       <attribute name="tag">20Apr2006closed</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The offices and datacenter of CryptoDB.org are moving to new facilities and 
+will need to temporarily suspend services. We apologize for the inconvenience.
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">We are happy to announce CryptoDB Release 3.3</attribute>
+       <attribute name="date">
+       16 April 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       16Apr2006release33
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+New in this release:
+<ul>
+<li><b>New Gene Annotations</b>
+    <ul><li>
+411 additional gene annotations have been made by CryptoDB for the <i>C. parvum</i> genome. These correspond to the genes annotated in the Genbank record simply as "introns and exons likely".
+    </li>
+    </ul>
+</li>
+<li><b>PFam Predictions</b>
+    <ul><li>
+    interproscan was used to query <i>C. parvum</i> and <i>C. hominis</i> annotated proteins against the PFam component of <a href="http://www.ebi.ac.uk/interpro/index.html">InterPro</a>. A query to find genes by PFam family name has been added and predicted domains are documented on the gene record pages.
+    </li>
+    </ul>
+</li>
+<li><b>Gene Ontology Terms</b>
+    <ul><li>
+<a href="http://www.geneontology.org/">GO terms</a> were collected from the interproscan analysis and are available for gene searches and are documented on the gene record pages.
+    </li>
+    </ul>
+</li>
+<li><b>EC Numbers</b>
+    <ul><li>
+EC number annotations have been added. Sources of EC numbers include Genbank, KEGG and the metabolic pathway database CryptoCyc. Genes may be searched by EC number.
+    </li>
+    </ul>
+</li>
+<li><b>Gene Orthologs</b>
+  <ul>
+  <li>
+    <i>C. parvum</i> and <i>C. hominis</i> orthologs computed at <a     href="http://orthomcl.cbil.upenn.edu/">OrthoMCL DB</a> have been added to our database. </li>
+    <li>We have added <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=GeneQuestions.GenesByOrthologPattern&amp;go.x=12&amp;go.y=4&amp;go=go">query</a> to find <i>Cryptosporidium</i> genes that have a specified phyletic pattern, based on ortholog groups. </li>
+    </ul>
+</li>
+<li><b>Analysis for MRC-LMB's chromosome 6</b>
+    <ul><li>
+    <i>C. parvum</i> chromosome 6 completed by Bankier, et al., MRC Laboratory of Molecular Biology has undergone our in-house analysis. This includes DNA and protein sequences searched against NCBI's non-redundant protein database and protein queries against the PFam database.
+    </li>
+    </ul>
+</li>
+          ]]>
+       </attribute>
+    </record>
+
+
+
+   <record>
+       <attribute name="headline">CryptoDB Release 3.2 is out</attribute>
+       <attribute name="date">25 January 2006 00:00</attribute>
+       <attribute name="tag">25Jan2006release32</attribute>
+       <attribute name="item">
+         <![CDATA[
+New in this release:
+<ul>
+<li>
+Our graphical <a href="http://cryptodb.org/cgi-bin/gbrowse/cryptodb">genome viewer</a> 
+can now highlight syntenic gene comparisons. Check the box for 'Syntenic Genes (<i>C. hominis</i> vs. <i>C. parvum</i>)',
+then 'Update Image'
+</li>
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       We are pleased to announce Release 3.1 of CryptoDB
+       </attribute>
+       <attribute name="date">07 November 2005 00:00</attribute>
+       <attribute name="tag">09Dec2005release31</attribute>
+       <attribute name="item">
+         <![CDATA[
+Highlights of Release 3.1 include:
+
+<ul>
+<li>
+The addition of <i>C. parvum</i> chromosome 6 completed by Bankier, et al., MRC Laboratory of Molecular Biology. 
+<br>
+<font size="-1">Bankier AT, Spriggs HF, Fartmann B, Konfortov BA, Madera M, Vogel C, Teichmann SA, Ivens A, Dear PH. Integrated mapping, chromosomal sequencing and sequence analysis of <i>Cryptosporidium parvum</i>. Genome Res. 2004 Feb;14(2):327. [<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=12869580&amp;query_hl=5">PubMed</a>]</font>
+</li>
+<li>
+The site now offers a query history (accessible via the link in the toolbar) through which you may build on simple queries to create more complex combinations. There is also an option to download query results as plain text. This option is available on the search results and query history pages.
+</li>
+<li>
+New queries for ESTs and genes by protein molecular weight have been added.
+</li>
+<li>
+<a href="http://cryptodb.org:1555">CryptoCyc</a>, a database of computationally predicted metabolic pathways for <i>Cryptosporidium</i>, is available online and is cross-referenced on the gene and contig pages of CryptoDB.
+</ul>
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       Erratum: Chro.rrn021 missing from exon query
+       </attribute>
+       <attribute name="date">30 September 2005 00:00</attribute>
+       <attribute name="tag">30Sep2005Erratum</attribute>
+       <attribute name="item">
+         <![CDATA[
+<i>C. hominis</i> gene Chro.rrn021 is annotated as having two exons but in CryptoDB release 3.0 this gene is not returned in the query 'Genes With Exon Count'. This error will be fixed in the next release.
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+          GFF3 Files of <i>Cryptosporidium</i> Genome Features are Available
+         ]]>
+       </attribute>
+       <attribute name="date">16 August 2005 00:00</attribute>
+       <attribute name="tag">16Aug2005gff3</attribute>
+       <attribute name="item">
+         <![CDATA[
+CryptoDB is one of NIAID's Bioinformatics Resource Centers (<a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">BRC</a>)  for Biodefense and Emerging or Re-Emerging Infectious Diseases. As part of our efforts for interoperability among the other BRCs and the research community in general we have released the published <i>Cryptosporidium</i> genome features in standardized GFF3 format. The files may be downloaded via FTP from <a href="ftp://ftp.tigr.org/pub/brc/ApiDB/Cryptosporidium/">ftp://ftp.tigr.org/pub/brc/ApiDB/Cryptosporidium/</a>.
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       Welcome
+       </attribute>
+       <attribute name="date">
+       01 August 2005 00:00
+       </attribute>
+       <attribute name="tag">
+       welcome
+       </attribute>
+       <attribute name="item">
+         <![CDATA[
+        CryptoDB is now part of an NIH/NIAID funded Bioinformatics Resource Center 
+        to provide Apicomplexan Database Resources. This release represents a major 
+        upgrade of the database software and as a result we can provide greater 
+        search power. We now offer searches by gene and contig name in addition 
+        to key word and protein features. Results are displayed graphically and 
+        provide additional useful information for each gene or contig. We have 
+        added a GBrowse display that allows you to zoom in to the nucleotide level 
+        and we have added a comparative GBrowse view comparing <i>C. parvum</i> 
+        and <i>C. hominis</i> contigs. Please explore the site and provide feedback 
+        and suggestions to <a href="mailto:help@cryptodb.org">help@cryptodb.org</a>.
+         ]]>
+       </attribute>
+    </record>
+
+
+</xmlAnswer>
+
