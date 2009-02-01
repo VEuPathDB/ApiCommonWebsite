@@ -60,7 +60,11 @@
 
 
 <c:set var="API" value="${fn:containsIgnoreCase(modelName, 'api')    }"     />
+
+<%--
 <c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich')  || fn:containsIgnoreCase(modelName, 'tritryp')    }"     />
+--%>
+<c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich')     }"     />
 
 <c:choose>
 <c:when test="${qname == 'UnifiedBlast'}">
