@@ -28,6 +28,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.report.FullRecordReporter;
 import org.gusdb.wdk.model.report.Reporter;
+import org.gusdb.wdk.model.user.User;
 import org.json.JSONException;
 import org.xml.sax.SAXException;
 
@@ -122,12 +123,14 @@ public class RecordDumper {
             question = (Question) wdkModel.resolveReference("SequenceDumpQuestions.SequenceDumpQuestion");
             reporterName = "fullRecord";
         } else {
-            String camelRecordType = type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
-            question = (Question) wdkModel.resolveReference(camelRecordType + "DumpQuestions." + camelRecordType + "DumpQuestion");
+            String camelRecordType = type.substring(0, 1).toUpperCase()
+                    + type.substring(1).toLowerCase();
+            question = (Question) wdkModel.resolveReference(camelRecordType
+                    + "DumpQuestions." + camelRecordType + "DumpQuestion");
             if (type.equalsIgnoreCase("isolate")) {
-               reporterName = "fullRecordDump";
-        } else {
-               reporterName = "fullRecord";
+                reporterName = "fullRecordDump";
+            } else {
+                reporterName = "fullRecord";
             }
         }
 
@@ -147,9 +150,10 @@ public class RecordDumper {
         config.put(FullRecordReporter.FIELD_HAS_EMPTY_TABLE, "yes");
 
         // ask the question
+        User user = wdkModel.getSystemUser();
         Map<String, String> params = new LinkedHashMap<String, String>();
-        params.put(organismParam, organism); 
-        AnswerValue sqlAnswer = question.makeAnswerValue(params);
+        params.put(organismParam, organism);
+        AnswerValue sqlAnswer = question.makeAnswerValue(user, params);
 
         // decide the path-file name
         File dir = new File(baseDir, organism.replace(' ', '_'));
