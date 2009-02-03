@@ -128,7 +128,7 @@ EOSQL
   my $align = Bio::Graphics::Browser::PadAlignment->new(\@sequences,\@segments);
 
   print "<table align=center width=800><tr><td>";
-	print "<a href='#tree'><h3>View Guide Tree Below (It may take several minutes to load the tree)</h3></a>";
+	print "<a href='#tree'><h3>To view a guide tree, click here or scroll to the bottom of the page</h3></a>";
   print "</td></tr>";
   print "<tr><td>";
   print $cgi->pre($align->alignment( {}, { show_mismatches   => 1,
