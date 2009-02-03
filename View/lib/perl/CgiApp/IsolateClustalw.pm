@@ -48,14 +48,8 @@ sub handleIsolates {
 
   my $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
-FROM   dots.externalnasequence etn,
-       SRes.ExternalDatabaseRelease edr,
-       SRes.ExternalDatabase edb
-WHERE  edr.external_database_id = edb.external_database_id
-  AND edr.external_database_release_id = etn.external_database_release_id
-  AND edb.name = 'Isolates Data'
-  AND edr.version = '2007-12-12'
-  AND etn.source_id in ($ids)
+FROM   dots.externalnasequence etn
+WHERE etn.source_id in ($ids)
 EOSQL
 
   my $sequence;
@@ -134,13 +128,16 @@ EOSQL
   my $align = Bio::Graphics::Browser::PadAlignment->new(\@sequences,\@segments);
 
   print "<table align=center width=800><tr><td>";
+	print "<a href='#tree'><h3>View Guide Tree Below (It may take several minutes to load the tree)</h3></a>";
+  print "</td></tr>";
+  print "<tr><td>";
   print $cgi->pre($align->alignment( {}, { show_mismatches   => 1,
                                            show_similarities => 1, 
                                            show_matches      => 1})); 
 
   print "</td></tr>";
 
-  print "<tr><td><pre>Guide Tree</pre></td></tr>";
+  print "<tr><td><pre><a name='tree'>Guide Tree</a></pre></td></tr>";
   my @parts = $result->packager->parts;
   foreach my $p (@parts) {
     foreach(@$p) {
