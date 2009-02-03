@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.security.NoSuchAlgorithmException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -69,7 +70,7 @@ public class UserFileFactory {
             throws WdkModelException, UserFileUploadException {
         String filePath = config.getUserFileUploadDir();
         String fileName = userFile.getFileName();
-
+        
         try {
           if (!fileName.equals("")) {
               System.out.println("Server path:" +filePath);
@@ -82,9 +83,9 @@ public class UserFileFactory {
                 String newName = nameParts[0] + ".rev" + rev +
                     ((nameParts[1] != null) ? "." + nameParts[1] : "");
                 fileOnDisk = new File(filePath, newName);
+                userFile.setFileName(newName);
               }
 
-              userFile.setFileName(fileName);
 
               FileOutputStream fileOutStream = new FileOutputStream(fileOnDisk);
               fileOutStream.write(userFile.getFileData());
@@ -92,16 +93,57 @@ public class UserFileFactory {
               fileOutStream.close();
   
               userFile.setChecksum(md5sum(fileOnDisk));
-              System.out.println("MD5 " + userFile.getChecksum());    
+              System.out.println("MD5 " + userFile.getChecksum());
+              
+              insertUserFileMetaData(userFile);
           }
+        } catch (IOException ioe) {
+            String msg = "Could not write '" + fileName + "' to '" + filePath + "'";
+            logger.warn(msg);
+            throw new UserFileUploadException(msg + "\n" + ioe);
         } catch (Exception e) {
-            System.err.println("error " + e);
+            logger.warn("error " + e);
             throw new UserFileUploadException(e);
         }
 
     }
 
+    public void insertUserFileMetaData(UserFile userFile) throws WdkModelException {
+        String userFileSchema = config.getUserFileSchema();
 
+        PreparedStatement ps = null;
+        try {
+            int userFileId = platform.getNextId(userFileSchema, "UserFile");
+
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    "INSERT INTO " + userFileSchema + "userfile ("
+                            + "userFileId, filename, "
+                            + "checksum, uploadTime, "
+                            + "ownerUserId, notes)"
+                            + " VALUES (?,?,?,?,?,?)");
+            long currentMillis = System.currentTimeMillis();
+            
+            ps.setInt(1, userFileId);
+            ps.setString(2, userFile.getFileName());
+            ps.setString(3, userFile.getChecksum());
+            ps.setTimestamp(4, new Timestamp(currentMillis));
+            ps.setString(5, userFile.getUserUID());
+            ps.setString(6, userFile.getNotes());
+
+            int result = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeStatement(ps);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+        }
+    }
+    
     public UserFile getUserFile(int commentId) throws WdkModelException {
         return null;
     }
