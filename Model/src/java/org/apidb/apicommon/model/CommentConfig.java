@@ -77,7 +77,7 @@ public class CommentConfig extends ModelConfigDB {
         return userFileSchema;
     }
 
-    public void setUserFileSchema(String commentSchema) {
+    public void setUserFileSchema(String userFileSchema) {
         if (userFileSchema != null && userFileSchema.length() > 0) {
             this.userFileSchema = (userFileSchema.endsWith(".")) ? userFileSchema
                     : userFileSchema + ".";
