@@ -83,18 +83,18 @@ public class UserFileUploadAction extends Action {
         userFile.setFileSize(fileSize);
         userFile.setEmail(email);
         userFile.setUserUID(userUID);
-        userFile.setProjectVersion(projectName);
+        userFile.setProjectName(projectName);
         userFile.setProjectVersion(projectVersion);
 
-        System.out.println("contentType " + contentType);
-        System.out.println("fileName " + fileName);
-        System.out.println("fileSize " + fileSize);
-        System.out.println("owner " + email);
-        System.out.println("ownerUID " + userUID);
-        System.out.println("projectName " + projectName);
-        System.out.println("projectVersion " + projectVersion);
-        
         getUserFileFactory().addUserFile(userFile);
+        
+        System.out.println("contentType " + userFile.getContentType());
+        System.out.println("fileName " + userFile.getFileName());
+        System.out.println("fileSize " + userFile.getFileSize());
+        System.out.println("owner " + email);
+        System.out.println("ownerUID " + userFile.getUserUID());
+        System.out.println("projectName " + userFile.getProjectName());
+        System.out.println("projectVersion " + userFile.getProjectVersion());
         
         //Set file name to the request object
         request.setAttribute("fileName",fileName);
