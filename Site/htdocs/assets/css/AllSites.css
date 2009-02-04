@@ -10,3 +10,21 @@ div.htmltooltip{
    background-color: lightYellow;
    border: 1px solid black;
 }
+
+
+div.innertube #record-toolbox {
+    float: right;
+    border-style: double;
+    border-width: 3px;
+    border-color: #CC9900;
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+    white-space: nowrap;
+    background-color: #EEEEEE;
+}
+
+div.innertube #record-toolbox ul {
+    list-style-type: circle;
+    list-style-position: inside;
+}
