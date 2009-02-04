@@ -178,7 +178,7 @@ public class CommentFactory {
     }
 
     private void saveLocations(int commentId, Comment comment)
-            throws SQLException {
+            throws SQLException, org.gusdb.wdk.model.WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
