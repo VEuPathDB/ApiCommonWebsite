@@ -109,7 +109,6 @@ public class CommentFactory {
 
     public void addComment(Comment comment) throws WdkModelException {
         String commentSchema = config.getCommentSchema();
-        String userSchema = config.getUserLoginSchema();
 
         PreparedStatement ps = null;
         // get a new comment id
