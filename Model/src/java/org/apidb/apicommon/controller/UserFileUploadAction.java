@@ -34,13 +34,14 @@ import org.apidb.apicommon.model.UserFile;
 import org.apidb.apicommon.model.UserFileFactory;
 
 public class UserFileUploadAction extends Action {
-
+    
+    private UserFileUploadForm cuForm;
+    
     public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
                                  HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
 
-        // get the referer link
         String referer = (String) request.getParameter(CConstants.WDK_REFERER_URL_KEY);
         if (referer == null) referer = request.getHeader("referer");
 
@@ -48,23 +49,18 @@ public class UserFileUploadAction extends Action {
         referer = referer.substring(index);
         ActionForward forward = new ActionForward(referer, false);
 
-        UserFileUploadForm cuForm = (UserFileUploadForm)form;
+        cuForm = (UserFileUploadForm)form;
 
-        FormFile formFile      = cuForm.getFile();
+        String notes       = cuForm.getNotes().trim();
+        FormFile formFile  = cuForm.getFile();
         String contentType = formFile.getContentType();
         String fileName    = formFile.getFileName();
         int fileSize       = formFile.getFileSize();
         byte[] fileData    = formFile.getFileData();
 
-        // user and project metadata code pilfered from 
-        // org.apidb.apicommon.controller.ProcessAddCommentAction
         UserBean user = (UserBean) request.getSession().getAttribute(
                 CConstants.WDK_USER_KEY);
         if (user == null || user.isGuest()) {
-            // This is the case where the session times out while the user is on
-            // form page, or someone maliciously trying to post to the
-            // form action directly. Return to the form page, where it is
-            // handled correctly.
             return forward;
         }
         WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
@@ -83,6 +79,7 @@ public class UserFileUploadAction extends Action {
         userFile.setFileSize(fileSize);
         userFile.setEmail(email);
         userFile.setUserUID(userUID);
+        userFile.setNotes(notes);
         userFile.setProjectName(projectName);
         userFile.setProjectVersion(projectVersion);
 
@@ -91,12 +88,12 @@ public class UserFileUploadAction extends Action {
         System.out.println("contentType " + userFile.getContentType());
         System.out.println("fileName " + userFile.getFileName());
         System.out.println("fileSize " + userFile.getFileSize());
+        System.out.println("notes " + userFile.getNotes());
         System.out.println("owner " + email);
         System.out.println("ownerUID " + userFile.getUserUID());
         System.out.println("projectName " + userFile.getProjectName());
         System.out.println("projectVersion " + userFile.getProjectVersion());
         
-        //Set file name to the request object
         request.setAttribute("fileName",fileName);
         request.setAttribute("fileSize",fileSize);
 
@@ -113,10 +110,8 @@ public class UserFileUploadAction extends Action {
         try {
             factory = UserFileFactory.getInstance();
         } catch (WdkModelException ex) {
-            // the comment factory is not initialized yet, do it
             ServletContext application = getServlet().getServletContext();
 
-            // get the gus_home & project id
             String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
             String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
 
@@ -126,11 +121,8 @@ public class UserFileUploadAction extends Action {
         return factory;
     }
 
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
+        cuForm = null;        
+    }
 }
 
-/**
-validation:
-    Notes <= 4000 chars
-    filename <= 255 chars
-
-**/

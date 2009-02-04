@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
+<%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 
 <c:set var="wdkUser" value="${sessionScope.wdkUser}"/>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
@@ -17,13 +20,17 @@
 	</c:when>
 	
 	<c:otherwise>
-    <form name="cuForm" method="post" action="communityUpload.do" 
+    <html:form method="post" action="/communityUpload.do" 
           enctype="multipart/form-data">
           
-         Select File: <input type="file" name="file"><p/>
-         <input type="submit" value="Upload File">
+    <wdk:errors/>
+         Select File: <html:file property="file" /><p/>
+         <p>
+     Description: <html:textarea rows="5" cols="50" property="notes"/>
 
-    </form>
+        <p>
+        <html:submit property="submit" value="Upload File"/>
+    </html:form>
 
     </c:otherwise>
 </c:choose>
