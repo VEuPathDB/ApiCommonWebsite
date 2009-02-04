@@ -253,7 +253,7 @@ Features not yet available in PlasmoDB&nbsp;${version} may still be accessed via
   <site:announcement messageCategory="Information" projectName="${project}" />
 </c:set>
 
-<div style='background-color: #ffa500'>
+<div class="small" style='background-color: #ffa500'>
 <font face="Arial,Helvetica" >
 ${siteInfo}
 </font>
