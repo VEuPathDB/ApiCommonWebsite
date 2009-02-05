@@ -422,7 +422,7 @@ sub makeClustal {
 
       my @lineElements = split(/[ ;]/, $thisGenome);
       for(my $i = 1; $i < scalar @lineElements; $i++) {
-        $lineElements[$i] =~ /([\w\d\.]+):(\d+)-(\d+)\(([+-])\)/;
+        $lineElements[$i] =~ /([\S]+):(\d+)-(\d+)\(([+-])\)/;
         my $tmpSequence = $1;
         my $tmpStart = $2;
         my $tmpStop = $3;
