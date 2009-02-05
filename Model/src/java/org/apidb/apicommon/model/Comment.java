@@ -64,7 +64,7 @@ public class Comment {
     private String userName;
     private String organization;
 
-    private String targetCategoryId;
+    private int targetCategoryId;
 
     public Comment(String email) {
         this.email = email;
@@ -109,7 +109,7 @@ public class Comment {
      * @param targetCategoryId
      *          The targetCategoryId to set.
      */
-    void setTargetCategoryId(int targetCategoryId) {
+    public void setTargetCategoryId(int targetCategoryId) {
         this.targetCategoryId = targetCategoryId;
     }
 
