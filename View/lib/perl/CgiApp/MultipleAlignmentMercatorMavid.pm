@@ -375,7 +375,7 @@ sub makeAlignment {
   for(my $i = 0; $i < scalar (@lines); $i++) {
     my $line = $lines[$i];
 
-    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />([a-zA-Z0-9_]+) ([\w\d]+):(\d+)-(\d+)([-+])/;
+    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />([a-zA-Z0-9_]+) (\S*?):(\d+)-(\d+)([-+])/;
     next unless($genome);
 
     my $replaced = &replaceAssembled($agpDir, $genome, $assembled, $start, $stop, $strand);
@@ -407,7 +407,7 @@ sub makeClustal {
 
   foreach my $line (@lines) {
     next unless($line);
-    if($line =~ /^>(([\w\d_]+) ([\w\d\.]+):(\d+)-(\d+)\(([+-])\).*)/) {
+    if($line =~ /^>(([\w\d_]+) (\S*?):(\d+)-(\d+)\(([+-])\).*)/) {
       $thisGenome = $1;
       push(@genomes, $thisGenome);
 
@@ -422,7 +422,7 @@ sub makeClustal {
 
       my @lineElements = split(/[ ;]/, $thisGenome);
       for(my $i = 1; $i < scalar @lineElements; $i++) {
-        $lineElements[$i] =~ /([\w\d\.]+):(\d+)-(\d+)\(([+-])\)/;
+        $lineElements[$i] =~ /([\S]+):(\d+)-(\d+)\(([+-])\)/;
         my $tmpSequence = $1;
         my $tmpStart = $2;
         my $tmpStop = $3;
