@@ -2,6 +2,8 @@ package org.apidb.apicommon.controller;
 
 import org.apidb.apicommon.model.UserFileUploadException;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -35,6 +37,7 @@ import org.apidb.apicommon.model.UserFileFactory;
 
 public class UserFileUploadAction extends Action {
     
+    private Logger logger = Logger.getLogger(UserFileFactory.class);
     private UserFileUploadForm cuForm;
     
     public ActionForward execute(ActionMapping mapping,
@@ -52,6 +55,7 @@ public class UserFileUploadAction extends Action {
         cuForm = (UserFileUploadForm)form;
 
         String notes       = cuForm.getNotes().trim();
+        String title       = cuForm.getTitle().trim();
         FormFile formFile  = cuForm.getFile();
         String contentType = formFile.getContentType();
         String fileName    = formFile.getFileName();
@@ -79,20 +83,21 @@ public class UserFileUploadAction extends Action {
         userFile.setFileSize(fileSize);
         userFile.setEmail(email);
         userFile.setUserUID(userUID);
+        userFile.setTitle(title);
         userFile.setNotes(notes);
         userFile.setProjectName(projectName);
         userFile.setProjectVersion(projectVersion);
 
         getUserFileFactory().addUserFile(userFile);
         
-        System.out.println("contentType " + userFile.getContentType());
-        System.out.println("fileName " + userFile.getFileName());
-        System.out.println("fileSize " + userFile.getFileSize());
-        System.out.println("notes " + userFile.getNotes());
-        System.out.println("owner " + email);
-        System.out.println("ownerUID " + userFile.getUserUID());
-        System.out.println("projectName " + userFile.getProjectName());
-        System.out.println("projectVersion " + userFile.getProjectVersion());
+        logger.debug("contentType " + userFile.getContentType());
+        logger.debug("fileName " + userFile.getFileName());
+        logger.debug("fileSize " + userFile.getFileSize());
+        logger.debug("notes " + userFile.getNotes());
+        logger.debug("owner " + email);
+        logger.debug("ownerUID " + userFile.getUserUID());
+        logger.debug("projectName " + userFile.getProjectName());
+        logger.debug("projectVersion " + userFile.getProjectVersion());
         
         request.setAttribute("fileName",fileName);
         request.setAttribute("fileSize",fileSize);

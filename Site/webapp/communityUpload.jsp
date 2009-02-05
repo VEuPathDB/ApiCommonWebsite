@@ -19,17 +19,18 @@
 		<table align='center'><tr><td><site:login/></td></tr></table>
 	</c:when>
 	
-	<c:otherwise>
-    <html:form method="post" action="/communityUpload.do" 
-          enctype="multipart/form-data">
-          
+<c:otherwise>
     <wdk:errors/>
-         Select File: <html:file property="file" /><p/>
-         <p>
-     Description: <html:textarea rows="5" cols="50" property="notes"/>
+    <html:form method="post" action="/communityUpload.do" 
+               enctype="multipart/form-data">
 
-        <p>
-        <html:submit property="submit" value="Upload File"/>
+    <table>
+    <tr><td>Select File:</td><td><html:file property="file" /></td></tr>
+    <tr><td>Document Title:</td><td><html:text property="title" size="60"/></td></tr>
+    <tr><td>Description:<br>(4000 max characters)</td><td><html:textarea rows="5" cols="80" property="notes"/></td></tr>
+    <tr><td><html:submit property="submit" value="Upload File"/></td></tr>
+    </table>
+    
     </html:form>
 
     </c:otherwise>

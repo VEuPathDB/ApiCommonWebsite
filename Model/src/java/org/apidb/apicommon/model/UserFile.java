@@ -12,6 +12,7 @@ public class UserFile {
     private int fileSize;
     private String checksum;
     private Date uploadTime;
+    private String title;
     private String notes;
     private String contentType;
     private String email;
@@ -76,6 +77,13 @@ public class UserFile {
     }
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContentType() {

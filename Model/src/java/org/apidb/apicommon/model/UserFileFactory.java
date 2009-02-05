@@ -9,9 +9,9 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
+
 import org.json.JSONException;
 import org.xml.sax.SAXException;
-
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +28,6 @@ import java.security.NoSuchAlgorithmException;
 public class UserFileFactory {
 
     private static UserFileFactory factory;
-
     private Logger logger = Logger.getLogger(UserFileFactory.class);
     private DBPlatform platform;
     private CommentConfig config;
@@ -70,39 +69,44 @@ public class UserFileFactory {
             throws WdkModelException, UserFileUploadException {
         String filePath = config.getUserFileUploadDir();
         String fileName = userFile.getFileName();
+        File fileOnDisk = null;
         
         try {
-          if (!fileName.equals("")) {
-              System.out.println("Server path:" +filePath);
-              File fileOnDisk = new File(filePath, fileName);
-
-              int rev = 0;
-              String[] nameParts = parseFilename(fileName);
-              while (fileOnDisk.exists()) {
-                rev++;
-                String newName = nameParts[0] + ".rev" + rev +
-                    ((nameParts[1] != null) ? "." + nameParts[1] : "");
-                fileOnDisk = new File(filePath, newName);
-                userFile.setFileName(newName);
-              }
-
-
-              FileOutputStream fileOutStream = new FileOutputStream(fileOnDisk);
-              fileOutStream.write(userFile.getFileData());
-              fileOutStream.flush();
-              fileOutStream.close();
+            if (!fileName.equals("")) {
+                logger.debug("File save path:" +filePath);
+                fileOnDisk = new File(filePath, fileName);
   
-              userFile.setChecksum(md5sum(fileOnDisk));
-              System.out.println("MD5 " + userFile.getChecksum());
-              
-              insertUserFileMetaData(userFile);
-          }
+                int rev = 0;
+                String[] nameParts = parseFilename(fileName);
+                while (fileOnDisk.exists()) {
+                  rev++;
+                  String newName = nameParts[0] + ".rev" + rev +
+                      ((nameParts[1] != null) ? "." + nameParts[1] : "");
+                  fileOnDisk = new File(filePath, newName);
+                  userFile.setFileName(newName);
+                }
+  
+  
+                FileOutputStream fileOutStream = new FileOutputStream(fileOnDisk);
+                fileOutStream.write(userFile.getFileData());
+                fileOutStream.flush();
+                fileOutStream.close();
+    
+                userFile.setChecksum(md5sum(fileOnDisk));
+                logger.debug("MD5 " + userFile.getChecksum());
+                
+                insertUserFileMetaData(userFile);
+            }
         } catch (IOException ioe) {
             String msg = "Could not write '" + fileName + "' to '" + filePath + "'";
             logger.warn(msg);
             throw new UserFileUploadException(msg + "\n" + ioe);
         } catch (Exception e) {
-            logger.warn("error " + e);
+            logger.warn(e);
+            logger.warn("Deleting " + fileOnDisk.getPath());
+            if (fileOnDisk.exists() && ! fileOnDisk.delete())
+                logger.warn("\nUnable to delete " + fileOnDisk.getPath() +
+                    ". This file may not be correctly recorded in the database.");
             throw new UserFileUploadException(e);
         }
 
@@ -119,8 +123,8 @@ public class UserFileFactory {
                     "INSERT INTO " + userFileSchema + "userfile ("
                             + "userFileId, filename, "
                             + "checksum, uploadTime, "
-                            + "ownerUserId, notes)"
-                            + " VALUES (?,?,?,?,?,?)");
+                            + "ownerUserId, title, notes)"
+                            + " VALUES (?,?,?,?,?,?,?)");
             long currentMillis = System.currentTimeMillis();
             
             ps.setInt(1, userFileId);
@@ -128,7 +132,8 @@ public class UserFileFactory {
             ps.setString(3, userFile.getChecksum());
             ps.setTimestamp(4, new Timestamp(currentMillis));
             ps.setString(5, userFile.getUserUID());
-            ps.setString(6, userFile.getNotes());
+            ps.setString(6, userFile.getTitle());
+            ps.setString(7, userFile.getNotes());
 
             int result = ps.executeUpdate();
 
