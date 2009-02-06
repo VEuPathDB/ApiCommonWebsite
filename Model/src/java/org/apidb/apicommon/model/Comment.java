@@ -64,7 +64,7 @@ public class Comment {
     private String userName;
     private String organization;
 
-    private int targetCategoryId;
+    private int[] targetCategoryIds;
 
     public Comment(String email) {
         this.email = email;
@@ -99,18 +99,18 @@ public class Comment {
     }
 
     /**
-     * @return Returns the targetCategoryId.
+     * @return Returns the int[] targetCategoryIds.
      */
-    public int getTargetCategoryId() {
-        return targetCategoryId;
+    public int[] getTargetCategoryIds() {
+        return targetCategoryIds;
     }
 
     /**
-     * @param targetCategoryId
-     *          The targetCategoryId to set.
+     * @param int[] targetCategoryIds
+     *          The targetCategoryIds to set.
      */
-    public void setTargetCategoryId(int targetCategoryId) {
-        this.targetCategoryId = targetCategoryId;
+    public void setTargetCategoryIds(int[] targetCategoryIds) {
+        this.targetCategoryIds = targetCategoryIds;
     }
 
     /**
