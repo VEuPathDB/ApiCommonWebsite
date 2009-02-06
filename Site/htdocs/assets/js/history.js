@@ -1,47 +1,38 @@
-var selected = [];
-
-function toggleSteps(strat) {
-	var img = $("img#img_" + strat);
-	if (img.hasClass("plus")) {
-		$("tbody#steps_" + strat + " tr").each(function() {
-							this.style.display = "";
-							});
-	        img[0].src = "/assets/images/sqr_bullet_minus.png";
-		img.removeClass("plus");
-		img.addClass("minus");
-	}
-	else {
-		$("tbody#steps_" + strat + " tr").each(function() {
-							this.style.display = "none"
-							});
-	        img[0].src = "/assets/images/sqr_bullet_plus.png";
-		img.removeClass("minus");
-		img.addClass("plus");
-	}
-}
+var selected = new Array();
+var currentPanel;
 
 function selectAllHist() {
-	$("div.history_panel.enabled input:checkbox").attr("checked", "yes");
+	$("div.history_panel").each(function(){
+		var display = $(this).css("display");
+		if (display != 'none'){
+			$("input:checkbox", this).attr("checked", "yes");
+		}
+	});
 	updateSelectedList();
 }
 
 function selectNoneHist() {
 	$("div.history_panel input:checkbox").removeAttr("checked");
-	selected = [];
+	selected = new Array();
 }
 
 function displayHist(type) {
-	if(!$("div.panel_" + type).hasClass("enabled")) {
-		$("li#selected_type").removeAttr("id");
-		$("div.history_panel.enabled").removeClass("enabled");
-		selectNoneHist();
-		$("a#tab_" + type).parent().attr("id", "selected_type");
-		$("div.panel_" + type).addClass("enabled");
-	}
+	$("#selected_type").removeAttr("id");
+	$(".history_panel").hide();
+	selectNoneHist();
+	$("#history_tabs li").each(function() {
+		var id = $("a", this).attr("id");
+		if (id == 'tab_' + type) {
+			if (!currentPanel || currentPanel != type) currentPanel = id;
+			$(this).attr("id", "selected_type");
+		}
+	});
+	$("#panel_" + type).show();
 }
 
+
 function updateSelectedList() {
-	selected = [];
+	selected = new Array();
 	$("div.history_panel input:checkbox").each(function (i) {
 		if ($(this).attr("checked")) {
 			selected.push($(this).attr("id"));
@@ -49,87 +40,30 @@ function updateSelectedList() {
 	});
 }
 		
-function downloadStep(stepId) {
-	var url = "downloadStep.do?step_id=" + stepId;
-	window.location = url;
-}
-
-function deleteStrategies(url) {
+function deleteHistories(url) {
 	// make sure something is selected.
 	if (selected.length == 0) {
 		return false;
 	}
 	// else delete and replace page sections that have changed
-	var agree=confirm("Are you sure you want to delete the selected strategies?");
+	var agree=confirm("Are you sure you want to delete the selected histories?");
  	if (agree) {
-		url = url + selected.join("&strategy=");
+		url = url + selected.join("&wdk_history_id=");
 		$.ajax({
 			url: url,
 			dataType: "html",
 			success: function(data) {
-				$("#search_history").html($("#search_history", data).html());
-				$("#mysearch").html($("#mysearch", data).html());
+				$("div#mysearch").html($("div#mysearch",data).html());
+				$("div.innertube").html($("div.innertube",data).html());
+				if ($("#" + currentPanel).length == 0) {
+					var type = $("#history_tabs a:first").attr("id").substr(4);
+					displayHist(type);
+				} else
+					$("#" + currentPanel).show();
 			},
 			error: function(data, msg, e) {
 				alert("ERROR \n " + msg + "\n" + e);
 			}
 		});
 	}	
-}
-
-
-//FOLLOWING TAKEN FROM OLD CUSTOMQUERYHISTORY
-
-var currentStrategyId = 0;
-
-function enableRename(stratId, name) {
-   // close the previous one
-   disableRename();
-   
-   currentStrategyId = stratId;
-   var form = document.getElementById('browse_rename');
-   form.action = "javascript:saveStrategy(" + stratId + ", true, this)";
-   var button = document.getElementById('activate_' + stratId);
-   button.style.display = 'none';
-   var text = document.getElementById('text_' + stratId);
-   text.style.display = 'none';
-   var nameBox = document.getElementById('name_' + stratId);
-   nameBox.innerHTML = "<input name='strategy' type='hidden' value='" + stratId + "'>"
-                  + "<input id='name' name='name' type='text' size='42' maxLength='2000' value='" + name + "' style='margin-right:4px;'>" 
-   nameBox.style.display='block';
-   var input = document.getElementById('input_' + stratId);
-   input.innerHTML = "<input type='submit' value='Update'>"
-                   + "<input type='reset' value='Cancel' onclick='disableRename()'>";
-   input.style.display='block';
-   nameBox = document.getElementById('name');
-   nameBox.select();
-   nameBox.focus();
-}
-
-function disableRename() {
-   if (currentStrategyId && currentStrategyId != '0') {
-      var form = document.getElementById('browse_rename');
-      form.action = "javascript:return false;";
-      var button = document.getElementById('activate_' + currentStrategyId);
-      button.style.display = 'block';
-      var name = document.getElementById('name_' + currentStrategyId);
-      name.innerText = '';
-      name.style.display = 'none';
-      var input = document.getElementById('input_' + currentStrategyId);
-      input.innerText = '';
-      input.style.display = 'none';
-      var text = document.getElementById('text_' + currentStrategyId);
-      text.style.display = 'block';
-      currentStrategyId = 0;
-   }
-}
-
-function toggleEye(ele, stratId) {
-	var url = "";
-	var td = $(ele).parent();
-	if (td.hasClass("strat_inactive")){
-		openStrategy(stratId);
-	}else{
-		closeStrategy(stratId);
-	}
 }

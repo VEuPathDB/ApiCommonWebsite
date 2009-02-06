@@ -220,7 +220,7 @@ function reviseBooleanQuery(type, expression) {
   <c:set var="typeC" value="${typeC+1}"/>
   <c:choose>
     <c:when test="${typeC == 1}">
-      <li id="selected">
+      <li id="selected_type">
     </c:when>
     <c:otherwise>
       <li>
