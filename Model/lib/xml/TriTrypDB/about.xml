@@ -86,9 +86,9 @@ tutorial and FAQ sections for more information.
        <attribute name="text">
        <![CDATA[
 Please use the following URL when referring to TriTrypDB: http://TriTrypDB.org
- <br>
-Also, the following reference can be used to cite EuPathDB resources: 
-publication pmid="17098930"
+ <br><br>
+Also, the following reference can be used to cite EuPathDB resources:<br><br>
+Aurrecoechea, C., M. Heiges, H. Wang, Z. Wang, S. Fischer, P. Rhodes, J. Miller, E. Kraemer, C. J. Stoeckert, Jr., D. S. Roos, and J. C. Kissinger. 2007. ApiDB: integrated resources for the apicomplexan bioinformatics resource center. Nucleic Acids Research 35:D427-30. (PMID 17098930).
 
 
        ]]>
