@@ -129,7 +129,7 @@
 			<c:set var="anchorQp" value="HELP_${fromAnchorQ}_${pNam}"/>
                         <c:set target="${helpQ}" property="${anchorQp}" value="${qP}"/>
                         <a href="#${anchorQp}">
-                        <img valign="bottom" src='<c:url value="/images/toHelp.jpg"/>' border="0" alt="Help!"></a><br>
+                        <img valign="bottom" src="/assets/images/help.png" border="0" alt="Help"></a><br>
 				<site:cardsOrgansimParamInput qp="${qP}" portals="${portalsProp}" />
 		    </td> </tr></table></td><td valign="top" align="center"><table border="0">
         </c:when>
@@ -160,10 +160,8 @@
      <c:if test="${(pNam != 'organism' && wdkModel.displayName eq 'ApiDB') || wdkModel.displayName ne 'ApiDB' }">
           <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
           <td>
-              <c:set var="anchorQp" value="HELP_${fromAnchorQ}_${pNam}"/>
-              <c:set target="${helpQ}" property="${anchorQp}" value="${qP}"/>
-              <a href="#${anchorQp}">
-              <img src='<c:url value="/images/toHelp.jpg"/>' border="0" alt="Help!"></a>
+              <a href="#" rel="htmltooltip">
+              <img src="/assets/images/help.png" border="0" alt="Help"></a>
           </td>
       </c:if>
 
@@ -183,7 +181,6 @@
 </table></td></tr>
 
 </table>
-
 				<!-- onKeyDown="safariDownFix( event, 'searchBoxupdate');" -->
  <div id="searchBoxupdate"
       class="searchBoxupdate"
@@ -214,5 +211,15 @@
 </tr>
 </table>
 
+
+<c:forEach items="${qParams}" var="qP">
+   <c:set var="pNam" value="${qP.name}" />
+   <c:set var="isHidden" value="${qP.isVisible == false}"/>
+   <c:set var="isReadonly" value="${qP.isReadonly == true}"/>
+
+   <c:if test="${!isHidden}">
+        <div class="htmltooltip" id="help_${pNam}">${qP.help}</div>
+   </c:if>     
+</c:forEach>
 
 <site:footer/>
