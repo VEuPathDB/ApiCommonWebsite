@@ -380,7 +380,7 @@ ${headElement}
      <c:set var="width" value="320" />
      <c:set var="height" value="72" />
      <c:set var="version" value="1.0" />
-     <c:set var="date" value="January 15th, 2009" />
+     <c:set var="date" value="February 6, 2009" />
    </c:if>
 
    <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
