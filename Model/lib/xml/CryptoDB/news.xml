@@ -17,42 +17,54 @@
        </attribute>
     </record>
 -->
+
  <record>
        <attribute name="headline">
          <![CDATA[
-         CryptoDB 4.0 (beta) released
+         CryptoDB 4.0 released
          ]]>
        </attribute>
        <attribute name="date">
-       17 January 2009 15:00
+       06 February 2009 15:00
        </attribute>
        <attribute name="tag">
-       17JanuaryRelease40Beta
+       06February2009release40
        </attribute>
        <attribute name="item">           
          <![CDATA[
-       We are please to announce the release of CryptoDB 4.0 as a beta version to allow expedited access to our users, while at the same time allowing us to continue minor development.
-       <p>
-       This release features several new data sets (including several that were graciously provided prepublication to CryptoDB) and enhancements.
-       <p>
+       We are please to announce the release of CryptoDB 4.0, which features 
+       several new data sets (including many that were graciously provided 
+       prepublication to CryptoDB) and enhancements.
+
        New data data sets:
        <ul>
          <li> The fully sequenced and annotated genome of <i>Cryptosporidium muris</i>.</li>
          <li> More Isolate data -- CryptoDB now includes 2290 isolate records.</li>
          <li> New proteomics data for <i>C. parvum</i>.</li>
        </ul>
-       <p>
        New features and enhancements:
        <ul>
         <li> Improved text search capability providing scored results.</li>
         <li> Improved result summary pages that also include results filtered against all <i>Cryptosporidium</i> in CryptoDB.</li>
         <li> A dramatically revamped isolate query section.  In particular, this includes a vastly improved organization of isolates to allow more useful queries.  Our Geographic location query now includes a map to allow visualization of isolate location by country or continent.</li>
         <li> Blast can now be performed against reference isolates only which should facilitate typing.</li>
-        <li>Reference RFLP gel images are now made available via CryptoDB (a link from the isolate section).</li>
-       </ul>
-       ]]>
-       </attribute>
-    </record>
+        <li>  Reference RFLP gel images are now made available via CryptoDB (a link from the isolate section).</li>
+        <li>  We now provide a phylogenetic tree view of multiple sequence alignments from isolate sequence that you choose.</li>
+        <li>  Several additional queries have been implemented including queries for secondary structure (based on sequences in the Protein Data Bank or PSIPRED), isoelectric point and available antibodies (in the reagents section). </li>
+        </ul>
+        *We are grateful to several investigators who have provided data and advice for this release of CryptoDB including:
+        <ul>
+        <li>Belinda Ferrari and Quach Truong at the Department of Biological Sciences, Macquarie University, Sydney, Australia.</li>
+        <li>Joseph M. Dybas, Carlos J. Madrid-Aliste, Fa-Yun Che, Edward Nieves, Louis M. Weiss, Kami Kim, András Fiser and Ruth Hogue Angeletti 
+        at the <a href='http://toro.aecom.yu.edu/biodefense/'>Einstein Biodefense Proteomics Research Center</a>, Albert Einstein College of Medicine, Bronx, NY, USA
+        <li>Lihua Xiao at the Centers for Disease Control in Atlanta, Georgia, USA</li>
+        <li>Lis Caler and Hernan A. Lorenzi at the J. Craig Venter Institute, Rockville, MD, USA</li>
+        <li>Guy Robinson at the UK Cryptosporidium Reference Unit, Swansea, UK</li>
+        </ul>
+         ]]>
+               </attribute>
+</record>
+        
 
  <record>
        <attribute name="headline">
