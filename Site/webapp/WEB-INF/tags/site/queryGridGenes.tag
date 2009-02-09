@@ -14,19 +14,19 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr class="subheaderrow2"><td colspan="4">Genomic Position</td>
                 
-                </td></tr>
+                </tr>
                 <tr>
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByLocation" linktext="Chromosomal Location" existsOn="A C G P T Tr"/>
-                </td></tr>
+                </tr>
                 <tr>
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByCentromereProximity" linktext="Proximity to Centromeres" existsOn="A E E P E E"/>
-                </td></tr>
+                </tr>
                 <tr>
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByTelomereProximity" linktext="Proximity to Telomeres" existsOn="A E E P E E"/>
-                </td></tr>
+                </tr>
                 <tr>
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByNonnuclearLocation" linktext="Non-nuclear Genomes" existsOn="A E E P T E"/>
-                </td></tr>
+                </tr>
             </table>
 </div>
         </td>
