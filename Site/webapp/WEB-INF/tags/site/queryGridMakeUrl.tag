@@ -28,12 +28,19 @@
               description="GENE,SEQ,ORF or EST"
 %>
 
+<style type="text/css">
+  td { 
+    padding: 3px;
+}
+</style>
+
 
 <c:set var="E_image">
    <c:url value="/images/empty_space.gif" /> 
 </c:set>
 <c:set var="E" value="<img src='${E_image}' border='0' alt='' />" />
  
+
 
 <c:set var="P" value="${E}" />
 <c:set var="T" value="${E}" />
