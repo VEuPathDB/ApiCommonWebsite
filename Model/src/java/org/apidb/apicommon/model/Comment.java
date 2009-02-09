@@ -64,6 +64,8 @@ public class Comment {
     private String userName;
     private String organization;
 
+    private int[] targetCategoryIds;
+
     public Comment(String email) {
         this.email = email;
         locations = new ArrayList<Location>();
@@ -94,6 +96,21 @@ public class Comment {
      */
     void setCommentId(int commentId) {
         this.commentId = commentId;
+    }
+
+    /**
+     * @return Returns the int[] targetCategoryIds.
+     */
+    public int[] getTargetCategoryIds() {
+        return targetCategoryIds;
+    }
+
+    /**
+     * @param int[] targetCategoryIds
+     *          The targetCategoryIds to set.
+     */
+    public void setTargetCategoryIds(int[] targetCategoryIds) {
+        this.targetCategoryIds = targetCategoryIds;
     }
 
     /**
