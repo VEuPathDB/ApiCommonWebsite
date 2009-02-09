@@ -5,6 +5,7 @@ import org.apidb.apicommon.model.UserFileUploadException;
 import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -53,10 +54,13 @@ public class UserFileUploadAction extends Action {
         ActionForward forward = new ActionForward(referer, false);
 
         cuForm = (UserFileUploadForm)form;
+        ArrayList formSet = cuForm.getFormFiles();
+
+for(int i = 0; i < formSet.size(); i++) {
+    FormFile formFile = (FormFile) formSet.get(i);
 
         String notes       = cuForm.getNotes().trim();
         String title       = cuForm.getTitle().trim();
-        FormFile formFile  = cuForm.getFile();
         String contentType = formFile.getContentType();
         String fileName    = formFile.getFileName();
         int fileSize       = formFile.getFileSize();
@@ -101,7 +105,7 @@ public class UserFileUploadAction extends Action {
         
         request.setAttribute("fileName",fileName);
         request.setAttribute("fileSize",fileSize);
-
+}
         return new ActionForward("/communityUploadResult.jsp",true);
     }
 
