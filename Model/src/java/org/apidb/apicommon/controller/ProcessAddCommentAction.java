@@ -3,6 +3,7 @@
  */
 package org.apidb.apicommon.controller;
 
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -66,6 +67,8 @@ public class ProcessAddCommentAction extends CommentAction {
         }
 
         String commentTarget = request.getParameter("commentTargetId");
+        String[] targetCategoryIds = (String[])request.getParameterValues("targetCategory");
+
         String stableId = request.getParameter("stableId");
         String organism = request.getParameter("organism");
 
@@ -95,6 +98,15 @@ public class ProcessAddCommentAction extends CommentAction {
         comment.setHeadline(headline);
         comment.setOrganism(organism);
         comment.setContent(content);
+
+        if((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
+          int[] targetCategoryIdArray = new int[targetCategoryIds.length];
+          for(int i=0; i < targetCategoryIds.length; i++) {
+             targetCategoryIdArray[i] = Integer.valueOf(targetCategoryIds[i]).intValue();
+          }
+          comment.setTargetCategoryIds(targetCategoryIdArray);
+        }
+
         try {
             comment.setLocations(reversed, locations, coordinateType);
         } catch (Exception e) {
