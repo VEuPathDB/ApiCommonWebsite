@@ -36,6 +36,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import javax.servlet.jsp.JspException;
+import org.apache.log4j.Logger;
 
 public class ModelConfigTag extends WdkTagBase {
     
@@ -45,6 +46,8 @@ public class ModelConfigTag extends WdkTagBase {
     private ModelConfigApplicationDB modelConfigApplicationDB;
     public HashMap props;
     
+    private Logger logger = Logger.getLogger(ModelConfigTag.class);
+
     public void doTag() throws JspException {
         super.doTag();
 
@@ -78,8 +81,10 @@ public class ModelConfigTag extends WdkTagBase {
               // remove 'get', lowercase first letter
               String key = Character.toLowerCase(mname.charAt(3)) + mname.substring(4);
               Object value = method.invoke(config);
-
-              if ( !(value.getClass().getName().startsWith("java.lang.")) ) continue;
+              
+              if ( value == null || 
+                    !(value.getClass().getName().startsWith("java.lang.")) ) 
+                        continue;
 
               if ( (key.toLowerCase().contains("password") || 
                     key.toLowerCase().contains("passwd") )
