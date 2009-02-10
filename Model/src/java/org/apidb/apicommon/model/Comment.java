@@ -65,6 +65,7 @@ public class Comment {
     private String organization;
 
     private int[] targetCategoryIds;
+    private String[] pmIds;
 
     public Comment(String email) {
         this.email = email;
@@ -111,6 +112,21 @@ public class Comment {
      */
     public void setTargetCategoryIds(int[] targetCategoryIds) {
         this.targetCategoryIds = targetCategoryIds;
+    }
+
+    /**
+     * @return Returns the String[] pmIds.
+     */
+    public String[] getPmIds() {
+        return pmIds;
+    }
+
+    /**
+     * @param String[] pmIds
+     *          The pmIds to set.
+     */
+    public void setPmIds(String[] pmIds) {
+        this.pmIds = pmIds;
     }
 
     /**
