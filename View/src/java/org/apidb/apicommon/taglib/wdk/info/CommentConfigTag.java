@@ -40,6 +40,7 @@ import java.lang.reflect.Method;
 
 import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspException;
+import org.apache.log4j.Logger;
 
 public class CommentConfigTag extends WdkTagBase {
     
@@ -47,6 +48,8 @@ public class CommentConfigTag extends WdkTagBase {
     private CommentConfig commentConfig;
     private CommentFactory factory;
     public HashMap props;
+
+    private Logger logger = Logger.getLogger(ModelConfigTag.class);
     
     public void doTag() throws JspException {
         super.doTag();
@@ -97,7 +100,9 @@ public class CommentConfigTag extends WdkTagBase {
               String key = Character.toLowerCase(mname.charAt(3)) + mname.substring(4);
               Object value = method.invoke(commentConfig);
 
-              if ( !(value.getClass().getName().startsWith("java.lang.")) ) continue;
+              if ( value == null ||
+                   !(value.getClass().getName().startsWith("java.lang.")) ) 
+                continue;
               
               if ( (key.toLowerCase().contains("password") || 
                     key.toLowerCase().contains("passwd") )
