@@ -115,9 +115,11 @@ public class CommentFactory {
         try {
             // DataSource dataSource = platform.getDataSource();
             int commentId = platform.getNextId(commentSchema, "comments");
+            int[] targetCategoryIds = comment.getTargetCategoryIds();
+            String[] pmIds = comment.getPmIds();
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-			    "INSERT INTO " + commentSchema + "comments (comment_id, "
+                           "INSERT INTO " + commentSchema + "comments (comment_id, "
                             + "email, comment_date, comment_target_id, "
                             + "stable_id, conceptual, project_name, "
                             + "project_version, headline, content, "
@@ -150,6 +152,14 @@ public class CommentFactory {
             comment.setCommentDate(new java.util.Date(currentMillis));
             comment.setCommentId(commentId);
 
+            if((targetCategoryIds != null) && (targetCategoryIds.length > 0)){
+              saveCommentTargetCategory(commentId, targetCategoryIds);
+            }                                               
+
+            if((pmIds != null) && (pmIds.length > 0)){
+              savePmIds(commentId, pmIds);
+            }                                               
+
             // then add the location information
             saveLocations(commentId, comment);
 
@@ -171,7 +181,7 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-	}
+  }
 
             // print connection status
             printStatus();
@@ -206,6 +216,61 @@ public class CommentFactory {
             SqlUtils.closeStatement(statement);
         }
     }
+
+    private void saveCommentTargetCategory(int commentId, int[] targetCategoryIds)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentTargetCategory ");
+        sql.append("(comment_target_category_id, comment_id, ");
+        sql.append("target_category_id ");
+        sql.append(") VALUES (?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (int targetCategoryId : targetCategoryIds) {
+                statement.setInt(1, platform.getNextId(commentSchema, "commentTargetCategory"));
+                statement.setInt(2, commentId);
+                statement.setInt(3, targetCategoryId);
+                statement.execute();
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void savePmIds(int commentId, String[] pmIds)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        int commentPmId = platform.getNextId(commentSchema, "commentReference");
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentReference ");
+        sql.append("(comment_reference_id, reference_id, ");
+        sql.append("comment_id ");
+        sql.append(") VALUES (?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String pmId : pmIds) {
+                if((pmId != null ) && (pmId.trim().length() != 0)) {
+                    statement.setInt(1, platform.getNextId(commentSchema, "commentReference"));
+                    statement.setString(2, pmId);
+                    statement.setInt(3, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+     }
 
     /**
      * For the first release, this method hard-code the external database name
