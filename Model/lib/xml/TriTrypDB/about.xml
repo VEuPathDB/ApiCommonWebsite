@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">General Information</attribute>
+       <attribute name="tag">generalinfo</attribute>
+       <attribute name="text">
+<![CDATA[
+TriTrypDB is an integrated genomic and functional genomic database for 
+pathogens of the family Trypanosomatidae, including organism in both 
+Leishmania and Trypanosoma genera. TriTrypDB and its continued 
+development are possible through the collaborative efforts between <a 
+href="http://www.eupathdb.org">EuPathDB</a>, <a href="http://www.genedb.org 
+"> GeneDB </a> and colleagues at the Seattle Biomedical Research 
+Institute (<a href="http://www.sbri.org">SBRI</a>).
+]]>
+
+</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Funding</attribute>
+       <attribute name="tag">funding</attribute>
+       <attribute name="text">
+       <![CDATA[
+Funding for TriTrypDB development and enhanced annotation of 
+kinetoplastid parasites is provided by coordinated grants from the <a 
+href="http://www.gatesfoundation.org/">Bill & Melinda Gates 
+Foundatation</a> and the <a href="http:// 
+www.wellcome.ac.uk/">Wellcome Trust</a>.<br>
+
+TriTrypDB joins the family of pathogen-databases that are housed under 
+the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
+Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is 
+mainly distributed between the University of Pennsylvania in 
+Philadelphia, Pennsylvania and the University of Georgia in Athens, 
+Georgia.
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Organisms included in TriTrypDB</attribute>
+       <attribute name="tag">organisms</attribute>
+       <attribute name="text">
+       <![CDATA[
+<ul>
+<li><i>Trypanosoma brucei</i></li>
+<li><i>Trypanosoma cruzi</i></li>
+<li><i>Leishmania major</i></li>
+<li><i>Leishmania infantum</i></li>
+<li><i>Leishmania braziliensis</i></li>
+</ul>
+       ]]>
+       </attribute>
+   </record>
+
+
+ <record>
+       <attribute name="title">How to use this resource</attribute>
+       <attribute name="tag">use</attribute>
+       <attribute name="text">
+       <![CDATA[
+TriTrypDB integrates multiple genomic-scale data types in a manner 
+that enables the database user to computationally ask biologically 
+relevant questions. Data may be accessed by interrogating TriTrypDB 
+using any of the multiple available questions -- Please visit our 
+tutorial and FAQ sections for more information.
+
+       ]]>
+       </attribute>
+   </record>
+
+
+<record>
+       <attribute name="title">How to cite us</attribute>
+       <attribute name="tag">citing</attribute>
+       <attribute name="text">
+       <![CDATA[
+Please use the following URL when referring to TriTrypDB: http://TriTrypDB.org
+ <br><br>
+Also, the following reference can be used to cite EuPathDB resources:<br><br>
+Aurrecoechea, C., M. Heiges, H. Wang, Z. Wang, S. Fischer, P. Rhodes, J. Miller, E. Kraemer, C. J. Stoeckert, Jr., D. S. Roos, and J. C. Kissinger. 2007. ApiDB: integrated resources for the apicomplexan bioinformatics resource center. Nucleic Acids Research 35:D427-30. (PMID 17098930).
+
+
+       ]]>
+       </attribute>
+   </record>
+
+<record>
+       <attribute name="title">Understanding Download Files</attribute>
+       <attribute name="tag">download</attribute>
+       <attribute name="text">
+       <![CDATA[
+Coming Soon.
+
+
+       ]]>
+       </attribute>
+   </record>
+
+<record>
+       <attribute name="title">Documents and Protocols</attribute>
+       <attribute name="tag">doc-prot</attribute>
+       <attribute name="text">
+       <![CDATA[
+We are interested in including documents and protocols that are useful   
+for the TriTryp community.  Please send us your suggestions by   
+clicking <a href="help.jsp" target="_blank" onClick="poptastic(this.href); return false;">here</a>.
+
+
+       ]]>
+       </attribute>
+   </record>
+
+</xmlAnswer>
