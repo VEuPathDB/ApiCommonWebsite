@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB to take on the kinetoplastida
+         ]]>
+       </attribute>
+       <attribute name="date">
+       1 December 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       1December2008GatesFoundation
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to report
+an award from the <a href="http://www.gatesfoundation.org">Bill & Melinda Gates Foundation</a> in support of a
+TrypDB component of the <a href="http://eupathdb.org/">EuPathDB</a> family of databases,
+encompassing <i>Leishmania</i> species, <i>Trypanosoma brucei</i>, and
+<i>Trypanosoma cruzi</i>.  A coordinated award from the<a href="http://www.wellcome.ac.uk/"> Wellcome Trust</a>
+will permit enhanced annotation of kinetoplastid parasites. 
+These projects represent a collaborative effort between the
+GeneDB team (at the Wellcome Trust Sanger Institute), colleagues
+at the <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a>, and the EuPathDB
+team -- an NIAID-supported Bioinformatics Resource Center. Look
+for the first release of TrypDB in Jan 2009!
+
+ ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB and TrichDB published in Nucleic Acids Research
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2008 00:00</attribute>
+       <attribute name="tag">1Oct2008NAR</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce the publication of the database paper
+introducing both GiardiaDB and TrichDB in the database issue of Nucleic
+Acid Research.
+<p>
+<a href="http://nar.oxfordjournals.org/cgi/content/full/gkn631">GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic
+protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> Nucleic
+Acids Research Advance Access published on September 29, 2008, DOI
+10.1093/nar/gkn631.
+
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline"><![CDATA[TrichDB 1.0 is released]]></attribute>
+       <attribute name="date">01 October 2007 00:00</attribute>
+       <attribute name="tag">1October2007Release1.0</attribute>
+       <attribute name="item">
+         <![CDATA[
+
+We are pleased to announce the release of TrichDB  (<a href="/">http://www.trichdb.org</a> )  a new Web resource for interrogating the Trichomonas vaginalis genome, which was sequenced and annotated at The Institute for Genomics Research and published in Science magazine in early 2007.
+<br><br>
+TrichDB is modeled after the ApiDB family of apicomplexan genome database query sites (<a href="http://apidb.org">http://www.apiddb.org</a>).  Like those sites, TrichDB offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify T. vaginalis genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs including prepublication ESTs kindly provided by Dr. Petrus Tang and collaborators); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  Along with these tools for gene analysis there are also identification tools for ESTs and ORFs. A special feature of TrichDB is the ability to separately query repeat genes, which constitute a large fraction of the T. vaginalis genome.
+<br><br>
+TrichDB couples a comprehensive set of querying tools with extensively hyperlinked and highly-configurable displays of results. Numerous evidence types and data associated with a gene, including gene context, predicted protein, EST and BLAST alignments, and %GC content, can be displayed in a single graphic.  Users can choose just which elements to show in a display, allowing them to generate purpose-built images for presentation.
+<br><br>
+Finally, TrichDB is also a repository for T. vaginalis genome statistics, data and methods source links, links to other Trichmonas community web sites,  and daily updates of Trichomonas publications and genes deposited in Pubmed/Entrez.  New users can learn to use the TrichDB/ApiDB sites via a set of online tutorials linked from the TrichDB front page.
+<br><br>
+We hope you will take time to explore TrichDB. Please use the link found at the bottom of every TrichDB page to send us feedback  (<a href="/giardiadb/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">Contact Us!</a>).  We look forward to hearing from you!
+<br><br>
+Best regards,
+<br>
+The TrichDB Team
+
+          ]]>
+       </attribute>
+    </record>
+
+
+</xmlAnswer>
+
