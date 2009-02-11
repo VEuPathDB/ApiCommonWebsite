@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">you can review and combine search results</attribute>
+       <attribute name="text">Go to "My Query History" to see the queries you have run (in your current browser session).  From there you can view the results and combine results using AND, OR or NOT.  You can also request a tab delimited report of your results. 
+</attribute>
+       <attribute name="image"></attribute>
+   </record>
+
+   <record>
+       <attribute name="title">you can download all annotations</attribute>
+       <attribute name="text">In addition to fasta sequence files, the download site includes GFF files that contain rich annotation of each gene.</attribute>
+       <attribute name="image"></attribute>
+   </record>
+
+   <record>
+       <attribute name="title">you can customize a tab-delimited report</attribute>
+       <attribute name="text">From "My Query History" click "download" to custmoize a tab delimited report of your results.</attribute>
+       <attribute name="image"></attribute>
+   </record>
+
+   <record>
+       <attribute name="title">you can retrieve all or part of a gene sequence</attribute>
+       <attribute name="text">Use the "Gene Sequences" link from the home page to retrieve a set of gene sequences in fasta format.  Customize the type of sequence and the region you would like to download</attribute>
+       <attribute name="image"></attribute>
+   </record>
+
+   <record>
+       <attribute name="title">cookies improve this site</attribute>
+       <attribute name="text">This site performs best when your browser allows cookis.  In particular, the Gene page configuration uses cookies.  Select show/hide for any section on the gene page.  With cookies enabled, that selection will apply to all gene pages.  With cookies disabled, moving to a new page will reset that selection</attribute>
+       <attribute name="image"></attribute>
+   </record>
+
+</xmlAnswer>

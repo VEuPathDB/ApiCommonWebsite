@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<xmlAnswer>
+
+   <record>
+      <table name="relatedLinks">
+        <row>
+          <attribute name="title">EuPathDB</attribute>
+          <attribute name="url">http://www.EuPathDB.org</attribute>
+        </row>
+        <row>
+          <attribute name="title">PlasmoDB</attribute>
+          <attribute name="url">http://www.PlasmoDB.org</attribute>
+        </row>
+        <row>
+          <attribute name="title">CryptoDB</attribute>
+          <attribute name="url">http://www.CryptoDB.org</attribute>
+        </row>
+        <row>
+          <attribute name="title">OrthoMCL-DB</attribute>
+          <attribute name="url">http://orthomcl.cbil.upenn.edu</attribute>
+        </row>
+        <row>
+          <attribute name="title"><![CDATA[Metabolic Pathway Reconstruction for <i>T. gondii</i>]]></attribute>
+          <attribute name="url">http://v3-0.toxodb.org/include/fpPathwayReconstr.html</attribute>
+        </row>
+        <row>
+          <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
+          <attribute name="url"><![CDATA[/common/PubCrawler/index.html]]></attribute>
+        </row>
+      </table>
+
+
+      <table name="tgSeqCenters">
+        <row>
+          <attribute name="url">http://www.tigr.org/tdb/e2k1/tga1/</attribute>
+          <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> Genome Project at TIGR]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/T_gondii/</attribute>
+          <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> Genome Project at Sanger]]></attribute>
+        </row>
+      </table>
+
+
+      <table name="toxoDbs">
+        <row>
+          <attribute name="url">http://www.ebi.ac.uk/parasites/toxo/toxpage.html</attribute>
+          <attribute name="title"><![CDATA[EBI <i>Toxoplasma</i> Genome Database]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.tigr.org/tdb/tggi/</attribute>
+          <attribute name="title"><![CDATA[TIGR <i>T. gondii</i> Gene Index]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/mapview/map_search.cgi?taxid=5811</attribute>
+          <attribute name="title"><![CDATA[NCBI Entrez Genome <i>Toxoplasma gondii</i>]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://vmbmod10.msu.montana.edu/vmb/white-lab/newsage.htm</attribute>
+          <attribute name="title"><![CDATA[TgSAGEDB: Database of <i>T. gondii</i> SAGE Tags]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://toxomap.wustl.edu/</attribute>
+          <attribute name="title"><![CDATA[<i>Toxoplasma</i> Genome Map at WashU]]></attribute>
+        </row>
+      </table>
+
+
+      <table name="toxoBiology">
+        <row>
+          <attribute name="url">http://www.cdc.gov/ncidod/dpd/parasites/toxoplasmosis/default.htm</attribute>
+          <attribute name="title">CDC - Toxoplasmosis</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.nlm.nih.gov/medlineplus/toxoplasmosis.html</attribute>
+          <attribute name="title">NIH - Toxoplasmosis</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.thebody.com/treat/toxo.html</attribute>
+          <attribute name="title">Toxoplasmosis - Prevention</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.cdc.gov/mmwr//preview/mmwrhtml/rr4902a5.htm</attribute>
+          <attribute name="title">Toxoplasmosis - Prevention CDC MMWR report</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://gsbs.utmb.edu/microbook/ch084.htm</attribute>
+          <attribute name="title">General, Chapter Medical Microbiology, J.P. Dubey</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://boothroydlab.stanford.edu/snp_maps/</attribute>
+          <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> SNP Maps]]></attribute>
+        </row>
+      </table>
+
+      <table name="funding">
+        <row>
+          <attribute name="url">http://www.niaid.nih.gov/</attribute>
+          <attribute name="title">National Institute of Allergies and Infectious Diseases</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wellcome.ac.uk/</attribute>
+          <attribute name="title">The Wellcome Trust</attribute>
+        </row>
+      </table>
+
+   </record>
+</xmlAnswer>
