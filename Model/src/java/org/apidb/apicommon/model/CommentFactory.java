@@ -117,6 +117,7 @@ public class CommentFactory {
             int commentId = platform.getNextId(commentSchema, "comments");
             int[] targetCategoryIds = comment.getTargetCategoryIds();
             String[] pmIds = comment.getPmIds();
+            String[] accessions = comment.getAccessions();
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
                            "INSERT INTO " + commentSchema + "comments (comment_id, "
@@ -158,6 +159,10 @@ public class CommentFactory {
 
             if((pmIds != null) && (pmIds.length > 0)){
               savePmIds(commentId, pmIds);
+            }                                               
+
+            if((accessions != null) && (accessions.length > 0)){
+              saveAccessions(commentId, accessions);
             }                                               
 
             // then add the location information
@@ -251,9 +256,9 @@ public class CommentFactory {
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "CommentReference ");
-        sql.append("(comment_reference_id, reference_id, ");
-        sql.append("comment_id ");
-        sql.append(") VALUES (?, ?, ?)");
+        sql.append("(comment_reference_id, source_id, ");
+        sql.append("database_name, comment_id ");
+        sql.append(") VALUES (?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
@@ -263,7 +268,38 @@ public class CommentFactory {
                 if((pmId != null ) && (pmId.trim().length() != 0)) {
                     statement.setInt(1, platform.getNextId(commentSchema, "commentReference"));
                     statement.setString(2, pmId);
-                    statement.setInt(3, commentId);
+                    statement.setString(3, "pubmed");
+                    statement.setInt(4, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void saveAccessions(int commentId, String[] accessions)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        int commentPmId = platform.getNextId(commentSchema, "commentReference");
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentReference ");
+        sql.append("(comment_reference_id, source_id, ");
+        sql.append("database_name, comment_id ");
+        sql.append(") VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String accession : accessions) {
+                if((accession != null ) && (accession.trim().length() != 0)) {
+                    statement.setInt(1, platform.getNextId(commentSchema, "commentReference"));
+                    statement.setString(2, accession);
+                    statement.setString(3, "genbank");
+                    statement.setInt(4, commentId);
                     statement.execute();
                 }
             }
