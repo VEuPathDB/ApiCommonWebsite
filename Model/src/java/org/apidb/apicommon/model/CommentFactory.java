@@ -153,6 +153,12 @@ public class CommentFactory {
             comment.setCommentDate(new java.util.Date(currentMillis));
             comment.setCommentId(commentId);
 
+            // then add the location information
+            saveLocations(commentId, comment);
+
+            // then add the eternal database information
+            saveExternalDbs(commentId, comment);
+
             if((targetCategoryIds != null) && (targetCategoryIds.length > 0)){
               saveCommentTargetCategory(commentId, targetCategoryIds);
             }                                               
@@ -164,13 +170,6 @@ public class CommentFactory {
             if((accessions != null) && (accessions.length > 0)){
               saveAccessions(commentId, accessions);
             }                                               
-
-            // then add the location information
-            saveLocations(commentId, comment);
-
-            // then add the eternal database information
-
-            saveExternalDbs(commentId, comment);
 
             // get a new comment in order to fetch the user info
             Comment newComment = getComment(commentId);
@@ -186,10 +185,10 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-  }
+        }
 
-            // print connection status
-            printStatus();
+        // print connection status
+        printStatus();
     }
 
     private void saveLocations(int commentId, Comment comment)
