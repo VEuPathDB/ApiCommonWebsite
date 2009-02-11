@@ -66,6 +66,7 @@ public class Comment {
 
     private int[] targetCategoryIds;
     private String[] pmIds;
+    private String[] accessions;
 
     public Comment(String email) {
         this.email = email;
@@ -127,6 +128,21 @@ public class Comment {
      */
     public void setPmIds(String[] pmIds) {
         this.pmIds = pmIds;
+    }
+
+    /**
+     * @return Returns the String[] accessions.
+     */
+    public String[] getAccessions() {
+        return accessions;
+    }
+
+    /**
+     * @param String[] accessions
+     *          The genbank accessions to set.
+     */
+    public void setAccessions(String[] accessions) {
+        this.accessions = accessions;
     }
 
     /**
