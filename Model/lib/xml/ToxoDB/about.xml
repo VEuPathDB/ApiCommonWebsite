@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">Data Access Policy</attribute>
+       <attribute name="tag">policy</attribute>
+       <attribute name="text">The data at this site is provided freely for public use, through the contributions of many researchers including those involved in generating the genome sequences. The data is not guaranteed to be accurate as it often reflects the results of ongoing research. When using data obtained from ToxoDB, it is important to cite the original publications and contributors of that data and ToxoDB. Please see Citing ToxoDB below.
+</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Citing ToxoDB</attribute>
+       <attribute name="tag">citing</attribute>
+       <attribute name="text">
+       <![CDATA[
+When citing ToxoDB itself, please use:
+<br><br>
+<!-- 
+J. C. Kissinger, B. Gajria, L. Li, I. T. Paulsen, and D. S. Roos. ToxoDB: accessing the Toxoplasma gondii genome. <i>Nucleic Acids Research</i>, 2003, 31(1): 234-236
+-->
+
+B. Gajria, A. Bahl, J. Brestelli, J. Dommer, S. Fischer, X. Gao, M. Heiges, J. Iodice, J. C. Kissinger, A. J. Mackey, et al.<br>
+<b>ToxoDB: an integrated Toxoplasma gondii database resource.</b><br>
+ Nucleic Acids Res., November 14, 2007; (2007) gkm981v1. <br>
+[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkm981v1">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkm981v1">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkm981v1">PDF</a> ]
+
+<br><br>Much of the data in ToxoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into ToxoDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Naming Convention</attribute>
+       <attribute name="tag">naming</attribute>
+       <attribute name="text">
+       <![CDATA[
+The primary <I>T. gondii</I> sequence and annotation contained in ToxoDB has come from TIGR.  
+We have retained the orignal name to enable users to trace sequences found 
+in ToxoDB back to the original source.
+
+<UL>
+ <LI>Scaffolds have the following pattern:
+   <UL> 
+   <LI><TT>TGG_dddddd</tt> <BR> 
+     where <I>d</I> stands for a digit. e.g., <TT>TGG_995305</TT>.
+     <BR> &nbsp;
+   </UL>
+ </LI>
+ <LI>Gene Names have the following pattern:
+   <UL> 
+   <LI><TT>dd.mdddd</tt> <BR> 
+     where <I>d</I> stands for a digit. e.g., <TT>55.m0520</TT>.
+   </UL>
+ </LI>
+</UL>
+<br>
+       ]]>
+       </attribute>
+   </record>
+
+</xmlAnswer>
