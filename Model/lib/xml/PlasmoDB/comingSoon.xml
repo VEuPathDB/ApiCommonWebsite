@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+   <record>
+      <attribute name="title">Expected February 2008</attribute> 
+      <attribute name="tag">comingSoon</attribute> 
+      <table name="list">
+        <row>
+          <attribute name="headline">
+          <![CDATA[
+          
+          ]]>
+          </attribute>
+          <attribute name="item">
+          <![CDATA[
+The results of the recent P. falciparum genome reannotation workshop jointly sponsored by the Wellcome Trust Sanger Institute and the PlasmoDB team will be made available in the next release. The new annotation will incorporate the user comments that have been posted to PlasmoDB and is being reviewed for deposition in GenBank.
+          ]]>
+          </attribute>
+        </row>
+      </table>
+   </record>
+
+</xmlAnswer>

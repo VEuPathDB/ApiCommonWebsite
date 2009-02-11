@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">Data Access Policy</attribute>
+       <attribute name="tag">policy</attribute>
+       <attribute name="text">The data at this site is provided freely for public use, through the contributions of many researchers including those involved in generating the genome sequences. The data is not guaranteed to be accurate as it often reflects the results of ongoing research. When using data obtained from PlasmoDB, it is important to cite the original publications and contributors of that data and PlasmoDB. Please see Citing PlasmoDB below.
+</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Citing PlasmoDB</attribute>
+       <attribute name="tag">citing</attribute>
+       <attribute name="text">
+       <![CDATA[
+When citing PlasmoDB itself, please use:
+<br><br>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18957442">
+PlasmoDB: a functional genomic database for malaria parasites.</a> Nucleic Acids Res. 2008 Oct 31. Aurrecoechea C, et al.
+
+<br><br>Much of the data in PlasmoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PlasmoDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Gene Naming Convention</attribute>
+       <attribute name="tag">naming</attribute>
+       <attribute name="text">
+       <![CDATA[
+The primary sequence and annotation contained in PlasmoDB come from many
+different sources, each with its own naming convention.  Our
+philosophy is to retain as much of the orignal name as possible
+to enable users to trace sequences found in PlasmoDB back to the
+original source.
+
+<br>
+<br>
+<b><I>P.falciparum</I></b>
+<P>Gene names provided by the sequencing centers have the following pattern.</P>
+<UL>
+ <LI><tt>PF</tt><I>cdddd</I><I>s</I> where 
+   <UL> 
+     <LI> <I>c</I> is either A, B, C, D, E, I, or L, which
+	    correspond to chromosomes 1, 2, 3, 4, 5, 9, and 12.
+     <LI> <I>dddd</I> is a four digit number withleading zeros,
+	    e.g., <TT>0370</TT>,
+     <LI> and <I>s</I> is either <TT>w</TT> (watson) or <TT>c</TT> (crick)
+     <LI> e.g., <TT>PFC0582c</TT>.
+   </UL>
+ </LI>
+ <LI> <TT>PF</TT><I>chr</I><TT>_</TT><I>dddd</I> where
+    <UL>
+      <LI> <I>chr</I> is one of 00, 07, 08, 10, 11, 13, 14,
+      <LI> <I>dddd</I> is a four digit number with leading zeros.
+      <LI> e.g., <TT>PF13_0016</TT>.
+    </UL>
+ </LI>
+ <LI> <TT>MAL</TT><I>chr</I><TT>P1</TT><TT>.</TT><I>n</I>, where
+    <UL>
+       <LI> <I>chr</I> is one of 1, 6, 7, 8, or 13,
+       <LI> <I>n</I> is a number,
+       <LI> e.g., <TT>MAL13P1.112</TT>.
+    </UL>
+  </LI>
+  <LI> <TT>chr</TT><I>chr</I><TT>-tRNA-</TT><I>aaa</I><TT>-</TT><I>n</I>, where
+    <UL>
+      <LI> <I>chr</I> is the chromosome number,
+      <LI> <I>aaa</I> is the amino acid, e.g., <TT>Asn</TT>,
+      <LI> <I>n</I> is a integer.
+      <LI> e.g., <TT>chr5-tRNA-Leu-2</TT> is the second Leu tRNA
+        gene on chromosome 5.
+      <LI> These are names assigned by the PlasmoDB Team.  tRNAs
+	on the unmapped contigs have <TT>unmapped</TT> instead of
+	<TT>chr</TT><I>chr</I>.
+    </UL>
+  </LI>
+  <LI> The rRNA genes follow a complicated pattern that always
+	starts with <TT>chr</TT><I>chr</I><TT>.rRNA-</TT>, e.g.,
+	<TT>chr7.rRNA-1-ITS12</TT>.
+  </LI>
+</UL>
+<br>
+<b><I>P.vivax</I></b>
+<P>Gene names provided by the sequencing centers have the following pattern.</P>
+<UL>
+<LI><tt>Pv</tt><I>dddddd</I><I>s</I> where <I>dddddd</I> is a six digit number roughly corresponding to position on the contings, e.g., <TT>112125</TT>.
+
+</UL>
+<br>
+<b><I>P.yoelii</I></b>
+<P>Gene names provided by the sequencing centers have the following pattern.</P>
+<UL>
+<LI><tt>PY</tt><I>ddddd</I><I>s</I> where <I>ddddd</I> is a five digit number roughly corresponding to position on the contigs, e.g., <TT>00135</TT>.
+</UL>
+<br>
+       ]]>
+       </attribute>
+   </record>
+
+</xmlAnswer>
