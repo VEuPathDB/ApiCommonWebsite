@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB to take on the kinetoplastida
+         ]]>
+       </attribute>
+       <attribute name="date">
+       1 December 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       1December2008GatesFoundation
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to report
+an award from the <a href="http://www.gatesfoundation.org">Bill & Melinda Gates Foundation</a> in support of a
+TrypDB component of the <a href="http://eupathdb.org/">EuPathDB</a> family of databases,
+encompassing <i>Leishmania</i> species, <i>Trypanosoma brucei</i>, and
+<i>Trypanosoma cruzi</i>.  A coordinated award from the<a href="http://www.wellcome.ac.uk/"> Wellcome Trust</a>
+will permit enhanced annotation of kinetoplastid parasites. 
+These projects represent a collaborative effort between the
+GeneDB team (at the Wellcome Trust Sanger Institute), colleagues
+at the <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a>, and the EuPathDB
+team -- an NIAID-supported Bioinformatics Resource Center. Look
+for the first release of TrypDB in Jan 2009!
+
+ ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.1 Updated
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2008 00:00</attribute>
+       <attribute name="tag">18Nov20081.1.2update</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce an update to GiardiaDB 1.1, which mainly affects the number of deprecated genes available through GiardiaDB and how query results are displayed.
+<p>
+1. In this release, all genes that were available through the genome project database (MBL GiardiaDB) are now included in GiardiaDB.  Hence, there are 4778 deprecated genes in this release.
+<p>
+2. When performing a query, you no longer select whether to query genes only, deprecated genes only, or both.  Instead, when a query is performed, all results will be returned with the option to view (or filter) all results, genes only or deprecated genes only (“genes only” is the default view of the results).
+<p>
+As a reminder, deprecated genes were labeled as such because they appear unlikely to represent true genes, based on incompatibility with longer gene models or alternative models for which functional evidence is available. A number of deprecated genes may in fact be true genes and as evidence becomes available to support this, we will elevate a deprecated gene to a "full" gene status.  We encourage users to notify us of such evidence by email or by adding specific user comments gene pages.
+    ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         Free microarrays
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2008 00:00</attribute>
+       <attribute name="tag">18Nov2008Microarrays</attribute>
+       <attribute name="item">           
+         <![CDATA[
+Free microarrays:  Please note that the Pathogen Functional Genomics Resource Center (<a href=http://pfgrc.jcvi.org/index.php>PFGRC</a>) at the J. Craig Venter Institute (<a href=http://www.jcvi.org/>JCVI</a>) provides several resources for investigators including microarrays for <i>Giardia lamblia</i> (WB strain, clone C6).<br><br>
+
+Click <a href=http://pfgrc.jcvi.org/index.php/microarray/available_microarrays.html>here</a> to view a list of available microarrays at PFGRC.
+
+    ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB and TrichDB published in Nucleic Acids Research
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2008 00:00</attribute>
+       <attribute name="tag">1Oct2008NAR</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce the publication of the database paper
+introducing both GiardiaDB and TrichDB in the database issue of Nucleic
+Acid Research.
+<p>
+<a href="http://nar.oxfordjournals.org/cgi/content/full/gkn631">GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic
+protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> Nucleic
+Acids Research Advance Access published on September 29, 2008, DOI
+10.1093/nar/gkn631.
+
+          ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.1 is released with new Microarray, Mass Spec., Assemblies and SAGE Data
+         ]]>
+       </attribute>
+       <attribute name="date">12 May 2008 00:00</attribute>
+       <attribute name="tag">12May2008Release1.1</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce that GiardiaDB is now available at <a href="/">www.giardiadb.org</a>.  GiardiaDB is now part of ApiDB/EuPathDB (<a href="http://eupathdb.org">www.eupathdb.org</a>) and funded by <a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">NIH's BRC program</a>.
+<br><br>
+  Please send a message to the support team from the link at the bottom of the GiardiaDB web page (<a href="/giardiadb/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">Contact Us!</a>).
+<br><br>
+GiardiaDB 1.1 provides the genome and annotation for the the eukaryotic parasite Giardia lamblia ATCC50803, WBC6 isolate, generated at the MBL and just reported in Science (Science 28 September 2007, Volume 317, pp. 1921-1926). 
+<p>New data available in this release includes: 
+<ul>
+  <li>Genes which were subsumed or largely overlapping with longer genes or genes with more evidence were marked as deprecated and all gene queries allow users to choose whether to query for these genes or not.
+  <li>Ten SAGE tag libraries are now available with queries and record pages.
+  <li>Microarry data from experiments examining stress induction in trophozoites.
+  <li>Proteomics data from trophozoites.
+  <li>All locations are reported on scaffolds but also available in contig coordinates.
+</ul>
+GiardiaDB, like the other ApiDB/EuPathDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify G. lamblia genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs and SAGE tags); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, GiardiaDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The GiardiaDB team
+
+
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.0 is released
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2007 00:00</attribute>
+       <attribute name="tag">1October2007Release1.0</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce that GiardiaDB is now available at <a href="/">www.giardiadb.org</a>.  GiardiaDB is now part of ApiDB (<a href="http://apidb.org">www.apidb.org</a>) and funded by <a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">NIH's BRC program</a>.
+<br><br>
+The previous GiardiaDB, hosted by the MBL's Bay Paul Center, will remain available until the end of 2007.  During this transition period, we ask that you use <a href="/">www.giardiadb.org</a> and notify us if there is a feature, tool, or query that you need that is not available at the new site.  Please send a message to the support team from the link at the bottom of the GiardiaDB web page (<a href="/giardiadb/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">Contact Us!</a>).
+<br><br>
+GiardiaDB 1.0 provides the genome and annotation for the the eukaryotic parasite Giardia lamblia ATCC50803, WBC6 isolate, generated at the MBL and just reported in Science (Science 28 September 2007, Volume 317, pp. 1921-1926).   Also provided are expression data from EST and SAGE surveys.
+<br><br>
+GiardiaDB, like the other ApiDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify G. lamblia genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs and SAGE tags); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, GiardiaDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The GiardiaDB team
+
+
+          ]]>
+       </attribute>
+    </record>
+
+
+</xmlAnswer>
+
