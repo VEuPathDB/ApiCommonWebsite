@@ -16,6 +16,47 @@
     </record>
 -->
 
+     <record>
+       <attribute name="headline">
+         <![CDATA[
+        TriTrypDB 1.0 Released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       06 February 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       6Feb2009TriTrypDB10
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the first release of TriTrypDB 1.0, a new bioinformatics resource for kinetoplastid parasites.
+<p>
+Leveraging bioinformatics infrastructure developed in the context of the EuPathDB project (including PlasmoDB, etc), this resource incorporates genome sequence and annotation from the GeneDB project, along with additional datasets generously provided by many research laboratories.
+<p>
+Highlights include:
+<ul>
+<li>Sequence and annotation for <i>Leishmania braziliensis</i>, <i>L. infantum</i>, <i>L. major</i>, <i>Trypanosoma brucei</i> and <i>Trypanosoma cruzi</i>.</li>
+<li>Genome sequence alignments, permitting comparative genomic analysis of synteny (<i>T. cruzi</i> scaffolds assembled into virtual chromosomes, distinguishing 'Esmeraldo' and 'non-Esmeraldo' haplotypes).</li>
+<li>Expression data, including ESTs and proteomics evidence for <i>L. infantum</i>, <i>T. brucei</i> and <i>T. cruzi</i> (from several laboratories, much of it made available prior to publication).</li>
+<li>Phenotypic information, including manually curated RNAi knock-down phenotypes for <i>T. brucei</i> from TrypanoFAN and the published literature, aiding functional analysis and the validation of essential targets.</li>
+<li>'User Comments' may be added to any gene page, enhancing available annotation.  Such comments are visible and searchable by others, and will be automatically forwarded to the annotation team.</li>
+<li>Identification of genes based on text terms, ID #, GO terms, EC #, chromosomal location, BLAST, sequence features (length/MW, introns, signal sequences, Pfam domains, user-defined motifs), structure, epitopes, orthology, functional information, etc.</li>
+<li>Support for integrated searches, via 'Query History', such as:</li>
+  <ul>
+  <li>"Find all <i>T. brucei</i> genes for which siRNA-mediated knock-downs yield a lethal phenotype"</li>
+  <li>"Find <i>L. major</i> kinases without human orthologs that are supported by expression evidence in any kinetoplastid parasite"</li>
+  </ul>
+</ul>
+<p>
+Look for TriTrypDB at the Kinetoplastid Molecular Cell Biology Meeting in Woods Hole, MA (26-29 April 2009; registration deadline 6 March).
+<p>
+This integrated kinetoplastid bioinformatics resource has been made possible by support from NIAID (EuPathDB), the Wellcome Trust (GeneDB), and the Bill & Melinda Gates Foundation (TriTrypDB).
+
+ ]]>
+       </attribute>
+    </record>
+
 
      <record>
        <attribute name="headline">
