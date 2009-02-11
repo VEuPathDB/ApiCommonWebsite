@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB 3.2 is released with Cryptosporidium Isolates and new Plasmo 5.4 annotation
+         ]]>
+       </attribute>
+       <attribute name="date">
+       19 February 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       19February2008Release32
+       </attribute>
+       <attribute name="item">
+         <![CDATA[
+
+The ApiDB team is pleased to announce the release of ApiDB 3.2
+<p>
+This release accesses the latest releases of <a href="http://cryptodb.org">CryptoDB</a> and <a href="http://plasmodb.org">PlasmoDB</a>, offering the new Isolate queries in CryptoDB and updates after the <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News#reannotation">on-going re-annotation</a> of Plasmodium falciparum.
+ ]]>
+       </attribute>
+    </record>
+
+
+<record>
+       <attribute name="headline">EST Assemblies generated for C.parvum and T.gondii</attribute>
+       <attribute name="date">12 December 2007 00:00</attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">
+         <![CDATA[
+BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo data set available in their websites, but also against the Theileria Genomes, all available apicomplexan ESTs (from NCBI dbEST) and the <a href="/a/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast&target=EST">available EST assemblies</a> that include Cryptosporidium parvum and Toxoplasma gondii.
+          ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">ApiDB.org 3.1 released</attribute>
+       <attribute name="date">12 December 2007 00:00</attribute>
+       <attribute name="tag">currentRelease</attribute>
+       <attribute name="item">           
+
+         <![CDATA[
+We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.1. 
+<br>
+
+<p>
+<b> New Features/Data</b> 
+<ul>
+<li> All our queries offer the same functionality as our component sites: <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.News">Crypto 3.6</a>, <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News">Plasmo 5.4</a> and <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.News">Toxo 4.3</a> recently released with new data.
+<li> All BLAST queries have been consolidated to a single interface, the same as in the component sites.
+<li> More convenient access to help ... please click the  <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
+</ul>
+
+Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">feedback</a> so we can continue improving ApiDB.
+
+<br>
+<br>
+ApiDB release 3.1 keeps improving its current web services architecture that allows us to offer <b>all queries</b> available at the component sites (<a href="http://cryptodb.org">CryptoDB.org</a>, <a href="http://plasmodb.org">PlasmoDB.org</a> and <a href="http://toxodb.org">ToxoDB.org</a>). Our front page includes our updated Genome Statistics Table, Gene Metrics table and all available queries; thus, your favorite query is only one click away.
+
+
+<br>
+
+<br>
+<p>
+<b> What is ApiDB?</b> 
+<br>
+ApiDB is a portal that allows you to query simultaneously different apicomplexan organisms in the <i>Cryptosporidium</i>, <i>Plasmodium</i> and <i>Toxoplasma</i> genera. ApiDB's added value is:
+<ul>
+<li> The ability to blast all ApiDB organisms, plus Theileria annulata and parva genomes, all apicomplexan ESTs and their available clustered ESTs
+<li> The ability to combine query results from different ApiDB organisms
+<li> The ability to search for orthologous/paralogous genes across all ApiDB organisms
+</ul>
+
+
+<p>
+
+          ]]>
+       </attribute>
+    </record>
+
+
+
+<record>
+       <attribute name="headline">Tutorials offered also for Windows</attribute>
+       <attribute name="date">7 October 2007 00:00</attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">
+         <![CDATA[
+Please check the ApiDB <a href="/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsift Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
+          ]]>
+       </attribute>
+    </record>
+
+
+<record>
+       <attribute name="headline">
+<![CDATA[
+GiardiaDB
+and TrichDB
+have been released
+   ]]>
+</attribute>
+       <attribute name="date">14 September 2007 00:00</attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">
+         <![CDATA[
+Please check the new  <a href="http://trichdb.org">TrichDB.org <img src='/images/trichdb.jpg' border='0' alt='trichdb' height='20' width='35'/>
+</a>
+and <a href="http://giardiadb.org">GiardiaDB.org <img src='/images/giardiadb.gif' border='0' alt='giardiadb' height='20' width='20'/>
+</a>
+websites. These soon will be integrated into our portal.
+          ]]>
+       </attribute>
+    </record>
+
+
+ 
+
+ <record>
+       <attribute name="headline">ApiDB Gene Metrics table</attribute>
+       <attribute name="date">18 July 2007 00:00</attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">
+         <![CDATA[
+Please check the new  <a href="/apidb/apidbGeneMetrics.jsp" >Gene Metrics table</a> with all the organisms with gene information available in ApiDB.
+A link to it has been added in the home pages of all ApiDB sites.
+In ApiDB.org the Gene Metrics link appears in the home page, at the bottom of the sidebar, under "Information and Help".
+          ]]>
+       </attribute>
+    </record>
+
+
+
+ <record>
+       <attribute name="headline">ApiDB.org 3.0 released</attribute>
+       <attribute name="date">1 June 2007 00:00</attribute>
+       <attribute name="tag">oldRelease</attribute>
+       <attribute name="item">           
+
+         <![CDATA[
+We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.0. 
+<br>
+ApiDB is a portal that allows you to query simultaneously different apicomplexan organisms in the <i>Cryptosporidium</i>, <i>Plasmodium</i> and <i>Toxoplasma</i> genera. ApiDB's added value is:
+<ul>
+<li> The ability to blast all ApiDB organisms
+<li> The ability to combine query results from different ApiDB organisms
+<li> The ability to search for orthologous/paralogous genes across all ApiDB organisms
+</ul>
+
+ApiDB release 3.0 uses a new architecture based on web services that allows us to offer <b>all queries</b> available at the component sites (cryptodb.org, plasmodb.org and toxodb.org). Our new front page, with our updated Genome Statistics Table, now includes all available queries; thus, your favorite query is only one click away.
+
+
+<br><br>
+ApiDB 3.0 also includes improvements in the following areas:
+
+<p>
+<b> New Query Features</b> 
+<ul>
+<li> Question Page: Advanced Parameters are hidden to the novice user
+<li> Question Page: New dataset parameter for uploading a set of IDs for ID based queries
+<li> Summary Page: Users can add / remove columns and sort by any column
+<li> Download Report: New report type: FASTA file
+<li> Summary Page and Download Report: All attributes available in the component sites are now available in ApiDB now (in the previous release we were only providing organism name, product description and sequence.)
+</ul>
+<p>
+<b> New/Updated Tools</b>
+<ul>
+<li> ApiCyc: another tool to search metabolic pathways for all ApiDB organisms (<i>P. berghei</i> and <i>P chabauldi</i> are not available for the time being). 
+<li> SRT Sequence Retrieval Tool is now an integrated component when downloading reports in FASTA format
+<li> BLAST adds new data sets: <i>T. gondii</i> ESTs, <i>C. parvum</i> proteins, <i>C. muris</i> genomic sequence and orfs, and <i>P. knowlesi</i> gene models. 
+</ul>
+
+<p>
+<b>Community Resources</b>
+<ul>
+<li> New links to the Tetrahymena Genome and The Arabidopsis Information Resource
+</ul>
+<p>
+
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB New Front Page
+         ]]>
+       </attribute>
+       <attribute name="date">31 January 2007 00:00</attribute>
+       <attribute name="tag">
+       ApiDBNewFrontPage
+       </attribute>
+       <attribute name="item">
+         <![CDATA[
+
+This updated home page for ApiDB.org provides the same functionality (queries and tools) but it adds a new Genomes table with key information. &nbsp;&nbsp;Also a new link to <a href="/static/documentation.shtml" >Data Documentation</a> has been added on the sidebar under "Help and Information". &nbsp;&nbsp;Please send any comments and questions to <a href="/apidb/help.jsp" ">ApiDB.</a>
+
+         ]]>
+       </attribute>
+    </record>
+
+
+  <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB Workshop June 3-6, 2007
+         ]]>
+       </attribute>
+       <attribute name="date">4 December 2006 00:00</attribute>
+       <attribute name="tag">
+       4Dec2006Workshop
+       </attribute>
+       <attribute name="item">
+         <![CDATA[
+The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
+at the University of Georgia, Athens, GA, USA.
+<p />
+The workshop will be a 3.5 day
+introduction to apicomplexan database resources that are part of the <a
+href="http://www.brc-central.org/cgi-bin/brc-central/brc_central.cgi">ApiDB Bioinformatics Resource Center</a> (<a
+href="http://apidb.org">ApiDB.org</a>, <a
+href="http://plasmodb.org">PlasmoDB.org</a>, <a
+href="http://toxodb.org">ToxoDB.org</a>, <a
+href="http://cryptodb.org">CryptoDB.org</a>)
+<p />
+The application deadline is January 19, 2007 (<a href="http://apidb.org/workshop/2007/register.php">Application</a>).
+Please
+<a href="http://apidb.org/workshop/2007/">click here</a> for further
+information and to register.
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">ApiDB.org 2.1 released</attribute>
+       <attribute name="date">17 November 2006 00:00</attribute>
+       <attribute name="tag">oldRelease</attribute>
+       <attribute name="item">           
+
+         <![CDATA[
+We are pleased to announce this new release of the ApiDB.org Website and Database, Version 2.1. <br>It includes improvements in different areas:
+
+
+<p>
+<b> New Features, as in Crypto.org, Plasmo.org and Toxo.org</b> 
+<ul>
+<li> <a class="plain" href="/apidb/help.jsp">User support page</a> for you to send us feedback.
+<li> User registration/login. This will allow you two things: to receive emails from us with announcements and to keep a persistent query history that stays between sessions. 
+</ul>
+
+<p>
+<b>New/updated Queries</b>
+<ul>
+<li> New Query&Tools page with the "Query Grid". It summarizes at once which queries are avilable in each site.
+<li> Consistent query and parameter names accross sites.
+<li> Genes by Pfam Domain: easier selecting a pfam term with Ajax.
+<li> Ortholog relationships spanning all supported organisms.
+<li> ApiDB site is catching up with Crypto, Plasmo and Toxo sites; ten new gene queries are offered in this release.
+<li> New queries that return Genomic Sequences, ESTs and ORFs.
+</ul>
+
+<p>
+<b> New/updated Data</b>
+<ul>
+<li> All apicomplexan ESTs from NCBI dbEST
+<li> Crypto, Plasmo and Toxo have added Transcripts information, plus ESTs and ORFs that ApiDB uses in its BLASTs.
+</ul>
+
+<p>
+<b>Community Resources</b>
+<ul>
+<li> New links to GeneDB and ModBase/UCSF.
+</ul>
+<p>
+
+          ]]>
+       </attribute>
+    </record>
+
+  
+
+</xmlAnswer>
+
