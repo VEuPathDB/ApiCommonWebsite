@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<xmlAnswer>
+
+   <record>
+      <table name="relatedLinks">
+        <row>
+          <attribute name="title">EuPathDB</attribute>
+          <attribute name="url">http://www.EuPathDB.org</attribute>
+        </row>
+        <row>
+          <attribute name="title">ToxoDB</attribute>
+          <attribute name="url">http://www.ToxoDB.org</attribute>
+        </row>
+        <row>
+          <attribute name="title">CryptoDB</attribute>
+          <attribute name="url">http://www.CryptoDB.org</attribute>
+        </row>
+        <row>
+          <attribute name="title">OrthoMCL-DB</attribute>
+          <attribute name="url">http://orthomcl.org</attribute>
+        </row>
+        <row>
+          <attribute name="title"><![CDATA[Recent <i>Plasmodium</i> publications]]></attribute>
+          <attribute name="url"><![CDATA[/common/PubCrawler/index.html]]></attribute>
+        </row>
+      </table>
+
+
+      <table name="generalInfo">
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/P_falciparum/project_overview.shtml</attribute>
+          <attribute name="title">Malaria Genome Project</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/release_policy.html</attribute>
+          <attribute name="title">Data Release (NCBI)</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/malsitesearch.html</attribute>
+          <attribute name="title">NCBI Site Search</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Rodent/index.html</attribute>
+          <attribute name="title">Rodent Malaria</attribute>
+        </row>
+      </table>
+
+      <table name="chromosomeMaps">
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Mapsmarkers/PfGMap/pfgmap.html</attribute>
+          <attribute name="title">Genetic Maps</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://schwartzlab.biotech.wisc.edu/research/research.html#plasmodium</attribute>
+          <attribute name="title">Optical Maps</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Mapsmarkers/PfSegData/segdata.html</attribute>
+          <attribute name="title">Segregation Data</attribute>
+        </row>
+      </table>
+
+      <table name="blastTools">
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/plasmodiumbl.html</attribute>
+          <attribute name="title">NCBI GenBank BLAST</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/plasmodiumblcus.html</attribute>
+          <attribute name="title">NCBI Custom BLAST</attribute>
+        </row>
+      </table>
+
+      <table name="otherDbSearches">
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/litsearch.html</attribute>
+          <attribute name="title">MEDLINE</attribute>
+        </row>
+      </table>
+
+      <table name="pfSeqCenters">
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/P_falciparum/</attribute>
+          <attribute name="title"><![CDATA[<i>P.f.</i> Genome Project at Sanger]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://sequence-www.stanford.edu/group/malaria/index.html</attribute>
+          <attribute name="title"><![CDATA[<i>P.f.</i> Genome Project at Stanford]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.tigr.org/tdb/edb/pfdb/pfdb.html</attribute>
+          <attribute name="title"><![CDATA[<i>P.f.</i> Genome Project at TIGR NMRC]]></attribute>
+        </row>
+      </table>
+
+
+      <table name="plasmoDbs">
+        <row>
+          <attribute name="url">http://www.genedb.org</attribute>
+          <attribute name="title">GeneDB</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ebi.ac.uk/parasites/parasite-genome.html</attribute>
+          <attribute name="title">European Bioinformatics Institute (EBI/EMBL)</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/</attribute>
+          <attribute name="title">National Center for Biotechnology Information (Malaria Genetics and Genomics)</attribute>
+        </row> 
+        <row>
+          <attribute name="url">http://parasite.vetmed.ufl.edu/</attribute>
+          <attribute name="title">Malaria Genome Sequence Tag Projects</attribute>
+        </row> 
+        <row>
+          <attribute name="url"><![CDATA[http://pedant.gsf.de/cgi-bin/wwwfly.pl?Set=PfalciparumII&Page=index]]></attribute>
+          <attribute name="title"><![CDATA[<i>P. falciparum</i> Chromosome II ORFs (MIPS)]]></attribute>
+        </row> 
+        <row>
+          <attribute name="url">http://www.sanbi.ac.za/malaria-genesearch/</attribute>
+          <attribute name="title"><![CDATA[<i>Plasmodium</i> Transcript Reconstruction Project at SANBI]]></attribute>
+        </row> 
+      </table>
+
+      <table name="otherSeqCenters">
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/P_berghei/</attribute>
+          <attribute name="title"><![CDATA[<i>P. berghei</i> Genome Project at Sanger]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/P_chabaudi/</attribute>
+          <attribute name="title"><![CDATA[<i>P. chabaudi</i> Genome Project at Sange]]>r</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/P_gallinaceum/</attribute>
+          <attribute name="title"><![CDATA[<i>P. gallinaceum</i> Genome Project at Sanger]]></attribute>
+        </row>
+        <row>
+          <attribute name="url"> http://www.sanger.ac.uk/Projects/P_knowlesi/</attribute>
+          <attribute name="title"><![CDATA[<i>P. knowlesi</i> Genome Project at Sanger]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/P_reichenowi/</attribute>
+          <attribute name="title"><![CDATA[<i>P. reichenowi</i> Genome Project at Sanger]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.tigr.org/tdb/e2k1/pya1/</attribute>
+          <attribute name="title"><![CDATA[<i>P. yoelii yoelii</i> Genome Project at TIGR]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.sanger.ac.uk/Projects/P_vivax/</attribute>
+          <attribute name="title"><![CDATA[<i>P. vivax</i> Genome Project at Sanger]]></attribute>
+        </row>
+      </table>
+
+      <table name="vectorDbs">
+        <row>
+          <attribute name="url">http://www.genoscope.cns.fr/externe/English/Projets/Projet_AK/organisme_AK.html</attribute>
+          <attribute name="title"><![CDATA[<i>Anopheles gambiae</i> sequencing project]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.anobase.org/AnoDB/index1.html</attribute>
+          <attribute name="title"><![CDATA[<i>Anopheles</i> Database (AnoDB)]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ensembl.org/Anopheles_gambiae/</attribute>
+          <attribute name="title"><![CDATA[<i>Ensembl</i> Mosquito]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www2.ncid.cdc.gov/vector/vector.html</attribute>
+          <attribute name="title"><![CDATA[<i>Anopheles</i> Genetic Resource Information Project (AGRIP)]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://mosquito.colostate.edu/tikiwiki/tiki-page.php?pageName=Mosquito_genomics</attribute>
+          <attribute name="title">Mosquito Genomics WWW Server</attribute>
+        </row>
+      </table>
+
+      <table name="malariaBio">
+        <row>
+          <attribute name="url">http://www.wehi.edu.au/MalDB-www/who.html</attribute>
+          <attribute name="title">Malaria Database at WEHI</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://schwartzlab.biotech.wisc.edu/research/research.html#plasmodium</attribute>
+          <attribute name="title">Optical Mapping</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.malaria.mr4.org/mr4pages/index.html</attribute>
+          <attribute name="title">Malaria Research and Reference Resource Center (MR4)</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://sites.huji.ac.il/malaria/</attribute>
+          <attribute name="title">Malaria Parasite Metabolic Pathways</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.ebi.ac.uk/parasites/PlasGN/FalcipProteome/proteome.html</attribute>
+          <attribute name="title"><![CDATA[<i>Plasmodium</i> Proteome Classification and Analysis]]></attribute>
+        </row>
+        <row>
+          <attribute name="url">http://bioinfo.icgeb.res.in/codes/model.html</attribute>
+          <attribute name="title">Comparative modeling of Plasmodium falciparum (3d7) annotated  proteins</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://carrier.gnf.org/publications/CellCycle/</attribute>
+          <attribute name="title">Winzeler Lab: Discovery of gene function by 
+expression profiling of the malaria parasite life cycle</attribute>
+        </row> 
+        <row>
+          <attribute name="url">http://malaria.ucsf.edu/</attribute>
+          <attribute name="title">DeRisi Lab: Malaria Transcriptome Database</attribute>
+        </row>
+      </table>
+
+      <table name="malariaGeneral">
+        <row>
+          <attribute name="url">http://www.malaria.org/</attribute>
+          <attribute name="title">Malaria Foundation International</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.who.ch/ctd/html/malaria.html</attribute>
+          <attribute name="title">World Health Organization - Malaria</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.who.int/tdr/</attribute>
+          <attribute name="title">UNICEF-UNDP-World Bank-WHO Special Programme for Research and Training in Tropical Diseases</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://scope.educ.washington.edu/welcome/malaria/</attribute>
+          <attribute name="title">SCOPE Malaria Research; Policy Web Forum</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.rph.wa.gov.au/labs/haem/malaria/index.html</attribute>
+          <attribute name="title">Malaria OnLine Resource at Royal Perth Hospital, Australia</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.sciencedirect.com/science/issue/5057-2002-999679986-359598</attribute>
+          <attribute name="title">International Journal for Parasitology - issue on Malaria</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.nature.com/nature/focus/malaria</attribute>
+          <attribute name="title">Nature Web Focus: Malaria</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.nature.com/news/specials/malaria/index.html</attribute>
+          <attribute name="title">Malaria Special Issue</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.nature.com/news/specials/malaria/malara_movie.swf</attribute>
+          <attribute name="title">Life Cycle of the Malaria Parasite</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.inasp.info/health/links/malaria.html</attribute>
+          <attribute name="title">International Network for the Availability of Scientific Publications: Malaria</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wehi.edu.au/index.html</attribute>
+          <attribute name="title">Walter and Eliza hall Institute of Medical Research</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wehi.edu.au/MalDB-www/who.html</attribute>
+          <attribute name="title">Who/TDR Malaria Database</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wehi.edu.au/education/wehi-tv/index.html</attribute>
+          <attribute name="title">wehi-tv</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wehi.edu.au/education/wehi-tv/movies.html</attribute>
+          <attribute name="title">wehi-tv movies</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wehi.edu.au/education/wehi-tv/illustrations.html</attribute>
+          <attribute name="title">wehi-tv illustrations</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.vnh.org/Malaria/Malaria.html</attribute>
+          <attribute name="title">Navy Medical Department Pocket Guide to Malaria Prevention and Control</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.mara.org.za/</attribute>
+          <attribute name="title">MARA/ARMA Home Page</attribute>
+        </row>
+      </table>
+
+      <table name="funding">
+        <row>
+          <attribute name="url">http://www.bwfund.org/</attribute>
+          <attribute name="title">Burroughs Wellcome Fund</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.niaid.nih.gov/</attribute>
+          <attribute name="title">National Institute of Allergies and Infectious Diseases</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.nmrc.navy.mil/</attribute>
+          <attribute name="title">Naval Medical Research Center</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wellcome.ac.uk/</attribute>
+          <attribute name="title">The Wellcome Trust</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.wellcome.ac.uk/en/malaria/</attribute>
+          <attribute name="title">Wellcome Trust Research Directions in malaria</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://www.mmv.org/pages/page_main.htm</attribute>
+          <attribute name="title">Medicines for Malaria Initiative</attribute>
+        </row>
+      </table>
+
+   </record>
+</xmlAnswer>

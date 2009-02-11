@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+<!--
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         ]]>
+         </attribute>
+       <attribute name="date">06 June 2008 00:00</attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+-->
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB to take on the kinetoplastida
+         ]]>
+       </attribute>
+       <attribute name="date">
+       1 December 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       1December2008GatesFoundation
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to report
+an award from the <a href="http://www.gatesfoundation.org">Bill & Melinda Gates Foundation</a> in support of a
+TrypDB component of the <a href="http://eupathdb.org/">EuPathDB</a> family of databases,
+encompassing <i>Leishmania</i> species, <i>Trypanosoma brucei</i>, and
+<i>Trypanosoma cruzi</i>.  A coordinated award from the<a href="http://www.wellcome.ac.uk/"> Wellcome Trust</a>
+will permit enhanced annotation of kinetoplastid parasites. 
+These projects represent a collaborative effort between the
+GeneDB team (at the Wellcome Trust Sanger Institute), colleagues
+at the <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a>, and the EuPathDB
+team -- an NIAID-supported Bioinformatics Resource Center. Look
+for the first release of TrypDB in Jan 2009!
+
+ ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+Fifth updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genome
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2008 00:00</attribute>
+       <attribute name="tag">reannotation5</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce the release of the fifth snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genome.
+<p>
+The effort to systematically update the annotation for <i>P. falciparum</i> 3D7 genome started in October 2007 with a weeklong workshop co-organized by staff from the Wellcome Trust Sanger Institute (WTSI) and the EuPathDB team. The Wellcome Trust and Burroughs Wellcome Fund-sponsored workshop was held in Hinxton, UK and was attended by nearly 30 Plasmodium researchers contributing expertise in various aspects of Plasmodium biology, plus more than 10 bioinformatics support staff from the Artemis, GeneDB and EuPathDB teams.  Ongoing annotation and error checking is being carried out by the GeneDB group from WTSI.
+<p>
+For further information please refer to the February 1st, 2008 news item (below).
+]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+          PlasmoDB publication in Nucleic Acid Research
+         ]]>
+       </attribute>
+       <attribute name="date">4 November 2008 00:00</attribute>
+       <attribute name="tag">NAR2008</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce the publication of a paper in Nucleic Acid Research describing PlasmoDB.<br>
+Please cite this manuscript when referencing the PlasmoDB resource in your publications.
+<p>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18957442">
+PlasmoDB: a functional genomic database for malaria parasites.</a> Nucleic Acids Res. 2008 Oct 31. Aurrecoechea C, et al.
+]]>
+       </attribute>
+    </record>
+
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+          PlasmoDB 5.5 released
+         ]]>
+       </attribute>
+       <attribute name="date">16 September 2008 00:00</attribute>
+       <attribute name="tag">currentRelease</attribute>
+       <attribute name="item">           
+         <![CDATA[
+    <p>
+    The EuPathDB team is happy to announce the release of PlasmoDB 5.5.  
+    <p>
+    
+    <u>New Data:</u>
+    
+    <ul>
+    <li>Proteomics:</li>
+      <ul>
+      <li>P. falciparum purified merozoite proteomics data provided prepublication by the Leiden Malaria Group.</li>
+      <li>P. yoelii liver stage proteomics (Tarun et al. <a href="http://www.ncbi.nlm.nih.gov/pubmed/18172196?dopt=Abstract">Proc. Natl. Acad. Sci. U.S.A. (2008) vol. 105 (1) pp. 305-10</a>).</li>
+      </ul>
+    </ul>
+    
+    <ul>
+    <li>Microarray:</li>
+      <ul>
+      <li>P. yoelii liver, mosquito, and red cell stage expression data (Tarun et al.<a href="http://www.ncbi.nlm.nih.gov/pubmed/18172196?dopt=Abstract"> Proc. Natl. Acad. Sci. U.S.A. (2008) vol. 105 (1) pp. 305-10</a>).</li>
+      <li>P. falciparum expression data from infected patients (Daily et al.<a href="http://www.ncbi.nlm.nih.gov/pubmed/18046333?dopt=Abstract"> Nature 2007 Dec 13;450 (7172):1091-5</a>).</li>
+      </ul>
+    </ul>
+    
+    <ul>
+    <li>Population Biology:</li>
+      <ul>
+      <li>Isolate data from P. falciparum (3k chip and 24bp barcode) (Volkman et al. <a href="http://www.ncbi.nlm.nih.gov/pubmed/17159979?dopt=Abstract">Nat Genet. 2007 Jan;39(1):113-9</a>).</li>
+      <li>Microsatellite data for P. falciparum available through Gbrowse with link-outs to GenBank records (Su et al. <a href="http://www.ncbi.nlm.nih.gov/pubmed/10558988?dopt=Abstract">Science, 1999 vol. 286 (5443) pp. 1351-3</a>).</li>
+      </ul>
+    </ul>
+    
+    <ul>
+    <li>Promoter Prediction:</li>
+      <ul>
+      <li>Prediction of transcription start sites in P. falciparum provided prepublication and available on gbrowse (Brick K, Watanabe J, and Pizzi E).  </li>
+      </ul>
+    </ul>
+    
+    <u>Improvements:</u>
+    
+    <ul>
+    <li>Documentation related to data types has been improved.</li>
+    <li>Gbrowse tracks have been organized and help associated with gbrowse items have been improved.</li>
+    </ul>
+
+]]>
+       </attribute>
+    </record>
+
+
+
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+Plasmodium microarray resources
+         ]]>
+       </attribute>
+       <attribute name="date">22 July 2008 00:00</attribute>
+       <attribute name="tag">microarray_listing</attribute>
+       <attribute name="item">           
+         <![CDATA[
+A listing of microarrays that are available to Plasmodium researchers has been posted at 
+<a href="http://plasmodb.org/common/microarrays/">http://plasmodb.org/common/microarrays/</a>. 
+This list is meant to provide in a single location a summary of the publicly  
+available microarrays targeting Plasmodium genomes (including <i>P. falciparum</i>, 
+<i>P. berghei</i>, <i>P. yoelii</i>, and <i>P. vivax</i>). Also provided are 
+details, including, for some of the arrays, an updated mapping to genes in PlasmoDB.
+        ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+Fourth updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genome
+         ]]>
+       </attribute>
+       <attribute name="date">15 July 2008 00:00</attribute>
+       <attribute name="tag">reannotation4</attribute>
+       <attribute name="item">           
+         <![CDATA[
+PlasmoDB has released the fourth snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidently reverted back to the original name. This new snapshot has the correct re-annotated product names.
+          ]]>
+       </attribute>
+    </record>
+    
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+    Approval for sequencing additional <i>Plasmodium</i> isolates and species.
+         ]]>
+       </attribute>
+       <attribute name="date">11 June 2008 00:00</attribute>
+       <attribute name="tag">reannotation4</attribute>
+       <attribute name="item">           
+         <![CDATA[
+     The proposal for sequencing of additional <i>Plasmodium</i> isolates and species 
+     has been approved. 
+     The whitepaper is available <a href="http://plasmodb.org/common/downloads/doc/PlasmodiumWhitePaperV5.pdf">here</a>.
+        ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+Third updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genome
+         ]]>
+       </attribute>
+       <attribute name="date">06 June 2008 00:00</attribute>
+       <attribute name="tag">reannotation3</attribute>
+       <attribute name="item">           
+         <![CDATA[
+PlasmoDB has released the third snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidently reverted back to the original name. This new snapshot has the correct re-annotated product names.
+          ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+           An updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genome
+
+         ]]>
+       </attribute>
+       <attribute name="date">19 May 2008 00:00</attribute>
+       <attribute name="tag">reannotation2</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<p>
+The effort to systematically update the annotation for <i>P. falciparum</i> 3D7 genome started in October 2007 with a weeklong workshop co-organized by staff from the Wellcome Trust Sanger Institute (WTSI) and the ApiDB team. The Wellcome Trust and Burroughs Wellcome Fund-sponsored workshop was held in Hinxton, UK and was attended by nearly 30 Plasmodium researchers contributing expertise in various aspects of Plasmodium biology, plus more than 10 bioinformatics support staff from the Artemis, GeneDB and ApiDB teams. During the workshop 2700 genes were edited using Artemis and ACT software, mainly with the addition of new or alternative functional descriptions (e.g. product names, GO terms, EC numbers and miscellaneous textual comments).
+
+ 
+<p>
+
+After the workshop, intensive manual reannotation of the genome has continued at WTSI with the help of several members of the community. First, the structures of more than 700 gene models have been changed and new gene models have been added. In addition, curation staff at GeneDB have reviewed all User Comments submitted to PlasmoDB. Over the coming months, the emphasis will switch to a careful genome-wide review of functional annotation.
+
+ 
+<p>
+The annotation presented here in PlasmoDB is the second snapshot of a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have. Please add a User Comment to any gene about which you have additional information. This information is forwarded to the GeneDB curators on a weekly basis and will be included in the next snapshot.  In order to expedite the annotation, the following are of particular value to the manual curators: 
+<ul>
+<li> New product names with the PubMed ID of the paper in which they were first cited, 
+
+<li> Additional PubMed IDs of any papers from which the function of the gene/protein can be ascribed
+
+<li> EC number
+
+<li> Alternative/updated gene names and aliases.
+
+<li> Evidence that a gene structure has been incorrectly called.  Please include a description of the evidence that you have used (e.g. full length cDNA) and the new sequence. 
+</ul>
+ 
+<p>
+The ongoing reannotation is being systematically carried out by Ulrike B&#246;hme and Bart Barrell (Wellcome Trust Sanger Institute) with extensive help from several community volunteers, in particular Chris Newbold (Oxford, UK), Tom Templeton (Cornell, US), Eric Mar&#233;chal (Grenoble, France).  For the annotation, the Artemis software was redesigned by Tim Carver and changes are recorded within a Chado database (GeneDB) designed and maintained by Adrian Tivey and Chinmay Patel. 
+
+
+<p>
+Workshop participants included
+<ul>
+<li>Oliver Bilker (Imperial Coll, London)
+<li>Serge Bonnefoy (Inst Pasteur, Paris)
+<li>Pete Bull (Kenya Med Res Inst, Kilifi)
+<li>Jane Carlton (New York Univ)
+<li>Brendan Crabb (Walter & Eliza Hall Inst, Melbourne)
+<li>Christian Doerig (Univ Glasgow)
+<li>Malcolm Gardner (Seattle Biomedical Res Inst)
+<li>Hagai Ginsburg (Hebrew Univ, Jerusalem)
+<li>George Githinji (MOMS, Tanzania)
+<li>Taco Kooij (Heidelberg Univ)
+<li>Dominic Kwiatkowski (Oxford Univ & WTSI)
+<li>Sue Kyes (Oxford Univ)
+<li>Thomas Lavstsen (Copenhagen)
+<li>Manuel Llinas (Princeton Univ)
+<li>Eric Marechal (CNRS, Grenoble)
+<li>Dan Milner (Harvard Univ)
+<li>Fingani Mphande (Karolinska Inst)
+<li>Dan Neafsey (Broad Inst)
+<li>Chris Newbold (Oxford Univ)
+<li>Stuart Ralph (Melbourne Univ)
+<li>Gowthaman Ramasamy (Seattle Biomedical Res Inst)
+<li>Robert Sinden (Imperial Coll, London)
+<li>Worachart Sirawaraporn (Mahidol Univ, Bangkok)
+<li>Dominique Soldati (Univ Geneva)
+<li>Tim Stedman (MR4 / ATCC)
+<li>Tom Templeton (Cornell Univ, New York)
+<li>Akhil Vaidya (Drexel Univ, Philadelphia)
+<li>Scott Westenberger (Scripps Inst, La Jolla)
+<li>Jennifer Wortman (Univ Maryland, Baltimore)
+</ul>
+Sponsors and Facilitators included:
+<ul>
+<li>Andy Berry, Ulrike Boehme, Celine Carret, Tim Carver, Al Ivens, Arnab Pain, Adrian Tivey & Matt Berriman (GeneDB / Wellcome Trust Sanger Inst)
+<li>Brian Brunk, Zhongqiang Chen, Mark Heiges, Lucia Peixoto, Dhanasekaran Shanmugam & David Roos (ApiDB / Univ Georgia & Univ Pennsylvania)
+</ul>
+
+
+]]>
+       </attribute>
+    </record>
+
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+           Draft Reannotation of the <i>P. falciparum</i> genome is now available.
+         ]]>
+       </attribute>
+       <attribute name="date">01 February 2008 00:00</attribute>
+       <attribute name="tag">reannotation</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The effort to re-annotate the <i>falciparum</i> genome was started in October at a weeklong workshop co-organized by ApiDB and GeneDB staff.  The workshop was hosted at the Welcome Trust Sanger Institute in Hinxton, UK and was attended by nearly 30 <i>Plasmodium</i> researchers contributing expertise in various aspects of <i>Plasmodium</i> biology and more than 10 bioinformatics support staff from the GeneDB and ApiDB teams. More than 2,700 genes have been reviewed to date and most modified in some fashion; primarily refining exon boundaries, assigning product names, assigning GO functions and EC numbers and making comments / notes.  The annotation process is continuing in the attempt to review all genes at least twice (by different annotators).  The annotation presented here in PlasmoDB is thus a work in progress and intended to inform you, the community, about the new annotation and elicit any feedback that you may have.  Please add a user comment to any gene that you have additional information about.  This includes supporting data corroborating gene annotation as well as data that indicates the gene model, product name, functional assignments etc are incorrect.  These comments will be included in the annotation which we hope will be concluded in mid-march.
+<p>
+Workshop participants included
+<ul>
+<li>Oliver Bilker (Imperial Coll, London)
+<li>Serge Bonnefoy (Inst Pasteur, Paris)
+<li>Pete Bull (Kenya Med Res Inst, Kilifi)
+<li>Jane Carlton (New York Univ)
+<li>Brendan Crabb (Walter & Eliza Hall Inst, Melbourne)
+<li>Christian Doerig (Univ Glasgow)
+<li>Malcolm Gardner (Seattle Biomedical Res Inst)
+<li>Hagai Ginsburg (Hebrew Univ, Jerusalem)
+<li>George Githinji (MOMS, Tanzania)
+<li>Taco Kooij (Heidelberg Univ)
+<li>Dominic Kwiatkowski (Oxford Univ & WTSI)
+<li>Sue Kyes (Oxford Univ)
+<li>Thomas Lavstsen (Copenhagen)
+<li>Manuel Llinas (Princeton Univ)
+<li>Eric Marechal (CNRS, Grenoble)
+<li>Dan Milner (Harvard Univ)
+<li>Fingani Mphande (Karolinska Inst)
+<li>Dan Neafsey (Broad Inst)
+<li>Chris Newbold (Oxford Univ)
+<li>Stuart Ralph (Melbourne Univ)
+<li>Gowthaman Ramasamy (Seattle Biomedical Res Inst)
+<li>Robert Sinden (Imperial Coll, London)
+<li>Worachart Sirawaraporn (Mahidol Univ, Bangkok)
+<li>Dominique Soldati (Univ Geneva)
+<li>Tim Stedman (MR4 / ATCC)
+<li>Tom Templeton (Cornell Univ, New York)
+<li>Akhil Vaidya (Drexel Univ, Philadelphia)
+<li>Scott Westenberger (Scripps Inst, La Jolla)
+<li>Jennifer Wortman (Univ Maryland, Baltimore)
+</ul>
+Sponsors and Facilitators included:
+<ul>
+<li>Andy Berry, Ulrike Boehme, Celine Carret, Tim Carver, Al Ivens, Arnab Pain, Adrian Tivey & Matt Berriman (GeneDB / Wellcome Trust Sanger Inst)
+<li>Brian Brunk, Zhongqiang Chen, Mark Heiges, Lucia Peixoto, Dhanasekaran Shanmugam & David Roos (ApiDB / Univ Georgia & Univ Pennsylvania)
+</ul>
+
+]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">PlasmoDB 5.4 is released</attribute>
+       <attribute name="date">31 October 2007 00:00</attribute>
+       <attribute name="tag">release5.4</attribute>
+       <attribute name="item">           
+          <![CDATA[
+The ApiDB team is pleased to announce the release of PlasmoDB_5.4.
+
+<br><br><u>New data include:</u>
+<ul>
+<li> A slightly modified reference genome for <i>P. falciparum</i> (several gaps have been closed on chr10 & 11).
+<li> P. berghei gametocyte proteomics data (Khan et al, Cell 121:675-87).
+<li> Many additional <i>P. falciparum</i> SNPs (unpublished data from the Broad Inst).
+<li> Additional ESTs (Watanabe et al, Nucl Acids Res 32:D334-8; Lu et al, BMC Genomics 8:255; Florent et al, Mol.Biochem.Parasitol. 135:143-8)
+<li> Expression profiling data for antigenic and adherent variants of <i>P. falciparum</i> 3D7 (Mok et al, Molec Biochem Parasitol 151:184-92).
+<li> User comments submitted prior to June 2007 have now been incorporated into the official annotation.
+<li> Sequence assemblies for 11 <i>falciparum</i> strains from the Broad Institute have just been released and are available on the PlasmoDB download site.
+</ul>
+
+<u>New features include:</u>
+<ul>
+<li> Faster loading of Gene and Genome Browser pages. 
+<li> Improved synteny views in the Genome Browser.
+<li> Browser views of rodent malaria genomes colored to indicate chromosomes (Kooij et al, PLoS Pathog 1:e44). 
+<li> Gene page links to various external data sources (including PlasmoMAP,  TDRtargets, UCSC <i>P. falciparum</i> genome browser, Ontology-based Pattern Identification and literature databases).
+<li> More convenient access to help ... please click the "Ask us a Question" link on the left of every page, or the "Contact Us" at bottom to report problems or suggest improvements to the database.
+</ul>
+
+Note that a mechanism has now been established to ensure that User Comments on genes or sequences are incorporated into the official annotation in a timely manner.  In response to a banner posted on PlasmoDB and e-mail to malaria researchers, several hundred new User Comments were entered by the community in advance of a <i>P. falciparum</i> genome reannotation workshop jointly sponsored by the Wellcome Trust Sanger Inst and the PlasmoDB team during the week of Oct 21!
+<br><br>
+There is still time to enter additional User Comments while the updated annotation is being reviewed in preparation for deposition in GenBank and release on PlasmoDB and GeneDB in early 2008.  Please use the User Comments feature as a repository for valuable information on:
+<ul>
+<li> Naming, e.g. "Apical membrane antigen 1 is also known as AMA1, AMA-1, Pf83, Rhoptry Membrane Antigen, RMA1" or "this gene is now recognizable as XXX based on Pfam domain ###."
+<li> Gene models, e.g. "Corrected cDNA sequence for gene XXX: <sequence>, based on RACE and primer extension for 5' UTR and polyA-tailed cDNA clone for 3' UTR" or "RT-PCR confirms annotated CDS sequence as correct."  Note that confirmation of existing annotation can be as valuable as corrections!
+<li> Function, e.g. "Enzymatic activity for gene XXX has been confirmed" or "Protein XXX is predicted to target to the apicoplast, but an epitope-tagged construct shows cytoplasmic localization."  Be sure to provide name and/or PubMedID if available.
+</ul>
+
+For data that is not readily accommodated in this form, or datasets too extensive to enter as individual User Comments (expression profiling studies, systematic evaluation of gene models by RT-PCR, etc), please contact support@PlasmoDB.org.
+<br><br>
+Best regards,
+<br>
+Your ApiDB project team
+
+
+           ]]>
+       </attribute>
+   </record>
+
+<record>
+ <attribute name="headline">Tutorials offered now for more platforms</attribute>
+       <attribute name="date">07 October 2007 00:00</attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">
+         <![CDATA[
+Please check the PlasmoDB <a href="/plasmo/showXmlDataContent.do?name=XmlQuestions.Tutorials" ">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.wmv) and Flash Player (.flv). There is a link to these tutorials in PlasmoDB sidebar, in all pages.
+
+          ]]>
+       </attribute>
+
+   </record>
+
+
+   <record>
+       <attribute name="headline">PlasmoDB 5.3 is released</attribute>
+       <attribute name="date">19 June 2007 00:00</attribute>
+       <attribute name="tag">Release 5.3</attribute>
+       <attribute name="item">           
+          <![CDATA[
+PlasmoDB 5.3 provides the genome and annotation for the primate malarial parasite <i>Plasmodium knowlesi</i>, provided by the Wellcome Trust Sanger Institute Pathogen Sequencing Unit. This brings the number of Plasmodium genomes available for queries at PlasmoDB up to six. Also provided are expression data from recent papers using gene knockouts to study molecular mechanisms in human (<i>P. falciparum</i>) and rodent (<i>P. berghei</i>) malarial parasites. Queries have been developed for the new expression studies and a summary graphic (P.f.) or table (P.b.) added to the gene pages.
+<p>
+The PlasmoDB 5.3 web site also has significant improvements to the query and results pages. Many of the queries have been reorganized. For example, the Predicted Functional Interaction query now allows input of a list of genes and a clearer explanation of what to get from the query (e.g., find high confidence predicted interactions between members of the input gene list). The results from this and all queries can be sorted. It is also now possible to add columns of interest (e.g., protein features, GO annotation, even expression characteristics) and sort on them.
+<p>
+New data and queries in PlasmoDB 5.3:
+<ul>
+<li>Genome sequence and annotation for <i>Plasmodium knowlesi</i> from the Wellcome Trust Sanger Institute Pathogen Sequencing Unit.  <i>P. knowlesi</i> is included in many of the queries to identify genes, genomics sequences, ESTs, and ORFs by various features.
+<li>Microarray studies have been incorporated from a series of 3 papers on gene silencing (Duraisingh et al. Cell 2005) and invasion pathways (Baum et al. PLoS Pathogens 2005; Stubbs et al. Science 2005) in <i>P. falciparum</i>.
+<li>A microarray study in <i>P. berghei</i> from a paper on translational repression in gametocytes (Mair et al. Science 2006).
+<li>A refined mapping of epitopes to <i>Plasmodium</i> provided by the <a href="http://www.immuneepitope.org/home.do">Immune Epitope Database and Analysis Resource</a>. A query is now provided to identify genes whose encoding protein has an epitope at different levels of confidence.
+<li>Updated E.C. number and metabolic pathway assignments, Interpro protein domains and associated GO predictions, MR4 reagent links, homologies to entries in the NRDB protein database and links to stuctures in PDB.
+<li>A new build of ortholog groups from Orthomcl for use in PlasmoDB. The list of genomes represented has increased from 55 to 87  and includes all the organisms covered by the different NIH/NIAID funded Bioinformatics Resource Centers.
+</ul>
+<p>
+New features in PlasmoDB 5.3:
+<ul>
+<li>Most of the queries have been reorganized to make them more intuitive. Some include a new "Advanced Parameters" section. See for example "Identify Genes based on EST evidence."
+<li>The columns displayed in query result pages are improved.  The result pages also offer options for sorting, adding new columns, and moving columns around.
+<li>Downloading results is improved. A choice of formats is provided including tab-delimited, text, GFF, and FASTA to meet different needs.
+  <ul>
+  <li>Tab delimited provides an expanded list of annotations that can be directly exported as an Excel spreadsheet.
+   <li>Text provides a detailed summary for each gene including SNPs, Y2H interactions, metabolic pathways, MR4 reagents, protein structures, notes, sequence, and many other choices.
+   <li> GFF is a format recognized by many applications such as the genome browser, gbrowse.
+  <li> FASTA also provides a common format used for BLAST and other applications. The FASTA option provides the functionality of the SRT (sequence retrieval tool) found in earlier versions of PlasmoDB.
+  </ul>
+</ul>
+           ]]>
+       </attribute>
+   </record>
+ 
+
+
+   <record>
+       <attribute name="headline">PFGRC offers course on Microarray Tech., April 2007</attribute>
+       <attribute name="date">14 February 2007 00:00</attribute>
+       <attribute name="tag">pfgrc_course</attribute>
+       <attribute name="item">           
+          <![CDATA[
+February, 2007  The PFGRC announces that it will conduct a four day course titled, "Introduction to Microarray Technology", April 16-19, 2007.
+<p>
+The NIAID sponsored Pathogen Functional Genomics Resource Center at TIGR announces that it will conduct a four day course titled, "Introduction to Microarray Technology." The workshop will be held on the TIGR campus on April 16-19, 2007. The course will provide an overview of the two-dye spotted microarray platform. The course is designed for hands on participation and attendees will actively learn to make the most of their microarrays through a combination of wet lab and bioinformatics sessions.
+<p>
+The wet lab portion will be taught by PFGRC staff who are directly involved in microarray production. Participants will be guided through probe preparation and hybridization protocols. The training will also consist of detailed discussions on dye coupling, slide pre-hybridization, hybridization, and scanning techniques. Other topics for discussion will include the importance of assessing source material and probe quality, comparisons of various slide surfaces, and printing techniques.
+<p>
+The bioinformatics portion of the course covers an introduction to the stages of microarray data analysis. Major topics include data management, image analysis, normalization, and data mining. Fundamental data analysis concepts will be taught using a mix of lectures and interactive hands-on sessions. Participants will analyze the microarrays they prepared, using the open-source TM4 software suite while working closely with the software developers. CDs containing microarray datasets and the TM4 suite will be provided.
+<p>
+The course will be provided free of charge. Attendees will be responsible for their travel and lodging. This introductory course is one of several offered by the PFGRC on variety of functional genomics topics. Attendance will be limited to 14 participants.
+<p>
+Interested participants will find the preliminary course agenda <a href="http://pfgrc.tigr.org/seminars/schedule_IMT_042007.pdf">here</a>, and registration information <a href="http://pfgrc.tigr.org/seminars/registration_IMT_042007.pdf">here</a>.
+
+           ]]>
+       </attribute>
+   </record>
+ 
+   <record>
+       <attribute name="headline">ApiDB Workshop, June 3-6, 2007</attribute>
+       <attribute name="date">05 December 2006 00:00</attribute>
+       <attribute name="tag">workshop2</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
+at the University of Georgia, Athens, GA, USA.
+<p>The workshop will be a 3.5 day introduction to apicomplexan database resources that are part of the 
+<a href="http://www.brc-central.org/cgi-bin/brc-central/brc_central.cgi">ApiDB Bioinformatics Resource Center</a> (
+<a href="http://apidb.org">ApiDB.org</a>, 
+<a href="http://plasmodb.org">PlasmoDB</a>, 
+<a href="http://toxodb.org">ToxoDB</a>, and
+<a href="http://cryptodb.org">CryptoDB</a> 
+). 
+<p>The application deadline is January 19, 2007 (<a href="http://apidb.org/workshop/2007/register.php">Application</a>).
+Please <a href="http://apidb.org/workshop/2007/">click here</a> for further
+information and to register.
+          ]]>
+       </attribute>
+    </record>
+ 
+    <record>
+       <attribute name="headline">PlasmoDB 5.2 is released</attribute>
+       <attribute name="date">17 November 2006 00:00</attribute>
+       <attribute name="tag">5.2_release</attribute>
+       <attribute name="item">           
+          <![CDATA[
+PlasmoDB 5.2 brings a new emphasis on genetic markers, in the form of four new datasets relating to <i>Plasmodium</i> polymorphisms.  This data is available in the Genome Browser, on the Gene page and in queries.  We continue to move key data from the PlasmoDB 4.4 site to the current site: this release re-introduces gametocyte expression data and expression profile similarity search. The Gene page now includes matches to Interpro protein domains and the Genome Browser offers tracks ESTs from dbEST.
+<p>
+The PlasmoDB 5.2 site also includes new features such as allowing you to keep your Query History for later use, an improved keyword search and a significantly upgraded Query & Tools page.
+<p>
+
+New data and queries in PlasmoDB 5.2:
+<ul>
+<li> Array data from <i>Kidgell et al. PLoS Pathogens 2006 A systematic map  of genetic variation in Plasmodium falciparum</i>.
+<li> Polymorphism data based on resequencing and array analyses.
+<ul>
+    <li> SNPs generated by the NIH:  Based on CDS sequences from strains 3D7, 7G8, D10, Dd2,  HB3 (kindly provided in advance of publication by X. Su; reference:  J. Mu et al, Nature Genetics, in press)
+    <li> SNPs generated by the Broad Institute:  Based on whole genome sequence for strains Dd2 and  HB3, and partial genome sequence for multiple strains (kindly  provided in advance of publication by D. Decaprio, S.K. Volkman &  D.F. Wirth; reference: S.K. Volkman et al, Nature Genetics, in press)
+    <li> SNPs generated by the WTSI:  Based on whole genome sequence for strains Ghana1 and IT and a comparison with <i>P. reichenowi</i> (kindly provided in advance of publication by D.C. Jeffares & M.  Berriman; reference: D.C. Jeffares et al, Nature Genetics, in press).
+    <li> Array CGH data on a variety of <i>Plasmodium</i> strains kindly provided by E. Winzeler.
+</ul>
+<li> A query to generate gene lists based on SNP characteristics such as non-synonymous / synonymous substitutions and SNP density.
+<li> <i>Plasmodium</i> ESTs from the Oct. 2, 2006 release of dbEST.
+<li> Interproscan analysis of <i>Plasmodium</i> proteins.
+<li> PlasmoCyc pathways, available from gene pages
+</ul>
+
+New features in PlasmoDB 5.2:
+<ul>
+<li> Save past searches (Persistent Query History)
+<li> Reorganized Query and Tools page
+<li> Improved text search
+<li> New tutorial movies
+</ul>
+
+Features and data moved from PlasmoDB 4.4 to 5.2:
+<ul>
+<li> Gametocyte data from <i>Young et al. Mol Biochem parasitol 2005.</i>
+<li> Expression profile similarity for erythrocytic stage data from <i>P. falciparum</i> 3D7, HB3, and DD2 (<i>Llinas et al., Nucl. Acids. Res. 2006</i>;  <i>Bozdech et al PLos Biol 2003</i>). New to 5.2 is the inclusion of <i>P. berghei</i> data (<i>Hall et al. Science 2005</i>).          
+</ul>
+ ]]>
+       </attribute>
+   </record>
+   <record>
+       <attribute name="headline">PlasmoDB 5.1 is released</attribute>
+       <attribute name="date">16 August 2006 00:00</attribute>
+       <attribute name="tag">5.0_release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The PlasmoDB 5.1 release continues our effort to add new data and features while migrating PlasmoDB 4.4 functionality to the PlasmoDB 5 architecture.  This release includes new rodent malaria parasite data, improved mappings to external sites, improvements to the Genome Browser, more 4.4 functionality (we're almost done with the migration) and some important behind the scenes improvements.
+
+Here are the details:
+  <ul>
+  <li> Rodent malaria parasite (RMP) data
+     <ul>
+     <li> For <i>P. berghei</i> and <i>P. chabaudi</i>
+        <ul> 
+        <li> Genome Browser tracks showing synteny to <i>P. falciparum</i>
+        <li> TIGR Gene Index (TGI) tracks in the Genome Browser
+        <li> Pfam domains mapped to predicted protein products
+        </ul>
+     <li> A Genome Browser track showing glass slide array oligos mapped to <i>P. yoelii</i>
+     </ul>
+  <li> Updated mappings from PlasmoDB genes to
+        <ul>
+        <li>The Protein Data Bank (PDB)
+        <li>Genbank, RefSeq and Swissprot
+        <li>Reagents from the MR4 Consortium
+        </ul>
+  <li> tRNA gene predictions for <i>P. vivax</i>, <i>P. berghei</i>, <i>P. chabaudi</i> and <i>P. yoelii</i>.
+  <li> Migrated functionality PlasmoDB 4.4
+     <ul>
+     <li> Array element pages that describe the details of oligos and their expression.
+     <li> A protein secondary structure query and track on the gene page
+     <li> Links from PlasmoDB genes to predicted protein structure models
+     <li> The "Add a Comment" facility (for commenting on genes and chromosomes/contigs).  
+     <li> A newly designed User Login process.  (In upcoming releases logging in to the site will let you store your query history and set preferences.  For now, it just lets you Add a Comment).
+     </ul>
+  <li> Genome Browser features
+     <ul>
+     <li> Save your favorite track configurations and regions of interest.
+     <li> Download the sequence of any feature in any track
+     </ul>     
+  <li> Improved citations on the Data Sources page
+  <li> Behind the scenes, a new issue tracking system so we can better respond to your support issues.  
+          ]]>
+       </attribute>
+    </record>
+   <record>
+       <attribute name="headline">PlasmoDB 5.0 is fully released (PlasmoDB 4.4 still available)</attribute>
+       <attribute name="date">25 May 2006 00:00</attribute>
+       <attribute name="tag">5.0_release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the first full release of the Plasmodium Genome Database, Version 5.0, now as www.plasmodb.org.  (Many of you have had a chance to explore the beta-release version as v5-0.plasmodb.org).  
+<p>
+PlasmoDB 5.0 implements significant 'under-the-hood' changes, making it much easier to generate future releases in short cycles.  In addition, these changes to ensure a consistent look for all <a href="http://www.apidb.org">ApiDB</a> projects, including PlasmoDB, <a href="http://www.cryptodb.org">CryptoDB</a>, and <a href="http://www.toxodb.org">ToxoDB</a> (supported by a Bioinformatics Resource Center contract from the US NIH / NIAID).
+<p>
+
+Because it will take some time to implement all of the PlasmoDB 4.4 functionality in the new architecture, <a href="http://v4-4.plasmodb.org">PlasmoDB 4.4</a> remains active, and the results of queries run under it may be exported to PlasmoDB 5.0 (see <a href="http://v4-4.plasmodb.org/plasmodb/servlet/sv?page=history">PlasmoDB 4.4 Query History</a>).
+<p>
+
+New Data in PlasmoDB 5.0 (relative to version 4.4) include:
+<ul>
+  <li>the complete genome sequence for P. vivax Salvador, along with a complete set of annotated gene models
+
+  <li>the complete genome sequence for P. berghei, along with a complete set of annotated gene models
+
+  <li>the complete genome sequence for P. chabaudi, along with a complete set of annotated gene models
+
+  <li>TIGR Gene Indices for <i>P. vivax</i>, <i>P. falciparum</i>, and <i>P. yoelii</i>
+
+  <li>protein-protein interaction data, based on a genome-wide yeast 2-hybrid analysis (LaCount et al. Nature 438:103; 2005)
+
+  <li>new ortholog analyses, using the OrthoMCL algorithm to group genes from several Plasmodium species with other complete eukaryotic and prokaryotic genomes (Chen et al., Nucl. Acids Res. 34:D363; 2006)
+
+  <li>Computational predictions for functional interactions in <i>P. falciparum</i> from the PlasmoMAP project are provided based on co-evolution and co-expression of genes (Date & Stoeckert Genome Res. 16:542; 2006). This data is now available as a PlasmoDB query.
+
+  <li>Updated mappings for pathways and Enzyme Classifications (EC).
+</ul>
+<p>
+
+New Features in PlasmoDB 5.0 Include:
+<ul>
+ <li>an interactive genome browser, based on the GBrowse module of the GMOD project
+ <li>syntenic relationships between <i>P. falciparum</i>, <i>P. vivax</i>, and <i>P. yoelii</i> (Carlton et al., Nature 419:512; 2002).
+</ul>
+<p>
+
+     Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome Database.  PlasmoCD provides users lacking reliable high-speed internet connections with full access to the complete genomes of <i>P. falciparum</i>, <i>P. vivax</i>, and <i>P. yoelii</i>, along with gene models, annotation, BLAST hits, ortholog results, expression data, and search functions for querying and integrating these results across species.
+<p>
+
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">P. berghei and P. chabaudi genomes added</attribute>
+       <attribute name="date">04 April 2006 00:00</attribute>
+       <attribute name="tag">berghei_and_chabaudi</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The <i>P. berghei</i> and <i>P. chabaudi</i> genomes are now incorporated in PlasmoDB 5.0 Beta.  The <i>P. berghei</i> genome is accompanied by transcript and protein expression data.  We have also continued to make progress migrating functionality from PlasmoDB 4.4 to PlasmoDB 5.0 Beta
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">PlasmoMAP data included</attribute>
+       <attribute name="date">04 April 2006 00:00</attribute>
+       <attribute name="tag">plasmoMap_included</attribute>
+       <attribute name="item">           
+         <![CDATA[
+ The PlasmoMAP project provides computationally generated functional interactions between <i>P. falciparum</i> proteins. This data is now available as a PlasmoDB query.  
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">PlasmoDB 5.0 Beta announced</attribute>
+       <attribute name="date">01 Feb 2006 00:00</attribute>
+       <attribute name="tag">5.0_announced</attribute>
+       <attribute name="item">           
+         <![CDATA[
+ We are pleased to announce to the Plasmodium community Version 5.0 Beta of the Plasmodium Genome Database.  PlasmoDB 5.0 Beta had an early release at the Vivax Malaria Research conference at TIGR on December 9, 2005, and is now available for community use.  Please see <a href="showXmlDataContent.do?name=XmlQuestions.News#initialRelease" class="blue">PlasmoDB 5.0 Beta released</a>
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">PlasmoDB 5.0 Beta released</attribute>
+       <attribute name="date">09 December 2005 00:00</attribute>
+       <attribute name="tag">initialRelease</attribute>
+       <attribute name="item">           
+         <![CDATA[
+ We are pleased to announce Version 5.0 Beta of the Plasmodium Genome Database. We have incorporated into PlasmoDB the new release of the <i>Plasmodium vivax</i> genome and annotation generated by Jane Carlton's group and the sequencing center at The Institute for Genome Research. We have also used this release to change the way we create the web site and underlying database that should make it easier for us to generate new PlasmoDB releases and be consistent with other ApiDB projects such as CryptoDB and ToxoDB. As a result, we have focused on providing access to <i>P. vivax</i> through the PlasmoDB 5.0 Beta site but have not completely reproduced all the functions in PlasmoDB 4.4. Therefore we have kept the PlasmoDB 4.4 site fully active for continued use. Furthermore we have provided a mechanism to take the results of a PlasmoDB 4.4 query and use it in PlasmoDB 5.0 Beta. 
+<p>
+PlasmoDB 5.0 Beta features:
+<ul>
+<li>A new interactive genome browser, based on the GBrowse module of the GMOD project, providing rapid visualization of the parasite genome and gene models, custom restriction site identification, open reading frame identification, and downloads in various formats.
+<li>The complete genome sequence for P. vivax Salvador, along with a complete set of annotated gene models, and syntenic relationships between <i>P. falciparum, P. vivax</i>, and <i>P. yoelii</i> (from Jane Carlton, TIGR).
+<li>Updated <i>P. falciparum</i> annotation, including curated literature citations; updated GO term curation from Andy Berry, Matt Berriman, and the Sanger curation effort; updated EC/pathway mappings from Hagai Ginsburg.
+<li>TIGR Gene Indices for <i>P. vivax, P. falciparum, and P.yoelii</i>.
+<li>Corrected expression profiles from glass-slide arrays for <i>P. falciparum</i> 3D7, HB3 & Dd2 (from Manuel Llinas, Zybnek Bozdech & Joe DeRisi).
+<li>Updated structural data, including information from the structural genomics consortia.
+<li>Protein-protein interaction data for <i>P. falciparum</i>, based on a genome-wide yeast 2-hybrid analysis (LaCount et al. Nature 438:103; 2005).
+<li>New ortholog analyses, using the OrthoMCL algorithm to group genes from several <i>Plasmodium</i> species with other complete eukaryotic and prokaryotic genomes (Chen et al. Nucl Acids Res, in press).
+</ul><p>
+Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome Database.  PlasmoCD provides users lacking reliable high-speed internet connections with full access to the complete genomes of <i>P. falciparum, P. vivax</i>, and <i>P. yoelii</i>, along with gene models, annotation, BLAST hits, ortholog results, expression data, and search functions for querying and integrating these results across species. PlasmoCD 4.1 can be downladed from the PlasmoDB web site, or requested by sending e-mail to <help@PlasmoDB.org>. 
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">GBrowse added to PlasmoDB</attribute>
+       <attribute name="date">09 December 2005 00:00</attribute>
+       <attribute name="tag">gbrowse</attribute>
+       <attribute name="item">
+         <![CDATA[
+GBrowse is an interactive generic genome browser developed as part of the GMOD project (<a href="http://www.gmod.org">www.gmod.org</a>). GBrowse is used in PlasmoDB to display gene models, EST alignments, and synteny relatonships between Plasmodium species. With GBrowse, we now provide:
+<ul><li>Custom restriction site identification
+<li>Open reading frame identification
+<li>Custom downloads in various formats:
+<ul><li>FASTA
+<li>GFF (2)
+<li>GFF3
+<li>BSML (XML)
+<li>EMBL
+<li>GenBank
+<li>GAME
+<li>GCG
+</ul>
+</ul>
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">PlasmoDB 5.0 Beta uses GUS 3.5 and the WDK </attribute>
+       <attribute name="date">09 December 2005 00:00</attribute>
+       <attribute name="tag">gusAndWdk</attribute>
+       <attribute name="item">
+         <![CDATA[
+PlamoDB 5.0 Beta has been upgraded to  use the latest Genomics Unified Schema (GUS) database system and the new Web Development Kit (WDK). GUS is an open source project (<a href="http://www.gusdb.org">www.gusdb.org</a>) providing a functional genomics database schema covering sequence annotation, expression data, regulatory interactions, and proteomics using controlled vocabularies and ontologies. GUS also provides software to load data (pugins) and set up a web site (WDK). GUS has been adopted by several groups covering organism ranging from bacteria, protozoa, plants, and mammals.  
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">OrthoMCL orthologous groups have been updated.</attribute>
+       <attribute name="date">09 December 2005 00:00</attribute>
+       <attribute name="tag">orthoMCL</attribute>
+       <attribute name="item">
+         <![CDATA[
+OrthoMCL is an algorithm developed to identify orthologs and recent paralogs based on whole genome comparison of protein sequences (Li et al Genome Res. 13:2178; 2003). Previously, OrthoMCL groups were based on comparison of only 16 species in PlasmoDB 4.4. In the current release, OrthoMCL groups were generated with 61 species. These species include the 55 used to generate orthologs groups at the <a href="http://orthomcl.cbil.upenn.edu/cgi-bin/OrthoMclWeb.cgi">OrthoMCL DB site</a> plus <i>P. vivax, Leishmania major, T. brucei, T. cruzi, Apis mellifera</i> (honeybee) and <i>S. purpatus</i> (sea urchin).  The OrthoMCL DB site is described in Feng et al. Nucleic Acids Res. 2006 Database Issue. 
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+          Yeast Two-hybrid protein interaction data for <i>P. falciparum</i>
+         ]]>
+       </attribute>
+       <attribute name="date">09 December 2005 00:00</attribute>
+       <attribute name="tag">y2h</attribute>
+       <attribute name="item">
+         <![CDATA[
+Yeast two-hybrid data for <i>P. falciparum</i> described in LaCount et al. Nature 438:103; 2005 has been provided by Doug LaCount (Purdue University) for inclusion into PlasmoDB. Interaction data can be seen on individual gene pages and used to search for interactors of a specificed <i>P. falciparum</i> Gene ID.
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">Intraerythocytic expression profiles have been recalculated</attribute>
+       <attribute name="date">15 September 2005 00:00</attribute>
+       <attribute name="tag">ielRecalc</attribute>
+       <attribute name="item">
+         <![CDATA[
+The expression profiles obtained from Joe DeRisi's group (UCSF) are processed by the PlasmoDB team for generating the images on the expression pages and for use in the expression profile queries. The orginal HB3 data were processed without background subtraction while the more recent 3D7 and DD2 data were processed with background subtraction. These have now all been processed consistently in the following manner.<p>
+Raw data were loess normalized using the default loess implementation in the R package for microarray analysis (marray).  The non-background corrected foreground mean was used as input to the loess algorithm. Replicate arrays for the same time point were then averaged to give one value for each timepoint/gene. Data was then smoothed using a least squares fit to each data point and its two neighbors on each side.<p>
+The profiles seen in PlasmoDB 4.4 have also been corrected. The correlation table that gives correlations between the different studies (the three DeRisi and the two Winzeler) has been recalculated based on the new profiles.  This new data is not yet displayed on 4.4 but will be on 5.0 Beta.
+         ]]>
+       </attribute>
+    </record>
+
+
+</xmlAnswer>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="didYouKnow">you can add comments to genes and genomic sequences</attribute>
+       <attribute name="question">How do I add comments to genes and genomic sequences?</attribute>
+       <attribute name="answer">
+       Click "Add a comment" under the Annotation section on any Gene Page or Genomic Sequence Page.  If you are not already registered, you will be asked to provide your name and e-mail address.
+       </attribute>
+       <attribute name="tag">addComment</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+  <record>
+    <attribute name="didYouKnow">you can download a file containing the mapping of former PlasmoDB Gene IDs to new PlasmoDB Gene IDs</attribute>
+    <attribute name="question">How can I find the mapping of old Gene IDs to new Gene IDs?</attribute>
+    <attribute name="answer">Go to the Downloads site to obtain a mapping file of Gene Aliases.  If the gene ID you are looking for is not in that file, the last resort is to use BLAST.  Find a sequence for your gene, and use PlasmoDB BLAST to locate a PlasmoDB gene that has almost perfectly identical sequence (allow for minor changes to the genome).</attribute> 
+    <attribute name="tag">geneAlias</attribute>
+    <attribute name="category"></attribute>
+  </record>	
+
+  <record>
+    <attribute name="didYouKnow">you can download GO annotations for the entire genome</attribute>
+    <attribute name="question">How can I download GO annotations for the entire genome?</attribute>
+    <attribute name="answer">Go to the Downloads site to obtain the GFF file containing the GO annotations.</attribute>
+    <attribute name="tag">goAnnotations</attribute>
+    <attribute name="category"></attribute>
+  </record>
+
+   <record>
+       <attribute name="didYouKnow">you can save your query history</attribute>
+       <attribute name="question">How do I save my query history?</attribute>
+       <attribute name="answer">
+       If you are logged in, your query history is automatically saved, and will be there the next time you log in.  Registering only takes a minute (we ask for minimal info).
+       </attribute>
+       <attribute name="tag">saveHistory</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+   <record>
+       <attribute name="didYouKnow">you can combine search results in "My Query History"</attribute>
+       <attribute name="question">How do I review and combine search results?</attribute>
+       <attribute name="answer">Go to "My Query History" to see the queries you have run (in your current browser session).  From there you can view the results and combine results using AND, OR or INTERSECT.  You can also request a tab delimited report of your results. 
+</attribute>
+       <attribute name="tag">queryHistory</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+
+   <record>
+       <attribute name="didYouKnow">you can download all annotations</attribute>
+       <attribute name="question">How do I download all annotations?</attribute>
+       <attribute name="answer">In addition to fasta sequence files, the download site includes GFF files that contain rich annotation of each gene.</attribute>
+       <attribute name="tag">downloadSite</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+
+   <record>
+       <attribute name="didYouKnow">you can download 5'UTR and 3'UTR sequences</attribute>
+       <attribute name="question">How do I download 5'UTR and 3'UTR sequences?</attribute>
+       <attribute name="answer">Paste the Gene ID of the sequence(s) of interest into the Sequence Retrieval tool (available from the Queries and Tools page) and set the parameters for the upstream/downstream regions of interest.  Try both the selections 'genomic' and 'transcript' since most genes do not have UTR's annotated.</attribute>
+       <attribute name="tag">sequenceDownloadSRT</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+
+
+   <record>
+       <attribute name="didYouKnow"><![CDATA[you can get <i>Plasmodium</i> clones and reagents]]></attribute>  
+       <attribute name="question"><![CDATA[Where can I get <i>Plasmodium</i> clones and other reagents]]></attribute>   
+       <attribute name="answer"><![CDATA[<i>Plasmodium</i> clones other reagents are available from <a href="http://www.mr4.org/MR4Reagents.html">MR4</a>]]></attribute>
+       <attribute name="tag">MR4Reagents</attribute>
+       <attribute name="category"></attribute>
+   </record>    
+
+
+
+   <record>
+       <attribute name="didYouKnow"><![CDATA[you can browse multiple <i>Plasmodium</i> genomes at once]]></attribute>
+       <attribute name="question"><![CDATA[How can I browse multiple <i>Plasmodium</i> genomes at once]]></attribute>
+       <attribute name="answer"><![CDATA[View the genomes of <i>Plasmodium falciparum</i>, <i>Plasmodium vivax</i>, and <i>Plasmodium yoelii</i> at the same time with the PlasmoDB Genomic Sequence Browser or through the  PlasmoCD. 
+
+<p>Access the genome browser with the "Gene Sequences" link on the home page.   Or, from a Gene page or Genomic Sequence page, use the "View this sequence in the genome  browser" link. In the browser, view syntenic relationships by choosing the Synteny and Syntenic genes tracks. 
+
+<p>The PlasmoCD is accessible on-line via the PlasmoCD icon on the bottom left panel of  most pages. Choosing any <i>Plasmodium genome to explore will lead to  list of <i>Plasmodium</i> GenePlot queries including one to Browse synteny between <i>Plasmodium</i> species.
+]]></attribute>
+       <attribute name="tag">viewGenomes</attribute>
+       <attribute name="category"></attribute>
+   </record>
+   
+   
+   <record>
+       <attribute name="didYouKnow">you can improve the features of the site using cookies</attribute>
+       <attribute name="question">How do I set cookies in my browser to improve the usage of features in the site?</attribute>
+       <attribute name="answer"><![CDATA[This site performs best when your browser allows cookies.  In particular, the Gene page configuration uses cookies.  Select show/hide for any section on the gene page.  With cookies enabled, that selection will apply to all gene pages.  With cookies disabled, moving to a new page will reset that selection
+<BR><BR>       
+        <b>How to Enable Cookies</b>(credit: <a href="http://www.google.com/cookies.html">http://www.google.com/cookies.html</a>)
+		<br><br>
+        <font size="-1">To enable cookies, follow the instructions below for the browser version you are using. <br>
+        <br>
+        <b>Mozilla Firefox (1.0 final release and earlier)</b>
+        <ul>
+          <li>Go to the "Tools" menu.
+          <li>Select "Options".
+          <li>Select the "Privacy" icon in the left panel.
+          <li>Check the box corresponding to "Allow sites to set cookies".
+          <li>Click "OK" to save changes.
+        </ul>
+
+        <b>Netscape 7.1/Mozilla 5.0</b>
+        <ul>
+          <li>Select "Preferences" from the Edit menu.
+          <li>Click on the arrow next to "Privacy &amp; Security" in the scrolling window to expand.
+          <li>Under &quot;Privacy &amp; Security&quot;, select &quot;Cookies.&quot;
+
+          <li>Select &quot;Enable all cookies&quot;.
+          <li>Click "OK".
+        </ul>
+        <b>Microsoft Internet Explorer 6.0+</b>
+        <ul>
+          <li>Select "Internet Options" from the Tools menu.
+          <li>Click on the "Privacy" tab.
+          <li>Click the "Default" button (or manually slide the bar down to &quot;Medium&quot;) under &quot;Settings&quot;.
+          <li>Click "OK".
+        </ul>
+
+        <b>Microsoft Internet Explorer 5.x</b>
+        <ul>
+          <li>Select "Internet Options" from the Tools menu.
+          <li>Click on the "Security" tab.
+          <li>Click the "Custom Level" button.
+          <li>Scroll down to the "Cookies" section.
+          <li>To enable:
+            <ul>
+              <li>Set "Allow cookies that are stored on your computer" to "Enable".
+              <li>Set "Allow per-session cookies" to "Enable".
+            </ul>
+          <li>Click "OK".
+        </ul>
+
+        <b>Microsoft Internet Explorer 4.x </b>
+        <ul>
+          <li>Select "Internet Options" from the View menu.
+          <li>Click on the "Advanced" tab.
+          <li>Scroll down to find &quot;Cookies&quot; within the "Security" section.
+          <li>To enable:
+            <ul>
+              <li>Select "Always accept cookies".
+            </ul>
+
+          <li>Click "OK".
+        </ul>
+        <b>Netscape Communicator 4.x </b>
+        <ul>
+          <li>Select "Preferences" from the Edit menu.
+          <li>Find the &quot;Cookies&quot; section in the &quot;Advanced&quot; category.
+          <li>To enable:
+            <ul>
+
+              <li>Select "Accept all cookies" (or "Enable all cookies").
+            </ul>
+          <li>Click "OK".
+        </ul>
+        </font>
+        ]]></attribute>
+       <attribute name="tag">cookies</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+
+
+   <record>
+       <attribute name="didYouKnow">you can download your query results</attribute>
+       <attribute name="question">How do I download my query results?</attribute>
+       <attribute name="answer">You can link to a page to download and customize a query result from the top of that query result's page or from that query result's entry in "My Query History".  Once in the "Create and download a report" page, choose the columns to include in a tab delimited report of the result.</attribute>
+       <attribute name="tag">reportMaker</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+   <record>
+       <attribute name="didYouKnow">you can retrieve all or part of a gene sequence</attribute>
+       <attribute name="question">How do I retrieve all or part of a gene sequence</attribute>
+       <attribute name="answer">Use the "Gene Sequences" link from the home page to retrieve a set of gene sequences in fasta format.  Customize the type of sequence and the region you would like to download</attribute>
+       <attribute name="tag">SRT</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+   <record>
+       <attribute name="didYouKnow">you can hide or show some sections of the Gene page by enabling cookie in your browser</attribute>
+       <attribute name="question">Why are some sections of the Gene page hidden when I go to a new Gene page?</attribute>
+       <attribute name="answer">The sections in the Gene page (and in other pages as well) are controlled by the Hide/Show option buttons (in blue text next to each section title).  If you have cookies enabled, then these settings are preserved from one gene page to another (during the current browser session).  With cookies disabled, moving to a new page will reset that settings.</attribute>
+       <attribute name="tag">cookies</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+   <record>
+       <attribute name="didYouKnow">you can interpret the definition lines of the download files</attribute>
+       <attribute name="question">How do I interpret the definition lines of the download files?</attribute>
+       <attribute name="answer"><![CDATA[An example defline is: <br>
+>Plasmodium_falciparum_3D7|MAL3|PFC0965w|Pf Annotation|Plasmodium_falciparum_Sanger|(protein coding) hypothetical protein <br><br>
+The vertical pipes are field separators. There are six fields, the strain, chromosome name, gene name, method of evidence, the sequencing center, and a short definition.]]>
+</attribute>
+       <attribute name="tag">defline</attribute>
+       <attribute name="category"></attribute>
+   </record>
+
+   <record>
+       <attribute name="didYouKnow">BLASTP results on the Gene Page are generated using WU-Blast</attribute>
+       <attribute name="question">Why do the BLASTP results for a protein on the Gene Page differ from the results from NCBI BLAST?</attribute>
+       <attribute name="answer">PlasmoDB uses WU-Blast and the filtering of low complexity sequence occurs only during the first pass of the search, not in the alignment phase.</attribute>
+       <attribute name="tag">Blast</attribute>
+       <attribute name="category"></attribute>
+   </record>
+</xmlAnswer>
