@@ -15,8 +15,8 @@
        <attribute name="text">
 <![CDATA[
 TriTrypDB is an integrated genomic and functional genomic database for 
-pathogens of the family Trypanosomatidae, including organism in both 
-Leishmania and Trypanosoma genera. TriTrypDB and its continued 
+pathogens of the family <i>Trypanosomatidae</i>, including organisms in both 
+<i>Leishmania</i> and <i>Trypanosoma</i> genera. TriTrypDB and its continued 
 development are possible through the collaborative efforts between <a 
 href="http://www.eupathdb.org">EuPathDB</a>, <a href="http://www.genedb.org 
 "> GeneDB </a> and colleagues at the Seattle Biomedical Research 
@@ -32,9 +32,9 @@ Institute (<a href="http://www.sbri.org">SBRI</a>).
        <attribute name="text">
        <![CDATA[
 Funding for TriTrypDB development and enhanced annotation of 
-kinetoplastid parasites is provided by coordinated grants from the <a 
+<i>kinetoplastid</i> parasites is provided by coordinated grants from the <a 
 href="http://www.gatesfoundation.org/">Bill & Melinda Gates 
-Foundatation</a> and the <a href="http:// 
+Foundation</a> and the <a href="http:// 
 www.wellcome.ac.uk/">Wellcome Trust</a>.<br>
 
 TriTrypDB joins the family of pathogen-databases that are housed under 
