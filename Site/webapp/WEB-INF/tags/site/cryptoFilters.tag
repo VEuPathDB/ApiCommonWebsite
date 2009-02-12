@@ -54,11 +54,11 @@
 <table cellpadding="5" border="1">
   <tr>
     <th>All</th>
-    <th><i>Distinct Cryptosporidium</i></th>
+    <th>Ortholog Groups</th>
     <th><i>C. parvum</i></th>
     <th><i>C. hominis</i></th>
     <th><i>C. muris</i></th>
-    <th><i>C. parvum (Chr. 6)</i></th>
+    <th><i>C. parvum</i> (Chr. 6)</th>
   </tr>
   <tr align="center">
     <c:choose>
