@@ -406,7 +406,7 @@ function parse_Url( url, parameter_name )
                    <a href='<c:url value="${transformUrl}"/>'>Orthologs</a>
                  </c:when>
                  <c:otherwise>
-                   <c:set var="dsColUrl" value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&geneHistoryId=${wdkUser.signature}:${historyId}&plasmodb_dataset=${datasetId}&questionSubmit=Get+Answer&goto_summary=0"/>
+                   <c:set var="dsColUrl" value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&gene_result=${result}&plasmodb_dataset=${datasetId}&questionSubmit=Get+Answer&goto_summary=0"/>
                    <a href='<c:url value="${dsColUrl}"/>'>Orthologs</a>
                  </c:otherwise>
                </c:choose>
