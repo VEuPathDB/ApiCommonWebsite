@@ -47,7 +47,6 @@ for the first release of TrypDB in Jan 2009!
        </attribute>
     </record>
 
-
  <record>
        <attribute name="headline">
          <![CDATA[
@@ -195,7 +194,7 @@ PlasmoDB has released the fourth snapshot of the reannotation of the<i> P. falci
          ]]>
        </attribute>
        <attribute name="date">11 June 2008 00:00</attribute>
-       <attribute name="tag">reannotation4</attribute>
+       <attribute name="tag">sequencingApproval11June2008</attribute>
        <attribute name="item">           
          <![CDATA[
      The proposal for sequencing of additional <i>Plasmodium</i> isolates and species 
@@ -409,7 +408,7 @@ Your ApiDB project team
 <record>
  <attribute name="headline">Tutorials offered now for more platforms</attribute>
        <attribute name="date">07 October 2007 00:00</attribute>
-       <attribute name="tag"></attribute>
+       <attribute name="tag">Tutorials07October2007</attribute>
        <attribute name="item">
          <![CDATA[
 Please check the PlasmoDB <a href="/plasmo/showXmlDataContent.do?name=XmlQuestions.Tutorials" ">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.wmv) and Flash Player (.flv). There is a link to these tutorials in PlasmoDB sidebar, in all pages.
@@ -548,7 +547,7 @@ Features and data moved from PlasmoDB 4.4 to 5.2:
    <record>
        <attribute name="headline">PlasmoDB 5.1 is released</attribute>
        <attribute name="date">16 August 2006 00:00</attribute>
-       <attribute name="tag">5.0_release</attribute>
+       <attribute name="tag">5.1_release</attribute>
        <attribute name="item">           
          <![CDATA[
 The PlasmoDB 5.1 release continues our effort to add new data and features while migrating PlasmoDB 4.4 functionality to the PlasmoDB 5 architecture.  This release includes new rodent malaria parasite data, improved mappings to external sites, improvements to the Genome Browser, more 4.4 functionality (we're almost done with the migration) and some important behind the scenes improvements.
