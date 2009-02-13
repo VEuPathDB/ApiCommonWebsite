@@ -12,7 +12,6 @@
        </attribute>
     </record>
 --> 
-
  <record>
        <attribute name="headline">
          <![CDATA[
@@ -72,18 +71,6 @@ We are pleased to announce the release of ToxoDB 5.0.  This is a major release o
        ]]>
        </attribute>
     </record>
-
-   <record>
-       <attribute name="headline">T. gondii gene prediction IDs now searchable</attribute>
-       <attribute name="date">17 September 2007 00:00</attribute>
-       <attribute name="tag">genePredict</attribute>
-       <attribute name="item">           
-         <![CDATA[
-Wherever in ToxoDB you can type an Annotated Gene's ID you can now also type the ID of an electronically predicted gene (eg, TgGlmHMM_1045). You will be taken to the associated annotated gene (eg, 27.m00868).
-          ]]>
-       </attribute>
-    </record>
-
 
  <record>
        <attribute name="headline">ToxoDB 4.3 is released</attribute>
