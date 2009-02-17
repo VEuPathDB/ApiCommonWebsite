@@ -166,7 +166,7 @@ function create_Portal_Record_Url(recordName, projectId, primaryKey, portal_url)
   //var portal_url = "";
   if(portal_url.length == 0){
     if(projectId == 'CryptoDB'){
-      portal_url = "http://www.cryptodb.org/cryptodb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
+      portal_url = "http://old.cryptodb.org/cryptodb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'PlasmoDB'){
       portal_url = "http://www.plasmodb.org/plasmo/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'ToxoDB'){
