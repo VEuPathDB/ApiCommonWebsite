@@ -118,6 +118,7 @@ public class CommentFactory {
             int[] targetCategoryIds = comment.getTargetCategoryIds();
             String[] pmIds = comment.getPmIds();
             String[] accessions = comment.getAccessions();
+            String[] files = comment.getFiles();
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
                            "INSERT INTO " + commentSchema + "comments (comment_id, "
@@ -169,6 +170,10 @@ public class CommentFactory {
 
             if((accessions != null) && (accessions.length > 0)){
               saveAccessions(commentId, accessions);
+            }                                               
+
+            if((files != null) && (files.length > 0)){
+              saveFiles(commentId, files);
             }                                               
 
             // get a new comment in order to fetch the user info
@@ -299,6 +304,35 @@ public class CommentFactory {
                     statement.setString(2, accession);
                     statement.setString(3, "genbank");
                     statement.setInt(4, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void saveFiles(int commentId, String[] files)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        int fileId = platform.getNextId(commentSchema, "commentFile");
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentFile ");
+        sql.append("(file_id, uri, ");
+        sql.append(" comment_id ");
+        sql.append(") VALUES (?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String file : files) {
+                if((file != null ) && (file.trim().length() != 0)) {
+                    statement.setInt(1, platform.getNextId(commentSchema, "commentFile"));
+                    statement.setString(2, file);
+                    statement.setInt(3, commentId);
                     statement.execute();
                 }
             }
