@@ -119,6 +119,7 @@ public class CommentFactory {
             String[] pmIds = comment.getPmIds();
             String[] accessions = comment.getAccessions();
             String[] files = comment.getFiles();
+            String[] associatedStableIds = comment.getAssociatedStableIds();
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
                            "INSERT INTO " + commentSchema + "comments (comment_id, "
@@ -174,6 +175,10 @@ public class CommentFactory {
 
             if((files != null) && (files.length > 0)){
               saveFiles(commentId, files);
+            }                                               
+
+            if((associatedStableIds != null) && (associatedStableIds.length > 0)){
+              saveAssociatedStableIds(commentId, associatedStableIds);
             }                                               
 
             // get a new comment in order to fetch the user info
@@ -339,7 +344,37 @@ public class CommentFactory {
         } finally {
             SqlUtils.closeStatement(statement);
         }
+    }
+
+    private void saveAssociatedStableIds(int commentId, String[] associatedStableIds)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        int stableId = platform.getNextId(commentSchema, "commentStableId");
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentStableId ");
+        sql.append("(comment_stable_id, stable_id, ");
+        sql.append(" comment_id ");
+        sql.append(") VALUES (?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String associatedStableId : associatedStableIds) {
+                if((associatedStableId != null ) && (associatedStableId.trim().length() != 0)) {
+                    statement.setInt(1, platform.getNextId(commentSchema, "commentStableId"));
+                    statement.setString(2, associatedStableId);
+                    statement.setInt(3, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
      }
+
 
     /**
      * For the first release, this method hard-code the external database name
