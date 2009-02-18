@@ -67,6 +67,7 @@ public class Comment {
     private int[] targetCategoryIds;
     private String[] pmIds;
     private String[] accessions;
+    private String[] files;
 
     public Comment(String email) {
         this.email = email;
@@ -143,6 +144,21 @@ public class Comment {
      */
     public void setAccessions(String[] accessions) {
         this.accessions = accessions;
+    }
+
+    /**
+     * @return Returns the String[] files (name).
+     */
+    public String[] getFiles() {
+        return files;
+    }
+
+    /**
+     * @param String[] files
+     *          The file names to set.
+     */
+    public void setFiles(String[] files) {
+        this.files = files;
     }
 
     /**
