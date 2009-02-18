@@ -68,6 +68,7 @@ public class Comment {
     private String[] pmIds;
     private String[] accessions;
     private String[] files;
+    private String[] associatedStableIds;
 
     public Comment(String email) {
         this.email = email;
@@ -159,6 +160,21 @@ public class Comment {
      */
     public void setFiles(String[] files) {
         this.files = files;
+    }
+
+    /**
+     * @return Returns the associatedStableIds[] gene_ids. 
+     */
+    public String[] getAssociatedStableIds() {
+        return associatedStableIds;
+    }
+
+    /**
+     * @param String[] associatedStableIds
+     *          The related gene names to set.
+     */
+    public void setAssociatedStableIds(String[] associatedStableIds) {
+        this.associatedStableIds = associatedStableIds;
     }
 
     /**
