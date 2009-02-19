@@ -328,6 +328,17 @@ public class Comment {
         return email;
     }
 
+    public String[] addReference(String[] ids, String databaseName) {
+        if(databaseName.toLowerCase().equals("pubmed")) {
+          this.pmIds = ids;
+          return this.pmIds;
+        } else if(databaseName.toLowerCase().equals("genbank")) {
+          this.accessions = ids;
+          return this.accessions;
+        }
+        return null;
+    }
+
     public Location addLocation(boolean reversed, long locationStart,
             long locationEnd, String coordinateType) {
         Location location = new Location(this);
