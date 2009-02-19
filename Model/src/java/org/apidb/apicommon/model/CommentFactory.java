@@ -518,6 +518,12 @@ public class CommentFactory {
             // load external databases
             loadExternalDbs(commentId, comment);
 
+            // load pubmed ids
+            loadReference(commentId, comment, "pubmed");
+
+            // load genbank ids
+            loadReference(commentId, comment, "genbank");
+
             return comment;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -531,6 +537,35 @@ public class CommentFactory {
 
             // print connection status
             printStatus();
+        }
+    }
+
+    private void loadReference(int commentId, Comment comment, String databaseName)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT source_id ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "commentReference ");
+        sql.append("WHERE comment_id = ? and database_name = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            ps.setString(2, databaseName);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String sourceId = rs.getString("source_id");
+                ids.add(sourceId);
+            }
+            if(ids.size() > 0) {
+              comment.addReference(ids.toArray(new String[ids.size()]), databaseName);
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
         }
     }
 
