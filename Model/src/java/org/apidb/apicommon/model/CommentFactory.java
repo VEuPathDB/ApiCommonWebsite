@@ -530,6 +530,9 @@ public class CommentFactory {
             // load associated stable ids
             loadStableIds(commentId, comment);
 
+            // load target category names
+            loadTargetCategoryNames(commentId, comment);
+
             return comment;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -569,6 +572,35 @@ public class CommentFactory {
             }
             if(ids.size() > 0) {
               comment.addReference(ids.toArray(new String[ids.size()]), databaseName);
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void loadTargetCategoryNames(int commentId, Comment comment)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT b.category ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "commentTargetCategory a, ");
+        sql.append(config.getCommentSchema() + "targetCategory b ");
+        sql.append("WHERE a.target_category_id = b.target_category_id AND a.comment_id = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String category = rs.getString("category");
+                ids.add(category);
+            }
+            if(ids.size() > 0) {
+              comment.addTargetCategoryNames(ids.toArray(new String[ids.size()]));
             }
         } finally {
             SqlUtils.closeResultSet(rs);
