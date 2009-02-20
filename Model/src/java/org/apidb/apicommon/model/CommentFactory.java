@@ -524,6 +524,12 @@ public class CommentFactory {
             // load genbank ids
             loadReference(commentId, comment, "genbank");
 
+            // load files
+            loadFiles(commentId, comment);
+
+            // load associated stable ids
+            loadStableIds(commentId, comment);
+
             return comment;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -563,6 +569,62 @@ public class CommentFactory {
             }
             if(ids.size() > 0) {
               comment.addReference(ids.toArray(new String[ids.size()]), databaseName);
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void loadFiles(int commentId, Comment comment)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT uri ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "commentFile ");
+        sql.append("WHERE comment_id = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String uri = rs.getString("uri");
+                ids.add(uri);
+            }
+            if(ids.size() > 0) {
+              comment.addFiles(ids.toArray(new String[ids.size()]));
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void loadStableIds(int commentId, Comment comment)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT stable_id ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "CommentStableId ");
+        sql.append("WHERE comment_id = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String stable_id = rs.getString("stable_id");
+                ids.add(stable_id);
+            }
+            if(ids.size() > 0) {
+              comment.addAssociatedStableIds(ids.toArray(new String[ids.size()]));
             }
         } finally {
             SqlUtils.closeResultSet(rs);
