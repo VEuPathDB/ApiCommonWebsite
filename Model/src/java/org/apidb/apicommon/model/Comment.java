@@ -65,6 +65,7 @@ public class Comment {
     private String organization;
 
     private int[] targetCategoryIds;
+    private String[] targetCategoryNames;
     private String[] pmIds;
     private String[] accessions;
     private String[] files;
@@ -115,6 +116,19 @@ public class Comment {
      */
     public void setTargetCategoryIds(int[] targetCategoryIds) {
         this.targetCategoryIds = targetCategoryIds;
+    }
+
+    public String[] getTargetCategoryNames() {
+        return targetCategoryNames;
+    }
+
+    public void setTargetCategoryNames(String[] categoryNames) {
+        this.targetCategoryNames = targetCategoryNames;
+    }
+
+    public String[] addTargetCategoryNames(String[] ids) {
+        targetCategoryNames = ids;
+        return targetCategoryNames;
     }
 
     /**
