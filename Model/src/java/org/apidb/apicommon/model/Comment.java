@@ -339,6 +339,16 @@ public class Comment {
         return null;
     }
 
+    public String[] addFiles(String[] ids) {
+       this.files = ids;
+       return this.files;
+    }
+
+    public String[] addAssociatedStableIds(String[] ids) {
+       this.associatedStableIds = ids;
+       return this.associatedStableIds;
+    }
+
     public Location addLocation(boolean reversed, long locationStart,
             long locationEnd, String coordinateType) {
         Location location = new Location(this);
