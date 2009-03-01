@@ -66,6 +66,7 @@ EOF
     (warn $warn and return 0) unless $answer;
     
     warn "akismet, is spam? $answer";
+    warn "$replyTo, $subject, $message\n" if ($answer eq 'true');
     
     return ($answer eq 'true') ? 1 : 0;
 
