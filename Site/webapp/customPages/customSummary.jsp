@@ -374,6 +374,17 @@ function parse_Url( url, parameter_name )
     </tr>
     <tr>
        <td colspan="2" align="left">
+
+<c:set var='galaxyDownloadAttrs' value="${wdkAnswer.summaryAttributes[0].name}"/>
+<c:forEach items="${wdkAnswer.summaryAttributes}" var="sumAttrib">
+    <c:set var='galaxyDownloadAttrs'>${galaxyDownloadAttrs},${sumAttrib.name}</c:set>
+</c:forEach>
+<c:if test="${!empty sessionScope.GALAXY_URL}">
+  <c:url var='downloadPath' 
+         value='/getDownloadResult.do;jsessionid=${pageContext.session.id}?wdk_history_id=${historyId}&wdkReportFormat=tabular&selectedFields=${galaxyDownloadAttrs}&includeHeader=yes&downloadType=plain'/>
+  <c:set var='downloadUrl'>${pageContext.request.scheme}://${pageContext.request.serverName}${downloadPath}</c:set>
+  <a href="${sessionScope.GALAXY_URL}&URL=${fn:escapeXml(downloadUrl)}">Send to Galaxy</a>&nbsp;|&nbsp;
+</c:if>
            <a href="downloadHistoryAnswer.do?wdk_history_id=${historyId}">
                Download</a>&nbsp;|&nbsp;
            <a href="<c:url value="/showQueryHistory.do"/>">Combine with other results</a>

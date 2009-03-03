@@ -136,7 +136,7 @@
 </c:choose>
 
 
-<a href="http://apidb.org/static/events.shtml"
+<a href="http://eupathdb.org/eupathdb/eupathEvents.jsp"
    class="blue">${project} Events</a> | 
 <a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.News#currentRelease"/>" class="blue">Release Notes</a>
 

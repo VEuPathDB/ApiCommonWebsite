@@ -117,7 +117,7 @@ _END_OF_TEXT_
 # Print message rows from database 
       my $i=0;
       my $n=0;
-      while ((@row=$sth->fetchrow_array) && ($n < 10)){
+      while ((@row=$sth->fetchrow_array) && ($n < 50)){
        
          # Query associated projects from DB
           my @projects=&getProjects($row[0]);
@@ -136,7 +136,7 @@ _END_OF_TEXT_
         <td>@projects</td> 
 	<td>$row[3]</td>
 	<td>$row[4]</td>
-	<td class="message">$row[5]</td>
+	<td class="message">@{[$row[5] || '']}</td>
         <td>
             <img id="image_id" src="/images/deleteButtongs.png" onclick="confirmDelete($row[0])" 
             onmouseover="change_image(this, '/images/deleteButton.png')" 
@@ -180,13 +180,14 @@ _END_OF_TEXT_
      push (@projects, $row[$i]);
      $i++;
      }
-   
+   $sth->finish();
    return @projects;
  
    }# End getProjects subroutine 
 ########################################
 
 # Finish and close DB connection
+$sth->finish();
 $dbh->disconnect();
 
 
