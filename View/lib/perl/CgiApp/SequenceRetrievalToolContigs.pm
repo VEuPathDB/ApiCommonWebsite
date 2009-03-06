@@ -91,7 +91,7 @@ sub validateParams {
 sub validateIds {
   my ($inputIdsString, $start, $end, $revComp, $dbh) = @_;
   
-  my @inputInfo = split('\n', $inputIdsString);
+  my @inputInfo = split(/[,\s]+/, $inputIdsString);
   my @inputIds;
   my @starts;
   my @ends;
