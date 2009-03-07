@@ -12,6 +12,7 @@
    <record>
        <attribute name="title">Designing and mining pathogen genome databases: From genes to drugs and vaccines</attribute>
        <attribute name="description">An iBioSeminars lecture series on Apicomplexan Parasites, Pathogen Genome Informatics, and the Evolution of Eukaryotic Organelles.</attribute>
+       <attribute name="uid">14</attribute>
        <table name="files">
          <row>
            <attribute name="projects">ApiDB.org,CryptoDB,PlasmoDB,ToxoDB</attribute>
@@ -27,6 +28,7 @@
    <record>
        <attribute name="title">Introduction</attribute>
        <attribute name="description">Introduction to the site's functionality.</attribute>
+       <attribute name="uid">13</attribute>
        <table name="files">
          <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -74,6 +76,7 @@
    <record>
        <attribute name="title">Queries and Tools</attribute>
        <attribute name="description">Introduction to the queries and tools.</attribute>
+       <attribute name="uid">12</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -125,6 +128,7 @@
        <attribute name="description">
          Using the query history to combine queries.
        </attribute>
+       <attribute name="uid">11</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -182,6 +186,7 @@
        <attribute name="description">
           Overview of features in the Genome Browser.
        </attribute>
+       <attribute name="uid">10</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -223,6 +228,7 @@
        <attribute name="description">
           Using the Download section to download query results and sequence data.
        </attribute>
+       <attribute name="uid">9</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -274,6 +280,7 @@
        <attribute name="description">
           How to use a List of Gene Identifiers as Input to a Query.
        </attribute>
+       <attribute name="uid">8</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -332,6 +339,7 @@
        <attribute name="description">
          Learn how to manage columns displayed in query results; adding columns, sorting columns and changing the column ordering.
        </attribute>
+       <attribute name="uid">7</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -390,6 +398,7 @@
           Query to identify genes that are potential vaccine targets. 
           Query includes secreted proteins, phylogenetic profile and expression profile queries.
        </attribute>
+       <attribute name="uid">6</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -408,6 +417,7 @@
           Query to identify genes that are potential vaccine targets. 
           Query includes secreted proteins, phylogenetic profile, SNPs and expression profile queries.
        </attribute>
+       <attribute name="uid">5</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -426,6 +436,7 @@
           Query to identify genes that are candidate drug targets. 
           Query includes expression profile, proteomics evidence and GO function queries.
        </attribute>
+       <attribute name="uid">4</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -444,6 +455,7 @@
           Query to identify genes that are candidate drug targets. 
           Query includes expression profile, proteomics evidence, GO function  and SNP queries.
        </attribute>
+       <attribute name="uid">3</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -461,6 +473,7 @@
        <attribute name="description">
          <![CDATA[Query to identify local and global protein interactions for <i>P. facliparum</i>.]]>
        </attribute>
+       <attribute name="uid">2</attribute>
        <table name="files">
           <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -479,6 +492,7 @@
        <attribute name="description">
           Query to identify differential expression amongst strains (RH, Prugniaud, VEG) or within the RH (Type I) grown in either high glucose or no glucose. Query to determine the expression percentile of genes from either the RH, Prugniaud or VEG strains.
        </attribute>
+       <attribute name="uid">1</attribute>
        <table name="files">
           <row>
            <attribute name="projects">ToxoDB</attribute>
