@@ -273,6 +273,12 @@ sub validateParams {
   if ($start < 1 || $stop < 1 || $stop <= $start) {
     &userError("Start and End must be positive, and Start must be less than End");
   }
+
+  my $length = $stop - $start + 1;
+  if($length > 100000) {
+    &userError("Values provided exceed the Maximum Allowed Alignemnt of 100KB");
+  }
+
   return ($contig, $start, $stop, $strand, $type);
 }
 
