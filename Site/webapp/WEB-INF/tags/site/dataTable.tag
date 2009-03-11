@@ -37,45 +37,43 @@
 
 <%/* table rows */%>
 <c:set var="i" value="0"/>
+
 <c:forEach var="row" items="${tbl}">
-    
+        <c:set var="hasRow" value="true" />
     <c:choose>
     <c:when test="${i % 2 == 0}"><tr class="rowLight"></c:when>
     <c:otherwise><tr class="rowMedium"></c:otherwise>
     </c:choose>
     
-    <c:forEach var="rCol" items="${row}">
-        <c:set var="colVal" value="${rCol.value}"/>
-        <c:choose>
-            <c:when test="${colVal.class.name eq 'org.gusdb.wdk.model.AttributeFieldValue' && colVal.name eq 'pval'}">
-                <td nowrap="nowrap">
-            </c:when>
-            <c:when test="${colVal eq 'pval'}">
-                <td nowrap="nowrap">
-            </c:when>
-            <c:otherwise>
-                <td>
-            </c:otherwise>
-        </c:choose>
-        
-        <%/* need to know if value should be hot linked */%>
-        <c:choose>
-            <c:when test="${colVal.class.name eq 'org.gusdb.wdk.model.LinkValue'}">
-                <a href="${colVal.url}">${colVal.visible}</a>
-            </c:when>
-            <c:when test="${colVal.class.name eq 'org.gusdb.wdk.model.AttributeFieldValue'}">
-                ${colVal.value}
-            </c:when>
-            <c:otherwise>
-                ${colVal}
+        <c:set var="j" value="0"/>
+        <c:forEach var="rColEntry" items="${row}">
+          <c:set var="rCol" value="${rColEntry.value}"/>
+          <c:if test="${rCol.attributeField.internal == false}">
+            <c:set var="j" value="${j+1}"/>
+
+            <%-- need to know if value should be hot linked --%>
+            <c:set var="align" value="align='${rCol.attributeField.align}'" />
+            <c:set var="nowrap">
+                <c:if test="${rCol.attributeField.nowrap}">nowrap</c:if>
+            </c:set>
+
+            <td ${align} ${nowrap}>
+                <c:choose>
+                    <c:when test="${rCol.class.name eq 'org.gusdb.wdk.model.LinkAttributeValue'}">
+                        <a href="${rCol.url}">${rCol.displayText}</a>
+                    </c:when>
+                    <c:otherwise>
+                        ${rCol.value}
             </c:otherwise>
         </c:choose>
         </td>
-    
-    </c:forEach>
+          </c:if>
+        </c:forEach>
+
     </tr>
     <c:set var="i" value="${i +  1}"/>
 </c:forEach>
+
 </table>
 </c:set>
 
