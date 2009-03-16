@@ -123,8 +123,9 @@ public class UserFileFactory {
                     "INSERT INTO " + userFileSchema + "userfile ("
                             + "userFileId, filename, "
                             + "checksum, uploadTime, "
-                            + "ownerUserId, title, notes)"
-                            + " VALUES (?,?,?,?,?,?,?)");
+                            + "ownerUserId, title, notes, "
+                            + "projectName, projectVersion)"
+                            + " VALUES (?,?,?,?,?,?,?,?,?)");
             long currentMillis = System.currentTimeMillis();
             
             ps.setInt(1, userFileId);
@@ -134,6 +135,8 @@ public class UserFileFactory {
             ps.setString(5, userFile.getUserUID());
             ps.setString(6, userFile.getTitle());
             ps.setString(7, userFile.getNotes());
+            ps.setString(8, userFile.getProjectName());
+            ps.setString(9, userFile.getProjectVersion());
 
             int result = ps.executeUpdate();
 
