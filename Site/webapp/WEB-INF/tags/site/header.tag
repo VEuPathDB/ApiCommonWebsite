@@ -314,6 +314,12 @@ ${headElement}
  
  
  <site:requestURL/>
+
+<c:if test="${fn:endsWith(originRequestUrl, 'header.jsp')}">
+   <c:set  var="originRequestUrl" value="/home.jsp" />
+</c:if>
+
+
  <c:choose>
     <c:when test="${wdkUser == null || wdkUser.guest == true}">
     
@@ -339,10 +345,13 @@ ${headElement}
 <%--        
         <c:if test="${division ne 'login'}">
 --%>
+<%-- we need to add /  so it works from gbrowse too --%>
           <li>
-            <a href="${loginUrl}" id='login'>Login<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
+            <a href="<c:url value='/${loginUrl}' />" id='login'>Login<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
           <li>
-          <a href="<c:url value='showRegister.do'/>" id='register'>Register</a></li>
+          <a href="<c:url value='/showRegister.do'/>" id='register'>Register</a></li>     
+
+
 
         
     </c:when>
@@ -354,7 +363,7 @@ ${headElement}
           <li>
             <a href="<c:url value='/showProfile.do'/>" id='profile'>${wdkUser.firstName} ${wdkUser.lastName}'s Profile<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
           <li>
-            <a href="<c:url value='${logoutUrl}' />" id='logout'>Logout</a></li>
+            <a href="<c:url value='/${logoutUrl}' />" id='logout'>Logout</a></li>
 
     </c:otherwise>
   </c:choose>
