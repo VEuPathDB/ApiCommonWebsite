@@ -28,16 +28,10 @@ sub run {
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 
   my $sql = <<EOSQL;
-SELECT s.source_id, nas.sequence, ' | ' || bfmv.sequence_description as description
-FROM dots.nasequence nas, apidb.sequenceattributes bfmv,
-    (SELECT na_sequence_id, source_id
-      FROM dots.ExternalNaSequence 
-      UNION
-      SELECT na_sequence_id, source_id
-      FROM dots.VirtualSequence) s
-WHERE  upper(s.source_id) LIKE ?
- AND s.na_sequence_id = nas.na_sequence_id
- AND bfmv.source_id = s.source_id
+SELECT s.source_id, s.sequence, ' | ' || s.description as description
+FROM dots.nasequence s, apidb.sequenceid si 
+WHERE  si.id = lower(?)
+AND s.source_id = si.sequence
 EOSQL
 
   my $sth = $dbh->prepare($sql);
@@ -91,20 +85,19 @@ sub validateParams {
 sub validateIds {
   my ($inputIdsString, $start, $end, $revComp, $dbh) = @_;
   
-  my @inputInfo = split(/[,\s]+/, $inputIdsString);
+  # if the input contains per-sequence "reverse" or "(start..end)"
+  # info, then split on newlines; else split on commas or any whitespace
+  my @inputInfo = ($inputIdsString =~ /reverse|\(\d+\.\.\d+\)/)?
+     split(/\n/, $inputIdsString) : split(/[,\s]+/, $inputIdsString);
   my @inputIds;
   my @starts;
   my @ends;
   my @revComps;
 
   my $sql = <<EOSQL;
-SELECT s.source_id 
-FROM (SELECT source_id
-      FROM dots.ExternalNaSequence
-      UNION
-      SELECT source_id
-      FROM dots.VirtualSequence) s
-WHERE  upper(s.source_id) = ?
+SELECT s.sequence
+FROM apidb.sequenceid s
+WHERE s.id = lower(?)
 EOSQL
 
   my @badIds;
