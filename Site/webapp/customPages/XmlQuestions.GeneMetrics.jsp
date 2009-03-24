@@ -34,6 +34,7 @@
 <c:set var="toxoColorHeader" value="#507494"/>
 <c:set var="giardiaColorHeader" value="#507494"/>
 <c:set var="trichColorHeader" value="#507494"/>
+<c:set var="tritrypColorHeader" value="#507494"/>
 
 
 <c:set var="cryptoColor" value="#E0E0EF"/>
@@ -41,16 +42,17 @@
 <c:set var="toxoColor" value="#eff6ff"/> 
 <c:set var="giardiaColor" value="#ffeff0"/> 
 <c:set var="trichColor" value="#f6e9e4"/> 
+<c:set var="tritrypColor" value="#FFC4BF"/> 
 
 <c:set var="orgWidth" value="7%"/>
 
 
 
 <table align="center" width="100%" border="0" cellpadding="2" cellspacing="2">
-<tr><td><font face="Arial,Helvetica">The <a href="http://eupathdb.org">ApiDB/EuPathDB Bioinformatics Resource Center (BRC)</a> designs, develops and maintains the EuPathDB, CryptoDB, GiardiaDB, PlasmoDB, ToxoDB and TrichDB websites. <br><br>
+<tr><td><font face="Arial,Helvetica">The <a href="http://eupathdb.org">ApiDB/EuPathDB Bioinformatics Resource Center (BRC)</a> designs, develops and maintains the EuPathDB, CryptoDB, GiardiaDB, PlasmoDB, ToxoDB, TrichDB and TriTrypDB websites. <br><br>
 The table below summarizes the number of genes for the organisms currently available in ApiDB, by various datatypes. High gene numbers for rodent malaria parasites Pb, Pc & Py reflect incomplete sequence assembly and redundant gene models. <br></font>
 
-<font size="-1"><i>(Cp, C. parvum; Ch, C. hominis; Gl, G. lamblia; Nc, N. caninum; Pb, P. berghei; Pc, P. chabaudi; Pf, P. falciparum; Pk, P. knowlesi; Pv, P. vivax; Py, P. yoelii; Tg, T. gondii; Tv, T. vaginalis.)</i></font><br>
+<font size="-1"><i>(Cp, C. parvum; Ch, C. hominis; Gl, G. lamblia; Nc, N. caninum; Lb, L. braziliensis; Li, L. infantum; Lm, L. major;  Pb, P. berghei; Pc, P. chabaudi; Pf, P. falciparum; Pk, P. knowlesi; Pv, P. vivax; Py, P. yoelii; Tg, T. gondii; Tv, T. vaginalis; Tb, T. brucei; Tc, T. cruzi.)</i></font><br>
 </td></tr>
 </table>
 
@@ -67,6 +69,9 @@ The table below summarizes the number of genes for the organisms currently avail
     <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Ch</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Cp</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${giardiaColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Gl</i></font></td>
+    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Lb</i></font></td>
+    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Li</i></font></td>
+    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Lm</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${toxoColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Nc</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pb</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pc</i></font></td>
@@ -75,7 +80,9 @@ The table below summarizes the number of genes for the organisms currently avail
     <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pv</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Py</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${toxoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Tg</i></font></td>
-<td valign="middle" width=${orgWidth} bgcolor=${trichColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Tv</i></font></td>
+    <td valign="middle" width=${orgWidth} bgcolor=${trichColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Tv</i></font></td>
+    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Tb</i></font></td>
+    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Tc</i></font></td>
 </tr>
 
 
@@ -87,7 +94,10 @@ The table below summarizes the number of genes for the organisms currently avail
 	 <c:set var="Ch" value="${record.attributesMap['Cryptosporidium_hominis']}"/>
 	 <c:set var="Cp" value="${record.attributesMap['Cryptosporidium_parvum']}"/>
 	 <c:set var="Gl" value="${record.attributesMap['Giardia_lamblia']}"/>
-	 <c:set var="Nc" value="${record.attributesMap['Neospora_caninum']}"/>
+	 <c:set var="Lb" value="${record.attributesMap['Leishmania_braziliensis']}"/>
+	 <c:set var="Li" value="${record.attributesMap['Leishmania_infantum']}"/>
+	 <c:set var="Lm" value="${record.attributesMap['Leishmania_major']}"/>
+         <c:set var="Nc" value="${record.attributesMap['Neospora_caninum']}"/>
 	 <c:set var="Pb" value="${record.attributesMap['Plasmodium_berghei']}"/>
 	 <c:set var="Pc" value="${record.attributesMap['Plasmodium_chabaudi']}"/>
 	 <c:set var="Pf" value="${record.attributesMap['Plasmodium_falciparum']}"/>
@@ -95,7 +105,9 @@ The table below summarizes the number of genes for the organisms currently avail
 	 <c:set var="Pv" value="${record.attributesMap['Plasmodium_vivax']}"/>
 	 <c:set var="Py" value="${record.attributesMap['Plasmodium_yoelii']}"/>
 	 <c:set var="Tg" value="${record.attributesMap['Toxoplasma_gondii']}"/>
-	 <c:set var="Tv" value="${record.attributesMap['Trichomonas_vaginalis']}"/> 
+	 <c:set var="Tv" value="${record.attributesMap['Trichomonas_vaginalis']}"/>
+         <c:set var="Ib" value="${record.attributesMap['Trypanosoma_brucei']}"/> 
+         <c:set var="Tc" value="${record.attributesMap['Trypanosoma_cruzi']}"/> 
 
 
 
@@ -104,7 +116,10 @@ The table below summarizes the number of genes for the organisms currently avail
     <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Ch}</font></td>
     <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Cp}</font></td>
     <td valign="top" align="right" bgcolor=${giardiaColor}><font face="Arial,Helvetica">${Gl}</font></td>
-    <td valign="top" align="right" bgcolor=${toxoColor}><font face="Arial,Helvetica">${Nc}</font></td>
+    <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Lb}</font></td>
+    <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Li}</font></td>
+    <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Lm}</font></td>
+ <td valign="top" align="right" bgcolor=${toxoColor}><font face="Arial,Helvetica">${Nc}</font></td>
     <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pb}</font></td>
     <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pc}</font></td>
     <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pf}</font></td>
@@ -113,6 +128,8 @@ The table below summarizes the number of genes for the organisms currently avail
     <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Py}</font></td>
     <td valign="top" align="right" bgcolor=${toxoColor}><font face="Arial,Helvetica">${Tg}</font></td>
     <td valign="top" align="right" bgcolor=${trichColor}><font face="Arial,Helvetica">${Tv}</font></td>
+ <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Tb}</font></td>
+ <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Tc}</font></td>
     </tr>
 
  
