@@ -267,10 +267,6 @@ sub mapGeneFeatureSourceIds {
 sub handleGenomic {
   my ($self, $dbh, $seqIO) = @_;
 
-  my $seqTable = ($self->getModel() =~ /toxo|giardia/i)?
-    'dots.VirtualSequence' : 'dots.ExternalNaSequence';
-
-  #my $site = ($self->getModel() =~ /^api/i)? $sqlQueries : $componentSql;
   my $site = $sqlQueries;
 
   my $beginAnch = 0;
@@ -296,23 +292,6 @@ sub handleGenomic {
   $startRev = "($endAnchRev - $endOffset)";
   $endRev = "($beginAnchRev - $beginOffset)";
 
-$componentSql->{geneGenomicSql} = <<EOSQL;
-select gf.source_id, sa.source_id, sa.organism, gf.product,
-     bfmv.start_min, bfmv.end_max,
-     bfmv.is_reversed,
-     CASE WHEN bfmv.is_reversed = 1
-     THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
-     ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
-     END as sequence
-FROM dots.genefeature gf, apidb.featurelocation bfmv, apidb.sequenceattributes sa, dots.nasequence s
-WHERE gf.source_id = ?
-AND bfmv.is_top_level = 1
-AND gf.na_feature_id = bfmv.na_feature_id
-AND bfmv.na_sequence_id = sa.na_sequence_id
-AND s.na_sequence_id = sa.na_sequence_id
-EOSQL
-
-
 $sqlQueries->{geneGenomicSql} = <<EOSQL;
 select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
      bfmv.start_min, bfmv.end_max,
@@ -322,7 +301,7 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
 FROM apidb.geneattributes bfmv, apidb.geneid gi,
-     $seqTable s
+     dots.nasequence s
 WHERE gi.id = lower(?)
 AND bfmv.source_id = gi.gene
 AND s.source_id = bfmv.sequence_id
@@ -339,12 +318,10 @@ select bfmv.source_id, s.source_id, bfmv.organism,
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
      END as sequence
-FROM apidb.orfattributes bfmv, $seqTable s
+FROM apidb.orfattributes bfmv, dots.nasequence s
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 EOSQL
-
-$componentSql->{orfGenomicSql} = $sqlQueries->{orfGenomicSql} ;
 
   my $sql;
 
