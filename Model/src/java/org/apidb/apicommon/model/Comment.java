@@ -71,6 +71,11 @@ public class Comment {
     private String[] files;
     private String[] associatedStableIds;
 
+    private String background;
+    private int mutantStatus;
+    private int mutationType;
+    private int mutationMethod;
+
     public Comment(String email) {
         this.email = email;
         locations = new ArrayList<Location>();
@@ -512,4 +517,37 @@ public class Comment {
     public void setOrganism(String organism) {
         this.organism = organism;
     }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+    public int getMutantStatus() {
+        return mutantStatus;
+    }
+
+    public void setMutantStatus(int mutantStatus) {
+        this.mutantStatus = mutantStatus;
+    }
+
+    public int getMutationType() {
+        return mutationType;
+    }
+
+    public void setMutationType(int mutationType) {
+        this.mutationType = mutationType;
+    }
+
+    public int getMutationMethod() {
+        return mutationMethod;
+    }
+
+    public void setMutationMethod(int mutationMethod) {
+        this.mutationMethod = mutationMethod;
+    }
+
 }
