@@ -181,6 +181,16 @@ public class CommentFactory {
               saveAssociatedStableIds(commentId, associatedStableIds);
             }                                               
 
+            if(comment.getCommentTarget().equalsIgnoreCase("phenotype")) {
+              savePhenotype(commentId, 
+                            comment.getBackground(), 
+                            comment.getMutantStatus(),
+                            comment.getMutationType(),
+                            comment.getMutationMethod(),
+                            comment.getContent()
+                            );
+            }
+
             // get a new comment in order to fetch the user info
             Comment newComment = getComment(commentId);
 
@@ -230,6 +240,42 @@ public class CommentFactory {
             SqlUtils.closeStatement(statement);
         }
     }
+
+    private void savePhenotype(int commentId, 
+                               String background,
+                               int mutantStatus,
+                               int mutationType,
+                               int mutationMethod,
+                               String phenotypeDescription)
+            throws SQLException, WdkModelException {
+
+        String commentSchema = config.getCommentSchema();
+
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "Phenotype ");
+        sql.append("(phenotype_id, comment_id, ");
+        sql.append("background, mutant_status_id, mutant_type_id, ");
+        sql.append("mutant_method_id, phenotype_description ");
+        sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+             statement.setInt(1, platform.getNextId(commentSchema, "phenotype"));
+             statement.setInt(2, commentId);
+             statement.setString(3, background);
+             statement.setInt(4, mutantStatus);
+             statement.setInt(5, mutationType);
+             statement.setInt(6, mutationMethod);
+             statement.setString(7, phenotypeDescription);
+             statement.execute();
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
 
     private void saveCommentTargetCategory(int commentId, int[] targetCategoryIds)
             throws SQLException, WdkModelException {
