@@ -102,6 +102,17 @@ public class PhenotypeAction extends CommentAction {
         String phenotypeCategory = cuForm.getPhenotypeCategory();
         String expression = cuForm.getExpression();
 
+        StringBuffer body = new StringBuffer();
+        body.append("Headline: " + headline + "\n");
+        body.append("Target: " + commentTarget + "\n");
+        body.append("Source_Id: " + stableId + "\n");
+        body.append("Comment: " + content + "\n");
+        body.append("PMID: " + pmIdStr + "\n");
+        body.append("Email: " + email + "\n");
+        body.append("Organism: " + organism + "\n");
+        body.append("DB Name: " + extDbName + "\n");
+        body.append("DB Version: " + extDbVersion + "\n");
+
         // create a comment instance
         Comment comment = new Comment(email);
         comment.setCommentTarget(commentTarget);
@@ -139,6 +150,8 @@ public class PhenotypeAction extends CommentAction {
         getCommentFactory().addComment(comment);
 
         request.setAttribute("submitStatus", "success");
+        request.setAttribute("subject", headline);
+        request.setAttribute("body", body.toString());
 
         forward = new ActionForward("/addPhenotype.jsp", false);
         return forward;
