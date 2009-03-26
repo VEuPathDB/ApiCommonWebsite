@@ -18,13 +18,8 @@
 
 <c:set var="project" value="${wdkModel.name}"/>
 
-<%-- old way
-<c:set var="props" value="${applicationScope.wdkModel.properties}" />
-<c:set var="project" value="${props['PROJECT_ID']}" />
---%>
-
 <c:set var="PORTAL" value="${ fn:containsIgnoreCase(modelName, 'api')    }"     />
-<c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich')   }"     />
+<c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich')  || fn:containsIgnoreCase(modelName, 'tritryp')  }"     />
 
 <%--------------------------------------------------------------------%>
 
@@ -43,6 +38,7 @@
 	<img src='<c:url value="/images/plasmodb_letter.gif" />' border='0' alt='plasmo' /> = PlasmoDB &nbsp;&nbsp;
 	<img src='<c:url value="/images/toxodb_letter.gif" />' border='0' alt='toxo' /> = ToxoDB &nbsp; &nbsp;
 	<img src='<c:url value="/images/trichdb_letter.gif" />' border='0' alt='trich' /> = TrichDB &nbsp; &nbsp;
+	<img src='<c:url value="/images/tritrypdb_letter.gif" />' border='0' alt='Tt' /> = TriTrypDB &nbsp; &nbsp;
 	</div>
 </td></tr>
 </c:if>

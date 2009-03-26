@@ -41,6 +41,7 @@
 <c:set var="A" value="${E}" />
 <c:set var="G" value="${E}" />
 <c:set var="Tr" value="${E}" />
+<c:set var="Tt" value="${E}" />
 
 
 
@@ -50,6 +51,7 @@
 <c:set var="apiRoot" value="http://www.eupathdb.org/eupathdb/" />
 <c:set var="giardiaRoot" value="http://www.giardiadb.org/giardiadb/" />
 <c:set var="trichRoot" value="http://www.trichdb.org/trichdb/" />
+<c:set var="tritrypRoot" value="http://www.tritrypdb.org/tritrypdb/" />
 
 <%-- get wdkModel saved in application scope --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
@@ -57,7 +59,7 @@
 
 
 <c:set var="API" value="${fn:containsIgnoreCase(modelName, 'api')    }"     />
-<c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich')    }"     />
+<c:set var="COMPONENT" value="${ fn:containsIgnoreCase(modelName, 'plasmo') || fn:containsIgnoreCase(modelName, 'toxo') || fn:containsIgnoreCase(modelName, 'crypto') || fn:containsIgnoreCase(modelName, 'giardia') || fn:containsIgnoreCase(modelName, 'trich') || fn:containsIgnoreCase(modelName, 'tritryp')   }"     />
 
 <c:choose>
 <c:when test="${qname == 'UnifiedBlast'}">
@@ -73,6 +75,12 @@
 <c:set var="array" value="${fn:split(existsOn, ' ')}" />
 <c:forEach var="token" items="${array}" >
   
+ <c:if test="${token eq 'Tt'}">
+        <c:set var="Tt_image">
+            <c:url value="/images/tritrypdb_letter.gif" />
+        </c:set>
+        <c:set var="Tt" value="<a href='${tritrypRoot}${link}'><img src='${Tt_image}' border='0' alt='tritrypdb' /></a>" />
+  </c:if>
   <c:if test="${token eq 'G'}">
         <c:set var="G_image">
             <c:url value="/images/giardiadb_letter.gif" />
@@ -107,7 +115,7 @@
         <c:set var="A_image">
             <c:url value="/images/apidb_letter.gif" />
         </c:set>
-        <c:set var="A" value="<a href='${apiRoot}${link}'><img src='${A_image}' border='0' alt='apidb' /></a>" />
+        <c:set var="A" value="<a href='${apiRoot}${link}'><img src='${A_image}' border='0' alt='eupathdb' /></a>" />
   </c:if>
 </c:forEach>
 
@@ -126,6 +134,9 @@
 </c:if>
 <c:if test="${modelName eq 'TrichDB'}">
         <c:set var="orgnismName" value="Trichomonas"/>
+</c:if>
+<c:if test="${modelName eq 'TriTrypDB'}">
+        <c:set var="orgnismName" value="Kinetoplastid"/>
 </c:if>
 
 
@@ -180,6 +191,7 @@
 	<td width="14">${P}</td>	
 	<td width="14">${T}</td>
 	<td width="14">${Tr}</td>
+	<td width="14">${Tt}</td>
 </tr>
 </table>
 </c:if>
