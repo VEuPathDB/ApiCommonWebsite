@@ -44,15 +44,13 @@
 <c:set var="trichColor" value="#f6e9e4"/> 
 <c:set var="tritrypColor" value="#FFC4BF"/> 
 
-<c:set var="orgWidth" value="7%"/>
+<c:set var="orgWidth" value="4%"/>
 
 
 
 <table align="center" width="100%" border="0" cellpadding="2" cellspacing="2">
-<tr><td><font face="Arial,Helvetica">The <a href="http://eupathdb.org">ApiDB/EuPathDB Bioinformatics Resource Center (BRC)</a> designs, develops and maintains the EuPathDB, CryptoDB, GiardiaDB, PlasmoDB, ToxoDB, TrichDB and TriTrypDB websites. <br><br>
-The table below summarizes the number of genes for the organisms currently available in ApiDB, by various datatypes. High gene numbers for rodent malaria parasites Pb, Pc & Py reflect incomplete sequence assembly and redundant gene models. <br></font>
-
-<font size="-1"><i>(Cp, C. parvum; Ch, C. hominis; Gl, G. lamblia; Nc, N. caninum; Lb, L. braziliensis; Li, L. infantum; Lm, L. major;  Pb, P. berghei; Pc, P. chabaudi; Pf, P. falciparum; Pk, P. knowlesi; Pv, P. vivax; Py, P. yoelii; Tg, T. gondii; Tv, T. vaginalis; Tb, T. brucei; Tc, T. cruzi.)</i></font><br>
+<tr><td><font face="Arial,Helvetica">The <a href="http://eupathdb.org"><b>ApiDB/EuPathDB Bioinformatics Resource Center (BRC)</b></a> designs, develops and maintains the <a href="http://eupathdb.org">EuPathDB</a>, <a href="http://cryptodb.org">CryptoDB</a>, <a href="http://giardiadb.org">GiardiaDB</a>, <a href="http://plasmodb.org">PlasmoDB</a>, <a href="http://toxodb.org">ToxoDB</a>, <a href="http://trichdb.org">TrichDB</a> and <a href="http://tritrypdb.org">TriTrypDB</a> websites. <br><br>
+The Gene Metrics table summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes. High gene numbers for rodent malaria parasites Pb, Pc & Py reflect incomplete sequence assembly and redundant gene models. <br></font>
 </td></tr>
 </table>
 
@@ -65,8 +63,9 @@ The table below summarizes the number of genes for the organisms currently avail
 
 <table align="center" width="100%" border="1" cellpadding="2" cellspacing="2">
 <tr valign="top" align="center">
-    <td valign="middle" width="35%"  bgcolor="#507494"><font color="white" face="Arial,Helvetica" size="+1">Genes</font></td>
+    <td valign="middle"   bgcolor="#507494"><font color="white" face="Arial,Helvetica" size="+1">Genes</font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Ch</i></font></td>
+    <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Cm</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Cp</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${giardiaColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Gl</i></font></td>
     <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Lb</i></font></td>
@@ -92,6 +91,7 @@ The table below summarizes the number of genes for the organisms currently avail
 
 	 <c:set var="Metric_Type" value="${record.attributesMap['Metric_Type']}"/>
 	 <c:set var="Ch" value="${record.attributesMap['Cryptosporidium_hominis']}"/>
+ 	 <c:set var="Cm" value="${record.attributesMap['Cryptosporidium_muris']}"/>
 	 <c:set var="Cp" value="${record.attributesMap['Cryptosporidium_parvum']}"/>
 	 <c:set var="Gl" value="${record.attributesMap['Giardia_lamblia']}"/>
 	 <c:set var="Lb" value="${record.attributesMap['Leishmania_braziliensis']}"/>
@@ -106,7 +106,7 @@ The table below summarizes the number of genes for the organisms currently avail
 	 <c:set var="Py" value="${record.attributesMap['Plasmodium_yoelii']}"/>
 	 <c:set var="Tg" value="${record.attributesMap['Toxoplasma_gondii']}"/>
 	 <c:set var="Tv" value="${record.attributesMap['Trichomonas_vaginalis']}"/>
-         <c:set var="Ib" value="${record.attributesMap['Trypanosoma_brucei']}"/> 
+         <c:set var="Tb" value="${record.attributesMap['Trypanosoma_brucei']}"/> 
          <c:set var="Tc" value="${record.attributesMap['Trypanosoma_cruzi']}"/> 
 
 
@@ -114,6 +114,7 @@ The table below summarizes the number of genes for the organisms currently avail
     <tr valign="top" align="left">
     <td valign="top"><font face="Arial,Helvetica">${Metric_Type}</a></font></td>
     <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Ch}</font></td>
+    <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Cm}</font></td>
     <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Cp}</font></td>
     <td valign="top" align="right" bgcolor=${giardiaColor}><font face="Arial,Helvetica">${Gl}</font></td>
     <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Lb}</font></td>
@@ -138,6 +139,13 @@ The table below summarizes the number of genes for the organisms currently avail
 
 
   </table>
+
+
+<table align="center" width="100%" border="0" cellpadding="2" cellspacing="2">
+<tr><td>
+<font size="-1"><i><b>Cryptosporidium</b>: Cp, C. parvum; Ch, C. hominis; <b>Giardia</b> Gl, G. lamblia; <b>Neospora</b>: Nc, N. caninum; <b>Leishmania</b>: Lb, L. braziliensis; Li, L. infantum; Lm, L. major;  <b>Plasmodium</b>: Pb, P. berghei; Pc, P. chabaudi; Pf, P. falciparum; Pk, P. knowlesi; Pv, P. vivax; Py, P. yoelii; <b>Toxoplasma</b>: Tg, T. gondii; <b>Trichomonas</b>: Tv, T. vaginalis; <b>Trypanosoma</b>: Tb, T. brucei; Tc, T. cruzi.)</i></font><br>
+</td></tr>
+</table>
 
   </c:otherwise>
 </c:choose>
