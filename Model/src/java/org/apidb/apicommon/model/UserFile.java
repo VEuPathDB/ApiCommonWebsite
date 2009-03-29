@@ -89,12 +89,12 @@ public class UserFile {
     public String getContentType() {
         return contentType;
     }
-    public void setContentType(String email) {
-        this.email = email;
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public String getEmail() {
-        return contentType;
+        return email;
     }
     public void setEmail(String email) {
         this.email = email;
