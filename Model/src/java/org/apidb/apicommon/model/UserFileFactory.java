@@ -124,19 +124,20 @@ public class UserFileFactory {
                             + "userFileId, filename, "
                             + "checksum, uploadTime, "
                             + "ownerUserId, title, notes, "
-                            + "projectName, projectVersion)"
-                            + " VALUES (?,?,?,?,?,?,?,?,?)");
+                            + "projectName, projectVersion, email)"
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?)");
             long currentMillis = System.currentTimeMillis();
             
             ps.setInt(1, userFileId);
             ps.setString(2, userFile.getFileName());
             ps.setString(3, userFile.getChecksum());
             ps.setTimestamp(4, new Timestamp(currentMillis));
-            ps.setString(5, userFile.getUserUID());
-            ps.setString(6, userFile.getTitle());
-            ps.setString(7, userFile.getNotes());
-            ps.setString(8, userFile.getProjectName());
-            ps.setString(9, userFile.getProjectVersion());
+            ps.setString(5,  userFile.getUserUID());
+            ps.setString(6,  userFile.getTitle());
+            ps.setString(7,  userFile.getNotes());
+            ps.setString(8,  userFile.getProjectName());
+            ps.setString(9,  userFile.getProjectVersion());
+            ps.setString(10, userFile.getEmail());
 
             int result = ps.executeUpdate();
 
