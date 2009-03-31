@@ -5,18 +5,20 @@ use XML::Simple;
 use Data::Dumper;
 
 sub new {
-	my $class = shift;
-	my $self = {};
-	my @file = @_;
+  my ($class, $file, $project, $showParse) = @_;
+  my $self = {};
 
-	my $xsl = XML::Simple->new();
-	my $tree = $xsl->XMLin(@file, Cache => 'memshare') or die "cannot open the sql file\n";
 
-	$self->{tree} = $tree;
+  my $xsl = XML::Simple->new();
+  my $tree = $xsl->XMLin($file, Cache => 'memshare', forcearray => 1, keyattr => { module => '+name', sqlQuery => '+name'}) or die "cannot open the sql file\n";
 
-	bless( $self, $class );
-	return $self;
+  $self->{tree} = $tree;
+  $self->{projectId} = $project;
 
+  print Dumper $tree if($showParse);
+
+  bless( $self, $class );
+  return $self;
 }
 
 sub getTree {$_[0]->{tree}}
@@ -33,26 +35,24 @@ sub getProjectId {
   return $projectId;
 }
 
+sub print {
+  my $self = shift;
+
+  my $tree = $self->getTree();
+
+  print Dumper($tree);
+}
+
+
 sub getSQL {
 	my $self = shift;
 	my ($modulename, $key) = @_;
 
-	my $obj = $self->{tree}->{module}->{$modulename}->{sqlQuery};
-
-        return $obj->{sql} if (exists $obj->{sql});
-        my $sqlObj = $obj->{$key}->{sql};
+	my $sqlObj = $self->{tree}->{module}->{$modulename}->{sqlQuery}->{$key}->{sql};
 
         return $self->_getSQL($sqlObj, $key);
 }
 
-
-sub print {
-	my $self = shift;
-
-        my $tree = $self->getTree();
-
-	print Dumper($tree->{module}->{'GUS.pm'});
-}
 
 sub _getSQL {
   my ($self, $sqlObj, $key) = @_;
@@ -61,11 +61,6 @@ sub _getSQL {
 
   my $rv;
   my $sqlCount = 0;
-
-  # If there is only one but it has an includeProjects attribute force it onto an array
-  if(ref($sqlObj) eq 'HASH') {
-    $sqlObj = [$sqlObj];
-  }
 
   if(ref($sqlObj) eq 'ARRAY') {
     my $alreadyIncluded;
