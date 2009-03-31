@@ -36,7 +36,6 @@ public class UserFileUploadForm extends ActionForm {
     public void setFile(int indx, FormFile file) {
       //  if (file.getFileName().trim().length() == 0) return;
         this.file = file;
-System.out.println("filename for " + indx + " " + file.getFileName());
         setFormFiles(indx, file);
     }
     public FormFile getFile() {
@@ -59,8 +58,6 @@ System.out.println("filename for " + indx + " " + file.getFileName());
     }
 
     public void setNotes(int indx, String notes) {
-    //   if (notes == null || notes.trim().length() == 0) return;
-System.out.println("notes for " + indx + " '" + notes + "'");
         this.notes = notes;
         setFormNotes(indx, notes);
     }
@@ -96,10 +93,8 @@ System.out.println("notes for " + indx + " '" + notes + "'");
         Iterator it = formFiles.keySet().iterator();
         while (it.hasNext()) {
             Integer i = (Integer) it.next();
-//            System.out.println("it filename " +  i + " '" + formFiles.get(i).getFileName().trim() + "'");
             if (formFiles.get(i).getFileName().trim().length() == 0 && 
                   formNotes.get(i).trim().length() == 0) {
-            System.out.println("removing " + i );
                 it.remove();
                 formNotes.remove(i);
             }
@@ -112,16 +107,13 @@ System.out.println("notes for " + indx + " '" + notes + "'");
         }
         
         for (Integer i : formFiles.keySet()) {
-System.out.println("validation for " + formFiles.get(i) + " : " + getFormNotes().get(i));
           if (formFiles.get(i) == null) {
-  System.out.println("checking file == null for " + formFiles.get(i));
               errors.add(ActionErrors.GLOBAL_ERROR, 
               new ActionError("mapped.properties", "file not found", "select a file for upload")); 
               return errors;
           }
   
           if (formFiles.get(i).getFileName() == null || formFiles.get(i).getFileName().trim().length() == 0) {
-  System.out.println("checking fileName for " + formFiles.get(i));
               errors.add(ActionErrors.GLOBAL_ERROR, 
               new ActionError("mapped.properties", "file not found", "select a file for upload")); 
           }
@@ -141,15 +133,12 @@ System.out.println("validation for " + formFiles.get(i) + " : " + getFormNotes()
 
         for (Integer i : formNotes.keySet()) {
             if (formFiles.get(i) == null) continue;
- System.out.println("notes validation for " + formFiles.get(i) + " : " + getFormNotes().get(i));
             if (formNotes.get(i) == null || formNotes.get(i).trim().length() == 0) {
-    System.out.println("checking getNotes() == null for " + formNotes.get(i) + " of file " + formFiles.get(i).getFileName());
                 errors.add(ActionErrors.GLOBAL_ERROR, 
                 new ActionError("mapped.properties", "no description", "please add a description")); 
             }
         
             if (formNotes.get(i) != null && formNotes.get(i).trim().length() > 4000) {
-    System.out.println("checking getNotes() length for " + formNotes.get(i));
                 errors.add(ActionErrors.GLOBAL_ERROR, 
                 new ActionError("mapped.properties", "description is too long (" + 
                     formNotes.get(i).trim().length() + " characters)", 
