@@ -140,7 +140,9 @@ public class UserFileFactory {
             ps.setString(10, userFile.getEmail());
 
             int result = ps.executeUpdate();
-
+            
+            userFile.setUserFileId(userFileId);
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new WdkModelException(ex);
