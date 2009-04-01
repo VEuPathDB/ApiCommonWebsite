@@ -2,10 +2,9 @@ package org.apidb.apicommon.controller;
 
 import org.apache.struts.action.ActionMapping;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import java.util.ArrayList;
-import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -28,9 +27,10 @@ public class NewCommentForm extends ActionForm {
     private String refererUrl;
     private String organism;
 
-    private ArrayList<FormFile> formFiles = null;
+    private HashMap<Integer, FormFile> formFiles = null;
+    private HashMap<Integer, String> formNotes = null;
     private FormFile file;
-    private int index;
+    private String notes;
 
     private String commentTargetId;
     private String externalDbName;
@@ -43,8 +43,8 @@ public class NewCommentForm extends ActionForm {
     private String contig;
 
     public NewCommentForm() {
-      formFiles = new ArrayList<FormFile>();
-      index = 0;
+      formFiles = new HashMap();
+      formNotes = new HashMap();
     }
 
     /**
@@ -234,20 +234,36 @@ public class NewCommentForm extends ActionForm {
 
     public void setFile(int indx, FormFile file) {
       this.file = file;
-      setFormFiles(file);
-      index++;
+      setFormFiles(indx, file);
     }
 
     public FormFile getFile() {
       return file;
     }
 
-    public void setFormFiles(FormFile file) {
-        this.formFiles.add(index, file);
+    public void setFormFiles(int indx, FormFile file) {
+        this.formFiles.put(indx, file);
     }
 
-    public ArrayList<FormFile> getFormFiles() {
+    public HashMap getFormFiles() {
       return formFiles;
+    } 
+
+    public void setNotes(int indx, String notes) {
+      this.notes = notes;
+      setFormNotes(indx, notes);
+    }
+
+    public String getNotes() {
+      return notes;
+    }
+
+    public void setFormNotes(int indx, String notes) {
+        this.formNotes.put(indx, notes);
+    }
+
+    public HashMap getFormNotes() {
+      return formNotes;
     } 
 
     /** the mapped.properties strings should go into a properties file?? **/    
@@ -267,16 +283,59 @@ public class NewCommentForm extends ActionForm {
             return errors;
       }
 
+      if ((getStableId() == null) || (getStableId().trim().equals(""))) {
+        errors.add(ActionErrors.GLOBAL_ERROR,
+          new ActionError("mapped.properties", "No gene name ", "This is probably due to browse session reset. Please go back to that gene page and start it again!"));
+        return errors;
+			}
+
       if ((getHeadline() == null) || (getHeadline().trim().equals(""))) {
         errors.add(ActionErrors.GLOBAL_ERROR,
-          new ActionError("mapped.properties", "no headline ", "no headline !!!!"));
+          new ActionError("mapped.properties", "No headline ", "headline is required!"));
         return errors;
       }
 
       if ((getContent() == null) || (getContent().trim().equals(""))) {
         errors.add(ActionErrors.GLOBAL_ERROR,
-          new ActionError("mapped.properties", "no content ", "no content !!!!"));
+          new ActionError("mapped.properties", "No content ", "content is required!"));
         return errors;
+      }
+
+      Iterator it = formFiles.keySet().iterator();
+      while (it.hasNext()) {
+        Integer i = (Integer) it.next();
+        if (formFiles.get(i).getFileName().trim().length() == 0 &&
+            formNotes.get(i).trim().length() == 0) {
+          it.remove(); 
+          formNotes.remove(i); 
+        } 
+      }
+
+      for (Integer i : formFiles.keySet()) {
+        if (formFiles.get(i) == null) {
+          errors.add(ActionErrors.GLOBAL_ERROR,
+                   new ActionError("mapped.properties", "File not found", "select a file for upload"));
+          return errors;
+        }
+
+        if (formFiles.get(i).getFileName() == null || formFiles.get(i).getFileName().trim().length() == 0) { 
+          errors.add(ActionErrors.GLOBAL_ERROR, 
+          new ActionError("mapped.properties", "File not found", "select a file for upload")); 
+        } 
+      }
+
+      for (Integer i : formNotes.keySet()) {
+        if (formFiles.get(i) == null) continue;            
+        if (formNotes.get(i) == null || formNotes.get(i).trim().length() == 0) {
+          errors.add(ActionErrors.GLOBAL_ERROR,                
+            new ActionError("mapped.properties", "No description", "please add a description"));            
+        }
+
+        if (formNotes.get(i) != null && formNotes.get(i).trim().length() > 4000) { 
+          errors.add(ActionErrors.GLOBAL_ERROR,                
+             new ActionError("mapped.properties", "description is too long (" + formNotes.get(i).trim().length() + " characters)",                    
+             "please add a description no longer than 4000 characters (including spaces)"));  
+        } 
       }
 
       return errors; 
@@ -285,7 +344,7 @@ public class NewCommentForm extends ActionForm {
     public void reset(ActionMapping mapping, HttpServletRequest request) {
       file = null;
       formFiles.clear();
-      index = 0;
+      formNotes.clear();
 
       headline = null;
       content = null;
