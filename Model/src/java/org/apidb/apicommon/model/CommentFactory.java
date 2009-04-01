@@ -366,26 +366,26 @@ public class CommentFactory {
     private void saveFiles(int commentId, String[] files)
             throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
-        int fileId = platform.getNextId(commentSchema, "commentFile");
-      
+
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "CommentFile ");
-        sql.append("(file_id, uri, ");
+        sql.append("(file_id, name, notes, ");
         sql.append(" comment_id ");
-        sql.append(") VALUES (?, ?, ?)");
+        sql.append(") VALUES (?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
                         sql.toString());
       
             for (String file : files) {
-                if((file != null ) && (file.trim().length() != 0)) {
-                    statement.setInt(1, platform.getNextId(commentSchema, "commentFile"));
-                    statement.setString(2, file);
-                    statement.setInt(3, commentId);
-                    statement.execute();
-                }
+                if(file == null ) continue; 
+                String[] str = file.split("\\|");
+                statement.setInt(1, Integer.parseInt(str[0]));
+                statement.setString(2, str[1]);
+                statement.setString(3, str[2]);
+                statement.setInt(4, commentId);
+                statement.execute();
             }
         } finally {
             SqlUtils.closeStatement(statement);
@@ -656,7 +656,7 @@ public class CommentFactory {
     private void loadFiles(int commentId, Comment comment)
             throws SQLException {
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT uri ");
+        sql.append("SELECT file_id, name, notes ");
         sql.append(" FROM ");
         sql.append(config.getCommentSchema() + "commentFile ");
         sql.append("WHERE comment_id = ?");
@@ -670,8 +670,10 @@ public class CommentFactory {
 
             ArrayList<String> ids = new ArrayList<String>();
             while (rs.next()) {
-                String uri = rs.getString("uri");
-                ids.add(uri);
+                int file_id = rs.getInt("file_id");
+                String name = rs.getString("name");
+                String notes = rs.getString("notes");
+                ids.add("file_id|name|notes");
             }
             if(ids.size() > 0) {
               comment.addFiles(ids.toArray(new String[ids.size()]));

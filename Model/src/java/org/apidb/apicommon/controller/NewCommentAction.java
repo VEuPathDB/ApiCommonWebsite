@@ -194,7 +194,7 @@ public class NewCommentAction extends CommentAction {
             if(formFile == null) continue;
 
             String notes = noteSet.get(i).trim();
-						String contentType = formFile.getContentType();
+            String contentType = formFile.getContentType();
             String fileName   = formFile.getFileName();
             int fileSize       = formFile.getFileSize();
             byte[] fileData    = formFile.getFileData();
@@ -203,7 +203,7 @@ public class NewCommentAction extends CommentAction {
 
             userFile.setFileName(fileName); 
             userFile.setFileData(fileData);
-						userFile.setContentType(contentType);
+            userFile.setContentType(contentType);
             userFile.setFileSize(fileSize);
             userFile.setEmail(email);
             userFile.setUserUID(userUID);
@@ -214,7 +214,9 @@ public class NewCommentAction extends CommentAction {
 
             getUserFileFactory().addUserFile(userFile);
 
-            files.add(fileName);
+            int fileId = userFile.getUserFileId();
+            String fileStr = fileId + "|" + fileName + "|" + notes;
+            files.add(fileStr);
 
         }
 
