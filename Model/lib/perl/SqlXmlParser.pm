@@ -8,11 +8,11 @@ sub new {
   my ($class, $file, $project, $showParse) = @_;
   my $self = {};
 
-  die 'must supply $project arg to SqlXmlParser' unless $project;
+  die '\nmust supply $project arg to SqlXmlParser\n' unless $project;
   $self->{project} = $project;
 
   my $xsl = XML::Simple->new();
-  my $fullTree = $xsl->XMLin($file, Cache => 'memshare', forcearray => 1, keyattr => { module => '+name'}) or die "cannot open the sql file\n";
+  my $fullTree = $xsl->XMLin($file, Cache => 'memshare', forcearray => 1, keyattr => { module => '+name'}) or die "\ncannot open the sql file\n";
 
   print Dumper $fullTree if ($showParse);
 
@@ -47,7 +47,7 @@ sub pruneTree {
 
     foreach my $sqlQuery (@{$module->{sqlQuery}}) {
       if ($sqlQuery->{includeProjects} && $sqlQuery->{excludeProjects}) {
-	die "<sqlQuery name=\"$sqlQuery->{name}\"> as both 'includeProjects=' and 'excludeProjects='";
+	die "\n<sqlQuery name=\"$sqlQuery->{name}\"> has both 'includeProjects=' and 'excludeProjects='\n";
       }
 
       next if ($sqlQuery->{includeProjects}
@@ -55,7 +55,7 @@ sub pruneTree {
       next if ($sqlQuery->{excludeProjects}
 	       && $sqlQuery->{excludeProjects} != /$project/);
 
-      die "<sqlQuery name=\"$sqlQuery->{name}\"> is included more than once for $project"
+      die "\n<sqlQuery name=\"$sqlQuery->{name}\"> is included more than once for $project\n"
 	if $prunedTree->{module}->{$moduleName}->{sqlQuery}->{$sqlQuery->{name}};
 
       $prunedTree->{module}->{$moduleName}->{sqlQuery}->{$sqlQuery->{name}} = $sqlQuery;
