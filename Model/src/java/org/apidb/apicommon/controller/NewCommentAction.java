@@ -1,8 +1,8 @@
 package org.apidb.apicommon.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -180,28 +180,42 @@ public class NewCommentAction extends CommentAction {
         comment.addExternalDatabase(extDbName, extDbVersion);
 
 
-        ArrayList formSet = cuForm.getFormFiles();
+        HashMap<Integer, Object> formSet = cuForm.getFormFiles();
+        HashMap<Integer, String> noteSet = cuForm.getFormNotes();
+
         String userUID = user.getSignature().trim();
+
         ArrayList<String> files = new ArrayList<String>();
 
-        for(int i = 0; i < formSet.size(); i++) {
+        for(Integer i : formSet.keySet()) {
+
             FormFile formFile = (FormFile) formSet.get(i);
+
+            if(formFile == null) continue;
+
+            String notes = noteSet.get(i).trim();
+						String contentType = formFile.getContentType();
             String fileName   = formFile.getFileName();
-            if(fileName != null) {
+            int fileSize       = formFile.getFileSize();
+            byte[] fileData    = formFile.getFileData();
 
-              int fileSize       = formFile.getFileSize();
-              byte[] fileData    = formFile.getFileData();
+            UserFile userFile = new UserFile(userUID);
 
-             UserFile userFile = new UserFile(userUID);
-             userFile.setFileName(fileName); 
-             userFile.setFileData(fileData);
-             userFile.setFileSize(fileSize);
+            userFile.setFileName(fileName); 
+            userFile.setFileData(fileData);
+						userFile.setContentType(contentType);
+            userFile.setFileSize(fileSize);
+            userFile.setEmail(email);
+            userFile.setUserUID(userUID);
+            userFile.setTitle(headline);
+            userFile.setNotes(notes);
+            userFile.setProjectName(projectName);
+            userFile.setProjectVersion(projectVersion);
 
             getUserFileFactory().addUserFile(userFile);
+
             files.add(fileName);
 
-             //request.setAttribute("fileName",title);
-            }
         }
 
         if(files.size() > 0) {
