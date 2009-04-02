@@ -98,6 +98,7 @@ public class UserFileFactory {
                 logger.debug("MD5 " + userFile.getChecksum());
                 
                 userFile.setFormat(getFormat(fileOnDisk));
+                userFile.setFileSize(fileOnDisk.length());
                 
                 insertUserFileMetaData(userFile);
             }
@@ -129,8 +130,8 @@ public class UserFileFactory {
                             + "checksum, uploadTime, "
                             + "ownerUserId, title, notes, "
                             + "projectName, projectVersion, "
-                            + "email, format)"
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                            + "email, format, filesize)"
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
             long currentMillis = System.currentTimeMillis();
             
             ps.setInt(1, userFileId);
@@ -144,6 +145,7 @@ public class UserFileFactory {
             ps.setString(9,  userFile.getProjectVersion());
             ps.setString(10, userFile.getEmail());
             ps.setString(11, userFile.getFormat());
+            ps.setLong(12, userFile.getFileSize());
 
             int result = ps.executeUpdate();
             

@@ -9,7 +9,7 @@ public class UserFile {
     private int userFileId;
     private String fileName;
     private byte[] fileData;
-    private int fileSize;
+    private long fileSize;
     private String checksum;
     private String format;
     private Date uploadTime;
@@ -45,10 +45,10 @@ public class UserFile {
         this.fileData = fileData;
     }
     
-    public int getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
-    public void setFileSize(int fileSize) {
+    public void setFileSize(long fileSize) {
         this.fileSize = fileSize;
     }
     
