@@ -66,7 +66,6 @@ public class UserFileUploadAction extends Action {
       String title       = cuForm.getTitle().trim();
       String contentType = formFile.getContentType();
       String fileName    = formFile.getFileName();
-      int fileSize       = formFile.getFileSize();
       byte[] fileData    = formFile.getFileData();
 
       UserBean user = (UserBean) request.getSession().getAttribute(
@@ -87,7 +86,6 @@ public class UserFileUploadAction extends Action {
       userFile.setFileName(fileName);
       userFile.setFileData(fileData);
       userFile.setContentType(contentType);
-      userFile.setFileSize(fileSize);
       userFile.setEmail(email);
       userFile.setUserUID(userUID);
       userFile.setTitle(title);
@@ -99,15 +97,12 @@ public class UserFileUploadAction extends Action {
       
       logger.debug("contentType " + userFile.getContentType());
       logger.debug("fileName " + userFile.getFileName());
-      logger.debug("fileSize " + userFile.getFileSize());
       logger.debug("notes " + userFile.getNotes());
       logger.debug("owner " + email);
       logger.debug("ownerUID " + userFile.getUserUID());
       logger.debug("projectName " + userFile.getProjectName());
       logger.debug("projectVersion " + userFile.getProjectVersion());
       
-      request.setAttribute("fileName",fileName);
-      request.setAttribute("fileSize",fileSize);
     }
     return new ActionForward("/communityUploadResult.jsp",true);
   }
