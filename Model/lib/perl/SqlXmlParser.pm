@@ -12,7 +12,13 @@ sub new {
   $self->{project} = $project;
 
   my $xsl = XML::Simple->new();
-  my $fullTree = $xsl->XMLin($file, Cache => 'memshare', forcearray => 1, keyattr => {}) or die "\ncannot open the sql file\n";
+
+  # configure XMLin to give us a uniform structure of arrays of hashes
+  my $fullTree = $xsl->XMLin($file,
+			     Cache => 'memshare',
+			     forcearray => 1, # singletons get an array
+			     keyattr => {})   # no hashes of hashes
+    or die "\ncannot open the sql file\n";
 
   print Dumper $fullTree if ($showParse);
 
