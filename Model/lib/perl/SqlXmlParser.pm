@@ -52,7 +52,7 @@ sub pruneTree {
       next if ($sqlQuery->{includeProjects}
 	       && $sqlQuery->{includeProjects} !~ /$project/);
       next if ($sqlQuery->{excludeProjects}
-	       && $sqlQuery->{excludeProjects} != /$project/);
+	       && $sqlQuery->{excludeProjects} =~ /$project/);
 
       if ($self->{moduleHash}->{$module->{name}}->{$sqlQuery->{name}}) {
 	die "\n<sqlQuery name=\"$sqlQuery->{name}\"> is included more than once for $project\n"
