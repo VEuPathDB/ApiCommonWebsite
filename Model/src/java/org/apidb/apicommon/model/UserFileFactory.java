@@ -22,6 +22,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import java.io.*;
+import java.lang.Process;
+import java.lang.ProcessBuilder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -95,6 +97,8 @@ public class UserFileFactory {
                 userFile.setChecksum(md5sum(fileOnDisk));
                 logger.debug("MD5 " + userFile.getChecksum());
                 
+                userFile.setFormat(getFormat(fileOnDisk));
+                
                 insertUserFileMetaData(userFile);
             }
         } catch (IOException ioe) {
@@ -124,8 +128,9 @@ public class UserFileFactory {
                             + "userFileId, filename, "
                             + "checksum, uploadTime, "
                             + "ownerUserId, title, notes, "
-                            + "projectName, projectVersion, email)"
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?)");
+                            + "projectName, projectVersion, "
+                            + "email, format)"
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             long currentMillis = System.currentTimeMillis();
             
             ps.setInt(1, userFileId);
@@ -138,6 +143,7 @@ public class UserFileFactory {
             ps.setString(8,  userFile.getProjectName());
             ps.setString(9,  userFile.getProjectVersion());
             ps.setString(10, userFile.getEmail());
+            ps.setString(11, userFile.getFormat());
 
             int result = ps.executeUpdate();
             
@@ -190,6 +196,17 @@ public class UserFileFactory {
         throw ioe;
       }
       return result;
+    }
+    
+    private String getFormat(File fileOnDisk) throws IOException {
+
+      ProcessBuilder proc = new ProcessBuilder("/usr/bin/file", "-zb", fileOnDisk.getAbsolutePath());
+      Process p = proc.start();
+      InputStream is = p.getInputStream();
+      BufferedReader br = new BufferedReader(new InputStreamReader(is));
+      String fmt = br.readLine();
+      return fmt;
+
     }
     
     private String[] parseFilename(String fileName) {

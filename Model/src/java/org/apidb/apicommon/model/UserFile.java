@@ -11,6 +11,7 @@ public class UserFile {
     private byte[] fileData;
     private int fileSize;
     private String checksum;
+    private String format;
     private Date uploadTime;
     private String title;
     private String notes;
@@ -56,6 +57,13 @@ public class UserFile {
     }
     public void setChecksum(String checksum) {
         this.checksum = checksum;
+    }
+    
+    public String getFormat() {
+        return format;
+    }
+    public void setFormat(String format) {
+        this.format = format;
     }
     
     public Date getUploadTime() {
