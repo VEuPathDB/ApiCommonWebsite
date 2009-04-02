@@ -63,6 +63,10 @@ sub processParams {
   $self->{downstreamAnchor} = $cgi->param('downstreamAnchor');
   $self->{upstreamSign}     = $cgi->param('upstreamSign');
   $self->{downstreamSign}   = $cgi->param('downstreamSign');
+
+  # to allow for NOT mapping an id to the latest one (use in ToxoDB)
+  $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
+
   my @inputIds              = split(/[,\s]+/, $cgi->param('ids'));
   $self->{inputIds}         = \@inputIds;
 
@@ -206,7 +210,13 @@ sub handleNonGenomic {
   my $site = ($self->getModel() =~ /^api/i)? $sqlQueries : $componentSql;
 
   my $inputIds = $self->{inputIds};
-  my $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
+  my $ids;
+
+  if ($self->{ignore_gene_alias}) {
+    $ids = $inputIds;
+  } else {
+    $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
+  }
 
   if($type eq "protein" && $self->{geneOrOrf} eq 'gene') {
     $sql = $site->{geneProteinSql}
