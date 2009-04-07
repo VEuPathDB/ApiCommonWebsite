@@ -673,7 +673,7 @@ public class CommentFactory {
                 int file_id = rs.getInt("file_id");
                 String name = rs.getString("name");
                 String notes = rs.getString("notes");
-                ids.add("file_id|name|notes");
+                ids.add(file_id + "|" + name + "|" + notes);
             }
             if(ids.size() > 0) {
               comment.addFiles(ids.toArray(new String[ids.size()]));
