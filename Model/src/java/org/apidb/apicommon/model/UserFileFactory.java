@@ -33,13 +33,15 @@ public class UserFileFactory {
     private Logger logger = Logger.getLogger(UserFileFactory.class);
     private DBPlatform platform;
     private CommentConfig config;
-
+    private String projectId;
+    
     public static void initialize(String gusHome, String projectId)
             throws NoSuchAlgorithmException, WdkModelException,
             ParserConfigurationException, TransformerFactoryConfigurationError,
             TransformerException, IOException, SAXException, SQLException,
             JSONException, WdkUserException, InstantiationException,
             IllegalAccessException, ClassNotFoundException {
+
         WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
 
         // parse and load the configuration
@@ -52,7 +54,7 @@ public class UserFileFactory {
         platform.initialize(wdkModel, "Comment", config);
 
         // create a factory instance
-        factory = new UserFileFactory(platform, config);
+        factory = new UserFileFactory(platform, config, projectId);
     }
 
     public static UserFileFactory getInstance() throws WdkModelException {
@@ -62,20 +64,23 @@ public class UserFileFactory {
         return factory;
     }
 
-    private UserFileFactory(DBPlatform platform, CommentConfig config) {
+    private UserFileFactory(DBPlatform platform, CommentConfig config, String projectId) {
         this.platform = platform;
         this.config = config;
+        this.projectId = projectId;
     }
     
     public void addUserFile(UserFile userFile) 
             throws WdkModelException, UserFileUploadException {
-        String filePath = config.getUserFileUploadDir();
+        File filePath = new File(config.getUserFileUploadDir() + "/" + projectId);
         String fileName = userFile.getFileName();
         File fileOnDisk = null;
         
+        if (!filePath.exists()) filePath.mkdirs();
+        
         try {
             if (!fileName.equals("")) {
-                logger.debug("File save path:" +filePath);
+                logger.debug("File save path:" + filePath.toString());
                 fileOnDisk = new File(filePath, fileName);
   
                 int rev = 0;
