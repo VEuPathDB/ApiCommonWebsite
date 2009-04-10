@@ -397,6 +397,10 @@ function parse_Url( url, parameter_name )
                  </c:choose>
                </c:set>
                
+<%--    it was being used for Toxo
+value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologTransform&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>
+--%>
+
                <c:choose>
                  <c:when test="${modelName eq 'ToxoDB'}">
                    <c:set var="expandUrl" 
@@ -404,7 +408,7 @@ function parse_Url( url, parameter_name )
                    <a href='<c:url value="${expandUrl}"/>'>Expand</a>
                    &nbsp;|&nbsp;
                    <c:set var="transformUrl" 
-                          value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologTransform&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>
+                                   value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&gene_result=${result}&plasmodb_dataset=${datasetId}&questionSubmit=Get+Answer&goto_summary=0"/>
                    <a href='<c:url value="${transformUrl}"/>'>Orthologs</a>
                  </c:when>
                  <c:otherwise>
