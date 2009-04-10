@@ -10,7 +10,7 @@ var loaded_libs = new Array(siteCount);
 var used_libs = new Array(siteCount);
 
 //Check that the color array matches the order the organisms are listed in the Model.prop file
-var colorArray = new Array("khaki","#b5dfbd","#ddccdd","#add8e6","#efd4d1");
+var colorArray = new Array("khaki","#b5dfbd","#ddccdd","#add8e6","#efd4d1","#FFAF7F","#FFAF7F");
 // APIDB COLOR SCHEME ---- var colorArray = new Array("khaki","#ddccdd","#add8e6");
 
 window.onload = function(){
