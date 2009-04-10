@@ -211,7 +211,7 @@ Features not yet available in PlasmoDB&nbsp;${version} may still be accessed via
 <c:if test = "${project == 'ToxoDB'}">
 
         <div class="small" bgcolor="#aa0000">
-<a class="bigred">Welcome to ToxoDB</a>, providing access to draft genome sequences for theapicomplexan parasites <i>Toxoplasma gondii</i> and <i>Neospora caninum</i>.  Sequencing wascarried out at <a href="http://www.jcvi.org/">TIGR/JCVI</a> (<i>T. gondii</i> strains ME49, GT1, VEG, supported by NIH/NIAID) and the <a href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a> (<i>T. gondii</i> strain RH and <i>N. caninum</i> NC-Liv, supported by the <a href="http://www.sanger.ac.uk/">WTSI</a> and the <a href="http://www.bbsrc.ac.uk/">BBSRC</a>).  ToxoDB is a component of the <a href="http://eupathdb.org/eupathdb/">Eukaryotic Pathogen Bioinformatics Resource Center</a>, supported by NIAID.  <a class="bigred">Please be sure to properly </a><a class="bigredlink" href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.About#citing">acknowledge</a><a class="bigred"> the database developers, sequencing centers, and scientists who have made their data available on ToxoDB</a>.</div>
+<a class="bigred">Welcome to ToxoDB</a>, providing access to draft genome sequences for the apicomplexan parasites <i>Toxoplasma gondii</i> and <i>Neospora caninum</i>.  Sequencing wascarried out at <a href="http://www.jcvi.org/">TIGR/JCVI</a> (<i>T. gondii</i> strains ME49, GT1, VEG, supported by NIH/NIAID) and the <a href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a> (<i>T. gondii</i> strain RH and <i>N. caninum</i> NC-Liv, supported by the <a href="http://www.sanger.ac.uk/">WTSI</a> and the <a href="http://www.bbsrc.ac.uk/">BBSRC</a>).  ToxoDB is a component of the <a href="http://eupathdb.org/eupathdb/">Eukaryotic Pathogen Bioinformatics Resource Center</a>, supported by NIAID.  <a class="bigred">Please be sure to properly </a><a class="bigredlink" href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.About#citing">acknowledge</a><a class="bigred"> the database developers, sequencing centers, and scientists who have made their data available on ToxoDB</a>.</div>
         <div class="small" bgcolor="#aa0000">
 Some features not yet available in ToxoDB 5.0 may be accessed via <a href="http://v3-0.toxodb.org/ToxoDB.shtml">ToxoDB 3.0</a>.Previous annotation and genome assemblies are available at <a href="http://v4-3.toxodb.org/">ToxoDB 4.3</a>.  The Ancillary GBrowse Site provides access to additional datasets, particularly related to whole genome expression profiling; information from this external resource will be incorporated into a future release of ToxoDB.
 </div>
@@ -223,7 +223,7 @@ Some features not yet available in ToxoDB 5.0 may be accessed via <a href="http:
 <%--
 <div class="smallApiBlue">
 <font face="Arial,Helvetica" size="-1"  color="blue">
-&nbsp;&nbsp;As part of ongoing efforts to educate ApiDB users to take fullest advantage of database resources, we are pleased to announce the third annual ApiDB database workshop, scheduled for June 8-11, 2008. &nbsp;&nbsp;Please click <a href="http://apidb.org/workshop/2008/"><b>here</b></a> for further information.
+&nbsp;&nbsp;As part of ongoing efforts to educate EuPathDB users to take fullest advantage of database resources, we are pleased to announce the third annual EuPathDB database workshop, scheduled for June 8-11, 2008. &nbsp;&nbsp;Please click <a href="http://eupathdb.org/workshop/2008/"><b>here</b></a> for further information.
 </font>
 </div>
 --%>
