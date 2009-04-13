@@ -9,9 +9,11 @@ public class UserFile {
     private int userFileId;
     private String fileName;
     private byte[] fileData;
-    private int fileSize;
+    private long fileSize;
     private String checksum;
+    private String format;
     private Date uploadTime;
+    private String title;
     private String notes;
     private String contentType;
     private String email;
@@ -43,10 +45,10 @@ public class UserFile {
         this.fileData = fileData;
     }
     
-    public int getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
-    public void setFileSize(int fileSize) {
+    public void setFileSize(long fileSize) {
         this.fileSize = fileSize;
     }
     
@@ -55,6 +57,13 @@ public class UserFile {
     }
     public void setChecksum(String checksum) {
         this.checksum = checksum;
+    }
+    
+    public String getFormat() {
+        return format;
+    }
+    public void setFormat(String format) {
+        this.format = format;
     }
     
     public Date getUploadTime() {
@@ -78,15 +87,22 @@ public class UserFile {
         this.notes = notes;
     }
 
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getContentType() {
         return contentType;
     }
-    public void setContentType(String email) {
-        this.email = email;
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public String getEmail() {
-        return contentType;
+        return email;
     }
     public void setEmail(String email) {
         this.email = email;

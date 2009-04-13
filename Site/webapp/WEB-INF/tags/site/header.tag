@@ -77,14 +77,10 @@
 </c:if>
  <link rel="StyleSheet" href="<c:url value="${stylesheet}" />" type="text/css" />
  <link type="text/css" href="<c:url value="/misc/history.css" />" rel="stylesheet" />
-  <!--link type="text/css" rel="StyleSheet" href='<c:url value="/slider/css/winclassic.css"/>'-->
-  <!--link rel="StyleSheet" href="<c:url value="/misc/custom-slider.css" />" type="text/css"-->
 
-  <!--script type="text/javascript" src='<c:url value="/slider/js/range.js"/>'></script-->
-  <!--script type="text/javascript" src='<c:url value="/slider/js/timer.js"/>'></script-->
-  <!--script type="text/javascript" src='<c:url value="/slider/js/slider.js"/>'></script-->
+  <script type="text/javascript" src="/assets/js/lib/jquery-1.2.6.js"></script>
   <script type="text/javascript" src='<c:url value="/js/api.js"/>'></script>
-<script type='text/javascript' src='<c:url value="/js/overlib.js"/>'></script>
+  <script type='text/javascript' src='<c:url value="/js/overlib.js"/>'></script>
   <script type='text/javascript' src='<c:url value="/js/newwindow.js"/>'></script>
 
   ${headElement}

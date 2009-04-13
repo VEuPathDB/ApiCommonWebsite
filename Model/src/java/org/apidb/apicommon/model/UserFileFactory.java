@@ -9,35 +9,39 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
+
 import org.json.JSONException;
 import org.xml.sax.SAXException;
-
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.security.NoSuchAlgorithmException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import java.io.*;
+import java.lang.Process;
+import java.lang.ProcessBuilder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class UserFileFactory {
 
     private static UserFileFactory factory;
-
     private Logger logger = Logger.getLogger(UserFileFactory.class);
     private DBPlatform platform;
     private CommentConfig config;
-
+    private String projectId;
+    
     public static void initialize(String gusHome, String projectId)
             throws NoSuchAlgorithmException, WdkModelException,
             ParserConfigurationException, TransformerFactoryConfigurationError,
             TransformerException, IOException, SAXException, SQLException,
             JSONException, WdkUserException, InstantiationException,
             IllegalAccessException, ClassNotFoundException {
+
         WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
 
         // parse and load the configuration
@@ -50,7 +54,7 @@ public class UserFileFactory {
         platform.initialize(wdkModel, "Comment", config);
 
         // create a factory instance
-        factory = new UserFileFactory(platform, config);
+        factory = new UserFileFactory(platform, config, projectId);
     }
 
     public static UserFileFactory getInstance() throws WdkModelException {
@@ -60,48 +64,110 @@ public class UserFileFactory {
         return factory;
     }
 
-    private UserFileFactory(DBPlatform platform, CommentConfig config) {
+    private UserFileFactory(DBPlatform platform, CommentConfig config, String projectId) {
         this.platform = platform;
         this.config = config;
+        this.projectId = projectId;
     }
     
     public void addUserFile(UserFile userFile) 
             throws WdkModelException, UserFileUploadException {
-        String filePath = config.getUserFileUploadDir();
+        File filePath = new File(config.getUserFileUploadDir() + "/" + projectId);
         String fileName = userFile.getFileName();
-
+        File fileOnDisk = null;
+        
+        if (!filePath.exists()) filePath.mkdirs();
+        
         try {
-          if (!fileName.equals("")) {
-              System.out.println("Server path:" +filePath);
-              File fileOnDisk = new File(filePath, fileName);
-
-              int rev = 0;
-              String[] nameParts = parseFilename(fileName);
-              while (fileOnDisk.exists()) {
-                rev++;
-                String newName = nameParts[0] + ".rev" + rev +
-                    ((nameParts[1] != null) ? "." + nameParts[1] : "");
-                fileOnDisk = new File(filePath, newName);
-              }
-
-              userFile.setFileName(fileName);
-
-              FileOutputStream fileOutStream = new FileOutputStream(fileOnDisk);
-              fileOutStream.write(userFile.getFileData());
-              fileOutStream.flush();
-              fileOutStream.close();
+            if (!fileName.equals("")) {
+                logger.debug("File save path:" + filePath.toString());
+                fileOnDisk = new File(filePath, fileName);
   
-              userFile.setChecksum(md5sum(fileOnDisk));
-              System.out.println("MD5 " + userFile.getChecksum());    
-          }
+                int rev = 0;
+                String[] nameParts = parseFilename(fileName);
+                while (fileOnDisk.exists()) {
+                  rev++;
+                  String newName = nameParts[0] + ".rev" + rev +
+                      ((nameParts[1] != null) ? "." + nameParts[1] : "");
+                  fileOnDisk = new File(filePath, newName);
+                  userFile.setFileName(newName);
+                }
+  
+  
+                FileOutputStream fileOutStream = new FileOutputStream(fileOnDisk);
+                fileOutStream.write(userFile.getFileData());
+                fileOutStream.flush();
+                fileOutStream.close();
+    
+                userFile.setChecksum(md5sum(fileOnDisk));
+                logger.debug("MD5 " + userFile.getChecksum());
+                
+                userFile.setFormat(getFormat(fileOnDisk));
+                userFile.setFileSize(fileOnDisk.length());
+                
+                insertUserFileMetaData(userFile);
+            }
+        } catch (IOException ioe) {
+            String msg = "Could not write '" + fileName + "' to '" + filePath + "'";
+            logger.warn(msg);
+            throw new UserFileUploadException(msg + "\n" + ioe);
         } catch (Exception e) {
-            System.err.println("error " + e);
+            logger.warn(e);
+            logger.warn("Deleting " + fileOnDisk.getPath());
+            if (fileOnDisk.exists() && ! fileOnDisk.delete())
+                logger.warn("\nUnable to delete " + fileOnDisk.getPath() +
+                    ". This file may not be correctly recorded in the database.");
             throw new UserFileUploadException(e);
         }
 
     }
 
+    public void insertUserFileMetaData(UserFile userFile) throws WdkModelException {
+        String userFileSchema = config.getUserFileSchema();
 
+        PreparedStatement ps = null;
+        try {
+            int userFileId = platform.getNextId(userFileSchema, "UserFile");
+
+            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    "INSERT INTO " + userFileSchema + "userfile ("
+                            + "userFileId, filename, "
+                            + "checksum, uploadTime, "
+                            + "ownerUserId, title, notes, "
+                            + "projectName, projectVersion, "
+                            + "email, format, filesize)"
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            long currentMillis = System.currentTimeMillis();
+            
+            ps.setInt(1, userFileId);
+            ps.setString(2, userFile.getFileName());
+            ps.setString(3, userFile.getChecksum());
+            ps.setTimestamp(4, new Timestamp(currentMillis));
+            ps.setString(5,  userFile.getUserUID());
+            ps.setString(6,  userFile.getTitle());
+            ps.setString(7,  userFile.getNotes());
+            ps.setString(8,  userFile.getProjectName());
+            ps.setString(9,  userFile.getProjectVersion());
+            ps.setString(10, userFile.getEmail());
+            ps.setString(11, userFile.getFormat());
+            ps.setLong(12, userFile.getFileSize());
+
+            int result = ps.executeUpdate();
+            
+            userFile.setUserFileId(userFileId);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeStatement(ps);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+        }
+    }
+    
     public UserFile getUserFile(int commentId) throws WdkModelException {
         return null;
     }
@@ -137,6 +203,17 @@ public class UserFileFactory {
         throw ioe;
       }
       return result;
+    }
+    
+    private String getFormat(File fileOnDisk) throws IOException {
+
+      ProcessBuilder proc = new ProcessBuilder("/usr/bin/file", "-zb", fileOnDisk.getAbsolutePath());
+      Process p = proc.start();
+      InputStream is = p.getInputStream();
+      BufferedReader br = new BufferedReader(new InputStreamReader(is));
+      String fmt = br.readLine();
+      return fmt;
+
     }
     
     private String[] parseFilename(String fileName) {

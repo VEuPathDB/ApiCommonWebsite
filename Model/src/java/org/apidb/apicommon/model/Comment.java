@@ -64,6 +64,18 @@ public class Comment {
     private String userName;
     private String organization;
 
+    private int[] targetCategoryIds;
+    private String[] targetCategoryNames;
+    private String[] pmIds;
+    private String[] accessions;
+    private String[] files;
+    private String[] associatedStableIds;
+
+    private String background;
+    private int mutantStatus;
+    private int mutationType;
+    private int mutationMethod;
+
     public Comment(String email) {
         this.email = email;
         locations = new ArrayList<Location>();
@@ -94,6 +106,94 @@ public class Comment {
      */
     void setCommentId(int commentId) {
         this.commentId = commentId;
+    }
+
+    /**
+     * @return Returns the int[] targetCategoryIds.
+     */
+    public int[] getTargetCategoryIds() {
+        return targetCategoryIds;
+    }
+
+    /**
+     * @param int[] targetCategoryIds
+     *          The targetCategoryIds to set.
+     */
+    public void setTargetCategoryIds(int[] targetCategoryIds) {
+        this.targetCategoryIds = targetCategoryIds;
+    }
+
+    public String[] getTargetCategoryNames() {
+        return targetCategoryNames;
+    }
+
+    public void setTargetCategoryNames(String[] categoryNames) {
+        this.targetCategoryNames = targetCategoryNames;
+    }
+
+    public String[] addTargetCategoryNames(String[] ids) {
+        targetCategoryNames = ids;
+        return targetCategoryNames;
+    }
+
+    /**
+     * @return Returns the String[] pmIds.
+     */
+    public String[] getPmIds() {
+        return pmIds;
+    }
+
+    /**
+     * @param String[] pmIds
+     *          The pmIds to set.
+     */
+    public void setPmIds(String[] pmIds) {
+        this.pmIds = pmIds;
+    }
+
+    /**
+     * @return Returns the String[] accessions.
+     */
+    public String[] getAccessions() {
+        return accessions;
+    }
+
+    /**
+     * @param String[] accessions
+     *          The genbank accessions to set.
+     */
+    public void setAccessions(String[] accessions) {
+        this.accessions = accessions;
+    }
+
+    /**
+     * @return Returns the String[] files (name).
+     */
+    public String[] getFiles() {
+        return files;
+    }
+
+    /**
+     * @param String[] files
+     *          The file names to set.
+     */
+    public void setFiles(String[] files) {
+        this.files = files;
+    }
+
+    /**
+     * @return Returns the associatedStableIds[] gene_ids. 
+     */
+    public String[] getAssociatedStableIds() {
+        return associatedStableIds;
+    }
+
+    /**
+     * @param String[] associatedStableIds
+     *          The related gene names to set.
+     */
+    public void setAssociatedStableIds(String[] associatedStableIds) {
+        this.associatedStableIds = associatedStableIds;
     }
 
     /**
@@ -247,6 +347,27 @@ public class Comment {
         return email;
     }
 
+    public String[] addReference(String[] ids, String databaseName) {
+        if(databaseName.toLowerCase().equals("pubmed")) {
+          this.pmIds = ids;
+          return this.pmIds;
+        } else if(databaseName.toLowerCase().equals("genbank")) {
+          this.accessions = ids;
+          return this.accessions;
+        }
+        return null;
+    }
+
+    public String[] addFiles(String[] ids) {
+       this.files = ids;
+       return this.files;
+    }
+
+    public String[] addAssociatedStableIds(String[] ids) {
+       this.associatedStableIds = ids;
+       return this.associatedStableIds;
+    }
+
     public Location addLocation(boolean reversed, long locationStart,
             long locationEnd, String coordinateType) {
         Location location = new Location(this);
@@ -396,4 +517,37 @@ public class Comment {
     public void setOrganism(String organism) {
         this.organism = organism;
     }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+    public int getMutantStatus() {
+        return mutantStatus;
+    }
+
+    public void setMutantStatus(int mutantStatus) {
+        this.mutantStatus = mutantStatus;
+    }
+
+    public int getMutationType() {
+        return mutationType;
+    }
+
+    public void setMutationType(int mutationType) {
+        this.mutationType = mutationType;
+    }
+
+    public int getMutationMethod() {
+        return mutationMethod;
+    }
+
+    public void setMutationMethod(int mutationMethod) {
+        this.mutationMethod = mutationMethod;
+    }
+
 }
