@@ -254,4 +254,20 @@
       </attribute>
   </tag>
 
+  <tag>
+      <name>fileBrowser</name>
+      <tagclass>org.apidb.apicommon.taglib.uploads.FileTag</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>value</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
 </taglib>
