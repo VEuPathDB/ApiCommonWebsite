@@ -141,7 +141,7 @@
  <!-- copyright information -->
 
         <td colspan="2" class="copyright"><font size=-2 face="Arial,Helvetica"><b>
-            &copy; 2008 The ApiDB/EuPathDB Project Team</b></font>
+            &copy; 2009 The ApiDB/EuPathDB Project Team</b></font>
         </td>
 
 
