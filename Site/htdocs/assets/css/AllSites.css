@@ -28,3 +28,15 @@ div.innertube #record-toolbox ul {
     list-style-type: circle;
     list-style-position: inside;
 }
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     = jquery validation plugin messages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+label.error {
+  float: none;
+  color: red;  padding-left: .5em;
+  vertical-align: top;
+  font-weight:bold;
+}   
+
