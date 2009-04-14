@@ -184,7 +184,6 @@ $(document).ready(function(){
         <td>Headline <font color=red>*</font></td>
         <td>
           <html:text property="headline" size="70"/>
-          <a href="javascript:void(0)" onmouseover="this.T_OFFSETY=10;return escape('test')" ><img src="/assets/images/help.png" align=bottom border=0></a>
         </td>
       </tr>
 
@@ -306,7 +305,7 @@ $(document).ready(function(){
         <td valign=top>PMID(s)</td>
         <td>
           <html:text property="pmIds" styleId="pmIds" size="70"/>
-          <a href="javascript:void(0)" onmouseover="this.T_BORDERWIDTH=1;this.T_OFFSETY=10;return escape('<ul class=myul><li> First, find the publcation in <a href=\'http://www.ncbi.nlm.nih.gov/pubmed\'>PubMed</a> based on author or title</li><li>Enter one or more IDs in the box above separated by \',\'</li><li>Example: 18172196,10558988</li></ul>')">
+          <a href="javascript:void(0)" onmouseover="this.T_BORDERWIDTH=0;this.T_OFFSETY=10;return escape('<ul class=myul><li> First, find the publcation in <a href=\'http://www.ncbi.nlm.nih.gov/pubmed\'>PubMed</a> based on author or title</li><li>Enter one or more IDs in the box above separated by \',\'</li><li>Example: 18172196,10558988</li></ul>')">
           <img src="/assets/images/help.png" align=bottom border=0></a>
 					<br />
           <div id="wrapper" style="display:none;">
