@@ -3,6 +3,7 @@
  */
 package org.apidb.apicommon.controller;
 
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +24,6 @@ public class ProcessAddCommentAction extends CommentAction {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        try {
         // get comment factory, and initialize it if necessary
 
         // get the referer link
@@ -67,6 +67,10 @@ public class ProcessAddCommentAction extends CommentAction {
         }
 
         String commentTarget = request.getParameter("commentTargetId");
+        String[] targetCategoryIds = (String[])request.getParameterValues("targetCategory");
+        String pmIdStr = request.getParameter("pmids");
+        String accessionStr = request.getParameter("accessions");
+
         String stableId = request.getParameter("stableId");
         String organism = request.getParameter("organism");
 
@@ -96,6 +100,25 @@ public class ProcessAddCommentAction extends CommentAction {
         comment.setHeadline(headline);
         comment.setOrganism(organism);
         comment.setContent(content);
+
+        if((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
+          int[] targetCategoryIdArray = new int[targetCategoryIds.length];
+          for(int i=0; i < targetCategoryIds.length; i++) {
+             targetCategoryIdArray[i] = Integer.valueOf(targetCategoryIds[i]).intValue();
+          }
+          comment.setTargetCategoryIds(targetCategoryIdArray);
+        }
+
+        if((pmIdStr != null) && (pmIdStr.trim().length() != 0)) {
+          String[] pmIds = pmIdStr.replaceAll(",", " ").split(" ");
+          comment.setPmIds(pmIds);
+        }
+
+        if((accessionStr != null) && (accessionStr.trim().length() != 0)) {
+          String[] accessions = accessionStr.replaceAll(",", " ").split(" ");
+          comment.setAccessions(accessions);
+        }
+
         try {
             comment.setLocations(reversed, locations, coordinateType);
         } catch (Exception e) {
@@ -113,9 +136,5 @@ public class ProcessAddCommentAction extends CommentAction {
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");
         return forward;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw ex;
-        }
     }
 }

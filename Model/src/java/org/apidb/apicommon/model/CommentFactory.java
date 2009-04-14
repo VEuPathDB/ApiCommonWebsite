@@ -115,9 +115,14 @@ public class CommentFactory {
         try {
             // DataSource dataSource = platform.getDataSource();
             int commentId = platform.getNextId(commentSchema, "comments");
+            int[] targetCategoryIds = comment.getTargetCategoryIds();
+            String[] pmIds = comment.getPmIds();
+            String[] accessions = comment.getAccessions();
+            String[] files = comment.getFiles();
+            String[] associatedStableIds = comment.getAssociatedStableIds();
 
             ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                    "INSERT INTO " + commentSchema + "comments (comment_id, "
+                           "INSERT INTO " + commentSchema + "comments (comment_id, "
                             + "email, comment_date, comment_target_id, "
                             + "stable_id, conceptual, project_name, "
                             + "project_version, headline, content, "
@@ -137,7 +142,8 @@ public class CommentFactory {
             ps.setString(9, comment.getHeadline());
             platform.updateClobData(ps, 10, comment.getContent(), false);
             ps.setString(11, comment.getLocationString());
-            String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0) ? comment.getReviewStatus()
+            String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0)
+                    ? comment.getReviewStatus()
                     : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
             ps.setString(12, reviewStatus);
             ps.setString(13, comment.getOrganism());
@@ -153,8 +159,37 @@ public class CommentFactory {
             saveLocations(commentId, comment);
 
             // then add the eternal database information
-
             saveExternalDbs(commentId, comment);
+
+            if((targetCategoryIds != null) && (targetCategoryIds.length > 0)){
+              saveCommentTargetCategory(commentId, targetCategoryIds);
+            }                                               
+
+            if((pmIds != null) && (pmIds.length > 0)){
+              savePmIds(commentId, pmIds);
+            }                                               
+
+            if((accessions != null) && (accessions.length > 0)){
+              saveAccessions(commentId, accessions);
+            }                                               
+
+            if((files != null) && (files.length > 0)){
+              saveFiles(commentId, files);
+            }                                               
+
+            if((associatedStableIds != null) && (associatedStableIds.length > 0)){
+              saveAssociatedStableIds(commentId, associatedStableIds);
+            }                                               
+
+            if(comment.getCommentTarget().equalsIgnoreCase("phenotype")) {
+              savePhenotype(commentId, 
+                            comment.getBackground(), 
+                            comment.getMutantStatus(),
+                            comment.getMutationType(),
+                            comment.getMutationMethod(),
+                            comment.getContent()
+                            );
+            }
 
             // get a new comment in order to fetch the user info
             Comment newComment = getComment(commentId);
@@ -170,14 +205,14 @@ public class CommentFactory {
             } catch (SQLException ex) {
                 throw new WdkModelException(ex);
             }
-	}
+        }
 
-            // print connection status
-            printStatus();
+        // print connection status
+        printStatus();
     }
 
     private void saveLocations(int commentId, Comment comment)
-            throws SQLException {
+            throws SQLException, org.gusdb.wdk.model.WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -205,6 +240,187 @@ public class CommentFactory {
             SqlUtils.closeStatement(statement);
         }
     }
+
+    private void savePhenotype(int commentId, 
+                               String background,
+                               int mutantStatus,
+                               int mutationType,
+                               int mutationMethod,
+                               String phenotypeDescription)
+            throws SQLException, WdkModelException {
+
+        String commentSchema = config.getCommentSchema();
+
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "Phenotype ");
+        sql.append("(phenotype_id, comment_id, ");
+        sql.append("background, mutant_status_id, mutant_type_id, ");
+        sql.append("mutant_method_id, phenotype_description ");
+        sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+             statement.setInt(1, platform.getNextId(commentSchema, "phenotype"));
+             statement.setInt(2, commentId);
+             statement.setString(3, background);
+             statement.setInt(4, mutantStatus);
+             statement.setInt(5, mutationType);
+             statement.setInt(6, mutationMethod);
+             statement.setString(7, phenotypeDescription);
+             statement.execute();
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+
+    private void saveCommentTargetCategory(int commentId, int[] targetCategoryIds)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentTargetCategory ");
+        sql.append("(comment_target_category_id, comment_id, ");
+        sql.append("target_category_id ");
+        sql.append(") VALUES (?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (int targetCategoryId : targetCategoryIds) {
+                statement.setInt(1, platform.getNextId(commentSchema, "commentTargetCategory"));
+                statement.setInt(2, commentId);
+                statement.setInt(3, targetCategoryId);
+                statement.execute();
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void savePmIds(int commentId, String[] pmIds)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        int commentPmId = platform.getNextId(commentSchema, "commentReference");
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentReference ");
+        sql.append("(comment_reference_id, source_id, ");
+        sql.append("database_name, comment_id ");
+        sql.append(") VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String pmId : pmIds) {
+                if((pmId != null ) && (pmId.trim().length() != 0)) {
+                    statement.setInt(1, platform.getNextId(commentSchema, "commentReference"));
+                    statement.setString(2, pmId);
+                    statement.setString(3, "pubmed");
+                    statement.setInt(4, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void saveAccessions(int commentId, String[] accessions)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        int commentPmId = platform.getNextId(commentSchema, "commentReference");
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentReference ");
+        sql.append("(comment_reference_id, source_id, ");
+        sql.append("database_name, comment_id ");
+        sql.append(") VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String accession : accessions) {
+                if((accession != null ) && (accession.trim().length() != 0)) {
+                    statement.setInt(1, platform.getNextId(commentSchema, "commentReference"));
+                    statement.setString(2, accession);
+                    statement.setString(3, "genbank");
+                    statement.setInt(4, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void saveFiles(int commentId, String[] files)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentFile ");
+        sql.append("(file_id, name, notes, ");
+        sql.append(" comment_id ");
+        sql.append(") VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String file : files) {
+                if(file == null ) continue; 
+                String[] str = file.split("\\|");
+                statement.setInt(1, Integer.parseInt(str[0]));
+                statement.setString(2, str[1]);
+                statement.setString(3, str[2]);
+                statement.setInt(4, commentId);
+                statement.execute();
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void saveAssociatedStableIds(int commentId, String[] associatedStableIds)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        int stableId = platform.getNextId(commentSchema, "commentStableId");
+      
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentStableId ");
+        sql.append("(comment_stable_id, stable_id, ");
+        sql.append(" comment_id ");
+        sql.append(") VALUES (?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (String associatedStableId : associatedStableIds) {
+                if((associatedStableId != null ) && (associatedStableId.trim().length() != 0)) {
+                    statement.setInt(1, platform.getNextId(commentSchema, "commentStableId"));
+                    statement.setString(2, associatedStableId);
+                    statement.setInt(3, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+     }
+
 
     /**
      * For the first release, this method hard-code the external database name
@@ -348,6 +564,21 @@ public class CommentFactory {
             // load external databases
             loadExternalDbs(commentId, comment);
 
+            // load pubmed ids
+            loadReference(commentId, comment, "pubmed");
+
+            // load genbank ids
+            loadReference(commentId, comment, "genbank");
+
+            // load files
+            loadFiles(commentId, comment);
+
+            // load associated stable ids
+            loadStableIds(commentId, comment);
+
+            // load target category names
+            loadTargetCategoryNames(commentId, comment);
+
             return comment;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -361,6 +592,122 @@ public class CommentFactory {
 
             // print connection status
             printStatus();
+        }
+    }
+
+    private void loadReference(int commentId, Comment comment, String databaseName)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT source_id ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "commentReference ");
+        sql.append("WHERE comment_id = ? and database_name = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            ps.setString(2, databaseName);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String sourceId = rs.getString("source_id");
+                ids.add(sourceId);
+            }
+            if(ids.size() > 0) {
+              comment.addReference(ids.toArray(new String[ids.size()]), databaseName);
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void loadTargetCategoryNames(int commentId, Comment comment)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT b.category ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "commentTargetCategory a, ");
+        sql.append(config.getCommentSchema() + "targetCategory b ");
+        sql.append("WHERE a.target_category_id = b.target_category_id AND a.comment_id = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String category = rs.getString("category");
+                ids.add(category);
+            }
+            if(ids.size() > 0) {
+              comment.addTargetCategoryNames(ids.toArray(new String[ids.size()]));
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void loadFiles(int commentId, Comment comment)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT file_id, name, notes ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "commentFile ");
+        sql.append("WHERE comment_id = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                int file_id = rs.getInt("file_id");
+                String name = rs.getString("name");
+                String notes = rs.getString("notes");
+                ids.add(file_id + "|" + name + "|" + notes);
+            }
+            if(ids.size() > 0) {
+              comment.addFiles(ids.toArray(new String[ids.size()]));
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void loadStableIds(int commentId, Comment comment)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT stable_id ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "CommentStableId ");
+        sql.append("WHERE comment_id = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String stable_id = rs.getString("stable_id");
+                ids.add(stable_id);
+            }
+            if(ids.size() > 0) {
+              comment.addAssociatedStableIds(ids.toArray(new String[ids.size()]));
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
         }
     }
 
