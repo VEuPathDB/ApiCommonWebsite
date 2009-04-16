@@ -391,16 +391,7 @@ function parse_Url( url, parameter_name )
                  </c:choose>
                </c:set>
 
-               <c:set var="result">
-                 <c:choose>
-                   <c:when test="${filter == null}">
-                     ${wdkAnswer.checksum}
-                   </c:when>
-                   <c:otherwise>
-                     ${wdkAnswer.checksum}:${filter.name}
-                   </c:otherwise>
-                 </c:choose>
-               </c:set>
+               <c:set var="result" value="${wdkUser.signature}:${historyId}" />
                
                <c:if test="${modelName eq 'ToxoDB'}">
                    <c:set var="expandUrl" 

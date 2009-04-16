@@ -400,16 +400,7 @@ function reviseBooleanQuery(type, expression) {
 	        </c:choose>
          </td>
 
-         <c:set var="result">
-             <c:choose>
-               <c:when test="${filter == null}">
-                 ${wdkAnswer.checksum}
-               </c:when>
-               <c:otherwise>
-                 ${wdkAnswer.checksum}:${filter.name}
-               </c:otherwise>
-             </c:choose>
-         </c:set>
+         <c:set var="result" value="${wdkUser.signature}:${historyId}" />
 
          <c:if test="${isGeneRec && showOrthoLink}">
            
