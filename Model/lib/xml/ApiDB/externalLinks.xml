@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<xmlAnswer>
+
+   <record>
+      <table name="communityLinks">
+        <row>
+          <attribute name="title">CryptoDB</attribute>
+          <attribute name="url">http://www.CryptoDB.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">GiardiaDB</attribute>
+          <attribute name="url">http://www.GiardiaDB.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">PlasmoDB</attribute>
+          <attribute name="url">http://www.PlasmoDB.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">ToxoDB</attribute>
+          <attribute name="url">http://www.ToxoDB.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">TrichDB</attribute>
+          <attribute name="url">http://www.TrichDB.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">TriTrypDB</attribute>
+          <attribute name="url">http://www.TriTrypDB.org/</attribute>
+        </row> 
+      </table>
+
+
+ 
+
+   </record>
+</xmlAnswer>
