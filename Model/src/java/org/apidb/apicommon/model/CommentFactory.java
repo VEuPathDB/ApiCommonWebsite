@@ -815,7 +815,7 @@ public class CommentFactory {
                 + config.getUserLoginDbLink() + " u ");
         sql.append("WHERE lower(c.email) = lower(u.email) ");
         if (where.length() > 0) sql.append(" AND " + where.toString());
-        sql.append(" ORDER BY c.organism ASC, c.stable_id ASC, c.comment_date DESC");
+        sql.append(" ORDER BY c.comment_date DESC, c.organism ASC, c.stable_id ASC");
 
         List<Comment> comments = new ArrayList<Comment>();
         ResultSet rs = null;
