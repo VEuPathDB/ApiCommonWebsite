@@ -81,6 +81,11 @@ attributes:
             </tr>
 
             <tr>
+               <td>Content:</td> 
+               <td> <p align=justify>${comment.content}</p> </td>
+            </tr>
+
+            <tr>
                <td>PMID(s):</td>
                 <td> <c:forEach items="${comment.pmIds}" var="row">
                         <c:import url="http://${pageContext.request.serverName}/cgi-bin/pmid2title">
@@ -193,12 +198,6 @@ attributes:
                       </c:forEach>
                         </td>
                     </c:if>
-                </tr>
-
-                <tr>
-                  <td>Content:</td>
-                      
-                        <td> <p align=justify>${comment.content}</p> </td>
                 </tr>
 
                 <tr>
