@@ -385,17 +385,7 @@ function parse_Url( url, parameter_name )
          <c:if test="${isGeneRec && showOrthoLink}">
              &nbsp;|&nbsp;
              
-               <c:set var="result">
-                 <c:set var="filter" value="${wdkAnswer.filter}" />
-                 <c:choose>
-                   <c:when test="${filter == null}">
-                     ${wdkAnswer.checksum}
-                   </c:when>
-                   <c:otherwise>
-                     ${wdkAnswer.checksum}:${filter.name}
-                   </c:otherwise>
-                 </c:choose>
-               </c:set>
+               <c:set var="result" value="${wdkUser.signature}:${historyId}" />
                
 <%--    it was being used for Toxo
 value="showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologTransform&gene_result=${result}&questionSubmit=Get+Answer&goto_summary=0"/>

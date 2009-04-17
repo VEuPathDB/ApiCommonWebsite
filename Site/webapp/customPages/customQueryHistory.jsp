@@ -400,16 +400,7 @@ function reviseBooleanQuery(type, expression) {
 
          <%-- display transform button for each history --%>
          <c:if test="${showTransform}">
-           <c:set var="result">
-             <c:choose>
-               <c:when test="${filter == null}">
-                 ${wdkAnswer.checksum}
-               </c:when>
-               <c:otherwise>
-                 ${wdkAnswer.checksum}:${filter.name}
-               </c:otherwise>
-             </c:choose>
-           </c:set>
+           <c:set var="result" value="${wdkUser.signature}:${historyId}" />
            <td nowrap>
                <c:set var="expandUrl" 
                       value="showSummary.do?questionFullName=InternalQuestions.GenesByExpandResult&myProp%28gene_result%29=${result}"/>
