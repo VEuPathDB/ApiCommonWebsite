@@ -9,9 +9,9 @@
 <c:set var="exp" scope="request" value="${requestScope['org.apache.struts.action.EXCEPTION']}"/>
 
 <c:set var="props" value="${applicationScope.wdkModel.properties}" /> 
-<c:set var="to" value="${props['SITE_ADMIN_EMAIL']}" />
-<c:set var="from" value="${commentForm.commentTargetId}_comment_alert@${wdkModel.displayName}.org" />
-<c:set var="subject" value="${subject}" />
+<c:set var="to" value="${wdkModel.projectId}_annotators@pcbi.upenn.edu" /> 
+<c:set var="from" value="${wdkModel.projectId}_annotators@pcbi.upenn.edu" />
+<c:set var="subject" value="${commentForm.commentTargetId}_comment_${commentForm.stableId}" />
 <c:set var="body" value="${body}" />
 
 <c:set var="wdkUser" value="${sessionScope.wdkUser}"/>
@@ -218,7 +218,7 @@ $(document).ready(function(){
             <html:checkbox property="targetCategory" value="12">Centromere</html:checkbox> 
             <html:checkbox property="targetCategory" value="13">Genomic Assembly</html:checkbox> 
             <html:checkbox property="targetCategory" value="14">Sequence</html:checkbox> 
-            <html:checkbox property="targetCategory" value="6">Phenotype</html:checkbox>
+            <html:checkbox property="targetCategory" value="33">Phenotype</html:checkbox>
           </c:if>
           <c:if test="${commentForm.commentTargetId eq 'snp'}">
             <html:checkbox property="targetCategory" value="15">Characteristics/Overview</html:checkbox> 
@@ -305,7 +305,7 @@ $(document).ready(function(){
         <td valign=top>PMID(s)</td>
         <td>
           <html:text property="pmIds" styleId="pmIds" size="70"/>
-          <a href="javascript:void(0)" onmouseover="this.T_BORDERWIDTH=0;this.T_OFFSETY=10;return escape('<ul class=myul><li> First, find the publcation in <a href=\'http://www.ncbi.nlm.nih.gov/pubmed\'>PubMed</a> based on author or title</li><li>Enter one or more IDs in the box above separated by \',\'</li><li>Example: 18172196,10558988</li></ul>')">
+          <a href="javascript:void(0)" onmouseover="this.T_BORDERWIDTH=1;this.T_OFFSETY=10;return escape('<ul class=myul><li> First, find the publcation in <a href=\'http://www.ncbi.nlm.nih.gov/pubmed\'>PubMed</a> based on author or title</li><li>Enter one or more IDs in the box above separated by \',\'</li><li>Example: 18172196,10558988</li></ul>')">
           <img src="/assets/images/help.png" align=bottom border=0></a>
 					<br />
           <div id="wrapper" style="display:none;">
