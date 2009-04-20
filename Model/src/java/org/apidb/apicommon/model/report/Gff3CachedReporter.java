@@ -288,7 +288,7 @@ public class Gff3CachedReporter extends Reporter {
             sqlIn.append("'" + proteinName + "'");
         }
 
-        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        StringBuffer sql = new StringBuffer("SELECT tc.content FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
         sql.append(" WHERE tc.table_name IN (").append(sqlIn).append(")");
         for (String column : pkColumns) {
