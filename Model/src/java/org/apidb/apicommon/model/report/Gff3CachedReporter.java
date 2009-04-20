@@ -231,7 +231,7 @@ public class Gff3CachedReporter extends Reporter {
         String cacheTable = queryInfo.getCacheTable();
         int instanceId = instance.getInstanceId();
 
-        StringBuffer sql = new StringBuffer("SELECT tccontent FROM ");
+        StringBuffer sql = new StringBuffer("SELECT tc.content FROM ");
         sql.append(tableCache).append(" tc, ").append(cacheTable).append(" ac");
         sql.append(" WHERE tc.table_name = '").append(recordName).append("'");
         for (String column : pkColumns) {
