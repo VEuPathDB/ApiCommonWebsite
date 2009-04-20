@@ -490,4 +490,20 @@
          </row>
        </table>
    </record>
+
+   <record>
+       <attribute name="title">Adding User Comments</attribute>
+       <attribute name="description">How to enter a user comment and optionally upload a related file.</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>
+           <attribute name="duration">1:12 minutes</attribute>
+           <attribute name="size">20 mb</attribute>
+         </row>
+       </table>
+   </record>
+
 </xmlAnswer>
