@@ -73,7 +73,7 @@ sub run {
 	 my @errors;
 
 	 push(@errors, 'model must be supplied') if not defined $model;
-	 push(@errors, $model . ' is an unallowed value for model arg') if ($model ne 'plasmo' and $model ne 'toxo' and $model ne 'giardia');
+	 push(@errors, $model . ' is an unallowed value for model arg') if ($model ne 'plasmo' and $model ne 'toxo' and $model ne 'giardia' and $model ne 'tritryp');
 	 push(@errors, 'type must be supplied' ) if not defined $type;
 	 push(@errors, 'id must be supplied'   ) if not defined $id;
 
@@ -110,6 +110,8 @@ sub run {
 	   $pkg = "ToxoDBWebsite";
 	 } elsif ($model eq 'giardia') {
 	   $pkg = "GiardiaDBWebsite";
+	 } elsif ($model eq 'tritryp') {
+	   $pkg = "TriTrypDBWebsite";
 	 }
 	 my $class = $pkg . "::View::GraphPackage::$type";
 
