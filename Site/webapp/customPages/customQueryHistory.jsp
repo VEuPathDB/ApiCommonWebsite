@@ -213,7 +213,7 @@ function reviseBooleanQuery(type, expression) {
   <c:set var="type" value="${historyEntry.key}"/>
   <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
   <c:set var="histList" value="${historyEntry.value}"/>
-  <c:set var="recordClass" value="${histList[0].answer.question.recordClass}"/>
+  <c:set var="recordClass" value="${histList[0].question.recordClass}"/>
   <c:set var="recDispName" value="${recordClass.type}"/>
   <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
 
@@ -239,7 +239,7 @@ function reviseBooleanQuery(type, expression) {
   <c:set var="type" value="${historyEntry.key}"/>
   <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
   <c:set var="histList" value="${historyEntry.value}"/>
-  <c:set var="recordClass" value="${histList[0].answer.question.recordClass}"/>
+  <c:set var="recordClass" value="${histList[0].question.recordClass}"/>
   <c:set var="recDispName" value="${recordClass.type}"/>
   <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
   
@@ -297,7 +297,6 @@ function reviseBooleanQuery(type, expression) {
       <!-- begin of forEach history in the category -->
       <c:forEach items="${histList}" var="history">
          <c:set var="historyId" value="${history.historyId}"/>
-         <c:set var="wdkAnswer" value="${history.answer}"/>
          <jsp:setProperty name="history" property="nameTruncateTo" value="${NAME_TRUNC}"/>
 
          <c:choose>
@@ -309,33 +308,9 @@ function reviseBooleanQuery(type, expression) {
 	        <!-- begin of floating info box -->
             <div id="div_${historyId}" 
 	             class="medium"
-                 style="display:none;font-size:8pt;width:610px;position:absolute;left:0;top:0;z-index:1000;"
+                 style="display:none;font-size:8pt;min-width:300px;max-width:700pxposition:absolute;left:0;top:0;background-color:#ffffCC;"
                  onmouseover="hideAnyName()">
-                <table cellpadding="2" cellspacing="0" border="0" style="background-color:#ffffCC;">
-                    <c:choose>
-                        <c:when test="${history.boolean}">
-                            <!-- boolean question -->
-                            <tr>
-                               <td valign="top" align="right" width="10" class="medium" nowrap><b>Query&nbsp;:</b></td>
-                               <td valign="top" align="left" class="medium">${wdkAnswer.question.displayName}</td>
-                            </tr>
-                            <tr>
-                               <td align="right" valign="top" class="medium" nowrap><i>Expression</i> : </td>
-                               <td class="medium">${history.booleanExpression}</td>
-                            </tr>
-                            
-                            <c:set var="recordClass" value="${wdkAnswer.question.recordClass}"/>
-                        </c:when>
-                        <c:otherwise>
-                            <tr>
-                                <td>
-                                    <%-- simple question --%>
-                                    <wdk:showParams wdkAnswer="${wdkAnswer}" />
-                                </td>
-                            </tr>
-                        </c:otherwise>
-                    </c:choose>
-              </table>
+                 <wdk:showParams history="${history}" />
             </div> 
 	        <!-- end of floating info box -->
          </td>
@@ -362,21 +337,20 @@ function reviseBooleanQuery(type, expression) {
         <td align='right' onmouseover="hideAnyName()" nowrap>${history.estimateSize}</td>
 
         <c:set value="${wdkAnswer.question.fullName}" var="qName" />
-        <c:set var="filter" value="${wdkAnswer.filter}" />
         
         <td nowrap>
             <%-- check if we need to embed filter into view url --%>
             <c:set var="filterUrl">
                 <c:choose>
-                    <c:when test="${filter == null}"></c:when>
-                    <c:otherwise>&filter=${filter.name}</c:otherwise>
+                    <c:when test="${history.filterName == null}"></c:when>
+                    <c:otherwise>&filter=${history.filterName}</c:otherwise>
                 </c:choose>
             </c:set>
             
             <c:set var="surlParams">
                 <c:choose>
                     <c:when test="${history.boolean == false}">
-                        showSummary.do?questionFullName=${qName}${wdkAnswer.summaryUrlParams}&wdk_history_id=${historyId}${filterUrl}
+                        showSummary.do?questionFullName=${qName}${history.summaryUrlParams}&wdk_history_id=${historyId}${filterUrl}
                     </c:when>
                     <c:otherwise>
                         showSummary.do?wdk_history_id=${historyId}${filterUrl}
@@ -390,7 +364,7 @@ function reviseBooleanQuery(type, expression) {
          <td nowrap>
             <c:choose>
                <c:when test="${history.boolean == false}">
-		          <c:set var="qurlParams" value="${wdkAnswer.questionUrlParams}"/>
+		          <c:set var="qurlParams" value="${history.questionUrlParams}"/>
                   <a href="showQuestion.do?questionFullName=${qName}${qurlParams}&questionSubmit=Get+Answer&goto_summary=0">revise</a>
 	           </c:when>
 	           <c:otherwise>
