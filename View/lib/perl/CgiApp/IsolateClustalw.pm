@@ -60,10 +60,10 @@ EOSQL
     
   }
 
-  # The Link is used in CryptoDB v3.7 and previouse releases.
-  # ->service('http://staff.vbi.vt.edu/pathport/services/wsdls/beta/msa.wsdl')
+  # previouse url.
+  # ->service('http://ppdev.bioinformatics.vt.edu:6565/axis/services/msa?wsdl');
   my $result = SOAP::Lite
-     ->service('http://ppdev.bioinformatics.vt.edu:6565/axis/services/msa?wsdl');
+     ->service('http://pathport.bioinformatics.vt.edu:6565/axis/services/msagit?wsdl');
 
   my $alignment = $result->nucleotide_Alignment("$sequence", "ALIGNED", "", "15.00", "6.66", "15.00", "6.66", "30", "0.50", "iub", "iub");
 
@@ -128,7 +128,7 @@ EOSQL
   my $align = Bio::Graphics::Browser::PadAlignment->new(\@sequences,\@segments);
 
   print "<table align=center width=800><tr><td>";
-	print "<a href='#tree'><h3>To view a guide tree, click here or scroll to the bottom of the page</h3></a>";
+  print "<a href='#tree'><h3>To view a guide tree, click here or scroll to the bottom of the page</h3></a>";
   print "</td></tr>";
   print "<tr><td>";
   print $cgi->pre($align->alignment( {}, { show_mismatches   => 1,
@@ -146,7 +146,7 @@ EOSQL
         my $tree = $_->bodyhandle->as_string;
         my $link = $self->writetree($tree);
         $self->printApplet($link);
-				$tree =~ s/\n/ /g;
+        $tree =~ s/\n/ /g;
         print "<tr><td>$tree</td></tr>";
       }
     }
@@ -208,7 +208,7 @@ sub writetree {
 sub cleanup {
   my ($self, $dir) = @_;
   my $cmd = "find $dir -mtime +10 -exec rm -f {} \\;";
-	system($cmd);
+  system($cmd);
 }
 
 sub error {
