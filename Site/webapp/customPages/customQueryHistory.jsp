@@ -287,7 +287,7 @@ function reviseBooleanQuery(type, expression) {
 	        <!-- begin of floating info box -->
             <div id="div_${historyId}" 
 	         class="medium"
-                 style="display:none;font-size:8pt;min-width:300px;max-width:700pxposition:absolute;left:0;top:0;background-color:#ffffCC;"
+                 style="display:none;font-size:8pt;min-width:300px;max-width:700px;position:absolute;left:0;top:0;background-color:#ffffCC;"
                  onmouseover="hideAnyName()">
                  <wdk:showParams history="${history}" />
             </div> 
