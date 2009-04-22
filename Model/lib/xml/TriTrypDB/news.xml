@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmlAnswer>
+
+<!-- NOTE:  the data attribute must be of the form:  22 April 2009 15:00 -->
 <!--
    <record>
        <attribute name="headline">
@@ -15,6 +17,25 @@
        </attribute>
     </record>
 -->
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+           457 updated annotations available in GeneDB
+         ]]>
+       </attribute>
+       <attribute name="date">
+         22 April 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         22Apr2009TriTrypDB11
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
+          ]]>
+       </attribute>
+    </record>
 
      <record>
        <attribute name="headline">
