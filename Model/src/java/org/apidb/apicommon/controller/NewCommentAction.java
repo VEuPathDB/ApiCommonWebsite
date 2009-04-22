@@ -122,19 +122,6 @@ public class NewCommentAction extends CommentAction {
         String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion();
 
-        StringBuffer body = new StringBuffer();
-        body.append("Headline: " + headline + "\n");
-        body.append("Target: " + commentTarget + "\n");
-        body.append("Source_Id: " + stableId + "\n");
-        body.append("Comment: " + content + "\n");
-        body.append("PMID: " + pmIdStr + "\n");
-        body.append("Related Genes: " + associatedStableIdsStr + "\n");
-        body.append("Accession: " + accessionStr + "\n");
-        body.append("Email: " + email + "\n");
-        body.append("Organism: " + organism + "\n");
-        body.append("DB Name: " + extDbName + "\n");
-        body.append("DB Version: " + extDbVersion + "\n");
-
         // create a comment instance
         Comment comment = new Comment(email);
         comment.setCommentTarget(commentTarget);
@@ -228,6 +215,20 @@ public class NewCommentAction extends CommentAction {
 
         // add the comment
         getCommentFactory().addComment(comment);
+
+        StringBuffer body = new StringBuffer();
+        body.append("Comment Id: " + comment.getCommentId() + "\n");
+        body.append("Headline: " + headline + "\n");
+        body.append("Target: " + commentTarget + "\n");
+        body.append("Source_Id: " + stableId + "\n");
+        body.append("Comment: " + content + "\n");
+        body.append("PMID: " + pmIdStr + "\n");
+        body.append("Related Genes: " + associatedStableIdsStr + "\n");
+        body.append("Accession: " + accessionStr + "\n");
+        body.append("Email: " + email + "\n");
+        body.append("Organism: " + organism + "\n");
+        body.append("DB Name: " + extDbName + "\n");
+        body.append("DB Version: " + extDbVersion + "\n");
 
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");
