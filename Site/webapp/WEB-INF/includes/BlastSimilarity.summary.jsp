@@ -204,20 +204,8 @@ function resetAttr() {
                 <div id="showParamArea" style="display:none; background:#EEEEEE;">
              </c:otherwise>
           </c:choose>
-                    <c:choose>
-                        <c:when test="${wdkAnswer.isBoolean}">
-                            <div>
-                                <%-- boolean question --%>
-                                <nested:root name="wdkAnswer">
-                                    <jsp:include page="/WEB-INF/includes/bqShowNode.jsp"/>
-                                </nested:root>
-	                        </div>
-                        </c:when>
-                        <c:otherwise>
-                            <wdk:showParams history="${history}" />
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+             <wdk:showParams history="${history}" />
+          </div>
        </td>
     </tr>
 
