@@ -275,22 +275,10 @@ function parse_Url( url, parameter_name )
                 <div id="showParamArea" style="display:none; background:#EEEEEE;">
              </c:otherwise>
           </c:choose>
-          <c:choose>
-            <c:when test="${wdkAnswer.isBoolean}">
-                <div>
-                    <%-- boolean question --%>
-                    <nested:root name="wdkAnswer">
-                        <jsp:include page="/WEB-INF/includes/bqShowNode.jsp"/>
-                    </nested:root>
-                </div>
 
-                <c:set var="recordClass" value="${wdkAnswer.question.recordClass}"/>
+            <c:set var="recordClass" value="${wdkAnswer.question.recordClass}"/>
 
-            </c:when>
-            <c:otherwise>
-                <wdk:showParams wdkAnswer="${wdkAnswer}" />
-            </c:otherwise>
-          </c:choose>
+            <wdk:showParams history="${history}" />
           </div>
        </td>
     </tr>

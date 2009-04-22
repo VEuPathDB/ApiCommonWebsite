@@ -214,7 +214,7 @@ function resetAttr() {
 	                        </div>
                         </c:when>
                         <c:otherwise>
-                            <wdk:showParams wdkAnswer="${wdkAnswer}" />
+                            <wdk:showParams history="${history}" />
                         </c:otherwise>
                     </c:choose>
                 </div>
