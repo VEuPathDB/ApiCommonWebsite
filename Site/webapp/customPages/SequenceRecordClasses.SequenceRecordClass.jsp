@@ -173,8 +173,11 @@ ${externalLinks}
 <c:if test="${is_top_level eq '1' && ((projectId eq 'PlasmoDB' && fn:containsIgnoreCase(organism, 'falciparum')) || projectId eq 'TriTrypDB' || projectId eq 'CryptoDB' || projectId eq 'ToxoDB')}">
 
   <br />
-  <site:mercatorMAVID cgiUrl="${CGI_URL}" projectId="${projectId}" contigId="${id}"
-                        start="1" end="${attrs['length'].value}" bkgClass="secondary3" cellPadding="0"/>
+  <c:if test="${attrs['has_msa'].value == 1}">
+   <site:mercatorMAVID cgiUrl="${CGI_URL}" projectId="${projectId}" contigId="${id}"
+ 
+      start="1" end="${attrs['length'].value}" bkgClass="secondary3" cellPadding="0"/>
+  </c:if>
 </c:if>
 </c:set>
 
