@@ -179,6 +179,7 @@ if ($query->param("messageId")){
          my $toxoBox;
          my $trichBox; 
          my $triTrypBox;
+         my $eupathBox;
        
          # Re-check previously checked project boxes  
          foreach my $project (@selectedProjects){
@@ -187,7 +188,8 @@ if ($query->param("messageId")){
          if ($project=~/PlasmoDB/){$plasmoBox="checked='checked'";}
          if ($project=~/ToxoDB/){$toxoBox="checked='checked'";}
          if ($project=~/TrichDB/){$trichBox="checked='checked'";}
-         if ($project=~/TriTrypDB/){$triTrypBox="checked='checked'";};
+         if ($project=~/TriTrypDB/){$triTrypBox="checked='checked'";}
+         if ($project=~/EupathDB/){$eupathBox="checked='checked'";}
          }
          # Populate fields and display message form
          &displayMessageForm($errorMessage,
@@ -201,6 +203,7 @@ if ($query->param("messageId")){
                              $toxoBox,
                              $trichBox,
                              $triTrypBox,
+                             $eupathBox,
                              $startDate, 
                              $stopDate, 
                              $adminComments);
@@ -279,20 +282,21 @@ sub displayMessageForm{
 
         ## Render new submission form, or repopulate and display form with passed params if validation failed.
        
-         my $errorMessage=$_[0];
-         my $messageId=$_[1];
-         my $messageCategory=$_[2];
+         my $errorMessage=$_[0] || '';
+         my $messageId=$_[1] || '';
+         my $messageCategory=$_[2] || '';
          my (@selectedProjects)=@{($_[3])} if (@_); #Get selected projects from new message submit
-         my $messageText=$_[4];
-         my $cryptoBox=$_[5];
-         my $giardiaBox=$_[6];
-         my $plasmoBox=$_[7];
-         my $toxoBox=$_[8];
-         my $trichBox=$_[9];
-         my $triTrypBox=$_[10];
-         my $startDate=$_[11];
-         my $stopDate=$_[12];
-         my $adminComments=$_[13];
+         my $messageText=$_[4] || '';
+         my $cryptoBox=$_[5] || '';
+         my $giardiaBox=$_[6] || '';
+         my $plasmoBox=$_[7] || '';
+         my $toxoBox=$_[8] || '';
+         my $trichBox=$_[9] || '';
+         my $triTrypBox=$_[10] || '';
+         my $eupathBox=$_[11] || '';
+         my $startDate=$_[12] || '';
+         my $stopDate=$_[13] || '';
+         my $adminComments=$_[14] || '';
        
 
          if(!$messageId){
@@ -304,6 +308,7 @@ sub displayMessageForm{
            if ($project=~/40/){$toxoBox="checked='checked'";}
            if ($project=~/50/){$trichBox="checked='checked'";}
            if ($project=~/60/){$triTrypBox="checked='checked'";}
+           if ($project=~/70/){$eupathBox="checked='checked'";}
            }
          }
          elsif ($messageId){ # Pre-check boxes for a failed message update
@@ -315,6 +320,7 @@ sub displayMessageForm{
             if ($project=~/ToxoDB/){$toxoBox="checked='checked'";}
             if ($project=~/TrichDB/){$trichBox="checked='checked'";}
             if ($project=~/TriTrypDB/){$triTrypBox="checked='checked'";}
+            if ($project=~/EupathDB/){$eupathBox="checked='checked'";} 
             }     
           }
 
@@ -332,27 +338,27 @@ sub displayMessageForm{
 <title>Edit Message</title>
 <style type="text/css">
 <!--
-.style3 {font-family: Georgia, "Times New Roman", Times, serif}
 body {
 	background-color: #F6F8FF;
 }
+.style10 {font-family: Arial, Helvetica, sans-serif; }
 -->
 </style>
 </head>
-
 <body>
 <form action="messageInsert.pl" method="get" name="submitEdit" id="submitEdit">
   <div align="center">
     <table width="500" border="0" cellpadding="5" cellspacing="5" bordercolor="#CCCCB0" bgcolor="#F6F8FF">
       <tr>
         <p style="color: red">$errorMessage</p>
-        <td><div align="right" class="style3">
+        <td><div align="right" class="style10">
           <div align="right">Message Category:</div>
         </div></td>
         <td>
           <label>
           <select name="messageCategory" id="messageCategory">
             <option value="$messageCategory">$messageCategory</option>
+            <option value="Event">Event</option>
             <option value="Information">Information</option>
             <option value="Degraded">Degraded</option>
             <option value="Down">Down</option>
@@ -360,7 +366,7 @@ body {
           </label></td>
       </tr>
       <tr>
-        <td valign="top"><div align="right" class="style3">
+        <td valign="top"><div align="right" class="style10">
           <div align="right">Projects Affected:</div>
         </div></td>
         <td bgcolor="#FFF8F2"><p>
@@ -387,21 +393,26 @@ body {
           <label>
             <input type="checkbox" name="selectedProjects" value="60" $triTrypBox id="selectedProjects_5" />
             TriTrypDB</label>
+          <br />
+          <label>
+            <input type="checkbox" name="selectedProjects" value="70" $eupathBox id="selectedProjects_6" />
+            EupathDB</label>
           </em><br />
         </p>        
         <label></label></td>
       </tr>
       <tr>
-        <td valign="top"><div align="right" class="style3">
+        <td valign="top"><div align="right" class="style10">
           <div align="right">Message Text:</div>
         </div></td>
         <td>
           <label>
-          <textarea name="messageText" id="messageText" cols="45" rows="5">$messageText</textarea>
+           <textarea name="messageText" id="messageText" cols="45" rows="5">$messageText
+           </textarea>
           </label></td>
       </tr>
       <tr>
-        <td><div align="right" class="style3">
+        <td><div align="right" class="style10">
           <div align="right">Start Date:</div>
         </div></td>
         <td>
@@ -411,7 +422,7 @@ body {
           <a href="javascript:NewCal('startDate','mmddyyyy', 'true')"><img src="/images/cal.gif" width="16" height="16" border="0" alt="Pick a date" /></td>      
       </tr>
       <tr>
-        <td><div align="right" class="style3">
+        <td><div align="right" class="style10">
           <div align="right">Stop Date:</div>
         </div></td>
         <td>
@@ -421,7 +432,7 @@ body {
         <a href="javascript:NewCal('stopDate','mmddyyyy', 'true')"><img src="/images/cal.gif" width="16" height="16" border="0" alt="Pick a date" /></td>
       </tr>
       <tr>
-        <td valign="top"><div align="right" class="style3">
+        <td valign="top"><div align="right" class="style10">
           <div align="right">Admin Comments:</div>
         </div></td>
         <td>
@@ -432,7 +443,7 @@ body {
     </table>
     <br/>
     <label>
-    <input type="submit" name="newInfo" id="newInfo" value="Submit Message"  onClick="timedRefresh();"/>
+    <input type="submit" name="newInfo" id="newInfo" value="Submit Message" />
     </label>  
     
     <input name="updateMessageId" type="hidden" id="updateMessageId" value="$messageId" />
@@ -443,12 +454,6 @@ body {
 </script>
 </div>
 <script language="javascript" type="text/javascript">
-
-function timedRefresh() {
-
-setTimeout("refreshParent()", 5000);
-
-}
 function refreshParent() {
   if (window.opener && !window.opener.closed) {
   window.opener.location.reload();
@@ -529,6 +534,7 @@ _END_OF_TEXT_
          my $toxoBox;
          my $trichBox;
          my $triTrypBox;
+         my $eupathBox;
          my $messageText=shift;
          my $startDate=shift;
          my $stopDate=shift;
@@ -581,6 +587,7 @@ _END_OF_TEXT_
                                   $toxoBox,
                                   $trichBox,
                                   $triTrypBox,
+                                  $eupathBox,
                                   $startDate, 
                                   $stopDate,
                                   $adminComments);
@@ -604,7 +611,7 @@ sub confirmation(){
 my $messageType=$_[0];
 my $confirmation;
 
-if ($messageType eq "new"){$confirmation="Your message has been scheduled successfully.";}
+if ($messageType && $messageType eq "new"){$confirmation="Your message has been scheduled successfully.";}
    else {$confirmation="Revised message has been scheduled successfully.";}
 
     print<<_END_OF_TEXT_
