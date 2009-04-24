@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmlAnswer>
 
-<!-- NOTE:  the data attribute must be of the form:  22 April 2009 15:00 -->
+<!-- NOTE:  the date attribute must be of the form:  22 April 2009 15:00 -->
 <!--
    <record>
        <attribute name="headline">
@@ -17,6 +17,32 @@
        </attribute>
     </record>
 -->
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+            Beta-release of TriTrypDB 1.1
+         ]]>
+       </attribute>
+       <attribute name="date">
+         24 April 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         24Apr2009TriTrypDB11
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the availability of a beta-release version of TriTrypDB 1.1, accessible at <a href="http://beta.TriTrypDB.org">http://beta.TriTrypDB.org</a>.  Feel free to forward this link to others.  <br><br>Highlights include:<br><br>
+
+&#x2023; The <i>L. tarentolae</i> genome has been provided by the CIHR Group on host pathogen interactions and is available for similarity searches and browsing for open reading frames and BLASTX alignments against the NR protein database.<br>
+&#x2023; A microarray experiment examining the axenic promastigote-to-amastigote differentiation of <i>L. donovani</i> was provided by researchers at the Seattle Biomedical Research Institute and Technion Institute and is available for query and display on record pages.
+&#x2023; A new search strategy interface that enables users to more easily construct complex searches is released for the first time in TriTrypDB 1.1.<br>
+&#x2023; &#39;User Comments&#39; have been updated to enable submission of supporting evidence including pubmed identifiers and images (or other files).  Comments may be added to any gene or sequence page, enhancing available annotation.  Such comments are visible and searchable by others, and are automatically forwarded to the annotation team for incorporation into the official annotation<br>
+&#x2023; Files can now be uploaded and provided to the community via TriTrypDB.<br>
+<br>
+By providing access to TriTrypDB 1.1 prior to its official release, we hope to obtain valuable feedback to facilitate the debugging process, in addition to making new data and functionality available to the community as early as possible.  Please click on the &#39;Contact Us&#39; link at the bottom of each page to indicate anything that might help to make the site better: bugs, help requests, features that are unclear or take too long to run, suggestions for additional tools or datasets that might be useful to incorporate, etc.  Where appropriate, please also add to the &#39;User Comments&#39; on each gene page, noting inaccurate (or accurate) gene models, phenotype information, expression data, clone availability, etc.
+          ]]>
+       </attribute>
+    </record>
 
    <record>
        <attribute name="headline">
@@ -32,7 +58,7 @@
        </attribute>
        <attribute name="item">           
          <![CDATA[
-Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
+Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <b><a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
           ]]>
        </attribute>
     </record>
