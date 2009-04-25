@@ -336,7 +336,7 @@ function reviseBooleanQuery(type, expression) {
         </td>
         <td align='right' onmouseover="hideAnyName()" nowrap>${history.estimateSize}</td>
 
-        <c:set value="${wdkAnswer.question.fullName}" var="qName" />
+        <c:set value="${history.question.fullName}" var="qName" />
         
         <td nowrap>
             <%-- check if we need to embed filter into view url --%>
