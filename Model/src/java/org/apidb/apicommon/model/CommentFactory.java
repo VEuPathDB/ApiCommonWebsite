@@ -787,7 +787,8 @@ public class CommentFactory {
             stableId = stableId.replace('*', '%');
             stableId = stableId.replaceAll("'", "");
             if (where.length() > 0) where.append(" AND ");
-            where.append(" c.stable_id like '" + stableId + "'");
+            where.append(" (c.stable_id like '" + stableId + "'");
+            where.append(" OR d.stable_id like '" + stableId + "') ");
         }
         if (conceptual != null) {
             boolean concpt = Boolean.parseBoolean(conceptual);
@@ -809,13 +810,16 @@ public class CommentFactory {
         }
 
         StringBuffer sql = new StringBuffer();
+        sql.append("SELECT distinct * FROM ( ");
         sql.append("SELECT c.comment_id FROM ");
         sql.append(config.getCommentSchema() + "comments c, ");
+        sql.append(config.getCommentSchema() + "commentStableId d, ");
         sql.append(config.getUserLoginSchema() + "users"
                 + config.getUserLoginDbLink() + " u ");
         sql.append("WHERE lower(c.email) = lower(u.email) ");
+        sql.append("AND c.comment_id(+) = d.comment_id ");
         if (where.length() > 0) sql.append(" AND " + where.toString());
-        sql.append(" ORDER BY c.organism ASC, c.stable_id ASC, c.comment_date DESC");
+        sql.append(" ORDER BY c.comment_date DESC, c.organism ASC, c.stable_id ASC)");
 
         List<Comment> comments = new ArrayList<Comment>();
         ResultSet rs = null;
