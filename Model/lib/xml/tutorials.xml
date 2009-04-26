@@ -9,6 +9,39 @@
 
 <xmlAnswer>
 
+
+   <record>
+       <attribute name="title">Search Strategies</attribute>
+       <attribute name="description">Learn how to combine queries with the search strategy system.</attribute>
+       <attribute name="uid">15</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">New_Strat/New_Strat_viewlet_swf.html</attribute>
+           <attribute name="duration">5 minutes</attribute>
+           <attribute name="size">9 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+   <record>
+       <attribute name="title">Adding User Comments</attribute>
+       <attribute name="description">How to enter a user comment and optionally upload a related file.</attribute>
+       <attribute name="uid">14</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>
+           <attribute name="duration">3 minutes</attribute>
+           <attribute name="size">4 mb</attribute>
+         </row>
+       </table>
+   </record>
+
    <record>
        <attribute name="title">Designing and mining pathogen genome databases: From genes to drugs and vaccines</attribute>
        <attribute name="description">An iBioSeminars lecture series on Apicomplexan Parasites, Pathogen Genome Informatics, and the Evolution of Eukaryotic Organelles.</attribute>
@@ -103,7 +136,7 @@
            <attribute name="size">15.7 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">GiardiaDB</attribute>
+           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">QueriesAndTools_PlasmoDB_5.3.avi</attribute>
            <attribute name="fileName.flv">QueriesAndTools_PlasmoDB_5.3.flv</attribute>
@@ -163,7 +196,7 @@
            <attribute name="size">4.5 mb</attribute>
          </row>
  <row>
-           <attribute name="projects">GiardiaDB</attribute>
+           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">QueryHistory_CryptoDB_3.5.mov</attribute>
            <attribute name="fileName.avi">QueryHistory_CryptoDB_3.5.wmv</attribute>
            <attribute name="fileName.flv">QueryHistory_CryptoDB_3.5.flv</attribute>
@@ -205,7 +238,7 @@
            <attribute name="size">15.2 mb</attribute>
          </row>
  <row>
-           <attribute name="projects">GiardiaDB</attribute>
+           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
            <attribute name="fileName.avi">GenomeBrowserIntro_CryptoDB_3.5.avi</attribute>
            <attribute name="fileName.flv">GenomeBrowserIntro_CryptoDB_3.5.flv</attribute>
@@ -255,7 +288,7 @@
            <attribute name="size">14.3 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">GiardiaDB</attribute>
+           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">DownloadResults_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">DownloadResults_PlasmoDB_5.3.avi</attribute>
            <attribute name="fileName.flv">DownloadResults_PlasmoDB_5.3.flv</attribute>
@@ -315,7 +348,7 @@
            <attribute name="size">7.1 mb</attribute>
          </row>
  <row>
-           <attribute name="projects">GiardiaDB</attribute>
+           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">ListOfIDs_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">ListOfIDs_PlasmoDB_5.3.avi</attribute>
            <attribute name="fileName.flv">ListOfIDs_PlasmoDB_5.3.flv</attribute>
@@ -374,7 +407,7 @@
            <attribute name="size">6.4 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">GiardiaDB</attribute>
+           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">ColumnManagement_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">ColumnManagement_PlasmoDB_5.3.avi</attribute>
            <attribute name="fileName.flv">ColumnManagement_PlasmoDB_5.3.flv</attribute>
@@ -504,4 +537,5 @@
          </row>
        </table>
    </record>
+
 </xmlAnswer>
