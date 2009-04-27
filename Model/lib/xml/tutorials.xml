@@ -112,7 +112,7 @@
        <attribute name="uid">12</attribute>
        <table name="files">
           <row>
-           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="projects">PlasmoDB,GiardiaDB</attribute>
            <attribute name="fileName.mov">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">QueriesAndTools_PlasmoDB_5.3.wmv</attribute>
            <attribute name="fileName.flv">QueriesAndTools_PlasmoDB_5.3.flv</attribute>
@@ -134,14 +134,6 @@
            <attribute name="fileName.flv">QueriesAndTools_ApiDB.flv</attribute>
            <attribute name="duration">3:57 minutes</attribute>
            <attribute name="size">15.7 mb</attribute>
-         </row>
-<row>
-           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">QueriesAndTools_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">QueriesAndTools_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">QueriesAndTools_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:12 minutes</attribute>
-           <attribute name="size">20 mb</attribute>
          </row>
 <row>
            <attribute name="projects">TrichDB.org</attribute>
@@ -180,7 +172,7 @@
            <attribute name="size">15.2 mb</attribute>
          </row>
 	  <row>
-           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="projects">CryptoDB,GiardiaDB</attribute>
            <attribute name="fileName.mov">QueryHistory_CryptoDB_3.5.mov</attribute>
            <attribute name="fileName.avi">QueryHistory_CryptoDB_3.5.wmv</attribute>
            <attribute name="fileName.flv">QueryHistory_CryptoDB_3.5.flv</attribute>
@@ -194,14 +186,6 @@
            <attribute name="fileName.flv">QueryHistory_ApiDB.flv</attribute>
            <attribute name="duration">1:57 minutes</attribute>
            <attribute name="size">4.5 mb</attribute>
-         </row>
- <row>
-           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">QueryHistory_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">QueryHistory_CryptoDB_3.5.wmv</attribute>
-           <attribute name="fileName.flv">QueryHistory_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">1:05 minutes</attribute>
-           <attribute name="size">4.1 mb</attribute>
          </row>
  <row>
            <attribute name="projects">TrichDB</attribute>
@@ -230,25 +214,9 @@
            <attribute name="size">24.2 mb</attribute>
          </row>
 	 <row>
-           <attribute name="projects">CryptoDB</attribute>
+           <attribute name="projects">CryptoDB,GiardiaDB,TriTrypDB,TrichDB</attribute>
            <attribute name="fileName.mov">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
            <attribute name="fileName.avi">GenomeBrowserIntro_CryptoDB_3.5.wmv</attribute>
-           <attribute name="fileName.flv">GenomeBrowserIntro_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">1:32 minutes</attribute>
-           <attribute name="size">15.2 mb</attribute>
-         </row>
- <row>
-           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">GenomeBrowserIntro_CryptoDB_3.5.avi</attribute>
-           <attribute name="fileName.flv">GenomeBrowserIntro_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">1:32 minutes</attribute>
-           <attribute name="size">15.2 mb</attribute>
-         </row>
- <row>
-           <attribute name="projects">TrichDB</attribute>
-           <attribute name="fileName.mov">GenomeBrowserIntro_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">GenomeBrowserIntro_CryptoDB_3.5.avi</attribute>
            <attribute name="fileName.flv">GenomeBrowserIntro_CryptoDB_3.5.flv</attribute>
            <attribute name="duration">1:32 minutes</attribute>
            <attribute name="size">15.2 mb</attribute>
@@ -264,7 +232,7 @@
        <attribute name="uid">9</attribute>
        <table name="files">
           <row>
-           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="projects">PlasmoDB,GiardiaDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">DownloadResults_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">DownloadResults_PlasmoDB_5.3.wmv</attribute>
            <attribute name="fileName.flv">DownloadResults_PlasmoDB_5.3.flv</attribute>
@@ -288,14 +256,6 @@
            <attribute name="size">14.3 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">DownloadResults_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">DownloadResults_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">DownloadResults_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">2:21 minutes</attribute>
-           <attribute name="size">25.9 mb</attribute>
-         </row>
-<row>
            <attribute name="projects">TrichDB</attribute>
            <attribute name="fileName.mov">DownloadResults_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">DownloadResults_PlasmoDB_5.3.avi</attribute>
@@ -316,7 +276,7 @@
        <attribute name="uid">8</attribute>
        <table name="files">
           <row>
-           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="projects">PlasmoDB,GiardiaDB,TriTrypDB,TrichDB</attribute>
            <attribute name="fileName.mov">ListOfIDs_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">ListOfIDs_PlasmoDB_5.3.wmv</attribute>
            <attribute name="fileName.flv">ListOfIDs_PlasmoDB_5.3.flv</attribute>
@@ -347,22 +307,6 @@
            <attribute name="duration">1:40 minutes</attribute>
            <attribute name="size">7.1 mb</attribute>
          </row>
- <row>
-           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">ListOfIDs_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">ListOfIDs_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">ListOfIDs_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">0:46 minutes</attribute>
-           <attribute name="size">3.2 mb</attribute>
-         </row>
- <row>
-           <attribute name="projects">TrichDB</attribute>
-           <attribute name="fileName.mov">ListOfIDs_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">ListOfIDs_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">ListOfIDs_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">0:46 minutes</attribute>
-           <attribute name="size">3.2 mb</attribute>
-         </row>
        </table>
    </record>
 
@@ -375,7 +319,7 @@
        <attribute name="uid">7</attribute>
        <table name="files">
           <row>
-           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="projects">PlasmoDB,GiardiaDB,TrichDB</attribute>
            <attribute name="fileName.mov">ColumnManagement_PlasmoDB_5.3.mov</attribute>
            <attribute name="fileName.avi">ColumnManagement_PlasmoDB_5.3.wmv</attribute>
            <attribute name="fileName.flv">ColumnManagement_PlasmoDB_5.3.flv</attribute>
@@ -405,22 +349,6 @@
            <attribute name="fileName.flv">ColumnManagement_ApiDB.flv</attribute>
            <attribute name="duration">2:25 minutes</attribute>
            <attribute name="size">6.4 mb</attribute>
-         </row>
-<row>
-           <attribute name="projects">GiardiaDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">ColumnManagement_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">ColumnManagement_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">ColumnManagement_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:12 minutes</attribute>
-           <attribute name="size">8.3 mb</attribute>
-         </row>
-<row>
-           <attribute name="projects">TrichDB</attribute>
-           <attribute name="fileName.mov">ColumnManagement_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">ColumnManagement_PlasmoDB_5.3.avi</attribute>
-           <attribute name="fileName.flv">ColumnManagement_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:12 minutes</attribute>
-           <attribute name="size">8.3 mb</attribute>
          </row>
        </table>
    </record>
