@@ -50,13 +50,13 @@ public class NewCommentAction extends CommentAction {
 
         // get the referer link
         String referer = (String) request.getParameter(CConstants.WDK_REFERER_URL_KEY);
-        if (referer == null) referer = request.getHeader("referer");
+        if (referer == null) referer = request.getHeader("referer"); 
 
         int index = referer.lastIndexOf("/");
+        String host = referer.substring(0, index);
         referer = referer.substring(index);
         ActionForward forward = new ActionForward(referer, false);
         // forward.setRedirect(true);
-
 
         WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
                 CConstants.WDK_MODEL_KEY);
@@ -121,19 +121,6 @@ public class NewCommentAction extends CommentAction {
         String email = user.getEmail().trim().toLowerCase();
         String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion();
-
-        StringBuffer body = new StringBuffer();
-        body.append("Headline: " + headline + "\n");
-        body.append("Target: " + commentTarget + "\n");
-        body.append("Source_Id: " + stableId + "\n");
-        body.append("Comment: " + content + "\n");
-        body.append("PMID: " + pmIdStr + "\n");
-        body.append("Related Genes: " + associatedStableIdsStr + "\n");
-        body.append("Accession: " + accessionStr + "\n");
-        body.append("Email: " + email + "\n");
-        body.append("Organism: " + organism + "\n");
-        body.append("DB Name: " + extDbName + "\n");
-        body.append("DB Version: " + extDbVersion + "\n");
 
         // create a comment instance
         Comment comment = new Comment(email);
@@ -228,6 +215,32 @@ public class NewCommentAction extends CommentAction {
 
         // add the comment
         getCommentFactory().addComment(comment);
+
+        String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+        String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "#" + comment.getCommentId(); 
+
+        StringBuffer body = new StringBuffer();
+        body.append("Thank you! Your comment will be reviewed by " + projectId + " genome curator shortly.\n");
+        body.append("-------------------------------------------------------\n");
+        body.append("Comment Id: " + comment.getCommentId() + "\n");
+        body.append("Headline: " + headline + "\n");
+        body.append("Target: " + commentTarget + "\n");
+        body.append("Source_Id: " + stableId + "\n");
+        body.append("Comment: " + content + "\n");
+        body.append("PMID: " + pmIdStr + "\n");
+        body.append("Uploaded File: ");
+        for(String f: files) {
+          body.append(f.substring(f.indexOf('|')+1) + "; ");
+        }
+        body.append("\n");
+        body.append("Related Genes: " + associatedStableIdsStr + "\n");
+        body.append("Accession: " + accessionStr + "\n");
+        body.append("Email: " + email + "\n");
+        body.append("Organism: " + organism + "\n");
+        body.append("DB Name: " + extDbName + "\n");
+        body.append("DB Version: " + extDbVersion + "\n");
+        body.append("Comment Link: " + link + "\n");
+        body.append("-------------------------------------------------------\n");
 
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");
