@@ -15,6 +15,32 @@
  <record>
        <attribute name="headline">
          <![CDATA[
+         ToxoDB 5.1 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       24 April 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       24Aprile2009Release51
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+        We are pleased to announce the release of ToxoDB 5.1.
+        <p>
+        <u>This release features:</u>
+        <ul>
+        <li>New Chip-ChIP data performed on RH parasites (<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&amp;cmd=search&amp;term=19349466">Bougdour, Maubon, Baldacci, Ortet, Bastien, Bouillon, Barale, Pelloux, Menard, Hakimi. Drug-inhibition of HDAC3 and epigenetic control of differentiation in Apicomplexa parasites. J. Exp. Med. 2009;206(4):953-66</a>).</li>
+        <li>Updated proteomics data from the <a href="http://toro.aecom.yu.edu/biodefense/">Einstein Biodefense Proteomics Research Center</a>.</li>
+        <li>Enhanced user comment form that among other things allows linking PubMed records, linking multiple genes to the same comment and uploading images.</li>
+        </ul>
+        ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
          EuPathDB to take on the kinetoplastida
          ]]>
        </attribute>
