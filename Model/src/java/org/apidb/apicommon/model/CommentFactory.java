@@ -817,6 +817,7 @@ public class CommentFactory {
         sql.append(config.getUserLoginSchema() + "users"
                 + config.getUserLoginDbLink() + " u ");
         sql.append("WHERE lower(c.email) = lower(u.email) ");
+        sql.append("AND c.is_visible = 1 ");
         sql.append("AND c.comment_id = d.comment_id(+) ");
         if (where.length() > 0) sql.append(" AND " + where.toString());
         sql.append(" ORDER BY c.comment_date DESC, c.organism ASC, c.stable_id ASC)");
