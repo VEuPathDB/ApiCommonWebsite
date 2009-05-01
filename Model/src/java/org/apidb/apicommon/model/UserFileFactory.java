@@ -83,22 +83,24 @@ public class UserFileFactory {
                 logger.debug("File save path:" + filePath.toString());
                 fileOnDisk = new File(filePath, fileName);
   
-                int rev = 0;
+                int ver = 0;
                 String[] nameParts = parseFilename(fileName);
-                while (fileOnDisk.exists()) {
-                  rev++;
-                  String newName = nameParts[0] + ".rev" + rev +
+                // add version to file name if already exists.
+                // also checking database to avoid conflict when file is added
+                // to another server but not yet synched to current server
+                while (fileOnDisk.exists() || nameExistsInDb(fileOnDisk.getName())) {
+                  ver++;
+                  String newName = nameParts[0] + ".copy_" + ver +
                       ((nameParts[1] != null) ? "." + nameParts[1] : "");
                   fileOnDisk = new File(filePath, newName);
                   userFile.setFileName(newName);
                 }
-  
-  
+                
                 FileOutputStream fileOutStream = new FileOutputStream(fileOnDisk);
                 fileOutStream.write(userFile.getFileData());
                 fileOutStream.flush();
                 fileOutStream.close();
-    
+                
                 userFile.setChecksum(md5sum(fileOnDisk));
                 logger.debug("MD5 " + userFile.getChecksum());
                 
@@ -121,7 +123,7 @@ public class UserFileFactory {
         }
 
     }
-
+    
     public void insertUserFileMetaData(UserFile userFile) throws WdkModelException {
         String userFileSchema = config.getUserFileSchema();
 
@@ -226,5 +228,43 @@ public class UserFileFactory {
             nameAr[1] = tmpFile.getName().substring(idx + 1);
         }
         return nameAr;
+    }
+    
+    private boolean nameExistsInDb(String filename) throws WdkModelException {
+        String userFileSchema = config.getUserFileSchema();
+        
+        boolean exists = true;
+        
+        String query =  "select count(*) count from " 
+                       + userFileSchema + "userfile "
+                       + "where filename = ?";
+        ResultSet rs = null;
+
+        try {
+            PreparedStatement ps = null;
+            ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), query);
+            long currentMillis = System.currentTimeMillis();
+            
+            ps.setString(1, filename);
+
+            rs = ps.executeQuery();
+            if (!rs.next())
+                throw new WdkModelException("Unable to query for filename "
+                        + filename);
+
+            exists = (rs.getInt("count") != 0);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new WdkModelException(ex);
+        } finally {
+            try {
+                SqlUtils.closeResultSet(rs);
+            } catch (SQLException ex) {
+                throw new WdkModelException(ex);
+            }
+        }
+      return exists;
     }
 }
