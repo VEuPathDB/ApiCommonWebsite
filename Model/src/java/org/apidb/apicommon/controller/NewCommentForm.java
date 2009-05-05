@@ -26,6 +26,7 @@ public class NewCommentForm extends ActionForm {
     private String locations;
     private String refererUrl;
     private String organism;
+    private String strand;
 
     private HashMap<Integer, FormFile> formFiles = null;
     private HashMap<Integer, String> formNotes = null;
@@ -157,6 +158,14 @@ public class NewCommentForm extends ActionForm {
      */
     public void setOrganism(String organism) {
         this.organism = organism;
+    }
+
+    public String getStrand() {
+        return strand;
+    }
+
+    public void setStrand(String strand) {
+        this.strand = strand;
     }
 
     public void setCommentTargetId(String id) {
