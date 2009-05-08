@@ -84,12 +84,12 @@ public class NewCommentAction extends CommentAction {
         cuForm = (NewCommentForm)form;
 
         String headline = cuForm.getHeadline().trim();
-        headline = BBCode.getInstance().convertBBCodeToHtml(headline);
+        //headline = BBCode.getInstance().convertBBCodeToHtml(headline);
 
         //String content = BBCode.getInstance().convertBBCodeToHtml(
          //       request.getParameter("content"));
         String content = cuForm.getContent().trim();
-        content = BBCode.getInstance().convertBBCodeToHtml(content);
+        //content = BBCode.getInstance().convertBBCodeToHtml(content);
 
         if (headline == null && (content == null || content.length() == 0)) {
             request.setAttribute("submitStatus",
