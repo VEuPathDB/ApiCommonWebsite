@@ -198,7 +198,7 @@ $(document).ready(function(){
     </c:if>
       
     <c:if test="${commentForm.commentTargetId eq 'gene'}">
-      If this is a <b>new gene</b>, please <a href="addComment.do?stableId=${commentForm.contig}&commentTargetId=genome&externaDbName=${commentForm.externalDbName}&externalDbVersion=${commentForm.externalDbVersion}&flag=0">click here</a>.
+      If this is a <b>new gene</b>, please <a href="addComment.do?stableId=${commentForm.contig}&commentTargetId=genome&externaDbName=${commentForm.externalDbName}&externalDbVersion=${commentForm.externalDbVersion}&flag=0">click here</a>. To <b>bulk upload user comments</b>, please <a href="/Bulk_User_Comments_Template.xls">download this Excel template</a>.
     </c:if>
 
     <c:if test="${commentForm.commentTargetId eq 'genome'}">
