@@ -253,8 +253,7 @@ sub handleNonGenomic {
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sql = "select source_id from dots.GENEFEATURE where lower(source_id) = lower(?)";
-  my $sh = $dbh->prepare($sql);
+  my $sh = $dbh->prepare("select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from apidb.GeneId where id = lower(?) order by matchiness desc) where rownum=1");
 
   my @ids;
 
@@ -267,7 +266,8 @@ sub mapGeneFeatureSourceIds {
     }
 
     unless($best) {
-      my $sh = $dbh->prepare("select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from apidb.GeneId where id = lower(?) order by matchiness desc) where rownum=1");
+      my $sql = "select source_id from dots.GENEFEATURE where lower(source_id) = lower(?)";
+      my $sh = $dbh->prepare($sql);
 
       $sh->execute($in);
 
