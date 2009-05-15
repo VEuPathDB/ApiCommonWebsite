@@ -47,7 +47,7 @@
       <property name="project" value="ApiCommonData"/>
       <property name="version" value="api-feb-09"/>
       <property name="excludeChildren" value="true"/>
-      <property name="useBranch" value="false"/>
+      <property name="useBranch" value=""/>
     </ant>
   </target>
  
