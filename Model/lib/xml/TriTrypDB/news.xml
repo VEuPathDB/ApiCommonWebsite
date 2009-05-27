@@ -20,6 +20,25 @@
    <record>
        <attribute name="headline">
          <![CDATA[
+           253 genes updated in GeneDB since KCMB meeting
+         ]]>
+       </attribute>
+       <attribute name="date">
+         27 May 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         27May2009TriTrypDB11
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+We received many user comments during the KCMB meeting and following.  Many of these have already been examined by TriTrypDB curators (at GeneDB, SBRI and UGA) and incorporated into the official annotation. 253 genes have been modified since the meeting resulting in a total of 710 genes that have been updated since this current build of TriTrypDB. <b><a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the complete list of genes that have been re-annotated since December 1, 2008.
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
             Beta-release of TriTrypDB 1.1
          ]]>
        </attribute>
