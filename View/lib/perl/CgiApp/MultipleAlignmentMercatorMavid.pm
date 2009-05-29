@@ -85,6 +85,7 @@ sub createHeader {
 
 sub translateCoordinates {
   my ($contig, $agpDir, $start, $stop, $strand) = @_;
+  $contig = lookupValidContigId($contig);
 
   opendir(DIR, $agpDir) or &error("Could not open directory $agpDir for reading:$!");
 
@@ -588,6 +589,30 @@ sub makeUngappedSeqs {
                              -alphabet => "dna");
   push(@rv, $bioSeq);
   return \@rv;
+}
+
+#--------------------------------------------------------------------------------
+# lookup needed for P falciparum 3D7 sequence IDs
+sub lookupValidContigId {
+  my ($contig) = @_;
+
+  my %contigId = (Pf3D7_01 => 'MAL1',
+		  Pf3D7_02 => 'MAL2',
+		  Pf3D7_03 => 'MAL3',
+		  Pf3D7_04 => 'MAL4',
+		  Pf3D7_05 => 'MAL5',
+		  Pf3D7_06 => 'MAL6',
+		  Pf3D7_07 => 'MAL7',
+		  Pf3D7_08 => 'MAL8',
+		  Pf3D7_09 => 'MAL9',
+		  Pf3D7_10 => 'MAL10',
+		  Pf3D7_11 => 'MAL11',
+		  Pf3D7_12 => 'MAL12',
+		  Pf3D7_13 => 'MAL13',
+		  Pf3D7_14 => 'MAL14');
+
+  return $contigId{$contig} || $contig;
+
 }
 
 #--------------------------------------------------------------------------------
