@@ -17,10 +17,16 @@ import javax.servlet.ServletContext;
 import java.util.Calendar;
 import java.util.Vector;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import org.w3c.dom.Document;
+import org.w3c.dom.*;
+import org.apache.xerces.parsers.DOMParser;
+import org.apidb.apicommon.controller.ApiCommonConstants;
+import org.apache.log4j.Logger;
 
 public class WebappInfoTag extends SimpleTagSupport {
 
@@ -28,16 +34,22 @@ public class WebappInfoTag extends SimpleTagSupport {
     private String dateFormatStr="EEE dd MMM yyyy h:mm a";
     private PageContext pageContext;
     private ServletContext application;
-    
+    private Document statefile;
+    private String stateFilePath;
     private String instanceUptimeText;
-    private String webapUptimeText;
+    private String webappUptimeText;
+    private Logger logger = Logger.getLogger(WebappInfoTag.class);
     
-    public void doTag() throws JspException {
+    public void doTag() throws JspException {        
         pageContext = (PageContext) getJspContext();
         application = pageContext.getServletContext();
+
+        File tempdir = (File)application.getAttribute("javax.servlet.context.tempdir");
+        stateFilePath = tempdir + "/" + ApiCommonConstants.WEBAPP_START_STATE_FILE;
+        statefile = parseStateFile();
         
-        setInstanceUptimeText(application, pageContext);
-        setWebappUptimeText(application, pageContext);
+        setInstanceUptimeText();
+        setWebappUptimeText();
         
         this.getRequest().setAttribute(var, this);
     }
@@ -47,7 +59,7 @@ public class WebappInfoTag extends SimpleTagSupport {
     }
     
     public String getWebappUptimeText() {
-        return webapUptimeText;
+        return webappUptimeText;
     }
     
     /**
@@ -133,7 +145,7 @@ public class WebappInfoTag extends SimpleTagSupport {
       return (String)formatter.format(startTime) ;
     }
 
-    private void setInstanceUptimeText(ServletContext application, PageContext pageContext) {
+    private void setInstanceUptimeText() {
       try {
     
         String uptime = elapsedTimeSinceTomcatJVMStart();
@@ -169,51 +181,35 @@ public class WebappInfoTag extends SimpleTagSupport {
       }
     }
 
-    /**
-     *
-     * kinda hackish method for determining uptime of webapp... use the 
-     * timestamp on the app's tempdir ( $CATALINA_HOME/work/Catalina/localhost/$WEBAPP )
-     *
-     * This dir is created on deployment and touched on reload. The downside to this 
-     * simplistic approach is that, after deployment, the tempdir's timestamp is updated
-     * again once the first JSP page is loaded because an 'org' subdirectory is added to
-     * contain the compiled JSP cache. This throws off the calculation of the start time.
-     * One improvement can be made by precompiling a JSP page at load/deploy time.
-     * Add to the app's web.xml a load-on-startup directive for an existing JSP page. 
-     * This will cause the 'org' subdirectory to be created at startup rather than 
-     * being defered until first page load. For example,
-     *
-     *    <servlet>
-     *      <servlet-name>home.jsp</servlet-name>
-     *      <jsp-file>/home.jsp</jsp-file>
-     *      <load-on-startup>0</load-on-startup>
-     *    </servlet>
-     *
-     * If the webapp later makes other changes to the tempdir, as it might for
-     * temporary storage for file uploads, for example, then this trick for 
-     * determining uptime will be inaccurate.
-     *
-     */
-    private void setWebappUptimeText(ServletContext application, PageContext pageContext) {
+    private void setWebappUptimeText() {
       try {
         java.text.DateFormat formatter = new java.text.SimpleDateFormat(dateFormatStr);
-    
-        File jspFile = (File)application.getAttribute("javax.servlet.context.tempdir");
-        java.util.Date lastModified = new Date(jspFile.lastModified());
         
-        long milliseconds = System.currentTimeMillis() - lastModified.getTime();
+        if (statefile == null) {
+            webappUptimeText = "<i>unknown (check webapp logs for failures of " 
+              + this.getClass().getName() + ")</i>";
+            return;
+        }
+        
+        Node stNode = statefile.getElementsByTagName("starttime").item(0);
+        String starttimeString = stNode.getFirstChild().getNodeValue();
+
+        SimpleDateFormat format = new SimpleDateFormat(ApiCommonConstants.ISO8601_DATE_FORMAT);
+        Date starttimeDate = format.parse(starttimeString);
+
+        long milliseconds = System.currentTimeMillis() - starttimeDate.getTime();
          
         int days    = (int)(milliseconds / (1000*60*60*24))     ;
         int hours   = (int)(milliseconds / (1000*60*60   )) % 24;
         int minutes = (int)(milliseconds / (1000*60      )) % 60;
         int seconds = (int)(milliseconds / (1000         )) % 60;
-    
-        String uptimeSince = (String)formatter.format(new Date(jspFile.lastModified()));
+
+        String uptimeSince = (String)formatter.format(starttimeDate);
         String uptimeBrief = uptimeBrief(days, hours, minutes, seconds);
        
-        webapUptimeText = uptimeBrief + " (since " + uptimeSince + ")";
+        webappUptimeText = uptimeBrief + " (since " + uptimeSince + ")";
       } catch (Exception e) {
-        webapUptimeText = "Error: " + e;
+        webappUptimeText = "Error: " + e;
       }
     }
 
@@ -224,5 +220,19 @@ public class WebappInfoTag extends SimpleTagSupport {
     private ServletContext getContext() {
         return ((PageContext)getJspContext()).
                   getServletConfig().getServletContext();
+    }
+    
+    private Document parseStateFile() {
+        DOMParser parser = new DOMParser();        
+        try {
+          parser.parse(stateFilePath);
+        } catch (org.xml.sax.SAXException se) {
+            logger.warn("Error parsing XML in " + stateFilePath + " : " + se);
+            return null;
+        } catch (java.io.IOException ioe) {
+            logger.warn("Error: " + ioe);
+            return null;
+        }
+        return parser.getDocument();
     }
 }
