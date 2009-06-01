@@ -31,16 +31,20 @@ function addFileSelRow() {
   $(filesTable).append(
     '<tr><td><table style="border:1px solid black;">' + 
     '<td>Select a file:</td>' +
-    '<td><input name="file[' + fCount + ']" type="file" class="required" id="file[' + fCount + ']">' +
+    '<td><input name="file[' + fCount + ']" type="file" id="file[' + fCount + ']">' +
     '<td id="f_rm"></td>' +
     '</tr>' + 
     '<tr>' +
     '<td style="vertical-align:top">Brief Description:<br>(4000 max characters)</td>' +
     '<td colspan="2"><textarea name="notes[' + fCount + 
-       ']" rows="3" cols="50" class="required" maxlength="4000" ></textarea></td>' +
+       ']" id="notes[' + fCount + 
+       ']" rows="3" cols="50" maxlength="4000" ></textarea></td>' +
     '</table></td></tr>'
   );
 
+  $('[id="file[' + fCount + ']"]').change(function(){
+    $(this).parents("tr:last").find("textarea").addClass("required");
+  });
 
   if (fCount > 0) {
     var rowCount = $(filesTable).find("table").length;
