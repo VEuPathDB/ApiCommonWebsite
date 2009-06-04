@@ -220,7 +220,11 @@ public class NewCommentAction extends CommentAction {
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "#" + comment.getCommentId(); 
 
         StringBuffer body = new StringBuffer();
-        body.append("Thank you! Your comment will be reviewed by " + projectId + " genome curator shortly.\n");
+        if(projectId.equals("PlasmoDB") || projectId.equals("CryptoDB")) { 
+          body.append("Thank you! Your comment will be reviewed by a curator shortly.\n");
+        } else {
+          body.append("Thanks for your comment!\n");
+        }
         body.append("-------------------------------------------------------\n");
         body.append("Comment Id: " + comment.getCommentId() + "\n");
         body.append("Headline: " + headline + "\n");
