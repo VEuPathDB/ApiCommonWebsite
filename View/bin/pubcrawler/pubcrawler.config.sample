@@ -20,7 +20,7 @@
     ############################################################
     ################# MANDATORY SETTINGS #######################
     ############################################################
-html_file index.html   
+html_file index.shtml   
     # html_file is the name of the output HTML file for results
     # it will be written to the specified working directory
     # unless an absolute pathname is given
