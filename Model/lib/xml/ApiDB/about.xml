@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">General Information</attribute>
+       <attribute name="tag">generalinfo</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+
+
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Organisms</attribute>
+       <attribute name="tag">organisms</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+
+
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Advisors</attribute>
+       <attribute name="tag">advisors</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Acknowledgements and Funding</attribute>
+       <attribute name="tag">funding</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+EuPathDB wishes to acknowledge all the community members who
+have contributed data (often pre-publication), entered user
+comments or sent us their suggestions.
+
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Data Access Policy</attribute>
+       <attribute name="tag">use</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+The data at this site is provided freely for public use, through
+the contributions of many researchers including those involved in
+generating the genome sequences. The data is not guaranteed to be
+accurate as it often reflects the results of ongoing research.
+When using data obtained from EuPathDB, it is important to cite
+the original publications and contributors of that data and
+EuPathDB. Please see Citing EuPathDB below.
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Citing EuPathDB</attribute>
+       <attribute name="tag">citing</attribute>
+       <attribute name="text">
+       <![CDATA[
+When citing EuPathDB itself, please use:
+<br><br>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=17098930">
+ApiDB: integrated resources for the apicomplexan bioinformatics resource center.</a> 
+2007 Jan;35(Database issue):D427-30. Aurrecoechea C, et al.
+
+<br><br>Much of the data in EuPathDB is provided by independent
+researchers.  Please cite them if you use their data.  For a list
+of the data integrated into EuPathDB and the related
+publications please see <a
+href="showXmlDataContent.do?name=XmlQuestions.DataSources"
+class="blue"> Data Sources</a>.
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Gene Naming Convention</attribute>
+       <attribute name="tag">naming</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+       ]]>
+       </attribute>
+   </record>
+
+</xmlAnswer>
