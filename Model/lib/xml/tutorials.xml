@@ -148,56 +148,7 @@
        </table>
    </record>
 
-   <record>
-       <attribute name="title">Query History</attribute>
-       <attribute name="description">
-         Using the query history to combine queries.
-       </attribute>
-       <attribute name="uid">11</attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">QueryHistory_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">QueryHistory_PlasmoDB_5.3.wmv</attribute>
-           <attribute name="fileName.flv">QueryHistory_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:47 minutes</attribute>
-           <attribute name="size">5 mb</attribute>
-         </row>
-          <row>
-           <attribute name="projects">ToxoDB</attribute>
-           <attribute name="fileName.mov">QueryHistory_ToxoDB_4.2.mov</attribute>
-           <attribute name="fileName.avi">QueryHistory_ToxoDB_4.2.wmv</attribute>
-           <attribute name="fileName.flv">QueryHistory_ToxoDB_4.2.flv</attribute>
-           <attribute name="duration">1:18 minutes</attribute>
-           <attribute name="size">15.2 mb</attribute>
-         </row>
-	  <row>
-           <attribute name="projects">CryptoDB,GiardiaDB</attribute>
-           <attribute name="fileName.mov">QueryHistory_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">QueryHistory_CryptoDB_3.5.wmv</attribute>
-           <attribute name="fileName.flv">QueryHistory_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">1:05 minutes</attribute>
-           <attribute name="size">4.1 mb</attribute>
-         </row>
-<row>
-           <attribute name="projects">ApiDB.org</attribute>
-           <attribute name="fileName.mov">QueryHistory_ApiDB.mov</attribute>
-           <attribute name="fileName.avi">QueryHistory_ApiDB.wmv</attribute>
-           <attribute name="fileName.flv">QueryHistory_ApiDB.flv</attribute>
-           <attribute name="duration">1:57 minutes</attribute>
-           <attribute name="size">4.5 mb</attribute>
-         </row>
- <row>
-           <attribute name="projects">TrichDB</attribute>
-           <attribute name="fileName.mov">QueryHistory_CryptoDB_3.5.mov</attribute>
-           <attribute name="fileName.avi">QueryHistory_CryptoDB_3.5.wmv</attribute>
-           <attribute name="fileName.flv">QueryHistory_CryptoDB_3.5.flv</attribute>
-           <attribute name="duration">1:05 minutes</attribute>
-           <attribute name="size">4.1 mb</attribute>
-         </row>
-       </table>
-   </record>
-
+ 
    <record>
        <attribute name="title">Introduction to the Genome Browser</attribute>
        <attribute name="description">
@@ -349,82 +300,6 @@
            <attribute name="fileName.flv">ColumnManagement_ApiDB.flv</attribute>
            <attribute name="duration">2:25 minutes</attribute>
            <attribute name="size">6.4 mb</attribute>
-         </row>
-       </table>
-   </record>
-
- <record>
-       <attribute name="title">Candidate Vaccine Targets Query</attribute>
-       <attribute name="description">
-          Query to identify genes that are potential vaccine targets. 
-          Query includes secreted proteins, phylogenetic profile and expression profile queries.
-       </attribute>
-       <attribute name="uid">6</attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">VaccineCandidate_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">VaccineCandidate_PlasmoDB_5.3.wmv</attribute>
-           <attribute name="fileName.flv">VaccineCandidate_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:54 minutes</attribute>
-           <attribute name="size">17.9 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
-       <attribute name="title">Candidate Vaccine Targets Query With SNPs</attribute>
-       <attribute name="description">
-          Query to identify genes that are potential vaccine targets. 
-          Query includes secreted proteins, phylogenetic profile, SNPs and expression profile queries.
-       </attribute>
-       <attribute name="uid">5</attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">VaccineCandidateWithSNPData_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">VaccineCandidateWithSNPData_PlasmoDB_5.3.wmv</attribute>
-           <attribute name="fileName.flv">VaccineCandidateWithSNPData_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:35 minutes</attribute>
-           <attribute name="size">5.5 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
-       <attribute name="title">Candidate Drug Targets Query</attribute>
-       <attribute name="description">
-          Query to identify genes that are candidate drug targets. 
-          Query includes expression profile, proteomics evidence and GO function queries.
-       </attribute>
-       <attribute name="uid">4</attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">DrugTarget_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">DrugTarget_PlasmoDB_5.3.wmv</attribute>
-           <attribute name="fileName.flv">DrugTarget_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">2:01 minutes</attribute>
-           <attribute name="size">7.7 mb</attribute>
-         </row>
-       </table>
-   </record>
-
-   <record>
-       <attribute name="title">Candidate Drug Targets Query With SNPs</attribute>
-       <attribute name="description">
-          Query to identify genes that are candidate drug targets. 
-          Query includes expression profile, proteomics evidence, GO function  and SNP queries.
-       </attribute>
-       <attribute name="uid">3</attribute>
-       <table name="files">
-          <row>
-           <attribute name="projects">PlasmoDB</attribute>
-           <attribute name="fileName.mov">DrugTargetWithSNPData_PlasmoDB_5.3.mov</attribute>
-           <attribute name="fileName.avi">DrugTargetWithSNPData_PlasmoDB_5.3.wmv</attribute>
-           <attribute name="fileName.flv">DrugTargetWithSNPData_PlasmoDB_5.3.flv</attribute>
-           <attribute name="duration">1:41 minutes</attribute>
-           <attribute name="size">6.1 mb</attribute>
          </row>
        </table>
    </record>
