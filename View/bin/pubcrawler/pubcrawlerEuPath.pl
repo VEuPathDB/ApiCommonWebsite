@@ -2211,7 +2211,7 @@ $picture
            <font color=\"#000000\">
 
            
-           &nbsp;<i>ApiDB.org</i></font></div>
+           &nbsp;<i>EuPathDB.org</i></font></div>
           </div>
          </td>
         </tr>
