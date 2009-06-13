@@ -16,7 +16,7 @@
        <attribute name="uid">15</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">ApiDB.org,CryptoDB,GiardiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">EuPathDB.org,CryptoDB,GiardiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">New_Strat/New_Strat_viewlet_swf.html</attribute>
@@ -32,7 +32,7 @@
        <attribute name="uid">14</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">ApiDB.org,CryptoDB,GiardiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">EuPathDB.org,CryptoDB,GiardiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>
@@ -66,7 +66,7 @@
            <attribute name="size">20.7 mb</attribute>
          </row>
          <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">EuPathDB.org</attribute>
            <attribute name="fileName.mov">QueriesAndTools_ApiDB.mov</attribute>
            <attribute name="fileName.avi">QueriesAndTools_ApiDB.wmv</attribute>
            <attribute name="fileName.flv">QueriesAndTools_ApiDB.flv</attribute>
@@ -137,7 +137,7 @@
            <attribute name="size">14.9 mb</attribute>
          </row>
  <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">EuPathDB.org</attribute>
            <attribute name="fileName.mov">DownloadResults_ApiDB.mov</attribute>
 <attribute name="fileName.avi">DownloadResults_ApiDB.wmv</attribute>
 <attribute name="fileName.flv">DownloadResults_ApiDB.flv</attribute>
@@ -189,7 +189,7 @@
            <attribute name="size">2.7 mb</attribute>
          </row>
  <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">EuPathDB.org</attribute>
            <attribute name="fileName.mov">ListOfIDs_ApiDB.mov</attribute>
 <attribute name="fileName.avi">ListOfIDs_ApiDB.wmv</attribute>
 <attribute name="fileName.flv">ListOfIDs_ApiDB.flv</attribute>
@@ -232,7 +232,7 @@
            <attribute name="size">5.5 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">ApiDB.org</attribute>
+           <attribute name="projects">EuPathDB.org</attribute>
            <attribute name="fileName.mov">ColumnManagement_ApiDB.mov</attribute>
            <attribute name="fileName.avi">ColumnManagement_ApiDB.wmv</attribute>
            <attribute name="fileName.flv">ColumnManagement_ApiDB.flv</attribute>

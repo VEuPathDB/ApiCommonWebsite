@@ -80,7 +80,7 @@ basefontmapping() {
 # Font mappings for GDD
 #-----------------------
 
-# Default install for ApiDB project. See
+# Default install for EuPathDB project. See
 # basefont.mapping.dist for full example.
 
 base.norm:blue highway free.ttf
