@@ -39,10 +39,13 @@ sub go {
     my $ipaddr  = join("", @{ $cgi->{'ipaddr'} or [$ENV{REMOTE_ADDR}] });
     my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'supportform@apidb.org' });
 
+    my @addCcField = split(/,/, join("", @{ $cgi->{'addCc'} }));
+    if (scalar (@addCcField > 4)) { @addCcField = @addCcField[0..3]; } # max 4 addresses
+    
     my $message = join("", @{ $cgi->{'message'} or [] });
 
     # quick patch to avoid email header injection. Needs review.
-    my $disallowed = '[\]\[\(\)<>|;\^,\/\n\r]';
+    my $disallowed = '[\]\[\(\)|;\^,\/\n\r]';
     $to =~ m/$disallowed/ &&
         die("disallowed character '$&' in To line: '$to'\n");
     $cc =~ m/$disallowed/ &&
@@ -51,12 +54,17 @@ sub go {
         die("disallowed character '$&' in ReplyTo line: '$replyTo'\n");
     $subject =~ m/[\n\r]/ &&
         die("disallowed character '$&' in Subject line: '$subject'\n");
+    for my $addCc (@addCcField) {
+        $addCc =~ m/$disallowed/ &&
+            die("disallowed character '$&' in Cc line: '$addCc'\n");
+    }
 
+    my $addCc = join ',', @addCcField; # cleaned, approved list
     
     # testing mode ($cc instead of help@ email, $to instead of bugzilla's email)
     #$cc = 'mheiges@gmail.com';
     #$to = 'mheiges@uga.edu';
-
+    
     # flag messages having known spam formats
     my $spamcan = ApiCommonWebsite::View::CgiApp::SpamCan->new();
     my $isSpam = $spamcan->tastesLikeSpam($replyTo, $subject, $message, $ipaddr, $browser);
@@ -68,6 +76,7 @@ sub go {
 
     my $metaInfo = ""
         . "ReplyTo: $replyTo" . "\n"
+        . "Cc: $addCc" . "\n"
         . "Privacy preference: $privacy" . "\n"
         . "Browser information: $browser" . "\n"
         . "Referer page: $referer";
@@ -76,7 +85,7 @@ sub go {
 
 # sending email to the user so he/she has a record
     if($cc) {
-      $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $message);
+      $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $message, $addCc);
     } else {
       $cfmMsg = "warning: did not cc user because no email was provided\n";
     }
@@ -128,7 +137,7 @@ sub go {
 sub sendMail { return &_cpanMailSendmail(@_); }
 
 sub _cpanMailSendmail {
-    my ($from, $to, $subject, $replyTo, $metaInfo, $message) = @_;
+    my ($from, $to, $subject, $replyTo, $metaInfo, $message, $addCc) = @_;
 
     my $fromName = ($from eq 'anonymous') ? 
         $MAIL_PROCESSOR_EMAIL : $from;
@@ -136,6 +145,7 @@ sub _cpanMailSendmail {
     my %mail = (From    => "$from <$fromName>",
 		To      => $to,
 		Subject => $subject,
+		Cc => $addCc,
 		'Reply-To'    => $replyTo,
 		Message => "$metaInfo\n\n$message");
 
