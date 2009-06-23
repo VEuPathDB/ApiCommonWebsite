@@ -18,6 +18,7 @@ public class Comment {
     public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
 
     private int commentId;
+    private int userId;
     private String email;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
@@ -164,6 +165,14 @@ public class Comment {
      */
     public void setAccessions(String[] accessions) {
         this.accessions = accessions;
+    }
+
+    public int getUserId() {
+	return userId;
+    }
+
+    public void setUserId(int userId) {
+	this.userId = userId;
     }
 
     /**
