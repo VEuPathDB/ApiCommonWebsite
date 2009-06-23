@@ -126,8 +126,8 @@ public class CommentFactory {
                             + "email, comment_date, comment_target_id, "
                             + "stable_id, conceptual, project_name, "
                             + "project_version, headline, content, "
-                            + "location_string, review_status_id, organism) "
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                            + "location_string, review_status_id, organism, user_id) "
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             long currentMillis = System.currentTimeMillis();
 
@@ -147,6 +147,7 @@ public class CommentFactory {
                     : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
             ps.setString(12, reviewStatus);
             ps.setString(13, comment.getOrganism());
+            ps.setInt(14, comment.getUserId());	    
 
             int result = ps.executeUpdate();
             logger.debug("Inserted comment row: " + result);

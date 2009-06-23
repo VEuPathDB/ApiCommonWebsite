@@ -119,6 +119,7 @@ public class NewCommentAction extends CommentAction {
 
         String locations = cuForm.getLocations();
         String email = user.getEmail().trim().toLowerCase();
+	int userId = user.getUserId();
         String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion();
 
@@ -131,6 +132,7 @@ public class NewCommentAction extends CommentAction {
         comment.setHeadline(headline);
         comment.setOrganism(organism);
         comment.setContent(content);
+	comment.setUserId(userId);
 
         if((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
           int[] targetCategoryIdArray = new int[targetCategoryIds.length];
