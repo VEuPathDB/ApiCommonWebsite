@@ -11,7 +11,7 @@
 
    <record>
        <attribute name="title">Add Step</attribute>
-       <attribute name="image"></attribute>
+       <attribute name="image">strathelp/addstep.jpg</attribute>
        <attribute name="body">
 Running a search places you in the <i>Search Strategy</i> system.  Your search is the first "step" of a new strategy.  To refine your result set, add steps to the strategy as needed.
 <p>
@@ -26,7 +26,7 @@ you can click Add Step to add a step to your strategy
 
    <record>
        <attribute name="title">View prior steps</attribute>
-       <attribute name="image"></attribute>
+       <attribute name="image">strathelp/viewresult.jpg</attribute>
        <attribute name="body">
 To view the results of a prior search or combination, click on a result count in a step box.
        </attribute>
@@ -37,7 +37,7 @@ you can see results of a previous step by clicking on the number in its box
 
    <record>
        <attribute name="title">Step actions menu</attribute>
-       <attribute name="image"></attribute>
+       <attribute name="image">strathelp/adjuststep.jpg</attribute>
        <attribute name="body">
 For a menu of actions/properties for a step's search click on the search name in the step box.
 <p>
@@ -50,7 +50,7 @@ you can get a menu of step actions by clicking on the plus icon, step name or th
 
    <record>
        <attribute name="title">Branched (nested) strategy</attribute>
-       <attribute name="image"></attribute>
+       <attribute name="image">strathelp/nestedstep.jpg</attribute>
        <attribute name="body">
 Simple strategies are linear.  More advanced strategies include branches.  (For example one step may need to union two searches.)  The trick is to "nest" a strategy within a step.
 <p>
