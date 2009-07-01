@@ -1,39 +1,32 @@
 package org.apidb.apicommon.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apidb.apicommon.model.Comment;
-import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.model.jspwrap.UserBean;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.gusdb.wdk.model.WdkModelException;
-
-import org.gusdb.wdk.model.Utilities;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServlet;
-
-import java.security.NoSuchAlgorithmException;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import org.json.JSONException;
-import org.xml.sax.SAXException;
-import java.sql.SQLException;
-
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-
 import org.apache.struts.upload.FormFile;
-
+import org.apidb.apicommon.model.Comment;
 import org.apidb.apicommon.model.UserFile;
 import org.apidb.apicommon.model.UserFileFactory;
+import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.model.Utilities;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.jspwrap.UserBean;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.json.JSONException;
+import org.xml.sax.SAXException;
 
 public class PhenotypeAction extends CommentAction {
 
@@ -60,12 +53,12 @@ public class PhenotypeAction extends CommentAction {
         ActionForward forward = new ActionForward(referer, false);
         // forward.setRedirect(true);
 
-        ArrayList formSet = cuForm.getFormFiles();
+        ArrayList<FormFile> formSet = cuForm.getFormFiles();
         String userUID = user.getSignature().trim();
         ArrayList<String> files = new ArrayList<String>();
 
         for(int i = 0; i < formSet.size(); i++) {
-            FormFile formFile = (FormFile) formSet.get(i);
+            FormFile formFile = formSet.get(i);
             String fileName   = formFile.getFileName();
             if(fileName != null) {
 
