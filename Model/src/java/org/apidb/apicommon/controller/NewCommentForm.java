@@ -5,16 +5,21 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.regex.*; 
+import java.sql.SQLException;
 
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-
 import org.apache.struts.action.ActionForm;
-
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.Globals;
+import org.apache.struts.Globals; 
+
+import javax.servlet.ServletContext; 
+import org.gusdb.wdk.model.Utilities;
+import org.apidb.apicommon.model.CommentFactory;
+import org.apidb.apicommon.model.GeneIdValidator;
 
 public class NewCommentForm extends ActionForm {
 
@@ -43,9 +48,43 @@ public class NewCommentForm extends ActionForm {
     private String associatedStableIds;
     private String contig;
 
+    private static CommentFactory factory = null;
+
     public NewCommentForm() {
-      formFiles = new HashMap();
-      formNotes = new HashMap();
+
+      try {
+        formFiles = new HashMap();
+        formNotes = new HashMap();
+        ServletContext application = getServlet().getServletContext();
+
+        // get the gus_home & project id
+        String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
+        String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+
+        CommentFactory.initialize(gusHome, projectId);
+        factory = CommentFactory.getInstance();
+      }
+      catch(Exception e){
+        System.out.println(e.getMessage());
+      }
+
+    }
+
+    private GeneIdValidator getGeneIdValidator () {
+      try {
+        ServletContext application = getServlet().getServletContext();
+
+        // get the gus_home & project id
+        String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
+        String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+
+        GeneIdValidator validator = new GeneIdValidator(gusHome, projectId);
+        return validator;
+      }
+      catch(Exception e) {
+        System.out.println(e.getMessage());
+        return null;
+      }
     }
 
     /**
@@ -296,7 +335,7 @@ public class NewCommentForm extends ActionForm {
         errors.add(ActionErrors.GLOBAL_ERROR,
           new ActionError("mapped.properties", "No gene name ", "This is probably due to browse session reset. Please go back to that gene page and start it again!"));
         return errors;
-			}
+      }
 
       if ((getHeadline() == null) || (getHeadline().trim().equals(""))) {
         errors.add(ActionErrors.GLOBAL_ERROR,
@@ -308,6 +347,20 @@ public class NewCommentForm extends ActionForm {
         errors.add(ActionErrors.GLOBAL_ERROR,
           new ActionError("mapped.properties", "No content ", "content is required!"));
         return errors;
+      }
+
+      GeneIdValidator validator = getGeneIdValidator();
+      String[] related_ids = Pattern.compile("[\\s,;]").matcher(associatedStableIds).replaceAll(" ").split(" ");
+
+      for(String related_id : related_ids) {
+        if(related_id.trim().equals("")) {
+          continue;
+        }
+
+        if(!validator.checkStableIds(related_id)) {
+          errors.add(ActionErrors.GLOBAL_ERROR,                
+             new ActionError("mapped.properties", "Invalid Gene Identifier", "In Part III, Gene Identifier \"" + related_id + "\" is not valid related gene id! Please correct it and try again."));  
+        } 
       }
 
       Iterator it = formFiles.keySet().iterator();
