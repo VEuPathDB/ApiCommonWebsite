@@ -17,6 +17,8 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.Globals; 
 
 import javax.servlet.ServletContext; 
+import org.gusdb.wdk.model.jspwrap.WdkModelBean; 
+import org.gusdb.wdk.controller.CConstants; 
 import org.gusdb.wdk.model.Utilities;
 import org.apidb.apicommon.model.CommentFactory;
 import org.apidb.apicommon.model.GeneIdValidator;
@@ -78,7 +80,9 @@ public class NewCommentForm extends ActionForm {
         String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
         String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
 
-        GeneIdValidator validator = new GeneIdValidator(gusHome, projectId);
+        WdkModelBean wdkModelBean = (WdkModelBean)application.getAttribute(CConstants.WDK_MODEL_KEY);
+
+        GeneIdValidator validator = new GeneIdValidator(wdkModelBean, gusHome, projectId);
         return validator;
       }
       catch(Exception e) {
