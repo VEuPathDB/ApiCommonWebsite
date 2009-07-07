@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet; 
 import java.sql.SQLException;
 
-import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.query.ColumnType;
@@ -13,13 +13,13 @@ public class GeneIdValidator {
 
     private DBPlatform platform;
 
-    public GeneIdValidator (String gusHome, String projectId) {
-		  try {
-        WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
-				platform = wdkModel.getQueryPlatform();
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
+    public GeneIdValidator (WdkModelBean wdkModelBean, String gusHome, String projectId) {
+      try {
+        //WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
+        platform = wdkModelBean.getModel().getQueryPlatform();
+      } catch(Exception e) {
+        e.printStackTrace();
+      }
     }
 
     public boolean checkStableIds(String sourceId) {
@@ -45,12 +45,12 @@ public class GeneIdValidator {
 
             while (rs.next()) {
                 String id = rs.getString("source_id");
-								return true;
-						}
+                return true;
+            }
         } catch(Exception e) {
-				    e.printStackTrace();
-						return false;
-				}
-				return false;
+            e.printStackTrace();
+            return false;
+        }
+        return false;
     }
 }
