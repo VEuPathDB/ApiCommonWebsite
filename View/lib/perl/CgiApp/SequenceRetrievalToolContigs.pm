@@ -105,7 +105,7 @@ EOSQL
   my $sth = $dbh->prepare($sql);
   foreach my $input (@inputInfo) {
     my $inputId;
-    if ($input =~ /^(\w+\.?\w*)/) {
+    if ($input =~ /^(\w+[\.?\w*]*)/) {
 	$inputId = $1;
 	push(@inputIds, $inputId);
     }
