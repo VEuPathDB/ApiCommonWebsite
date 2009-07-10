@@ -14,13 +14,8 @@
        <attribute name="tag">generalinfo</attribute>
        <attribute name="text">
 <![CDATA[
-TriTrypDB is an integrated genomic and functional genomic database for 
-pathogens of the family Trypanosomatidae, including organism in both 
-Leishmania and Trypanosoma genera. TriTrypDB and its continued 
-development are possible through the collaborative efforts between <a 
-href="http://www.eupathdb.org">EuPathDB</a>, <a href="http://www.genedb.org 
-"> GeneDB </a> and colleagues at the Seattle Biomedical Research 
-Institute (<a href="http://www.sbri.org">SBRI</a>).
+CryptoDB is an integrated genomic and functional genomic database for 
+the parasite Cryptosporidium. CryptoDB integrates whole genome sequence and annotation along with experimental data and environmental isolate sequences provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
 ]]>
 
 </attribute>
@@ -31,13 +26,7 @@ Institute (<a href="http://www.sbri.org">SBRI</a>).
        <attribute name="tag">funding</attribute>
        <attribute name="text">
        <![CDATA[
-Funding for TriTrypDB development and enhanced annotation of 
-kinetoplastid parasites is provided by coordinated grants from the <a 
-href="http://www.gatesfoundation.org/">Bill & Melinda Gates 
-Foundatation</a> and the <a href="http:// 
-www.wellcome.ac.uk/">Wellcome Trust</a>.<br>
-
-TriTrypDB joins the family of pathogen-databases that are housed under 
+CryptoDB is a member of pathogen-databases that are housed under 
 the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
 Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is 
 mainly distributed between the University of Pennsylvania in 
@@ -48,16 +37,15 @@ Georgia.
    </record>
 
    <record>
-       <attribute name="title">Organisms included in TriTrypDB</attribute>
+       <attribute name="title">Organisms included in CryptoDB</attribute>
        <attribute name="tag">organisms</attribute>
        <attribute name="text">
        <![CDATA[
 <ul>
-<li><i>Trypanosoma brucei</i></li>
-<li><i>Trypanosoma cruzi</i></li>
-<li><i>Leishmania major</i></li>
-<li><i>Leishmania infantum</i></li>
-<li><i>Leishmania braziliensis</i></li>
+<li><i>Cryptosporidium parvum</i></li>
+<li><i>Cryptosporidium hominis</i></li>
+<li><i>Cryptosporidium muris</i></li>
+<li>environmental isolate sequences from numerous species</li>
 </ul>
        ]]>
        </attribute>
@@ -69,11 +57,11 @@ Georgia.
        <attribute name="tag">use</attribute>
        <attribute name="text">
        <![CDATA[
-TriTrypDB integrates multiple genomic-scale data types in a manner 
+CryptoDB integrates multiple genomic-scale data types in a manner 
 that enables the database user to computationally ask biologically 
-relevant questions. Data may be accessed by interrogating TriTrypDB 
+relevant questions. Data may be accessed by interrogating CryptoDB 
 using any of the multiple available questions -- Please visit our 
-tutorial and FAQ sections for more information.
+<a href="showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorial</a> section for more information.
 
        ]]>
        </attribute>
@@ -85,10 +73,12 @@ tutorial and FAQ sections for more information.
        <attribute name="tag">citing</attribute>
        <attribute name="text">
        <![CDATA[
-Please use the following URL when referring to TriTrypDB: http://TriTrypDB.org
- <br>
-Also, the following reference can be used to cite EuPathDB resources: 
-publication pmid="17098930"
+When citing CryptoDB itself, please use:
+<br><br>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=16381902">
+CryptoDB: a Cryptosporidium bioinformatics resource update.</a> 2006 Jan 1;34:D419-22. Heiges M, et al.
+
+<br><br>Much of the data in CryptoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PlasmoDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
 
 
        ]]>
@@ -113,7 +103,7 @@ Coming Soon.
        <attribute name="text">
        <![CDATA[
 We are interested in including documents and protocols that are useful   
-for the TriTryp community.  Please send us your suggestions by   
+for the CryptoDB community.  Please send us your suggestions by   
 clicking <a href="help.jsp" target="_blank" onClick="poptastic(this.href); return false;">here</a>.
 
 
