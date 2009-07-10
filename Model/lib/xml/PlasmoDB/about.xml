@@ -14,7 +14,7 @@
        <attribute name="tag">generalinfo</attribute>
        <attribute name="text">
        <![CDATA[
-
+PlasmoDB is a genome database for the genus <i>Plasmodium</i>, a set of single-celled eukaryotic pathogens that cause human and animal diseases, including malaria.  
 
 
        ]]>
@@ -26,9 +26,23 @@
        <attribute name="tag">organisms</attribute>
        <attribute name="text">
        <![CDATA[
+Annotated genomes:
+<ul>
+<li><i>Plasmodium falciparum</i></li>
+<li><i>Plasmodium vivax</i></li>
+<li><i>Plasmodium yoelii</i></li>
+<li><i>Plasmodium berghei</i></li>
+<li><i>Plasmodium chabaudi</i></li>
+<li><i>Plasmodium knowlesi</i></li>
+</ul>
+<br>
 
-
-
+Unannotated genomes:
+<ul>
+<li><i>Plasmodium reichenowi</i></li>
+<li><i>Plasmodium gallinaceum</i></li>
+</ul>
+<br>
        ]]>
        </attribute>
    </record>
@@ -39,7 +53,7 @@
        <attribute name="text">
        <![CDATA[
 
-The current scientific advisory team for PlasmoDB includes Drs John Adams (University of South Florida), Stuart Ralph (University of Melbourne), Akhil Vaidya (Drexel University) and Andy Waters (University of Glasgow).  
+The scientific advisory team for PlasmoDB includes Drs. John Adams (University of South Florida), Stuart Ralph (University of Melbourne), Akhil Vaidya (Drexel University) and Andy Waters (University of Glasgow).  
 
        ]]>
        </attribute>
