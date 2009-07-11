@@ -26,9 +26,9 @@
        <attribute name="tag">organisms</attribute>
        <attribute name="text">
        <![CDATA[
-
-
-
+<ul>
+<li><i>Trichomonas vaginalis</i></li>
+</ul>
        ]]>
        </attribute>
    </record>

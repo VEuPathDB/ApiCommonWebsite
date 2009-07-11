@@ -44,6 +44,20 @@ the prokaryotic / eukaryotic divergence.
    </record>
 
    <record>
+       <attribute name="title">Organisms</attribute>
+       <attribute name="tag">organisms</attribute>
+       <attribute name="text">
+       <![CDATA[
+<ul>
+<li><i>Giardia lamblia</i></li>
+</ul>
+<br>
+
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
        <attribute name="title">Gene Predictions</attribute>
        <attribute name="tag">gene_predictions</attribute>
        <attribute name="text">
