@@ -17,7 +17,38 @@
        </attribute>
     </record>
 -->
-
+<record>
+       <attribute name="headline">
+         <![CDATA[
+					CryptoDB 4.1 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+				15 July 2009 15:00
+       </attribute>
+       <attribute name="tag">
+				crypto41
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+				We are please to announce the release of CryptoDB 4.1
+				<p>
+This release includes new and updated data sets, a new user interface with added functionality and a graphical strategy system for building complex searches.
+<p>
+The new user interface contains many new features including:
+<ul>
+<li>  A new search strategy interface that enables users to more easily construct complex searches.
+<li>  'User Comments' have been updated to enable submission of supporting evidence including pubmed identifiers and images (or other files). Comments may be added to any gene or sequence page, enhancing available annotation. 
+<li>  Files can now be uploaded and provided to the community via the file repository section.
+</ul>
+<p>
+New and updated Data:
+<ul>
+<li> <i>C. parvum</i> KSU-1 normalized sporozoite EST sequences (provided prepublication by Jessica Kissinger).
+</ul>	
+          ]]>
+       </attribute>
+    </record>
  <record>
        <attribute name="headline">
          <![CDATA[
