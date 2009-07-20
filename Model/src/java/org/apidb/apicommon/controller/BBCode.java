@@ -37,7 +37,13 @@ public class BBCode {
     // This pattern does miss some URLs such as www2.foo.tld, but writing it as
     // http://www2.foo.tld
     // makes sure that it gets converted to a clickable URL.
-    private static Pattern urlPattern1 = Pattern.compile("(([a-zA-Z]+://(www\\.)?)|(www\\.))([a-zA-Z0-9]+\\.)+[a-zA-Z]{2,3}");
+
+    //private static Pattern urlPattern1 = Pattern.compile("(([a-zA-Z]+://(www\\.)?)|(www\\.))([a-zA-Z0-9]+\\.)+[a-zA-Z]{2,3}");
+    private static Pattern urlPattern1 = Pattern.compile("(((http(s?)|(ftp))://)\\S+)");
+
+    // the following pattern works for javascript
+    // "/^((((http(s?))|(ftp))\:\/\/)?(www.|[a-zA-Z].)[a-zA-Z0-9\-\.]+\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk)(\:[0-9]+)*(\/($|[a-zA-Z0-9\.\,\;\?\'\\\+&%\$#\=~_\-]+))*$)/g";
+
     private static BBCode bbcodeInstance = null;
 
     public BBCode() {
@@ -89,23 +95,23 @@ public class BBCode {
             str = str.replaceAll(key, replacement);
         }
 
-        // convert all URL like occurences to hyperlinks
+        // Replace all occurrences of pattern in input
         Matcher matcher = urlPattern1.matcher(str);
+        StringBuffer buf = new StringBuffer();
+        boolean found = false;
 
-        for (int start = 0; matcher.find(start);) {
-            String match = matcher.group();
-            start = matcher.end();
+        while ((found = matcher.find())) {
+          // Get the match result
+          String replaceStr = matcher.group();
 
-            String url = match;
-            if (url.indexOf("://") < 0) url = "http://" + match;
+          replaceStr = "<a href='" + replaceStr + "'>" + replaceStr + "</a>";
 
-            String replacement = "<a href=\"" + url + "\">" + match + "</a>";
-            System.out.println(match + " => " + replacement);
-            str = str.replaceFirst(match, replacement);
-
+          // Insert replacement
+          matcher.appendReplacement(buf, replaceStr);
         }
 
-        return str;
+        matcher.appendTail(buf);
+        return buf.toString();
     }
 
     public static void main(String[] args) {
@@ -136,6 +142,5 @@ public class BBCode {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
+    } 
 }
