@@ -27,7 +27,7 @@
         </row>
         <row>
           <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
-          <attribute name="url"><![CDATA[/common/PubCrawler/index.html]]></attribute>
+          <attribute name="url"><![CDATA[/common/PubCrawler/]]></attribute>
         </row>
       </table>
 
