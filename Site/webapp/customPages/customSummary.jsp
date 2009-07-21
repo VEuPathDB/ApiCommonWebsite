@@ -166,17 +166,17 @@ function create_Portal_Record_Url(recordName, projectId, primaryKey, portal_url)
   //var portal_url = "";
   if(portal_url.length == 0){
     if(projectId == 'CryptoDB'){
-      portal_url = "http://www.cryptodb.org/cryptodb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
+      portal_url = "http://old.cryptodb.org/cryptodb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'PlasmoDB'){
-      portal_url = "http://www.plasmodb.org/plasmo/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
+      portal_url = "http://old.plasmodb.org/plasmo/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'ToxoDB'){
-      portal_url = "http://www.toxodb.org/toxo/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
+      portal_url = "http://old.toxodb.org/toxo/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'GiardiaDB'){
-      portal_url = "http://www.giardiadb.org/giardiadb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
+      portal_url = "http://old.giardiadb.org/giardiadb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'TrichDB'){
-      portal_url = "http://www.trichdb.org/trichdb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" +   primaryKey;
+      portal_url = "http://old.trichdb.org/trichdb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" +   primaryKey;
  } else if(projectId == 'TriTrypDB'){
-      portal_url = "http://www.tritrypdb.org/tritrypdb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" +   primaryKey;
+      portal_url = "http://old.tritrypdb.org/tritrypdb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" +   primaryKey;
     } else if(projectId == 'ApiDB'){
       portal_url = "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=nucleotide&cmd=search&term=" + primaryKey; 
     }
