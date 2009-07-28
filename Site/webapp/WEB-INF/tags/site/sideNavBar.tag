@@ -125,12 +125,12 @@
 <tr><c:choose>
         <c:when test="${division == 'metrics'}">
             <td class="bordersSpecial"  align="center">
-                <a href="<c:url value="http://apidb.org/apidb/apidbGeneMetrics.jsp"/>"><div class="smallWhite"><b>GENE METRICS</b></div></a>
+                <a href="<c:url value="http://eupathdb.org/eupathdb/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>"><div class="smallWhite"><b>GENE METRICS</b></div></a>
             </td>
         </c:when>
         <c:otherwise>
             <td class="borders" align="center">
-                <a href="<c:url value="http://apidb.org/apidb/apidbGeneMetrics.jsp"/>" class="headerLink">Gene Metrics</a></td>
+                <a href="<c:url value="http://eupathdb.org/eupathdb/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>" class="headerLink">Gene Metrics</a></td>
         </c:otherwise>
     </c:choose>
 
