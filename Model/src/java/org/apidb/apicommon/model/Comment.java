@@ -73,6 +73,7 @@ public class Comment {
     private int mutantStatus;
     private int mutationType;
     private int mutationMethod;
+    private int mutantExpression;
     private int[] mutantMarkers;
     private int[] mutantReporters;
 
@@ -81,6 +82,7 @@ public class Comment {
     private String mutantTypeName;
     private String mutationMethodName;
     private String mutationDescription;
+    private String mutantExpressionName;
 
     public Comment(String email) {
         this.email = email;
@@ -585,6 +587,14 @@ public class Comment {
         this.mutationMethod = mutationMethod;
     } 
 
+    public int getMutantExpression() {
+        return mutantExpression;
+    }
+
+    public void setMutantExpression(int mutantExpression) {
+        this.mutantExpression = mutantExpression;
+    } 
+
     public int[] getMutantMarkers() {
         return mutantMarkers;
     }
@@ -625,4 +635,11 @@ public class Comment {
         this.mutationDescription = mutationDescription;
     }
 
+    public String getMutantExpressionName() {
+        return mutantExpressionName;
+    }
+
+    public void setMutantExpressionName(String mutantExpressionName) {
+        this.mutantExpressionName = mutantExpressionName;
+    }
 }
