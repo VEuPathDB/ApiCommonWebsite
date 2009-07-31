@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apidb.apicommon.model;
 
 import java.util.ArrayList;
@@ -76,6 +73,14 @@ public class Comment {
     private int mutantStatus;
     private int mutationType;
     private int mutationMethod;
+    private int[] mutantMarkers;
+    private int[] mutantReporters;
+
+    private String[] mutantMarkerNames;
+    private String mutantStatusName;
+    private String mutantTypeName;
+    private String mutationMethodName;
+    private String mutationDescription;
 
     public Comment(String email) {
         this.email = email;
@@ -137,6 +142,27 @@ public class Comment {
         return targetCategoryNames;
     }
 
+    public String[] getMutantMarkerNames() {
+        return mutantMarkerNames;
+    }
+
+    public void setMutantMarkerNames(String[] mutantMarkerNames) {
+        this.mutantMarkerNames = mutantMarkerNames;
+    }
+
+    public String[] addMutantMarkerNames(String[] ids) {
+        mutantMarkerNames = ids;
+        return mutantMarkerNames;
+    }
+
+    public String getMutantStatusName() {
+        return mutantStatusName;
+    }
+
+    public void setMutantStatusName(String mutantStatusName) {
+        this.mutantStatusName = mutantStatusName;
+    }
+
     /**
      * @return Returns the String[] pmIds.
      */
@@ -168,11 +194,11 @@ public class Comment {
     }
 
     public int getUserId() {
-	return userId;
+        return userId;
     }
 
     public void setUserId(int userId) {
-	this.userId = userId;
+        this.userId = userId;
     }
 
     /**
@@ -557,6 +583,46 @@ public class Comment {
 
     public void setMutationMethod(int mutationMethod) {
         this.mutationMethod = mutationMethod;
+    } 
+
+    public int[] getMutantMarkers() {
+        return mutantMarkers;
+    }
+
+    public void setMutantMarkers(int[] mutantMarkers) {
+        this.mutantMarkers = mutantMarkers;
+    }
+
+    public int[] getMutantReporters() {
+        return mutantReporters;
+    }
+
+    public void setMutantReporters(int[] mutantReporters) {
+        this.mutantReporters = mutantReporters;
+    }
+
+    public String getMutantTypeName() {
+        return mutantTypeName;
+    }
+
+    public void setMutantTypeName(String mutantTypeName) {
+        this.mutantTypeName = mutantTypeName;
+    }
+
+    public String getMutationMethodName() {
+        return mutationMethodName;
+    }
+
+    public void setMutationMethodName(String mutationMethodName) {
+        this.mutationMethodName = mutationMethodName;
+    }
+
+    public String getMutationDescription() {
+        return mutationDescription;
+    }
+
+    public void setMutationDescription(String mutationDescription) {
+        this.mutationDescription = mutationDescription;
     }
 
 }
