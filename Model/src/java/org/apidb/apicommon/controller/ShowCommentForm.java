@@ -10,6 +10,7 @@ public class ShowCommentForm extends ActionForm {
     private static final long serialVersionUID = -4308700939338194047L;
     private String stableId;
     private String projectId;
+    private String commentTargetId;
 
     public String getProjectId() {
         return projectId;
@@ -32,5 +33,13 @@ public class ShowCommentForm extends ActionForm {
      */
     public void setStableId(String stableId) {
         this.stableId = stableId;
+    }
+
+    public String getCommentTargetId() {
+        return commentTargetId;
+    }
+
+    public void setCommentTargetId(String commentTargetId) {
+        this.commentTargetId = commentTargetId;
     }
 }
