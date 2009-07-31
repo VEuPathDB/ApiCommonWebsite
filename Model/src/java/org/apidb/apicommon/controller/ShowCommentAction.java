@@ -36,7 +36,7 @@ public class ShowCommentAction extends CommentAction {
         // get the comments for the (project_id, stable_id) tuple
         ShowCommentForm commentForm = (ShowCommentForm) form;
         Comment[] comments = factory.queryComments(null, commentForm
-                .getProjectId(), commentForm.getStableId(), null, null, null);
+                .getProjectId(), commentForm.getStableId(), null, null, null, commentForm.getCommentTargetId());
         
         // set for the forwarding page
         request.setAttribute(COMMENT_LIST_KEY, comments);
