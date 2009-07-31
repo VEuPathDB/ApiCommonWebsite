@@ -4,17 +4,24 @@ import org.apache.struts.action.ActionMapping;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.Serializable;
 
 import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-
+import org.apache.struts.action.ActionErrors; 
 import org.apache.struts.action.ActionForm;
 
+import javax.servlet.ServletContext; 
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.Globals;
+import org.apache.struts.Globals; 
+
+import org.gusdb.wdk.model.jspwrap.WdkModelBean; 
+import org.gusdb.wdk.controller.CConstants; 
+import org.gusdb.wdk.model.Utilities;
+import org.apidb.apicommon.model.CommentFactory;
+import org.apidb.apicommon.model.GeneIdValidator;
 
 public class PhenotypeForm extends ActionForm {
 
@@ -23,9 +30,12 @@ public class PhenotypeForm extends ActionForm {
     private String stableId;
     private String organism;
 
-    private ArrayList<FormFile> formFiles = null;
+    private HashMap<Integer, FormFile> formFiles = null;
+    private HashMap<Integer, String> formNotes = null;
     private FormFile file;
-    private int index;
+    private String notes;
+
+    private static CommentFactory factory = null; 
 
     private String commentTargetId;
     private String externalDbName;
@@ -38,6 +48,7 @@ public class PhenotypeForm extends ActionForm {
     private String mutationMethod;
     private String mutationMethodDescription;
     private String[] marker;
+    private String[] reporter;
     private String phenotypeCategory;
     private String phenotypeDescription;
     private String expression;
@@ -46,8 +57,22 @@ public class PhenotypeForm extends ActionForm {
     private String mutationType;
 
     public PhenotypeForm() {
-      formFiles = new ArrayList<FormFile>();
-      index = 0;
+
+      try {
+        formFiles = new HashMap();
+        formNotes = new HashMap();
+        ServletContext application = getServlet().getServletContext();
+
+        // get the gus_home & project id
+        String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
+        String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+
+        CommentFactory.initialize(gusHome, projectId);
+        factory = CommentFactory.getInstance();
+      }
+      catch(Exception e){
+        System.out.println(e.getMessage());
+      } 
     }
 
     public String getMutationType() {
@@ -88,8 +113,7 @@ public class PhenotypeForm extends ActionForm {
 
     public void setPhenotypeDescription(String phenotypeDescription) {
         this.phenotypeDescription = phenotypeDescription;
-    }
-
+    } 
 
     public String getPhenotypeCategory() {
         return phenotypeCategory;
@@ -97,10 +121,7 @@ public class PhenotypeForm extends ActionForm {
 
     public void setPhenotypeCategory(String phenotypeCategory) {
         this.phenotypeCategory = phenotypeCategory;
-    }
-
-
-
+    } 
 
     public String[] getMarker() {
         return marker;
@@ -110,7 +131,13 @@ public class PhenotypeForm extends ActionForm {
         this.marker = marker;
     }
 
+    public String[] getReporter() {
+        return reporter;
+    }
 
+    public void setReporter(String[] reporter) {
+        this.reporter = reporter;
+    } 
 
     public String getMutationMethod() {
         return mutationMethod;
@@ -134,8 +161,7 @@ public class PhenotypeForm extends ActionForm {
 
     public void setBackground(String background) {
         this.background = background;
-    }
-
+    } 
 
     public String getHeadline() {
         return headline;
@@ -237,20 +263,36 @@ public class PhenotypeForm extends ActionForm {
 
     public void setFile(int indx, FormFile file) {
       this.file = file;
-      setFormFiles(file);
-      index++;
+      setFormFiles(indx, file);
     }
 
     public FormFile getFile() {
       return file;
     }
 
-    public void setFormFiles(FormFile file) {
-        this.formFiles.add(index, file);
+    public void setFormFiles(int indx, FormFile file) {
+        this.formFiles.put(indx, file);
     }
 
-    public ArrayList<FormFile> getFormFiles() {
+    public HashMap getFormFiles() {
       return formFiles;
+    } 
+
+    public void setNotes(int indx, String notes) {
+      this.notes = notes;
+      setFormNotes(indx, notes);
+    }
+
+    public String getNotes() {
+      return notes;
+    }
+
+    public void setFormNotes(int indx, String notes) {
+        this.formNotes.put(indx, notes);
+    }
+
+    public HashMap getFormNotes() {
+      return formNotes;
     } 
 
     /** the mapped.properties strings should go into a properties file?? **/    
@@ -283,13 +325,12 @@ public class PhenotypeForm extends ActionForm {
         }
 
         return errors; 
-    }
-
+    } 
 
     public void reset(ActionMapping mapping, HttpServletRequest request) {
       file = null;
       formFiles.clear();
-      index = 0;
+      formNotes.clear();
 
       headline = null;
       commentTarget = null;
@@ -298,5 +339,6 @@ public class PhenotypeForm extends ActionForm {
       pmIds =null;
       accessions =null;
 
+      reporter = null; 
     }
 }

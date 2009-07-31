@@ -1,6 +1,7 @@
 package org.apidb.apicommon.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,39 +44,29 @@ public class PhenotypeAction extends CommentAction {
         int index = referer.lastIndexOf("/");
         referer = referer.substring(index);
 
+        ActionForward forward = new ActionForward(referer, false);
+        // forward.setRedirect(true);
+
         WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
                 CConstants.WDK_MODEL_KEY);
         UserBean user = (UserBean) request.getSession().getAttribute(
                 CConstants.WDK_USER_KEY);
 
-        PhenotypeForm cuForm = (PhenotypeForm)form;
-
-        ActionForward forward = new ActionForward(referer, false);
-        // forward.setRedirect(true);
-
-        ArrayList<FormFile> formSet = cuForm.getFormFiles();
-        String userUID = user.getSignature().trim();
-        ArrayList<String> files = new ArrayList<String>();
-
-        for(int i = 0; i < formSet.size(); i++) {
-            FormFile formFile = formSet.get(i);
-            String fileName   = formFile.getFileName();
-            if(fileName != null) {
-
-              int fileSize       = formFile.getFileSize();
-              byte[] fileData    = formFile.getFileData();
-
-              UserFile userFile = new UserFile(userUID);
-              userFile.setFileName(fileName); 
-              userFile.setFileData(fileData);
-              userFile.setFileSize(fileSize);
-
-              getUserFileFactory().addUserFile(userFile);
-              files.add(fileName);
-            }
+        // if the user is null or is a guest, fail
+        if (user == null || user.isGuest()) {
+            // This is the case where the session times out while the user is on
+            // the
+            // comment form page, or someone maliciously trying to post to the
+            // comment form
+            // action directly. Return to the add comments page, where it is
+            // handled correctly.
+            return forward;
         }
 
+        PhenotypeForm cuForm = (PhenotypeForm)form; 
+
         String email = user.getEmail().trim().toLowerCase();
+        int userId = user.getUserId();
         String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion();
         String stableId = cuForm.getStableId();
@@ -92,6 +83,8 @@ public class PhenotypeAction extends CommentAction {
         String mutationMethod = cuForm.getMutationMethod();
         String mutationMethodDescription = cuForm.getMutationMethodDescription();
         String[] markers = (String[])cuForm.getMarker();
+        String[] reporters = (String[])cuForm.getReporter();
+
         String phenotypeCategory = cuForm.getPhenotypeCategory();
         String expression = cuForm.getExpression();
 
@@ -119,6 +112,7 @@ public class PhenotypeAction extends CommentAction {
         comment.setMutantStatus(Integer.parseInt(mutantStatus));  
         comment.setMutationType(Integer.parseInt(mutationType));  
         comment.setMutationMethod(Integer.parseInt(mutationMethod));  
+        comment.setUserId(userId);
 
         comment.addExternalDatabase(extDbName, extDbVersion);
 
@@ -130,16 +124,66 @@ public class PhenotypeAction extends CommentAction {
         if((markers != null) && (markers.length > 0)) {
           int[] markersArray = new int[markers.length];
           for(int i=0; i < markers.length; i++) {
-             markersArray[i] = Integer.valueOf(markersArray[i]).intValue();
+             markersArray[i] = Integer.valueOf(markers[i]).intValue();
           }
+          comment.setMutantMarkers(markersArray);
+        }
+
+        if((reporters != null) && (reporters.length > 0)) {
+          int[] reportersArray = new int[reporters.length];
+          for(int i=0; i < reporters.length; i++) {
+             reportersArray[i] = Integer.valueOf(reporters[i]).intValue();
+          }
+          comment.setMutantReporters(reportersArray);
+        } 
+
+        HashMap<Integer, Object> formSet = cuForm.getFormFiles();
+        HashMap<Integer, String> noteSet = cuForm.getFormNotes();
+
+        String userUID = user.getSignature().trim();
+
+        ArrayList<String> files = new ArrayList<String>();
+
+        for(Integer i : formSet.keySet()) {
+
+            FormFile formFile = (FormFile) formSet.get(i); 
+
+            if((formFile.getFileName() == null) || (formFile.getFileName().length() == 0)) continue; 
+
+            String notes = noteSet.get(i).trim(); 
+            String contentType = formFile.getContentType();
+            String fileName   = formFile.getFileName();
+            int fileSize       = formFile.getFileSize();
+            byte[] fileData    = formFile.getFileData();
+
+            UserFile userFile = new UserFile(userUID); 
+            userFile.setFileName(fileName); 
+            userFile.setFileData(fileData);
+            userFile.setContentType(contentType);
+            userFile.setFileSize(fileSize);
+            userFile.setEmail(email);
+            userFile.setUserUID(userUID);
+            userFile.setTitle(headline);
+            userFile.setNotes(notes);
+            userFile.setProjectName(projectName);
+            userFile.setProjectVersion(projectVersion);
+
+            getUserFileFactory().addUserFile(userFile);
+
+            int fileId = userFile.getUserFileId();
+            String fileStr = fileId + "|" + fileName + "|" + notes;
+
+            files.add(fileStr);
         }
 
         if(files.size() > 0) {
+
           String[] f = new String[files.size()];
           comment.setFiles(files.toArray(f));
-        }
+        } 
 
         // add the comment
+
         getCommentFactory().addComment(comment);
 
         request.setAttribute("submitStatus", "success");
