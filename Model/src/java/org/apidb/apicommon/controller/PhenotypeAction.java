@@ -86,7 +86,7 @@ public class PhenotypeAction extends CommentAction {
         String[] reporters = (String[])cuForm.getReporter();
 
         String phenotypeCategory = cuForm.getPhenotypeCategory();
-        String expression = cuForm.getExpression();
+        String mutantExpression = cuForm.getExpression();
 
         StringBuffer body = new StringBuffer();
         body.append("Headline: " + headline + "\n");
@@ -112,6 +112,7 @@ public class PhenotypeAction extends CommentAction {
         comment.setMutantStatus(Integer.parseInt(mutantStatus));  
         comment.setMutationType(Integer.parseInt(mutationType));  
         comment.setMutationMethod(Integer.parseInt(mutationMethod));  
+        comment.setMutantExpression(Integer.parseInt(mutantExpression));  
         comment.setUserId(userId);
 
         comment.addExternalDatabase(extDbName, extDbVersion);
