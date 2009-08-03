@@ -49,7 +49,7 @@ public class PhenotypeForm extends ActionForm {
     private String mutationMethodDescription;
     private String[] marker;
     private String[] reporter;
-    private String phenotypeCategory;
+    private String[] phenotypeCategory;
     private String phenotypeDescription;
     private String expression;
     private String mutantStatus;
@@ -115,11 +115,11 @@ public class PhenotypeForm extends ActionForm {
         this.phenotypeDescription = phenotypeDescription;
     } 
 
-    public String getPhenotypeCategory() {
-        return phenotypeCategory;
+    public String[] getPhenotypeCategory() {
+        return this.phenotypeCategory;
     }
 
-    public void setPhenotypeCategory(String phenotypeCategory) {
+    public void setPhenotypeCategory(String[] phenotypeCategory) {
         this.phenotypeCategory = phenotypeCategory;
     } 
 

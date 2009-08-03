@@ -84,8 +84,8 @@ public class PhenotypeAction extends CommentAction {
         String mutationMethodDescription = cuForm.getMutationMethodDescription();
         String[] markers = (String[])cuForm.getMarker();
         String[] reporters = (String[])cuForm.getReporter();
+        String[] phenotypeCategory = (String[])cuForm.getPhenotypeCategory();
 
-        String phenotypeCategory = cuForm.getPhenotypeCategory();
         String mutantExpression = cuForm.getExpression();
 
         StringBuffer body = new StringBuffer();
@@ -136,6 +136,14 @@ public class PhenotypeAction extends CommentAction {
              reportersArray[i] = Integer.valueOf(reporters[i]).intValue();
           }
           comment.setMutantReporters(reportersArray);
+        } 
+
+        if((phenotypeCategory != null) && (phenotypeCategory.length > 0)) {
+          int[] categoryArray = new int[phenotypeCategory.length];
+          for(int i=0; i < phenotypeCategory.length; i++) {
+             categoryArray[i] = Integer.valueOf(phenotypeCategory[i]).intValue();
+          }
+          comment.setPhenotypeCategory(categoryArray);
         } 
 
         HashMap<Integer, Object> formSet = cuForm.getFormFiles();
