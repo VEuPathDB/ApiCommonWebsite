@@ -189,6 +189,7 @@ public class CommentFactory {
                             comment.getMutationType(),
                             comment.getMutationMethod(),
                             comment.getMutantExpression(),
+                            comment.getPhenotypeLoc(),
                             comment.getContent()
                             );
               saveMutantMarkers(commentId, comment.getMutantMarkers());
@@ -252,6 +253,7 @@ public class CommentFactory {
                                int mutationType,
                                int mutationMethod,
                                int mutantExpression,
+                               int phenotypeLoc,
                                String phenotypeDescription)
             throws SQLException, WdkModelException {
 
@@ -263,8 +265,8 @@ public class CommentFactory {
         sql.append("(phenotype_id, comment_id, ");
         sql.append("background, mutant_status_id, mutant_type_id, ");
         sql.append("mutant_method_id, mutant_expression_id, ");
-        sql.append("phenotype_description ");
-        sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        sql.append("phenotype_loc_id, phenotype_description ");
+        sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
@@ -277,7 +279,8 @@ public class CommentFactory {
              statement.setInt(5, mutationType);
              statement.setInt(6, mutationMethod);
              statement.setInt(7, mutantExpression);
-             statement.setString(8, phenotypeDescription);
+             statement.setInt(8, phenotypeLoc);
+             statement.setString(9, phenotypeDescription);
              statement.execute();
         } finally {
             SqlUtils.closeStatement(statement);
@@ -811,6 +814,7 @@ public class CommentFactory {
         sql.append("d.mutant_status, ");
         sql.append("e.mutant_expression, ");
         sql.append("f.mutant_category_name, ");
+        sql.append("g.phenotype_loc, ");
         sql.append("b.mutant_type ");
         sql.append(" FROM ");
         sql.append(config.getCommentSchema() + "Phenotype a, ");
@@ -824,12 +828,13 @@ public class CommentFactory {
         sql.append(config.getCommentSchema() + "MutantCategory mc, "); 
         sql.append(config.getCommentSchema() + "PhenotypeMutantCategory pmc ");
         sql.append("WHERE mc.mutant_category_id = pmc.mutant_category_id "); 
-        sql.append("GROUP BY pmc.comment_id) f "); 
+        sql.append("GROUP BY pmc.comment_id) f, "); 
+        sql.append(config.getCommentSchema() + "PhenotypeLoc g ");
         sql.append("WHERE a.mutant_type_id = b.mutant_type_id ");
         sql.append("AND a.mutant_method_id = c.mutant_method_id(+) ");
         sql.append("AND a.mutant_status_id = d.mutant_status_id(+) ");
         sql.append("AND a.mutant_expression_id = e.mutant_expression_id(+) ");
-        sql.append("AND a.comment_id = f.comment_id(+) ");
+        sql.append("AND a.phenotype_loc_id = g.phenotype_loc_id(+) ");
         sql.append("AND a.comment_id = ?");
 
         ResultSet rs = null;
@@ -848,6 +853,7 @@ public class CommentFactory {
               comment.setMutationDescription(rs.getString("mutant_description"));
               comment.setMutantExpressionName(rs.getString("mutant_expression"));
               comment.setMutantCategoryName(rs.getString("mutant_category_name"));
+              comment.setPhenotypeLocName(rs.getString("phenotype_loc"));
             }
 
         } finally {
