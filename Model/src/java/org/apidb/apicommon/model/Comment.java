@@ -74,6 +74,7 @@ public class Comment {
     private int mutationType;
     private int mutationMethod;
     private int mutantExpression;
+    private int phenotypeLoc;
     private int[] mutantMarkers;
     private int[] mutantReporters;
     private int[] phenotypeCategory;
@@ -86,6 +87,7 @@ public class Comment {
     private String mutationDescription;
     private String mutantExpressionName;
     private String mutantCategoryName;
+    private String phenotypeLocName;
 
     public Comment(String email) {
         this.email = email;
@@ -596,6 +598,22 @@ public class Comment {
 
     public void setMutationMethod(int mutationMethod) {
         this.mutationMethod = mutationMethod;
+    } 
+
+    public int getPhenotypeLoc() {
+        return phenotypeLoc;
+    }
+
+    public void setPhenotypeLoc(int phenotypeLoc) {
+        this.phenotypeLoc = phenotypeLoc;
+    } 
+		
+    public String getPhenotypeLocName() {
+        return phenotypeLocName;
+    }
+
+    public void setPhenotypeLocName(String phenotypeLocName) {
+        this.phenotypeLocName = phenotypeLocName;
     } 
 
     public int getMutantExpression() {
