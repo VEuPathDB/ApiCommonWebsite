@@ -254,6 +254,8 @@ if ($isVis_b{hist} == 1) {
     d.max = d.max.default;
   }
 
+  par(mar       = c(10,4, 2, 0) + 0.1, xpd=TRUE);
+
   c <- barplot(the.avg,
                names.arg = the.tags,
                col       = the.colors,
