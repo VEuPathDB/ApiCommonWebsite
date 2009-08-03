@@ -55,6 +55,7 @@ public class PhenotypeForm extends ActionForm {
     private String mutantStatus;
     private String mutantMethod;
     private String mutationType;
+    private String phenotypeLoc;
 
     public PhenotypeForm() {
 
@@ -81,6 +82,14 @@ public class PhenotypeForm extends ActionForm {
 
     public void setMutationType(String mutationType) {
         this.mutationType = mutationType;
+    }
+
+    public String getPhenotypeLoc() {
+        return phenotypeLoc;
+    }
+
+    public void setPhenotypeLoc(String phenotypeLoc) {
+        this.phenotypeLoc = phenotypeLoc;
     }
 
     public String getMutantMethod() {
