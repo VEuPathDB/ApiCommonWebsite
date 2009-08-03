@@ -82,6 +82,7 @@ public class PhenotypeAction extends CommentAction {
         String mutationType = cuForm.getMutationType();
         String mutationMethod = cuForm.getMutationMethod();
         String mutationMethodDescription = cuForm.getMutationMethodDescription();
+        String phenotypeLoc = cuForm.getPhenotypeLoc();
         String[] markers = (String[])cuForm.getMarker();
         String[] reporters = (String[])cuForm.getReporter();
         String[] phenotypeCategory = (String[])cuForm.getPhenotypeCategory();
@@ -113,6 +114,7 @@ public class PhenotypeAction extends CommentAction {
         comment.setMutationType(Integer.parseInt(mutationType));  
         comment.setMutationMethod(Integer.parseInt(mutationMethod));  
         comment.setMutantExpression(Integer.parseInt(mutantExpression));  
+        comment.setPhenotypeLoc(Integer.parseInt(mutantExpression));  
         comment.setUserId(userId);
 
         comment.addExternalDatabase(extDbName, extDbVersion);
