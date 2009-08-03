@@ -193,6 +193,7 @@ public class CommentFactory {
                             );
               saveMutantMarkers(commentId, comment.getMutantMarkers());
               saveMutantReporters(commentId, comment.getMutantReporters());
+              savePhenotypeCategory(commentId, comment.getPhenotypeCategory());
             }
 
             // get a new comment in order to fetch the user info
@@ -262,7 +263,7 @@ public class CommentFactory {
         sql.append("(phenotype_id, comment_id, ");
         sql.append("background, mutant_status_id, mutant_type_id, ");
         sql.append("mutant_method_id, mutant_expression_id, ");
-				sql.append("phenotype_description ");
+        sql.append("phenotype_description ");
         sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
@@ -332,6 +333,32 @@ public class CommentFactory {
             SqlUtils.closeStatement(statement);
         }
     }
+
+    private void savePhenotypeCategory(int commentId, int[] phenotypeCategory)
+            throws SQLException, WdkModelException {
+        String commentSchema = config.getCommentSchema();
+      
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "PhenotypeMutantCategory ");
+        sql.append("(comment_mutant_category_id, comment_id, ");
+        sql.append("mutant_category_id ");
+        sql.append(") VALUES (?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                        sql.toString());
+      
+            for (int cat : phenotypeCategory) {
+                statement.setInt(1, platform.getNextId(commentSchema, "phenotypeMutantCategory"));
+                statement.setInt(2, commentId);
+                statement.setInt(3, cat);
+                statement.execute();
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
 
 
     private void saveCommentTargetCategory(int commentId, int[] targetCategoryIds)
@@ -639,6 +666,7 @@ public class CommentFactory {
             // phenotype data
             if(rs.getString("comment_target_id").equals("phenotype")){
               loadMutantMarkerNames(commentId, comment);
+              loadMutantReporterNames(commentId, comment);
               loadPhenotype(commentId, comment);
             }
 
@@ -745,6 +773,35 @@ public class CommentFactory {
         }
     }
 
+    private void loadMutantReporterNames(int commentId, Comment comment)
+            throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT b.mutant_reporter ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "PhenotypeMutantReporter a, ");
+        sql.append(config.getCommentSchema() + "MutantReporter b ");
+        sql.append("WHERE a.mutant_reporter_id = b.mutant_reporter_id AND a.comment_id = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String mutant_reporter = rs.getString("mutant_reporter");
+                ids.add(mutant_reporter);
+            }
+            if(ids.size() > 0) {
+              comment.setMutantReporterNames(ids.toArray(new String[ids.size()]));
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    } 
+
     private void loadPhenotype(int commentId, Comment comment)
             throws SQLException {
         StringBuffer sql = new StringBuffer();
@@ -753,17 +810,26 @@ public class CommentFactory {
         sql.append("c.mutant_method, ");
         sql.append("d.mutant_status, ");
         sql.append("e.mutant_expression, ");
+        sql.append("f.mutant_category_name, ");
         sql.append("b.mutant_type ");
         sql.append(" FROM ");
         sql.append(config.getCommentSchema() + "Phenotype a, ");
         sql.append(config.getCommentSchema() + "MutantType b, ");
         sql.append(config.getCommentSchema() + "MutantMethod c, ");
         sql.append(config.getCommentSchema() + "MutantStatus d, ");
-        sql.append(config.getCommentSchema() + "MutantExpression e ");
+        sql.append(config.getCommentSchema() + "MutantExpression e, ");
+        sql.append("(SELECT pmc.comment_id, ");
+        sql.append("apidb.tab_to_string(cast(collect(mc.mutant_category) as apidb.varchartab),'; ') as mutant_category_name ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "MutantCategory mc, "); 
+        sql.append(config.getCommentSchema() + "PhenotypeMutantCategory pmc ");
+        sql.append("WHERE mc.mutant_category_id = pmc.mutant_category_id "); 
+        sql.append("GROUP BY pmc.comment_id) f "); 
         sql.append("WHERE a.mutant_type_id = b.mutant_type_id ");
         sql.append("AND a.mutant_method_id = c.mutant_method_id(+) ");
         sql.append("AND a.mutant_status_id = d.mutant_status_id(+) ");
         sql.append("AND a.mutant_expression_id = e.mutant_expression_id(+) ");
+        sql.append("AND a.comment_id = f.comment_id(+) ");
         sql.append("AND a.comment_id = ?");
 
         ResultSet rs = null;
@@ -781,6 +847,7 @@ public class CommentFactory {
               comment.setMutationMethodName(rs.getString("mutant_method"));
               comment.setMutationDescription(rs.getString("mutant_description"));
               comment.setMutantExpressionName(rs.getString("mutant_expression"));
+              comment.setMutantCategoryName(rs.getString("mutant_category_name"));
             }
 
         } finally {
