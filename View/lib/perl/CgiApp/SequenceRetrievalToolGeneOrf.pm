@@ -207,7 +207,7 @@ sub handleNonGenomic {
 
   my $sql;
   my $type = $self->{type};
-  my $site = ($self->getModel() =~ /^api/i)? $sqlQueries : $componentSql;
+  my $site = ($self->getModel() =~ /^eupath/i)? $sqlQueries : $componentSql;
 
   my $inputIds = $self->{inputIds};
   my $ids;
@@ -346,7 +346,7 @@ EOSQL
 
   if ($self->{geneOrOrf} eq "gene") {
       $sql = $site->{geneGenomicSql};
-      $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /^api/i);
+      $ids = $self->mapGeneFeatureSourceIds($ids, $dbh) unless($self->getModel() =~ /^eupath/i);
   } else {
       $sql = $site->{orfGenomicSql};
   }
@@ -410,3 +410,4 @@ sub error {
 
 
 1;
+
