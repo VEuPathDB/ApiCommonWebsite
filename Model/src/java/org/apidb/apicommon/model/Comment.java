@@ -76,13 +76,16 @@ public class Comment {
     private int mutantExpression;
     private int[] mutantMarkers;
     private int[] mutantReporters;
+    private int[] phenotypeCategory;
 
     private String[] mutantMarkerNames;
+    private String[] mutantReporterNames;
     private String mutantStatusName;
     private String mutantTypeName;
     private String mutationMethodName;
     private String mutationDescription;
     private String mutantExpressionName;
+    private String mutantCategoryName;
 
     public Comment(String email) {
         this.email = email;
@@ -156,6 +159,14 @@ public class Comment {
         mutantMarkerNames = ids;
         return mutantMarkerNames;
     }
+
+    public String[] getMutantReporterNames() {
+        return mutantReporterNames;
+    }
+
+    public void setMutantReporterNames(String[] mutantReporterNames) {
+        this.mutantReporterNames = mutantReporterNames;
+    } 
 
     public String getMutantStatusName() {
         return mutantStatusName;
@@ -595,6 +606,14 @@ public class Comment {
         this.mutantExpression = mutantExpression;
     } 
 
+    public String getMutantCategoryName() {
+        return mutantCategoryName;
+    }
+
+    public void setMutantCategoryName(String mutantCategoryName) {
+        this.mutantCategoryName = mutantCategoryName;
+    } 
+
     public int[] getMutantMarkers() {
         return mutantMarkers;
     }
@@ -609,7 +628,15 @@ public class Comment {
 
     public void setMutantReporters(int[] mutantReporters) {
         this.mutantReporters = mutantReporters;
+    } 
+
+    public int[] getPhenotypeCategory() {
+        return this.phenotypeCategory;
     }
+
+    public void setPhenotypeCategory(int[] phenotypeCategory) {
+        this.phenotypeCategory = phenotypeCategory;
+    } 
 
     public String getMutantTypeName() {
         return mutantTypeName;
