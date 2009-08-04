@@ -53,7 +53,8 @@ Additional features:
 <ul>
 <li>  Linkouts are now provided from genes with mutant information in the <a href"http://pberghei.eu">Genetically Modified Rodent Malaria Parasites database</a>.
 <li>  Linkouts are provided to Gene Ontology annotation predictions at <a href" http://www.atgc-montpellier.fr/PlasmoDraft/"> Plasmodraft</a>. (<a href="http://www.ncbi.nlm.nih.gov/pubmed/18925948">Br&#233;h&#233;lin et. al.</a>).
-</ul>
+<p>
+The previous version of PlasmoDB may still be accessed <a href='http://old.plasmodb.org'>here</a>.</ul>
 
 
 <u>
