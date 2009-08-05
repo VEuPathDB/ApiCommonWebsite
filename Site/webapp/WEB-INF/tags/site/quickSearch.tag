@@ -58,13 +58,13 @@
 
 
 <div id="quick-search" session-id="${sessionId}">
-         <table width="450" border="0" cellpadding="3">
+         <table width="460" border="0" cellpadding="3">
            <tr>
              <td><div align="right">
                <html:form method="get" action="/processQuestionSetsFlat.do">
           		<label><b><a href="<c:url value='/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag'/>" title="Click to input several Gene IDs">Gene ID:</a></b></label>
          		<input type="hidden" name="questionFullName" value="GeneQuestions.GeneBySingleLocusTag"/>
-	  			<input type="text" class="search-box" name="myProp(${geneIdParam.name})" value="${geneIdParam.default}" size="15"/>
+	  			<input type="text" class="search-box" name="myProp(${geneIdParam.name})" value="${geneIdParam.default}" />  <!-- size defined in class -->
 	  			<input type="hidden" name="questionSubmit" value="Get Answer"/>
 	  			<input name="go" value="go" type="image" src="/assets/images/mag_glass.png" alt="Click to search" width="23" height="23" class="img_align_middle" />
           	   </html:form>
