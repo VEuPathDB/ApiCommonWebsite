@@ -3,8 +3,6 @@
  */
 package org.apidb.apicommon.model;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,18 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
-import org.json.JSONException;
-import org.xml.sax.SAXException;
 
 /**
  * @author xingao
@@ -38,37 +30,38 @@ public class CommentFactory {
     private DBPlatform platform;
     private CommentConfig config;
 
-    public static void initialize(String gusHome, String projectId)
-            throws NoSuchAlgorithmException, WdkModelException,
-            ParserConfigurationException, TransformerFactoryConfigurationError,
-            TransformerException, IOException, SAXException, SQLException,
-            JSONException, WdkUserException, InstantiationException,
-            IllegalAccessException, ClassNotFoundException {
-        WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
-
-        // parse and load the configuration
-        CommentConfigParser parser = new CommentConfigParser(gusHome);
-        CommentConfig config = parser.parseConfig(projectId);
-
-        // create a platform object
-        DBPlatform platform = (DBPlatform) Class.forName(
-                config.getPlatformClass()).newInstance();
-        platform.initialize(wdkModel, "Comment", config);
-
-        // create a factory instance
-        factory = new CommentFactory(platform, config);
+    public static CommentFactory getInstance(String gusHome, String projectId) {
+        if (factory == null) initialize(gusHome, projectId);
+        return factory;
     }
 
-    public static CommentFactory getInstance() throws WdkModelException {
-        if (factory == null)
-            throw new WdkModelException(
-                    "Please initialize the factory properly.");
-        return factory;
+    private static void initialize(String gusHome, String projectId) {
+        try {
+            WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
+
+            // parse and load the configuration
+            CommentConfigParser parser = new CommentConfigParser(gusHome);
+            CommentConfig config = parser.parseConfig(projectId);
+
+            // create a platform object
+            DBPlatform platform = (DBPlatform) Class.forName(
+                    config.getPlatformClass()).newInstance();
+            platform.initialize(wdkModel, "Comment", config);
+
+            // create a factory instance
+            factory = new CommentFactory(platform, config);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     private CommentFactory(DBPlatform platform, CommentConfig config) {
         this.platform = platform;
         this.config = config;
+    }
+
+    public DBPlatform getCommentPlatform() {
+        return platform;
     }
 
     public CommentTarget getCommentTarget(String internalValue)
@@ -98,11 +91,7 @@ public class CommentFactory {
             throw new WdkModelException(ex);
         } finally {
             // close the connection
-            try {
-                SqlUtils.closeResultSet(rs);
-            } catch (SQLException ex) {
-                throw new WdkModelException(ex);
-            }
+            SqlUtils.closeResultSet(rs);
         }
         return target;
     }
@@ -118,11 +107,14 @@ public class CommentFactory {
             int[] targetCategoryIds = comment.getTargetCategoryIds();
             String[] pmIds = comment.getPmIds();
             String[] accessions = comment.getAccessions();
-            String[] files = comment.getFiles(); 
+            String[] files = comment.getFiles();
             String[] associatedStableIds = comment.getAssociatedStableIds();
 
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                           "INSERT INTO " + commentSchema + "comments (comment_id, "
+            ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(),
+                    "INSERT INTO "
+                            + commentSchema
+                            + "comments (comment_id, "
                             + "email, comment_date, comment_target_id, "
                             + "stable_id, conceptual, project_name, "
                             + "project_version, headline, content, "
@@ -147,7 +139,7 @@ public class CommentFactory {
                     : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
             ps.setString(12, reviewStatus);
             ps.setString(13, comment.getOrganism());
-            ps.setInt(14, comment.getUserId());      
+            ps.setInt(14, comment.getUserId());
 
             int result = ps.executeUpdate();
             logger.debug("Inserted comment row: " + result);
@@ -162,39 +154,36 @@ public class CommentFactory {
             // then add the eternal database information
             saveExternalDbs(commentId, comment);
 
-            if((targetCategoryIds != null) && (targetCategoryIds.length > 0)){
-              saveCommentTargetCategory(commentId, targetCategoryIds);
-            }                                               
+            if ((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
+                saveCommentTargetCategory(commentId, targetCategoryIds);
+            }
 
-            if((pmIds != null) && (pmIds.length > 0)){
-              savePmIds(commentId, pmIds);
-            }                                               
+            if ((pmIds != null) && (pmIds.length > 0)) {
+                savePmIds(commentId, pmIds);
+            }
 
-            if((accessions != null) && (accessions.length > 0)){
-              saveAccessions(commentId, accessions);
-            }                                               
+            if ((accessions != null) && (accessions.length > 0)) {
+                saveAccessions(commentId, accessions);
+            }
 
-            if((files != null) && (files.length > 0)){
-              saveFiles(commentId, files);
-            }                                               
+            if ((files != null) && (files.length > 0)) {
+                saveFiles(commentId, files);
+            }
 
-            if((associatedStableIds != null) && (associatedStableIds.length > 0)){
-              saveAssociatedStableIds(commentId, associatedStableIds);
-            }                                               
+            if ((associatedStableIds != null)
+                    && (associatedStableIds.length > 0)) {
+                saveAssociatedStableIds(commentId, associatedStableIds);
+            }
 
-            if(comment.getCommentTarget().equalsIgnoreCase("phenotype")) {
-              savePhenotype(commentId, 
-                            comment.getBackground(), 
-                            comment.getMutantStatus(),
-                            comment.getMutationType(),
-                            comment.getMutationMethod(),
-                            comment.getMutantExpression(),
-                            comment.getPhenotypeLoc(),
-                            comment.getContent()
-                            );
-              saveMutantMarkers(commentId, comment.getMutantMarkers());
-              saveMutantReporters(commentId, comment.getMutantReporters());
-              savePhenotypeCategory(commentId, comment.getPhenotypeCategory());
+            if (comment.getCommentTarget().equalsIgnoreCase("phenotype")) {
+                savePhenotype(commentId, comment.getBackground(),
+                        comment.getMutantStatus(), comment.getMutationType(),
+                        comment.getMutationMethod(),
+                        comment.getMutantExpression(),
+                        comment.getPhenotypeLoc(), comment.getContent());
+                saveMutantMarkers(commentId, comment.getMutantMarkers());
+                saveMutantReporters(commentId, comment.getMutantReporters());
+                savePhenotypeCategory(commentId, comment.getPhenotypeCategory());
             }
 
             // get a new comment in order to fetch the user info
@@ -206,11 +195,7 @@ public class CommentFactory {
             ex.printStackTrace();
             throw new WdkModelException(ex);
         } finally {
-            try {
-                SqlUtils.closeStatement(ps);
-            } catch (SQLException ex) {
-                throw new WdkModelException(ex);
-            }
+            SqlUtils.closeStatement(ps);
         }
 
         // print connection status
@@ -247,14 +232,9 @@ public class CommentFactory {
         }
     }
 
-    private void savePhenotype(int commentId, 
-                               String background,
-                               int mutantStatus,
-                               int mutationType,
-                               int mutationMethod,
-                               int mutantExpression,
-                               int phenotypeLoc,
-                               String phenotypeDescription)
+    private void savePhenotype(int commentId, String background,
+            int mutantStatus, int mutationType, int mutationMethod,
+            int mutantExpression, int phenotypeLoc, String phenotypeDescription)
             throws SQLException, WdkModelException {
 
         String commentSchema = config.getCommentSchema();
@@ -270,18 +250,18 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
-             statement.setInt(1, platform.getNextId(commentSchema, "phenotype"));
-             statement.setInt(2, commentId);
-             statement.setString(3, background);
-             statement.setInt(4, mutantStatus);
-             statement.setInt(5, mutationType);
-             statement.setInt(6, mutationMethod);
-             statement.setInt(7, mutantExpression);
-             statement.setInt(8, phenotypeLoc);
-             statement.setString(9, phenotypeDescription);
-             statement.execute();
+                    sql.toString());
+
+            statement.setInt(1, platform.getNextId(commentSchema, "phenotype"));
+            statement.setInt(2, commentId);
+            statement.setString(3, background);
+            statement.setInt(4, mutantStatus);
+            statement.setInt(5, mutationType);
+            statement.setInt(6, mutationMethod);
+            statement.setInt(7, mutantExpression);
+            statement.setInt(8, phenotypeLoc);
+            statement.setString(9, phenotypeDescription);
+            statement.execute();
         } finally {
             SqlUtils.closeStatement(statement);
         }
@@ -290,7 +270,7 @@ public class CommentFactory {
     private void saveMutantMarkers(int commentId, int[] mutantMarkers)
             throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
-      
+
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "PhenotypeMutantMarker ");
         sql.append("(comment_mutant_marker_id, comment_id, ");
@@ -299,10 +279,11 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (int mutantMarker : mutantMarkers) {
-                statement.setInt(1, platform.getNextId(commentSchema, "commentMutantMarker"));
+                statement.setInt(1, platform.getNextId(commentSchema,
+                        "commentMutantMarker"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, mutantMarker);
                 statement.execute();
@@ -315,7 +296,7 @@ public class CommentFactory {
     private void saveMutantReporters(int commentId, int[] mutantReporters)
             throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
-      
+
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "PhenotypeMutantReporter ");
         sql.append("(comment_mutant_reporter_id, comment_id, ");
@@ -324,10 +305,11 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (int mutantReporter : mutantReporters) {
-                statement.setInt(1, platform.getNextId(commentSchema, "commentMutantReporter"));
+                statement.setInt(1, platform.getNextId(commentSchema,
+                        "commentMutantReporter"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, mutantReporter);
                 statement.execute();
@@ -340,7 +322,7 @@ public class CommentFactory {
     private void savePhenotypeCategory(int commentId, int[] phenotypeCategory)
             throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
-      
+
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "PhenotypeMutantCategory ");
         sql.append("(comment_mutant_category_id, comment_id, ");
@@ -349,10 +331,11 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (int cat : phenotypeCategory) {
-                statement.setInt(1, platform.getNextId(commentSchema, "phenotypeMutantCategory"));
+                statement.setInt(1, platform.getNextId(commentSchema,
+                        "phenotypeMutantCategory"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, cat);
                 statement.execute();
@@ -362,12 +345,10 @@ public class CommentFactory {
         }
     }
 
-
-
-    private void saveCommentTargetCategory(int commentId, int[] targetCategoryIds)
-            throws SQLException, WdkModelException {
+    private void saveCommentTargetCategory(int commentId,
+            int[] targetCategoryIds) throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
-      
+
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "CommentTargetCategory ");
@@ -377,10 +358,11 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (int targetCategoryId : targetCategoryIds) {
-                statement.setInt(1, platform.getNextId(commentSchema, "commentTargetCategory"));
+                statement.setInt(1, platform.getNextId(commentSchema,
+                        "commentTargetCategory"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, targetCategoryId);
                 statement.execute();
@@ -390,11 +372,10 @@ public class CommentFactory {
         }
     }
 
-    private void savePmIds(int commentId, String[] pmIds)
-            throws SQLException, WdkModelException {
+    private void savePmIds(int commentId, String[] pmIds) throws SQLException,
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
-        int commentPmId = platform.getNextId(commentSchema, "commentReference");
-      
+
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "CommentReference ");
@@ -404,11 +385,13 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (String pmId : pmIds) {
-                if((pmId != null ) && (pmId.trim().length() != 0)) {
-                    statement.setInt(1, platform.getNextId(commentSchema, "commentReference"));
+                if ((pmId != null) && (pmId.trim().length() != 0)) {
+                    int commentPmId = platform.getNextId(commentSchema,
+                            "commentReference");
+                    statement.setInt(1, commentPmId);
                     statement.setString(2, pmId);
                     statement.setString(3, "pubmed");
                     statement.setInt(4, commentId);
@@ -423,8 +406,7 @@ public class CommentFactory {
     private void saveAccessions(int commentId, String[] accessions)
             throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
-        int commentPmId = platform.getNextId(commentSchema, "commentReference");
-      
+
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "CommentReference ");
@@ -434,11 +416,13 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (String accession : accessions) {
-                if((accession != null ) && (accession.trim().length() != 0)) {
-                    statement.setInt(1, platform.getNextId(commentSchema, "commentReference"));
+                if ((accession != null) && (accession.trim().length() != 0)) {
+                    int commentPmId = platform.getNextId(commentSchema,
+                            "commentReference");
+                    statement.setInt(1, commentPmId);
                     statement.setString(2, accession);
                     statement.setString(3, "genbank");
                     statement.setInt(4, commentId);
@@ -450,8 +434,8 @@ public class CommentFactory {
         }
     }
 
-    private void saveFiles(int commentId, String[] files)
-            throws SQLException, WdkModelException {
+    private void saveFiles(int commentId, String[] files) throws SQLException,
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -463,10 +447,10 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (String file : files) {
-                if(file == null ) continue; 
+                if (file == null) continue;
                 String[] str = file.split("\\|");
                 statement.setInt(1, Integer.parseInt(str[0]));
                 statement.setString(2, str[1]);
@@ -479,11 +463,11 @@ public class CommentFactory {
         }
     }
 
-    private void saveAssociatedStableIds(int commentId, String[] associatedStableIds)
-            throws SQLException, WdkModelException {
+    private void saveAssociatedStableIds(int commentId,
+            String[] associatedStableIds) throws SQLException,
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
-        int stableId = platform.getNextId(commentSchema, "commentStableId");
-      
+
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "CommentStableId ");
@@ -493,11 +477,14 @@ public class CommentFactory {
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
-                        sql.toString());
-      
+                    sql.toString());
+
             for (String associatedStableId : associatedStableIds) {
-                if((associatedStableId != null ) && (associatedStableId.trim().length() != 0)) {
-                    statement.setInt(1, platform.getNextId(commentSchema, "commentStableId"));
+                if ((associatedStableId != null)
+                        && (associatedStableId.trim().length() != 0)) {
+                    int stableId = platform.getNextId(commentSchema,
+                            "commentStableId");
+                    statement.setInt(1, stableId);
                     statement.setString(2, associatedStableId);
                     statement.setInt(3, commentId);
                     statement.execute();
@@ -506,8 +493,7 @@ public class CommentFactory {
         } finally {
             SqlUtils.closeStatement(statement);
         }
-     }
-
+    }
 
     /**
      * For the first release, this method hard-code the external database name
@@ -600,7 +586,7 @@ public class CommentFactory {
             SqlUtils.closeStatement(psInsertDb);
             SqlUtils.closeStatement(psInsertLink);
         }
-    } 
+    }
 
     public Comment getComment(int commentId) throws WdkModelException {
         StringBuffer sql = new StringBuffer();
@@ -667,10 +653,10 @@ public class CommentFactory {
             loadTargetCategoryNames(commentId, comment);
 
             // phenotype data
-            if(rs.getString("comment_target_id").equals("phenotype")){
-              loadMutantMarkerNames(commentId, comment);
-              loadMutantReporterNames(commentId, comment);
-              loadPhenotype(commentId, comment);
+            if (rs.getString("comment_target_id").equals("phenotype")) {
+                loadMutantMarkerNames(commentId, comment);
+                loadMutantReporterNames(commentId, comment);
+                loadPhenotype(commentId, comment);
             }
 
             return comment;
@@ -678,19 +664,15 @@ public class CommentFactory {
             ex.printStackTrace();
             throw new WdkModelException(ex);
         } finally {
-            try {
-                SqlUtils.closeResultSet(rs);
-            } catch (SQLException ex) {
-                throw new WdkModelException(ex);
-            }
+            SqlUtils.closeResultSet(rs);
 
             // print connection status
             printStatus();
         }
     }
 
-    private void loadReference(int commentId, Comment comment, String databaseName)
-            throws SQLException {
+    private void loadReference(int commentId, Comment comment,
+            String databaseName) throws SQLException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT source_id ");
         sql.append(" FROM ");
@@ -710,8 +692,9 @@ public class CommentFactory {
                 String sourceId = rs.getString("source_id");
                 ids.add(sourceId);
             }
-            if(ids.size() > 0) {
-              comment.addReference(ids.toArray(new String[ids.size()]), databaseName);
+            if (ids.size() > 0) {
+                comment.addReference(ids.toArray(new String[ids.size()]),
+                        databaseName);
             }
         } finally {
             SqlUtils.closeResultSet(rs);
@@ -739,8 +722,8 @@ public class CommentFactory {
                 String category = rs.getString("category");
                 ids.add(category);
             }
-            if(ids.size() > 0) {
-              comment.addTargetCategoryNames(ids.toArray(new String[ids.size()]));
+            if (ids.size() > 0) {
+                comment.addTargetCategoryNames(ids.toArray(new String[ids.size()]));
             }
         } finally {
             SqlUtils.closeResultSet(rs);
@@ -768,8 +751,8 @@ public class CommentFactory {
                 String mutant_marker = rs.getString("mutant_marker");
                 ids.add(mutant_marker);
             }
-            if(ids.size() > 0) {
-              comment.addMutantMarkerNames(ids.toArray(new String[ids.size()]));
+            if (ids.size() > 0) {
+                comment.addMutantMarkerNames(ids.toArray(new String[ids.size()]));
             }
         } finally {
             SqlUtils.closeResultSet(rs);
@@ -797,13 +780,13 @@ public class CommentFactory {
                 String mutant_reporter = rs.getString("mutant_reporter");
                 ids.add(mutant_reporter);
             }
-            if(ids.size() > 0) {
-              comment.setMutantReporterNames(ids.toArray(new String[ids.size()]));
+            if (ids.size() > 0) {
+                comment.setMutantReporterNames(ids.toArray(new String[ids.size()]));
             }
         } finally {
             SqlUtils.closeResultSet(rs);
         }
-    } 
+    }
 
     private void loadPhenotype(int commentId, Comment comment)
             throws SQLException {
@@ -825,10 +808,10 @@ public class CommentFactory {
         sql.append("(SELECT pmc.comment_id, ");
         sql.append("apidb.tab_to_string(cast(collect(mc.mutant_category) as apidb.varchartab),'; ') as mutant_category_name ");
         sql.append(" FROM ");
-        sql.append(config.getCommentSchema() + "MutantCategory mc, "); 
+        sql.append(config.getCommentSchema() + "MutantCategory mc, ");
         sql.append(config.getCommentSchema() + "PhenotypeMutantCategory pmc ");
-        sql.append("WHERE mc.mutant_category_id = pmc.mutant_category_id "); 
-        sql.append("GROUP BY pmc.comment_id) f, "); 
+        sql.append("WHERE mc.mutant_category_id = pmc.mutant_category_id ");
+        sql.append("GROUP BY pmc.comment_id) f, ");
         sql.append(config.getCommentSchema() + "PhenotypeLoc g ");
         sql.append("WHERE a.mutant_type_id = b.mutant_type_id ");
         sql.append("AND a.mutant_method_id = c.mutant_method_id(+) ");
@@ -845,15 +828,15 @@ public class CommentFactory {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-              
-              comment.setBackground(rs.getString("background"));
-              comment.setMutantTypeName(rs.getString("mutant_type"));
-              comment.setMutantStatusName(rs.getString("mutant_status"));
-              comment.setMutationMethodName(rs.getString("mutant_method"));
-              comment.setMutationDescription(rs.getString("mutant_description"));
-              comment.setMutantExpressionName(rs.getString("mutant_expression"));
-              comment.setMutantCategoryName(rs.getString("mutant_category_name"));
-              comment.setPhenotypeLocName(rs.getString("phenotype_loc"));
+
+                comment.setBackground(rs.getString("background"));
+                comment.setMutantTypeName(rs.getString("mutant_type"));
+                comment.setMutantStatusName(rs.getString("mutant_status"));
+                comment.setMutationMethodName(rs.getString("mutant_method"));
+                comment.setMutationDescription(rs.getString("mutant_description"));
+                comment.setMutantExpressionName(rs.getString("mutant_expression"));
+                comment.setMutantCategoryName(rs.getString("mutant_category_name"));
+                comment.setPhenotypeLocName(rs.getString("phenotype_loc"));
             }
 
         } finally {
@@ -861,10 +844,7 @@ public class CommentFactory {
         }
     }
 
-
-
-    private void loadFiles(int commentId, Comment comment)
-            throws SQLException {
+    private void loadFiles(int commentId, Comment comment) throws SQLException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT file_id, name, notes ");
         sql.append(" FROM ");
@@ -885,8 +865,8 @@ public class CommentFactory {
                 String notes = rs.getString("notes");
                 ids.add(file_id + "|" + name + "|" + notes);
             }
-            if(ids.size() > 0) {
-              comment.addFiles(ids.toArray(new String[ids.size()]));
+            if (ids.size() > 0) {
+                comment.addFiles(ids.toArray(new String[ids.size()]));
             }
         } finally {
             SqlUtils.closeResultSet(rs);
@@ -913,8 +893,8 @@ public class CommentFactory {
                 String stable_id = rs.getString("stable_id");
                 ids.add(stable_id);
             }
-            if(ids.size() > 0) {
-              comment.addAssociatedStableIds(ids.toArray(new String[ids.size()]));
+            if (ids.size() > 0) {
+                comment.addAssociatedStableIds(ids.toArray(new String[ids.size()]));
             }
         } finally {
             SqlUtils.closeResultSet(rs);
@@ -1048,11 +1028,7 @@ public class CommentFactory {
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         } finally {
-            try {
-                SqlUtils.closeResultSet(rs);
-            } catch (SQLException ex) {
-                throw new WdkModelException(ex);
-            }
+            SqlUtils.closeResultSet(rs);
 
             // print connection status
             printStatus();
@@ -1095,11 +1071,7 @@ public class CommentFactory {
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         } finally {
-            try {
-                SqlUtils.closeResultSet(rs);
-            } catch (SQLException ex) {
-                throw new WdkModelException(ex);
-            }
+            SqlUtils.closeResultSet(rs);
 
             // print connection status
             printStatus();

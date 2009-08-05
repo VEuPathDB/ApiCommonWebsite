@@ -3,7 +3,7 @@
  */
 package org.apidb.apicommon.controller;
 
-import java.util.Arrays;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -67,7 +67,7 @@ public class ProcessAddCommentAction extends CommentAction {
         }
 
         String commentTarget = request.getParameter("commentTargetId");
-        String[] targetCategoryIds = (String[])request.getParameterValues("targetCategory");
+        String[] targetCategoryIds = (String[]) request.getParameterValues("targetCategory");
         String pmIdStr = request.getParameter("pmids");
         String accessionStr = request.getParameter("accessions");
 
@@ -101,22 +101,22 @@ public class ProcessAddCommentAction extends CommentAction {
         comment.setOrganism(organism);
         comment.setContent(content);
 
-        if((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
-          int[] targetCategoryIdArray = new int[targetCategoryIds.length];
-          for(int i=0; i < targetCategoryIds.length; i++) {
-             targetCategoryIdArray[i] = Integer.valueOf(targetCategoryIds[i]).intValue();
-          }
-          comment.setTargetCategoryIds(targetCategoryIdArray);
+        if ((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
+            int[] targetCategoryIdArray = new int[targetCategoryIds.length];
+            for (int i = 0; i < targetCategoryIds.length; i++) {
+                targetCategoryIdArray[i] = Integer.valueOf(targetCategoryIds[i]).intValue();
+            }
+            comment.setTargetCategoryIds(targetCategoryIdArray);
         }
 
-        if((pmIdStr != null) && (pmIdStr.trim().length() != 0)) {
-          String[] pmIds = pmIdStr.replaceAll(",", " ").split(" ");
-          comment.setPmIds(pmIds);
+        if ((pmIdStr != null) && (pmIdStr.trim().length() != 0)) {
+            String[] pmIds = pmIdStr.replaceAll(",", " ").split(" ");
+            comment.setPmIds(pmIds);
         }
 
-        if((accessionStr != null) && (accessionStr.trim().length() != 0)) {
-          String[] accessions = accessionStr.replaceAll(",", " ").split(" ");
-          comment.setAccessions(accessions);
+        if ((accessionStr != null) && (accessionStr.trim().length() != 0)) {
+            String[] accessions = accessionStr.replaceAll(",", " ").split(" ");
+            comment.setAccessions(accessions);
         }
 
         try {
@@ -131,7 +131,8 @@ public class ProcessAddCommentAction extends CommentAction {
         comment.addExternalDatabase(extDbName, extDbVersion);
 
         // add the comment
-        getCommentFactory().addComment(comment);
+        ServletContext context = servlet.getServletContext();
+        CommentActionUtility.getCommentFactory(context).addComment(comment);
 
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");

@@ -66,9 +66,8 @@ public class UserFileDownloadAction extends DownloadAction {
     }
 
     protected File getFile(String fname) throws Exception {
-        
-        CommentFactory.initialize(gusHome, projectId);
-        CommentFactory factory = CommentFactory.getInstance();
+        ServletContext context = servlet.getServletContext();
+        CommentFactory factory = CommentActionUtility.getCommentFactory(context);
         CommentConfig commentConfig = factory.getCommentConfig();
         
         String uploadPath = commentConfig.getUserFileUploadDir();

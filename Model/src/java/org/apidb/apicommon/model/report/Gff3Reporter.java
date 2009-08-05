@@ -224,7 +224,8 @@ public class Gff3Reporter extends Reporter {
             sqlInsert.append(", ").append(column);
         }
         sqlInsert.append(") VALUES (");
-        sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression("apidb", "wdkTable"));
+        sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression(
+                "apidb", "wdkTable"));
         sqlInsert.append(", ");
         sqlInsert.append("?, ?, ?");
         for (int i = 0; i < pkColumns.length; i++) {
@@ -308,12 +309,8 @@ public class Gff3Reporter extends Reporter {
                 }
             }
         } finally {
-            try {
-                SqlUtils.closeStatement(psQuery);
-                SqlUtils.closeStatement(psInsert);
-            } catch (SQLException ex) {
-                throw new WdkModelException(ex);
-            }
+            SqlUtils.closeStatement(psQuery);
+            SqlUtils.closeStatement(psInsert);
         }
     }
 
@@ -459,15 +456,16 @@ public class Gff3Reporter extends Reporter {
 
         // construct insert sql
         StringBuffer sqlInsert = new StringBuffer("INSERT INTO ");
-	sqlInsert.append(tableCache).append(" (wdk_table_id, ");
+        sqlInsert.append(tableCache).append(" (wdk_table_id, ");
         sqlInsert.append("table_name, row_count, content");
         for (String column : pkColumns) {
             sqlInsert.append(", ").append(column);
         }
-	sqlInsert.append(") VALUES (");
-	sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression("apidb", "wdkTable"));
-	sqlInsert.append(", ");
-	sqlInsert.append("?, ?, ?");
+        sqlInsert.append(") VALUES (");
+        sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression(
+                "apidb", "wdkTable"));
+        sqlInsert.append(", ");
+        sqlInsert.append("?, ?, ?");
         for (int i = 0; i < pkColumns.length; i++) {
             sqlInsert.append(", ?");
         }
@@ -541,8 +539,8 @@ public class Gff3Reporter extends Reporter {
                                 if (tableCache != null && !hasCached) {
                                     psInsert.setString(1, transcriptName);
                                     psInsert.setInt(2, 1);
-                                    platform.setClobData(psInsert, 3,
-                                            sequence, false);
+                                    platform.setClobData(psInsert, 3, sequence,
+                                            false);
                                     for (int index = 0; index < pkColumns.length; index++) {
                                         Object value = pkValues.get(pkColumns[index]);
                                         psInsert.setObject(index + 4, value);

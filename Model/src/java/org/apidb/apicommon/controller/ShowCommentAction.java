@@ -31,30 +31,30 @@ public class ShowCommentAction extends CommentAction {
         ServletContext application = getServlet().getServletContext();
 
         // get the factory
-        CommentFactory factory = getCommentFactory();
+        ServletContext context = servlet.getServletContext();
+        CommentFactory factory = CommentActionUtility.getCommentFactory(context);
 
         // get the comments for the (project_id, stable_id) tuple
         ShowCommentForm commentForm = (ShowCommentForm) form;
-        Comment[] comments = factory.queryComments(null, commentForm
-                .getProjectId(), commentForm.getStableId(), null, null, null, commentForm.getCommentTargetId());
-        
+        Comment[] comments = factory.queryComments(null,
+                commentForm.getProjectId(), commentForm.getStableId(), null,
+                null, null, commentForm.getCommentTargetId());
+
         // set for the forwarding page
         request.setAttribute(COMMENT_LIST_KEY, comments);
         request.setAttribute(STABLE_ID_KEY, commentForm.getStableId());
         request.setAttribute(PROJECT_ID_KEY, commentForm.getProjectId());
-        
+
         // construct url
-        String customViewDir = (String) application
-                .getAttribute(CConstants.WDK_CUSTOMVIEWDIR_KEY);
+        String customViewDir = (String) application.getAttribute(CConstants.WDK_CUSTOMVIEWDIR_KEY);
         String commentPage = customViewDir + File.separator
                 + CUSTOM_COMMENT_PAGE;
 
         // check if custom comment page exist; if not, use the default one
-        if (!ApplicationInitListener
-                .resourceExists(commentPage, application)) {
+        if (!ApplicationInitListener.resourceExists(commentPage, application)) {
             commentPage = File.separator + DEFAULT_COMMENT_PAGE;
         }
-        
+
         // redirect to the show comments page
         return new ActionForward(commentPage, false);
     }
