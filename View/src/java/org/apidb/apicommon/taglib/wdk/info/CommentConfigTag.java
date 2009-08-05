@@ -28,6 +28,7 @@ import org.apidb.apicommon.model.Comment;
 import org.apidb.apicommon.model.CommentFactory;
 import org.apidb.apicommon.model.CommentConfig;
 import org.apidb.apicommon.controller.CommentAction;
+import org.apidb.apicommon.controller.CommentActionUtility;
 
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
@@ -67,18 +68,7 @@ public class CommentConfigTag extends WdkTagBase {
       Derived from org.apidb.apicommon.controller.CommentAction
     */
     private CommentFactory getCommentFactory() throws Exception {
-        factory = null;
-        try {
-            factory = CommentFactory.getInstance();
-        } catch (WdkModelException ex) {
-            ServletContext application = getApplication();
-            String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
-            String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
-
-            CommentFactory.initialize(gusHome, projectId);
-            factory = CommentFactory.getInstance();
-        }
-        return factory;
+        return CommentActionUtility.getCommentFactory(getApplication());
     }
     
     public Map getProps() {
