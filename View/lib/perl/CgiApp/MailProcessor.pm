@@ -40,7 +40,7 @@ sub go {
     my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'supportform@apidb.org' });
 
     my @addCcField = split(/,/, join("", @{ $cgi->{'addCc'} }));
-    if (scalar (@addCcField > 4)) { @addCcField = @addCcField[0..3]; } # max 4 addresses
+    if (scalar (@addCcField > 4)) { @addCcField = @addCcField[0..9]; } # max 10 addresses
     
     my $message = join("", @{ $cgi->{'message'} or [] });
 
