@@ -1,41 +1,34 @@
 package org.apidb.apicommon.controller;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.regex.*;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apidb.apicommon.model.Comment;
-import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.model.jspwrap.UserBean;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.gusdb.wdk.model.WdkModelException;
-
-import org.gusdb.wdk.model.Utilities;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServlet;
-
-import java.security.NoSuchAlgorithmException;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import org.json.JSONException;
-import org.xml.sax.SAXException;
-import java.sql.SQLException;
-
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-
 import org.apache.struts.upload.FormFile;
-
+import org.apidb.apicommon.model.Comment;
 import org.apidb.apicommon.model.UserFile;
 import org.apidb.apicommon.model.UserFileFactory;
+import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.model.Utilities;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.jspwrap.UserBean;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.json.JSONException;
+import org.xml.sax.SAXException;
 
 public class NewCommentAction extends CommentAction {
 
@@ -169,8 +162,8 @@ public class NewCommentAction extends CommentAction {
         comment.addExternalDatabase(extDbName, extDbVersion);
 
 
-        HashMap<Integer, Object> formSet = cuForm.getFormFiles();
-        HashMap<Integer, String> noteSet = cuForm.getFormNotes();
+        Map<Integer, FormFile> formSet = cuForm.getFormFiles();
+        Map<Integer, String> noteSet = cuForm.getFormNotes();
 
         String userUID = user.getSignature().trim();
 
@@ -178,7 +171,7 @@ public class NewCommentAction extends CommentAction {
 
         for(Integer i : formSet.keySet()) {
 
-            FormFile formFile = (FormFile) formSet.get(i);
+            FormFile formFile = formSet.get(i);
 
             if(formFile == null) continue;
 
@@ -216,7 +209,8 @@ public class NewCommentAction extends CommentAction {
         }
 
         // add the comment
-        getCommentFactory().addComment(comment);
+        ServletContext context = servlet.getServletContext();
+        CommentActionUtility.getCommentFactory(context).addComment(comment);
 
         String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "#" + comment.getCommentId(); 

@@ -98,9 +98,7 @@ public class BBCode {
         // Replace all occurrences of pattern in input
         Matcher matcher = urlPattern1.matcher(str);
         StringBuffer buf = new StringBuffer();
-        boolean found = false;
-
-        while ((found = matcher.find())) {
+        while (matcher.find()) {
           // Get the match result
           String replaceStr = matcher.group();
 
