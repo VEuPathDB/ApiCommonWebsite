@@ -45,14 +45,14 @@ New and updated Data:
 <li>  <i>P. vivax</i> microarray from patient samples (Westenberger and Winzeler, unpublished).
 <li>  <i>P. chabaudi</i> new 8X assembly and reannotation (Pathogen Sequencing Unit at the Wellcome Trust Sanger Institute, unpublished).
 <li>  <i>P. yoelii</i> published gene calls appear as provisional genes in the genome browser (<a href="http://www.ncbi.nlm.nih.gov/pubmed/18586738">Vaughan et. al.</a>).
-<li>  <i>P. yoelii<i/> oocyst and salivary gland microarray data (<a href="http://www.ncbi.nlm.nih.gov/pubmed/18270564">Zhou et. al.</a>).
+<li>  <i>P. yoelii</i> oocyst and salivary gland microarray data (<a href="http://www.ncbi.nlm.nih.gov/pubmed/18270564">Zhou et. al.</a>).
 <li>  Isolate data from GenBank is now integrated and searchable.
 </ul>
 <p>
 Additional features:
 <ul>
-<li>  Linkouts are now provided from genes with mutant information in the <a href"http://pberghei.eu">Genetically Modified Rodent Malaria Parasites database</a>.
-<li>  Linkouts are provided to Gene Ontology annotation predictions at <a href" http://www.atgc-montpellier.fr/PlasmoDraft/"> Plasmodraft</a>. (<a href="http://www.ncbi.nlm.nih.gov/pubmed/18925948">Br&#233;h&#233;lin et. al.</a>).
+<li>  Linkouts are now provided from genes with mutant information in the <a href="http://pberghei.eu">Genetically Modified Rodent Malaria Parasites database</a>.
+<li>  Linkouts are provided to Gene Ontology annotation predictions at <a href="http://www.atgc-montpellier.fr/PlasmoDraft/">Plasmodraft</a>. (<a href="http://www.ncbi.nlm.nih.gov/pubmed/18925948">Br&#233;h&#233;lin et. al.</a>).
 </ul>
 <p>
 The previous version of PlasmoDB may still be accessed <a href='http://old.plasmodb.org'>here</a>.
