@@ -78,23 +78,28 @@ public class PhenotypeAction extends CommentAction {
         String background = cuForm.getBackground();
         String mutationType = cuForm.getMutationType();
         String mutationMethod = cuForm.getMutationMethod();
-        // String mutationMethodDescription =
-        // cuForm.getMutationMethodDescription();
-        // String phenotypeLoc = cuForm.getPhenotypeLoc();
+        String mutationMethodDesc = cuForm.getMutationMethodDescription();
+        String phenotypeLoc = cuForm.getPhenotypeLoc();
+        String mutantExpression = cuForm.getExpression();
         String[] markers = (String[]) cuForm.getMarker();
         String[] reporters = (String[]) cuForm.getReporter();
         String[] phenotypeCategory = (String[]) cuForm.getPhenotypeCategory();
-
-        String mutantExpression = cuForm.getExpression();
 
         StringBuffer body = new StringBuffer();
         body.append("Headline: " + headline + "\n");
         body.append("Target: " + commentTarget + "\n");
         body.append("Source_Id: " + stableId + "\n");
-        body.append("Comment: " + content + "\n");
+        body.append("Organism: " + organism + "\n");
+        body.append("Mutant Status: " + mutantStatus + "\n");
+        body.append("Genetic Background: " + background + "\n");
+        body.append("Mutant Type: " + mutationType + "\n");
+        body.append("Mutation Method: " + mutationMethod + "\n");
+        body.append("Mutation Method Description: " + mutationMethodDesc + "\n");
+        body.append("Mutant Expression: " + mutantExpression + "\n");
+        body.append("Phenotype Tested in: " + phenotypeLoc + "\n");
+        body.append("Phenotype Description: " + content + "\n");
         body.append("PMID: " + pmIdStr + "\n");
         body.append("Email: " + email + "\n");
-        body.append("Organism: " + organism + "\n");
         body.append("DB Name: " + extDbName + "\n");
         body.append("DB Version: " + extDbVersion + "\n");
 
