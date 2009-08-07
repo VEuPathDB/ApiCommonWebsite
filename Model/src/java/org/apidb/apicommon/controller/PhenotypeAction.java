@@ -39,6 +39,7 @@ public class PhenotypeAction extends CommentAction {
         if (referer == null) referer = request.getHeader("referer");
 
         int index = referer.lastIndexOf("/");
+        String host = referer.substring(0, index);
         referer = referer.substring(index);
 
         ActionForward forward = new ActionForward(referer, false);
@@ -83,25 +84,7 @@ public class PhenotypeAction extends CommentAction {
         String mutantExpression = cuForm.getExpression();
         String[] markers = (String[]) cuForm.getMarker();
         String[] reporters = (String[]) cuForm.getReporter();
-        String[] phenotypeCategory = (String[]) cuForm.getPhenotypeCategory();
-
-        StringBuffer body = new StringBuffer();
-        body.append("Headline: " + headline + "\n");
-        body.append("Target: " + commentTarget + "\n");
-        body.append("Source_Id: " + stableId + "\n");
-        body.append("Organism: " + organism + "\n");
-        body.append("Mutant Status: " + mutantStatus + "\n");
-        body.append("Genetic Background: " + background + "\n");
-        body.append("Mutant Type: " + mutationType + "\n");
-        body.append("Mutation Method: " + mutationMethod + "\n");
-        body.append("Mutation Method Description: " + mutationMethodDesc + "\n");
-        body.append("Mutant Expression: " + mutantExpression + "\n");
-        body.append("Phenotype Tested in: " + phenotypeLoc + "\n");
-        body.append("Phenotype Description: " + content + "\n");
-        body.append("PMID: " + pmIdStr + "\n");
-        body.append("Email: " + email + "\n");
-        body.append("DB Name: " + extDbName + "\n");
-        body.append("DB Version: " + extDbVersion + "\n");
+        String[] phenotypeCategory = (String[]) cuForm.getPhenotypeCategory(); 
 
         // create a comment instance
         Comment comment = new Comment(email);
@@ -200,6 +183,34 @@ public class PhenotypeAction extends CommentAction {
         // add the comment
         ServletContext context = servlet.getServletContext();
         CommentActionUtility.getCommentFactory(context).addComment(comment);
+
+        String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+        int commentId = comment.getCommentId();
+        String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "&commentTargetId=" + commentTarget + "#" + commentId; 
+
+        Comment c = CommentActionUtility.getCommentFactory(context).getComment(commentId);
+
+        StringBuffer body = new StringBuffer();
+        body.append("Thanks for your pheontype comment on " + stableId + "!\n");
+        body.append("Comment Link: " + link + "\n\n");
+        body.append("-------------------------------------------------------\n"); 
+        body.append("Headline: " + headline + "\n");
+        body.append("Target: " + commentTarget + "\n");
+        body.append("Source_Id: " + stableId + "\n");
+        body.append("Organism: " + organism + "\n");
+        body.append("Mutant Status: " + c.getMutantStatusName() + "\n");
+        body.append("Genetic Background: " + background + "\n");
+        body.append("Mutant Type: " + c.getMutantTypeName() + "\n");
+        body.append("Mutation Method: " + c.getMutationMethodName() + "\n");
+        body.append("Mutation Method Description: " + mutationMethodDesc + "\n");
+        body.append("Phenotype Description: " + content + "\n");
+        body.append("Phenotype Test in: " + c.getPhenotypeLocName() + "\n");
+        body.append("Mutant Expression: " + c.getMutantExpressionName() + "\n");
+        body.append("PMID: " + pmIdStr + "\n");
+        body.append("Email: " + email + "\n");
+        body.append("DB Name: " + extDbName + "\n");
+        body.append("DB Version: " + extDbVersion + "\n");
+        body.append("-------------------------------------------------------\n"); 
 
         request.setAttribute("submitStatus", "success");
         request.setAttribute("subject", headline);
