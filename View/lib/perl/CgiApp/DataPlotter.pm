@@ -105,15 +105,15 @@ sub run {
 	 # graph package mode
 	 my $pkg;
 	 if ($model eq 'plasmo') {
-	   $pkg = "PlasmoDBWebsite";
+	   $pkg = "PlasmoDB";
 	 } elsif ($model eq 'toxo') {
-	   $pkg = "ToxoDBWebsite";
+	   $pkg = "ToxoDB";
 	 } elsif ($model eq 'giardia') {
-	   $pkg = "GiardiaDBWebsite";
+	   $pkg = "GiardiaDB";
 	 } elsif ($model eq 'tritryp') {
-	   $pkg = "TriTrypDBWebsite";
+	   $pkg = "TriTrypDB";
 	 }
-	 my $class = $pkg . "::View::GraphPackage::$type";
+	 my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          eval "require $class";
          my $_gp = eval {
