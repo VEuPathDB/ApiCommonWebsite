@@ -1,5 +1,5 @@
-package TriTrypDBWebsite::View::GraphPackage::MylerLinfantum::Ver1;
-@ISA = qw( TriTrypDBWebsite::View::GraphPackage::MylerLinfantum );
+package ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum::Ver1;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum );
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
@@ -11,7 +11,7 @@ use ApiCommonWebsite::View::GraphPackage;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 
-use TriTrypDBWebsite::View::GraphPackage::MylerLinfantum;
+use ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------
