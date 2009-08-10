@@ -1,4 +1,4 @@
-package GiardiaDBWebsite::View::GraphPackage::Stress::Ver1;
+package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Stress::Ver1;
 
 =pod
 
@@ -15,9 +15,9 @@ Provides initialization parameters for the stress data.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( GiardiaDBWebsite::View::GraphPackage::Stress );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::GiardiaDB::Stress );
 
-use GiardiaDBWebsite::View::GraphPackage::Stress;
+use ApiCommonWebsite::View::GraphPackage::GiardiaDB::Stress;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

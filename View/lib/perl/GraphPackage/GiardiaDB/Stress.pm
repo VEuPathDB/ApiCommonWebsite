@@ -1,4 +1,4 @@
-package GiardiaDBWebsite::View::GraphPackage::Stress;
+package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Stress;
 
 =pod
 

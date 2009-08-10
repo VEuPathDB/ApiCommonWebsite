@@ -1,11 +1,11 @@
-package GiardiaDBWebsite::View::GraphPackage::StressPercentile::Ver1;
+package ApiCommonWebsite::View::GraphPackage::GiardiaDB::StressPercentile::Ver1;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( GiardiaDBWebsite::View::GraphPackage::StressPercentile );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::GiardiaDB::StressPercentile );
 
-use GiardiaDBWebsite::View::GraphPackage::StressPercentile;
+use ApiCommonWebsite::View::GraphPackage::GiardiaDB::StressPercentile;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
