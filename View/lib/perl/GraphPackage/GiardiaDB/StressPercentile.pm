@@ -1,4 +1,4 @@
-package GiardiaDBWebsite::View::GraphPackage::StressPercentile;
+package ApiCommonWebsite::View::GraphPackage::GiardiaDB::StressPercentile;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
