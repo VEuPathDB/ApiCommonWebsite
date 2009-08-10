@@ -1,4 +1,4 @@
-package TriTrypDBWebsite::View::GraphPackage::MylerLinfantum;
+package ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
