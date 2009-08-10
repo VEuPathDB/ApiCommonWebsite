@@ -1,5 +1,5 @@
 
-package ToxoDBWebsite::View::GraphPackage::Roos::RHinGlucose::Ver1;
+package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::RHinGlucose::Ver1;
 
 =pod
 

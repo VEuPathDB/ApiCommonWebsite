@@ -1,11 +1,10 @@
-package ToxoDBWebsite::View::GraphPackage::Roos::ToxoLineages::Ver1;
+package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::ToxoLineages::Ver1;
 
 use strict;
 use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::BasicBarPlot );
 
-#use ToxoDBWebsite::View::GraphPackage::Roos::ThreeClonalStrains;
 use ApiCommonWebsite::View::GraphPackage::BasicBarPlot;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
