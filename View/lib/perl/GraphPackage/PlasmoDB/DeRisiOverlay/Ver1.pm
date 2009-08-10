@@ -1,6 +1,6 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiOverlay::Ver1;
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisiOverlay );
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiOverlay::Ver1;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiOverlay );
 
 =pod
 
@@ -9,7 +9,7 @@ package PlasmoDBWebsite::View::GraphPackage::DeRisiOverlay::Ver1;
 =cut
 
 use strict;
-use PlasmoDBWebsite::View::GraphPackage::DeRisiOverlay;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiOverlay;
 
 sub init {
   my $Self = shift;

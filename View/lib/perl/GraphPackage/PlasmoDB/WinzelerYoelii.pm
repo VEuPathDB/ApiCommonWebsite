@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::WinzelerYoelii;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WinzelerYoelii;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------

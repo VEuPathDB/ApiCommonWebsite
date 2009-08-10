@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::Waters::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Waters::Ver1;
 
 =pod
 
@@ -13,11 +13,11 @@ package PlasmoDBWebsite::View::GraphPackage::Waters::Ver1;
 
 use strict;
 use vars qw( @ISA );
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::Waters);
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Waters);
 
 use ApiCommonWebsite::View::GraphPackage;
 
-use PlasmoDBWebsite::View::GraphPackage::Waters;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Waters;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;

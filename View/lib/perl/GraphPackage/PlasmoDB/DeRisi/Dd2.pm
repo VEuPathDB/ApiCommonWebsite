@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisi::Dd2;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisi::Dd2;
 
 =pod
 
@@ -14,9 +14,9 @@ package PlasmoDBWebsite::View::GraphPackage::DeRisi::Dd2;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisi );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisi );
 
-use PlasmoDBWebsite::View::GraphPackage::DeRisi;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisi;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

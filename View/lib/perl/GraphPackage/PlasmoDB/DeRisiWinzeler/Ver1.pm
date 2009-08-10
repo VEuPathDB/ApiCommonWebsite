@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiWinzeler::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiWinzeler::Ver1;
 
 =pod
 
@@ -10,10 +10,10 @@ package PlasmoDBWebsite::View::GraphPackage::DeRisiWinzeler::Ver1;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisiWinzeler );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiWinzeler );
 
-use PlasmoDBWebsite::View::GraphPackage::DeRisiWinzeler;
-use PlasmoDBWebsite::View::GraphPackage::Winzeler::Mapping;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiWinzeler;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
 
 # ========================================================================
 # ------------------------------- Methods --------------------------------
@@ -26,8 +26,8 @@ sub init {
 
   $Self->SUPER::init(@_);
 
-   my @temp_times = PlasmoDBWebsite::View::GraphPackage::Winzeler::Mapping::TemperatureTimes();
-   my @sorb_times = PlasmoDBWebsite::View::GraphPackage::Winzeler::Mapping::SorbitolTimes();
+   my @temp_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
+   my @sorb_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
 
   $Self->setDeRisi_Hb3_Rat
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new

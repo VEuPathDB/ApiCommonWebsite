@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::Cowman::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Cowman::Ver1;
 
 =pod
 
@@ -16,9 +16,9 @@ Provides initialization parameters for the unlogged Cowman data.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::Cowman );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Cowman );
 
-use PlasmoDBWebsite::View::GraphPackage::Cowman;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Cowman;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

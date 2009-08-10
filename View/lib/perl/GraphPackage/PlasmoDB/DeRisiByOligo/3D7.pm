@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiByOligo::3D7;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiByOligo::3D7;
 
 =pod
 
@@ -17,9 +17,9 @@ on the 3D7 strain.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisiByOligo );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiByOligo );
 
-use PlasmoDBWebsite::View::GraphPackage::DeRisiByOligo;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiByOligo;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
 

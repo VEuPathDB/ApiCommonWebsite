@@ -1,5 +1,5 @@
-package PlasmoDBWebsite::View::GraphPackage::PfRNASeq::Ver1;
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::PfRNASeq );
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq::Ver1;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq );
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
@@ -11,7 +11,7 @@ use ApiCommonWebsite::View::GraphPackage;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 
-use PlasmoDBWebsite::View::GraphPackage::PfRNASeq;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------

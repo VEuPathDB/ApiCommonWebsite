@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::WbcGametocytes;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WbcGametocytes;
 
 =pod
 

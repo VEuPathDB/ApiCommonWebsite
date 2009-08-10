@@ -1,6 +1,6 @@
 
-package PlasmoDBWebsite::View::GraphPackage::Winzeler::Cc;
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::Winzeler );
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Cc;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler );
 
 =pod
 
@@ -18,8 +18,8 @@ use ApiCommonWebsite::View::GraphPackage;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 
-use PlasmoDBWebsite::View::GraphPackage::Winzeler;
-#use PlasmoDBWebsite::View::GraphPackage::Winzeler::Mapping;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler;
+#use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
 
 
 # ========================================================================
@@ -33,8 +33,8 @@ sub init {
 
    $Self->SUPER::init(@_);
 
-   #my @temp_times = PlasmoDBWebsite::View::GraphPackage::Winzeler::Mapping::TemperatureTimes();
-   #my @sorb_times = PlasmoDBWebsite::View::GraphPackage::Winzeler::Mapping::SorbitolTimes();
+   #my @temp_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
+   #my @sorb_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
 
 	 $Self->setShortNamesQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new

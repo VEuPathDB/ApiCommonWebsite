@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::PfRNASeq;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------

@@ -1,6 +1,6 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisi::HB3;
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisi );
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisi::HB3;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisi );
 
 =pod
 
@@ -9,7 +9,7 @@ package PlasmoDBWebsite::View::GraphPackage::DeRisi::HB3;
 =cut
 
 use strict;
-use PlasmoDBWebsite::View::GraphPackage::DeRisi;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisi;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

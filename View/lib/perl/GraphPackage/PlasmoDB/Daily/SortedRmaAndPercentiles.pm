@@ -1,11 +1,11 @@
-package PlasmoDBWebsite::View::GraphPackage::Daily::SortedRmaAndPercentiles;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily::SortedRmaAndPercentiles;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::Daily );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily );
 
-use PlasmoDBWebsite::View::GraphPackage::Daily;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

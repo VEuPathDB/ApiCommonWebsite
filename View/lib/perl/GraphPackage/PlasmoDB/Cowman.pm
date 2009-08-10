@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::Cowman;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Cowman;
 
 =pod
 

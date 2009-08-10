@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiRaw::HB3;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiRaw::HB3;
 
 =pod
 
@@ -16,9 +16,9 @@ Plot of deRisi raw data for red and green channels of the HB3 strain.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisiRaw );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiRaw );
 
-use PlasmoDBWebsite::View::GraphPackage::DeRisiRaw;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiRaw;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 
 # ========================================================================

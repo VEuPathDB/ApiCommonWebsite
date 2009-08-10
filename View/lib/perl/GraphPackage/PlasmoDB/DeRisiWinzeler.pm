@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiWinzeler;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiWinzeler;
 @ISA = qw( ApiCommonWebsite::View::GraphPackage );
 
 =pod
