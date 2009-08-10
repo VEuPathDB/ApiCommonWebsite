@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::ZBPvivaxTS;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::ZBPvivaxTS;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------

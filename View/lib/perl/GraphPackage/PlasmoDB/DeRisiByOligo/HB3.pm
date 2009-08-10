@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiByOligo::HB3;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiByOligo::HB3;
 
 =pod
 
@@ -17,9 +17,9 @@ on the HB3 strain.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisiByOligo );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiByOligo );
 
-use PlasmoDBWebsite::View::GraphPackage::DeRisiByOligo;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiByOligo;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
 

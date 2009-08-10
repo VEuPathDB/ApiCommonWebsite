@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::Kappe::AveragedPercentiles;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe::AveragedPercentiles;
 
 use strict;
 use vars qw( @ISA );

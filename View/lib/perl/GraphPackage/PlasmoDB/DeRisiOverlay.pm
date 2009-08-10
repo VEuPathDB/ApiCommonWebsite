@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiOverlay;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiOverlay;
 @ISA = qw( ApiCommonWebsite::View::GraphPackage );
 
 =pod

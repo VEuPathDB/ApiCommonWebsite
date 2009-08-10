@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiProfileQuery;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery;
 @ISA = qw( ApiCommonWebsite::View::GraphPackage );
 
 =pod

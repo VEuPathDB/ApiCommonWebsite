@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::Winzeler;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler;
 
 =pod
 

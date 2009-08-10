@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::MEXP494::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::MEXP494::Ver1;
 
 =pod
 
@@ -16,9 +16,9 @@ Provides initialization parameters for the strain polymorphism data.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::MEXP494 );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::MEXP494 );
 
-use PlasmoDBWebsite::View::GraphPackage::MEXP494;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::MEXP494;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

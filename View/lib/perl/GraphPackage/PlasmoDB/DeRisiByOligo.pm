@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiByOligo;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiByOligo;
 
 =pod
 

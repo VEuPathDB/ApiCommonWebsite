@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::WbcGametocytes::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WbcGametocytes::Ver1;
 
 =pod
 
@@ -17,9 +17,9 @@ Carucci Gametocyte data.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::WbcGametocytes );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::WbcGametocytes );
 
-use PlasmoDBWebsite::View::GraphPackage::WbcGametocytes;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::WbcGametocytes;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
 

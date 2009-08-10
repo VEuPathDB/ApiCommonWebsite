@@ -1,11 +1,11 @@
-package PlasmoDBWebsite::View::GraphPackage::Kappe::ReplicatesAveraged;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe::ReplicatesAveraged;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::Kappe );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe );
 
-use PlasmoDBWebsite::View::GraphPackage::Kappe;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

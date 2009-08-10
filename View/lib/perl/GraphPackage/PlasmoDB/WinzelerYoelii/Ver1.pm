@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::WinzelerYoelii::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WinzelerYoelii::Ver1;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
@@ -6,11 +6,11 @@ package PlasmoDBWebsite::View::GraphPackage::WinzelerYoelii::Ver1;
 
 use strict;
 use vars qw( @ISA );
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::WinzelerYoelii);
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::WinzelerYoelii);
 
 use ApiCommonWebsite::View::GraphPackage;
 
-use PlasmoDBWebsite::View::GraphPackage::WinzelerYoelii;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::WinzelerYoelii;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;

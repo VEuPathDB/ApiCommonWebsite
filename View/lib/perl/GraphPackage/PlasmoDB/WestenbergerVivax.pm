@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::WestenbergerVivax;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WestenbergerVivax;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------

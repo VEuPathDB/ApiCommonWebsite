@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::WestenbergerVivax::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WestenbergerVivax::Ver1;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
@@ -6,11 +6,11 @@ package PlasmoDBWebsite::View::GraphPackage::WestenbergerVivax::Ver1;
 
 use strict;
 use vars qw( @ISA );
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::WestenbergerVivax);
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::WestenbergerVivax);
 
 use ApiCommonWebsite::View::GraphPackage;
 
-use PlasmoDBWebsite::View::GraphPackage::WestenbergerVivax;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::WestenbergerVivax;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;

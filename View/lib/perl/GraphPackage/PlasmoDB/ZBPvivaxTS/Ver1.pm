@@ -1,5 +1,5 @@
-package PlasmoDBWebsite::View::GraphPackage::ZBPvivaxTS::Ver1;
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::ZBPvivaxTS );
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::ZBPvivaxTS::Ver1;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::ZBPvivaxTS );
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
@@ -11,7 +11,7 @@ use ApiCommonWebsite::View::GraphPackage;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 
-use PlasmoDBWebsite::View::GraphPackage::ZBPvivaxTS;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::ZBPvivaxTS;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------

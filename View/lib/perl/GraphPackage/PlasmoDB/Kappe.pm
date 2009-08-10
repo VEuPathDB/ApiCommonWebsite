@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::Kappe;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------

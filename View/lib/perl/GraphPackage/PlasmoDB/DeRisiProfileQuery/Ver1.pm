@@ -1,5 +1,5 @@
 
-package PlasmoDBWebsite::View::GraphPackage::DeRisiProfileQuery::Ver1;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery::Ver1;
 
 =pod
 
@@ -16,9 +16,9 @@ secondary id (query).
 
 use strict;
 use vars qw(@ISA);
-@ISA = qw( PlasmoDBWebsite::View::GraphPackage::DeRisiProfileQuery );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery );
 
-use PlasmoDBWebsite::View::GraphPackage::DeRisiProfileQuery;
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 

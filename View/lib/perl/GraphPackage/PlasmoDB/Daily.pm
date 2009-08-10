@@ -1,4 +1,4 @@
-package PlasmoDBWebsite::View::GraphPackage::Daily;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------
