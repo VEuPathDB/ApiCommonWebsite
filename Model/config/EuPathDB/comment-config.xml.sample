@@ -5,7 +5,6 @@
     password="password"
     connectionUrl="comment_database_connection_string"
     platform="Oracle"
-    initialSize="3"
     maxActive="50"
     maxIdle="3"
     minIdle="3"
