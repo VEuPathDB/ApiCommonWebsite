@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<commentConfig 
+    login="xxxx"
+    password="yyyy"
+    connectionUrl="jdbc:oracle:oci:@zzzzz"
+        platform="Oracle"
+        maxActive="50"
+        maxIdle="3"
+        minIdle="3"
+        maxWait="120"
+    userLoginSchema="userlogins3"
+    userLoginDbLink=""
+    commentSchema="comments2"
+    userFileSchema="uploads"
+    userFileUploadDir="/var/www/Common/communityFilesMirror"
+/>
+

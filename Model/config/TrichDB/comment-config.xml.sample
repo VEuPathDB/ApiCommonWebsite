@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<commentConfig 
+    login=""
+    password=""
+    connectionUrl="jdbc:oracle:oci:@apicomm"
+    platformClass="org.gusdb.wdk.model.implementation.Oracle"
+    initialSize="3"
+    maxActive="50"
+    maxIdle="3"
+    minIdle="3"
+    maxWait="120"
+    commentSchema="comments2"
+    userLoginSchema="userlogins3"
+    userLoginDbLink=""
+    userFileSchema="uploads"
+    userFileUploadDir="/var/www/Common/communityFilesMirror"
+/>
+
