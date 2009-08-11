@@ -5,7 +5,6 @@
     password=""
     connectionUrl="jdbc:oracle:oci:@apicomm"
     platform="Oracle"
-    initialSize="3"
     maxActive="50"
     maxIdle="3"
     minIdle="3"
