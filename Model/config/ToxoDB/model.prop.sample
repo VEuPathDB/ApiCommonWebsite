@@ -16,3 +16,5 @@ CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 # this empty property is required in component sites; it is included in the model and used by the portal with a specific value. 
 # In the component sites it is empty; the full path for blast files appears in the wublast config file.
 TOXO_BLAST_PATH=
+
+TOXO_COMMENT_SCHEMA=toxocomm.
