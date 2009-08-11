@@ -4,7 +4,7 @@
     login=""
     password=""
     connectionUrl="jdbc:oracle:oci:@apicomm"
-    platformClass="org.gusdb.wdk.model.implementation.Oracle"
+    platform="Oracle"
     initialSize="3"
     maxActive="50"
     maxIdle="3"
