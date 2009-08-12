@@ -34,4 +34,4 @@ WEBAPP_NAME=trichdb1.0
 
 PROJECT_ID=TrichDB
 
-TRICH_BLAST_PATH=TrichDB/trichdb1.0.1/data/blast
+TRICH_BLAST_PATH=
