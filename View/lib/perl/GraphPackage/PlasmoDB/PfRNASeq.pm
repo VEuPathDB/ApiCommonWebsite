@@ -81,12 +81,8 @@ sub makeR {
 
    else { 
      my $parts =  [ { Name => 'LEGEND', Size => 40  },
-                    { Name => 'rat',    Size => 240 },
+                    { Name => 'rat',    Size => 150 },
                   ];
-
-     unless($thumb_b) {
-       push @$parts, { Name => 'pct',    Size => 240 };
-     }
 
      my $_mS = ApiCommonWebsite::View::MultiScreen->new
        ( Parts => $parts,
@@ -192,7 +188,7 @@ if ($isVis_b{rat} == 1) {
        col       = colors.track1,
        bg        = colors.track1,
        xlab      = "Life Stage",
-       ylab      = "log2 of geometric mean of coverage",
+       ylab      = "log2(GMC/kb)",
        xaxt      = "n",
        yaxt      = "n"
       );
