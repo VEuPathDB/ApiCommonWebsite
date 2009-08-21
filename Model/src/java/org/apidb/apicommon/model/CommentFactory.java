@@ -1039,35 +1039,19 @@ public class CommentFactory {
         return array;
     }
 
-    public void deleteComment(int commentId) throws WdkModelException {
+    public void deleteComment(String email, String commentId) throws WdkModelException {
         String commentSchema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
 
         ResultSet rs = null;
         try {
-            rs = SqlUtils.executeQuery(dataSource, "SELECT project_name FROM "
-                    + commentSchema + "comments WHERE comment_id = "
-                    + commentId);
-            if (!rs.next()) {
-                logger.warn("DeleteComment: Did not find a comment for id "
-                        + commentId);
-                return;
-            }
-
-            // delete the location information
-            String sql = "DELETE FROM " + commentSchema + "locations "
-                    + "WHERE comment_id = " + commentId;
+            // update comments table set is_visible = 0
+            String sql = "UPDATE " + commentSchema + "comments "
+                    + "SET is_visible = 0 "
+                    + "WHERE comment_id = '" + commentId + "'"
+                    + "  AND email = '" + email + "'";
             SqlUtils.executeUpdate(dataSource, sql);
 
-            // delete associated external database info
-            sql = "DELETE FROM " + commentSchema + "comment_external_database "
-                    + "WHERE comment_id = " + commentId;
-            SqlUtils.executeUpdate(dataSource, sql);
-
-            // delete comment information
-            sql = "DELETE FROM " + commentSchema + "comments "
-                    + " WHERE comment_id = " + commentId;
-            SqlUtils.executeUpdate(dataSource, sql);
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         } finally {
