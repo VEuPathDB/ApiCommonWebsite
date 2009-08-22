@@ -5,6 +5,7 @@
              smtpServer="127.0.0.1"
              supportEmail="help@giardiadb.org"
              defaultRole="wdk_user"
+             secretKeyFile="/usr/local/tomcat_instances/shared/.apidb_wdk_key"
              >
              
     <appDb  login="XXXXXXXX"
