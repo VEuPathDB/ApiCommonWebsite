@@ -599,7 +599,7 @@ public class CommentFactory {
         sql.append(config.getCommentSchema() + "comments c, ");
         sql.append(config.getUserLoginSchema() + "users"
                 + config.getUserLoginDbLink() + " u ");
-        sql.append("WHERE lower(c.email) = lower(u.email) ");
+        sql.append("WHERE c.user_id = u.user_id ");
         sql.append("AND c.comment_id = ? ");
 
         ResultSet rs = null;
