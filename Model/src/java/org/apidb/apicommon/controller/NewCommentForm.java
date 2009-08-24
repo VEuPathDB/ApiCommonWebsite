@@ -6,25 +6,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMapping; 
+import org.apache.struts.util.LabelValueBean;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apidb.apicommon.model.GeneIdValidator;
+import org.apidb.apicommon.model.MultiBox; 
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class NewCommentForm extends ActionForm {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -4386250615887166981L;
     private String headline;
     private String content;
@@ -51,15 +51,20 @@ public class NewCommentForm extends ActionForm {
     private String associatedStableIds;
     private String contig;
 
+    private ArrayList categoryList = new ArrayList(); 
+
+    public ArrayList getCategoryList() {
+        return categoryList;
+    } 
+
     public NewCommentForm() {
         try {
             formFiles = new HashMap<Integer, FormFile>();
-            formNotes = new HashMap<Integer, String>();
+            formNotes = new HashMap<Integer, String>(); 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-
-    }
+        } 
+    } 
 
     private GeneIdValidator getGeneIdValidator() {
         try {
@@ -426,6 +431,19 @@ public class NewCommentForm extends ActionForm {
         file = null;
         formFiles.clear();
         formNotes.clear();
+
+        // populate checkbox in reset(), why?
+        // if not, it will thorw "No Collection found" exception,
+        // revisit this later
+        ServletContext context = servlet.getServletContext();
+        String targetId = request.getParameter("commentTargetId"); 
+
+        ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" );
+   
+        categoryList = new ArrayList();
+        for(MultiBox c : list) { 
+           categoryList.add(new LabelValueBean(c.getName(), c.getValue()));
+        } 
 
         headline = null;
         content = null;
