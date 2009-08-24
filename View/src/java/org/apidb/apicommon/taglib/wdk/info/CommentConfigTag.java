@@ -55,7 +55,7 @@ public class CommentConfigTag extends WdkTagBase {
     public void doTag() throws JspException {
         super.doTag();
         try {
-            CommentFactory factory = getCommentFactory();
+            factory = getCommentFactory();
         } catch (Exception e) {
             throw new JspException(e);
         }
