@@ -593,6 +593,7 @@ public class CommentFactory {
         sql.append("SELECT c.email, c.comment_date, c.comment_target_id, ");
         sql.append("c.conceptual, c.headline, c.project_name, ");
         sql.append("c.project_version, c.review_status_id, c.stable_id, ");
+        sql.append("c.content, ");
         sql.append("substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1) as organism, ");
         sql.append("u.first_name || ' ' || u.last_name || ', ' || u.title  as user_name, ");
         sql.append("u.organization, c.content FROM ");
@@ -620,6 +621,7 @@ public class CommentFactory {
             comment.setCommentTarget(rs.getString("comment_target_id"));
             comment.setConceptual(rs.getBoolean("conceptual"));
             comment.setHeadline(rs.getString("headline"));
+            comment.setContent(rs.getString("content"));
             comment.setProjectName(rs.getString("project_name"));
             comment.setProjectVersion(rs.getString("project_version"));
             comment.setReviewStatus(rs.getString("review_status_id"));
@@ -1061,6 +1063,43 @@ public class CommentFactory {
             printStatus();
         }
     }
+
+    public ArrayList getMultiBoxData(String nameCol, 
+                                     String valueCol, 
+                                     String table, 
+                                     String condition) {
+        
+        ArrayList list = new ArrayList();
+        ResultSet rs = null;
+
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT " + nameCol + "," +  valueCol);
+        sql.append(" FROM  " + config.getCommentSchema() + table);
+        if (condition != null) {
+          sql.append(" WHERE " + condition);
+        }
+
+        MultiBox multiBox = null;
+
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString(nameCol);
+                int value = rs.getInt(valueCol);
+                multiBox = new MultiBox(name, value+"");
+                list.add(multiBox);
+
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     public CommentConfig getCommentConfig() {
         return config;
