@@ -313,6 +313,12 @@ $sqlQueries->{geneGenomicSql} = <<EOSQL;
 select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
      bfmv.start_min, bfmv.end_max,
      DECODE(bfmv.strand,'reverse',1,'forward',0) as is_reversed,
+     CASE WHEN bfmv.is_reversed = 1
+     THEN $beginAnchRev
+     ELSE $beginAnch END as expect_start,
+     CASE WHEN bfmv.is_reversed = 1
+     THEN $endAnchRev
+     ELSE $endAnch END as expect_end,
      CASE WHEN bfmv.strand = 'reverse'
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
@@ -330,7 +336,14 @@ select bfmv.source_id, s.source_id, bfmv.organism,
      THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
      ELSE 'nt ' || bfmv.end_max || '-' || bfmv.start_min || ' of ' || bfmv.nas_id 
      END as product,
-     bfmv.start_min, bfmv.end_max, bfmv.is_reversed,
+     bfmv.start_min, bfmv.end_max, 
+     bfmv.is_reversed,
+     CASE WHEN bfmv.is_reversed = 1
+     THEN $beginAnchRev
+     ELSE $beginAnch END as expect_start,
+     CASE WHEN bfmv.is_reversed = 1
+     THEN $endAnchRev
+     ELSE $endAnch END as expect_end,
      CASE WHEN bfmv.is_reversed = 1
      THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
      ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
@@ -356,13 +369,18 @@ EOSQL
   my @invalidIds;
   my $sth = $dbh->prepare($sql) or &error($DBI::errstr);
 
+
   foreach my $inputId (@$ids) {
     $sth->execute($inputId);
-    my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $seq)
+    my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $expectStart, $expectEnd, $seq)
       = $sth->fetchrow_array() ;
     if (!$geneOrfSourceId) {
       push(@invalidIds, $inputId);
     } else {
+      my $expectedLength = $isReversed ? ($expectStart + $endOffset) - ($expectEnd + $beginOffset) + 1 :
+                                         ($expectEnd + $endOffset) - ($expectStart + $beginOffset) + 1;
+      &error("The target sequence '$inputId' is shorter than the requested length.") unless($expectedLength == length($seq));
+
       my $strand = "$seqSourceId " . ($isReversed? 'reverse | ' : 'forward | ');
       my $uplus = $self->{upstreamOffset} < 0? "" : "+";
       my $dplus = $self->{downstreamOffset} < 0? "" : "+";
