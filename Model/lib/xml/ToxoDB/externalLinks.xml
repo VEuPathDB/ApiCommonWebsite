@@ -90,7 +90,7 @@
           <attribute name="title">General, Chapter Medical Microbiology, J.P. Dubey</attribute>
         </row>
         <row>
-          <attribute name="url">http://boothroydlab.stanford.edu/snp_maps/</attribute>
+          <attribute name="url">http://boothroydlablocal.stanford.edu/snp_maps/</attribute>
           <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> SNP Maps]]></attribute>
         </row>
       </table>
