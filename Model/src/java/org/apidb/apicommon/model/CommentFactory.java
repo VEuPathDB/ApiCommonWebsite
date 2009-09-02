@@ -96,7 +96,7 @@ public class CommentFactory {
         return target;
     }
 
-    public void addComment(Comment comment) throws WdkModelException {
+    public void addComment(Comment comment, String previousCommentId) throws WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         PreparedStatement ps = null;
@@ -108,6 +108,7 @@ public class CommentFactory {
             String[] pmIds = comment.getPmIds();
             String[] accessions = comment.getAccessions();
             String[] files = comment.getFiles();
+            String[] existingFiles = comment.getExistingFiles();
             String[] associatedStableIds = comment.getAssociatedStableIds();
 
             ps = SqlUtils.getPreparedStatement(
@@ -170,6 +171,10 @@ public class CommentFactory {
                 saveFiles(commentId, files);
             }
 
+            if ((existingFiles != null) && (existingFiles.length > 0)) {
+                updateFiles(commentId, existingFiles);
+            }
+
             if ((associatedStableIds != null)
                     && (associatedStableIds.length > 0)) {
                 saveAssociatedStableIds(commentId, associatedStableIds);
@@ -191,6 +196,12 @@ public class CommentFactory {
 
             comment.setUserName(newComment.getUserName());
             comment.setOrganization(newComment.getOrganization());
+
+            if((previousCommentId != null) && (previousCommentId.length() != 0)) {
+               setInvisibleComment(previousCommentId);
+               updatePrevCommentId(previousCommentId, commentId);
+            }
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new WdkModelException(ex);
@@ -463,6 +474,61 @@ public class CommentFactory {
         }
     }
 
+    private void updateFiles(int newCommentId, String[] files) throws SQLException,
+            WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        DataSource dataSource = platform.getDataSource();
+        ResultSet rs = null;
+
+        try { 
+            for (String file : files) {
+                if (file == null) continue;
+                String[] str = file.split("\\|");
+                String sql = "UPDATE " + commentSchema + "CommentFile "
+                   + " SET comment_id = " + newCommentId
+                   + " WHERE file_id = " + Integer.parseInt(str[0]);
+
+                SqlUtils.executeUpdate(dataSource, sql); 
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void setInvisibleComment(String previousCommentId) throws SQLException,
+            WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        DataSource dataSource = platform.getDataSource();
+        ResultSet rs = null;
+
+        try { 
+            String sql = "UPDATE " + commentSchema + "comments "
+                   + " SET is_visible = 0" 
+                   + " WHERE comment_id = '" + previousCommentId + "'";
+
+            SqlUtils.executeUpdate(dataSource, sql); 
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void updatePrevCommentId(String previousCommentId, int commentId) throws SQLException,
+            WdkModelException {
+        String commentSchema = config.getCommentSchema();
+        DataSource dataSource = platform.getDataSource();
+        ResultSet rs = null;
+
+        try { 
+            String sql = "UPDATE " + commentSchema + "comments "
+                   + " SET prev_comment_id = '" + previousCommentId + "'"
+                   + " WHERE comment_id = " + commentId;
+
+            SqlUtils.executeUpdate(dataSource, sql); 
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    } 
+
     private void saveAssociatedStableIds(int commentId,
             String[] associatedStableIds) throws SQLException,
             WdkModelException {
@@ -706,7 +772,7 @@ public class CommentFactory {
     private void loadTargetCategoryNames(int commentId, Comment comment)
             throws SQLException {
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT b.category ");
+        sql.append("SELECT b.category, b.target_category_id");
         sql.append(" FROM ");
         sql.append(config.getCommentSchema() + "commentTargetCategory a, ");
         sql.append(config.getCommentSchema() + "targetCategory b ");
@@ -719,13 +785,22 @@ public class CommentFactory {
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
-            ArrayList<String> ids = new ArrayList<String>();
+            ArrayList<String> names = new ArrayList<String>();
+            ArrayList<Integer> ids = new ArrayList<Integer>();
             while (rs.next()) {
                 String category = rs.getString("category");
-                ids.add(category);
+                int categoryId = rs.getInt("target_category_id");
+                names.add(category);
+                ids.add(categoryId);
             }
-            if (ids.size() > 0) {
-                comment.addTargetCategoryNames(ids.toArray(new String[ids.size()]));
+            if (names.size() > 0) {
+                comment.addTargetCategoryNames(names.toArray(new String[names.size()]));
+
+                int[] tid = new int[ids.size()];
+                for(int i = 0; i < ids.size(); i++) {
+                  tid[i] = ids.get(i).intValue();
+                }
+                comment.setTargetCategoryIds(tid);
             }
         } finally {
             SqlUtils.closeResultSet(rs);
@@ -1032,7 +1107,7 @@ public class CommentFactory {
         } finally {
             SqlUtils.closeResultSet(rs);
 
-            // print connection status
+            // print connection status 
             printStatus();
         }
         Comment[] array = new Comment[comments.size()];
@@ -1090,13 +1165,15 @@ public class CommentFactory {
                 String name = rs.getString(nameCol);
                 int value = rs.getInt(valueCol);
                 multiBox = new MultiBox(name, value+"");
-                list.add(multiBox);
-
+                list.add(multiBox); 
             }
             return list;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            SqlUtils.closeResultSet(rs);
+            //printStatus();
         }
     }
 
