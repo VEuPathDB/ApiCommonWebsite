@@ -67,8 +67,8 @@ public class Comment {
     private String[] pmIds;
     private String[] accessions;
     private String[] files;
-    private String[] associatedStableIds;
-
+    private String[] existingFiles; 
+    private String[] associatedStableIds; 
     private String background;
     private int mutantStatus;
     private int mutationType;
@@ -77,8 +77,7 @@ public class Comment {
     private int phenotypeLoc;
     private int[] mutantMarkers;
     private int[] mutantReporters;
-    private int[] phenotypeCategory;
-
+    private int[] phenotypeCategory; 
     private String[] mutantMarkerNames;
     private String[] mutantReporterNames;
     private String mutantStatusName;
@@ -229,7 +228,15 @@ public class Comment {
      */
     public void setFiles(String[] files) {
         this.files = files;
+    } 
+
+    public String[] getExistingFiles() {
+        return existingFiles;
     }
+
+    public void setExistingFiles(String[] existingFiles) {
+        this.existingFiles = existingFiles;
+    } 
 
     /**
      * @return Returns the associatedStableIds[] gene_ids. 
