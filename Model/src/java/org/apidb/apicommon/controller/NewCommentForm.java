@@ -41,6 +41,9 @@ public class NewCommentForm extends ActionForm {
     private FormFile file;
     private String notes;
 
+    private String[] files; // file string id|name|description
+    private String[] existingFiles; // file string id|name|description
+
     private String commentTargetId;
     private String externalDbName;
     private String externalDbVersion;
@@ -50,6 +53,8 @@ public class NewCommentForm extends ActionForm {
     private String accessions;
     private String associatedStableIds;
     private String contig;
+    private String commentId = null;
+    private String email;
 
     private ArrayList categoryList = new ArrayList(); 
 
@@ -59,8 +64,20 @@ public class NewCommentForm extends ActionForm {
 
     public NewCommentForm() {
         try {
+
             formFiles = new HashMap<Integer, FormFile>();
             formNotes = new HashMap<Integer, String>(); 
+
+            // populate checkbox in reset(), why?
+            // if not, it will thorw "No Collection found" exception,
+            // the following code has already been handled in reset.
+            // revisit this later
+            ServletContext context = servlet.getServletContext();
+            //String targetId = request.getParameter("commentTargetId"); 
+            String targetId = getCommentTargetId(); 
+
+            ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" ); 
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } 
@@ -91,6 +108,22 @@ public class NewCommentForm extends ActionForm {
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCommentId() {
+       return commentId;
+    }
+
+    public void setCommentId(String commentId) {
+       this.commentId = commentId;
+    }
+
+    public String getEmail() {
+       return email;
+    }
+
+    public void setEmail() {
+       this.email = email;
     }
 
     /**
@@ -287,6 +320,22 @@ public class NewCommentForm extends ActionForm {
         return file;
     }
 
+    public void setFiles(String[] files) {
+        this.files = files;
+    }
+
+    public String[] getFiles() {
+        return this.files;
+    } 
+
+    public void setExistingFiles(String[] existingFiles) {
+        this.existingFiles = existingFiles;
+    }
+
+    public String[] getExistingFiles() {
+        return this.existingFiles;
+    } 
+
     public void setFormFiles(int indx, FormFile file) {
         this.formFiles.put(indx, file);
     }
@@ -355,6 +404,7 @@ public class NewCommentForm extends ActionForm {
         }
 
         GeneIdValidator validator = getGeneIdValidator();
+        if(associatedStableIds != null) {
         String[] related_ids = Pattern.compile("[\\s,;]").matcher(
                 associatedStableIds).replaceAll(" ").split(" ");
 
@@ -373,6 +423,7 @@ public class NewCommentForm extends ActionForm {
                                         + related_id
                                         + "\" is not valid related gene id! Please correct it and try again."));
             }
+        }
         }
 
         List<Integer> toBeRemoved = new ArrayList<Integer>();
@@ -435,8 +486,13 @@ public class NewCommentForm extends ActionForm {
         // populate checkbox in reset(), why?
         // if not, it will thorw "No Collection found" exception,
         // revisit this later
-        ServletContext context = servlet.getServletContext();
-        String targetId = request.getParameter("commentTargetId"); 
+        ServletContext context = servlet.getServletContext(); 
+
+        String targetId = getCommentTargetId(); 
+        //String targetId = request.getParameter("commentTargetId"); 
+        if(targetId == null) {
+           targetId = request.getParameter("commentTargetId"); 
+        }
 
         ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" );
    
@@ -445,11 +501,15 @@ public class NewCommentForm extends ActionForm {
            categoryList.add(new LabelValueBean(c.getName(), c.getValue()));
         } 
 
+        commentId = null;
         headline = null;
         content = null;
         commentTarget = null;
         reversed = null;
         locations = null;
+
+        files = null;
+        commentTargetId = null;
 
         locType = null;
         targetCategory = null;
