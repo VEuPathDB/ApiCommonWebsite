@@ -96,6 +96,10 @@ public class CommentFactory {
         return target;
     }
 
+    public void addComment(Comment comment) throws WdkModelException {
+        addComment(comment, null);
+    }
+    
     public void addComment(Comment comment, String previousCommentId) throws WdkModelException {
         String commentSchema = config.getCommentSchema();
 
