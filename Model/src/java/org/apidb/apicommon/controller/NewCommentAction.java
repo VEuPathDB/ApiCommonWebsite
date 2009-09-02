@@ -19,6 +19,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 import org.apidb.apicommon.model.Comment;
+import org.apidb.apicommon.model.Location;
+import org.apidb.apicommon.model.ExternalDatabase;
 import org.apidb.apicommon.model.UserFile;
 import org.apidb.apicommon.model.UserFileFactory;
 import org.gusdb.wdk.controller.CConstants;
@@ -33,6 +35,7 @@ import org.xml.sax.SAXException;
 public class NewCommentAction extends CommentAction {
 
     private NewCommentForm cuForm;
+    private EditCommentForm edForm;
 
     public ActionForward execute(ActionMapping mapping, 
                                  ActionForm form, 
@@ -47,7 +50,13 @@ public class NewCommentAction extends CommentAction {
 
         int index = referer.lastIndexOf("/");
         String host = referer.substring(0, index);
+
         referer = referer.substring(index);
+
+        if(referer.startsWith("/showComment")) {
+           return new ActionForward("/addCommentsNew.jsp", true);
+          
+        }
         ActionForward forward = new ActionForward(referer, false);
         // forward.setRedirect(true);
 
@@ -102,7 +111,9 @@ public class NewCommentAction extends CommentAction {
         String organism = cuForm.getOrganism();
         String extDbName = cuForm.getExternalDbName();
         String extDbVersion = cuForm.getExternalDbVersion();
-        String locType = cuForm.getLocType();
+        String locType = cuForm.getLocType(); 
+        String previousCommentId = cuForm.getCommentId(); 
+
         String coordinateType = null;
         boolean reversed = false;
         if (locType.startsWith("genome")) {
@@ -114,7 +125,7 @@ public class NewCommentAction extends CommentAction {
         String email = user.getEmail().trim().toLowerCase();
         int userId = user.getUserId();
         String projectName = wdkModel.getDisplayName();
-        String projectVersion = wdkModel.getVersion();
+        String projectVersion = wdkModel.getVersion(); 
 
         // create a comment instance
         Comment comment = new Comment(email);
@@ -159,8 +170,7 @@ public class NewCommentAction extends CommentAction {
                             + "Please refer to the format examples on the Add Comment page");
             return forward;
         }
-        comment.addExternalDatabase(extDbName, extDbVersion);
-
+        comment.addExternalDatabase(extDbName, extDbVersion); 
 
         Map<Integer, FormFile> formSet = cuForm.getFormFiles();
         Map<Integer, String> noteSet = cuForm.getFormNotes();
@@ -200,17 +210,30 @@ public class NewCommentAction extends CommentAction {
             String fileStr = fileId + "|" + fileName + "|" + notes;
             files.add(fileStr);
 
-        }
+        } 
 
-        if(files.size() > 0) {
-
+        if(files.size() > 0) { 
           String[] f = new String[files.size()];
           comment.setFiles(files.toArray(f));
+        } 
+
+        ArrayList<String> existingFileList = new ArrayList<String>();
+
+        String[] existingFiles = cuForm.getExistingFiles();
+        if(existingFiles != null && existingFiles.length > 0) {
+            for(int i = 0; i < existingFiles.length; i++) {
+               existingFileList.add(existingFiles[i]); 
+            }
         }
+        if(existingFileList.size() > 0) {
+
+          String[] f = new String[existingFileList.size()];
+          comment.setExistingFiles(existingFileList.toArray(f));
+        } 
 
         // add the comment
         ServletContext context = servlet.getServletContext();
-        CommentActionUtility.getCommentFactory(context).addComment(comment);
+        CommentActionUtility.getCommentFactory(context).addComment(comment, previousCommentId);
 
         String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "#" + comment.getCommentId(); 
