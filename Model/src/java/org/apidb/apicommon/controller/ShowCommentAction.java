@@ -22,6 +22,7 @@ public class ShowCommentAction extends CommentAction {
     public static final String STABLE_ID_KEY = "stable_id";
     public static final String PROJECT_ID_KEY = "project_id";
     public static final String COMMENT_ID_KEY = "comment_id";
+    public static final String COMMENT_TARGET_ID_KEY = "comment_target_id";
     public static final String COMMENT_LIST_KEY = "comments";
 
     @Override
@@ -44,6 +45,7 @@ public class ShowCommentAction extends CommentAction {
         request.setAttribute(COMMENT_LIST_KEY, comments);
         request.setAttribute(STABLE_ID_KEY, commentForm.getStableId());
         request.setAttribute(PROJECT_ID_KEY, commentForm.getProjectId());
+        request.setAttribute(COMMENT_TARGET_ID_KEY, commentForm.getCommentTargetId());
 
         // construct url
         String customViewDir = (String) application.getAttribute(CConstants.WDK_CUSTOMVIEWDIR_KEY);
