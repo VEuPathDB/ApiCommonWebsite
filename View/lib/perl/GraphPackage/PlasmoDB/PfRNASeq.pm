@@ -188,6 +188,7 @@ if ($isVis_b{rat} == 1) {
        cex       = 1.25,
        col       = colors.track1,
        bg        = colors.track1,
+       type      = "o",
        xlab      = "Life Stage",
        ylab      = "log2(GMC/kb)",
        xaxt      = "n",
