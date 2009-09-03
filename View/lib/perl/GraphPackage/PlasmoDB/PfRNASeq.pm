@@ -115,8 +115,9 @@ sub makeR {
 $preamble_R
 
 # ------------------------------ Constants -------------------------------
+# #808000 olive color
 
-color.rep1      <- rgb(153,   0, 153, max=255);
+color.rep1      <- rgb(80,   80, 0, max=255);
 colors.track1   <- c(color.rep1);
 
 # ------------------------------ Load Data -------------------------------
@@ -129,7 +130,7 @@ data.track1.rat <- c(data.track1.table\$VALUE);
 
 # ------------------------ Merge Data and Colors -------------------------
 
-ylim.rat <- c(max(-10, min(0,data.track1.rat)),
+ylim.rat <- c(max(-10, min(data.track1.rat-1, data.track1.rat)),
                        min( 10, max( 2,data.track1.rat ))
               );
 
@@ -196,7 +197,7 @@ if ($isVis_b{rat} == 1) {
   lines (x = seq(1,9),
          y = data.track1.rat[seq(1,9)],
          type    = "c",
-         col     = "gray80"
+         col     = "blue"
         );
 
   yAxis = axis(4,tick=F);
