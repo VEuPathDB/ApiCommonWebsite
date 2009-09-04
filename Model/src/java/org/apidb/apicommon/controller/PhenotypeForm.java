@@ -2,7 +2,9 @@ package org.apidb.apicommon.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.Globals;
@@ -13,12 +15,12 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
+import org.apache.struts.util.LabelValueBean;
+
+import org.apidb.apicommon.model.MultiBox; 
 
 public class PhenotypeForm extends ActionForm {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 3050800220417843422L;
     private String headline;
     private String commentTarget;
@@ -50,11 +52,17 @@ public class PhenotypeForm extends ActionForm {
     private String mutationType;
     private String phenotypeLoc;
 
+    private ArrayList reporterList; 
+
+    public ArrayList getReporterList() {
+        return reporterList;
+    } 
+
     public PhenotypeForm() {
 
         try {
             formFiles = new HashMap<Integer, FormFile>();
-            formNotes = new HashMap<Integer, String>();
+            formNotes = new HashMap<Integer, String>(); 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -338,7 +346,15 @@ public class PhenotypeForm extends ActionForm {
         targetCategory = null;
         pmIds = null;
         accessions = null;
-
         reporter = null;
+
+        ServletContext context = servlet.getServletContext(); 
+        ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("mutant_reporter", "mutant_reporter_id", "MutantReporter", null);
+
+        reporterList = new ArrayList();
+        for(MultiBox c : list) { 
+           reporterList.add(new LabelValueBean(c.getName(), c.getValue()));
+        } 
+
     }
 }
