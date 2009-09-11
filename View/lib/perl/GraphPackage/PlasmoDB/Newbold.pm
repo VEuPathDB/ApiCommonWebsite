@@ -138,7 +138,7 @@ data.pct = data.pct.df\$VALUE;
 
 # ----------------------------- Data Limits ------------------------------
 
-ylim.lgr      <- c(0, min($maxLgRat, min($minLgRat,data.moid+2)));
+ylim.lgr      <- c(0, min($maxLgRat, min($minLgRat,max(data.moid)+2)));
 
 # --------------------------- Prepare To Plot ----------------------------
 
@@ -168,7 +168,7 @@ if ($isVis_b{rat} == 1) {
           beside    = 1,
           las = 2,
           space     = c(0.1, 1),
-          ylab      = "log of RMA normalized",
+          ylab      = "log2 of RMA normalized",
           names.arg = c($names),
           col       = my.colors,
           ylim      = ylim.lgr,
