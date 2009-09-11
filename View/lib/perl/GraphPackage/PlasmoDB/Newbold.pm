@@ -86,7 +86,9 @@ sub makeR {
    else {
 
       my $_mS = ApiCommonWebsite::View::MultiScreen->new
-      ( Parts => [ { Name => 'rat',    Size => 280 },
+      ( Parts => [ 
+                   { Name => 'LEGEND', Size => 20 },
+                   { Name => 'rat',    Size => 280 },
                    { Name => 'pct',    Size => 220 },
                  ],
         VisibleParts  => $Self->getVisibleParts(),
@@ -118,12 +120,12 @@ $preamble_R
 
 # ------------------------------ Constants -------------------------------
 
-#my.colors = c(as.vector(matrix("black", ncol=1, nrow=2)),
-#              as.vector(matrix("DarkGoldenRod", ncol=1, nrow=5)),
-#              as.vector(matrix("black", ncol=1, nrow=1)),
-#              as.vector(matrix("DarkCyan ", ncol=1, nrow=4)));
 
-my.colors = c(as.vector(matrix("chocolate4", ncol=1, nrow=5)));
+color.mild      <- 'lightskyblue2';
+color.severity  <- 'red2';
+
+my.colors = c(as.vector(matrix("lightskyblue2", ncol=1, nrow=8)),
+              as.vector(matrix("red1", ncol=1, nrow=9))); 
 
 # ------------------------------ Load Data -------------------------------
 
@@ -152,6 +154,30 @@ plasmodb.par();
 screen.dims <- t(array(c($screens),dim=c(4,$parts_n)));
 screens     <- split.screen(screen.dims, erase=T);
 screen.i    <- 1;
+
+# ------------------ SCREEN : Legend -----------------------------------
+
+if ($isVis_b{LEGEND} == 1) {
+  screen(screens[screen.i]);
+  screen.i <- screen.i + 1;
+
+  par(yaxs="i", xaxs="i", xaxt="n", yaxt="n", bty="n", mar=c(0.1,0.1,0.1,0.1));
+  plot(c(0),c(0), xlab='', ylab='',type="l",col="orange", xlim=c(0,1),ylim=c(0,1));
+
+  legend(0.5, 0.5,
+         c("mild disease", "severe disease"),
+         xjust = 0.5,
+         yjust = 0.5,
+         cex   = 0.99,
+         bty   = "n",
+         lty   = "solid",
+         col   = c(color.mild, color.severity),
+         pt.bg = c(color.mild, color.severity), 
+         pch   = 22,
+         horiz = T
+        );
+} 
+
 
 # ----------------- SCREEN : Induction and Repression ------------------
 
