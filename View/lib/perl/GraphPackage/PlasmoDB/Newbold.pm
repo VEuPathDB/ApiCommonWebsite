@@ -74,14 +74,10 @@ sub makeR {
    my $r_fh = FileHandle->new(">$r_f") ||
    die "Can not open R file '$r_f': $!";
 
-	 warn "r_f $r_f";
-	 warn "r_fh $r_fh";
    my @errors;
 
    my $moid_f  = eval { $Self->getMoidValuesQuery(   )->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
    my $percentile_f  = eval { $Self->getPercentileQuery( )->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
-
-	 warn "percent file: $percentile_f";
 
    if (@errors) {
       $Self->reportErrorsAndBlankGraph($r_fh, @errors);
@@ -182,7 +178,7 @@ if ($isVis_b{rat} == 1) {
   #axis(1,at=seq(1,4),labels=data.names,tick=T);
 #  plasmodb.grid(nx=NA,ny=NULL);
   #lines (c(-100,100), c(0,0), col="gray25");
-  plasmodb.title("");
+  plasmodb.title("Ex Vivo Intraerythrocitic Expression Assays");
 }
 
 # ---------------------- SCREEN : Percentage Plot ----------------------
