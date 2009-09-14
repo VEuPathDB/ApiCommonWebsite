@@ -109,57 +109,36 @@ my $componentSql;
 my $sqlQueries;
 
 $componentSql->{geneProteinSql} = <<EOSQL;
-SELECT gf.source_id, tas.sequence, gf.product, tn.name
-FROM   dots.translatedaasequence tas, dots.genefeature gf, sres.taxonname tn,
-       dots.translatedaafeature taf, dots.transcript t
-WHERE gf.source_id = ?
-AND t.parent_id = gf.na_feature_id
-AND taf.na_feature_id = t.na_feature_id
-AND tas.aa_sequence_id = taf.aa_sequence_id
-AND tas.taxon_id = tn.taxon_id
-AND tn.name_class = 'scientific name'
+SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
+FROM   apidb.geneAttributes bfmv, apidb.proteinSequence seq
+WHERE  bfmv.source_id = seq.source_id
+AND    bfmv.source_id = ?
 EOSQL
 
 $componentSql->{orfProteinSql} = <<EOSQL;
-SELECT misc.source_id, tas.sequence,
-       tas.description as product,
-       tn.name
-FROM dots.translatedaasequence tas,
-     dots.translatedaafeature taf,
-     dots.miscellaneous misc,
-     sres.taxonname tn
-WHERE misc.source_id = ?
-  AND taf.na_feature_id = misc.na_feature_id
-  AND tas.aa_sequence_id = taf.aa_sequence_id
-  AND tn.taxon_id = tas.taxon_id
-  AND tn.name_class = 'scientific name'
+SELECT bfmv.source_id, seq.sequence,
+       CASE bfmv.is_reversed
+	   WHEN 0 THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
+	   ELSE 'nt ' || bfmv.end_max || '-' || bfmv.start_min || ' of ' || bfmv.nas_id 
+       END as product,
+       bfmv.organism as name
+FROM   apidb.orfAttributes bfmv, apidb.orfSequence seq
+WHERE  bfmv.source_id = seq.source_id
+AND    bfmv.source_id = ?
 EOSQL
 
 $componentSql->{transcriptSql} = <<EOSQL;
-SELECT gf.source_id, sns.sequence, gf.product, tn.name
-FROM dots.SplicedNaSequence sns,  dots.genefeature gf,
-     sres.taxonname tn, dots.transcript t
-WHERE gf.source_id = ?
-AND t.parent_id = gf.na_feature_id
-AND sns.na_sequence_id = t.na_sequence_id
-AND sns.taxon_id = tn.taxon_id
-AND tn.name_class = 'scientific name'
+SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
+FROM   apidb.geneAttributes bfmv, apidb.transcriptSequence seq
+WHERE  bfmv.source_id = seq.source_id
+AND    bfmv.source_id = ?
 EOSQL
 
 $componentSql->{cdsSql} = <<EOSQL;
-SELECT gf.source_id, SUBSTR(s.sequence,
-              tf.translation_start,
-              tf.translation_stop - tf.translation_start + 1)
-         AS sequence,
-       gf.product, tn.name
-FROM dots.genefeature gf, dots.transcript t,
-     sres.taxonname tn, dots.splicednasequence s, dots.TranslatedAaFeature tf
-WHERE gf.source_id = ?
-AND t.parent_id = gf.na_feature_id
-AND s.na_sequence_id = t.na_sequence_id
-AND t.na_feature_id = tf.na_feature_id 
-AND s.taxon_id = tn.taxon_id
-AND tn.name_class = 'scientific name'
+SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
+FROM   apidb.geneAttributes bfmv, apidb.codingSequence seq
+WHERE  bfmv.source_id = seq.source_id
+AND    bfmv.source_id = ?
 EOSQL
 
 
