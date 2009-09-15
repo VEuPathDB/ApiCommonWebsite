@@ -105,17 +105,16 @@ sub processParams {
     unless $self->{downstreamOffset} =~ /^-?\d+$/;
 }
 
-my $componentSql;
 my $sqlQueries;
 
-$componentSql->{geneProteinSql} = <<EOSQL;
+$sqlQueries->{geneProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
 FROM   apidb.geneAttributes bfmv, apidb.proteinSequence seq
 WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
 
-$componentSql->{orfProteinSql} = <<EOSQL;
+$sqlQueries->{orfProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence,
        CASE bfmv.is_reversed
 	   WHEN 0 THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
@@ -127,57 +126,18 @@ WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
 
-$componentSql->{transcriptSql} = <<EOSQL;
+$sqlQueries->{transcriptSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
 FROM   apidb.geneAttributes bfmv, apidb.transcriptSequence seq
 WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
 
-$componentSql->{cdsSql} = <<EOSQL;
+$sqlQueries->{cdsSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
 FROM   apidb.geneAttributes bfmv, apidb.codingSequence seq
 WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
-EOSQL
-
-
-$sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.source_id, tas.sequence, bfmv.product, bfmv.organism
-FROM   dots.translatedaasequence tas, apidb.geneattributes bfmv
-WHERE bfmv.source_id = ?
-AND tas.source_id = bfmv.source_id
-EOSQL
-
-$sqlQueries->{orfProteinSql} = <<EOSQL;
-SELECT  bfmv.source_id, tas.sequence,
-       CASE bfmv.is_reversed 
-	   WHEN 0 THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
-	   ELSE 'nt ' || bfmv.end_max || '-' || bfmv.start_min || ' of ' || bfmv.nas_id 
-       END as product,
-       bfmv.organism
-FROM apidb.orfattributes bfmv, dots.translatedaasequence tas
-WHERE tas.source_id = ?
-AND bfmv.source_id = tas.source_id
-EOSQL
-
-$sqlQueries->{transcriptSql} = <<EOSQL;
-SELECT bfmv.source_id, sns.sequence, bfmv.product, bfmv.organism
-FROM dots.splicednasequence sns, apidb.geneattributes bfmv, 
-     sres.sequenceontology so
-WHERE bfmv.source_id = ?
-AND sns.source_id = bfmv.source_id
-AND so.sequence_ontology_id = sns.sequence_ontology_id
-AND so.term_name = 'processed_transcript'
-EOSQL
-
-$sqlQueries->{cdsSql} = <<EOSQL;
-SELECT bfmv.source_id, s.sequence, bfmv.product, bfmv.organism
-FROM apidb.geneattributes bfmv, dots.splicednasequence s, sres.sequenceontology so
-WHERE bfmv.source_id = ?
-AND s.source_id = bfmv.source_id
-AND so.sequence_ontology_id = s.sequence_ontology_id
-AND so.term_name = 'CDS'
 EOSQL
 
 
@@ -186,7 +146,7 @@ sub handleNonGenomic {
 
   my $sql;
   my $type = $self->{type};
-  my $site = ($self->getModel() =~ /^eupath/i)? $sqlQueries : $componentSql;
+  my $site = $sqlQueries;
 
   my $inputIds = $self->{inputIds};
   my $ids;
@@ -194,7 +154,7 @@ sub handleNonGenomic {
   if ($self->{ignore_gene_alias}) {
     $ids = $inputIds;
   } else {
-    $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
+    $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh) unless($self->getModel() =~ /^eupath/i);
   }
 
   if($type eq "protein" && $self->{geneOrOrf} eq 'gene') {
