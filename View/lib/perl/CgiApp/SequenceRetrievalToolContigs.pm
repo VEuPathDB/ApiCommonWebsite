@@ -29,7 +29,7 @@ sub run {
 
   my $sql = <<EOSQL;
 SELECT s.source_id, s.sequence, ' | ' || sa.sequence_description as description
-FROM dots.nasequence s, apidb.sequenceid si, apidb.sequenceattributes sa
+FROM apidb.nasequence s, apidb.sequenceid si, apidb.sequenceattributes sa
 WHERE  si.id = lower(?)
 AND s.source_id = si.sequence
 AND sa.source_id = s.source_id
