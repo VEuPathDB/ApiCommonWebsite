@@ -163,8 +163,16 @@ There are two main kinds of downloads available in a EuPathDB site:
        <![CDATA[
 
 Each project in EuPathDB benefits from the advice and mentoring of people from each specific community.
+<br><br>
 <ul>
 <li>CryptoDB:
+<div id="cirbulletlist">
+<ul>
+<li>Lihua Xiao
+<li>Gregory Buck
+<li>Giovanni Widmer
+<li>Guan Zhu
+</ul></div>
 <br>
 <li>GiardiaDB: 
 <div id="cirbulletlist">
@@ -186,10 +194,41 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
 </ul></div>
 <br>
 <li>ToxoDB:
+<div id="cirbulletlist">
+<ul>
+<li>John Boothroyd
+<li>Marc-Jan Gubbles
+<li>Dominique Soldati
+<li>Michael White
+</ul></div>
 <br>
-<li>TrichDB:
-<br>
+<li>TrichDB:<div id="cirbulletlist">
+<ul>
+<li>
+<li>
+<li>
+<li>
+</ul></div>
+<br><br>
 <li>TriTrypDB:
+<div id="cirbulletlist">
+<ul>
+<li>Richard Burchmore (Leishmania)
+<li>Barbara Papadopoulou (Leishmania)
+<li>Jeremy Mottram (Leishmania)
+<li>Angela Cruz (Leishmania)
+<li>John Kelly (T. cruzi)
+<li>Sergio Schenkman  (T. cruzi)
+<li>Rick tarleton  (T. cruzi)
+<li>Fernan Aguero  (T. cruzi)
+<li>Brent Weatherly  (T. cruzi)
+<li>Vivian Bellofatto (T. brucei)
+<li>Antonio Estevez (T. brucei)
+<li>George Cross, The Rockefeller University, USA (T. brucei)
+<li>Laurie Read, State University of Buffalo, USA (T. brucei)
+<li>March Field  (T. brucei)
+<li>Keith Gull  (T. brucei)
+</ul></div>
 <br>
 </ul>
 
