@@ -156,7 +156,49 @@ There are two main kinds of downloads available in a EuPathDB site:
        </attribute>
    </record>
 
- 
+  <record>
+       <attribute name="title">Scientific Advisory Team</attribute>
+       <attribute name="tag">advisors</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+Each project in EuPathDB benefits from the advice and mentoring of people from each specific community.
+<ul>
+<li>CryptoDB:
+<br>
+<li>GiardiaDB: 
+<div id="cirbulletlist">
+<ul>
+<li>John Samuelson, Boston University</li>
+<li>Hilary Morrison, Marine Biological Laboratory</li>
+<li>Adrian Hehl, Universit&#228t Z&#252;rich</li>
+<li>Fran Gillin, University of California, San Diego </li>
+<li>Scott Dawson, University of California, Davis</li>
+</ul></div>
+<br>
+<li>PlasmoDB:
+<div id="cirbulletlist">
+<ul>
+<li>John Adams, University of South Florida, 
+<li>Stuart Ralph, University of Melbourne, 
+<li>Akhil Vaidya, Drexel University
+<li>Andy Waters, University of Glasgow
+</ul></div>
+<br>
+<li>ToxoDB:
+<br>
+<li>TrichDB:
+<br>
+<li>TriTrypDB:
+<br>
+</ul>
+
+
+       ]]>
+       </attribute>
+   </record>
+
+
    <record>
        <attribute name="title">Acknowledgements</attribute>
        <attribute name="tag">acks</attribute>
