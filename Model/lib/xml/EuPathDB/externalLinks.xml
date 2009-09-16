@@ -5,30 +5,39 @@
 
    <record>
       <table name="communityLinks">
-        <row>
-          <attribute name="title">CryptoDB</attribute>
-          <attribute name="url">http://www.CryptoDB.org/</attribute>
+<row>
+          <attribute name="title">EuPathDB Workshops</attribute>
+          <attribute name="url">http://eupathdb.org/workshop</attribute>
         </row> 
         <row>
-          <attribute name="title">GiardiaDB</attribute>
-          <attribute name="url">http://www.GiardiaDB.org/</attribute>
+          <attribute name="title">BRC Central</attribute>
+          <attribute name="url">http://www.pathogenportal.org/</attribute>
         </row> 
         <row>
-          <attribute name="title">PlasmoDB</attribute>
-          <attribute name="url">http://www.PlasmoDB.org/</attribute>
+          <attribute name="title">OrthoMCL</attribute>
+          <attribute name="url">http://orthomcl.org/</attribute>
         </row> 
         <row>
-          <attribute name="title">ToxoDB</attribute>
-          <attribute name="url">http://www.ToxoDB.org/</attribute>
+          <attribute name="title">GeneDB</attribute>
+          <attribute name="url">http://www.genedb.org/</attribute>
         </row> 
         <row>
-          <attribute name="title">TrichDB</attribute>
-          <attribute name="url">http://www.TrichDB.org/</attribute>
+          <attribute name="title">ModBase at UCSF</attribute>
+          <attribute name="url">http://modbase.compbio.ucsf.edu/modbase-cgi/search_form.cgi</attribute>
         </row> 
         <row>
-          <attribute name="title">TriTrypDB</attribute>
-          <attribute name="url">http://www.TriTrypDB.org/</attribute>
+          <attribute name="title">Tetrahymena Genome</attribute>
+          <attribute name="url">http://www.ciliate.org/</attribute>
         </row> 
+        <row>
+          <attribute name="title">The Arabidopsis Information Resource</attribute>
+          <attribute name="url">http://www.arabidopsis.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">NAR Bioinformatics Server List</attribute>
+          <attribute name="url">http://www.oxfordjournals.org/nar/webserver/c/</attribute>
+        </row> 
+
       </table>
 
 
