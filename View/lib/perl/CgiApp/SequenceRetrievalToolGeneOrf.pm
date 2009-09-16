@@ -154,7 +154,7 @@ sub handleNonGenomic {
   if ($self->{ignore_gene_alias}) {
     $ids = $inputIds;
   } else {
-    $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh) unless($self->getModel() =~ /^eupath/i);
+    $ids = $self->mapGeneFeatureSourceIds($inputIds, $dbh);
   }
 
   if($type eq "protein" && $self->{geneOrOrf} eq 'gene') {
