@@ -239,7 +239,7 @@ public class NewCommentAction extends CommentAction {
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "#" + comment.getCommentId(); 
 
         StringBuffer body = new StringBuffer();
-        if(projectId.equals("PlasmoDB") || projectId.equals("CryptoDB")) { 
+        if(projectId.equals("TriTrypDB") || organism.equals("Plasmodium falciparum") || organism.equals("Cryptosporidium parvum")) { 
           body.append("Thank you! Your comment will be reviewed by a curator shortly.\n");
         } else {
           body.append("Thanks for your comment!\n");
