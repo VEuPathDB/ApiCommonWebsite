@@ -138,6 +138,7 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Model"/>
     </ant>
+    <antcall target="loadresourcesToDatasources"/>
   </target>
 
   <target name="ApiCommonWebsite/Site-Installation">
@@ -153,6 +154,30 @@
       <property name="component" value="View"/>
     </ant>
   </target>
+
+  <target name="loadresourcesToDatasources">
+    <property name="loadresources" value="${targetDir}/lib/xml/loadresources"/>
+    <mkdir dir="${targetDir}/lib/xml/datasources"/>
+    <copy todir="${loadresources}">
+      <fileset dir="${projectsDir}/ApiCommonData/Load/lib/xml">
+        <include name="*Resources.xml"/>
+      </fileset>
+    </copy>
+    <mapper id="pubmedmapper" type="glob" 
+            from="*.xml" 
+            to="${targetDir}/lib/xml/datasources/*-pubmed.xml"/>
+    <echo message="Running updateResourcesWithPubmed"/>
+    <apply executable="${targetDir}/bin/updateResourcesWithPubmed" verbose="true">
+        <fileset dir="${loadresources}">
+          <include name="*Resources.xml"/>
+        </fileset>
+        <redirector>
+            <outputmapper refid="pubmedmapper"/>
+        </redirector>
+    </apply>
+    <delete dir="${loadresources}"/>
+  </target>
+
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooo  Web Installation  oooooooooooooooooooooooo -->
