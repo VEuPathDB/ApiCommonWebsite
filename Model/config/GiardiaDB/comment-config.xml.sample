@@ -11,7 +11,7 @@
     maxWait="120"
     commentSchema="comments2"
     userLoginSchema="schema_to_user_login_tables, ending '.' is optional"
-    userLoginDbLink="dblink_to_gus_schema, leading '@' is optional" 
+    userLoginDbLink="set to empty string, we don't use it"
     userFileSchema="uploads"
     userFileUploadDir="/var/www/Common/communityFilesMirror"
 />
