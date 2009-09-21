@@ -88,6 +88,10 @@
 
   <target name="ApiCommonWebsite-ChildUpdate" >
     <ant target="defaultProjectUpdate">
+      <property name="project" value="ApiCommonData"/>
+      <property name="excludeChildren" value="true"/>
+    </ant>
+    <ant target="defaultProjectUpdate">
       <property name="project" value="WDK"/>
     </ant>
     <ant target="defaultProjectUpdate">
