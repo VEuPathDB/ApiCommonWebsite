@@ -98,7 +98,7 @@ and Madan, A., 1999. Genome Res. 9:868-877). Finally, the predicted
 consensus transcripts are themselves aligned to the genome.
 <br><br>
 
-For more detail on Methods please access specific component sites' information:
+For more detail on Data Surces and Methods please access specific component sites information:
 <center>
 <table width="50%" border="0" cellpadding="2" cellspacing="2">
 
@@ -171,45 +171,46 @@ There are several kinds of downloads available in a EuPathDB site:
 
 Each project in EuPathDB benefits from the advice and mentoring of people from each specific community.
 <br><br>
-<ul>
-<li>CryptoDB:
+
+<b>CryptoDB</b><br><br>
 <div id="cirbulletlist">
 <ul>
-<li>Lihua Xiao
-<li>Gregory Buck
-<li>Giovanni Widmer
-<li>Guan Zhu
+<li>Lihua Xiao (Centers for Disease Control and Prevention, USA)
+<li>Gregory Buck (Virginia Commonwealth University, USA)
+<li>Giovanni Widmer (Tufts University, USA)
+<li>Guan Zhu (Texas A&M University, USA)
 </ul></div>
 <br>
-<li>GiardiaDB: 
+<b>GiardiaDB</b><br><br>
 <div id="cirbulletlist">
 <ul>
-<li>John Samuelson, Boston University</li>
-<li>Hilary Morrison, Marine Biological Laboratory</li>
-<li>Adrian Hehl, Universit&#228t Z&#252;rich</li>
-<li>Fran Gillin, University of California, San Diego </li>
-<li>Scott Dawson, University of California, Davis</li>
+<li>John Samuelson (Boston University, USA)</li>
+<li>Hilary Morrison (Marine Biological Laboratories, USA)</li>
+<li>Adrian Hehl (University of Zürich, Switzerland)</li>
+<li>Fran Gillin (University of California - San Diego, USA)</li>
+<li>Scott Dawson (University of California - Davis, USA)</li>
 </ul></div>
 <br>
-<li>PlasmoDB:
+<b>PlasmoDB</b><br><br>
 <div id="cirbulletlist">
 <ul>
-<li>John Adams, University of South Florida, 
-<li>Stuart Ralph, University of Melbourne, 
-<li>Akhil Vaidya, Drexel University
-<li>Andy Waters, University of Glasgow
+<li>John Adams (University of South Florida, USA)
+<li>Stuart Ralph (University of Melbourne, Australia)
+<li>Akhil Vaidya (Drexel University, USA)
+<li>Andy Waters (University of Glasgow, United Kingdom)
 </ul></div>
 <br>
-<li>ToxoDB:
+<b>ToxoDB</b><br><br>
 <div id="cirbulletlist">
 <ul>
-<li>John Boothroyd
-<li>Marc-Jan Gubbles
-<li>Dominique Soldati
-<li>Michael White
+<li>John Boothroyd (Stanford University, USA)
+<li>Marc-Jan Gubbles (Boston College, USA)
+<li>Vern B. Carruthers (University of Michigan, USA)
+<li>Michael White (University of South Florida, USA)
 </ul></div>
 <br>
-<li>TrichDB:<div id="cirbulletlist">
+<b>TrichDB</b><br><br>
+<div id="cirbulletlist">
 <ul>
 <li>
 <li>
@@ -217,24 +218,28 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
 <li>
 </ul></div>
 <br><br>
-<li>TriTrypDB:
-<div id="cirbulletlist">
+<b>TriTrypDB</b><br><br>
 <ul>
-<li>Richard Burchmore (Leishmania)
-<li>Barbara Papadopoulou (Leishmania)
-<li>Jeremy Mottram (Leishmania)
-<li>Angela Cruz (Leishmania)
-<li>John Kelly (T. cruzi)
-<li>Sergio Schenkman  (T. cruzi)
-<li>Rick tarleton  (T. cruzi)
-<li>Fernan Aguero  (T. cruzi)
-<li>Brent Weatherly  (T. cruzi)
-<li>Vivian Bellofatto (T. brucei)
-<li>Antonio Estevez (T. brucei)
-<li>George Cross, The Rockefeller University, USA (T. brucei)
-<li>Laurie Read, State University of Buffalo, USA (T. brucei)
-<li>March Field  (T. brucei)
-<li>Keith Gull  (T. brucei)
+<li><div id="cirbulletlist"><ul><b><i>Leishmania</i></b>
+     <li>Richard Burchmore (University of Glasgow, United Kingdom)
+      <li>Barbara Papadopoulou (Laval University, Canada)
+      <li>Jeremy Mottram (University of Glasgow, United Kingdom)
+      <li>Angela Cruz (Universidade de São Paulo, Brazil)
+    </ul></div><br>
+<li><div id="cirbulletlist"><ul><b><i>T. cruzi</i></b>
+     <li>John Kelly (London School of Hygiene and Tropical Medicine, United Kingdom)
+     <li>Sergio Schenkman (Universidade Federal de São Paulo, Brazil)
+      <li>Rick tarleton (University of Georgia, USA)
+      <li>Fernan Aguero (Universidad Nacional de General San Martín, Argentina)
+      <li>Brent Weatherly (University of Georgia, USA)
+     </ul></div><br>
+<li><div id="cirbulletlist"><ul><b><i>T. brucei</i></b>
+     <li>Vivian Bellofatto (New Jersey Medical School, USA)
+     <li>Antonio Estevez (Institute of Parasitology and Biomedicine "López-Neyra", Spain)
+      <li>George Cross (The Rockefeller University, USA)
+      <li>Laurie Read (State University of Buffalo, USA)
+       <li>March Field (University of Cambridge, United Kingdom)
+      <li>Keith Gull (University of Oxford, United Kingdom)
 </ul></div>
 <br>
 </ul>
@@ -336,8 +341,6 @@ ApiDB: integrated resources for the apicomplexan bioinformatics resource center.
        <![CDATA[
 
 <table width='80%' align='center' cellpadding='2' cellspacing='0' border='0'>
-
-<tr><td colspan="2"><hr></td></tr>
 
 <tr><td colspan="2"><font face="Arial,Helvetica">The <a href="/">Eukaryotic Pathogen Bioinformatics Resource Center (BRC)</a> designs, develops and maintains the EuPathDB, CryptoDB, GiardiaDB, PlasmoDB, ToxoDB and TrichDB websit
 es.  These are publications by the scientists and staff involved in this BRC.
