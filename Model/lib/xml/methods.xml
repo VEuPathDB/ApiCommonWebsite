@@ -251,25 +251,6 @@
     </table>
   </record>
 
-  <record>
-    <attribute name="name">BLATAlignment</attribute>
-    <attribute name="input">Fasta file of cDNA sequences blocked using repeatMasker with RepBase and genome sequences in nib format</attribute>
-    <attribute name="output">Text file of alignments in .psl format</attribute>
-    <attribute name="descrip">BLAT is a rapid tool to find mRNA/DNA alignments that can be run using the GfClient program to query an indexed DNA database on a GfServer .</attribute>
-    <table name="tools">
-      <row>
-        <attribute name="name">BLATAlignment</attribute>
-        <attribute name="version">v. 31</attribute>
-        <attribute name="params">-minIntron 500,-minScore 30,-minIdentity 90</attribute>
-        <attribute name="url">http://www.cbs.dtu.dk/services/SignalP/</attribute>
-        <attribute name="pubmedIds">11932250</attribute>
-        <attribute name="credits">Kent W.J.,
-                              BLAT - The BLAST-Like Alignment Tool,
-                              Genome Research, 2002,  12(4), 656-664.</attribute>
-      </row>
-    </table>
-  </record>
-
 <record>
     <attribute name="name">ORF Generation</attribute>
     <attribute name="input">Genomic DNA or EST sequences</attribute>
@@ -292,7 +273,7 @@
     <attribute name="name">CAP4 EST Assembly</attribute>
     <attribute name="input">Clusters of EST sequences</attribute>
     <attribute name="output">assembled consensus sequence and quality values</attribute>
-    <attribute name="descrip">CAP4 is used to generate predicted, alternatively-spliced transcripts. CAP4 aligns and assembles clustered sequence reads and produces consensus sequences</attribute>
+    <attribute name="descrip">CAP4 is used to generate the EST assemblies. CAP4 aligns and assembles clustered sequence reads and produces consensus sequences</attribute>
     <table name="tools">
       <row>
         <attribute name="name">CAP4</attribute>
@@ -309,10 +290,10 @@
 
 
   <record>
-    <attribute name="name">BLAT EST Alignment</attribute>
+    <attribute name="name">BLAT EST Alignments</attribute>
     <attribute name="input">Fasta file of EST sequences blocked using repeatMasker with RepBase and genome sequences in nib format</attribute>
     <attribute name="output">Text file of alignments in .psl format</attribute>
-    <attribute name="descrip">BLAT is a rapid tool to find mRNA/DNA alignments that can be run using the GfClient program to query an indexed DNA database on a GfServer</attribute>
+    <attribute name="descrip">ESTs are clustered based on BLAT alignmnets. BLAT is a tool to rapidly find mRNA/DNA alignments that can be run using the GfClient program to query an indexed DNA database on a GfServer</attribute>
     <table name="tools">
       <row>
         <attribute name="name">BLAT</attribute>
