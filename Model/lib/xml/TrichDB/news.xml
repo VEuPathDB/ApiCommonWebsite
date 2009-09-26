@@ -9,8 +9,8 @@
        <attribute name="date">25 Sept 2009 15:00</attribute>
        <attribute name="tag">Trich9_09_news</attribute>
        <attribute name="item">           
-         <![CDATA[<span style="font-weight: bold;">We are pleased to
-announce the implementation of new features in TrichDB:</span><br>
+         <![CDATA[<b>We are pleased to
+announce the implementation of new features in TrichDB:</b><br>
 <ul>
   <li>Identify Genes based on Orthology Phylogenetic
 Profile:&nbsp; For example you may ask for genes in <span

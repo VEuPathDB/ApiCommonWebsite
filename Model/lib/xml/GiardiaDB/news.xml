@@ -9,8 +9,8 @@
        <attribute name="date">25 Sept 2009 15:00</attribute>
        <attribute name="tag">giardia9_09_news</attribute>
        <attribute name="item">           
-         <![CDATA[<span style="font-weight: bold;">We are pleased to
-announce the release of GiardiaDB 1.3</span><br>
+         <![CDATA[<b>We are pleased to
+announce the release of GiardiaDB 1.3</b><br>
 <br>
 <span style="text-decoration: underline;">New Data:</span><br>
 <ul>

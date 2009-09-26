@@ -30,8 +30,8 @@
          Tritryp9_09_news
        </attribute>
        <attribute name="item">           
-         <![CDATA[<span style="font-weight: bold;">We are pleased to
-announce the release of TriTrypDB 1.2</span><br>
+         <![CDATA[<b>We are pleased to
+announce the release of TriTrypDB 1.2</b><br>
 <br>
 <span style="text-decoration: underline;">New Data:</span><br>
 <ul>
