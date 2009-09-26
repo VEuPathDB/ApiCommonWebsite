@@ -20,6 +20,73 @@
 <record>
        <attribute name="headline">
          <![CDATA[
+            TriTrypDB 1.2 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+         25 Sept 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         Tritryp9_09_news
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[<span style="font-weight: bold;">We are pleased to
+announce the release of TriTrypDB 1.2</span><br>
+<br>
+<span style="text-decoration: underline;">New Data:</span><br>
+<ul>
+  <li>New <span style="font-style: italic;">T. cruzi</span>
+genome assembly as described in the publication by <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19486522">Weatherly</a>
+and colleagues.</li>
+  <li><span style="font-style: italic;">T. cruzi </span>reservosome
+proteomics data (<a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19288526">Sant'Anna&nbsp;<span
+ style="font-style: italic;">et. al.</span></a>).</li>
+  <li><span style="font-style: italic;">T. cruzi </span>insect
+form proteomics data (<a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19374451">Cordero </a><a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19374451"><span
+ style="font-style: italic;">et. al.</span></a>).</li>
+  <li><span style="font-style: italic;">L. infantum</span>
+proteomics data set from Dr. Marc Ouellette's group (provided
+prepublication).</li>
+  <li>Genome-wide analysis of mRNA abundance in two life-cycle
+stages of <span style="font-style: italic;">T. brucei </span>and
+identification of trans-splicing and polyadenylation sites. RNA-seq (T.
+Nicolai Siegel, Doeke R. Hekstra, Xuning Wang, Scott Dewell and George
+A. M. Cross, provided prepublication) -- this data can be viewed as
+tracks in the genome browser, click here for an example.</li>
+</ul>
+<span style="text-decoration: underline;">New/Updated
+Features:</span><br>
+<ul>
+  <li>Now after you perform a BlastN against genomic sequence you
+can
+link from the the blast output to the correct coordinates in the genome
+browser.&nbsp; This allows you to explore annotation and other
+functional
+data in relation to your BLAST hits.</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+Please also note that the parent portal site <a
+ href="http://eupathdb.org">EuPathDB</a> has just been
+updated, offering you the ability to explore results across organisms.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB and GeneDB teams.
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
             TriTrypDB 1.1 released
          ]]>
        </attribute>

@@ -20,6 +20,54 @@
 <record>
        <attribute name="headline">
          <![CDATA[
+					CryptoDB 4.2 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+				25 Sept 2009 15:00
+       </attribute>
+       <attribute name="tag">
+				crypto41
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+				<span style="font-weight: bold;">We are pleased to
+announce the release of CryptoDB 4.2</span><br>
+<br>
+<span style="text-decoration: underline;">New Data:</span><br>
+<ul>
+  <li><span style="font-style: italic;">C. parvum</span>
+mitochondrial fraction proteomics provided prepublication by Lorenza
+putignani.</li>
+</ul>
+<span style="text-decoration: underline;">New/Upadated
+Features:</span><br>
+<ul>
+  <li>Now after you perform a BlastN against genomic sequence you
+can
+link from the the blast output to the correct coordinates in the genome
+browser.&nbsp; This allows you to explore annotation and other
+functional
+data in relation to your BLAST hits.</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+Please also note that the parent portal site <a
+ href="http://eupathdb.org">EuPathDB</a> has just been
+updated, offering you the ability to explore results across organisms.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
 					CryptoDB 4.1 released
          ]]>
        </attribute>
