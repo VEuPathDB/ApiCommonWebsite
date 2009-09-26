@@ -27,39 +27,37 @@
          25 Sept 2009 15:00
        </attribute>
        <attribute name="tag">
-         Tritryp9_09_news
+         Tritryp909news
        </attribute>
        <attribute name="item">           
          <![CDATA[<b>We are pleased to
 announce the release of TriTrypDB 1.2</b><br>
 <br>
-<span style="text-decoration: underline;">New Data:</span><br>
+<u>New Data:</u><br>
 <ul>
-  <li>New <span style="font-style: italic;">T. cruzi</span>
+  <li>New <il>T. cruzi</il>
 genome assembly as described in the publication by <a
  href="http://www.ncbi.nlm.nih.gov/pubmed/19486522">Weatherly</a>
 and colleagues.</li>
-  <li><span style="font-style: italic;">T. cruzi </span>reservosome
+  <li><il>T. cruzi </il>reservosome
 proteomics data (<a
- href="http://www.ncbi.nlm.nih.gov/pubmed/19288526">Sant'Anna&nbsp;<span
- style="font-style: italic;">et. al.</span></a>).</li>
-  <li><span style="font-style: italic;">T. cruzi </span>insect
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19288526">Sant'Anna&nbsp;<il>et. al.</il></a>).</li>
+  <li><il>T. cruzi </il>insect
 form proteomics data (<a
  href="http://www.ncbi.nlm.nih.gov/pubmed/19374451">Cordero </a><a
- href="http://www.ncbi.nlm.nih.gov/pubmed/19374451"><span
- style="font-style: italic;">et. al.</span></a>).</li>
-  <li><span style="font-style: italic;">L. infantum</span>
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19374451"><il>et. al.</il></a>).</li>
+  <li><il>L. infantum</il>
 proteomics data set from Dr. Marc Ouellette's group (provided
 prepublication).</li>
   <li>Genome-wide analysis of mRNA abundance in two life-cycle
-stages of <span style="font-style: italic;">T. brucei </span>and
+stages of <il>T. brucei </il>and
 identification of trans-splicing and polyadenylation sites. RNA-seq (T.
 Nicolai Siegel, Doeke R. Hekstra, Xuning Wang, Scott Dewell and George
 A. M. Cross, provided prepublication) -- this data can be viewed as
 tracks in the genome browser, click here for an example.</li>
 </ul>
-<span style="text-decoration: underline;">New/Updated
-Features:</span><br>
+<u>New/Updated
+Features:</u><br>
 <ul>
   <li>Now after you perform a BlastN against genomic sequence you
 can
