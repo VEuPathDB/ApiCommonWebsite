@@ -3,6 +3,62 @@
 
 <record>
        <attribute name="headline"><![CDATA[
+         GiardiaDB 1.3 released
+         ]]>
+       </attribute>
+       <attribute name="date">25 Sept 2009 15:00</attribute>
+       <attribute name="tag">giardia9_09_news</attribute>
+       <attribute name="item">           
+         <![CDATA[<span style="font-weight: bold;">We are pleased to
+announce the release of GiardiaDB 1.3</span><br>
+<br>
+<span style="text-decoration: underline;">New Data:</span><br>
+<ul>
+  <li><span style="font-style: italic;">G.
+intestinalis</span> mitosome enriched fraction proteomics
+provided by Jan Tachezy and described in <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19717741">Rada <span
+ style="font-style: italic;">et. al.</span></a></li>
+  <li><span style="font-style: italic;"><span
+ style="font-style: italic;">Giardia</span></span>
+isolate data fron GenBank are now included -- seach for isolates based
+on many criteria such as geographic location, submitter name, isolation
+source and/or host. &nbsp;Also, generate nucleotide sequence
+alignments of isolates you select, and BLAST your sequence against the
+isolate database. <span style="font-style: italic;"><br>
+    </span></li>
+</ul>
+<span style="text-decoration: underline;">New/Upadated
+Features:</span><br>
+<ul>
+  <li>Now after you perform a BlastN against genomic sequence you
+can
+link from the the blast output to the correct coordinates in the genome
+browser.&nbsp; This allows you to explore annotation and other
+functional
+data in relation to your BLAST hits.</li>
+  <li>A table of paralogs (if any) is now available on gene pages
+allowing you to view expanded gene families -- See <a
+ href="http://giardiadb.org/giardiadb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;project_id=GiardiaDB&amp;primary_key=GL50803_15158">GL50803_15158&nbsp;</a>for
+example (scroll down to the Orthologs and Paralogs Table).</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+Please also note that the parent portal site <a
+ href="http://eupathdb.org">EuPathDB</a> has just been
+updated, offering you the ability to explore results across organisms.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.
+]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
          GiardiaDB 1.2 released
          ]]>
        </attribute>

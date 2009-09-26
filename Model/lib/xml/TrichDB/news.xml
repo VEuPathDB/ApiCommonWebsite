@@ -3,6 +3,56 @@
 
 <record>
        <attribute name="headline"><![CDATA[
+         New Features in TrichDB
+         ]]>
+       </attribute>
+       <attribute name="date">25 Sept 2009 15:00</attribute>
+       <attribute name="tag">Trich9_09_news</attribute>
+       <attribute name="item">           
+         <![CDATA[<span style="font-weight: bold;">We are pleased to
+announce the implementation of new features in TrichDB:</span><br>
+<ul>
+  <li>Identify Genes based on Orthology Phylogenetic
+Profile:&nbsp; For example you may ask for genes in <span
+ style="font-style: italic;">T. vaginalis&nbsp;</span>that
+do not have orthologs in mammals.&nbsp; Click here to explore this
+feature.</li>
+  <li>A table of paralogs (if any) is now available on gene pages
+allowing you to view expanded gene families -- See <a
+ href="http://trichdb.org/trichdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TVAG_386080&amp;project_id=TrichDB">TVAG_386080</a>
+for example (scroll down to the Orthologs and Paralogs Table).</li>
+  <li>Now after you perform a BlastN against genomic sequence you
+can link from the the blast output to the correct coordinates in the
+genome browser.&nbsp; This allows you to explore annotation and
+other functional data in relation to your BLAST hits.</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+<br>
+We are still collecting data sets for an upcoming release of
+TrichDB.&nbsp; This release will include a large expansion in data
+content and we look forward to receiving more data sets from you.<br>
+<br>
+Also, check out the new version of <a href="http://eupathdb.org">EuPathDB</a>.&nbsp;&nbsp;
+EuPathDB permits searches across all organism-specific sites and now
+includes the strategy system.&nbsp;Build multi-step searches using
+a graphical interface that is feature-rich. You can save your
+strategies, modify any step in a strategy or even share your strategy
+with other scientists.<br>
+<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.
+
+]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
          TrichDB 1.1 released
          ]]>
        </attribute>
