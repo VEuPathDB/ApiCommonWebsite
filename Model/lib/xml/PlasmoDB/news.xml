@@ -22,24 +22,23 @@
          ]]>
          </attribute>
        <attribute name="date">25 Sept 2009 00:00</attribute>
-       <attribute name="tag">Plasmo9_09_news</attribute>
+       <attribute name="tag">Plasmo909news</attribute>
        <attribute name="item">           
          <![CDATA[<b>We are pleased to
 announce the release of PlasmoDB 6.1</b><br>
 <br>
-<span style="text-decoration: underline;">New Data:</span><br>
+<u>New Data:</u><br>
 <ul>
-  <li><span style="font-style: italic;">P.
-&nbsp;falciparum</span> intraerythrocitic expression profiles
+  <li><il>P.
+&nbsp;falciparum</il> intraerythrocitic expression profiles
 from&nbsp;infected patients (<a
- href="http://www.ncbi.nlm.nih.gov/pubmed/19376968">Lemieux <span
- style="font-style: italic;">et. al.</span></a>)
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19376968">Lemieux <il>et. al.</il></a>)
 -- data available on gene pages, for example, click <a
  href="http://plasmodb.org/plasmo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=PF11_0344&amp;project_id=PlasmoDB">here</a>
 and scroll down to the expression section.</li>
 </ul>
-<span style="text-decoration: underline;">
-New/Updated Features:</span><br>
+<u>
+New/Updated Features:</u><br>
 <ul>
   <li>Now after you perform a BlastN against genomic sequence you
 can

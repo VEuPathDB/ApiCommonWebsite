@@ -27,21 +27,21 @@
 				25 Sept 2009 15:00
        </attribute>
        <attribute name="tag">
-				Crypto9_09_news
+				Crypto909news
        </attribute>
        <attribute name="item">           
          <![CDATA[
 				<b>We are pleased to
 announce the release of CryptoDB 4.2</b><br>
 <br>
-<span style="text-decoration: underline;">New Data:</span><br>
+<u">New Data:</u><br>
 <ul>
-  <li><span style="font-style: italic;">C. parvum</span>
+  <li><il>C. parvum</il>
 mitochondrial fraction proteomics provided prepublication by Lorenza
 putignani.</li>
 </ul>
-<span style="text-decoration: underline;">New/Upadated
-Features:</span><br>
+<u>New/Upadated
+Features:</u><br>
 <ul>
   <li>Now after you perform a BlastN against genomic sequence you
 can
