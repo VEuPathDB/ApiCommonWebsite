@@ -339,7 +339,7 @@
         <attribute name="params"></attribute>
         <attribute name="url">http://www.repeatmasker.org</attribute>
         <attribute name="pubmedIds"></attribute>
-        <attribute name="credits">Smit, AFA, Hubley, R & Green, P. 
+        <attribute name="credits">Smit, AFA, Hubley, R &amp; Green, P. 
                                   RepeatMasker Open-3.0.
                                   1996-2004</attribute>
       </row>
