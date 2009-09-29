@@ -42,6 +42,8 @@ The T. vaginalis sequencing effort was complemented by EST data from the Chang G
        <attribute name="text">
        <![CDATA[
 
+For the latest gene stats on all organisms in EuPathDB, please access our <a href="http://trichdb.org/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">Gene Metrics</a> page.
+<br><br><br>
 <table>
 
 <tr><td>Genome size</td><td>&nbsp;</td><td>~160 MB</td></tr>
@@ -75,6 +77,7 @@ The T. vaginalis sequencing effort was complemented by EST data from the Chang G
 <sup>3</sup>includes genes with either similarity to a known protein (E-value < 1 x 10<sup>-10</sup>, >25% length of protein), or similarity to an EST (>95% identity over >90% length of the gene)<br>
 <sup>4</sup>includes virus-like, transposon-like, retrotransposon-like, and unclassified repeats, all with high copy number and low polymorphism
 </p>
+
 
 
        ]]>
