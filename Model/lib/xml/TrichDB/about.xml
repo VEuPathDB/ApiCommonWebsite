@@ -131,8 +131,8 @@ mat and, in some formats, the user may request additional information about the 
  
 
    <record>
-       <attribute name="title">Acknowledgements and Funding</attribute>
-       <attribute name="tag">funding</attribute>
+       <attribute name="title">Acknowledgements</attribute>
+       <attribute name="tag">acks</attribute>
        <attribute name="text">
        <![CDATA[
 
@@ -143,6 +143,22 @@ comments or sent us their suggestions.
        ]]>
        </attribute>
    </record>
+
+ <record>
+       <attribute name="title">Funding</attribute>
+       <attribute name="tag">funding</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+TrichDB has been developed as part of the Eukaryotic Pathogen Database (EuPathDB)  
+Bioinformatics Resource Center (BRC), with support from the US National 
+Institutes of Health (NIH). 
+
+
+       ]]>
+       </attribute>
+   </record>
+
 
    <record>
        <attribute name="title">Data Access Policy</attribute>
