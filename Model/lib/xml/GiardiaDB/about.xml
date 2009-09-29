@@ -59,7 +59,7 @@ the prokaryotic / eukaryotic divergence.
 
    <record>
        <attribute name="title">Gene Predictions</attribute>
-       <attribute name="tag">gene_predictions</attribute>
+       <attribute name="tag">protocols_methods</attribute>
        <attribute name="text">
        <![CDATA[
 
@@ -116,7 +116,7 @@ BMC Bioinformatics 4, 23 (Jun 7, 2003).
 
    <record>
        <attribute name="title">Data Statistics</attribute>
-       <attribute name="tag">data_statistics</attribute>
+       <attribute name="tag">stats</attribute>
        <attribute name="text">
        <![CDATA[
 
@@ -140,11 +140,6 @@ Average Shotgun Coverage
 Estimated Closure (of 11.7 Mbp)	
 </td><td>
 95.66%
-</td></tr>
-<tr><td>
-Predicted Open Reading Frames	
-</td><td>
-6,500
 </td></tr>
 <tr><td>
 Total Number of Reads Sequenced	
