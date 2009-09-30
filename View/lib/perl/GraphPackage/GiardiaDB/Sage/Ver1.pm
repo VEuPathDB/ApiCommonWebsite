@@ -48,7 +48,7 @@ sub init {
 		)
 	);
 
-  $Self->setYaxisLabel('SAGE count percentages');
+  $Self->setYaxisLabel('Count');
   $Self->setColors([ 'darkorange' ]);
   $Self->setTagRx(undef);
 
