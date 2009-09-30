@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmlAnswer>
 
-
+<record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB 2.1 Released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       25 September 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       eupath909news
+       </attribute>
+       <attribute name="item">
+         <![CDATA[
+<i>If you cannot see the
+contents of this email please click <a
+ href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News#">here</a>
+for the html version.</i><br>
+<br>
+<b">We are pleased to
+announce the release of EuPathDB 2.1</b><br>
+<br>
+This is a major release of the EuPathDB resource and includes the
+strategy builder, which allows the construction of complex searches
+using a graphical interface. <br>
+<br>
+<u>Strategy builder
+highlights:</u><br>
+<br>
+<ul>
+  <li>Transform a search into its orthologs from other species in
+the EuPathDB family of databases.</li>
+  <li>Edit any step in a strategy and see results change
+dynamically.</li>
+  <li>Share strategies with your colleagues via email.</li>
+  <li>Login to store your history of strategies and browse them
+at any time in the future.</li>
+</ul>
+A tutorial describing how to build a strategy can be viewed <a
+ href="http://eupathdb.org/tutorials/New_Strat/New_Strat_viewlet_swf.html">here</a>.
+&nbsp;And an example sample strategy can be accessed <a
+ href="http://eupathdb.org/eupathdb2.1/im.do?s=4961f7629e7950c9">here</a>.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.<br>
+]]>
+       </attribute>
+    </record>
  <record>
        <attribute name="headline">
          <![CDATA[
