@@ -32,7 +32,7 @@ sub init {
 
 	$Self->SUPER::init(@_);
 
-  my $_ttl  = 'giar sage count percentages';
+  my $_ttl  = 'giar sage count';
 
 	$Self->setDataQuery
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
