@@ -22,6 +22,7 @@
 	<!-- JQuery Drag And Drop Plugin -->
 	<!--<script type="text/javascript" src="/assets/js/lib/jqDnR.js"></script>-->
 	<script type="text/javascript" src="/assets/js/lib/json.js"></script>
+<!--	<script type="text/javascript" src="/assets/js/lib/jquery.multiSelect.js"></script>   -->
 
 <%--	<script type="text/javascript" src="/assets/js/lib/ui/ui.core.js"></script>
 	<script type="text/javascript" src="/assets/js/lib/ui/ui.draggable.js"></script>
@@ -41,11 +42,22 @@
 	<!-- Results Page AJAX Javascript code -->
 	<script type="text/javascript" src="/assets/js/results_page.js"></script>
 	
-
-
         <script type="text/javascript" src="<c:url value='/assets/js/wdkFilter.js' />"></script>
 </c:if>
 
+<c:set var="used_sites" value="${applicationScope.wdkModel.properties['SITES']}"/>
+
+<script type="text/javascript">
+     var sites = new Array(${used_sites});
+  </script>
+<script type="text/javascript" src="/assets/js/ApiDB_Ajax_Utils.js"></script>
+<%--<script type="text/javascript" src="/assets/js/AjaxLocation.js"></script>
+<script type="text/javascript" src="/assets/js/AjaxAssemLocation.js"></script
+<script type="text/javascript" src="/assets/js/AjaxESTsLocation.js"></script>
+<script type="text/javascript" src="/assets/js/AjaxSageTagLocationORF.js"></script>
+<script type="text/javascript" src="/assets/js/AjaxSnpLocation.js"></script>
+<script type="text/javascript" src="/assets/js/AjaxSnp.js"></script>
+--%>
 
 <c:if test="${refer == 'customSummary' || refer == 'customQuestion'}">
   <script src="js/lib/jquery.autocomplete.js" type="text/javascript"></script>
