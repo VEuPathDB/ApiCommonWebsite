@@ -36,11 +36,11 @@ BEGIN {
     sub handle_errors {
         my ($msg) = @_;
         print "<h3>Oops</h3>";
-        my $isPublicSite = $ENV{'SERVER_NAME'} =~ 
-           m/
-             ^(qa|www|.*patch.*\.)?  # optional hostname
-             [^\.]+                  # single subdomain
-             \.org/x;
+      #  my $isPublicSite = $ENV{'SERVER_NAME'} =~ 
+      #     m/^(beta|qa|www|.*patch.*\.)?  # optional hostname
+      #       [^\.]+                  # single subdomain
+      #       \.org/x;
+      my $isPublicSite = 1;
        ($isPublicSite) ?
            print "<p>There was a problem running this service." :
            print "<p>Got an error: <pre>$msg</pre>";
