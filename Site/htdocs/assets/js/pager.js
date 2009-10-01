@@ -34,7 +34,7 @@ function ResultsToGrid(data, ignoreFilters) {
         // $("div#Workspace").html(data);
 	var oldFilters;
 	if (ignoreFilters) {
-		oldFilters = $("#Workspace div.layout-detail div.filter-instance a.link-url");
+		oldFilters = $("#Workspace div.layout-detail div.filter-instance .link-url");
 	}
 
         document.getElementById('Workspace').innerHTML = data;
@@ -48,14 +48,17 @@ function ResultsToGrid(data, ignoreFilters) {
 		oldFilters.each(function() {
 			var id = $(this).attr("id");
 			var count = $(this).text();
-			$("#" + id).html(count);
+			if (count == 0) {
+				$("#" + id).replaceWith(this);
+			} else {
+				$("#" + id).html(count);
+			}
 		});
 	}
 	else {
         	wdkFilter.initialize();
 	}
 
-	// specify column sizes so flexigrid generates columns properly.
 	$("#Results_Table").flexigrid({height : 'auto',
 				       showToggleBtn : false,
 				       useRp : false,
@@ -63,7 +66,6 @@ function ResultsToGrid(data, ignoreFilters) {
 				       onMoveColumn : moveAttr,
                                        nowrap : false,
 				       resizable : false});
-	//flexifluid.init();
 }
 
 function updatePageCount(pager_id) {
