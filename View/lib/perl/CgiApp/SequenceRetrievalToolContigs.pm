@@ -49,6 +49,9 @@ EOSQL
 				 -description => $desc, -alphabet => "dna");
       my $maxEnd = $$ends[$i] > $bioSeq->length()? $bioSeq->length() : $$ends[$i];
 
+      # catch error if start is larger $maxEnd
+      &error("Start is larger than the length of the Sequence ($maxEnd)") if ($$starts[$i] > $maxEnd);
+
       $bioSeq = $bioSeq->trunc($$starts[$i], $maxEnd);
       $bioSeq = $bioSeq->revcom() if ($$revComps[$i]);
       $seqIO->write_seq($bioSeq);
