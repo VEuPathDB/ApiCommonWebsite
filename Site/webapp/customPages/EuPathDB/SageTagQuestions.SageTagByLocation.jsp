@@ -15,13 +15,8 @@
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 <c:set var="used_sites" value="${applicationScope.wdkModel.properties['SITES']}"/>
 <c:set var="headElement">
-  <script type="text/javascript">
-     var sites = new Array(${used_sites});
-  </script>
-  <script src="/assets/js/ApiDB_Ajax_Utils.js" type="text/javascript"></script>
   <script src="/assets/js/AjaxSageTagLocation.js" type="text/javascript"></script>
-  <script src="js/prototype.js" type="text/javascript"></script>
-  <script src="js/scriptaculous.js" type="text/javascript"></script>
+  
 </c:set>
 <site:header title="${wdkModel.displayName} : ${wdkQuestion.displayName}"
                  banner="Identify ${wdkQuestion.recordClass.type}s based on ${wdkQuestion.displayName}"
@@ -70,12 +65,12 @@ function showParamGroup(group, isShow)
 <%-- put an anchor here for linking back from help sections --%>
 <A name="${fromAnchorQ}"></A>
 <!--html:form method="get" action="/processQuestion.do" -->
-<html:form method="post" enctype='multipart/form-data' action="/processQuestion.do">
+<html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
 <input type="hidden" name="questionFullName" value="${wdkQuestion.fullName}"/>
 
 <!-- show error messages, if any -->
 <wdk:errors/>
-
+<div class="params">
 <c:set value="${wdkQuestion.paramMapByGroups}" var="paramGroups"/>
 <c:forEach items="${paramGroups}" var="paramGroupItem">
     <c:set var="group" value="${paramGroupItem.key}" />
@@ -169,6 +164,7 @@ function showParamGroup(group, isShow)
                                     <c:otherwise>
 					<c:choose>  
 						<c:when test="${pNam eq 'chromosomeOptional2'}">
+							<input name="myProp(${pNam})" type="hidden" id="organism"/>
 							<input name="myProp(${pNam})" id="${pNam}" type="hidden"/>
                             			</c:when> 
 						<c:when test="${pNam == 'sequenceId'}">
@@ -252,12 +248,14 @@ function showParamGroup(group, isShow)
     </c:choose>
     
 </c:forEach>
-
+</div>
 <c:set target="${helps}" property="${fromAnchorQ}" value="${helpQ}"/>
 
   <div align="center"><html:submit property="questionSubmit" value="Get Answer"/></div>
 </html:form>
-
+<script>
+	initSTLoc();
+  </script>
 <hr>
 <%-- display description for wdkQuestion --%>
 <p><b>Query description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p>
