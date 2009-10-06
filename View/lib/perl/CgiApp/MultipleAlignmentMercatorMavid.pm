@@ -403,7 +403,7 @@ sub makeClustal {
 
   my @lines = split(/\n/, $multiFasta);
 
-  my ($start, $stop, $strand, $thisGenome, $count);
+  my ($start, $stop, $strand, $thisGenome, $count, $shortName);
 
   my (%allSequences, @genomes);
 
@@ -434,7 +434,8 @@ sub makeClustal {
         my $tmpStop = $3;
         my $tmpStrand = $4;
         my $tmpLength = $tmpStop - $tmpStart + 1;
-        print STDOUT"<tr><td>$genome</td><td>$tmpSequence</td><td>$tmpStart</td><td>$tmpStop</td><td>$tmpStrand</td><td>$tmpLength</td></tr>\n";
+        $shortName = &makeShortGenomeName($genome);
+        print STDOUT"<tr><td>$shortName</td><td>$tmpSequence</td><td>$tmpStart</td><td>$tmpStop</td><td>$tmpStrand</td><td>$tmpLength</td></tr>\n";
       }
 
     }
@@ -444,7 +445,9 @@ sub makeClustal {
 
       my $emptyCell = 'N/A';
 
-      print STDOUT"<tr><td>$thisGenome</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td></tr>\n";
+      $shortName = &makeShortGenomeName($thisGenome);
+
+      print STDOUT"<tr><td>$shortName</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td></tr>\n";
     }
     else {
       push(@{$allSequences{$thisGenome}}, $line);
@@ -499,7 +502,9 @@ sub printClustal {
 
     foreach my $genome (@genomes) {
       $genome =~ /^([\w\d_]+)/;
-      my @genomeChars = split('', $1);
+
+      my $shortName = &makeShortGenomeName($1);
+      my @genomeChars = split('', $shortName);
       for(0..$colWidth) {
         my $char = defined($genomeChars[$_]) ? $genomeChars[$_] : '&nbsp;';
         print STDOUT $1 eq $referenceGenome ? "<b class=\"maroon\">$char</b>" : $char;
@@ -516,6 +521,23 @@ sub printClustal {
   }
 
 }
+
+#--------------------------------------------------------------------------------
+
+sub makeShortGenomeName {
+  my ($orig) = @_;
+
+  my %lookup = ('Giardia_lamblia_ATCC_50803' => 'Assem_A_isolate_WGS',
+                'Giardia_lamblia_P15' => 'Assem_E_isolate_P15',
+                'Giardia_intestinalis_ATCC_50581' => 'Assem_B_isolate_GS'
+               );
+
+  if(my $rv = $lookup{$orig}) {
+    return $rv;
+  }
+  return $orig;
+}
+
 
 #--------------------------------------------------------------------------------
 
