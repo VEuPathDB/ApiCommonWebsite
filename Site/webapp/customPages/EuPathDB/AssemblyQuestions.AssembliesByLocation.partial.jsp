@@ -14,18 +14,6 @@
 <%-- display page header with wdkQuestion displayName as banner --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 <c:set var="used_sites" value="${applicationScope.wdkModel.properties['SITES']}"/>
-<c:set var="headElement">
-  <script src="/assets/js/AjaxESTsLocation.js" type="text/javascript"></script>
-</c:set>
-<site:header title="${wdkModel.displayName} : ${wdkQuestion.displayName}"
-                 banner="Identify ${wdkQuestion.recordClass.type}s based on ${wdkQuestion.displayName}"
-                 parentDivision="Queries & Tools"
-                 parentUrl="/showQuestionSetsFlat.do"
-                 divisionName="Question"
-                 division="queries_tools"
-		 headElement="${headElement}"/>
-
-
 
 <script language="JavaScript" type="text/javascript">
 <!--
@@ -48,7 +36,6 @@ function showParamGroup(group, isShow)
 
 //-->
 </script>
-
 <c:if test="${wdkModel.displayName eq 'EuPathDB.org'}">
      <div id="question_Form">
 </c:if>
@@ -65,12 +52,19 @@ function showParamGroup(group, isShow)
 <%-- put an anchor here for linking back from help sections --%>
 <A name="${fromAnchorQ}"></A>
 <!--html:form method="get" action="/processQuestion.do" -->
-<html:form method="post" enctype='multipart/form-data' action="/processQuestion.do">
+<html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
+<c:if test="${showParams == false || showParams == null}">
+	<script src="/assets/js/AjaxAssemLocation.js" type="text/javascript"></script>
+	<script>
+		initAssemLoc();
+	</script>
+</c:if>
 <input type="hidden" name="questionFullName" value="${wdkQuestion.fullName}"/>
 
 <!-- show error messages, if any -->
 <wdk:errors/>
 <div class="params">
+	<c:if test="${showParams == true || showParams == null}">
 <c:set value="${wdkQuestion.paramMapByGroups}" var="paramGroups"/>
 <c:forEach items="${paramGroups}" var="paramGroupItem">
     <c:set var="group" value="${paramGroupItem.key}" />
@@ -134,25 +128,20 @@ function showParamGroup(group, isShow)
 
                 <%-- an individual param (can not use fullName, w/ '.', for mapped props) --%>
                 <tr>
-		  <c:if test="${!fn:containsIgnoreCase(pNam,'chromosomeOptional')}"> <c:if test="${pNam != 'organism'}"><td align="right" valign="top"><b>${qP.prompt}</b></td></c:if></c:if>
+		  <c:if test="${pNam != 'chromosomeOptional'}"> <c:if test="${pNam != 'organism'}"><td align="right" valign="top"><b>${qP.prompt}</b></td></c:if></c:if>
                     <td>
                         <%-- choose between enum param and straight text or number param --%>
                         <c:choose>
 			   
-			    <c:when test="${pNam eq 'organism'}">
-				<input name="myProp(${pNam})" id="${pNam}" type="hidden"/>
-                            </c:when> 
-                            
-			    <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.EnumParamBean'}">
-				<%--<c:choose>   
-					<c:when test="${pNam == 'libraryId'}">
-				   		<input name="myProp(${pNam})" type="hidden" id="text${pNam}"/>
-				    		<select name="select_${pNam}" multiple="multiple" id="${pNam}" onchange="updateSelectInput('text${pNam}','${pNam}')"></select>	
-                                        </c:when>
-					<c:otherwise>--%>
-                                		<wdk:enumParamInput qp="${qP}" />
-<%--					</c:otherwise>
-				</c:choose>   --%>
+                            <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.EnumParamBean'}">
+					<c:choose>  
+						<c:when test="${pNam eq 'organism'}">
+							<input name="myProp(${pNam})" type="hidden" id="organism"/>
+                        </c:when>
+						<c:otherwise>
+			                <wdk:enumParamInput qp="${qP}" />
+						</c:otherwise>
+					</c:choose>
                             </c:when>
                             <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.AnswerParamBean'}">
                                 <wdk:answerParamInput qp="${qP}" />
@@ -167,14 +156,10 @@ function showParamGroup(group, isShow)
                                         <html:hidden property="myProp(${pNam})"/>
                                     </c:when>
                                     <c:otherwise>
-					<c:choose>   
-				<%--		<c:when test="${pNam == 'libraryId'}">
-					   		<input name="myProp(${pNam})" type="hidden" id="text${pNam}"/>
-					    		<select name="select_${pNam}" multiple="multiple" id="${pNam}" onchange="updateSelectInput('text${pNam}','${pName}')"></select>	
-                                           	 </c:when>--%>
-						<c:when test="${fn:containsIgnoreCase(pNam,'chromosomeOptional')}">
-							<input name="myProp(${pNam})" id="chromosomeOptional" type="hidden"/>
-                             			</c:when> 
+					<c:choose>  
+						<c:when test="${pNam eq 'chromosomeOptional'}">
+							<input name="myProp(${pNam})" id="${pNam}" type="hidden"/>
+                            			</c:when> 
 						<c:when test="${pNam == 'sequenceId'}">
 							<input name="myProp(${pNam})" id="${pNam}" type="hidden" />
 							<table border="0" bgcolor="#EEEEEE" cellspacing="0" cellpadding="0">
@@ -189,7 +174,10 @@ function showParamGroup(group, isShow)
 							        <td align="left">
 							            <select id="orgSelect" onchange="loadStrains()">
 									<option value="--">---Choose Organism---</option>
-							            </select>
+							               <!-- <option value="Cryptosporidium parvum">Cryptosporidium parvum</option>
+							                <option value="Plasmodium falciparum">Plasmodium falciparum</option>
+									<option value="Toxoplasma gondii">Toxoplasma gondii</option>-->
+								    </select>
 								</td>
 							   </tr>
 							   <tr>
@@ -197,9 +185,7 @@ function showParamGroup(group, isShow)
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chromosomes:&nbsp;
 							         </td>
 							         <td>
-							       	        <select name="CHRO" id="${pNam}_chromo" onchange="updateSelectInput('chromosomeOptional', '${pNam}_chromo')">
-										<option value="--">--</option>
-      									</select>
+							       	        <select name="CHRO" id="${pNam}_chromo" onchange="updateSelectInput('chromosomeOptional', '${pNam}_chromo')"></select>
 							         </td>
 							   </tr>
 							   <tr>
@@ -223,7 +209,7 @@ function showParamGroup(group, isShow)
                             </c:otherwise>
                         </c:choose>
                     </td>
-		<c:if test="${!fn:containsIgnoreCase(pNam,'chromosomeOptional')}">	<c:if test="${pNam != 'organism'}">
+		<c:if test="${pNam != 'chromosomeOptional'}">	<c:if test="${pNam != 'organism'}">
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td valign="top" width="50" nowrap>
                         <c:set var="anchorQp" value="HELP_${fromAnchorQ}_${pNam}"/>
@@ -255,13 +241,10 @@ function showParamGroup(group, isShow)
     </c:choose>
     
 </c:forEach>
-
+</c:if></div>
 <c:set target="${helps}" property="${fromAnchorQ}" value="${helpQ}"/>
 
-  <div align="center"><html:submit property="questionSubmit" value="Get Answer"/></div>
-	<script>
-		initEstLoc();
-	</script>
+ <c:if test="${showParams == false || showParams == null}"> <div align="center"><html:submit property="questionSubmit" value="Get Answer"/></div></c:if>
 </html:form>
 
 <hr>
