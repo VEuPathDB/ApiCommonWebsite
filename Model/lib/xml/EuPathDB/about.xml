@@ -81,24 +81,8 @@ information, metabolomic data, etc.
        <attribute name="tag">protocols_methods</attribute>
        <attribute name="text">
        <![CDATA[
-<h4>EST Assemblies</h4>
-EST assemblies are transcript predictions based on genome alignments. 
-ESTs are obtained from dbEST and from researchers who generously provide 
-additional libraries. ESTs are cleaned prior to use; leading or trailing 
-poly A or T sequences are trimmed and vector sequences are masked. ESTs 
-greater than 50 bases long are used for BLAT alignment (Kent,W.J, 2002. 
-Genome Research. 12:656-664) to same species genome sequences with a 
-threshold of 90% minimum sequence identity, minimum score of 30, and the 
-maximum intron length adjusted for the species. The ESTs are then 
-clustered into disjoint sets based on the proximity and quality of their 
-alignments, only the best alignments with a 95% minimum percent identity 
-are used for clustering. Clusters of ESTs are then assembled and 
-consensus sequences produced using the CAP4 assembly program (X. Huang 
-and Madan, A., 1999. Genome Res. 9:868-877). Finally, the predicted 
-consensus transcripts are themselves aligned to the genome.
-<br><br>
 
-For more detail on Data Surces and Methods please access specific component sites information:
+For detail on Data Sources and Methods please access specific component sites information:
 <center>
 <table width="50%" border="0" cellpadding="2" cellspacing="2">
 
@@ -140,6 +124,23 @@ For more detail on Data Surces and Methods please access specific component site
 
 </table>
 </center>
+<br><br>
+<h4>EST Assemblies</h4>
+EST assemblies are transcript predictions based on genome alignments. 
+ESTs are obtained from dbEST and from researchers who generously provide 
+additional libraries. ESTs are cleaned prior to use; leading or trailing 
+poly A or T sequences are trimmed and vector sequences are masked. ESTs 
+greater than 50 bases long are used for BLAT alignment (Kent,W.J, 2002. 
+Genome Research. 12:656-664) to same species genome sequences with a 
+threshold of 90% minimum sequence identity, minimum score of 30, and the 
+maximum intron length adjusted for the species. The ESTs are then 
+clustered into disjoint sets based on the proximity and quality of their 
+alignments, only the best alignments with a 95% minimum percent identity 
+are used for clustering. Clusters of ESTs are then assembled and 
+consensus sequences produced using the CAP4 assembly program (X. Huang 
+and Madan, A., 1999. Genome Res. 9:868-877). Finally, the predicted 
+consensus transcripts are themselves aligned to the genome.
+
 
 
        ]]>
