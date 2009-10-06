@@ -15,22 +15,6 @@
 <%-- display page header with wdkQuestion displayName as banner --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 <c:set var="used_sites" value="${applicationScope.wdkModel.properties['SITES']}"/>
-
-<c:set var="headElement">
-  <script src="/assets/js/AjaxSnpLocation.js" type="text/javascript"></script>
-  <script type="text/javascript">
-     initSNPLoc();
-  </script>
-</c:set>
-<site:header title="${wdkModel.displayName} : ${wdkQuestion.displayName}"
-                 banner="Identify ${wdkQuestion.recordClass.type}s based on ${wdkQuestion.displayName}"
-                 parentDivision="Queries & Tools"
-                 parentUrl="/showQuestionSetsFlat.do"
-                 divisionName="Question"
-                 division="queries_tools"
-		 headElement="${headElement}"/>
-
-<div id="question_Form">
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 
  <tr>
@@ -44,7 +28,13 @@
 
 <A name="${fromAnchorQ}"></A>
 <!--html:form method="get" action="/processQuestion.do" -->
-<html:form method="post" enctype='multipart/form-data' action="/processQuestion.do">
+<html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
+<c:if test="${showParams == false || showParams == null}">
+  <script src="/assets/js/AjaxSnpLocation.js" type="text/javascript"></script>
+  <script id="initscript" language="javascript">
+	initSNPLoc();
+  </script>
+</c:if>
 <input type="hidden" name="questionFullName" value="${wdkQuestion.fullName}"/>
 <table>
 
@@ -52,8 +42,8 @@
 <wdk:errors/>
 
 <c:set value="${wdkQuestion.params}" var="qParams"/>
-
-
+<div class="params">
+<c:if test="${showParams == true || showParams == null}">
 <c:forEach items="${qParams}" var="qP">
   <c:set var="isHidden" value="${qP.isVisible == false}"/>
   <c:set var="isReadonly" value="${qP.isReadonly == true}"/>
@@ -144,12 +134,12 @@
   </c:otherwise></c:choose>
 
 </c:forEach>
-
+</c:if></div>
 
 <c:set target="${helps}" property="${fromAnchorQ}" value="${helpQ}"/>
 
   <tr><td></td>
-      <td><html:submit property="questionSubmit" value="Get Answer"/></td>
+      <c:if test="${showParams == false || showParams == null}"> <td><html:submit property="questionSubmit" value="Get Answer"/></td></c:if>
 </table>
 </html:form>
 
@@ -162,5 +152,3 @@
 </tr>
 </table> 
 <div id="data_div"></div>
-
-<site:footer/>
