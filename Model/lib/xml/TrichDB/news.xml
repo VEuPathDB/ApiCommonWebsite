@@ -22,7 +22,7 @@ allowing you to view expanded gene families -- See <a
  href="http://trichdb.org/trichdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TVAG_386080&amp;project_id=TrichDB">TVAG_386080</a>
 for example (scroll down to the Orthologs and Paralogs Table).</li>
   <li>Now after you perform a BlastN against genomic sequence you
-can link from the the blast output to the correct coordinates in the
+can link from the blast output to the correct coordinates in the
 genome browser.&nbsp; This allows you to explore annotation and
 other functional data in relation to your BLAST hits.</li>
   <li>The type ahead feature has been implemented for GO term, EC

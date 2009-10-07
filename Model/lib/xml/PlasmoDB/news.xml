@@ -30,7 +30,7 @@ announce the release of PlasmoDB 6.1</b><br>
 <u>New Data:</u><br>
 <ul>
   <li><il>P.
-&nbsp;falciparum</il> intraerythrocitic expression profiles
+&nbsp;falciparum</il> intraerythrocytic expression profiles
 from&nbsp;infected patients (<a
  href="http://www.ncbi.nlm.nih.gov/pubmed/19376968">Lemieux <il>et. al.</il></a>)
 -- data available on gene pages, for example, click <a
@@ -42,7 +42,7 @@ New/Updated Features:</u><br>
 <ul>
   <li>Now after you perform a BlastN against genomic sequence you
 can
-link from the the blast output to the correct coordinates in the genome
+link from the blast output to the correct coordinates in the genome
 browser.&nbsp; This allows you to explore annotation and other
 functional
 data in relation to your BLAST hits.</li>
