@@ -15,11 +15,6 @@
        </attribute>
        <attribute name="item">
          <![CDATA[
-<i>If you cannot see the
-contents of this email please click <a
- href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News#">here</a>
-for the html version.</i><br>
-<br>
 <b">We are pleased to
 announce the release of EuPathDB 2.1</b><br>
 <br>
@@ -42,7 +37,7 @@ at any time in the future.</li>
 A tutorial describing how to build a strategy can be viewed <a
  href="http://eupathdb.org/tutorials/New_Strat/New_Strat_viewlet_swf.html">here</a>.
 &nbsp;And an example sample strategy can be accessed <a
- href="http://eupathdb.org/eupathdb2.1/im.do?s=4961f7629e7950c9">here</a>.<br>
+ href="http://eupathdb.org/eupathdb/im.do?s=4961f7629e7950c9">here</a>.<br>
 <br>
 Sincerely,<br>
 <br>
