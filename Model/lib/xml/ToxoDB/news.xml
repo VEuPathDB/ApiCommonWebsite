@@ -25,7 +25,7 @@ announce the implementation of new features in ToxoDB:</b><br>
 <ul>
   <li>Now
 after you perform a BlastN against genomic sequence you can link from
-the the blast output to the correct coordinates in the genome
+the blast output to the correct coordinates in the genome
 browser.&nbsp;
 This allows you to explore annotation and other functional data in
 relation to your BLAST hits.</li>

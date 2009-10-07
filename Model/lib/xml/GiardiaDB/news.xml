@@ -19,19 +19,19 @@ intestinalis</il> mitosome enriched fraction proteomics
 provided by Jan Tachezy and described in <a
  href="http://www.ncbi.nlm.nih.gov/pubmed/19717741">Rada <il>et. al.</il></a></li>
   <li><il>Giardia</il>
-isolate data fron GenBank are now included -- seach for isolates based
+isolate data from GenBank are now included -- search for isolates based
 on many criteria such as geographic location, submitter name, isolation
 source and/or host. &nbsp;Also, generate nucleotide sequence
 alignments of isolates you select, and BLAST your sequence against the
 isolate database. <br>
    </li>
 </ul>
-<u>New/Upadated
+<u>New/Updated
 Features:</u><br>
 <ul>
   <li>Now after you perform a BlastN against genomic sequence you
 can
-link from the the blast output to the correct coordinates in the genome
+link from the blast output to the correct coordinates in the genome
 browser.&nbsp; This allows you to explore annotation and other
 functional
 data in relation to your BLAST hits.</li>
