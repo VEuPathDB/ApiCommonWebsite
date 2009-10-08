@@ -284,8 +284,16 @@ select bfmv.source_id, s.source_id, bfmv.organism,
      THEN $endAnchRev
      ELSE $endAnch END as expect_end,
      CASE WHEN bfmv.is_reversed = 1
-     THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
-     ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
+     THEN 
+       CASE WHEN $startRev < 0
+       THEN substr(s.sequence, 0, greatest(0, ($endRev + 1)))
+       ELSE substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
+       END
+     ELSE
+       CASE WHEN $start < 0
+       THEN substr(s.sequence, 0, greatest(0, ($end + 1)))
+       ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
+       END
      END as sequence
 FROM apidb.orfattributes bfmv, apidb.nasequence s
 WHERE bfmv.source_id = ?
@@ -316,15 +324,27 @@ EOSQL
     if (!$geneOrfSourceId) {
       push(@invalidIds, $inputId);
     } else {
-      my $expectedLength = $isReversed ? ($expectStart + $endOffset) - ($expectEnd + $beginOffset) + 1 :
-                                         ($expectEnd + $endOffset) - ($expectStart + $beginOffset) + 1;
-      &error("The target sequence '$inputId' is shorter than the requested length.") unless($expectedLength == length($seq));
+       if ($isReversed == 0) {
+	   $expectStart = $expectStart + $beginOffset;
+	   $expectEnd = $expectEnd + $endOffset 
+       }
+       else {
+	   $expectStart = $expectStart - $endOffset;
+	   $expectEnd = $expectEnd - $beginOffset;
+       }
+       if ($expectStart < 0) {
+	   $expectStart = 0;
+       }
+      my $expectedLength = $expectEnd - $expectStart  + 1;
 
       my $strand = "$seqSourceId " . ($isReversed? 'reverse | ' : 'forward | ');
       my $uplus = $self->{upstreamOffset} < 0? "" : "+";
       my $dplus = $self->{downstreamOffset} < 0? "" : "+";
       my $model = $self->getModel();
       my $desc = " | $taxonName | $product | genomic | ${strand}($self->{geneOrOrf}$self->{upstreamAnchor}$uplus$self->{upstreamOffset} to $self->{geneOrOrf}$self->{downstreamAnchor}$dplus$self->{downstreamOffset})";
+      if (length($seq) < $expectedLength ) {
+	  $desc = $desc . " | WARNING: Partial sequence retrieved";
+      }
       $desc = " ($inputId) $desc" if ($inputId ne $geneOrfSourceId);
       $self->writeSeq($seqIO, $seq, $desc, $geneOrfSourceId,
 		      $start, $end, $isReversed);
