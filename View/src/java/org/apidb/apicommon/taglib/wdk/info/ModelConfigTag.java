@@ -27,7 +27,7 @@ import org.apidb.apicommon.taglib.wdk.WdkTagBase;
 import org.gusdb.wdk.model.ModelConfig;
 import org.gusdb.wdk.model.ModelConfigDB;
 import org.gusdb.wdk.model.ModelConfigUserDB;
-import org.gusdb.wdk.model.ModelConfigApplicationDB;
+import org.gusdb.wdk.model.ModelConfigAppDB;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ public class ModelConfigTag extends WdkTagBase {
     private String var;
     private ModelConfig modelConfig;
     private ModelConfigUserDB modelConfigUserDB;
-    private ModelConfigApplicationDB modelConfigApplicationDB;
+    private ModelConfigAppDB modelConfigAppDB;
     public HashMap props;
     
     private Logger logger = Logger.getLogger(ModelConfigTag.class);
@@ -53,12 +53,12 @@ public class ModelConfigTag extends WdkTagBase {
 
         modelConfig = wdkModel.getModelConfig();
         modelConfigUserDB = modelConfig.getUserDB();
-        modelConfigApplicationDB = modelConfig.getApplicationDB();
+        modelConfigAppDB = modelConfig.getAppDB();
         props = new HashMap();
         
         setValuesFromGetters("global", modelConfig);
         setValuesFromGetters("userDb", modelConfigUserDB);
-        setValuesFromGetters("appDb", modelConfigApplicationDB);
+        setValuesFromGetters("appDb", modelConfigAppDB);
 
         this.getRequest().setAttribute(var, this);
    }
