@@ -42,7 +42,6 @@
        </tr>
        <c:forEach items="${steps}" var="step">
          <c:set var="type" value="${step.dataType}"/>
-         <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
          <c:set var="recDispName" value="${step.question.recordClass.type}"/>
          <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' ')-1)}"/>
          <c:choose>
