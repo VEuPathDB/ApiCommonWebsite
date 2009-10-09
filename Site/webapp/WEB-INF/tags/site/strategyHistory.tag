@@ -20,7 +20,6 @@
 <c:set var="savedStrategiesMap" value="${user.savedStrategiesByCategory}"/>
 <c:set var="invalidStrategies" value="${user.invalidStrategies}"/>
 <c:set var="modelName" value="${model.name}"/>
-<c:set var="showOrthoLink" value="${fn:containsIgnoreCase(modelName, 'plasmodb') || fn:containsIgnoreCase(modelName, 'apidb') || fn:containsIgnoreCase(modelName, 'cryptodb')}" />
 
 <!-- decide whether strategy history is empty -->
 <c:choose>
@@ -33,7 +32,6 @@
   <ul id="history_tabs">
   <c:forEach items="${unsavedStrategiesMap}" var="strategyEntry">
     <c:set var="type" value="${strategyEntry.key}"/>
-    <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
     <c:set var="unsavedStratList" value="${strategyEntry.value}"/>
     <c:set var="savedStratList" value="${savedStrategiesMap[type]}" />
 
@@ -70,23 +68,6 @@
   </li>
   </ul>
 
-
-<%-- display link to old site if user is logged in (temp) --%>
-<c:if test="${!wdkUser.guest}">
-<c:set var="projectId" value="${model.projectId}" />
-<c:set var="previousSite">
-  <c:choose>
-    <c:when test="${projectId == 'CryptoDB'}">http://old.cryptodb.org</c:when>
-    <c:when test="${projectId == 'EuPathDB'}">http://old.eupathdb.org</c:when>
-    <c:when test="${projectId == 'GiardiaDB'}">http://old.giardiadb.org</c:when>
-    <c:when test="${projectId == 'PlasmoDB'}">http://old.plasmodb.org</c:when>
-    <c:when test="${projectId == 'ToxoDB'}">http://old.toxodb.org</c:when>
-    <c:when test="${projectId == 'TrichDB'}">http://old.trichdb.org</c:when>
-    <c:when test="${projectId == 'TriTrypDB'}">http://old.tritrypdb.org</c:when>
-  </c:choose>
-</c:set>
-
-<site:qhWarning prevSite="${previousSite}" />
 </c:if>  <%-- end display link to old site --%>
 
 
@@ -107,7 +88,6 @@
 <!-- begin creating history sections to display strategies -->
 <c:forEach items="${unsavedStrategiesMap}" var="strategyEntry">
   <c:set var="type" value="${strategyEntry.key}"/>
-  <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
   <c:set var="strategies" value="${strategyEntry.value}"/>
   <c:set var="recDispName" value="${strategies[0].displayType}"/>
   <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' '))}"/>
@@ -123,7 +103,6 @@
 <!-- begin creating history sections to display strategies -->
 <c:forEach items="${savedStrategiesMap}" var="strategyEntry">
   <c:set var="type" value="${strategyEntry.key}"/>
-  <c:set var="isGeneRec" value="${fn:containsIgnoreCase(type, 'GeneRecordClass')}"/>
   <c:set var="strategies" value="${strategyEntry.value}"/>
   <c:set var="recDispName" value="${strategies[0].displayType}"/>
   <c:set var="recTabName" value="${fn:substring(recDispName, 0, fn:indexOf(recDispName, ' '))}"/>
@@ -154,7 +133,7 @@
         <img alt='Close' src='/assets/images/Close-X.png'  height='16'/>
         </a>
       </div>
-      <form id='save_strat_form' onsubmit='return validateSaveForm(this);'><!-- action="javascript:saveStrategy('${strategy.strategyId}', true, true)">-->
+      <form id='save_strat_form' onsubmit='return validateSaveForm(this);'>
         <input type='hidden' value="" name='strategy'/>
         <input type='text' value="" name='name' maxlength='200'/>
         <input  style='margin-left:5px;' type='submit' value='Save'/>
@@ -191,10 +170,3 @@
   </c:otherwise>
 </c:choose> 
 <!-- end of deciding strategy emptiness -->
-
-
-<c:if test="${!wdkUser.guest}">
-	<hr>
-	<site:qhWarning prevSite="${previousSite}"/>
-</c:if> <%-- end of test & display urls to old site --%>
-

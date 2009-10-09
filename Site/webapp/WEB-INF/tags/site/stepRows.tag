@@ -15,7 +15,7 @@
               description="Number of pixels to indent this set of steps"
 %>
 
-<%@ attribute name="i"
+<%@ attribute name="rowNum"
               required="true"
               description="Row number for the Strategy that latestStep belongs to"
 %>
@@ -81,7 +81,7 @@
 
   </tr>
   <c:if test="${step.childStep.isCollapsible}">
-    <site:stepRows latestStep="${step.childStep}" i="${i}" indent="${indent + 40}"/>
+    <site:stepRows latestStep="${step.childStep}" rowNum="${i}" indent="${indent + 40}"/>
   </c:if>
   <c:set var="j" value="${j + 1}"/>
 </c:forEach>

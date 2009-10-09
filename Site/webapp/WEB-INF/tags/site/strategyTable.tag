@@ -94,7 +94,7 @@
 <%-- here, the description cannot expand beyond the td, it wraps using more vertical space.
 	<table id="strat_description">
           <tbody id="steps_${strategyId}">
-          <site:stepRows latestStep="${strategy.latestStep}" i="${i}" indent="0"/>
+          <site:stepRows latestStep="${strategy.latestStep}" rowNum="${i}" indent="0"/>
           </tbody>    
         </table>
 --%>
@@ -153,7 +153,7 @@
 
 	<table id="strat_description">
           <tbody id="steps_${strategyId}">
-          <site:stepRows latestStep="${strategy.latestStep}" i="${i}" indent="50"/>
+          <site:stepRows latestStep="${strategy.latestStep}" rowNum="${i}" indent="50"/>
           </tbody>    
         </table>
 
