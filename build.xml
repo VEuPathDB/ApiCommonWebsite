@@ -11,9 +11,9 @@
     </ant>
   </target>  
 
-  <target name="ApiCommonData/Model-Installation">
-    <ant antfile="../ApiCommonData/build.xml" target="ApiCommonData/Model-Installation">
-      <property name="project" value="ApiCommonData"/>
+  <target name="ApiCommonShared/Model-Installation">
+    <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared/Model-Installation">
+      <property name="project" value="ApiCommonShared"/>
       <property name="version" value="api-aug-08"/>
     </ant>
   </target>  
@@ -49,6 +49,15 @@
     </ant>
   </target>
  
+  <target name="ApiCommonShared-Checkout" unless="ApiCommonShared.present"> 
+    <ant target="defaultProjectCheckout" inheritAll="false">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonShared"/>
+      <property name="project" value="ApiCommonShared"/>
+      <property name="version" value="api-aug-08"/>
+      <property name="excludeChildren" value="true"/>
+    </ant>
+  </target>
+ 
   <target name="WDK-Checkout" unless="WDK.present"> 
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
@@ -75,10 +84,12 @@
     <available file="../WDK" type="dir" property="WDK.present" />
     <available file="../ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
+    <available file="../ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
     <antcall target="WDK-Checkout" />
     <antcall target="ApiCommonWebService-Checkout" />
     <antcall target="CBIL-Checkout" />
     <antcall target="ApiCommonData-Checkout"/>
+    <antcall target="ApiCommonShared-Checkout"/>
   </target>
   
   
@@ -91,7 +102,10 @@
       <property name="project" value="ApiCommonData"/>
       <property name="excludeChildren" value="true"/>
     </ant>
-    <ant target="defaultProjectUpdate">
+     <ant target="defaultProjectUpdate">
+      <property name="project" value="ApiCommonShared"/>
+    </ant>
+   <ant target="defaultProjectUpdate">
       <property name="project" value="WDK"/>
     </ant>
     <ant target="defaultProjectUpdate">
@@ -106,7 +120,7 @@
 
   <target name="ApiCommonWebsite-Installation" depends="CBIL-Installation,
                                                         WDK-Installation,
-                                                        ApiCommonData/Model-Installation,
+                                                        ApiCommonShared/Model-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
                                                         ApiCommonWebsite/View-Installation">
