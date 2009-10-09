@@ -45,7 +45,7 @@
 
 <p>
 
-<site:login showError="true" />
+<wdk:login showError="true" />
 </div>
 <site:footer />
 

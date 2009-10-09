@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
@@ -65,11 +64,7 @@
     	<ul>
 	</c:if>
 	<c:forEach items="${cat.questions}" var="q">
-    	<c:if test="${ !fn:contains(recordClass, 'Isolate') || (!fn:contains(q.displayName, 'RFLP') && !fn:contains(q.displayName, 'Clustering') )}">
-              <c:if test="${!( (siteName == 'PlasmoDB' || siteName == 'GiardiaDB' || siteName == 'ToxoDB') && fn:containsIgnoreCase(q.displayName, 'Microarray'))}">
-    		<li><a href="javascript:getQueryForm('showQuestion.do?questionFullName=${q.fullName}&partial=true')">${q.displayName}</a></li>			
-              </c:if>
-    	</c:if>
+          <li><a href="javascript:getQueryForm('showQuestion.do?questionFullName=${q.fullName}&partial=true')">${q.displayName}</a></li>
 	</c:forEach>
 	<c:if test="${rootCat.multiCategory}">
     	</ul>

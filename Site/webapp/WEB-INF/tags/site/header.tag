@@ -298,9 +298,9 @@ ${headElement}
 
           <li>
             <a href="javascript:void(0)" onclick="popLogin()">Login<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
-	    <div id="loginForm" style="display:none;"><h2 style="text-align: center">EuPathDB Account Login</h2><site:login includeCancel="true" /></div>
+	    <div id="loginForm" style="display:none;"><h2 style="text-align: center">EuPathDB Account Login</h2><wdk:login includeCancel="true" /></div>
               <%-- <ul class="login">
-                    <li><site:login /></li>
+                    <li><wdk:login /></li>
               </ul> --%>
 
          </li>
