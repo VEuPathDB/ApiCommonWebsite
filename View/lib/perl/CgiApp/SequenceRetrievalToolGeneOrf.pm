@@ -362,7 +362,7 @@ sub writeSeq {
   my $length = length($seq);
 
   if ($length == 0) {
-    print "$displayId $desc | length=0\n\n";
+    print ">$displayId $desc | length=0\n\n";
   } else {
 
     my $bioSeq = Bio::Seq->new(-display_id => $displayId,
