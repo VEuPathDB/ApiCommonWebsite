@@ -14,6 +14,77 @@
 --> 
 <record>
        <attribute name="headline"><![CDATA[
+         Community Annotation in Progress
+         ]]>
+       </attribute>
+       <attribute name="date">12 October 2009 15:00</attribute>
+       <attribute name="tag">CommAnnot</attribute>
+       <attribute name="item">           
+         <![CDATA[<span style="font-weight: bold;">Community Annotation in
+Progress<br>
+<br>
+</span>The <span style="font-style: italic;">Toxoplasma</span>&nbsp;research
+community has been involved in improving the genome annotation.
+&nbsp;With guidance from the current ToxoDB community advisers
+(John Boothroyd, Vern Carruthers, Marc-Jan Gubbles and Michael White),
+members of the research community (see below) have been asked to take
+the lead in providing high quality annotation on subsets of cellular
+and biochemical pathways. The goal is to incorporate the results of
+this effort in ToxoDB by the end of the year.<span
+ style="font-weight: bold;"> &nbsp;</span><br>
+<br>
+If you have not been contacted yet and feel that you can contribute to
+one of the pathways mentioned below, please<a
+ href="mailto:%20help@toxodb.org"> contact us</a>.<br>
+<br>
+<ul>
+  <li><span style="text-decoration: underline;">Micronemes
+    </span>(Vern Carruthers)</li>
+  <li><span style="text-decoration: underline;">Rhoptries</span>
+- Necks and Bulbs (Peter Bradley)</li>
+  <li><span style="text-decoration: underline;">Dense
+Granules</span> (Marie-France Cesbron-Delauw)</li>
+  <li><span style="text-decoration: underline;">Chromatin-associated</span>
+(Kami Kim)</li>
+  <li><span style="text-decoration: underline;">Proteases</span>
+(Dominique Soldati-Favre)</li>
+  <li><span style="text-decoration: underline;">Apicoplast</span>
+(Stuart Ralph)</li>
+  <li><span style="text-decoration: underline;">Mitochondrion</span>
+(David Roos)</li>
+  <li><span style="text-decoration: underline;">IMC</span>
+(Con Beckers)</li>
+  <li><span style="text-decoration: underline;">Surface
+Proteins</span> (Michael Grigg)</li>
+  <li><span style="text-decoration: underline;">Bradyzoite</span>
+(Louis Weiss)</li>
+  <li><span style="text-decoration: underline;">Golgi/ER</span>
+(Markus Meissner)</li>
+  <li><span style="text-decoration: underline;">Acidocalcisome</span>
+(Silvia Moreno)</li>
+  <li><span style="text-decoration: underline;">Fatty
+Acid Metabolism</span> (Frank Seeber)</li>
+  <li><span style="text-decoration: underline;">Nucleotide
+Metabolism </span>(David Bzik)</li>
+  <li><span style="text-decoration: underline;">Sugar
+Metabolism</span> (Stan Tomavo)</li>
+  <li><span style="text-decoration: underline;">Glycolipid
+Metabolism</span> (Boris Striepen)</li>
+  <li><span style="text-decoration: underline;">Transcription</span>
+(Michael White)</li>
+  <li><span style="text-decoration: underline;">Translation</span>
+(Bill Sullivan)</li>
+  <li><span style="text-decoration: underline;">Cell
+Cycle</span> (Marc-Jan Gubbels)</li>
+  <li><span style="text-decoration: underline;">Parasitophorous
+Vacuole and Membrane</span> (Tony Sinai)<br>
+  </li>
+</ul>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
          New Features in ToxoDB
          ]]>
        </attribute>
