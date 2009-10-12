@@ -276,14 +276,14 @@ ${headElement}
 		Contact Us<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
  
  
- <site:requestURL/>
+ <wdk:requestURL/>
  <c:choose>
     <c:when test="${wdkUser == null || wdkUser.guest == true}">
     
       <%--------------- Construct links to login/register/profile/logout pages -------------%>  
         <%-- 
             urlencode the enclosing page's URL and append as a parameter 
-            in the queryString. site:requestURL compensates
+            in the queryString. wdk:requestURL compensates
             for Struts' url mangling when forward in invoked.
         --%>
         <c:url value="/login.jsp" var="loginUrl">
