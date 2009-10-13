@@ -165,10 +165,11 @@ if ($isVis_b{hist} == 1) {
                ylim      = c(0, d.max),
                beside    = TRUE,
                 names.arg = the.tags,
+               space=c(0,.5),
                las = 2
               );
 
-  legend(13, d.max, legend=the.legend, cex=0.9, fill=the.colors, inset=0.2) ;
+  legend(11, d.max, legend=the.legend, cex=0.9, fill=the.colors, inset=0.2) ;
 
   # the suppressWarnings hides complaints about zero-length arrows
   #suppressWarnings( arrows(c, pct.all - the.std, c, pct.all+the.std,
