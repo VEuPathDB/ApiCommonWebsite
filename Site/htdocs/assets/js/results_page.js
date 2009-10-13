@@ -1,4 +1,9 @@
+/*
+WDK Strategy System
+results.js
 
+Provides functions to support results table
+*/
 
 function ToggleGenePageView(id,url){
 	$("#Results_Pane").css({display: "none"});
@@ -70,8 +75,6 @@ function moveAttr(col_ix) {
 	GetResultsPage(url, false, true);
 }
 
-// FOLLOWING TAKEN FROM OLD CUSTOMSUMMARY
-
 function addAttr(url) {
     var attributeSelect = document.getElementById("addAttributes");
     var attributes = attributeSelect.value;
@@ -89,7 +92,6 @@ function resetAttr(url) {
     if (confirm("Are you sure you want to reset the column configuration back to the default?")) {
         var url = url + "&command=reset";
         GetResultsPage(url, true, true);
-		//window.location.href = url;
     }
 }
 		
