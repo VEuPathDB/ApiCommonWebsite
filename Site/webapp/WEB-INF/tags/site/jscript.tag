@@ -5,10 +5,7 @@
 			  required="true" 
 			  description="Page calling this tag"
 %>
-<%-- JQuery library is included by WDK 
-<!-- JQuery Library -->
-<script type="text/javascript" src="/assets/js/lib/jquery-1.3.2.js"></script>
---%>
+<%-- JQuery library is included by WDK --%>
 
 
 <!-- js for Help - Did you know window --> 
@@ -20,13 +17,8 @@
 <c:if test="${refer == 'customSummary'}">
   <script type="text/javascript" src="/assets/js/dyk.js"></script>
 	<!-- JQuery Drag And Drop Plugin -->
-	<!--<script type="text/javascript" src="/assets/js/lib/jqDnR.js"></script>-->
 	<script type="text/javascript" src="/assets/js/lib/json.js"></script>
 	<script type="text/javascript" src="/assets/js/lib/jquery.multiSelect.js"></script>
-
-<%--	<script type="text/javascript" src="/assets/js/lib/ui/ui.core.js"></script>
-	<script type="text/javascript" src="/assets/js/lib/ui/ui.draggable.js"></script>
---%>
 
 	<!-- filter menu javascript -->
 	<script type="text/javascript" src="/assets/js/filter_menu.js"></script>
@@ -51,13 +43,6 @@
      var sites = new Array(${used_sites});
   </script>
 <script type="text/javascript" src="/assets/js/ApiDB_Ajax_Utils.js"></script>
-<%--<script type="text/javascript" src="/assets/js/AjaxLocation.js"></script>
-<script type="text/javascript" src="/assets/js/AjaxAssemLocation.js"></script
-<script type="text/javascript" src="/assets/js/AjaxESTsLocation.js"></script>
-<script type="text/javascript" src="/assets/js/AjaxSageTagLocationORF.js"></script>
-<script type="text/javascript" src="/assets/js/AjaxSnpLocation.js"></script>
-<script type="text/javascript" src="/assets/js/AjaxSnp.js"></script>
---%>
 
 <c:if test="${refer == 'customSummary' || refer == 'customQuestion'}">
   <script src="js/lib/jquery.autocomplete.js" type="text/javascript"></script>
@@ -74,10 +59,7 @@
 <%-- js for quick seach box --%>
 <script type="text/javascript" src="/assets/js/quicksearch.js"></script>
  
-
-<%--<c:if test="${refer == 'blastQuestion'}"> --%>
-        <script type="text/javascript" src="/assets/js/blast.js"></script>
-<%--</c:if>--%>
+<script type="text/javascript" src="/assets/js/blast.js"></script>
 
 <script type="text/javascript" src="/assets/js/orthologpattern.js"></script>
 
@@ -91,9 +73,6 @@
 <!-- dynamic organism param in portal -->
 <script type="text/javascript" src="<c:url value='/js/Top_menu.js'/>"></script>
 
-
-<!-- Record Page GBrowse Javascript code -->
-<%--<script type="text/javascript" src="/gbrowse/wz_tooltip_3.45.js"></script>--%>
 <!-- history page code -->
 <script type="text/javascript" src="/assets/js/history.js"></script>
 
