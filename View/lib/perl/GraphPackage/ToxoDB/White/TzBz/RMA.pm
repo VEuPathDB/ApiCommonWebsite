@@ -32,7 +32,7 @@ sub init {
       )
     );
 
-  $Self->setYaxisLabel('Log2( Ratio )');
+  $Self->setYaxisLabel('RMA Value (log2)');
   $Self->setColors([ '#616D7E', '#806D7E', '#4E387E' ]);
   $Self->setTagRx(undef);
 
