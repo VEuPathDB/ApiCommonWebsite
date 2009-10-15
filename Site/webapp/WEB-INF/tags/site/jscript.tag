@@ -10,15 +10,15 @@
 
 <!-- js for Help - Did you know window --> 
 <!-- these files were under IF customSummary but the Help needs to work in any page -->
-<script type="text/javascript" src="/assets/js/lib/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="assets/js/lib/jquery-ui-1.7.2.custom.min.js"></script>
 
 <!-- JQuery Drag And Drop Plugin -->
 <script type="text/javascript" src="/assets/js/js-utils.js"></script>
 <c:if test="${refer == 'customSummary'}">
-  <script type="text/javascript" src="/assets/js/dyk.js"></script>
+	<script type="text/javascript" src="assets/js/dyk.js"></script>
 	<!-- JQuery Drag And Drop Plugin -->
-	<script type="text/javascript" src="/assets/js/lib/json.js"></script>
-	<script type="text/javascript" src="/assets/js/lib/jquery.multiSelect.js"></script>
+	<script type="text/javascript" src="assets/js/lib/json.js"></script>
+	<script type="text/javascript" src="assets/js/lib/jquery.multiSelect.js"></script>
 
 	<!-- filter menu javascript -->
 	<script type="text/javascript" src="/assets/js/filter_menu.js"></script>
@@ -30,7 +30,7 @@
 	<script type="text/javascript" src="assets/js/error-JSON.js"></script>
 	<script type="text/javascript" src="/assets/js/step.js"></script>
 	<script type="text/javascript" src="/assets/js/pager.js"></script>
-	<script type="text/javascript" src="/assets/js/lib/flexigrid/flexigrid.js"></script>
+	<script type="text/javascript" src="assets/js/lib/flexigrid/flexigrid.js"></script>
 	<!-- Results Page AJAX Javascript code -->
 	<script type="text/javascript" src="/assets/js/results_page.js"></script>
 	
@@ -50,10 +50,10 @@
 </c:if>
 
 <!-- JQuery BlockUI Plugin -->
-<script type="text/javascript" src="/assets/js/lib/jquery.blockUI.js"></script>
+<script type="text/javascript" src="assets/js/lib/jquery.blockUI.js"></script>
 
 <%-- jQuery Cookie plugin --%>
-<script type="text/javascript" src="/assets/js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="assets/js/lib/jquery.cookie.js"></script>
 <script type="text/javascript" src="/assets/js/stratTabCookie.js"></script>
 
 <%-- js for quick seach box --%>
