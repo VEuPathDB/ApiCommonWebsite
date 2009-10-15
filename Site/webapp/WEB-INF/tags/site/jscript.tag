@@ -24,11 +24,11 @@
 	<script type="text/javascript" src="/assets/js/filter_menu.js"></script>
 	<!-- Strategy Interaction javascript -->
 	
-	<script type="text/javascript" src="/assets/js/model-JSON.js"></script>
+	<script type="text/javascript" src="assets/js/model-JSON.js"></script>
 	<script type="text/javascript" src="/assets/js/view-JSON.js"></script>
+	<script type="text/javascript" src="assets/js/controller-JSON.js"></script>
+	<script type="text/javascript" src="assets/js/error-JSON.js"></script>
 	<script type="text/javascript" src="/assets/js/step.js"></script>
-	<script type="text/javascript" src="/assets/js/controler-JSON.js"></script>
-	<script type="text/javascript" src="/assets/js/error-JSON.js"></script>
 	<script type="text/javascript" src="/assets/js/pager.js"></script>
 	<script type="text/javascript" src="/assets/js/lib/flexigrid/flexigrid.js"></script>
 	<!-- Results Page AJAX Javascript code -->

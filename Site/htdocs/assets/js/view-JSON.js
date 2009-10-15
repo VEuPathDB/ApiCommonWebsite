@@ -375,6 +375,7 @@ function createDetails(modelstep, jsonstep, sid){
 						
 	insert_step = 	"<a title='" + insert_popup + "'  class='insert_step_link' id='" + sid + "|" + parentid + "' href='javascript:void(0)' onclick='Insert_Step(this,\"" + jsonstep.dataType + "\");hideDetails(this)'>Insert Step Before</a>&nbsp;|&nbsp;";
 
+	/* TODO:  Factor the ortholog link out somehow */
 	orthologs = "";
 	if(jsonstep.dataType == "GeneRecordClasses.GeneRecordClass"){
 		var orthologTgt;
@@ -385,6 +386,7 @@ function createDetails(modelstep, jsonstep, sid){
 		}
 		orthologs = "<a title='Add an ortholog transform to this step: obtain the ortholog genes to the genes in this result' class='orthologs_link' href='javascript:void(0)' onclick='openOrthologFilter(\"" + strat.backId + "\"," + orthologTgt + ");hideDetails(this)'>Orthologs</a>&nbsp;|&nbsp;";
 	}
+	/* END ortholog link code */
 	var delete_strat = '';
 	if(modelstep.frontId == 1 && strat.nonTransformLength == 1){
 		delete_step = "<a title='" + delete_popup + "' class='delete_step_link' href='javascript:void(0)' onclick=\"deleteStrategy('" + strat.backId + "',false);hideDetails(this)\">Delete</a>";
