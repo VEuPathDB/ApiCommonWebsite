@@ -55,16 +55,9 @@ function displayModel(strat){
 	  // For IE : when instructions are shown, need to specify 'overflow : visible'
 	  // Need to remove this inline style when instructions are removed
 	  $("#Strategies").removeAttr("style");
-	  //var strat = null;
-	  //strat = getStrategy(strat_id);
 	  if(strat.isDisplay){
 		var div_strat = document.createElement("div");
 		$(div_strat).attr("id","diagram_" + strat.frontId).addClass("diagram");
-		//if(strat.subStratOf != null){
-			//psml = $("#Strategies div#diagram_"+strat.subStratOf).css("margin-left");
-			//psml = parseInt(psml.substring(0,psml.indexOf("px")));
-			//$(div_strat).addClass("sub_diagram").css({"margin-left": (strat.depth(null) * indent) + "px"});
-		//}
 		var close_span = document.createElement('span');
 		$(close_span).addClass("closeStrategy").html(""+
 		"	<a onclick='closeStrategy(" + strat.frontId + ")' href='javascript:void(0)'>"+
@@ -73,7 +66,6 @@ function displayModel(strat){
 		$(div_strat).append(close_span);
 		$(div_strat).append(createStrategyName(strat));
 		$(div_strat).append(createParentStep(strat));
-		//$(div_strat).css({"border-width":"4px", "border-style":"ridge", "border-color": colors[currentColor].top+" "+colors[currentColor].right+" "+colors[currentColor].bottom+" "+colors[currentColor].left});
 		displaySteps = createSteps(strat,div_strat);
 		$(div_strat).append(createRecordTypeName(strat));
 		buttonleft = offset(null);
@@ -107,7 +99,6 @@ function createSteps(strat,div_strat){
 	leftOffset = 12;
 	var zIndex = 80;
 	for(var ind=0; ind < strat.Steps.length; ind++){  //cStp in strat.Steps){
-		//cStp = getStep(strat.frontId, ind+1);
 		cStp = strat.getStep(ind+1,true);
 		jsonStep = strat.JSON.steps[cStp.frontId];
 		if(cStp.isboolean){
@@ -134,7 +125,7 @@ function booleanStep(modelstep, jsonstep, sid, zIndex){
 		"			</a>"+
 		"			<div class='crumb_details'></div>"+
 		"			<h6 class='resultCount'>"+
-		"				<a title='CLICK to show these results in the area below.' class='operation' onclick='NewResults(" + sid + "," + modelstep.frontId + ", true)' href='javascript:void(0)'>" + jsonstep.results + "&nbsp;" + getDataType(jsonstep.dataType, jsonstep.results) + "</a>"+
+		"				<a title='CLICK to show these results in the area below.' class='operation' onclick='NewResults(" + sid + "," + modelstep.frontId + ", true)' href='javascript:void(0)'>" + jsonstep.results + "&nbsp;" + jsonstep.displayType + "</a>"+
 		"			</h6>" + filterImg;
 		if(!modelstep.isLast){
 			if(modelstep.nextStepType == "transform"){
@@ -155,11 +146,6 @@ function booleanStep(modelstep, jsonstep, sid, zIndex){
 	zIndex++; // DO NOT DELETE this or previous line, needed for correct display in IE7.
 	stepNumber = document.createElement('span');
 	$(stepNumber).addClass('stepNumber').css({ left: (leftOffset + 30) + "px"}).text("Step " + modelstep.frontId);
-//	var boolean_invalid = null;
-//	if(!jsonstep.isValid){
-//		boolean_invalid = createInvalidDiv();
-//		$(boolean_invalid).addClass(booleanClasses).css({left: leftOffset + "px"});
-//	}
 	//Create the operand Step Box
 	childStp = jsonstep.step;	
 	uname = "";
@@ -184,7 +170,7 @@ function booleanStep(modelstep, jsonstep, sid, zIndex){
 		"			<span id='fullStepName' style='display: none;'>" + fullName + "</span>"+
 		"			<div class='crumb_details'></div>"+
 		"		</h3>"+
-		"		<h6 class='resultCount'><a title='CLICK to show these results in the area below.' class='results_link' href='javascript:void(0)' onclick='NewResults(" + sid + "," + modelstep.frontId + ", false)'> " + childStp.results + "&nbsp;" + getDataType(childStp.dataType, childStp.results) + "</a></h6>"+
+		"		<h6 class='resultCount'><a title='CLICK to show these results in the area below.' class='results_link' href='javascript:void(0)' onclick='NewResults(" + sid + "," + modelstep.frontId + ", false)'> " + childStp.results + "&nbsp;" + getDisplayType(childStp.displayType,childStp.results) + "</a></h6>"+
 		childfilterImg +
 		"		<ul>"+
 		"			<li><img class='downarrow' src='/assets/images/arrow_chain_down2.png' alt='equals'></li>"+
@@ -212,17 +198,12 @@ function booleanStep(modelstep, jsonstep, sid, zIndex){
 		bkgdDiv = document.createElement("div");
 		$(bkgdDiv).addClass("expandedStep");
 		$(bkgdDiv).css({ left: (leftOffset-2) + "px"});
-//		if(modelstep.child_Strat_Id != null && getStrategy(modelstep.child_Strat_Id).isDisplay == true){
-//			ExpandStep(null, sid, modelstep.frontId,childStp.strategy.name);
-//		}
 	}
 	if(bkgdDiv != null)
 		stepdivs.push(bkgdDiv);
 	stepdivs.push(boolDiv);
 	stepdivs.push(stepNumber);
 	stepdivs.push(childDiv);
-//	if(boolean_invalid != null)
-//		stepdivs.push(boolean_invalid);
 	if(child_invalid != null)
 		stepdivs.push(child_invalid);
 }
@@ -251,7 +232,7 @@ function singleStep(modelstep, jsonstep, sid, zIndex){
 		"			<span id='fullStepName' style='display: none;'>" + fullName + "</span>"+
 		"			<div class='crumb_details'></div>"+
 		"		</h3>"+
-		"		<h6 class='resultCount'><a title='CLICK to show these results in the area below.' class='results_link' href='javascript:void(0)' onclick='NewResults(" + sid + "," + modelstep.frontId + ", false)'> " + jsonstep.results + "&nbsp;" + getDataType(jsonstep.dataType,jsonstep.results) + "</a></h6>"+
+		"		<h6 class='resultCount'><a title='CLICK to show these results in the area below.' class='results_link' href='javascript:void(0)' onclick='NewResults(" + sid + "," + modelstep.frontId + ", false)'> " + jsonstep.results + "&nbsp;" + getDisplayType(jsonstep.displayType,jsonstep.results) + "</a></h6>"+
 		 filterImg;
 	if(!modelstep.isLast){
 		inner = inner + 
@@ -381,16 +362,8 @@ function createDetails(modelstep, jsonstep, sid){
 			disab = "disabled";
 		}
 		parms = jsonstep.urlParams;
-		t = "";
-		if(questionName.indexOf("BySimilarity") != -1) {
-			if(questionName.indexOf("GeneQuestions") != -1) t = "GENE";
-			if(questionName.indexOf("OrfQuestions") != -1) t = "ORF";
-			if(questionName.indexOf("GenomicSequenceQuestions") != -1) t = "SEQ";
-			if(questionName.indexOf("IsolateQuestions") != -1) t = "ISOLATE";
-			if(questionName.indexOf("AssemblyQuestions") != -1) t = "ASSEMBLIES";
-			if(questionName.indexOf("EstQuestions") != -1) t = "EST";
-			parms = parms + "&target="+ t;
-		} 
+		parms = parms + "&target=" + jsonstep.displayType;
+
 		edit_step =	"<a title='" + ss_edit_popup + "'  class='edit_step_link " + disab + "' href='javascript:void(0)' onclick='Edit_Step(this,\"" + questionName + "\",\"" + parms + "\"," + hideQu + "," + hideOp + ");hideDetails(this)' id='" + sid + "|" + parentid + "|" + modelstep.operation + "'>Revise</a>&nbsp;|&nbsp;";
 
 		if(modelstep.frontId == 1 || modelstep.isTransform || jsonstep.isboolean){
@@ -425,7 +398,7 @@ function createDetails(modelstep, jsonstep, sid){
 	    "		<div class='crumb_menu'>"+ rename_step + view_step + edit_step + expand_step + insert_step + orthologs + delete_step + close_button +
 		"		</div>"+ name +
 		"		<table></table><hr class='clear_all' />" + filteredName +
-		"		<p><b>Results:&nbsp;</b>" + jsonstep.results + "&nbsp;" + getDataType(jsonstep.dataType,jsonstep.results);// + "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='downloadStep.do?step_id=" + modelstep.back_step_Id + "'>Download</a>";
+		"		<p><b>Results:&nbsp;</b>" + jsonstep.results + "&nbsp;" + getDisplayType(jsonstep.displayType,jsonstep.results) + "</p>";
 
 	$(detail_div).html(inner);
 	$("table", detail_div).replaceWith(params_table);
@@ -467,8 +440,7 @@ function createParameters(params){
 function createRecordTypeName(strat){
 	if (strat.subStratOf == null){
 		var div_sn = document.createElement("div");
-	//	$(div_sn).attr("id","record_name").addClass("strategy_small_text").text(getDataType(strat.dataType, 1) + "Strategy");
-		$(div_sn).attr("id","record_name").addClass("strategy_small_text").text("(" + getDataType(strat.dataType) + ")"   );
+		$(div_sn).attr("id","record_name").addClass("strategy_small_text").text("(" + getDisplayType(strat.displayType) + ")"   );
 		return div_sn;
    	}
 }
@@ -479,12 +451,8 @@ function createParentStep(strat){
 	if(strat.subStratOf != null)
 		parentStep = strat.findParentStep(strat.backId.split("_")[1],false);
 	if(parentStep == null){
-//		currentColor = 0;
-//		strat.color = 0;
 		return;
 	}else{
-//		currentColor = (currentColor + 1) > colors.length ? 1 : currentColor + 1;
-//		strat.color = currentColor;
 		$(pstp).attr("id","record_name").css("width","85px");
 		$(pstp).append("Expanded View of Step " + parentStep.stp.frontId);
 		return pstp;
@@ -524,7 +492,6 @@ function createStrategyName(strat){
 
 	var save = "";
 	var sTitle = "SAVE AS";
-	// if(json.saved) sTitle = "COPY AS";
 	if (guestUser == 'true') {
 		save = "<a title='Please LOGIN so you can SAVE (make a snapshot) your strategy.' class='save_strat_link' href='javascript:void(0)' onclick='popLogin()'><b>" + sTitle + "</b></a>";
 	}
@@ -590,9 +557,6 @@ function removeStrategyDivs(stratId){
 			$("#Strategies div#diagram_" + subs[i].frontId).remove();
 		}
 	}
-//	if(strategy.subStratOf != null){
-//		strats.splice(findStrategy(strategy.frontId));
-//	}
 }
 
 
@@ -616,29 +580,6 @@ offset = function(modelstep){
 		leftOffset += f2t;
 	}
 	return leftOffset;
-}
-
-
-function getRecordName(cl){
-
-	if(cl == "GeneRecordClasses.GeneRecordClass")
-		return "Genes";
-	if(cl == "SequenceRecordClasses.SequenceRecordClass")
-		return "Genomic Sequences";
-	if(cl == "EstRecordClasses.EstRecordClass")
-		return "ESTs";
-	if(cl == "OrfRecordClasses.OrfRecordClass")
-		return "ORFs";
-	if(cl == "IsolateRecordClasses.IsolateRecordClass")
-		return "Isolates";
-	if(cl == "SnpRecordClasses.SnpRecordClass")
-		return "SNPs";
-	if(cl == "AssemblyRecordClasses.AssemblyRecordClass")
-		return "Assemblies";
-	if(cl == "SageTagRecordClasses.SageTagRecordClass")
-		return "Sage Tags";
-	if(cl == "UserFileRecords.UserFile")
-		return "Files";
 }
 
 function createInvalidDiv(){

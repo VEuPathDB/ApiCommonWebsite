@@ -18,6 +18,7 @@ Strategy.prototype.name = null;
 Strategy.prototype.savedName = null;
 Strategy.prototype.importId = null;
 Strategy.prototype.dataType = null;
+Strategy.prototype.displayType = null;
 Strategy.prototype.color = null;
 Strategy.prototype.nonTransformLength = null;
 
@@ -226,32 +227,4 @@ function isLoaded(id){
 			return true;
 	} 
 	return false;
-}
-
-function getDataType(cl, sz){
-	var s = "s";
-	if(sz == 1)
-		s = ""
-	if(cl == "GeneRecordClasses.GeneRecordClass")
-		return "Gene" + s;
-	if(cl == "SequenceRecordClasses.SequenceRecordClass")
-		return "Sequence" + s;
-	if(cl == "EstRecordClasses.EstRecordClass")
-		return "EST" + s;
-	if(cl == "OrfRecordClasses.OrfRecordClass")
-		return "ORF" + s;
-	if(cl == "IsolateRecordClasses.IsolateRecordClass")
-		return "Isolate" + s;
-	if(cl == "SnpRecordClasses.SnpRecordClass")
-		return "SNP" + s;
-	if(cl == "AssemblyRecordClasses.AssemblyRecordClass"){
-		if(s == "") 
-			return "Assembly";
-		else 
-			return "Assemblies";
-	}
-	if(cl == "SageTagRecordClasses.SageTagRecordClass")
-		return "Sage Tag" + s;
-	if(cl == "UserFileRecords.UserFile")
-		return "File" + s;
-}
+}	

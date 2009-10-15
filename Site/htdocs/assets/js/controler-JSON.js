@@ -20,7 +20,6 @@ function initDisplay(){
 			showLoading();
 		},
 		success: function(data){
-		//	data = eval("(" + data + ")");
 			updateStrategies(data);
 		}
 	});
@@ -31,12 +30,6 @@ function highlightStep(str, stp, v, pagerOffset, ignoreFilters){
 		NewResults(-1);
 	}else{
 		NewResults(str.frontId, stp.frontId, v, pagerOffset, ignoreFilters);
-		//var stepBox = null;
-		//if(!v || stp.isTransform)
-		//	stepBox = $("#diagram_" + str.frontId + " div[id='step_" + stp.frontId + "_sub']");
-		//else 
-		//	stepBox = $("#diagram_" + str.frontId + " div[id='step_" + stp.frontId + "']");
-		//$(".resultCount a", stepBox).click();
 	}
 }
 
@@ -142,9 +135,7 @@ function displayOpenSubStrategies(s, d){
 	var sCount = 0;
 	for(j in s.subStratOrder)
 		sCount++;
-	//for(var j=sCount;j>0;j--){
 	for(var j=1;j<=sCount;j++){
-//		subs = displayModel(getStrategy(s.subStratOrder[j]));
 		subs = getStrategy(s.subStratOrder[j]);
 		subs.color = parseInt(s.getStep(getStrategy(s.subStratOrder[j]).backId.split("_")[1],false).frontId) % colors.length;
 		$(subs.DIV).addClass("sub_diagram").css({"margin-left": (subs.depth(null) * indent) + "px",
@@ -204,11 +195,12 @@ function loadModel(json, ord){
 	strat.JSON = strategy;
 	strat.isSaved = strategy.saved;
 	strat.name = strategy.name;
-    strat.importId = strategy.importId;
+  	strat.importId = strategy.importId;
 	var steps = strategy.steps;
 	strats[ord] = strat;
 	strat.initSteps(steps, ord);
 	strat.dataType = strategy.steps[strategy.steps.length].dataType;
+	strat.displayType = strategy.steps[strategy.steps.length].displayType;
 	strat.nonTransformLength = strategy.steps.nonTransformLength;
 	strat.DIV = displayModel(strat);
 	return strat.frontId;
@@ -275,7 +267,6 @@ function NewResults(f_strategyId, f_stepId, bool, pagerOffset, ignoreFilters){
 }
 
 function RenameStep(ele, s, stp){
-//	var a = $(ele).parent();
 	var new_name = $(ele).val();
 	step = getStep(s, stp);
 	var url = "renameStep.do?strategy=" + getStrategy(s).backId + "&stepId=" + step.back_step_Id + "&customName=" + escape(new_name);	
@@ -308,7 +299,7 @@ function AddStepToStrategy(url, proto, stpId){
 	var cs = strategy.checksum;
 	if(strategy.subStratOf != null)
 		cs = getStrategy(strategy.subStratOf).checksum;
-	url = url + "&strategy_checksum="+cs;//"processFilter.do?strategy="+b_strategyId+"&insert=&strategy_checksum="+strategy.checksum;
+	url = url + "&strategy_checksum="+cs;
 	var d = parseInputs();
 	$.ajax({
 		url: url,
@@ -319,7 +310,6 @@ function AddStepToStrategy(url, proto, stpId){
 			showLoading(f_strategyId);
 		},
 		success: function(data){
-			//data = eval("(" + data + ")");
 			if(ErrorHandler("AddStep", data, strategy, $("div#query_form"))){
 				$("div#query_form").remove();
 				updateStrategies(data);
@@ -328,7 +318,6 @@ function AddStepToStrategy(url, proto, stpId){
 			}
 		},
 		error: function(data, msg, e){
-			//$("#Strategies").append(currentDiv);
 			removeLoading(f_strategyId);
 			alert("ERROR \n "+ msg + "\n" + e
                                       + ". \nReloading this page might solve the problem. \nOtherwise, please contact site support.");
@@ -356,7 +345,6 @@ function EditStep(url, proto, step_number){
 				showLoading(ss.frontId);
 			},
 		success: function(data){
-			//data = eval("(" + data + ")");
 			if(ErrorHandler("EditStep", data, ss, $("div#query_form"))){
 				$("div#query_form").remove();
 				hideDetails();
@@ -395,7 +383,6 @@ function DeleteStep(f_strategyId,f_stepId){
 				showLoading(f_strategyId);
 			},
 		success: function(data){
-				//data = eval("(" + data + ")");
 				if(ErrorHandler("DeleteStep", data, strategy, null)){
 					updateStrategies(data);
 				}else{
@@ -403,7 +390,6 @@ function DeleteStep(f_strategyId,f_stepId){
 				}	
 			},
 		error: function(data, msg, e){
-				//alert("ERROR \n "+ msg + "\n" + e);
 				removeStrategyDivs(strategy.backId);
 				if($("#Strategies div").length == 0){
 					showInstructions();
@@ -415,7 +401,6 @@ function DeleteStep(f_strategyId,f_stepId){
 function ExpandStep(e, f_strategyId, f_stepId, collapsedName){
 	var strategy = getStrategy(f_strategyId);
 	var step = strategy.getStep(f_stepId, true);
-//	un = (collapsedName.length > 15)?collapsedName.substring(0,12) + "...":collapsedName;
 	var cs = strategy.checksum;
 	if(strategy.subStratOf != null)
 		cs = getStrategy(strategy.subStratOf).checksum;
@@ -427,10 +412,8 @@ function ExpandStep(e, f_strategyId, f_stepId, collapsedName){
 		data: "state=" + p_state,
 		beforeSend: function(){
 			showLoading(f_strategyId);
-			//$("div#step_" + step.frontId + "_sub h3 div.crumb_details").hide();
 		},
 		success: function(data){
-			//data = eval("(" + data + ")");
 			if(ErrorHandler("EditStep", data, strategy, $("div#query_form"))){
 				updateStrategies(data);
 			}else{
@@ -452,7 +435,6 @@ function openStrategy(stratId){
 		dataType:"json",
 		data:"state=" + p_state,
 		success: function(data){
-			//data = eval("(" + data + ")");
 			if(ErrorHandler("Open", data, null, null)){
 				updateStrategies(data);
 				if (getCurrentTabCookie(false) != 'strategy_results') showPanel('strategy_results');
@@ -463,7 +445,6 @@ function openStrategy(stratId){
                                       + ". \nReloading this page might solve the problem. \nOtherwise, please contact site support.");
 		}
 	});
-	$("#eye_" + stratId).removeClass("strat_inactive").addClass("strat_active");
 }
 
 function deleteStrategy(stratId, fromHist){
@@ -524,7 +505,6 @@ function closeStrategy(stratId, isBackId){
 			showLoading(stratId);
 		},
 		success: function(data){
-			//data = eval("(" + data + ")");			
 			if(ErrorHandler("CloseStrategy", data, strat, null)){
 				updateStrategies(data);
 				if (getCurrentTabCookie(false) == 'search_history'){
@@ -538,7 +518,6 @@ function closeStrategy(stratId, isBackId){
                                       + ". \nReloading this page might solve the problem. \nOtherwise, please contact site support.");
 		}
 	});
-	$("#eye_" + strat.backId).removeClass("strat_active").addClass("strat_inactive");
 }
 
 function hideStrat(id){
@@ -562,7 +541,7 @@ function hideStrat(id){
 }
 
 function copyStrategy(stratId, fromHist){
-        var ss = getStrategyOBJ(stratId);//getStrategyFromBackId(stratId);
+        var ss = getStrategyOBJ(stratId);
         var result = confirm("Do you want to make a copy of strategy '" + ss.name + "'?");
         if (result == false) return;
         var url="copyStrategy.do?strategy=" + stratId + "&strategy_checksum="+ss.checksum;
@@ -575,14 +554,13 @@ function copyStrategy(stratId, fromHist){
 						showLoading(ss.frontId);
 				},
                 success: function(data){
-                                        //data = eval("(" + data + ")");
-                                        if(ErrorHandler("Copystrategy", data, ss, null)){
-                                            updateStrategies(data);
-                                            if (fromHist) {
-                                                update_hist = true;
-                                                updateHistory();
-                                            }
-                                        }
+			if(ErrorHandler("Copystrategy", data, ss, null)){
+				updateStrategies(data);
+				if (fromHist) {
+					update_hist = true;
+					updateHistory();
+				}
+			}
                 },
                 error: function(data, msg, e){
                         alert("ERROR \n "+ msg + "\n" + e
@@ -592,9 +570,9 @@ function copyStrategy(stratId, fromHist){
 }
 
 function saveOrRenameStrategy(stratId, checkName, save, fromHist){
-	var strat = getStrategyOBJ(stratId);//getStrategyFromBackId(stratId);
+	var strat = getStrategyOBJ(stratId);
 	var form = $("#save_strat_div_" + stratId);
-	if (fromHist) form = $(".viewed-popup-box form");// + stratId);
+	if (fromHist) form = $(".viewed-popup-box form");
 	var name = $("input[name='name']",form).attr("value");
 	var strategy = $("input[name='strategy']",form).attr("value");
 	var url="renameStrategy.do?strategy=";
@@ -658,7 +636,6 @@ function ChangeFilter(strategyId, stepId, url, filter) {
 			}
                 },
                 error: function(data, msg, e){
-                        //$("#Strategies").append(currentDiv);
                         removeLoading(f_strategyId);
                         alert("ERROR \n "+ msg + "\n" + e
                                       + ". \nReloading this page might solve the problem. \nOtherwise, please contact site support.");

@@ -62,7 +62,6 @@ function showLoading(divId){
 	$(i).attr("src","/assets/images/" + l_gif);
 	$(i).attr("height",sz);
 	$(i).attr("width",sz);
-	//$(l).html("<p style='position:relative;top:-17px;z-index:300'>Loading...</p>");
 	$(l).prepend(i);
 	$(l).css({
 		"text-align": "center",
@@ -102,15 +101,22 @@ function parseUrlUtil(name,url){
  	var regexS = "[\\?&]"+name+"=([^&#]*)";
  	var regex = new RegExp( regexS,"g" );
  	var res = new Array();
- 	//while (regex.lastIndex < url.length){
- 		var results = regex.exec( url );
- 		if( results != null )
- 			res.push(results[1]);
- 	//	else
- 	//		break;
- 	//}
- 	if(res.length == 0)
+ 	var results = regex.exec( url );
+ 	if( results != null )
+ 		res.push(results[1]);
+  	if(res.length == 0)
  		return "";
  	else
  		return res;
+}
+
+
+function getDisplayType(type, number){
+	if(sz == 1) {
+		return type;
+	} else if (type.charAt(type.length-1) === 'y') {
+		return type.replace(/y$/,'ies');
+	} else {
+		return type + 's';
+	}
 }

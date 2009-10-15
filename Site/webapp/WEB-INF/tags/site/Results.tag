@@ -26,29 +26,14 @@
 %>
 
 <c:set var="type" value="Results" />
-<c:set var="step_dataType" value="${strategy.latestStep.dataType}" />
+<c:set var="step_dataType" value="${strategy.latestStep.displayType}" />
 <c:choose>
-	<c:when test="${step_dataType == 'GeneRecordClasses.GeneRecordClass'}">
-		<c:set var="type" value="Genes" />
+	<c:when test="${fn:endsWith(step_dataType,'y')}">
+		<c:set var="type" value="${fn:substring(step_dataType,0,fn:length(step_dataType)-1)}ies'" />
 	</c:when>
-	<c:when test="${step_dataType == 'SequenceRecordClasses.SequenceRecordClass'}">
-		<c:set var="type" value="Sequences" />
-	</c:when>
-	<c:when test="${step_dataType == 'EstRecordClasses.EstRecordClass'}">
-		<c:set var="type" value="EST" />
-	</c:when>
-	<c:when test="${step_dataType == 'OrfRecordClasses.OrfRecordClass'}">
-		<c:set var="type" value="ORF" />
-	</c:when>
-	<c:when test="${step_dataType == 'SnpRecordClasses.SnpRecordClass'}">
-		<c:set var="type" value="SNP" />
-	</c:when>
-	<c:when test="${step_dataType == 'AssemblyRecordClasses.AssemblyRecordClass'}">
-		<c:set var="type" value="Assemblies" />
-	</c:when>
-	<c:when test="${step_dataType == 'IsolateRecordClasses.IsolateRecordClass'}">
-		<c:set var="type" value="Isolates" />
-	</c:when>	
+	<c:otherwise>
+		<c:set var="type" value="${step_dataType}s" />
+	</c:otherwise>	
 </c:choose>
 
 <c:set var="qsp" value="${fn:split(wdk_query_string,'&')}" />
