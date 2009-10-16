@@ -120,7 +120,7 @@ function formatFilterForm(params, data, edit, reviseStep, hideQuery, hideOp, isO
 	if(edit == 0)
 		pro_url = "processFilter.do?strategy=" + stratBackId + "&insert=" +insert + "&ortholog=" + isOrtholog;
 	else{
-		pro_url = "processFilter.do?strategy=" + stratBackId + "&revise=" + stepBackId;   //reviseStep;
+		pro_url = "processFilter.do?strategy=" + stratBackId + "&revise=" + stepBackId;
 	}
 	var historyId = $("#history_id").val();
 	
@@ -132,9 +132,9 @@ function formatFilterForm(params, data, edit, reviseStep, hideQuery, hideOp, isO
 
 	var quesTitle = data.substring(data.indexOf("<h1>") + 4,data.indexOf("</h1>")).replace(/Identify \w+ based on/,"");
 	
-	var quesForm = $("form#form_question",qf);//data);
-	var quesDescription = $("#query-description-section",qf);//data);
-	var tooltips = $("div.htmltooltip",qf);//data);
+	var quesForm = $("form#form_question",qf);
+	var quesDescription = $("#query-description-section",qf);
+	var tooltips = $("div.htmltooltip",qf);
 	$("input[value=Get Answer]",quesForm).val("Run Step");
 	$("input[value=Run Step]",quesForm).attr("id","executeStepButton");
 	$(".params", quesForm).wrap("<div class='filter params'></div>");
@@ -143,24 +143,6 @@ function formatFilterForm(params, data, edit, reviseStep, hideQuery, hideOp, isO
         // hide the file upload box
         quesForm.find(".dataset-file").each(function() {
             $(this).css("display", "none");
-        });
-
-        // hide the incompatible type from blast query
-        var question = quesForm.find("#questionFullName").val();
-        quesForm.find(".blast-type").each(function() {
-            var type = $(this).val();
-            if ((type == 'Transcripts' && question != 'GeneQuestions.GenesBySimilarity')
-                || (type == 'Proteins' && question != 'GeneQuestions.GenesBySimilarity')
-                || (type == 'Genome' && question != 'GenomicSequenceQuestions.SequencesBySimilarity')
-                || (type == 'ORF' && question != 'OrfQuestions.OrfsBySimilarity')
-                || (type == 'EST' && question != 'EstQuestions.EstsBySimilarity')
-                || (type == 'Assemblies' && question != 'AssemblyQuestions.AssembliesBySimilarity')
-                || (type == 'Isolates' && question != 'IsolateQuestions.IsolatesBySimilarity')) {
-                this.disabled = true;
-                $(this).next().css("color", "gray");
-            } else {
-               $(this).next().css("font-weight", "bold");
-            }
         });
 	
 	// Bring in the advanced params, if exist, and remove styling
@@ -197,9 +179,9 @@ function formatFilterForm(params, data, edit, reviseStep, hideQuery, hideOp, isO
 		}
 	}
 	if(edit == 0)	
-		var action = "javascript:validateAndCall('add','" + pro_url + "', '" + stratBackId + "')";//"javascript:AddStepToStrategy('" + pro_url + "')";
+		var action = "javascript:validateAndCall('add','" + pro_url + "', '" + stratBackId + "')";
 	else
-		var action = "javascript:validateAndCall('edit', '" + pro_url + "', '" + stratBackId + "', "+ parseInt(reviseStep) + ")";//"javascript:EditStep('" + proto + "', '" + pro_url + "', " + parseInt(reviseStep) + ")";
+		var action = "javascript:validateAndCall('edit', '" + pro_url + "', '" + stratBackId + "', "+ parseInt(reviseStep) + ")";
 	var formtitle = "";
 	if(edit == 0){
 		if(insert == "")
@@ -217,29 +199,24 @@ function formatFilterForm(params, data, edit, reviseStep, hideQuery, hideOp, isO
 		
 	$("#query_form").html(header);
 	if (hideQuery){
-        $(".filter.params", quesForm).remove();
-        $("input[name=questionFullName]", quesForm).remove();
-        $(".filter.operators", quesForm).width('auto');
-	//	$("#query_form").css("min-width", "500px");
+	        $(".filter.params", quesForm).remove();
+	        $("input[name=questionFullName]", quesForm).remove();
+	        $(".filter.operators", quesForm).width('auto');
 	}else{
 		$("div.filter div.params", quesForm).html(ps.getElementsByTagName('form')[0].innerHTML);
 	}
 	if (hideOp){
 		$(".filter.operators", quesForm).remove();
 		$(".filter.params", quesForm).after("<input type='hidden' name='booleanExpression' value='AND' />");
-		//$(".filter.operators").width('auto');
-	//	$("#query_form").css({'max-width' : '61%','min-width' : '729px'});
 	}
 	
 	$("#query_form").append(quesForm);
 	$("#query_form").append(tooltips);
-	//$("#filter_link_div_" + proto + " #query_selection").fadeOut("normal");
 	if(edit == 1)
 		$("#query_form div#operations input#" + operation).attr('checked','checked'); 
 	
 	if(quesDescription.length > 0)
 		$("#query_form").append("<div style='padding:5px;margin:5px 15px 5px 15px;border-top:1px solid grey;border-bottom:1px solid grey'>" + quesDescription.html() + "</div>");
-		//$("#query_form .filter.params").append("<div style='padding:5px;margin:5px 15px 5px 15px;border-top:1px solid grey;border-bottom:1px solid grey'>" + quesDescription.html() + "</div>");
 	$("#query_form").append("<div class='bottom-close'><a href='javascript:closeAll(false)' class='close_window'>Close</a></div>");
 	htmltooltip.render();
 	setDraggable($("#query_form"), ".dragHandle");
@@ -253,7 +230,7 @@ function formatFilterForm(params, data, edit, reviseStep, hideQuery, hideOp, isO
 
 function validateAndCall(type, url, proto, rs){
 	var valid = false;
-	if($("div#query_form div.filter.operators").length == 0){//if($("input[name='booleanExpression']").attr("type") == "hidden"){
+	if($("div#query_form div.filter.operators").length == 0){
 		valid = true;
 	}else{
 		if($(".filter.operators")){
@@ -287,7 +264,7 @@ function getQueryForm(url,hideOp,isOrtholog, loadingParent){
 			url: questionUrl,
 			dataType:"html",
 			beforeSend: function(){
-				showLoading(loadingParent);//"query_form");
+				showLoading(loadingParent);
 			},
 			success: function(data){
 				$.ajax({
@@ -310,12 +287,10 @@ function getQueryForm(url,hideOp,isOrtholog, loadingParent){
 }
 
 function OpenOperationBox(stratId, insertId) {
-//	var header = $("#query_form span.dragHandle");
 	var selectedStrat = $("#query_form select#selected_strategy").val();
 	var selectedName = $("#query_form select#selected_strategy option[selected]").text();
         if (insertId == undefined) insertId = "";
 	var url = "processFilter.do?strategy=" + getStrategy(stratId).backId + "&insert=" + insertId + "&insertStrategy=" + selectedStrat +"&checksum=" + getStrategy(stratId).checksum;
-	//var oform = "<form id='form_question' enctype='multipart/form-data' action='javascript:AddStepToStrategy(" + url + ")' method='post' name='questionForm'>";
 	var oform = "<form id='form_question' enctype='multipart/form-data' action='javascript:validateAndCall(\"add\",\""+ url + "\", \"" + getStrategy(stratId).backId + "\")' method='post' name='questionForm'>";
 	var cform = "</form>";
 	var ops = "<div class='filter operators'><span class='form_subtitle' style='padding:0 20px'>Combine <b><i>" + getStrategy(stratId).name + "</i></b> with <b><i>" + selectedName + "</i></b></span><div id='operations'><table style='margin-left:auto; margin-right:auto;'><tr><td class='opcheck' valign='middle'><input type='radio' name='booleanExpression' value='INTERSECT' /></td><td class='operation INTERSECT'></td><td valign='middle'>&nbsp;" + (stp.frontId) + "&nbsp;<b>INTERSECT</b>&nbsp;" + (parseInt(stp.frontId)+1) + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class='opcheck'><input type='radio' name='booleanExpression' value='UNION'></td><td class='operation UNION'></td><td>&nbsp;" + (stp.frontId) + "&nbsp;<b>UNION</b>&nbsp;" + (parseInt(stp.frontId)+1) + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class='opcheck'><input type='radio' name='booleanExpression' value='NOT'></td><td class='operation MINUS'></td><td>&nbsp;" + (stp.frontId) + "&nbsp;<b>MINUS</b>&nbsp;" + (parseInt(stp.frontId)+1) + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class='opcheck'><input type='radio' name='booleanExpression' value='RMINUS'></td><td class='operation RMINUS'></td><td>&nbsp;" + (parseInt(stp.frontId)+1) + "&nbsp;<b>MINUS</b>&nbsp;" + (stp.frontId) + "</td></tr></table></div></div>"
@@ -345,7 +320,6 @@ function openFilter(dtype,strat_id,step_id,isAdd){
 			$("#Strategies div#diagram_" + current_Front_Strategy_Id + " a#filter_link span").css({opacity: 0.4});
 		},
 		success: function(data){
-			//filter = document.createElement('div');
 			dykClose();
 			$("body").append(data);
 			original_Query_Form_CSS.maxW = $("#query_form").css("max-width");
@@ -379,15 +353,18 @@ function openFilter(dtype,strat_id,step_id,isAdd){
 				fid = parseInt(stp.frontId);
 				if(fid > 1){
 					var value = $(this).attr('href');
-					value = value.split("gene_result=");
-					var stpId = value[1].split("&");
-					prevStp = getStrategy(strat_id).getStep(fid-1,true);
-					if(prevStp.back_boolean_Id != null && prevStp.back_boolean_Id != "")
-						stpId[0] = prevStp.back_boolean_Id;
-					else
-						stpId[0] = prevStp.back_step_Id;
-					value[1] = stpId.join("&");
-					value = value.join("gene_result=");
+					var transformParams = value.match(/\w+_result=/gi);
+					for (i in transformParams) {
+						value = value.split(transformParams[i]);
+						var stpId = value[1].split("&");
+						prevStp = getStrategy(strat_id).getStep(fid-1,true);
+						if(prevStp.back_boolean_Id != null && prevStp.back_boolean_Id != "")
+							stpId[0] = prevStp.back_boolean_Id;
+						else
+							stpId[0] = prevStp.back_step_Id;
+						value[1] = stpId.join("&");
+						value = value.join(transformParams[i]);
+					}
 					$(this).attr('href',value);
 				}
 			});
@@ -398,32 +375,6 @@ function openFilter(dtype,strat_id,step_id,isAdd){
 			alert("Error getting the needed information from the server \n Please contact the system administrator");
 		}
 	});
-}
-
-function openOrthologFilter(strat_id, step_id){
-	var strat = getStrategyFromBackId(strat_id);
-	isInsert = step_id;
-	current_Front_Strategy_Id = strat.frontId;
-	var url = 'showQuestion.do?questionFullName=InternalQuestions.GenesByOrthologs&gene_result=' + step_id + '&partial=true';
-	$("#query_form").remove();
-	$("#Strategies div a#filter_link span").css({opacity: 1.0});
-	$("#Strategies div#diagram_" + current_Front_Strategy_Id + " a#filter_link span").css({opacity: 0.4});
-	$("body").append("<div id='query_form' class='jqDnR' style='min-height:140px; display:none'><span class='dragHandle'><div class='modal_name'><h1 id='query_form_title'></h1></div><a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png' alt='Close'/></a></span></div>");
-//	setDraggable($("#query_form"), ".handle");
-	getQueryForm(url, true, true, strat.frontId);
-}
-
-function openSyntenicOrthologFilter(strat_id, step_id){
-	var strat = getStrategyFromBackId(strat_id);
-	isInsert = step_id;
-	current_Front_Strategy_Id = strat.frontId;
-	var url = 'showQuestion.do?questionFullName=InternalQuestions.GenesBySyntenicOrthologs&gene_result=' + step_id;
-	$("#query_form").remove();
-	$("#Strategies div a#filter_link span").css({opacity: 1.0});
-	$("#Strategies div#diagram_" + current_Front_Strategy_Id + " a#filter_link span").css({opacity: 0.4});
-	$("body").append("<div id='query_form' class='jqDnR' style='min-height:140px; display:none'><span class='dragHandle'><div class='modal_name'><h1 id='query_form_title'></h1></div><a id='close_filter_query' href='javascript:closeAll()'><img src='/assets/images/Close-X-box.png' alt='Close'/></a></span></div>");
-//	setDraggable($("#query_form"), ".handle");
-	getQueryForm(url, true, true, strat.frontId);
 }
 
 function close(ele){
@@ -462,20 +413,4 @@ function setDraggable(e, handle){
 		handle: handle,
 		containment: [0,0,rlimit,blimit]
 	});
-}
-
-function initOrthologQuestion(url){
-	var include = unescape(parseUrlUtil('included_species', url)).replace(/\+/g," ").split(", ");
-	var exclude = unescape(parseUrlUtil('excluded_species', url)).replace(/\+/g," ").split(", ");
-	var pattern = unescape(parseUrlUtil('profile_pattern', url));
-
-	$("form#form_question input:hidden[name='myProp(profile_pattern)']").attr('value',pattern);
-
-	for (var i = 0, len = include.length; i < len; ++i) {
-		$("form#form_question div.params td b:contains(" + include[i] + ")").parent().find("a").click();
-	}
-
-	for (var i = 0, len = exclude.length; i < len; ++i) {
-		$("form#form_question div.params td b:contains(" + exclude[i] + ")").parent().find("a").click().click();
-	}
 }
