@@ -231,7 +231,7 @@
 
 <%-- the js has to be included here in order to appear in the step form --%>
 <script type="text/javascript" src='<c:url value="/assets/js/wdkQuestion.js"/>'></script>
-<script src="/assets/js/blast.js" type="text/javascript"></script>
+<%--<script src="/assets/js/blast.js" type="text/javascript"></script>--%>
 
 <div class="params">
 <c:if test="${showParams == null}">
