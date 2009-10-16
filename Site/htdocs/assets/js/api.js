@@ -9,9 +9,6 @@ the version that works on Netscape doesn't work at all on Safari, as it seems th
 in sayShowOrHide don't work
 
 */
-$(document).ready(function() {
-	popUnsupported();
-});
 
 function toggleLayer(controllingLayerName, textLayerName) {
     //alert("toggleLayer: " + controllingLayerName);
@@ -397,7 +394,6 @@ function receiveAsyncContent(request, contentTag) {
     }
 }
 
-
 // return domain.org from www.domain.org
 function secondLevelDomain(){
   dm = document.domain.split(/\./);
@@ -406,11 +402,6 @@ function secondLevelDomain(){
   }else{
     return("");
   }
-}
-
-function goToMySearches(){
-	setCurrentTabCookie('search_history', false);
-	return true;
 }
 
 function checkboxAll(field) {

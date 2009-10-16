@@ -13,12 +13,9 @@
 
 <%-- jQuery Cookie plugin --%>
 <script type="text/javascript" src="assets/js/lib/jquery.cookie.js"></script>
-<script type="text/javascript" src="assets/js/stratTabCookie.js"></script>
 
 <script type="text/javascript" src="assets/js/htmltooltip.js"></script>
 
-<!-- history page code -->
-<script type="text/javascript" src="assets/js/history.js"></script>
 
 <script type="text/javascript" src="<c:url value='/js/treeControl.js'/>"></script>
 
@@ -27,6 +24,7 @@
 <c:if test="${refer == 'customSummary'}">
         <script type="text/javascript" src="assets/js/lib/jquery-ui-1.7.2.custom.min.js"></script>
 	<script type="text/javascript" src="assets/js/dyk.js"></script>
+
 	<!-- JQuery Drag And Drop Plugin -->
 	<script type="text/javascript" src="assets/js/lib/json.js"></script>
 	<script type="text/javascript" src="assets/js/lib/jquery.multiSelect.js"></script>
@@ -34,10 +32,12 @@
 	<!-- filter menu javascript -->
 	<script type="text/javascript" src="assets/js/addStepPopup.js"></script>
 
-	<script type="text/javascript" src="/assets/js/customStrategy.js"></script>
-	<script type="text/javascript" src="/assets/js/ortholog.js"></script>
+	<!-- history page code -->
+	<script type="text/javascript" src="assets/js/history.js"></script>
+
+	<script type="text/javascript" src="assets/js/stratTabCookie.js"></script>
+
 	<!-- Strategy Interaction javascript -->
-	
 	<script type="text/javascript" src="assets/js/model-JSON.js"></script>
 	<script type="text/javascript" src="assets/js/view-JSON.js"></script>
 	<script type="text/javascript" src="assets/js/controller-JSON.js"></script>
@@ -48,6 +48,10 @@
 	<script type="text/javascript" src="assets/js/resultsPage.js"></script>
 	
         <script type="text/javascript" src="assets/js/wdkFilter.js"></script>
+
+	<!-- javascript provided by site -->
+	<script type="text/javascript" src="/assets/js/customStrategy.js"></script>
+	<script type="text/javascript" src="/assets/js/ortholog.js"></script>
 </c:if>
 
 <c:set var="used_sites" value="${applicationScope.wdkModel.properties['SITES']}"/>
