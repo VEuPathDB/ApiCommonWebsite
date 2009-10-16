@@ -25,7 +25,6 @@
 </c:set>
 
 <c:set var="headElement">
-<link rel="stylesheet" href="assets/css/flexigrid.css" type="text/css"/>
 </c:set>
 <site:header refer="customSummary" headElement="${headElement}"/>
 <wdk:dyk />

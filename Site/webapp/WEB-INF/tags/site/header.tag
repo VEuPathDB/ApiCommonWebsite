@@ -145,6 +145,7 @@
 <link rel="stylesheet" href="assets/css/Strategy.css"           type="text/css" />
 <link rel="StyleSheet" href="assets/css/filter_menu.css"        type="text/css"/>
 <link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
+<link rel="stylesheet" href="assets/css/flexigrid.css" type="text/css"/>
 <link rel="StyleSheet" href="assets/css/jquery.autocomplete.css" type="text/css"/>
 <link rel="StyleSheet" href="assets/css/jquery.multiSelect.css" type="text/css"/>
 <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
