@@ -60,10 +60,10 @@
 
  <c:when test="${fn:containsIgnoreCase(site, 'TriTrypDB')}">
       <c:set var="simple" value="6d18cc017993d226" />
-      <c:set var="expanded" value="f58790bf857161c3" />
+      <c:set var="expanded" value="f49755e3a4220676" />
       <c:set var="expressed" value="55b70c857bee1bfa" />
       <c:set var="expressedLbrazilliensis" value="36217c6cc264ac15" />
-			<c:set var="SecretedAmastigoteKin" value="c867cab6ad4645a0" />
+      <c:set var="SecretedAmastigoteKin" value="c867cab6ad4645a0" />
    </c:when>
 
  <c:when test="${fn:containsIgnoreCase(site, 'EuPathDB')}">
