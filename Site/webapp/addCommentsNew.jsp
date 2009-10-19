@@ -116,7 +116,7 @@ $(document).ready(function(){
 
   <c:when test="${empty wdkUser || wdkUser.guest}">
     <p align=center>Please login to post a comment.</p>
-    <table align='center'><tr><td><wdk:login/></td></tr></table>
+    <table align='center'><tr><td><site:login/></td></tr></table>
   </c:when>
   
   <c:otherwise>
