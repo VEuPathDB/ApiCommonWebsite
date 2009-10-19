@@ -98,7 +98,7 @@
       scope="request"
       validate="false"
       name="questionForm">
-      <forward name="show_error" path="/summaryError.jsp"/>
+      <forward name="show_error" path="/wdk/summaryError.jsp"/>
       <forward name="process_boolean_expression" path="/processBooleanExpression.do"/>
       <forward name="show_summary" path="/showSummary.do"/>
       <forward name="show_strategy" path="/showStrategy.do"/>
@@ -127,7 +127,7 @@
       scope="request"
       validate="false"
       name="questionForm">
-      <forward name="show_question" path="/question.jsp"/>
+      <forward name="show_question" path="/wdk/question.jsp"/>
       <forward name="skip_to_summary" path="/showSummary.do"/>
     </action>
     <action
@@ -135,7 +135,7 @@
       type="org.gusdb.wdk.controller.action.ShowQuestionSetsAction"
       scope="request"
       name="questionSetForm">
-      <forward name="show_questionsets" path="/questionSets.jsp"/>
+      <forward name="show_questionsets" path="/wdk/questionSets.jsp"/>
     </action>
     <action
       path="/showQuestionSetsFlat"
@@ -143,7 +143,7 @@
       scope="request"
       name="questionSetForm"
       input="/showQuestion.do">
-      <forward name="show_questionsetsflat" path="/questionSetsFlat.jsp"/>
+      <forward name="show_questionsetsflat" path="/wdk/questionSetsFlat.jsp"/>
     </action>
     <action
       path="/processQuestionSetsFlat"
