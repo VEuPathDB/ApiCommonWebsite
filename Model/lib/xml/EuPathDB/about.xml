@@ -54,7 +54,7 @@ information, metabolomic data, etc.
 <li> <i>Trypanosoma</i>
 </ul>
 
-<br>The <a href = "/a/eupathGenomeTable.jsp">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
+<br>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
 
        ]]>
        </attribute>
@@ -67,7 +67,7 @@ information, metabolomic data, etc.
        <![CDATA[
 
 <div id="cirbulletlist"><ul>
-<li>The <a href = "/a/eupathGenomeTable.jsp">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
+<li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
 <li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
 </ul></div>
 

@@ -1,0 +1,450 @@
+<xmlAnswer>
+
+  <record>
+       <attribute name = "Family">Cryptosporidium</attribute>
+       <attribute name = "Organism">C.hominis</attribute>
+       <attribute name = "Taxon_ID">237895</attribute>
+       <attribute name = "Strain">TU502</attribute>
+       <attribute name = "Genome_Version">09-28-2005</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates">yes</attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways">yes</attribute>
+   </record>
+
+ <record>
+       <attribute name = "Family">Cryptosporidium</attribute>
+       <attribute name = "Organism">C.muris</attribute>
+       <attribute name = "Taxon_ID">5808</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">07-28-2008</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates">yes</attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family">Cryptosporidium</attribute>
+       <attribute name = "Organism">C.parvum</attribute>
+       <attribute name = "Taxon_ID">5807</attribute>
+       <attribute name = "Strain">IOWA</attribute>
+       <attribute name = "Genome_Version">02-23-2007</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates">yes</attribute>
+       <attribute name = "SNPs">yes</attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways">yes</attribute>
+   </record>
+ <record>
+       <attribute name = "Family">Giardia</attribute>
+       <attribute name = "Organism">G.lamblia</attribute>
+       <attribute name = "Taxon_ID">184922</attribute>
+       <attribute name = "Strain">ATCC 50803</attribute>
+       <attribute name = "Genome_Version">09-24-2007</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates">yes</attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray">yes</attribute>
+       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags">yes</attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family">Kinetoplastid: Leishmania and Trypanosoma</attribute>
+       <attribute name = "Organism">L.braziliensis</attribute>
+       <attribute name = "Taxon_ID">5660</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">11-24-2008</attribute>
+       <attribute name = "Data_Source">Sanger</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Family"></attribute>
+       <attribute name = "Organism"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+
+</xmlAnswer>
+
+
+
