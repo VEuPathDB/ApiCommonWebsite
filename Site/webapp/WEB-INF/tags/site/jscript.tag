@@ -9,45 +9,40 @@
 
 
 <%-- JQuery BlockUI Plugin --%>
-<script type="text/javascript" src="assets/js/lib/jquery.blockUI.js"></script>
+<script type="text/javascript" src="wdk/js/lib/jquery.blockUI.js"></script>
 
 <%-- jQuery Cookie plugin --%>
-<script type="text/javascript" src="assets/js/lib/jquery.cookie.js"></script>
-
-<script type="text/javascript" src="assets/js/htmltooltip.js"></script>
-
-
-<script type="text/javascript" src="<c:url value='/js/treeControl.js'/>"></script>
-
-<script type="text/javascript" src="assets/js/js-utils.js"></script>
+<script type="text/javascript" src="wdk/js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="wdk/js/htmltooltip.js"></script>
+<script type="text/javascript" src="wdk/js/js-utils.js"></script>
 
 <c:if test="${refer == 'customSummary'}">
-        <script type="text/javascript" src="assets/js/lib/jquery-ui-1.7.2.custom.min.js"></script>
-	<script type="text/javascript" src="assets/js/dyk.js"></script>
+        <script type="text/javascript" src="wdk/js/lib/jquery-ui-1.7.2.custom.min.js"></script>
+	<script type="text/javascript" src="wdk/js/dyk.js"></script>
 
 	<!-- JQuery Drag And Drop Plugin -->
-	<script type="text/javascript" src="assets/js/lib/json.js"></script>
-	<script type="text/javascript" src="assets/js/lib/jquery.multiSelect.js"></script>
+	<script type="text/javascript" src="wdk/js/lib/json.js"></script>
+	<script type="text/javascript" src="wdk/js/lib/jquery.multiSelect.js"></script>
 
 	<!-- filter menu javascript -->
-	<script type="text/javascript" src="assets/js/addStepPopup.js"></script>
+	<script type="text/javascript" src="wdk/js/addStepPopup.js"></script>
 
 	<!-- history page code -->
-	<script type="text/javascript" src="assets/js/history.js"></script>
+	<script type="text/javascript" src="wdk/js/history.js"></script>
 
-	<script type="text/javascript" src="assets/js/stratTabCookie.js"></script>
+	<script type="text/javascript" src="wdk/js/stratTabCookie.js"></script>
 
 	<!-- Strategy Interaction javascript -->
-	<script type="text/javascript" src="assets/js/model-JSON.js"></script>
-	<script type="text/javascript" src="assets/js/view-JSON.js"></script>
-	<script type="text/javascript" src="assets/js/controller-JSON.js"></script>
-	<script type="text/javascript" src="assets/js/error-JSON.js"></script>
-	<script type="text/javascript" src="assets/js/step.js"></script>
-	<script type="text/javascript" src="assets/js/lib/flexigrid.js"></script>
+	<script type="text/javascript" src="wdk/js/model-JSON.js"></script>
+	<script type="text/javascript" src="wdk/js/view-JSON.js"></script>
+	<script type="text/javascript" src="wdk/js/controller-JSON.js"></script>
+	<script type="text/javascript" src="wdk/js/error-JSON.js"></script>
+	<script type="text/javascript" src="wdk/js/step.js"></script>
+	<script type="text/javascript" src="wdk/js/lib/flexigrid.js"></script>
 	<!-- Results Page AJAX Javascript code -->
-	<script type="text/javascript" src="assets/js/resultsPage.js"></script>
+	<script type="text/javascript" src="wdk/js/resultsPage.js"></script>
 	
-        <script type="text/javascript" src="assets/js/wdkFilter.js"></script>
+        <script type="text/javascript" src="wdk/js/wdkFilter.js"></script>
 
 	<!-- javascript provided by site -->
 	<script type="text/javascript" src="/assets/js/customStrategy.js"></script>
@@ -62,27 +57,22 @@
 <script type="text/javascript" src="/assets/js/ApiDB_Ajax_Utils.js"></script>
 
 <c:if test="${refer == 'customSummary' || refer == 'customQuestion'}">
-  <script src="js/lib/jquery.autocomplete.js" type="text/javascript"></script>
-  <script src="assets/js/parameterHandlers.js" type="text/javascript"></script> 
+  <script type="text/javascript" src="wdk/js/lib/jquery.autocomplete.js"></script>
+  <script type="text/javascript" src="wdk/js/treeControl.js"></script>
+  <script type="text/javascript" src="wdk/js/parameterHandlers.js"></script> 
+  <script type="text/javascript" src="/assets/js/orthologpattern.js"></script>
   <script type="text/javascript" src="/assets/js/blast.js"></script>
 </c:if>
 
 <%-- js for quick seach box --%>
 <script type="text/javascript" src="/assets/js/quicksearch.js"></script>
 
-<script type="text/javascript" src="/assets/js/orthologpattern.js"></script>
-
 <!-- dynamic query grid code -->
 <script type="text/javascript" src="/assets/js/dqg.js"></script>
 <script type="text/javascript" src="/assets/js/newitems.js"></script>
 
-
-<!-- dynamic query grid code -->
-<script type="text/javascript" src="/assets/js/questionPage.js"></script>
-
 <!-- dynamic organism param in portal -->
 <script type="text/javascript" src="<c:url value='/js/Top_menu.js'/>"></script>
-
 
 <script type="text/javascript" src="/assets/js/popups.js"></script>
 <script type="text/javascript" src="/assets/js/api.js"></script>
