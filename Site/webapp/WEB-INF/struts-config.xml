@@ -98,7 +98,7 @@
       scope="request"
       validate="false"
       name="questionForm">
-      <forward name="show_error" path="/summaryError.jsp"/>
+      <forward name="show_error" path="/wdk/summaryError.jsp"/>
       <forward name="process_boolean_expression" path="/processBooleanExpression.do"/>
       <forward name="show_summary" path="/showSummary.do"/>
       <forward name="show_strategy" path="/showStrategy.do"/>
@@ -127,7 +127,6 @@
       scope="request"
       validate="false"
       name="questionForm">
-      <forward name="show_question" path="/question.jsp"/>
       <forward name="skip_to_summary" path="/showSummary.do"/>
     </action>
     <action
@@ -135,7 +134,7 @@
       type="org.gusdb.wdk.controller.action.ShowQuestionSetsAction"
       scope="request"
       name="questionSetForm">
-      <forward name="show_questionsets" path="/questionSets.jsp"/>
+      <forward name="show_questionsets" path="/wdk/questionSets.jsp"/>
     </action>
     <action
       path="/showQuestionSetsFlat"
@@ -169,7 +168,7 @@
       scope="request"
       name="questionForm"
       input="/showQuestion.do">
-      <forward name="show_error" path="/summaryError.jsp"/>
+      <forward name="show_error" path="/wdk/summaryError.jsp"/>
       <forward name="show_application" path="/showApplication.do"/>
       <forward name="results_only" path="/resultsPage.jsp"/>
       <forward name="skip_to_record" path="/showRecord.do"/>
@@ -188,15 +187,7 @@
       scope="request"
       input="/showSummary.do">
       <forward name="pq_show_summary" path="/showSummary.do"/>
-    </action>
-    <action
-      path="/startBoolean"
-      type="org.gusdb.wdk.controller.action.StartBooleanAction"
-      scope="session"
-      name="questionForm"
-      input="/showQuestion.do">
-      <forward name="grow_boolean" path="/booleanQuestion.jsp"/>
-    </action>    
+    </action>  
     <action
        path="/processBooleanQuestion"
        type="org.gusdb.wdk.controller.action.ProcessBooleanQuestionAction"
@@ -207,26 +198,10 @@
        <forward name="pbq_grow_boolean" path="/growBoolean.do"/>
     </action>
     <action
-      path="/growBoolean"
-      type="org.gusdb.wdk.controller.action.GrowBooleanAction"
-      scope="session"
-      name="booleanQuestionForm"
-      input="/startBoolean.do">
-      <forward name="grow_boolean" path="/booleanQuestion.jsp"/>
-    </action>
-    <action
-      path="/getBooleanAnswer"
-      type="org.gusdb.wdk.controller.action.GetBooleanAnswerAction"
-      scope="session"
-      name="booleanQuestionForm"
-      input="/startBoolean.do">
-      <forward name="get_boolean_answer" path="/summary.jsp"/>
-    </action>
-    <action
       path="/showRecord"
       type="org.gusdb.wdk.controller.action.ShowRecordAction"
       scope="request">
-      <forward name="show_record" path="/record.jsp"/>
+      <forward name="show_record" path="/wdk/record.jsp"/>
     </action>
     <action
       path="/configDownload"
@@ -240,20 +215,20 @@
       type="org.gusdb.wdk.controller.action.GetDownloadResultAction"
       name="downloadConfigForm"
       scope="request">
-      <forward name="get_download_result" path="/downloadResult.jsp"/>
+      <forward name="get_download_result" path="/wdk/downloadResult.jsp"/>
     </action>
     <action
       path="/showQueryHistory"
       type="org.gusdb.wdk.controller.action.ShowQueryHistoryAction"
       scope="request">
-      <forward name="show_strat_history" path="/strategyHistory.jsp"/>
-      <forward name="show_step_history" path="/stepHistory.jsp"/>
+      <forward name="show_strat_history" path="/wdk/strategyHistory.jsp"/>
+      <forward name="show_step_history" path="/wdk/stepHistory.jsp"/>
     </action>
     <action
       path="/downloadStep"
       type="org.gusdb.wdk.controller.action.DownloadStepAnswerValueAction"
       scope="request">
-      <forward name="get_download_config" path="/reporterConfig.jsp"/>
+      <forward name="get_download_config" path="/wdk/reporterConfig.jsp"/>
     </action>
     <action
       path="/renameStep"
@@ -283,13 +258,13 @@
       path="/showXmlDataList"
       type="org.gusdb.wdk.controller.action.ShowXmlDataListAction"
       scope="request">
-      <forward name="show_xmldata_list" path="/xmlDataList.jsp"/>
+      <forward name="show_xmldata_list" path="/wdk/xmlDataList.jsp"/>
     </action>
     <action
       path="/showXmlDataContent"
       type="org.gusdb.wdk.controller.action.ShowXmlDataContentAction"
       scope="request">
-      <forward name="show_xmldata_content" path="/xmlDataContent.jsp"/>
+      <forward name="show_xmldata_content" path="/wdk/xmlDataContent.jsp"/>
     </action>
     <action
       path="/processTestForm"
@@ -297,7 +272,7 @@
       name="testForm"
       input="/testForm.jsp"
       scope="request">
-      <forward name="process_test_form" path="/testFormResult.jsp"/>
+      <forward name="process_test_form" path="/wdk/testFormResult.jsp"/>
     </action>
     <action
       path="/showErrorPage"
@@ -348,7 +323,7 @@
       scope="session"
       name="resetPasswordForm">
       <forward name="show_password" path="/showPassword.do"/>
-      <forward name="show_reset_password" path="/resetpwd.jsp"/>
+      <forward name="show_reset_password" path="/wdk/resetpwd.jsp"/>
     </action>
     <action
       path="/showRegister"
@@ -362,21 +337,21 @@
       type="org.gusdb.wdk.controller.action.ShowProfileAction"
       scope="session"
       name="showProfileForm">
-      <forward name="show_profile" path="/profile.jsp"/>
+      <forward name="show_profile" path="/wdk/profile.jsp"/>
     </action>
     <action
       path="/showPassword"
       type="org.gusdb.wdk.controller.action.ShowPasswordAction"
       scope="session"
       name="showPasswordForm">
-      <forward name="show_password" path="/password.jsp"/>
+      <forward name="show_password" path="/wdk/password.jsp"/>
     </action>
     <action
       path="/showResetPassword"
       type="org.gusdb.wdk.controller.action.ShowResetPasswordAction"
       scope="session"
       name="showResetPasswordForm">
-      <forward name="show_reset_password" path="/resetpwd.jsp"/>
+      <forward name="show_reset_password" path="/wdk/resetpwd.jsp"/>
     </action>
    <action
       path="/addComment"
@@ -459,8 +434,8 @@
       scope="request"
       name="questionForm"
       validate="false">
-      <forward name="vocab_xml" path="/vocabXml.jsp"/>
-      <forward name="vocab_html" path="/vocabHtml.jsp"/>
+      <forward name="vocab_xml" path="/wdk/vocabXml.jsp"/>
+      <forward name="vocab_html" path="/wdk/vocabHtml.jsp"/>
     </action>
   </action-mappings>
 
