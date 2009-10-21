@@ -20,10 +20,12 @@ sub init {
               x_axis_labels => ['Tachyzoite', 'Compound 1', 'pH=8.2'],
               r_adjust_profile => 'profile = rbind(profile[1,1:3], profile[1,4:6], profile[1,7:9]);',
               legend => ["GT1", "ME49", "CTGara"],
+              plot_title => 'Normal-tachyzoite vs. Induced-bradyzoite - 3 Tgondii Strains',
              },
 
       pct => {profiles => ['expression profile percentiles of three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditoins'],
               y_axis_label => 'percentile',
+              plot_title => 'Normal-tachyzoite vs. Induced-bradyzoite Percentiles - 3 Tgondii Strains',
              }
      });
 
