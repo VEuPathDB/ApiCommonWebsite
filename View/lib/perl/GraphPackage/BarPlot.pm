@@ -13,21 +13,6 @@ use Data::Dumper;
 sub getScreenSize            { $_[0]->{'_screen_size'         }}
 sub setScreenSize            { $_[0]->{'_screen_size'         } = $_[1]; $_[0] }
 
-sub getColors                { $_[0]->{'_colors'              }}
-sub setColors                { $_[0]->{'_colors'              } = $_[1]; $_[0] }
-
-sub getYAxisLabels           { $_[0]->{'_yaxis_labels'        }}
-sub setYAxisLabels           { $_[0]->{'_yaxis_labels'        } = $_[1]; $_[0] }
-
-sub getLegend                { $_[0]->{'_legend'              }}
-sub setLegend                { $_[0]->{'_legend'              } = $_[1]; $_[0] }
-
-sub getRAdjustProfile        { $_[0]->{'_r_adjust_profile'    }}
-sub setRAdjustProfile        { $_[0]->{'_r_adjust_profile'    } = $_[1]; $_[0] }
-
-sub getRAdjustNames          { $_[0]->{'_r_adjust_names'      }}
-sub setRAdjustNames          { $_[0]->{'_r_adjust_names'      } = $_[1]; $_[0] }
-
 #--------------------------------------------------------------------------------
 
 sub init {
