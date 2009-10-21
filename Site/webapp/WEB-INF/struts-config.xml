@@ -45,7 +45,7 @@
   </global-exceptions>
 
   <global-forwards type="org.apache.struts.action.ActionForward">
-    <forward   name="home" path="/index.jsp"/>
+    <forward name="home" path="/home.jsp"/>
   </global-forwards>
 
   <action-mappings>
