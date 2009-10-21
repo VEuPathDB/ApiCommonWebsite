@@ -64,7 +64,7 @@ sub makeRPlotStrings {
 
     # each part can have several profile sets
     foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
-      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $part)};
+      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $part, undef)};
 
       push(@profileFiles, $profileFile);
       push(@elementNamesFiles, $elementNamesFile);
@@ -103,13 +103,13 @@ screen.i <- screen.i + 1;
 
 profile = vector();
 for(i in 1:length(profile.files)) {
-  tmp = read.table(profile.files[i], header=T, sep=\"\t\");
+  tmp = read.table(profile.files[i], header=T, sep=\"\\t\");
   profile = rbind(profile, tmp\$VALUE);
 }
 
 element.names = vector(\"character\");
 for(i in 1:length(element.names.files)) {
-  tmp = read.table(element.names.files[i], header=T, sep=\"\t\");
+  tmp = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
 
