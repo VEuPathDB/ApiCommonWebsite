@@ -139,7 +139,7 @@ RCODE
 #--------------------------------------------------------------------------------
 
 sub writeProfileFiles {
-  my ($self, $profileSetName, $suffix) = @_;
+  my ($self, $profileSetName, $suffix, $elementOrder) = @_;
 
   my $_qh   = $self->getQueryHandle();
   my $_dict = {};
@@ -159,6 +159,9 @@ sub writeProfileFiles {
       );
 
   my @errors;
+
+  $profile->setElementOrder($elementOrder) if($elementOrder);
+  $elementNames->setElementOrder($elementOrder) if($elementOrder);
 
   my $profile_fn = eval { $profile->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
   my $elementNames_fn = eval { $elementNames->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
