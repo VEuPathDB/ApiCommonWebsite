@@ -170,7 +170,7 @@
       input="/showQuestion.do">
       <forward name="show_error" path="/wdk/summaryError.jsp"/>
       <forward name="show_application" path="/showApplication.do"/>
-      <forward name="results_only" path="/resultsPage.jsp"/>
+      <forward name="results_only" path="/results.jsp"/>
       <forward name="skip_to_record" path="/showRecord.do"/>
       <forward name="skip_to_download" path="/downloadStep.do"/>
     </action>
