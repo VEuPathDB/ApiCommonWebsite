@@ -75,6 +75,7 @@ sub makeRPlotStrings {
 
     my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
     my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
+    my $plotTitle = $profileSetsHash->{$part}->{plot_title};
 
     # each part can have several profile sets
     foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
@@ -86,7 +87,7 @@ sub makeRPlotStrings {
     my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
     my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
 
-    my $rCode = $self->rString($profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile);
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile);
 
     unshift @rv, $rCode;
   }
@@ -97,9 +98,10 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile) = @_;
 
-  $yAxisLabel = $yAxisLabel ? $yAxisLabel : "You Forgot the Label";
+  $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
+  $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rAdjustNames = $rAdjustNames ? $rAdjustNames : "";
 
@@ -147,6 +149,8 @@ barplot(profile,
 if(length(the.legend) > 0) {
   legend(11, d.max, legend=the.legend, cex=0.9, fill=the.colors, inset=0.2) ;
 }
+
+plasmodb.title(\"$plotTitle\");
 
 box();
 
