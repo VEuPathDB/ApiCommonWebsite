@@ -98,7 +98,7 @@
       scope="request"
       validate="false"
       name="questionForm">
-      <forward name="show_error" path="/wdk/summaryError.jsp"/>
+      <forward name="show_error" path="/summaryError.jsp"/>
       <forward name="process_boolean_expression" path="/processBooleanExpression.do"/>
       <forward name="show_summary" path="/showSummary.do"/>
       <forward name="show_strategy" path="/showStrategy.do"/>
@@ -134,7 +134,7 @@
       type="org.gusdb.wdk.controller.action.ShowQuestionSetsAction"
       scope="request"
       name="questionSetForm">
-      <forward name="show_questionsets" path="/wdk/questionSets.jsp"/>
+      <forward name="show_questionsets" path="/questionSets.jsp"/>
     </action>
     <action
       path="/showQuestionSetsFlat"
@@ -168,7 +168,7 @@
       scope="request"
       name="questionForm"
       input="/showQuestion.do">
-      <forward name="show_error" path="/wdk/summaryError.jsp"/>
+      <forward name="show_error" path="/summaryError.jsp"/>
       <forward name="show_application" path="/showApplication.do"/>
       <forward name="skip_to_record" path="/showRecord.do"/>
       <forward name="skip_to_download" path="/downloadStep.do"/>
@@ -199,7 +199,7 @@
       path="/showRecord"
       type="org.gusdb.wdk.controller.action.ShowRecordAction"
       scope="request">
-      <forward name="show_record" path="/wdk/record.jsp"/>
+      <forward name="show_record" path="/record.jsp"/>
     </action>
     <action
       path="/configDownload"
@@ -213,7 +213,7 @@
       type="org.gusdb.wdk.controller.action.GetDownloadResultAction"
       name="downloadConfigForm"
       scope="request">
-      <forward name="get_download_result" path="/wdk/downloadResult.jsp"/>
+      <forward name="get_download_result" path="/downloadResult.jsp"/>
     </action>
     <action
       path="/showQueryHistory"
@@ -226,7 +226,7 @@
       path="/downloadStep"
       type="org.gusdb.wdk.controller.action.DownloadStepAnswerValueAction"
       scope="request">
-      <forward name="get_download_config" path="/wdk/reporterConfig.jsp"/>
+      <forward name="get_download_config" path="/reporterConfig.jsp"/>
     </action>
     <action
       path="/renameStep"
@@ -256,13 +256,13 @@
       path="/showXmlDataList"
       type="org.gusdb.wdk.controller.action.ShowXmlDataListAction"
       scope="request">
-      <forward name="show_xmldata_list" path="/wdk/xmlDataList.jsp"/>
+      <forward name="show_xmldata_list" path="/xmlDataList.jsp"/>
     </action>
     <action
       path="/showXmlDataContent"
       type="org.gusdb.wdk.controller.action.ShowXmlDataContentAction"
       scope="request">
-      <forward name="show_xmldata_content" path="/wdk/xmlDataContent.jsp"/>
+      <forward name="show_xmldata_content" path="/xmlDataContent.jsp"/>
     </action>
     <action
       path="/processTestForm"
@@ -321,7 +321,7 @@
       scope="session"
       name="resetPasswordForm">
       <forward name="show_password" path="/showPassword.do"/>
-      <forward name="show_reset_password" path="/wdk/resetpwd.jsp"/>
+      <forward name="show_reset_password" path="/resetpwd.jsp"/>
     </action>
     <action
       path="/showRegister"
@@ -335,21 +335,21 @@
       type="org.gusdb.wdk.controller.action.ShowProfileAction"
       scope="session"
       name="showProfileForm">
-      <forward name="show_profile" path="/wdk/profile.jsp"/>
+      <forward name="show_profile" path="/profile.jsp"/>
     </action>
     <action
       path="/showPassword"
       type="org.gusdb.wdk.controller.action.ShowPasswordAction"
       scope="session"
       name="showPasswordForm">
-      <forward name="show_password" path="/wdk/password.jsp"/>
+      <forward name="show_password" path="/password.jsp"/>
     </action>
     <action
       path="/showResetPassword"
       type="org.gusdb.wdk.controller.action.ShowResetPasswordAction"
       scope="session"
       name="showResetPasswordForm">
-      <forward name="show_reset_password" path="/wdk/resetpwd.jsp"/>
+      <forward name="show_reset_password" path="/resetpwd.jsp"/>
     </action>
    <action
       path="/addComment"
