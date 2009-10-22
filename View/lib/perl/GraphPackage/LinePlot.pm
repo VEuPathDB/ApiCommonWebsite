@@ -57,14 +57,16 @@ sub makeRPlotStrings {
     my $yMin = $profileSetsHash->{$part}->{default_y_min};
 
     # each part can have several profile sets
-    my $suffix = 0;
+    my $i = 0;
     foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
+      my $suffix = $part . $i;
+
       my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
 
       push(@profileFiles, $profileFile);
       push(@elementNamesFiles, $elementNamesFile);
 
-      $suffix++;
+      $i++;
     }
     my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
     my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
