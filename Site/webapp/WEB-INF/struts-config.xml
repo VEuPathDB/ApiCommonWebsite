@@ -170,7 +170,6 @@
       input="/showQuestion.do">
       <forward name="show_error" path="/wdk/summaryError.jsp"/>
       <forward name="show_application" path="/showApplication.do"/>
-      <forward name="results_only" path="/results.jsp"/>
       <forward name="skip_to_record" path="/showRecord.do"/>
       <forward name="skip_to_download" path="/downloadStep.do"/>
     </action>
@@ -179,7 +178,6 @@
       type="org.gusdb.wdk.controller.action.ShowApplicationAction"
       scope="request"
       input="/showSummary.do">
-      <forward name="show_application" path="/customPages/customSummary.jsp"/>
     </action>
     <action
       path="/processSummary"
