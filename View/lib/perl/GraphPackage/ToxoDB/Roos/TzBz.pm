@@ -15,7 +15,7 @@ sub init {
 
   my $colors = ['pink', 'purple', 'brown', 'blue'];
 
-  my $legend = ['RH Alkaline', 'Pru Sodium Nitroprusside', 'CO2-starvation', 'Pru Alkaline'];
+  my $legend = ['RH Alkaline', 'Pru Sodium Nitroprusside', 'Pru CO2-starvation', 'Pru Alkaline'];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
