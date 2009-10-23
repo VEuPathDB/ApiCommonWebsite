@@ -26,6 +26,12 @@ sub setFileHandle                { $_[0]->{'_file_handle'                 } = $_
 sub getPlotWidth                 { $_[0]->{'_plot_width'                  } }
 sub setPlotWidth                 { $_[0]->{'_plot_width'                  } = $_[1]; $_[0] }
 
+sub getMainLegend                { $_[0]->{'_main_legend'                 }}
+sub setMainLegend                { $_[0]->{'_main_legend'                 } = $_[1]; $_[0] }
+
+sub getLegendSize                { $_[0]->{'_legend_size'                 }}
+sub setLegendSize                { $_[0]->{'_legend_size'                 } = $_[1]; $_[0] }
+
 #--------------------------------------------------------------------------------
 # Abstract methods
 #--------------------------------------------------------------------------------
@@ -41,8 +47,51 @@ sub init {
 
   # Default 
   $self->setPlotWidth(600);
+  $self->setLegendSize(40);
 
   $self;
+}
+
+#--------------------------------------------------------------------------------
+
+sub makeRLegendString {
+  my ($self) = @_;
+
+  my $legendHash = $self->getMainLegend();
+
+  my $colors = $legendHash->{colors};
+  my $names = $legendHash->{short_names};
+
+  my $rColorsString = $self->rStringVectorFromArray($colors, 'legend.colors');
+  my $rNamesString = $self->rStringVectorFromArray($names, 'legend.names');
+
+  my $rv = "
+ #-------------------------------------------------------------------------------
+  screen(screens[screen.i]);
+  screen.i <- screen.i + 1;
+
+  $rColorsString
+  $rNamesString
+
+  par(yaxs='i', xaxs='i', xaxt='n', yaxt='n', bty='n', mar=c(0.1,0.1,0.1,0.1));
+  plot(c(0),c(0), xlab='', ylab='',type='l',col='orange', xlim=c(0,1),ylim=c(0,1));
+
+  legend(0.5, 0.5,
+       legend.names,
+       xjust = 0.5,
+       yjust = 0.5,
+       cex   = 0.9,
+       pt.cex = 1.5,
+       bty   = 'n',
+       col   = legend.colors,
+       pt.bg = legend.colors,
+       pch   = 19,
+       lty   = 'solid',
+       ncol  = 3,
+      );
+";
+
+
 }
 
 #--------------------------------------------------------------------------------
@@ -63,6 +112,10 @@ sub makeR {
   push(@rv, $r_f, $out_f);
 
   my $parts = [];
+  if($self->getMainLegend()) {
+    push(@$parts, { Name => "_LEGEND",   Size => $self->getLegendSize() });
+  }
+
   foreach my $ps (keys %$profileSetsHash) {
     push(@$parts, { Name => "$ps",   Size => $self->getScreenSize() });
   }
@@ -90,6 +143,11 @@ sub makeR {
   my $open_R      = $self->rOpenFile($width, $totalHeight);
   my $preamble_R  = $self->_rStandardComponents($thumb_b);
 
+  my $legend = "";
+  if($self->getMainLegend()) {
+    $legend = $self->makeRLegendString();
+  }
+
   my @rStrings = @{$self->makeRPlotStrings()};
   my $rStrings = join("\n", @rStrings);
 
@@ -114,7 +172,11 @@ ticks <- function() {
   axis(1);
 }
 
-# --------------------------------- Add Plots ---------------------------------
+# --------------------------------- Add Legend-------------------------------
+
+$legend
+
+# --------------------------------- Add Plots ------------------------------
 
 $rStrings
 
