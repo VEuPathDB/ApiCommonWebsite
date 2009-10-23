@@ -11,9 +11,6 @@ use ApiCommonWebsite::View::GraphPackage::AbstractPlot;
 sub getScreenSize            { $_[0]->{'_screen_size'         }}
 sub setScreenSize            { $_[0]->{'_screen_size'         } = $_[1]; $_[0] }
 
-sub getMainLegend            { $_[0]->{'_main_legend'         }}
-sub setMainLegend            { $_[0]->{'_main_legend'         } = $_[1]; $_[0] }
-
 #--------------------------------------------------------------------------------
 
 sub init {
