@@ -12,6 +12,8 @@ sub init {
 
   $self->SUPER::init(@_);
 
+  $self->setScreenSize(250);
+  $self->setBottomMarginSize(8);
 
   $self->setProfileSetsHash
     ({rma => {profiles => ['expression profiles of three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditoins'],

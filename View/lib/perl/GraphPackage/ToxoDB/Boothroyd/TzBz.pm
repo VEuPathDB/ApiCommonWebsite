@@ -12,7 +12,6 @@ sub init {
 
   $self->SUPER::init(@_);
 
-
   $self->setProfileSetsHash
     ({rma => {profiles => ['expression profiles of T. gondii Matt_Tz-Bz time series'],
               y_axis_label => 'RMA Value (log2)',
