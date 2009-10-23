@@ -209,8 +209,6 @@ RCODE
 
   push @rv, @$tempFiles;
 
-  print STDERR Dumper \@rv;
-
   return @rv;
 }
 
