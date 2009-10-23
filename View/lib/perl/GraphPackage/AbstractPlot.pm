@@ -32,6 +32,14 @@ sub setMainLegend                { $_[0]->{'_main_legend'                 } = $_
 sub getLegendSize                { $_[0]->{'_legend_size'                 }}
 sub setLegendSize                { $_[0]->{'_legend_size'                 } = $_[1]; $_[0] }
 
+sub getTempFiles                 { $_[0]->{'_temp_files'                  }}
+sub setTempFiles                 { $_[0]->{'_temp_files'                  } = $_[1]; $_[0] }
+sub addTempFile {
+  my ($self, $file) = @_;
+
+  push @{$self->getTempFiles()}, $file;
+}
+
 #--------------------------------------------------------------------------------
 # Abstract methods
 #--------------------------------------------------------------------------------
@@ -48,6 +56,8 @@ sub init {
   # Default 
   $self->setPlotWidth(600);
   $self->setLegendSize(40);
+
+  $self->setTempFiles([]);
 
   $self;
 }
@@ -195,6 +205,12 @@ RCODE
 
   $r_fh->close();
 
+  my $tempFiles = $self->getTempFiles();
+
+  push @rv, @$tempFiles;
+
+  print STDERR Dumper \@rv;
+
   return @rv;
 }
 
@@ -229,6 +245,9 @@ sub writeProfileFiles {
   my $elementNames_fn = eval { $elementNames->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
 
   my @rv = ($profile_fn, $elementNames_fn);
+
+  $self->addTempFile($profile_fn);
+  $self->addTempFile($elementNames_fn);
 
   if (@errors) {
     $self->reportErrorsAndBlankGraph($r_fh, @errors);
