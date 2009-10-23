@@ -8,11 +8,6 @@ use ApiCommonWebsite::View::GraphPackage::AbstractPlot;
 
 #--------------------------------------------------------------------------------
 
-sub getScreenSize            { $_[0]->{'_screen_size'         }}
-sub setScreenSize            { $_[0]->{'_screen_size'         } = $_[1]; $_[0] }
-
-#--------------------------------------------------------------------------------
-
 sub init {
   my $self = shift;
   my $args = ref $_[0] ? shift : {@_};
@@ -20,7 +15,8 @@ sub init {
   $self->SUPER::init($args);
 
   # Defaults
-  $self->setScreenSize(250);
+  $self->setScreenSize(200);
+  $self->setBottomMarginSize(4.5);
 
   return $self;
 }
@@ -88,6 +84,8 @@ sub rString {
   $yMax = $yMax ? $yMax : "-Inf";
   $yMin = defined($yMin) ? $yMin : "Inf";
 
+  my $bottomMargin = $self->getBottomMarginSize();
+
   my $rv = "
 # ---------------------------- LINE PLOT ----------------------------
 
@@ -133,7 +131,7 @@ for(i in 1:length(profile.files)) {
 }
 
 #plasmodb.par
-par(mar       = c(8,4,1,10), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,10), xpd=TRUE);
 
 for(i in 1:length(profile)) {
 

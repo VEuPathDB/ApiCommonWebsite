@@ -14,6 +14,12 @@ use Data::Dumper;
 
 #--------------------------------------------------------------------------------
 
+sub getScreenSize                { $_[0]->{'_screen_size'                 }}
+sub setScreenSize                { $_[0]->{'_screen_size'                 } = $_[1]; $_[0] }
+
+sub getBottomMarginSize          { $_[0]->{'_bottom_margin_size'          }}
+sub setBottomMarginSize          { $_[0]->{'_bottom_margin_size'          } = $_[1]; $_[0] }
+
 sub getProfileSetsHash           { $_[0]->{'_profile_sets_hash'           } }
 sub setProfileSetsHash           { $_[0]->{'_profile_sets_hash'           } = $_[1]; $_[0] }
 

@@ -10,11 +10,6 @@ use Data::Dumper;
 
 #--------------------------------------------------------------------------------
 
-sub getScreenSize            { $_[0]->{'_screen_size'         }}
-sub setScreenSize            { $_[0]->{'_screen_size'         } = $_[1]; $_[0] }
-
-#--------------------------------------------------------------------------------
-
 sub init {
   my $self = shift;
   my $args = ref $_[0] ? shift : {@_};
@@ -22,7 +17,8 @@ sub init {
   $self->SUPER::init($args);
 
   # Defaults
-  $self->setScreenSize(250);
+  $self->setScreenSize(200);
+  $self->setBottomMarginSize(5);
 
   return $self;
 }
@@ -35,8 +31,6 @@ sub makeRPlotStrings {
   my @rv;
 
   my $profileSetsHash = $self->getProfileSetsHash();
-
-
 
   my $ms = $self->getMultiScreen();
 
@@ -90,6 +84,8 @@ sub rString {
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rAdjustNames = $rAdjustNames ? $rAdjustNames : "";
 
+  my $bottomMargin = $self->getBottomMarginSize();
+
   my $rv = "
 # ---------------------------- BAR PLOT ----------------------------
 
@@ -113,7 +109,7 @@ for(i in 1:length(element.names.files)) {
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
 
-par(mar       = c(8,4,1,10), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,10), xpd=TRUE);
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile

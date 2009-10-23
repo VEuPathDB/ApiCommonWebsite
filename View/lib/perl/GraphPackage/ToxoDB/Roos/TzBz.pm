@@ -12,7 +12,6 @@ sub init {
 
   $self->SUPER::init(@_);
 
-
   my $colors = ['pink', 'purple', 'brown', 'blue'];
 
   my $legend = ['RH Alkaline', 'Pru Sodium Nitroprusside', 'Pru CO2-starvation', 'Pru Alkaline'];
