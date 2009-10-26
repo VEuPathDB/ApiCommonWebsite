@@ -125,6 +125,8 @@ sub makeR {
   my $r_fh = FileHandle->new(">$r_f") || die "Can not open R file '$r_f': $!";
   my $out_f     = $self->getOutputFile();
 
+  $self->setFileHandle($r_fh);
+
   push(@rv, $r_f, $out_f);
 
   my $parts = [];
