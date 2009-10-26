@@ -45,7 +45,7 @@ ${id}
 <br>
 <%------------------------------------------------------------------%>
 
-<site:wdkTable tblName="AlignmentInfo" isOpen="false" attribution=""/>
+<wdk:wdkTable tblName="AlignmentInfo" isOpen="false" attribution=""/>
 
 <br>
 
@@ -65,12 +65,12 @@ ${id}
 <!-- Assembly -->
 
 <c:if test="${projectId != 'TrichDB'}">
-  <site:wdkTable tblName="AssemblyInfo" isOpen="true" attribution=""/>
+  <wdk:wdkTable tblName="AssemblyInfo" isOpen="true" attribution=""/>
 </c:if>
 
 <br>
 <%-- REFERENCE ----------------------------------------------------%>
-<site:wdkTable tblName="ReferenceInfo" isOpen="true" attribution=""/>
+<wdk:wdkTable tblName="ReferenceInfo" isOpen="true" attribution=""/>
 
 <br>
 <%------------------------------------------------------------------%>

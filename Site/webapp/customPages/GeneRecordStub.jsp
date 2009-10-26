@@ -107,7 +107,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContext" displayName="Genomic Context"
     content="${gnCtxImg}" isOpen="true" 
     imageMapDivId="${gnCtxDivId}" 
@@ -135,7 +135,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContextSyn" displayName="Genomic Context with Synteny"
     content="${gnCtxSynImg}" isOpen="true" 
     imageMapDivId="${gnCtxSynDivId}" imageMapSource="${gnCtxSynUrl}"

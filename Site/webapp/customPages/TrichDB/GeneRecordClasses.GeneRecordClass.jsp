@@ -125,7 +125,7 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContextSyn" displayName="Genomic Context"
     displayLink="${has_model_comment}"
     content="${gnCtxImg}" isOpen="true" 
@@ -173,7 +173,7 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
 
 <c:catch var="e">
 
-<site:wdkTable tblName="UserComments"  isOpen="true"/>
+<wdk:wdkTable tblName="UserComments"  isOpen="true"/>
 
 
 </c:catch>
@@ -197,7 +197,7 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
     enzymeDB,T.vaginalis_scaffolds,T.vaginalis_Annotation
   </c:set>
 
-<site:wdkTable tblName="EcNumber" isOpen="true"
+<wdk:wdkTable tblName="EcNumber" isOpen="true"
                attribution="${attribution}"/>
 
 </c:if>
@@ -210,7 +210,7 @@ GO,InterproscanData,
 T.vaginalis_scaffolds,T.vaginalis_Annotation
 </c:set>
 
-<site:wdkTable tblName="GoTerms" isOpen="true"
+<wdk:wdkTable tblName="GoTerms" isOpen="true"
                attribution="${attribution}"/>
 
 </c:if>
@@ -222,7 +222,7 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
       <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
     </div>
   </c:set>
-  <site:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
+  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
                  postscript="${orthomclLink}"/>
 
 </c:if>
@@ -256,7 +256,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/trichdbaa/?name=${i
         </center></noindex>
     </c:set>
 
-    <site:toggle name="proteinContext"  displayName="Protein Features"
+    <wdk:toggle name="proteinContext"  displayName="Protein Features"
              content="${proteinFeaturesImg}"
              attribution="${attribution}"/>
       <!-- ${proteinFeaturesUrl} -->
@@ -315,7 +315,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/trichdbaa/?name=${i
   <pre><w:wrap size="60">${attrs['protein_sequence'].value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(proteinSequence.value)} aa</font><br/>
 </c:set>
-<site:toggle name="proteinSequence" displayName="${proteinSequence.displayName}"
+<wdk:toggle name="proteinSequence" displayName="${proteinSequence.displayName}"
              content="${proteinSequenceContent}" isOpen="false"/>
 </c:if>
 <%------------------------------------------------------------------%>
@@ -327,7 +327,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/trichdbaa/?name=${i
   <pre><w:wrap size="60">${transcriptSequence.value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(transcriptSequence.value)} bp</font><br/>
 </c:set>
-<site:toggle name="transcriptSequence"
+<wdk:toggle name="transcriptSequence"
              displayName="${transcriptSequence.displayName}"
              content="${transcriptSequenceContent}" isOpen="false"/>
 
@@ -340,7 +340,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/trichdbaa/?name=${i
   <pre><w:wrap size="60">${cds.value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(cds.value)} bp</font><br/>
 </c:set>
-<site:toggle name="cds" displayName="${cds.displayName}"
+<wdk:toggle name="cds" displayName="${cds.displayName}"
              content="${cdsContent}" isOpen="false"/>
 
 </c:if>

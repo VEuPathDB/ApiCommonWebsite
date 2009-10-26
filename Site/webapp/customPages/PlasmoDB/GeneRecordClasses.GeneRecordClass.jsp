@@ -332,7 +332,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContextSyn" displayName="Genomic Context"
     displayLink="${has_model_comment}"
     content="${gnCtxImg}" isOpen="true" 
@@ -354,14 +354,14 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 
 
 <c:if test="${binomial eq 'Plasmodium falciparum'}">
-    <site:wdkTable tblName="SNPs" isOpen="false"
+    <wdk:wdkTable tblName="SNPs" isOpen="false"
                    attribution="Su_SNPs,Broad_SNPs,sangerItGhanaSnps,sangerReichenowiSnps"/>
 </c:if>
 
 
 <%-- version 5.5 genes --%>
 <c:if test="${binomial eq 'Plasmodium falciparum'}">
-<site:wdkTable tblName="PlasmoVer5Genes" isOpen="true"
+<wdk:wdkTable tblName="PlasmoVer5Genes" isOpen="true"
                attribution="" />
 </c:if>
 
@@ -378,7 +378,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
                     availableGenomes="3D7,Dd2,HB3, and IT"/>
 </c:set>
 
-<site:toggle isOpen="false"
+<wdk:toggle isOpen="false"
   name="mercatorAlignment"
   displayName="Multiple Sequence Alignment"
   content="${mercatorAlign}"
@@ -408,7 +408,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 
 <c:catch var="e">
 
-<site:wdkTable tblName="UserComments"  isOpen="true"/>
+<wdk:wdkTable tblName="UserComments"  isOpen="true"/>
 
 
 </c:catch>
@@ -457,7 +457,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 <%--
 <c:catch var="e">
 
-<site:wdkTable tblName="PhenotypeComments"  isOpen="true"/> 
+<wdk:wdkTable tblName="PhenotypeComments"  isOpen="true"/> 
 
 </c:catch>
 <c:if test="${e != null}">
@@ -477,7 +477,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 <c:if test="${species ne 'falciparum' || (species eq 'falciparum' && attrs['annotation_status'].value ne 'new' &&attrs['annotation_status'].value ne 'new_organellar')}">
 --%>
 
-<site:wdkTable tblName="GeneLinkouts" isOpen="true" attribution="Plasmodraft_DBRefs,Phenotype_DBRefs"/>
+<wdk:wdkTable tblName="GeneLinkouts" isOpen="true" attribution="Plasmodraft_DBRefs,Phenotype_DBRefs"/>
 
 <c:if test="${isCodingGene}">
   <c:set var="orthomclLink">
@@ -485,7 +485,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
       <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
     </div>
   </c:set>
-  <site:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
+  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
                  postscript="${orthomclLink}"/>
 </c:if>
 <%--</c:if>--%>
@@ -493,14 +493,14 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 <c:if test="${binomial eq 'Plasmodium falciparum'}">
   <a name="ecNumber"></a>
   <c:if test="${isCodingGene}">
-    <site:wdkTable tblName="EcNumber" isOpen="false"
+    <wdk:wdkTable tblName="EcNumber" isOpen="false"
                    attribution="ecMappings_Hagai,P.falciparum_chromosomes,enzymeDB"/>
   </c:if>
 </c:if>
 
 <c:if test="${isCodingGene}">
   <a name="goTerm"></a>
-  <site:wdkTable tblName="GoTerms"
+  <wdk:wdkTable tblName="GoTerms"
                  attribution="GO,GOAssociations,InterproscanData"/>
 </c:if>
 
@@ -510,10 +510,10 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 --%>
 
 <c:if test="${binomial eq 'Plasmodium falciparum'}">
-  <site:wdkTable tblName="Aliases" isOpen="true"
+  <wdk:wdkTable tblName="Aliases" isOpen="true"
                  attribution="P.falciparum_chromosomes"/>
 
-  <site:wdkTable tblName="Notes" attribution="P.falciparum_chromosomes"/>
+  <wdk:wdkTable tblName="Notes" attribution="P.falciparum_chromosomes"/>
   
   <!-- publications -->
 
@@ -528,7 +528,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
   </table>
 --%>
   <c:if test="${isCodingGene}">
-    <site:wdkTable tblName="MetabolicPathways" attribution="ecMappings_Hagai"/>
+    <wdk:wdkTable tblName="MetabolicPathways" attribution="ecMappings_Hagai"/>
   </c:if>
 
 <c:set var="plasmocyc" value="${attrs['PlasmoCyc']}"/>  
@@ -540,7 +540,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 
 </c:if>
 
-<site:wdkTable tblName="Mr4Reagents" attribution="MR4Reagents"/>
+<wdk:wdkTable tblName="Mr4Reagents" attribution="MR4Reagents"/>
 
 
 <c:if test="${isCodingGene}">
@@ -592,20 +592,20 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 
   <c:choose>
   <c:when test="${okDOMInnerHtml}">
-    <site:toggle name="proteinFeatures" displayName="Protein Features"
+    <wdk:toggle name="proteinFeatures" displayName="Protein Features"
                content="${proteinFeaturesContent}" isOpen="true"
                imageMapDivId="${imageMapDivId}" imageMapSource="${proteinFeatures}"
                attribution="NRDB,InterproscanData"/>
   </c:when>
   <c:otherwise>
-    <site:toggle name="proteinFeatures" displayName="Protein Features"
+    <wdk:toggle name="proteinFeatures" displayName="Protein Features"
                content="${proteinFeaturesContent}" isOpen="true"
                attribution="NRDB,InterproscanData"/>
   </c:otherwise>
   </c:choose>
 
   <c:if test="${binomial eq 'Plasmodium falciparum'}">
-  <site:wdkTable tblName="Y2hInteractions" isOpen="true"
+  <wdk:wdkTable tblName="Y2hInteractions" isOpen="true"
                  attribution="y2h_data"/>
   </c:if>
 
@@ -651,28 +651,28 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
         </c:choose>
 
   <c:if test="${binomial eq 'Plasmodium falciparum'}">
-      <site:wdkTable tblName="MassSpec" isOpen="true"
+      <wdk:wdkTable tblName="MassSpec" isOpen="true"
                     attribution="FlorensMassSpecData2002,FlorensMassSpecData2004"/>
   </c:if>
 
   <c:if test="${binomial eq 'Plasmodium berghei'}">
-    <site:wdkTable tblName="ProteinExpression" attribution="Pberghei_Protein_Expression"/>
+    <wdk:wdkTable tblName="ProteinExpression" attribution="Pberghei_Protein_Expression"/>
   </c:if>
 
-  <site:wdkTable tblName="ProteinDatabase"/>
+  <wdk:wdkTable tblName="ProteinDatabase"/>
 
   <c:set var="pdbLink">
     <a href="http://www.rcsb.org/pdb/smartSubquery.do?smartSearchSubtype=SequenceQuery&inputFASTA_USEstructureId=false&sequence=${attrs['protein_sequence'].value}&eCutOff=10&searchTool=blast">Search
     PDB by the protein sequence of ${id}</a>
   </c:set>
 
-  <site:wdkTable tblName="PdbSimilarities" postscript="${pdbLink}" attribution="PDBProteinSequences"/>
+  <wdk:wdkTable tblName="PdbSimilarities" postscript="${pdbLink}" attribution="PDBProteinSequences"/>
 
   <c:if test="${binomial eq 'Plasmodium falciparum'}">
-    <site:wdkTable tblName="3dPreds" attribution="predictedProteinStructures"/>
+    <wdk:wdkTable tblName="3dPreds" attribution="predictedProteinStructures"/>
   </c:if>
 
-  <site:wdkTable tblName="Epitopes"/>
+  <wdk:wdkTable tblName="Epitopes"/>
 
 
 </c:if> <%-- end if isCodingGene --%>
@@ -682,7 +682,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 <c:if test="${binomial eq 'Plasmodium falciparum' || binomial eq 'Plasmodium yoelii' || binomial eq 'Plasmodium berghei'}">
   <site:pageDivider name="Expression ${has_expression_comment}"/>
 
-  <site:wdkTable tblName="ArrayElements" attribution="Vaidya_Bergman_oligos,DeRisi_oligos,berghei_gss_oligos"/>
+  <wdk:wdkTable tblName="ArrayElements" attribution="Vaidya_Bergman_oligos,DeRisi_oligos,berghei_gss_oligos"/>
 </c:if>
 
 <c:if test="${binomial eq 'Plasmodium vivax'}">
@@ -745,7 +745,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Intraerythrocytic Time Series"
@@ -794,7 +794,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
   </c:if>
 
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Asexual parasites from patient blood samples"
@@ -873,7 +873,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Overlay of Intraerythrocytic Expression Profiles"
@@ -912,7 +912,7 @@ P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle. Y-axis is the log2
   </c:if>
 
 <%--  NOTE: uncomment here to activate RNAseq
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle"
@@ -1016,7 +1016,7 @@ P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle. Y-axis is the log2
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Intraerythrocytic 3D7 (photolithographic oligo array)"
@@ -1085,7 +1085,7 @@ P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle. Y-axis is the log2
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Gametocyte 3D7/NF54 (photolithographic oligo array)"
@@ -1154,7 +1154,7 @@ P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle. Y-axis is the log2
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Developmental series 3D7 (glass slide oligo array)"
@@ -1224,7 +1224,7 @@ P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle. Y-axis is the log2
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Developmental series Dd2 (glass slide oligo array)"
@@ -1294,7 +1294,7 @@ P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle. Y-axis is the log2
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Developmental series HB3 (glass slide oligo array)"
@@ -1333,7 +1333,7 @@ trophozite and schizont stage.
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Intraerythrocytic comparison of antigenic and adherent variant clones of P. falciparum 3D7"
@@ -1380,7 +1380,7 @@ trophozite and schizont stage.
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Sir2 and invasion pathway studies (WT vs. KO)"
@@ -1448,7 +1448,7 @@ OnChange="javascript:updateImage('${imgId}', DailySort.DailyList.options[selecte
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Distinct physiological states of <i>Plasmodium falciparum</i> in malaria infected patients"
@@ -1505,7 +1505,7 @@ OnChange="javascript:updateImage('${imgId}', DailySort.DailyList.options[selecte
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Ex vivo intraerythrocitic expression assays of <i>Plasmodium falciparum</i> in malaria infected patients"
@@ -1514,7 +1514,7 @@ OnChange="javascript:updateImage('${imgId}', DailySort.DailyList.options[selecte
   <!-- end Newbold microarry study -->
 
 
-  <site:wdkTable tblName="SageTags" attribution="SageTagArrayDesign,PlasmoSageTagFreqs"/>
+  <wdk:wdkTable tblName="SageTags" attribution="SageTagArrayDesign,PlasmoSageTagFreqs"/>
 </c:if>
 
 
@@ -1563,7 +1563,7 @@ M values (Blue bars in the upper graph) represent the relative expression level 
 <c:set var="noData" value="true"/>
 </c:if>
 
-<site:toggle name="${secName}" isOpen="${isOpen}"
+<wdk:toggle name="${secName}" isOpen="${isOpen}"
        content="${expressionContent}" noData="${noData}"
        imageId="${imgId}" imageSource="${imgSrc}"
        displayName="Relative expression profiles between liver, mosquito, and red cell stage parasites"
@@ -1602,7 +1602,7 @@ The overall expression percentile of each condition is the average percentile ov
 <c:set var="noData" value="true"/>
 </c:if>
 
-<site:toggle name="${secName}" isOpen="${isOpen}"
+<wdk:toggle name="${secName}" isOpen="${isOpen}"
        content="${expressionContent}" noData="${noData}"
        imageId="${imgId}" imageSource="${imgSrc}"
        displayName="Expression profile of liver, mosquito, and red cell stage parasites"
@@ -1660,7 +1660,7 @@ The overall expression percentile of each condition is the average percentile ov
 <c:set var="noData" value="true"/>
 </c:if>
 
-<site:toggle name="${secName}" isOpen="${isOpen}"
+<wdk:toggle name="${secName}" isOpen="${isOpen}"
        content="${expressionContent}" noData="${noData}"
        imageId="${imgId}" imageSource="${imgSrc}"
        displayName="Expression profile of blood stage, live stage, gametocyte, and sporozoite samples"
@@ -1670,7 +1670,7 @@ The overall expression percentile of each condition is the average percentile ov
 
 <c:if test="${binomial eq 'Plasmodium berghei'}">
 
-<site:wdkTable tblName="TwoChannelDiffExpr" attribution="Agilent_P_Berghei_Array,Waters_arrayData,Waters_radAnalysis"/>
+<wdk:wdkTable tblName="TwoChannelDiffExpr" attribution="Agilent_P_Berghei_Array,Waters_arrayData,Waters_radAnalysis"/>
 
 <%-- berghei expression --%>
 <c:set var="secName" value="Waters::Ver1"/>
@@ -1716,7 +1716,7 @@ The overall expression percentile of each condition is the average percentile ov
     <c:set var="noData" value="true"/>
   </c:if>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="P. berghei expression"
@@ -1736,7 +1736,7 @@ The overall expression percentile of each condition is the average percentile ov
   <pre><w:wrap size="60">${attrs['protein_sequence'].value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(proteinSequence.value)} aa</font><br/>
 </c:set>
-<site:toggle name="proteinSequence" displayName="${proteinSequence.displayName}"
+<wdk:toggle name="proteinSequence" displayName="${proteinSequence.displayName}"
              content="${proteinSequenceContent}" isOpen="false"/>
 
 <%-- Workshop annotations have become the offical annotation as of release V6.0
@@ -1751,7 +1751,7 @@ The overall expression percentile of each condition is the average percentile ov
 
   <table width="100%" bgcolor=#98FB98>
     <tr><td>
-      <site:toggle name="workshopProteinSequence" displayName="${workshopProteinSequence.displayName}"
+      <wdk:toggle name="workshopProteinSequence" displayName="${workshopProteinSequence.displayName}"
                content="${workshopProteinSequenceContent}" isOpen="false"/>
     </td></tr>--%>
 <%--  </c:if>--%>
@@ -1763,7 +1763,7 @@ The overall expression percentile of each condition is the average percentile ov
   <pre><w:wrap size="60">${transcriptSequence.value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(transcriptSequence.value)} bp</font><br/>
 </c:set>
-<site:toggle name="transcriptSequence"
+<wdk:toggle name="transcriptSequence"
              displayName="${transcriptSequence.displayName}"
              content="${transcriptSequenceContent}" isOpen="false"/>
 
@@ -1779,7 +1779,7 @@ The overall expression percentile of each condition is the average percentile ov
   </c:set>
     <table width="100%" bgcolor=#98FB98>
       <tr><td>
-      <site:toggle name="workshopTranscriptSequence"
+      <wdk:toggle name="workshopTranscriptSequence"
              displayName="${workshopTranscriptSequence.displayName}"
              content="${workshopTranscriptSequenceContent}" isOpen="false"/>
     </td></tr>
@@ -1799,7 +1799,7 @@ The overall expression percentile of each condition is the average percentile ov
  <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
-<site:toggle name="genomicSequence" isOpen="false"
+<wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
     content="${seq}" />
 
@@ -1811,7 +1811,7 @@ The overall expression percentile of each condition is the average percentile ov
   <pre><w:wrap size="60">${cds.value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(cds.value)} bp</font><br/>
 </c:set>
-<site:toggle name="cds" displayName="${cds.displayName}"
+<wdk:toggle name="cds" displayName="${cds.displayName}"
              content="${cdsContent}" isOpen="false"/>
 
 
@@ -1825,7 +1825,7 @@ The overall expression percentile of each condition is the average percentile ov
     </c:set>
     <table width="100%" bgcolor=#98FB98>
       <tr><td>
-    <site:toggle name="workshopCds" displayName="${workshopCds.displayName}"
+    <wdk:toggle name="workshopCds" displayName="${workshopCds.displayName}"
                 content="${workshopCdsContent}" isOpen="false"/>
     </td></tr>
   </table>

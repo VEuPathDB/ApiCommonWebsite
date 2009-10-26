@@ -124,7 +124,7 @@ ${id}
 
     </c:set>
 
-    <site:toggle 
+    <wdk:toggle 
         isOpen="true"
         name="genomicContext"
         displayName="Genomic Context"
@@ -136,10 +136,10 @@ ${id}
 
 <br>
 
-<site:wdkTable tblName="Centromere" isOpen="true"
+<wdk:wdkTable tblName="Centromere" isOpen="true"
                  attribution=""/>
 
-<site:wdkTable tblName="SequencePieces" isOpen="true"
+<wdk:wdkTable tblName="SequencePieces" isOpen="true"
                  attribution=""/>
 
 <%------------------------------------------------------------------%>
@@ -176,7 +176,7 @@ ${externalLinks}
 </c:if>
 </c:set>
 
-<site:toggle
+<wdk:toggle
     isOpen="true"
     name="Sequences"
     attribution=""

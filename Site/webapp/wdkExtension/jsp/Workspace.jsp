@@ -57,8 +57,29 @@
     }
     window.location.href = url;
   }
+</script>
 
-  function create_Portal_Record_Url(recordName, projectId, primaryKey, portal_url) {
+<c:if test="${fn:containsIgnoreCase(dispModelName, 'EuPathDB')}">
+<script>
+
+// Fix record links in results page on EuPathDB
+function customResultsPage() {
+   var keepTrying = true;
+   $("#Results_Table tr").each(function() {
+      var projectId;
+      $("td a",this).each(function() {
+         var currentUrl = $(this).attr('href');
+         var recordName = parse_Url(currentUrl, "name");
+         var primaryKey = parse_Url(currentUrl, "source_id");
+         if (!projectId) projectId = parse_Url(currentUrl, "project_id");
+         primaryKey = parse_Url(currentUrl, "source_id");
+         create_Portal_Record_Url(recordName,projectId,primaryKey,"");
+         $(this).attr('href',"javascript:create_Portal_Record_Url('" + recordName + "', '" + projectId + "', '" + primaryKey + "', '');");
+      });
+   });
+}
+
+function create_Portal_Record_Url(recordName, projectId, primaryKey, portal_url) {
   //var portal_url = "";
   if(portal_url.length == 0){
     if(projectId == 'CryptoDB'){
@@ -97,7 +118,7 @@ function parse_Url( url, parameter_name )
 }
 
 </script>
-
+</c:if>
 
 <wdk:strategyWorkspace />
 

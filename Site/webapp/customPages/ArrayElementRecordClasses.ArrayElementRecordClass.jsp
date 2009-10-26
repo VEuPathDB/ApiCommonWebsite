@@ -70,10 +70,10 @@ Also see <a href="http://malaria.ucsf.edu/comparison/comp_oligolink.php?OLIGO=${
   <td><font size="-1">${sequence}</font></td></tr>
   </table>
 
-  <site:wdkTable tblName="GenomicLocations" isOpen="true"
+  <wdk:wdkTable tblName="GenomicLocations" isOpen="true"
                  attribution=""/>
 
-  <site:wdkTable tblName="Genes" isOpen="true"
+  <wdk:wdkTable tblName="Genes" isOpen="true"
                  attribution=""/>
 
 <c:if test="${species eq 'falciparum'}">
@@ -138,7 +138,7 @@ Also see <a href="http://malaria.ucsf.edu/comparison/comp_oligolink.php?OLIGO=${
 
   <c:set var="noData" value="false"/>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Developmental series 3D7 (glass slide oligo array)"
@@ -204,7 +204,7 @@ Also see <a href="http://malaria.ucsf.edu/comparison/comp_oligolink.php?OLIGO=${
 
   <c:set var="noData" value="false"/>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Developmental series Dd2 (glass slide oligo array)"
@@ -270,7 +270,7 @@ Also see <a href="http://malaria.ucsf.edu/comparison/comp_oligolink.php?OLIGO=${
 
   <c:set var="noData" value="false"/>
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Developmental series HB3 (glass slide oligo array)"

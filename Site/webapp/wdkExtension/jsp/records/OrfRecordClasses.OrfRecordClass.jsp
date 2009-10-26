@@ -90,7 +90,7 @@ ${id}
 
 
 <%-- GENOMIC LOCATIONS ------------------------------------------------%>
-  <site:wdkTable tblName="Locations" isOpen="true"
+  <wdk:wdkTable tblName="Locations" isOpen="true"
                  attribution=""/>
 
 <%-- GENOME SEQUENCE ------------------------------------------------%>

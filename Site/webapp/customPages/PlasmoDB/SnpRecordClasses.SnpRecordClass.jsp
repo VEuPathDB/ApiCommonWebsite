@@ -39,22 +39,22 @@ ${id}<br>
 
 <!-- Overview -->
 <c:set var="attr" value="${attrs['snp_overview']}" />
-<site:toggle name="${attr.displayName}"
+<wdk:toggle name="${attr.displayName}"
     displayName="${attr.displayName}" isOpen="true"
     content="${attr.value}" />
 
 <!-- Gene context -->
 <c:set var="attr" value="${attrs['gene_context']}" />
-<site:toggle name="${attr.displayName}"
+<wdk:toggle name="${attr.displayName}"
     displayName="${attr.displayName}" isOpen="true"
     content="${attr.value}" />
 
 
-<site:wdkTable tblName="Strains" isOpen="true"/>
+<wdk:wdkTable tblName="Strains" isOpen="true"/>
 
 <!-- isolate summary -->
-<site:wdkTable tblName="IsolatesAlleleFrequency" isOpen="true"/>
-<site:wdkTable tblName="Isolates" isOpen="false"/>
+<wdk:wdkTable tblName="IsolatesAlleleFrequency" isOpen="true"/>
+<wdk:wdkTable tblName="Isolates" isOpen="false"/>
 
 
 
@@ -71,7 +71,7 @@ ${id}<br>
   </c:if>
 </c:set>
 
-<site:toggle name="SequenceAlignment"
+<wdk:toggle name="SequenceAlignment"
     displayName="Sequence Alignment"
     content="${showAlignmts}"
     isOpen="true"/>
@@ -81,7 +81,7 @@ ${id}<br>
                       contigId="${sequence_id}" start="${start}" end="${end}" bkgClass="rowMedium" cellPadding="0" availableGenomes="3D7,Dd2,HB3, and IT"/>
 
 <br/>
-<site:wdkTable tblName="Providers_other_SNPs" isOpen="true"/>
+<wdk:wdkTable tblName="Providers_other_SNPs" isOpen="true"/>
 
 
 </td></tr>

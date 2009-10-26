@@ -30,18 +30,18 @@
 
 <!-- Overview -->
 <c:set var="attr" value="${attrs['snp_overview']}" />
-<site:toggle name="${attr.displayName}"
+<wdk:toggle name="${attr.displayName}"
     displayName="${attr.displayName}" isOpen="true"
     content="${attr.value}" />
 
 <!-- Gene context -->
 <c:set var="attr" value="${attrs['gene_context']}" />
-<site:toggle name="${attr.displayName}"
+<wdk:toggle name="${attr.displayName}"
     displayName="${attr.displayName}" isOpen="true"
     content="${attr.value}" />
 
 
-<site:wdkTable tblName="Strains" isOpen="true"/>
+<wdk:wdkTable tblName="Strains" isOpen="true"/>
 
 </td></tr>
 </table>

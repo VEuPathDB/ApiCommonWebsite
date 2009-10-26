@@ -44,7 +44,7 @@ ${id}
 
 
 <!-- Overview -->
-<site:toggle name="${overview.displayName}"
+<wdk:toggle name="${overview.displayName}"
     displayName="${overview.displayName}" isOpen="true"
     content="${overview.value}" />
 
@@ -78,7 +78,7 @@ ${pageContext.request.scheme}://${pageContext.request.serverName}/${dnaContext}
   </c:set>
 </c:if>
 
-<site:toggle name="dnaContext" displayName="Genomic Context"
+<wdk:toggle name="dnaContext" displayName="Genomic Context"
              content="${dnaContextContent}" isOpen="true"
              />
 
@@ -96,18 +96,18 @@ ${pageContext.request.scheme}://${pageContext.request.serverName}/${dnaContext}
   </c:if>
 </c:set>
 
-<site:toggle name="ConsensusSequence"
+<wdk:toggle name="ConsensusSequence"
     displayName="Consensus Sequence"
     content="${consensusSeq}"
     isOpen="true"/>
 
 
 
-<site:wdkTable tblName="AlignmentInfo" isOpen="true"/>
+<wdk:wdkTable tblName="AlignmentInfo" isOpen="true"/>
 
-<site:wdkTable tblName="LibraryInfo" isOpen="true"/>
+<wdk:wdkTable tblName="LibraryInfo" isOpen="true"/>
 
-<site:wdkTable tblName="EstInfo" isOpen="false"/>
+<wdk:wdkTable tblName="EstInfo" isOpen="false"/>
 
 <%------------------------------------------------------------------%>
 
@@ -123,7 +123,7 @@ ${pageContext.request.scheme}://${pageContext.request.serverName}/${dnaContext}
   </c:if>
 </c:set>
 
-<site:toggle name="Alignment"
+<wdk:toggle name="Alignment"
     displayName="Alignment${attr.displayName}"
     content="${clusterAlign}" />
 

@@ -197,7 +197,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContextSyn" displayName="Genomic Context"
     content="${gnCtxImg}" isOpen="true" 
     imageMapDivId="${gnCtxDivId}" imageMapSource="${gnCtxUrl}"
@@ -212,7 +212,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
 
 <c:if test='${organismFull eq "Trypanosoma cruzi strain CL Brener"}'>
 
-<site:wdkTable tblName="Genbank" isOpen="true"
+<wdk:wdkTable tblName="Genbank" isOpen="true"
                attribution="TcruziContigsAndAnnotations,TcruziEsmeraldo_likeChromosomeMap,TcruziNonEsmeraldo_likeChromosomeMap" />
 </c:if>
 
@@ -227,7 +227,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
                     availableGenomes=""/>
 </c:set>
 
-<site:toggle isOpen="false"
+<wdk:toggle isOpen="false"
   name="mercatorAlignment"
   displayName="Multiple Sequence Alignment"
   content="${mercatorAlign}"
@@ -235,7 +235,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
 
 
 <!-- External Links --> 
-<site:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
+<wdk:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
 
 
 
@@ -262,7 +262,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
 
 <c:catch var="e">
 
-<site:wdkTable tblName="UserComments"  isOpen="true"/>
+<wdk:wdkTable tblName="UserComments"  isOpen="true"/>
 
 
 </c:catch>
@@ -284,7 +284,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
 </small></div>
   </c:set>
 
-<site:wdkTable tblName="Notes" isOpen="true"
+<wdk:wdkTable tblName="Notes" isOpen="true"
                attribution="" postscript="${geneDbLink}"/>
 
 <%-- Phenotype ------------------------------------------------------------%>
@@ -293,7 +293,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
     <br><small>Phenotypes curated from the literature by <a href="http://www.genedb.org/">Gene<b>DB</b></a>
 </small></div>
   </c:set>
-<site:wdkTable tblName="Phenotype" isOpen="true"
+<wdk:wdkTable tblName="Phenotype" isOpen="true"
                attribution="" postscript="${geneDbLink}"/>
 
 <c:if test="${(attrs['so_term_name'].value eq 'protein_coding')}">
@@ -302,7 +302,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
       <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
     </div>
   </c:set>
-  <site:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL_TrypDB"
+  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL_TrypDB"
                  postscript="${orthomclLink}"/>
 </c:if>
 
@@ -314,7 +314,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
 enzymeDB
 </c:set>
 
-<site:wdkTable tblName="EcNumber" isOpen="true"
+<wdk:wdkTable tblName="EcNumber" isOpen="true"
                attribution="${attribution}"/>
 
 </c:if>
@@ -326,7 +326,7 @@ enzymeDB
 GO,InterproscanData
 </c:set>
 
-<site:wdkTable tblName="GoTerms" isOpen="true"
+<wdk:wdkTable tblName="GoTerms" isOpen="true"
                attribution="${attribution}"/>
 
 </c:if>
@@ -402,7 +402,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
         </center></noindex>
     </c:set>
 
-<site:toggle name="proteinContext"  displayName="Protein Features"
+<wdk:toggle name="proteinContext"  displayName="Protein Features"
              content="${proteinFeaturesImg}"
              attribution="${attribution}"/>
 
@@ -448,9 +448,9 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
     PDB by the protein sequence of ${id}</a>
 </c:set>
 
-<site:wdkTable tblName="PdbSimilarities" postscript="${pdbLink}" attribution="PDBProteinSequences"/>
+<wdk:wdkTable tblName="PdbSimilarities" postscript="${pdbLink}" attribution="PDBProteinSequences"/>
 
-<site:wdkTable tblName="Epitopes" isOpen="true" attribution="IEDB_Epitopes"/>
+<wdk:wdkTable tblName="Epitopes" isOpen="true" attribution="IEDB_Epitopes"/>
 
 
 <br />
@@ -486,7 +486,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
   </c:if>
 
 
-<site:toggle
+<wdk:toggle
     name="LinfantumPromastigoteExpression"
     isOpen="true"
     displayName="Differentiation Time Series: Promastigote to Amastigote"
@@ -511,7 +511,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
 	<font size="-1">Sequence Length: ${fn:length(attr.value)} aa</font><br/>
     </noindex>
 </c:set>
-<site:toggle name="proteinSequence" isOpen="true"
+<wdk:toggle name="proteinSequence" isOpen="true"
     displayName="${attr.displayName}"
     content="${seq}" />
 
@@ -526,7 +526,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
 	<font size="-1">Sequence Length: ${fn:length(attr.value)} bp</font><br/>
     </noindex>
 </c:set>
-<site:toggle name="transcriptSequence" isOpen="false"
+<wdk:toggle name="transcriptSequence" isOpen="false"
     displayName="${attr.displayName}"
     content="${seq}" />
 
@@ -543,7 +543,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
  <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
-<site:toggle name="genomicSequence" isOpen="false"
+<wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
     content="${seq}" />
 
@@ -560,7 +560,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
 	<font size="-1">Sequence Length: ${fn:length(attr.value)} bp</font><br/>
     </noindex>
 </c:set>
-<site:toggle name="codingSequence" isOpen="true"
+<wdk:toggle name="codingSequence" isOpen="true"
     displayName="${attr.displayName}"
     content="${seq}" />
 

@@ -40,7 +40,7 @@
 
 <%-- References ------------------------------------------------%>
 
-<site:wdkTable tblName="Reference" isOpen="true"
+<wdk:wdkTable tblName="Reference" isOpen="true"
      attribution=""/>
 
 <br>
@@ -87,7 +87,7 @@
 <%-- RFLP table ------------------------------------------------%>
 <c:if test="${data_type eq 'RFLP Typed'}">
 
-<site:wdkTable tblName="RFLPdata" isOpen="true"
+<wdk:wdkTable tblName="RFLPdata" isOpen="true"
      attribution=""/>
 <br>
 
@@ -106,7 +106,7 @@
 
 <c:if test="${data_type eq 'Sequencing Typed'}">
 
-<site:wdkTable tblName="GeneOverlap" isOpen="true"
+<wdk:wdkTable tblName="GeneOverlap" isOpen="true"
      attribution=""/>
 
 <br>

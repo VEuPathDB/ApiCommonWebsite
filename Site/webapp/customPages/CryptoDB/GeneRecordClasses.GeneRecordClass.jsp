@@ -257,7 +257,7 @@ NRDB,C.muris_scaffoldsGB,C.hominis_scaffoldsGB,C.parvum_scaffoldsGB,C.parvumChr6
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContextSyn" displayName="Genomic Context"
     displayLink="${has_model_comment}"
     content="${gnCtxImg}" isOpen="true" 
@@ -274,7 +274,7 @@ NRDB,C.muris_scaffoldsGB,C.hominis_scaffoldsGB,C.parvum_scaffoldsGB,C.parvumChr6
 <%-- snps dataTable defined above --%>
 <c:if test="${snps ne 'none'}">
 
-<site:wdkTable tblName="SNPs" isOpen="true"
+<wdk:wdkTable tblName="SNPs" isOpen="true"
      attribution="Widmer_SNPs"/>
 </c:if>
 
@@ -305,7 +305,7 @@ NRDB,C.muris_scaffoldsGB,C.hominis_scaffoldsGB,C.parvum_scaffoldsGB,C.parvumChr6
 enzymeDB,CparvumEC-KEGG,ChominisEC-KEGG,CparvumEC-CryptoCyc,ChominisEC-CryptoCyc
 </c:set>
 
-<site:wdkTable tblName="EcNumber" isOpen="true"
+<wdk:wdkTable tblName="EcNumber" isOpen="true"
      attribution="${attribution}"/>
 
 </c:if>
@@ -313,7 +313,7 @@ enzymeDB,CparvumEC-KEGG,ChominisEC-KEGG,CparvumEC-CryptoCyc,ChominisEC-CryptoCyc
 <%-- PFAM ----------------------------------------------------------%>
 <%--<c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
 
-<site:wdkTable tblName="PfamDomains" isOpen="true"
+<wdk:wdkTable tblName="PfamDomains" isOpen="true"
      attribution=""/>
 </c:if>--%>
 
@@ -325,7 +325,7 @@ GO,InterproscanData,
 CparvumContigs,ChominisContigs,CparvumChr6Scaffold,CparvumESTs
 </c:set>
 
-<site:wdkTable tblName="GoTerms" isOpen="true"
+<wdk:wdkTable tblName="GoTerms" isOpen="true"
      attribution="${attribution}"/>
 </c:if>
 
@@ -338,7 +338,7 @@ CparvumContigs,ChominisContigs,CparvumChr6Scaffold,CparvumESTs
       <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
     </div>
   </c:set>
-  <site:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL_Phyletic,OrthoMCL"
+  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL_Phyletic,OrthoMCL"
                  postscript="${orthomclLink}"/>
 
 
@@ -389,7 +389,7 @@ CparvumContigs,ChominisContigs,CparvumChr6Scaffold,CparvumESTs
 <c:set var="attribution">
 </c:set>
 
-<site:wdkTable tblName="Epitopes" isOpen="true"
+<wdk:wdkTable tblName="Epitopes" isOpen="true"
      attribution="${attribution}"/>
 
 </c:if>
@@ -400,7 +400,7 @@ CparvumContigs,ChominisContigs,CparvumChr6Scaffold,CparvumESTs
 <c:set var="attribution">
 </c:set>
 
-<site:wdkTable tblName="IsolateOverlap" isOpen="true"
+<wdk:wdkTable tblName="IsolateOverlap" isOpen="true"
      attribution="${attribution}"/>
 
 </c:if>
@@ -434,7 +434,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
         </center></noindex>
     </c:set>
 
-    <site:toggle name="proteinContext"  displayName="Protein Features"
+    <wdk:toggle name="proteinContext"  displayName="Protein Features"
              content="${proteinFeaturesImg}"
              attribution="${attribution}"/>
 
@@ -446,9 +446,9 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
     PDB by the protein sequence of ${id}</a>
 </c:set>
 
-<site:wdkTable tblName="PdbSimilarities" postscript="${pdbLink}" attribution="PDBProteinSequences"/>
+<wdk:wdkTable tblName="PdbSimilarities" postscript="${pdbLink}" attribution="PDBProteinSequences"/>
 
-<site:wdkTable tblName="Antibody" attribution="Antibody"/>
+<wdk:wdkTable tblName="Antibody" attribution="Antibody"/>
 
 </c:if>
 
@@ -472,7 +472,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
   <font size="-1">Sequence Length: ${fn:length(attr.value)} aa</font><br/>
     </noindex>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="Translation"
     isOpen="true"
     displayName="Translation"
@@ -488,7 +488,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
   <font size="-1">Sequence Length: ${fn:length(attr.value)} bp</font><br/>
     </noindex>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="TranscriptSequence"
     isOpen="false"
     displayName="Transcript Sequence"
@@ -510,7 +510,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
   <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
     </noindex>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="GenomicSequence" 
     isOpen="fales"
     displayName="Genomic Sequence (introns shown in lower case)"
@@ -527,7 +527,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
   <font size="-1">Sequence Length: ${fn:length(attr.value)} bp</font><br/>
     </noindex>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="CodingSequence"
     isOpen="true"
     displayName="Coding Sequence"

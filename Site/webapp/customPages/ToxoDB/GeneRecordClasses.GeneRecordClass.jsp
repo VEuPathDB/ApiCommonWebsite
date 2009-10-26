@@ -142,7 +142,7 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContextSyn" displayName="Genomic Context"
     content="${gnCtxImg}" isOpen="true" 
     imageMapDivId="${gnCtxDivId}" imageMapSource="${gnCtxUrl}"
@@ -153,18 +153,18 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
 <%-- END DNA CONTEXT --------------------------------------------%>
 
 <!-- strains comparison table -->
-<site:wdkTable tblName="Strains" isOpen="true"
+<wdk:wdkTable tblName="Strains" isOpen="true"
                attribution="T.gondiiGT1_contigsGB,T.gondiiME49_contigsGB,T.gondiiVEG_contigsGB"/>
 
 <!-- snps between strains -->
-<site:wdkTable tblName="SNPs" isOpen="false"
+<wdk:wdkTable tblName="SNPs" isOpen="false"
                    attribution="ME49_SNPs,AmitAlignmentSnps,Lindstrom454Snps"/>
 
 <!-- locations -->
-<site:wdkTable tblName="Genbank" isOpen="true"
+<wdk:wdkTable tblName="Genbank" isOpen="true"
                attribution="T.gondiiGT1_contigsGB,T.gondiiME49_contigsGB,T.gondiiVEG_contigsGB" />
 <!-- version 4 genes -->
-<site:wdkTable tblName="ToxoVer4Genes" isOpen="true"
+<wdk:wdkTable tblName="ToxoVer4Genes" isOpen="true"
                attribution="" />
 
 
@@ -195,7 +195,7 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
 
 
 <c:catch var="e">
-<site:wdkTable tblName="UserComments"/>
+<wdk:wdkTable tblName="UserComments"/>
 </c:catch>
 
 <c:if test="${e != null}">
@@ -221,7 +221,7 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
 </c:if>
 
 <c:catch var="e">
-  <site:wdkTable tblName="TaskComments" isOpen="true"
+  <wdk:wdkTable tblName="TaskComments" isOpen="true"
                  attribution="TASKAnnotation" suppressColumnHeaders="true"/>
 </c:catch>
 <c:if test="${e != null}">
@@ -237,7 +237,7 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
 
 
 <!-- External Links --> 
-<site:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
+<wdk:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
 
 
 <c:if test="${isCodingGene}">
@@ -246,28 +246,28 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
       <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
     </div>
   </c:set>
-  <site:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
+  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
                  postscript="${orthomclLink}"/>
 </c:if>
 
-  <site:wdkTable tblName="EcNumber" isOpen="true"
+  <wdk:wdkTable tblName="EcNumber" isOpen="true"
                  attribution="ME49_Annotation,enzymeDB"/>
 
-  <site:wdkTable tblName="GoTerms" isOpen="true"
+  <wdk:wdkTable tblName="GoTerms" isOpen="true"
                  attribution="GO,GOAssociations,InterproscanData"/>
 
 <c:set var="externalDbName" value="${attrs['external_db_name']}"/>
 <c:set var="externalDbVersion" value="${attrs['external_db_version']}"/>
 
 <c:if test="${externalDbName.value eq 'Roos Lab T. gondii apicoplast'}">
-  <site:wdkTable tblName="Notes" isOpen="true"
+  <wdk:wdkTable tblName="Notes" isOpen="true"
 	 	 attribution="TgondiiApicoplast"/>
 </c:if>                 
 
-  <site:wdkTable tblName="MetabolicPathways" isOpen="true"
+  <wdk:wdkTable tblName="MetabolicPathways" isOpen="true"
                  attribution="MetabolicDbXRefs_Feng"/>
 
-<site:wdkTable tblName="Antibody" attribution="Antibody"/>
+<wdk:wdkTable tblName="Antibody" attribution="Antibody"/>
 <c:set var="toxocyc" value="${attrs['ToxoCyc']}"/>
 
 <!--
@@ -346,7 +346,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/toxodbaa/?name=${wd
         </center></noindex>
     </c:set>
 
-    <site:toggle name="proteinFeatures" 
+    <wdk:toggle name="proteinFeatures" 
         displayName="Protein Features"
         content="${proteinFeaturesImg}"
         attribution="${attribution}"/>
@@ -390,7 +390,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/toxodbaa/?name=${wd
             </c:otherwise>
         </c:choose>
 
-    <site:wdkTable tblName="Epitopes"/>
+    <wdk:wdkTable tblName="Epitopes"/>
 
 </c:if>
 
@@ -438,20 +438,20 @@ experimental condition.
   </c:set>
 
 
-  <site:toggle name="${secName}" isOpen="${isOpen}"
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="Expression profiling of three archetypal T. gondii lineages"
                attribution="Tg_3_Archetypal_Lineages_ExpressionData"/>
 
-<site:wdkTable tblName="ToxoStrainsMicroarrayPercentile" isOpen="true"
+<wdk:wdkTable tblName="ToxoStrainsMicroarrayPercentile" isOpen="true"
                    attribution="Tg_3_Archetypal_Lineages_ExpressionData"/>
 
 </c:if>
 <c:if test="${organism_full eq 'Toxoplasma gondii GT1' || organism_full eq 'Toxoplasma gondii VEG'}">
 
 
-<site:wdkTable tblName="ToxoExpandStrainsMicroarray" isOpen="true"
+<wdk:wdkTable tblName="ToxoExpandStrainsMicroarray" isOpen="true"
                    attribution="Tg_3_Archetypal_Lineages_ExpressionData"/>
 
 </c:if>
@@ -465,7 +465,7 @@ experimental condition.
   <pre><w:wrap size="60">${proteinSequence.value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(proteinSequence.value)} aa</font><br/>
 </c:set>
-<site:toggle name="proteinSequence" displayName="${proteinSequence.displayName}"
+<wdk:toggle name="proteinSequence" displayName="${proteinSequence.displayName}"
              content="${proteinSequenceContent}" isOpen="false"/>
 </c:if>
 
@@ -475,7 +475,7 @@ experimental condition.
   <pre><w:wrap size="60">${transcriptSequence.value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(transcriptSequence.value)} bp</font><br/>
 </c:set>
-<site:toggle name="transcriptSequence"
+<wdk:toggle name="transcriptSequence"
              displayName="${transcriptSequence.displayName}"
              content="${transcriptSequenceContent}" isOpen="false"/>
 
@@ -491,7 +491,7 @@ experimental condition.
  <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
-<site:toggle name="genomicSequence" isOpen="false"
+<wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
     content="${seq}" />
 
@@ -502,7 +502,7 @@ experimental condition.
   <pre><w:wrap size="60">${cds.value}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(cds.value)} bp</font><br/>
 </c:set>
-<site:toggle name="cds" displayName="${cds.displayName}"
+<wdk:toggle name="cds" displayName="${cds.displayName}"
              content="${cdsContent}" isOpen="false"/>
 </c:if>
 

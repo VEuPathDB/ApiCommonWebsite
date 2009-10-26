@@ -167,7 +167,7 @@ G.lamblia_contigsGB
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
 
-  <site:toggle 
+  <wdk:toggle 
     name="dnaContextSyn" displayName="Genomic Context"
     content="${gnCtxImg}" isOpen="true" 
     imageMapDivId="${gnCtxDivId}" imageMapSource="${gnCtxUrl}"
@@ -178,7 +178,7 @@ G.lamblia_contigsGB
 <%-- END DNA CONTEXT --------------------------------------------%>
 
 <%-- Gene Location ------------------------------------------------------%>
-<site:wdkTable tblName="Genbank" isOpen="true"
+<wdk:wdkTable tblName="Genbank" isOpen="true"
                attribution=""/>
 
 
@@ -193,7 +193,7 @@ G.lamblia_contigsGB
                     availableGenomes=""/>
 </c:set>
 
-<site:toggle isOpen="true"
+<wdk:toggle isOpen="true"
   name="mercatorAlignment"
   displayName="Multiple Sequence Alignment"
   content="${mercatorAlign}"
@@ -234,7 +234,7 @@ G.lamblia_contigsGB
 <b><a href="${commentsUrl}">Add a comment on ${id}</a></b><br><br>
 
 <c:catch var="e">
-<site:wdkTable tblName="UserComments"  isOpen="true"/>
+<wdk:wdkTable tblName="UserComments"  isOpen="true"/>
 </c:catch>
 <c:if test="${e != null}">
  <table  width="100%" cellpadding="3">
@@ -266,7 +266,7 @@ G.lamblia_contigsGB
       <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
     </div>
   </c:set>
-  <site:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
+  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL"
                  postscript="${orthomclLink}"/>
 
 </c:if>
@@ -325,7 +325,7 @@ G.lamblia_contigsGB
     < c:set var="expressionContent" value="none"/>
   </c:if>
 
-<site:toggle
+<wdk:toggle
     displayName="Stress response in Trophozoites - Varying DTT Concentrations and Temperature"
     content="${expressionContent}"
     name="StressResponse1"
@@ -375,7 +375,7 @@ G.lamblia_contigsGB
     < c:set var="expressionContent" value="none"/>
   </c:if>
 
-<site:toggle
+<wdk:toggle
     displayName="Stress response in Trophozoites - Varying Incubation Time"
     content="${expressionContent}"
     name="StressResponse2"
@@ -409,7 +409,7 @@ G.lamblia_contigsGB
     < c:set var="expressionContent" value="none"/>
   </c:if>
 
-<site:toggle
+<wdk:toggle
     displayName="<i>Giardia lamblia</i> SAGE Tags Counts"
     content="${expressionContent}"
     name="SageCountPct"
@@ -418,7 +418,7 @@ G.lamblia_contigsGB
 
 <%-- SAGE tags ------------------------------------------------------%>
 
-<site:wdkTable tblName="SageTags" isOpen="true"
+<wdk:wdkTable tblName="SageTags" isOpen="true"
                attribution="GiardiaSageTagArrayDesign,GiardiaSageTagFreqs"/>
 
 
@@ -449,7 +449,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
         </center></noindex>
     </c:set>
 
-    <site:toggle 
+    <wdk:toggle 
         displayName="Predicted Protein Features"
         content="${proteinFeaturesImg}"
         isOpen="true"
@@ -461,15 +461,15 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
 
 <%-- EC ------------------------------------------------------------%>
 
-  <site:wdkTable tblName="EcNumber" isOpen="true"
+  <wdk:wdkTable tblName="EcNumber" isOpen="true"
                attribution="enzymeDB,G.lamblia_contigs"/>
 
 <%-- GO ------------------------------------------------------------%>
-  <site:wdkTable tblName="GoTerms" isOpen="true"
+  <wdk:wdkTable tblName="GoTerms" isOpen="true"
                attribution="GO,InterproscanData,G.lamblia_contigs"/>
 
 <%-- EPITOPES ------------------------------------------------------%>
-  <site:wdkTable tblName="Epitopes" isOpen="true"
+  <wdk:wdkTable tblName="Epitopes" isOpen="true"
                  attribution="IEDB_Epitopes"/>
 </c:if>
 
@@ -493,7 +493,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
 	<font size="-1">Sequence Length: ${fn:length(attr.value)} aa</font><br/>
     </noindex>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="ProteinSequence"
     isOpen="true"
     displayName="${attr.displayName}"
@@ -509,7 +509,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
 	<font size="-1">Sequence Length: ${fn:length(attr.value)} bp</font><br/>
     </noindex>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="mRnaSequence"
     isOpen="false"
     displayName="${attr.displayName}"
@@ -528,7 +528,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
  <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
   <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="GenomicSequence"
     isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
@@ -544,7 +544,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
 	<font size="-1">Sequence Length: ${fn:length(attr.value)} bp</font><br/>
     </noindex>
 </c:set>
-<site:toggle
+<wdk:toggle
     name="CodingSequence"
     isOpen="true"
     displayName="${attr.displayName}"
