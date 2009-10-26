@@ -39,16 +39,6 @@ sub makeRPlotStrings {
 
     my (@profileFiles, @elementNamesFiles);
 
-    my $colors = $profileSetsHash->{$part}->{colors};
-    my $rColorsString = $self->rStringVectorFromArray($colors, 'the.colors');
-
-    my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
-    my $xAxisLabel = $profileSetsHash->{$part}->{x_axis_label};
-    my $plotTitle = $profileSetsHash->{$part}->{plot_title};
-
-    my $yMax = $profileSetsHash->{$part}->{default_y_max};
-    my $yMin = $profileSetsHash->{$part}->{default_y_min};
-
     # each part can have several profile sets
     my $i = 0;
     foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
@@ -61,8 +51,19 @@ sub makeRPlotStrings {
 
       $i++;
     }
+
     my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
     my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
+
+    my $colors = $profileSetsHash->{$part}->{colors};
+    my $rColorsString = $self->rStringVectorFromArray($colors, 'the.colors');
+
+    my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
+    my $xAxisLabel = $profileSetsHash->{$part}->{x_axis_label};
+    my $plotTitle = $profileSetsHash->{$part}->{plot_title};
+
+    my $yMax = $profileSetsHash->{$part}->{default_y_max};
+    my $yMin = $profileSetsHash->{$part}->{default_y_min};
 
     my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $yAxisLabel, $xAxisLabel, $yMax, $yMin);
 

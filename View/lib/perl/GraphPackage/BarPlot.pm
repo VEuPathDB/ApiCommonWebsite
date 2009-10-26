@@ -41,6 +41,17 @@ sub makeRPlotStrings {
 
     my (@profileFiles, @elementNamesFiles);
 
+    # each part can have several profile sets
+    foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
+      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $part, undef)};
+
+      push(@profileFiles, $profileFile);
+      push(@elementNamesFiles, $elementNamesFile);
+    }
+
+    my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
+    my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
+
     my $colors = $profileSetsHash->{$part}->{colors};
     my $rColorsString = $self->rStringVectorFromArray($colors, 'the.colors');
 
@@ -55,16 +66,6 @@ sub makeRPlotStrings {
     my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
     my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
     my $plotTitle = $profileSetsHash->{$part}->{plot_title};
-
-    # each part can have several profile sets
-    foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
-      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $part, undef)};
-
-      push(@profileFiles, $profileFile);
-      push(@elementNamesFiles, $elementNamesFile);
-    }
-    my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
-    my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
 
     my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile);
 
