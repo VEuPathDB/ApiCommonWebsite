@@ -160,7 +160,9 @@ sub makeR {
   my $preamble_R  = $self->_rStandardComponents($thumb_b);
 
   my $legend = "";
-  if($self->getMainLegend()) {
+  my %isVis_b = $mS->partIsVisible();
+
+  if($isVis_b{_LEGEND}) {
     $legend = $self->makeRLegendString();
   }
 
