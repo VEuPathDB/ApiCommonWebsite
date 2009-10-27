@@ -1,6 +1,7 @@
 <xmlAnswer>
 
   <record>
+       <attribute name = "Website">CryptoDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.hominis</attribute>
        <attribute name = "Taxon_ID">237895</attribute>
@@ -23,6 +24,7 @@
    </record>
 
  <record>
+       <attribute name = "Website">CryptoDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.muris</attribute>
        <attribute name = "Taxon_ID">5808</attribute>
@@ -44,6 +46,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website">CryptoDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.parvum</attribute>
        <attribute name = "Taxon_ID">5807</attribute>
@@ -65,6 +68,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
+       <attribute name = "Website">GiardiaDB</attribute>
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.lamblia</attribute>
        <attribute name = "Taxon_ID">184922</attribute>
@@ -86,7 +90,8 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Family">Kinetoplastid: Leishmania and Trypanosoma</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.braziliensis</attribute>
        <attribute name = "Taxon_ID">5660</attribute>
        <attribute name = "Strain"></attribute>
@@ -107,6 +112,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -128,6 +134,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -149,6 +156,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -170,6 +178,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -191,6 +200,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -212,6 +222,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -233,6 +244,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -254,6 +266,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -275,6 +288,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -296,6 +310,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -317,6 +332,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -338,6 +354,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -359,6 +376,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -380,6 +398,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -401,6 +420,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
@@ -422,6 +442,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
        <attribute name = "Taxon_ID"></attribute>
