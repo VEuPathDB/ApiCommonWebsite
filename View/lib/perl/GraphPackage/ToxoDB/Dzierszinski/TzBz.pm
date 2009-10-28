@@ -28,6 +28,7 @@ sub init {
               plot_title => 'CO2-Starvation Bradyzoite Inducing Conditions (Pru and VEG)',
               default_y_max => 8,
               default_y_min => 6,
+              default_x_min => 0,
              },
       pct => {profiles => ['expression profile percentiles of VEG strain CO2-starvation bradyzoite inducing conditions (by Florence Dzierszinski)',
                            'expression profile percentiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions (by Florence Dzierszinski)',
@@ -38,6 +39,7 @@ sub init {
               plot_title => 'CO2-Starvation Bradyzoite Inducing Conditions (Pru and VEG) percentiles',
               default_y_max => 50,
               default_y_min => 0,
+              default_x_min => 0,
        }
      });
 

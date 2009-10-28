@@ -65,7 +65,10 @@ sub makeRPlotStrings {
     my $yMax = $profileSetsHash->{$part}->{default_y_max};
     my $yMin = $profileSetsHash->{$part}->{default_y_min};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $yAxisLabel, $xAxisLabel, $yMax, $yMin);
+    my $xMin = $profileSetsHash->{$part}->{default_x_min};
+    my $xMax = $profileSetsHash->{$part}->{default_x_max};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin);
 
     unshift @rv, $rCode;
   }
@@ -76,7 +79,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $yAxisLabel, $xAxisLabel, $yMax, $yMin) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -84,6 +87,9 @@ sub rString {
 
   $yMax = $yMax ? $yMax : "-Inf";
   $yMin = defined($yMin) ? $yMin : "Inf";
+
+  $xMax = $xMax ? $xMax : "-Inf";
+  $xMin = defined($xMin) ? $xMin : "Inf";
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -105,8 +111,8 @@ if(length(profile.files) != length(element.names.files)) {
 element.names = list();
 profile = list();
 
-x.min = Inf;
-x.max = -Inf;
+x.min = $xMin;
+x.max = $xMax;
 
 y.min = $yMin;
 y.max = $yMax;
