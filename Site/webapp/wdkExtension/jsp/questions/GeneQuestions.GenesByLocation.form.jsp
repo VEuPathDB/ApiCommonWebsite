@@ -4,28 +4,17 @@
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
-
- <c:choose>
-   
+<c:choose>
     <c:when test="${projectId == 'EuPathDB'}">
-	<c:choose>
-		<c:when test="${partial == true}">
-			<jsp:include page="/customPages/${projectId}/SnpQuestions.SnpsByLocation.partial.jsp"/>
-		</c:when>
-		<c:otherwise>
-			<jsp:include page="/customPages/${projectId}/SnpQuestions.SnpsByLocation.jsp"/>
-		</c:otherwise>
-	</c:choose>
+	<jsp:include page="/customPages/${projectId}/GeneQuestions.GenesByLocation.partial.jsp"/>
     </c:when>
     <c:otherwise>
-	<jsp:include page="/customPages/customQuestion.jsp"/>
+	<jsp:include page="/wdkExtension/jsp/questions/question.form.jsp"/>
     </c:otherwise>
-
-  </c:choose>
-
+</c:choose>
 
 
 
 
 
-	
+

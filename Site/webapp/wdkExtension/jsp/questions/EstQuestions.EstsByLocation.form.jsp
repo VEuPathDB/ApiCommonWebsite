@@ -4,14 +4,13 @@
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
-
 <c:choose>
-<c:when test="${projectId == 'GiardiaDB' || projectId == 'TrichDB' }">
-        <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByProteinStructure" /> 
+    <c:when test="${projectId == 'EuPathDB'}">
+	<jsp:include page="/customPages/${projectId}/EstQuestions.EstsByLocation.partial.jsp"/>
     </c:when>
-<c:otherwise>
-	<jsp:include page="/customPages/${projectId}/InternalQuestions.GenesByProteinStructure.jsp"/>
-</c:otherwise>
+    <c:otherwise>
+	<jsp:include page="/wdkExtension/jsp/questions/question.form.jsp"/>
+    </c:otherwise>
 </c:choose>
 
 
@@ -19,4 +18,4 @@
 
 
 
-
+	

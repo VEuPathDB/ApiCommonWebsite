@@ -4,17 +4,14 @@
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
-
  <c:choose>
     <c:when test="${projectId == 'CryptoDB' || projectId == 'GiardiaDB' || projectId == 'ToxoDB' || projectId == 'TriTrypDB'}">
 	<jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec" /> 
     </c:when>
-
     <c:when test="${projectId == 'EuPathDB' ||  projectId == 'PlasmoDB'}">
 	<jsp:include page="/customPages/${projectId}/InternalQuestions.GenesByMassSpecEvidence.jsp"/>
     </c:when>
-
-  </c:choose>
+</c:choose>
 
 
 

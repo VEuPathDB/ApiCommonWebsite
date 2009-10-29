@@ -11,7 +11,7 @@
 <c:set value="${wdkModel.displayName}" var="project"/>
 
 <c:if test="${projectId == 'TriTrypDB'}">
-	<jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByPromastigoteTimeSeries" /> 
+  <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByPromastigoteTimeSeries" /> 
 </c:if>
 
 <site:header title="Microarray Evidence"
@@ -48,18 +48,6 @@
 </c:choose>
 
 </table>
-
-<%-- get the attributions of the question if not EuPathDB : 
-	here it serves no purpose;
-	it gets done in queryList (normal question page) and should be done in queryList2
-
-<c:if test = "${project != 'EuPathDB'}">
-<hr>
-<c:set var="propertyLists" value="${wdkQuestion.propertyLists}"/>
-<site:attributions attributions="${propertyLists['specificAttribution']}" caption="Data sources" />
-</c:if>
---%>
-
 
 </td>
 <td valign=top class=dottedLeftBorder></td> 
