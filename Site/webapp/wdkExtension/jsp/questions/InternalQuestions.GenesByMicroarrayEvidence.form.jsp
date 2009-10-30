@@ -14,13 +14,6 @@
   <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByPromastigoteTimeSeries" /> 
 </c:if>
 
-<site:header title="Microarray Evidence"
-                 banner="Identify Genes by Microarray Evidence"
-                 parentDivision=""
-                 parentUrl="/home.jsp"
-                 divisionName=""
-                 division=""/>
-
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
 <tr>
 <td bgcolor=white valign=top>
@@ -53,5 +46,3 @@
 <td valign=top class=dottedLeftBorder></td> 
 </tr>
 </table> 
-
-<site:footer/>

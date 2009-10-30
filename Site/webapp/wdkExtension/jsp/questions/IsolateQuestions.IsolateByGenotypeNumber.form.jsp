@@ -9,16 +9,6 @@
 <!-- get wdkQuestion; setup requestScope HashMap to collect help info for footer -->
 <c:set value="${sessionScope.wdkQuestion}" var="wdkQuestion"/>
 
-<!-- display page header with wdkQuestion displayName as banner -->
-<c:choose>
-<c:when test="${partial}">
-<html><head></head><body><table><tr><td>
-</c:when>
-<c:otherwise>
-  <site:header banner="Identify ${wdkQuestion.recordClass.type}s based on ${wdkQuestion.displayName}" />
-</c:otherwise>
-</c:choose>
-
 <h1>Identify Isolates based on RFLP Genotype Number</h1> 
 
 <hr>
@@ -149,12 +139,3 @@
 </div> 
 
 </html:form>
-
-<c:choose>
-<c:when test="${partial}">
-</td></tr></table></body></html>
-</c:when>
-<c:otherwise>
-  <site:footer/>
-</c:otherwise>
-</c:choose>

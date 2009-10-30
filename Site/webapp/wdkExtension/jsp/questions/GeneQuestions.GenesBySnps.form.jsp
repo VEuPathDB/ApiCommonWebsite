@@ -6,7 +6,7 @@
 
 <c:choose>
   <c:when test="${projectId == 'EuPathDB'}">
-    <jsp:include page="/customPages/${projectId}/GeneQuestions.GenesBySnps.partial.jsp"/>
+    <jsp:include page="/wdkExtension/jsp/${projectId}/GeneQuestions.GenesBySnps.partial.jsp"/>
   </c:when>
   <c:otherwise>
     <jsp:include page="/wdkExtension/jsp/questions/question.form.jsp"/>

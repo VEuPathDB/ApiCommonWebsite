@@ -4,5 +4,5 @@
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
-<jsp:include page="/customPages/${projectId}/GeneRecordClasses.GeneRecordClass.jsp"/>
+<jsp:include page="/wdkExtension/jsp/${projectId}/GeneRecordClasses.GeneRecordClass.jsp"/>
 

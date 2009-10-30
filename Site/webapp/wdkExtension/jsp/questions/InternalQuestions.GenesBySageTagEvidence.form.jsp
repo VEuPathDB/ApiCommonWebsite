@@ -9,39 +9,24 @@
 <c:set var="wdkQuestion" value="${requestScope.wdkQuestion}"/>
 <c:set value="${wdkQuestion.name}" var="qname"/>
 
+<table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
+  <tr>
+    <td bgcolor=white valign=top>
+      <!-- show error messages, if any -->
+      <wdk:errors/>
 
-<c:if test="${fn:containsIgnoreCase(qname, 'sagetag')}">
-
-  <site:header title="Sage Tag evidence"
-                 banner="Identify Genes by SAGE Tag Evidence"
-                 parentDivision=""
-                 parentUrl="/home.jsp"
-                 divisionName=""
-                 division=""/>
-
-
-  <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBottomBorders> 
-    <tr>
-      <td bgcolor=white valign=top>
-        <!-- show error messages, if any -->
-        <wdk:errors/>
-
-        <table width="100%" cellpadding="4">
-          <tr class="headerRow"><td colspan="4" align="center"><b>Choose a Query</b></td></tr>
-
-          <c:choose>
-            <c:when test = "${project == 'EuPathDB'}">
-              <site:queryList2 questions="GeneQuestions.GenesBySageTag,GeneQuestions.GenesBySageTagRStat"/>
-            </c:when>
-            <c:when test = "${project == 'GiardiaDB' || project == 'PlasmoDB' || project == 'ToxoDB'}">
-              <site:queryList questions="GeneQuestions.GenesBySageTag,GeneQuestions.GenesBySageTagRStat"/>
-            </c:when>
-          </c:choose>
-        </table>
-      </td>
-      <td valign=top class=dottedLeftBorder></td> 
-    </tr>
-  </table>
-</c:if>
-
-<site:footer/>
+      <table width="100%" cellpadding="4">
+        <tr class="headerRow"><td colspan="4" align="center"><b>Choose a Query</b></td></tr>
+        <c:choose>
+          <c:when test = "${project == 'EuPathDB'}">
+            <site:queryList2 questions="GeneQuestions.GenesBySageTag,GeneQuestions.GenesBySageTagRStat"/>
+          </c:when>
+          <c:when test = "${project == 'GiardiaDB' || project == 'PlasmoDB' || project == 'ToxoDB'}">
+            <site:queryList questions="GeneQuestions.GenesBySageTag,GeneQuestions.GenesBySageTagRStat"/>
+          </c:when>
+        </c:choose>
+      </table>
+    </td>
+    <td valign=top class=dottedLeftBorder></td> 
+  </tr>
+</table>
