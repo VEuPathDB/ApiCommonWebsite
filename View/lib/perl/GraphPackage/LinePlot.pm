@@ -58,6 +58,9 @@ sub makeRPlotStrings {
     my $colors = $profileSetsHash->{$part}->{colors};
     my $rColorsString = $self->rStringVectorFromArray($colors, 'the.colors');
 
+    my $pointsPch = $profileSetsHash->{$part}->{points_pch};
+    my $rPointsPchString = $self->rNumericVectorFromArray($pointsPch, 'points.pch');
+
     my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
     my $xAxisLabel = $profileSetsHash->{$part}->{x_axis_label};
     my $plotTitle = $profileSetsHash->{$part}->{plot_title};
@@ -68,7 +71,7 @@ sub makeRPlotStrings {
     my $xMin = $profileSetsHash->{$part}->{default_x_min};
     my $xMax = $profileSetsHash->{$part}->{default_x_max};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin);
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin);
 
     unshift @rv, $rCode;
   }
@@ -79,7 +82,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -99,6 +102,7 @@ sub rString {
 $profileFiles
 $elementNamesFiles
 $colorsString
+$pointsPchString
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -140,7 +144,13 @@ for(i in 1:length(profile.files)) {
 #plasmodb.par
 par(mar       = c($bottomMargin,4,1,10), xpd=TRUE);
 
+my.pch = 19;
+
 for(i in 1:length(profile)) {
+
+  if(!is.null(points.pch)) {
+    my.pch = points.pch[i];
+  }
 
   if(i == 1) {
     plot(element.names[[i]],
@@ -148,7 +158,7 @@ for(i in 1:length(profile)) {
          col  = the.colors[i],
          bg   = the.colors[i],
          type = \"b\",
-         pch  = 19,
+         pch  = my.pch,
          cex  = 1.5,
          xlab = \"$xAxisLabel\",
          xlim = c(x.min, x.max),
@@ -162,7 +172,7 @@ for(i in 1:length(profile)) {
          col  = the.colors[i],
          bg   = the.colors[i],
          type = \"o\",
-         pch  = 19,
+         pch  = my.pch,
          cex  = 1.5
          );
   }
