@@ -12,7 +12,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors = ['purple'];
+  my $colors = ['#8FBC8F'];
 
   $self->setProfileSetsHash
     ({rma => {profiles => ['expression profiles of T. gondii Matt_Tz-Bz time series'],
@@ -20,8 +20,8 @@ sub init {
               x_axis_label => 'Days',
               colors => $colors,
               plot_title => 'Tachyzoite to Bradyzoite Differentiation Time Series',
-              default_y_max => 8,
-              default_y_min => 6,
+              default_y_max => 10,
+              default_y_min => 4,
              },
 
       pct => {profiles => ['expression profile percentiles of T. gondii Matt_Tz-Bz time series'],

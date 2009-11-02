@@ -77,9 +77,11 @@ sub makeRLegendString {
 
   my $colors = $legendHash->{colors};
   my $names = $legendHash->{short_names};
+  my $pch = $legendHash->{points_pch};
 
   my $rColorsString = $self->rStringVectorFromArray($colors, 'legend.colors');
   my $rNamesString = $self->rStringVectorFromArray($names, 'legend.names');
+  my $rPointsPchString = $self->rNumericVectorFromArray($pch, 'points.pch');
 
   my $rv = "
  #-------------------------------------------------------------------------------
@@ -88,6 +90,7 @@ sub makeRLegendString {
 
   $rColorsString
   $rNamesString
+  $rPointsPchString
 
   par(yaxs='i', xaxs='i', xaxt='n', yaxt='n', bty='n', mar=c(0.1,0.1,0.1,0.1));
   plot(c(0),c(0), xlab='', ylab='',type='l',col='orange', xlim=c(0,1),ylim=c(0,1));
@@ -101,7 +104,7 @@ sub makeRLegendString {
        bty   = 'n',
        col   = legend.colors,
        pt.bg = legend.colors,
-       pch   = 19,
+       pch   = points.pch,
        lty   = 'solid',
        ncol  = 3,
       );
@@ -271,6 +274,12 @@ sub rStringVectorFromArray {
   my ($self, $stringArray, $name) = @_;
 
   return "$name = c(" . join(',', map {"\"$_\""} @$stringArray) . ");";
+}
+
+sub rNumericVectorFromArray {
+  my ($self, $array, $name) = @_;
+
+  return "$name = c(" . join(',', map {"$_"} @$array) . ");";
 }
 
 
