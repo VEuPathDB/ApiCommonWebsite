@@ -6,10 +6,10 @@
 
 <c:choose>
     <c:when test="${projectId == 'EuPathDB'}">
-	<jsp:include page="/wdkExtension/jsp/${projectId}/EstQuestions.EstsByLocation.partial.jsp"/>
+	<jsp:include page="/wdkCustomization/jsp/${projectId}/GeneQuestions.GenesByLocation.partial.jsp"/>
     </c:when>
     <c:otherwise>
-	<jsp:include page="/wdkExtension/jsp/questions/question.form.jsp"/>
+	<jsp:include page="/wdkCustomization/jsp/questions/question.form.jsp"/>
     </c:otherwise>
 </c:choose>
 
@@ -18,4 +18,3 @@
 
 
 
-	

@@ -4,17 +4,18 @@
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
-<c:choose>   
-  <c:when test="${projectId == 'EuPathDB'}">
-    <jsp:include page="/wdkExtension/jsp/${projectId}/OrfQuestions.OrfsByLocation.partial.jsp"/>
+<c:choose>
+  <c:when test="${projectId == 'GiardiaDB' || projectId == 'TrichDB' }">
+    <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByProteinStructure" /> 
   </c:when>
   <c:otherwise>
-    <jsp:include page="/wdkExtension/jsp/questions/question.form.jsp"/>
+    <jsp:include page="/wdkCustomization/jsp/${projectId}/InternalQuestions.GenesByProteinStructure.jsp"/>
   </c:otherwise>
 </c:choose>
 
 
 
 
-	
+
+
 

@@ -3,6 +3,6 @@
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
-<jsp:include page="/wdkExtension/jsp/${projectId}/SnpRecordClasses.SnpRecordClass.jsp"/>
+<jsp:include page="/wdkCustomization/jsp/${projectId}/SnpRecordClasses.SnpRecordClass.jsp"/>
 
 

@@ -4,17 +4,17 @@
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
-<c:choose>
+<c:choose>   
   <c:when test="${projectId == 'EuPathDB'}">
-    <jsp:include page="/wdkExtension/jsp/${projectId}/GeneQuestions.GenesBySnps.partial.jsp"/>
+    <jsp:include page="/wdkCustomization/jsp/${projectId}/SageTagQuestions.SageTagByLocation.partial.jsp"/>
   </c:when>
   <c:otherwise>
-    <jsp:include page="/wdkExtension/jsp/questions/question.form.jsp"/>
+    <jsp:include page="/wdkCustomization/jsp/questions/question.form.jsp"/>
   </c:otherwise>
 </c:choose>
 
 
-
+	
 
 
 
