@@ -219,8 +219,6 @@
       path="/showQueryHistory"
       type="org.gusdb.wdk.controller.action.ShowQueryHistoryAction"
       scope="request">
-      <forward name="show_strat_history" path="/wdk/strategyHistory.jsp"/>
-      <forward name="show_step_history" path="/wdk/stepHistory.jsp"/>
     </action>
     <action
       path="/downloadStep"
@@ -432,8 +430,6 @@
       scope="request"
       name="questionForm"
       validate="false">
-      <forward name="vocab_xml" path="/wdk/vocabXml.jsp"/>
-      <forward name="vocab_html" path="/wdk/vocabHtml.jsp"/>
     </action>
   </action-mappings>
 
