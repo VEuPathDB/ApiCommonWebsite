@@ -175,24 +175,29 @@
 
   <target name="loadresourcesToDatasources">
     <property name="loadresources" value="${targetDir}/lib/xml/loadresources"/>
-    <mkdir dir="${targetDir}/lib/xml/datasources"/>
+    <property name="cache" value="${targetDir}/config/.cache/datasources"/>
+    <property name="datasources" value="${targetDir}/lib/xml/datasources"/>
+    <mkdir dir="${cache}"/>
+    <mkdir dir="${datasources}"/>
     <copy todir="${loadresources}">
       <fileset dir="${projectsDir}/ApiCommonData/Load/lib/xml">
         <include name="*Resources.xml"/>
       </fileset>
     </copy>
-    <mapper id="pubmedmapper" type="glob" 
-            from="*.xml" 
-            to="${targetDir}/lib/xml/datasources/*-pubmed.xml"/>
     <echo message="Running updateResourcesWithPubmed"/>
     <apply executable="${targetDir}/bin/updateResourcesWithPubmed" verbose="true">
+        <srcfile/>
+        <targetfile/>
         <fileset dir="${loadresources}">
           <include name="*Resources.xml"/>
         </fileset>
-        <redirector>
-            <outputmapper refid="pubmedmapper"/>
-        </redirector>
+        <mapper type="glob" from="*.xml" to="${cache}/*-pubmed.xml"/>
     </apply>
+    <copy todir="${datasources}">
+      <fileset dir="${cache}">
+        <include name="*-pubmed.xml"/>
+      </fileset>
+    </copy>
     <delete dir="${loadresources}"/>
   </target>
 
