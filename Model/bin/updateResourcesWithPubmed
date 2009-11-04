@@ -4,6 +4,9 @@
 use lib "$ENV{GUS_HOME}/lib/perl/ApiCommonWebsite/Model";
 use pcbiPubmed;
 use XMLUtils;
+use Digest::MD5;
+use File::Path qw(mkpath);
+use File::Basename;
 use strict;
                                                                             
 my $publicationTag = "publication";
@@ -12,23 +15,40 @@ my $pmidAttr = "pmid";
 my $pubDetails = "pmdetails";
 my $pubTitle = "pmtitle";
 my $pubAuthors = "pmauthors";
-#my $pubUrl = "pubUrl";
                                                                             
 my $input_file = $ARGV[0];
 my $output_file = $ARGV[1];
-                                                                            
+
+my $input_fingerprint = undef;
+my $prev_input_fingerprint =  undef;
+my $input_prefix = fileparse($input_file,".xml");
+my $cache_path="$ENV{GUS_HOME}/config/.cache/datasources";
+my $input_fingerprint_file = "$cache_path/${input_prefix}_fingerprint";
+
+if (-f $output_file && -f $input_fingerprint_file && inputNotChanged() ) {
+    warn "\n";
+    warn basename($input_file) . " has not changed since last invocation, skipping.\n";
+    warn "Remove $input_fingerprint_file and re-run to force update.\n\n";
+    exit 0;
+}
+
+warn "Processing $input_file\n";
+
 open (INPUT, "< $input_file")
     or die "\nUnable to open input file: $!\n" . usageStr();
-                                                                            
+
+open (OUTPUT, "> $output_file")                                                                            
+    or die "\nUnable to open output file: $!\n" . usageStr();
+
 my $content = join ("", <INPUT>);
 close INPUT;
                                                                             
 my $modifiedXml = XMLUtils::replaceAllTags ($content, $publicationTag, \&updatePubmedInfo);
 
-#print OUTPUT $modifiedXml;
-print $modifiedXml;
-                                                                            
-#close OUTPUT;
+print OUTPUT $modifiedXml;
+close OUTPUT;
+writeFingerprintFile();
+
 
 sub updatePubmedInfo {
 	my ($tagContent) = @_;
@@ -51,6 +71,38 @@ sub updatePubmedInfo {
 	#print $modified_tag . "\n";
 	#print "END: " . $pubmed_id . ("-" x 50) . "\n\n\n";
 	return $modified_tag;
+}
+
+sub currentInputMD5 {
+    return $input_fingerprint if $input_fingerprint;
+    open(INPUT, $input_file) or die "Can not open $input_file\n";
+    binmode(INPUT);
+    $input_fingerprint = Digest::MD5->new->addfile(*INPUT)->hexdigest;
+    close INPUT;
+    return $input_fingerprint;
+}
+
+sub previousInputMD5 {
+    return $prev_input_fingerprint if $prev_input_fingerprint;
+    return unless -f $input_fingerprint_file;
+    open (FP, $input_fingerprint_file) 
+        or die "Can not open $input_fingerprint_file\n";
+    chomp(my $prev_input_fingerprint = <FP>);
+    close FP;
+    return $prev_input_fingerprint;
+}
+
+sub inputNotChanged {
+    return previousInputMD5() eq currentInputMD5();
+}
+
+sub writeFingerprintFile {
+    mkpath($cache_path);
+    (-d $cache_path && -d $cache_path) or die "$cache_path not writable\n";
+    open (FP, "> $input_fingerprint_file") 
+        or die "can write to $input_fingerprint_file\n";
+    print FP currentInputMD5();
+    close FP;
 }
 
 sub usageStr {
