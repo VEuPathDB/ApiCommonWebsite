@@ -1,7 +1,7 @@
 <xmlAnswer>
 
   <record>
-       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Website">CryptoDB,EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.hominis</attribute>
        <attribute name = "Taxon_ID">237895</attribute>
@@ -24,7 +24,7 @@
    </record>
 
  <record>
-       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Website">CryptoDB,EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.muris</attribute>
        <attribute name = "Taxon_ID">5808</attribute>
@@ -46,7 +46,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Website">CryptoDB,EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.parvum</attribute>
        <attribute name = "Taxon_ID">5807</attribute>
@@ -68,7 +68,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Website">GiardiaDB,EuPathDB</attribute>
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.lamblia</attribute>
        <attribute name = "Taxon_ID">184922</attribute>
@@ -90,11 +90,11 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Website">GiardiaDB,EuPathDB</attribute>
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.assemblage_B</attribute>
-       <attribute name = "Taxon_ID"></attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Taxon_ID">598745</attribute>
+       <attribute name = "Strain">ATCC 50581</attribute>
        <attribute name = "Genome_Version">07-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size"></attribute>
@@ -112,11 +112,11 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Website">GiardiaDB,EuPathDB</attribute>
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.assemblage_E</attribute>
-       <attribute name = "Taxon_ID"></attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Taxon_ID">658858</attribute>
+       <attribute name = "Strain">P15</attribute>
        <attribute name = "Genome_Version">07-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size"></attribute>
@@ -135,7 +135,7 @@
    </record>
 
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.berghei</attribute>
        <attribute name = "Taxon_ID">5823</attribute>
@@ -157,11 +157,11 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.chabaudi</attribute>
        <attribute name = "Taxon_ID">31271</attribute>
-       <attribute name = "Strain">AS</attribute>
+       <attribute name = "Strain">chabaudi</attribute>
        <attribute name = "Genome_Version">03-24-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size"></attribute>
@@ -180,7 +180,7 @@
    </record>
 
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.falciparum</attribute>
        <attribute name = "Taxon_ID">36329</attribute>
@@ -202,7 +202,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.gallinaceum</attribute>
        <attribute name = "Taxon_ID">5849</attribute>
@@ -224,7 +224,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.knowlesi</attribute>
        <attribute name = "Taxon_ID">5851</attribute>
@@ -246,7 +246,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.reichenowi</attribute>
        <attribute name = "Taxon_ID">5854</attribute>
@@ -268,11 +268,11 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.vivax</attribute>
        <attribute name = "Taxon_ID">126793</attribute>
-       <attribute name = "Strain">Salvador_1</attribute>
+       <attribute name = "Strain">Sal_1</attribute>
        <attribute name = "Genome_Version">06-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size"></attribute>
@@ -290,7 +290,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB,EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.yoelii</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
@@ -312,7 +312,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
 <record>
-       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Website">ToxoDB,EuPathDB</attribute>
        <attribute name = "Family">Neospora</attribute>
        <attribute name = "Organism">N.caninum</attribute>
        <attribute name = "Taxon_ID">29176</attribute>
@@ -334,7 +334,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Website">ToxoDB,EuPathDB</attribute>
        <attribute name = "Family">Toxoplasma</attribute>
        <attribute name = "Organism">T.gondii</attribute>
        <attribute name = "Taxon_ID">5811</attribute>
@@ -357,7 +357,7 @@
    </record>
  
  <record>
-       <attribute name = "Website">TrichDB</attribute>
+       <attribute name = "Website">TrichDB,EuPathDB</attribute>
        <attribute name = "Family">Trichomonas</attribute>
        <attribute name = "Organism">T.vaginalis</attribute>
        <attribute name = "Taxon_ID">412133</attribute>
@@ -376,11 +376,11 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
+       <attribute name = "Pathways">yes</attribute>
    </record>
 
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB,EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.braziliensis</attribute>
        <attribute name = "Taxon_ID">5660</attribute>
@@ -402,7 +402,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB,EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.infantum</attribute>
        <attribute name = "Taxon_ID">5671</attribute>
@@ -424,7 +424,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB,EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.major</attribute>
        <attribute name = "Taxon_ID">5664</attribute>
@@ -446,10 +446,10 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB,EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.tarantolae</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">5689</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">04-07-2009</attribute>
        <attribute name = "Data_Source">CIHR group</attribute>
@@ -468,11 +468,11 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB,EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
        <attribute name = "Organism">T.brucei</attribute>
        <attribute name = "Taxon_ID">5691</attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Strain">TREU927</attribute>
        <attribute name = "Genome_Version">11-13-2008</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size"></attribute>
@@ -490,11 +490,11 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB,EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
        <attribute name = "Organism">T.cruzi</attribute>
        <attribute name = "Taxon_ID">5693</attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Strain">CL Brener</attribute>
        <attribute name = "Genome_Version">11-20-2008</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size"></attribute>
@@ -512,6 +512,50 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
+       <attribute name = "Website">EuPathDB</attribute>
+       <attribute name = "Family">Theileria</attribute>
+       <attribute name = "Organism">T.annulata</attribute>
+       <attribute name = "Taxon_ID">353154</attribute>
+       <attribute name = "Strain">Ankara</attribute>
+       <attribute name = "Genome_Version">03/2006</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">EuPathDB</attribute>
+       <attribute name = "Family">Theileria</attribute>
+       <attribute name = "Organism">T.parva</attribute>
+       <attribute name = "Taxon_ID">333668</attribute>
+       <attribute name = "Strain">Muguga</attribute>
+       <attribute name = "Genome_Version">03/2006</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+<record>
        <attribute name = "Website"></attribute>
        <attribute name = "Family"></attribute>
        <attribute name = "Organism"></attribute>
