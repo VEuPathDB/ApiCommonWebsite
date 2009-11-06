@@ -48,7 +48,8 @@ public class ShowCommentAction extends CommentAction {
         request.setAttribute(COMMENT_TARGET_ID_KEY, commentForm.getCommentTargetId());
 
         // construct url
-        String customViewDir = (String) application.getAttribute(CConstants.WDK_CUSTOMVIEWDIR_KEY);
+	String customViewDir = application.getAttribute(CConstants.WDK_CUSTOM_VIEW_DIR).toString()
+	    + File.separator + application.getAttribute(CConstants.WDK_PAGES_DIR).toString();
         String commentPage = customViewDir + File.separator
                 + CUSTOM_COMMENT_PAGE;
 
