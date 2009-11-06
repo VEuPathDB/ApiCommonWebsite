@@ -11,3 +11,5 @@ SITES="Cryptosporidium","Giardia","Plasmodium","Toxoplasma","Neospora","Trichomo
 # PORTALS=global-set-name;set-name,items-in-set(;set name,items)
 PORTALS="Eukaryotic Pathogens";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora";"Anaerobic Protists","Cryptosporidium","Giardia","Trichomonas";"Kinetoplastid","Trypanosoma","Leishmania"
 
+SITE_ADMIN_EMAIL = mheiges@uga.edu
+
