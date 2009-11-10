@@ -1,7 +1,7 @@
 <xmlAnswer>
 
   <record>
-       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Website">CryptoDB, EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.hominis</attribute>
        <attribute name = "Taxon_ID">237895</attribute>
@@ -24,11 +24,11 @@
    </record>
 
  <record>
-       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Website">CryptoDB, EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.muris</attribute>
        <attribute name = "Taxon_ID">5808</attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Strain">RN66</attribute>
        <attribute name = "Genome_Version">07-28-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">9.21</attribute>
@@ -46,7 +46,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Website">CryptoDB, EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.parvum</attribute>
        <attribute name = "Taxon_ID">5807</attribute>
@@ -68,7 +68,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Website">GiardiaDB, EuPathDB</attribute>
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.lamblia</attribute>
        <attribute name = "Taxon_ID">184922</attribute>
@@ -90,7 +90,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Website">GiardiaDB, EuPathDB</attribute>
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.assemblage_B</attribute>
        <attribute name = "Taxon_ID">598745</attribute>
@@ -112,7 +112,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Website">GiardiaDB, EuPathDB</attribute>
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.assemblage_E</attribute>
        <attribute name = "Taxon_ID">658858</attribute>
@@ -135,7 +135,7 @@
    </record>
 
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.berghei</attribute>
        <attribute name = "Taxon_ID">5823</attribute>
@@ -157,7 +157,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.chabaudi</attribute>
        <attribute name = "Taxon_ID">31271</attribute>
@@ -180,7 +180,7 @@
    </record>
 
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.falciparum</attribute>
        <attribute name = "Taxon_ID">36329</attribute>
@@ -202,7 +202,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.gallinaceum</attribute>
        <attribute name = "Taxon_ID">5849</attribute>
@@ -224,7 +224,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.knowlesi</attribute>
        <attribute name = "Taxon_ID">5851</attribute>
@@ -246,7 +246,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.reichenowi</attribute>
        <attribute name = "Taxon_ID">5854</attribute>
@@ -268,7 +268,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.vivax</attribute>
        <attribute name = "Taxon_ID">126793</attribute>
@@ -290,7 +290,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
        <attribute name = "Organism">P.yoelii</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
@@ -312,7 +312,7 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
 <record>
-       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
        <attribute name = "Family">Neospora</attribute>
        <attribute name = "Organism">N.caninum</attribute>
        <attribute name = "Taxon_ID">29176</attribute>
@@ -334,7 +334,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
        <attribute name = "Family">Toxoplasma</attribute>
        <attribute name = "Organism">T.gondii</attribute>
        <attribute name = "Taxon_ID">5811</attribute>
@@ -344,7 +344,7 @@
        <attribute name = "Genome_Size">63.01</attribute>
        <attribute name = "Gene_Count">9239</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">VEG,GT1,CkUg2</attribute>
+       <attribute name = "Additional_Strains">VEG,GT1,RH,CkUg2</attribute>
        <attribute name = "Organellar_Genomes">apicoplast</attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -380,7 +380,7 @@
    </record>
 
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.braziliensis</attribute>
        <attribute name = "Taxon_ID">5660</attribute>
@@ -402,7 +402,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.infantum</attribute>
        <attribute name = "Taxon_ID">5671</attribute>
@@ -424,7 +424,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.major</attribute>
        <attribute name = "Taxon_ID">5664</attribute>
@@ -446,7 +446,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.tarantolae</attribute>
        <attribute name = "Taxon_ID">5689</attribute>
@@ -468,7 +468,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
        <attribute name = "Organism">T.brucei</attribute>
        <attribute name = "Taxon_ID">5691</attribute>
@@ -490,7 +490,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
        <attribute name = "Organism">T.cruzi</attribute>
        <attribute name = "Taxon_ID">5693</attribute>
