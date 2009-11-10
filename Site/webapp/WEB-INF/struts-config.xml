@@ -168,7 +168,6 @@
       scope="request"
       name="questionForm"
       input="/showQuestion.do">
-      <forward name="show_error" path="/summaryError.jsp"/>
       <forward name="show_application" path="/showApplication.do"/>
       <forward name="skip_to_record" path="/showRecord.do"/>
       <forward name="skip_to_download" path="/downloadStep.do"/>
@@ -213,7 +212,6 @@
       type="org.gusdb.wdk.controller.action.GetDownloadResultAction"
       name="downloadConfigForm"
       scope="request">
-      <forward name="get_download_result" path="/downloadResult.jsp"/>
     </action>
     <action
       path="/showQueryHistory"
@@ -224,7 +222,6 @@
       path="/downloadStep"
       type="org.gusdb.wdk.controller.action.DownloadStepAnswerValueAction"
       scope="request">
-      <forward name="get_download_config" path="/reporterConfig.jsp"/>
     </action>
     <action
       path="/renameStep"
@@ -274,8 +271,6 @@
       path="/showErrorPage"
       type="org.gusdb.wdk.controller.action.ShowErrorPageAction"
       scope="request">
-      <forward name="show_error_page_user" path="/exception.jsp"/>
-      <forward name="show_error_page_model" path="/exception.jsp"/>
     </action>
     <action
       path="/processLogin"
