@@ -72,7 +72,7 @@ public class CommentFactoryGetTest {
     }
 
     @Before
-    public void addComment() throws WdkModelException {
+    public void addComment() throws WdkModelException, WdkUserException {
         Comment comment = new Comment(SAMPLE_EMAIL);
         comment.setStableId(SAMPLE_STABLE_ID);
         comment.setCommentTarget(SAMPLE_COMMENT_TARGET);
@@ -92,7 +92,7 @@ public class CommentFactoryGetTest {
     }
 
     @After
-    public void removeComment() throws WdkModelException {
+    public void removeComment() throws WdkModelException, WdkUserException {
         factory.deleteComment(SAMPLE_EMAIL, Integer.toString(commentId));
     }
 
@@ -129,7 +129,8 @@ public class CommentFactoryGetTest {
     }
 
     @Test
-    public void testQueryCommentByStableId() throws WdkModelException {
+    public void testQueryCommentByStableId() throws WdkModelException,
+            WdkUserException {
         Comment[] array = factory.queryComments(null, null, SAMPLE_STABLE_ID,
                 null, null, null, null);
         // TEST
@@ -143,7 +144,8 @@ public class CommentFactoryGetTest {
     }
 
     @Test
-    public void testQUeryCOmmentByProjectId() throws WdkModelException {
+    public void testQUeryCOmmentByProjectId() throws WdkModelException,
+            WdkUserException {
         Comment[] array = factory.queryComments(null, projectId, null, null,
                 null, null, null);
         // TEST

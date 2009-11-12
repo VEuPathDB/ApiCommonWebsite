@@ -17,6 +17,7 @@ import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.AttributeValue;
 import org.gusdb.wdk.model.RecordClass;
 import org.gusdb.wdk.model.RecordInstance;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.CacheFactory;
@@ -246,12 +247,13 @@ public class Gff3CachedReporter extends Reporter {
         sql.append(" AND ac.").append(CacheFactory.COLUMN_INSTANCE_ID);
         sql.append(" = ").append(instanceId);
 
-        DBPlatform platform = getQuestion().getWdkModel().getQueryPlatform();
+        WdkModel wdkModel = getQuestion().getWdkModel();
+        DBPlatform platform = wdkModel.getQueryPlatform();
 
         // get the result from database
         ResultSet rsTable = null;
         try {
-            rsTable = SqlUtils.executeQuery(platform.getDataSource(),
+            rsTable = SqlUtils.executeQuery(wdkModel, platform.getDataSource(),
                     sql.toString());
 
             while (rsTable.next()) {
@@ -301,14 +303,15 @@ public class Gff3CachedReporter extends Reporter {
         sql.append(" = ").append(instanceId);
         sql.append(" ORDER BY tc.table_name ASC");
 
-        DBPlatform platform = getQuestion().getWdkModel().getQueryPlatform();
+        WdkModel wdkModel = getQuestion().getWdkModel();
+        DBPlatform platform = wdkModel.getQueryPlatform();
 
         writer.println("##FASTA");
 
         // get the result from database
         ResultSet rsTable = null;
         try {
-            rsTable = SqlUtils.executeQuery(platform.getDataSource(),
+            rsTable = SqlUtils.executeQuery(wdkModel, platform.getDataSource(),
                     sql.toString());
 
             while (rsTable.next()) {
