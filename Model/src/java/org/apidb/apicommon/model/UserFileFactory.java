@@ -133,7 +133,7 @@ public class UserFileFactory {
     }
 
     public void insertUserFileMetaData(UserFile userFile)
-            throws WdkModelException {
+            throws WdkModelException, WdkUserException {
         String userFileSchema = config.getUserFileSchema();
 
         PreparedStatement ps = null;

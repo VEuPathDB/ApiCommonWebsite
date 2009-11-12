@@ -140,7 +140,7 @@ public class Comment {
     }
 
     public void setTargetCategoryNames(String[] categoryNames) {
-        this.targetCategoryNames = targetCategoryNames;
+        this.targetCategoryNames = categoryNames;
     }
 
     public String[] addTargetCategoryNames(String[] ids) {
