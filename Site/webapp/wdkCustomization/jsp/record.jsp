@@ -13,35 +13,30 @@
 
   <!-- Added by Jerric - Display primary key content -->
   <c:set value="${wdkRecord.primaryKey}" var="primaryKey"/>
-  <c:if test="${primaryKey.projectName ne null}">
-  <tr>
-    <td><b>Project</b></td>
-    <td>${primaryKey.projectName}</td>
-  </tr>
-  <tr>
-    <td><b>Local PK</b></td>
-    <td>${primaryKey.recordId}</td>
-  </tr>
-  </c:if>
+  <c:set var="pkValues" value="${primaryKey.values}" />
+  <c:forEach items="${pkValues}" var="pkValue">
+    <tr>
+      <td><b>${pkValue.key}</b></td>
+      <td>${pkValue.value}</td>
+    </tr>
+  </c:forEach>
 
-<c:forEach items="${wdkRecord.attributes}" var="attr">
-<c:if test="${!attr.value.internal}">
-  <tr>
-    <td><b>${attr.value.displayName}</b></td>
-    <td><c:set var="fieldVal" value="${attr.value.value}"/>
-      <!-- need to know if fieldVal should be hot linked -->
-      <c:choose>
-        <c:when test="${fieldVal.class.name eq 'org.gusdb.wdk.model.LinkValue'}">
-          <a href="${fieldVal.url}">${fieldVal.visible}</a>
-        </c:when>
-        <c:otherwise>
-          <font class="fixed"><w:wrap size="60">${fieldVal}</w:wrap></font>
-        </c:otherwise>
-      </c:choose>
-    </td>
-  </tr>
-</c:if>
-</c:forEach>
+  <c:forEach items="${wdkRecord.attributes}" var="attr">
+    <tr>
+      <td><b>${attr.value.displayName}</b></td>
+      <td><c:set var="fieldVal" value="${attr.value.value}"/>
+        <!-- need to know if fieldVal should be hot linked -->
+        <c:choose>
+          <c:when test="${fieldVal.class.name eq 'org.gusdb.wdk.model.LinkValue'}">
+            <a href="${fieldVal.url}">${fieldVal.visible}</a>
+          </c:when>
+          <c:otherwise>
+            <font class="fixed"><w:wrap size="60">${fieldVal}</w:wrap></font>
+          </c:otherwise>
+        </c:choose>
+      </td>
+    </tr>
+  </c:forEach>
 </table>
 
 <!-- show all nested records for record -->
@@ -55,9 +50,9 @@
 
   <!-- create table heading for next nested record -->	
   <c:forEach items="${nextNr.summaryAttributeNames}" var="recAttrName">
-     <c:set value="${nextNr.attributes[recAttrName]}" var="recAttr"/>
-     <c:if test="${!recAttr.internal}">
-	<tr>
+    <c:set value="${nextNr.attributes[recAttrName]}" var="recAttr"/>
+    <c:if test="${!recAttr.internal}">
+ 	<tr>
           <td><b>${recAttr.displayName}</b></td>         
           <c:set var="fieldVal" value="${recAttr.briefValue}"/>
           <td>
@@ -75,7 +70,6 @@
      </c:if>
   </c:forEach>
   </table>
-  
 </c:forEach>
 
 <!-- end nested records -->
@@ -83,14 +77,14 @@
 
 <!-- show all nested recordLists for record -->
 <c:forEach items="${wdkRecord.nestedRecordLists}" var="nrlEntry">
-  <br>
+<br>
   <table>
   <tr><td><b>${nrlEntry.key}</b></td></tr>
     
   <c:set var="i" value="0"/>
   <c:forEach items="${nrlEntry.value}" var="nextRecord">
 
-    <c:if test="${i == 0}">
+     <c:if test="${i == 0}">
       <!-- use first record instance to create table heading for nested record list -->	
     
       <c:forEach items="${nextRecord.summaryAttributeNames}" var="recAttrName">
@@ -153,64 +147,8 @@
 
 
 <!-- show all tables for record -->
-
 <c:forEach items="${wdkRecord.tables}"  var="tblEntry">
-  <c:set var="tbl" value="${tblEntry.value}"/>
-  <br>
-  <table>
-  <tr>
-    <tr><td valign="top"><b>${tbl.displayName}</b></td></tr>
-    <td>
-      <c:set var="tbl" value="${tblEntry.value}"/>
-
-      <!-- show one table -->
-      <table border="1" cellspacing="0" cellpadding="2">
-        <!-- table header -->
-        <tr class="headerRow">
-          <c:forEach var="hCol" items="${tbl.attributeFields}">
-          <c:if test="${!hCol.internal}">
-            <th align="left">${hCol.displayName}</th>
-          </c:if>
-          </c:forEach>
-        </tr>
-
-        <!-- table rows -->
-    <c:set var="i" value="0"/>
-    <c:forEach var="row" items="${tbl.visibleRows}">
-        <c:choose>
-            <c:when test="${i % 2 == 0}"><tr class="rowLight"></c:when>
-            <c:otherwise><tr class="rowMedium"></c:otherwise>
-        </c:choose>
-
-        <c:forEach var="rColEntry" items="${row}">
-            <c:set var="rCol" value="${rColEntry.value}"/>
-
-            <%-- need to know if value should be hot linked --%>
-            <td>
-                <c:choose>
-                    <c:when test="${rCol.class.name eq 'org.gusdb.wdk.model.LinkValue'}">
-                        <a href="${rCol.url}">${rCol.visible}</a>
-                    </c:when>
-                    <c:when test="${rCol.class.name eq 'org.gusdb.wdk.model.AttributeFieldValue'}">
-                        ${rCol.value}
-                    </c:when>
-                    <c:otherwise>
-                        ${rCol}
-                    </c:otherwise>
-                </c:choose>
-            </td>
-        </c:forEach>
-
-        </tr>
-        <c:set var="i" value="${i +  1}"/>
-        </c:forEach>
-      </table>
-      <!-- close resultList -->
-      <c:set var="junk" value="${tbl.close}"/>
-    </td>
-  </tr>
-  </table>
+  <wdk:wdkTable tblName="${tblEntry.key}" isOpen="true"/>
 </c:forEach>
-
 
 <site:footer/>
