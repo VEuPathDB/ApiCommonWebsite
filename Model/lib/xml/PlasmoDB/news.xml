@@ -15,6 +15,33 @@
        </attribute>
     </record>
 -->
+ <record>
+       <attribute name="headline">
+         <![CDATA[ PlasmoDB 6.2 released
+         ]]>
+         </attribute>
+       <attribute name="date">13 November 2009 00:00</attribute>
+       <attribute name="tag">Plasmo1109news</attribute>
+       <attribute name="item">           
+         <![CDATA[<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 6.2<br>
+<br>
+</span><span style="text-decoration: underline;">New
+Data:</span><br>
+<ul>
+  <li><span style="font-style: italic;">P.
+&nbsp;falciparum</span> and <span
+ style="font-style: italic;">P. vivax</span> proteomics
+from clinical samples graciously provided prior to publication by Dr.
+Utpal Tatu (Department of Biochemistry, Indian Institute of Science,
+Bangalore, India). This data may be accessed in the "Protein
+Expression" section of the gene searches. &nbsp;This data may be
+searched and combined with other data types available in PlasmoDB.</li>
+</ul>
+
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">
          <![CDATA[Important announcement regarding microarray data in PlasmoDB
