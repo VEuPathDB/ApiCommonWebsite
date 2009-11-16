@@ -24,7 +24,7 @@ announce the release of GiardiaDB 2.0<br>
 </span>This is a major release of GiardiaDB that includes several
 new data types:<br>
 <br>
-<ol>
+<ul>
   <li>Genome sequence and annotation of <span
  style="font-style: italic;">Giardia</span> <span
  style="font-style: italic;">intestinalis</span>
@@ -34,8 +34,8 @@ to the publication: <a
 genome sequencing of giardia intestinalis assemblage B isolate GS: is
 human giardiasis caused by two different species? PLoS Pathog. 2009
 Aug;5(8):e1000560 Franzén et al.</a></li>
-</ol>
-<ol start="2" style="list-style-type: decimal;">
+</ul>
+<ul>
   <li>Sequence and annotation of <span
  style="font-style: italic;">Giardia</span> assemblage
 E isolate P15 was provided by J. Jerlstrom-Hultqvist. O. Franzen, E.
@@ -43,7 +43,7 @@ Castro, J. Ankarklev, D. Palm, J. O. Andersson, S.G. Svard and B.
 Andersson (Karolinska Institutet, Stockholm, Sweden and Uppsala
 University, Uppsala, Sweden). The genome sequence and annotation was
 graciously provided to GiardiaDB prepublication.&nbsp;&nbsp;</li>
-</ol>
+</ul>
 <div style="margin-left: 40px;"><span
  style="font-style: italic;">note: genomic data may be
 searched in many ways such as identifying all genes from any of the
@@ -53,7 +53,7 @@ orthology. &nbsp;In addition, all gene pages include a genomic
 context view </span><span style="font-style: italic;">highlighting
 </span><span style="font-style: italic;">synteny
 between the three assemblages in GiardiaDB.&nbsp; </span></div>
-<ol start="3" style="list-style-type: decimal;">
+<ul>
   <li>Additional stress induction microarray data graciously
 provided by Cornelia Spycher and Adrian Hehl prepublication (University
 of Zürich, Switzerland). &nbsp;Genes may be identified based on
@@ -61,18 +61,18 @@ their expression profile by running one of the&nbsp;<a
  href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">microarray
 searches </a>and results may be combined with other searches in
 GiardiaDB.</li>
-</ol>
+</ul>
 Additional features and Improvements:<br>
 <br>
-<ol>
+<ul>
   <li>1012 genes from Giardia lamblia assemblage A isolate WB
 have been undeprecated based on synteny to assemblage B and E genomes.</li>
-</ol>
-<ol start="2" style="list-style-type: decimal;">
+</ul>
+<ul>
   <li>Representation of SAGE tag data on gene pages has been
 improved providing graphical representation of tag counts over the life
 cycle of the parasite.</li>
-</ol>
+</ul>
 </body>
           ]]>
        </attribute>
