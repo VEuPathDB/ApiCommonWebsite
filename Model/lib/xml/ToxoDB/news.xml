@@ -26,8 +26,8 @@ expression data from four experiments, most of which have not yet been
 published and were graciously provided to the Toxoplasma research
 community via ToxoDB.<span style="font-weight: bold;"><br>
 <br>
-</span>
-<ol>
+</span><br>
+<ul>
   <li>2-day alkaline or compound 1 differentiation of <span
  style="font-style: italic;">T. gondii</span> types I
 (GT1), II (Me49B7) and III (CTG) strains provided by Michael Behnke and
@@ -36,19 +36,25 @@ reference:&nbsp;<a
  href="http://www.ncbi.nlm.nih.gov/pubmed/18433450">The
 transcription of bradyzoite genes in Toxoplasma gondii is controlled by
 autonomous promoter elements. Mol. Microbiol. 2008 Jun;68(6):1502-18
-Behnke et al</a>.</li><br><br>
+Behnke et al</a>.</li>
+</ul>
+<ul>
   <li>2-day alkaline differentiation time course of <span
  style="font-style: italic;">T. gondii</span> type II
-(Prugniaud) strain provided by Matt Anderson and John Boothroyd.</li><br><br>
+(Prugniaud) strain provided by Matt Anderson and John Boothroyd.</li>
+</ul>
+<ul>
   <li>3-day alkaline, CO2 starvation or sodium nitroprusside
 differentiation of <span style="font-style: italic;">T.
 gondii</span> types I (RH) or II (Prugniaud) strains provided by
-Paul Davis and David Roos.</li><br><br>
+Paul Davis and David Roos.</li>
+</ul>
+<ul>
   <li>14-day CO2 starvation differentiation of <span
  style="font-style: italic;">T. gondii</span> type II
 (Prugniaud) or III (VEG) strains provided by Paul Davis, Florence
-Dzierszinski and David Roos.</li><br><br>
-</ol>
+Dzierszinski and David Roos.</li>
+</ul>
 Genes may be identified based on their expression profile by running
 one of the&nbsp;<a
  href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">microarray
