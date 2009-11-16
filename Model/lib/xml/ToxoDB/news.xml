@@ -13,6 +13,52 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 5.3 released</attribute>
+       <attribute name="date">16 November 2009 15:00</attribute>
+       <attribute name="tag">release53</attribute>
+       <attribute name="item">           
+         <![CDATA[<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of ToxoDB 5.3<br>
+</span><br>
+This release contains the addition of Bradyzoite differentiation
+expression data from four experiments, most of which have not yet been
+published and were graciously provided to the Toxoplasma research
+community via ToxoDB.<span style="font-weight: bold;"><br>
+<br>
+</span>
+<ol>
+  <li>2-day alkaline or compound 1 differentiation of <span
+ style="font-style: italic;">T. gondii</span> types I
+(GT1), II (Me49B7) and III (CTG) strains provided by Michael Behnke and
+Michael White. &nbsp;For study details please see the following
+reference:&nbsp;<a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/18433450">The
+transcription of bradyzoite genes in Toxoplasma gondii is controlled by
+autonomous promoter elements. Mol. Microbiol. 2008 Jun;68(6):1502-18
+Behnke et al</a>.</li>
+  <li>2-day alkaline differentiation time course of <span
+ style="font-style: italic;">T. gondii</span> type II
+(Prugniaud) strain provided by Matt Anderson and John Boothroyd.</li>
+  <li>3-day alkaline, CO2 starvation or sodium nitroprusside
+differentiation of <span style="font-style: italic;">T.
+gondii</span> types I (RH) or II (Prugniaud) strains provided by
+Paul Davis and David Roos.</li>
+  <li>14-day CO2 starvation differentiation of <span
+ style="font-style: italic;">T. gondii</span> type II
+(Prugniaud) or III (VEG) strains provided by Paul Davis, Florence
+Dzierszinski and David Roos.</li>
+</ol>
+Genes may be identified based on their expression profile by running
+one of the&nbsp;<a
+ href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">microarray
+searches</a> and results may be comabined with other searches in
+ToxoDB.<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline"><![CDATA[
          Community Annotation in Progress
          ]]>
