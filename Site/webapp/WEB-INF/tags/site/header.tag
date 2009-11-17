@@ -189,7 +189,7 @@ ${headElement}
 
    <div align="right"><div id="toplink">
     <%------ skip skips to menubar.tag ----%>
-   <a href="#skip"><img src="/assets/images/transparent1.gif" alt="Skip navigational links" width="1" height="1" border="0" /></a>
+   <a href="#skip"><img src="<c:url value='/wdk/images/transparent1.gif'/>" alt="Skip navigational links" width="1" height="1" border="0" /></a>
 
 
    <c:if test="${project == 'TriTrypDB'}">
