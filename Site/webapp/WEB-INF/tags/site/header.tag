@@ -363,7 +363,7 @@ ${headElement}
 
 
 
-<c:if test="${refer != 'home' && refer != 'home2'}">
+<c:if test="${refer != 'home' && refer != 'home2' && refer != 'customSummary'}">
 	<div id="contentwrapper">
 	<div id="contentcolumn2">
 	<div class="innertube">
