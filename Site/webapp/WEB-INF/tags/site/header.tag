@@ -138,9 +138,8 @@
 <%-- We need to figure out which styles we are using from this old file and set them in the project.css file --%>
 <%-------  keep it for generecordpage while we do that --%>
 <%-- <link rel="stylesheet" href="<c:url value='/misc/style.css'/>"   type="text/css" />   --%>
-<link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" />
-<link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
-<link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
+
+<%-- NOW PROVIDED IN WDK wdkSite.css
 <link rel="stylesheet" href="wdk/css/jquery-ui-1.7.2.custom.css"           type="text/css" />
 <link rel="stylesheet" href="wdk/css/history.css"            type="text/css"/>
 <link rel="stylesheet" href="wdk/css/dyk.css"            type="text/css"/>
@@ -149,6 +148,13 @@
 <link rel="stylesheet" href="wdk/css/flexigrid.css" type="text/css"/>
 <link rel="StyleSheet" href="wdk/css/jquery.autocomplete.css" type="text/css"/>
 <link rel="StyleSheet" href="wdk/css/jquery.multiSelect.css" type="text/css"/>
+--%>
+
+<link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" /> 
+<link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
+<link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
+
+
 <%-- temporary:  generate url for old version of site --%>
 <script type="text/javascript">
    var oldSiteUrl = 'http://old.${project}.org';
