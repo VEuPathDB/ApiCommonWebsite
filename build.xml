@@ -217,13 +217,8 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
-
-    <available file="${webappTargetDir}/WEB-INF/classes/logging.properties" property="juliLog.present"/>
-    <echo>julilog present: ${juliLog.present}</echo>
-    <antcall target="setJuliLog"/>
     
-    <available file="${webappTargetDir}/WEB-INF/classes/log4j.properties" property="log4j.present"/>
-    <echo>log4j present: ${log4j.present}</echo>
+    <available file="${webappTargetDir}/WEB-INF/classes/log4j.xml" property="log4j.present"/>
     <antcall target="setLog4j"/>
 
     <!-- replacement for dataPlotter file used to do expression graph -->
@@ -250,16 +245,10 @@
     
   </target>
 
-  <target name="setJuliLog" if="juliLog.present">
-    <dirname  property="webappDir" file="${webappTargetDir}"/>
-    <basename property="webapp" file="${webappDir}"/>
-    <replace file="${webappTargetDir}/WEB-INF/classes/logging.properties" token="@WEBAPP@" value="${webapp}"/>
-  </target>
-  
   <target name="setLog4j" if="log4j.present">
     <dirname  property="webappDir" file="${webappTargetDir}"/>
     <basename property="webapp" file="${webappDir}"/>
-    <replace file="${webappTargetDir}/WEB-INF/classes/log4j.properties" token="@WEBAPP@" value="${webapp}"/>
+    <replace file="${webappTargetDir}/WEB-INF/classes/log4j.xml" token="@WEBAPP@" value="${webapp}"/>
   </target>
   
 
