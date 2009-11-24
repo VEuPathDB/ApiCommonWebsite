@@ -18,6 +18,13 @@
     </ant>
   </target>  
 
+  <target name="ApiCommonData/Datasources-Installation">
+    <ant antfile="../ApiCommonData/build.xml" target="ApiCommonData/Datasources-Installation">
+      <property name="project" value="ApiCommonData"/>
+      <property name="version" value="api-aug-08"/>
+    </ant>
+  </target>  
+
   <target name="WDK-Installation">
     <ant antfile="../WDK/build.xml" target="WDK-Installation">
       <property name="project" value="WDK"/>
@@ -123,7 +130,8 @@
                                                         ApiCommonShared/Model-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
-                                                        ApiCommonWebsite/View-Installation">
+                                                        ApiCommonWebsite/View-Installation,
+                                                        ApiCommonData/Datasources-Installation">
 
     <ant target="defaultProjectInstall"/>
     
@@ -156,7 +164,6 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Model"/>
     </ant>
-    <antcall target="loadresourcesToDatasources"/>
   </target>
 
   <target name="ApiCommonWebsite/Site-Installation">
@@ -171,34 +178,6 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="View"/>
     </ant>
-  </target>
-
-  <target name="loadresourcesToDatasources">
-    <property name="loadresources" value="${targetDir}/lib/xml/loadresources"/>
-    <property name="cache" value="${targetDir}/config/.cache/datasources"/>
-    <property name="datasources" value="${targetDir}/lib/xml/datasources"/>
-    <mkdir dir="${cache}"/>
-    <mkdir dir="${datasources}"/>
-    <copy todir="${loadresources}">
-      <fileset dir="${projectsDir}/ApiCommonData/Load/lib/xml">
-        <include name="*Resources.xml"/>
-      </fileset>
-    </copy>
-    <echo message="Running updateResourcesWithPubmed"/>
-    <apply executable="${targetDir}/bin/updateResourcesWithPubmed" verbose="true">
-        <srcfile/>
-        <targetfile/>
-        <fileset dir="${loadresources}">
-          <include name="*Resources.xml"/>
-        </fileset>
-        <mapper type="glob" from="*.xml" to="${cache}/*-pubmed.xml"/>
-    </apply>
-    <copy todir="${datasources}">
-      <fileset dir="${cache}">
-        <include name="*-pubmed.xml"/>
-      </fileset>
-    </copy>
-    <delete dir="${loadresources}"/>
   </target>
 
 
