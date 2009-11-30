@@ -4,20 +4,16 @@
 <%@ attribute name="name"
               description="name of page section"
 %>
-<c:set var="project" value="${applicationScope.wdkModel.name}" />
 
 <br><br>
 <a name="${name}">
 
-<%-- class secondary3 does not seem to exist --%>
-<table border='0' width='100%' style="background-image: url(/assets/images/${project}/footer.png);">
-<tr class="secondary3">
-  <th align="center" width='85%' style="font-size:150%;padding:6px;">
+<table border='0' width='100%'><tr class="secondary3">
+  <th align="center" width='85%'><font size="+1">
      ${name}
-  </th>
+</font></th>
   <th align="right" width='15%'>
       <a HREF="#top">Back to the Top</a>
-  </th>
-</tr></table>
+  </th></tr></table>
 <br>
 

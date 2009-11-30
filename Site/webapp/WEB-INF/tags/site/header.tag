@@ -3,7 +3,6 @@
 <%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ attribute name="title"
               description="Value to appear in page's title"
@@ -37,6 +36,10 @@
               required="false"
 %>
 
+<%@ attribute name="releaseDate"
+              required="false"
+%>
+
 <%@ attribute name="summary"
               required="false"
               description="short text description of the page"
@@ -60,16 +63,6 @@
 <c:set var="siteName" value="${applicationScope.wdkModel.name}" />
 <c:set var="version" value="${applicationScope.wdkModel.version}" />
 
-<c:set var="releaseDate" value="${applicationScope.wdkModel.releaseDate}" />
-<c:set var="inputDateFormat" value="dd MMMM yyyy HH:mm"/>
-<fmt:setLocale value="en-US"/><%-- req. for date parsing when client browser (e.g. curl) doesn't send locale --%>
-<fmt:parseDate pattern="${inputDateFormat}" var="rlsDate" value="${releaseDate}"/> 
-<%-- http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html --%>
-<fmt:formatDate var="releaseDate_formatted" value="${rlsDate}" pattern="d MMM yy"/>
-  
-
-
-<%--- Google keys to access the maps for Isolate questions (check with Haiming) ---%>
 <c:if test="${project == 'CryptoDB'}">
   <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTMrNE2G2Bled15vogCImXw6TjMNBQeKxJGr2lD8yC0v8vilAhNZXuKjQ" />
 </c:if>
@@ -87,7 +80,6 @@
 </c:if>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <%------------------ setting title --------------%>
 
 <c:if test="${banner == null}">
@@ -146,16 +138,23 @@
 <%-- We need to figure out which styles we are using from this old file and set them in the project.css file --%>
 <%-------  keep it for generecordpage while we do that --%>
 <%-- <link rel="stylesheet" href="<c:url value='/misc/style.css'/>"   type="text/css" />   --%>
-<link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" />
-<link rel="stylesheet" href="/assets/css/jquery-ui-1.7.2.custom.css"           type="text/css" />
-<link rel="stylesheet" href="/assets/css/history.css"            type="text/css"/>
-<link rel="stylesheet" href="/assets/css/dyk.css"            type="text/css"/>
-<link rel="stylesheet" href="/assets/css/Strategy.css"           type="text/css" />
-<link rel="StyleSheet" href="/assets/css/filter_menu.css"        type="text/css"/>
+
+<%-- NOW PROVIDED IN WDK wdkSite.css
+<link rel="stylesheet" href="wdk/css/jquery-ui-1.7.2.custom.css"           type="text/css" />
+<link rel="stylesheet" href="wdk/css/history.css"            type="text/css"/>
+<link rel="stylesheet" href="wdk/css/dyk.css"            type="text/css"/>
+<link rel="stylesheet" href="wdk/css/Strategy.css"           type="text/css" />
+<link rel="StyleSheet" href="wdk/css/filter_menu.css"        type="text/css"/>
+<link rel="stylesheet" href="wdk/css/flexigrid.css" type="text/css"/>
+<link rel="StyleSheet" href="wdk/css/jquery.autocomplete.css" type="text/css"/>
+<link rel="StyleSheet" href="wdk/css/jquery.multiSelect.css" type="text/css"/>
+--%>
+
+<link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" /> 
 <link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
-<link rel="StyleSheet" href="/assets/css/jquery.autocomplete.css" type="text/css"/>
-<link rel="StyleSheet" href="/assets/css/jquery.multiSelect.css" type="text/css"/>
 <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
+
+
 <%-- temporary:  generate url for old version of site --%>
 <script type="text/javascript">
    var oldSiteUrl = 'http://old.${project}.org';
@@ -196,7 +195,7 @@ ${headElement}
 
    <div align="right"><div id="toplink">
     <%------ skip skips to menubar.tag ----%>
-   <a href="#skip"><img src="/assets/images/transparent1.gif" alt="Skip navigational links" width="1" height="1" border="0" /></a>
+   <a href="#skip"><img src="<c:url value='/wdk/images/transparent1.gif'/>" alt="Skip navigational links" width="1" height="1" border="0" /></a>
 
 
    <c:if test="${project == 'TriTrypDB'}">
@@ -235,7 +234,7 @@ ${headElement}
 	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#generalinfo"/>">General Information</a></li>
 <c:choose>
 <c:when test="${project == 'EuPathDB'}" >
-	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">Organisms in ${project}</a></li>
+	<li><a href="<c:url value="/eupathGenomeTable.jsp"/>">Organisms in ${project}</a></li>
 </c:when>
 <c:otherwise>
 	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#organisms"/>">Organisms in ${project}</a></li>
@@ -284,14 +283,14 @@ ${headElement}
 		Contact Us<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a></li>
  
  
- <site:requestURL/>
+ <wdk:requestURL/>
  <c:choose>
     <c:when test="${wdkUser == null || wdkUser.guest == true}">
     
       <%--------------- Construct links to login/register/profile/logout pages -------------%>  
         <%-- 
             urlencode the enclosing page's URL and append as a parameter 
-            in the queryString. site:requestURL compensates
+            in the queryString. wdk:requestURL compensates
             for Struts' url mangling when forward in invoked.
         --%>
         <c:url value="/login.jsp" var="loginUrl">
@@ -345,11 +344,16 @@ ${headElement}
    </div>  <%-- id="header_rt" --%>
 
 <%------------- TOP HEADER:  SITE logo and DATE _______  is a EuPathDB Project  ----------------%>
-   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" align="left" /></a></p>
+  <c:set var="width" value="320" />
+  <c:set var="height" value="72" />
+  <c:set var="date" value="Sep.2009" />
 
+
+   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
+	width="${width}" height="${height}" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version ${version}<br />
-   ${releaseDate_formatted}</p>
+   ${date}</p>
 
 </div>  <%-- id="header2" --%>
 
@@ -365,7 +369,7 @@ ${headElement}
 
 
 
-<c:if test="${refer != 'home' && refer != 'home2'}">
+<c:if test="${refer != 'home' && refer != 'home2' && refer != 'customSummary'}">
 	<div id="contentwrapper">
 	<div id="contentcolumn2">
 	<div class="innertube">

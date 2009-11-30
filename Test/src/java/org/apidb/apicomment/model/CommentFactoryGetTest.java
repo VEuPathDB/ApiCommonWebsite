@@ -68,11 +68,12 @@ public class CommentFactoryGetTest {
                     + Utilities.ARGUMENT_PROJECT_ID + " is missing.");
 
         // initialize comment factory
-        factory = CommentFactory.getInstance(gusHome, projectId);
+        CommentFactory.initialize(gusHome, projectId);
+        factory = CommentFactory.getInstance();
     }
 
     @Before
-    public void addComment() throws WdkModelException, WdkUserException {
+    public void addComment() throws WdkModelException {
         Comment comment = new Comment(SAMPLE_EMAIL);
         comment.setStableId(SAMPLE_STABLE_ID);
         comment.setCommentTarget(SAMPLE_COMMENT_TARGET);
@@ -92,8 +93,8 @@ public class CommentFactoryGetTest {
     }
 
     @After
-    public void removeComment() throws WdkModelException, WdkUserException {
-        factory.deleteComment(SAMPLE_EMAIL, Integer.toString(commentId));
+    public void removeComment() throws WdkModelException {
+        factory.deleteComment(commentId);
     }
 
     @Test
@@ -129,25 +130,23 @@ public class CommentFactoryGetTest {
     }
 
     @Test
-    public void testQueryCommentByStableId() throws WdkModelException,
-            WdkUserException {
+    public void testQueryCommentByStableId() throws WdkModelException {
         Comment[] array = factory.queryComments(null, null, SAMPLE_STABLE_ID,
-                null, null, null, null);
+                null, null, null);
         // TEST
         assertEquals("comment count", 1, array.length);
         assertEquals("comment id", commentId, array[0].getCommentId());
 
         // try to get nothing
         array = factory.queryComments(null, null, "NON_EXIST_STABLE_ID", null,
-                null, null, null);
+                null, null);
         assertEquals("comment count", 0, array.length);
     }
 
     @Test
-    public void testQUeryCOmmentByProjectId() throws WdkModelException,
-            WdkUserException {
+    public void testQUeryCOmmentByProjectId() throws WdkModelException {
         Comment[] array = factory.queryComments(null, projectId, null, null,
-                null, null, null);
+                null, null);
         // TEST
         assertTrue("comment count", array.length >= 1);
         for (Comment comment : array) {

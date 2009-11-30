@@ -33,13 +33,13 @@
 <div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                  <tr>
-                    <site:queryGridMakeUrl qset="UniversalQuestions" qname="UnifiedBlast" linktext="BLAST Similarity" type="EST" existsOn="A G C P T Tr Tt"/>
+                    <site:queryGridMakeUrl qset="EstQuestions" qname="EstsBySimilarity" linktext="BLAST Similarity" type="EST" existsOn="A G C P T Tr Tt"/>
                 </tr>
                  <tr>
                     <site:queryGridMakeUrl qset="EstQuestions" qname="NA" linktext="EST Motif" existsOn=""/>
                 </tr>           
 <tr>
-                    <site:queryGridMakeUrl qset="EstQuestions" qname="EstsByLocation" linktext="Genomic Location" existsOn="A G C P T Tr Tt"/>
+                    <site:queryGridMakeUrl qset="EstQuestions" qname="EstsByLocation" linktext="Chromosomal Location" existsOn="A G C P T Tr Tt"/>
                 </tr>
 
             </table>

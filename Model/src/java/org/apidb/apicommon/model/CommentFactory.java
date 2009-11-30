@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 
@@ -28,7 +27,6 @@ public class CommentFactory {
     private static CommentFactory factory;
 
     private Logger logger = Logger.getLogger(CommentFactory.class);
-    private WdkModel wdkModel;
     private DBPlatform platform;
     private CommentConfig config;
 
@@ -58,7 +56,6 @@ public class CommentFactory {
     }
 
     private CommentFactory(DBPlatform platform, CommentConfig config) {
-        this.wdkModel = platform.getWdkModel();
         this.platform = platform;
         this.config = config;
     }
@@ -99,13 +96,11 @@ public class CommentFactory {
         return target;
     }
 
-    public void addComment(Comment comment) throws WdkModelException,
-            WdkUserException {
+    public void addComment(Comment comment) throws WdkModelException {
         addComment(comment, null);
     }
-
-    public void addComment(Comment comment, String previousCommentId)
-            throws WdkModelException, WdkUserException {
+    
+    public void addComment(Comment comment, String previousCommentId) throws WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         PreparedStatement ps = null;
@@ -206,10 +201,9 @@ public class CommentFactory {
             comment.setUserName(newComment.getUserName());
             comment.setOrganization(newComment.getOrganization());
 
-            if ((previousCommentId != null)
-                    && (previousCommentId.length() != 0)) {
-                setInvisibleComment(previousCommentId);
-                updatePrevCommentId(previousCommentId, commentId);
+            if((previousCommentId != null) && (previousCommentId.length() != 0)) {
+               setInvisibleComment(previousCommentId);
+               updatePrevCommentId(previousCommentId, commentId);
             }
 
         } catch (SQLException ex) {
@@ -224,8 +218,7 @@ public class CommentFactory {
     }
 
     private void saveLocations(int commentId, Comment comment)
-            throws SQLException, org.gusdb.wdk.model.WdkModelException,
-            WdkUserException {
+            throws SQLException, org.gusdb.wdk.model.WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -257,7 +250,7 @@ public class CommentFactory {
     private void savePhenotype(int commentId, String background,
             int mutantStatus, int mutationType, int mutationMethod,
             int mutantExpression, int phenotypeLoc, String phenotypeDescription)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException, WdkModelException {
 
         String commentSchema = config.getCommentSchema();
 
@@ -290,7 +283,7 @@ public class CommentFactory {
     }
 
     private void saveMutantMarkers(int commentId, int[] mutantMarkers)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -316,7 +309,7 @@ public class CommentFactory {
     }
 
     private void saveMutantReporters(int commentId, int[] mutantReporters)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -342,7 +335,7 @@ public class CommentFactory {
     }
 
     private void savePhenotypeCategory(int commentId, int[] phenotypeCategory)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -368,8 +361,7 @@ public class CommentFactory {
     }
 
     private void saveCommentTargetCategory(int commentId,
-            int[] targetCategoryIds) throws SQLException, WdkModelException,
-            WdkUserException {
+            int[] targetCategoryIds) throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -396,7 +388,7 @@ public class CommentFactory {
     }
 
     private void savePmIds(int commentId, String[] pmIds) throws SQLException,
-            WdkModelException, WdkUserException {
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -427,7 +419,7 @@ public class CommentFactory {
     }
 
     private void saveAccessions(int commentId, String[] accessions)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -486,64 +478,64 @@ public class CommentFactory {
         }
     }
 
-    private void updateFiles(int newCommentId, String[] files)
-            throws SQLException, WdkModelException, WdkUserException {
+    private void updateFiles(int newCommentId, String[] files) throws SQLException,
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
         ResultSet rs = null;
 
-        try {
+        try { 
             for (String file : files) {
                 if (file == null) continue;
                 String[] str = file.split("\\|");
                 String sql = "UPDATE " + commentSchema + "CommentFile "
-                        + " SET comment_id = " + newCommentId
-                        + " WHERE file_id = " + Integer.parseInt(str[0]);
+                   + " SET comment_id = " + newCommentId
+                   + " WHERE file_id = " + Integer.parseInt(str[0]);
 
-                SqlUtils.executeUpdate(wdkModel, dataSource, sql);
+                SqlUtils.executeUpdate(dataSource, sql); 
             }
         } finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
-    private void setInvisibleComment(String previousCommentId)
-            throws SQLException, WdkModelException, WdkUserException {
+    private void setInvisibleComment(String previousCommentId) throws SQLException,
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
         ResultSet rs = null;
 
-        try {
+        try { 
             String sql = "UPDATE " + commentSchema + "comments "
-                    + " SET is_visible = 0" + " WHERE comment_id = '"
-                    + previousCommentId + "'";
+                   + " SET is_visible = 0" 
+                   + " WHERE comment_id = '" + previousCommentId + "'";
 
-            SqlUtils.executeUpdate(wdkModel, dataSource, sql);
+            SqlUtils.executeUpdate(dataSource, sql); 
         } finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
-    private void updatePrevCommentId(String previousCommentId, int commentId)
-            throws SQLException, WdkModelException, WdkUserException {
+    private void updatePrevCommentId(String previousCommentId, int commentId) throws SQLException,
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
         ResultSet rs = null;
 
-        try {
+        try { 
             String sql = "UPDATE " + commentSchema + "comments "
-                    + " SET prev_comment_id = '" + previousCommentId + "'"
-                    + " WHERE comment_id = " + commentId;
+                   + " SET prev_comment_id = '" + previousCommentId + "'"
+                   + " WHERE comment_id = " + commentId;
 
-            SqlUtils.executeUpdate(wdkModel, dataSource, sql);
+            SqlUtils.executeUpdate(dataSource, sql); 
         } finally {
             SqlUtils.closeResultSet(rs);
         }
-    }
+    } 
 
     private void saveAssociatedStableIds(int commentId,
             String[] associatedStableIds) throws SQLException,
-            WdkModelException, WdkUserException {
+            WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -587,10 +579,9 @@ public class CommentFactory {
      * @param comment
      * @throws SQLException
      * @throws WdkModelException
-     * @throws WdkUserException
      */
     private void saveExternalDbs(int commentId, Comment comment)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException, WdkModelException {
         String commentSchema = config.getCommentSchema();
         // String dblink = config.getProjectDbLink();
         // String stableId = comment.getStableId();
@@ -810,8 +801,8 @@ public class CommentFactory {
                 comment.addTargetCategoryNames(names.toArray(new String[names.size()]));
 
                 int[] tid = new int[ids.size()];
-                for (int i = 0; i < ids.size(); i++) {
-                    tid[i] = ids.get(i).intValue();
+                for(int i = 0; i < ids.size(); i++) {
+                  tid[i] = ids.get(i).intValue();
                 }
                 comment.setTargetCategoryIds(tid);
             }
@@ -1048,8 +1039,7 @@ public class CommentFactory {
 
     public Comment[] queryComments(String email, String projectName,
             String stableId, String conceptual, String reviewStatus,
-            String keyword, String commentTargetId) throws WdkModelException,
-            WdkUserException {
+            String keyword, String commentTargetId) throws WdkModelException {
         DataSource dataSource = platform.getDataSource();
 
         StringBuffer where = new StringBuffer();
@@ -1110,7 +1100,7 @@ public class CommentFactory {
         List<Comment> comments = new ArrayList<Comment>();
         ResultSet rs = null;
         try {
-            rs = SqlUtils.executeQuery(wdkModel, dataSource, sql.toString());
+            rs = SqlUtils.executeQuery(dataSource, sql.toString());
             while (rs.next()) {
                 int commentId = rs.getInt("comment_id");
                 Comment comment = getComment(commentId);
@@ -1121,7 +1111,7 @@ public class CommentFactory {
         } finally {
             SqlUtils.closeResultSet(rs);
 
-            // print connection status
+            // print connection status 
             printStatus();
         }
         Comment[] array = new Comment[comments.size()];
@@ -1130,8 +1120,7 @@ public class CommentFactory {
         return array;
     }
 
-    public void deleteComment(String email, String commentId)
-            throws WdkModelException, WdkUserException {
+    public void deleteComment(String email, String commentId) throws WdkModelException {
         String commentSchema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
 
@@ -1139,9 +1128,10 @@ public class CommentFactory {
         try {
             // update comments table set is_visible = 0
             String sql = "UPDATE " + commentSchema + "comments "
-                    + "SET is_visible = 0 " + "WHERE comment_id = '"
-                    + commentId + "'" + "  AND email = '" + email + "'";
-            SqlUtils.executeUpdate(wdkModel, dataSource, sql);
+                    + "SET is_visible = 0 "
+                    + "WHERE comment_id = '" + commentId + "'"
+                    + "  AND email = '" + email + "'";
+            SqlUtils.executeUpdate(dataSource, sql);
 
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
@@ -1153,17 +1143,19 @@ public class CommentFactory {
         }
     }
 
-    public ArrayList<MultiBox> getMultiBoxData(String nameCol, String valueCol,
-            String table, String condition) {
-
-        ArrayList<MultiBox> list = new ArrayList<MultiBox>();
+    public ArrayList getMultiBoxData(String nameCol, 
+                                     String valueCol, 
+                                     String table, 
+                                     String condition) {
+        
+        ArrayList list = new ArrayList();
         ResultSet rs = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT " + nameCol + "," + valueCol);
+        sql.append("SELECT " + nameCol + "," +  valueCol);
         sql.append(" FROM  " + config.getCommentSchema() + table);
         if (condition != null) {
-            sql.append(" WHERE " + condition);
+          sql.append(" WHERE " + condition);
         }
 
         MultiBox multiBox = null;
@@ -1176,8 +1168,8 @@ public class CommentFactory {
             while (rs.next()) {
                 String name = rs.getString(nameCol);
                 int value = rs.getInt(valueCol);
-                multiBox = new MultiBox(name, value + "");
-                list.add(multiBox);
+                multiBox = new MultiBox(name, value+"");
+                list.add(multiBox); 
             }
             return list;
         } catch (Exception e) {
@@ -1185,9 +1177,10 @@ public class CommentFactory {
             return null;
         } finally {
             SqlUtils.closeResultSet(rs);
-            // printStatus();
+            //printStatus();
         }
     }
+
 
     public CommentConfig getCommentConfig() {
         return config;

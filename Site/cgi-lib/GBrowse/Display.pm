@@ -441,8 +441,6 @@ sub chipColor {
   my ($a) = $f->get_tag_values('Antibody');
   my ($t) = $f->get_tag_values('Treatment');
   my ($r) = $f->get_tag_values('Rep');
-  my ($g) = $f->get_tag_values('Genotype');
-  my ($anls) = $f->get_tag_values('Analysis');
 
   return '#000080' if($a eq 'CenH3_H3K9me2');
   return '#B0E0E6' if($a eq 'CenH3');
@@ -455,27 +453,7 @@ sub chipColor {
   return '#4B0082' if($t =~ /DMSO/ );
   return '#F08080' if($t =~ /FR235222/ );
 
-  #return '#175487' if ($g =~ /wild_type/i && ($a =~ /H3K/i || $a =~ /H4K/i));
-  #return '#54B5B5' if ($g =~ /sir2KO/i && ($a =~ /H3K/i || $a =~ /H4K/i));
-
-  return '#0A7D8C' if ($g =~ /wild_type/i && ($a =~ /H3K/i || $a =~ /H4K/i));
-  return '#FF7C70' if ($g =~ /sir2KO/i && ($a =~ /H3K/i || $a =~ /H4K/i));
-
-  return '#00C800' if($anls =~ /replicate/i && $r =~ /replicate1/i);
-  return '#FA9600' if($anls =~ /replicate/i && $r =~ /replicate2/i);
-  return '#884C00' if($anls =~ /replicate/i && $r =~ /replicate3/i);
-
-  return '#B22222' if($anls =~ /early_log/i);
-  return '#4682B4' if($anls =~ /stationary/i);
-
-  return '#00C800' if($a =~ /H3K4me3/i);
-  return '#FA9600' if($a =~ /H3K9Ac/i);
-  return '#57178F' if($a =~ /H3K9me3/i );
-  return '#E6E600' if($a =~ /H3/i );
-  return '#F00000' if($a =~ /H4K20me3/i);
-
-  return '#B84C00';
-}
+} 
 
 
 sub ChromosomeFgcolor {
@@ -536,10 +514,9 @@ sub snpHeight {
 }
 
 sub peakHeight {
-  my ($f,$addBase) = @_;
+  my $f = shift;
   my $score = $f->score;
-  return $score unless $addBase;
-  return (2 + $score);
+  return $score; 
 }
 
 sub heightBySOTerm {

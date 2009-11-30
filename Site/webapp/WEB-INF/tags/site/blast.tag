@@ -193,8 +193,11 @@
             
             <c:set var="isHidden" value="${qP.isVisible == false}"/>
             <c:set var="isReadonly" value="${qP.isReadonly == true}"/>
+    
                 <c:if test="${!isHidden}">
+                        <c:if test="${!fn:containsIgnoreCase(pNam,'organism')}">
                 	        <div class="htmltooltip" id="help_${pNam}_tip">${qP.help}</div>
+                        </c:if>
                 </c:if>
             
         </c:forEach>
@@ -396,7 +399,9 @@
             <c:set var="isReadonly" value="${qP.isReadonly == true}"/>
     
                 <c:if test="${!isHidden}">
+                        <c:if test="${!fn:containsIgnoreCase(pNam,'organism')}">
                 	        <div class="htmltooltip" id="help_${pNam}_tip">${qP.help}</div>
+                        </c:if>
                 </c:if>
             
         </c:forEach>

@@ -19,10 +19,6 @@
     <param-name>wdkAlwaysGoToSummary_param</param-name>
     <param-value>yes</param-value>
   </context-param>
-  <context-param>
-    <param-name>wdkCustomViewDir_param</param-name>
-    <param-value>/customPages/</param-value>
-  </context-param>
   <listener>
     <listener-class>org.gusdb.wdk.controller.ApplicationInitListener</listener-class>
   </listener>
@@ -36,12 +32,6 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>wdkEuPathDbBrc</servlet-name>
-    <url-pattern>/webservices/*</url-pattern>
-  </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>wdkEuPathDbBrc</servlet-name>
     <url-pattern>*.do</url-pattern>

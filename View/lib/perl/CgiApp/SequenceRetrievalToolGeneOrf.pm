@@ -205,7 +205,7 @@ sub mapGeneFeatureSourceIds {
     }
 
     unless($best) {
-      my $sql = "select source_id from apidb.geneattributes where lower(source_id) = lower(?)";
+      my $sql = "select source_id from dots.GENEFEATURE where lower(source_id) = lower(?)";
       my $sh = $dbh->prepare($sql);
 
       $sh->execute($in);

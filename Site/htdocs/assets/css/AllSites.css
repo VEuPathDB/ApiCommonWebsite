@@ -1,15 +1,64 @@
 
 @import url("reset.css");	
 
-
-
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       Stylesheet for styles that are the same across all sites 
      Definitions here get overriden by entries in (project).css
      (after the order set up in header.tag)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+#strat-instructions {
+	background-color:#EDEDED;
+	width:150px;
+	height:100px;
+	position:absolute;
+	top:10px;
+	left:93px;
+	text-align:center;
+	border-color: #ffffff #cccccc #666677 #aaaaaa;
+	border-style: solid;
+ 	border-width: 2px;
+	font-size:11pt;
+	padding:0 5px 0 5px;
+}
+
+#strat-instructions img#ns-arrow{
+	position:relative;
+	top:-57px;
+	margin: 0 0 -56px 0;
+	height:94px;
+}
+
+#strat-instructions-2 {
+	background-color:#EDEDED;
+	border-color:#FFFFFF #CCCCCC #666677 #AAAAAA;
+	border-style:solid;
+	border-width:2px;
+	font-size:11pt;
+	height:100px;
+	left:66px;
+	padding:0 5px;
+	position:absolute;
+	text-align:center;
+	top:10px;
+	width:187px;
+}
+
+#strat-instructions-2 img#ns-arrow {
+	height:94px;
+	left:29px;
+	margin:0 0 -79px;
+	position:relative;
+	top:-70px;
+}
+
+#strat-instructions-2 img#bs-arrow {
+	height:94px;
+	left:73px;
+	margin:0 0 -79px;
+	position:relative;
+	top:-20px;
+}
 
 div.htmltooltip{
   background-color:#FFFFC3;
@@ -44,9 +93,7 @@ table.threecolumn td {
 }
 
 table.paneltoggle {
-	font-size:110%;
-	border-top:2px solid white;
-        background:#cccccc;
+        background:#dddddd;
         margin-bottom:0px;
         padding-top: 2.5px;
         padding-right: 3px;
@@ -60,39 +107,8 @@ td {
 
 
 /* used by Expression graphs (fix for text alignment bug) */
-td.centered {
+.centered {
        vertical-align: middle;
-}
-td.top {
-       vertical-align: top;
-}
-
-
-table.mytableStyle {
-	empty-cells:show;
-	border-width:0.5px;
-	border-style:solid;	   /* solid, none, inset, outset, dashed, solid, */
-	border-color:black;
-	border-collapse:collapse;  /*separate */
-/*	border-spacing:2px;  */    /* only makes sense when border-collapse is separate
-	table-layout: auto;        /* fixed */
-}
-tr.mytdStyle {
-	text-align:center;
-
-}
-tr.mythStyle {
-	background-color:lightgrey;
-	text-align:center;
-	font-weight:bold;
-}
-td.mythStyle,td.mytdStyle {
-	vertical-align:middle;
-	border-width:0.5px;
-	border-style:inset;
-	border-color:gray;
-	-moz-border-radius:0px;
-	padding:3px;
 }
 
 
@@ -354,11 +370,7 @@ ul#strategy_tabs {
 }
 
 .toggle {display: none;}
-.boggle {
-	border: 0.5px solid grey;
-	margin: 6px 20px 6px 20px; 
-	display: none;
-	}
+.boggle {margin: 6px 20px 6px 20px; display: none;}
 
 
 
@@ -755,7 +767,7 @@ img.switch,img.plus-minus {
 	margin:0pt;
 	padding:0pt;
 	padding-top: 6px;
-	width: 9.5em;            /* supports up to 9999 searches */
+	width: 10em;
 	border-top-width: 0px;
 	border-right-width: 2px;
 	border-bottom-width: 0px;
@@ -1268,45 +1280,9 @@ tr.lines td, tr.linesalt td {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    =RED BUTTON
+    =RED BUTTON   now provided by WDK  in wdkSite.css
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-
-a.redbutton {
-   color: #FFFFFF;
-/*   display: block;*/
-/*   float: left;*/
-   font: normal 13px arial, sans-serif;
-   margin-right: 6px;
-   padding-right: 3px; /* sliding doors padding */
-   text-decoration: none;
-   background-attachment: scroll;
-   background-color: transparent;
-   background-position: right top;   
-   width: 115px;
-}
-
-a.redbutton span {
-	color: #FFFFFF;
-	display: block;
-   line-height: 13px;
-   padding: 15px 23px 12px 18px;
-   text-decoration: none;
-   background-color: transparent;
-   background-image: url(../images/redboxb.gif);
-   background-repeat: no-repeat;
-}
-
-a.redbutton:active {
-	background-position: bottom right;
-   color: #cecece;
-   outline: none; /* hide dotted outline in Firefox */
-}
-
-a.redbutton:active span {
-   background-position: bottom left;
-   padding: 16px 23px 11px 18px; /* push text down 1px */
-}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 =WorkSpace Divs 
@@ -1605,7 +1581,7 @@ td.strat_inactive {
 
 /* used still in some tables in record pages */
 tr.rowMedium {
-    background-color: #efefef;
+    background-color: #DDDDDD;
     color: black;
     font-family: arial;
 	font-size: 10pt;
@@ -1637,18 +1613,18 @@ td.recordClassTitle{
     border-style:solid;
 }
 
-/* used in gene record pages for section titles (top/bottom border look */
+
 tr.headerRow {
 	background: #EFEFEF;
 }
+
+
+/* used in gene record pages for section titles (top/bottom border look */
 tr.headerRow  td,th {
-   border-bottom:1px solid grey;
-   border-right:1px solid grey;
-/*   border-style:solid; */
+   border-width:2px 0;
+   border-style:solid;
    padding: 3px;
    vertical-align: middle;
-   text-align: center;
-   white-space:nowrap;
 }
 
 .vennFilter {

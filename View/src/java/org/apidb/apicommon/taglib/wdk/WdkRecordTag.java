@@ -18,46 +18,47 @@ Usage in a JSP document:
      recordKey="generec" source_id="TGME49_039250" project_id='ToxoDB' />
   <c:set var="geneattrs" value="${generec.attributes}"/>
   ${generec['primaryKey'].value}
- **/
+**/
 
 package org.apidb.apicommon.taglib.wdk;
 
+import org.apidb.apicommon.taglib.wdk.WdkTagBase;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.DynamicAttributes;
+import javax.servlet.jsp.JspException;
 
 import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.RecordClassBean;
-import org.gusdb.wdk.model.jspwrap.UserBean;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.WdkModelException;
 
-public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
+public class WdkRecordTag extends WdkTagBase 
+                       implements DynamicAttributes {
 
     private String name;
     private String projectID;
     private String primaryKey;
     private String recordKey;
-
-    private Map<String, String> dynamicAttrs;
-
+    
+    private LinkedHashMap dynamicAttrs;
+    
     public WdkRecordTag() {
-        dynamicAttrs = new LinkedHashMap<String, String>();
+        dynamicAttrs = new LinkedHashMap();
     }
-
+    
     public void doTag() throws JspException {
         super.doTag();
-
+        
         RecordBean wdkRecord = getRecord();
         if (recordKey == null) recordKey = CConstants.WDK_RECORD_KEY;
         this.getRequest().setAttribute(recordKey, wdkRecord);
     }
 
     private RecordBean getRecord() throws JspException {
-
+    
         setMinimumRecordKeys();
 
         try {
@@ -67,20 +68,16 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
             Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
 
             for (String column : pkColumns) {
-                String value = dynamicAttrs.get(column);
+                String value = (String) dynamicAttrs.get(column);
                 if (value == null)
-                    throw new WdkModelException("The required primary key "
-                            + "value " + column + " for recordClass "
+                    throw new WdkModelException("The required primary key value "
+                            + column + " for recordClass "
                             + wdkRecordClass.getFullName() + " is missing.");
                 pkValues.put(column, value);
             }
 
-            // use the system user
-            // not sure how these tags are used.
-            UserBean user = wdkModelBean.getSystemUser();
-            RecordBean wdkRecord = new RecordBean(user, wdkRecordClass,
-                    pkValues);
-
+            RecordBean wdkRecord = new RecordBean(wdkRecordClass, pkValues);
+            
             return wdkRecord;
 
         } catch (WdkUserException wue) {
@@ -96,7 +93,7 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
@@ -108,23 +105,23 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
     public void setRecordKey(String recordKey) {
         this.recordKey = recordKey;
     }
-
-    public void setDynamicAttribute(String uri, String localName, Object value)
-            throws JspException {
-        dynamicAttrs.put(localName, (String) value);
+    
+    public void setDynamicAttribute(String uri, 
+        String localName, Object value ) throws JspException {
+        dynamicAttrs.put(localName, value);
     }
-
-    /**
-     * The WDK requires certain key values for all records but those values
-     * don't necessarily have meaning for some records. E.g. a primaryKey (aka
-     * source_id, aka id) is not used by UtilityRecordClasses.SiteInfo so we
-     * allow that to be optional in this API - set it to a space.
-     * 
-     * project_id is required but can typically be obtained from the model.
-     * 
-     * Also, this method masks the changing WDK API and proves backward
-     * compatibility when possible.
-     **/
+    
+    /** 
+        The WDK requires certain key values for all records but those values
+        don't necessarily have meaning for some records. E.g. a primaryKey 
+        (aka source_id, aka id) is not used by UtilityRecordClasses.SiteInfo 
+         so we allow that to be optional in this API - set it to a space.
+         
+         project_id is required but can typically be obtained from the model.
+         
+         Also, this method masks the changing WDK API and proves
+         backward compatibility when possible.
+    **/
     private void setMinimumRecordKeys() {
         if (projectID == null) projectID = wdkModelBean.getProjectId();
         if (primaryKey == null) primaryKey = " ";

@@ -175,29 +175,24 @@
 
   <target name="loadresourcesToDatasources">
     <property name="loadresources" value="${targetDir}/lib/xml/loadresources"/>
-    <property name="cache" value="${targetDir}/config/.cache/datasources"/>
-    <property name="datasources" value="${targetDir}/lib/xml/datasources"/>
-    <mkdir dir="${cache}"/>
-    <mkdir dir="${datasources}"/>
+    <mkdir dir="${targetDir}/lib/xml/datasources"/>
     <copy todir="${loadresources}">
       <fileset dir="${projectsDir}/ApiCommonData/Load/lib/xml">
         <include name="*Resources.xml"/>
       </fileset>
     </copy>
+    <mapper id="pubmedmapper" type="glob" 
+            from="*.xml" 
+            to="${targetDir}/lib/xml/datasources/*-pubmed.xml"/>
     <echo message="Running updateResourcesWithPubmed"/>
     <apply executable="${targetDir}/bin/updateResourcesWithPubmed" verbose="true">
-        <srcfile/>
-        <targetfile/>
         <fileset dir="${loadresources}">
           <include name="*Resources.xml"/>
         </fileset>
-        <mapper type="glob" from="*.xml" to="${cache}/*-pubmed.xml"/>
+        <redirector>
+            <outputmapper refid="pubmedmapper"/>
+        </redirector>
     </apply>
-    <copy todir="${datasources}">
-      <fileset dir="${cache}">
-        <include name="*-pubmed.xml"/>
-      </fileset>
-    </copy>
     <delete dir="${loadresources}"/>
   </target>
 
@@ -217,8 +212,13 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
+
+    <available file="${webappTargetDir}/WEB-INF/classes/logging.properties" property="juliLog.present"/>
+    <echo>julilog present: ${juliLog.present}</echo>
+    <antcall target="setJuliLog"/>
     
-    <available file="${webappTargetDir}/WEB-INF/classes/log4j.xml" property="log4j.present"/>
+    <available file="${webappTargetDir}/WEB-INF/classes/log4j.properties" property="log4j.present"/>
+    <echo>log4j present: ${log4j.present}</echo>
     <antcall target="setLog4j"/>
 
     <!-- replacement for dataPlotter file used to do expression graph -->
@@ -245,10 +245,16 @@
     
   </target>
 
+  <target name="setJuliLog" if="juliLog.present">
+    <dirname  property="webappDir" file="${webappTargetDir}"/>
+    <basename property="webapp" file="${webappDir}"/>
+    <replace file="${webappTargetDir}/WEB-INF/classes/logging.properties" token="@WEBAPP@" value="${webapp}"/>
+  </target>
+  
   <target name="setLog4j" if="log4j.present">
     <dirname  property="webappDir" file="${webappTargetDir}"/>
     <basename property="webapp" file="${webappDir}"/>
-    <replace file="${webappTargetDir}/WEB-INF/classes/log4j.xml" token="@WEBAPP@" value="${webapp}"/>
+    <replace file="${webappTargetDir}/WEB-INF/classes/log4j.properties" token="@WEBAPP@" value="${webapp}"/>
   </target>
   
 

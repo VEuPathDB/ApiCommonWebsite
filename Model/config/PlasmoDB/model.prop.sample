@@ -13,5 +13,3 @@ PROJECT_ID=PlasmoDB
 MERCATOR_OUTPUT_DIR=/var/www/PlasmoDB/plasmo.jbrestel/plasmo55-strains_mercator-MAVID
 CNDSRC_BIN=/files/cbil/software/bin
 PLASMO_BLAST_PATH=
-
-SITE_ADMIN_EMAIL = mheiges@uga.edu

@@ -1,48 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmlAnswer>
 
-
-<!--
-   <record>
-       <attribute name="headline"></attribute>
-       <attribute name="date"></attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="item">           
-         <![CDATA[
-          ]]>
-       </attribute>
-    </record>
---> 
- <record>
-       <attribute name="headline">EuPathDB published in
-Nucleic Acid Research
-</attribute>
-       <attribute name="date">16 November 2009 15:00</attribute>
-       <attribute name="tag">eupathpub</attribute>
-       <attribute name="item">           
-         <![CDATA[<body>
-<span style="font-weight: bold;">EuPathDB published in
-Nucleic Acid Research<br>
-</span><big><br>
-We are pleased to announce the publication of a paper providing an
-update on the EuPathDB genomic resourse. &nbsp;The paper entitled
-"EuPathDB: a portal to eukaryotic pathogen databases" is
-available <a
- href="http://nar.oxfordjournals.org/cgi/content/abstract/gkp941">here</a>
-as an advance access publication.</big><span
- style="font-weight: bold;"><br>
-<br>
-</span><span style="font-style: italic;">This
-article may be used to cite the TriTrypDB resource in your
-publications.
-&nbsp;To download this reference to your citation manager please
-click </span><a style="font-style: italic;"
- href="http://nar.oxfordjournals.org/cgi/citmgr?gca=nar;gkp941v1">here</a><span
- style="font-style: italic;">.</span>
-</body>
-          ]]>
-       </attribute>
-    </record>
 <record>
        <attribute name="headline">
          <![CDATA[
