@@ -1,0 +1,12 @@
+<table align="center" WIDTH='640' cellpadding='0' cellspacing='0'>
+<tr>
+<td align='right' width="20"><img src="$$icon$$"></td>
+<td ALIGN="center" valign="middle">
+<b><font face="Arial,Helvetica" size=+2>&nbsp;$$proj$$ PubMed and Entrez Updates&nbsp;</font></b>
+</td>
+</tr>
+<tr><td colspan="3">
+<!--#include virtual="/include/toolbar.html" -->
+</td>
+</tr>
+</table>

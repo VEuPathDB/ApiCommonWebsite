@@ -1,0 +1,38 @@
+#!/usr/bin/env perl
+
+use strict;
+use lib $ENV{GUS_HOME};
+use ApiCommonWebsite::Model::ModelConfig;
+use Data::Dumper;
+
+my $c = new ApiCommonWebsite::Model::ModelConfig($ARGV[0]);
+
+print '=' x 30, "\n";
+
+print 'dbiDsn '   . $c->getDbiDsn . "\n";
+print 'login '    . $c->getLogin . "\n";
+print 'password ' . $c->getPassword . "\n";
+
+print 'modelName ' . $c->getModelName . "\n";
+
+
+
+print "email subject: " . $c->getEmailSubject() . "\n";
+print "email subject: " . $c->emailSubject . "\n";
+print "webserviceUrl: " . $c->webServiceUrl . "\n";
+
+print 'login  ' . $c->getAppDb->getLogin . "\n";
+print 'login(back.compat.)  ' . $c->getLogin . "\n";
+print 'password  ' . $c->getAppDb->getPassword . "\n";
+print 'password(back.compat.)  ' . $c->getPassword . "\n";
+print 'app dbiDsn  ' . $c->getAppDb->getDbiDsn . "\n";
+print 'user dbiDsn  ' . $c->getUserDb->getDbiDsn . "\n";
+print 'dbiDsn(back.compat.)  ' . $c->getDbiDsn . "\n";
+print 'dbiDsn(via hash)  ' . $c->{appDb}->{dbiDsn} . "\n";;
+print 'connectstring(via hash)  ' . $c->{appDb}->{connectString} . "\n";;
+
+print 'showConnectionsDuration(via hash)  ' . $c->{appDb}->{showConnectionsDuration} . "\n";;
+
+print "c->userDb->login " . $c->appDb->login . "\n";
+
+print "c->appDb->dbiDsn: " . $c->appDb->dbiDsn . "\n";

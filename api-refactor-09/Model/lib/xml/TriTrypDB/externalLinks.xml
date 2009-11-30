@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<xmlAnswer>
+
+   <record>
+      <table name="communityLinks">
+        <row>
+          <attribute name="title">GeneDB</attribute>
+          <attribute name="url">http://www.genedb.org/</attribute>
+        </row>
+        <row>
+          <attribute name="title">EuPathDB</attribute>
+          <attribute name="url">http://www.EuPathDB.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">Seattle Biomedical Research Institute</attribute>
+          <attribute name="url">http://www.sbri.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">The Wellcome Trust</attribute>
+          <attribute name="url">http://www.wellcome.ac.uk/index.htm</attribute>
+        </row> 
+        <row>
+          <attribute name="title">Human African Trypanosomiasis</attribute>
+          <attribute name="url">http://www.who.int/trypanosomiasis_african/en/index.html</attribute>
+        </row> 
+        <row>
+          <attribute name="title">Chagas Disease - American Trypanosomiasis</attribute>
+          <attribute name="url">http://www.who.int/neglected_diseases/diseases/chagas/en/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">Leishmaniasis</attribute>
+          <attribute name="url">http://www.who.int/leishmaniasis/en/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">TrypsRU</attribute>
+          <attribute name="url">http://tryps.rockefeller.edu/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">WHO/TDR</attribute>
+          <attribute name="url">http://www.who.int/tdr/</attribute>
+        </row>
+        <row>
+          <attribute name="title">VSG-DB</attribute>
+          <attribute name="url">http://www.vsgdb.net/</attribute>
+        </row>
+        <row>
+          <attribute name="title">TrypanoFAN</attribute>
+          <attribute name="url">http://trypanofan.path.cam.ac.uk/trypanofan/main/</attribute>
+        </row>
+ 
+      </table>
+
+
+ 
+
+   </record>
+</xmlAnswer>
