@@ -8,9 +8,6 @@
 # only approved paths
 PATH=/usr/local/bin:/usr/bin:/bin
 
-GDD_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/R
-GDD_TAR_FILE=$( ls -C1 -t "$GDD_TAR_PATH"/GDD*.tgz | head -1 )
-
 unset R_HOME;
 
 # search for an R compiled for system architecture (e.g. i686, x86_64)
@@ -32,6 +29,23 @@ set_R_path() {
     echo "FATAL: Required R version for $arch was not found. I looked at " >&2
     echo "$binlist" >&2
     exit 1    
+}
+
+set_GDD_version() {
+    local gdd_tar_path="$PROJECT_HOME/ApiCommonWebsite/Site/doc/R"
+    local r_version=$($R_CMD --vanilla --slave < <(echo 'R.Version()$"svn rev"') | cut -d'"' -f2)
+
+    case $r_version in
+    # 2.5.1 or 2.6.1
+    '42083' | '43537')
+        GDD_TAR_FILE="$gdd_tar_path/GDD_0.1-7.tgz";;
+    # 2.10.0
+    '50208')
+        GDD_TAR_FILE="$gdd_tar_path/GDD_0.1-13.tar.gz";;
+    *)
+        echo "Unknown R version. Defaulting to latest tested GDD"
+        GDD_TAR_FILE="$gdd_tar_path/GDD_0.1-13.tar.gz";;
+    esac
 }
 
 get_install_paths() {
@@ -110,6 +124,7 @@ get_install_paths $1
 case "$2" in
     install)
         set_R_path
+        set_GDD_version
         install
         ;;
     *)
