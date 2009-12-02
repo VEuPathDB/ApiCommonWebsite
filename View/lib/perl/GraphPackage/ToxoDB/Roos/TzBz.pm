@@ -21,10 +21,10 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)',
+    ({rma => {profiles => ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions',
                            'expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions',
                            'expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions',
-                           'expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)'
+                           'expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions',
                           ],
               y_axis_label => 'RMA Value (log2)',
               x_axis_label => 'Hours',
@@ -34,10 +34,10 @@ sub init {
               default_y_min => 4,
               points_pch => $pch,
              },
-      pct => {profiles => ['expression profile percentiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)',
+      pct => {profiles => ['expression profile percentiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions',
                            'expression profile percentiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions',
                            'expression profile percentiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions',
-                           'expression profile percentiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)'
+                           'expression profile percentiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions'
                           ],
               y_axis_label => 'percentile',
               x_axis_label => 'Hours',
