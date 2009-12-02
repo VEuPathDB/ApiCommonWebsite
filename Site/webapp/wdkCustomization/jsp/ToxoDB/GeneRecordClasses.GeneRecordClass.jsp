@@ -1,4 +1,5 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -50,32 +51,6 @@
  <tr>
   <td bgcolor=white valign=top>
 
-
-
-<table width="100%">
-<tr>
-  <td align="center"><a href="#Annotation">Annotation</a>
-     <img src="<c:url value='/images/arrow.gif'/>">
-  </td>
-
-  <td align="center"><a href="#Protein">Protein</a>
-     <img src="<c:url value='/images/arrow.gif'/>">
-  </td>
-
-  <td align="center"><a href="#Expression">Expression</a>
-     <img src="<c:url value='/images/arrow.gif'/>">
-  </td>
-
-  <td align="center"><a href="#Sequence">Sequence</a>
-     <img src="<c:url value='/images/arrow.gif'/>">
-  </td>
-
-</tr>
-</table>
-
-
-<hr>
-
 <%-- quick tool-box for the record --%>
 <div id="record-toolbox">
   <ul>
@@ -92,11 +67,40 @@
   </ul>
 </div>
 
+<a name = "top">
 <h2>
 <center>
 ${id} <br /> ${prd}
 </center>
 </h2>
+</a>
+<%----------------------------------------------------------%>
+
+<table width="100%"  style="font-size:150%;background-image: url(/assets/images/${projectId}/footer.png);">
+<tr>
+  <td align="center" style="padding:6px;"><a href="#Annotation">Annotation</a>
+     <img src="<c:url value='/images/arrow.gif'/>">
+  </td>
+
+  <td align="center"><a href="#Protein">Protein</a>
+     <img src="<c:url value='/images/arrow.gif'/>">
+  </td>
+
+  <td align="center"><a href="#Expression">Expression</a>
+     <img src="<c:url value='/images/arrow.gif'/>">
+  </td>
+
+  <td align="center"><a href="#Sequence">Sequence</a>
+     <img src="<c:url value='/images/arrow.gif'/>">
+  </td>
+</tr>
+</table>
+
+
+<hr>
+<%----------------------------------------------------------%>
+
+
 <c:set var="attr" value="${attrs['overview']}" />
 <site:panel 
     displayName="${attr.displayName}"
@@ -122,7 +126,7 @@ ${id} <br /> ${prd}
 </c:if>
 
 <c:set var="attribution">
-Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,TgondiiRHChromosome1,TgondiiApicoplast,TIGRGeneIndices_Tgondii,dbEST,ESTAlignments_Tgondii,NeosporaChromosomesSanger,NeosporaUnassignedContigsSanger,TIGRGeneIndices_NeosporaCaninum
+Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,TgondiiRHChromosome1,TgondiiApicoplast,TIGRGeneIndices_Tgondii,dbEST,ESTAlignments_Tgondii,N.caninum_chromosomes,NeosporaUnassignedContigsSanger,TIGRGeneIndices_NeosporaCaninum
 </c:set>
 
 
@@ -137,7 +141,7 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
     
     <c:set var="labels" value="${fn:replace(tracks, '+', ';label=')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/toxodb/?name=${sequence_id}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/toxodb/?name=${sequence_id}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
@@ -173,8 +177,17 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
    <c:set var="revCompOn" value="1"/>
   </c:if>
 
+<c:set var="mercatorAlign">
   <site:mercatorMAVID cgiUrl="/cgi-bin" projectId="${projectId}" revCompOn="${revCompOn}"
                       contigId="${sequence_id}" start="${start}" end="${end}" bkgClass="secondary2" cellPadding="0"/>
+</c:set>
+
+<wdk:toggle isOpen="false"
+  name="mercatorAlignment"
+  displayName="Multiple Sequence Alignment of ${sequence_id} across available genomes"
+  content="${mercatorAlign}"
+  attribution=""/>
+
 </c:if>
 
 <site:pageDivider name="Annotation"/>
@@ -399,6 +412,8 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/toxodbaa/?name=${wd
 
 <c:if test="${organism_full eq 'Toxoplasma gondii ME49'}">
 
+ <%-- ------------------------------------------------------------------ --%>
+
   <c:set var="secName" value="Roos::ToxoLineages::Ver1"/>
   <c:set var="imgId" value="img${secName}"/>
   <c:set var="imgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&id=${id}&model=toxo&fmt=png"/>
@@ -412,17 +427,19 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/toxodbaa/?name=${wd
   <c:set var="expressionContent">
     <table>
       <tr>
-        <td rowspan="2">
+        <td>
               <img id="${imgId}" src="<c:url value="/images/spacer.gif"/>">
         </td>
 
-        <c:if test="${attrs['graph_archetypal'].value != 0}">
-        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="1"></td>
+        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
 
-	<td valign=top><image src="<c:url value="/images/percentile_lineages.PNG"/>">  </td>
+	<td class="top">  
+          <site:dataTable tblName="ToxoStrainsMicroarrayPercentile" />
+
+        </td>
 
         <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
-        <td>
+        <td class="centered">
           <div class="small">
              	<!-- DESCRIPTION?? -->
 The percentile graph on the right represents the percentiles of each expression value across the
@@ -430,10 +447,74 @@ dymanic range of the microarray log(2) intensities.
 experimental condition.
           </div>
         </td>
-        </c:if>
 
-        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>
       </tr>
+    </table>
+
+
+  </c:set>
+
+
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
+               content="${expressionContent}" noData="${noData}"
+               imageId="${imgId}" imageSource="${imgSrc}"
+               displayName="Tachyzoite differential expression profiling of three archetypal T. gondii lineages"
+               attribution="Tg_3_Archetypal_Lineages_ExpressionData"/>
+
+
+ <%-- ------------------------------------------------------------------ --%>
+
+  <c:set var="secName" value="Roos::TzBz"/>
+  <c:set var="imgId" value="img${secName}"/>
+
+  <c:set var="isOpen" value="true"/>
+
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp=_LEGEND,"/>
+  <c:set var="imgSrc" value="${preImgSrc}rma"/>
+
+  <c:set var="noData" value="false"/>
+  <c:if test="${attrs['graph_bradyzoite'].value == 0}">
+    <c:set var="noData" value="true"/>
+  </c:if>
+
+  <c:set var="expressionContent">
+    <table>
+    <FORM NAME="RoosBradySort">
+      <tr>
+        <td rowspan="2">
+              <img id="${imgId}" src="<c:url value="/images/spacer.gif"/>">
+        </td>
+
+        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
+
+        <td class="centered">
+          <div class="small">Two strains of <i>T. gondii</i> parasites were used in this 
+           analysis: type II Prugniaud lacking HXGPRT, and type I RH lacking HXGPRT and 
+           UPRT. A total of three experimental conditions were used to promote in vitro
+           bradyzoite differentiation: Alkaline conditions (D10 media adjusted to
+           pH 8.2), CO<sub>2</sub> starvation (MEM with 10% FBS, 25mM HEPES, pH 7.2 grown
+           without CO<sub>2</sub>), and sodium nitroprusside (SNP) exposure (D10 with 100uM
+           SNP). All conditions were applied 6hr post-inoculation and each media
+           was exchanged every twelve hours post-inoculation.
+            <br><br><br>
+            <b>x-axis (both graphs)</b><br>
+            Time in hours<br>
+            <br><br>
+            <b>y-axis</b><br>
+            RMA Normalized Values (log base 2 generated with RMAExpress v1.0.3) or expression percentile value.
+            <br><br>
+          </div>
+<SELECT NAME="RoosBradyList"
+OnChange="javascript:updateImage('${imgId}', RoosBradySort.RoosBradyList.options[selectedIndex].value)">
+<OPTION SELECTED="SELECTED" VALUE="${preImgSrc}rma">RMA</OPTION>
+<OPTION VALUE="${preImgSrc}pct">percentile</OPTION>
+<OPTION VALUE="${preImgSrc}rma,pct">both</OPTION>
+</select>
+
+        </td>
+
+      </tr>
+</FORM>
     </table>
   </c:set>
 
@@ -441,11 +522,184 @@ experimental condition.
   <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
-               displayName="Expression profiling of three archetypal T. gondii lineages"
-               attribution="Tg_3_Archetypal_Lineages_ExpressionData"/>
+               displayName="Bradyzoite Differentiation (Multiple 6-hr Time Points)"
+               attribution="Brady_Time_Series"/>
 
-<wdk:wdkTable tblName="ToxoStrainsMicroarrayPercentile" isOpen="true"
-                   attribution="Tg_3_Archetypal_Lineages_ExpressionData"/>
+
+
+ <%-- ------------------------------------------------------------------ --%>
+
+  <c:set var="secName" value="Boothroyd::TzBz"/>
+  <c:set var="imgId" value="img${secName}"/>
+  <c:set var="isOpen" value="true"/>
+
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp="/>
+  <c:set var="imgSrc" value="${preImgSrc}rma"/>
+
+  <c:set var="noData" value="false"/>
+  <c:if test="${attrs['graph_bradyzoite'].value == 0}">
+    <c:set var="noData" value="true"/>
+  </c:if>
+
+  <c:set var="expressionContent">
+    <table>
+    <FORM NAME="BoothroydBradySort">
+      <tr>
+        <td rowspan="2">
+              <img id="${imgId}" src="<c:url value="/images/spacer.gif"/>">
+        </td>
+
+        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
+
+        <td class="centered">
+          <div class="small">
+            <i>T. gondii</i> Type II Prugniaud parasites lacking HXGPRT were inoculated
+            at and MOI of 2 and differentiated in RPMI 1640 lacking sodium bicarbonate,
+            low FCS, and high pH (8.1).  RNA was collected from either tachyzoite (2 days 
+            post inoculation before monolayer lysis) or bradyzoite cultures (2-days, 
+            3-days and 4-days of induction).
+            <br><br><br>
+            <b>x-axis (both graphs)</b><br>
+            Time in days<br>
+            <br><br>
+            <b>y-axis</b><br>
+            RMA Normalized Values (log base 2 generated with RMAExpress v1.0.3) or expression percentile value.
+            <br><br>
+          </div>
+<SELECT NAME="BoothroydBradyList"
+OnChange="javascript:updateImage('${imgId}', BoothroydBradySort.BoothroydBradyList.options[selectedIndex].value)">
+<OPTION SELECTED="SELECTED" VALUE="${preImgSrc}rma">RMA</OPTION>
+<OPTION VALUE="${preImgSrc}pct">percentile</OPTION>
+<OPTION VALUE="${preImgSrc}rma,pct">both</OPTION>
+</SELECT>
+        </td>
+
+      </tr>
+    </FORM>
+    </table>
+  </c:set>
+
+
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
+               content="${expressionContent}" noData="${noData}"
+               imageId="${imgId}" imageSource="${imgSrc}"
+               displayName="Bradyzoite Differentiation (3-day time series)"
+               attribution="Matt_Tz-Bz_Time_Series"/>
+
+ <%-- ------------------------------------------------------------------ --%>
+
+  <c:set var="secName" value="Dzierszinski::TzBz"/>
+  <c:set var="imgId" value="img${secName}"/>
+  <c:set var="isOpen" value="true"/>
+
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp=_LEGEND,"/>
+  <c:set var="imgSrc" value="${preImgSrc}rma"/>
+
+  <c:set var="noData" value="false"/>
+  <c:if test="${attrs['graph_bradyzoite'].value == 0}">
+    <c:set var="noData" value="true"/>
+  </c:if>
+
+  <c:set var="expressionContent">
+    <table>
+    <FORM NAME="DzierszinskiBradySort">
+      <tr>
+        <td rowspan="2">
+              <img id="${imgId}" src="<c:url value="/images/spacer.gif"/>">
+        </td>
+
+        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
+
+        <td class="centered">
+          <div class="small">Two strains of <i>T. gondii</i> parasites were used in this 
+           analysis: type II Prugniaud lacking HXGPRT, and type III VEG.  CO<sub>2</sub> 
+           starvation  (MEM with 10% FBS, 25mM HEPES, pH 7.2 grown without CO<sub>2</sub>) 
+           was used to induce in vitro bradyzoite differentiation.
+            <br><br><br>
+            <b>x-axis (both graphs)</b><br>
+            Time in days<br>
+            <br><br>
+            <b>y-axis</b><br>
+            RMA Normalized Values (log base 2 generated with RMAExpress v1.0.3) or expression percentile value.
+            <br><br>
+          </div>
+<SELECT NAME="DzierszinskiBradyList"
+OnChange="javascript:updateImage('${imgId}', DzierszinskiBradySort.DzierszinskiBradyList.options[selectedIndex].value)">
+<OPTION SELECTED="SELECTED" VALUE="${preImgSrc}rma">RMA</OPTION>
+<OPTION VALUE="${preImgSrc}pct">percentile</OPTION>
+<OPTION VALUE="${preImgSrc}rma,pct">both</OPTION>
+</SELECT>
+        </td>
+
+      </tr>
+    </FORM>
+    </table>
+  </c:set>
+
+
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
+               content="${expressionContent}" noData="${noData}"
+               imageId="${imgId}" imageSource="${imgSrc}"
+               displayName="Bradyzoite Differentiation (Extended time series)"
+               attribution="Brady_Time_Series"/>
+
+
+ <%-- ------------------------------------------------------------------ --%>
+
+  <c:set var="secName" value="White::TzBz"/>
+  <c:set var="imgId" value="img${secName}"/>
+  <c:set var="isOpen" value="true"/>
+
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp="/>
+  <c:set var="imgSrc" value="${preImgSrc}rma"/>
+
+  <c:set var="noData" value="false"/>
+  <c:if test="${attrs['graph_bradyzoite'].value == 0}">
+    <c:set var="noData" value="true"/>
+  </c:if>
+
+  <c:set var="expressionContent">
+    <table>
+    <FORM NAME="WhiteBradySort">
+      <tr>
+        <td rowspan="2">
+              <img id="${imgId}" src="<c:url value="/images/spacer.gif"/>">
+        </td>
+
+        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
+
+        <td class="centered">
+          <div class="small">Bradyzoite genes were induced following a 48 hour treatment 
+           with compound 1 or alkaline condition.  Strains used in this study:  Type I-GT1,
+           Type II-Me49B7 and Type III-CTG.
+            <br><br><br>
+            <b>y-axis</b><br>
+            RMA Normalized Values (log base 2 generated with RMAExpress v1.0.3) or expression percentile value.
+            <br><br>
+          </div>
+<SELECT NAME="WhiteBradyList"
+OnChange="javascript:updateImage('${imgId}', WhiteBradySort.WhiteBradyList.options[selectedIndex].value)">
+<OPTION SELECTED="SELECTED" VALUE="${preImgSrc}rma">RMA</OPTION>
+<OPTION VALUE="${preImgSrc}pct">percentile</OPTION>
+<OPTION VALUE="${preImgSrc}rma,pct">both</OPTION>
+</SELECT>
+        </td>
+
+      </tr>
+    </FORM>
+    </table>
+  </c:set>
+
+
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
+               content="${expressionContent}" noData="${noData}"
+               imageId="${imgId}" imageSource="${imgSrc}"
+               displayName="Bradyzoite Differentiation (Single Time-Point)"
+               attribution="Compound1_pH_avg_pct"/>
+
+ <%-- ------------------------------------------------------------------ --%>
+
+
 
 </c:if>
 <c:if test="${organism_full eq 'Toxoplasma gondii GT1' || organism_full eq 'Toxoplasma gondii VEG'}">
@@ -480,20 +734,15 @@ experimental condition.
              content="${transcriptSequenceContent}" isOpen="false"/>
 
 <!-- genomic sequence -->
-<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
-<c:set var="i" value="0"/>
-<c:forEach var="row" items="${geneModelTable}">
-  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
-  <c:set var="i" value="${i +  1}"/>
-</c:forEach>
-
-<c:set var="seq">
- <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
+<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
+<c:set var="genomicSequenceContent">
+  <pre><w:wrap size="60">${genomicSequence.value}</w:wrap></pre>
+  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
 </c:set>
+
 <wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${seq}" />
+    content="${genomicSequenceContent}" />
 
 <c:if test="${isCodingGene}">
 <!-- CDS -->

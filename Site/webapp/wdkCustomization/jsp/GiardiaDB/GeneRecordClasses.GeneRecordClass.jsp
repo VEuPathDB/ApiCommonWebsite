@@ -1,4 +1,5 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -92,7 +93,7 @@ ${id} <br /> ${prd}
 
 <c:choose>
   <c:when test='${organismFull eq "Giardia lamblia ATCC 50803"}'>
-     <c:set var="assemblage" value="<b>Assemblage A isolate WGS</b>"/>
+     <c:set var="assemblage" value="<b>Assemblage A isolate WB</b>"/>
      <c:set var="gtracks"  value="Gene+SyntenySpanAssemblageB+SyntenyAssemblageB+SyntenySpanAssemblageE+SyntenyAssemblageE+UnifiedMassSpecPeptides+SAGEtags+EST+BLASTX"/>
      <c:set var="ptracks" value="RatnerMassSpecPeptides+TachezyMassSpecPeptides+InterproDomains+SignalP+TMHMM+BLASTP"/>
   </c:when>
@@ -148,11 +149,11 @@ ${attrs['organism'].value}<br>
 
 
 <c:set var="attribution">
-G.lamblia_contigsGB
+G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblageE_contigsGB
 </c:set>
 
   <c:set var="gnCtxUrl">
-     /cgi-bin/gbrowse_img/giardiadb/?name=${sequence_id}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${tracks};width=640;embed=1;h_feat=${id}@yellow
+     /cgi-bin/gbrowse_img/giardiadb/?name=${sequence_id}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${gtracks};width=640;embed=1;h_feat=${id}@yellow
   </c:set>
 
   <c:set var="gnCtxDivId" value="gnCtx"/>
@@ -160,9 +161,9 @@ G.lamblia_contigsGB
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(tracks, '+', ';label=')}" />
+    <c:set var="labels" value="${fn:replace(gtracks, '+', ';label=')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/toxodb/?name=${sequence_id}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/giardiadb/?name=${sequence_id}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
@@ -516,23 +517,19 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
     content="${seq}" />
 
 <%------------------------------------------------------------------%>
-<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
-
-<c:set var="i" value="0"/>
-<c:forEach var="row" items="${geneModelTable}">
-  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
-  <c:set var="i" value="${i +  1}"/>
-</c:forEach>
-
-<c:set var="seq">
- <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
+<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
+<c:set var="genomicSequenceContent">
+    <noindex>
+    <font class="fixed">
+  <w:wrap size="60"  break="<br>">${genomicSequence.value}</w:wrap>
+    </font><br/><br/>
+  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
+    </noindex>
 </c:set>
-<wdk:toggle
-    name="GenomicSequence"
-    isOpen="false"
+
+<wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${seq}" />
+    content="${genomicSequenceContent}" />
 <%------------------------------------------------------------------%>
 <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
 <c:set var="attr" value="${attrs['cds']}" />

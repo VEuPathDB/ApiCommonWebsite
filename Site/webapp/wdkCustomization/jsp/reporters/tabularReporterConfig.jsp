@@ -45,7 +45,7 @@
           <tr>
             <td colspan="${numPerLine}">
               <input type="checkbox" name="selectedFields" value="default" onclick="uncheckFields(1);" checked>
-              Default (same as in <a href="showSummary.do?wdk_history_id=${history_id}">result</a>), or...
+              Default (same as in <a href="showApplication.do">result</a>), or...
             </td>
           </tr>
 

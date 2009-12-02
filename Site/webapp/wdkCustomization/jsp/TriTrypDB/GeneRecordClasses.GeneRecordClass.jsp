@@ -1,4 +1,5 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -49,8 +50,8 @@
 </c:if>
 
 
-<c:set var="esmeraldoDatabaseName" value="Tcruzi Esmeraldo-like Chromosome Map - Rick Tarleton"/>
-<c:set var="nonEsmeraldoDatabaseName" value="Tcruzi NonEsmeraldo-like Chromosome Map - Rick Tarleton"/>
+<c:set var="esmeraldoDatabaseName" value="Sanger T.cruzi Esmeraldo chromosomes"/>
+<c:set var="nonEsmeraldoDatabaseName" value="Sanger T.cruzi Non-Esmeraldo contigs and chromosomes"/>
 
 
 <%-- display page header with recordClass type in banner --%>
@@ -64,18 +65,9 @@
 
 
 <c:choose>
-  <c:when test='${sequenceDatabaseName eq nonEsmeraldoDatabaseName}'>
-    <c:set var="append" value=" - (non-esmeraldo)" />
+  <c:when test='${binomial eq "Trypanosoma cruzi" && sequenceDatabaseName ne esmeraldoDatabaseName && sequenceDatabaseName ne nonEsmeraldoDatabaseName}'>
+    <c:set var="append" value=" - (this contig could not be assigned to Esmeraldo or Non-Esmeraldo)" />
   </c:when>
-  <c:when test='${sequenceDatabaseName eq esmeraldoDatabaseName}'>
-    <c:set var="append" value=" - (esmeraldo)" />
-  </c:when>
-
-  <c:when test='${organismFull eq "Trypanosoma cruzi strain CL Brener" && sequenceDatabaseName ne esmeraldoDatabaseName && sequenceDatabaseName ne nonEsmeraldoDatabaseName}'>
-    <c:set var="append" value=" - (this contig could not be assigned to esmeraldo or non-esmeraldo)" />
-  </c:when>
-
-
   <c:otherwise>
     <c:set var="append" value="" />
   </c:otherwise>
@@ -126,12 +118,12 @@ ${organism}<br>
 <c:choose>
   <c:when test='${organismFull eq "Leishmania braziliensis"}'>
     <c:set var="tracks">
-      Gene+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
   <c:when test='${organismFull eq "Leishmania major"}'>
     <c:set var="tracks">
-      Gene+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
   <c:when test='${organismFull eq "Leishmania infantum"}'>
@@ -140,19 +132,19 @@ ${organism}<br>
     </c:set>
   </c:when>
 
-  <c:when test='${organismFull eq "Trypanosoma cruzi strain CL Brener" && sequenceDatabaseName eq nonEsmeraldoDatabaseName}'>
+  <c:when test='${binomial eq "Trypanosoma cruzi" && sequenceDatabaseName eq nonEsmeraldoDatabaseName}'>
     <c:set var="tracks">
       Gene+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
 
-  <c:when test='${organismFull eq "Trypanosoma cruzi strain CL Brener" && sequenceDatabaseName eq esmeraldoDatabaseName}'>
+  <c:when test='${binomial eq "Trypanosoma cruzi" && sequenceDatabaseName eq esmeraldoDatabaseName}'>
     <c:set var="tracks">
       Gene+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
 
-  <c:when test='${organismFull eq "Trypanosoma cruzi strain CL Brener" && sequenceDatabaseName ne esmeraldoDatabaseName && sequenceDatabaseName ne nonEsmeraldoDatabaseName}'>
+  <c:when test='${binomial eq "Trypanosoma cruzi" && sequenceDatabaseName ne esmeraldoDatabaseName && sequenceDatabaseName ne nonEsmeraldoDatabaseName}'>
     <c:set var="tracks">
       Gene+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
@@ -166,14 +158,14 @@ ${organism}<br>
   </c:when>
   <c:otherwise>
     <c:set var="tracks">
-      Gene+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+DoTSAssemblies+BLASTX
     </c:set>
   </c:otherwise>
 </c:choose>
 
 
 <c:set var="attribution">
-LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContigsAndAnnotations,LbraziliensisChromosomesAndAnnotations,LbraziliensisNonProteinCodingAnnotations,LinfantumChromosomesAndAnnotations,LinfantumNonProteinCodingAnnotations,TcruziEsmeraldo_likeChromosomeMap,TcruziNonEsmeraldo_likeChromosomeMap
+L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes
 </c:set>
 
 <c:if test="${tracks ne ''}">
@@ -192,7 +184,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
     
     <c:set var="labels" value="${fn:replace(tracks, '+', ';label=')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/tritrypdb/?name=${contig}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/tritrypdb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
@@ -210,7 +202,7 @@ LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContig
 <%-- END DNA CONTEXT --------------------------------------------%>
 
 
-<c:if test='${organismFull eq "Trypanosoma cruzi strain CL Brener"}'>
+<c:if test='${binomial eq "Trypanosoma cruzi"}'>
 
 <wdk:wdkTable tblName="Genbank" isOpen="true"
                attribution="TcruziContigsAndAnnotations,TcruziEsmeraldo_likeChromosomeMap,TcruziNonEsmeraldo_likeChromosomeMap" />
@@ -337,7 +329,7 @@ GO,InterproscanData
 <site:pageDivider name="Protein"/>
 
  <c:choose>
-  <c:when test='${organismFull eq "Trypanosoma cruzi strain CL Brener"}'>
+  <c:when test='${binomial eq "Trypanosoma cruzi"}'>
     <c:set var="ptracks">
     TarletonMassSpecPeptides+InterproDomains+SignalP+TMHMM+HydropathyPlot+SecondaryStructure+BLASTP
     </c:set>
@@ -531,24 +523,19 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
     content="${seq}" />
 
 
-
-<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
-<c:set var="i" value="0"/>
-<c:forEach var="row" items="${geneModelTable}">
-  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
-  <c:set var="i" value="${i +  1}"/>
-</c:forEach>
-
-<c:set var="seq">
- <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
+<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
+<c:set var="genomicSequenceContent">
+    <noindex>
+    <font class="fixed">
+  <w:wrap size="60"  break="<br>">${genomicSequence.value}</w:wrap>
+    </font><br/><br/>
+  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
+    </noindex>
 </c:set>
+
 <wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${seq}" />
-
-
-
+    content="${genomicSequenceContent}" />
 <%------------------------------------------------------------------%>
 <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
 <c:set var="attr" value="${attrs['cds']}" />
@@ -570,7 +557,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
 
 <c:choose>
 
-<c:when test='${organismFull eq "Trypanosoma cruzi strain CL Brener"}'>
+<c:when test='${binomial eq "Trypanosoma cruzi"}'>
   <c:set var="reference">
       Sequence data for <i>Trypanosoma cruzi</i> strain CL Brener contigs were downloaded from Genbank (sequence and annotated features).<br>  Sequencing of <i>T. cruzi</i> was conducted by the <i>Trypanosoma cruzi</i> sequencing consortium (<a href="http://www.tigr.org/tdb/e2k1/tca1/">TIGR</a>, <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a> and <a href="http://ki.se/ki/jsp/polopoly.jsp?d=130&l=en">Karolinska Institute</a>).
 <br>Mapping of gene coordinates from contigs to chromosomes for <i>${organism}</i> chromosomes, generated by Rick Tarleton lab (UGA).

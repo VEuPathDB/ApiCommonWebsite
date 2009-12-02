@@ -15,6 +15,7 @@
 	<div class="innertube">
 
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -84,7 +85,7 @@ Source ID: '<b>${wdkRecord.primaryKey.values.source_id}</b>'
 </c:choose>
 
 <c:set var="attribution">
-LmajorChromosomesAndAnnotations,Tbrucei927ChromosomesAndAnnotations,TcruziContigsAndAnnotations,LbraziliensisChromosomesAndAnnotations,LbraziliensisNonProteinCodingAnnotations,LinfantumChromosomesAndAnnotations,LinfantumNonProteinCodingAnnotations,TcruziEsmeraldo_likeChromosomeMap,TcruziNonEsmeraldo_likeChromosomeMap
+L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes
 </c:set>
 
 <c:if test="${synTracks ne ''}">

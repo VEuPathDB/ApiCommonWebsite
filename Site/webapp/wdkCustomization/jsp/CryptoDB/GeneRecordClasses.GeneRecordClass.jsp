@@ -1,4 +1,5 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -171,7 +172,7 @@ ${attrs['linkout'].value}
 <c:choose>
 <c:when test="${organism eq parvumOrganism}">
     <c:set var="gtracks">
-    ${snptrack}Gene+SyntenySpanParvumChr6+SyntenyParvumChr6+SyntenySpanHominis+SyntenyHominis+SyntenySpanMuris+SyntenyMuris+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX+Cluster
+    ${snptrack}Gene+SyntenySpanParvumChr6+SyntenyParvumChr6+SyntenySpanHominis+SyntenyHominis+SyntenySpanMuris+SyntenyMuris+UnifiedMassSpecPeptides+EST+BLASTX+Cluster
     </c:set>
 
     <c:set var="attribution">
@@ -252,7 +253,7 @@ NRDB,C.muris_scaffoldsGB,C.hominis_scaffoldsGB,C.parvum_scaffoldsGB,C.parvumChr6
     
     <c:set var="labels" value="${fn:replace(gtracks, '+', ';label=')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/cryptodb/?name=${contig}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/cryptodb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
@@ -495,27 +496,19 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
     content="${seq}" />
 
 <%------------------------------------------------------------------%>
-<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
-
-<c:set var="i" value="0"/>
-<c:forEach var="row" items="${geneModelTable}">
-  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
-  <c:set var="i" value="${i +  1}"/>
-</c:forEach>
-
-<c:set var="seq">
+<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
+<c:set var="genomicSequenceContent">
+    <noindex>
     <font class="fixed">
-    <w:wrap size="60" break="<br>">${totSeq}</w:wrap>
+  <w:wrap size="60"  break="<br>">${genomicSequence.value}</w:wrap>
     </font><br/><br/>
-  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
+  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
     </noindex>
 </c:set>
-<wdk:toggle
-    name="GenomicSequence" 
-    isOpen="fales"
-    displayName="Genomic Sequence (introns shown in lower case)"
-    content="${seq}" />
 
+<wdk:toggle name="genomicSequence" isOpen="false"
+    displayName="Genomic Sequence (introns shown in lower case)"
+    content="${genomicSequenceContent}" />
 <%------------------------------------------------------------------%>
 <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
 <c:set var="attr" value="${attrs['cds']}" />

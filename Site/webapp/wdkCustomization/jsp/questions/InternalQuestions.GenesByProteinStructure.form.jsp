@@ -8,8 +8,11 @@
   <c:when test="${projectId == 'GiardiaDB' || projectId == 'TrichDB' }">
     <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByProteinStructure" /> 
   </c:when>
+  <c:when test = "${projectId == 'CryptoDB' || projectId == 'TriTrypDB'}">
+    <site:queryList2 questions="GeneQuestions.GenesByPdbSimilarity,GeneQuestions.GenesBySecondaryStructure"/>
+  </c:when>
   <c:otherwise>
-    <jsp:include page="/wdkCustomization/jsp/${projectId}/InternalQuestions.GenesByProteinStructure.jsp"/>
+    <site:queryList2 questions="GeneQuestions.GenesByPdbSimilarity,GeneQuestions.GenesWithStructurePrediction,GeneQuestions.GenesBySecondaryStructure"/>
   </c:otherwise>
 </c:choose>
 

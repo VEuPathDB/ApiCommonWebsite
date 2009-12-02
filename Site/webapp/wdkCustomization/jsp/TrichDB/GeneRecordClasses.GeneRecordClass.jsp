@@ -1,4 +1,5 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -120,7 +121,7 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
     
     <c:set var="labels" value="${fn:replace(tracks, '+', ';label=')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/trichdb/?name=${contig}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/trichdb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
@@ -331,6 +332,17 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/trichdbaa/?name=${i
              displayName="${transcriptSequence.displayName}"
              content="${transcriptSequenceContent}" isOpen="false"/>
 
+<%------------------------------------------------------------------%>
+<!-- genomic sequence -->
+<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
+<c:set var="genomicSequenceContent">
+  <pre><w:wrap size="60">${genomicSequence.value}</w:wrap></pre>
+  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
+</c:set>
+
+<wdk:toggle name="genomicSequence" isOpen="false"
+    displayName="Genomic Sequence (introns shown in lower case)"
+    content="${genomicSequenceContent}" />
 <%------------------------------------------------------------------%>
 
 <!-- CDS -->

@@ -11,81 +11,70 @@
 <c:set var="banner" value="${xmlAnswer.question.displayName}"/>
 
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
+<c:set value="${wdkModel.displayName}" var="project"/>
 
-<site:header  title="EuPathDB :: Gene Metrics"
-                 banner="EuPathDB Gene Metrics"
-                 parentDivision="EuPathDB"
+<site:header  title="${project} :: Gene Metrics"
+                 banner="${project} Gene Metrics"
+                 parentDivision="${project}"
                  parentUrl="/home.jsp"
                  divisionName="allSites"
                  division="geneMetrics"/>
 
-<%--  title="${wdkModel.displayName} : Gene Metrics"
-                 banner="${banner}"
-                 parentDivision="${wdkModel.displayName}"
-                 parentUrl="/home.jsp"
-                 divisionName="GeneMetrics"
-                 division="genemetrics"
-                 headElement="${headElement}" />
---%>
+<c:set var="orgWidth" value=""/>  <%-- 4% --%>
+<c:set var="ncbiTaxPage" value="http://130.14.29.110/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=237895&lvl=3&p=mapview&p=has_linkout&p=blast_url&p=genome_blast&lin=f&keep=1&srchmode=5&unlock"/>
 
 
-<c:set var="cryptoColorHeader" value="#507494"/>
-<c:set var="plasmoColorHeader" value="#507494"/>
-<c:set var="toxoColorHeader" value="#507494"/>
-<c:set var="giardiaColorHeader" value="#507494"/>
-<c:set var="trichColorHeader" value="#507494"/>
-<c:set var="tritrypColorHeader" value="#507494"/>
+<table width="100%">
+<tr><td><h2>EuPathDB Gene Metrics</h2></td>
+    <td align="right"><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">EuPathDB Data Summary >>></a></td>
+</tr>
 
-
-<c:set var="cryptoColor" value="#E0E0EF"/>
-<c:set var="plasmoColor" value="#ddccdd"/> 
-<c:set var="toxoColor" value="#eff6ff"/> 
-<c:set var="giardiaColor" value="#ffeff0"/> 
-<c:set var="trichColor" value="#f6e9e4"/> 
-<c:set var="tritrypColor" value="#FFC4BF"/> 
-
-<c:set var="orgWidth" value="4%"/>
-
-
-
-<table align="center" width="100%" border="0" cellpadding="2" cellspacing="2">
-<tr><td><font face="Arial,Helvetica">The <a href="http://eupathdb.org"><b>EuPathDB Bioinformatics Resource Center (BRC)</b></a> designs, develops and maintains the <a href="http://eupathdb.org">EuPathDB</a>, <a href="http://cryptodb.org">CryptoDB</a>, <a href="http://giardiadb.org">GiardiaDB</a>, <a href="http://plasmodb.org">PlasmoDB</a>, <a href="http://toxodb.org">ToxoDB</a>, <a href="http://trichdb.org">TrichDB</a> and <a href="http://tritrypdb.org">TriTrypDB</a> websites. <br><br>
-The Gene Metrics table summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes. High gene numbers for rodent malaria parasites Pb, Pc & Py reflect incomplete sequence assembly and redundant gene models. <br></font>
+<tr><td colspan="2">The EuPathDB <a href="http://pathogenportal.org"><b>Bioinformatics Resource Center (BRC)</b></a> designs, develops and maintains the <a href="http://eupathdb.org">EuPathDB</a>, <a href="http://cryptodb.org">CryptoDB</a>, <a href="http://giardiadb.org">GiardiaDB</a>, <a href="http://plasmodb.org">PlasmoDB</a>, <a href="http://toxodb.org">ToxoDB</a>, <a href="http://trichdb.org">TrichDB</a> and <a href="http://tritrypdb.org">TriTrypDB</a> websites. <br><br>
+The Gene Metrics table summarizes the number of genes for the organisms currently available in EuPathDB, including their available evidence. High gene numbers (such as for rodent malaria parasites Pb, Pc & Py) reflect incomplete sequence assembly and redundant gene models. <br>
 </td></tr>
 </table>
 
-
+<table  class="mytableStyle" width="100%">
 <c:choose>
   <c:when test='${xmlAnswer.resultSize == 0}'>
-    Not available.
+    <tr><td>Not available.</td></tr></table>
   </c:when>
   <c:otherwise>
 
-<table align="center" width="100%" border="1" cellpadding="2" cellspacing="2">
-<tr valign="top" align="center" style="background-color:#507494;">
-    <td valign="middle"   bgcolor="#507494"><font color="white" face="Arial,Helvetica" size="+1">Genes</font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Ch</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Cm</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${cryptoColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Cp</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${giardiaColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Gl</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Lb</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Li</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Lm</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${toxoColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Nc</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pb</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pc</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pf</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pk</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Pv</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${plasmoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Py</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${toxoColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Tg</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${trichColorHeader}><font color="white" face="Arial,Helvetica" size="+1"><i>Tv</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Tb</i></font></td>
-    <td valign="middle" width=${orgWidth} bgcolor=${tritrypColorHeader}><font color="white"  face="Arial,Helvetica" size="+1"><i>Tc</i></font></td>
+<%-- Organisms/species grouped by websites, alphabetically in each group --%>
+<c:set var="bgcolor" value="#efefef"/> 
+<tr class="mythStyle">
+    <td style="background-color:white;border-right:3px solid grey;border-top:0px none;border-left:0 none;"></td>
+    <td style="border-right:3px solid grey" colspan="3" class="mythStyle"><a href="http://cryptodb.org">CryptoDB</a></td>
+    <td style="border-right:3px solid grey" colspan="3" class="mythStyle"><a href="http://giardiadb.org">GiardiaDB</a></td>
+    <td style="border-right:3px solid grey" colspan="6" class="mythStyle"><a href="http://plasmodb.org">PlasmoDB</a></td>
+    <td style="border-right:3px solid grey" colspan="2" class="mythStyle"><a href="http://toxodb.org">ToxoDB</a></td>
+    <td style="border-right:3px solid grey" colspan="1" class="mythStyle"><a href="http://trichdb.org">TrichDB</a></td>
+    <td colspan="5" class="mythStyle"><a href="http://tritrypdb.org">TriTrypDB</a></td>
 </tr>
-
-
-
+<tr class="mythStyle">
+    <td style="border-right:3px solid grey" class="mythStyle" title="">Gene Metric</td>
+    <td class="mythStyle" title="Cryptosporidium hominis, CryptoDB"><i>Ch</i></td>
+    <td class="mythStyle" title="Cryptosporidium muris, CryptoDB"  ><i>Cm</i></td>
+    <td style="border-right:3px solid grey" class="mythStyle" title="Cryptosporidium parvum, CryptoDB" ><i>Cp</i></td>
+    <td class="mythStyle" title="Giardia_Assemblage_A_isolate_WB, GiardiaDB" ><i>GA</i></td>
+    <td class="mythStyle" title="Giardia_Assemblage_B_isolate_GS, GiardiaDB" ><i>GB</i></td>
+    <td style="border-right:3px solid grey" class="mythStyle" title="Giardia_Assemblage_E_isolate_P15, GiardiaDB" ><i>GE</i></td>
+    <td class="mythStyle" title="Plasmodium berghei, PlasmoDB"><i>Pb</i></td>
+    <td class="mythStyle" title="Plasmodium chabaudi, PlasmoDB"><i>Pc</i></td>
+    <td class="mythStyle" title="Plasmodium falciparum, PlasmoDB"><i>Pf</i></td>
+    <td class="mythStyle" title="Plasmodium knowlesi, PlasmoDB"><i>Pk</i></td>
+    <td class="mythStyle" title="Plasmodium vivax, PlasmoDB"><i>Pv</i></td>
+    <td style="border-right:3px solid grey" class="mythStyle" title="Plasmodium yoelii, PlasmoDB"><i>Py</i></td>
+    <td class="mythStyle" title="Neospora caninum, ToxoDB"><i>Nc</i></td>
+    <td style="border-right:3px solid grey" class="mythStyle" title="Toxoplasma gondii"><i>Tg</i></td>
+    <td style="border-right:3px solid grey" class="mythStyle" title="Trichomonas vaginalis,TrichDB"><i>Tv</i></td>
+    <td class="mythStyle" title="Leishmania braziliensis, TriTrypDB"><i>Lb</i></td>
+    <td class="mythStyle" title="Leishmania infantum, TriTrypDB"><i>Li</i></td>
+    <td class="mythStyle" title="Leishmania major, TriTrypDB"><i>Lm</i></td>
+    <td class="mythStyle" title="Trypanosoma brucei, TriTrypDB"><i>Tb</i></td>
+    <td class="mythStyle" title="Trypanosoma cruzi, TriTrypDB"><i>Tc</i></td>
+</tr>
 
   <c:forEach items="${xmlAnswer.recordInstances}" var="record">
 
@@ -93,7 +82,9 @@ The Gene Metrics table summarizes the number of genes for the organisms currentl
 	 <c:set var="Ch" value="${record.attributesMap['Cryptosporidium_hominis']}"/>
  	 <c:set var="Cm" value="${record.attributesMap['Cryptosporidium_muris']}"/>
 	 <c:set var="Cp" value="${record.attributesMap['Cryptosporidium_parvum']}"/>
-	 <c:set var="Gl" value="${record.attributesMap['Giardia_lamblia']}"/>
+	 <c:set var="GA" value="${record.attributesMap['Giardia_Assemblage_A_isolate_WB']}"/>
+	 <c:set var="GB" value="${record.attributesMap['Giardia_Assemblage_B_isolate_GS']}"/>
+	 <c:set var="GE" value="${record.attributesMap['Giardia_Assemblage_E_isolate_P15']}"/>
 	 <c:set var="Lb" value="${record.attributesMap['Leishmania_braziliensis']}"/>
 	 <c:set var="Li" value="${record.attributesMap['Leishmania_infantum']}"/>
 	 <c:set var="Lm" value="${record.attributesMap['Leishmania_major']}"/>
@@ -111,28 +102,29 @@ The Gene Metrics table summarizes the number of genes for the organisms currentl
 
 
 
-    <tr valign="top" align="left">
-    <td valign="top"><font face="Arial,Helvetica">${Metric_Type}</a></font></td>
-    <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Ch}</font></td>
-    <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Cm}</font></td>
-    <td valign="top" align="right" bgcolor=${cryptoColor}><font face="Arial,Helvetica">${Cp}</font></td>
-    <td valign="top" align="right" bgcolor=${giardiaColor}><font face="Arial,Helvetica">${Gl}</font></td>
-    <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Lb}</font></td>
-    <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Li}</font></td>
-    <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Lm}</font></td>
- <td valign="top" align="right" bgcolor=${toxoColor}><font face="Arial,Helvetica">${Nc}</font></td>
-    <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pb}</font></td>
-    <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pc}</font></td>
-    <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pf}</font></td>
-    <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pk}</font></td>    
-    <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Pv}</font></td>
-    <td valign="top" align="right" bgcolor=${plasmoColor}><font face="Arial,Helvetica">${Py}</font></td>
-    <td valign="top" align="right" bgcolor=${toxoColor}><font face="Arial,Helvetica">${Tg}</font></td>
-    <td valign="top" align="right" bgcolor=${trichColor}><font face="Arial,Helvetica">${Tv}</font></td>
- <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Tb}</font></td>
- <td valign="top" align="right" bgcolor=${tritrypColor}><font face="Arial,Helvetica">${Tc}</font></td>
-    </tr>
-
+<tr class="mytdStyle">
+    <td style="border-right:3px solid grey" class="mytdStyle" align="left" title="${record.attributesMap['Description']}">${Metric_Type}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Ch}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Cm}</td>
+    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Cp}</td>
+    <td class="mytdStyle" align="right">${GA}</td>
+    <td class="mytdStyle" align="right">${GB}</td>
+    <td style="border-right:3px solid grey" class="mytdStyle" align="right">${GE}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Pb}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Pc}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Pf}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Pk}</td>    
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Pv}</td>
+    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Py}</td>
+    <td class="mytdStyle" align="right">${Nc}</td>
+    <td style="border-right:3px solid grey"class="mytdStyle" align="right">${Tg}</td>
+    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Tv}</td>
+    <td class="mytdStyle" align="right">${Lb}</td>
+    <td class="mytdStyle" align="right">${Li}</td>
+    <td class="mytdStyle" align="right">${Lm}</td>
+    <td class="mytdStyle" align="right">${Tb}</td>
+    <td class="mytdStyle" align="right">${Tc}</td>
+</tr>
  
   </c:forEach>
 
@@ -141,9 +133,9 @@ The Gene Metrics table summarizes the number of genes for the organisms currentl
   </table>
 
 
-<table align="center" width="100%" border="0" cellpadding="2" cellspacing="2">
+<table width="100%">
 <tr><td>
-<font size="-1"><i><b>Cryptosporidium</b>: Cp, C. parvum; Ch, C. hominis; <b>Giardia</b> Gl, G. lamblia; <b>Neospora</b>: Nc, N. caninum; <b>Leishmania</b>: Lb, L. braziliensis; Li, L. infantum; Lm, L. major;  <b>Plasmodium</b>: Pb, P. berghei; Pc, P. chabaudi; Pf, P. falciparum; Pk, P. knowlesi; Pv, P. vivax; Py, P. yoelii; <b>Toxoplasma</b>: Tg, T. gondii; <b>Trichomonas</b>: Tv, T. vaginalis; <b>Trypanosoma</b>: Tb, T. brucei; Tc, T. cruzi.)</i></font><br>
+<font size="-1"><i><b>Cryptosporidium</b>: Cp, C. parvum; Ch, C. hominis; <b>Giardia</b> GA, G.Assemblage_A_isolate_WB; GB, G.Assemblage_B_isolate_GS; GE, G.Assemblage_E_isolate_P15; <b>Neospora</b>: Nc, N. caninum; <b>Leishmania</b>: Lb, L. braziliensis; Li, L. infantum; Lm, L. major;  <b>Plasmodium</b>: Pb, P. berghei; Pc, P. chabaudi; Pf, P. falciparum; Pk, P. knowlesi; Pv, P. vivax; Py, P. yoelii; <b>Toxoplasma</b>: Tg, T. gondii; <b>Trichomonas</b>: Tv, T. vaginalis; <b>Trypanosoma</b>: Tb, T. brucei; Tc, T. cruzi.)</i></font><br>
 </td></tr>
 </table>
 

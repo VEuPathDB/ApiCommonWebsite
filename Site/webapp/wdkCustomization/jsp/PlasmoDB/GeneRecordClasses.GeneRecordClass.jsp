@@ -1,4 +1,5 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
+<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -276,12 +277,12 @@ ${id} <br /> ${prd}
 <c:choose>
   <c:when test="${species eq 'falciparum'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+CombinedSNPs
+      AnnotatedGenes+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+CombinedSNPs
     </c:set>
   </c:when>
   <c:when test="${species eq 'yoelii'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC
+      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC
     </c:set>
   </c:when>
   <c:when test="${species eq 'chabaudi'}">
@@ -291,17 +292,17 @@ ${id} <br /> ${prd}
   </c:when>
   <c:when test="${species eq 'berghei'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC
+      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC
     </c:set>
   </c:when>
   <c:when test="${species eq 'knowlesi'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC
+      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC
     </c:set>
   </c:when>
   <c:when test="${species eq 'vivax'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC
+      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC
     </c:set>
   </c:when>
   <c:otherwise>
@@ -327,7 +328,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
     
     <c:set var="labels" value="${fn:replace(tracks, '+', ';label=')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/plasmodb/?name=${sequence_id}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/plasmodb/?name=${sequence_id}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
@@ -680,7 +681,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 <c:set var="plotBaseUrl" value="/cgi-bin/dataPlotter.pl"/>
 
 <c:if test="${binomial eq 'Plasmodium falciparum' || binomial eq 'Plasmodium yoelii' || binomial eq 'Plasmodium berghei'}">
-  <site:pageDivider name="Expression ${has_expression_comment}"/>
+  <site:pageDivider name="Expression"/>
 
   <wdk:wdkTable tblName="ArrayElements" attribution="Vaidya_Bergman_oligos,DeRisi_oligos,berghei_gss_oligos"/>
 </c:if>
@@ -911,13 +912,13 @@ P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle. Y-axis is the log2
     <c:set var="noData" value="true"/>
   </c:if>
 
-<%--  NOTE: uncomment here to activate RNAseq
+
   <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
                displayName="P.falciparum RNA Sequence Profiles - Intraerythrocytic Cycle"
                attribution="Pfalciparum_RNA_Seq"/> 
---%>
+
 
   <c:set var="secName" value="Winzeler::Cc"/>
   <c:set var="imgId" value="img${secName}"/>
@@ -1514,6 +1515,134 @@ OnChange="javascript:updateImage('${imgId}', DailySort.DailyList.options[selecte
   <!-- end Newbold microarry study -->
 
 
+ <%-- ------------------------------------------------------------------ --%>
+
+  <c:set var="secName" value="Cowman::Sir2KO"/>
+  <c:set var="imgId" value="img${secName}"/>
+
+  <c:set var="isOpen" value="true"/>
+
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=plasmo&fmt=png&id=${id}&vp="/>
+  <c:set var="imgSrc" value="${preImgSrc}rma"/>
+
+  <c:set var="noData" value="false"/>
+
+  <c:if test="${attrs['graph_cowman_sir2'].value == 0}">
+    <c:set var="noData" value="true"/>
+  </c:if>
+
+  <c:set var="expressionContent">
+    <table>
+    <FORM NAME="CowmanSir2Sort">
+      <tr>
+        <td rowspan="2">
+              <img id="${imgId}" src="<c:url value="/images/spacer.gif"/>">
+        </td>
+
+        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
+
+        <td class="centered">
+          <div class="small">
+Pfsir2A and Pfsir2B KOs expression profiling in intra-erythrocytic stages
+            <br><br><br>
+            <b>x-axis</b><br>
+            intra-erythrocytic stage<br>
+            <br><br>
+            <b>y-axis</b><br>
+            RMA Normalized Values (log base 2 generated with RMAExpress v1.0.3) or expression percentile value.
+            <br><br>
+          </div>
+<SELECT NAME="CowmanSir2List"
+OnChange="javascript:updateImage('${imgId}', CowmanSir2Sort.CowmanSir2List.options[selectedIndex].value)">
+<OPTION SELECTED="SELECTED" VALUE="${preImgSrc}rma">RMA</OPTION>
+<OPTION VALUE="${preImgSrc}pct">percentile</OPTION>
+<OPTION VALUE="${preImgSrc}rma,pct">both</OPTION>
+</select>
+
+        </td>
+
+      </tr>
+</FORM>
+    </table>
+  </c:set>
+
+
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
+               content="${expressionContent}" noData="${noData}"
+               imageId="${imgId}" imageSource="${imgSrc}"
+               displayName="Transcription profiling of wild type, Pfsir2A knock-out and Pfsir2B knock-out Plasmodium falciparum intra-erythrocytic stages"
+               attribution="New_Cowman_Sir2_KO"/>
+
+
+
+ <%-- ------------------------------------------------------------------ --%>
+
+  <c:set var="secName" value="Su::CQTreatment"/>
+  <c:set var="imgId" value="img${secName}"/>
+
+  <c:set var="isOpen" value="true"/>
+
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=plasmo&fmt=png&id=${id}&vp=_LEGEND,"/>
+  <c:set var="imgSrc" value="${preImgSrc}rma"/>
+
+  <c:set var="noData" value="false"/>
+
+  <c:if test="${attrs['graph_su_cq'].value == 0}">
+    <c:set var="noData" value="true"/>
+  </c:if>
+
+  <c:set var="expressionContent">
+    <table>
+    <FORM NAME="SuCQSort">
+      <tr>
+        <td rowspan="2">
+              <img id="${imgId}" src="<c:url value="/images/spacer.gif"/>">
+        </td>
+
+        <td><image src="<c:url value="/images/spacer.gif"/>" height="155" width="5"></td>        
+
+        <td class="centered">
+          <div class="small">
+Mutations in PfCRT confer chloroquine (CQ) resistance in P. falciparum. Point mutations in the homolog of the mammalian multidrug resistance gene (pfmdr1) can also modulate the levels of CQ response. However, parasites with the same pfcrt and pfmdr1 alleles exhibit a wide range of drug sensitivity, suggesting that additional genes contribute to levels of CQ resistance (CQR).<br>
+3 isogenic lines which have different drug resistance profiles corresponding to unique mutations in the pfcrt gene (106/1K76, 106/176I, and 106/76I-352K) were used to study changes in gene expression with and without chloroquine  and genomic variations, i.e. copy number (CN) changes.
+            <br><br><br>
+            <b>x-axis</b><br>
+            isogenic line<br>
+            <br><br>
+            <b>y-axis</b><br>
+            RMA Normalized Values (log base 2 generated with RMAExpress v1.0.3) or expression percentile value.
+            <br><br>
+          </div>
+<SELECT NAME="SuCQList"
+OnChange="javascript:updateImage('${imgId}', SuCQSort.SuCQList.options[selectedIndex].value)">
+<OPTION SELECTED="SELECTED" VALUE="${preImgSrc}rma">RMA</OPTION>
+<OPTION VALUE="${preImgSrc}pct">percentile</OPTION>
+<OPTION VALUE="${preImgSrc}rma,pct">both</OPTION>
+</select>
+
+        </td>
+
+      </tr>
+</FORM>
+    </table>
+  </c:set>
+
+
+  <wdk:toggle name="${secName}" isOpen="${isOpen}"
+               content="${expressionContent}" noData="${noData}"
+               imageId="${imgId}" imageSource="${imgSrc}"
+               displayName="Expression and genomic changes after exposing drug-selected mutants to short term CQ treatment in Plasmodium falciparum"
+               attribution="E-GEOD-10022_array"/>
+
+
+
+ <%-- ------------------------------------------------------------------ --%>
+
+
+
+
+
+
   <wdk:wdkTable tblName="SageTags" attribution="SageTagArrayDesign,PlasmoSageTagFreqs"/>
 </c:if>
 
@@ -1727,7 +1856,7 @@ The overall expression percentile of each condition is the average percentile ov
 
 <%--</c:if><!-- this is for the test for new genes before aliases -->--%>
 
-<site:pageDivider name="Sequence ${has_sequence_comment}"/>
+<site:pageDivider name="Sequence"/>
 <font size ="-1">Please note that UTRs are not available for all gene models and may result in the RNA sequence (with introns removed) being identical to the CDS in those cases.</font>
 <c:if test="${isCodingGene}">
 <!-- protein sequence -->
@@ -1787,21 +1916,15 @@ The overall expression percentile of each condition is the average percentile ov
 <%--</c:if> --%>
 
 <!-- genomic sequence -->
-<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
-
-<c:set var="i" value="0"/>
-<c:forEach var="row" items="${geneModelTable}">
-  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
-  <c:set var="i" value="${i +  1}"/>
-</c:forEach>
-
-<c:set var="seq">
- <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
+<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
+<c:set var="genomicSequenceContent">
+  <pre><w:wrap size="60">${genomicSequence.value}</w:wrap></pre>
+  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
 </c:set>
+
 <wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${seq}" />
+    content="${genomicSequenceContent}" />
 
 
 <c:if test="${isCodingGene}">
