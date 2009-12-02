@@ -147,51 +147,6 @@ function storeIntelligentCookie(name, value, expires, path, domain, secure) {
     }
 }
 
-function uncheckFields(notFirst) {
-    var form = document.downloadConfigForm;
-    var cb = form.selectedFields;
-    if (notFirst) {
-        for (var i=1; i<cb.length; i++) {
-            cb[i].checked = null;
-        }
-    } else {
-        cb[0].checked = null;
-    }
-}
-
-function checkFields(all) {
-    var form = document.downloadConfigForm;
-    var cb = form.selectedFields;
-    cb[0].checked = (all > 0 ? null : 'checked');
-    for (var i=1; i<cb.length; i++) {
-        cb[i].checked = (all > 0 ? 'checked' : null);
-    }
-}
-
-function chooseAll(bool, form, node) {
-    if (form[node].type == 'select-multiple') {
-      multiSelectAll(bool, form, node);
-    } else {
-      checkAll(bool, form, node);
-    }
-}
-
-//function checkAll(bool, form, node) {
-//    var cb = form[node];
-//    cb[0].checked = (bool ? null : 'checked');
-//    for (var i=0; i<cb.length; i++) {
-//        cb[i].checked = (bool ? 'checked' : null);
-//   }
-//}
-
-function checkAll(bool, form, node) {
-    var cb = form[node];
-    for (var i=0; i<cb.length; i++) {
-	 if(bool && cb[i].checked == false) cb[i].click();
-         if(!bool && cb[i].checked == true) cb[i].click();
-    }
-}
-
 function multiSelectAll(bool, form, node) {
     var opt = form[node];
     opt[0].selected = (bool ? null : 'selected');
