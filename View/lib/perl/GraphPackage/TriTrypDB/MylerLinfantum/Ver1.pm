@@ -24,7 +24,7 @@ sub init {
 
   $Self->SUPER::init(@_);
 
-  my $name = 'Lmajor promastigote time-course biorep01';
+  my $name = 'Linfantum promastigote time-course biorep01';
 
   $Self->setExpressionNames
     ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
@@ -40,7 +40,7 @@ sub init {
       )
     );
 
-  $name = 'Lmajor promastigote time-course biorep02';
+  $name = 'Linfantum promastigote time-course biorep02';
 
   $Self->setBioRep02ExpressionQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -49,7 +49,7 @@ sub init {
       )
     );
 
-  $name = 'Percents of the Lmajor promastigote time-course biorep01';
+  $name = 'Percents of the Linfantum promastigote time-course biorep01';
 
 
   $Self->setPercentileNames
@@ -66,7 +66,7 @@ sub init {
       )
     );
 
-  $name = 'Percents of the Lmajor promastigote time-course biorep02';
+  $name = 'Percents of the Linfantum promastigote time-course biorep02';
 
   $Self->setBioRep02PercentileQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new

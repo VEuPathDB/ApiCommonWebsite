@@ -15,6 +15,80 @@
        </attribute>
     </record>
 -->
+ <record>
+       <attribute name="headline">
+         <![CDATA[PlasmoDB 6.2 released
+         ]]>
+         </attribute>
+       <attribute name="date">13 November 2009 00:00</attribute>
+       <attribute name="tag">Plasmo1109news</attribute>
+       <attribute name="item">           
+         <![CDATA[<span style="font-weight: bold;">We are pleased toannounce
+the release of PlasmoDB 6.2<br>
+<br>
+</span><span style="text-decoration: underline;">New
+Data:</span><br>
+<ul>
+  <li><span style="font-style: italic;">P.
+&nbsp;falciparum</span> and <span
+ style="font-style: italic;">P. vivax</span> proteomics
+from clinical samples graciously provided prior to publication by Dr.
+Utpal Tatu (Department of Biochemistry, Indian Institute of Science,
+Bangalore, India). This data may be accessed using the "<a
+ href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec&amp;target=GENE">Identify
+Genes based on Mass Spec. Evidence</a>" query and combined with
+other searches in PlasmoDB.</li>
+</ul>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[Important announcement regarding microarray data in PlasmoDB
+         ]]>
+         </attribute>
+       <attribute name="date">26 October 2009 00:00</attribute>
+       <attribute name="tag">PlasmoMicroError</attribute>
+       <attribute name="item">           
+         <![CDATA[Dear all,<br>
+<br>
+The PlasmoDB team would like to alert you to two important issues
+concerning the presentation of <span style="font-style: italic;">P.
+falciparum</span> microarray data in PlasmoDB.&nbsp; <br>
+<br>
+1.&nbsp; Beginning with PlasmoDB 6.0 all profiles using the
+Winzeler Affymetrix scrMalaria array were updated to reflect the latest
+3D7 genome annotation. Previously, probes were mapped to the P.
+falciparum 3D7 genome annotation released in July 2001.&nbsp; The
+array was originally designed with a tiling of probes, so the new
+annotation has resulted in many genes gaining new probes which did not
+previously map to the gene, and dropping old probes which no longer map
+(Note: The new mapping allowed up to two mismatches per probe, and only
+probes which mapped uniquely, up to two mismatches, were
+retained).&nbsp; Previous gene expression profiles were generated
+using the MOID algorithm with the 2001 annotation, while the current
+profiles were generated using RMA with the new annotation.&nbsp;
+Many of the expression profiles exhibit minor differences and a
+few&nbsp;changed significantly.&nbsp; Such differences are
+expected and should result in a more accurate representation of the
+data.<br>
+<br>
+2.&nbsp; An internal error with one the files concerning the P.
+falciparum 3D7 gametocyte expression data was discovered.&nbsp;
+This error appeared with the release of PlasmoDB 6.0 in July of 2009
+and was fixed on October 20th, 2009.&nbsp; Also, please note that
+probe remapping and MOID vs. RMA analysis differences described above
+also apply to this data set.&nbsp; <br>
+<br>
+We regret any disruption this may cause you.&nbsp; Please do not
+hesitate to contact us with any questions or concerns.<br>
+<br>
+Sincerely,<br>
+The PlasmoDB Team
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">
          <![CDATA[

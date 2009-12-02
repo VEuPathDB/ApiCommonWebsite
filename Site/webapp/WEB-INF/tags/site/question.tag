@@ -55,9 +55,13 @@
 <!--html:form method="get" action="/processQuestion.do" -->
 <html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
 <input type="hidden" name="questionFullName" value="${wdkQuestion.fullName}"/>
+
+<%--
 <c:if test="${wdkQuestion.fullName == 'GeneQuestions.GenesByLocation'}">
 	<script src="/assets/js/LocationSelector.js"></script>
 </c:if>
+--%>
+
 <!-- show error messages, if any -->
 <wdk:errors/>
 
@@ -194,13 +198,15 @@
 
                         <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.EnumParamBean'}">
                             <td width="30%" align="right" style="vertical-align:top">
-								<c:if test="${wdkQuestion.fullName == 'GeneQuestions.GenesByLocation' && pNam == 'organism'}">
-									<input type="hidden" name="holder" id="organism_holder" value=""/>
-									<input type="hidden" name="holder" id="chromosomeOptional_holder" value=""/>
-									<input id="${pNam}_radio" type="radio" name="location_radio" onclick="changeType('${pNam}')"/>
-								</c:if>
-								<b id="help_${pNam}" class="help_link" rel="htmltooltip">${qP.prompt}</b>
-						    </td>
+<%--
+					<c:if test="${wdkQuestion.fullName == 'GeneQuestions.GenesByLocation' && pNam == 'organism'}">
+						<input type="hidden" name="holder" id="organism_holder" value=""/>
+						<input type="hidden" name="holder" id="chromosomeOptional_holder" value=""/>
+						<input id="${pNam}_radio" type="radio" name="location_radio" onclick="changeType('${pNam}')"/>
+					</c:if>
+--%>
+					<b id="help_${pNam}" class="help_link" rel="htmltooltip">${qP.prompt}</b>
+			    </td>
                             <td align="left" style="vertical-align:bottom" id="${qP.name}aaa">
                                 <wdk:enumParamInput qp="${qP}" />
                             </td>
@@ -232,11 +238,13 @@
                                 <c:otherwise>
 									
                                     <td width="30%" align="right" valign="top">
-										<c:if test="${wdkQuestion.fullName == 'GeneQuestions.GenesByLocation' && pNam == 'sequenceId'}">
-											<input id="${pNam}_radio" type="radio" name="location_radio" onclick="changeType('${pNam}')"/>
-										</c:if>
-										<b id="help_${pNam}" class="help_link" rel="htmltooltip">${qP.prompt}</b>
-									</td>
+<%--
+					<c:if test="${wdkQuestion.fullName == 'GeneQuestions.GenesByLocation' && pNam == 'sequenceId'}">
+						<input id="${pNam}_radio" type="radio" name="location_radio" onclick="changeType('${pNam}')"/>
+					</c:if>
+--%>
+					<b id="help_${pNam}" class="help_link" rel="htmltooltip">${qP.prompt}</b>
+				    </td>
                                     <td align="left" valign="top">
                                         <html:text styleId="${pNam}" property="myProp(${pNam})" size="35" />
                                     </td>
@@ -298,16 +306,21 @@
 <c:set target="${helps}" property="${fromAnchorQ}" value="${helpQ}"/>
 
 <div class="filter-button"><html:submit property="questionSubmit" value="Get Answer"/></div>
+
+<%--
 <c:if test="${wdkQuestion.fullName == 'GeneQuestions.GenesByLocation'}">
 <script>
 	$("input#organism_radio").click();
 </script>
 </c:if>
+--%>
+
 </html:form>
 
 
 <hr>
 
+<c:set var="attrId" value="attributions-section"/>
 <c:set var="descripId" value="query-description-section"/>
 <c:if test="${wdkQuestion.fullName == 'IsolateQuestions.IsolateByCountry'}">
 	<c:set var="descripId" value="query-description-noShowOnForm"/>
@@ -318,19 +331,15 @@
 <div id="${descripId}"><b>Query description: </b><jsp:getProperty name="wdkQuestion" property="description"/></div>
 
 
-
 <%-- get the attributions of the question if not EuPathDB --%>
 <c:if test = "${project != 'EuPathDB'}">
 <hr>
-<%-- get the property list map of the question --%>
-<c:set var="propertyLists" value="${wdkQuestion.propertyLists}"/>
-
-<%-- display the question specific attribution list --%>
-<site:attributions attributions="${propertyLists['specificAttribution']}" caption="Data sources" />
+<div id="${attrId}">
+	<c:set var="propertyLists" value="${wdkQuestion.propertyLists}"/>
+	<site:attributions attributions="${propertyLists['specificAttribution']}" caption="Data sources" />
+</div>
 </c:if>
 
- <%-- </td>--%>
-  <td valign=top class=dottedLeftBorder></td> 
 
 </tr>
 </table> 

@@ -33,15 +33,15 @@
    </c:when>
 
 <c:when test="${fn:containsIgnoreCase(site, 'GiardiaDB')}">
-      <c:set var="simple" value="5fc25f999a67cecc" />
-      <c:set var="expanded" value="47f645300660d5c3" />
+      <c:set var="simple" value="f5c9f3e4fd59f3bb" />
+      <c:set var="expanded" value="699c7268ffcb3e66" />
    </c:when>
 
  <c:when test="${fn:containsIgnoreCase(site, 'PlasmoDB')}">
       <c:set var="simple" value="1e0dccb636a58a91" />
       <c:set var="expanded" value="5d0b81139d371422" />
-      <c:set var="expressed" value="4e672fb46e21b2d0" />
-      <c:set var="expressedPknowlesi" value="9e370e45de7a124c" />
+      <c:set var="expressed" value="1b9b55c3c788b8bc" />
+      <c:set var="expressedPknowlesi" value="6b39827bdee7406d" />
 <%-- these need to be regenerated
       <c:set var="PfalVaccineAg" value="d6da190be19651a3" />
       <c:set var="PfalDrugTargets" value="3dada0a520754b5d" />
@@ -50,7 +50,7 @@
 
 <c:when test="${fn:containsIgnoreCase(site, 'ToxoDB')}">
       <c:set var="simple" value="cc5c9876caa70f82" />
-      <c:set var="expanded" value="64ee4d56cc82e2f9" />
+      <c:set var="expanded" value="7d1b3f3e66521bea" />
    </c:when>
 
 <c:when test="${fn:containsIgnoreCase(site, 'TrichDB')}">
@@ -60,10 +60,10 @@
 
  <c:when test="${fn:containsIgnoreCase(site, 'TriTrypDB')}">
       <c:set var="simple" value="6d18cc017993d226" />
-      <c:set var="expanded" value="f58790bf857161c3" />
-      <c:set var="expressed" value="55b70c857bee1bfa" />
-      <c:set var="expressedLbrazilliensis" value="36217c6cc264ac15" />
-			<c:set var="SecretedAmastigoteKin" value="c867cab6ad4645a0" />
+      <c:set var="expanded" value="8699257e6a988b74" />
+      <c:set var="expressed" value="a9bcc63ae545fdf7" />
+      <c:set var="expressedLbrazilliensis" value="15bf7913bd87fdf1" />
+      <c:set var="SecretedAmastigoteKin" value="c867cab6ad4645a0" />
    </c:when>
 
  <c:when test="${fn:containsIgnoreCase(site, 'EuPathDB')}">

@@ -31,7 +31,9 @@
 
 <c:set var="newsAnswer" value="${newsQuestion.fullAnswer}"/>
 <c:set var="tutAnswer" value="${tutQuestion.fullAnswer}"/>
-<c:set var="extlAnswer" value="${extlQuestion.fullAnswer}"/>
+<c:catch var="extlAnswer_exception">
+    <c:set var="extlAnswer" value="${extlQuestion.fullAnswer}"/>
+</c:catch>
 
 <c:set var="dateStringPattern" value="dd MMMM yyyy HH:mm"/>
 
@@ -39,14 +41,39 @@
 <div id="leftcolumn">
   <div class="innertube3">
     <div id="menu_lefttop">
-        <img src="/assets/images/${project}/menu_lft1.png" alt="" width="208" height="12" />
-        <a class="heading" id='news' href="#">News</a>
+
+
+
+<%--------------  EUPATHDB DATA STATS---------------------------------------------%>
+    
+	
+	<img src="/assets/images/${project}/menu_lft1.png" alt="" width="208" height="12" />
+        <a class="heading" id='stats'  href="#">Data Summary</a>
+
+        <div class="menu_lefttop_drop" style="text-align:center;">
+
+
+<table width="90%" style="text-align:center;margin-left: auto;margin-right: auto;">
+<tr><td>
+	<a style="white-space:nowrap;font-size:12pt;font-weight:bold" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">
+	<img style="border: 2px solid #666666;" src="/assets/images/genomeTable10.png" width="150" height="70"></a>
+</td><tr>
+<tr><td style="text-align:left;">
+	<a style="white-space:nowrap;" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">
+		>>also check our Gene Metrics......</a>
+    </td>
+ </tr></table>
+
+	</div>
+
+
 
 
 <%--------------  NEWS ---------------------------------------------%>
+        <img src="/assets/images/${project}/menu_lft1.png" alt="" width="208" height="12" />
+        <a class="heading"  href="#">News</a>
 
-
-   <div class="menu_lefttop_drop">
+   <div class="menu_lefttop_drop" id="News">
       <c:choose>
         <c:when test="${newsAnswer.resultSize < 1}">
           No news now, please check back later.<br>
@@ -94,7 +121,7 @@ https://rome.dev.java.net/apidocs/0_9/com/sun/syndication/feed/synd/package-summ
 	</c:catch>
 
 	<c:if test="${feedex != null}">
-		 <i>Specific-Organism Site News temporarily unavailable</i>
+		 <i>Specific-Organism Site News temporarily unavailable</i><br>
 	</c:if>
 
 	 <a style="margin-left: 0px" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.News"/>">All ${project} News</a>
@@ -153,6 +180,9 @@ https://rome.dev.java.net/apidocs/0_9/com/sun/syndication/feed/synd/package-summ
     <hr>
     Related Sites
     <c:choose>
+      <c:when test="${extlAnswer_exception != null}">
+        <br><font size="-1" color="#CC0033"><i>Error. related sites temporarily unavailable</i></font><br>
+      </c:when>
       <c:when test="${extlAnswer.resultSize < 1}">
         No links.
       </c:when>
@@ -255,9 +285,9 @@ navigation and querying capabilities as in TriTrypDB.org.<br>
 				</c:forEach>
  			</c:forEach>
                         </ul>
-						<c:if test="${count >= SidebarLimit}">
-							<a style="margin-left:0px" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Tutorials"/>">All Tutorials</a>
-						</c:if>
+				<c:if test="${count >= SidebarLimit}">
+					<a style="margin-left:0px" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Tutorials"/>">All Tutorials</a>
+				</c:if>
                       </c:otherwise>
     </c:choose>
 
@@ -273,9 +303,9 @@ navigation and querying capabilities as in TriTrypDB.org.<br>
             <li id='h-5'><a href="/common/cosmid-BAC-tutorial/CosmidandBAC-Tutorial.html"/>Viewing Cosmid and BAC Alignments</a></li>
             <li id='h-4'><a href="/common/array-tutorial/Array-Tutorial.html"/>Viewing Microarray Probes</a></li>
          </c:if>
-            <li id='h-6'><a href="<c:url value="/eupathGenomeTable.jsp"/>">EuPathDB GenomeTable</a></li>
+            <li id='h-6'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">EuPathDB Data Summary</a></li>
             <li id='h-6'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">EuPathDB Gene Metrics</a></li>
-            <li id='h-6'><a href="/workshop/2009/?page=schedule">2009 EuPathDB Workshop curriculum</a></li>
+            <li id='h-6'><a href="http://workshop.eupathdb.org/2010/">2010 EuPathDB Workshop</a></li>
 
             <li id='h-3'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Glossary"/>">Glossary of Terms</a></li>
             <li id='h-7'><a href="<c:url value="http://eupathdb.org/tutorials/eupathdbFlyer.pdf"/>">EuPathDB Brochure</a></li>

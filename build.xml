@@ -18,6 +18,13 @@
     </ant>
   </target>  
 
+  <target name="ApiCommonData/Datasources-Installation">
+    <ant antfile="../ApiCommonData/build.xml" target="ApiCommonData/Datasources-Installation">
+      <property name="project" value="ApiCommonData"/>
+      <property name="version" value="api-aug-08"/>
+    </ant>
+  </target>  
+
   <target name="WDK-Installation">
     <ant antfile="../WDK/build.xml" target="WDK-Installation">
       <property name="project" value="WDK"/>
@@ -123,7 +130,8 @@
                                                         ApiCommonShared/Model-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
-                                                        ApiCommonWebsite/View-Installation">
+                                                        ApiCommonWebsite/View-Installation,
+                                                        ApiCommonData/Datasources-Installation">
 
     <ant target="defaultProjectInstall"/>
     
@@ -156,7 +164,6 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Model"/>
     </ant>
-    <antcall target="loadresourcesToDatasources"/>
   </target>
 
   <target name="ApiCommonWebsite/Site-Installation">
@@ -171,29 +178,6 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="View"/>
     </ant>
-  </target>
-
-  <target name="loadresourcesToDatasources">
-    <property name="loadresources" value="${targetDir}/lib/xml/loadresources"/>
-    <mkdir dir="${targetDir}/lib/xml/datasources"/>
-    <copy todir="${loadresources}">
-      <fileset dir="${projectsDir}/ApiCommonData/Load/lib/xml">
-        <include name="*Resources.xml"/>
-      </fileset>
-    </copy>
-    <mapper id="pubmedmapper" type="glob" 
-            from="*.xml" 
-            to="${targetDir}/lib/xml/datasources/*-pubmed.xml"/>
-    <echo message="Running updateResourcesWithPubmed"/>
-    <apply executable="${targetDir}/bin/updateResourcesWithPubmed" verbose="true">
-        <fileset dir="${loadresources}">
-          <include name="*Resources.xml"/>
-        </fileset>
-        <redirector>
-            <outputmapper refid="pubmedmapper"/>
-        </redirector>
-    </apply>
-    <delete dir="${loadresources}"/>
   </target>
 
 
@@ -212,13 +196,10 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
-
-    <available file="${webappTargetDir}/WEB-INF/classes/logging.properties" property="juliLog.present"/>
-    <echo>julilog present: ${juliLog.present}</echo>
-    <antcall target="setJuliLog"/>
     
-    <available file="${webappTargetDir}/WEB-INF/classes/log4j.properties" property="log4j.present"/>
-    <echo>log4j present: ${log4j.present}</echo>
+    <available file="${targetDir}/config/log4j.xml.custom-web" property="custom.weblog4j.present"/>
+    <antcall target="installCustomWebLog4j"/>
+    <available file="${webappTargetDir}/WEB-INF/classes/log4j.xml" property="weblog4j.present"/>
     <antcall target="setLog4j"/>
 
     <!-- replacement for dataPlotter file used to do expression graph -->
@@ -245,16 +226,17 @@
     
   </target>
 
-  <target name="setJuliLog" if="juliLog.present">
-    <dirname  property="webappDir" file="${webappTargetDir}"/>
-    <basename property="webapp" file="${webappDir}"/>
-    <replace file="${webappTargetDir}/WEB-INF/classes/logging.properties" token="@WEBAPP@" value="${webapp}"/>
+  <target name="installCustomWebLog4j" if="custom.weblog4j.present">
+    <echo message="Installing custom log4j.xml from"/>
+    <echo message="${targetDir}/config/log4j.xml.custom-web"/>
+    <copy overwrite="true"
+          file="${targetDir}/config/log4j.xml.custom-web" 
+          tofile="${webappTargetDir}/WEB-INF/classes/log4j.xml"/>
   </target>
-  
-  <target name="setLog4j" if="log4j.present">
+  <target name="setLog4j" if="weblog4j.present">
     <dirname  property="webappDir" file="${webappTargetDir}"/>
     <basename property="webapp" file="${webappDir}"/>
-    <replace file="${webappTargetDir}/WEB-INF/classes/log4j.properties" token="@WEBAPP@" value="${webapp}"/>
+    <replace file="${webappTargetDir}/WEB-INF/classes/log4j.xml" token="@WEBAPP@" value="${webapp}"/>
   </target>
   
 
@@ -283,5 +265,4 @@
   </target>  
 
 </project>
-
 

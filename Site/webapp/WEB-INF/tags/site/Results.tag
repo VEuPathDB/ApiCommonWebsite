@@ -8,12 +8,13 @@
 <c:set var="qName" value="${wdkAnswer.question.fullName}" />
 <c:set var="modelName" value="${applicationScope.wdkModel.name}" />
 <c:set var="recordName" value="${wdkAnswer.question.recordClass.fullName}" />
-
+<c:set var="recHasBasket" value="${wdkAnswer.question.recordClass.hasBasket}" />
 <c:set var="clustalwIsolatesCount" value="0" />
 <c:set var="dispModelName" value="${applicationScope.wdkModel.displayName}" />
 <c:set var="eupathIsolatesQuestion" value="${fn:containsIgnoreCase(recordName, 'IsolateRecordClasses.IsolateRecordClass') 
   && (fn:containsIgnoreCase(modelName, 'CryptoDB') 
   || fn:containsIgnoreCase(modelName, 'ToxoDB') 
+  || fn:containsIgnoreCase(modelName, 'EuPathDB') 
   || fn:containsIgnoreCase(modelName, 'GiardiaDB') 
   || fn:containsIgnoreCase(modelName, 'PlasmoDB'))}" /> 
 
@@ -184,6 +185,13 @@
     <th id="${attrName}" align="left" valign="middle">
 	<table>
           <tr>
+
+				<c:if test="${recHasBasket && j == 0}">
+					<td style="padding:0;"><a href="javascript:void(0)" onclick="updateBasket(this,'${wdkAnswer.checksum}', '0', '0', '${wdkAnswer.recordClass.fullName}')">
+						<img class="basket" src="/assets/images/basket_gray.png" height="20px" width="20px" value="0"/>
+					</a></td>
+				</c:if>
+
             <td>
 		<table>
                   <tr>
@@ -204,7 +212,7 @@
           </c:choose>
                  </td>
                </tr>
-               <tr>
+               <tr>	
                  <td style="padding:0;">
 	  <c:choose>
             <c:when test="${!sumAttrib.sortable}">
@@ -224,7 +232,7 @@
                  </tr>
                </table>
              </td>
-        <td nowrap>${sumAttrib.displayName}</td>
+        <td nowrap><span title="${sumAttrib.help}">${sumAttrib.displayName}</span></td>
         <%-- <c:if test="${j != 0}">
           <div style="float:left;">
             <a href="javascript:void(0)">
@@ -285,6 +293,15 @@
     </c:set>
 
     <c:set value="${record.primaryKey}" var="primaryKey"/>
+
+	<c:if test="${recHasBasket}">
+		<c:set value="${record.attributes['in_basket']}" var="is_basket"/>
+		<c:set var="basket_img" value="basket_gray.png"/>
+		<c:if test="${is_basket == '1'}">
+			<c:set var="basket_img" value="basket_color.png"/>
+		</c:if>
+	</c:if>
+
     <c:set var="pkValues" value="${primaryKey.values}" />
     <c:set var="projectId" value="${pkValues['project_id']}" />
     <c:set var="id" value="${pkValues['source_id']}" />
@@ -315,7 +332,17 @@
 
 
               <%-- display a link to record page --%>
-              <a href="showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}">${fieldVal}</a>
+
+
+				<a href="javascript:void(0)" onclick="updateBasket(this, 'single', '${primaryKey.value}', '${projectId}', '${recNam}')">
+					<img class="basket" value="${is_basket}" src="/assets/images/${basket_img}" width="20px" height="20px"/>
+				</a>
+		
+				&nbsp;&nbsp;&nbsp;
+
+				<a href="showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}">${fieldVal}</a>
+
+
               <%--   <span id="gene_id_${fieldVal}"> <a href="javascript:ToggleGenePageView('gene_id_${fieldVal}', 'showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}')">${fieldVal}</a></span> --%>
 
 

@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmlAnswer>
 
+<!--
+   <record>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+--> 
+<record>
+       <attribute name="headline">GiardiaDB 2.0 released</attribute>
+       <attribute name="date">16 November 2009 15:00</attribute>
+       <attribute name="tag">giardia1109news</attribute>
+       <attribute name="item">           
+         <![CDATA[<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of GiardiaDB 2.0<br>
+<br>
+</span>This is a major release of GiardiaDB that includes several
+new data types:<br>
+<br>
+<ul>
+  <li>Genome sequence and annotation of <span
+ style="font-style: italic;">Giardia</span> <span
+ style="font-style: italic;">intestinalis</span>
+assemblage B isolate GS. &nbsp;For further information please refer
+to the publication: <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19696920">Draft
+genome sequencing of giardia intestinalis assemblage B isolate GS: is
+human giardiasis caused by two different species? PLoS Pathog. 2009
+Aug;5(8):e1000560 Franzén et al.</a></li>
+</ul>
+<ul>
+  <li>Sequence and annotation of <span
+ style="font-style: italic;">Giardia</span> assemblage
+E isolate P15 was provided by J. Jerlstrom-Hultqvist. O. Franzen, E.
+Castro, J. Ankarklev, D. Palm, J. O. Andersson, S.G. Svard and B.
+Andersson (Karolinska Institutet, Stockholm, Sweden and Uppsala
+University, Uppsala, Sweden). The genome sequence and annotation was
+graciously provided to GiardiaDB prepublication.&nbsp;&nbsp;</li>
+</ul>
+<div style="margin-left: 40px;"><span
+ style="font-style: italic;">note: genomic data may be
+searched in many ways such as identifying all genes from any of the
+assemblages, searching for genes using the text search or identifying
+genes from one assemblage based on functional data in another using
+orthology. &nbsp;In addition, all gene pages include a genomic
+context view </span><span style="font-style: italic;">highlighting
+</span><span style="font-style: italic;">synteny
+between the three assemblages in GiardiaDB.&nbsp; </span></div>
+<ul>
+  <li>Additional stress induction microarray data graciously
+provided by Cornelia Spycher and Adrian Hehl prepublication (University
+of Zürich, Switzerland). &nbsp;Genes may be identified based on
+their expression profile by running one of the&nbsp;<a
+ href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">microarray
+searches </a>and results may be combined with other searches in
+GiardiaDB.</li>
+</ul>
+Additional features and Improvements:<br>
+<br>
+<ul>
+  <li>1012 genes from Giardia lamblia assemblage A isolate WB
+have been undeprecated based on synteny to assemblage B and E genomes.</li>
+</ul>
+<ul>
+  <li>Representation of SAGE tag data on gene pages has been
+improved providing graphical representation of tag counts over the life
+cycle of the parasite.</li>
+</ul>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline"><![CDATA[
          GiardiaDB 1.3 released

@@ -16,10 +16,10 @@
                 
                 </td></tr>
                 <tr>
-                    <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByLocation" linktext="Chromosomal Location" existsOn="A C G P T Tr Tt"/>
+                    <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByLocation" linktext="Genomic Location" existsOn="A C G P T Tr Tt"/>
                 </tr>
                 <tr>
-                    <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByNonnuclearLocation" linktext="Chromosomal Location (Non-nuclear)" existsOn="A E E P T E"/>
+                    <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByNonnuclearLocation" linktext="Genomic Location (Non-nuclear)" existsOn="A E E P T E"/>
 
                 </tr>
                 <tr>
@@ -107,7 +107,7 @@
                     <site:queryGridMakeUrl qset="InternalQuestions" qname="GenesBySageTagEvidence" linktext="SAGE Tag Evidence" existsOn="A G P T"/>
                 </tr>
                 <tr>
-                    <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByChIPchip" linktext="ChIP chip Evidence" existsOn="A T"/> 
+                    <site:queryGridMakeUrl qset="InternalQuestions" qname="GenesByChIPchip" linktext="ChIP chip Evidence" existsOn="A T P"/> 
                 </tr>
                 <tr>
                     <site:queryGridMakeUrl qset="GeneQuestions" qname="GenesByRNASeqExpressionTiming" linktext="RNA Seq Evidence" existsOn=""/>

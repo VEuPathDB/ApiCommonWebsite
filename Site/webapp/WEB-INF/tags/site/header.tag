@@ -3,6 +3,7 @@
 <%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ attribute name="title"
               description="Value to appear in page's title"
@@ -36,10 +37,6 @@
               required="false"
 %>
 
-<%@ attribute name="releaseDate"
-              required="false"
-%>
-
 <%@ attribute name="summary"
               required="false"
               description="short text description of the page"
@@ -63,6 +60,16 @@
 <c:set var="siteName" value="${applicationScope.wdkModel.name}" />
 <c:set var="version" value="${applicationScope.wdkModel.version}" />
 
+<c:set var="releaseDate" value="${applicationScope.wdkModel.releaseDate}" />
+<c:set var="inputDateFormat" value="dd MMMM yyyy HH:mm"/>
+<fmt:setLocale value="en-US"/><%-- req. for date parsing when client browser (e.g. curl) doesn't send locale --%>
+<fmt:parseDate pattern="${inputDateFormat}" var="rlsDate" value="${releaseDate}"/> 
+<%-- http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html --%>
+<fmt:formatDate var="releaseDate_formatted" value="${rlsDate}" pattern="d MMM yy"/>
+  
+
+
+<%--- Google keys to access the maps for Isolate questions (check with Haiming) ---%>
 <c:if test="${project == 'CryptoDB'}">
   <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTMrNE2G2Bled15vogCImXw6TjMNBQeKxJGr2lD8yC0v8vilAhNZXuKjQ" />
 </c:if>
@@ -80,6 +87,7 @@
 </c:if>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <%------------------ setting title --------------%>
 
 <c:if test="${banner == null}">
@@ -234,7 +242,7 @@ ${headElement}
 	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#generalinfo"/>">General Information</a></li>
 <c:choose>
 <c:when test="${project == 'EuPathDB'}" >
-	<li><a href="<c:url value="/eupathGenomeTable.jsp"/>">Organisms in ${project}</a></li>
+	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">Organisms in ${project}</a></li>
 </c:when>
 <c:otherwise>
 	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#organisms"/>">Organisms in ${project}</a></li>
@@ -272,7 +280,7 @@ ${headElement}
     	  <c:if test="${refer == 'customSummary'}">
 		  	<li><a href="javascript:void(0)" onclick="dykOpen()">Did You Know...</a></li>
           </c:if>
-          <li><a href="/workshop/2009/?page=schedule">2009 EuPathDB Workshop curriculum</a></li>
+          <li><a href="http://workshop.eupathdb.org/2010/">2010 EuPathDB Workshop</a></li>
 <%--	  <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.ExternalLinks"/>">Community Links</a></li> --%>
           <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Glossary"/>">Glossary of Terms</a></li>
           <li><a href="<c:url value="http://eupathdb.org/tutorials/eupathdbFlyer.pdf"/>">EuPathDB Brochure</a></li>
@@ -344,16 +352,11 @@ ${headElement}
    </div>  <%-- id="header_rt" --%>
 
 <%------------- TOP HEADER:  SITE logo and DATE _______  is a EuPathDB Project  ----------------%>
-  <c:set var="width" value="320" />
-  <c:set var="height" value="72" />
-  <c:set var="date" value="Sep.2009" />
+   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" align="left" /></a></p>
 
-
-   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" 
-	width="${width}" height="${height}" align="left" /></a></p>
    <p>&nbsp;</p>
    <p>Version ${version}<br />
-   ${date}</p>
+   ${releaseDate_formatted}</p>
 
 </div>  <%-- id="header2" --%>
 

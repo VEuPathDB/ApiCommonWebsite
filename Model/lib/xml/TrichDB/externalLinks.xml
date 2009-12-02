@@ -5,21 +5,22 @@
 
    <record>
       <table name="communityLinks">
+
         <row>
           <attribute name="title">T. vag Systems Expressed Sequence Tag Database</attribute>
           <attribute name="url">http://TvXpress.cgu.edu.tw</attribute>
         </row> 
-<row>
-          <attribute name="title">Pathema Metabolic Pathways</attribute>
-          <attribute name="url">http://pathema.tigr.org:1555/</attribute>
+
+        <row>
+          <attribute name="title">KEGG Pathways</attribute>
+          <attribute name="url">http://www.genome.jp/kegg-bin/search_pathway_text?map=tva&amp;keyword=&amp;mode=1&amp;viewImage=true</attribute>
         </row> 
-<row>
+
+        <row>
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url">http://www.EuPathDB.org/</attribute>
         </row> 
+
       </table>
-
-
-
    </record>
 </xmlAnswer>

@@ -10,7 +10,9 @@
 <c:set var="xqSet" value="${xqSetMap['XmlQuestions']}"/>
 <c:set var="xqMap" value="${xqSet.questionsMap}"/>
 <c:set var="extlQuestion" value="${xqMap['ExternalLinks']}"/>
-<c:set var="extlAnswer" value="${extlQuestion.fullAnswer}"/>
+<c:catch var="extlAnswer_exception">
+    <c:set var="extlAnswer" value="${extlQuestion.fullAnswer}"/>
+</c:catch>
 
 <c:choose>
 <c:when test="${wdkUser.stepCount == null}">
@@ -76,9 +78,20 @@
 </ul>
 
 <ul>
+	<li><a href="#">Data Summary</a>
+  	<ul>
+    		<li><a title="Table summarizing all the genomes and their different data types available in EuPathDB" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">EuPathDB Genomes and Data Types</a></li>
+	<li><a title="Table summarizing gene counts for all the available genomes, and evidence supporting them" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">EuPathDB Gene Metrics</a></li>
+	</ul>
+	</li>
+</ul>
+
+<ul>
     <li><a href="#">Data Sources</a>
   	<ul>
-   	    <li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.About#protocols_methods'/>">Understanding Data</a></li>	
+<c:if test="${project == 'EuPathDB'}">
+	    <li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.About#protocols_methods'/>">Data Sources and Methods</a></li>	
+</c:if>
 <c:if test="${project != 'EuPathDB'}">
    	    <li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.DataSources'/>">Data Detail</a></li>
  	    <li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.Methods'/>">Analysis Methods</a></li>
@@ -101,11 +114,21 @@
     </li>
 </ul>
     
+
+
+
+
 <ul>
     <li><a href="#">Community</a>
 	<ul>
     	    <li><a href="<c:url value="/communityEvents.jsp"/>">Upcoming Events</a></li>
     	    <li><a href="https://community.eupathdb.org">Discussion Forums</a></li>
+    	    
+    	    <c:choose>
+    	    <c:when test="${extlAnswer_exception != null}">
+    	    <li><a href="#"><font color="#CC0033"><i>Error. related sites temporarily unavailable</i></font></a></li>
+    	    </c:when>
+    	    <c:otherwise>
     	    <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.ExternalLinks"/>">Related Sites</a>
     	<%--	<ul>
                     <c:forEach items="${extlAnswer.recordInstances}" var="record">
@@ -125,6 +148,9 @@
                     </c:forEach> 
     		</ul>--%>
     	    </li>
+    	    </c:otherwise>
+    	    </c:choose>
+    	    
     	    <li><a href="<c:url value="/communityUpload.jsp"/>">Upload Community Files</a></li>
     	    <li><a href="<c:url value="/showSummary.do?questionFullName=UserFileQuestions.UserFileUploads"/>">Download Community Files</a></li>
   	</ul>

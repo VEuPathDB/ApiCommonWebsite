@@ -50,6 +50,12 @@
 
   <action-mappings>
     <action
+      path="/processBasket"
+      type="org.gusdb.wdk.controller.action.ProcessBasketAction"
+      scope="request"
+      validate="false">
+    </action>
+	<action
       path="/expandStep"
       type="org.gusdb.wdk.controller.action.ExpandStepAction"
       scope="request"
@@ -162,6 +168,25 @@
        <forward name="pq_start_boolean" path="/startBoolean.do"/>
        <forward name="show_strategy" path="/showStrategy.do"/>
     </action>
+
+	<action
+		path="/*.wadl"
+		type="org.gusdb.wdk.controller.action.ProcessRESTAction"
+		scope="request"
+		validate="false" 
+		parameter="{1}.all::wadl">
+		<forward name="show_result" path="downloadResult.jsp"/>
+	</action>
+
+	<action
+       path="/*/*.*"
+       type="org.gusdb.wdk.controller.action.ProcessRESTAction"
+       scope="request"
+	   validate="false"
+	   parameter="{1}.{2}::{3}">
+       <forward name="show_result" path="/downloadResult.jsp"/>
+    </action>
+
     <action
       path="/showSummary"
       type="org.gusdb.wdk.controller.action.ShowSummaryAction"
@@ -408,8 +433,7 @@
     <action
       path="/showResultSize"
       type="org.gusdb.wdk.controller.action.ShowResultSizeAction"
-      scope="request"
-      name="resultSizeForm">
+      scope="request">
    </action>
     <action
       path="/copyStrategy"

@@ -1,6 +1,9 @@
 
 @import url("reset.css");	
 
+
+
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       Stylesheet for styles that are the same across all sites 
      Definitions here get overriden by entries in (project).css
@@ -93,7 +96,9 @@ table.threecolumn td {
 }
 
 table.paneltoggle {
-        background:#dddddd;
+	font-size:110%;
+	border-top:2px solid white;
+        background:#cccccc;
         margin-bottom:0px;
         padding-top: 2.5px;
         padding-right: 3px;
@@ -107,8 +112,39 @@ td {
 
 
 /* used by Expression graphs (fix for text alignment bug) */
-.centered {
+td.centered {
        vertical-align: middle;
+}
+td.top {
+       vertical-align: top;
+}
+
+
+table.mytableStyle {
+	empty-cells:show;
+	border-width:0.5px;
+	border-style:solid;	   /* solid, none, inset, outset, dashed, solid, */
+	border-color:black;
+	border-collapse:collapse;  /*separate */
+/*	border-spacing:2px;  */    /* only makes sense when border-collapse is separate
+	table-layout: auto;        /* fixed */
+}
+tr.mytdStyle {
+	text-align:center;
+
+}
+tr.mythStyle {
+	background-color:lightgrey;
+	text-align:center;
+	font-weight:bold;
+}
+td.mythStyle,td.mytdStyle {
+	vertical-align:middle;
+	border-width:0.5px;
+	border-style:inset;
+	border-color:gray;
+	-moz-border-radius:0px;
+	padding:3px;
 }
 
 
@@ -370,7 +406,11 @@ ul#strategy_tabs {
 }
 
 .toggle {display: none;}
-.boggle {margin: 6px 20px 6px 20px; display: none;}
+.boggle {
+	border: 0.5px solid grey;
+	margin: 6px 20px 6px 20px; 
+	display: none;
+	}
 
 
 
@@ -767,7 +807,7 @@ img.switch,img.plus-minus {
 	margin:0pt;
 	padding:0pt;
 	padding-top: 6px;
-	width: 10em;
+	width: 9.5em;            /* supports up to 9999 searches */
 	border-top-width: 0px;
 	border-right-width: 2px;
 	border-bottom-width: 0px;
@@ -1581,7 +1621,7 @@ td.strat_inactive {
 
 /* used still in some tables in record pages */
 tr.rowMedium {
-    background-color: #DDDDDD;
+    background-color: #efefef;
     color: black;
     font-family: arial;
 	font-size: 10pt;
@@ -1613,18 +1653,18 @@ td.recordClassTitle{
     border-style:solid;
 }
 
-
+/* used in gene record pages for section titles (top/bottom border look */
 tr.headerRow {
 	background: #EFEFEF;
 }
-
-
-/* used in gene record pages for section titles (top/bottom border look */
 tr.headerRow  td,th {
-   border-width:2px 0;
-   border-style:solid;
+   border-bottom:1px solid grey;
+   border-right:1px solid grey;
+/*   border-style:solid; */
    padding: 3px;
    vertical-align: middle;
+   text-align: center;
+   white-space:nowrap;
 }
 
 .vennFilter {

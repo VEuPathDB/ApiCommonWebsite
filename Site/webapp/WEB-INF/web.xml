@@ -32,6 +32,12 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>wdkEuPathDbBrc</servlet-name>
+    <url-pattern>/webservices/*</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>wdkEuPathDbBrc</servlet-name>
     <url-pattern>*.do</url-pattern>
