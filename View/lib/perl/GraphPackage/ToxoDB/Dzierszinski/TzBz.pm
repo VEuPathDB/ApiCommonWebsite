@@ -21,8 +21,8 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions (by Florence Dzierszinski)',
-                           'expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions (by Florence Dzierszinski)',
+    ({rma => {profiles => ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions',
+                           'expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions'
                           ],
               y_axis_label => 'RMA Value (log2)',
               x_axis_label => 'Days',
@@ -33,8 +33,8 @@ sub init {
               default_x_min => 0,
               points_pch => $pch,
              },
-      pct => {profiles => ['expression profile percentiles of VEG strain CO2-starvation bradyzoite inducing conditions (by Florence Dzierszinski)',
-                           'expression profile percentiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions (by Florence Dzierszinski)',
+      pct => {profiles => ['expression profile percentiles of VEG strain CO2-starvation bradyzoite inducing conditions',
+                           'expression profile percentiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions'
                           ],
               y_axis_label => 'percentile',
               x_axis_label => 'Days',
