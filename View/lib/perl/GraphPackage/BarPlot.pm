@@ -67,7 +67,10 @@ sub makeRPlotStrings {
     my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
     my $plotTitle = $profileSetsHash->{$part}->{plot_title};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile);
+    my $yMax = $profileSetsHash->{$part}->{default_y_max};
+    my $yMin = $profileSetsHash->{$part}->{default_y_min};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin);
 
     unshift @rv, $rCode;
   }
@@ -78,12 +81,15 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rAdjustNames = $rAdjustNames ? $rAdjustNames : "";
+
+  $yMax = defined($yMax) ? $yMax : 10;
+  $yMin = defined($yMin) ? $yMin : 0;
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -94,6 +100,9 @@ $profileFiles
 $elementNamesFiles
 $colorsString
 $legend
+
+y.min = $yMin;
+y.max = $yMax;
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -116,12 +125,13 @@ par(mar       = c($bottomMargin,4,1,10), xpd=TRUE);
 $rAdjustProfile
 $rAdjustNames
 
-d.max = max(1.1 * profile, 10);
+d.max = max(1.1 * profile, y.max);
+d.min = min(1.1 * profile, y.min);
 
 barplot(profile,
         col       = the.colors,
         ylab      = '$yAxisLabel',
-        ylim      = c(0, d.max),
+        ylim      = c(d.min, d.max),
         beside    = TRUE,
         names.arg = element.names,
         space=c(0,.5),
