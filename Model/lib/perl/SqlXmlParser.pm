@@ -15,9 +15,9 @@ sub new {
 
   # configure XMLin to give us a uniform structure of arrays of hashes
   my $fullTree = $xsl->XMLin($file,
-			     Cache => 'memshare',
-			     forcearray => 1, # singletons get an array
-			     keyattr => {})   # no hashes of hashes
+           Cache => 'memshare',
+           forcearray => 1, # singletons get an array
+           keyattr => {})   # no hashes of hashes
     or die "\ncannot open the sql file\n";
 
   print Dumper $fullTree if ($showParse);
@@ -46,16 +46,16 @@ sub pruneTree {
 
     foreach my $sqlQuery (@{$module->{sqlQuery}}) {
       if ($sqlQuery->{includeProjects} && $sqlQuery->{excludeProjects}) {
-	die "\n<sqlQuery name=\"$sqlQuery->{name}\"> has both 'includeProjects=' and 'excludeProjects='\n";
+  die "\n<sqlQuery name=\"$sqlQuery->{name}\"> has both 'includeProjects=' and 'excludeProjects='\n";
       }
 
       next if ($sqlQuery->{includeProjects}
-	       && $sqlQuery->{includeProjects} !~ /$project/);
+         && $sqlQuery->{includeProjects} !~ /$project/);
       next if ($sqlQuery->{excludeProjects}
-	       && $sqlQuery->{excludeProjects} =~ /$project/);
+         && $sqlQuery->{excludeProjects} =~ /$project/);
 
       if ($self->{moduleHash}->{$module->{name}}->{$sqlQuery->{name}}) {
-	die "\n<sqlQuery name=\"$sqlQuery->{name}\"> is included more than once for $project\n"
+  die "\n<sqlQuery name=\"$sqlQuery->{name}\"> is included more than once for $project\n"
       }
 
       $self->{moduleHash}->{$module->{name}}->{$sqlQuery->{name}} = $sqlQuery;
@@ -67,9 +67,17 @@ sub pruneTree {
 # used by gbrowse adaptor
 sub getSQL {
   my $self = shift;
-  my ($moduleName, $sqlQueryName) = @_;
+  my ($moduleName, $sqlQueryName, $sqlParamString) = @_;
 
-  return $self->{moduleHash}->{$moduleName}->{$sqlQueryName}->{sql}->[0];
+  my $query = $self->{moduleHash}->{$moduleName}->{$sqlQueryName}->{sql}->[0];
+  return $query unless $sqlParamString;
+
+  my @params = split /&&/, $sqlParamString;
+  foreach my $param (@params) {
+    my ($key, $value) = split /:/, $param;
+    $query =~ s/\$\$$key\$\$/$value/g;
+  } 
+  return $query;
 }
 
 # used by sanity test
@@ -111,8 +119,8 @@ sub parseSqlXmlFile {
   # so that undo operations are ordered.  also, the qualifiers retain
   # the ordering found in the xml file.
   my $data = $simple->XMLin($sqlXmlFile,
-			    forcearray => 1,
-	      	    KeyAttr => {});
+          forcearray => 1,
+              KeyAttr => {});
   if ($showParse) {
     print Dumper($data);
     print  "\n\n\n";

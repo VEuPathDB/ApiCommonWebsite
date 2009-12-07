@@ -58,7 +58,7 @@
     <defaultParamValue name="dlm" value=","/>
 
   <sqlValue name="na_seq_id_CM000435">
-	  <sql>
+    <sql>
       select na_sequence_id from dots.nasequence where source_id = 'CM000435'
     </sql> 
   </sqlValue>
@@ -76,7 +76,7 @@
   </sqlValue>
 
   <sqlValue name="na_feat_id_cgd7_230">
-	  <sql>
+    <sql>
       select na_feature_id from dots.genefeature where source_id = 'cgd7_230'
     </sql> 
   </sqlValue>
@@ -161,7 +161,7 @@
 
   <sqlValue name="na_seq_id_CH991767">
     <sql>
-      select na_sequence_id from dots.nasequence where source_id = 'CH991767'
+      select na_sequence_id from dots.GeneFeature where source_id = 'GL50803_102438'
     </sql> 
   </sqlValue>
 </sanityTestInfo>
@@ -378,7 +378,7 @@ WHERE
        blat.target_start <= $rend and 
        blat.target_end >= $base_start and 
        (blat.target_end - blat.target_start ) < 5000 and 
-			 blat.is_best_alignment = 1 and
+       blat.is_best_alignment = 1 and
        etn.na_sequence_id = $srcfeature_id 
 ORDER BY blat.target_start asc, blat.score desc
 ]]>
@@ -443,8 +443,8 @@ ORDER BY
 with materialized_query as
      (select organism, na_sequence_id, context_start, context_end, context_source_id, project_id, syntenic_na_feature_id, syntenic_source_id, synteny_id, startm, end, strand, atts
       from apidb.GeneContextSyntenicGenes
-      where organism = 'Plasmodium yoelii yoelii str. 17XNL'
-        and na_sequence_id = $srcfeature_id
+      where -- organism = 'Plasmodium yoelii yoelii str. 17XNL' and
+            na_sequence_id = $srcfeature_id
         and context_start = $base_start
         and context_end = $rend)
 select 'fast' query_style, syntenic_na_feature_id feature_id, 'gene' type,
@@ -490,7 +490,7 @@ FROM
        apidb.geneattributes gattr,
        apidb.featurelocation fl
 WHERE (select count(*) from materialized_query) = 0
-  and gattr.organism = 'Plasmodium yoelii yoelii str. 17XNL'
+--AND gattr.organism = 'Plasmodium yoelii yoelii str. 17XNL'
   AND syn.a_na_sequence_id = $srcfeature_id
   AND syn.a_start <= $rend 
   AND syn.a_end >= $base_start 
@@ -1465,7 +1465,7 @@ FROM DUAL
 SELECT
        gf.na_feature_id feature_id,
        'gene' type, 
-       'AlternateModels' source, 
+       '$source' source, 
        gf.source_id name, 
        '.' score, 
        gf.na_sequence_id parent_id, 
@@ -1494,6 +1494,7 @@ FROM
        sres.ExternalDatabase ed
 WHERE  fl.na_sequence_id = $srcfeature_id
   AND  fl.na_sequence_id = ns.na_sequence_id
+  AND  fl.feature_type = 'GenePrediction'
   AND  fl.na_feature_id = gf.na_feature_id 
   AND  so.sequence_ontology_id = gf.sequence_ontology_id
   AND  fl.start_min <= $rend 
@@ -1502,6 +1503,7 @@ WHERE  fl.na_sequence_id = $srcfeature_id
   AND  tn.name_class = 'scientific name' 
   AND  gf.external_database_release_id = edr.external_database_release_id
   AND  edr.external_database_id = ed.external_database_id
+  AND  $sqlParamString
 ORDER BY 
        fl.start_min
 ]]>
@@ -1608,7 +1610,7 @@ WHERE edr.external_database_id = ed.external_database_id
        'Scale=' || 
        CASE WHEN (is_reversed = 1) 
          THEN (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_left.syntenic_loc - anch_right.syntenic_loc + 1)
-         ELSE (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1) 
+         ELSE (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1)
          END atts
 FROM 
       apidb.synteny syn,
@@ -1633,7 +1635,8 @@ WHERE edr.external_database_id = ed.external_database_id
   AND anch_right.ref_loc < $rend
   AND anch_right.next_ref_loc >= $rend
   AND b.taxon_id = tn.taxon_id
-  AND abs(anch_right.syntenic_loc - anch_left.syntenic_loc) > 1
+  AND abs(anch_right.syntenic_loc - anch_left.syntenic_loc + 1) > 0
+  AND abs(anch_left.syntenic_loc - anch_right.syntenic_loc + 1) > 0
 UNION
 SELECT
        syn.synteny_id || '_gap' feature_id,
@@ -1847,38 +1850,7 @@ WHERE  ed.name = 'Affymetrix Probes from Amit - Expression-ExonIb'
   AND  l.end_max >= $base_start
 ]]>
     </sql>
-  </sqlQuery>
-  
-  
-  <sqlQuery name="ChIP_peaks_TypeIII:Einstein"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT fl.na_feature_id   as feature_id,
-       'ChIP_peaks_TypeIII' as type, 
-       'Einstein'           as source, 
-       fl.feature_source_id        as name, 
-       dtf.float_value      as score, 
-       fl.na_sequence_id   as parent_id, 
-       fl.start_min         as startm, 
-       fl.end_max           as end,
-       'Treatment=' || cpp.treatment || '$dlm' ||'Analysis=' || a.name ||'$dlm'|| 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
-       rad.datatransformationresult dtf,
-       apidb.featurelocation fl,
-       apidb.chipprotocolparams cpp
-WHERE  dtf.row_id = fl.na_feature_id
-AND    dtf.analysis_id =   cpp.analysis_id
-AND    cpp.protocol_id =  p.protocol_id
-AND    cpp.analysis_id = a.analysis_id
-AND    p.name =  'ChIP_chip_Einstein_called_peaks'
-AND    fl.na_sequence_id = $srcfeature_id
-AND    fl.start_min <= $rend
-AND    fl.end_max >= $base_start
-AND    cpp.strain = 'TypeIII'
-]]>
-    </sql>
-  </sqlQuery>
-  
+  </sqlQuery> 
  
   <sqlQuery name="ChIP_peaks:Schizont"  includeProjects="PlasmoDB">
      <sql>
@@ -2067,25 +2039,6 @@ AND    cpp.protocol_type = 'called_peaks'
     </sql>
   </sqlQuery>
 
-
-  <sqlQuery name="ChIP_PLK:Einstein"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT e.na_sequence_id  as feature_id,
-       'ChIP_PLK'        as type, 
-       'Einstein'        as source, 
-       e.source_id       as name, 
-       e.source_id       as parent_id, 
-       $base_start       as startm, 
-       $rend             as end
-FROM   DoTS.Nasequence e
-WHERE  
-       e.na_sequence_id = $srcfeature_id
-]]>
-    </sql>
-  </sqlQuery>
-  
-  
   <sqlQuery name="GeneticMarkers:Sibley"  includeProjects="ToxoDB">
     <testParamValues project="ToxoDB">
        <param name="srcfeature_id" value="$$na_seq_id_X$$"/>
@@ -2484,28 +2437,6 @@ WHERE
 ]]>
     </sql>
   </sqlQuery>
-
-
-
-
- 
-  <sqlQuery name="ChIP_TypeIII:Einstein" includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT e.na_sequence_id  as feature_id,
-       'ChIP_TypeIII'    as type, 
-       'Einstein'        as source, 
-       e.source_id       as name, 
-       e.source_id       as parent_id, 
-       $base_start       as startm, 
-       $rend             as end
-FROM   DoTS.Nasequence e
-WHERE  
-       e.na_sequence_id = $srcfeature_id
-]]>
-    </sql>
-  </sqlQuery>
-  
   
   <sqlQuery name="AffymetrixProbes:GenotypingEstSNPs"  includeProjects="ToxoDB">
     <testParamValues project="ToxoDB">
@@ -2848,12 +2779,12 @@ WHERE  ed.name = 'Affymetrix Probes from Amit - Expression-NuclearNonCoding'
   </sqlQuery>
   
   
-  <sqlQuery name="ChIP_peaks_RH:Einstein"  includeProjects="ToxoDB">
+  <sqlQuery name="ChIP_peaks:Assay"  includeProjects="ToxoDB">
      <sql>
 <![CDATA[
  SELECT fl.na_feature_id   as feature_id,
-       'ChIP_peaks_RH'      as type,
-       'Einstein'           as source,
+       'ChIP_peaks'        as type,
+       '$source'           as source,
        fl.feature_source_id        as name,
        dtf.float_value      as score,
        fl.na_sequence_id   as parent_id,
@@ -2868,75 +2799,14 @@ WHERE  dtf.row_id = fl.na_feature_id
 AND    dtf.analysis_id =   cpp.analysis_id
 AND    cpp.protocol_id =  p.protocol_id
 AND    cpp.analysis_id = a.analysis_id
-AND    p.name =  'ChIP_chip_Einstein_called_peaks'
 AND    fl.na_sequence_id = $srcfeature_id
 AND    fl.start_min <= $rend
 AND    fl.end_max >= $base_start
-AND    cpp.strain = 'RH'
-]]>
-    </sql>
-  </sqlQuery>
-  
-  
-  <sqlQuery name="ChIP_peaks_PLK:Einstein"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT fl.na_feature_id   as feature_id,
-       'ChIP_peaks_PLK'      as type,
-       'Einstein'           as source,
-       fl.feature_source_id        as name,
-       dtf.float_value      as score,
-       fl.na_sequence_id   as parent_id,
-       fl.start_min         as startm,
-       fl.end_max           as end,
-       'Treatment=' || cpp.treatment || '$dlm' ||'Analysis=' || a.name ||'$dlm'|| 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
-       rad.datatransformationresult dtf,
-       apidb.featurelocation fl,
-       apidb.chipprotocolparams cpp
-WHERE  dtf.row_id = fl.na_feature_id
-AND    dtf.analysis_id =   cpp.analysis_id
-AND    cpp.protocol_id =  p.protocol_id
-AND    cpp.analysis_id = a.analysis_id
-AND    p.name =  'ChIP_chip_Einstein_called_peaks'
-AND    fl.na_sequence_id = $srcfeature_id
-AND    fl.start_min <= $rend
-AND    fl.end_max >= $base_start
-AND    cpp.strain = 'PLK'
+AND    $sqlParamString
 ]]>
     </sql>
   </sqlQuery>
 
-  <sqlQuery name="ChIP_peaks_RH:Hakimi"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT fl.na_feature_id   as feature_id,
-       'ChIP_peaks_RH'      as type,
-       'Hakimi'           as source,
-       fl.feature_source_id        as name,
-       dtf.float_value      as score,
-       fl.na_sequence_id   as parent_id,
-       fl.start_min         as startm,
-       fl.end_max           as end,
-       'Treatment=' || cpp.treatment || '$dlm' ||'Analysis=' || a.name ||'$dlm'|| 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
-       rad.datatransformationresult dtf,
-       apidb.featurelocation fl,
-       apidb.chipprotocolparams cpp
-WHERE  dtf.row_id = fl.na_feature_id
-AND    dtf.analysis_id =   cpp.analysis_id
-AND    cpp.protocol_id =  p.protocol_id
-AND    cpp.analysis_id = a.analysis_id
-AND    p.name =  'NimbleScan_ChIP_Hakimi_called_peaks'
-AND    fl.na_sequence_id = $srcfeature_id
-AND    fl.start_min <= $rend
-AND    fl.end_max >= $base_start
-AND    cpp.strain = 'RH'
-]]>
-    </sql>
-  </sqlQuery>
-    
-  
   <sqlQuery name="AffymetrixProbes:GenotypingMarkers" includeProjects="ToxoDB">
     <testParamValues project="ToxoDB">
        <param name="srcfeature_id" value="$$na_seq_id_X$$"/>
@@ -2976,53 +2846,16 @@ WHERE  ed.name = 'Affymetrix Probes from Amit - Genotyping-Markers'
     </sql>
   </sqlQuery>
   
-  
-  <sqlQuery name="ChIP_RH:Einstein"  includeProjects="ToxoDB">
+  <sqlQuery name="ChIP_chip:Assay"  includeProjects="ToxoDB">
      <sql>
 <![CDATA[
  SELECT e.na_sequence_id  as feature_id,
-       'ChIP_RH'         as type, 
-       'Einstein'        as source, 
-       e.source_id       as name, 
-       e.source_id       as parent_id, 
-       $base_start       as startm, 
-       $rend             as end
-FROM   DoTS.NASequence e
-WHERE  
-       e.na_sequence_id = $srcfeature_id
-]]>
-    </sql>
-  </sqlQuery>
-
-
-  <sqlQuery name="ChIP_Centromere:Einstein"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT e.na_sequence_id  as feature_id,
-       'ChIP_Centromere'         as type, 
-       'Einstein'        as source, 
-       e.source_id       as name, 
-       e.source_id       as parent_id, 
-       $base_start       as startm, 
-       $rend             as end
-FROM   DoTS.NASequence e
-WHERE  
-       e.na_sequence_id = $srcfeature_id
-]]>
-    </sql>
-  </sqlQuery>
-
-  
-  <sqlQuery name="ChIP_RH:Hakimi"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT e.na_sequence_id  as feature_id,
-       'ChIP_RH'         as type, 
-       'Hakimi'          as source, 
-       e.source_id       as name, 
-       e.source_id       as parent_id, 
-       $base_start       as startm, 
-       $rend             as end
+       'ChIP_chip'        as type, 
+       '$source'          as source, 
+       e.source_id        as name, 
+       e.source_id        as parent_id, 
+       $base_start        as startm, 
+       $rend              as end
 FROM   DoTS.NASequence e
 WHERE  
        e.na_sequence_id = $srcfeature_id
@@ -3388,13 +3221,13 @@ WHERE  sa.dataset =  'NIH SNPs'
        'NonSyn='   || sa.has_nonsynonymous_allele || '$dlm'||
        'IsCoding=' || sa.is_coding || '$dlm' ||
        'Gene=' || sa.gene_source_id || '$dlm' ||
-			 'params=' || sa.position_in_CDS || '&' ||
-			 sa.position_in_protein || '&' ||
-			 sa.reference_strain || '&' ||
-			 sa.reference_aa || '&' ||
-			 sa.gene_strand || '&' ||
-			 sa.reference_na || '&' ||
-			 sa.source_id
+       'params=' || sa.position_in_CDS || '&' ||
+       sa.position_in_protein || '&' ||
+       sa.reference_strain || '&' ||
+       sa.reference_aa || '&' ||
+       sa.gene_strand || '&' ||
+       sa.reference_na || '&' ||
+       sa.source_id
        as atts
 FROM   apidb.featurelocation fl,
        apidb.SnpAttributes sa
@@ -3843,7 +3676,7 @@ WHERE
        blat.target_start <= $rend and 
        blat.target_end >= $base_start and 
        (blat.target_end - blat.target_start ) < 5000 and 
-			 blat.is_best_alignment = 1 and
+       blat.is_best_alignment = 1 and
        etn.na_sequence_id = $srcfeature_id 
        ORDER BY blat.target_start
 ]]>
@@ -3990,7 +3823,7 @@ WHERE  blat.query_na_sequence_id = asbl.na_sequence_id and
        blat.target_start <= $rend and 
        blat.target_end >= $base_start and 
        (blat.target_end - blat.target_start ) < 5000 and 
-			 blat.is_best_alignment = 1 and
+       blat.is_best_alignment = 1 and
        etn.na_sequence_id = $srcfeature_id
 ]]>
     </sql>
@@ -4171,11 +4004,11 @@ SELECT
        exfloc.na_feature_id as name,
        exfloc.parent_id,
        CASE WHEN (syn.is_reversed = 1) 
-         THEN anch_left.ref_loc - ((anch_left.syntenic_loc - (CASE WHEN exfloc.end_max > syn.b_end THEN syn.b_end ELSE exfloc.end_max END)) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc - 1))
+         THEN anch_left.ref_loc - ((anch_left.syntenic_loc - (CASE WHEN exfloc.end_max > syn.b_end THEN syn.b_end ELSE exfloc.end_max END)) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1))
          ELSE anch_left.ref_loc + (((CASE WHEN exfloc.start_min < syn.b_start THEN syn.b_start ELSE exfloc.start_min END) - anch_left.syntenic_loc)  * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1)) 
        END startm,
        CASE WHEN (syn.is_reversed = 1) 
-         THEN anch_left.ref_loc - ((anch_left.syntenic_loc - (CASE WHEN exfloc.start_min < syn.b_start THEN syn.b_start ELSE exfloc.start_min END)) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc - 1))
+         THEN anch_left.ref_loc - ((anch_left.syntenic_loc - (CASE WHEN exfloc.start_min < syn.b_start THEN syn.b_start ELSE exfloc.start_min END)) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1))
          ELSE anch_left.ref_loc + (((CASE WHEN exfloc.end_max > syn.b_end THEN syn.b_end ELSE exfloc.end_max END) - anch_left.syntenic_loc) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1))  
        END end,
        CASE WHEN (exfloc.is_reversed = syn.is_reversed) THEN 1 ELSE -1 END strand,
@@ -4206,9 +4039,9 @@ WHERE ga.na_feature_id = exfloc.parent_id
        ) 
        OR
        (syn.is_reversed = 1 
-        AND abs(anch_right.syntenic_loc - anch_left.syntenic_loc - 1)>0
+        AND abs(anch_right.syntenic_loc - anch_left.syntenic_loc + 1)>0
         AND anch_left.ref_loc - ((anch_left.syntenic_loc - exfloc.end_max) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1)) <= $rend 
-        AND anch_left.ref_loc - ((anch_left.syntenic_loc - exfloc.start_min) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc - 1)) >= $base_start 
+        AND anch_left.ref_loc - ((anch_left.syntenic_loc - exfloc.start_min) * (anch_right.ref_loc - anch_left.ref_loc + 1) / (anch_right.syntenic_loc - anch_left.syntenic_loc + 1)) >= $base_start
         )
   )
   AND exfloc.start_min <= syn.b_end
@@ -4401,7 +4234,7 @@ WHERE  fl.na_feature_id = sg.na_feature_id
 SELECT
        fl.na_feature_id feature_id, 
        'exon' type, 
-       'AlternateModels' source, 
+       '$source' source, 
        fl.na_feature_id name,
        gf.na_feature_id parent_id, 
        '.' score, 
@@ -4428,6 +4261,7 @@ WHERE  fl.na_sequence_id = $srcfeature_id
   AND  edr.external_database_id = ed.external_database_id 
   AND  fl_gf.na_sequence_id = fl.na_sequence_id
   AND  ga.na_feature_id (+) = fl.parent_id
+  AND  $sqlParamString
 ORDER BY 
        fl.start_min
 ]]>
@@ -4575,19 +4409,19 @@ GROUP BY interval
     </sql>
   </sqlQuery>
   
-  
-  <sqlQuery name="ChIP_RH:Einstein:bulksubfeatures"  includeProjects="ToxoDB">
+  <sqlQuery name="ChIP_chip:Assay:bulksubfeatures"  includeProjects="ToxoDB">
      <sql>
 <![CDATA[
  SELECT fl.na_feature_id   as feature_id,
-       'ChIP_sub'      as type,
-       'Einstein'           as source,
-       dtf.float_value      as score,
+       'ChIP_sub'          as type,
+       '$source'           as source,
+       dtf.float_value     as score,
        fl.na_sequence_id   as parent_id,
-       fl.start_min         as startm,
-       fl.end_max           as end,
+       fl.start_min        as startm,
+       fl.end_max          as end,
        'Treatment=' || cpp.treatment || '$dlm' || 'Analysis=' || a.name || '$dlm' || 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
+FROM   rad.protocol p,
+       rad.analysis a,
        rad.datatransformationresult dtf,
        apidb.featurelocation fl,
        apidb.chipprotocolparams cpp
@@ -4595,72 +4429,14 @@ WHERE  dtf.row_id = fl.na_feature_id
 AND    dtf.analysis_id =  cpp.analysis_id
 AND    cpp.protocol_id =  p.protocol_id
 AND    cpp.analysis_id =  a.analysis_id
-AND    p.name = 'ChIP_chip_Einstein' 
 AND    fl.na_sequence_id = $srcfeature_id
 AND    fl.start_min <= $rend
 AND    fl.end_max >= $base_start
-AND    cpp.strain = 'RH'
+AND    $sqlParamString
 ]]>
     </sql>
   </sqlQuery>
   
-  
-  <sqlQuery name="ChIP_RH:Hakimi:bulksubfeatures" includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT fl.na_feature_id   as feature_id,
-       'ChIP_sub'      as type,
-       'Hakimi'           as source,
-       dtf.float_value      as score,
-       fl.na_sequence_id   as parent_id,
-       fl.start_min         as startm,
-       fl.end_max           as end,
-       'Treatment=' || cpp.treatment || '$dlm' ||'Analysis=' || a.name ||'$dlm'|| 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
-       rad.datatransformationresult dtf,
-       apidb.featurelocation fl,
-       apidb.chipprotocolparams cpp
-WHERE  dtf.row_id = fl.na_feature_id
-AND    dtf.analysis_id =   cpp.analysis_id
-AND    cpp.protocol_id =  p.protocol_id
-AND    cpp.analysis_id = a.analysis_id
-AND    p.name = 'NimbleScan_ChIP_Hakimi' 
-AND    fl.na_sequence_id = $srcfeature_id
-AND    fl.start_min <= $rend
-AND    fl.end_max >= $base_start
-AND    cpp.strain = 'RH'
-]]>
-    </sql>
-  </sqlQuery>
-
-  <sqlQuery name="ChIP_Centromere:Einstein:bulksubfeatures" includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT fl.na_feature_id   as feature_id,
-       'ChIP_Centromere_sub' as type,
-       'Einstein'               as source,
-       dtf.float_value        as score,
-       fl.na_sequence_id     as parent_id,
-       fl.start_min           as startm,
-       fl.end_max             as end,
-       'Treatment=' || cpp.treatment || '$dlm' || 'Analysis=' || a.name || '$dlm' || 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
-       rad.datatransformationresult dtf,
-       apidb.featurelocation fl,
-       apidb.chipprotocolparams cpp
-WHERE  dtf.row_id = fl.na_feature_id
-AND    dtf.analysis_id =   cpp.analysis_id
-AND    cpp.protocol_id =  p.protocol_id
-AND    cpp.analysis_id = a.analysis_id
-AND    p.name = 'ChIP_chip_Einstein_centromere'
-AND    fl.na_sequence_id = $srcfeature_id
-AND    fl.start_min <= $rend
-AND    fl.end_max >= $base_start
-]]>
-    </sql>
-  </sqlQuery>
-
-
   <sqlQuery name="GeneticMarkers:Sibley:bulkAttribute"  includeProjects="ToxoDB">
     <testParamValues project="ToxoDB">
        <param name="srcfeature_id" value="$$na_seq_id_X$$"/>
@@ -4689,37 +4465,6 @@ WHERE fl.na_sequence_id = $srcfeature_id
     </sql>
   </sqlQuery>
   
-  
-  <sqlQuery name="ChIP_PLK:Einstein:bulksubfeatures"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT /*+ no_star_transformation use_nl(fl dtf) */
-       fl.na_feature_id   as feature_id,
-       'ChIP_sub'          as type,
-       'Einstein'          as source,
-       dtf.float_value     as score,
-       fl.na_sequence_id   as parent_id,
-       fl.start_min        as startm,
-       fl.end_max          as end,
-       'Treatment=' || cpp.treatment || '$dlm' ||'Analysis=' || a.name ||'$dlm'|| 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
-       rad.datatransformationresult dtf,
-       apidb.featurelocation fl,
-       apidb.chipprotocolparams cpp
-WHERE  dtf.row_id = fl.na_feature_id
-AND    dtf.analysis_id =   cpp.analysis_id
-AND    cpp.protocol_id =  p.protocol_id
-AND    cpp.analysis_id = a.analysis_id
-AND    p.name = 'ChIP_chip_Einstein'
-AND    fl.na_sequence_id = $srcfeature_id
-AND    fl.start_min <= $rend
-AND    fl.end_max >= $base_start
-AND    cpp.strain = 'PLK'
-]]>
-    </sql>
-  </sqlQuery>
-
-
   <sqlQuery name="ChIP:TBP_Promastigotes:bulksubfeatures"  includeProjects="TriTrypDB">
      <sql>
 <![CDATA[
@@ -5226,35 +4971,6 @@ AND    cpp.protocol_type = 'raw'
 <!--    Using the analysis names directly in the WHERE clause to filter out the probes for each antibody in the above query is probably a little clumsy, but this direct specification is giving a 4 fold improvement in the time taken when compared to using nested WHERE clauses with ORs and AND logicals (see below) -->
 <!-- a.name not like '%Schizont%' and a.name not like '%Ring%' and (lower(cpp.antibody) = 'h3' or lower(cpp.antibody) = 'h3k9me3' or lower(a.name) like '%cdna%') -->
  
-  <sqlQuery name="ChIP_TypeIII:Einstein:bulksubfeatures"  includeProjects="ToxoDB">
-     <sql>
-<![CDATA[
- SELECT fl.na_feature_id   as feature_id,
-       'ChIP_TypeIII'          as type,
-       'Einstein'               as source,
-       dtf.float_value        as score,
-       fl.na_sequence_id     as parent_id,
-       fl.start_min           as startm,
-       fl.end_max             as end,
-       'Treatment=' || cpp.treatment || '$dlm' ||'Analysis=' ||a.name ||'$dlm'|| 'Antibody=' || cpp.antibody || '$dlm' || 'Rep=' || cpp.replicate as atts
-FROM   rad.protocol p,rad.analysis a,
-       rad.datatransformationresult dtf,
-       apidb.featurelocation fl,
-       apidb.chipprotocolparams cpp
-WHERE  dtf.row_id = fl.na_feature_id
-AND    dtf.analysis_id =   cpp.analysis_id
-AND    cpp.analysis_id = a.analysis_id
-AND    cpp.protocol_id =  p.protocol_id
-AND    p.name = 'ChIP_chip_Einstein'
-AND    fl.na_sequence_id = $srcfeature_id
-AND    fl.start_min <= $rend
-AND    fl.end_max >= $base_start
-AND    cpp.strain = 'TypeIII'
-]]>
-    </sql>
-  </sqlQuery>
-  
-  
   <sqlQuery name="SNP:Alignment:bulkAttribute" includeProjects="ToxoDB">
      <sql>
 <![CDATA[
