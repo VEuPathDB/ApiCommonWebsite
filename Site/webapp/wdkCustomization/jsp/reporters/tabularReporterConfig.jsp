@@ -17,6 +17,24 @@
 <!-- display page header -->
 <site:header banner="Create and download a Report in Tabular Format" />
 
+<%-- galaxy.psu.edu users; to send data to Galaxy  --%>
+<script type="text/javascript">
+function appendchecked(url) {
+    var newtxt = '';
+    var chkbx = document.downloadConfigForm.selectedFields;
+    for(var i = 0; i < chkbx.length; i ++) {
+        if(chkbx[i].type == 'checkbox' && chkbx[i].checked === true) {
+            if(newtxt.length !== 0) {
+                newtxt += ',';
+            }
+            newtxt += chkbx[i].value;
+        }
+    }
+    document.galaxy_exchange.URL.value = url + newtxt;
+}
+</script>
+<%-- end galaxy.psu.edu users  --%>
+
 <!-- display description for page -->
 <p><b>Generate a tab delimited report of your query result.  Select columns to include in the report.  Optionally include a first line with column names</b></p>
 
@@ -109,6 +127,23 @@
       <td><html:submit property="downloadConfigSubmit" value="Get Report"/>
       </td></tr></table>
 </form>
+
+  <%-- galaxy.psu.edu users; send data to Galaxy  --%>
+  <c:if test="${!empty sessionScope.GALAXY_URL}">
+    <div style="text-align:center;background-color:#FFCCFF;border-style:double; width:300px">
+    <c:url var='downloadPath' 
+           value='/getDownloadResult.do;jsessionid=${pageContext.session.id}?wdk_history_id=${step_id}&includeHeader=yes&downloadType=plain&wdkReportFormat=tabular&selectedFields='/>
+    <c:set var='downloadUrl'>
+      ${pageContext.request.scheme}://${pageContext.request.serverName}${downloadPath}
+    </c:set>
+    <br>
+    <form action="${sessionScope.GALAXY_URL}" name="galaxy_exchange" id="galaxy_exchange" method="POST">
+      <input type="hidden" name="URL" value="${fn:escapeXml(downloadUrl)}">
+      <input type="submit" name="Send" value="Send to Galaxy" onclick="appendchecked('${fn:escapeXml(downloadUrl)}')">
+    </form>
+    </div>
+  </c:if>
+  <%-- galaxy.psu.edu users  --%>
 
   </c:otherwise>
 </c:choose>
