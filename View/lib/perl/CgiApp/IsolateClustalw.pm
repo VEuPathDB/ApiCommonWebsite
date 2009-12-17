@@ -47,7 +47,9 @@ sub handleIsolates {
   my $ids = $self->{ids};
 
   my $sql = <<EOSQL;
-select source_id, substr(sequence, 1,1000) from dots.virtualsequence where chromosome = 'Ia'
+SELECT etn.source_id, etn.sequence
+FROM   dots.externalnasequence etn
+WHERE etn.source_id in ($ids)
 EOSQL
 
   my $sequence;
@@ -136,7 +138,27 @@ EOSQL
   print "</td></tr>";
 
   print "<tr><td><pre><a name='tree'>Guide Tree</a></pre></td></tr>";
+  my @parts = $result->packager->parts;
+  foreach my $p (@parts) {
+    foreach(@$p) {
+      my $id = $_->head->get('Content-Id');
+      if($id =~ /tree/i) {
+        my $tree = $_->bodyhandle->as_string;
+        my $link = $self->writetree($tree);
+        $self->printApplet($link);
+        $tree =~ s/\n/ /g;
+        print "<tr><td>$tree</td></tr>";
+      }
+    }
+  }
 
+  print "<tr><td><hr><pre>";
+
+  foreach(@ws_params) { 
+    print $_->string_value, "\n"; 
+  } 
+  
+  print "</pre></td></tr>";
   print "</table>";
 }
 
