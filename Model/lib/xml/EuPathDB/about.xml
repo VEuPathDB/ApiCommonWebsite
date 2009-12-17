@@ -213,10 +213,7 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
 <b>TrichDB</b><br><br>
 <div id="cirbulletlist">
 <ul>
-<li>
-<li>
-<li>
-<li>
+<li> <i>(Unassigned)</i>
 </ul></div>
 <br><br>
 <b>TriTrypDB</b><br><br>
@@ -227,6 +224,7 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
       <li>Jeremy Mottram (University of Glasgow, United Kingdom)
       <li>Angela Cruz (Universidade de São Paulo, Brazil)
     </ul></div><br>
+</li>
 <li><div id="cirbulletlist"><ul><b><i>T. cruzi</i></b>
      <li>John Kelly (London School of Hygiene and Tropical Medicine, United Kingdom)
      <li>Sergio Schenkman (Universidade Federal de São Paulo, Brazil)
@@ -234,14 +232,16 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
       <li>Fernan Aguero (Universidad Nacional de General San Martín, Argentina)
       <li>Brent Weatherly (University of Georgia, USA)
      </ul></div><br>
-<li><div id="cirbulletlist"><ul><b><i>T. brucei</i></b>
+</li>
+<li><div id="cirbulletlist"><ul><b><i>T. brucei, T. congolense, T. vivax</i></b>
      <li>Vivian Bellofatto (New Jersey Medical School, USA)
      <li>Antonio Estevez (Institute of Parasitology and Biomedicine "López-Neyra", Spain)
       <li>George Cross (The Rockefeller University, USA)
       <li>Laurie Read (State University of Buffalo, USA)
        <li>March Field (University of Cambridge, United Kingdom)
       <li>Keith Gull (University of Oxford, United Kingdom)
-</ul></div>
+      </ul></div>
+</li>
 <br>
 </ul>
 

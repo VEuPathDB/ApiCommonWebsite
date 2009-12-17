@@ -448,6 +448,28 @@
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
+       <attribute name = "Organism">L.mexicana</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.tarantolae</attribute>
        <attribute name = "Taxon_ID">5689</attribute>
        <attribute name = "Strain"></attribute>
@@ -507,6 +529,50 @@
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
+       <attribute name = "Organism">T.congolense</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
+       <attribute name = "Organism">T.vivax</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
