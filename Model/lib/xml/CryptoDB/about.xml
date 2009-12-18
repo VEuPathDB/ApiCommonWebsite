@@ -65,6 +65,9 @@ rganisms currently available in EuPathDB, by various datatypes.
 We are interested in including documents and protocols that are useful   
 for the CryptoDB community.  Please send us your suggestions by   
 clicking <a href="help.jsp" target="_blank" onClick="poptastic(this.href); return false;">here</a>.
+<br><br>
+<a href="/static/SOP/">SOPs for Annotation</a>
+
 
    ]]>
        </attribute>
