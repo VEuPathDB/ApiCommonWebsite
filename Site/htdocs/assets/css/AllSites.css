@@ -25,6 +25,10 @@
 	padding:0 5px 0 5px;
 }
 
+div#quick-search td {
+  white-space: nowrap;
+}
+
 #strat-instructions img#ns-arrow{
 	position:relative;
 	top:-57px;
@@ -271,9 +275,9 @@ height: 240px;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	 =used in help.jsp, classic bullet list
+	 =not sure where it is used, classic bullet list
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-#cirbulletlist ul, #cirbulletlist ol {
+#cirbulletlist ol {
 	list-style-type: disc;
 	margin-left:  1em;
 	padding-left: 1em;
@@ -289,8 +293,14 @@ div.innertube #record-toolbox {
     float: right;
     border-style: double;
     border-width: 3px;
+    margin: 3px;
+    padding: 5px;
+    text-align: center;
 }
 
+div.innertube #record-toolbox li {
+    margin-top: 2px;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          =WARNING BOXES
@@ -1531,7 +1541,14 @@ tr.lines td, tr.linesalt td {
 	padding-left: 1em;
 	list-style-position: outside;
 }
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 =used in serviceList.jsp, classic bullet list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+ul.cirbulletlist {
+	list-style-type: disc;
+	margin-left:  1em;
+	list-style-position: outside;
+}
 
 
 
@@ -1609,7 +1626,7 @@ td.strat_inactive {
 }
 
 img.basket {
-	margin:-1px 3px -2px -1px;
+	margin:-1px 0px -2px -1px;
 }
 
 
@@ -1796,4 +1813,13 @@ span#toggle_filter {
 
 #browser-info input {
 	margin-bottom: 15px;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      = Basket Tab Styles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+table.basket {
+	margin-top: 3px;
+	margin-left:2px;
 }

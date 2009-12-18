@@ -21,8 +21,10 @@
        <attribute name="Plasmodium_yoelii">7865</attribute>
        <attribute name="Toxoplasma_gondii">9239</attribute>
        <attribute name="Trichomonas_vaginalis">99009</attribute>
-       <attribute name="Trypanosoma_brucei">10682</attribute>
+       <attribute name="Trypanosoma_brucei">10682</attribute> 
+       <attribute name="Trypanosoma_congolense">13459</attribute>
        <attribute name="Trypanosoma_cruzi">23559</attribute>
+       <attribute name="Trypanosoma_vivax">11885</attribute>
    </record>
 
    <record>
@@ -47,7 +49,9 @@
        <attribute name="Toxoplasma_gondii">9031</attribute>
        <attribute name="Trichomonas_vaginalis">59672</attribute>
        <attribute name="Trypanosoma_brucei">10123</attribute>
+       <attribute name="Trypanosoma_congolense">13459</attribute>
        <attribute name="Trypanosoma_cruzi">23031</attribute>
+       <attribute name="Trypanosoma_vivax">11885</attribute>
    </record>
 
    <record>
@@ -72,7 +76,9 @@
        <attribute name="Toxoplasma_gondii">208</attribute>
        <attribute name="Trichomonas_vaginalis">39337</attribute>
        <attribute name="Trypanosoma_brucei">559</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">528</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -97,7 +103,9 @@
        <attribute name="Toxoplasma_gondii">7</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">1222</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">3424</attribute>
+       <attribute name="Trypanosoma_vivax">15</attribute>
    </record>
 
    <record>
@@ -122,7 +130,9 @@
        <attribute name="Toxoplasma_gondii">0</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">0</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -130,7 +140,7 @@
        <attribute name = "Description">Number of genes that have comments/notes from the research community</attribute>
        <attribute name="Cryptosporidium_hominis">3</attribute>
        <attribute name="Cryptosporidium_muris">1</attribute>
-       <attribute name="Cryptosporidium_parvum">16</attribute>
+       <attribute name="Cryptosporidium_parvum">19</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">14</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -138,16 +148,18 @@
        <attribute name="Leishmania_infantum">7</attribute>
        <attribute name="Leishmania_major">42</attribute>
        <attribute name="Neospora_caninum">2</attribute>
-       <attribute name="Plasmodium_berghei">29</attribute>
+       <attribute name="Plasmodium_berghei">31</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
        <attribute name="Plasmodium_falciparum">543</attribute>
        <attribute name="Plasmodium_knowlesi">11</attribute>
        <attribute name="Plasmodium_vivax">13</attribute>
        <attribute name="Plasmodium_yoelii">170</attribute>
-       <attribute name="Toxoplasma_gondii">1193</attribute>
+       <attribute name="Toxoplasma_gondii">1197</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">353</attribute>
+       <attribute name="Trypanosoma_brucei">373</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">18</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -172,7 +184,9 @@
        <attribute name="Toxoplasma_gondii">6497</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">9026</attribute>
+       <attribute name="Trypanosoma_congolense">11514</attribute>
        <attribute name="Trypanosoma_cruzi">18583</attribute>
+       <attribute name="Trypanosoma_vivax">10040</attribute>
    </record>
 
    <record>
@@ -197,7 +211,9 @@
        <attribute name="Toxoplasma_gondii">3275</attribute>
        <attribute name="Trichomonas_vaginalis">9407</attribute>
        <attribute name="Trypanosoma_brucei">4455</attribute>
+       <attribute name="Trypanosoma_congolense">4080</attribute>
        <attribute name="Trypanosoma_cruzi">7944</attribute>
+       <attribute name="Trypanosoma_vivax">3437</attribute>
    </record>
 
    <record>
@@ -222,7 +238,9 @@
        <attribute name="Toxoplasma_gondii">1729</attribute>
        <attribute name="Trichomonas_vaginalis">487</attribute>
        <attribute name="Trypanosoma_brucei">826</attribute>
+       <attribute name="Trypanosoma_congolense">3</attribute>
        <attribute name="Trypanosoma_cruzi">729</attribute>
+       <attribute name="Trypanosoma_vivax">637</attribute>
    </record>
 
    <record>
@@ -247,7 +265,9 @@
        <attribute name="Toxoplasma_gondii">7628</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">0</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -272,7 +292,9 @@
        <attribute name="Toxoplasma_gondii">20402</attribute>
        <attribute name="Trichomonas_vaginalis">10413</attribute>
        <attribute name="Trypanosoma_brucei">3612</attribute>
+       <attribute name="Trypanosoma_congolense">3614</attribute>
        <attribute name="Trypanosoma_cruzi">5612</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -297,7 +319,9 @@
        <attribute name="Toxoplasma_gondii">4067</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">0</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -322,7 +346,9 @@
        <attribute name="Toxoplasma_gondii">18419</attribute>
        <attribute name="Trichomonas_vaginalis">10413</attribute>
        <attribute name="Trypanosoma_brucei">1290</attribute>
+       <attribute name="Trypanosoma_congolense">3614</attribute>
        <attribute name="Trypanosoma_cruzi">3718</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -347,7 +373,9 @@
        <attribute name="Toxoplasma_gondii">5666</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">0</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -372,7 +400,9 @@
        <attribute name="Toxoplasma_gondii">3560</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">2894</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">2729</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 
    <record>
@@ -397,6 +427,8 @@
        <attribute name="Toxoplasma_gondii">7773</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">0</attribute>
+       <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
    </record>
 </xmlAnswer>

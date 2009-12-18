@@ -5,6 +5,7 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
 
 <c:set var="wdkAnswer" value="${requestScope.wdkAnswer}"/>
+<c:set var="wdkStep" value="${requestScope.wdkStep}"/>
 <c:set var="qName" value="${wdkAnswer.question.fullName}" />
 <c:set var="modelName" value="${applicationScope.wdkModel.name}" />
 <c:set var="recordName" value="${wdkAnswer.question.recordClass.fullName}" />
@@ -27,7 +28,7 @@
 %>
 
 <c:set var="type" value="Results" />
-<c:set var="step_dataType" value="${strategy.latestStep.displayType}" />
+<c:set var="step_dataType" value="${wdkStep.dataType}" />
 <c:choose>
 	<c:when test="${fn:endsWith(step_dataType,'y')}">
 		<c:set var="type" value="${fn:substring(step_dataType,0,fn:length(step_dataType)-1)}ies'" />
@@ -53,6 +54,9 @@
     <c:set var="commandUrl" value="${commandUrl}${prm}&" />
   </c:if>
 </c:forEach>
+<c:if test="${strategy != null}">
+  <c:set var="commandUrl" value="${commandUrl}strategy_checksum=${strategy.checksum}" />
+</c:if>
 <c:set var="commandUrl"><c:url value="/processSummary.do?${commandUrl}" /></c:set>
 
 <c:if test="${strategy != null}">
@@ -63,8 +67,14 @@
 
 <!-- handle empty result set situation -->
 <c:choose>
-  <c:when test='${wdkAnswer.resultSize == 0}'>
-    No results are retrieved
+  <c:when test='${strategy != null && wdkAnswer.resultSize == 0}'>
+	No results are retrieved
+  </c:when>
+  <c:when test='${strategy == null && wdkUser.guest && wdkAnswer.resultSize == 0}'>
+    Please login to use the basket
+  </c:when>
+  <c:when test='${strategy == null && wdkAnswer.resultSize == 0}'>
+    Basket Empty
   </c:when>
   <c:otherwise>
 
@@ -80,7 +90,18 @@
 
 <td  style="vertical-align:middle;text-align:right" nowrap>
   <div style="float:right">
-    <a href="downloadStep.do?step_id=${wdkHistory.stepId}"><b>DOWNLOAD RESULT</b></a>
+   <c:if test="${strategy != null}">
+    <c:choose>
+      <c:when test="${wdkUser.guest}">
+        <c:set var="basketClick" value="popLogin()" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="basketClick" value="updateBasket(this, '${wdkStep.stepId}', '0', '${modelName}', '${recordName}')" />
+      </c:otherwise>
+    </c:choose>
+    <c:if test="${recHasBasket}"><a style="font-size:120%" href="javascript:void(0)" onClick="${basketClick}"><b>Add Results to Basket</b></a>&nbsp;|&nbsp;</c:if>
+   </c:if>
+    <a style="font-size:120%" href="downloadStep.do?step_id=${wdkHistory.stepId}"><b>Download Results</b></a>
   <c:if test="${!empty sessionScope.GALAXY_URL}">
     &nbsp;|&nbsp;<a href="downloadStep.do?step_id=${wdkHistory.stepId}&wdkReportFormat=tabular"><b>SEND TO GALAXY</b></a>
   </c:if>
@@ -149,10 +170,10 @@
 	   <input id="summary_view_button" disabled="disabled" type="submit" value="Summary View" onclick="ToggleGenePageView('')" />
 	</th>
 --%>
-	<th align="left" nowrap> 
+	<th style="text-align: left" nowrap> 
 	       <wdk:pager pager_id="top"/> 
 	</th>
-	<th nowrap align="right">
+	<th nowrap style="text-align: right">
 		           <%-- display a list of sortable attributes --%>
 		           <c:set var="addAttributes" value="${wdkAnswer.displayableAttributes}" />
 		           <select id="addAttributes" style="display:none;" commandUrl="${commandUrl}" multiple="multiple">
@@ -162,9 +183,9 @@
 		               </c:forEach>
 		           </select>
 	</th>
-	<th nowrap align="right" width="5%">
+	<th nowrap style="text-align: right" width="5%">
 	    &nbsp;
-	   <input type="button" value="Reset Columns" onClick="resetAttr('${commandUrl}')" />
+	   <input type="button" value="Reset Columns" onClick="resetAttr('${commandUrl}', this)" />
 	</th>
 	</tr>
 </table>
@@ -181,7 +202,7 @@
 <div id="Results_Div" class="flexigrid">
 <div class="bDiv">
 <div class="bDivBox">
-<table id="Results_Table" width="100%" border="0" cellpadding="3" cellspacing="0">
+<table id="Results_Table" width="100%" border="0" cellpadding="3" cellspacing="0" step="wdkStep.stepId">
 <thead>
 <tr class="headerrow">
   <c:set var="j" value="0"/>
@@ -192,8 +213,17 @@
           <tr>
 
 				<c:if test="${recHasBasket && j == 0}">
-					<td style="padding:0;"><a href="javascript:void(0)" onclick="updateBasket(this,'${wdkAnswer.checksum}', '0', '0', '${wdkAnswer.recordClass.fullName}')">
-						<img class="basket" src="/assets/images/basket_gray.png" height="20px" width="20px" value="0"/>
+                                  <c:choose>
+                                    <c:when test="${wdkUser.guest}">
+                                      <c:set var="basketClick" value="popLogin()" />
+                                      <c:set var="basketTitle" value="Please log in to use the basket." />
+                                    </c:when>
+                                    <c:otherwise>
+                                      <c:set var="basketClick" value="updateBasket(this,'page', '0', '${modelName}', '${wdkAnswer.recordClass.fullName}')" />
+                                    </c:otherwise>
+                                  </c:choose>
+					<td style="padding:0;"><a href="javascript:void(0)" onclick="${basketClick}">
+						<img title="${basketTitle}" class="head basket" src="/assets/images/basket_gray.png" height="16" width="16" value="0"/>
 					</a></td>
 				</c:if>
 
@@ -211,7 +241,15 @@
             </c:when>
             <c:otherwise>
               <%-- display sorting buttons --%>
-              <a href="javascript:GetResultsPage('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=asc', true, true)" title="Sort by ${sumAttrib}">
+              <c:choose>
+                <c:when test="${strategy != null}">
+                  <c:set var="resultsAction" value="javascript:GetResultsPage('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=asc', true, true)" />
+                </c:when>
+                <c:otherwise>
+                  <c:set var="resultsAction" value="javascript:ChangeBasket('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=asc')" />
+                </c:otherwise>
+              </c:choose>
+              <a href="${resultsAction}" title="Sort by ${sumAttrib}">
                   <img src="/assets/images/results_arrw_up.png" alt="Sort up" border="0" /></a>
             </c:otherwise>
           </c:choose>
@@ -229,7 +267,15 @@
             </c:when>
             <c:otherwise>
               <%-- display sorting buttons --%>
-              <a href="javascript:GetResultsPage('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=desc', true, true)" title="Sort by ${sumAttrib}">
+              <c:choose>
+                <c:when test="${strategy != null}">
+                  <c:set var="resultsAction" value="javascript:GetResultsPage('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=desc', true, true)" />
+                </c:when>
+                <c:otherwise>
+                  <c:set var="resultsAction" value="javascript:ChangeBasket('${commandUrl}&command=sort&attribute=${attrName}&sortOrder=desc')" />
+                </c:otherwise>
+              </c:choose>
+              <a href="${resultsAction}" title="Sort by ${sumAttrib}">
               <img src="/assets/images/results_arrw_dwn.png" alt="Sort down" border="0" /></a>
             </c:otherwise>
           </c:choose>
@@ -247,7 +293,15 @@
         <c:if test="${j != 0}">
           <td style="width:20px;">
             <%-- display remove attribute button --%>
-            <a href="javascript:GetResultsPage('${commandUrl}&command=remove&attribute=${attrName}', true, true)"
+              <c:choose>
+                <c:when test="${strategy != null}">
+                  <c:set var="resultsAction" value="javascript:GetResultsPage('${commandUrl}&command=remove&attribute=${attrName}', true, true)" />
+                </c:when>
+                <c:otherwise>
+                  <c:set var="resultsAction" value="javascript:ChangeBasket('${commandUrl}&command=remove&attribute=${attrName}')" />
+                </c:otherwise>
+              </c:choose>
+            <a href="${resultsAction}"
                         title="Remove ${sumAttrib} column">
               <img src="/assets/images/results_x.png" alt="Remove" border="0" /></a>
           </td>
@@ -311,7 +365,7 @@
     <c:set var="projectId" value="${pkValues['project_id']}" />
     <c:set var="id" value="${pkValues['source_id']}" />
 
-    <td ${align} ${nowrap} style="padding:3px 2px"><div>
+    <td ${align} ${nowrap} style="white-space:nowrap; padding:3px 2px"><div>
       <c:set var="recNam" value="${record.recordClass.fullName}"/>
       <c:set var="fieldVal" value="${recAttr.briefValue}"/>
       <c:choose>
@@ -319,8 +373,24 @@
 
         <c:choose>
            <c:when test="${fn:containsIgnoreCase(dispModelName, 'EuPathDB')}">
-               
-              <a href="javascript:create_Portal_Record_Url('${recNam}', '${projectId}', '${id}','')">
+				<c:choose>
+                    <c:when test="${wdkUser.guest}">
+                      <c:set var="basketClick" value="popLogin()" />
+                      <c:set var="basketTitle" value="Please log in to use the basket." />
+                    </c:when>
+                    <c:otherwise>
+                      <c:set var="basketClick" value="updateBasket(this, 'single', '${primaryKey.value}', '${projectId}', '${recNam}')" />
+                      <c:set var="basketTitle" value="Click to add this item to the basket." />
+                      <c:if test="${record.attributes['in_basket'] == '1'}">
+                        <c:set var="basketTitle" value="Click to remove this item from the basket." />
+                      </c:if>
+                    </c:otherwise>
+                  </c:choose>
+				<a href="javascript:void(0)" onclick="${basketClick}">
+					<img title="${basketTitle}" class="basket" value="${is_basket}" src="/assets/images/${basket_img}" width="16" height="16"/>
+				</a>
+
+				<a href="javascript:create_Portal_Record_Url('${recNam}', '${projectId}', '${id}','')">
                    ${primaryKey.value}</a>
            </c:when>
 
@@ -339,13 +409,26 @@
               <%-- display a link to record page --%>
 
 
-				<a href="javascript:void(0)" onclick="updateBasket(this, 'single', '${primaryKey.value}', '${projectId}', '${recNam}')">
-					<img class="basket" value="${is_basket}" src="/assets/images/${basket_img}" width="20px" height="20px"/>
+                                  <c:choose>
+                                    <c:when test="${wdkUser.guest}">
+                                      <c:set var="basketClick" value="popLogin()" />
+                                      <c:set var="basketTitle" value="Please log in to use the basket." />
+                                    </c:when>
+                                    <c:otherwise>
+                                      <c:set var="basketClick" value="updateBasket(this, 'single', '${primaryKey.value}', '${projectId}', '${recNam}')" />
+                                      <c:set var="basketTitle" value="Click to add this item to the basket." />
+                                      <c:if test="${record.attributes['in_basket'] == '1'}">
+                                        <c:set var="basketTitle" value="Click to remove this item from the basket." />
+                                      </c:if>
+                                    </c:otherwise>
+                                  </c:choose>
+				<a href="javascript:void(0)" onclick="${basketClick}">
+					<img title="${basketTitle}" class="basket" value="${is_basket}" src="/assets/images/${basket_img}" width="16" height="16"/>
 				</a>
 		
 				&nbsp;&nbsp;&nbsp;
 
-				<a href="showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}">${fieldVal}</a>
+				<a class="primaryKey_||_${id}" href="showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}">${fieldVal}</a>
 
 
               <%--   <span id="gene_id_${fieldVal}"> <a href="javascript:ToggleGenePageView('gene_id_${fieldVal}', 'showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}')">${fieldVal}</a></span> --%>
