@@ -1,5 +1,4 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -65,24 +64,11 @@
 <%--#############################################################--%>
 
 <%-- quick tool-box for the record --%>
-<div id="record-toolbox">
-  <ul>
-    <li>
-        <c:url var="downloadUrl" value="/processQuestion.do?questionFullName=GeneQuestions.GeneBySingleLocusTag&skip_to_download=1&myProp(single_gene_id)=${id}" />
-        <a class="download" href="${downloadUrl}" title="Download this ${recordType}">Download</a>    
-    </li>
-    <li>
-        <a class="show-all" href="" title="Show all sections">Show All</a>
-    </li>
-    <li>
-        <a class="hide-all" href="" title="Hide all sections">Hide All</a>
-    </li>
-  </ul>
-</div>
+<site:recordToolbox />
 
 <h2>
 <center>
-${id} <br /> ${prd}
+<site:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
 </center>
 </h2>
 
@@ -186,6 +172,9 @@ G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblage
   <c:if test="${strand eq '-'}">
    <c:set var="revCompOn" value="1"/>
   </c:if>
+
+<!-- External Links --> 
+<wdk:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
 
 <!-- Mercator / Mavid alignments -->
 <c:set var="mercatorAlign">
@@ -517,19 +506,25 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
     content="${seq}" />
 
 <%------------------------------------------------------------------%>
-<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
-<c:set var="genomicSequenceContent">
-    <noindex>
-    <font class="fixed">
-  <w:wrap size="60"  break="<br>">${genomicSequence.value}</w:wrap>
-    </font><br/><br/>
-  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
-    </noindex>
+<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
+
+<c:set var="i" value="0"/>
+<c:forEach var="row" items="${geneModelTable}">
+  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
+  <c:set var="i" value="${i +  1}"/>
+</c:forEach>
+
+<c:set var="seq">
+ <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
+  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
 
-<wdk:toggle name="genomicSequence" isOpen="false"
+<wdk:toggle
+    name="GenomicSequence"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${genomicSequenceContent}" />
+    isOpen="false"
+    content="${seq}" />
+
 <%------------------------------------------------------------------%>
 <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
 <c:set var="attr" value="${attrs['cds']}" />

@@ -1,5 +1,4 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -52,25 +51,12 @@
   <td bgcolor=white valign=top>
 
 <%-- quick tool-box for the record --%>
-<div id="record-toolbox">
-  <ul>
-    <li>
-        <c:url var="downloadUrl" value="/processQuestion.do?questionFullName=GeneQuestions.GeneBySingleLocusTag&skip_to_download=1&myProp(single_gene_id)=${id}" />
-        <a class="download" href="${downloadUrl}" title="Download this ${recordType}">Download</a>    
-    </li>
-    <li>
-        <a class="show-all" href="" title="Show all sections">Show All</a>
-    </li>
-    <li>
-        <a class="hide-all" href="" title="Hide all sections">Hide All</a>
-    </li>
-  </ul>
-</div>
+<site:recordToolbox />
 
 <a name = "top">
 <h2>
 <center>
-${id} <br /> ${prd}
+<site:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
 </center>
 </h2>
 </a>
@@ -734,15 +720,21 @@ OnChange="javascript:updateImage('${imgId}', WhiteBradySort.WhiteBradyList.optio
              content="${transcriptSequenceContent}" isOpen="false"/>
 
 <!-- genomic sequence -->
-<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
-<c:set var="genomicSequenceContent">
-  <pre><w:wrap size="60">${genomicSequence.value}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
+<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
+<c:set var="i" value="0"/>
+<c:forEach var="row" items="${geneModelTable}">
+  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
+  <c:set var="i" value="${i +  1}"/>
+</c:forEach>
+
+<c:set var="seq">
+ <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
+  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
 
 <wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${genomicSequenceContent}" />
+    content="${seq}" />
 
 <c:if test="${isCodingGene}">
 <!-- CDS -->
@@ -784,7 +776,7 @@ OnChange="javascript:updateImage('${imgId}', WhiteBradySort.WhiteBradyList.optio
 
 <c:when test='${organism_full eq "Neospora caninum" }'>
   <c:set var="reference">
-<b>Chromosome sequence and annotation for Neospora caninum provided by Arnab Pain (The Wellcome Trust Sanger Institute) and Jonathan Wastling (University of Liverpool, Faculty of Veterinary Science). The Welcome Trust Sanger Institute plans on publishing the completed and annotated sequences in a peer-reviewed journal as soon as possible. Permission should be obtained from Arnaub Pain before publishing analyses of the sequence/open reading frames/genes on a chromosome or genome scale.</b>
+<b>Chromosome sequences and annotation for <i>Neospora caninum</i> obtained from the Pathogen Sequencing Unit at the Wellcome Trust Sanger Institute.</b>
   </c:set>
 </c:when>
 

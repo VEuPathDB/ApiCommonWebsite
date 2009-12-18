@@ -1,5 +1,4 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -74,20 +73,7 @@
 </c:choose>
 
 <%-- quick tool-box for the record --%>
-<div id="record-toolbox">
-  <ul>
-    <li>
-        <c:url var="downloadUrl" value="/processQuestion.do?questionFullName=GeneQuestions.GeneBySingleLocusTag&skip_to_download=1&myProp(single_gene_id)=${id}" />
-        <a class="download" href="${downloadUrl}" title="Download this ${recordType}">Download</a>    
-    </li>
-    <li>
-        <a class="show-all" href="" title="Show all sections">Show All</a>
-    </li>
-    <li>
-        <a class="hide-all" href="" title="Hide all sections">Hide All</a>
-    </li>
-  </ul>
-</div>
+<site:recordToolbox />
 
 <c:set var="genedb_annot_link">
   ${attrs['GeneDB_updated'].value}
@@ -95,7 +81,7 @@
 
 <h2>
 <center>
-${id} <br /> ${prd}
+<site:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
 <c:if test="${attrs['updated_annotation'].value != null}">
 <br>${genedb_annot_link}
 </c:if>
@@ -118,44 +104,62 @@ ${organism}<br>
 <c:choose>
   <c:when test='${organismFull eq "Leishmania braziliensis"}'>
     <c:set var="tracks">
-      Gene+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
   <c:when test='${organismFull eq "Leishmania major"}'>
     <c:set var="tracks">
-      Gene+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
   <c:when test='${organismFull eq "Leishmania infantum"}'>
     <c:set var="tracks">
-      Gene+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${binomial eq "Trypanosoma cruzi" && sequenceDatabaseName eq nonEsmeraldoDatabaseName}'>
     <c:set var="tracks">
-      Gene+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${binomial eq "Trypanosoma cruzi" && sequenceDatabaseName eq esmeraldoDatabaseName}'>
     <c:set var="tracks">
-      Gene+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${binomial eq "Trypanosoma cruzi" && sequenceDatabaseName ne esmeraldoDatabaseName && sequenceDatabaseName ne nonEsmeraldoDatabaseName}'>
     <c:set var="tracks">
-      Gene+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
-
 
   <c:when test='${organismFull eq "Trypanosoma brucei TREU927"}'>
     <c:set var="tracks">
-      Gene+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansTCruziPMC+SyntenyGenesTCruziPMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+SyntenySpansLBraziliensisMC+SyntenyGenesLBraziliensisMC+SyntenySpansLInfantumMC+SyntenyGenesLInfantumMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+      Gene+SyntenySpansTCongolenseMC+SyntenyGenesTCongolenseMC+SyntenySpansTBruceiGambienseMC+SyntenyGenesTBruceiGambienseMC+SyntenySpansTVivaxMC+SyntenyGenesTVivaxMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
     </c:set>
   </c:when>
+
+  <c:when test='${organismFull eq "Trypanosoma congolense"}'>
+    <c:set var="tracks">
+      Gene+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTBruceiGambienseMC+SyntenyGenesTBruceiGambienseMC+SyntenySpansTVivaxMC+SyntenyGenesTVivaxMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+    </c:set>
+  </c:when>
+
+  <c:when test='${organismFull eq "Trypanosoma vivax"}'>
+    <c:set var="tracks">
+      Gene+SyntenySpansTCongolenseMC+SyntenyGenesTCongolenseMC+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTBruceiGambienseMC+SyntenyGenesTBruceiGambienseMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+    </c:set>
+  </c:when>
+
+  <c:when test='${organismFull eq "Trypanosoma brucei gambiense"}'>
+    <c:set var="tracks">
+      Gene+SyntenySpansTBruceiMC+SyntenyGenesTBruceiMC+SyntenySpansTCongolenseMC+SyntenyGenesTCongolenseMC+SyntenySpansTVivaxMC+SyntenyGenesTVivaxMC+SyntenySpansTCruziSMC+SyntenyGenesTCruziSMC+SyntenySpansLmajorMC+SyntenyGenesLMajorMC+UnifiedMassSpecPeptides+DoTSAssemblies+BLASTX
+    </c:set>
+  </c:when>
+
   <c:otherwise>
     <c:set var="tracks">
       Gene+DoTSAssemblies+BLASTX
@@ -523,19 +527,21 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
     content="${seq}" />
 
 
-<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
-<c:set var="genomicSequenceContent">
-    <noindex>
-    <font class="fixed">
-  <w:wrap size="60"  break="<br>">${genomicSequence.value}</w:wrap>
-    </font><br/><br/>
-  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
-    </noindex>
+<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
+<c:set var="i" value="0"/>
+<c:forEach var="row" items="${geneModelTable}">
+  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
+  <c:set var="i" value="${i +  1}"/>
+</c:forEach>
+
+<c:set var="seq">
+ <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
+  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
 
 <wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${genomicSequenceContent}" />
+    content="${seq}" />
 <%------------------------------------------------------------------%>
 <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
 <c:set var="attr" value="${attrs['cds']}" />
@@ -559,8 +565,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
 
 <c:when test='${binomial eq "Trypanosoma cruzi"}'>
   <c:set var="reference">
-      Sequence data for <i>Trypanosoma cruzi</i> strain CL Brener contigs were downloaded from Genbank (sequence and annotated features).<br>  Sequencing of <i>T. cruzi</i> was conducted by the <i>Trypanosoma cruzi</i> sequencing consortium (<a href="http://www.tigr.org/tdb/e2k1/tca1/">TIGR</a>, <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a> and <a href="http://ki.se/ki/jsp/polopoly.jsp?d=130&l=en">Karolinska Institute</a>).
-<br>Mapping of gene coordinates from contigs to chromosomes for <i>${organism}</i> chromosomes, generated by Rick Tarleton lab (UGA).
+      Sequence data for <i>Trypanosoma cruzi</i> strain CL Brener contigs were downloaded from Genbank (sequence and annotated features).<br>  Sequencing of <i>T. cruzi</i> was conducted by the <i>Trypanosoma cruzi</i> sequencing consortium (<a href="http://www.tigr.org/tdb/e2k1/tca1/">TIGR</a>, <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a> and <a href="http://ki.se/ki/jsp/polopoly.jsp?d=130&l=en">Karolinska Institute</a>.
   </c:set>
 </c:when>
 <c:when test='${organismFull eq "Leishmania infantum"}'>
@@ -581,12 +586,29 @@ Sequencing of <i>L. major</i> was conducted by <a href="http://www.sanger.ac.uk/
 Sequencing of <i>L. braziliensis</i> was conducted by <a href="http://www.sanger.ac.uk/Projects/L_braziliensis/">The Sanger Institute pathogen sequencing unit</a>.
   </c:set>
 </c:when>
+<c:when test='${organismFull eq "Trypanosoma brucei gambiense"}'>
+  <c:set var="reference">
+  Chromosome sequences and annotations for <i>Trypanosoma brucei gambiense</i> obtained from the Pathogen Sequencing Unit at the Wellcome Trust Sanger Institute
+  </c:set>
+</c:when>
 <c:when test='${organismFull eq "Trypanosoma brucei TREU927"}'>
   <c:set var="reference">
    Sequence data for <i>Trypanosome brucei</i> strain TREU (Trypanosomiasis Research Edinburgh University) 927/4 were downloaded from <a href="http://www.genedb.org/genedb/tryp/">GeneDB</a> (sequence and annotated features).<br>
 Sequencing of <i>T. brucei</i> was conducted by <a href="http://www.sanger.ac.uk/Projects/T_brucei/">The Sanger Institute pathogen sequencing unit</a> and <a href="http://www.tigr.org/tdb/e2k1/tba1/">TIGR</a>.
   </c:set>
 </c:when>
+<c:when test='${organismFull eq "Trypanosoma congolense"}'>
+  <c:set var="reference">
+Chromosome and unassigned contig sequences and annotations for <i>Trypanosoma congolense</i> obtained from the Pathogen Sequencing Unit at the Wellcome Trust Sanger Institute
+  </c:set>
+</c:when>
+<c:when test='${organismFull eq "Trypanosoma vivax"}'>
+  <c:set var="reference">
+   Chromosome sequences for <i>T.vivax</i> obtained from the Pathogen Sequencing Unit at the Wellcome Trust Sanger Institute.
+  </c:set>
+</c:when>
+
+
 <c:otherwise>
   <c:set var="reference">
 Sequence data from GeneDB for <i>${organism}</i> chromosomes in EMBL format were generated at the Wellcome Trust Sanger Institute Pathogen Sequencing Unit. 

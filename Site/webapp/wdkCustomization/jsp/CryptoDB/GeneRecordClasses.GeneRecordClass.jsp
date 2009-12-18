@@ -1,5 +1,4 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -59,20 +58,7 @@
 </c:set>
 
 <%-- quick tool-box for the record --%>
-<div id="record-toolbox">
-  <ul>
-    <li>
-        <c:url var="downloadUrl" value="/processQuestion.do?questionFullName=GeneQuestions.GeneBySingleLocusTag&skip_to_download=1&myProp(single_gene_id)=${id}" />
-        <a class="download" href="${downloadUrl}" title="Download this ${recordType}">Download</a>    
-    </li>
-    <li>
-        <a class="show-all" href="" title="Show all sections">Show All</a>
-    </li>
-    <li>
-        <a class="hide-all" href="" title="Hide all sections">Hide All</a>
-    </li>
-  </ul>
-</div>
+<site:recordToolbox />
 
 <br>
 <%--#############################################################--%>
@@ -91,7 +77,7 @@
 
 <h2>
 <center>
-${id} <br /> ${prd}
+<site:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
 </center>
 </h2>
 
@@ -278,6 +264,9 @@ NRDB,C.muris_scaffoldsGB,C.hominis_scaffoldsGB,C.parvum_scaffoldsGB,C.parvumChr6
 <wdk:wdkTable tblName="SNPs" isOpen="true"
      attribution="Widmer_SNPs"/>
 </c:if>
+
+<!-- External Links --> 
+<wdk:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
 
 
 <%-- Mercator/Mavid form ---------------------------------------------------%>
@@ -496,19 +485,29 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${
     content="${seq}" />
 
 <%------------------------------------------------------------------%>
-<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
-<c:set var="genomicSequenceContent">
+<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
+
+<c:set var="i" value="0"/>
+<c:forEach var="row" items="${geneModelTable}">
+  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
+  <c:set var="i" value="${i +  1}"/>
+</c:forEach>
+
+<c:set var="seq">
     <noindex>
     <font class="fixed">
-  <w:wrap size="60"  break="<br>">${genomicSequence.value}</w:wrap>
+    <w:wrap size="60" break="<br>">${totSeq}</w:wrap>
     </font><br/><br/>
-  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
+    <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
     </noindex>
 </c:set>
 
-<wdk:toggle name="genomicSequence" isOpen="false"
+<wdk:toggle
+    name="GenomicSequence" 
+    isOpen="fales"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${genomicSequenceContent}" />
+    content="${seq}" />
+
 <%------------------------------------------------------------------%>
 <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
 <c:set var="attr" value="${attrs['cds']}" />

@@ -1,5 +1,4 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -47,27 +46,14 @@
              division="queries_tools" />
 
 <%-- quick tool-box for the record --%>
-<div id="record-toolbox">
-  <ul>
-    <li>
-        <c:url var="downloadUrl" value="/processQuestion.do?questionFullName=GeneQuestions.GeneBySingleLocusTag&skip_to_download=1&myProp(single_gene_id)=${id}" />
-        <a class="download" href="${downloadUrl}" title="Download this ${recordType}">Download</a>    
-    </li>
-    <li>
-        <a class="show-all" href="" title="Show all sections">Show All</a>
-    </li>
-    <li>
-        <a class="hide-all" href="" title="Hide all sections">Hide All</a>
-    </li>
-  </ul>
-</div>
+<site:recordToolbox />
 
 <br>
 <%--#############################################################--%>
 
 <h2>
 <center>
-${id} <br /> ${prd}
+<site:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
 </center>
 </h2>
 
@@ -176,6 +162,8 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
 
 <wdk:wdkTable tblName="UserComments"  isOpen="true"/>
 
+<!-- External Links --> 
+<wdk:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
 
 </c:catch>
 <c:if test="${e != null}">
@@ -332,17 +320,6 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/trichdbaa/?name=${i
              displayName="${transcriptSequence.displayName}"
              content="${transcriptSequenceContent}" isOpen="false"/>
 
-<%------------------------------------------------------------------%>
-<!-- genomic sequence -->
-<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
-<c:set var="genomicSequenceContent">
-  <pre><w:wrap size="60">${genomicSequence.value}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
-</c:set>
-
-<wdk:toggle name="genomicSequence" isOpen="false"
-    displayName="Genomic Sequence (introns shown in lower case)"
-    content="${genomicSequenceContent}" />
 <%------------------------------------------------------------------%>
 
 <!-- CDS -->

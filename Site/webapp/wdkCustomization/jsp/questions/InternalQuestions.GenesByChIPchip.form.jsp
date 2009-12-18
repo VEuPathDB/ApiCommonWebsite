@@ -18,19 +18,12 @@
         <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByChIPchipPlasmo" />
 </c:if>
 
-<site:header title="ChIP chip Evidence"
-                 banner="Identify Genes by ChIp on chip Evidence"
-                 parentDivision=""
-                 parentUrl="/home.jsp"
-                 divisionName=""
-                 division=""/>
-
-
 <wdk:errors/>
 
+<%-- div needed for Add Step --%>
+<div id="form_question">
 <table width="100%">
-<tr class="headerRow"><td colspan="4" align="center"><b>Choose a Query</b></td></tr>
-
+<tr class="headerRow"><td colspan="4" align="center"><b>Choose a Search ---- Mouse over to read description</b></td></tr>
 
 <c:choose>
 <c:when test = "${project == 'EuPathDB'}">
@@ -39,6 +32,4 @@
 </c:choose>
 
 </table>
-
-
-<site:footer/>
+</div>

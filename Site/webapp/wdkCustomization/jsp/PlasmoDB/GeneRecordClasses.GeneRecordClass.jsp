@@ -1,5 +1,4 @@
 <%@ taglib prefix="site" tagdir="/WEB-INF/tags/site" %>
-<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.servletsuite.com/servlets/wraptag" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -149,24 +148,11 @@
 
 
 <%-- quick tool-box for the record --%>
-<div id="record-toolbox">
-  <ul>
-    <li>
-        <c:url var="downloadUrl" value="/processQuestion.do?questionFullName=GeneQuestions.GeneBySingleLocusTag&skip_to_download=1&myProp(single_gene_id)=${id}" />
-        <a class="download" href="${downloadUrl}" title="Download this ${recordType}">Download</a>    
-    </li>
-    <li>
-        <a class="show-all" href="" title="Show all sections">Show All</a>
-    </li>
-    <li>
-        <a class="hide-all" href="" title="Hide all sections">Hide All</a>
-    </li>
-  </ul>
-</div>
+<site:recordToolbox />
 
 <h2>
 <center>
-${id} <br /> ${prd}
+<site:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
 </center>
 </h2>
 <c:set var="attr" value="${attrs['overview']}" />
@@ -1337,7 +1323,7 @@ trophozite and schizont stage.
   <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
-               displayName="Intraerythrocytic comparison of antigenic and adherent variant clones of P. falciparum 3D7"
+               displayName="Intraerythrocytic comparison of antigenic and adherent variant clones of <i>P. falciparum 3D7</i>"
                attribution="E-MEXP-128_arrayData"/> 
 
   <c:set var="secName" value="Cowman::Ver1"/>
@@ -1570,7 +1556,7 @@ OnChange="javascript:updateImage('${imgId}', CowmanSir2Sort.CowmanSir2List.optio
   <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
-               displayName="Transcription profiling of wild type, Pfsir2A knock-out and Pfsir2B knock-out Plasmodium falciparum intra-erythrocytic stages"
+               displayName="Transcription profiling of wild type, Pfsir2A knock-out and Pfsir2B knock-out <i>Plasmodium falciparum</i> intra-erythrocytic stages"
                attribution="New_Cowman_Sir2_KO"/>
 
 
@@ -1631,7 +1617,7 @@ OnChange="javascript:updateImage('${imgId}', SuCQSort.SuCQList.options[selectedI
   <wdk:toggle name="${secName}" isOpen="${isOpen}"
                content="${expressionContent}" noData="${noData}"
                imageId="${imgId}" imageSource="${imgSrc}"
-               displayName="Expression and genomic changes after exposing drug-selected mutants to short term CQ treatment in Plasmodium falciparum"
+               displayName="Expression and genomic changes after exposing drug-selected mutants to short term CQ treatment in <i>Plasmodium falciparum</i>"
                attribution="E-GEOD-10022_array"/>
 
 
@@ -1955,15 +1941,22 @@ The overall expression percentile of each condition is the average percentile ov
 <%--</c:if> --%>
 
 <!-- genomic sequence -->
-<c:set var="genomicSequence" value="${attrs['highlighted_genomic']}"/>
-<c:set var="genomicSequenceContent">
-  <pre><w:wrap size="60">${genomicSequence.value}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(genomicSequence.value)} bp</font><br/>
+<c:set value="${wdkRecord.tables['GeneModel']}" var="geneModelTable"/>
+
+<c:set var="i" value="0"/>
+<c:forEach var="row" items="${geneModelTable}">
+  <c:set var="totSeq" value="${totSeq}${row['sequence'].value}"/>
+  <c:set var="i" value="${i +  1}"/>
+</c:forEach>
+
+<c:set var="seq">
+ <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
+  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
 </c:set>
 
 <wdk:toggle name="genomicSequence" isOpen="false"
     displayName="Genomic Sequence (introns shown in lower case)"
-    content="${genomicSequenceContent}" />
+    content="${seq}" />
 
 
 <c:if test="${isCodingGene}">
