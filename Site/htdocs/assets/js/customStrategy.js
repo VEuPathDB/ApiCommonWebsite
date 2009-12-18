@@ -55,34 +55,42 @@ function showInstructions(){
 	$("#Strategies").append(instr);
 }
 
-function showBasket(sig){
+function showBasket(){
 	//showSummary.do?
 	//	questionFullName=InternalQuestions.GeneRecordClasses_GeneRecordClassByBasket&
 	//	myProp%28user_signature%29=ab4d3f5d505335cdd529be306fc28ceb&
 	//	resultsOnly=true&
 	//	myProp%28timestamp%29=1
 	
-	var url = "showSummary.do";
+	var url = "showBasket.do";
 	var d = new Object();
-	d.questionFullName = "InternalQuestions.GeneRecordClasses_GeneRecordClassByBasket";
-	d.user_signature = sig;
-	d.resultsOnly = true;
-	d.timestamp = 1;
-//	d.checksum = "18837a74129e71e5eef724f59e0a01c9";
-//	d.noskip = 1;
-//	d.resultsOnly = true;
-//	d.step = 1;
-//	d.strategy = 1;
+	d.recordClass = "GeneRecordClasses.GeneRecordClass";
 	$.ajax({
 		url: url,
 		data: d,
 		type: "post",
 		dataType: "html",
+		beforeSend:function(){
+			$("body").block();
+		},
 		success: function(data){
-			$("div#basket").html(data);
+			$("div#basket").find("div#Workspace").html(data);
+			if($("div#basket").find("div#Workspace").find("table").length > 0){
+				$("input#empty-basket-button").attr("disabled",false);
+				$("input#make-strategy-from-basket-button").attr("disabled",false);
+				// create multi select control for adding columns
+				checkPageBasket();
+				createMultiSelectAttributes($("#basket").find("#addAttributes"));
+				createFlexigridFromTable($("#basket").find("#Results_Table"));
+			}else{
+				$("input#empty-basket-button").attr("disabled",true);
+				$("input#make-strategy-from-basket-button").attr("disabled",true);
+			}
+			$("body").unblock();
 		},
 		error: function(data,msg,e){
 			alert("Error occured in showBasket() function!!");
+			$("body").unblock();
 		}
 	});
 }
