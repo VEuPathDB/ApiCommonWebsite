@@ -17,16 +17,39 @@ use CGI::Carp qw(fatalsToBrowser set_message);
 
 
 my $taxonToDirNameMap = 
-  {'Leishmania infantum'                              => 'l_infantum',
-   'Leishmania major'                                 => 'l_major',
-   'Trypanosoma cruzi strain Non-Esmeraldo'           => 't_cruzinonesmeraldo',
-   'Trypanosoma brucei gambiense'                     => 't_bruceigambiense',
-   'Trypanosoma vivax'                                => 't_vivax',
-   'Trypanosoma brucei TREU927'                       => 't_brucei927',
-   'Trypanosoma cruzi strain Esmeraldo'               => 't_cruziesmeraldo',
-   'Leishmania braziliensis'                          => 'l_braziliensis',
-   'Trypanosoma congolense'                           => 't_congolense'
+  {'Leishmania infantum'                              => { name => 'l_infantum',              group => 1 },
+   'Leishmania major'                                 => { name => 'l_major',                 group => 1 },
+   'Leishmania braziliensis'                          => { name => 'l_braziliensis',          group => 1 },
+   'Trypanosoma cruzi strain Non-Esmeraldo'           => { name => 't_cruzinonesmeraldo',     group => 2 },
+   'Trypanosoma cruzi strain Esmeraldo'               => { name => 't_cruziesmeraldo',        group => 2 },
+   'Trypanosoma brucei gambiense'                     => { name => 't_bruceigambiense',       group => 3 },
+   'Trypanosoma brucei TREU927'                       => { name => 't_brucei927',             group => 3 },
+   'Trypanosoma vivax'                                => { name => 't_vivax',                 group => 4 },
+   'Trypanosoma congolense'                           => { name => 't_congolense',            group => 4 },
   };
+
+sub getSortingGroupsHash {
+  my ($reference) = @_;
+
+  my %groupsHash;
+  foreach my $sp (keys %$taxonToDirNameMap) {
+    my $hash = $taxonToDirNameMap->{$sp};
+
+    my $name = $hash->{name};
+    my $group = $hash->{group};
+
+    $groupsHash{$name} = $group;
+  }
+
+  my $referenceGroup = $groupsHash{$reference};
+  foreach my $name (keys %groupsHash) {
+    if($groupsHash{$name} == $referenceGroup) {
+      $groupsHash{$name} = 0;
+    }
+  }
+
+  return \%groupsHash;
+}
 
 # ========================================================================
 # ----------------------------- BEGIN Block ------------------------------
@@ -105,7 +128,7 @@ sub run {
     print STDOUT "<br /><table border=1 cellpadding='6px' RULES=GROUPS FRAMES=BOX valign='left'>\n";
     print STDOUT"<tr><thead align='left'><th>Genome</th><th>Sequence</th><th>Start</th><th>End</th><th>Strand</th><th>#Nucleotides</th></tr></thead>\n";
 
-    foreach my $g (keys %$locationTable) {
+    foreach my $g (sort {$locationTable->{$a}->{_sorting_group} <=> $locationTable->{$b}->{_sorting_group}} keys %$locationTable) {
       my $row = $locationTable->{$g};
 
       my $_sequence = $row->{sequence};
@@ -140,10 +163,22 @@ sub run {
 sub makeSequencesForPadAlignment {
   my ($dnaSequences, $referenceGenome) = @_;
 
+  my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
+
+  my $ref = shift @$dnaSequences;
+
+  foreach(@$dnaSequences) {
+    $_->{_sorting_group} = $sortingGroupsHash->{$_->id};
+  }
+
+  my @sorted = sort {$a->{_sorting_group} <=> $b->{_sorting_group}} @$dnaSequences;
+
+  unshift @sorted, $ref;
+
   my @dnas;
   my $seenReference;
 
-  foreach(@$dnaSequences) {
+  foreach(@sorted) {
     if($_->id eq $referenceGenome) {
       next if $seenReference;
       $seenReference = 1;
@@ -542,7 +577,7 @@ sub validateParams {
 
   my $referenceGenome;
 
-  unless($referenceGenome = $taxonToDirNameMap->{$organism}) {
+  unless($referenceGenome = $taxonToDirNameMap->{$organism}->{name}) {
     &userError("Invalid Contig does not match an available Organism");
   }
 
@@ -707,6 +742,8 @@ sub getLocationsFromDefline {
 
   my (%allSequences, @genomes);
 
+  my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
+
   foreach my $seq (@$sequences) {
     my $desc = $seq->desc();
     my $id = $seq->id();
@@ -726,6 +763,7 @@ sub getLocationsFromDefline {
                     stop => $stop,
                     strand => $strand,
                     length => $matchLength,
+                    _sorting_group => $sortingGroupsHash->{$id},
                    };
 #        print STDOUT"<tr><td>$genome</td><td>$tmpSequence</td><td>$tmpStart</td><td>$tmpStop</td><td>$tmpStrand</td><td>$tmpLength</td></tr>\n";
     }
@@ -735,12 +773,13 @@ sub getLocationsFromDefline {
 
       my $emptyCell = 'N/A';
 
-        $rv->{$id} = {sequence => $emptyCell, 
-                          start => $emptyCell, 
-                          stop => $emptyCell, 
-                          strand => $emptyCell,
-                          length => $emptyCell, 
-                         };
+      $rv->{$id} = {sequence => $emptyCell, 
+                    start => $emptyCell, 
+                    stop => $emptyCell, 
+                    strand => $emptyCell,
+                    length => $emptyCell, 
+                    _sorting_group => $sortingGroupsHash->{$id}
+                   };
 
 #      print STDOUT"<tr><td>$thisGenome</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td></tr>\n";
     }
