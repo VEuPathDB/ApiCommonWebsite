@@ -125,10 +125,12 @@ sub run {
     my $locationTable = &getLocationsFromDefline($cgi, \@dnaSequences, $referenceGenome);
     my $referenceStart = {};
 
+    my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
+
     print STDOUT "<br /><table border=1 cellpadding='6px' RULES=GROUPS FRAMES=BOX valign='left'>\n";
     print STDOUT"<tr><thead align='left'><th>Genome</th><th>Sequence</th><th>Start</th><th>End</th><th>Strand</th><th>#Nucleotides</th></tr></thead>\n";
 
-    foreach my $g (sort {$locationTable->{$a}->{_sorting_group} <=> $locationTable->{$b}->{_sorting_group}} keys %$locationTable) {
+    foreach my $g (sort {$sortingGroupsHash->{$a} <=> $sortingGroupsHash->{$b}} keys %$locationTable) {
       my $row = $locationTable->{$g};
 
       my $_sequence = $row->{sequence};
@@ -164,16 +166,10 @@ sub makeSequencesForPadAlignment {
   my ($dnaSequences, $referenceGenome) = @_;
 
   my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
-
   my $ref = shift @$dnaSequences;
 
-  foreach(@$dnaSequences) {
-    $_->{_sorting_group} = $sortingGroupsHash->{$_->id};
-  }
-
-  my @sorted = sort {$a->{_sorting_group} <=> $b->{_sorting_group}} @$dnaSequences;
-
-  unshift @sorted, $ref;
+  my @sorted = sort {$sortingGroupsHash->{$a->id()} <=> $sortingGroupsHash->{$b->id()} } @$dnaSequences;
+  unshift @sorted, $ref if($ref);
 
   my @dnas;
   my $seenReference;
@@ -742,8 +738,6 @@ sub getLocationsFromDefline {
 
   my (%allSequences, @genomes);
 
-  my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
-
   foreach my $seq (@$sequences) {
     my $desc = $seq->desc();
     my $id = $seq->id();
@@ -763,7 +757,6 @@ sub getLocationsFromDefline {
                     stop => $stop,
                     strand => $strand,
                     length => $matchLength,
-                    _sorting_group => $sortingGroupsHash->{$id},
                    };
 #        print STDOUT"<tr><td>$genome</td><td>$tmpSequence</td><td>$tmpStart</td><td>$tmpStop</td><td>$tmpStrand</td><td>$tmpLength</td></tr>\n";
     }
@@ -778,7 +771,6 @@ sub getLocationsFromDefline {
                     stop => $emptyCell, 
                     strand => $emptyCell,
                     length => $emptyCell, 
-                    _sorting_group => $sortingGroupsHash->{$id}
                    };
 
 #      print STDOUT"<tr><td>$thisGenome</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td></tr>\n";
