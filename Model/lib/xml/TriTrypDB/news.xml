@@ -17,7 +17,89 @@
        </attribute>
     </record>
 -->
-
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            TriTrypDB 2.0 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+         22 December 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         tritryp1209_news
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of TriTrypDB 2.0</span><br>
+<br>
+This release contains the following new datasets and features:<br>
+<br>
+New Data:<br>
+<ul>
+  <li><span style="font-style: italic;">T. brucei </span>chromatin
+immunoprecipitation
+sequencing data presented as Genome Browser tracks. &nbsp;Data from
+four histone variants (H2AZ, H2BV, H3V, and H4V) can be viewed.
+&nbsp;To see an example of this, please click <a
+ href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=443949;stop=943948;ref=Tb927_02_v4;width=800;version=100;label=Gene-ChIPseq_H4K10ac-ChIPseq_H2BV-ChIPseq_BDF3-ChIPseq_H2AZ;id=04425153f268a6249dd257155970fdbf">here</a>.
+To read more about this data please examine the following publication: <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19369410">Siegel
+TN, Hekstra DR, Kemp LE, Figueiredo LM, Lowell JE, Fenyo D, Wang X,
+Dewell S, Cross GA. Four histone variants mark the boundaries of
+polycistronic transcription units in <span
+ style="font-style: italic;">Trypanosoma brucei</span>.
+Genes Dev.
+2009 May 1;23(9):1063-76</a>.</li>
+  <li>Updated Sequence and assembly for <span
+ style="font-style: italic;">T. brucei</span> 927 and
+updated annotation for all other organisms in TriTrypDB.</li>
+  <li>The
+following new genome sequence and annotation have been incorporated
+into TriTrypDB and can be searched and compared to each other:</li>
+  <ul style="font-style: italic;">
+    <li>Trypanosoma brucei gambiense</li>
+  </ul>
+  <ul>
+    <li><span style="font-style: italic;">Trypanosoma
+congolense</span>&nbsp;&nbsp;</li>
+    <li><span style="font-style: italic;">Trypanosoma
+vivax&nbsp;</span>&nbsp;</li>
+    <li><span style="font-style: italic;">Leishmania
+mexicana</span> (available as sequence and assembly only,
+annotation will be incorporated in the February release of TriTrypDB)</li>
+  </ul>
+</ul>
+New Features:<br>
+<ul>
+  <li>This release features the addition of a "My
+Basket" tool. &nbsp;This feature allows you to select various genes
+from
+your searches and add them to your basket (much like a shopping cart).
+&nbsp;To add genes to your basket simply click on the basket icon
+in a
+result list or on a gene page. &nbsp;A green basket icon indicates
+that a
+genes is already in your basket. &nbsp;You can easily convert your
+basket to
+a strategy to save it and perform additional searches or combine it
+with one of your already existing strategies.
+&nbsp;Please note that using the basket feature requires you to
+login first.</li>
+  <li>The
+multiple sequence alignment tool available from gene pages has been
+updated to allow the selection of the organisms to be aligned.
+&nbsp;The multiple sequence aligner is available on gene pages
+right
+under the genomic context view.</li>
+  <li>Web services have been implemented to receive weekly gene
+updates from GeneDB.</li>
+</ul>
+</body>
+          ]]>
+       </attribute>
+    </record>
    <record>
        <attribute name="headline">
          <![CDATA[
