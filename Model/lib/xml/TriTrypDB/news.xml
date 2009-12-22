@@ -93,8 +93,7 @@ updated to allow the selection of the organisms to be aligned.
 &nbsp;The multiple sequence aligner is available on gene pages
 right
 under the genomic context view.</li>
-  <li>Web services have been implemented to receive weekly gene
-updates from GeneDB.</li>
+  <li>Web services have been implemented to receive weekly updates from GeneDB to provide a more rapid account for updated genes.</li>
 </ul>
 </body>
           ]]>
