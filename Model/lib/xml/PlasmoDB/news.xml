@@ -15,6 +15,126 @@
        </attribute>
     </record>
 -->
+ <record>
+       <attribute name="headline">
+         <![CDATA[PlasmoDB 6.3 released
+         ]]>
+         </attribute>
+       <attribute name="date">22 December 2009 00:00</attribute>
+       <attribute name="tag">Plasmo1209news</attribute>
+       <attribute name="item">           
+         <![CDATA[<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 6.3<br>
+<br>
+<br>
+</span>This release of PlasmoDB contains the following new
+datasets and features:<br>
+<br>
+New Data:<br>
+<ul>
+  <li><span style="font-style: italic;">P.
+falciparum </span>transcriptome sequencing (RNA-seq) profiles.
+&nbsp;This data was graciously provided to PlasmoDB prepublication
+and will soon appear in press: New insights into the blood stage
+transcriptome of Plasmodium falciparum using RNA-Seq. &nbsp;Thomas
+D. Otto, Daniel Wilinski, Sammy Assefa, Thomas M. Keane, Louis R.
+Sarry, Ulrike Bohme, Jacob Lemieux, Bart Barrell, Arnab Pain, Matthew
+Berriman, Chris Newbold, Manuel Llinas. &nbsp;Molecular
+Microbiology (in press). &nbsp;You can search for genes based on
+this data by going to the "<a
+ href="http://plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=GeneQuestions.GenesByRNASeqExpressionTiming&amp;target=GENE"><span
+ style="font-style: italic;">P. falciparum </span>transcriptome
+sequencing (RNA-seq) profiles</a>" search under "Transcript
+Expression" in PlasmoDB.</li>
+</ul>
+<ul>
+  <li><span style="font-style: italic;">P. falciparum</span>
+transcription profile of wild-type and Sir2a and Sir2b knock-out
+parasites. &nbsp;Using this search you can find genes that are
+differentially expressed between wild-type and knock-out parasites
+during the intraerythrocytic life-cycle. &nbsp;You can search for
+genes based on this data by going to the "<a
+ href="http://qa.plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">Microarray
+Evidence</a>" search under "Transcript Expression" in PlasmoDB.
+&nbsp; Details of this study can be found here: &nbsp;<a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19402747">Tonkin
+CJ, Carret CK, Duraisingh MT, Voss TS, Ralph SA, Hommel M, Duffy MF,
+Silva LM, Scherf A, Ivens A, Speed TP, Beeson JG, Cowman AF. Sir2
+paralogues cooperate to regulate virulence genes and antigenic
+variation in Plasmodium falciparum. PLoS Biol. 2009 Apr 14;7(4):e84.</a></li>
+</ul>
+<ul>
+  <li>Transcription profiling of <span
+ style="font-style: italic;">Plasmodium falciparum</span>
+after exposing drug-selected mutants to short term CQ treatment.
+&nbsp;Identify genes differentially expressed during chloroquine
+treatment. &nbsp;You can search for genes based on this data by
+going to the "<a
+ href="http://plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">Microarray
+Evidence</a><a
+ href="http://qa.plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=GeneQuestions.GenesByChIPchipPlasmo&amp;target=GENE"><span
+ style="text-decoration: underline;"></span></a><a
+ href="http://qa.plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=GeneQuestions.GenesByChIPchipPlasmo&amp;target=GENE"></a>"
+search under "Transcript Expression" in PlasmoDB. Details of this study
+can be found here:&nbsp;<a
+ href="http://www.ncbi.nlm.nih.gov/sites/entrez?Db=Pubmed&amp;term=18575593%5BUID%5D">Jiang
+H, Patel JJ, Yi M, Mu J, Ding J, Stephens R, Cooper RA, Ferdig MT, Su
+XZ. Genome-wide compensatory changes accompany drug- selected mutations
+in the Plasmodium falciparum crt gene. PLoS One 2008 Jun 25;3(6):e2484.</a></li>
+</ul>
+<ul>
+  <li><span style="font-style: italic;">P.
+falicparum </span>HP1 chromatin immunoprecipitation data.
+&nbsp;You can search for genes based on this data by going to the "<a
+ href="http://plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=GeneQuestions.GenesByChIPchipPlasmo&amp;target=GENE"><span
+ style="text-decoration: underline;">P.f ChIP on chip</span>
+evidence</a>" search under "Transcript Expression" in PlasmoDB.
+Details of this study can be found here: <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19730695">Flueck C,
+Bartfai R, Volz J, Niederwieser I, Salcedo-Amaya AM, Alako BT, Ehlgen
+F, Ralph SA, Cowman AF, Bozdech Z, Stunnenberg HG, Voss TS.&nbsp;
+Plasmodium falciparum heterochromatin protein 1 marks genomic loci
+linked to phenotypic variation of exported virulence factors. PLoS
+Pathog. 2009 Sep;5(9):e1000569. Epub 2009 Sep 4.</a></li>
+</ul>
+<ul>
+  <li>Chromatin immunoprecipitation to identify histone
+modifications (H3K9me3, H3K9Ac, H3K4me3, H4K20me3) in <span
+ style="font-style: italic;">P. falciparum </span>wild
+type and Sir2 knock-outs. You can search for genes based on this data
+by going to the "<a
+ href="http://plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=GeneQuestions.GenesByChIPchipPlasmo&amp;target=GENE"><span
+ style="text-decoration: underline;">P.f ChIP on chip</span>
+evidence</a>" search under "Transcript Expression" in PlasmoDB.
+Details of this study can be found here: &nbsp;<a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19218088">Lopez-Rubio
+JJ, Mancio-Silva L, Scherf A. Genome-wide analysis of heterochromatin
+associates clonally variant gene regulation with perinuclear repressive
+centers in malaria parasites. Cell Host Microbe. 2009 Feb
+19;5(2):179-90.</a></li>
+</ul>
+<br>
+New Features:<br>
+<br>
+This release features the addition of a "My
+Basket" tool. &nbsp;This feature allows you to select various genes
+from
+your searches and add them to your basket (much like a shopping cart).
+&nbsp;To add genes to your basket simply click on the basket icon
+in a
+result list or on a gene page. &nbsp;A green basket icon indicates
+that a
+genes is already in your basket. &nbsp;You can easily convert your
+basket to a strategy to save it and perform additional searches or
+combine it with one of your already existing strategies.
+&nbsp;Please note that using the basket feature requires you to
+login first.<br>
+<br>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">
          <![CDATA[
