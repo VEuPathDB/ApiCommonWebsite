@@ -17,16 +17,39 @@ use CGI::Carp qw(fatalsToBrowser set_message);
 
 
 my $taxonToDirNameMap = 
-  {'Leishmania infantum'                              => 'l_infantum',
-   'Leishmania major'                                 => 'l_major',
-   'Trypanosoma cruzi strain Non-Esmeraldo'           => 't_cruzinonesmeraldo',
-   'Trypanosoma brucei gambiense'                     => 't_bruceigambiense',
-   'Trypanosoma vivax'                                => 't_vivax',
-   'Trypanosoma brucei TREU927'                       => 't_brucei927',
-   'Trypanosoma cruzi strain Esmeraldo'               => 't_cruziesmeraldo',
-   'Leishmania braziliensis'                          => 'l_braziliensis',
-   'Trypanosoma congolense'                           => 't_congolense'
+  {'Leishmania infantum'                              => { name => 'l_infantum',              group => 1 },
+   'Leishmania major'                                 => { name => 'l_major',                 group => 1 },
+   'Leishmania braziliensis'                          => { name => 'l_braziliensis',          group => 1 },
+   'Trypanosoma cruzi strain Non-Esmeraldo'           => { name => 't_cruzinonesmeraldo',     group => 2 },
+   'Trypanosoma cruzi strain Esmeraldo'               => { name => 't_cruziesmeraldo',        group => 2 },
+   'Trypanosoma brucei gambiense'                     => { name => 't_bruceigambiense',       group => 3 },
+   'Trypanosoma brucei TREU927'                       => { name => 't_brucei927',             group => 3 },
+   'Trypanosoma vivax'                                => { name => 't_vivax',                 group => 4 },
+   'Trypanosoma congolense'                           => { name => 't_congolense',            group => 4 },
   };
+
+sub getSortingGroupsHash {
+  my ($reference) = @_;
+
+  my %groupsHash;
+  foreach my $sp (keys %$taxonToDirNameMap) {
+    my $hash = $taxonToDirNameMap->{$sp};
+
+    my $name = $hash->{name};
+    my $group = $hash->{group};
+
+    $groupsHash{$name} = $group;
+  }
+
+  my $referenceGroup = $groupsHash{$reference};
+  foreach my $name (keys %groupsHash) {
+    if($groupsHash{$name} == $referenceGroup) {
+      $groupsHash{$name} = 0;
+    }
+  }
+
+  return \%groupsHash;
+}
 
 # ========================================================================
 # ----------------------------- BEGIN Block ------------------------------
@@ -102,10 +125,12 @@ sub run {
     my $locationTable = &getLocationsFromDefline($cgi, \@dnaSequences, $referenceGenome);
     my $referenceStart = {};
 
+    my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
+
     print STDOUT "<br /><table border=1 cellpadding='6px' RULES=GROUPS FRAMES=BOX valign='left'>\n";
     print STDOUT"<tr><thead align='left'><th>Genome</th><th>Sequence</th><th>Start</th><th>End</th><th>Strand</th><th>#Nucleotides</th></tr></thead>\n";
 
-    foreach my $g (keys %$locationTable) {
+    foreach my $g (sort {$sortingGroupsHash->{$a} <=> $sortingGroupsHash->{$b}} keys %$locationTable) {
       my $row = $locationTable->{$g};
 
       my $_sequence = $row->{sequence};
@@ -140,10 +165,16 @@ sub run {
 sub makeSequencesForPadAlignment {
   my ($dnaSequences, $referenceGenome) = @_;
 
+  my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
+  my $ref = shift @$dnaSequences;
+
+  my @sorted = sort {$sortingGroupsHash->{$a->id()} <=> $sortingGroupsHash->{$b->id()} } @$dnaSequences;
+  unshift @sorted, $ref if($ref);
+
   my @dnas;
   my $seenReference;
 
-  foreach(@$dnaSequences) {
+  foreach(@sorted) {
     if($_->id eq $referenceGenome) {
       next if $seenReference;
       $seenReference = 1;
@@ -542,7 +573,7 @@ sub validateParams {
 
   my $referenceGenome;
 
-  unless($referenceGenome = $taxonToDirNameMap->{$organism}) {
+  unless($referenceGenome = $taxonToDirNameMap->{$organism}->{name}) {
     &userError("Invalid Contig does not match an available Organism");
   }
 
@@ -735,12 +766,12 @@ sub getLocationsFromDefline {
 
       my $emptyCell = 'N/A';
 
-        $rv->{$id} = {sequence => $emptyCell, 
-                          start => $emptyCell, 
-                          stop => $emptyCell, 
-                          strand => $emptyCell,
-                          length => $emptyCell, 
-                         };
+      $rv->{$id} = {sequence => $emptyCell, 
+                    start => $emptyCell, 
+                    stop => $emptyCell, 
+                    strand => $emptyCell,
+                    length => $emptyCell, 
+                   };
 
 #      print STDOUT"<tr><td>$thisGenome</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td><td>$emptyCell</td></tr>\n";
     }
