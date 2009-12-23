@@ -29,11 +29,18 @@ sub execute {
 
     if ($self->{logHandle}) {
       my $elapsed_time = time() - $start_time;
-      if ($elapsed_time > .01) {
+      my $slow = .1;
+      if ($range) {
+	$slow = $range/10000 * .01;
+	$slow = .05 if $slow < .05;
+      } else {
+	$range = "n/a";
+      }
+      if ($elapsed_time > $slow) {
         my $fh = $self->{logHandle};
 #        lock($fh);
 	print $fh "============================================================================\n";
-	print $fh "QUERYTIME\t" . localtime() . "\t$moduleName\t$queryName\t" . sprintf("%.2f sec", $elapsed_time) . "\n";
+	print $fh "QUERYTIME\t" . localtime() . "\t$moduleName\t" . sprintf("%.2f", $elapsed_time) . "\t$range\t$queryName\n";
 	print $fh "============================================================================\n";
 	print $fh "$sql\n\n";
 #	unlock($fh);
