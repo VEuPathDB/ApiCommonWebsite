@@ -1,8 +1,8 @@
-package  DAS::GUS::QueryRunner;
+package  DAS::GUS::QueryLogger;
 
 use Time::HiRes qw ( time );
 use Fcntl qw(:flock SEEK_END);
-use File::Path qw(make_path);
+use File::Path;
 
 # Log gbrowse queries.
 # file locking is commented out, as it is probably overkill and a bit dangerous.
@@ -12,7 +12,7 @@ sub new {
     my $self = {};
 
     if ($logFileDirectory) {
-      make_path($logFileDirectory);
+      mkpath($logFileDirectory);
       my $logFile = "$logFileDirectory/log1";
       open($self->{logHandle},">> $logFile") ||
 	die "Can't open gbrowse log file '$logFile'\n";
@@ -21,10 +21,11 @@ sub new {
     return $self;
 }
 
-sub executeQuery {
+# execute a query, and log if we have a handle
+sub execute {
     my ($self, $sth, $sql, $moduleName, $queryName, $range, $inGenePage) = @_;
     my $start_time = time();
-    $sth->execute();
+    my $status = $sth->execute();
 
     if ($self->{logHandle}) {
       my $elapsed_time = time() - $start_time;
@@ -38,6 +39,7 @@ sub executeQuery {
 #	unlock($fh);
       }
     }
+    return $status;
 }
 
 sub lock {
@@ -53,3 +55,4 @@ sub unlock {
   flock($fh, LOCK_UN) or die "Cannot unlock gbrowse log - $!\n";
 }
 
+1;

@@ -72,7 +72,7 @@ sub new {
     die "Couldn't find Segment.pm sql for new:Segment\n" unless $query;
     $query =~ s/(\$\w+)/eval $1/eg;
     my $sth = $factory->dbh->prepare($query);
-    $sth->execute();
+    $factory->getQueryLogger()->execute($sth, $query, "Segment.pm", "new:Segment", $stop - $start);
 
     my $hashref = $sth->fetchrow_hashref;
     warn "END or STARTM of $name could not be determined by sql: $query\n" 
@@ -378,7 +378,7 @@ sub features {
     print "<pre>^^^^^^^^^^ End $typeString ^^^^^^^^^^^^^</pre>" if DEBUG;
 
     my $sth = $factory->dbh->prepare($sql);
-    $sth->execute()
+    $factory->getQueryLogger()->execute($sth, $query, "Segment.pm", $queryName, $rend - $base_start)
       or $self->throw("getting feature query failed");
 
     my @tempfeats = ();
@@ -412,7 +412,7 @@ sub features {
   print "<pre>$bulkAttributeSql</pre>" if DEBUG;
   print "<pre>^^^^^^^^^^ End $type:bulkAttribute ^^^^^^^^^^^^^</pre>" if DEBUG;
 
-  $self->_addBulkAttribute(\@features, $bulkAttributeSql, $factory);
+  $self->_addBulkAttribute(\@features, $bulkAttributeSql, $factory, "$queryName:bulkAttribute", $rend-$base_start);
 
   }
 
@@ -427,11 +427,11 @@ sub features {
 
 sub _addBulkAttribute {
 
-  my($self, $features, $bulkAttributeSql, $factory) = @_;
+  my($self, $features, $bulkAttributeSql, $factory, $queryName, $range) = @_;
   my %featuresById;
   map { $featuresById{$_->feature_id} = $_ } @$features;
   my $sth = $factory->dbh->prepare($bulkAttributeSql);
-  $sth->execute()
+  $factory->getQueryLogger()->execute($sth, $query, "Segment.pm", $queryName, $range)
     or $self->throw("getting bulk attribute query failed");
 
   my @bulkAtts;
