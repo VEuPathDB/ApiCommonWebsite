@@ -93,6 +93,7 @@ sub new {
   my $username  = $arg{-user};
   my $password  = $arg{-pass};
   my $sqlfile   = $arg{-sqlfile};
+  my $docroot   = $arg{-docroot};
   my $dbh = DBI->connect( $dsn, $username, $password )
       or $self->throw("unable to open db handle");
   
@@ -103,7 +104,9 @@ sub new {
   $self->dbh($dbh);
   $self->parser(ApiCommonWebsite::Model::SqlXmlParser->new($sqlfile, $projectId, 0));
 
-  $self->{queryLogger} = DAS::GUS::QueryLogger->new('/var/www/Common/tmp/gbrowseLogs/sfischer.plasmodb.org');
+  my @path = split(/\//, $docroot); # /var/www/sfischer.plasmodb.org/..."
+  my $site = $path[3]; # sfischer.plasmodb.org
+  $self->{queryLogger} = DAS::GUS::QueryLogger->new("/var/www/Common/tmp/gbrowseLogs/$site");
 
   return $self;
 }
