@@ -112,11 +112,20 @@ sub run {
 
     my $seenReference;
     foreach my $seq (@dnaSequences) {
-      next if($seenReference and $seq->id eq $referenceGenome);
-      if($seq->id eq $referenceGenome) {
+      my $id = $seq->id();
+      next if($seenReference and $id eq $referenceGenome);
+      if($id eq $referenceGenome) {
         $seenReference++;
       }
-      $seqIO->write_seq($seq);
+
+      my $sequence = $seq->seq();
+      $sequence =~ s/-//g;
+
+      my $ungappedSeq = Bio::Seq->new( -seq => $sequence,
+                                       -id  => $id
+                                     );
+
+      $seqIO->write_seq($ungappedSeq);
     }
     $seqIO->close();
   }
