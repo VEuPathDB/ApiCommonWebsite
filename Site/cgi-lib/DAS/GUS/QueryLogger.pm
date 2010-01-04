@@ -12,9 +12,16 @@ sub new {
     my $self = {};
 
     if ($logFileDirectory) {
+      $self->{logFileDir} = $logFileDirectory;
       mkpath($logFileDirectory);
-      my $logFile = "$logFileDirectory/log1";
-      open($self->{logHandle},">> $logFile") ||
+      my $logFile = "$logFileDirectory/very_slow.log";
+      open($self->{verySlowHandle},">> $logFile") ||
+	die "Can't open gbrowse log file '$logFile'\n";
+      $logFile = "$logFileDirectory/medium_slow.log";
+      open($self->{mediumSlowHandle},">> $logFile") ||
+	die "Can't open gbrowse log file '$logFile'\n";
+      $logFile = "$logFileDirectory/slightly_slow.log";
+      open($self->{slightySlowHandle},">> $logFile") ||
 	die "Can't open gbrowse log file '$logFile'\n";
     }
     bless($self,$class);
@@ -27,20 +34,35 @@ sub execute {
     my $start_time = time();
     my $status = $sth->execute();
 
-    if ($self->{logHandle}) {
+    if ($self->{logFileDir}) {
       my $elapsed_time = time() - $start_time;
-      my $slow = .1;
+      my $slightySlow = .1;
+      my $mediumSlow = 1;
+      my $verySlow = 2;
       if ($range) {
-	$slow = $range/10000 * .01;
-	$slow = .05 if $slow < .05;
+	my $rangeFloor = $range < 50000? 50000 : $range;
+	$verySlow = $range/10000 * .5;       # eg, 2.5 sec for 50k
+	$mediumSlow = $range/10000 * .1;     # eg, 0.5 sec for 50k
+	$slightlySlow = $range/10000 * .01;  # eg, .05 sec for 50k
       } else {
 	$range = "n/a";
       }
-      if ($elapsed_time > $slow) {
-        my $fh = $self->{logHandle};
+      my $fh;
+      my $howSlow;
+      if ($elapsed_time > $verySlow) {
+	$fh = $self->{verySlowHandle};
+	$howSlow = 'v';
+      } elsif ($elapsed_time > $mediumSlow) {
+	$fh = $self->{mediumSlowHandle};
+	$howSlow = 'm';
+      } elsif ($elapsed_time > $slightlySlow) {
+	$fh = $self->{slightlySlowHandle};
+	$howSlow = 's';
+      }
+      if ($fh) {
 #        lock($fh);
 	print $fh "============================================================================\n";
-	print $fh "QUERYTIME\t" . localtime() . "\t$moduleName\t" . sprintf("%.2f", $elapsed_time) . "\t$range\t$queryName\n";
+	print $fh "QUERYTIME\t" . localtime() . "\t" . time() . "\t$howSlow\t$moduleName\t" . sprintf("%.2f", $elapsed_time) . "\t$range\t$queryName\n";
 	print $fh "============================================================================\n";
 	print $fh "$sql\n\n";
 #	unlock($fh);
