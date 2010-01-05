@@ -6,6 +6,13 @@ use File::Path;
 
 # Log gbrowse queries.
 # file locking is commented out, as it is probably overkill and a bit dangerous.
+my $LOG10 = log(10);
+
+# hard coded configuration
+my $RANGEMIN = 50000;
+my $SLIGHT = 0.05;
+my $MEDIUM = 0.5;
+my $VERY =   2.0;
 
 sub new {
     my ($class, $logFileDirectory) = @_;
@@ -21,7 +28,7 @@ sub new {
       open($self->{mediumSlowHandle},">> $logFile") ||
 	die "Can't open gbrowse log file '$logFile'\n";
       $logFile = "$logFileDirectory/slightly_slow.log";
-      open($self->{slightySlowHandle},">> $logFile") ||
+      open($self->{slightlySlowHandle},">> $logFile") ||
 	die "Can't open gbrowse log file '$logFile'\n";
     }
     bless($self,$class);
@@ -36,17 +43,18 @@ sub execute {
 
     if ($self->{logFileDir}) {
       my $elapsed_time = time() - $start_time;
-      my $slightySlow = .1;
-      my $mediumSlow = 1;
-      my $verySlow = 2;
-      if ($range) {
-	my $rangeFloor = $range < 50000? 50000 : $range;
-	$verySlow = $range/10000 * .5;       # eg, 2.5 sec for 50k
-	$mediumSlow = $range/10000 * .1;     # eg, 0.5 sec for 50k
-	$slightlySlow = $range/10000 * .01;  # eg, .05 sec for 50k
-      } else {
-	$range = "n/a";
-      }
+
+      my $reportedRange = $range? $range : "n/a";
+      my $r = ($range && $range >= $RANGEMIN)? $range : $RANGEMIN;
+
+      # scaling here so that 50k = 1, 1m = 5 and 5m = 9
+      # in other words, an approx 10 fold difference in speed allowed
+      # across typical smallest window (gene page) and largest (chromosome)
+      my $scaledRange = &log10($r/5000) ** 2;
+      $slightlySlow = $scaledRange * $SLIGHT;
+      $mediumSlow = $scaledRange * $MEDIUM;
+      $verySlow = $scaledRange * $VERY;
+
       my $fh;
       my $howSlow;
       if ($elapsed_time > $verySlow) {
@@ -62,7 +70,7 @@ sub execute {
       if ($fh) {
 #        lock($fh);
 	print $fh "============================================================================\n";
-	print $fh "QUERYTIME\t" . localtime() . "\t" . time() . "\t$howSlow\t$moduleName\t" . sprintf("%.2f", $elapsed_time) . "\t$range\t$queryName\n";
+	print $fh "QUERYTIME\t" . localtime() . "\t" . time() . "\t$howSlow\t$moduleName\t" . sprintf("%.2f", $elapsed_time) . "\t$reportedRange\t$queryName\n";
 	print $fh "============================================================================\n";
 	print $fh "$sql\n\n";
 #	unlock($fh);
@@ -82,6 +90,11 @@ sub lock {
 sub unlock {
   my ($fh) = @_;
   flock($fh, LOCK_UN) or die "Cannot unlock gbrowse log - $!\n";
+}
+
+sub log10 {
+  my $n = shift;
+  return log($n)/$LOG10;
 }
 
 1;
