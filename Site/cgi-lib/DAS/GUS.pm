@@ -106,7 +106,7 @@ sub new {
 
   my @path = split(/\//, $docroot); # /var/www/sfischer.plasmodb.org/..."
   my $site = $path[3]; # sfischer.plasmodb.org
-  $self->{queryLogger} = DAS::GUS::QueryLogger->new("/var/www/Common/tmp/gbrowseLogs/$site");
+  $self->{queryLogger} = DAS::GUS::QueryLogger->new("/var/www/Common/tmp/gbrowseLogs/$site", $site);
 
   return $self;
 }
