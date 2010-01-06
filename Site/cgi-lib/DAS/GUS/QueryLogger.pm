@@ -20,9 +20,9 @@ my $MEDIUM = 0.5;
 my $VERY =   2.0;
 
 # max log sizes (megabytes) (shared equally among the three logs).
-my $logSizes = {'w1' => 250, 'q1' => 25, 'b1' => 25,
+my $LOGSIZES = {'w1' => 250, 'q1' => 25, 'b1' => 25,
 		'w2' => 250, 'q2' => 25, 'b2' => 25,
-		'dev' = 1};
+		'dev' => 1};
 #####################################################
 #####################################################
 
@@ -119,11 +119,23 @@ sub log10 {
 sub rotateLog {
   my ($logFileDir, $file_base_name, $sitetype) = @_;
 
-  my $maxsize = $logSizes->{$sitetype};
-  $maxsize = $logSizes->{dev} unless $maxsize;
+  my $maxsize = $LOGSIZES->{$sitetype};
+  $maxsize = $LOGSIZES->{dev} unless $maxsize;
   $maxsize = $maxsize * 1000000 / 3;
 
-  if () {
+  my $logFile = "$logFileDir/$file_base_name.log";
+  my $rotatedLogFile = "$logFileDir/$file_base_name.1.log";
+  my $tmpLogFile = "$rotatedLogFile.tmp";
+
+  # see if we have a log that is too big
+  if (-s $logFile > $maxsize) {
+    rename($logFile, $tmpLogFile);
+  }
+
+  # see if we have a tmp file older than 5 minutes
+  elsif (-e $tmpLogFile && (-M $tmpLogFile) * 24 * 60 > 5) {
+    rename($tmpLogFile, $rotatedLogFile);
+    exec("gzip $rotatedLogFile");
   }
 
 }
