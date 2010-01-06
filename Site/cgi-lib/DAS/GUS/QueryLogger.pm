@@ -8,28 +8,47 @@ use File::Path;
 # file locking is commented out, as it is probably overkill and a bit dangerous.
 my $LOG10 = log(10);
 
+#####################################################
 # hard coded configuration
-my $RANGEMIN = 50000;
+#####################################################
+# treat sub-floor ranges like the floor
+my $RANGE_FLOOR = 50000;
+
+# slowness factors (in seconds) (these get scaled by a function of range)
 my $SLIGHT = 0.05;
 my $MEDIUM = 0.5;
 my $VERY =   2.0;
 
+# max log sizes (megabytes) (shared equally among the three logs).
+my $logSizes = {'w1' => 250, 'q1' => 25, 'b1' => 25,
+		'w2' => 250, 'q2' => 25, 'b2' => 25,
+		'dev' = 1};
+#####################################################
+#####################################################
+
 sub new {
-    my ($class, $logFileDirectory) = @_;
+    my ($class, $logFileDirectory, $site) = @_;
     my $self = {};
 
     if ($logFileDirectory) {
       $self->{logFileDir} = $logFileDirectory;
       mkpath($logFileDirectory);
-      my $logFile = "$logFileDirectory/very_slow.log";
-      open($self->{verySlowHandle},">> $logFile") ||
-	die "Can't open gbrowse log file '$logFile'\n";
-      $logFile = "$logFileDirectory/medium_slow.log";
-      open($self->{mediumSlowHandle},">> $logFile") ||
-	die "Can't open gbrowse log file '$logFile'\n";
-      $logFile = "$logFileDirectory/slightly_slow.log";
-      open($self->{slightlySlowHandle},">> $logFile") ||
-	die "Can't open gbrowse log file '$logFile'\n";
+      my @siteparts = split(/\./, $site);
+
+      my $slowFile = "$logFileDirectory/very_slow.log";
+      &rotateLog($logFileDirectory, 'very_slow', $siteparts[0]);
+      open($self->{verySlowHandle},">> $slowFile") ||
+	die "Can't open gbrowse log file '$slowFile'\n";
+
+      my $medFile = "$logFileDirectory/medium_slow.log";
+      &rotateLog($logFileDirectory, 'medium_slow', $siteparts[0]);
+      open($self->{mediumSlowHandle},">> $medFile") ||
+	die "Can't open gbrowse log file '$medFile'\n";
+
+      my $slightFile = "$logFileDirectory/slightly_slow.log";
+      &rotateLog($logFileDirectory, 'slightly_slow', $siteparts[0]);
+      open($self->{slightlySlowHandle},">> $slightFile") ||
+	die "Can't open gbrowse log file '$slightFile'\n";
     }
     bless($self,$class);
     return $self;
@@ -45,7 +64,7 @@ sub execute {
       my $elapsed_time = time() - $start_time;
 
       my $reportedRange = $range? $range : "n/a";
-      my $r = ($range && $range >= $RANGEMIN)? $range : $RANGEMIN;
+      my $r = ($range && $range >= $RANGE_FLOOR)? $range : $RANGE_FLOOR;
 
       # scaling here so that 50k = 1, 1m = 5 and 5m = 9
       # in other words, an approx 10 fold difference in speed allowed
@@ -95,6 +114,18 @@ sub unlock {
 sub log10 {
   my $n = shift;
   return log($n)/$LOG10;
+}
+
+sub rotateLog {
+  my ($logFileDir, $file_base_name, $sitetype) = @_;
+
+  my $maxsize = $logSizes->{$sitetype};
+  $maxsize = $logSizes->{dev} unless $maxsize;
+  $maxsize = $maxsize * 1000000 / 3;
+
+  if () {
+  }
+
 }
 
 1;
