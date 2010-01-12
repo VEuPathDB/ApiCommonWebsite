@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+<!-- 
+   <record>
+       <attribute name="title"></attribute>
+       <attribute name="tag">g</attribute>
+       <attribute name="text">
+       <![CDATA[
+       ]]>
+       </attribute>
+   </record>
+
+-->
+
+
+</xmlAnswer>
