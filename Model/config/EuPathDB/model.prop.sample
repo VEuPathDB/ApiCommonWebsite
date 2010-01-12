@@ -1,5 +1,7 @@
+AMOEBA_BLAST_PATH=Common/devSiteFilesMirror/webServices/AmoebaDB/release-1.0/blast
 API_BLAST_PATH=Common/devSiteFilesMirror/webServices/EuPathDB/release-1.0.1/blast
 CRYPTO_BLAST_PATH=Common/devSiteFilesMirror/webServices/CryptoDB/release-4.1/blast
+MICRO_BLAST_PATH=Common/devSiteFilesMirror/webServices/MicrosporidiaDB/release-1.0/blast
 PLASMO_BLAST_PATH=Common/devSiteFilesMirror/webServices/PlasmoDB/release-5.5/blast
 TOXO_BLAST_PATH=Common/devSiteFilesMirror/webServices/ToxoDB/release-5.1/blast
 GIARDIA_BLAST_PATH=Common/devSiteFilesMirror/webServices/GiardiaDB/release-1.1/blast
