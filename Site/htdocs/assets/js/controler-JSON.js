@@ -237,7 +237,7 @@ function NewResults(f_strategyId, f_stepId, bool, pagerOffset, ignoreFilters){
 	d.strategy = strategy.backId;
 	d.step = step.back_step_Id;
 	d.resultsOnly = true;
-	d.strategy_checksum = strategy.checksum;
+	d.strategy_checksum = (strategy.checksum != null) ? strategy.checksum : getStrategy(strategy.subStratOf).checksum;
 	if(bool){
 		d.step = step.back_boolean_Id;
 	}
