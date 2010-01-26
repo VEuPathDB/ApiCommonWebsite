@@ -172,36 +172,4 @@ B. Gajria, A. Bahl, J. Brestelli, J. Dommer, S. Fischer, X. Gao, M. Heiges, J. I
        </attribute>
    </record>
 
-   <record>
-       <attribute name="title">Additional Information</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-<b>Naming Convention</b><br>
-
-The primary <I>T. gondii</I> sequence and annotation contained in ToxoDB has come from TIGR.  
-We have retained the orignal name to enable users to trace sequences found 
-in ToxoDB back to the original source.
-
-<UL>
- <LI>Scaffolds have the following pattern:
-   <UL> 
-   <LI><TT>TGG_dddddd</tt> <BR> 
-     where <I>d</I> stands for a digit. e.g., <TT>TGG_995305</TT>.
-     <BR> &nbsp;
-   </UL>
- </LI>
- <LI>Gene Names have the following pattern:
-   <UL> 
-   <LI><TT>dd.mdddd</tt> <BR> 
-     where <I>d</I> stands for a digit. e.g., <TT>55.m0520</TT>.
-   </UL>
- </LI>
-</UL>
-<br>
-       ]]>
-       </attribute>
-   </record>
-
 </xmlAnswer>
