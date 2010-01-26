@@ -8,8 +8,8 @@
 
 GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
 GBROWSE_TAR_FILE=Generic-Genome-Browser-1.64.tar.gz
-#GBROWSE_TAR_FILE=Generic-Genome-Browser-1.64.tar.gz
-BIOPERL_TAR_FILE=bioperl_1.60_biographics_1.995.tar.gz
+BIOPERL_TAR_FILE=bioperl_1.5_nightly_20080918.tgz
+#BIOPERL_TAR_FILE=bioperl_1.60_biographics_1.995.tar.gz
 
 BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
