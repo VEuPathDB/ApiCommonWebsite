@@ -153,8 +153,8 @@ sub makeR {
   my $totalHeight = $mS->totalHeight();
 
   if ($thumb_b) {
-    $width       *= 0.75;
-    $totalHeight *= 0.75;
+    $width       *= 0.60;
+    $totalHeight *= 0.60;
   }
 
   # used in R code to set locations of screens
