@@ -3,45 +3,30 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::ToxoLineages::Ver1;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BasicBarPlot );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
-use ApiCommonWebsite::View::GraphPackage::BasicBarPlot;
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 
 sub init {
-	my $Self = shift;
+  my $self = shift;
 
-	$Self->SUPER::init(@_);
+  $self->SUPER::init(@_);
 
-  my $name = 'Expression profiling of the 3 archetypal T. gondii lineages';
+  $self->setScreenSize(200);
 
-	$Self->setDataQuery
-	( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		( Name         => 'data',
-      ProfileSet   => $name,
-		)
-	);
+  my $colors = ['#4682B4', '#B22222', '#8FBC8F', '#6A5ACD', '#87CEEB', '#CD853F'];
 
-	$Self->setNamesQuery
-	( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-		( Name         => 'names',
-      ProfileSet   => $name,
-		)
-	);
+  $self->setProfileSetsHash
+    ({rma => {profiles => ['Expression profiling of the 3 archetypal T. gondii lineages'],
+              y_axis_label => 'RMA Value (log2)',
+              colors => $colors,
+              plot_title => 'Tachyzoite comparison of archetypal T.gondii lineages',
+             },
+     });
 
-  $Self->setYaxisLabel('Log2 expression value');
-  $Self->setColors(['#4682B4', '#B22222', '#8FBC8F', '#6A5ACD', '#87CEEB', '#CD853F']);
-  $Self->setYMax(10);
-
-#  $Self->setTagRx('(.+) (rep\d)');
-
-	return $Self;
+  return $self;
 }
 
-# ========================================================================
-# ---------------------------- End of Package ----------------------------
-# ========================================================================
+
 
 1;
