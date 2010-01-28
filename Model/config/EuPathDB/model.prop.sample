@@ -9,8 +9,9 @@ TRICH_BLAST_PATH=Common/devSiteFilesMirror/webServices/TrichDB/release-1.0/blast
 TRYP_BLAST_PATH=Common/devSiteFilesMirror/webServices/TriTrypDB/release-1.1/blast
 
 # depends on apifed regular expression
-SITES="Cryptosporidium","Giardia","Plasmodium","Toxoplasma","Neospora","Trichomonas","Trypanosoma","Leishmania"
+SITES="Entamoeba","Cryptosporidium","Giardia","Encephalitozoon","Plasmodium","Toxoplasma","Neospora","Trichomonas","Trypanosoma","Leishmania"
+
 # PORTALS=global-set-name;set-name,items-in-set(;set name,items)
-PORTALS="Eukaryotic Pathogens";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora";"Anaerobic Protists","Cryptosporidium","Giardia","Trichomonas";"Kinetoplastid","Trypanosoma","Leishmania"
+PORTALS="Eukaryotic Pathogens";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora";"Anaerobic Protists","Cryptosporidium","Giardia";"Kinetoplastid","Trypanosoma","Leishmania";"Others","Entamoeba","Encephalitozoon"
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
