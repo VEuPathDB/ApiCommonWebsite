@@ -12,6 +12,6 @@ TRYP_BLAST_PATH=Common/devSiteFilesMirror/webServices/TriTrypDB/release-1.1/blas
 SITES="Entamoeba","Cryptosporidium","Giardia","Encephalitozoon","Plasmodium","Toxoplasma","Neospora","Trichomonas","Trypanosoma","Leishmania"
 
 # PORTALS=global-set-name;set-name,items-in-set(;set name,items)
-PORTALS="Eukaryotic Pathogens";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora";"Anaerobic Protists","Cryptosporidium","Giardia";"Kinetoplastid","Trypanosoma","Leishmania";"Others","Entamoeba","Encephalitozoon"
+PORTALS="Eukaryotic Pathogens";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora";"Anaerobic Protists","Cryptosporidium","Giardia";"Kinetoplastid","Trypanosoma","Leishmania";"Amoeba","Entamoeba";"Pathogenic Fungi","Encephalitozoon"
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
