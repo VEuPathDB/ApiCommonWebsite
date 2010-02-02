@@ -26,6 +26,10 @@ my $taxonToDirNameMap =
    'Trypanosoma brucei TREU927'                       => { name => 't_brucei927',             group => 3 },
    'Trypanosoma vivax'                                => { name => 't_vivax',                 group => 4 },
    'Trypanosoma congolense'                           => { name => 't_congolense',            group => 4 },
+
+   'Entamoeba dispar SAW760'                          => { name => 'e_dispar',                group => 1 },
+   'Entamoeba histolytica HM-1:IMSS'                  => { name => 'e_histolytica',           group => 2 },
+   'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
   };
 
 sub getSortingGroupsHash {
@@ -553,6 +557,7 @@ sub validateMacros {
     my $alignmentsDir = "$mercatorOutputDir/$dir/alignments";
 
     unless(-e $alignmentsDir) {
+      print STDERR "ALIGNMENTS dir $alignmentsDir not found\n";
       error("alignments directory not found");
     }
   }
