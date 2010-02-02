@@ -1,6 +1,73 @@
 <xmlAnswer>
 
   <record>
+       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
+       <attribute name = "Family">Entamoeba</attribute>
+       <attribute name = "Organism">E.dispar</attribute>
+       <attribute name = "Taxon_ID">370354</attribute>
+       <attribute name = "Strain">SAW760</attribute>
+       <attribute name = "Genome_Version">11-27-2009</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
+       <attribute name = "Genome_Size">22.96</attribute>
+       <attribute name = "Gene_Count">8748</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
+       <attribute name = "Family">Entamoeba</attribute>
+       <attribute name = "Organism">E.histolytica</attribute>
+       <attribute name = "Taxon_ID">294381</attribute>
+       <attribute name = "Strain">HM-1:IMSS</attribute>
+       <attribute name = "Genome_Version">11-27-2009</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
+       <attribute name = "Genome_Size">20.80</attribute>
+       <attribute name = "Gene_Count">8333</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
+       <attribute name = "Family">Entamoeba</attribute>
+       <attribute name = "Organism">E.invadens</attribute>
+       <attribute name = "Taxon_ID">370355</attribute>
+       <attribute name = "Strain">IP1</attribute>
+       <attribute name = "Genome_Version">11-27-2009</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
+       <attribute name = "Genome_Size">40.89</attribute>
+       <attribute name = "Gene_Count">11549</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+ <record>
        <attribute name = "Website">CryptoDB, EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.hominis</attribute>
@@ -22,6 +89,7 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
    </record>
+
 
  <record>
        <attribute name = "Website">CryptoDB, EuPathDB</attribute>
