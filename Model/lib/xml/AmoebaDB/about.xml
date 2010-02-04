@@ -24,7 +24,7 @@ the family Amoeba **UPDATE**. It integrates whole genome sequence and annotation
   
 
    <record>
-       <attribute name="title">Organisms included in CryptoDB</attribute>
+       <attribute name="title">Organisms included in AmoebaDB</attribute>
        <attribute name="tag">organisms</attribute>
        <attribute name="text">
        <![CDATA[
