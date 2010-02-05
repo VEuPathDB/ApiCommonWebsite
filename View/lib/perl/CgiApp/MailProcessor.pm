@@ -32,6 +32,7 @@ sub go {
     my $subject = join("", @{ $cgi->{'subject'} });
     my $replyTo = join("", @{ $cgi->{'replyTo'} or ['anonymous']}) || 'anonymous';
     my $privacy = join("", @{ $cgi->{'privacy'} or [] });
+    my $uid     = join("", @{ $cgi->{'uid'} or [] });
     my $website = join("", @{ $cgi->{'website'} or [$ENV{SERVER_NAME}] });
     my $version = join("", @{ $cgi->{'version'} or [] });
     my $browser = join("", @{ $cgi->{'browser'} or [$ENV{HTTP_USER_AGENT}] });
@@ -78,6 +79,7 @@ sub go {
         . "ReplyTo: $replyTo" . "\n"
         . "Cc: $addCc" . "\n"
         . "Privacy preference: $privacy" . "\n"
+        . "Uid: $uid" . "\n"
         . "Browser information: $browser" . "\n"
         . "Referer page: $referer";
 
