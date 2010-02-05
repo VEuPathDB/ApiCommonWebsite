@@ -16,7 +16,7 @@
        <![CDATA[
 
 EuPathDB (formerly ApiDB) is an integrated database 
-covering the eukaryotic pathogens in the genera <i>Cryptosporidium</i>, <i>Giardia</i>, 
+covering the eukaryotic pathogens in the genera <i>Cryptosporidium</i>, <i>Giardia</i>, <i>Entamoeba</i>, <i>Encephalitozoon</i>,
 <i>Leishmania</i>, <i>Neospora</i>, <i>Plasmodium</i>, <i>Toxoplasma</i>, <i>Trichomonas</i> and 
 <i>Trypanosoma</i>.  While each of these groups is supported by a taxon-specific 
 database built upon the same infrastructure, the EuPathDB portal offers an 
@@ -46,6 +46,8 @@ information, metabolomic data, etc.
 <ul>
 <li> <i>Cryptosporidium</i>
 <li> <i>Giardia</i> 
+<li> <i>Entamoeba</i>
+<li> <i>Encephalitozoon</i>
 <li> <i>Leishmania</i> 
 <li> <i>Neospora</i> 
 <li> <i>Plasmodium</i> 
@@ -86,6 +88,10 @@ For detail on Data Sources and Methods please access specific component sites in
 <center>
 <table width="50%" border="0" cellpadding="2" cellspacing="2">
 
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org" style="color:#003366"><b>AmoebaDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.DataSources" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>
+</tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org" style="color:#003366"><b>CryptoDB.org:</b></a></font></td>
@@ -95,6 +101,12 @@ For detail on Data Sources and Methods please access specific component sites in
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org" style="color:#003366"><b>GiardiaDB.org:</b></a></font></td>
     <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org/giardiadb/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://giardiadb.org/giardiadb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+</td>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org" style="color:#003366"><b>MicrosporidiaDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org/micro/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://microsporidiadb.org/micro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr>
 
@@ -176,6 +188,12 @@ There are several kinds of downloads available in a EuPathDB site:
 Each project in EuPathDB benefits from the advice and mentoring of people from each specific community.
 <br><br>
 
+<b>AmoebaDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>...
+</ul></div>
+<br>
 <b>CryptoDB</b><br><br>
 <div id="cirbulletlist">
 <ul>
@@ -193,6 +211,12 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
 <li>Adrian Hehl (University of Zürich, Switzerland)</li>
 <li>Fran Gillin (University of California - San Diego, USA)</li>
 <li>Scott Dawson (University of California - Davis, USA)</li>
+</ul></div>
+<br>
+<b>MicrosporidiaDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>...
 </ul></div>
 <br>
 <b>PlasmoDB</b><br><br>
