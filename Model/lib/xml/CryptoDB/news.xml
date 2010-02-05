@@ -18,6 +18,28 @@
     </record>
 -->
 <record>
+       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
+       <attribute name="date">04 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_dbp_2010</attribute>
+       <attribute name="item">           
+         <![CDATA[<body>
+The NIAID-funded Eukaryotic Pathogen Genome Database
+(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
+Projects (DBPs) focused on one or more of the eukaryotic
+pathogens supported by this Bioinformatics Resource Center
+(BRC). We anticipate making two awards of up to $600K each
+by July 1, 2010 (a second round of solicitations is expected
+in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
+following which full applications will be solicited by
+invitation only, with a deadline of March 31.</i>  
+<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
+Click here to
+download the RFP</a>.
+</body>
+          ]]>
+       </attribute>
+</record>
+<record>
        <attribute name="headline">"My Basket", A New Feature in CryptoDB</attribute>
        <attribute name="date">22 December 2009 15:00</attribute>
        <attribute name="tag">crypto1209news</attribute>
