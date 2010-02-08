@@ -78,10 +78,12 @@ sub makeRLegendString {
   my $colors = $legendHash->{colors};
   my $names = $legendHash->{short_names};
   my $pch = $legendHash->{points_pch};
+  my $fill = $legendHash->{fill};
 
   my $rColorsString = $self->rStringVectorFromArray($colors, 'legend.colors');
   my $rNamesString = $self->rStringVectorFromArray($names, 'legend.names');
   my $rPointsPchString = $self->rNumericVectorFromArray($pch, 'points.pch');
+  my $rFill = $fill ? "TRUE" : "FALSE";
 
   my $rv = "
  #-------------------------------------------------------------------------------
@@ -95,19 +97,30 @@ sub makeRLegendString {
   par(yaxs='i', xaxs='i', xaxt='n', yaxt='n', bty='n', mar=c(0.1,0.1,0.1,0.1));
   plot(c(0),c(0), xlab='', ylab='',type='l',col='orange', xlim=c(0,1),ylim=c(0,1));
 
-  legend(0.5, 0.5,
-       legend.names,
-       xjust = 0.5,
-       yjust = 0.5,
-       cex   = 0.9,
-       pt.cex = 1.5,
-       bty   = 'n',
-       col   = legend.colors,
-       pt.bg = legend.colors,
-       pch   = points.pch,
-       lty   = 'solid',
-       ncol  = 3,
-      );
+  if($rFill) {
+    legend(0.5, 0.5,
+         legend.names,
+         xjust = 0.5,
+         yjust = 0.5,
+         cex   = 0.9,
+         ncol  = 3,
+         fill=legend.colors
+        );
+  } else {
+    legend(0.5, 0.5,
+         legend.names,
+         xjust = 0.5,
+         yjust = 0.5,
+         cex   = 0.9,
+         pt.cex = 1.5,
+         bty   = 'n',
+         col   = legend.colors,
+         pt.bg = legend.colors,
+         pch   = points.pch,
+         lty   = 'solid',
+         ncol  = 3
+        );
+  }
 ";
 
 
