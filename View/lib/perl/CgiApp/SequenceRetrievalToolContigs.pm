@@ -43,15 +43,17 @@ EOSQL
     $sth->execute(uc($$sourceIds[$i]));
     if (my ($id, $seq, $desc) = $sth->fetchrow_array()) {
 
-      $desc .= " | $$starts[$i] to $$ends[$i]";
-      $desc .= " (reverse-complement)" if ($$revComps[$i]);
       my $bioSeq = Bio::Seq->new(-display_id => $id, -seq => $seq,
-				 -description => $desc, -alphabet => "dna");
+				  -alphabet => "dna");
       my $maxEnd = $$ends[$i] > $bioSeq->length()? $bioSeq->length() : $$ends[$i];
 
       # catch error if start is larger $maxEnd
       &error("Start is larger than the length of the Sequence ($maxEnd)") if ($$starts[$i] > $maxEnd);
 
+      $desc .= " | $$starts[$i] to $maxEnd";
+      $desc .= " (reverse-complement)" if ($$revComps[$i]);
+      $bioSeq->desc($desc);
+      
       $bioSeq = $bioSeq->trunc($$starts[$i], $maxEnd);
       $bioSeq = $bioSeq->revcom() if ($$revComps[$i]);
       $seqIO->write_seq($bioSeq);
