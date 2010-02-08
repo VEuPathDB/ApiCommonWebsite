@@ -53,6 +53,7 @@ public class NewCommentForm extends ActionForm {
     private String accessions;
     private String associatedStableIds;
     private String contig;
+    private String authors;
     private String commentId = null;
     private String email;
 
@@ -309,6 +310,14 @@ public class NewCommentForm extends ActionForm {
 
     public String getAssociatedStableIds() {
         return this.associatedStableIds;
+    }
+
+    public String getAuthors() {
+        return this.authors;
+    }
+
+    public void setAuthors(String authors) {
+        this.authors = authors;
     }
 
     public void setFile(int indx, FormFile file) {

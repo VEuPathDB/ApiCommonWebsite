@@ -107,6 +107,7 @@ public class NewCommentAction extends CommentAction {
         String pmIdStr = cuForm.getPmIds();
         String accessionStr = cuForm.getAccessions();
         String associatedStableIdsStr = cuForm.getAssociatedStableIds();
+        String authorsStr = cuForm.getAuthors();
         String stableId = cuForm.getStableId();
         String organism = cuForm.getOrganism();
         String extDbName = cuForm.getExternalDbName();
@@ -161,8 +162,15 @@ public class NewCommentAction extends CommentAction {
           comment.setAssociatedStableIds(ids);
         }
 
+        if((authorsStr != null) && (authorsStr.trim().length() != 0)) {
+          String[] ids = handleDelimiter(authorsStr).split(" ");
+          comment.setAuthors(ids);
+        }
+
         try {
-            comment.setLocations(reversed, locations, coordinateType);
+            if (locType == null ) { } else {
+               comment.setLocations(reversed, locations, coordinateType);
+            }
         } catch (Exception e) {
             request.setAttribute(
                     "submitStatus",
