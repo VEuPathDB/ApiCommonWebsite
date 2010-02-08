@@ -69,6 +69,7 @@ public class Comment {
     private String[] files;
     private String[] existingFiles; 
     private String[] associatedStableIds; 
+    private String[] authors;
     private String background;
     private int mutantStatus;
     private int mutationType;
@@ -545,6 +546,14 @@ public class Comment {
         this.userName = userName;
     }
 
+    public String[] getAuthors() {
+      return this.authors;
+    }
+
+    public void setAuthors(String[] authors) {
+      this.authors = authors;
+    }
+
     /**
      * @return the organization
      */
@@ -614,7 +623,7 @@ public class Comment {
     public void setPhenotypeLoc(int phenotypeLoc) {
         this.phenotypeLoc = phenotypeLoc;
     } 
-		
+    
     public String getPhenotypeLocName() {
         return phenotypeLocName;
     }

@@ -119,6 +119,7 @@ public class CommentFactory {
             String[] files = comment.getFiles();
             String[] existingFiles = comment.getExistingFiles();
             String[] associatedStableIds = comment.getAssociatedStableIds();
+            String[] authors = comment.getAuthors();
 
             ps = SqlUtils.getPreparedStatement(
                     platform.getDataSource(),
@@ -187,6 +188,10 @@ public class CommentFactory {
             if ((associatedStableIds != null)
                     && (associatedStableIds.length > 0)) {
                 saveAssociatedStableIds(commentId, associatedStableIds);
+            }
+
+            if ((authors != null) && (authors.length > 0)) {
+                saveAuthors(commentId, authors);
             }
 
             if (comment.getCommentTarget().equalsIgnoreCase("phenotype")) {
@@ -565,6 +570,36 @@ public class CommentFactory {
                     statement.setInt(1, stableId);
                     statement.setString(2, associatedStableId);
                     statement.setInt(3, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void saveAuthors(int commentId, String[] authors) throws SQLException,
+            WdkModelException, WdkUserException {
+        String commentSchema = config.getCommentSchema();
+
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentReference ");
+        sql.append("(comment_reference_id, source_id, ");
+        sql.append("database_name, comment_id ");
+        sql.append(") VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    sql.toString());
+
+            for (String author : authors) {
+                if ((author != null) && (author.trim().length() != 0)) {
+                    int commentPmId = platform.getNextId(commentSchema,
+                            "commentReference");
+                    statement.setInt(1, commentPmId);
+                    statement.setString(2, author);
+                    statement.setString(3, "author");
+                    statement.setInt(4, commentId);
                     statement.execute();
                 }
             }
