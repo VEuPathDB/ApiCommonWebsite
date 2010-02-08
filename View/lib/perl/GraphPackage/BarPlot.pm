@@ -25,6 +25,16 @@ sub init {
 
 #--------------------------------------------------------------------------------
 
+sub setMainLegend {
+  my ($self, $hash) = @_;
+
+  $hash->{fill} = 1;
+  $hash->{points_pch} = [];
+  $self->SUPER::setMainLegend($hash);
+}
+
+#--------------------------------------------------------------------------------
+
 sub makeRPlotStrings {
   my ($self) = @_;
 
