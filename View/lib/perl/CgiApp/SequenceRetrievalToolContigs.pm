@@ -91,10 +91,26 @@ sub validateParams {
 sub validateIds {
   my ($inputIdsString, $start, $end, $revComp, $dbh) = @_;
   
-  # if the input contains per-sequence "reverse" or "(start..end)"
-  # info, then split on newlines; else split on commas or any whitespace
-  my @inputInfo = ($inputIdsString =~ /reverse|\(\d+\.\.\d+\)/)?
-     split(/\n/, $inputIdsString) : split(/[,\s]+/, $inputIdsString);
+  # if the input contains commas, assume it comes from WDK:
+  #   split on newlines, then split on commas to get rid of site names
+  # else if the input contains per-sequence "reverse" or "(start..end)":
+  #   split on newlines
+  # else split on any whitespace
+  my @inputInfo;
+  if ($inputIdsString =~ /,/) {
+      @inputInfo = split(/\n/, $inputIdsString);
+      foreach my $input (@inputInfo) {
+	  my @idParts = split(/,/, $input);
+	  $input = $idParts[0];
+      }
+  }
+  elsif ($inputIdsString =~ /reverse|\(\d+\.\.\d+\)/) {
+      @inputInfo= split(/\n/, $inputIdsString);
+  }
+  else {
+      @inputInfo = split(/[\s]+/, $inputIdsString);
+  }
+
   my @inputIds;
   my @starts;
   my @ends;
@@ -136,7 +152,6 @@ EOSQL
     push(@badIds, $inputId);
   }
   if (scalar(@badIds) != 0) {
-    my $msg = 
     &error("Invalid IDs:\n" . join("  \n", @badIds));
   }
   return (\@inputIds, \@starts, \@ends, \@revComps);
