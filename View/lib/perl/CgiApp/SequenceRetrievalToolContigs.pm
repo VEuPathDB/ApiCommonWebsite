@@ -43,15 +43,17 @@ EOSQL
     $sth->execute(uc($$sourceIds[$i]));
     if (my ($id, $seq, $desc) = $sth->fetchrow_array()) {
 
-      $desc .= " | $$starts[$i] to $$ends[$i]";
-      $desc .= " (reverse-complement)" if ($$revComps[$i]);
       my $bioSeq = Bio::Seq->new(-display_id => $id, -seq => $seq,
-				 -description => $desc, -alphabet => "dna");
+				  -alphabet => "dna");
       my $maxEnd = $$ends[$i] > $bioSeq->length()? $bioSeq->length() : $$ends[$i];
 
       # catch error if start is larger $maxEnd
       &error("Start is larger than the length of the Sequence ($maxEnd)") if ($$starts[$i] > $maxEnd);
 
+      $desc .= " | $$starts[$i] to $maxEnd";
+      $desc .= " (reverse-complement)" if ($$revComps[$i]);
+      $bioSeq->desc($desc);
+      
       $bioSeq = $bioSeq->trunc($$starts[$i], $maxEnd);
       $bioSeq = $bioSeq->revcom() if ($$revComps[$i]);
       $seqIO->write_seq($bioSeq);
@@ -89,10 +91,26 @@ sub validateParams {
 sub validateIds {
   my ($inputIdsString, $start, $end, $revComp, $dbh) = @_;
   
-  # if the input contains per-sequence "reverse" or "(start..end)"
-  # info, then split on newlines; else split on commas or any whitespace
-  my @inputInfo = ($inputIdsString =~ /reverse|\(\d+\.\.\d+\)/)?
-     split(/\n/, $inputIdsString) : split(/[,\s]+/, $inputIdsString);
+  # if the input contains commas, assume it comes from WDK:
+  #   split on newlines, then split on commas to get rid of site names
+  # else if the input contains per-sequence "reverse" or "(start..end)":
+  #   split on newlines
+  # else split on any whitespace
+  my @inputInfo;
+  if ($inputIdsString =~ /,/) {
+      @inputInfo = split(/\n/, $inputIdsString);
+      foreach my $input (@inputInfo) {
+	  my @idParts = split(/,/, $input);
+	  $input = $idParts[0];
+      }
+  }
+  elsif ($inputIdsString =~ /reverse|\(\d+\.\.\d+\)/) {
+      @inputInfo= split(/\n/, $inputIdsString);
+  }
+  else {
+      @inputInfo = split(/[\s]+/, $inputIdsString);
+  }
+
   my @inputIds;
   my @starts;
   my @ends;
@@ -134,7 +152,6 @@ EOSQL
     push(@badIds, $inputId);
   }
   if (scalar(@badIds) != 0) {
-    my $msg = 
     &error("Invalid IDs:\n" . join("  \n", @badIds));
   }
   return (\@inputIds, \@starts, \@ends, \@revComps);
