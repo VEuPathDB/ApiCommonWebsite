@@ -138,6 +138,11 @@ $rAdjustNames
 d.max = max(1.1 * profile, y.max);
 d.min = min(1.1 * profile, y.min);
 
+my.las = 0;
+if(max(nchar(element.names)) > 6) {
+  my.las = 2;
+}
+
 barplot(profile,
         col       = the.colors,
         ylab      = '$yAxisLabel',
@@ -145,7 +150,7 @@ barplot(profile,
         beside    = TRUE,
         names.arg = element.names,
         space=c(0,.5),
-        las = 2
+        las = my.las
        );
 
 if(length(the.legend) > 0) {
