@@ -241,7 +241,7 @@ for(i in 1:nrow(lines.df)) {
        new.points[i,],
        col  = the.colors[i],
        bg   = the.colors[i],
-       type = \"o\",
+       type = \"p\",
        pch  = my.pch,
        cex  = 1.5
        );
