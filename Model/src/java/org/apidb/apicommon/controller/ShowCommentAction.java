@@ -48,15 +48,22 @@ public class ShowCommentAction extends CommentAction {
         request.setAttribute(COMMENT_TARGET_ID_KEY, commentForm.getCommentTargetId());
 
         // construct url
-	String customViewDir = application.getAttribute(CConstants.WDK_CUSTOM_VIEW_DIR).toString()
-	    + File.separator + application.getAttribute(CConstants.WDK_PAGES_DIR).toString();
+        /** not sure why it caused the problem of not showing comment page.
+            it may due to wdk refactoring, r32856 commit need to revisit
+            comment out the following block and remove the custome page.
+        */
+         
+         /**  2/10/2010
+  String customViewDir = application.getAttribute(CConstants.WDK_CUSTOM_VIEW_DIR).toString()
+      + File.separator + application.getAttribute(CConstants.WDK_PAGES_DIR).toString();
         String commentPage = customViewDir + File.separator
                 + CUSTOM_COMMENT_PAGE;
+         */
 
         // check if custom comment page exist; if not, use the default one
-        if (!ApplicationInitListener.resourceExists(commentPage, application)) {
-            commentPage = File.separator + DEFAULT_COMMENT_PAGE;
-        }
+        //if (!ApplicationInitListener.resourceExists(commentPage, application)) {
+         String commentPage = File.separator + DEFAULT_COMMENT_PAGE;
+        //}
 
         // redirect to the show comments page
         return new ActionForward(commentPage, false);
