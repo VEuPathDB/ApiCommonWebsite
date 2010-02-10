@@ -104,7 +104,8 @@ sub makeRLegendString {
          yjust = 0.5,
          cex   = 0.9,
          ncol  = 3,
-         fill=legend.colors
+         fill=legend.colors,
+         bty='n'
         );
   } else {
     legend(0.5, 0.5,
@@ -118,7 +119,8 @@ sub makeRLegendString {
          pt.bg = legend.colors,
          pch   = points.pch,
          lty   = 'solid',
-         ncol  = 3
+         ncol  = 3,
+         bty='n'
         );
   }
 ";
