@@ -43,7 +43,7 @@ For a menu of actions/properties for a step's search click on the search name in
 For a menu of actions/properties for how it is combined with the prior step, click on the Venn diagram.
        </attribute>
        <attribute name="tip">
-you can get a menu of step actions by clicking on the plus icon, step name or the Venn diagram.
+you can get a menu of step actions by clicking on the plus icon, the step name or the Venn diagram.
        </attribute>
        <attribute name="showTipAsDidYouKnow">true</attribute>
    </record>
