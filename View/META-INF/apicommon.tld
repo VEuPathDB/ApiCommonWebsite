@@ -270,4 +270,10 @@
       </attribute>
   </tag>
 
+  <tag>
+      <name>errors</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.ErrorsTag</tagclass>
+      <bodycontent>scriptless</bodycontent>
+  </tag>
+
 </taglib>
