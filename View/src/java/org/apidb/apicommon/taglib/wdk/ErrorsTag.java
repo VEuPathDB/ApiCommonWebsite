@@ -1,5 +1,26 @@
+/**
+
+Error handling tag modeled after (and meant to replace) WDK's errors.tag .
+Provides error/exception messaging display in JSP with conditional display of 
+stacktraces on non-public sites. 
+
+Like the WDK's errors.tag, this tag handles:
+- ActionMessages, e.g. form validation errors ( ${requestScope['org.apache.struts.action.ERROR']} )
+- Application exceptions ( ${requestScope['org.apache.struts.action.EXCEPTION']} )
+- JSP/jstl syntax errors ( ${pageContext.exception} )
+
+Unlike the errors.tag, this tag does not display ActionMessages when there
+is an application or JSP exception as the resulting ActionMessage text is garbage.
+
+Also includes conditional error reporting via email. Email addresses are set
+in the SITE_ADMIN_EMAIL property of the WDK's model.prop
+
+$Id$
+
+**/
 package org.apidb.apicommon.taglib.wdk;
 
+import org.apache.struts.taglib.TagUtils;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
@@ -11,6 +32,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
 
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+import org.apache.struts.util.MessageResources;
+import org.apache.struts.Globals;
+
 import java.io.StringWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -20,6 +46,8 @@ import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import java.util.Iterator;
+import java.util.Locale;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -51,7 +79,9 @@ public class ErrorsTag extends WdkTagBase {
         super.doTag();        
         pageContext = (PageContext) getJspContext();
         request = (HttpServletRequest) this.getRequest();
-
+        
+        printActionErrorsToPage();
+        
         if (showStackTrace())
             printStackTraceToPage();
         
@@ -60,12 +90,38 @@ public class ErrorsTag extends WdkTagBase {
 
     }
     
+    private void printActionErrorsToPage() throws JspException {
+        /** ActionMessage will be set if there's a exception. Skip printing
+           these since the content is meaningless (e.g. "???en_US.global.error.other???")
+           and we're processing the exception separately **/
+        Exception pex = pageContext.getException(); // e.g. jstl sytnax errors
+        Exception rex = (Exception) request. 
+                getAttribute(Globals.EXCEPTION_KEY); // e.g. WDK exceptions
+        if (rex != null || pex != null) return;
+
+        String message = getActionErrorsAsHTML();
+        
+        if (message == null) return;
+
+        try {
+            JspWriter out = getJspContext().getOut();
+            out.println("<br>");
+            out.println("<EM><b>Please correct the following error(s): </b></EM><br>");
+            out.println(message);
+        } catch (IOException ioe) {
+            throw new JspException("(IOException) " + ioe);
+        }    
+    }
+
     private void printStackTraceToPage() throws JspException {
+        String st = getStackTraceAsText();
+        if (st == null) return;
         try {
             JspWriter out = getJspContext().getOut();            
-            out.println("<pre>");
-            out.println(getStackTraceAsText());
-            out.println("</pre>");
+            out.println("<br>");
+            out.println("<pre>\n");
+            out.println(st);
+            out.println("</pre>\n");
         } catch (IOException ioe) {
             throw new JspException("(IOException) " + ioe);
         }
@@ -79,10 +135,84 @@ public class ErrorsTag extends WdkTagBase {
         return true;
     }
 
+    /**
+        Equivalent of 
+            
+                <UL>
+                    <html:messages id="error" message="false">
+                        <LI><bean:write name="error"/></LI>
+                    </html:messages>
+                </UL>
+        
+        Based on MessagesTag.java from Struts 1.2.4 
+        http://grepcode.com/file/repo1.maven.org/maven2/struts/struts/1.2.4/org/apache/struts/taglib/html/MessagesTag.java/?v=source
+    **/
+    private String getActionErrorsAsHTML() throws JspException {
+        
+        /** MessagesTag attributes **/
+        String message  = "false";
+        String bundle   = null;
+        String property = null;
+        String header   = null;
+        String footer   = null;
+        String locale   = Globals.LOCALE_KEY;
+        String name     = Globals.ERROR_KEY;
+        
+        StringBuffer sb = new StringBuffer();
+        
+        if (message != null && "true".equalsIgnoreCase(message)) {
+            name = Globals.MESSAGE_KEY;
+        }
+
+        if (header != null && header.length() > 0) {
+            String headerMessage = TagUtils.getInstance().
+                    message(pageContext, bundle, locale, header);
+            if (headerMessage != null) {
+                sb.append(headerMessage);
+            }
+        }
+
+        ActionMessages messages = TagUtils.getInstance().
+                            getActionMessages(pageContext, name);
+
+        Iterator i = (property == null) ? messages.get() : messages.get(property);
+
+        if (! i.hasNext()) return null;
+        
+        sb.append("<ul>\n");
+        while (i.hasNext()) {
+        
+            ActionMessage report = (ActionMessage) i.next();
+            String msg = TagUtils.getInstance().message(
+                         pageContext, bundle, locale,
+                         report.getKey(), report.getValues());
+            
+            if (msg != null) {
+                sb.append("<li>" + msg + "</li>\n");
+                sb.append("<li>-- " + report.getKey() + " --</li>");
+            }
+        }
+        sb.append("</ul>\n");
+        
+        if (footer != null && footer.length() > 0) {
+            String footerMessage = TagUtils.getInstance().
+                    message(pageContext, bundle, locale, footer);
+            if (footerMessage != null) {
+                sb.append(footerMessage);
+            }
+        }
+
+        return sb.toString();
+    }
+    
+
     private String getStackTraceAsText() {
         Exception pex = pageContext.getException(); // e.g. jstl sytnax errors
         Exception rex = (Exception) request.
-                getAttribute("org.apache.struts.action.EXCEPTION"); // e.g. WDK exceptions
+                getAttribute(Globals.EXCEPTION_KEY); // e.g. WDK exceptions
+        
+        if (pex == null && rex == null) 
+            return null;
         
         StringBuffer st = new StringBuffer();
 
@@ -159,7 +289,9 @@ public class ErrorsTag extends WdkTagBase {
     
     private void appendStacktrace(StringBuffer sb) {
         sb.append("Stacktrace: \n\n");
-        sb.append(getStackTraceAsText());
+        String st = getStackTraceAsText();
+        if (st == null) return;
+        sb.append(st);
     }
     
     private void appendRemoteHost(StringBuffer sb) {
