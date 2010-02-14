@@ -2,7 +2,10 @@
 
 Error handling tag modeled after (and meant to replace) WDK's errors.tag .
 Provides error/exception messaging display in JSP with conditional display of 
-stacktraces on non-public sites. 
+stacktraces on non-public sites. A public site does not display stacktraces and
+is defined as site with hostname beginning with a value in the publicPrefixes
+String array. ActionMessages are always displayed unless there's also a pageContext
+exception or application exceptions.
 
 Like the WDK's errors.tag, this tag handles:
 - ActionMessages, e.g. form validation errors ( ${requestScope['org.apache.struts.action.ERROR']} )
@@ -13,7 +16,8 @@ Unlike the errors.tag, this tag does not display ActionMessages when there
 is an application or JSP exception as the resulting ActionMessage text is garbage.
 
 Also includes conditional error reporting via email. Email addresses are set
-in the SITE_ADMIN_EMAIL property of the WDK's model.prop
+in the SITE_ADMIN_EMAIL property of the WDK's model.prop . Only public sites 
+compose and send email reports.
 
 $Id$
 
@@ -22,53 +26,60 @@ package org.apidb.apicommon.taglib.wdk;
 
 import org.apache.struts.taglib.TagUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.ServletRequest;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
 
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
-import org.apache.struts.util.MessageResources;
 import org.apache.struts.Globals;
+import org.apache.struts.util.MessageResources;
 
-import java.io.StringWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
-import java.util.Properties;
-import java.util.Enumeration;
-import java.util.Map;
-import java.util.List;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+import java.util.regex.Pattern;
 
 import javax.mail.Address;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
 
 
 public class ErrorsTag extends WdkTagBase {
 
+    private String[] publicPrefixes = {
+        "",
+        "qa.",
+        "beta.",
+        "www."
+    };
+    private static final String PAGE_DIV = 
+        "\n************************************************\n";
+
+
     private PageContext pageContext;
     private HttpServletRequest request;
-    private static final String PAGE_DIV = "\n************************************************\n";
     protected int varScope;
-        
-
 
     public ErrorsTag() {
         varScope = PageContext.PAGE_SCOPE;
@@ -80,6 +91,9 @@ public class ErrorsTag extends WdkTagBase {
         pageContext = (PageContext) getJspContext();
         request = (HttpServletRequest) this.getRequest();
         
+        if ( ! hasErrors() )
+            return;
+
         printActionErrorsToPage();
         
         if (showStackTrace())
@@ -89,7 +103,37 @@ public class ErrorsTag extends WdkTagBase {
             constructAndSendMail();
 
     }
+
+
+    private boolean showStackTrace() {
+        return ( ! isPublicSite() );
+    }
     
+    private boolean isPublicSite() {
+        String project = this.getContext().getInitParameter("model");
+        String serverName =  request.getServerName();
+        for (String prefix : publicPrefixes) {
+            if ( (prefix + project + ".org").equalsIgnoreCase(serverName) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean siteIsMonitored() {
+        return isPublicSite();
+    }
+
+    private boolean hasErrors() throws JspException {
+        Exception pex = pageContext.getException(); // e.g. jstl sytnax errors
+        Exception rex = (Exception) request.
+                getAttribute(Globals.EXCEPTION_KEY); // e.g. WDK exceptions
+        ActionMessages messages = TagUtils.getInstance().
+                            getActionMessages(pageContext, Globals.ERROR_KEY);
+        
+        return ( pex != null || rex != null || ! messages.isEmpty() );
+    }
+
     private void printActionErrorsToPage() throws JspException {
         /** ActionMessage will be set if there's a exception. Skip printing
            these since the content is meaningless (e.g. "???en_US.global.error.other???")
@@ -126,14 +170,6 @@ public class ErrorsTag extends WdkTagBase {
             throw new JspException("(IOException) " + ioe);
         }
     }
-    
-    private boolean showStackTrace() {
-        return true;
-    }
-    
-    private boolean siteIsMonitored() {
-        return true;
-    }
 
     /**
         Equivalent of 
@@ -160,7 +196,7 @@ public class ErrorsTag extends WdkTagBase {
         
         StringBuffer sb = new StringBuffer();
         
-        if (message != null && "true".equalsIgnoreCase(message)) {
+        if (message != null && message.equalsIgnoreCase("true")) {
             name = Globals.MESSAGE_KEY;
         }
 
