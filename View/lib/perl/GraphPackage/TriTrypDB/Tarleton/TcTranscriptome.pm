@@ -17,7 +17,7 @@ sub init {
 
   my $colors =['#E9967A', '#66CDAA', '#8B4513', '#DDA0DD'];
 
-  my $xAxisLabels = ['A', 'T', 'E', 'M'];
+  my $xAxisLabels = ['AMA', 'TRP', 'EPI', 'MET'];
 
   my $legend = ["amastigotes", "trypomastigotes", "epimastigotes",  "metacyclics"];
 
