@@ -56,6 +56,7 @@ public class NewCommentForm extends ActionForm {
     private String authors;
     private String commentId = null;
     private String email;
+    private String sequence;
 
     private ArrayList categoryList = new ArrayList(); 
 
@@ -123,8 +124,16 @@ public class NewCommentForm extends ActionForm {
        return email;
     }
 
-    public void setEmail() {
+    public void setEmail(String email) {
        this.email = email;
+    }
+
+    public String getSequence() {
+       return this.sequence;
+    }
+
+    public void setSequence(String sequence) {
+       this.sequence = sequence;
     }
 
     /**

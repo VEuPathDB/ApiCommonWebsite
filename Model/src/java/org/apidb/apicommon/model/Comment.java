@@ -17,6 +17,7 @@ public class Comment {
     private int commentId;
     private int userId;
     private String email;
+    private String sequence;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
      */
@@ -403,6 +404,14 @@ public class Comment {
      */
     public String getEmail() {
         return email;
+    }
+
+    public String getSequence() {
+        return this.sequence;
+    }
+
+    public void setSequence(String sequence) {
+        this.sequence = sequence;
     }
 
     public String[] addReference(String[] ids, String databaseName) {
