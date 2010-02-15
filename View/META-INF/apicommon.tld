@@ -271,9 +271,20 @@
   </tag>
 
   <tag>
-      <name>errors</name>
-      <tagclass>org.apidb.apicommon.taglib.wdk.ErrorsTag</tagclass>
-      <bodycontent>scriptless</bodycontent>
+    <description>
+    Display stacktraces on non-public sites unless the showStacktrace attribute
+    is set to "false". Never show stacktraces on public sites. Stacktraces
+    and other state information are emailed when encountered on public sites.
+    Email sent to value of SITE_ADMIN_EMAIL in WDK model.prop.
+    </description>
+    <name>errors</name>
+    <tagclass>org.apidb.apicommon.taglib.wdk.ErrorsTag</tagclass>
+    <bodycontent>scriptless</bodycontent>
+    <attribute>
+        <name>showStacktrace</name>
+        <required>false</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
   </tag>
 
 </taglib>

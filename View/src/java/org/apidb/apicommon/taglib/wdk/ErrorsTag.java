@@ -71,8 +71,7 @@ public class ErrorsTag extends WdkTagBase {
         "",
         "qa.",
         "beta.",
-        "www.",
-        "mheiges."
+        "www."
     };
     private static final String PAGE_DIV = 
         "\n************************************************\n";
@@ -81,6 +80,7 @@ public class ErrorsTag extends WdkTagBase {
     private PageContext pageContext;
     private HttpServletRequest request;
     protected int varScope;
+    private String showStacktrace;
 
     public ErrorsTag() {
         varScope = PageContext.PAGE_SCOPE;
@@ -97,7 +97,7 @@ public class ErrorsTag extends WdkTagBase {
 
         printActionErrorsToPage();
         
-        if (showStackTrace())
+        if (showStacktrace())
             printStackTraceToPage();
         
         if (siteIsMonitored())
@@ -105,8 +105,14 @@ public class ErrorsTag extends WdkTagBase {
 
     }
 
+    public void setShowStacktrace(String showStacktrace) {
+        this.showStacktrace = showStacktrace;
+    }
 
-    private boolean showStackTrace() {
+    private boolean showStacktrace() {
+        if (showStacktrace != null && showStacktrace.equals("false") ) {
+            return false;
+        }
         return ( ! isPublicSite() );
     }
     
