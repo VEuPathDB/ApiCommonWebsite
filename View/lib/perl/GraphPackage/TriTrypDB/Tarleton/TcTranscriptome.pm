@@ -24,7 +24,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['Profiles of T.cruzi Tarleton Rick array data'],
+    ({m => {profiles => ['Profiles of T.cruzi Tarleton Rick array data'],
               y_axis_label => 'log2(R/G)',
               colors => $colors,
               plot_title => 'Transcriptome analysis of the Trypanosoma cruzi life-cycle',
