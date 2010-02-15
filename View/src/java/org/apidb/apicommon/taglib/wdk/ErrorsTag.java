@@ -229,7 +229,6 @@ public class ErrorsTag extends WdkTagBase {
             
             if (msg != null) {
                 sb.append("<li>" + msg + "</li>\n");
-                sb.append("<li>-- " + report.getKey() + " --</li>");
             }
         }
         sb.append("</ul>\n");
