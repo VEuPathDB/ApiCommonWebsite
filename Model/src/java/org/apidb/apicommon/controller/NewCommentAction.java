@@ -108,6 +108,7 @@ public class NewCommentAction extends CommentAction {
         String accessionStr = cuForm.getAccessions();
         String associatedStableIdsStr = cuForm.getAssociatedStableIds();
         String authorsStr = cuForm.getAuthors();
+        String sequence = cuForm.getSequence();
         String stableId = cuForm.getStableId();
         String organism = cuForm.getOrganism();
         String extDbName = cuForm.getExternalDbName();
@@ -165,6 +166,10 @@ public class NewCommentAction extends CommentAction {
         if((authorsStr != null) && (authorsStr.trim().length() != 0)) {
           String[] ids = handleDelimiter(authorsStr).split(" ");
           comment.setAuthors(ids);
+        }
+
+        if((sequence != null) && (sequence.trim().length() != 0)) {
+          comment.setSequence(sequence);
         }
 
         try {
