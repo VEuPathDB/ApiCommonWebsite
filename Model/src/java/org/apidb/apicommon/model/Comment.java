@@ -412,6 +412,9 @@ public class Comment {
         } else if(databaseName.toLowerCase().equals("genbank")) {
           this.accessions = ids;
           return this.accessions;
+        } else if(databaseName.toLowerCase().equals("author")) {
+          this.authors = ids;
+          return this.authors;
         }
         return null;
     }
