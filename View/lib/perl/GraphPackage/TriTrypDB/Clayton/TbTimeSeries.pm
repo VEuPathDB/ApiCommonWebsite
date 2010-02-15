@@ -17,7 +17,7 @@ sub init {
   my $pch = [15];
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['Expression profiling of T. brucei microarray data from Christine Clayton',
+    ({m => {profiles => ['Expression profiling of T. brucei microarray data from Christine Clayton',
                           ],
               y_axis_label => 'log2(R/G)',
               x_axis_label => ' ',
