@@ -71,7 +71,8 @@ public class ErrorsTag extends WdkTagBase {
         "",
         "qa.",
         "beta.",
-        "www."
+        "www.",
+        "mheiges."
     };
     private static final String PAGE_DIV = 
         "\n************************************************\n";
@@ -128,10 +129,11 @@ public class ErrorsTag extends WdkTagBase {
         Exception pex = pageContext.getException(); // e.g. jstl sytnax errors
         Exception rex = (Exception) request.
                 getAttribute(Globals.EXCEPTION_KEY); // e.g. WDK exceptions
+        Exception aex = (Exception) request.getAttribute("exception");
         ActionMessages messages = TagUtils.getInstance().
                             getActionMessages(pageContext, Globals.ERROR_KEY);
         
-        return ( pex != null || rex != null || ! messages.isEmpty() );
+        return ( pex != null || rex != null || aex != null || ! messages.isEmpty() );
     }
 
     private void printActionErrorsToPage() throws JspException {
@@ -141,7 +143,9 @@ public class ErrorsTag extends WdkTagBase {
         Exception pex = pageContext.getException(); // e.g. jstl sytnax errors
         Exception rex = (Exception) request. 
                 getAttribute(Globals.EXCEPTION_KEY); // e.g. WDK exceptions
-        if (rex != null || pex != null) return;
+        Exception aex = (Exception) request.getAttribute("exception");
+
+        if (rex != null || pex != null || aex != null) return;
 
         String message = getActionErrorsAsHTML();
         
@@ -246,16 +250,25 @@ public class ErrorsTag extends WdkTagBase {
         Exception pex = pageContext.getException(); // e.g. jstl sytnax errors
         Exception rex = (Exception) request.
                 getAttribute(Globals.EXCEPTION_KEY); // e.g. WDK exceptions
-        
-        if (pex == null && rex == null) 
+        Exception aex = (Exception) request.getAttribute("exception");
+
+        if (pex == null && rex == null && aex == null) 
             return null;
         
         StringBuffer st = new StringBuffer();
 
-        if (rex != null)
+        if (rex != null) {
             st.append(stackTraceToString(rex));
-        if (pex != null)
+            st.append("\n\n-- from pageContext.getException()\n");
+        }
+        if (pex != null) {
             st.append(stackTraceToString(pex));
+            st.append("\n\n-- from request.getAttribute(Globals.EXCEPTION_KEY)\n");
+        }
+        if (aex != null) {
+            st.append(stackTraceToString(aex));
+            st.append("\n\n-- from request.getAttribute(\"exception\")\n");
+        }
         return st.toString();
     }
     
@@ -343,10 +356,12 @@ public class ErrorsTag extends WdkTagBase {
     }
 
     private void appendErrorUrl(StringBuffer sb) {
-        String errorUrl = request.getScheme()
-            + "://" + request.getServerName()
-            + request.getAttribute("javax.servlet.forward.request_uri") 
-            + "?" + request.getAttribute("javax.servlet.forward.query_string");
+        String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
+        StringBuffer errorUrl = new StringBuffer();
+        errorUrl.append(request.getScheme() + "://" + request.getServerName());
+        errorUrl.append(request.getAttribute("javax.servlet.forward.request_uri"));
+        if (queryString != null) 
+            errorUrl.append("?" + queryString);
 
         sb.append("Error on: " + "\n" + errorUrl + "\n");
     }
