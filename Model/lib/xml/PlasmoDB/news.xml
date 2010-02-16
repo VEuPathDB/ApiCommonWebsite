@@ -17,6 +17,17 @@
 -->
 
 <record>
+       <attribute name="headline">PlasmoDB 4.4 is no longer available</attribute>
+       <attribute name="date">15 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_plas44</attribute>
+       <attribute name="item">           
+         <![CDATA[
+PlasmoDB 4.4 has been discontinued.  If there are tools or other functionality that you used on PlasmoDB 4.4 that you need, please <b><a href="help.jsp">contact us</a></b> to let us know and we will help you regain access to the missing functionality.
+          ]]>
+       </attribute>
+</record>
+
+<record>
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
