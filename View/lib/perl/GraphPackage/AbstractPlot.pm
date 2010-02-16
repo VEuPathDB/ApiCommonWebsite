@@ -60,7 +60,7 @@ sub init {
   $self->SUPER::init(@_);
 
   # Default 
-  $self->setPlotWidth(600);
+  $self->setPlotWidth(400);
   $self->setLegendSize(40);
 
   $self->setTempFiles([]);
