@@ -52,6 +52,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
+import java.util.UUID;
 
 import javax.mail.Address;
 import javax.mail.internet.AddressException;
@@ -71,7 +72,8 @@ public class ErrorsTag extends WdkTagBase {
         "",
         "qa.",
         "beta.",
-        "www."
+        "www.",
+        "mheiges."
     };
     private static final String PAGE_DIV = 
         "\n************************************************\n";
@@ -81,6 +83,7 @@ public class ErrorsTag extends WdkTagBase {
     private HttpServletRequest request;
     protected int varScope;
     private String showStacktrace;
+    private String logMarker;
 
     public ErrorsTag() {
         varScope = PageContext.PAGE_SCOPE;
@@ -94,9 +97,12 @@ public class ErrorsTag extends WdkTagBase {
         
         if ( ! hasErrors() )
             return;
+        
+        logMarker = UUID.randomUUID().toString();
+        Logger.getLogger(getClass().getName()).error(logMarker);
 
         printActionErrorsToPage();
-        
+
         if (showStacktrace())
             printStackTraceToPage();
         
@@ -176,6 +182,7 @@ public class ErrorsTag extends WdkTagBase {
             out.println("<pre>\n");
             out.println(st);
             out.println("</pre>\n");
+            out.println("log4j marker: " + logMarker);
         } catch (IOException ioe) {
             throw new JspException("(IOException) " + ioe);
         }
@@ -283,7 +290,7 @@ public class ErrorsTag extends WdkTagBase {
         e.printStackTrace(pw);
         return sw.toString();
     }
-
+    
     private String getEmailBody() {
         StringBuffer body = new StringBuffer();
         
@@ -304,6 +311,8 @@ public class ErrorsTag extends WdkTagBase {
         body.append(PAGE_DIV);
         appendServletContextAttributes(body);
         **/
+        body.append(PAGE_DIV);
+        body.append("log4j marker: " + logMarker);
 
         body.append(PAGE_DIV);
         appendStacktrace(body);
