@@ -80,7 +80,9 @@ sub makeRPlotStrings {
     my $yMax = $profileSetsHash->{$part}->{default_y_max};
     my $yMin = $profileSetsHash->{$part}->{default_y_min};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin);
+    my $horizontalXAxis = $profileSetsHash->{$part}->{force_x_axis_label_horizontal};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin, $horizontalXAxis);
 
     unshift @rv, $rCode;
   }
@@ -91,7 +93,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin, $horizontalXAxisLabels) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
@@ -100,6 +102,8 @@ sub rString {
 
   $yMax = defined($yMax) ? $yMax : 10;
   $yMin = defined($yMin) ? $yMin : 0;
+
+  $horizontalXAxisLabels = defined($horizontalXAxisLabels) ? 'TRUE' : 'FALSE';
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -138,9 +142,9 @@ $rAdjustNames
 d.max = max(1.1 * profile, y.max);
 d.min = min(1.1 * profile, y.min);
 
-my.las = 0;
-if(max(nchar(element.names)) > 6) {
-  my.las = 2;
+my.las = 2;
+if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
+  my.las = 0;
 }
 
 barplot(profile,
