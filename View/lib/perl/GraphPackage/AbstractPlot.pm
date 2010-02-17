@@ -79,11 +79,14 @@ sub makeRLegendString {
   my $names = $legendHash->{short_names};
   my $pch = $legendHash->{points_pch};
   my $fill = $legendHash->{fill};
+  my $nCols = $legendHash->{cols};
 
   my $rColorsString = $self->rStringVectorFromArray($colors, 'legend.colors');
   my $rNamesString = $self->rStringVectorFromArray($names, 'legend.names');
   my $rPointsPchString = $self->rNumericVectorFromArray($pch, 'points.pch');
   my $rFill = $fill ? "TRUE" : "FALSE";
+
+  $nCols = defined($nCols) ? $nCols : 3;
 
   my $rv = "
  #-------------------------------------------------------------------------------
@@ -103,7 +106,7 @@ sub makeRLegendString {
          xjust = 0.5,
          yjust = 0.5,
          cex   = 0.9,
-         ncol  = 3,
+         ncol  = $nCols,
          fill=legend.colors,
          bty='n'
         );
@@ -119,7 +122,7 @@ sub makeRLegendString {
          pt.bg = legend.colors,
          pch   = points.pch,
          lty   = 'solid',
-         ncol  = 3,
+         ncol  = $nCols,
          bty='n'
         );
   }
