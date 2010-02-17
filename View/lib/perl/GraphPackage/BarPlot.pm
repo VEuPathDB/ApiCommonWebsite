@@ -124,6 +124,8 @@ screen.i <- screen.i + 1;
 profile = vector();
 for(i in 1:length(profile.files)) {
   tmp = read.table(profile.files[i], header=T, sep=\"\\t\");
+  tmp = aggregate(tmp, list(tmp\$ELEMENT_ORDER), mean, na.rm=T)
+
   profile = rbind(profile, tmp\$VALUE);
 }
 
