@@ -121,6 +121,8 @@ public class CommentFactory {
             String[] associatedStableIds = comment.getAssociatedStableIds();
             String[] authors = comment.getAuthors();
 
+						String sequence = comment.getSequence();
+
             ps = SqlUtils.getPreparedStatement(
                     platform.getDataSource(),
                     "INSERT INTO "
@@ -175,6 +177,12 @@ public class CommentFactory {
 
             if ((accessions != null) && (accessions.length > 0)) {
                 saveAccessions(commentId, accessions);
+            }
+
+						System.out.println( ">>>>> sequene: is " + sequence);
+
+            if ((sequence != null) && (sequence.trim() != "")) {
+                saveSequence(commentId, sequence);
             }
 
             if ((files != null) && (files.length > 0)) {
@@ -430,6 +438,34 @@ public class CommentFactory {
             SqlUtils.closeStatement(statement);
         }
     }
+
+    private void saveSequence(int commentId, String sequence) throws SQLException,
+            WdkModelException, WdkUserException {
+        String commentSchema = config.getCommentSchema();
+
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentSequence ");
+        sql.append("(comment_sequence_id, sequence, ");
+        sql.append(" comment_id ");
+        sql.append(") VALUES (?, ?, ?)");
+
+				System.out.println(">>>>>>>> " + sql.toString());
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    sql.toString());
+            int commentSeqId = platform.getNextId(commentSchema, "commentSequence");
+
+            statement.setInt(1, commentSeqId);
+            statement.setString(2, sequence);
+            statement.setInt(3, commentId);
+            statement.execute();
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
 
     private void saveAccessions(int commentId, String[] accessions)
             throws SQLException, WdkModelException, WdkUserException {
@@ -756,6 +792,9 @@ public class CommentFactory {
             // load pubmed ids
             loadReference(commentId, comment, "pubmed");
 
+            // load author names
+            loadAuthor(commentId, comment, "author");
+
             // load genbank ids
             loadReference(commentId, comment, "genbank");
 
@@ -788,6 +827,36 @@ public class CommentFactory {
     }
 
     private void loadReference(int commentId, Comment comment,
+            String databaseName) throws SQLException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT source_id ");
+        sql.append(" FROM ");
+        sql.append(config.getCommentSchema() + "commentReference ");
+        sql.append("WHERE comment_id = ? and database_name = ?");
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = SqlUtils.getPreparedStatement(
+                    platform.getDataSource(), sql.toString());
+            ps.setInt(1, commentId);
+            ps.setString(2, databaseName);
+            rs = ps.executeQuery();
+
+            ArrayList<String> ids = new ArrayList<String>();
+            while (rs.next()) {
+                String sourceId = rs.getString("source_id");
+                ids.add(sourceId);
+            }
+            if (ids.size() > 0) {
+                comment.addReference(ids.toArray(new String[ids.size()]),
+                        databaseName);
+            }
+        } finally {
+            SqlUtils.closeResultSet(rs);
+        }
+    }
+
+    private void loadAuthor(int commentId, Comment comment,
             String databaseName) throws SQLException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT source_id ");

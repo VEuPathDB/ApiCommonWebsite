@@ -14,9 +14,20 @@
 <c:set var="projectId" value="${pkValues['project_id']}" />
 <c:set var="id" value="${pkValues['source_id']}" />
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
+<c:set var="recordType" value="${wdkRecord.recordClass.type}"/> 
+
+<c:choose>
+<c:when test="${!wdkRecord.validRecord}">
+<site:header title="GiardiaDB: gene ${id} (${prd})"
+             summary="${overview.value} (${length.value} bp)"
+             divisionName="Gene Record"
+             division="queries_tools" />
+  <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
+</c:when>
+<c:otherwise>
+
 <c:set var="organism" value="${attrs['organism'].value}"/>
 <c:set var="organismFull" value="${attrs['organism_full'].value}"/>
-
 
 <c:set var="start" value="${attrs['start_min_text'].value}"/>
 <c:set var="end" value="${attrs['end_max_text'].value}"/> 
@@ -26,20 +37,6 @@
 <c:if test="${attrs['strand'].value == 'reverse'}">
   <c:set var="strand" value="-"/>
 </c:if>
-
-<c:set var="recordType" value="${wdkRecord.recordClass.type}"/> 
-
-<c:choose>
-<c:when test="${wdkRecord.attributes['organism'].value eq null || !wdkRecord.validRecord}">
-<site:header title="GiardiaDB: gene ${id} (${prd})"
-             summary="${overview.value} (${length.value} bp)"
-             divisionName="Gene Record"
-             division="queries_tools" />
-  <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
-</c:when>
-<c:otherwise>
-
-
 
 <c:set var="sequence_id" value="${attrs['sequence_id'].value}"/>
 <c:set var="extdbname" value="${attrs['external_db_name'].value}" />
@@ -112,19 +109,6 @@
 ${attrs['organism'].value}<br>
 </c:set>
 
-<!--
-<c:if test="${attrs['cyc_gene_id'].value ne 'null'}">
-  <c:set var="content">
-    ${content}<br>
-    ${attrs['cyc_db'].value}
-  </c:set>
-</c:if>
-
-<site:panel 
-    displayName="Links to Other Web Pages"
-    content="${content}" />
-<br>
--->
 <%-- DNA CONTEXT ---------------------------------------------------%>
 
 <%-- <c:set var="gtracks"> --%>
@@ -198,8 +182,6 @@ G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblage
 <%--- Notes --------------------------------------------------------%>
 
 <wdk:wdkTable tblName="Notes" isOpen="true" />
-
-</c:if>
 
 <%--- Comments -----------------------------------------------------%>
 <c:url var="commentsUrl" value="addComment.do">
@@ -455,7 +437,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
 </c:if>
 
 
-<site:pageDivider name="Protein Features"/>
+<site:pageDivider name="Sequences"/>
 
 <p>
 <table border='0' width='100%'>

@@ -17,14 +17,14 @@ sub init {
 
   my $colors =['#E9967A', '#66CDAA', '#8B4513', '#DDA0DD'];
 
-  my $xAxisLabels = ['A', 'T', 'E', 'M'];
+  my $xAxisLabels = ['AMA', 'TRP', 'EPI', 'MET'];
 
   my $legend = ["amastigotes", "trypomastigotes", "epimastigotes",  "metacyclics"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['Profiles of T.cruzi Tarleton Rick array data'],
+    ({m => {profiles => ['Profiles of T.cruzi Tarleton Rick array data'],
               y_axis_label => 'log2(R/G)',
               colors => $colors,
               plot_title => 'Transcriptome analysis of the Trypanosoma cruzi life-cycle',

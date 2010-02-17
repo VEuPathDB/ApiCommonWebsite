@@ -95,7 +95,7 @@ sub makeR {
 
    else {
      my $parts =  [ { Name => 'LEGEND', Size => 40  },
-                    { Name => 'rat',    Size => 240 },
+                    { Name => 'fc',    Size => 240 },
                   ];
 
      unless($thumb_b) {
@@ -210,7 +210,7 @@ if ($isVis_b{LEGEND} == 1) {
 # plot points for both data sets, draw line at 0-induction, draw
 # connecting lines, add X-axis line.
 
-if ($isVis_b{rat} == 1) {
+if ($isVis_b{fc} == 1) {
   screen(screens[screen.i]);
   screen.i <- screen.i + 1;
 

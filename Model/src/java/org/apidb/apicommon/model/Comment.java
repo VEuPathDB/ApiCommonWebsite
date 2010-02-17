@@ -17,6 +17,7 @@ public class Comment {
     private int commentId;
     private int userId;
     private String email;
+    private String sequence;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
      */
@@ -405,6 +406,14 @@ public class Comment {
         return email;
     }
 
+    public String getSequence() {
+        return this.sequence;
+    }
+
+    public void setSequence(String sequence) {
+        this.sequence = sequence;
+    }
+
     public String[] addReference(String[] ids, String databaseName) {
         if(databaseName.toLowerCase().equals("pubmed")) {
           this.pmIds = ids;
@@ -412,6 +421,9 @@ public class Comment {
         } else if(databaseName.toLowerCase().equals("genbank")) {
           this.accessions = ids;
           return this.accessions;
+        } else if(databaseName.toLowerCase().equals("author")) {
+          this.authors = ids;
+          return this.authors;
         }
         return null;
     }

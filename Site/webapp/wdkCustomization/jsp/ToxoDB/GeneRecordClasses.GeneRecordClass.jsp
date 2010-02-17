@@ -13,12 +13,11 @@
 
 
 <c:set var="attrs" value="${wdkRecord.attributes}"/>
-<c:set var="organism_full" value="${attrs['organism_full'].value}"/>
 
 <c:set var="recordType" value="${wdkRecord.recordClass.type}" />
 
 <c:choose>
-<c:when test="${organism_full eq null || !wdkRecord.validRecord}">
+<c:when test="${!wdkRecord.validRecord}">
 <site:header title="${wdkModel.displayName} : gene ${id}"
              divisionName="Gene Record"
              division="queries_tools"/>
@@ -37,6 +36,7 @@
 <c:set var="strand" value="${attrs['strand_plus_minus'].value}"/>
 <c:set var="context_start_range" value="${attrs['context_start'].value}" />
 <c:set var="context_end_range" value="${attrs['context_end'].value}" />
+<c:set var="organism_full" value="${attrs['organism_full'].value}"/>
 
 <c:set var="orthomcl_name" value="${attrs['orthomcl_name'].value}"/>
 
@@ -147,6 +147,9 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
 <wdk:wdkTable tblName="Strains" isOpen="true"
                attribution="T.gondiiGT1_contigsGB,T.gondiiME49_contigsGB,T.gondiiVEG_contigsGB"/>
 
+<!-- gene alias table -->
+<wdk:wdkTable tblName="Alias" isOpen="true" attribution=""/>
+
 <!-- snps between strains -->
 <wdk:wdkTable tblName="SNPs" isOpen="false"
                    attribution="ME49_SNPs,AmitAlignmentSnps,Lindstrom454Snps"/>
@@ -208,6 +211,10 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
       </td></tr>
  </table>
 </c:if>
+
+<c:catch var="e">
+<wdk:wdkTable tblName="CommunityExpComments"/>
+</c:catch>
 
 <c:if test="${e != null}">
  <table  width="100%" cellpadding="3">

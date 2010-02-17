@@ -129,7 +129,7 @@ for(i in 1:length(element.names.files)) {
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
 
-par(mar       = c($bottomMargin,4,1,10), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,2), xpd=TRUE);
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile

@@ -194,7 +194,7 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
-par(mar       = c($bottomMargin,4,1,10), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,2), xpd=TRUE);
 
 my.pch = 15;
 

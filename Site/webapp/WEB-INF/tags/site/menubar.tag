@@ -4,7 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
-
+<%@ attribute name="refer" 
+ 			  type="java.lang.String"
+			  required="false" 
+			  description="Page calling this tag"
+%>
 
 <c:set var="project" value="${applicationScope.wdkModel.name}" />
 <c:set var="wdkUser" value="${sessionScope.wdkUser}"/>
@@ -29,10 +33,11 @@
 <div id="menubar">
 <div id="menu">
 
-<%--
-<ul><li><a href="<c:url value="/"/>">Home</a></li></ul>
---%>
+
+<ul style="width:7em;"><li><a href="<c:url value="/"/>">Home</a></li></ul>
+<%-- was needed when New Search was first choice 
 <ul style="width:0.5em;border:0"><li></li></ul>
+--%>
 
 <ul>
     <li><a href="<c:url value="/queries_tools.jsp"/>" title="START a NEW search strategy, or CLICK to access the page with all available searches (last option in the dropdown menu)." >New Search</a>
@@ -40,23 +45,38 @@
     </li>
 </ul>
 
-<ul>
-    <li><a id="mysearch" href="<c:url value="/showApplication.do"/>" title="Access your Search Strategies Workspace">
-	My Strategies <span title="You have ${count} strategies" class="subscriptCount">${count}</span> 
+<%-- some javascript fills the count in the span --%>
+<ul style="width:11em;">
+    <li><a id="mysearch" onclick="setCurrentTabCookie('strategy_results');" href="<c:url value="/showApplication.do"/>" title="Access your Search Strategies Workspace">
+	My Strategies <span title="You have ${count} strategies" class="subscriptCount">
+		(${count})</span>
         </a>
     </li>
 </ul>
 
-<%--<c:if test = "${!wdkUser.guest}">--%>
-	<ul>
-    	<li><a id="mybasket" href="<c:url value="/showApplication.do"/>" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount">0</span></a></li>
-	</ul>
-<%--</c:if>--%>
 
 <ul>
+<c:choose>
+  <c:when test="${wdkUser.guest}">
+    <li><a id="mybasket" href="javascript:popLogin();" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount">(0)</span></a></li>
+  </c:when>
+  <c:otherwise>
+    <c:choose>
+      <c:when test="${refer == 'customSummary'}">
+    	<li><a id="mybasket" onclick="showPanel('basket');" href="javascript:void(0)" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount">(0)</span></a></li>
+      </c:when>
+      <c:otherwise>
+    	<li><a id="mybasket" onclick="setCurrentTabCookie('basket');" href="<c:url value="/showApplication.do"/>" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount">(0)</span></a></li>
+      </c:otherwise>
+    </c:choose>
+  </c:otherwise>
+</c:choose>
+</ul>
+
+
+<ul style="width:7em;">
     <li><a href="#">Tools</a>
 	<ul>
-
 	    <li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
   	    <li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
             <li><a href="/common/PubCrawler/"> PubMed and Entrez</a></li>
@@ -140,33 +160,16 @@
     	    
     	    <c:choose>
     	    <c:when test="${extlAnswer_exception != null}">
-    	    <li><a href="#"><font color="#CC0033"><i>Error. related sites temporarily unavailable</i></font></a></li>
+	    	<li><a href="#"><font color="#CC0033"><i>Error. related sites temporarily unavailable</i></font></a></li>
     	    </c:when>
     	    <c:otherwise>
-    	    <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.ExternalLinks"/>">Related Sites</a>
-    	<%--	<ul>
-                    <c:forEach items="${extlAnswer.recordInstances}" var="record">
-                      <c:forEach items="${record.tables}" var="table">
-                        <c:forEach items="${table.rows}" var="row"> 
-                          <c:set var='url' value='${row[1].value}'/>
-                          <c:set var='tmp' value='${fn:replace(url, "http://", "")}'/>
-                          <c:set var='tmp' value='${fn:replace(tmp, ".", "")}'/>
-                          <c:set var='uid' value=''/>
-                          <c:forEach var="i" begin="0" end="${fn:length(tmp)}" step='3'>
-                            <c:set var='uid'>${uid}${fn:substring(tmp, i, i+1)}</c:set>
-                          </c:forEach>
-        
-                          <li id='rs-${uid}'><a href="${url}">${row[0].value}</a></li>
-                        </c:forEach>
-                      </c:forEach>
-                    </c:forEach> 
-    		</ul>--%>
-    	    </li>
+    		<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.ExternalLinks"/>">Related Sites</a></li>
     	    </c:otherwise>
     	    </c:choose>
-    	    
-    	    <li><a href="<c:url value="/communityUpload.jsp"/>">Upload Community Files</a></li>
-    	    <li><a href="<c:url value="/showSummary.do?questionFullName=UserFileQuestions.UserFileUploads"/>">Download Community Files</a></li>
+ 	    <c:if test="${project != 'EuPathDB'}" >    	    
+	    	<li><a href="<c:url value="/communityUpload.jsp"/>">Upload Community Files</a></li>
+    		<li><a href="<c:url value="/showSummary.do?questionFullName=UserFileQuestions.UserFileUploads"/>">Download Community Files</a></li>
+	    </c:if>
   	</ul>
     </li>
 </ul>
