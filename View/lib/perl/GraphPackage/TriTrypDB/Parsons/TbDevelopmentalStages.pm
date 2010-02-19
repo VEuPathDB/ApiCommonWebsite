@@ -17,7 +17,7 @@ sub init {
 
   my $colors =['#B22222', '#1E90FF', '#00BFFF', '#FFD700', '#DAA520'];
 
-  my $legend = ["In vitro BF", "Slender", "Stumpy", "PCF log", "PCF staionary"];
+  my $legend = ["Cultured BF", "Sleder BF", "Stumpy BF", "log phase PF", "staionary phase PF"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
