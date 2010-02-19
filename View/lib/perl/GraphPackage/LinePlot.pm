@@ -72,8 +72,9 @@ sub makeRPlotStrings {
     my $xMax = $profileSetsHash->{$part}->{default_x_max};
 
     my $pointsLast = $profileSetsHash->{$part}->{are_points_last};
+    my $yAxisFoldInductionFromM = $profileSetsHash->{$part}->{make_y_axis_fold_incuction};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast);
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM);
 
     unshift @rv, $rCode;
   }
@@ -84,7 +85,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -97,6 +98,8 @@ sub rString {
   $xMin = defined($xMin) ? $xMin : "Inf";
 
   $pointsLast = defined($pointsLast) ? 'TRUE' : 'FALSE';
+
+  $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -217,7 +220,8 @@ for(i in 1:nrow(lines.df)) {
          xlim = c(x.min, x.max),
          xaxt = \"n\",
          ylab = \"$yAxisLabel\",
-         ylim = c(y.min, y.max)
+         ylim = c(y.min, y.max),
+         axes = FALSE
         );
 
     if(isTimeSeries) {
@@ -253,7 +257,32 @@ for(i in 1:nrow(lines.df)) {
        );
 }
 
-#plasmodb.grid();
+yAxis = axis(4,tick=F,labels=F);
+if($yAxisFoldInductionFromM) {
+  yaxis.labels = vector();
+
+  for(i in 1:length(yAxis)) {
+    value = yAxis[i];
+    if(value > 0) {
+      yaxis.labels[i] = round(2^value, digits=1)
+    }
+    if(value < 0) {
+      yaxis.labels[i] = round(-1 * (1 / (2^value)), digits=1);
+    }
+    if(value == 0) {
+      yaxis.labels[i] = 0;
+    }
+  }
+
+  axis(2,at=yAxis,labels=yaxis.labels,tick=T);  
+} else {
+  axis(2);  
+
+}
+box();
+
+
+
 plasmodb.title(\"$plotTitle\");
 
 ";
