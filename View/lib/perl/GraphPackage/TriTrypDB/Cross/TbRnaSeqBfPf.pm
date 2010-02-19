@@ -22,7 +22,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['T.brucei George Cross RNA Sequence Profiles'],
+    ({cov => {profiles => ['T.brucei George Cross RNA Sequence Profiles'],
               y_axis_label => 'normalized coverage',
               colors => $colors,
               r_adjust_profile => 'profile = log2(profile);',
