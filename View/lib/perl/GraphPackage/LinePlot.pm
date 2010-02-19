@@ -71,7 +71,9 @@ sub makeRPlotStrings {
     my $xMin = $profileSetsHash->{$part}->{default_x_min};
     my $xMax = $profileSetsHash->{$part}->{default_x_max};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin);
+    my $pointsLast = $profileSetsHash->{$part}->{are_points_last};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast);
 
     unshift @rv, $rCode;
   }
@@ -82,7 +84,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -93,6 +95,8 @@ sub rString {
 
   $xMax = $xMax ? $xMax : "-Inf";
   $xMin = defined($xMin) ? $xMin : "Inf";
+
+  $pointsLast = defined($pointsLast) ? 'TRUE' : 'FALSE';
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -158,7 +162,8 @@ for(i in 1:length(profile.files)) {
 isTimeSeries = FALSE;
 
 x.coords = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(lines.df), perl=T));
-x.coords.rank = rank(x.coords);
+
+x.coords.rank = rank(x.coords, na.last=$pointsLast);
 
 # if the points df is all NA's that means we can plot as Time Series
 if(sum(is.na(points.df)) == ncol(points.df) * nrow(points.df)) {
