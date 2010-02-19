@@ -20,6 +20,7 @@ sub init {
     ({'fold_induction' => {profiles => ['Expression profiling of Tbrucei Procyclic TbDRBD3 depletion'],
                            y_axis_label => 'Fold Induction',
                            colors => $colors,
+                           make_y_axis_fold_incuction => 1,
                            default_y_max => 1.5,
                            default_y_min => -1.5,
                            force_x_axis_label_horizontal => 1,

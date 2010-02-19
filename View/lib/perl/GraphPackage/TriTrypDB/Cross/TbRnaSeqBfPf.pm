@@ -22,12 +22,12 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({cov => {profiles => ['T.brucei George Cross RNA Sequence Profiles'],
-              y_axis_label => 'normalized coverage',
-              colors => $colors,
-              r_adjust_profile => 'profile = log2(profile);',
-              plot_title => 'T.brucei blood and procyclic forms RNA Sequence Coverage',
-             },
+    ({coverage => {profiles => ['T.brucei George Cross RNA Sequence Profiles'],
+                   y_axis_label => 'normalized coverage',
+                   colors => $colors,
+                   r_adjust_profile => 'profile = log2(profile);',
+                   plot_title => 'T.brucei blood and procyclic forms RNA Sequence Coverage',
+                  },
       pct => {profiles => ['T.brucei George Cross RNA Sequence Profiles Percentile'],
               y_axis_label => 'Percentile',
               default_y_max => 50,
