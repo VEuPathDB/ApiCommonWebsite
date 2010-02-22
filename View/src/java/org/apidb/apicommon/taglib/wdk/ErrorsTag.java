@@ -416,7 +416,13 @@ Logger l = Logger.getLogger(getClass().getName());
         
         for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
             for (String value : entry.getValue()) {
-                sb.append(entry.getKey() + " = " + value + "\n");
+            String key = entry.getKey();
+            String cleanValue = (key.toLowerCase().startsWith("email") ||
+                            key.toLowerCase().startsWith("passw")
+                           ) 
+                 ? "*****" 
+                 : value;
+            sb.append(entry.getKey() + " = " + cleanValue + "\n");
             }
         }
     }
