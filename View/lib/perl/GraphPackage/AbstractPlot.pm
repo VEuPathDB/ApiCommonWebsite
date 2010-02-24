@@ -86,7 +86,7 @@ sub makeRLegendString {
   my $rPointsPchString = $self->rNumericVectorFromArray($pch, 'points.pch');
   my $rFill = $fill ? "TRUE" : "FALSE";
 
-  $nCols = defined($nCols) ? $nCols : 3;
+  $nCols = defined($nCols) ? $nCols : 2;
 
   my $rv = "
  #-------------------------------------------------------------------------------
@@ -117,7 +117,6 @@ sub makeRLegendString {
          yjust = 0.5,
          cex   = 0.9,
          pt.cex = 1.5,
-         bty   = 'n',
          col   = legend.colors,
          pt.bg = legend.colors,
          pch   = points.pch,
