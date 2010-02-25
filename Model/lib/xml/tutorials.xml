@@ -11,6 +11,23 @@
 
 
    <record>
+       <attribute name="title">AmoebaDB Introduction</attribute>
+       <attribute name="description">Highlights of the AmoebaDB website.</attribute>
+       <attribute name="uid">16</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">EuPathDB.org,AmoebaDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">amoebadb_intro/amoebadb_intro_viewlet_swf.html</attribute>
+           <attribute name="duration">5 minutes</attribute>
+           <attribute name="size">3 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+   <record>
        <attribute name="title">Search Strategies</attribute>
        <attribute name="description">Learn how to combine queries with the search strategy system.</attribute>
        <attribute name="uid">15</attribute>
