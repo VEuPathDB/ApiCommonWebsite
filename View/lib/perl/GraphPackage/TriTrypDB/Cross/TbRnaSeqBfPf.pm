@@ -25,7 +25,7 @@ sub init {
     ({coverage => {profiles => ['T.brucei George Cross RNA Sequence Profiles'],
                    y_axis_label => 'normalized coverage',
                    colors => $colors,
-                   r_adjust_profile => 'profile = log2(profile);',
+                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    plot_title => 'T.brucei blood and procyclic forms RNA Sequence Coverage',
                   },
       pct => {profiles => ['T.brucei George Cross RNA Sequence Profiles Percentile'],
