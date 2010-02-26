@@ -19,13 +19,15 @@ sub init {
   $self->setProfileSetsHash
     ({rma => {profiles => ['Expression profiling of T. brucei differentiation series',
                           ],
-              y_axis_label => 'RMA value',
+              y_axis_label => 'Fold Induction',
               x_axis_label => ' ',
               colors => $colors,
               plot_title => 'Expression profiling of T. brucei differentiation series',
-              default_y_max => 10,
-              default_y_min => 4,
+              default_y_max => 2,
+              default_y_min => -2,
               default_x_min => 0,
+              r_adjust_profile => 'profile = log2(2^profile/2^profile[2]);',
+              make_y_axis_fold_incuction =>  1,
               points_pch => $pch,
              },
 
@@ -38,6 +40,7 @@ sub init {
               default_y_max => 10,
               default_y_min => 4,
               default_x_min => 0,
+              r_adjust_profile => 'profile = profile * 100;',
               points_pch => $pch,
              },
 
