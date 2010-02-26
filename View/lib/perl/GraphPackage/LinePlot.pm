@@ -74,7 +74,10 @@ sub makeRPlotStrings {
     my $pointsLast = $profileSetsHash->{$part}->{are_points_last};
     my $yAxisFoldInductionFromM = $profileSetsHash->{$part}->{make_y_axis_fold_incuction};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM);
+
+    my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile);
 
     unshift @rv, $rCode;
   }
@@ -85,7 +88,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -100,6 +103,8 @@ sub rString {
   $pointsLast = defined($pointsLast) ? 'TRUE' : 'FALSE';
 
   $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
+
+  $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -136,6 +141,9 @@ for(i in 1:length(profile.files)) {
   profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
   profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
   profile = profile.df\$VALUE;
+
+# allow minor adjustments to profile
+$rAdjustProfile
 
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
