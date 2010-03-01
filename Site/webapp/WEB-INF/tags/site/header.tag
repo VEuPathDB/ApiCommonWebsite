@@ -60,7 +60,6 @@
 </c:if>
 <%-- end Galaxy flag --%>
 
-
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
 <c:set var="project" value="${props['PROJECT_ID']}" />
 <c:set var="siteName" value="${applicationScope.wdkModel.name}" />
@@ -179,8 +178,16 @@
 <script type="text/javascript">
    var helpEmail = 'help@${project}.org';
 </script>
-
+<!-- header : refer = ${refer} -->
 <site:jscript refer="${refer}"/>
+
+<!--[if lte IE 8]>
+<style>
+   #header_rt {
+      width:50%;
+   }
+</style>
+<![endif]-->
 
 <!--[if lt IE 8]>
 <link rel="stylesheet" href="/assets/css/ie7.css" type="text/css" />

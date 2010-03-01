@@ -80,7 +80,10 @@ sub makeRPlotStrings {
     my $yMax = $profileSetsHash->{$part}->{default_y_max};
     my $yMin = $profileSetsHash->{$part}->{default_y_min};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin);
+    my $horizontalXAxis = $profileSetsHash->{$part}->{force_x_axis_label_horizontal};
+    my $yAxisFoldInductionFromM = $profileSetsHash->{$part}->{make_y_axis_fold_incuction};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin, $horizontalXAxis, $yAxisFoldInductionFromM);
 
     unshift @rv, $rCode;
   }
@@ -91,7 +94,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin, $horizontalXAxisLabels,  $yAxisFoldInductionFromM) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
@@ -100,6 +103,10 @@ sub rString {
 
   $yMax = defined($yMax) ? $yMax : 10;
   $yMin = defined($yMin) ? $yMin : 0;
+
+  $horizontalXAxisLabels = defined($horizontalXAxisLabels) ? 'TRUE' : 'FALSE';
+
+  $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -120,6 +127,8 @@ screen.i <- screen.i + 1;
 profile = vector();
 for(i in 1:length(profile.files)) {
   tmp = read.table(profile.files[i], header=T, sep=\"\\t\");
+  tmp = aggregate(tmp, list(tmp\$ELEMENT_ORDER), mean, na.rm=T)
+
   profile = rbind(profile, tmp\$VALUE);
 }
 
@@ -138,9 +147,9 @@ $rAdjustNames
 d.max = max(1.1 * profile, y.max);
 d.min = min(1.1 * profile, y.min);
 
-my.las = 0;
-if(max(nchar(element.names)) > 6) {
-  my.las = 2;
+my.las = 2;
+if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
+  my.las = 0;
 }
 
 barplot(profile,
@@ -150,12 +159,38 @@ barplot(profile,
         beside    = TRUE,
         names.arg = element.names,
         space=c(0,.5),
-        las = my.las
+        las = my.las,
+        axes = FALSE
        );
 
 if(length(the.legend) > 0) {
   legend(11, d.max, legend=the.legend, cex=0.9, fill=the.colors, inset=0.2) ;
 }
+
+
+yAxis = axis(4,tick=F,labels=F);
+if($yAxisFoldInductionFromM) {
+  yaxis.labels = vector();
+
+  for(i in 1:length(yAxis)) {
+    value = yAxis[i];
+    if(value > 0) {
+      yaxis.labels[i] = round(2^value, digits=1)
+    }
+    if(value < 0) {
+      yaxis.labels[i] = round(-1 * (1 / (2^value)), digits=1);
+    }
+    if(value == 0) {
+      yaxis.labels[i] = 0;
+    }
+  }
+
+  axis(2,at=yAxis,labels=yaxis.labels,tick=T);  
+} else {
+  axis(2);  
+}
+
+
 
 plasmodb.title(\"$plotTitle\");
 

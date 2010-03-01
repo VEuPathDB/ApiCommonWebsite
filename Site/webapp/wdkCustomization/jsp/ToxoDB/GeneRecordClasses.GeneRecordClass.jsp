@@ -19,6 +19,7 @@
 <c:choose>
 <c:when test="${!wdkRecord.validRecord}">
 <site:header title="${wdkModel.displayName} : gene ${id}"
+			 refer="recordPage"
              divisionName="Gene Record"
              division="queries_tools"/>
   <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
@@ -41,6 +42,7 @@
 <c:set var="orthomcl_name" value="${attrs['orthomcl_name'].value}"/>
 
 <site:header title="${wdkModel.displayName} : gene ${id} (${prd})"
+			 refer="recordPage"
              banner="${id}<br>${prd}"
              divisionName="Gene Record"
              division="queries_tools"
@@ -437,7 +439,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/toxodbaa/?name=${wd
           <div class="small">
              	<!-- DESCRIPTION?? -->
 The percentile graph on the right represents the percentiles of each expression value across the
-dymanic range of the microarray log(2) intensities.
+dynamic range of the microarray log(2) intensities.
 experimental condition.
           </div>
         </td>
@@ -644,7 +646,7 @@ OnChange="javascript:updateImage('${imgId}', DzierszinskiBradySort.DzierszinskiB
   <c:set var="imgId" value="img${secName}"/>
   <c:set var="isOpen" value="true"/>
 
-  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp="/>
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp=_LEGEND,"/>
   <c:set var="imgSrc" value="${preImgSrc}rma"/>
 
   <c:set var="noData" value="false"/>

@@ -5,6 +5,7 @@
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+${Question_Header}
 
 <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
 
@@ -326,7 +327,7 @@ toggle(7);
 
 <hr>
 <%-- display description for wdkQuestion --%>
-<div id="query-description-section"><p><b>Query description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p></div>
+<div id="query-description-section"><p><b>Description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p></div>
 
 <%-- get the attributions of the question if not EuPathDB --%>
 <c:if test = "${project != 'EuPathDB'}">
@@ -346,3 +347,5 @@ toggle(7);
 
   </c:otherwise> <%-- otherwise of showParams == true --%>
 </c:choose>
+
+${Question_Footer}

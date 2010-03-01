@@ -18,6 +18,8 @@
         <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByChIPchipPlasmo" />
 </c:if>
 
+${Question_Header}
+
 <wdk:errors/>
 
 <%-- div needed for Add Step --%>
@@ -27,9 +29,11 @@
 
 <c:choose>
 <c:when test = "${project == 'EuPathDB'}">
-<site:queryList2 questions="GeneQuestions.GenesByChIPchipToxo,GeneQuestions.GenesByChIPchipPlasmo"/>
+<site:queryList3 questions="GeneQuestions.GenesByChIPchipToxo,GeneQuestions.GenesByChIPchipPlasmo"/>
 </c:when>
 </c:choose>
 
 </table>
 </div>
+
+${Question_Footer}

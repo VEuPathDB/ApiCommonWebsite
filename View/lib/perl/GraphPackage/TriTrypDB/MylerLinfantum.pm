@@ -95,7 +95,7 @@ sub makeR {
 
    else {
      my $parts =  [ { Name => 'LEGEND', Size => 40  },
-                    { Name => 'fc',    Size => 240 },
+                    { Name => 'fold_induction',    Size => 240 },
                   ];
 
      unless($thumb_b) {
@@ -210,7 +210,7 @@ if ($isVis_b{LEGEND} == 1) {
 # plot points for both data sets, draw line at 0-induction, draw
 # connecting lines, add X-axis line.
 
-if ($isVis_b{fc} == 1) {
+if ($isVis_b{fold_induction} == 1) {
   screen(screens[screen.i]);
   screen.i <- screen.i + 1;
 
@@ -244,7 +244,7 @@ if ($isVis_b{fc} == 1) {
          col     = "gray80"
         );
 
-  yAxis = axis(4,tick=F);
+  yAxis = axis(4,tick=F, labels=F);
   yaxis.labels = vector();
   for(i in 1:length(yAxis)) {
     value = yAxis[i];

@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="api" uri="http://apidb.org/taglib" %>
 
+${Question_Header}
 
 <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
 
@@ -352,7 +353,7 @@
 
 
 <%-- display description for wdkQuestion --%>
-<div id="${descripId}"><b>Query description: </b><jsp:getProperty name="wdkQuestion" property="description"/></div>
+<div id="${descripId}"><b>Description: </b><jsp:getProperty name="wdkQuestion" property="description"/></div>
 
 
 <%-- get the attributions of the question if not EuPathDB --%>
@@ -370,3 +371,5 @@
 
     </c:otherwise> <%-- otherwise of showParams == true --%>
 </c:choose>
+
+${Question_Footer}
