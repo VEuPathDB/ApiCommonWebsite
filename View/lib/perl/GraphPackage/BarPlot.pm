@@ -144,7 +144,7 @@ for(i in 1:length(element.names.files)) {
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
 
-par(mar       = c($bottomMargin,4,1,2), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,2), xpd=FALSE);
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile
@@ -157,6 +157,9 @@ my.las = 2;
 if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
   my.las = 0;
 }
+
+
+
 
 barplot(profile,
         col       = the.colors,
@@ -196,7 +199,8 @@ if($yAxisFoldInductionFromM) {
   axis(2);  
 }
 
-
+grid(nx=NA,ny=NULL,col=\"gray75\");
+lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
 plasmodb.title(\"$plotTitle\");
 
