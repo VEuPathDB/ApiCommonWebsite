@@ -51,12 +51,18 @@ sub makeRPlotStrings {
 
     my (@profileFiles, @elementNamesFiles);
 
+    my $i = 0;
+
     # each part can have several profile sets
     foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
-      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $part, undef)};
+      my $suffix = $part . $i;
+
+      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
 
       push(@profileFiles, $profileFile);
       push(@elementNamesFiles, $elementNamesFile);
+
+      $i++;
     }
 
     my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
