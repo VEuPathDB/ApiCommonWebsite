@@ -103,7 +103,6 @@ sub rString {
   my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin, $horizontalXAxisLabels,  $yAxisFoldInductionFromM) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
-  $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rAdjustNames = $rAdjustNames ? $rAdjustNames : "";
 
@@ -200,8 +199,6 @@ if($yAxisFoldInductionFromM) {
 }
 
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
-
-plasmodb.title(\"$plotTitle\");
 
 box();
 
