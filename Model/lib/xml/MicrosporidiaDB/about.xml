@@ -14,9 +14,11 @@
        <attribute name="tag">generalinfo</attribute>
        <attribute name="text">
 <![CDATA[
-MicrosporidiaDB is an integrated genomic and functional genomic database for 
-the family Microsporidia **UPDATE**. It integrates whole genome sequence and annotation along with experimental data and environmental isolate sequences provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
-]]>
+MicrosporidiaDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
+database for the phylum <i>Microsporidia</i>.  In its first iteration (released in early 2010), MicrosporidiaDB contains the genomes of two  <i>Encephalitozoon</i> species 
+(see below).  
+MicrosporidiaDB integrates whole genome sequence and annotation and will rapidly expand to include experimental data and environmental isolate sequences 
+provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
 
 </attribute>
    </record>
@@ -43,8 +45,7 @@ the family Microsporidia **UPDATE**. It integrates whole genome sequence and ann
        <![CDATA[
 
 <div id="cirbulletlist"><ul>
-<li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in Eu
-PathDB across sites, all organisms and data types covered.
+<li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
 <li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the o
 rganisms currently available in EuPathDB, by various datatypes.
 </ul></div>
@@ -95,8 +96,10 @@ There are several kinds of downloads available in a EuPathDB site:
        <attribute name="tag">advisors</attribute>
        <attribute name="text">
        <![CDATA[
-
-Each project in EuPathDB benefits from the advice and mentoring of people from each specific community.
+EuPathDB databases rely heavily on community input.  Each project in EuPathDB benefits from the advice and mentoring of members from each specific community. 
+We hold monthly organism calls for each of our databases with members of the scientific advisory teams and others from the community.  
+Anyone interested in joining one of these conference calls is encouraged to contact us.  While monthly conference calls for MicrosporidiaDB are already underway, 
+a specific scientific advisory team as not yet been assembled.
 <br><br>
 
 <b>MicrosporidiaDB</b><br><br>
@@ -121,16 +124,21 @@ have contributed data (often pre-publication), entered user
 comments or sent us their suggestions.
 <br><br>
 And the team behind EuPathDB:<br>
-Cristina Aurrecoechea1, John Brestelli2,4, Brian P. Brunk2,7, Steve Fischer2,4, Bindu Gajria2,7, Xin Gao2,7, Alan Gingle3, Greg Grant2,4, Omar S. Harb2,7, Mark Heiges1, Frank Innamorato2,4, John Iodice2,4, Jessica C. Kissinger1,5, Eileen T. Kraemer6, Wei Li2,7, John A. Miller6, Vishal Nayak2,4, Cary Pennington1, Deborah F. Pinney2,4, David S. Roos7, Chris Ross1, Ganesh Srinivasamoorthy1, Christian J. Stoeckert Jr. 2,4, Ryan Thibodeau1, Charles Treatman2,7, Haiming Wang1
+Cristina Aurrecoechea<SUP>1</SUP>, Ana Barreto<SUP>2,4</SUP>, John Brestelli<SUP>2,4</SUP>, Brian P. Brunk<SUP>2,7</SUP>, Steve Fischer<SUP>2,4</SUP>, 
+Bindu Gajria<SUP>2,7</SUP>, Xin Gao<SUP>2,7</SUP>, Alan Gingle<SUP>3</SUP>, Greg Grant<SUP>2,4</SUP>, Omar S. Harb<SUP>2,7</SUP>, 
+Mark Heiges<SUP>1</SUP>, John Iodice<SUP>2,4</SUP>, Jessica C. Kissinger<SUP>1,5</SUP>, Eileen T. Kraemer<SUP>6</SUP>, Wei Li<SUP>2,7</SUP>, 
+John A. Miller<SUP>6</SUP>, Vishal Nayak<SUP>2,4</SUP>, Cary Pennington<SUP>1</SUP>, Deborah F. Pinney<SUP>2,4</SUP>, David S. Roos<SUP>7</SUP>, 
+Chris Ross<SUP>1</SUP>, Ganesh Srinivasamoorthy<SUP>1</SUP>, Christian J. Stoeckert Jr. <SUP>2,4</SUP>, Ryan Thibodeau<SUP>1</SUP>, 
+Charles Treatman<SUP>2,7</SUP>, Haiming Wang<SUP>1</SUP>
 <br><br>
 <ul>
-<li>1Center for Tropical & Emerging Global Diseases, University of Georgia, Athens, GA 30602 USA
-<li>2Penn Center for Bioinformatics, University of Pennsylvania, Philadelphia, PA 19104 USA
-<li>3Center for Applied Genetic Technologies, University of Georgia, Athens, GA, 30602 USA
-<li>4Department of Genetics, University of Pennsylvania School of Medicine, Philadelphia, PA 19104 USA
-<li>5Department of Genetics, University of Georgia, Athens, GA 30602 USA
-<li>6Department of Computer Science, University of Georgia, Athens, GA 30602 USA
-<li>7Department of Biology, University of Pennsylvania, Philadelphia, PA 19104 USA
+<li><SUP>1</SUP>Center for Tropical & Emerging Global Diseases, University of Georgia, Athens, GA 30602 USA
+<li><SUP>2</SUP>Penn Center for Bioinformatics, University of Pennsylvania, Philadelphia, PA 19104 USA
+<li><SUP>3</SUP>Center for Applied Genetic Technologies, University of Georgia, Athens, GA, 30602 USA
+<li><SUP>4</SUP>Department of Genetics, University of Pennsylvania School of Medicine, Philadelphia, PA 19104 USA
+<li><SUP>5</SUP>Department of Genetics, University of Georgia, Athens, GA 30602 USA
+<li><SUP>6</SUP>Department of Computer Science, University of Georgia, Athens, GA 30602 USA
+<li><SUP>7</SUP>Department of Biology, University of Pennsylvania, Philadelphia, PA 19104 USA
 </ul>
 
        ]]>
@@ -182,6 +190,7 @@ Please see Citing MicrosporidiaDB below.
        <![CDATA[
 When citing MicrosporidiaDB itself, please use:
 <br><br>
+<b>EuPathDB: a portal to eukaryotic pathogen databases.</b> <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D415">Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. Epub 2009 Nov 13.</a>
 
 
 <br><br>Much of the data in MicrosporidiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into MicrosporidiaDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
