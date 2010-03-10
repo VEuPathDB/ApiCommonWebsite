@@ -51,12 +51,18 @@ sub makeRPlotStrings {
 
     my (@profileFiles, @elementNamesFiles);
 
+    my $i = 0;
+
     # each part can have several profile sets
     foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
-      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $part, undef)};
+      my $suffix = $part . $i;
+
+      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
 
       push(@profileFiles, $profileFile);
       push(@elementNamesFiles, $elementNamesFile);
+
+      $i++;
     }
 
     my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
@@ -97,7 +103,6 @@ sub rString {
   my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin, $horizontalXAxisLabels,  $yAxisFoldInductionFromM) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
-  $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rAdjustNames = $rAdjustNames ? $rAdjustNames : "";
 
@@ -138,7 +143,7 @@ for(i in 1:length(element.names.files)) {
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
 
-par(mar       = c($bottomMargin,4,1,2), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,2), xpd=FALSE);
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile
@@ -151,6 +156,9 @@ my.las = 2;
 if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
   my.las = 0;
 }
+
+
+
 
 barplot(profile,
         col       = the.colors,
@@ -190,9 +198,7 @@ if($yAxisFoldInductionFromM) {
   axis(2);  
 }
 
-
-
-plasmodb.title(\"$plotTitle\");
+lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
 box();
 

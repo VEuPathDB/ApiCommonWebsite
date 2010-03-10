@@ -180,10 +180,14 @@ function loadOrganisms(sendReqUrl, id, dataArr, sites){
 function getAllOrgs(sites){
 	var orgs = "";
 	for(i=0;i<sites.length;i++){
+    		if(sites[i].indexOf('Entamoeba') != -1)
+			orgs = orgs+","+sites[i]+" invadens";
+		if(sites[i].indexOf('Encephalitozoon') != -1)
+			orgs = orgs+","+sites[i]+" intestinalis";
 		if(sites[i].indexOf('Crypto') != -1)
 			orgs = orgs+","+sites[i]+" parvum";
 		if(sites[i].indexOf('Giardia') != -1)
-			orgs = orgs+","+sites[i]+" lamblia";
+			orgs = orgs+","+sites[i]+" Assemblage A isolate WB";
 		if(sites[i].indexOf('Plasmo') != -1)
 			orgs = orgs+","+sites[i]+" falciparum";
 		if(sites[i].indexOf('Toxo') != -1)
@@ -198,6 +202,35 @@ function getAllOrgs(sites){
 	}
 	return orgs.substring(1);
 }
+
+
+function getAllOrgsORFs(sites){
+	var orgs = "";
+	for(i=0;i<sites.length;i++){
+    		if(sites[i].indexOf('Entamoeba') != -1)
+			orgs = orgs+","+sites[i]+" invadens IP1";
+		if(sites[i].indexOf('Encephalitozoon') != -1)
+			orgs = orgs+","+sites[i]+" intestinalis";
+		if(sites[i].indexOf('Crypto') != -1)
+			orgs = orgs+","+sites[i]+" parvum";
+		if(sites[i].indexOf('Giardia') != -1)
+			orgs = orgs+","+sites[i]+" lamblia P15";
+		if(sites[i].indexOf('Plasmo') != -1)
+			orgs = orgs+","+sites[i]+" falciparum";
+		if(sites[i].indexOf('Toxo') != -1)
+			orgs = orgs+","+"Neospora caninum";
+		if(sites[i].indexOf('Trich') != -1)
+			orgs = orgs+","+sites[i]+" vaginalis";
+		if(sites[i].indexOf('Trypa') != -1)
+			orgs = orgs+","+sites[i]+" cruzi";
+//		if(sites[i].indexOf('Leish') != -1)
+//			orgs = orgs+","+sites[i]+" major";
+		
+	}
+	return orgs.substring(1);
+}
+
+
 
 function noop(){
 var i = 0;

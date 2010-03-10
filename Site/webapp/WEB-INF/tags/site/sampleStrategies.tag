@@ -27,14 +27,23 @@
 
 <%-------------  Set sample strategy signatures in all sites  ----------------%>
 <c:choose>
+   <c:when test="${fn:containsIgnoreCase(site, 'AmoebaDB')}">
+      <c:set var="secKin" value="95ac3b1a4f6acfd4" />
+   </c:when>
+
    <c:when test="${fn:containsIgnoreCase(site, 'CryptoDB')}">
       <c:set var="simple" value="be21be3fa78e67fa" />
       <c:set var="expanded" value="645f96ff3792dcd8" />
    </c:when>
 
-<c:when test="${fn:containsIgnoreCase(site, 'GiardiaDB')}">
+   <c:when test="${fn:containsIgnoreCase(site, 'GiardiaDB')}">
       <c:set var="simple" value="f5c9f3e4fd59f3bb" />
       <c:set var="expanded" value="699c7268ffcb3e66" />
+   </c:when>
+
+   <c:when test="${fn:containsIgnoreCase(site, 'MicrosporidiaDB')}">
+      <c:set var="mspHypoGeneGO" value="f4bd3039772ccc43" />
+      <c:set var="fungiNotAnimal" value="0f3e27c0bf3b1540" />
    </c:when>
 
  <c:when test="${fn:containsIgnoreCase(site, 'PlasmoDB')}">
@@ -152,7 +161,32 @@
 <tr align = "left">
 	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${PfalDrugTargets}"/>"><i>P.falciparum</i> candidate drug targets</a> </td>
 	<td>Nested stategy to identify potential drug targets.</td>
-	<td>Find genes from <i>P. falciparum</i> that that could be worth following up as potential drug targets.  Note that there are many ways to do this search ... experiment with different parameter settings and incorporating different queries.</td>
+	<td>Find genes from <i>P. falciparum</i> that could be worth following up as potential drug targets.  Note that there are many ways to do this search ... experiment with different parameter settings and incorporating different queries.</td>
+</tr>
+</c:if>
+
+<c:if test="${mspHypoGeneGO != null}">
+<tr align = "left">
+	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${mspHypoGeneGO}"/>">GO annotated hypotheticals</a> </td>
+	<td>Hypothetical genes with GO annotation.</td>
+	<td>Find <i>Encephalitozoon</i> genes which have the word 'hypothetical' in the product description and which have gene ontology (GO) terms assigned. 
+	This set of genes are candidates for improved gene annotation when the computationally assigned GO terms hint at the role or function of the gene product.</td>
+</tr>
+</c:if>
+
+<c:if test="${fungiNotAnimal != null}">
+<tr align = "left">
+	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${fungiNotAnimal}"/>">Conservered Fungi/secr.TM</a> </td>
+	<td>Secreted genes conserved in Fungi and absent from animals.</td>
+	<td>Find signal peptide and transmembrane domain-containing proteins conserved in fungi and which lack detectable orthologs in animals.</td>
+</tr>
+</c:if>
+
+<c:if test="${secKin != null}">
+<tr align = "left">
+	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${secKin}"/>">Secreted kinases</a> </td>
+	<td>Secreted kinases not conserved in mammals.</td>
+	<td>Find <i>Entamoeba</i> genes which have characteristics of encoding secretory-pathway proteins (have signal peptide and have a transmembrane domain) and which lack detectable orthologs in mammals.</td>
 </tr>
 </c:if>
 

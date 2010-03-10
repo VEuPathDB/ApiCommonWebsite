@@ -92,7 +92,6 @@ sub rString {
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
-  $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
 
   $yMax = $yMax ? $yMax : "-Inf";
   $yMin = defined($yMin) ? $yMin : "Inf";
@@ -211,7 +210,7 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
-par(mar       = c($bottomMargin,4,1,2), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,2), xpd=FALSE);
 
 my.pch = 15;
 
@@ -289,9 +288,9 @@ if($yAxisFoldInductionFromM) {
 }
 box();
 
+grid(nx=NA,ny=NULL,col=\"gray75\");
+lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
-
-plasmodb.title(\"$plotTitle\");
 
 ";
 

@@ -33,7 +33,7 @@
        <attribute name="uid">15</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">EuPathDB.org,CryptoDB,GiardiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB.org,CryptoDB,GiardiaDB,MicrosporidiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">New_Strat/New_Strat_viewlet_swf.html</attribute>
@@ -49,7 +49,7 @@
        <attribute name="uid">14</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">EuPathDB.org,CryptoDB,GiardiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB.org,CryptoDB,GiardiaDB,MicrosporidiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>

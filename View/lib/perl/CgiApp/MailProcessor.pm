@@ -40,6 +40,8 @@ sub go {
     my $ipaddr  = join("", @{ $cgi->{'ipaddr'} or [$ENV{REMOTE_ADDR}] });
     my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'supportform@apidb.org' });
 
+    my $automaticMsg = "****THIS IS NOT A REPLY**** \nThis is an automatic response, that includes your message for your records, to let you know that we have received your email and will get back to you as soon as possible. Thanks so much for contacting us!\n\nThis was your message:\n\n---------------------\n";
+
     my @addCcField = split(/,/, join("", @{ $cgi->{'addCc'} }));
     if (scalar (@addCcField > 4)) { @addCcField = @addCcField[0..9]; } # max 10 addresses
     
@@ -84,10 +86,11 @@ sub go {
         . "Referer page: $referer";
 
     my $cfmMsg;
+#    my $message = $automaticMsg . $message . "---------------------";
 
 # sending email to the user so he/she has a record
     if($cc) {
-      $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $message, $addCc);
+      $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $automaticMsg . $message . "---------------------", $addCc);
     } else {
       $cfmMsg = "warning: did not cc user because no email was provided\n";
     }
@@ -95,7 +98,7 @@ sub go {
 # sending email to help@site
  if($cc) {
       my $internalMetaInfo = "${spamWarning}${metaInfo}";
-      $cfmMsg .= "\n\n" . sendMail($replyTo, $cc, $subject, $replyTo, $internalMetaInfo, $message);
+     $cfmMsg .= "\n\n" . sendMail($replyTo, $cc, $subject, $replyTo, $internalMetaInfo, $message);
     } else {
       $cfmMsg = "warning: did not cc support because no support email is provided\n";
     }
@@ -116,7 +119,7 @@ sub go {
         . '@op_sys       = ' . "all" . "\n"
         . "\n" . $metaInfo . "\n"
         . "Client IP Address: $ipaddr\n";
-      $cfmMsg .= "\n\n" . sendMail($reporterEmail, $to, $subject, $replyTo, $metaInfo, $message);
+     $cfmMsg .= "\n\n" . sendMail($reporterEmail, $to, $subject, $replyTo, $metaInfo, $message);
 
     } elsif  ($subject) {
       $cfmMsg .= ": no recipient is specified."
@@ -152,6 +155,7 @@ sub _cpanMailSendmail {
 		Message => "$metaInfo\n\n$message");
 
     my $success = sendmail(%mail);
+
 
     if (!$success) {
       return "Sorry your message was not sent: " . $Mail::Sendmail::error
