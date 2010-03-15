@@ -71,19 +71,20 @@ please see the publication&nbsp;
 <ul>
  <ul>
    <ul>
-     <li>All microarray searches in TriTrypDB can be accessed
-here: <a href="http://tinyurl.com/ycsvedg">http://tinyurl.com/ycsvedg</a></li>
-     <li>Expression profile graphs are also available on gene
-pages.</li>
+     <li>Access <a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">
+       all microarray searches in TriTrypDB</a></li>
+     <li>Expression profile graphs are also available on gene pages.</li>
    </ul>
  </ul>
 </ul>
 <ul>
  <li>RNA sequence data provided pre-publication by George Cross
-of blood and procyclic forms of <span style="font-style: italic;">T.
-brucei</span>. &nbsp;Expression profiles based on RNA-seq
-data can be viewed in the genome browser, on gene pages or searched
-here:<span style="font-style: italic;"> </span><a href="http://tinyurl.com/y9ymlm7">http://tinyurl.com/y9ymlm7</a></li>
+     of blood and procyclic forms of <span style="font-style: italic;">T.
+      brucei</span>. &nbsp;Expression profiles based on RNA-seq
+      data can be viewed in the genome browser, on gene pages or searched
+      in the <a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">
+     Genes by RNA-Seq</a> page.
+ </li>
 </ul>
 <span style="font-style: italic;"></span><span
 style="font-weight: bold;">New Features:</span><br>
@@ -100,17 +101,15 @@ of your results.&nbsp;</li>
 </ul>
 <span style="font-weight: bold;">Become a Beta tester:<br>
 </span>
-<div style="margin-left: 40px;">Sign on to become a beta
-tester for new features in EuPathDB sites. &nbsp;As we continue to
+<div style="margin-left: 40px;">
+<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign on to become a beta
+tester</a> for new features in EuPathDB sites. &nbsp;As we continue to
 evolve we introduce new features and functionalities to make our sites
 more useful for you and this is an opportunity for you to contribute to
 the enhancement of this resource. &nbsp;Signing on is easy and will
 require minimal effort on your part in the form of answering questions
-or rendering your opinion. &nbsp;<br>
-<br>
-To become a beta tester, <a
-href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
-here</a>.</div>
+or rendering your opinion.
+</div>
           ]]>
        </attribute>
     </record>
