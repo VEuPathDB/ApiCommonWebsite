@@ -38,7 +38,7 @@ announce the release of TriTrypDB 2.1</span><br>
 <br>
 This release contains the following new datasets and features:<br>
 <br>
-<span style="font-weight: bold;">New Data:</span><br>
+<span style="font-weight: bold;">New Data:</span><br><br>
 <ul>
  <li>Microarray data from of Minning et. al. of <span
 style="font-style: italic;">T. cruzi</span> life cycle
@@ -67,7 +67,7 @@ style="font-style: italic;">T. brucei </span>depleted
 of the RNA-binding protein TbDRBD3. &nbsp;For additional details
 please see the publication&nbsp;
 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18611951">http://www.ncbi.nlm.nih.gov/pubmed/18611951</a></li>
-</ul>
+</ul><br>
 <ul>
  <ul>
    <ul>
@@ -77,6 +77,7 @@ please see the publication&nbsp;
    </ul>
  </ul>
 </ul>
+<br>
 <ul>
  <li>RNA sequence data provided pre-publication by George Cross
      of blood and procyclic forms of <span style="font-style: italic;">T.
@@ -86,8 +87,9 @@ please see the publication&nbsp;
      Genes by RNA-Seq</a> page.
  </li>
 </ul>
+<br>
 <span style="font-style: italic;"></span><span
-style="font-weight: bold;">New Features:</span><br>
+style="font-weight: bold;">New Features:</span><br><br>
 <ul>
  <li>The gray tool bar at the top of all TriTrypDB web pages has
 been enhanced to include a link to the "My Basket" feature including an
@@ -99,6 +101,17 @@ allows you to assign an arbitrary weight to the searches (steps) in
 your search strategy making it possible for you to view a ranked list
 of your results.&nbsp;</li>
 </ul>
+<br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, testing and rendering your opinion.
+
+<!--
 <span style="font-weight: bold;">Become a Beta tester:<br>
 </span>
 <div style="margin-left: 40px;">
@@ -109,6 +122,8 @@ more useful for you and this is an opportunity for you to contribute to
 the enhancement of this resource. &nbsp;Signing on is easy and will
 require minimal effort on your part in the form of answering questions
 or rendering your opinion.
+-->
+
 </div>
           ]]>
        </attribute>
