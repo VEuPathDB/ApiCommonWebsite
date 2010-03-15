@@ -14,11 +14,11 @@
 --> 
 
 <record>
-       <attribute name="headline">ToxoDB update</attribute>
+       <attribute name="headline">ToxoDB new features</attribute>
        <attribute name="date">15 March 2010 15:00</attribute>
-       <attribute name="tag">toxo_update_0310</attribute>
+       <attribute name="tag">toxo_newFeatures_0310</attribute>
        <attribute name="item">           
-         <![CDATA[<body>
+         <![CDATA[
 
 <span style="font-weight: bold;">We are pleased to 
 announce new features in ToxoDB 6.0<br> 
@@ -44,7 +44,7 @@ As noted, this is an ongoing process. &nbsp;We have several more
 annotations to incorporate and many more promised. &nbsp;<span 
 style="font-weight: bold;"><br> 
 <br> 
-</span><span style="font-weight: bold;">New Features:</span><br> 
+</span><span style="font-weight: bold;">New Features:</span><br><br> 
 <ul> 
  <li>The gray tool bar at the top of all ToxoDB web pages has 
 been enhanced to include a link to the "My Basket" feature including an 
@@ -57,20 +57,24 @@ your search strategy making it possible for you to view a ranked list
 of your results.&nbsp;</li> 
 </ul> 
 <br>
-<span style="font-weight: bold;">Become a Beta tester:<br> 
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:</a>***<br><br>
 </span> 
-<div style="margin-left: 40px;">
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, testing and rendering your opinion.
+<!--
 <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign on to become a beta 
 tester</a> for new features in EuPathDB sites. &nbsp;As we continue to 
 evolve we introduce new features and functionalities to make our sites 
 more useful for you and this is an opportunity for you to contribute to 
 the enhancement of this resource. &nbsp;Signing on is easy and will 
 require minimal effort on your part in the form of answering questions 
-or rendering your opinion. &nbsp;<br> 
-<br> 
+or rendering your opinion. &nbsp;
+-->
 
 
-</body>
           ]]>
        </attribute>
 </record>
@@ -80,7 +84,7 @@ or rendering your opinion. &nbsp;<br>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
        <attribute name="item">           
-         <![CDATA[<body>
+         <![CDATA[
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
 Projects (DBPs) focused on one or more of the eukaryotic
@@ -93,7 +97,7 @@ invitation only, with a deadline of March 31.</i>
 <a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
 Click here to
 download the RFP</a>.
-</body>
+
           ]]>
        </attribute>
 </record>
@@ -109,7 +113,7 @@ download the RFP</a>.
          toxo1209news
        </attribute>
        <attribute name="item">           
-         <![CDATA[<body>
+         <![CDATA[
 <span style="font-weight: bold;">We are pleased to
 announce the release of ToxoDB 6.0<br>
 </span><br>
@@ -141,7 +145,7 @@ with one of your already existing strategies.
 login first.<br>
 <br>
 <span style="font-weight: bold;"></span>
-</body>
+
           ]]>
        </attribute>
     </record>
@@ -187,7 +191,7 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        <attribute name="date">16 November 2009 15:00</attribute>
        <attribute name="tag">release53</attribute>
        <attribute name="item">           
-         <![CDATA[<body>
+         <![CDATA[
 <span style="font-weight: bold;">We are pleased to
 announce the release of ToxoDB 5.3<br>
 </span><br>
@@ -230,7 +234,7 @@ one of the&nbsp;<a
  href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">microarray
 searches</a> and results may be combined with other searches in
 ToxoDB.<span style="font-weight: bold;"></span>
-</body>
+
           ]]>
        </attribute>
     </record>
