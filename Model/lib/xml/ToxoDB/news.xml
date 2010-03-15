@@ -14,6 +14,71 @@
 --> 
 
 <record>
+       <attribute name="headline">ToxoDB update</attribute>
+       <attribute name="date">15 March 2010 15:00</attribute>
+       <attribute name="tag">toxo_update_0310</attribute>
+       <attribute name="item">           
+         <![CDATA[<body>
+
+<span style="font-weight: bold;">We are pleased to 
+announce new features in ToxoDB 6.0<br> 
+<br> 
+Community Annotation<span style="font-weight: bold;">:</span><br> 
+<br> 
+</span>As many of you know, a community driven annotation effort 
+has been underway. &nbsp;The response has been great (350 genes 
+have been annotated by the community so far) and we are happy to now 
+include these annotations in ToxoDB. &nbsp;To ultimate goal is to 
+translate this effort into changes in product names and gene models. 
+&nbsp;As a first step, since this process is still ongoing, 
+community annotations can be viewed by searching using the text search 
+tool (http://tinyurl.com/ybegyua) in ToxoDB and limiting your search to 
+the Community annotation. &nbsp;To view all genes that have a 
+community annotation associated with them simply enter the wild card 
+"*" in the text search field. &nbsp;The annotation itself is 
+prominently displayed on the gene pages right under the product name. 
+&nbsp;<br> 
+<br> 
+As noted, this is an ongoing process. &nbsp;We have several more 
+annotations to incorporate and many more promised. &nbsp;<span 
+style="font-weight: bold;"><br> 
+<br> 
+</span><span style="font-weight: bold;">New Features:</span><br> 
+<ul> 
+ <li>The gray tool bar at the top of all ToxoDB web pages has 
+been enhanced to include a link to the "My Basket" feature including an 
+indication of how may items are in the basket.</li> 
+ <li>The genome browser has been updated to version 1.7, which 
+offers enhanced features and stability.&nbsp;</li> 
+ <li>Weighted searches are now available. &nbsp;This feature 
+allows you to assign an arbitrary weight to the searches (steps) in 
+your search strategy making it possible for you to view a ranked list 
+of your results.&nbsp;</li> 
+</ul> 
+<br>
+<span style="font-weight: bold;">Become a Beta tester:<br> 
+</span> 
+<div style="margin-left: 40px;">Sign on to become a beta 
+tester or new features in EuPathDB sites. &nbsp;As we continue to 
+evolve we introduce new features and functionalities to make our sites 
+more useful for you and this is an opportunity for you to contribute to 
+the enhancement of this resource. &nbsp;Signing on is easy and will 
+require minimal effort on your part in the form of answering questions 
+or rendering your opinion. &nbsp;<br> 
+<br> 
+To become a beta tester, <a 
+href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click 
+here</a>.</div> 
+<br> 
+<br> 
+<span style="font-weight: bold;"></span> 
+
+</body>
+          ]]>
+       </attribute>
+</record>
+
+<record>
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
