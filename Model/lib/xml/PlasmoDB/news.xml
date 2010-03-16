@@ -17,6 +17,43 @@
 -->
 
 <record>
+       <attribute name="headline">PlasmoDB new features</attribute>
+       <attribute name="date">15 March 2010 15:00</attribute>
+       <attribute name="tag">plasmo_newFeatures_0310</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to 
+announce new features in PlasmoDB 6.3<br><br> 
+</span><span style="font-weight: bold;">New Features:</span><br><br>
+<ul>
+ <li>The gray tool bar at the top of all PlasmoDB web pages has 
+been enhanced to include a link to the "My Basket" feature including an 
+indication of how may items are in the basket.</li> 
+ <li>The genome browser has been updated to version 1.7, which 
+offers enhanced features and stability.&nbsp;</li> 
+ <li>Weighted searches are now available. &nbsp;This feature 
+allows you to assign an arbitrary weight to the searches (steps) in 
+your search strategy making it possible for you to view a ranked list 
+of your results.&nbsp;</li> 
+</ul> 
+<br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
+</div>
+
+          ]]>
+       </attribute>
+</record>
+
+
+<record>
        <attribute name="headline">PlasmoDB 4.4 is no longer available</attribute>
        <attribute name="date">15 February 2010 15:00</attribute>
        <attribute name="tag">eupath_plas44</attribute>
