@@ -27,7 +27,7 @@
                         <c:set var="pkValues" value="${primaryKey.values}" />
                         <c:set value="${pkValues['source_id']}" var="id"/>
                         <c:set value="${pkValues['project_id']}" var="pid"/>
-                        <tr class="record" recordClass="${recordClass.fullName}">
+                        <tr class="wdk-record" recordClass="${recordClass.fullName}">
                             <td>
                                 <div class="primaryKey">
                                     <c:forEach var="pk_item" items="${pkValues}">
