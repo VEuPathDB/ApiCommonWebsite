@@ -646,7 +646,7 @@
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
+       <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq">yes</attribute>
@@ -669,7 +669,7 @@
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
+       <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
