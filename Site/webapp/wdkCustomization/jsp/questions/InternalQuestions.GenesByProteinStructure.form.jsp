@@ -13,23 +13,27 @@
 
 <c:choose>
 <c:when test="${projectId == 'GiardiaDB' || projectId == 'TrichDB' }">
-        <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByProteinStructure" /> 
+	<jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByProteinStructure" />
     </c:when>
 <c:otherwise>
+
+${Question_Header}
 
 <wdk:errors/>
 <%-- div needed for Add Step --%>
 <div id="form_question">
 <table width="100%">
-<tr class="headerRow"><td colspan="4" align="center"><b>Choose a Search ---- Mouse over to read description</b></td></tr>
+<c:set value="1" var="columns"/>
+
+<tr class="headerRow"><td colspan="${columns + 2}" align="center"><b>Choose a Search</b><br><i style="font-size:80%">Mouse over to read description</i></td></tr>
 
 
 <c:choose>
 <c:when test = "${projectId == 'CryptoDB' || projectId == 'TriTrypDB'}">
-	<site:queryList2 questions="GeneQuestions.GenesByPdbSimilarity,GeneQuestions.GenesBySecondaryStructure"/>
+	<site:queryList3 columns="${columns}"  questions="GeneQuestions.GenesByPdbSimilarity,GeneQuestions.GenesBySecondaryStructure"/>
 </c:when>
 <c:otherwise>  <%-- EuPathDB and PlasmoDB, Toxo still does not have this kind of data --%>
-	<site:queryList2 questions="GeneQuestions.GenesByPdbSimilarity,GeneQuestions.GenesWithStructurePrediction,GeneQuestions.GenesBySecondaryStructure"/>
+	<site:queryList3 columns="${columns}" questions="GeneQuestions.GenesByPdbSimilarity,GeneQuestions.GenesWithStructurePrediction,GeneQuestions.GenesBySecondaryStructure"/>
 </c:otherwise>
 </c:choose>
 
@@ -39,3 +43,5 @@
 
 </c:otherwise>
 </c:choose>
+
+${Question_Footer}

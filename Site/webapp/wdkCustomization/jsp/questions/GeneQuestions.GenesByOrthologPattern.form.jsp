@@ -5,6 +5,7 @@
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+${Question_Header}
 
 <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
 
@@ -121,7 +122,7 @@ Ack, this form won't work at all without JavaScript support!
 <input name="questionFullName" value="GeneQuestions.GenesByOrthologPattern" type="hidden"/>    
 
 	<input name="myMultiProp(phyletic_term_map)" value="rnor" type="hidden"/>
-	<input name="myMultiProp(phyletic_indent_map)" value="Archaea" type="hidden"/>
+	<input name="myMultiProp(phyletic_indent_map)" value="ARCH" type="hidden"/>
 
 <table>
   <tr>
@@ -255,7 +256,7 @@ Ack, this form won't work at all without JavaScript support!
 <input name="questionFullName" value="GeneQuestions.GenesByOrthologPattern" type="hidden"/>    
 
 	<input name="myMultiProp(phyletic_term_map)" value="rnor" type="hidden"/>
-	<input name="myMultiProp(phyletic_indent_map)" value="Archaea" type="hidden"/>
+	<input name="myMultiProp(phyletic_indent_map)" value="ARCH" type="hidden"/>
 <table>
   <tr>
     <td><b>Show results from species:</b></td>
@@ -326,7 +327,7 @@ toggle(7);
 
 <hr>
 <%-- display description for wdkQuestion --%>
-<div id="query-description-section"><p><b>Query description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p></div>
+<div id="query-description-section"><p><b>Description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p></div>
 
 <%-- get the attributions of the question if not EuPathDB --%>
 <c:if test = "${project != 'EuPathDB'}">
@@ -346,3 +347,5 @@ toggle(7);
 
   </c:otherwise> <%-- otherwise of showParams == true --%>
 </c:choose>
+
+${Question_Footer}

@@ -21,6 +21,7 @@
 <c:when test="${!wdkRecord.validRecord}">
 <site:header title="MicrosporidiaDB : gene ${id} (${prd})"
              summary="${overview.value} (${length.value} bp)"
+		refer="recordPage" 
              divisionName="Gene Record"
              division="queries_tools" />
   <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
@@ -39,6 +40,15 @@
 <c:set var="prd" value="${attrs['product'].value}"/>
 <c:set var="overview" value="${attrs['overview']}"/>
 <c:set var="length" value="${attrs['transcript_length']}"/>
+
+<c:set var="start" value="${attrs['start_min_text'].value}"/>
+<c:set var="end" value="${attrs['end_max_text'].value}"/>
+<c:set var="strand" value="+"/>
+<c:if test="${attrs['strand'].value == 'reverse'}">
+  <c:set var="strand" value="-"/>
+</c:if>
+
+
 <%-- display page header with recordClass type in banner --%>
 
 <site:header title="MicrosporidiaDB : gene ${id} (${prd})"
@@ -102,9 +112,8 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(gtracks, '+', '-')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/microsporidiadb/?name=${contig}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/microsporidiadb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
@@ -118,6 +127,30 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations
     attribution="${attribution}"
   />
 </c:if>
+
+
+
+
+<!-- Mercator / Mavid alignments -->
+
+ <c:if test="${strand eq '-'}">
+   <c:set var="revCompOn" value="1"/>
+  </c:if>
+
+<c:set var="mercatorAlign">
+<site:mercatorMAVID cgiUrl="/cgi-bin" projectId="${projectId}" revCompOn="${revCompOn}"
+                    contigId="${contig}" start="${start}" end="${end}" bkgClass="rowMedium" cellPadding="0"
+                    availableGenomes=""/>
+</c:set>
+
+<wdk:toggle isOpen="false"
+  name="mercatorAlignment"
+  displayName="Multiple Sequence Alignment"
+  content="${mercatorAlign}"
+  attribution=""/>
+
+
+
 
 <site:pageDivider name="Annotation"/>
 <%--- Notes --------------------------------------------------------%>
@@ -315,7 +348,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/microsporidiadbaa/?
 </c:when>
 <c:when test='${organism_full eq "Encephalitozoon intestinalis"}'>
   <c:set var="reference">
-   Sequence and annotations from Patrick Keeling(pkeeling@interchange.ubc.ca)at Canadian Institute for Advanced Research, Evolutionary Biology Program, Department of Botany, University of British Columbia for <i>Encephalitozoon intestinalis</i> chromosomes in EMBL (sequence and annotated features) format. 
+   Sequence and annotations from Patrick Keeling at Canadian Institute for Advanced Research, Evolutionary Biology Program, Department of Botany, University of British Columbia. Please note that the <i>E. intestinalis</i> genome sequence has not yet been published. You are welcome to browse this data and use information on individual genes for your research ... but using this site constitutes your implicit agreement to refrain from genome-wide analysis pending publication of the <i>E. intestinalis</i> genome. Please contact Patrick Keeling (pkeeling@interchange.ubc.ca) with any questions.
   </c:set>
 </c:when>
 </c:choose>

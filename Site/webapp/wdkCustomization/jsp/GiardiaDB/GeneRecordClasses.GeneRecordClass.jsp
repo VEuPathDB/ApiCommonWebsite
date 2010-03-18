@@ -20,6 +20,7 @@
 <c:when test="${!wdkRecord.validRecord}">
 <site:header title="GiardiaDB: gene ${id} (${prd})"
              summary="${overview.value} (${length.value} bp)"
+		refer="recordPage" 
              divisionName="Gene Record"
              division="queries_tools" />
   <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
@@ -132,9 +133,8 @@ G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblage
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(gtracks, '+', '-')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/giardiadb/?name=${sequence_id}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/giardiadb/?name=${sequence_id}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>

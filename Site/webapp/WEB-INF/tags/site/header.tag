@@ -60,7 +60,6 @@
 </c:if>
 <%-- end Galaxy flag --%>
 
-
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
 <c:set var="project" value="${props['PROJECT_ID']}" />
 <c:set var="siteName" value="${applicationScope.wdkModel.name}" />
@@ -90,6 +89,10 @@
 
 <c:if test="${project == 'GiardiaDB'}">
   <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTlNDst8dXAmD5YyQ2VVS97EWFghhQhZPGp197fIBaqTKkE2AWWB1m7xA" />
+</c:if>
+
+<c:if test="${project == 'EuPathDB'}">
+  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahSsTM_yzu3s1MlIlYUNhUGVfJzobxRb1TdHaeE5y5bGlgFsG1VYMy7KCw" />
 </c:if>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -179,8 +182,16 @@
 <script type="text/javascript">
    var helpEmail = 'help@${project}.org';
 </script>
-
+<!-- header : refer = ${refer} -->
 <site:jscript refer="${refer}"/>
+
+<!--[if lte IE 8]>
+<style>
+   #header_rt {
+      width:50%;
+   }
+</style>
+<![endif]-->
 
 <!--[if lt IE 8]>
 <link rel="stylesheet" href="/assets/css/ie7.css" type="text/css" />

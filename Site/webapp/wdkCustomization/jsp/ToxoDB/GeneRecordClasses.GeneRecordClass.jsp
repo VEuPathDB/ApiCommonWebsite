@@ -19,6 +19,7 @@
 <c:choose>
 <c:when test="${!wdkRecord.validRecord}">
 <site:header title="${wdkModel.displayName} : gene ${id}"
+			 refer="recordPage"
              divisionName="Gene Record"
              division="queries_tools"/>
   <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
@@ -41,6 +42,7 @@
 <c:set var="orthomcl_name" value="${attrs['orthomcl_name'].value}"/>
 
 <site:header title="${wdkModel.displayName} : gene ${id} (${prd})"
+			 refer="recordPage"
              banner="${id}<br>${prd}"
              divisionName="Gene Record"
              division="queries_tools"
@@ -54,13 +56,46 @@
 <%-- quick tool-box for the record --%>
 <site:recordToolbox />
 
+
 <a name = "top">
 <h2>
 <center>
 <wdk:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
+${fn:length(wdkRecord.tables['CommunityExpComments'])}
 </center>
 </h2>
+
+<!--
+<c:if test="${fn:length(wdkRecord.tables['CommunityExpComments']) gt 0}">
+<div style="font-size:large; text-align:center; font-weight:bold"> 
+<a href=<c:url value="showComment.do?projectId=${projectId}&stableId=${id}&commentTargetId=gene"/>>Community Annotation Available</a>
+</div>
+<br>
+</c:if>
 </a>
+-->
+
+<site:panel 
+    displayName="Community Expert Annotation"
+    content="" />
+
+<c:catch var="e">
+<site:dataTable tblName="CommunityExpComments"/>
+</c:catch>
+
+<c:if test="${e != null}">
+ <table  width="100%" cellpadding="3">
+      <tr><td><b>User Comments</b>
+     <site:embeddedError
+         msg="<font size='-1'><i>temporarily unavailable.</i></font>"
+         e="${e}"
+     />
+      </td></tr>
+ </table>
+</c:if>
+
+<br/>
+
 <%----------------------------------------------------------%>
 
 <table width="100%"  style="font-size:150%;background-image: url(/assets/images/${projectId}/footer.png);">
@@ -126,9 +161,8 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(tracks, '+', '-')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/toxodb/?name=${sequence_id}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/toxodb/?name=${sequence_id}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
@@ -212,20 +246,6 @@ Scaffolds,ChromosomeMap,ME49_Annotation,TgondiiGT1Scaffolds,TgondiiVegScaffolds,
  </table>
 </c:if>
 
-<c:catch var="e">
-<wdk:wdkTable tblName="CommunityExpComments"/>
-</c:catch>
-
-<c:if test="${e != null}">
- <table  width="100%" cellpadding="3">
-      <tr><td><b>User Comments</b>
-     <site:embeddedError
-         msg="<font size='-1'><i>temporarily unavailable.</i></font>"
-         e="${e}"
-     />
-      </td></tr>
- </table>
-</c:if>
 
 <c:catch var="e">
   <wdk:wdkTable tblName="TaskComments" isOpen="true"
@@ -437,7 +457,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/toxodbaa/?name=${wd
           <div class="small">
              	<!-- DESCRIPTION?? -->
 The percentile graph on the right represents the percentiles of each expression value across the
-dymanic range of the microarray log(2) intensities.
+dynamic range of the microarray log(2) intensities.
 experimental condition.
           </div>
         </td>
@@ -644,7 +664,7 @@ OnChange="javascript:updateImage('${imgId}', DzierszinskiBradySort.DzierszinskiB
   <c:set var="imgId" value="img${secName}"/>
   <c:set var="isOpen" value="true"/>
 
-  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp="/>
+  <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${projectId}&model=toxo&fmt=png&id=${id}&vp=_LEGEND,"/>
   <c:set var="imgSrc" value="${preImgSrc}rma"/>
 
   <c:set var="noData" value="false"/>

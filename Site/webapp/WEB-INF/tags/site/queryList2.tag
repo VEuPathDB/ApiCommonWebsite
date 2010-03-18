@@ -7,7 +7,13 @@
               required="true"
               description="list of question full names"
 %>
+<%@ attribute name="columns"
+              required="true"
+              description="number of columns in the question table"
+%>
+
 <script src="assets/js/parameterHandlers.js" type="text/javascript"></script>
+<script src="<c:url value='wdk/js/wdkQuestion.js'/>" type="text/javascript"></script>
 <SCRIPT type="text/javascript" >
 
 
@@ -39,6 +45,8 @@ document.getElementById(div).innerHTML += "<hr/>"
 			$("#" + div).append(qa);
 			htmltooltip.render();
 			initParamHandlers(true);
+ 			var question = new WdkQuestion();
+			question.registerGroups();
 		}
 	});
 }	
@@ -62,6 +70,7 @@ function getComboElement()
         <jsp:forward page="/showQuestion.do?questionFullName=${questionFullNamesArray[0]}"/>
       </c:if>
 
+
 <tr>
       <c:forEach items="${questionFullNamesArray}" var="qFullName">
        <c:set var="i" value="${i+1}"/>
@@ -71,19 +80,20 @@ function getComboElement()
         <c:set var="qName" value="${questionFullNameArray[1]}"/>
         <c:set var="qSet" value="${wdkModel.questionSetsMap[qSetName]}"/>
         <c:set var="q" value="${qSet.questionsMap[qName]}"/>
-        
-<td align="left"><a title="${q.summary}" 
+
+<td align="left">&#8226;<a title="${q.summary}" 
 	href="javascript:writeData('<c:url value="/showQuestion.do?questionFullName=${q.fullName}&partial=true"/>', 'des','${q.displayName}' )">
-		<font color="#000066" size="3"><b>${q.displayName}</b>${url}</font></a><br/>
+		<font color="#000066" size="3"><b>${q.displayName}</b>${url}</font></a>
 </td> 
 
-        <c:if test="${i % 2 == 0}"></tr><tr></c:if>
+        <c:if test="${i % columns == 0}"></tr><tr></c:if>
+
       </c:forEach> <%-- forEach items=questions --%>
 	
 </tr>
 
-<tr><td colspan="4"><hr/><td></tr>
-<tr><td colspan="4" align="left">
+<tr><td colspan="${columns}"><hr/><td></tr>
+<tr><td colspan="${columns}" align="left">
 	<div id="des"></div>
      </td>
 </tr>

@@ -29,7 +29,7 @@
 <c:set var="count" value="${wdkUser.strategyCount}"/>
 </c:otherwise>
 </c:choose>
-
+<c:set var="basketCount" value="${wdkUser.basketCount}"/>
 <div id="menubar">
 <div id="menu">
 
@@ -46,27 +46,27 @@
 </ul>
 
 <%-- some javascript fills the count in the span --%>
-<ul style="width:11em;">
+<ul>
     <li><a id="mysearch" onclick="setCurrentTabCookie('strategy_results');" href="<c:url value="/showApplication.do"/>" title="Access your Search Strategies Workspace">
-	My Strategies <span title="You have ${count} strategies" class="subscriptCount">
-		(${count})</span>
+	My Strategies <%--<span title="You have ${count} strategies" class="subscriptCount">
+		(${count})</span>--%>
         </a>
     </li>
 </ul>
 
 
-<ul>
+<ul>	
 <c:choose>
-  <c:when test="${wdkUser.guest}">
-    <li><a id="mybasket" href="javascript:popLogin();" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount">(0)</span></a></li>
+  <c:when test="${wdkUser == null || wdkUser.guest}">
+    <li><a id="mybasket" href="javascript:popLogin();" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount"><font style="vertical-align:top">(</font>0<font style="vertical-align:top">)</font></span></a></li>
   </c:when>
   <c:otherwise>
     <c:choose>
       <c:when test="${refer == 'customSummary'}">
-    	<li><a id="mybasket" onclick="showPanel('basket');" href="javascript:void(0)" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount">(0)</span></a></li>
+    	<li><a id="mybasket" onclick="showPanel('basket');" href="javascript:void(0)" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount"><font style="vertical-align:top">(</font><var>${basketCount['GeneRecordClasses.GeneRecordClass']}</var><font style="vertical-align:top">)</font></span></a></li>
       </c:when>
       <c:otherwise>
-    	<li><a id="mybasket" onclick="setCurrentTabCookie('basket');" href="<c:url value="/showApplication.do"/>" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount">(0)</span></a></li>
+    	<li><a id="mybasket" onclick="setCurrentTabCookie('basket');" href="<c:url value="/showApplication.do"/>" title="Group IDs together to later make a step in a strategy.">My Basket <span class="subscriptCount"><font style="vertical-align:top">(</font><var>${basketCount['GeneRecordClasses.GeneRecordClass']}</var><font style="vertical-align:top">)</font></span></a></li>
       </c:otherwise>
     </c:choose>
   </c:otherwise>
@@ -141,8 +141,11 @@
     	    <li><a href="/common/downloads">Data Files</a></li>
 
     	  <%--  <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#protocols_methods"/>">Protocols and Methods</a></li> --%>
+
+ <c:if test="${project != 'EuPathDB'}" >
     	    <li><a href="<c:url value="/communityUpload.jsp"/>">Upload Community Files</a></li>
     	    <li><a href="<c:url value="/showSummary.do?questionFullName=UserFileQuestions.UserFileUploads"/>">Download Community Files</a></li>
+</c:if>
     	    <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs"/>">EuPathDB Publications</a></li> 
   	</ul>
     </li>

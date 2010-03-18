@@ -19,6 +19,7 @@
 <c:when test="${!wdkRecord.validRecord}">
 <site:header title="TrichDB : gene ${id} (${prd})"
              summary="${overview.value} (${length.value} bp)"
+		refer="recordPage" 
              divisionName="Gene Record"
              division="queries_tools" />
   <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
@@ -33,6 +34,10 @@
 <c:set var="context_start_range" value="${attrs['context_start'].value}" />
 <c:set var="context_end_range" value="${attrs['context_end'].value}" />
 <c:set var="binomial" value="${attrs['genus_species'].value}"/>
+
+<c:set var="start" value="${attrs['start_min_text'].value}"/>
+<c:set var="end" value="${attrs['end_max_text'].value}"/>
+<c:set var="strand" value="${attrs['strand_plus_minus'].value}"/>
 
 <c:set var="so_term_name" value="${attrs['so_term_name'].value}"/>
 <c:set var="prd" value="${attrs['product'].value}"/>
@@ -105,9 +110,8 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(tracks, '+', '-')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/trichdb/?name=${contig}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/trichdb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>

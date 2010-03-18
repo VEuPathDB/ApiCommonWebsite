@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="nested" uri="http://jakarta.apache.org/struts/tags-nested" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%-- get wdkXmlAnswer saved in request scope --%>
 <c:set var="xmlAnswer" value="${requestScope.wdkXmlAnswer}"/>
@@ -13,8 +14,8 @@
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 <c:set value="${wdkModel.displayName}" var="project"/>
 
-<site:header  title="${project} :: Genome & Data Type Summary"
-                 banner="${project} Genome & Data Type Summary"
+<site:header  title="${project} :: Genomes & Data Types"
+                 banner="${project} Genomes & Data Types"
                  parentDivision="${project}"
                  parentUrl="/home.jsp"
                  divisionName="allSites"
@@ -56,6 +57,7 @@
     <td class="mythStyle" title="Microarray">Micro<br>array</td>
     <td class="mythStyle" title="Proteomics">Prote<br>omics</td>
     <td class="mythStyle" title="ChIP Chip">ChIP<br>chip</td>
+    <td class="mythStyle" title="RNA Seq">RNA<br>Seq</td>
     <td class="mythStyle" title="Sage Tags">SAGE<br>Tags</td>
     <td class="mythStyle" title="Metabolic Pathways">Path<br>ways</td>
 </tr>
@@ -119,9 +121,27 @@
 </c:otherwise>
 </c:choose>
 
+<!-- website/webapp for links to data sources -->
+<c:set var="website" value="${fn:substringBefore(website, ',')}"/> 
+<c:set var="website" value="${fn:toLowerCase(website)}"/> 
+
+<c:choose>
+<c:when test="${website eq 'amoebadb' || website eq 'plasmodb' || website eq 'toxodb'}" >
+	<c:set var="webapp" value="${fn:substringBefore(website, 'db')}"/> 
+</c:when>
+<c:when test="${website eq 'microsporidiadb'}" >
+	<c:set var="webapp" value="micro"/> 
+</c:when>
+<c:otherwise>
+	<c:set var="webapp" value="${website}"/> 
+</c:otherwise>
+</c:choose>
+
 <c:choose>
 <c:when test="${record.attributesMap['Isolates'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>
@@ -130,7 +150,9 @@
 
 <c:choose>
 <c:when test="${record.attributesMap['SNPs'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>
@@ -139,7 +161,9 @@
 
 <c:choose>
 <c:when test="${record.attributesMap['ESTs'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>
@@ -148,7 +172,9 @@
 
 <c:choose>
 <c:when test="${record.attributesMap['Microarray'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>
@@ -157,7 +183,9 @@
 
 <c:choose>
 <c:when test="${record.attributesMap['Proteomics'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>
@@ -166,7 +194,20 @@
 
 <c:choose>
 <c:when test="${record.attributesMap['ChIP_chip'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
+</c:when>
+<c:otherwise>
+    <td class="mytdStyle" style="${separation}"></td>
+</c:otherwise>
+</c:choose>
+
+<c:choose>
+<c:when test="${record.attributesMap['RNA_Seq'] == 'yes'}">
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">	
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>
@@ -175,7 +216,9 @@
 
 <c:choose>
 <c:when test="${record.attributesMap['SageTags'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">	
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>
@@ -184,7 +227,9 @@
 
 <c:choose>
 <c:when test="${record.attributesMap['Pathways'] == 'yes'}">
-    <td class="mytdStyle" style="${separation}"><img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td>
+    <td class="mytdStyle" style="${separation}">
+	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></td></a>
 </c:when>
 <c:otherwise>
     <td class="mytdStyle" style="${separation}"></td>

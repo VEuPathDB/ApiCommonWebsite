@@ -58,23 +58,21 @@
   }
 </script>
 
-<c:if test="${fn:containsIgnoreCase(dispModelName, 'EuPathDB')}">
+<c:if test="${fn:containsIgnoreCase(modelName, 'EuPathDB')}">
 <script>
 
 // Fix record links in results page on EuPathDB
 function customResultsPage() {
-   var keepTrying = true;
-   $("#Results_Table tr").each(function() {
-      var projectId;
-      $("td a",this).each(function() {
+   $("#Results_Table #rootBody tr td div a").each(function() {
          var currentUrl = $(this).attr('href');
          var recordName = parse_Url(currentUrl, "name");
          var primaryKey = parse_Url(currentUrl, "source_id");
-         if (!projectId) projectId = parse_Url(currentUrl, "project_id");
+         var projectId = parse_Url(currentUrl, "project_id");
          primaryKey = parse_Url(currentUrl, "source_id");
-         create_Portal_Record_Url(recordName,projectId,primaryKey,"");
-         $(this).attr('href',"javascript:create_Portal_Record_Url('" + recordName + "', '" + projectId + "', '" + primaryKey + "', '');");
-      });
+         $(this).attr('href','javascript:void(0)');
+	 $(this).click(function() {
+		create_Portal_Record_Url(recordName, projectId, primaryKey, '');
+	 });
    });
 }
 
@@ -83,6 +81,10 @@ function create_Portal_Record_Url(recordName, projectId, primaryKey, portal_url)
   if(portal_url.length == 0){
     if(projectId == 'CryptoDB'){
       portal_url = "http://cryptodb.org/cryptodb/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
+    } else  if(projectId == 'AmoebaDB'){
+      portal_url = "http://amoebadb.org/amoeba/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
+    } else if(projectId == 'MicrosporidiaDB'){
+      portal_url = "http://microsporidiadb.org/micro/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'PlasmoDB'){
       portal_url = "http://plasmodb.org/plasmo/showRecord.do?name=" + recordName + "&project_id=" + projectId + "&source_id=" + primaryKey;
     } else if(projectId == 'ToxoDB'){

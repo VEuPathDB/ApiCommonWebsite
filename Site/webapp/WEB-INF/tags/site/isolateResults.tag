@@ -12,12 +12,12 @@
 <c:set var="recHasBasket" value="${wdkAnswer.question.recordClass.hasBasket}" />
 <c:set var="clustalwIsolatesCount" value="0" />
 <c:set var="dispModelName" value="${applicationScope.wdkModel.displayName}" />
-<c:set var="eupathIsolatesQuestion" value="${fn:containsIgnoreCase(recordName, 'IsolateRecordClasses.IsolateRecordClass') 
+<c:set var="eupathIsolatesQuestion">${fn:containsIgnoreCase(recordName, 'IsolateRecordClasses.IsolateRecordClass') 
   && (fn:containsIgnoreCase(modelName, 'CryptoDB') 
   || fn:containsIgnoreCase(modelName, 'ToxoDB') 
   || fn:containsIgnoreCase(modelName, 'EuPathDB') 
   || fn:containsIgnoreCase(modelName, 'GiardiaDB') 
-  || fn:containsIgnoreCase(modelName, 'PlasmoDB'))}" /> 
+  || fn:containsIgnoreCase(modelName, 'PlasmoDB'))}</c:set> 
 
 <%-- When implement visualizing multiple strategies, the name of the strategy (for the title) could cme from the step object probably --%>
 
@@ -211,14 +211,13 @@
       <c:choose>
         <c:when test="${wdkUser.guest}">
           <c:set var="basketClick" value="popLogin()" />
-          <c:set var="basketTitle" value="Please log in to use the basket." />
         </c:when>
         <c:otherwise>
           <c:set var="basketClick" value="updateBasket(this,'page', '0', '${modelName}', '${wdkAnswer.recordClass.fullName}')" />
         </c:otherwise>
       </c:choose>
       <a href="javascript:void(0)" onclick="${basketClick}">
-        <img title="${basketTitle}" class="head basket" src="/assets/images/basket_gray.png" height="16" width="16" value="0"/>
+        <img class="head basket" src="wdk/images/basket_gray.png" height="16" width="16" value="0"/>
       </a>
     </th>
   </c:if>
@@ -235,10 +234,10 @@
                     <td style="padding:0;">
           <c:choose>
             <c:when test="${!sumAttrib.sortable}">
-              <img src="<c:url value='/wdk/images/results_arrw_up_blk.png'/>" border="0" alt="Sort up"/>
+              <img src="<c:url value='wdk/images/results_arrw_up_blk.png'/>" border="0" alt="Sort up"/>
             </c:when>
             <c:when test="${attrName == sortingAttrNames[0] && sortingAttrOrders[0]}">
-              <img src="<c:url value='/wdk/images/results_arrw_up_gr.png'/>"  alt="Sort up" 
+              <img src="<c:url value='wdk/images/results_arrw_up_gr.png'/>"  alt="Sort up" 
                   title="Result is sorted by ${sumAttrib}" />
             </c:when>
             <c:otherwise>
@@ -252,7 +251,7 @@
                 </c:otherwise>
               </c:choose>
               <a href="${resultsAction}" title="Sort by ${sumAttrib}">
-                  <img src="/assets/images/results_arrw_up.png" alt="Sort up" border="0" /></a>
+                  <img src="wdk/images/results_arrw_up.png" alt="Sort up" border="0" /></a>
             </c:otherwise>
           </c:choose>
                  </td>
@@ -261,10 +260,10 @@
                  <td style="padding:0;">
 	  <c:choose>
             <c:when test="${!sumAttrib.sortable}">
-	      <img src="<c:url value='/wdk/images/results_arrw_dwn_blk.png'/>" border="0" />
+	      <img src="<c:url value='wdk/images/results_arrw_dwn_blk.png'/>" border="0" />
 	    </c:when>
             <c:when test="${attrName == sortingAttrNames[0] && !sortingAttrOrders[0]}">
-              <img src="<c:url value='/wdk/images/results_arrw_dwn_gr.png'/>" alt="Sort down" 
+              <img src="<c:url value='wdk/images/results_arrw_dwn_gr.png'/>" alt="Sort down" 
 	                    title="Result is sorted by ${sumAttrib}" />
             </c:when>
             <c:otherwise>
@@ -278,7 +277,7 @@
                 </c:otherwise>
               </c:choose>
               <a href="${resultsAction}" title="Sort by ${sumAttrib}">
-              <img src="/assets/images/results_arrw_dwn.png" alt="Sort down" border="0" /></a>
+              <img src="wdk/images/results_arrw_dwn.png" alt="Sort down" border="0" /></a>
             </c:otherwise>
           </c:choose>
                    </td>
@@ -289,7 +288,7 @@
         <%-- <c:if test="${j != 0}">
           <div style="float:left;">
             <a href="javascript:void(0)">
-              <img src="<c:url value='/wdk/images/results_grip.png'/>" alt="" border="0" /></a>
+              <img src="<c:url value='wdk/images/results_grip.png'/>" alt="" border="0" /></a>
           </div>
         </c:if> --%>
         <c:if test="${j != 0}">
@@ -305,7 +304,7 @@
               </c:choose>
             <a href="${resultsAction}"
                         title="Remove ${sumAttrib} column">
-              <img src="<c:url value='/wdk/images/results_x.png'/>" alt="Remove" border="0" /></a>
+              <img src="<c:url value='wdk/images/results_x.png'/>" alt="Remove" border="0" /></a>
           </td>
         </c:if>
          </tr>
@@ -317,7 +316,7 @@
 </thead>
 <tbody id="rootBody">
 
-<!--
+<%--
 <c:if test = "${eupathIsolatesQuestion}">
    <tr><td colspan="10" align="center"> 
        
@@ -333,7 +332,7 @@
    </td></tr>
 
 </c:if>
--->
+--%>
 
 <c:set var="i" value="0"/>
 
@@ -347,26 +346,23 @@
 
 	<c:if test="${recHasBasket}">
           <td>
-	    <c:set value="${record.attributes['in_basket']}" var="is_basket"/>
-	    <c:set var="basket_img" value="basket_gray.png"/>
-	    <c:if test="${is_basket == '1'}">
-	      <c:set var="basket_img" value="basket_color.png"/>
-            </c:if>
+            <c:set var="basket_img" value="basket_gray.png"/>
             <c:choose>
-              <c:when test="${wdkUser.guest}">
-                <c:set var="basketClick" value="popLogin()" />
-                <c:set var="basketTitle" value="Please log in to use the basket." />
-              </c:when>
-              <c:otherwise>
-                <c:set var="basketClick" value="updateBasket(this, 'single', '${primaryKey.value}', '${projectId}', '${recNam}')" />
+              <c:when test="${!wdkUser.guest}">
+	        <c:set value="${record.attributes['in_basket']}" var="is_basket"/>
                 <c:set var="basketTitle" value="Click to add this item to the basket." />
-                <c:if test="${recHasBasket &&  record.attributes['in_basket'] == '1'}">
+	        <c:if test="${is_basket == '1'}">
+	          <c:set var="basket_img" value="basket_color.png"/>
                   <c:set var="basketTitle" value="Click to remove this item from the basket." />
                 </c:if>
+                <c:set var="basketClick" value="updateBasket(this, 'single', '${primaryKey.value}', '${projectId}', '${recNam}')" />
+              </c:when>
+              <c:otherwise>
+                <c:set var="basketTitle" value="Please log in to use the basket." />
               </c:otherwise>
             </c:choose>
 	    <a href="javascript:void(0)" onclick="${basketClick}">
-	      <img title="${basketTitle}" class="basket" value="${is_basket}" src="/assets/images/${basket_img}" width="16" height="16"/>
+	      <img title="${basketTitle}" class="basket" value="${is_basket}" src="wdk/images/${basket_img}" width="16" height="16"/>
 	    </a>
           </td>
 	</c:if>
@@ -391,14 +387,15 @@
         <c:when test="${j == 0}">
 
         <c:choose>
+<%--
            <c:when test="${fn:containsIgnoreCase(dispModelName, 'EuPathDB')}">
-	         <a href="javascript:create_Portal_Record_Url('${recNam}', '${projectId}', '${id}','')">${primaryKey.value}</a>
+	         <a href="showRecord.do?name=${recNam}&project_id=${projectId}&source_id=${id}">${fieldVal}</a>
            </c:when>
-
+--%>
            <c:when test = "${eupathIsolatesQuestion && record.summaryAttributes['data_type'] eq 'Sequencing Typed'}">
 
               <%-- add checkbox --%>
-              <nobr><a href="showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}">${fieldVal}</a><input type="checkbox" name="selectedFields" style="margin-top: 0px; margin-bottom: 0px;" value="${primaryKey.value}"></nobr>
+              <nobr><a href="showRecord.do?name=${recNam}&project_id=${projectId}&source_id=${id}">${fieldVal}</a><input type="checkbox" name="selectedFields" style="margin-top: 0px; margin-bottom: 0px;" value="${primaryKey.value}"></nobr>
 
             <c:set var="clustalwIsolatesCount" value="${clustalwIsolatesCount + 1}"/>
 
@@ -409,7 +406,7 @@
 
               <%-- display a link to record page --%>
 
-				<a class="primaryKey_||_${id}" href="showRecord.do?name=${recNam}&project_id=${projectId}&primary_key=${id}">${fieldVal}</a>
+				<a class="primaryKey_||_${id}" href="showRecord.do?name=${recNam}&project_id=${projectId}&source_id=${id}">${fieldVal}</a>
 
 
 

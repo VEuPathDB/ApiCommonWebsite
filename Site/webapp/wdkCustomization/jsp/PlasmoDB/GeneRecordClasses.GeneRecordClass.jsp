@@ -19,6 +19,7 @@
 <c:when test="${!wdkRecord.validRecord}">
 <site:header title="${wdkModel.displayName} : gene ${id}"
              divisionName="Gene Record"
+		refer="recordPage" 
              division="queries_tools"/>
   <h2 style="text-align:center;color:#CC0000;">The ${fn:toLowerCase(recordType)} '${id}' was not found.</h2>
 </c:when>
@@ -96,6 +97,7 @@
 
 <site:header title="${wdkModel.displayName} : gene ${id} (${prd})"
              divisionName="Gene Record"
+		refer="recordPage" 
              division="queries_tools"
              summary="${overview.value} (${length.value} bp)"/>
 
@@ -131,7 +133,8 @@
      <img src="<c:url value='/images/arrow.gif'/>">
   </td>
 
-  <c:if test="${species eq 'falciparum'}">
+<%-- These links have become obsolete as these serivces have been discontinued --%>
+<%-- <c:if test="${species eq 'falciparum'}">
     <td align="center"><a href="http://v4-4.plasmodb.org/plasmodb/servlet/sv?page=gene&source_id=${id}">${id} in PlasmoDB 4.4</a>
        <img src="<c:url value='/images/arrow.gif'/>">
     </td>
@@ -140,7 +143,7 @@
     <td align="center"><a href="http://v4-4.plasmodb.org/plasmodb/servlet/sv?page=pyGene&source_id=${id}">${id} in PlasmoDB 4.4</a>
        <img src="<c:url value='/images/arrow.gif'/>">
     </td>
-  </c:if>
+  </c:if> --%>
 
 </tr>
 </table>
@@ -313,9 +316,8 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(tracks, '+', '-')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/plasmodb/?name=${sequence_id}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/plasmodb/?name=${sequence_id}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>

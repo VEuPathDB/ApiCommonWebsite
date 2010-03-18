@@ -71,7 +71,13 @@ sub makeRPlotStrings {
     my $xMin = $profileSetsHash->{$part}->{default_x_min};
     my $xMax = $profileSetsHash->{$part}->{default_x_max};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin);
+    my $pointsLast = $profileSetsHash->{$part}->{are_points_last};
+    my $yAxisFoldInductionFromM = $profileSetsHash->{$part}->{make_y_axis_fold_incuction};
+
+
+    my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile);
 
     unshift @rv, $rCode;
   }
@@ -82,17 +88,22 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
-  $plotTitle = $plotTitle ? $plotTitle : "Whoops! You forgot the plot_title";
 
   $yMax = $yMax ? $yMax : "-Inf";
   $yMin = defined($yMin) ? $yMin : "Inf";
 
   $xMax = $xMax ? $xMax : "-Inf";
   $xMin = defined($xMin) ? $xMin : "Inf";
+
+  $pointsLast = defined($pointsLast) ? 'TRUE' : 'FALSE';
+
+  $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
+
+  $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -127,7 +138,11 @@ points.df\$V1 = NULL;
 
 for(i in 1:length(profile.files)) {
   profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
+  profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
   profile = profile.df\$VALUE;
+
+# allow minor adjustments to profile
+$rAdjustProfile
 
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
@@ -157,7 +172,8 @@ for(i in 1:length(profile.files)) {
 isTimeSeries = FALSE;
 
 x.coords = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(lines.df), perl=T));
-x.coords.rank = rank(x.coords);
+
+x.coords.rank = rank(x.coords, na.last=$pointsLast);
 
 # if the points df is all NA's that means we can plot as Time Series
 if(sum(is.na(points.df)) == ncol(points.df) * nrow(points.df)) {
@@ -194,7 +210,7 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
-par(mar       = c($bottomMargin,4,1,2), xpd=TRUE);
+par(mar       = c($bottomMargin,4,1,2), xpd=FALSE);
 
 my.pch = 15;
 
@@ -211,7 +227,8 @@ for(i in 1:nrow(lines.df)) {
          xlim = c(x.min, x.max),
          xaxt = \"n\",
          ylab = \"$yAxisLabel\",
-         ylim = c(y.min, y.max)
+         ylim = c(y.min, y.max),
+         axes = FALSE
         );
 
     if(isTimeSeries) {
@@ -247,8 +264,33 @@ for(i in 1:nrow(lines.df)) {
        );
 }
 
-#plasmodb.grid();
-plasmodb.title(\"$plotTitle\");
+yAxis = axis(4,tick=F,labels=F);
+if($yAxisFoldInductionFromM) {
+  yaxis.labels = vector();
+
+  for(i in 1:length(yAxis)) {
+    value = yAxis[i];
+    if(value > 0) {
+      yaxis.labels[i] = round(2^value, digits=1)
+    }
+    if(value < 0) {
+      yaxis.labels[i] = round(-1 * (1 / (2^value)), digits=1);
+    }
+    if(value == 0) {
+      yaxis.labels[i] = 0;
+    }
+  }
+
+  axis(2,at=yAxis,labels=yaxis.labels,tick=T);  
+} else {
+  axis(2);  
+
+}
+box();
+
+grid(nx=NA,ny=NULL,col=\"gray75\");
+lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
+
 
 ";
 

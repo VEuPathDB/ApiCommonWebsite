@@ -10,11 +10,12 @@
 <%@ attribute name="model"
               description="Param used in the cgi (plasmo, tritryp, toxo)"
 %>
-
 <c:set value="${requestScope.wdkRecord}" var="wdkRecord"/>
+<c:catch var="tagError">
 
 <c:set value="${wdkRecord.tables['ExpressionGraphs']}" var="tbl"/>
 <c:set value="${wdkRecord.tables['ExpressionGraphsData']}" var="dat"/>
+
 
 <c:set var="plotBaseUrl" value="/cgi-bin/dataPlotter.pl"/>
 
@@ -49,6 +50,7 @@
                </tr>
 
             <c:set var="i" value="0"/>
+
             <c:forEach var="drow" items="${dat}">
               <c:if test="${drow['profile_name'].value eq row['profile_name']}">
 
@@ -64,25 +66,24 @@
                     ${drow['value'].value}
                   </td>
                 </tr>
-              </c:if>
-
                <c:set var="i" value="${i +  1}"/>
+              </c:if>
             </c:forEach>
             </table>
      </c:set>
 
         <td class="centered">
 
+<c:if test="${i > 0}">
 <wdk:toggle
-    name="${row['profile_name'].value}Data"
+    name="${row['module'].value}Data"
     displayName="Data Table"
     content="${expressionDataTable}"
     isOpen="false"
     attribution=""/>         
 
        <br /><br />
-
-
+</c:if>
 
        <div class="small">
         <b>Description</b><br />
@@ -101,7 +102,7 @@
 <SELECT NAME="${name}List"
 OnChange="javascript:updateImage('${imgId}', ${name}Pick.${name}List.options[selectedIndex].value)">
 
-<c:forEach var="vp" items="${fn:split(row['visual_parts'].value, ',')}">
+<c:forEach var="vp" items="${fn:split(row['visible_parts'].value, ',')}">
 <OPTION  VALUE="${preImgSrc}&vp=${vp}">${vp}</OPTION>
 </c:forEach>
 
@@ -116,20 +117,36 @@ OnChange="javascript:updateImage('${imgId}', ${name}Pick.${name}List.options[sel
     </table>
   </c:set>
 
+
+<c:set var="noData" value="false"/>
   <c:if test="${row['has_profile'].value eq '0'}">
-    < c:set var="expressionContent" value="none"/>
+    <c:set var="expressionContent" value="none"/>
+    <c:set var="noData" value="true"/>
+
+    <c:if test="${row['profile_name'] eq 'Expression profiling of Tbrucei five life cycle stages'}">
+        <c:set var="expressionContent" value="<i>None</i>  NOTE: For this experiment, in the cases where the probe set mapped to near-identical genes, data was assigned to a single representative gene."/>
+        <c:set var="noData" value="false"/>
+    </c:if>
+
+
   </c:if>
 
 <wdk:toggle
-    name="${row['profile_name'].value}"
+    name="${row['module'].value}"
     isOpen="true"
     displayName="${row['display_name'].value}"
     content="${expressionContent}"
+    noData="${noData}"
     attribution="${row['attribution'].value}"/>
 
 </c:if>
 
 </c:forEach>
 
+</c:catch>
+<c:if test="${tagError != null}">
+    <c:set var="exception" value="${tagError}" scope="request"/>
+    <i>Error. Data is temporarily unavailable</i>
+</c:if>
 
 

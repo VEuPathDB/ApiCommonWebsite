@@ -14,6 +14,55 @@
     </record>
 --> 
 
+
+<record>
+       <attribute name="headline"><![CDATA[AmoebaDB 1.0 released]]>
+       </attribute>
+       <attribute name="date">15 March 2010 15:00
+       </attribute>
+       <attribute name="tag">amoeba0310_news
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to announce the release of AmoebaDB 1.0<br> 
+</span><br> 
+We are pleased to announced the full release of AmoebaDB 1.0 
+(<a href="http://amoebadb.org">http://amoebadb.org</a> or <a href="http://amebadb.org">http://amebadb.org</a>). &nbsp;<br> 
+Leveraging bioinformatics infrastructure developed in the context of the EuPathDB project (including PlasmoDB, etc), this resource 
+incorporates genome sequence and annotation from the Pathema project. &nbsp;
+<span style="font-weight: bold;"><br><br>
+Highlights include:</span>
+<br><br> 
+<ul> 
+ <li><span style="font-weight: bold;">Sequence and annotation for</span> <i>Entamoeba histolytica, E. dispar and E. invadens</i>.</span></li> 
+ <li><span style="font-weight: bold;">Genome sequence alignments</span>, permitting comparative genomic analysis of synteny between <i>Entamoeba</i> species.</li> 
+ <li><span style="font-weight: bold;">Expressed sequence tag data</span> for <i>E.&nbsp;histolytica</i> and <i> E. dispar.</i></li> 
+ <li><span style="font-weight: bold;">'User Comments'</span> may be added to any gene page, enhancing available annotation. 
+        Such comments become immediately visible and searchable by others.</li> 
+ <li><span style="font-weight: bold;">Identification of genes</span> based on text terms, ID #, GO terms, EC #, chromosomal location, BLAST, 
+        sequence features (length/MW, exons, signal sequences, Pfam domains, user-defined motifs), orthology, etc. </li> 
+ <li><span style="font-weight: bold;">Support for integrated searches</span>, via the 'search strategy builder'. &nbsp;Strategies can be stored and shared 
+       with others by logging into AmoebaDB. For an example, <a href="http://amoebadb.org/amoeba/im.do?s=aed2d725b224ff13"><b>open this sample strategy</b></a> 
+       that combines multiple searches, in your browser.</li>
+</ul>
+<br><br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:
+</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, testing and rendering your opinion.
+</div>
+ ]]>
+       </attribute>
+
+</record>
+
+
 <record>
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>

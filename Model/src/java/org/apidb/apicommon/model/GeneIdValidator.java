@@ -48,7 +48,11 @@ public class GeneIdValidator {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        } finally {
+             // close the connection
+             SqlUtils.closeResultSet(rs);
         }
+
         return false;
     }
 }

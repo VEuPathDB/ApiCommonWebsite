@@ -32,42 +32,29 @@
 	<div class="innertube">
 </c:if>
 
-<%-- TOOLS --%>
-<%--
-	<p align="center"><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a> &nbsp;|&nbsp;<a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a> &nbsp;|&nbsp; <a href="/common/PubCrawler/"><strong>PubMed and Entrez</strong></a> &nbsp;|&nbsp; <a href="#"><strong>GBrowse</strong></a> &nbsp;|&nbsp; <a href="#"><strong>CryptoCyc</strong></a></p> <br>
---%>
 
 <%-- QUERIES --%>
 <%-- the cellspacing is what allows for separation between Genomic and SNP (EST and ORF) titles --%>
 <%-- with new UI design the cellspacing/cellpdding of the table seems useless, innertube2 class provdes the padding --%>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-<%--
-<div style="padding-top:5px;position: relative;left: 1.5em;" class="h3left">
---%>
 <div style="padding-top:5px;" class="h3center">
-	Select a Search, which will be the first step in you new strategy.
+	Select a search, which will be the first step in you new strategy.
+</div>
 
-<%--
-<c:if test="${from != 'tab'}">
- 	or  click on "My Strategies" to enter your strategy workspace.</div>
-</c:if>
-<c:if test="${from == 'tab'}">
- 	or  click on the "Opened" or "All" tabs above, to access your strategies.</div>
-</c:if>
---%>
-
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
 <c:if test="${PORTAL}">
 <tr><td colspan="3">  
     <div class="smallBlack" align="middle">
-	<b>Query Availability in Organism Specific Sites:</b> &nbsp;&nbsp; &nbsp;
-	<img src='<c:url value="/images/cryptodb_letter.gif" />' border='0' alt='crypto' /> = CryptoDB &nbsp;&nbsp;
-	<img src='<c:url value="/images/giardiadb_letter.gif" />' border='0' alt='giardia' /> = GiardiaDB &nbsp; &nbsp;
-	<img src='<c:url value="/images/plasmodb_letter.gif" />' border='0' alt='plasmo' /> = PlasmoDB &nbsp;&nbsp;
-	<img src='<c:url value="/images/toxodb_letter.gif" />' border='0' alt='toxo' /> = ToxoDB &nbsp; &nbsp;
-	<img src='<c:url value="/images/trichdb_letter.gif" />' border='0' alt='trich' /> = TrichDB &nbsp; &nbsp;
-        <img src='<c:url value="/images/tritrypdb_letter.gif" />' border='0' alt='Tt' /> = TriTrypDB &nbsp; &nbsp;
+	<b>Search Availability in Organism Specific Sites:</b> &nbsp;&nbsp; &nbsp;
+	<img src="/assets/images/A_letter.gif" border='0' alt='amoeba' width="10" height="10"/> = AmoebaDB &nbsp;&nbsp;
+	<img src="/assets/images/cryptodb_letter.gif" border='0' alt='crypto' /> = CryptoDB &nbsp;&nbsp;
+	<img src="/assets/images/giardiadb_letter.gif" border='0' alt='giardia' /> = GiardiaDB &nbsp; &nbsp;
+	<img src="/assets/images/M_letter.gif" border='0' alt='micro'  width="10" height="10"/> = MicrosporidiaDB &nbsp; &nbsp;
+	<img src="/assets/images/plasmodb_letter.gif" border='0' alt='plasmo' /> = PlasmoDB &nbsp;&nbsp;
+	<img src="/assets/images/toxodb_letter.gif" border='0' alt='toxo' /> = ToxoDB &nbsp; &nbsp;
+	<img src="/assets/images/trichdb_letter.gif" border='0' alt='trich' /> = TrichDB &nbsp; &nbsp;
+        <img src="/assets/images/tritrypdb_letter.gif" border='0' alt='Tt' /> = TriTrypDB &nbsp; &nbsp;
 	</div>
 </td></tr>
 </c:if>
@@ -76,7 +63,7 @@
 <tr><td colspan="3">  
     <div class="smallBlack" align="middle">
 	(Click on &nbsp; 
-	<img src="/images/eupath_e.gif" border='0' alt='eupathdb'/> &nbsp; to access a query in <b><a href="http://eupathdb.org">EuPathDB.org</a></b>)
+	<img src="/assets/images/eupathdb_letter.gif" border='0' alt='eupathdb'/> &nbsp; to access a search in <b><a href="http://eupathdb.org">EuPathDB.org</a></b>)
 	</div>
 </td></tr>
 </c:if>
@@ -84,16 +71,6 @@
 <%-----------------------------------------------------------------------------%>
 <%--  All Gene Queries  --%>
 <tr class="headerrow2"><td colspan="4" align="center"><b>Identify Genes by:</b></td></tr>
-
-<%-- portal does not need currently these queries in front page (home) --%>
-<c:if test="${COMPONENT || from != 'home'}">
-<%--
-<tr><td colspan="3" align="center">
- 	<site:quickSearch/>
-</td></tr>
---%>
-</c:if>
-
 
 <tr><td colspan="3" align="center">
 	<site:queryGridGenes/>
