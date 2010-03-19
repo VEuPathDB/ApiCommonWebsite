@@ -17,6 +17,67 @@
        </attribute>
     </record>
 -->
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            CryptoDB 4.3 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+         15 March 2010 15:00
+       </attribute>
+       <attribute name="tag">
+         crypto0310_news
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to 
+announce the release of CryptoDB 4.3</span><br> 
+<br> 
+This release contains the following new datasets and features:<br> 
+<br> 
+<span style="font-weight: bold;">New Data:</span><br> 
+<br> 
+This release of CryptoDB contains new expressed sequence tag (EST) data 
+for Cryptosporidium parvum KSU-1, normalized sporozoite and pooled 
+normalized enriched 24-48hr post-infection. &nbsp;EST data can be 
+searched in many ways, such as by <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsBySimilarity">BLAST</a>,
+<a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsByLibrary">library</a>, <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsWithGeneOverlap">extent of gene overlap</a>, etc.
+&nbsp;Additionally, genes can be searched <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=GeneQuestions.GenesByESTOverlap">based on EST evidence</a>.<span style="font-weight: bold;"><br> 
+<br> 
+New Features:</span><br><br>
+<ul> 
+ <li>The gray tool bar at the top of all CryptoDB web pages has 
+been enhanced to include a link to the "My Basket" feature including an 
+indication of how may items are in the basket.</li> 
+ <li>The genome browser has been updated to version 1.7, which 
+offers enhanced features and stability.&nbsp;Now you can select a span and send the sequence to ncbi for blasting!</li> 
+ <li>Weighted searches are now available. &nbsp;This feature 
+allows you to assign an arbitrary weight to the searches (steps) in 
+your search strategy making it possible for you to view a ranked list 
+of your results.&nbsp;</li> 
+</ul> 
+<br><br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:
+</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
+</div>
+ ]]>
+       </attribute>
+
+</record>
+
+
+
+
 <record>
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
