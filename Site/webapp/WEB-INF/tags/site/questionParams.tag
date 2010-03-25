@@ -26,8 +26,10 @@
         <c:set var="recordType" value="Assemblie" />
 </c:if>
 
-
+<%--
 <html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
+--%>
+
 
 <%-- show all params of question, collect help info along the way --%>
 <c:set value="Help for question: ${wdkQuestion.displayName}" var="fromAnchorQ"/>
@@ -227,13 +229,14 @@
 		</div>
 		<div class="group-detail" style="display:${display};text-align:center">
     			<div class="group-description">
-				<p><input type="text" name="weight" value="${weight}">  </p> 
-				<p>Optionally give this search a "weight" (for example 10, 200, -50).<br>In a search strategy, unions and intersects will sum the weights, giving higher scores to items found in multiple searches. </p>
+				<p><html:text property="weight" maxlength="9" />  </p> 
+				<p>Optionally give this search a "weight" (for example 10, 200, -50, integer only).<br>In a search strategy, unions and intersects will sum the weights, giving higher scores to items found in multiple searches. </p>
 	
     			</div><br>
 		</div>
 	</div>
 </c:if>
 
-
+<%--
 </html:form>
+--%>

@@ -126,6 +126,10 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
   />
 </c:if>
 
+<!-- gene alias table -->
+<wdk:wdkTable tblName="Alias" isOpen="true" attribution=""/>
+
+
 <site:pageDivider name="Annotation"/>
 <%--- Notes --------------------------------------------------------%>
 
@@ -214,7 +218,7 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
 <c:if test="${(attrs['so_term_name'].value eq 'protein_coding') || (attrs['so_term_name'].value eq 'repeat_region')}">
   <site:pageDivider name="Protein"/>
     <c:set var="ptracks">
-    InterproDomains+SignalP+TMHMM+BLASTP
+    InterproDomains+SignalP+TMHMM+HayesMassSpecPeptides+HydropathyPlot+BLASTP
     </c:set>
     
     <c:set var="attribution">
