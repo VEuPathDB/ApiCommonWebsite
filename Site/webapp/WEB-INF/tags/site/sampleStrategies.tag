@@ -58,7 +58,7 @@
    </c:when>
 
 <c:when test="${fn:containsIgnoreCase(site, 'ToxoDB')}">
-      <c:set var="simple" value="352b14ef66963cb0" />
+      <c:set var="simple" value="cc5c9876caa70f82" />
       <c:set var="expanded" value="7d1b3f3e66521bea" />
    </c:when>
 
