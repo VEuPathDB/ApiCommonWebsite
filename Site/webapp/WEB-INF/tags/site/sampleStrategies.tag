@@ -58,7 +58,7 @@
    </c:when>
 
 <c:when test="${fn:containsIgnoreCase(site, 'ToxoDB')}">
-      <c:set var="simple" value="cc5c9876caa70f82" />
+      <c:set var="simple" value="352b14ef66963cb0" />
       <c:set var="expanded" value="7d1b3f3e66521bea" />
    </c:when>
 
@@ -76,8 +76,8 @@
    </c:when>
 
  <c:when test="${fn:containsIgnoreCase(site, 'EuPathDB')}">
-      <c:set var="simple" value="4961f7629e7950c9" />
-      <c:set var="expanded" value="c8badd7f483025f8" />
+      <c:set var="simple" value="f8336deab20f2975" />
+      <c:set var="expanded" value="d22e44069555be2d" />
    </c:when>
 
 
@@ -95,7 +95,7 @@
 
 <c:if test="${simple != null}">
 <tr align = "left">
-	<td><a title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${simple}"/>">Prot Cod Sig Pep EST Evidence</a> </td>
+	<td><a title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${simple}"/>">Protein Coding having Signal Pep and EST Evidence</a> </td>
 	<td>Simple strategy</td>
 	<td>Find all protein coding genes that have a signal peptide and evidence for expression based on EST alignments</td>
 </tr>
@@ -103,7 +103,7 @@
 
 <c:if test="${expanded != null}">
   <tr align = "left">
-	<td><a  title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${expanded}"/>">kin, TM, (EST or Prot) ortho</a> </td>
+	<td><a  title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${expanded}"/>">Kinases having TM domains and Expr(EST or Prot evidence) ortho</a> </td>
 	<td>Strategy with nested strategy and transform</td>
 	<td>Find all kinases that have at least one transmembrane domain and evidence for expression based on EST alignments or proteomics evidence and transform the result to identify all orthologs since not all organisms have expression evidence</td>
 </tr>
