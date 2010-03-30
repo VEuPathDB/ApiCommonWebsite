@@ -17,6 +17,119 @@
        </attribute>
     </record>
 -->
+
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            TriTrypDB 2.1 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+         15 March 2010 15:00
+       </attribute>
+       <attribute name="tag">
+         tritryp0310_news
+       </attribute>
+       <attribute name="item">           
+         <![CDATA[
+<span style="font-weight: bold;">We are pleased to
+announce the release of TriTrypDB 2.1</span><br>
+<br>
+This release contains the following new datasets and features:<br>
+<br>
+<span style="font-weight: bold;">New Data:</span><br><br>
+<ul>
+ <li>Microarray data from of Minning et. al. of <span
+style="font-style: italic;">T. cruzi</span> life cycle
+stages (trypomastigotes, amastigotes, epimastigotes, and metacyclic
+trypomastigotes). For additional details please see the publication
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/19664227">http://www.ncbi.nlm.nih.gov/pubmed/19664227</a></li>
+ <li>Microarray data from Queiroz et. al. of <span
+style="font-style: italic;">T. brucei </span>expression
+profile during in vitro differentiation from slender bloodstream forms
+to stumpy procyclic forms. For additional details please see the
+publication
+&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/19857263">http://www.ncbi.nlm.nih.gov/pubmed/19857263</a>&nbsp;</li>
+ <li>Microarray data from Kabani et. al. of
+rodent-derived&nbsp;<span style="font-style: italic;">T.
+brucei</span>&nbsp;
+pleomorphic slender forms, stumpy forms and at 1h, 6h, 18h, and 48h
+through synchronous in vitro differentiation to procyclic forms.
+&nbsp;For additional details please see the publication
+&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/19747379">http://www.ncbi.nlm.nih.gov/pubmed/19747379</a></li>
+ <li>Microarray data from Jensen et. al. of five different <span
+style="font-style: italic;">T. brucei</span> life
+cycle stages.&nbsp;For additional details please see the
+publication&nbsp; <a href="http://www.ncbi.nlm.nih.gov/pubmed/19840382">http://www.ncbi.nlm.nih.gov/pubmed/19840382</a></li>
+ <li>Microarray data from Estevez of <span
+style="font-style: italic;">T. brucei </span>depleted
+of the RNA-binding protein TbDRBD3. &nbsp;For additional details
+please see the publication&nbsp;
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/18611951">http://www.ncbi.nlm.nih.gov/pubmed/18611951</a></li>
+</ul><br>
+<ul>
+ <ul>
+   <ul>
+     <li>Access <a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">
+       all microarray searches in TriTrypDB</a></li>
+     <li>Expression profile graphs are also available on gene pages.</li>
+   </ul>
+ </ul>
+</ul>
+<br>
+<ul>
+ <li>RNA sequence data provided pre-publication by George Cross
+     of blood and procyclic forms of <span style="font-style: italic;">T.
+      brucei</span>. &nbsp;Expression profiles based on RNA-seq
+      data can be viewed in the genome browser, on gene pages or searched
+      in the <a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">
+     Genes by RNA-Seq</a> page.
+ </li>
+</ul>
+<br>
+<span style="font-style: italic;"></span><span
+style="font-weight: bold;">New Features:</span><br><br>
+<ul>
+ <li>The gray tool bar at the top of all TriTrypDB web pages has
+been enhanced to include a link to the "My Basket" feature including an
+indication of how may items are in the basket.</li>
+ <li>The genome browser has been updated to version 1.7, which
+offers enhanced features and stability.&nbsp;</li>
+ <li>Weighted searches are now available. &nbsp;This feature
+allows you to assign an arbitrary weight to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results.&nbsp;</li>
+</ul>
+<br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, testing and rendering your opinion.
+
+<!--
+<span style="font-weight: bold;">Become a Beta tester:<br>
+</span>
+<div style="margin-left: 40px;">
+<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign on to become a beta
+tester</a> for new features in EuPathDB sites. &nbsp;As we continue to
+evolve we introduce new features and functionalities to make our sites
+more useful for you and this is an opportunity for you to contribute to
+the enhancement of this resource. &nbsp;Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion.
+-->
+
+</div>
+          ]]>
+       </attribute>
+    </record>
+
+
 <record>
        <attribute name="headline">
          <![CDATA[
@@ -30,7 +143,7 @@
          tritryp1209_news
        </attribute>
        <attribute name="item">           
-         <![CDATA[body>
+         <![CDATA[
 <span style="font-weight: bold;">We are pleased to
 announce the release of TriTrypDB 2.0</span><br>
 <br>
@@ -95,7 +208,6 @@ right
 under the genomic context view.</li>
   <li>Web services have been implemented to receive weekly updates from GeneDB to provide a more rapid account for updated genes.</li>
 </ul>
-</body>
           ]]>
        </attribute>
     </record>

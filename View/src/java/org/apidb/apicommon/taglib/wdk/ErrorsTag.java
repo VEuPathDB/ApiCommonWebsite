@@ -72,8 +72,11 @@ public class ErrorsTag extends WdkTagBase {
         "",
         "qa.",
         "beta.",
-        "www.",
-        "mheiges."
+        "w1.",
+        "w2.",
+        "b1.",
+        "b2.",
+        "www."
     };
     private static final String PAGE_DIV = 
         "\n************************************************\n";
@@ -297,7 +300,10 @@ public class ErrorsTag extends WdkTagBase {
         appendErrorUrl(body);
         appendRemoteHost(body);
         appendReferer(body);
-                
+        
+        appendUserAgent(body);
+        appendServerAddress(body);
+
         body.append(PAGE_DIV);
         appendRequestParameters(body);
         
@@ -377,10 +383,22 @@ public class ErrorsTag extends WdkTagBase {
         if (queryString != null) 
             errorUrl.append("?" + queryString);
 
-        sb.append("Error on: " + "\n" + errorUrl + "\n");
+        sb.append("Error on: " + "\n  " + errorUrl + "\n");
     }
 
-
+    private void appendUserAgent(StringBuffer sb) {
+        String userAgent = (String)request.getHeader("user-agent");
+        sb.append("UserAgent: " + "\n  " + userAgent + "\n");
+    }
+    
+    private void appendServerAddress(StringBuffer sb) {
+        // "JkEnvVar SERVER_ADDR" is required in Apache configuration
+        String serverAddr = (request.getAttribute("SERVER_ADDR") != null) ?
+            (String)request.getAttribute("SERVER_ADDR") :
+            "<not set; is 'JkEnvVar SERVER_ADDR' set in the Apache configuration?>";
+        sb.append("Server Addr: " + serverAddr + "\n");
+    }
+    
     @SuppressWarnings("unchecked")
     private void appendRequestParameters(StringBuffer sb) {
         sb.append("Request Parameters (request to the server)\n\n");

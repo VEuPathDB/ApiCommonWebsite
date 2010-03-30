@@ -64,10 +64,18 @@ sub processParams {
   $self->{upstreamSign}     = $cgi->param('upstreamSign');
   $self->{downstreamSign}   = $cgi->param('downstreamSign');
 
+
   # to allow for NOT mapping an id to the latest one (use in ToxoDB)
   $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
 
-  my @inputIds              = split(/[,\s]+/, $cgi->param('ids'));
+  my $projectId = $cgi->param('project_id');  
+
+  my @inputIds;
+  foreach(split(/[,\s]+/, $cgi->param('ids'))) {
+    push(@inputIds, $_) unless($_ eq $projectId);
+  }
+
+
   $self->{inputIds}         = \@inputIds;
 
   $self->{type} = 'protein' if (!$self->{type} || $self->{type} !~ /\S/);
@@ -213,9 +221,12 @@ sub mapGeneFeatureSourceIds {
       while(my ($sourceId) = $sh->fetchrow_array()) {
         $best = $sourceId;
       }
+      $sh->finish();
     }
     push @ids, $best if($best);
   }
+
+  $sh->finish();
 
   return \@ids;
 }

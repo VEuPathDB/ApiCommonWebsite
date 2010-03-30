@@ -154,7 +154,7 @@ patch_all() {
     #patch -d $cgilibTargetDir/Bio/Graphics/Glyph -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/arrow.pm.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/gbrowse_img_v1.70.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/gbrowse_v1.70.patch
-    #patch -d $confTargetDir/gbrowse.conf/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.64/GFFDumper.pm_v1.64.patch
+    patch -d $confTargetDir/gbrowse.conf/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/BatchDumper.pm_v1.70.patch
     patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/POSIX.pm_v1.70.patch
 }
 

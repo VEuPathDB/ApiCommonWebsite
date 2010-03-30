@@ -35,6 +35,10 @@
 <c:set var="context_end_range" value="${attrs['context_end'].value}" />
 <c:set var="binomial" value="${attrs['genus_species'].value}"/>
 
+<c:set var="start" value="${attrs['start_min_text'].value}"/>
+<c:set var="end" value="${attrs['end_max_text'].value}"/>
+<c:set var="strand" value="${attrs['strand_plus_minus'].value}"/>
+
 <c:set var="so_term_name" value="${attrs['so_term_name'].value}"/>
 <c:set var="prd" value="${attrs['product'].value}"/>
 <c:set var="overview" value="${attrs['overview']}"/>
@@ -106,9 +110,8 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(tracks, '+', '-')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/trichdb/?name=${contig}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/trichdb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
@@ -122,6 +125,10 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
     attribution="${attribution}"
   />
 </c:if>
+
+<!-- gene alias table -->
+<wdk:wdkTable tblName="Alias" isOpen="true" attribution=""/>
+
 
 <site:pageDivider name="Annotation"/>
 <%--- Notes --------------------------------------------------------%>
@@ -211,7 +218,7 @@ T.vaginalis_scaffolds,T.vaginalis_Annotation
 <c:if test="${(attrs['so_term_name'].value eq 'protein_coding') || (attrs['so_term_name'].value eq 'repeat_region')}">
   <site:pageDivider name="Protein"/>
     <c:set var="ptracks">
-    InterproDomains+SignalP+TMHMM+BLASTP
+    InterproDomains+SignalP+TMHMM+HayesMassSpecPeptides+HydropathyPlot+BLASTP
     </c:set>
     
     <c:set var="attribution">

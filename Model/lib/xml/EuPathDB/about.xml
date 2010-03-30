@@ -17,21 +17,16 @@
 
 EuPathDB (formerly ApiDB) is an integrated database 
 covering the eukaryotic pathogens in the genera <i>Cryptosporidium</i>, <i>Giardia</i>, <i>Entamoeba</i>, <i>Encephalitozoon</i>,
-<i>Leishmania</i>, <i>Neospora</i>, <i>Plasmodium</i>, <i>Toxoplasma</i>, <i>Trichomonas</i> and 
-<i>Trypanosoma</i>.  While each of these groups is supported by a taxon-specific 
-database built upon the same infrastructure, the EuPathDB portal offers an 
-entry point to all of these resources, and the opportunity to leverage orthology 
-for searches across genera.
+<i>Leishmania</i>, <i>Neospora</i>, <i>Plasmodium</i>, <i>Toxoplasma</i>, <i>Trichomonas</i> and <i>Trypanosoma</i>.  
+While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an 
+entry point to all of these resources, and the opportunity to leverage orthology for searches across genera.
 <br><br>
-The EuPathDB family of databases is expected to expanding further over 
-the coming years, incorporate new species including the Amoebozoa 
-(Entamoeba, Acanthamoebs), Microsporidia, and additional Apicomplexans, 
-Kinetoplastida and Diplomonads.
+The EuPathDB databases are funded by NIAID and they have strict guidelines as to which organisms we can support.  EuPathDB is one of four <a href="http://www3.niaid.nih.gov/LabsAndResources/resources/brc/">NIH funded bioinformatics resource centers</a>.  Mainly we are to incorporate any eukaryotic pathogen that is deemed emerging or re-emerging (see <a href="http://www3.niaid.nih.gov/topics/emerging/list.htm">list</a>).  We also have some organisms that are not on the list, those were either added in the past on the behest of the community and additional funding (such as TrichDB), organisms that are related to emerging or re-emerging pathogen (such as Plasmodium or Neospora) and the trypanosomatids (funded as a pilot project by the Bill and Melinda Gates foundation).
 <br><br>
-Of course, we continue collecting data  that are being deposited at an ever-increasing rate, including additional 
-genome sequences, microarray data, probe-based hybridization and sequencing 
-data (e.g. ChIP-chip and RNA-Seq), proteomics data, isolate data, phenotype 
-information, metabolomic data, etc.
+The EuPathDB family of databases is expected to expand further over the coming years, incorporating new species including the Amoebozoa 
+(Entamoeba, Acanthamoebs), Microsporidia, and additional Apicomplexans, Kinetoplastida and Diplomonads. Of course, we continue collecting data 
+that are being deposited at an ever-increasing rate, including additional genome sequences, microarray data, 
+probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), proteomics data, isolate data, phenotype information and metabolomic data.
 
 
        ]]>
@@ -358,7 +353,7 @@ EuPathDB. Please see Citing EuPathDB below.
 Much of the data in EuPathDB is provided by independent
 researchers.  Please cite them if you use their data.  For a list
 of the data integrated into EuPathDB and the related
-publications please access the "Data Sources" link, in each respective project (CryptoDB, GiardiaDB, etc) located on the menubar under the header of the any page.
+publications please access the "Data Sources" link located in the "Data Summary" option on the grey menubar located at the top of any page.
 
 <br><br>
 When citing EuPathDB itself, please use:

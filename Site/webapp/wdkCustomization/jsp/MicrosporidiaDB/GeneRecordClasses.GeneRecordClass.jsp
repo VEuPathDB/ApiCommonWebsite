@@ -40,6 +40,15 @@
 <c:set var="prd" value="${attrs['product'].value}"/>
 <c:set var="overview" value="${attrs['overview']}"/>
 <c:set var="length" value="${attrs['transcript_length']}"/>
+
+<c:set var="start" value="${attrs['start_min_text'].value}"/>
+<c:set var="end" value="${attrs['end_max_text'].value}"/>
+<c:set var="strand" value="+"/>
+<c:if test="${attrs['strand'].value == 'reverse'}">
+  <c:set var="strand" value="-"/>
+</c:if>
+
+
 <%-- display page header with recordClass type in banner --%>
 
 <site:header title="MicrosporidiaDB : gene ${id} (${prd})"
@@ -103,9 +112,8 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations
   <c:set var="gnCtxImg">
     <center><div id="${gnCtxDivId}"></div></center>
     
-    <c:set var="labels" value="${fn:replace(gtracks, '+', '-')}" />
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/microsporidiadb/?name=${contig}:${context_start_range}..${context_end_range};label=${labels};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/microsporidiadb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
@@ -119,6 +127,32 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations
     attribution="${attribution}"
   />
 </c:if>
+
+
+<!-- gene alias table -->
+<wdk:wdkTable tblName="Alias" isOpen="true" attribution=""/>
+
+
+<!-- Mercator / Mavid alignments -->
+
+ <c:if test="${strand eq '-'}">
+   <c:set var="revCompOn" value="1"/>
+  </c:if>
+
+<c:set var="mercatorAlign">
+<site:mercatorMAVID cgiUrl="/cgi-bin" projectId="${projectId}" revCompOn="${revCompOn}"
+                    contigId="${contig}" start="${start}" end="${end}" bkgClass="rowMedium" cellPadding="0"
+                    availableGenomes=""/>
+</c:set>
+
+<wdk:toggle isOpen="false"
+  name="mercatorAlignment"
+  displayName="Multiple Sequence Alignment"
+  content="${mercatorAlign}"
+  attribution=""/>
+
+
+
 
 <site:pageDivider name="Annotation"/>
 <%--- Notes --------------------------------------------------------%>

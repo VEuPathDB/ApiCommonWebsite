@@ -70,14 +70,14 @@
  <c:when test="${fn:containsIgnoreCase(site, 'TriTrypDB')}">
       <c:set var="simple" value="6d18cc017993d226" />
       <c:set var="expanded" value="8699257e6a988b74" />
-      <c:set var="expressed" value="a9bcc63ae545fdf7" />
-      <c:set var="expressedLbrazilliensis" value="15bf7913bd87fdf1" />
+      <c:set var="TcAllexpressed" value="4abe1d668c3cc290" />
+      <c:set var="expressedLbrazilliensis" value="edf8019a9b1c938f" />
       <c:set var="SecretedAmastigoteKin" value="c867cab6ad4645a0" />
    </c:when>
 
  <c:when test="${fn:containsIgnoreCase(site, 'EuPathDB')}">
-      <c:set var="simple" value="4961f7629e7950c9" />
-      <c:set var="expanded" value="c8badd7f483025f8" />
+      <c:set var="simple" value="f8336deab20f2975" />
+      <c:set var="expanded" value="d22e44069555be2d" />
    </c:when>
 
 
@@ -95,7 +95,7 @@
 
 <c:if test="${simple != null}">
 <tr align = "left">
-	<td><a title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${simple}"/>">Prot Cod Sig Pep EST Evidence</a> </td>
+	<td><a title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${simple}"/>');" href="javascript:void(0);">Protein Coding having Signal Pep and EST Evidence</a> </td>
 	<td>Simple strategy</td>
 	<td>Find all protein coding genes that have a signal peptide and evidence for expression based on EST alignments</td>
 </tr>
@@ -103,7 +103,7 @@
 
 <c:if test="${expanded != null}">
   <tr align = "left">
-	<td><a  title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${expanded}"/>">kin, TM, (EST or Prot) ortho</a> </td>
+	<td><a  title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${expanded}"/>');" href="javascript:void(0);">Kinases having TM domains and Expr(EST or Prot evidence) ortho</a> </td>
 	<td>Strategy with nested strategy and transform</td>
 	<td>Find all kinases that have at least one transmembrane domain and evidence for expression based on EST alignments or proteomics evidence and transform the result to identify all orthologs since not all organisms have expression evidence</td>
 </tr>
@@ -111,31 +111,31 @@
 
 <c:if test="${expandedTmOrSP!= null}">
   <tr align = "left">
-	<td><a  title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${expandedTmOrSP}"/>">kinase, TM or SP, EST evidence</a> </td>
+	<td><a  title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${expandedTmOrSP}"/>');" href="javascript:void(0);">kinase, TM or SP, EST evidence</a> </td>
 	<td>Strategy with nested strategy</td>
 	<td>Find all kinases that have at least one transmembrane domain or a signal peptide and evidence for expression based on EST alignments</td>
 </tr>
 </c:if>
 
-<c:if test="${expressed != null}">
+<c:if test="${TcAllexpressed != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${expressed}"/>">Expressed Genes</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${TcAllexpressed}"/>');" href="javascript:void(0);"><i>T.c.</i> Expressed Genes</a> </td>
 	<td>Strategy with a nested strategy</td>
-	<td>Find all genes in the database that have any direct evidence for expression</td>
+	<td>Find all <i> T. cruzi</i> genes in the database that have direct evidence for expression</td>
 </tr>
 </c:if>
 
 <c:if test="${expressedLbrazilliensis != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${expressedLbrazilliensis}"/>"><i>L. brazilliensis</i> Expressed Genes</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${expressedLbrazilliensis}"/>');" href="javascript:void(0);"><i>L.b.</i> Proteins with epitopes and expression evidence</a> </td>
 	<td>Strategy with an ortholog transform</td>
-	<td>Find all genes from <i>L. brazilliensis</i> that have any evidence for expression based on direct evidence or using orthology</td>
+	<td>Find all genes from <i>L. brazilliensis</i> whose protein product has epitope and expression evidence using orthology</td>
 </tr>
 </c:if>
 
 <c:if test="${SecretedAmastigoteKin != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${SecretedAmastigoteKin}"/>">Secreted Amastigote Kinases</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${SecretedAmastigoteKin}"/>');" href="javascript:void(0);">Secreted Amastigote Kinases</a> </td>
 	<td>Strategy with nested strategies and an ortholog transform</td>
 	<td>Find all genes in TriTrypDB (based on orthology) that are kinases (based on text search), are likely secreted (signal peptide and transmembrane domain prediction) and have any evidence for expression in the amastigote stage of <i>T. cruzi</i> (proteomics and EST)</td>
 </tr>
@@ -143,7 +143,7 @@
 
 <c:if test="${expressedPknowlesi != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${expressedPknowlesi}"/>">P.knowlesi Expressed Genes</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${expressedPknowlesi}"/>');" href="javascript:void(0);">P.knowlesi Expressed Genes</a> </td>
 	<td>Strategy with a nested strategy and an ortholog transform</td>
 	<td>Find all genes from <i>P. knowlesi</i> that have any evidence for expression based on orthology to other <i>Plasmodium</i> species</td>
 </tr>
@@ -151,7 +151,7 @@
 
 <c:if test="${PfalVaccineAg != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${PfalVaccineAg}"/>"><i>P.falciparum</i> candidate vaccine antigens</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${PfalVaccineAg}"/>');" href="javascript:void(0);"><i>P.falciparum</i> candidate vaccine antigens</a> </td>
 	<td>Simple stategy to identify potential vaccine antigens</td>
 	<td>Find all genes from <i>P. falciparum</i> that that could be worth following up as a potential vaccine antigen.  Note that there are many ways to do this search ... experiment with different parameter settings and incorporating different queries.</td>
 </tr>
@@ -159,7 +159,7 @@
 
 <c:if test="${PfalDrugTargets != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${PfalDrugTargets}"/>"><i>P.falciparum</i> candidate drug targets</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${PfalDrugTargets}"/>');" href="javascript:void(0);"><i>P.falciparum</i> candidate drug targets</a> </td>
 	<td>Nested stategy to identify potential drug targets.</td>
 	<td>Find genes from <i>P. falciparum</i> that could be worth following up as potential drug targets.  Note that there are many ways to do this search ... experiment with different parameter settings and incorporating different queries.</td>
 </tr>
@@ -167,7 +167,7 @@
 
 <c:if test="${mspHypoGeneGO != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${mspHypoGeneGO}"/>">GO annotated hypotheticals</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${mspHypoGeneGO}"/>');" href="javascript:void(0);">GO annotated hypotheticals</a> </td>
 	<td>Hypothetical genes with GO annotation.</td>
 	<td>Find <i>Encephalitozoon</i> genes which have the word 'hypothetical' in the product description and which have gene ontology (GO) terms assigned. 
 	This set of genes are candidates for improved gene annotation when the computationally assigned GO terms hint at the role or function of the gene product.</td>
@@ -176,7 +176,7 @@
 
 <c:if test="${fungiNotAnimal != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${fungiNotAnimal}"/>">Conservered Fungi/secr.TM</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${fungiNotAnimal}"/>');" href="javascript:void(0);">Conservered Fungi/secr.TM</a> </td>
 	<td>Secreted genes conserved in Fungi and absent from animals.</td>
 	<td>Find signal peptide and transmembrane domain-containing proteins conserved in fungi and which lack detectable orthologs in animals.</td>
 </tr>
@@ -184,12 +184,11 @@
 
 <c:if test="${secKin != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" href="<c:url value="/im.do?s=${secKin}"/>">Secreted kinases</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Secreted kinases</a> </td>
 	<td>Secreted kinases not conserved in mammals.</td>
 	<td>Find <i>Entamoeba</i> genes which have characteristics of encoding secretory-pathway proteins (have signal peptide and have a transmembrane domain) and which lack detectable orthologs in mammals.</td>
 </tr>
 </c:if>
 
 </table>
-
 

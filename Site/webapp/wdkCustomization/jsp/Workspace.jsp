@@ -51,10 +51,16 @@
       }
     }
     if(count < 2) {
-      alert("Please select at lease two isolates to run ClustalW");
+      alert("Please select at least two isolates to run ClustalW");
       return false;
     }
-    window.location.href = url;
+
+/* code if we want to popup a new window */
+var w = open ('', 'clustalwResult', 'width=800,height=500,titlebar=1,menubar=1,resizable=1,scrollbars=1,toolbar=1');
+w.document.open();
+w.location.href=url;
+
+//    window.location.href = url;
   }
 </script>
 
@@ -63,7 +69,7 @@
 
 // Fix record links in results page on EuPathDB
 function customResultsPage() {
-   $("#Results_Table #rootBody tr td a").each(function() {
+   $("#Results_Table #rootBody tr td div a").each(function() {
          var currentUrl = $(this).attr('href');
          var recordName = parse_Url(currentUrl, "name");
          var primaryKey = parse_Url(currentUrl, "source_id");
