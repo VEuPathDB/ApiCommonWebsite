@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Beverly::LmThreeDevStages;
+package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Beverley::LmThreeDevStages;
 
 use strict;
 use vars qw( @ISA );
@@ -12,7 +12,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setBottomMarginSize(4);
+  $self->setBottomMarginSize(5);
   $self->setLegendSize(40);
 
   my $colors =['#D87093', '#D87093', '#D87093', '#98FB98', '#98FB98', '#98FB98'];
@@ -33,13 +33,14 @@ sub init {
                            x_axis_labels => ['MLDA vs ELPP', 'PNAMP vs ELPP'],
                            plot_title => 'Transcript profiling of 3 L.major developmental stages',
                           },
-      pct => {profiles => ['Percents of L.major Beverly Steve array data'],
+      pct => {profiles => ['Percents of L.major Beverly Steve array data(red)',
+                           'Percents of L.major Beverly Steve array data(green)'],
               y_axis_label => 'Percentile',
               default_y_max => 50,
-              r_adjust_profile => 'profile = cbind(profile[1,1:3], profile[1,4:6]);',
-              colors => $colors,
-              force_x_axis_label_horizontal => 1,
-              x_axis_labels => ['MLDA vs ELPP', 'PNAMP vs ELPP'],
+              #r_adjust_profile => 'profile = cbind(profile[1,1:3], profile[1,4:6]);',
+              colors => ['#D87093','#191970', '#D87093', '#191970', '#D87093','#191970', '#98FB98','#191970', '#98FB98', '#191970','#98FB98','#191970'],
+              #x_axis_labels => ['MLDA vs ELPP', 'PNAMP vs ELPP'],
+              x_axis_labels => ['MLDA_1','MLDA_2', 'MLDA_3', 'PNAMP_1', 'PNAMP_2', 'PNAMP_3'],
               plot_title => 'Transcript profiling of 3 L.major developmental stages Percentiles',
              },
      });
