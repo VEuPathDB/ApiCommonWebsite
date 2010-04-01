@@ -38,7 +38,7 @@ sub init {
                           ],
               y_axis_label => 'Percentile',
               default_y_max => 50,
-              colors => ['#B22222', '#228B22'],
+              colors =>  ['#E9967A', '#191970', '#66CDAA','#191970', '#8B4513', '#191970','#DDA0DD','#191970'],
               plot_title => 'Transcriptome analysis of the Trypanosoma cruzi life-cycle - Percentile',
               x_axis_labels => $xAxisLabels,
              },
