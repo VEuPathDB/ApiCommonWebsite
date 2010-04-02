@@ -19,9 +19,9 @@
             <c:forEach var="fav_item" items="${allFavorites}">
                 <c:set var="favorites" value="${fav_item.value}" /> <%-- a list of favorites of a record type --%>
                 <c:set var="recordClass" value="${fav_item.key}" />
-                <h3>My Favorite ${recordClass.type} records (${fn:length(favorites)} records)</h3>
-                <table class="favorite-list">
-                    <tr><th>&nbsp;</th><th>Record</th><th>Note</th><th>Group</th><th></th><th></th></tr>
+                <h3>My Favorite ${recordClass.type}s (${fn:length(favorites)} ${recordClass.type}s) ${fn:length(allFavorites)}</h3>
+                <table class="favorite-list" width="100%" border="1">
+                    <tr><th>&nbsp;</th><th>${recordClass.type}s</th><th>My note</th><th>My project</th></tr>
                     <c:forEach var="favorite" items="${favorites}">
                         <c:set var="record" value="${favorite.recordInstance}" />
                         <c:set var="primaryKey" value="${record.primaryKey}"/>
@@ -46,15 +46,13 @@
                                 </c:forEach>
                                 <a href="<c:url value='${url}' />">${primaryKey.value}</a>
                             </td>
-                            <td>
-                                <c:set var="product" value="${record.attributes['product']}" />
-                                ${product.value}
+                            <td nowrap>
+                                <span class="favorite-note">${favorite.note}</span>
+                                <input class="favorite-note-button" type="button" value="Change" onClick="updateFavoriteNote(this)" />
                             </td>
-                            <td>
-                                <input type="button" value="Change note" onClick="updateFavoriteNote(this)" />
-                            </td>
-                            <td>
-                                <input type="button" value="Change group" onClick="updateFavoriteGroup(this)" />
+                            <td nowrap>
+                                <span class="favorite-group">${favorite.group}</span>
+                                <input class="favorite-group-button" type="button" value="Change" onClick="updateFavoriteGroup(this)" />
                             </td>
                         </tr>
                     </c:forEach>
