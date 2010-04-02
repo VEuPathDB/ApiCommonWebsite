@@ -18,7 +18,7 @@ sub init {
   my $colors =['#E9967A', '#66CDAA', '#8B4513'];
   my $legend = ["3D7", "PL01", "PL02"];
 
-  $self->setMainLegend({colors => ['#D87093', '#98FB98'], short_names => $legend, cols => 3});
+  $self->setMainLegend({colors => ['#E9967A', '#66CDAA', '#8B4513'], short_names => $legend, cols => 3});
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['Profiles of P.falciparum duffy mRNA Seq data'],
