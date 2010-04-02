@@ -2,6 +2,80 @@
 
 <xmlAnswer>
 
+<record>
+       <attribute name="headline">We are pleased to announce the release of Microsporidia 1.0</attribute>
+       <attribute name="date">01 April 2010 15:00</attribute>
+       <attribute name="tag">release_apr_2010</attribute>
+       <attribute name="item">           
+         <![CDATA[<body>
+We are pleased to announced the full release of Microsporidia 1.0
+(<a href="http://MicrosporidiaDB.org">http://MicrosporidiaDB.org</a>). &nbsp;<br>
+Leveraging
+bioinformatics infrastructure developed in the context of the EuPathDB
+project (including PlasmoDB, etc), this resource incorporates genome
+sequence and annotation from&nbsp;<span style="font-style: italic;">Encephalitozoon cuniculi </span>and&nbsp;<span style="font-style: italic;">E. intestinalis</span>. &nbsp;<span style="font-weight: bold;"><br>
+<br>
+Highlights include:<br>
+</span>
+<ul>
+<li>Sequence and annotation for&nbsp;<span style="font-style: italic;">Encephalitozoon cuniculi </span>and&nbsp;<span style="font-style: italic;">E. intestinalis&nbsp;</span>(graciously
+provided prepublication by Patrick Keeling's group)</li>
+<li><span style="font-weight: bold;"></span>Genome
+sequence alignments, permitting comparative genomic analysis of synteny
+between <span style="font-style: italic;">E. cuniculi </span>and<span style="font-style: italic;"> E. intestinalis</span>.<span style="font-weight: bold;"></span></li>
+<li><span style="font-weight: bold;"></span>Expressed
+sequence tag data for <span style="font-style: italic;">E.</span>
+<span style="font-style: italic;">cuniculi</span>.<span style="font-style: italic;"></span><span style="font-weight: bold;"></span></li>
+<li><span style="font-weight: bold;"></span>'User
+Comments' may be added to any gene page, enhancing available
+annotation. Such comments become immediately visible and searchable by
+others.<span style="font-weight: bold;"></span></li>
+<li><span style="font-weight: bold;"></span>Identification
+of genes based on text terms, ID #, GO terms, chromosomal
+location, BLAST, sequence features (length/MW, exons, signal sequences,
+Pfam domains, user-defined motifs), orthology, etc.<br>
+</li>
+</ul>
+<span style="font-weight: bold;">Support
+for integrated searches, via the 'search strategy builder'.
+&nbsp;Strategies can be stored and shared with others by logging
+into MicrosporidiaDB.<br>
+Example strategies combining multiple searches can be viewed here:</span><span style="font-weight: bold;"> <br><br></span>
+<a href="http://microsporidiadb.org/micro/im.do?s=ea825c840a708a03">http://microsporidiadb.org/micro/im.do?s=ea825c840a708a03</a><br><br>(This
+strategy looks for genes whose products contain a transmembrane domain
+or a secretion signal peptide that are conserved in Fungi but
+absent form animals. &nbsp;The strategy starts by first running an
+orthology search followed by asking for any of these that also contain
+signal peptides or transmembrane
+domains).<br><br>
+<a href="http://microsporidiadb.org/micro/im.do?s=fe87e063500d52b2">http://microsporidiadb.org/micro/im.do?s=fe87e063500d52b2</a><span style="font-weight: bold;"><br>
+<br>
+</span>(The above strategy identifies&nbsp;any gene in E.
+cuniculi and E. intestinalis that are annotated as hypothetical (or at
+least have the word hypothetical in the product name) that also have GO associations)<span style="font-weight: bold;"><br>
+<br>
+<br>
+</span>
+
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:
+</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
+</div>
+
+<br>
+<span style="font-weight: bold;"><br>
+We look forward to working with you to develop and enhance MicrosporidiaDB in
+the coming years.</span>
+    ]]>
+       </attribute>
+</record>
+
 
 <record>
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
