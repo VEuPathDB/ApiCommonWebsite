@@ -7,7 +7,7 @@
 <c:set var="wdkUser" value="${sessionScope.wdkUser}"/>
 
 <!-- display page header with recordClass type in banner -->
-<site:header banner="Favorite page"/>
+<site:header refer="recordPage" banner="Favorite page"/>
 
 <c:set var="allFavorites" value="${wdkUser.favorites}" /><%-- a map of (RecordClass, List<Favorite>) --%>
 <c:choose>
@@ -48,11 +48,11 @@
                             </td>
                             <td nowrap>
                                 <span class="favorite-note">${favorite.note}</span>
-                                <input class="favorite-note-button" type="button" value="Change" onClick="updateFavoriteNote(this)" />
+                                <input class="favorite-note-button" type="button" value="Change" onClick="showInputBox(this, 'note', 'updateFavoriteNote(this)')" />
                             </td>
                             <td nowrap>
                                 <span class="favorite-group">${favorite.group}</span>
-                                <input class="favorite-group-button" type="button" value="Change" onClick="updateFavoriteGroup(this)" />
+                                <input class="favorite-group-button" type="button" value="Change" onClick="showInputBox(this, 'group', 'updateFavoriteGroup(this)')" />
                             </td>
                         </tr>
                     </c:forEach>
