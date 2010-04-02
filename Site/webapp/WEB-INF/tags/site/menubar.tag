@@ -176,6 +176,12 @@
   	</ul>
     </li>
 </ul>
+<ul>
+	<li><a href="<c:url value="/showFavorite.do"/>">
+			<img src="<c:url value="/wdk/images/favorite_color.gif"/>"/>&nbsp;
+			Favorites
+		</a>
+</ul>
 
 
 
