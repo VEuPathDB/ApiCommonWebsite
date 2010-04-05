@@ -59,6 +59,10 @@
                 </table>
              </c:forEach>
         </div>
+		<div id="groups-list" style="display:none">
+			<ul>	
+			</ul>
+		</div>
     </c:otherwise> <%-- END has favorites --%>
 </c:choose>
 
