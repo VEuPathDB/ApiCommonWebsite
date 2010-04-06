@@ -50,9 +50,6 @@
                             </td>
                             <td width="57%">
 								<c:set var="favNote" value="${favorite.note}"/>
-								<c:if test="${fn:length(favNote) == 0}">
-									<c:set var="favNote" value="${record.attributes['product']}"/>
-								</c:if>
                                 <span class="favorite-note">${favNote}</span>
                                 <div class="favorite-button-div"><a href="javascript:void(0)" class="favorite-note-button" onClick="showInputBox(this, 'note', 'updateFavoriteNote(this)')" >edit</a></div>
                             </td>
