@@ -43,11 +43,12 @@
                                 </span>
                                 <img class="clickable" src="<c:url value='/wdk/images/favorite_color.gif'/>" 
                                      title="Click to remove this item from the Favorite."
-				     height="20px" style="vertical-align:sub"
-                                     onClick="updateFavorite(this, 'remove')"/>&nbsp;&nbsp;
-                                <img width="16" height="16" class="clickable" src="<c:url value='/wdk/images/basket_${basketColor}.png'/>" 
+				     height="16px" style="vertical-align:text-bottom"
+                                     onClick="updateFavorite(this, 'remove')"/>&nbsp;
+                                <img class="clickable" src="<c:url value='/wdk/images/basket_${basketColor}.png'/>" 
                                      title="Click to add/remove this item from the Basket."
-                                     onClick="updateBasket(this,'recordPage', '${id}', '${pid}', '${recordClass.fullName}')" value="${basketValue}"/>
+				     height="16px"  style="vertical-align:text-bottom"
+                                     onClick="updateBasket(this,'recordPage', '${id}', '${pid}', '${recordClass.fullName}')" value="${basketValue}"/>&nbsp;
 
                             <%--</td>
                             <td>--%>
