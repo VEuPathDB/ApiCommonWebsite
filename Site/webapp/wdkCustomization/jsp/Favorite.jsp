@@ -12,16 +12,16 @@
 <c:set var="allFavorites" value="${wdkUser.favorites}" /><%-- a map of (RecordClass, List<Favorite>) --%>
 <c:choose>
     <c:when test="${fn:length(allFavorites) == 0}">
-        <p>You don't have any favorite records. You can create favorite record on the record page.</p>
+        <p>You don't have any favorite IDs. You can add IDs to Favorites from the ID record page.</p>
     </c:when>
     <c:otherwise> <%-- has favorites --%>
         <div id="favorites">
             <c:forEach var="fav_item" items="${allFavorites}">
                 <c:set var="favorites" value="${fav_item.value}" /> <%-- a list of favorites of a record type --%>
                 <c:set var="recordClass" value="${fav_item.key}" />
-                <h3>My Favorite ${recordClass.type}s (${fn:length(favorites)} ${recordClass.type}s)</h3>
+                <span class ="h4left">My Favorite ${recordClass.type}s (${fn:length(favorites)} ${recordClass.type}s)</span><br><br>
                 <table class="favorite-list" width="93%" border="1">
-                    <tr><%--<th>&nbsp;</th>--%><th>${recordClass.type}s</th><th>My note</th><th>My project</th></tr>
+                    <tr><%--<th>&nbsp;</th>--%><th>${recordClass.type}s</th><th>My Notes</th><th>My Project</th></tr>
                     <c:forEach var="favorite" items="${favorites}">
                         <c:set var="record" value="${favorite.recordInstance}" />
                         <c:set var="basketColor" value="gray"/>
@@ -35,7 +35,7 @@
                         <c:set value="${pkValues['source_id']}" var="id"/>
                         <c:set value="${pkValues['project_id']}" var="pid"/>
                         <tr class="wdk-record" recordClass="${recordClass.fullName}">
-                            <td width="10%">
+                            <td width="10%" nowrap>
                                 <span class="primaryKey">
                                     <c:forEach var="pk_item" items="${pkValues}">
                                         <span key="${pk_item.key}">${pk_item.value}</span>
@@ -43,12 +43,12 @@
                                 </span>
                                 <img class="clickable" src="<c:url value='/wdk/images/favorite_color.gif'/>" 
                                      title="Click to remove this item from the Favorite."
+				     height="20px" style="vertical-align:sub"
                                      onClick="updateFavorite(this, 'remove')"/>&nbsp;&nbsp;
                                 <img width="16" height="16" class="clickable" src="<c:url value='/wdk/images/basket_${basketColor}.png'/>" 
                                      title="Click to add/remove this item from the Basket."
                                      onClick="updateBasket(this,'recordPage', '${id}', '${pid}', '${recordClass.fullName}')" value="${basketValue}"/>
 
-									
                             <%--</td>
                             <td>--%>
                                 <c:set var="url" value="/showRecord.do?name=${recordClass.fullName}" />

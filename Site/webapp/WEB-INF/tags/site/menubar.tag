@@ -31,6 +31,8 @@
 </c:choose>
 <c:set var="basketCount" value="${wdkUser.basketCount}"/>
 <div id="menubar">
+
+
 <div id="menu">
 
 
@@ -176,15 +178,15 @@
   	</ul>
     </li>
 </ul>
-<ul>
+
+<ul style="padding:0px;width:10em;float:right">
 	<li><a href="<c:url value="/showFavorite.do"/>">
-			<img src="<c:url value="/wdk/images/favorite_color.gif"/>"/>&nbsp;
-			Favorites
+			<img style=""  height="20" src="<c:url value="/wdk/images/favorite_color.gif"/>"/>&nbsp;
+			<span style="vertical-align:text-top">My Favorites</span>
 		</a>
 </ul>
 
+</div
 
-
-</div>
 </div>
 <a name="skip" id="skip"></a>

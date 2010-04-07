@@ -59,8 +59,9 @@
     <site:dataTable tblName="SNPs" />
 </c:set>
 
+
 <%-- quick tool-box for the record --%>
-<site:recordToolbox />
+  <site:recordToolbox /> 
 
 <br>
 <%--#############################################################--%>
@@ -69,7 +70,7 @@
 
 <h2>
 <center>
-<wdk:recordPageBasketIcon />&nbsp;${id} <br /> ${prd}
+	<wdk:recordPageBasketIcon  desc="${prd}" />
 </center>
 </h2>
 
