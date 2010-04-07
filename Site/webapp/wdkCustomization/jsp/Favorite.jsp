@@ -24,21 +24,30 @@
                     <tr><%--<th>&nbsp;</th>--%><th>${recordClass.type}s</th><th>My note</th><th>My project</th></tr>
                     <c:forEach var="favorite" items="${favorites}">
                         <c:set var="record" value="${favorite.recordInstance}" />
-                        <c:set var="inbask" value="${record.inBasket}"/>
+                        <c:set var="basketColor" value="gray"/>
+						<c:set var="basketValue" value="0"/>
+						<c:if test="${record.inBasket}">
+							<c:set var="basketColor" value="color"/>
+							<c:set var="basketValue" value="1"/>
+						</c:if>
 						<c:set var="primaryKey" value="${record.primaryKey}"/>
                         <c:set var="pkValues" value="${primaryKey.values}" />
                         <c:set value="${pkValues['source_id']}" var="id"/>
                         <c:set value="${pkValues['project_id']}" var="pid"/>
                         <tr class="wdk-record" recordClass="${recordClass.fullName}">
                             <td width="10%">
-                                <div class="primaryKey">
+                                <span class="primaryKey">
                                     <c:forEach var="pk_item" items="${pkValues}">
                                         <span key="${pk_item.key}">${pk_item.value}</span>
                                     </c:forEach>
-                                </div>
+                                </span>
                                 <img class="clickable" src="<c:url value='/wdk/images/favorite_color.gif'/>" 
                                      title="Click to remove this item from the Favorite."
-                                     onClick="updateFavorite(this, 'remove')"/>
+                                     onClick="updateFavorite(this, 'remove')"/>&nbsp;&nbsp;
+                                <img width="16" height="16" class="clickable" src="<c:url value='/wdk/images/basket_${basketColor}.png'/>" 
+                                     title="Click to add/remove this item from the Basket."
+                                     onClick="updateBasket(this,'recordPage', '${id}', '${pid}', '${recordClass.fullName}')" value="${basketValue}"/>
+
 									
                             <%--</td>
                             <td>--%>
