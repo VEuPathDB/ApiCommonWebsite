@@ -20,7 +20,7 @@
                 <c:set var="favorites" value="${fav_item.value}" /> <%-- a list of favorites of a record type --%>
                 <c:set var="recordClass" value="${fav_item.key}" />
                 <span class ="h4left">My Favorite ${recordClass.type}s (${fn:length(favorites)} ${recordClass.type}s)</span><br><br>
-                <table class="favorite-list" width="93%" border="1">
+                <table class="favorite-list mytableStyle" width="93%" border="1">
                     <tr><%--<th>&nbsp;</th>--%><th>${recordClass.type}s</th><th>My Notes</th><th>My Project</th></tr>
                     <c:forEach var="favorite" items="${favorites}">
                         <c:set var="record" value="${favorite.recordInstance}" />
