@@ -15,7 +15,8 @@
         <p>You don't have any favorite IDs. You can add IDs to Favorites from the ID record page.</p>
     </c:when>
     <c:otherwise> <%-- has favorites --%>
-        <div id="favorites">
+        <input type="button" value="Refresh" onclick="window.location.reload();"/>
+		<div id="favorites">
             <c:forEach var="fav_item" items="${allFavorites}">
                 <c:set var="favorites" value="${fav_item.value}" /> <%-- a list of favorites of a record type --%>
                 <c:set var="recordClass" value="${fav_item.key}" />
