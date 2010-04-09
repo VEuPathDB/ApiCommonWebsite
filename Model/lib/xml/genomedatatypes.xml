@@ -312,7 +312,7 @@
        <attribute name = "Organism">P.falciparum</attribute>
        <attribute name = "Taxon_ID">36329</attribute>
        <attribute name = "Strain">3D7</attribute>
-       <attribute name = "Genome_Version">02-09-2009</attribute>
+       <attribute name = "Genome_Version">02-19-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">23.26</attribute>
        <attribute name = "Gene_Count">5560</attribute>
@@ -610,7 +610,7 @@
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.tarantolae</attribute>
+       <attribute name = "Organism">L.tarentolae</attribute>
        <attribute name = "Taxon_ID">5689</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">04-07-2009</attribute>

@@ -158,11 +158,8 @@
 
 
 <%-- When definitions are in conflict, the next one overrides the previous one  --%>
-<%-- We need to figure out which styles we are using from this old file and set them in the project.css file --%>
-<%-------  keep it for generecordpage while we do that --%>
-<%-- <link rel="stylesheet" href="<c:url value='/misc/style.css'/>"   type="text/css" />   --%>
 
-<%-- NOW PROVIDED IN WDK wdkSite.css
+<%-- NOW PROVIDED IN WDK via includes.tag
 <link rel="stylesheet" href="wdk/css/jquery-ui-1.7.2.custom.css"           type="text/css" />
 <link rel="stylesheet" href="wdk/css/history.css"            type="text/css"/>
 <link rel="stylesheet" href="wdk/css/dyk.css"            type="text/css"/>
@@ -276,6 +273,7 @@ ${headElement}
 </c:otherwise>
 </c:choose>
 	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#advisors"/>">Scientific Advisory Team</a></li>
+	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#swg"/>">Scientific Working Group</a></li>
  	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#acks"/>">Acknowledgements</a></li>
  	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#funding"/>">Funding</a></li>
 	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#use"/>">How to use this resource</a></li>
