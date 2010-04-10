@@ -100,7 +100,7 @@ td.top {
 
 table.mytableStyle {
 	empty-cells:show;
-	border-width:0.5px;
+	border-width:1px;
 	border-style:solid;	   /* solid, none, inset, outset, dashed, solid, */
 	border-color:black;
 	border-collapse:collapse;  /*separate */
@@ -116,13 +116,18 @@ tr.mythStyle {
 	text-align:center;
 	font-weight:bold;
 }
-td.mythStyle,td.mytdStyle {
+td.mythStyle,td.mytdStyle,th.mythStyle {
 	vertical-align:middle;
-	border-width:0.5px;
+	border-width:1px;
 	border-style:inset;
 	border-color:gray;
 	-moz-border-radius:0px;
 	padding:3px;
+}
+th.mythStyle {
+	font-weight:bold;
+	background-color:lightgrey;
+	border-bottom: 3px solid grey;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

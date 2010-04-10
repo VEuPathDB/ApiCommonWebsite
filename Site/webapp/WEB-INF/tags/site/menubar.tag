@@ -31,12 +31,12 @@
 </c:otherwise>
 </c:choose>
 <c:set var="basketCount" value="${wdkUser.basketCount}"/>
-<div id="menubar">
 
+<div id="menubar">
 
 <div id="menu">
 
-
+<!-- default style for this ul establishes 9em -->
 <ul style="width:7em;"><li><a href="<c:url value="/"/>">Home</a></li></ul>
 <%-- was needed when New Search was first choice 
 <ul style="width:0.5em;border:0"><li></li></ul>
@@ -57,8 +57,7 @@
     </li>
 </ul>
 
-
-<ul>	
+<ul style="width:10em;white-space:nowrap">	
 <c:choose>
   <c:when test="${wdkUser == null || wdkUser.guest}">
     <wdk:requestURL path="/showApplication.do" />
@@ -76,7 +75,6 @@
   </c:otherwise>
 </c:choose>
 </ul>
-
 
 <ul style="width:7em;">
     <li><a href="#">Tools</a>
@@ -126,16 +124,11 @@
 <c:if test="${project == 'CryptoDB'}">
 	 <li id='h-'><a href="http://cryptodb.org/static/SOP/">SOPs for <i>C.parvum</i> Annotation</a></li>
 </c:if>
-
-
     	<li><a title="Table summarizing all the genomes and their different data types available in EuPathDB" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">EuPathDB Genomes and Data Types</a></li>
 	<li><a title="Table summarizing gene counts for all the available genomes, and evidence supporting them" href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">EuPathDB Gene Metrics</a></li>
 
-
 	</ul>
 	</li>
-
-
 </ul>
 
 <ul>
@@ -155,10 +148,6 @@
     </li>
 </ul>
     
-
-
-
-
 <ul>
     <li><a href="#">Community</a>
 	<ul>

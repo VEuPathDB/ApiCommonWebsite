@@ -21,8 +21,11 @@
                 <c:set var="favorites" value="${fav_item.value}" /> <%-- a list of favorites of a record type --%>
                 <c:set var="recordClass" value="${fav_item.key}" />
                 <span class ="h4left">My Favorite ${recordClass.type}s (${fn:length(favorites)} ${recordClass.type}s)</span><br><br>
-                <table class="favorite-list mytableStyle" width="93%" border="1">
-                    <tr><%--<th>&nbsp;</th>--%><th>${recordClass.type}s</th><th>My Notes</th><th>My Project</th></tr>
+
+                <table class="favorite-list mytableStyle" width="93%">
+                    <tr>
+			<th  class="mythStyle">${recordClass.type}s</th><th  class="mythStyle">Notes</th><th  class="mythStyle">Project</th>
+		    </tr>
                     <c:forEach var="favorite" items="${favorites}">
                         <c:set var="record" value="${favorite.recordInstance}" />
                         <c:set var="basketColor" value="gray"/>
@@ -36,7 +39,7 @@
                         <c:set value="${pkValues['source_id']}" var="id"/>
                         <c:set value="${pkValues['project_id']}" var="pid"/>
                         <tr class="wdk-record" recordClass="${recordClass.fullName}">
-                            <td width="10%" nowrap>
+                            <td width="10%" class="mytdStyle" nowrap>
                                 <span class="primaryKey">
                                     <c:forEach var="pk_item" items="${pkValues}">
                                         <span key="${pk_item.key}">${pk_item.value}</span>
@@ -59,12 +62,12 @@
                                 </c:forEach>
                                 <a href="<c:url value='${url}' />">${primaryKey.value}</a>
                             </td>
-                            <td width="57%">
+                            <td width="57%"  class="mytdStyle" >
 								<c:set var="favNote" value="${favorite.note}"/>
                                 <span class="favorite-note">${favNote}</span>
                                 <div class="favorite-button-div"><a href="javascript:void(0)" class="favorite-note-button" onClick="showInputBox(this, 'note', 'updateFavoriteNote(this)')" >edit</a></div>
                             </td>
-                            <td>
+                            <td  class="mytdStyle" >
 								<c:set var="favGroup" value="${favorite.group}"/>
 								<c:set var="favGroupStyle" value=""/>
 								<c:if test="${fn:length(favGroup) == 0}">
