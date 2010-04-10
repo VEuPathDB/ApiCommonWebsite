@@ -62,12 +62,12 @@
                                 </c:forEach>
                                 <a href="<c:url value='${url}' />">${primaryKey.value}</a>
                             </td>
-                            <td width="57%"  class="mytdStyle" >
+                            <td width="60%"  class="mytdStyle" >
 								<c:set var="favNote" value="${favorite.note}"/>
                                 <span class="favorite-note">${favNote}</span>
                                 <div class="favorite-button-div"><a href="javascript:void(0)" class="favorite-note-button" onClick="showInputBox(this, 'note', 'updateFavoriteNote(this)')" >edit</a></div>
                             </td>
-                            <td  class="mytdStyle" >
+                            <td width="30%"  class="mytdStyle" >
 								<c:set var="favGroup" value="${favorite.group}"/>
 								<c:set var="favGroupStyle" value=""/>
 								<c:if test="${fn:length(favGroup) == 0}">
