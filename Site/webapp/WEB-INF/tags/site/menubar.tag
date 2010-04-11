@@ -170,12 +170,12 @@
     </li>
 </ul>
 
-<ul style="padding:0px;width:10em;float:right">
+<ul style="padding:0px;width:9em;float:right">
 <c:choose>
   <c:when test="${wdkUser == null || wdkUser.guest}">
     <wdk:requestURL path="/showFavorite.do" />
     <li><a id="mybasket" onclick="popLogin('${originRequestUrl}');" href="javascript:void(0)">
-			<img style=""  height="20" src="<c:url value="/wdk/images/favorite_color.gif"/>"/>&nbsp;
+			<img style="vertical-align:bottom"  height="20" src="<c:url value="/wdk/images/favorite_color.gif"/>"/>&nbsp;
 			<span style="vertical-align:text-top">My Favorites</span>
         </a>
     </li>
