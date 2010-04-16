@@ -151,6 +151,7 @@ patch_all() {
     [ "$arch" == "i686" ] && arch=i386
     patch -d $cgilibTargetDir/${arch}-linux-thread-multi/Bio/Graphics -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/Browser.pm_v1.70.patch
     patch -d $cgilibTargetDir/Bio/Graphics/Glyph -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/xyplot.pm_v1.70.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Glyph -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/generic.pm_v1.70.patch
     #patch -d $cgilibTargetDir/Bio/Graphics/Glyph -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/arrow.pm.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/gbrowse_img_v1.70.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/gbrowse_v1.70.patch
