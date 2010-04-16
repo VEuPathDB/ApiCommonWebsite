@@ -11,7 +11,6 @@ Like the WDK's errors.tag, this tag handles:
 - ActionMessages, e.g. form validation errors ( ${requestScope['org.apache.struts.action.ERROR']} )
 - Application exceptions ( ${requestScope['org.apache.struts.action.EXCEPTION']} )
 - JSP/jstl syntax errors ( ${pageContext.exception} )
-- request.getAttribute("exception")
 
 Unlike the errors.tag, this tag does not display ActionMessages when there
 is an application or JSP exception as the resulting ActionMessage text is garbage.
@@ -377,40 +376,13 @@ public class ErrorsTag extends WdkTagBase {
     }
 
     private void appendErrorUrl(StringBuffer sb) {
-/**        String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
+        String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
         StringBuffer errorUrl = new StringBuffer();
         errorUrl.append(request.getScheme() + "://" + request.getServerName());
         errorUrl.append(request.getAttribute("javax.servlet.forward.request_uri"));
-        
-Logger.getLogger(getClass().getName()).error("forward.request_uri " + request.getAttribute("javax.servlet.forward.request_uri"));        
-Logger.getLogger(getClass().getName()).error("include.request_uri " + request.getAttribute("javax.servlet.include.request_uri"));        
-Logger.getLogger(getClass().getName()).error("request.getRequestURL() " + request.getRequestURL());
-
         if (queryString != null) 
             errorUrl.append("?" + queryString);
-**/
-Logger l = Logger.getLogger(getClass().getName());
 
-        StringBuffer errorUrl = new StringBuffer();
-        errorUrl.append(request.getScheme() + "://" + request.getServerName());
-
-        String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
-        String requestURI  = (String)request.getAttribute("javax.servlet.forward.request_uri");
-        if (requestURI == null) {
-            queryString = (String) request.getAttribute("javax.servlet.include.query_string");
-            requestURI  = (String)request.getAttribute("javax.servlet.include.request_uri");
-        }
-        if (requestURI == null) {
-            queryString = request.getQueryString();
-            requestURI  = request.getRequestURI();
-        }
-        
-        errorUrl.append(requestURI);
-
-        if (queryString != null) {
-            errorUrl.append("?" + queryString);
-        }
-        
         sb.append("Error on: " + "\n  " + errorUrl + "\n");
     }
 
@@ -434,13 +406,7 @@ Logger l = Logger.getLogger(getClass().getName());
         
         for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
             for (String value : entry.getValue()) {
-            String key = entry.getKey();
-            String cleanValue = (key.toLowerCase().startsWith("email") ||
-                            key.toLowerCase().startsWith("passw")
-                           ) 
-                 ? "*****" 
-                 : value;
-            sb.append(entry.getKey() + " = " + cleanValue + "\n");
+                sb.append(entry.getKey() + " = " + value + "\n");
             }
         }
     }
