@@ -69,7 +69,7 @@ sub processParams {
   $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
 
   my $projectId = $cgi->param('project_id'); 
-  $self->{ignore_gene_alias}= 1 if ($projectId='ToxoDB');
+  $self->{ignore_gene_alias}= 1 if ($projectId=='ToxoDB');
 
   my @inputIds;
   foreach(split(/[,\s]+/, $cgi->param('ids'))) {
