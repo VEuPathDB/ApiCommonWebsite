@@ -67,6 +67,8 @@ public class Gff3Reporter extends Reporter {
     private boolean hasTranscript = false;
     private boolean hasProtein = false;
 
+    private PreparedStatement psQuery;
+
     public Gff3Reporter(AnswerValue answerValue, int startIndex, int endIndex) {
         super(answerValue, startIndex, endIndex);
     }
@@ -102,15 +104,15 @@ public class Gff3Reporter extends Reporter {
         // include transcript
         if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
             String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
-                    ? true : false;
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
         }
 
         // include protein
         if (config.containsKey(FIELD_HAS_PROTEIN)) {
             String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
-                    ? true : false;
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
         }
     }
 
@@ -153,17 +155,35 @@ public class Gff3Reporter extends Reporter {
     public void write(OutputStream out) throws WdkModelException,
             NumberFormatException, NoSuchAlgorithmException, SQLException,
             JSONException, WdkUserException {
-        PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
+        // prepare the table query
+        RecordClass recordClass = this.baseAnswer.getQuestion().getRecordClass();
+        String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
+        StringBuffer sqlQuery = new StringBuffer("SELECT ");
+        sqlQuery.append("count(*) AS cache_count FROM ").append(tableCache);
+        sqlQuery.append(" WHERE table_name = ?");
+        for (String column : pkColumns) {
+            sqlQuery.append(" AND ").append(column).append(" = ?");
+        }
+        WdkModel wdkModel = baseAnswer.getQuestion().getWdkModel();
+        DataSource dataSource = wdkModel.getQueryPlatform().getDataSource();
+        try {
+            psQuery = SqlUtils.getPreparedStatement(dataSource,
+                    sqlQuery.toString());
 
-        // write header
-        writeHeader(writer);
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
 
-        // write records
-        writeRecords(writer);
+            // write header
+            writeHeader(writer);
 
-        // write sequences
-        writer.println("##FASTA");
-        writeSequences(writer);
+            // write records
+            writeRecords(writer);
+
+            // write sequences
+            writer.println("##FASTA");
+            writeSequences(writer);
+        } finally {
+            SqlUtils.closeStatement(psQuery);
+        }
     }
 
     void writeHeader(PrintWriter writer) throws WdkModelException,
@@ -233,25 +253,14 @@ public class Gff3Reporter extends Reporter {
         }
         sqlInsert.append(")");
 
-        // construct query sql
-        StringBuffer sqlQuery = new StringBuffer("SELECT ");
-        sqlQuery.append("count(*) AS cache_count FROM ").append(tableCache);
-        sqlQuery.append(" WHERE table_name = '").append(recordName).append("'");
-        for (String column : pkColumns) {
-            sqlQuery.append(" AND ").append(column).append(" = ?");
-        }
-
         // check if we need to insert into cache
         PreparedStatement psInsert = null;
-        PreparedStatement psQuery = null;
         try {
             if (tableCache != null) {
                 // want to cache the table content
                 DataSource dataSource = platform.getDataSource();
                 psInsert = SqlUtils.getPreparedStatement(dataSource,
                         sqlInsert.toString());
-                psQuery = SqlUtils.getPreparedStatement(dataSource,
-                        sqlQuery.toString());
             }
 
             // get page based answers with a maximum size (defined in
@@ -272,35 +281,20 @@ public class Gff3Reporter extends Reporter {
                     }
                     String content = recordBuffer.toString();
 
-                    // check if the record has been cached
-                    Map<String, String> pkValues = record.getPrimaryKey().getValues();
-                    boolean hasCached = false;
-
-                    if (tableCache != null) {
-                        for (int index = 0; index < pkColumns.length; index++) {
-                            String value = pkValues.get(pkColumns[index]);
-                            psQuery.setObject(index + 1, value);
-                        }
-                        ResultSet rs = psQuery.executeQuery();
-                        try {
-                            rs.next();
-                            int count = rs.getInt("cache_count");
-                            if (count > 0) hasCached = true;
-                        } finally {
-                            rs.close();
-                        }
-                    }
-
                     // check if needs to insert into cache table
-                    if (tableCache != null && !hasCached) {
-                        psInsert.setString(1, recordName);
-                        psInsert.setInt(2, 1);
-                        platform.setClobData(psInsert, 3, content, false);
-                        for (int index = 0; index < pkColumns.length; index++) {
-                            Object value = pkValues.get(pkColumns[index]);
-                            psInsert.setObject(index + 4, value);
+                    if (tableCache != null) {
+                        boolean hasCached = checkCache(record, recordName);
+                        if (!hasCached) {
+                            psInsert.setString(1, recordName);
+                            psInsert.setInt(2, 1);
+                            platform.setClobData(psInsert, 3, content, false);
+                            Map<String, String> pkValues = record.getPrimaryKey().getValues();
+                            for (int index = 0; index < pkColumns.length; index++) {
+                                Object value = pkValues.get(pkColumns[index]);
+                                psInsert.setObject(index + 4, value);
+                            }
+                            psInsert.executeUpdate();
                         }
-                        psInsert.executeUpdate();
                     }
 
                     // output the result
@@ -309,7 +303,6 @@ public class Gff3Reporter extends Reporter {
                 }
             }
         } finally {
-            SqlUtils.closeStatement(psQuery);
             SqlUtils.closeStatement(psInsert);
         }
     }
@@ -471,26 +464,14 @@ public class Gff3Reporter extends Reporter {
         }
         sqlInsert.append(")");
 
-        // construct query sql
-        StringBuffer sqlQuery = new StringBuffer("SELECT ");
-        sqlQuery.append("count(*) AS cache_count FROM ").append(tableCache);
-        sqlQuery.append(" WHERE table_name IN (");
-        sqlQuery.append(transcriptName).append(proteinName).append(")");
-        for (String column : pkColumns) {
-            sqlQuery.append(column).append(" = ?");
-        }
-
         // check if we need to insert into cache
         PreparedStatement psInsert = null;
-        PreparedStatement psQuery = null;
         try {
             if (tableCache != null) {
                 // want to cache the table content
                 DataSource dataSource = platform.getDataSource();
                 psInsert = SqlUtils.getPreparedStatement(dataSource,
                         sqlInsert.toString());
-                psQuery = SqlUtils.getPreparedStatement(dataSource,
-                        sqlQuery.toString());
             }
 
             // get page based answers with a maximum size (defined in
@@ -512,40 +493,27 @@ public class Gff3Reporter extends Reporter {
                             writer.flush();
                         }
                     } else if (rcName.equals("GeneRecordClasses.GeneRecordClass")) {
-                        boolean hasCached = false;
                         // get transcript, if needed
                         if (hasTranscript) {
                             String sequence = getValue(record.getAttributeValue("gff_transcript_sequence"));
                             if (sequence != null && sequence.length() > 0) {
                                 sequence = formatSequence(recordId, sequence);
 
-                                // check if the record has been cached
-                                if (tableCache != null) {
-                                    for (int index = 0; index < pkColumns.length; index++) {
-                                        Object value = pkValues.get(pkColumns[index]);
-                                        psQuery.setObject(index + 1, value);
-                                    }
-                                    ResultSet rs = psQuery.executeQuery();
-                                    try {
-                                        rs.next();
-                                        int count = rs.getInt("cache_count");
-                                        if (count > 0) hasCached = true;
-                                    } finally {
-                                        rs.close();
-                                    }
-                                }
-
                                 // check if needs to insert into cache table
-                                if (tableCache != null && !hasCached) {
-                                    psInsert.setString(1, transcriptName);
-                                    psInsert.setInt(2, 1);
-                                    platform.setClobData(psInsert, 3, sequence,
-                                            false);
-                                    for (int index = 0; index < pkColumns.length; index++) {
-                                        Object value = pkValues.get(pkColumns[index]);
-                                        psInsert.setObject(index + 4, value);
+                                if (tableCache != null) {
+                                    boolean hasCached = checkCache(record,
+                                            transcriptName);
+                                    if (!hasCached) {
+                                        psInsert.setString(1, transcriptName);
+                                        psInsert.setInt(2, 1);
+                                        platform.setClobData(psInsert, 3,
+                                                sequence, false);
+                                        for (int index = 0; index < pkColumns.length; index++) {
+                                            Object value = pkValues.get(pkColumns[index]);
+                                            psInsert.setObject(index + 4, value);
+                                        }
+                                        psInsert.executeUpdate();
                                     }
-                                    psInsert.executeUpdate();
                                 }
 
                                 // output the sequence
@@ -574,17 +542,22 @@ public class Gff3Reporter extends Reporter {
                                     sequence = formatSequence(cdsId, sequence);
 
                                     // check if needs to insert into cache table
-                                    if (tableCache != null && !hasCached) {
-                                        // save into table cache
-                                        psInsert.setString(1, proteinName);
-                                        psInsert.setInt(2, 1);
-                                        platform.setClobData(psInsert, 3,
-                                                sequence, false);
-                                        for (int index = 0; index < pkColumns.length; index++) {
-                                            Object value = pkValues.get(pkColumns[index]);
-                                            psInsert.setObject(index + 4, value);
+                                    if (tableCache != null) {
+                                        boolean hasCached = checkCache(record,
+                                                proteinName);
+                                        if (!hasCached) {
+                                            // save into table cache
+                                            psInsert.setString(1, proteinName);
+                                            psInsert.setInt(2, 1);
+                                            platform.setClobData(psInsert, 3,
+                                                    sequence, false);
+                                            for (int index = 0; index < pkColumns.length; index++) {
+                                                Object value = pkValues.get(pkColumns[index]);
+                                                psInsert.setObject(index + 4,
+                                                        value);
+                                            }
+                                            psInsert.executeUpdate();
                                         }
-                                        psInsert.executeUpdate();
                                     }
 
                                     // output the sequence
@@ -600,7 +573,6 @@ public class Gff3Reporter extends Reporter {
                 }
             }
         } finally {
-            SqlUtils.closeStatement(psQuery);
             SqlUtils.closeStatement(psInsert);
         }
     }
@@ -690,5 +662,24 @@ public class Gff3Reporter extends Reporter {
             offset = endp;
         }
         return buffer.toString();
+    }
+
+    private boolean checkCache(RecordInstance record, String tableName)
+            throws SQLException {
+        String[] pkColumns = record.getRecordClass().getPrimaryKeyAttributeField().getColumnRefs();
+        Map<String, String> pkValues = record.getPrimaryKey().getValues();
+        psQuery.setString(1, tableName);
+        for (int index = 0; index < pkColumns.length; index++) {
+            Object value = pkValues.get(pkColumns[index]);
+            psQuery.setObject(index + 2, value);
+        }
+        ResultSet rs = psQuery.executeQuery();
+        try {
+            rs.next();
+            int count = rs.getInt("cache_count");
+            return (count > 0);
+        } finally {
+            rs.close();
+        }
     }
 }
