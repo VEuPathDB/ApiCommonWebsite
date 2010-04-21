@@ -86,6 +86,8 @@ public class Gff3Dumper {
         // load config
         Map<String, String> config = new LinkedHashMap<String, String>();
         config.put(Reporter.FIELD_FORMAT, "text");
+        config.put(Gff3Reporter.FIELD_HAS_TRANSCRIPT, "true");
+        config.put(Gff3Reporter.FIELD_HAS_PROTEIN, "true");
 
         // construct wdkModel
         String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
