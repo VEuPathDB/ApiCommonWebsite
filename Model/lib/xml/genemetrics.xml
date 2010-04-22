@@ -109,7 +109,7 @@
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">56</attribute>
        <attribute name="Leishmania_braziliensis">152</attribute>
-       <attribute name="Leishmania_infantum">43</attribute>
+       <attribute name="Leishmania_infantum">52</attribute>
        <attribute name="Leishmania_major">91</attribute>
        <attribute name="Neospora_caninum">2</attribute>
        <attribute name="Plasmodium_berghei">37</attribute>
@@ -169,26 +169,26 @@
        <attribute name = "Metric_Type">Community_entries</attribute>
        <attribute name = "Description">Number of genes that have comments/notes from the research community</attribute>
        <attribute name="Cryptosporidium_hominis">3</attribute>
-       <attribute name="Cryptosporidium_muris">1</attribute>
-       <attribute name="Cryptosporidium_parvum">19</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">14</attribute>
+       <attribute name="Cryptosporidium_muris">3</attribute>
+       <attribute name="Cryptosporidium_parvum">34</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">30</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
        <attribute name="Leishmania_infantum">7</attribute>
-       <attribute name="Leishmania_major">42</attribute>
+       <attribute name="Leishmania_major">52</attribute>
        <attribute name="Neospora_caninum">2</attribute>
-       <attribute name="Plasmodium_berghei">31</attribute>
+       <attribute name="Plasmodium_berghei">33</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
-       <attribute name="Plasmodium_falciparum">543</attribute>
+       <attribute name="Plasmodium_falciparum">593</attribute>
        <attribute name="Plasmodium_knowlesi">11</attribute>
        <attribute name="Plasmodium_vivax">13</attribute>
        <attribute name="Plasmodium_yoelii">170</attribute>
        <attribute name="Toxoplasma_gondii">1197</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">373</attribute>
+       <attribute name="Trypanosoma_brucei">351</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
-       <attribute name="Trypanosoma_cruzi">18</attribute>
+       <attribute name="Trypanosoma_cruzi">32</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
@@ -251,7 +251,7 @@
        <attribute name="Plasmodium_vivax">2141</attribute>
        <attribute name="Plasmodium_yoelii">2035</attribute>
        <attribute name="Toxoplasma_gondii">3312</attribute>
-       <attribute name="Trichomonas_vaginalis">9407</attribute>
+       <attribute name="Trichomonas_vaginalis">13172</attribute>
        <attribute name="Trypanosoma_brucei">4715</attribute>
        <attribute name="Trypanosoma_congolense">4080</attribute>
        <attribute name="Trypanosoma_cruzi">6609</attribute>
@@ -267,9 +267,9 @@
    <record>
        <attribute name = "Metric_Type">EC_numbers</attribute>
        <attribute name = "Description">Number of genes that have Enzyme Comission numbers</attribute>
-       <attribute name="Cryptosporidium_hominis">1495</attribute>
-       <attribute name="Cryptosporidium_muris">1856</attribute>
-       <attribute name="Cryptosporidium_parvum">1689</attribute>
+       <attribute name="Cryptosporidium_hominis">377</attribute>
+       <attribute name="Cryptosporidium_muris">568</attribute>
+       <attribute name="Cryptosporidium_parvum">340</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">269</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -336,24 +336,24 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">2364</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">5866</attribute>
-       <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
-       <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">4755</attribute>
+       <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
+       <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
        <attribute name="Leishmania_infantum">2837</attribute>
        <attribute name="Leishmania_major">232</attribute>
        <attribute name="Neospora_caninum">2605</attribute>
        <attribute name="Plasmodium_berghei">6698</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
-       <attribute name="Plasmodium_falciparum">5466</attribute>
+       <attribute name="Plasmodium_falciparum">5550</attribute>
        <attribute name="Plasmodium_knowlesi">0</attribute>
        <attribute name="Plasmodium_vivax">3728</attribute>
        <attribute name="Plasmodium_yoelii">3360</attribute>
-       <attribute name="Toxoplasma_gondii">20402</attribute>
-       <attribute name="Trichomonas_vaginalis">10413</attribute>
-       <attribute name="Trypanosoma_brucei">8437</attribute>
+       <attribute name="Toxoplasma_gondii">8696</attribute>
+       <attribute name="Trichomonas_vaginalis">10509</attribute>
+       <attribute name="Trypanosoma_brucei">9610</attribute>
        <attribute name="Trypanosoma_congolense">3471</attribute>
-       <attribute name="Trypanosoma_cruzi">6967</attribute>
+       <attribute name="Trypanosoma_cruzi">7427</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">79</attribute>
@@ -369,7 +369,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">1813</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">1933</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">0</attribute>
@@ -386,7 +386,7 @@
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">8112</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
-       <attribute name="Trypanosoma_cruzi">3580</attribute>
+       <attribute name="Trypanosoma_cruzi">4339</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
@@ -403,8 +403,8 @@
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">1804</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">3272</attribute>
-       <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
-       <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
+       <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
+       <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
        <attribute name="Leishmania_infantum">11</attribute>
        <attribute name="Leishmania_major">78</attribute>
@@ -416,7 +416,7 @@
        <attribute name="Plasmodium_vivax">3540</attribute>
        <attribute name="Plasmodium_yoelii">3010</attribute>
        <attribute name="Toxoplasma_gondii">6724</attribute>
-       <attribute name="Trichomonas_vaginalis">10413</attribute>
+       <attribute name="Trichomonas_vaginalis">10470</attribute>
        <attribute name="Trypanosoma_brucei">1255</attribute>
        <attribute name="Trypanosoma_congolense">3471</attribute>
        <attribute name="Trypanosoma_cruzi">3700</attribute>
@@ -450,7 +450,7 @@
        <attribute name="Plasmodium_yoelii">0</attribute>
        <attribute name="Toxoplasma_gondii">5666</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">0</attribute>
+       <attribute name="Trypanosoma_brucei">9589</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
@@ -474,7 +474,7 @@
        <attribute name="Leishmania_braziliensis">0</attribute>
        <attribute name="Leishmania_infantum">533</attribute>
        <attribute name="Leishmania_major">0</attribute>
-       <attribute name="Neospora_caninum">0</attribute>
+       <attribute name="Neospora_caninum">7</attribute>
        <attribute name="Plasmodium_berghei">3104</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
        <attribute name="Plasmodium_falciparum">2785</attribute>
@@ -482,8 +482,8 @@
        <attribute name="Plasmodium_vivax">16</attribute>
        <attribute name="Plasmodium_yoelii">672</attribute>
        <attribute name="Toxoplasma_gondii">3458</attribute>
-       <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">2948</attribute>
+       <attribute name="Trichomonas_vaginalis">230</attribute>
+       <attribute name="Trypanosoma_brucei">2949</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">2277</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
@@ -527,4 +527,71 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
    </record>
+
+   <record>
+       <attribute name = "Metric_Type">RNA Seq</attribute>
+       <attribute name = "Description">Number of genes that have evidence for transcript expression based on Transcriptome sequencing (RNA Seq) experiments</attribute>
+       <attribute name="Cryptosporidium_hominis">0</attribute>
+       <attribute name="Cryptosporidium_muris">0</attribute>
+       <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">0</attribute>
+       <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
+       <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
+       <attribute name="Leishmania_braziliensis">0</attribute>
+       <attribute name="Leishmania_infantum">0</attribute>
+       <attribute name="Leishmania_major">0</attribute>
+       <attribute name="Neospora_caninum">0</attribute>
+       <attribute name="Plasmodium_berghei">0</attribute>
+       <attribute name="Plasmodium_chabaudi">0</attribute>
+       <attribute name="Plasmodium_falciparum">4599</attribute>
+       <attribute name="Plasmodium_knowlesi">0</attribute>
+       <attribute name="Plasmodium_vivax">0</attribute>
+       <attribute name="Plasmodium_yoelii">0</attribute>
+       <attribute name="Toxoplasma_gondii">0</attribute>
+       <attribute name="Trichomonas_vaginalis">0</attribute>
+       <attribute name="Trypanosoma_brucei">3762</attribute> 
+       <attribute name="Trypanosoma_congolense">0</attribute>
+       <attribute name="Trypanosoma_cruzi">0</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
+       <attribute name="Leishmania_mexicana">0</attribute>
+       <attribute name="Entamoeba_dispar">0</attribute>
+       <attribute name="Entamoeba_histolytica">0</attribute>
+       <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_cuniculi">0</attribute>
+       <attribute name="Encephalitozoon_intestinalis">0</attribute>
+   </record>
+
+   <record>
+       <attribute name = "Metric_Type">TF Binding Site</attribute>
+       <attribute name = "Description">Total number of genes having evidence of expression based on transcription factor binding site indentification experiments</attribute>
+       <attribute name="Cryptosporidium_hominis">0</attribute>
+       <attribute name="Cryptosporidium_muris">0</attribute>
+       <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">0</attribute>
+       <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
+       <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
+       <attribute name="Leishmania_braziliensis">0</attribute>
+       <attribute name="Leishmania_infantum">0</attribute>
+       <attribute name="Leishmania_major">0</attribute>
+       <attribute name="Neospora_caninum">0</attribute>
+       <attribute name="Plasmodium_berghei">0</attribute>
+       <attribute name="Plasmodium_chabaudi">0</attribute>
+       <attribute name="Plasmodium_falciparum">4617</attribute>
+       <attribute name="Plasmodium_knowlesi">0</attribute>
+       <attribute name="Plasmodium_vivax">0</attribute>
+       <attribute name="Plasmodium_yoelii">0</attribute>
+       <attribute name="Toxoplasma_gondii">0</attribute>
+       <attribute name="Trichomonas_vaginalis">0</attribute>
+       <attribute name="Trypanosoma_brucei">0</attribute> 
+       <attribute name="Trypanosoma_congolense">0</attribute>
+       <attribute name="Trypanosoma_cruzi">0</attribute>
+       <attribute name="Trypanosoma_vivax">0</attribute>
+       <attribute name="Leishmania_mexicana">0</attribute>
+       <attribute name="Entamoeba_dispar">0</attribute>
+       <attribute name="Entamoeba_histolytica">0</attribute>
+       <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_cuniculi">0</attribute>
+       <attribute name="Encephalitozoon_intestinalis">0</attribute>
+   </record>
+
 </xmlAnswer>
