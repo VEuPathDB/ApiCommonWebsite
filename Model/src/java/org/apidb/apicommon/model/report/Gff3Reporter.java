@@ -155,21 +155,8 @@ public class Gff3Reporter extends Reporter {
     public void write(OutputStream out) throws WdkModelException,
             NumberFormatException, NoSuchAlgorithmException, SQLException,
             JSONException, WdkUserException {
-        // prepare the table query
-        RecordClass recordClass = this.baseAnswer.getQuestion().getRecordClass();
-        String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
-        StringBuffer sqlQuery = new StringBuffer("SELECT ");
-        sqlQuery.append("count(*) AS cache_count FROM ").append(tableCache);
-        sqlQuery.append(" WHERE table_name = ?");
-        for (String column : pkColumns) {
-            sqlQuery.append(" AND ").append(column).append(" = ?");
-        }
-        WdkModel wdkModel = baseAnswer.getQuestion().getWdkModel();
-        DataSource dataSource = wdkModel.getQueryPlatform().getDataSource();
+        initialize();
         try {
-            psQuery = SqlUtils.getPreparedStatement(dataSource,
-                    sqlQuery.toString());
-
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
 
             // write header
@@ -182,10 +169,46 @@ public class Gff3Reporter extends Reporter {
             writer.println("##FASTA");
             writeSequences(writer);
         } finally {
-            SqlUtils.closeStatement(psQuery);
+            complete();
         }
     }
 
+    void initialize() throws SQLException {
+        if (psQuery == null) {
+            // prepare the table query
+            RecordClass recordClass = this.baseAnswer.getQuestion().getRecordClass();
+            String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
+            StringBuffer sqlQuery = new StringBuffer("SELECT ");
+            sqlQuery.append("count(*) AS cache_count FROM ").append(tableCache);
+            sqlQuery.append(" WHERE table_name = ?");
+            for (String column : pkColumns) {
+                sqlQuery.append(" AND ").append(column).append(" = ?");
+            }
+            WdkModel wdkModel = baseAnswer.getQuestion().getWdkModel();
+            DataSource dataSource = wdkModel.getQueryPlatform().getDataSource();
+            psQuery = SqlUtils.getPreparedStatement(dataSource,
+                    sqlQuery.toString());
+        }
+    }
+
+    void complete() {
+        if (psQuery != null) {
+            SqlUtils.closeStatement(psQuery);
+            psQuery = null;
+        }
+    }
+
+    /**
+     * The initialize() method has to be called before this method.
+     * 
+     * @param writer
+     * @throws WdkModelException
+     * @throws NumberFormatException
+     * @throws NoSuchAlgorithmException
+     * @throws SQLException
+     * @throws JSONException
+     * @throws WdkUserException
+     */
     void writeHeader(PrintWriter writer) throws WdkModelException,
             NumberFormatException, NoSuchAlgorithmException, SQLException,
             JSONException, WdkUserException {
@@ -225,6 +248,16 @@ public class Gff3Reporter extends Reporter {
         writer.flush();
     }
 
+    /**
+     * The initialize() method has to be called before this method.
+     * 
+     * @param writer
+     * @throws WdkModelException
+     * @throws NoSuchAlgorithmException
+     * @throws SQLException
+     * @throws JSONException
+     * @throws WdkUserException
+     */
     void writeRecords(PrintWriter writer) throws WdkModelException,
             NoSuchAlgorithmException, SQLException, JSONException,
             WdkUserException {
@@ -437,6 +470,16 @@ public class Gff3Reporter extends Reporter {
         recordBuffer.append(NEW_LINE);
     }
 
+    /**
+     * The initialize() method has to be called before this method.
+     * 
+     * @param writer
+     * @throws WdkModelException
+     * @throws SQLException
+     * @throws NoSuchAlgorithmException
+     * @throws JSONException
+     * @throws WdkUserException
+     */
     void writeSequences(PrintWriter writer) throws WdkModelException,
             SQLException, NoSuchAlgorithmException, JSONException,
             WdkUserException {
