@@ -137,30 +137,37 @@ public class Gff3Dumper {
         Gff3Reporter geneReport = (Gff3Reporter) geneAnswer.createReport(
                 "gff3Dump", config);
 
-        // collect the header from sequence reporter
-        logger.info("Collecting header....");
-        seqReport.writeHeader(writer);
+        seqReport.initialize();
+        geneReport.initialize();
 
-        // collect the sequence records
-        logger.info("Collecting sequence records....");
-        seqReport.writeRecords(writer);
+        try {
+            // collect the header from sequence reporter
+            logger.info("Collecting header....");
+            seqReport.writeHeader(writer);
 
-        // collect the gene records
-        logger.info("Collecting gene records....");
-        geneReport.writeRecords(writer);
+            // collect the sequence records
+            logger.info("Collecting sequence records....");
+            seqReport.writeRecords(writer);
 
-        // collect the protein sequences
-        logger.info("Collecting protein sequences....");
-        writer.println("##FASTA");
-        geneReport.writeSequences(writer);
+            // collect the gene records
+            logger.info("Collecting gene records....");
+            geneReport.writeRecords(writer);
 
-        // collect the genomic sequences
-        logger.info("Collecting genomic sequences....");
-        seqReport.writeSequences(writer);
+            // collect the protein sequences
+            logger.info("Collecting protein sequences....");
+            writer.println("##FASTA");
+            geneReport.writeSequences(writer);
 
-        writer.flush();
-        writer.close();
+            // collect the genomic sequences
+            logger.info("Collecting genomic sequences....");
+            seqReport.writeSequences(writer);
+        } finally {
+            seqReport.complete();
+            geneReport.complete();
+            writer.flush();
+            writer.close();
 
+        }
         long end = System.currentTimeMillis();
         System.out.println("GFF3 file saved at " + gffFile.getAbsolutePath()
                 + ".");
