@@ -324,7 +324,7 @@
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics">yes</attribute>
-       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "ChIP_chip">yes</attribute>
        <attribute name = "RNA_Seq">yes</attribute>
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -508,7 +508,7 @@
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
+       <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
        <attribute name = "SageTags"></attribute>

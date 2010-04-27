@@ -35,7 +35,7 @@
 
    <record>
        <attribute name = "Metric_Type">Protein_coding</attribute>
-       <attribute name = "Description">Number of genes that are protein coding</attribute>
+       <attribute name = "Description">Number of genes that are protein coding: it includes pseudogenes</attribute>
        <attribute name="Cryptosporidium_hominis">3886</attribute>
        <attribute name="Cryptosporidium_muris">3937</attribute>
        <attribute name="Cryptosporidium_parvum">3805</attribute>
