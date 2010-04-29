@@ -315,7 +315,7 @@
        <attribute name = "Genome_Version">02-19-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">23.26</attribute>
-       <attribute name = "Gene_Count">5560</attribute>
+       <attribute name = "Gene_Count">5615</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Dd2,HB3</attribute>
        <attribute name = "Organellar_Genomes">C10 plastid, NF54 mito</attribute>
@@ -361,7 +361,7 @@
        <attribute name = "Genome_Version">10-03-2007</attribute>
        <attribute name = "Data_Source">EMBL</attribute>
        <attribute name = "Genome_Size">23.46</attribute>
-       <attribute name = "Gene_Count">5161</attribute>
+       <attribute name = "Gene_Count">5160</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -453,7 +453,7 @@
        <attribute name = "Genome_Version">08-05-2008</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">62.48</attribute>
-       <attribute name = "Gene_Count">5761</attribute>
+       <attribute name = "Gene_Count">7227</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
