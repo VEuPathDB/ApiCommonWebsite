@@ -150,7 +150,7 @@
        <attribute name = "Genome_Version">09-24-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">11.21</attribute>
-       <attribute name = "Gene_Count">5981</attribute>
+       <attribute name = "Gene_Count">5981*</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -476,7 +476,7 @@
        <attribute name = "Genome_Version">07-16-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">63.01</attribute>
-       <attribute name = "Gene_Count">9239</attribute>
+       <attribute name = "Gene_Count">9239**</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">VEG,GT1,RH,CkUg2</attribute>
        <attribute name = "Organellar_Genomes">apicoplast</attribute>
@@ -662,7 +662,7 @@
        <attribute name = "Genome_Version">09-10-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">101.09</attribute>
-       <attribute name = "Gene_Count">25011</attribute>
+       <attribute name = "Gene_Count">17124***</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Esmeraldo, non-Esmeraldo, unassigned</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
