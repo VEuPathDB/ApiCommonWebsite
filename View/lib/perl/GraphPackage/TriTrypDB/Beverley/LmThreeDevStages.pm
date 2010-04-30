@@ -30,7 +30,7 @@ sub init {
                            default_y_min => -1.5,
                            force_x_axis_label_horizontal => 1,
                            make_y_axis_fold_incuction => 1,
-                           x_axis_labels => ['MLDA vs ELPP', 'PNAMP vs ELPP'],
+                           x_axis_labels => ['M v P', 'A v P'],
                            plot_title => 'Transcript profiling of 3 L.major developmental stages',
                           },
       pct => {profiles => ['Percents of L.major Beverly Steve array data(red)',
@@ -40,7 +40,7 @@ sub init {
               #r_adjust_profile => 'profile = cbind(profile[1,1:3], profile[1,4:6]);',
               colors => ['#D87093','#191970', '#D87093', '#191970', '#D87093','#191970', '#98FB98','#191970', '#98FB98', '#191970','#98FB98','#191970'],
               #x_axis_labels => ['MLDA vs ELPP', 'PNAMP vs ELPP'],
-              x_axis_labels => ['MLDA_1','MLDA_2', 'MLDA_3', 'PNAMP_1', 'PNAMP_2', 'PNAMP_3'],
+              x_axis_labels => ['AvP_1','AvP_2', 'AvP_3', 'MvP_1', 'MvP_2', 'MvP_3'],
               plot_title => 'Transcript profiling of 3 L.major developmental stages Percentiles',
              },
      });
