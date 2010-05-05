@@ -1,319 +1,795 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE xml [
-  <!ENTITY nbsp "&#160;"> 
-  <!ENTITY lt   "&#60;"> 
-  <!ENTITY gt   "&#62;">
-  <!ENTITY sl   "&#47;">
+<!ENTITY nbsp "&#160;"> 
+<!ENTITY lt   "&#60;"> 
+<!ENTITY gt   "&#62;">
+<!ENTITY sl   "&#47;">
 ]>
 
 <xmlAnswer>
 
 <!--
 <record>
-       <attribute name="title"></attribute>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2010 15:00</attribute>
+    <attribute name="tag"></attribute>
+    <attribute name="authors"></attribute>
+    <attribute name="title">
+      <![CDATA[
+      ]]>
+    </attribute>
+    <attribute name="reference">
+      <![CDATA[
+      ]]>
+    </attribute>
+    <attribute name="links">
+      <![CDATA[
+      ]]>
+    </attribute>
+    <attribute name="pmid"></attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+      <![CDATA[
+      ]]>
+    </attribute>
 </record>
 -->
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Aslett et al.<br>
-<b>TriTrypDB: a functional genomic resource for the Trypanosomatidae</b><br>
- Nucleic Acids Research 2010 38(Database issue):D457-D462; doi:10.1093/nar/gkp851<br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkp851">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D457">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38
-/suppl_1/D457">PDF</a> ]
-
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2010 15:00</attribute>
+    <attribute name="tag">PubMed:19843604</attribute>
+    <attribute name="authors">
+        Aslett M, Aurrecoechea C, Berriman M, Brestelli J, Brunk BP, Carrington M, 
+        Depledge DP, Fischer S, Gajria B, Gao X, Gardner MJ, Gingle A, Grant G, 
+        Harb OS, Heiges M, Hertz-Fowler C, Houston R, Innamorato F, Iodice J, 
+        Kissinger JC, Kraemer E, Li W, Logan FJ, Miller JA, Mitra S, Myler PJ, 
+        Nayak V, Pennington C, Phan I, Pinney DF, Ramasamy G, Rogers MB, Roos DS, 
+        Ross C, Sivam D, Smith DF, Srinivasamoorthy G, Stoeckert CJ Jr., 
+        Subramanian S, Thibodeau R, Tivey A, Treatman C, Velarde G, Wang H.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+         TriTrypDB: a functional genomic resource for the Trypanosomatidae
+         ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+          Nucleic Acids Research 2010 38(Database issue):D457-D462; doi:10.1093/nar/gkp851
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkp851">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D457">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D457">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">19843604</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+TriTrypDB (http://tritrypdb.org) is an integrated database
+providing access to genome-scale datasets for kinetoplastid
+parasites, and supporting a variety of complex queries
+driven by research and development needs. TriTrypDB is a
+collaborative project, utilizing the GUS/WDK computational
+infrastructure developed by the Eukaryotic Pathogen
+Bioinformatics Resource Center (EuPathDB.org) to integrate
+genome annotation and analyses from GeneDB and elsewhere
+with a wide variety of functional genomics datasets made
+available by members of the global research community, often
+pre-publication. Currently, TriTrypDB integrates datasets
+from Leishmania braziliensis, L. infantum, L. major, L.
+tarentolae, Trypanosoma brucei and T. cruzi. Users may
+examine individual genes or chromosomal spans in their
+genomic context, including syntenic alignments with other
+kinetoplastid organisms. Data within TriTrypDB can be
+interrogated utilizing a sophisticated search strategy
+system that enables a user to construct complex queries
+combining multiple data types. All search strategies are
+stored, allowing future access and integrated searches.
+'User Comments' may be added to any gene page, enhancing
+available annotation; such comments become immediately
+searchable via the text search, and are forwarded to
+curators for incorporation into the reference annotation
+when appropriate.
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
- Aurrecoechea, C., J. Brestelli, B. P. Brunk, J. Dommer, S. Fischer, B. Gajria, X. Gao, A. Gingle, G. Grant, O. S. Harb, M. Heiges, F. Innamorato, J. Iodice, J. C. Kissinger, E. Kraemer, W. Li, J. A. Miller, V. Nayak, C. Penning
-ton, D. F. Pinney, D. S. Roos, C. Ross, C. J. Stoeckert, Jr., C. Treatman, and H. Wang.<br>
- <b>PlasmoDB: a functional genomic database for malaria parasites.</b><br>
- Nucleic Acids Res. 2009. 37:D539-D543.<br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkn814">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkn814">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkn814">PDF</a> ]
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2009 16:00</attribute>
+    <attribute name="tag">PubMed:18957442</attribute>
+    <attribute name="authors">
+         Aurrecoechea, C., J. Brestelli, B. P. Brunk, J. Dommer, S. Fischer, 
+         B. Gajria, X. Gao, A. Gingle, G. Grant, O. S. Harb, M. Heiges, F. Innamorato, 
+         J. Iodice, J. C. Kissinger, E. Kraemer, W. Li, J. A. Miller, V. Nayak, 
+         C. Pennington, D. F. Pinney, D. S. Roos, C. Ross, C. J. Stoeckert, Jr., 
+         C. Treatman, and H. Wang
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        PlasmoDB: a functional genomic database for malaria parasites
+        ]]>
+     </attribute>
+    <attribute name="reference">
+        <![CDATA[
+           Nucleic Acids Res. 2009. 37:D539-D543
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+         [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkn814">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkn814">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkn814">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">18957442</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+PlasmoDB (http://PlasmoDB.org) is a functional genomic
+database for Plasmodium spp. that provides a resource for
+data analysis and visualization in a gene-by-gene or
+genome-wide scale. PlasmoDB belongs to a family of genomic
+resources that are housed under the EuPathDB
+(http://EuPathDB.org) Bioinformatics Resource Center (BRC)
+umbrella. The latest release, PlasmoDB 5.5, contains
+numerous new data types from several broad
+categories--annotated genomes, evidence of transcription,
+proteomics evidence, protein function evidence, population
+biology and evolution. Data in PlasmoDB can be queried by
+selecting the data of interest from a query grid or drop
+down menus. Various results can then be combined with each
+other on the query history page. Search results can be
+downloaded with associated functional data and registered
+users can store their query history for future retrieval or
+analysis.
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
- Aurrecoechea, C., J. Brestelli, B. P. Brunk, J. M. Carlton, J. Dommer, S. Fischer, B. Gajria, X. Gao, A. Gingle, G. Grant, O. S. Harb, M. Heiges, F. Innamorato, J. Iodice, J. C. Kissinger, E. Kraemer, W. Li, J. A. Miller, H. G.
- Morrison, V. Nayak, C. Pennington, D. F. Pinney, D. S. Roos, C. Ross, C. J. Stoeckert, Jr., S. Sullivan, C. Treatman, and H. Wang.<br>
- <b>GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist pathogens Giardia lamblia and Trichomonas vaginalis.</b><br>
- Nucleic Acids Res. 2009. 37:D526-D530.<br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkn631">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkn631">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkn631">PDF</a> ]
-
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2009 15:00</attribute>
+    <attribute name="tag">PubMed:18824479</attribute>
+    <attribute name="authors">
+         Aurrecoechea, C., J. Brestelli, B. P. Brunk, J. M. Carlton, J. Dommer, 
+         S. Fischer, B. Gajria, X. Gao, A. Gingle, G. Grant, O. S. Harb, M. Heiges, 
+         F. Innamorato, J. Iodice, J. C. Kissinger, E. Kraemer, W. Li, J. A. Miller, 
+         H. G. Morrison, V. Nayak, C. Pennington, D. F. Pinney, D. S. Roos, 
+         C. Ross, C. J. Stoeckert, Jr., S. Sullivan, C. Treatman, and H. Wang
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist pathogens Giardia lamblia and Trichomonas vaginalis
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Nucleic Acids Res. 2009. 37:D526-D530
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkn631">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkn631">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkn631">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">18824479</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+GiardiaDB (http://GiardiaDB.org) and TrichDB
+(http://TrichDB.org) house the genome databases for Giardia
+lamblia and Trichomonas vaginalis, respectively, and
+represent the latest additions to the EuPathDB
+(http://EuPathDB.org) family of functional genomic
+databases. GiardiaDB and TrichDB employ the same framework
+as other EuPathDB sites (CryptoDB, PlasmoDB and ToxoDB),
+supporting fully integrated and searchable databases.
+Genomic-scale data available via these resources may be
+queried based on BLAST searches, annotation keywords and
+gene ID searches, GO terms, sequence motifs and other
+protein characteristics. Functional queries may also be
+formulated, based on transcript and protein expression data
+from a variety of platforms. Phylogenetic relationships may
+also be interrogated. The ability to combine the results
+from independent queries, and to store queries and query
+results for future use facilitates complex, genome-wide
+mining of functional genomic data.
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
+    <attribute name="record_date">31 March 2007 16:00</attribute>
+    <attribute name="tag">PubMed:18003657</attribute>
+    <attribute name="authors">
+        B. Gajria, A. Bahl, J. Brestelli, J. Dommer, S. Fischer, 
+        X. Gao, M. Heiges, J. Iodice, J. C. Kissinger, A. J. Mackey, et al.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        ToxoDB: an integrated Toxoplasma gondii database resource
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[    
+        Nucleic Acids Res. 2007. 36:D553-6
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkm981v1">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkm981v1">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkm981v1">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">18003657</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+ToxoDB (http://ToxoDB.org) is a genome and functional
+genomic database for the protozoan parasite Toxoplasma
+gondii. It incorporates the sequence and annotation of the
+T. gondii ME49 strain, as well as genome sequences for the
+GT1, VEG and RH (Chr Ia, Chr Ib) strains. Sequence
+information is integrated with various other genomic-scale
+data, including community annotation, ESTs, gene expression
+and proteomics data. ToxoDB has matured significantly since
+its initial release. Here we outline the numerous updates
+with respect to the data and increased functionality
+available on the website.
+        ]]>
+    </attribute>
+</record>
 
- B. Gajria, A. Bahl, J. Brestelli, J. Dommer, S. Fischer, X. Gao, M. Heiges, J. Iodice, J. C. Kissinger, A. J. Mackey, et al.<br>
-<b>ToxoDB: an integrated Toxoplasma gondii database resource.</b><br>
- Nucleic Acids Res. 2007. 36:D553-6. <br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkm981v1">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkm981v1">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkm981v1">PDF</a> ]
+<record>
+    <attribute name="record_date">31 March 2007 15:00</attribute>
+    <attribute name="tag">PubMed:17098930</attribute>
+    <attribute name="authors">
+        Cristina Aurrecoechea, Mark Heiges, Haiming Wang, Zhiming Wang, 
+        Steve Fischer, Philippa Rhodes, John Miller, Eileen Kraemer, 
+        Christian J. Stoeckert, Jr., David S. Roos and Jessica C. Kissinger
+    </attribute>
+    
+    <attribute name="title">
+        <![CDATA[
+        ApiDB: integrated resources for the apicomplexan bioinformatics resource center
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Nucleic Acids Research. 2007. 35:D427-30
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkl880?ijkey=7QHavFAOdzzOSLM&keytype=ref">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkl880?ijkey=7QHavFAOdzzOSLM&keytype=ref">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkl880?ijkey=7QHavFAOdzzOSLM&keytype=ref">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">17098930</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+ApiDB (http://ApiDB.org) represents a unified entry point
+for the NIH-funded Apicomplexan Bioinformatics Resource
+Center (BRC) that integrates numerous database resources and
+multiple data types. The phylum Apicomplexa comprises
+numerous veterinary and medically important parasitic
+protozoa including human pathogenic species of the genera
+Cryptosporidium, Plasmodium and Toxoplasma. ApiDB serves not
+only as a database in its own right, but as a single
+web-based point of entry that unifies access to three major
+existing individual organism databases (PlasmoDB.org,
+ToxoDB.org and CryptoDB.org), and integrates these databases
+with data available from additional sources. Through the
+ApiDB site, users may pose queries and search all available
+apicomplexan data and tools, or they may visit individual
+component organism databases.
+        ]]>
+    </attribute>
+</record>
 
-
-       ]]>
-       </attribute>
+<record>
+    <attribute name="record_date">31 March 2006 20:00</attribute>
+    <attribute name="tag">PubMed:17029963</attribute>
+    <attribute name="authors">
+        Christian J. Stoeckert Jr., Steve Fisher, Jessica Kissinger, 
+        Mark Heiges, Cristina Aurrecoechea, Bindu Gajria, David S. Roos
+    </attribute>      
+    <attribute name="title">
+        <![CDATA[
+        PlasmoDB v5: New Looks, New Genomes
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Trends in Parasitology. 2006. 22(12): 543-546
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&cmd=Retrieve&dopt=AbstractPlus&list_uids=17029963&query_hl=1&itool=pubmed_docsum">Abstract</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">17029963</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+Version 5.1 of PlasmoDB, a resource for malaria parasite
+genomic and functional genomics datasets, was released in
+August 2006. This new release includes additional Plasmodium
+genomes and a newly designed website. The new site reflects
+the status of PlasmoDB as a member of a linked family of
+Apicomplexan databases.
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Cristina Aurrecoechea, Mark Heiges, Haiming Wang, Zhiming Wang, Steve Fischer, Philippa Rhodes, John Miller, Eileen Kraemer, Christian J. Stoeckert, Jr., David S. Roos and Jessica C. Kissinger.<br>
-<b>ApiDB: integrated resources for the apicomplexan bioinformatics resource center.</b><br>
- Nucleic Acids Research. 2007. 35:D427-30.<br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkl880?ijkey=7QHavFAOdzzOSLM&keytype=ref">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkl880?ijkey=7QHavFAOdzzOSLM&keytype=ref">Full text</
-a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkl880?ijkey=7QHavFAOdzzOSLM&keytype=ref">PDF</a> ]
-
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2006 19:00</attribute>
+    <attribute name="tag">ISBN:1-59454-995-8</attribute>
+    <attribute name="authors">
+        Patricia L. Whetzel, Shailesh V. Date, Kobby Essien, Martin J. Fraunholz, 
+        Bindu Gajria, Gregory R. Grant, John Iodice, Jessica C. Kissinger, 
+        Philip T. Labo, Arthur J. Milgram, David S. Roos, and Christian J. Stoeckert Jr.
+    </attribute>        
+    <attribute name="title">
+        <![CDATA[
+        PlasmoDB: The Plasmodium Genomics and Functional Genomics Resource
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        In silico Genomics and Proteomics: Functional Annotation of Genomes and Proteins. Nicola Mulder and Rolf Apweiler (eds.). Nova Science Publishers. 2006
+        ]]>
+    </attribute>
+    <attribute name="links"/>
+    <attribute name="pmid"></attribute>
+    <attribute name="isbn">1-59454-995-8</attribute>
+    <attribute name="abstract">
+        <![CDATA[
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Christian J. Stoeckert Jr., Steve Fisher, Jessica Kissinger, Mark Heiges, Cristina Aurrecoechea, Bindu Gajria, David S. Roos. <br>
-<b>PlasmoDB v5: New Looks, New Genomes.</b><br>
-Trends in Parasitology. 2006. 22(12): 543-546.<br>
-[ <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&cmd=Retrieve&dopt=AbstractPlus&list_uids=17029963&query_hl=1&itool=pubmed_docsum">Abstract</a> ]
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2006 18:00</attribute>
+    <attribute name="tag">PubMed:16844709</attribute>
+    <attribute name="authors">
+        Haiming Wang, Yanqi Su, Aaron J. Mackey, Eileen T. Kraemer and Jessica C. Kissinger
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        SynView: A GBrowse-compatible Approach to Visualizing Comparative Genome Data
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Bioinformatics. 2006. 22(18):2308-2309
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://bioinformatics.oxfordjournals.org/cgi/content/short/22/18/2308">Abstract</a> | <a href="http://bioinformatics.oxfordjournals.org/cgi/content/full/22/18/2308">Full text</a> |<a href="http://bioinformatics.oxfordjournals.org/cgi/reprint/22/18/2308">PDF</a> | <a href="http://eupathdb.org/apps/SynView/">Supplement</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">16844709</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+SUMMARY: We present SynView, a simple and generic approach
+to dynamically visualize multi-species comparative genome
+data. It is a light-weight application based on the popular
+and configurable web-based GBrowse framework. It can be used
+with a variety of databases and provides the user with a
+high degree of interactivity. The tool is written in Perl
+and runs on top of the GBrowse framework. It is in use in
+the PlasmoDB (http://www.PlasmoDB.org) and the CryptoDB
+(http://www.CryptoDB.org) projects and can be easily
+integrated into other cross-species comparative genome
+projects. AVAILABILITY: The program and instructions are
+freely available at http://www.ApiDB.org/apps/SynView/
+CONTACT: jkissing@uga.edu.
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
+    <attribute name="record_date">31 March 2006 17:00</attribute>
+    <attribute name="tag">PubMed:16381902</attribute>
+    <attribute name="authors">
+        Heiges M, Wang H, Robinson E, Aurrecoechea C, Gao X, Kaluskar N, 
+        Rhodes P, Wang S, He CZ, Su Y, Miller J, Kraemer E, Kissinger JC.
+    </attribute>
+    
+    <attribute name="title">
+        <![CDATA[
+        CryptoDB: a <i>Cryptosporidium</i> bioinformatics resource update
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Nucleic Acids Res. 2006 Jan 1;34:D419-22
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/34/suppl_1/D419">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/34/suppl_1/D419">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/34/suppl_1/D419">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">16381902</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+The database, CryptoDB (http://CryptoDB.org), is a community
+bioinformatics resource for the AIDS-related
+apicomplexan-parasite, Cryptosporidium. CryptoDB integrates
+whole genome sequence and annotation with expressed sequence
+tag and genome survey sequence data and provides
+supplemental bioinformatics analyses and data-mining tools.
+A simple, yet comprehensive web interface is available for
+mining and visualizing the data. CryptoDB is allied with the
+databases PlasmoDB and ToxoDB via ApiDB, an
+NIH/NIAID-fundedBioinformatics Resource Center. Recent
+updates to CryptoDB include the deposition of annotated
+genome sequences for Cryptosporidium parvum and
+Cryptosporidium hominis, migration to a relational database
+(GUS), a new query and visualization interface and the
+introduction of Web services.
+        ]]>
+    </attribute>
+</record>
 
-Patricia L. Whetzel, Shailesh V. Date, Kobby Essien, Martin J. Fraunholz, Bindu Gajria, Gregory R. Grant, John Iodice, Jessica C. Kissinger, Philip T. Labo, Arthur J. Milgram, David S. Roos, and Christian J. Stoeckert Jr. <br>
-<b>PlasmoDB: The Plasmodium Genomics and Functional Genomics Resource.</b><br>
-In silico Genomics and Proteomics: Functional Annotation of Genomes and Proteins. Nicola Mulder and Rolf Apweiler (eds.). Nova Science Publishers. 2006. <br>
+<record>
+    <attribute name="record_date">31 March 2006 16:00</attribute>
+    <attribute name="tag">PubMed:16381887</attribute>
+    <attribute name="authors">
+        Feng Chen, Aaron J. Mackey, Christian J. Stoeckert Jr. and David S. Roos
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        OrthoMCL-DB: querying a comprehensive multi-species collection of ortholog groups
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Nucleic Acids Res. 2006 Jan 1;34:D363-8        
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/34/suppl_1/D363">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/34/suppl_1/D363">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/34/suppl_1/D363">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">16381887</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+The OrthoMCL database (http://orthomcl.cbil.upenn.edu)
+houses ortholog group predictions for 55 species, including
+16 bacterial and 4 archaeal genomes representing
+phylogenetically diverse lineages, and most currently
+available complete eukaryotic genomes: 24 unikonts (12
+animals, 9 fungi, microsporidium, Dictyostelium, Entamoeba),
+4 plants/algae and 7 apicomplexan parasites. OrthoMCL
+software was used to cluster proteins based on sequence
+similarity, using an all-against-all BLAST search of each
+species' proteome, followed by normalization of
+inter-species differences, and Markov clustering. A total of
+511,797 proteins (81.6% of the total dataset) were clustered
+into 70,388 ortholog groups. The ortholog database may be
+queried based on protein or group accession numbers, keyword
+descriptions or BLAST similarity. Ortholog groups exhibiting
+specific phyletic patterns may also be identified, using
+either a graphical interface or a text-based Phyletic
+Pattern Expression grammar. Information for ortholog groups
+includes the phyletic profile, the list of member proteins
+and a multiple sequence alignment, a statistical summary and
+graphical view of similarities, and a graphical
+representation of domain architecture. OrthoMCL software,
+the entire FASTA dataset employed and clustering results are
+available for download. OrthoMCL-DB provides a centralized
+warehouse for orthology prediction among multiple species,
+and will be updated and expanded as additional genome
+sequence data become available.
+        ]]>
+    </attribute>
+</record>
 
+<record>
+    <attribute name="record_date">31 March 2006 15:00</attribute>
+    <attribute name="tag">PubMed:16311071</attribute>
+    <attribute name="authors">
+        Duraisingh M, Ferdig MT, Stoeckert CJ, Volkman SK, McGovern VP
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        <i>Plasmodium</i> research in the postgenomic era
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[            
+        Trends Parasitol. 2006 22(1):1-4
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6W7G-4HNSB6D-2&amp;_coverDate=01%2F31%2F2006&amp;_alid=373299208&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_qd=1&amp;_cdi=6626&amp;_sort=d&amp;view=c&amp;_acct=C000050221&amp;_version=1&amp;_urlVersion=0&amp;_userid=10&amp;md5=b4b05abd69cfeb5ef1e66ca91cce994b">Abstract</a> | <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6W7G-4HNSB6D-2&amp;_user=10&amp;_coverDate=01%2F31%2F2006&amp;_alid=373299208&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;_qd=1&amp;_cdi=6626&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000050221&amp;_version=1&amp;_urlVersion=0&amp;_userid=10&amp;md5=83f0b10de2980b3fef183d3e7268b9b2">Full text</a> | <a href="http://www.sciencedirect.com/science?_ob=MImg&amp;_imagekey=B6W7G-4HNSB6D-2-1&amp;_cdi=6626&amp;_user=10&amp;_orig=search&amp;_coverDate=01%2F31%2F2006&amp;_qd=1&amp;_sk=999779998&amp;view=c&amp;wchp=dGLzVlz-zSkzS&amp;md5=3b147441231bcdb654a864bd3256aab9&amp;ie=/sdarticle.pdf">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">16311071</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+The complete genomic sequence of Plasmodium falciparum
+strain 3D7 was published in October 2002. At the Next Steps
+in Malaria Research meeting in April 2005, the next
+practical steps were considered and the priorities ranked
+for postgenomic research in Plasmodium. The high-throughput
+approaches that will help to answer the major biological
+questions regarding Plasmodium should, like the genome
+project itself, build community-shared resources, and
+efforts must be made to help researchers ready themselves to
+use the tools that will become available.
+        ]]>
+    </attribute>
+</record>
 
-       ]]>
-       </attribute>
+<record>
+    <attribute name="record_date">31 March 2005 20:00</attribute>
+    <attribute name="tag">ISBN:0-9542464-6-2</attribute>
+    <attribute name="authors">
+        J.C. Kissinger and D.S. Roos
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        Getting the most out of bioinformatics resources
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        <i>In</i>: Malaria Parasites, A.P. Waters & C.J. Janse, editors.  Horizon, Norfolk UK. 2004
+        ]]>
+    </attribute>
+    <attribute name="links"/>
+    <attribute name="pmid"></attribute>
+    <attribute name="isbn">0-9542464-6-2 </attribute>
+    <attribute name="abstract">
+        <![CDATA[
+        ]]>
+    </attribute>
+</record>
+
+<record>
+    <attribute name="record_date">31 March 2005 19:00</attribute>
+    <attribute name="tag">PubMed:15911631</attribute>
+    <attribute name="authors">
+        Khan, A., S. Taylor, C. Su, A.J. Mackey, J. Boyle, R. Cole, D. Glover, K. Tang, 
+        I.T. Paulsen, M. Berriman, J.C. Boothroyd, E.R. Pfefferkorn, J.P. Dubey, J.W. 
+        Ajioka, D.S. Roos, J.C. Wootton and L.D. Sibley
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        Composite genome map and recombination parameters derived from three archetypal lineages of <i>Toxoplasma gondii</i>
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Nucl. Acids Res. 2005 33:2980-2992
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/33/9/2980">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/33/9/2980">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/33/9/2980">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">15911631</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+Toxoplasma gondii is a highly successful protozoan parasite
+in the phylum Apicomplexa, which contains numerous animal
+and human pathogens. T.gondii is amenable to cellular,
+biochemical, molecular and genetic studies, making it a
+model for the biology of this important group of parasites.
+To facilitate forward genetic analysis, we have developed a
+high-resolution genetic linkage map for T.gondii. The
+genetic map was used to assemble the scaffolds from a 10X
+shotgun whole genome sequence, thus defining 14 chromosomes
+with markers spaced at approximately 300 kb intervals across
+the genome. Fourteen chromosomes were identified comprising
+a total genetic size of approximately 592 cM and an average
+map unit of approximately 104 kb/cM. Analysis of the genetic
+parameters in T.gondii revealed a high frequency of closely
+adjacent, apparent double crossover events that may
+represent gene conversions. In addition, we detected large
+regions of genetic homogeneity among the archetypal clonal
+lineages, reflecting the relatively few genetic outbreeding
+events that have occurred since their recent origin. Despite
+these unusual features, linkage analysis proved to be
+effective in mapping the loci determining several drug
+resistances. The resulting genome map provides a framework
+for analysis of complex traits such as virulence and
+transmission, and for comparative population genetic
+studies.
+    ]]>
+    </attribute>
+</record>
+
+<record>
+    <attribute name="record_date">31 March 2005 18:00</attribute>
+    <attribute name="tag">PubMed:15994520</attribute>
+    <attribute name="authors">
+        Roos, D.S.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        Themes and variations in apicomplexan parasite biology
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[            
+        Science. 2005 309:72-73
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://www.sciencemag.org/cgi/content/summary/309/5731/72">Abstract</a> | <a href="http://www.sciencemag.org/cgi/content/full/309/5731/72">Full text</a> | <a href="http://www.sciencemag.org/cgi/reprint/309/5731/72.pdf">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">15994520</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Haiming Wang, Yanqi Su, Aaron J. Mackey, Eileen T. Kraemer and Jessica C. Kissinger.<br>
-<b>SynView: A GBrowse-compatible Approach to Visualizing Comparative Genome Data.</b><br>
-Bioinformatics. 2006. 22(18):2308-2309<br>
-[ <a href="http://bioinformatics.oxfordjournals.org/cgi/content/short/22/18/2308">Abstract</a> | <a href="http://bioinformatics.oxfordjournals.org/cgi/content/full/22/18/2308">Full text</a> |<a href="http://bioinformatics.oxford
-journals.org/cgi/reprint/22/18/2308">PDF</a> | <a href="http://eupathdb.org/apps/SynView/">Supplement</a> ]
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2005 17:00</attribute>
+    <attribute name="tag">PubMed:16151400</attribute>
+    <attribute name="authors">
+        Chaudhary, K., and D.S. Roos
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        Protozoan genomics for drug discovery
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Nature Biotechnol. 2005 23:1089-1091
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://www.nature.com/nbt/journal/v23/n9/abs/nbt0905-1089.html">Abstract</a> | <a href="http://www.nature.com/nbt/journal/v23/n9/full/nbt0905-1089.html">Full text</a> | <a href="http://www.nature.com/nbt/journal/v23/n9/pdf/nbt0905-1089.pdf">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">16151400</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+        ]]>
+    </attribute>
 </record>
 
 
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Heiges M, Wang H, Robinson E, Aurrecoechea C, Gao X, Kaluskar N, Rhodes P, Wang S, He CZ, Su Y, Miller J, Kraemer E, Kissinger JC. <br>
-<b>CryptoDB: a <i>Cryptosporidium</i> bioinformatics resource update.</b><br>
-Nucleic Acids Res. 2006 Jan 1;34:D419-22.<br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/34/suppl_1/D419">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/34/suppl_1/D419">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/re
-print/34/suppl_1/D419">PDF</a> ]
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2005 16:00</attribute>
+    <attribute name="tag">PubMed:16324218</attribute>
+    <attribute name="authors">
+        Radke, J.R., M.S. Behnke, A.J. Mackey, J.B. Radke, D.S. Roos and M.W. White
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        The transcriptome of <i>Toxoplasma gondii</i>
+        ]]>
+    </attribute> 
+    <attribute name="reference">
+        <![CDATA[            
+        BMC Bioinformatics 2005:3-26
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://www.biomedcentral.com/1741-7007/3/26/abstract">Abstract</a> | <a href="http://www.biomedcentral.com/1741-7007/3/26">Full text</a> | <a href="http://www.biomedcentral.com/content/pdf/1741-7007-3-26.pdf">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">16324218</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+BACKGROUND: Toxoplasma gondii gives rise to toxoplasmosis,
+among the most prevalent parasitic diseases of animals and
+man. Transformation of the tachzyoite stage into the latent
+bradyzoite-cyst form underlies chronic disease and leads to
+a lifetime risk of recrudescence in individuals whose immune
+system becomes compromised. Given the importance of tissue
+cyst formation, there has been intensive focus on the
+development of methods to study bradyzoite differentiation,
+although the molecular basis for the developmental switch is
+still largely unknown. RESULTS: We have used serial analysis
+of gene expression (SAGE) to define the Toxoplasma gondii
+transcriptome of the intermediate-host life cycle that leads
+to the formation of the bradyzoite/tissue cyst. A broad view
+of gene expression is provided by >4-fold coverage from nine
+distinct libraries (approximately 300,000 SAGE tags)
+representing key developmental transitions in primary
+parasite populations and in laboratory strains representing
+the three canonical genotypes. SAGE tags, and their
+corresponding mRNAs, were analyzed with respect to
+abundance, uniqueness, and antisense/sense polarity and
+chromosome distribution and developmental specificity.
+CONCLUSION: This study demonstrates that phenotypic
+transitions during parasite development were marked by
+unique stage-specific mRNAs that accounted for 18% of the
+total SAGE tags and varied from 1-5% of the tags in each
+developmental stage. We have also found that Toxoplasma mRNA
+pools have a unique parasite-specific composition with 1 in
+5 transcripts encoding Apicomplexa-specific genes
+functioning in parasite invasion and transmission.
+Developmentally co-regulated genes were dispersed across all
+Toxoplasma chromosomes, as were tags representing each
+abundance class, and a variety of biochemical pathways
+indicating that trans-acting mechanisms likely control gene
+expression in this parasite. We observed distinct
+similarities in the specificity and expression levels of
+mRNAs in primary populations (Day-6 post-sporozoite
+infection) that occur prior to the onset of bradyzoite
+development that were uniquely shared with the virulent Type
+I-RH laboratory strain suggesting that development of RH may
+be arrested. By contrast, strains from Type II-Me49B7 and
+Type III-VEGmsj contain SAGE tags corresponding to
+bradyzoite genes, which suggests that priming of
+developmental expression likely plays a role in the greater
+capacity of these strains to complete bradyzoite
+development.
+    ]]>
+    </attribute>
 </record>
 
-
 <record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-
-Feng Chen, Aaron J. Mackey, Christian J. Stoeckert Jr. and David S. Roos.<br>
-<b>OrthoMCL-DB: querying a comprehensive multi-species collection of ortholog groups.</b><br>
-Nucleic Acids Res. 2006 Jan 1;34:D363-8.<br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/34/suppl_1/D363">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/34/suppl_1/D363">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/re
-print/34/suppl_1/D363">PDF</a> ]
-
-       ]]>
-       </attribute>
+    <attribute name="record_date">31 March 2005 15:00</attribute>
+    <attribute name="tag">PubMed:16008573</attribute>
+    <attribute name="authors">
+        Stoeckert CJ Jr.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+        Functional genomics databases on the web
+        ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+        Cell Microbiol. 2005 7(8), 1053-9
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://www.blackwell-synergy.com/doi/abs/10.1111/j.1462-5822.2005.00553.x">Abstract</a> | <a href="http://www.blackwell-synergy.com/doi/full/10.1111/j.1462-5822.2005.00553.x">Full text</a> | <a href="http://www.blackwell-synergy.com/doi/pdf/10.1111/j.1462-5822.2005.00553.x">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">16008573</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+Experiments involving high-throughput methods for measuring
+transcripts, proteins and metabolites constitute the area of
+functional genomics. These experiments are highly context
+dependent and require much more detail about the
+experimental design, sample and protocols used than in
+genomics. Functional genomics databases are needed that
+follow established and emerging standards. Functional
+genomic databases are not yet very common; however, there
+are a few focused on microbial genomes and a couple
+integrative systems are available for setting up functional
+genomics databases.
+        ]]>
+    </attribute>
 </record>
 
-
-<record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-J.C. Kissinger and D.S. Roos.<br>
-<b>Getting the most out of bioinformatics resources.</b> <br>
-<i>In</i>: Malaria Parasites, A.P. Waters & C.J. Janse, editors.  Horizon, Norfolk UK. 2005. 
-
-       ]]>
-       </attribute>
-</record>
-
-
-<record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Khan, A., S. Taylor, C. Su, A.J. Mackey, J. Boyle, R. Cole, D. Glover, K. Tang, 
-I.T. Paulsen, M. Berriman, J.C. Boothroyd, E.R. Pfefferkorn, J.P. Dubey, J.W. 
-Ajioka, D.S. Roos, J.C. Wootton and L.D. Sibley.<br> 
-<b>Composite genome map and recombination parameters derived from three archetypal 
-lineages of <i>Toxoplasma gondii</i>.</b> <br>
-Nucl. Acids Res. 2005 33:2980-2992.<br>
-[ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/33/9/2980">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/33/9/2980">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/33/9/2
-980">PDF</a> ]
-
-       ]]>
-       </attribute>
-</record>
-
-
-<record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Roos, D.S.<br>
-<b>Themes and variations in apicomplexan parasite biology.</b><br>
-Science. 2005 309:72-73.<br>
-[ <a href="http://www.sciencemag.org/cgi/content/summary/309/5731/72">Abstract</a> | <a href="http://www.sciencemag.org/cgi/content/full/309/5731/72">Full text</a> | <a href="http://www.sciencemag.org/cgi/reprint/309/5731/72.pdf
-">PDF</a> ]
-
-       ]]>
-       </attribute>
-</record>
-
-
-<record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Chaudhary, K., and D.S. Roos.<br>
-Protozoan genomics for drug discovery.<br>
-Nature Biotechnol. 2005 23:1089-1091.<br>
-[ <a href="http://www.nature.com/nbt/journal/v23/n9/abs/nbt0905-1089.html">Abstract</a> | <a href="http://www.nature.com/nbt/journal/v23/n9/full/nbt0905-1089.html">Full text</a> | <a href="http://www.nature.com/nbt/journal/v23/n
-9/pdf/nbt0905-1089.pdf">PDF</a> ]
-
-       ]]>
-       </attribute>
-</record>
-
-
-<record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Radke, J.R., M.S. Behnke, A.J. Mackey, J.B. Radke, D.S. Roos and M.W. White.<br>
-<b>The transcriptome of <i>Toxoplasma gondii</i>.</b> <br> 
-BMC Bioinformatics 2005:3-26.<br>
-[ <a href="http://www.biomedcentral.com/1741-7007/3/26/abstract">Abstract</a> | <a href="http://www.biomedcentral.com/1741-7007/3/26">Full text</a> | <a href="http://www.biomedcentral.com/content/pdf/1741-7007-3-26.pdf">PDF</a> 
-]
-
-       ]]>
-       </attribute>
-</record>
-
-
-<record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Stoeckert CJ Jr. <br>
-<b>Functional genomics databases on the web.</b> <br>
-Cell Microbiol. 2005 7(8), 1053-9<br>
-[ <a href="http://www.blackwell-synergy.com/doi/abs/10.1111/j.1462-5822.2005.00553.x">Abstract</a> | <a href="http://www.blackwell-synergy.com/doi/full/10.1111/j.1462-5822.2005.00553.x">Full text</a> | <a href="http://www.blackw
-ell-synergy.com/doi/pdf/10.1111/j.1462-5822.2005.00553.x">PDF</a> ]
-
-
-
-       ]]>
-       </attribute>
-</record>
-
-
-<record>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag"></attribute>
-       <attribute name="text">
-       <![CDATA[
-
-Duraisingh M, Ferdig MT, Stoeckert CJ, Volkman SK, McGovern VP. <br>
-<b><i>Plasmodium</i> research in the postgenomic era.</b>  <br>
-Trends Parasitol. 2006 22(1):1-4 <br>
-[ <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6W7G-4HNSB6D-2&amp;_coverDate=01%2F31%2F2006&amp;_alid=373299208&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_qd=1&amp;_cdi=6626&amp;_sort=d&amp;view=c&amp;
-_acct=C000050221&amp;_version=1&amp;_urlVersion=0&amp;_userid=10&amp;md5=b4b05abd69cfeb5ef1e66ca91cce994b">Abstract</a> | <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6W7G-4HNSB6D-2&amp;_user=10&amp;_co
-verDate=01%2F31%2F2006&amp;_alid=373299208&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;_qd=1&amp;_cdi=6626&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000050221&amp;_version=1&amp;_urlVersion=0&amp;_userid=10&amp;md5=83
-f0b10de2980b3fef183d3e7268b9b2">Full text</a> | <a href="http://www.sciencedirect.com/science?_ob=MImg&amp;_imagekey=B6W7G-4HNSB6D-2-1&amp;_cdi=6626&amp;_user=10&amp;_orig=search&amp;_coverDate=01%2F31%2F2006&amp;_qd=1&amp;_sk=9
-99779998&amp;view=c&amp;wchp=dGLzVlz-zSkzS&amp;md5=3b147441231bcdb654a864bd3256aab9&amp;ie=/sdarticle.pdf">PDF</a> ]
-       ]]>
-       </attribute>
-   </record>
 
 </xmlAnswer>
