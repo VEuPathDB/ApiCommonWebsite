@@ -23,8 +23,8 @@
             <attribute name="url"><![CDATA[http://www.ncbi.nlm.nih.gov/sites/entrez?Db=genome&Cmd=ShowDetailView&TermToSearch=5883]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Enterocytozoon bieneusi</i> H348, whole genome shotgun sequencing project]]></attribute>
-            <attribute name="url"><![CDATA[http://gmod.mbl.edu/perl/site/antonospora01?page=intro]]></attribute>
+            <attribute name="title">![CDATA[<i>Nosema locustae</i> , whole genome shotgun sequencing project]]</attribute>           
+		  <attribute name="url">http://jbpc.mbl.edu/Nosema/</attribute>
         </row>
         <row>
             <attribute name="title"><![CDATA[<i>Spraguea lophii</i> Genome Survey]]></attribute>
