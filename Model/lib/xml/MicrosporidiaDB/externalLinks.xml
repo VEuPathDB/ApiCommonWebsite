@@ -23,7 +23,7 @@
             <attribute name="url"><![CDATA[http://www.ncbi.nlm.nih.gov/sites/entrez?Db=genome&Cmd=ShowDetailView&TermToSearch=5883]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Nosema locustae</i> , whole genome shotgun sequencing project]]</attribute>           
+            <attribute name="title"><![CDATA[<i>Nosema locustae</i> , whole genome shotgun sequencing project]]></attribute> 
 		  <attribute name="url">http://jbpc.mbl.edu/Nosema/</attribute>
         </row>
         <row>
