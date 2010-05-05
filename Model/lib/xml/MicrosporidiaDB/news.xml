@@ -6,7 +6,7 @@
        <attribute name="headline">We are pleased to announce the release of Microsporidia 1.0</attribute>
        <attribute name="date">01 April 2010 15:00</attribute>
        <attribute name="tag">release_apr_2010</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[<body>

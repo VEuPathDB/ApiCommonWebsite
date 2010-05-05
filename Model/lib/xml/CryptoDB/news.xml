@@ -125,7 +125,7 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="tag">
          crypto0310_news
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -277,7 +277,7 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        <attribute name="tag">
 				Crypto909news
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -327,7 +327,7 @@ The EuPathDB team.
        <attribute name="tag">
 				crypto41
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -363,7 +363,7 @@ The previous version of CryptoDB may still be accessed <a href='http://old.crypt
        <attribute name="tag">
        06February2009release40
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -413,7 +413,7 @@ The previous version of CryptoDB may still be accessed <a href='http://old.crypt
        <attribute name="tag">
        19February2008Release37
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -451,7 +451,7 @@ the Genome Browser.
        <attribute name="tag">
        5December2007Release36
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -525,7 +525,7 @@ available on the project's website
        <attribute name="tag">
        18June2007Release35
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -633,7 +633,7 @@ assemblies and annotations will be deposited with GenBank and CryptoDB.
        <attribute name="tag">
        17Nov2006release34
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -700,7 +700,7 @@ will need to temporarily suspend services. We apologize for the inconvenience.
        <attribute name="tag">
        16Apr2006release33
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -753,7 +753,7 @@ EC number annotations have been added. Sources of EC numbers include Genbank, KE
        <attribute name="headline">CryptoDB Release 3.2 is out</attribute>
        <attribute name="date">25 January 2006 00:00</attribute>
        <attribute name="tag">25Jan2006release32</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
 
          <![CDATA[
@@ -775,7 +775,7 @@ then 'Update Image'
        </attribute>
        <attribute name="date">07 November 2005 00:00</attribute>
        <attribute name="tag">09Dec2005release31</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
 
          <![CDATA[
@@ -845,7 +845,7 @@ CryptoDB is one of NIAID's Bioinformatics Resource Centers (<a href="http://www.
        <attribute name="tag">
        welcome
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
 
          <![CDATA[
