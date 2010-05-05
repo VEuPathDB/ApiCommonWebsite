@@ -6,7 +6,9 @@
        <attribute name="headline">We are pleased to announce the release of Microsporidia 1.0</attribute>
        <attribute name="date">01 April 2010 15:00</attribute>
        <attribute name="tag">release_apr_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 We are pleased to announced the full release of Microsporidia 1.0
 (<a href="http://MicrosporidiaDB.org">http://MicrosporidiaDB.org</a>). &nbsp;<br>
@@ -81,7 +83,9 @@ the coming years.</span>
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -173,7 +177,9 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
@@ -197,7 +203,9 @@ download the RFP</a>.
        <attribute name="headline"></attribute>
        <attribute name="date"></attribute>
        <attribute name="tag"></attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
           ]]>
        </attribute>

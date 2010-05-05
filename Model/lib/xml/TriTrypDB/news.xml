@@ -10,6 +10,7 @@
        </attribute>
        <attribute name="date"></attribute>
        <attribute name="tag"></attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">           
          <![CDATA[
 
@@ -22,7 +23,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+          
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -122,7 +125,9 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="tag">
          tritryp0310_news
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[
 <span style="font-weight: bold;">We are pleased to
 announce the release of TriTrypDB 2.1</span><br>
@@ -233,7 +238,9 @@ or rendering your opinion.
        <attribute name="tag">
          tritryp1209_news
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[
 <span style="font-weight: bold;">We are pleased to
 announce the release of TriTrypDB 2.0</span><br>
@@ -310,7 +317,9 @@ under the genomic context view.</li>
        </attribute>
        <attribute name="date">14 November 2009 15:00</attribute>
        <attribute name="tag">Tritryp111409news</attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[
 <b>We are pleased to announce the release of TriTrypDB 1.3</b><br>
 <p>
@@ -333,7 +342,9 @@ We anticipate a more significant release for TriTrypDB in late December which wi
        <attribute name="tag">
          HinxtonWorkShop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+          
          <![CDATA[<big><br>
 We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
 (Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
@@ -369,7 +380,9 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        <attribute name="tag">
          Tritryppub
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+          
          <![CDATA[<big><br>
 We are pleased to announce the publication of a paper
 introducing&nbsp;TriTrypDB. &nbsp;The paper entitled
@@ -400,7 +413,9 @@ click </span><a style="font-style: italic;"
        <attribute name="tag">
          Tritryp909news
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[<b>We are pleased to
 announce the release of TriTrypDB 1.2</b><br>
 <br>
@@ -465,7 +480,9 @@ The EuPathDB and GeneDB teams.
        <attribute name="tag">
          tritrypdb_release11
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[
 We are pleased to announce the release TriTrypDB 1.1 
 <br><br>Highlights include:<br><br>
@@ -496,7 +513,9 @@ The previous version of TriTrypDB may still be accessed <a href='http://old.trit
        <attribute name="tag">
          27May2009TriTrypDB11
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+          
          <![CDATA[
 We received many user comments during the KCMB meeting and following.  Many of these have already been examined by TriTrypDB curators (at GeneDB, SBRI and UGA) and incorporated into the official annotation. 253 genes have been modified since the meeting resulting in a total of 710 genes that have been updated since this current build of TriTrypDB. <b><a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the complete list of genes that have been re-annotated since December 1, 2008.
           ]]>
@@ -515,7 +534,9 @@ We received many user comments during the KCMB meeting and following.  Many of t
        <attribute name="tag">
          24Apr2009TriTrypDB11
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[
 We are pleased to announce the availability of a beta-release version of TriTrypDB 1.1, accessible at <a href="http://beta.TriTrypDB.org">http://beta.TriTrypDB.org</a>.  Feel free to forward this link to others.  <br><br>Highlights include:<br><br>
 <ul>
@@ -543,7 +564,9 @@ By providing access to TriTrypDB 1.1 prior to its official release, we hope to o
        <attribute name="tag">
          22Apr2009TriTrypDB11
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+          
          <![CDATA[
 Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <b><a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
           ]]>
@@ -562,7 +585,9 @@ Annotation of the Kinetoplastida is ramping up again as part of the collaborativ
        <attribute name="tag">
        6Feb2009TriTrypDB10
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[
 We are pleased to announce the first release of TriTrypDB 1.0, a new bioinformatics resource for kinetoplastid parasites.
 <p>
@@ -604,7 +629,9 @@ This integrated kinetoplastid bioinformatics resource has been made possible by 
        <attribute name="tag">
        23January2009TriTrypDBbeta
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+          
          <![CDATA[
 We are pleased to announce the availability of a beta-release version of TriTrypDB, accessible at <a href="http://beta.TriTrypDB.org">http://beta.TriTrypDB.org</a>.  Feel free to forward this link to others.  <br><br>Highlights include:<br><br>
 
@@ -637,7 +664,9 @@ By providing access to TriTrypDB prior to its official release, we hope to obtai
        <attribute name="tag">
        20January2009KMCBMIII
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+          
          <![CDATA[
 The 3rd kinetoplastid molecular cell biology meeting will be held from April 26-29th, 2009 in Woods Hole, Massachusetts, USA. For more information click <a href="http://www.mbl.edu/kmcb/2009/index.php">here</a>.
  ]]>
@@ -657,7 +686,9 @@ The 3rd kinetoplastid molecular cell biology meeting will be held from April 26-
        <attribute name="tag">
        1November2008GatesFoundation
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+          
          <![CDATA[
 
 We are pleased to report

@@ -7,7 +7,9 @@
        <attribute name="headline"></attribute>
        <attribute name="date"></attribute>
        <attribute name="tag"></attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
           ]]>
        </attribute>
@@ -19,7 +21,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -110,7 +114,9 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
@@ -141,7 +147,9 @@ download the RFP</a>.
        <attribute name="tag">
          HinxtonWorkShop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<big><br>
 We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
 (Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
@@ -172,7 +180,9 @@ Nucleic Acid Research
 </attribute>
        <attribute name="date">16 November 2009 15:00</attribute>
        <attribute name="tag">eupathpub</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 <span style="font-weight: bold;">EuPathDB published in
 Nucleic Acid Research<br>
@@ -208,7 +218,9 @@ click </span><a style="font-style: italic;"
        <attribute name="tag">
        eupath909news
        </attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 <b">We are pleased to
 announce the release of EuPathDB 2.1</b><br>
@@ -252,7 +264,9 @@ The EuPathDB team.<br>
        <attribute name="tag">
        19February2008Release32
        </attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 
 The ApiDB team is pleased to announce the release of ApiDB 3.2
@@ -268,7 +282,9 @@ This release accesses the latest releases of <a href="http://cryptodb.org">Crypt
          </attribute>
        <attribute name="date">12 December 2007 00:00</attribute>
        <attribute name="tag">12Dec2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo data set available in their websites, but also against the Theileria Genomes, all available apicomplexan ESTs (from NCBI dbEST) and the <a href="/a/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast&target=EST">available EST assemblies</a> that include Cryptosporidium parvum and Toxoplasma gondii.
           ]]>
@@ -280,7 +296,9 @@ BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo
        <attribute name="headline">ApiDB.org 3.1 released</attribute>
        <attribute name="date">12 December 2007 00:00</attribute>
        <attribute name="tag">12Dec2007Release31</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
 
          <![CDATA[
 We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.1. 
@@ -327,7 +345,9 @@ ApiDB is a portal that allows you to query simultaneously different apicomplexan
        <attribute name="headline">Tutorials offered also for Windows</attribute>
        <attribute name="date">7 October 2007 00:00</attribute>
        <attribute name="tag">7Oct2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 Please check the ApiDB <a href="/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsift Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
           ]]>
@@ -345,7 +365,9 @@ have been released
 </attribute>
        <attribute name="date">14 September 2007 00:00</attribute>
        <attribute name="tag">14Sep2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 Please check the new  <a href="http://trichdb.org">TrichDB.org <img src='/images/trichdb.jpg' border='0' alt='trichdb' height='20' width='35'/>
 </a>
@@ -363,7 +385,9 @@ websites. These soon will be integrated into our portal.
        <attribute name="headline">ApiDB Gene Metrics table</attribute>
        <attribute name="date">18 July 2007 00:00</attribute>
        <attribute name="tag">18Jul2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 Please check the new  <a href="/apidb/apidbGeneMetrics.jsp" >Gene Metrics table</a> with all the organisms with gene information available in ApiDB.
 A link to it has been added in the home pages of all ApiDB sites.
@@ -378,7 +402,9 @@ In ApiDB.org the Gene Metrics link appears in the home page, at the bottom of th
        <attribute name="headline">ApiDB.org 3.0 released</attribute>
        <attribute name="date">1 June 2007 00:00</attribute>
        <attribute name="tag">1Jun2007</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
 
          <![CDATA[
 We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.0. 
@@ -435,7 +461,9 @@ ApiDB 3.0 also includes improvements in the following areas:
        <attribute name="tag">
        ApiDBNewFrontPage
        </attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 
 This updated home page for ApiDB.org provides the same functionality (queries and tools) but it adds a new Genomes table with key information. &nbsp;&nbsp;Also a new link to <a href="/static/documentation.shtml" >Data Documentation</a> has been added on the sidebar under "Help and Information". &nbsp;&nbsp;Please send any comments and questions to <a href="/apidb/help.jsp" ">ApiDB.</a>
@@ -455,7 +483,9 @@ This updated home page for ApiDB.org provides the same functionality (queries an
        <attribute name="tag">
        4Dec2006Workshop
        </attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
 at the University of Georgia, Athens, GA, USA.
@@ -481,7 +511,9 @@ information and to register.
        <attribute name="headline">ApiDB.org 2.1 released</attribute>
        <attribute name="date">17 November 2006 00:00</attribute>
        <attribute name="tag">oldRelease</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
 
          <![CDATA[
 We are pleased to announce this new release of the ApiDB.org Website and Database, Version 2.1. <br>It includes improvements in different areas:

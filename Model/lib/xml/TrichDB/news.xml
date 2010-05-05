@@ -6,7 +6,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -97,7 +99,9 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="headline">TrichDB new features</attribute>
        <attribute name="date">15 March 2010 15:00</attribute>
        <attribute name="tag">trich_newFeatures_0310</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 <span style="font-weight: bold;">We are pleased to 
@@ -136,7 +140,9 @@ typically in the form of answering specific questions, using the feature(s) and 
        <attribute name="headline">"My Basket", A New Feature in TrichDB</attribute>
        <attribute name="date">22 December 2009 15:00</attribute>
        <attribute name="tag">trich1209news</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 We are pleased to announce the implementation&nbsp;a new tool in
 TrichDB. &nbsp;The "My
@@ -168,7 +174,9 @@ login first.
        <attribute name="tag">
          HinxtonWorkShop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<big><br>
 We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
 (Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
@@ -200,7 +208,9 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        </attribute>
        <attribute name="date">25 September 2009 15:00</attribute>
        <attribute name="tag">Trich909news</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<b>We are pleased to
 announce the implementation of new features in TrichDB:</b><br>
 <ul>
@@ -250,7 +260,9 @@ The EuPathDB team.
        </attribute>
        <attribute name="date">14 July 2009 15:00</attribute>
        <attribute name="tag">release11</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 We are pleased to announce the release of TrichDB 1.1
 <p>
@@ -279,7 +291,9 @@ The previous version of TrichDB may still be accessed <a href='http://old.trichd
        <attribute name="tag">
        1December2008GatesFoundation
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 We are pleased to report
@@ -307,7 +321,9 @@ for the first release of TrypDB in Jan 2009!
        </attribute>
        <attribute name="date">1 October 2008 00:00</attribute>
        <attribute name="tag">1Oct2008NAR</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 We are pleased to announce the publication of the database paper
@@ -327,7 +343,9 @@ Acids Research Advance Access published on September 29, 2008, DOI
        <attribute name="headline"><![CDATA[TrichDB 1.0 is released]]></attribute>
        <attribute name="date">01 October 2007 00:00</attribute>
        <attribute name="tag">1October2007Release1.0</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 
 We are pleased to announce the release of TrichDB  (<a href="/">http://www.trichdb.org</a> )  a new Web resource for interrogating the Trichomonas vaginalis genome, which was sequenced and annotated at The Institute for Genomics Research and published in Science magazine in early 2007.
