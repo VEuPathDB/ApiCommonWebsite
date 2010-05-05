@@ -42,7 +42,6 @@
 <c:set var="orthomcl_name" value="${attrs['orthomcl_name'].value}"/>
 
 <site:header title="${wdkModel.displayName} : gene ${id} (${prd})"
-			 refer="recordPage"
              banner="${id}<br>${prd}"
              divisionName="Gene Record"
              refer="recordPage" 
