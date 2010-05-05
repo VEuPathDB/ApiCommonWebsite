@@ -45,6 +45,7 @@
 			 refer="recordPage"
              banner="${id}<br>${prd}"
              divisionName="Gene Record"
+             refer="recordPage" 
              division="queries_tools"
              summary="${overview.value}"/>
 

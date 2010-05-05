@@ -55,6 +55,7 @@
 
 <site:header title="AmoebaDB : gene ${id} (${prd})"
              summary="${overview.value} (${length.value} bp)"
+             refer="recordPage" 
              divisionName="Gene Record"
              division="queries_tools" />
 
