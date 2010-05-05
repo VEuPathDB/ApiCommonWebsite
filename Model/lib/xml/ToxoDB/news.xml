@@ -6,7 +6,9 @@
        <attribute name="headline"></attribute>
        <attribute name="date"></attribute>
        <attribute name="tag"></attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
           ]]>
        </attribute>
@@ -17,7 +19,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -108,7 +112,9 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="headline">ToxoDB new features</attribute>
        <attribute name="date">15 March 2010 15:00</attribute>
        <attribute name="tag">toxo_newFeatures_0310</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 <span style="font-weight: bold;">We are pleased to 
@@ -174,7 +180,9 @@ or rendering your opinion. &nbsp;
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
@@ -203,7 +211,9 @@ download the RFP</a>.
        <attribute name="tag">
          toxo1209news
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 <span style="font-weight: bold;">We are pleased to
 announce the release of ToxoDB 6.0<br>
@@ -252,7 +262,9 @@ login first.<br>
        <attribute name="tag">
          HinxtonWorkShop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<big><br>
 We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
 (Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
@@ -281,7 +293,9 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        <attribute name="headline">ToxoDB 5.3 released</attribute>
        <attribute name="date">16 November 2009 15:00</attribute>
        <attribute name="tag">release53</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 <span style="font-weight: bold;">We are pleased to
 announce the release of ToxoDB 5.3<br>
@@ -336,7 +350,9 @@ ToxoDB.<span style="font-weight: bold;"></span>
        </attribute>
        <attribute name="date">12 October 2009 15:00</attribute>
        <attribute name="tag">CommAnnot</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<span style="font-weight: bold;">Community Annotation in
 Progress<br>
 <br>
@@ -407,7 +423,9 @@ Vacuole and Membrane</span> (Tony Sinai)<br>
        </attribute>
        <attribute name="date">25 September 2009 15:00</attribute>
        <attribute name="tag">Toxo909news</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<b>We are pleased to
 announce the implementation of new features in ToxoDB:</b><br>
 <ul>
@@ -443,7 +461,9 @@ The EuPathDB team.
        </attribute>
        <attribute name="date">14 July 2009 15:00</attribute>
        <attribute name="tag">release52</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 We are pleased to announce the release of ToxoDB 5.2
 <p>
@@ -479,7 +499,9 @@ The previous version of ToxoDB may still be accessed <a href='http://old.toxodb.
        <attribute name="tag">
        24Aprile2009Release51
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
         We are pleased to announce the release of ToxoDB 5.1.
         <p>
@@ -505,7 +527,9 @@ The previous version of ToxoDB may still be accessed <a href='http://old.toxodb.
        <attribute name="tag">
        1December2008GatesFoundation
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 We are pleased to report
@@ -529,7 +553,9 @@ for the first release of TrypDB in Jan 2009!
        <attribute name="headline">ToxoDB 5.0 is released</attribute>
        <attribute name="date">18 November 2008 00:00</attribute>
        <attribute name="tag">currentRelease</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 We are pleased to announce the release of ToxoDB 5.0.  This is a major release of ToxoDB that includes several new large-scale datasets many of which have been graciously provided pre-publication to ToxoDB (Please see the data source section of ToxoDB for details and provider information).  In addition, several new features and improvements have been implemented.
 <p>
@@ -557,7 +583,9 @@ We are pleased to announce the release of ToxoDB 5.0.  This is a major release o
        <attribute name="headline">ToxoDB 4.3 is released</attribute>
        <attribute name="date">06 December 2007 00:00</attribute>
        <attribute name="tag">toxo43Release</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The ApiDB team is pleased to announce the release of ToxoDB 4.3
 <br><br>
@@ -586,7 +614,9 @@ Your ApiDB project team
        <attribute name="headline">T. gondii gene prediction IDs now searchable</attribute>
        <attribute name="date">17 September 2007 00:00</attribute>
        <attribute name="tag">genePredict</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 Wherever in ToxoDB you can type an Annotated Gene's ID you can now also type the ID of an electronically predicted gene (eg, TgGlmHMM_1045). You will be taken to the associated annotated gene (eg, 27.m00868).
           ]]>
@@ -597,7 +627,9 @@ Wherever in ToxoDB you can type an Annotated Gene's ID you can now also type the
        <attribute name="headline">ToxoDB 4.2 is released</attribute>
        <attribute name="date">19 June 2007 00:00</attribute>
        <attribute name="tag">oldRelease</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 ToxoDB 4.2 provides microarray expression data and mass-spec data, and queries against them. The Genome Browser has new tracks for the proteomics data, and cosmid and BAC ends. 
 <p>
@@ -641,7 +673,9 @@ New features in ToxoDB 4.2:
        <attribute name="headline">ApiDB Workshop, June 3-6, 2007</attribute>
        <attribute name="date">05 December 2006 00:00</attribute>
        <attribute name="tag">workshop2</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
 at the University of Georgia, Athens, GA, USA.
@@ -663,7 +697,9 @@ information and to register.
        <attribute name="headline">ToxoDB 4.1 is released</attribute>
        <attribute name="date">17 November 2006 00:00</attribute>
        <attribute name="tag">41_release</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
           <![CDATA[
 ToxoDB 4.1 delivers the apicoplast genome and has incorporated  the genomic sequence of <i>T. gondii</i> 
 VEG and RH (Chr Ia and Chr Ib) strains. The Genome Browser offers tracks for the ESTs from dbEST, ORFs 
@@ -708,7 +744,9 @@ New features in ToxoDB 4.1:
        <attribute name="headline">ToxoDB 4.0 release</attribute>
        <attribute name="date">27 July 2006 00:00</attribute>
        <attribute name="tag">initialRelease</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
  We are pleased to announce Version 4.0 of the Toxoplasma Genome Database. 
 
@@ -738,7 +776,9 @@ This transformation conforms to the model used by all <a href="http://www.apidb.
        <attribute name="headline">GBrowse added to ToxoDB</attribute>
        <attribute name="date">02 March 2006 00:00</attribute>
        <attribute name="tag">gbrowse</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 GBrowse is an interactive generic genome browser developed as part of the GMOD project (<a href="http://www.gmod.org">www.gmod.org</a>). GBrowse is used in ToxoDB to display gene models, EST alignments, SNPs, Sage tags and BlastZ similarities of GT1 contigs against reference ME49 strain. With GBrowse, we now provide:
 <ul><li>Custom restriction site identification
@@ -762,7 +802,9 @@ GBrowse is an interactive generic genome browser developed as part of the GMOD p
        <attribute name="headline">OrthoMCL orthologous groups have been updated.</attribute>
        <attribute name="date">12 April 2006 00:00</attribute>
        <attribute name="tag">orthoMCL</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 OrthoMCL is an algorithm developed to identify orthologs and recent paralogs based on whole genome comparison of protein sequences (Li et al Genome Res. 13:2178; 2003). Previously, OrthoMCL groups were based on comparison of only 16 species in ToxoDB 3.3. In the current release, OrthoMCL groups were generated with 61 species. These species include the 55 used to generate orthologs groups at the <a href="http://orthomcl.cbil.upenn.edu/cgi-bin/OrthoMclWeb.cgi">OrthoMCL DB site</a> plus <i>P. vivax, Leishmania major, T. brucei, T. cruzi, Apis mellifera</i> (honeybee) and <i>S. purpatus</i> (sea urchin).  The OrthoMCL DB site is described in Feng et al. Nucleic Acids Res. 2006 Database Issue. 
          ]]>
@@ -773,7 +815,9 @@ OrthoMCL is an algorithm developed to identify orthologs and recent paralogs bas
        <attribute name="headline">ToxoDB 4.0 Beta uses GUS 3.5 and the WDK </attribute>
        <attribute name="date">13 January 2006 00:00</attribute>
        <attribute name="tag">gusAndWdk</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 ToxoDB 4.0 Beta has been upgraded to  use the latest Genomics Unified Schema (GUS) database system and the new Web Development Kit (WDK). GUS is an open source project (<a href="http://www.gusdb.org">www.gusdb.org</a>) providing a functional genomics database schema covering sequence annotation, expression data, regulatory interactions, and proteomics using controlled vocabularies and ontologies. GUS also provides software to load data (pugins) and set up a web site (WDK). GUS has been adopted by several groups covering organism ranging from bacteria, protozoa, plants, and mammals.  
          ]]>

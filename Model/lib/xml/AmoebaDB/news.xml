@@ -7,7 +7,9 @@
        <attribute name="headline"></attribute>
        <attribute name="date"></attribute>
        <attribute name="tag"></attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
           ]]>
        </attribute>
@@ -18,7 +20,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -113,7 +117,9 @@ Plasmodium population biology, drug discovery<br>
        </attribute>
        <attribute name="tag">amoeba0310_news
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 <span style="font-weight: bold;">We are pleased to announce the release of AmoebaDB 1.0<br> 
@@ -158,7 +164,9 @@ typically in the form of answering specific questions, testing and rendering you
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological

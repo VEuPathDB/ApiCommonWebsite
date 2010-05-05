@@ -9,7 +9,9 @@
          </attribute>
        <attribute name="date">06 June 2008 00:00</attribute>
        <attribute name="tag"></attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
           ]]>
        </attribute>
@@ -20,7 +22,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -111,7 +115,9 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="headline">PlasmoDB new features</attribute>
        <attribute name="date">15 March 2010 15:00</attribute>
        <attribute name="tag">plasmo_newFeatures_0310</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 <span style="font-weight: bold;">We are pleased to 
@@ -148,7 +154,9 @@ typically in the form of answering specific questions, using the feature(s) and 
        <attribute name="headline">PlasmoDB 4.4 is no longer available</attribute>
        <attribute name="date">15 February 2010 15:00</attribute>
        <attribute name="tag">eupath_plas44</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 PlasmoDB 4.4 has been discontinued.  If there are tools or other functionality that you used on PlasmoDB 4.4 that you need, please <b><a href="help.jsp">contact us</a></b> to let us know and we will help you regain access to the missing functionality.
           ]]>
@@ -159,7 +167,9 @@ PlasmoDB 4.4 has been discontinued.  If there are tools or other functionality t
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
@@ -185,7 +195,9 @@ download the RFP</a>.
          </attribute>
        <attribute name="date">22 December 2009 00:00</attribute>
        <attribute name="tag">Plasmo1209news</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<body>
 <span style="font-weight: bold;">We are pleased to
 announce the release of PlasmoDB 6.3<br>
@@ -310,7 +322,9 @@ login first.<br>
        <attribute name="tag">
          HinxtonWorkShop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<big><br>
 We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
 (Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
@@ -342,7 +356,9 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
          </attribute>
        <attribute name="date">13 November 2009 00:00</attribute>
        <attribute name="tag">Plasmo1109news</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<span style="font-weight: bold;">We are pleased toannounce
 the release of PlasmoDB 6.2<br>
 <br>
@@ -370,7 +386,9 @@ other searches in PlasmoDB.</li>
          </attribute>
        <attribute name="date">26 October 2009 00:00</attribute>
        <attribute name="tag">PlasmoMicroError</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[Dear all,<br>
 <br>
 The PlasmoDB team would like to alert you to two important issues
@@ -417,7 +435,9 @@ The PlasmoDB Team
          </attribute>
        <attribute name="date">25 September 2009 00:00</attribute>
        <attribute name="tag">Plasmo909news</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<b>We are pleased to
 announce the release of PlasmoDB 6.1</b><br>
 <br>
@@ -472,7 +492,9 @@ The EuPathDB team.
          </attribute>
        <attribute name="date">14 July 2009 00:00</attribute>
        <attribute name="tag">Release6</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
          <p>
     The EuPathDB team is happy to announce the release of PlasmoDB 6.0.  
@@ -523,7 +545,9 @@ The previous version of PlasmoDB may still be accessed <a href='http://old.plasm
        <attribute name="tag">
        1December2008GatesFoundation
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 We are pleased to report
@@ -550,7 +574,9 @@ Fifth updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genom
        </attribute>
        <attribute name="date">18 November 2008 00:00</attribute>
        <attribute name="tag">reannotation5</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 We are pleased to announce the release of the fifth snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genome.
@@ -571,7 +597,9 @@ For further information please refer to the February 1st, 2008 news item (below)
        </attribute>
        <attribute name="date">4 November 2008 00:00</attribute>
        <attribute name="tag">NAR2008</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 We are pleased to announce the publication of a paper in Nucleic Acid Research describing PlasmoDB.<br>
@@ -593,7 +621,9 @@ PlasmoDB: a functional genomic database for malaria parasites.</a> Nucleic Acids
        </attribute>
        <attribute name="date">16 September 2008 00:00</attribute>
        <attribute name="tag">currentRelease</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
     <p>
     The EuPathDB team is happy to announce the release of PlasmoDB 5.5.  
@@ -655,7 +685,9 @@ Plasmodium microarray resources
        </attribute>
        <attribute name="date">22 July 2008 00:00</attribute>
        <attribute name="tag">microarray_listing</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 A listing of microarrays that are available to Plasmodium researchers has been posted at 
 <a href="http://plasmodb.org/common/microarrays/">http://plasmodb.org/common/microarrays/</a>. 
@@ -675,7 +707,9 @@ Fourth updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 geno
        </attribute>
        <attribute name="date">15 July 2008 00:00</attribute>
        <attribute name="tag">reannotation4</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 PlasmoDB has released the fourth snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidently reverted back to the original name. This new snapshot has the correct re-annotated product names.
           ]]>
@@ -690,7 +724,9 @@ PlasmoDB has released the fourth snapshot of the reannotation of the<i> P. falci
        </attribute>
        <attribute name="date">11 June 2008 00:00</attribute>
        <attribute name="tag">sequencingApproval11June2008</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
      The proposal for sequencing of additional <i>Plasmodium</i> isolates and species 
      has been approved. 
@@ -707,7 +743,9 @@ Third updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genom
        </attribute>
        <attribute name="date">06 June 2008 00:00</attribute>
        <attribute name="tag">reannotation3</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 PlasmoDB has released the third snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidently reverted back to the original name. This new snapshot has the correct re-annotated product names.
           ]]>
@@ -723,7 +761,9 @@ PlasmoDB has released the third snapshot of the reannotation of the<i> P. falcip
        </attribute>
        <attribute name="date">19 May 2008 00:00</attribute>
        <attribute name="tag">reannotation2</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 <p>
 The effort to systematically update the annotation for <i>P. falciparum</i> 3D7 genome started in October 2007 with a weeklong workshop co-organized by staff from the Wellcome Trust Sanger Institute (WTSI) and the ApiDB team. The Wellcome Trust and Burroughs Wellcome Fund-sponsored workshop was held in Hinxton, UK and was attended by nearly 30 Plasmodium researchers contributing expertise in various aspects of Plasmodium biology, plus more than 10 bioinformatics support staff from the Artemis, GeneDB and ApiDB teams. During the workshop 2700 genes were edited using Artemis and ACT software, mainly with the addition of new or alternative functional descriptions (e.g. product names, GO terms, EC numbers and miscellaneous textual comments).
@@ -806,7 +846,9 @@ Sponsors and Facilitators included:
        </attribute>
        <attribute name="date">01 February 2008 00:00</attribute>
        <attribute name="tag">reannotation</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The effort to re-annotate the <i>falciparum</i> genome was started in October at a weeklong workshop co-organized by ApiDB and GeneDB staff.  The workshop was hosted at the Welcome Trust Sanger Institute in Hinxton, UK and was attended by nearly 30 <i>Plasmodium</i> researchers contributing expertise in various aspects of <i>Plasmodium</i> biology and more than 10 bioinformatics support staff from the GeneDB and ApiDB teams. More than 2,700 genes have been reviewed to date and most modified in some fashion; primarily refining exon boundaries, assigning product names, assigning GO functions and EC numbers and making comments / notes.  The annotation process is continuing in the attempt to review all genes at least twice (by different annotators).  The annotation presented here in PlasmoDB is thus a work in progress and intended to inform you, the community, about the new annotation and elicit any feedback that you may have.  Please add a user comment to any gene that you have additional information about.  This includes supporting data corroborating gene annotation as well as data that indicates the gene model, product name, functional assignments etc are incorrect.  These comments will be included in the annotation which we hope will be concluded in mid-march.
 <p>
@@ -856,7 +898,9 @@ Sponsors and Facilitators included:
        <attribute name="headline">PlasmoDB 5.4 is released</attribute>
        <attribute name="date">31 October 2007 00:00</attribute>
        <attribute name="tag">release5.4</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
           <![CDATA[
 The ApiDB team is pleased to announce the release of PlasmoDB_5.4.
 
@@ -904,7 +948,9 @@ Your ApiDB project team
  <attribute name="headline">Tutorials offered now for more platforms</attribute>
        <attribute name="date">07 October 2007 00:00</attribute>
        <attribute name="tag">Tutorials07October2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 Please check the PlasmoDB <a href="/plasmo/showXmlDataContent.do?name=XmlQuestions.Tutorials" ">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.wmv) and Flash Player (.flv). There is a link to these tutorials in PlasmoDB sidebar, in all pages.
 
@@ -918,7 +964,9 @@ Please check the PlasmoDB <a href="/plasmo/showXmlDataContent.do?name=XmlQuestio
        <attribute name="headline">PlasmoDB 5.3 is released</attribute>
        <attribute name="date">19 June 2007 00:00</attribute>
        <attribute name="tag">Release 5.3</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
           <![CDATA[
 PlasmoDB 5.3 provides the genome and annotation for the primate malarial parasite <i>Plasmodium knowlesi</i>, provided by the Wellcome Trust Sanger Institute Pathogen Sequencing Unit. This brings the number of Plasmodium genomes available for queries at PlasmoDB up to six. Also provided are expression data from recent papers using gene knockouts to study molecular mechanisms in human (<i>P. falciparum</i>) and rodent (<i>P. berghei</i>) malarial parasites. Queries have been developed for the new expression studies and a summary graphic (P.f.) or table (P.b.) added to the gene pages.
 <p>
@@ -956,7 +1004,9 @@ New features in PlasmoDB 5.3:
        <attribute name="headline">PFGRC offers course on Microarray Tech., April 2007</attribute>
        <attribute name="date">14 February 2007 00:00</attribute>
        <attribute name="tag">pfgrc_course</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
           <![CDATA[
 February, 2007  The PFGRC announces that it will conduct a four day course titled, "Introduction to Microarray Technology", April 16-19, 2007.
 <p>
@@ -978,7 +1028,9 @@ Interested participants will find the preliminary course agenda <a href="http://
        <attribute name="headline">ApiDB Workshop, June 3-6, 2007</attribute>
        <attribute name="date">05 December 2006 00:00</attribute>
        <attribute name="tag">workshop2</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
 at the University of Georgia, Athens, GA, USA.
@@ -1000,7 +1052,9 @@ information and to register.
        <attribute name="headline">PlasmoDB 5.2 is released</attribute>
        <attribute name="date">17 November 2006 00:00</attribute>
        <attribute name="tag">5.2_release</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
           <![CDATA[
 PlasmoDB 5.2 brings a new emphasis on genetic markers, in the form of four new datasets relating to <i>Plasmodium</i> polymorphisms.  This data is available in the Genome Browser, on the Gene page and in queries.  We continue to move key data from the PlasmoDB 4.4 site to the current site: this release re-introduces gametocyte expression data and expression profile similarity search. The Gene page now includes matches to Interpro protein domains and the Genome Browser offers tracks ESTs from dbEST.
 <p>
@@ -1043,7 +1097,9 @@ Features and data moved from PlasmoDB 4.4 to 5.2:
        <attribute name="headline">PlasmoDB 5.1 is released</attribute>
        <attribute name="date">16 August 2006 00:00</attribute>
        <attribute name="tag">5.1_release</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The PlasmoDB 5.1 release continues our effort to add new data and features while migrating PlasmoDB 4.4 functionality to the PlasmoDB 5 architecture.  This release includes new rodent malaria parasite data, improved mappings to external sites, improvements to the Genome Browser, more 4.4 functionality (we're almost done with the migration) and some important behind the scenes improvements.
 
@@ -1088,7 +1144,9 @@ Here are the details:
        <attribute name="headline">PlasmoDB 5.0 is fully released (PlasmoDB 4.4 still available)</attribute>
        <attribute name="date">25 May 2006 00:00</attribute>
        <attribute name="tag">5.0_release</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 We are pleased to announce the first full release of the Plasmodium Genome Database, Version 5.0, now as www.plasmodb.org.  (Many of you have had a chance to explore the beta-release version as v5-0.plasmodb.org).  
 <p>
@@ -1136,7 +1194,9 @@ New Features in PlasmoDB 5.0 Include:
        <attribute name="headline">P. berghei and P. chabaudi genomes added</attribute>
        <attribute name="date">04 April 2006 00:00</attribute>
        <attribute name="tag">berghei_and_chabaudi</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The <i>P. berghei</i> and <i>P. chabaudi</i> genomes are now incorporated in PlasmoDB 5.0 Beta.  The <i>P. berghei</i> genome is accompanied by transcript and protein expression data.  We have also continued to make progress migrating functionality from PlasmoDB 4.4 to PlasmoDB 5.0 Beta
           ]]>
@@ -1147,7 +1207,9 @@ The <i>P. berghei</i> and <i>P. chabaudi</i> genomes are now incorporated in Pla
        <attribute name="headline">PlasmoMAP data included</attribute>
        <attribute name="date">04 April 2006 00:00</attribute>
        <attribute name="tag">plasmoMap_included</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
  The PlasmoMAP project provides computationally generated functional interactions between <i>P. falciparum</i> proteins. This data is now available as a PlasmoDB query.  
           ]]>
@@ -1158,7 +1220,9 @@ The <i>P. berghei</i> and <i>P. chabaudi</i> genomes are now incorporated in Pla
        <attribute name="headline">PlasmoDB 5.0 Beta announced</attribute>
        <attribute name="date">01 Feb 2006 00:00</attribute>
        <attribute name="tag">5.0_announced</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
  We are pleased to announce to the Plasmodium community Version 5.0 Beta of the Plasmodium Genome Database.  PlasmoDB 5.0 Beta had an early release at the Vivax Malaria Research conference at TIGR on December 9, 2005, and is now available for community use.  Please see <a href="showXmlDataContent.do?name=XmlQuestions.News#initialRelease" class="blue">PlasmoDB 5.0 Beta released</a>
           ]]>
@@ -1169,7 +1233,9 @@ The <i>P. berghei</i> and <i>P. chabaudi</i> genomes are now incorporated in Pla
        <attribute name="headline">PlasmoDB 5.0 Beta released</attribute>
        <attribute name="date">09 December 2005 00:00</attribute>
        <attribute name="tag">initialRelease</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
  We are pleased to announce Version 5.0 Beta of the Plasmodium Genome Database. We have incorporated into PlasmoDB the new release of the <i>Plasmodium vivax</i> genome and annotation generated by Jane Carlton's group and the sequencing center at The Institute for Genome Research. We have also used this release to change the way we create the web site and underlying database that should make it easier for us to generate new PlasmoDB releases and be consistent with other ApiDB projects such as CryptoDB and ToxoDB. As a result, we have focused on providing access to <i>P. vivax</i> through the PlasmoDB 5.0 Beta site but have not completely reproduced all the functions in PlasmoDB 4.4. Therefore we have kept the PlasmoDB 4.4 site fully active for continued use. Furthermore we have provided a mechanism to take the results of a PlasmoDB 4.4 query and use it in PlasmoDB 5.0 Beta. 
 <p>
@@ -1194,7 +1260,9 @@ Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome 
        <attribute name="headline">GBrowse added to PlasmoDB</attribute>
        <attribute name="date">09 December 2005 00:00</attribute>
        <attribute name="tag">gbrowse</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 GBrowse is an interactive generic genome browser developed as part of the GMOD project (<a href="http://www.gmod.org">www.gmod.org</a>). GBrowse is used in PlasmoDB to display gene models, EST alignments, and synteny relatonships between Plasmodium species. With GBrowse, we now provide:
 <ul><li>Custom restriction site identification
@@ -1219,7 +1287,9 @@ GBrowse is an interactive generic genome browser developed as part of the GMOD p
        <attribute name="headline">PlasmoDB 5.0 Beta uses GUS 3.5 and the WDK </attribute>
        <attribute name="date">09 December 2005 00:00</attribute>
        <attribute name="tag">gusAndWdk</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 PlamoDB 5.0 Beta has been upgraded to  use the latest Genomics Unified Schema (GUS) database system and the new Web Development Kit (WDK). GUS is an open source project (<a href="http://www.gusdb.org">www.gusdb.org</a>) providing a functional genomics database schema covering sequence annotation, expression data, regulatory interactions, and proteomics using controlled vocabularies and ontologies. GUS also provides software to load data (pugins) and set up a web site (WDK). GUS has been adopted by several groups covering organism ranging from bacteria, protozoa, plants, and mammals.  
          ]]>
@@ -1231,7 +1301,9 @@ PlamoDB 5.0 Beta has been upgraded to  use the latest Genomics Unified Schema (G
        <attribute name="headline">OrthoMCL orthologous groups have been updated.</attribute>
        <attribute name="date">09 December 2005 00:00</attribute>
        <attribute name="tag">orthoMCL</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 OrthoMCL is an algorithm developed to identify orthologs and recent paralogs based on whole genome comparison of protein sequences (Li et al Genome Res. 13:2178; 2003). Previously, OrthoMCL groups were based on comparison of only 16 species in PlasmoDB 4.4. In the current release, OrthoMCL groups were generated with 61 species. These species include the 55 used to generate orthologs groups at the <a href="http://orthomcl.cbil.upenn.edu/cgi-bin/OrthoMclWeb.cgi">OrthoMCL DB site</a> plus <i>P. vivax, Leishmania major, T. brucei, T. cruzi, Apis mellifera</i> (honeybee) and <i>S. purpatus</i> (sea urchin).  The OrthoMCL DB site is described in Feng et al. Nucleic Acids Res. 2006 Database Issue. 
          ]]>
@@ -1247,7 +1319,9 @@ OrthoMCL is an algorithm developed to identify orthologs and recent paralogs bas
        </attribute>
        <attribute name="date">09 December 2005 00:00</attribute>
        <attribute name="tag">y2h</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 Yeast two-hybrid data for <i>P. falciparum</i> described in LaCount et al. Nature 438:103; 2005 has been provided by Doug LaCount (Purdue University) for inclusion into PlasmoDB. Interaction data can be seen on individual gene pages and used to search for interactors of a specificed <i>P. falciparum</i> Gene ID.
          ]]>
@@ -1259,7 +1333,9 @@ Yeast two-hybrid data for <i>P. falciparum</i> described in LaCount et al. Natur
        <attribute name="headline">Intraerythocytic expression profiles have been recalculated</attribute>
        <attribute name="date">15 September 2005 00:00</attribute>
        <attribute name="tag">ielRecalc</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 The expression profiles obtained from Joe DeRisi's group (UCSF) are processed by the PlasmoDB team for generating the images on the expression pages and for use in the expression profile queries. The orginal HB3 data were processed without background subtraction while the more recent 3D7 and DD2 data were processed with background subtraction. These have now all been processed consistently in the following manner.<p>
 Raw data were loess normalized using the default loess implementation in the R package for microarray analysis (marray).  The non-background corrected foreground mean was used as input to the loess algorithm. Replicate arrays for the same time point were then averaged to give one value for each timepoint/gene. Data was then smoothed using a least squares fit to each data point and its two neighbors on each side.<p>
