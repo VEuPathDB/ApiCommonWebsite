@@ -21,7 +21,7 @@
        <attribute name="Plasmodium_yoelii">7865</attribute>
        <attribute name="Toxoplasma_gondii">9239</attribute>
        <attribute name="Trichomonas_vaginalis">99009</attribute>
-       <attribute name="Trypanosoma_brucei">10682</attribute> 
+       <attribute name="Trypanosoma_brucei">11412</attribute> 
        <attribute name="Trypanosoma_congolense">13459</attribute>
        <attribute name="Trypanosoma_cruzi">17124</attribute>
        <attribute name="Trypanosoma_vivax">11885</attribute>
