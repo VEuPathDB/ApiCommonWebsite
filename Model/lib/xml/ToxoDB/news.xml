@@ -211,7 +211,7 @@ download the RFP</a>.
        <attribute name="tag">
          toxo1209news
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -293,7 +293,7 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        <attribute name="headline">ToxoDB 5.3 released</attribute>
        <attribute name="date">16 November 2009 15:00</attribute>
        <attribute name="tag">release53</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -461,7 +461,7 @@ The EuPathDB team.
        </attribute>
        <attribute name="date">14 July 2009 15:00</attribute>
        <attribute name="tag">release52</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -499,7 +499,7 @@ The previous version of ToxoDB may still be accessed <a href='http://old.toxodb.
        <attribute name="tag">
        24Aprile2009Release51
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -553,7 +553,7 @@ for the first release of TrypDB in Jan 2009!
        <attribute name="headline">ToxoDB 5.0 is released</attribute>
        <attribute name="date">18 November 2008 00:00</attribute>
        <attribute name="tag">currentRelease</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -583,7 +583,7 @@ We are pleased to announce the release of ToxoDB 5.0.  This is a major release o
        <attribute name="headline">ToxoDB 4.3 is released</attribute>
        <attribute name="date">06 December 2007 00:00</attribute>
        <attribute name="tag">toxo43Release</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -627,7 +627,7 @@ Wherever in ToxoDB you can type an Annotated Gene's ID you can now also type the
        <attribute name="headline">ToxoDB 4.2 is released</attribute>
        <attribute name="date">19 June 2007 00:00</attribute>
        <attribute name="tag">oldRelease</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -697,7 +697,7 @@ information and to register.
        <attribute name="headline">ToxoDB 4.1 is released</attribute>
        <attribute name="date">17 November 2006 00:00</attribute>
        <attribute name="tag">41_release</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
           <![CDATA[
@@ -744,7 +744,7 @@ New features in ToxoDB 4.1:
        <attribute name="headline">ToxoDB 4.0 release</attribute>
        <attribute name="date">27 July 2006 00:00</attribute>
        <attribute name="tag">initialRelease</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[

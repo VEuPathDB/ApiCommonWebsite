@@ -218,7 +218,7 @@ click </span><a style="font-style: italic;"
        <attribute name="tag">
        eupath909news
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
 
          <![CDATA[
@@ -264,7 +264,7 @@ The EuPathDB team.<br>
        <attribute name="tag">
        19February2008Release32
        </attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
 
          <![CDATA[
@@ -296,7 +296,7 @@ BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo
        <attribute name="headline">ApiDB.org 3.1 released</attribute>
        <attribute name="date">12 December 2007 00:00</attribute>
        <attribute name="tag">12Dec2007Release31</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
 
@@ -402,7 +402,7 @@ In ApiDB.org the Gene Metrics link appears in the home page, at the bottom of th
        <attribute name="headline">ApiDB.org 3.0 released</attribute>
        <attribute name="date">1 June 2007 00:00</attribute>
        <attribute name="tag">1Jun2007</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
 
@@ -511,7 +511,7 @@ information and to register.
        <attribute name="headline">ApiDB.org 2.1 released</attribute>
        <attribute name="date">17 November 2006 00:00</attribute>
        <attribute name="tag">oldRelease</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
 

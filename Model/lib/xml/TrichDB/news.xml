@@ -208,7 +208,7 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        </attribute>
        <attribute name="date">25 September 2009 15:00</attribute>
        <attribute name="tag">Trich909news</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[<b>We are pleased to
@@ -260,7 +260,7 @@ The EuPathDB team.
        </attribute>
        <attribute name="date">14 July 2009 15:00</attribute>
        <attribute name="tag">release11</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -343,7 +343,7 @@ Acids Research Advance Access published on September 29, 2008, DOI
        <attribute name="headline"><![CDATA[TrichDB 1.0 is released]]></attribute>
        <attribute name="date">01 October 2007 00:00</attribute>
        <attribute name="tag">1October2007Release1.0</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
 
          <![CDATA[

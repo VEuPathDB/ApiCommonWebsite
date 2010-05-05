@@ -195,7 +195,7 @@ download the RFP</a>.
          </attribute>
        <attribute name="date">22 December 2009 00:00</attribute>
        <attribute name="tag">Plasmo1209news</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[<body>
@@ -356,7 +356,7 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
          </attribute>
        <attribute name="date">13 November 2009 00:00</attribute>
        <attribute name="tag">Plasmo1109news</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[<span style="font-weight: bold;">We are pleased toannounce
@@ -435,7 +435,7 @@ The PlasmoDB Team
          </attribute>
        <attribute name="date">25 September 2009 00:00</attribute>
        <attribute name="tag">Plasmo909news</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[<b>We are pleased to
@@ -492,7 +492,7 @@ The EuPathDB team.
          </attribute>
        <attribute name="date">14 July 2009 00:00</attribute>
        <attribute name="tag">Release6</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -574,7 +574,7 @@ Fifth updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genom
        </attribute>
        <attribute name="date">18 November 2008 00:00</attribute>
        <attribute name="tag">reannotation5</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -621,7 +621,7 @@ PlasmoDB: a functional genomic database for malaria parasites.</a> Nucleic Acids
        </attribute>
        <attribute name="date">16 September 2008 00:00</attribute>
        <attribute name="tag">currentRelease</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -707,7 +707,7 @@ Fourth updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 geno
        </attribute>
        <attribute name="date">15 July 2008 00:00</attribute>
        <attribute name="tag">reannotation4</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -743,7 +743,7 @@ Third updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genom
        </attribute>
        <attribute name="date">06 June 2008 00:00</attribute>
        <attribute name="tag">reannotation3</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -761,7 +761,7 @@ PlasmoDB has released the third snapshot of the reannotation of the<i> P. falcip
        </attribute>
        <attribute name="date">19 May 2008 00:00</attribute>
        <attribute name="tag">reannotation2</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -846,7 +846,7 @@ Sponsors and Facilitators included:
        </attribute>
        <attribute name="date">01 February 2008 00:00</attribute>
        <attribute name="tag">reannotation</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -898,7 +898,7 @@ Sponsors and Facilitators included:
        <attribute name="headline">PlasmoDB 5.4 is released</attribute>
        <attribute name="date">31 October 2007 00:00</attribute>
        <attribute name="tag">release5.4</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
           <![CDATA[
@@ -964,7 +964,7 @@ Please check the PlasmoDB <a href="/plasmo/showXmlDataContent.do?name=XmlQuestio
        <attribute name="headline">PlasmoDB 5.3 is released</attribute>
        <attribute name="date">19 June 2007 00:00</attribute>
        <attribute name="tag">Release 5.3</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
           <![CDATA[
@@ -1052,7 +1052,7 @@ information and to register.
        <attribute name="headline">PlasmoDB 5.2 is released</attribute>
        <attribute name="date">17 November 2006 00:00</attribute>
        <attribute name="tag">5.2_release</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
           <![CDATA[
@@ -1097,7 +1097,7 @@ Features and data moved from PlasmoDB 4.4 to 5.2:
        <attribute name="headline">PlasmoDB 5.1 is released</attribute>
        <attribute name="date">16 August 2006 00:00</attribute>
        <attribute name="tag">5.1_release</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
@@ -1144,7 +1144,7 @@ Here are the details:
        <attribute name="headline">PlasmoDB 5.0 is fully released (PlasmoDB 4.4 still available)</attribute>
        <attribute name="date">25 May 2006 00:00</attribute>
        <attribute name="tag">5.0_release</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
