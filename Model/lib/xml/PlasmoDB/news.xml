@@ -949,7 +949,7 @@ Your ApiDB project team
        <attribute name="item">
 
          <![CDATA[
-Please check the PlasmoDB <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.Tutorials" ">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.wmv) and Flash Player (.flv). There is a link to these tutorials in PlasmoDB sidebar, in all pages.
+Please check the PlasmoDB <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.wmv) and Flash Player (.flv). There is a link to these tutorials in PlasmoDB sidebar, in all pages.
 
           ]]>
        </attribute>
@@ -1247,7 +1247,7 @@ PlasmoDB 5.0 Beta features:
 <li>Protein-protein interaction data for <i>P. falciparum</i>, based on a genome-wide yeast 2-hybrid analysis (LaCount et al. Nature 438:103; 2005).
 <li>New ortholog analyses, using the OrthoMCL algorithm to group genes from several <i>Plasmodium</i> species with other complete eukaryotic and prokaryotic genomes (Chen et al. Nucl Acids Res, in press).
 </ul><p>
-Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome Database.  PlasmoCD provides users lacking reliable high-speed internet connections with full access to the complete genomes of <i>P. falciparum, P. vivax</i>, and <i>P. yoelii</i>, along with gene models, annotation, BLAST hits, ortholog results, expression data, and search functions for querying and integrating these results across species. PlasmoCD 4.1 can be downladed from the PlasmoDB web site, or requested by sending e-mail to <help@PlasmoDB.org>. 
+Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome Database.  PlasmoCD provides users lacking reliable high-speed internet connections with full access to the complete genomes of <i>P. falciparum, P. vivax</i>, and <i>P. yoelii</i>, along with gene models, annotation, BLAST hits, ortholog results, expression data, and search functions for querying and integrating these results across species. PlasmoCD 4.1 can be downladed from the PlasmoDB web site, or requested by sending e-mail to &lt;help@PlasmoDB.org&gt;. 
           ]]>
        </attribute>
     </record>
