@@ -443,10 +443,10 @@ announce the release of PlasmoDB 6.1</b><br>
 <br>
 <u>New Data:</u><br>
 <ul>
-  <li><il>P.
-&nbsp;falciparum</il> intraerythrocytic expression profiles
+  <li><i>P.
+&nbsp;falciparum</i> intraerythrocytic expression profiles
 from&nbsp;infected patients (<a
- href="http://www.ncbi.nlm.nih.gov/pubmed/19376968">Lemieux <il>et. al.</il></a>)
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19376968">Lemieux <i>et. al.</i></a>)
 -- data available on gene pages, for example, click <a
  href="http://plasmodb.org/plasmo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=PF11_0344&amp;project_id=PlasmoDB">here</a>
 and scroll down to the expression section.</li>
