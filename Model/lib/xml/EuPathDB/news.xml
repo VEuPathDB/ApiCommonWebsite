@@ -286,7 +286,7 @@ This release accesses the latest releases of <a href="http://cryptodb.org">Crypt
        <attribute name="item">
 
          <![CDATA[
-BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo data set available in their websites, but also against the Theileria Genomes, all available apicomplexan ESTs (from NCBI dbEST) and the <a href="/a/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast&target=EST">available EST assemblies</a> that include Cryptosporidium parvum and Toxoplasma gondii.
+BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo data set available in their websites, but also against the Theileria Genomes, all available apicomplexan ESTs (from NCBI dbEST) and the <a href="http://eupathdb.org/eupathdb/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast&target=EST">available EST assemblies</a> that include Cryptosporidium parvum and Toxoplasma gondii.
           ]]>
        </attribute>
     </record>
@@ -309,10 +309,10 @@ We are pleased to announce this new release of the ApiDB.org Website and Databas
 <ul>
 <li> All our queries offer the same functionality as our component sites: <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.News">Crypto 3.6</a>, <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News">Plasmo 5.4</a> and <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.News">Toxo 4.3</a> recently released with new data.
 <li> All BLAST queries have been consolidated to a single interface, the same as in the component sites.
-<li> More convenient access to help ... please click the  <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
+<li> More convenient access to help ... please click the  <a href="http://eupathdb.org/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="http://eupathdb.org/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
 </ul>
 
-Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">feedback</a> so we can continue improving ApiDB.
+Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="http://eupathdb.org/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">feedback</a> so we can continue improving ApiDB.
 
 <br>
 <br>
@@ -349,7 +349,7 @@ ApiDB is a portal that allows you to query simultaneously different apicomplexan
        <attribute name="item">
 
          <![CDATA[
-Please check the ApiDB <a href="/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsift Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
+Please check the ApiDB <a href="http://apidbdb.org/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsift Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
           ]]>
        </attribute>
     </record>
@@ -369,9 +369,9 @@ have been released
        <attribute name="item">
 
          <![CDATA[
-Please check the new  <a href="http://trichdb.org">TrichDB.org <img src='/images/trichdb.jpg' border='0' alt='trichdb' height='20' width='35'/>
+Please check the new  <a href="http://trichdb.org">TrichDB.org <img src='http://eupathdb.org/images/trichdb.jpg' border='0' alt='trichdb' height='20' width='35'/>
 </a>
-and <a href="http://giardiadb.org">GiardiaDB.org <img src='/images/giardiadb.gif' border='0' alt='giardiadb' height='20' width='20'/>
+and <a href="http://giardiadb.org">GiardiaDB.org <img src='http://eupathdb.org/images/giardiadb.gif' border='0' alt='giardiadb' height='20' width='20'/>
 </a>
 websites. These soon will be integrated into our portal.
           ]]>
@@ -389,7 +389,7 @@ websites. These soon will be integrated into our portal.
        <attribute name="item">
 
          <![CDATA[
-Please check the new  <a href="/apidb/apidbGeneMetrics.jsp" >Gene Metrics table</a> with all the organisms with gene information available in ApiDB.
+Please check the new  <a href="http://apidb.org/apidb/apidbGeneMetrics.jsp" >Gene Metrics table</a> with all the organisms with gene information available in ApiDB.
 A link to it has been added in the home pages of all ApiDB sites.
 In ApiDB.org the Gene Metrics link appears in the home page, at the bottom of the sidebar, under "Information and Help".
           ]]>
@@ -466,7 +466,7 @@ ApiDB 3.0 also includes improvements in the following areas:
 
          <![CDATA[
 
-This updated home page for ApiDB.org provides the same functionality (queries and tools) but it adds a new Genomes table with key information. &nbsp;&nbsp;Also a new link to <a href="/static/documentation.shtml" >Data Documentation</a> has been added on the sidebar under "Help and Information". &nbsp;&nbsp;Please send any comments and questions to <a href="/apidb/help.jsp" ">ApiDB.</a>
+This updated home page for ApiDB.org provides the same functionality (queries and tools) but it adds a new Genomes table with key information. &nbsp;&nbsp;Also a new link to <a href="http://apidb.org/static/documentation.shtml" >Data Documentation</a> has been added on the sidebar under "Help and Information". &nbsp;&nbsp;Please send any comments and questions to <a href="http://apidb.org/apidb/help.jsp" ">ApiDB.</a>
 
          ]]>
        </attribute>
@@ -522,7 +522,7 @@ We are pleased to announce this new release of the ApiDB.org Website and Databas
 <p>
 <b> New Features, as in Crypto.org, Plasmo.org and Toxo.org</b> 
 <ul>
-<li> <a class="plain" href="/apidb/help.jsp">User support page</a> for you to send us feedback.
+<li> <a class="plain" href="http://apidb.org/apidb/help.jsp">User support page</a> for you to send us feedback.
 <li> User registration/login. This will allow you two things: to receive emails from us with announcements and to keep a persistent query history that stays between sessions. 
 </ul>
 

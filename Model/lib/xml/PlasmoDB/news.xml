@@ -952,7 +952,7 @@ Your ApiDB project team
        <attribute name="item">
 
          <![CDATA[
-Please check the PlasmoDB <a href="/plasmo/showXmlDataContent.do?name=XmlQuestions.Tutorials" ">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.wmv) and Flash Player (.flv). There is a link to these tutorials in PlasmoDB sidebar, in all pages.
+Please check the PlasmoDB <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.Tutorials" ">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.wmv) and Flash Player (.flv). There is a link to these tutorials in PlasmoDB sidebar, in all pages.
 
           ]]>
        </attribute>
