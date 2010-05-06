@@ -517,7 +517,7 @@ The previous version of TriTrypDB may still be accessed <a href='http://old.trit
        <attribute name="item">
           
          <![CDATA[
-We received many user comments during the KCMB meeting and following.  Many of these have already been examined by TriTrypDB curators (at GeneDB, SBRI and UGA) and incorporated into the official annotation. 253 genes have been modified since the meeting resulting in a total of 710 genes that have been updated since this current build of TriTrypDB. <b><a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the complete list of genes that have been re-annotated since December 1, 2008.
+We received many user comments during the KCMB meeting and following.  Many of these have already been examined by TriTrypDB curators (at GeneDB, SBRI and UGA) and incorporated into the official annotation. 253 genes have been modified since the meeting resulting in a total of 710 genes that have been updated since this current build of TriTrypDB. <b><a href="http://tritrypdb.org/tritrypdb/showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the complete list of genes that have been re-annotated since December 1, 2008.
           ]]>
        </attribute>
     </record>
@@ -568,7 +568,7 @@ By providing access to TriTrypDB 1.1 prior to its official release, we hope to o
        <attribute name="item">
           
          <![CDATA[
-Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <b><a href="showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
+Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <b><a href="http://tritrypdb.org/tritrypdbshowSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
           ]]>
        </attribute>
     </record>

@@ -707,8 +707,8 @@ and the Affymetrix Probe Data (provided by Amit Bahl, Roos Lab, University of Pe
 Nucmer alignment of GT1, VEG and RH strains against the reference ME49 strain and SNPs generated from this 
 alignment. The Gene page now includes matches to Interpro protein domains and ESTs. 
 <p>The ToxoDB 4.1 site also includes new features such as allowing you to keep your 
-<a href='showQueryHistory.do'>Query History</a> for later use, an improved keyword search and a significantly 
-upgraded <a href='queries_tools.jsp'>Query & Tools</a> page.
+<a href='http://toxodb.org/toxo/showQueryHistory.do'>Query History</a> for later use, an improved keyword search and a significantly 
+upgraded <a href='http://toxodb.org/toxo/queries_tools.jsp'>Query & Tools</a> page.
 <p>
 New data and queries in ToxoDB 4.1:
 <ul>
