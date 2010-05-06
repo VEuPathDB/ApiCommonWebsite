@@ -182,7 +182,7 @@ typically in the form of answering specific questions, using the feature(s) and 
        <attribute name="category"></attribute>
        <attribute name="item">
            
-         <![CDATA[<body>
+         <![CDATA[
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
 Projects (DBPs) focused on one or more of the eukaryotic
@@ -195,7 +195,6 @@ invitation only, with a deadline of March 31.</i>
 <a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
 Click here to
 download the RFP</a>.
-</body>
           ]]>
        </attribute>
 </record>
@@ -207,7 +206,7 @@ download the RFP</a>.
        <attribute name="category"></attribute>
        <attribute name="item">
            
-         <![CDATA[<body>
+         <![CDATA[
 We are pleased to announce the implementation&nbsp;a new tool in
 CryptoDBDB. &nbsp;The "My
 Basket" tool allows you to select various genes from
@@ -222,7 +221,6 @@ a strategy to save it and perform additional searches or combine it
 with one of your already existing strategies.
 &nbsp;Please note that using the basket feature requires you to
 login first.
-</body>
           ]]>
        </attribute>
     </record>
