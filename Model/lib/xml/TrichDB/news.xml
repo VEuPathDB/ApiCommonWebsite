@@ -143,7 +143,7 @@ typically in the form of answering specific questions, using the feature(s) and 
        <attribute name="category"></attribute>
        <attribute name="item">
            
-         <![CDATA[<body>
+         <![CDATA[
 We are pleased to announce the implementation&nbsp;a new tool in
 TrichDB. &nbsp;The "My
 Basket" tool allows you to select various genes from
@@ -158,7 +158,6 @@ a strategy to save it and perform additional searches or combine it
 with one of your already existing strategies.
 &nbsp;Please note that using the basket feature requires you to
 login first.
-</body>
           ]]>
        </attribute>
     </record>

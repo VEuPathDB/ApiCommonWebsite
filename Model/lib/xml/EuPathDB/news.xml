@@ -117,7 +117,7 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="category"></attribute>
        <attribute name="item">
            
-         <![CDATA[<body>
+         <![CDATA[
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
 Projects (DBPs) focused on one or more of the eukaryotic
@@ -130,7 +130,6 @@ invitation only, with a deadline of March 31.</i>
 <a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
 Click here to
 download the RFP</a>.
-</body>
           ]]>
        </attribute>
 </record>
@@ -183,7 +182,7 @@ Nucleic Acid Research
        <attribute name="category"></attribute>
        <attribute name="item">
            
-         <![CDATA[<body>
+         <![CDATA[
 <span style="font-weight: bold;">EuPathDB published in
 Nucleic Acid Research<br>
 </span><big><br>
@@ -202,7 +201,6 @@ publications.
 click </span><a style="font-style: italic;"
  href="http://nar.oxfordjournals.org/cgi/citmgr?gca=nar;gkp941v1">here</a><span
  style="font-style: italic;">.</span>
-</body>
           ]]>
        </attribute>
     </record>
