@@ -7,7 +7,9 @@
        <attribute name="headline"></attribute>
        <attribute name="date"></attribute>
        <attribute name="tag"></attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
           ]]>
        </attribute>
@@ -19,7 +21,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -110,8 +114,10 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="item">           
-         <![CDATA[<body>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
 Projects (DBPs) focused on one or more of the eukaryotic
@@ -124,7 +130,6 @@ invitation only, with a deadline of March 31.</i>
 <a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
 Click here to
 download the RFP</a>.
-</body>
           ]]>
        </attribute>
 </record>
@@ -141,7 +146,9 @@ download the RFP</a>.
        <attribute name="tag">
          HinxtonWorkShop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<big><br>
 We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
 (Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
@@ -172,8 +179,10 @@ Nucleic Acid Research
 </attribute>
        <attribute name="date">16 November 2009 15:00</attribute>
        <attribute name="tag">eupathpub</attribute>
-       <attribute name="item">           
-         <![CDATA[<body>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
 <span style="font-weight: bold;">EuPathDB published in
 Nucleic Acid Research<br>
 </span><big><br>
@@ -192,7 +201,6 @@ publications.
 click </span><a style="font-style: italic;"
  href="http://nar.oxfordjournals.org/cgi/citmgr?gca=nar;gkp941v1">here</a><span
  style="font-style: italic;">.</span>
-</body>
           ]]>
        </attribute>
     </record>
@@ -208,9 +216,11 @@ click </span><a style="font-style: italic;"
        <attribute name="tag">
        eupath909news
        </attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
+
          <![CDATA[
-<b">We are pleased to
+<b>We are pleased to
 announce the release of EuPathDB 2.1</b><br>
 <br>
 This is a major release of the EuPathDB resource and includes the
@@ -252,7 +262,9 @@ The EuPathDB team.<br>
        <attribute name="tag">
        19February2008Release32
        </attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
+
          <![CDATA[
 
 The ApiDB team is pleased to announce the release of ApiDB 3.2
@@ -268,9 +280,11 @@ This release accesses the latest releases of <a href="http://cryptodb.org">Crypt
          </attribute>
        <attribute name="date">12 December 2007 00:00</attribute>
        <attribute name="tag">12Dec2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
-BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo data set available in their websites, but also against the Theileria Genomes, all available apicomplexan ESTs (from NCBI dbEST) and the <a href="/a/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast&target=EST">available EST assemblies</a> that include Cryptosporidium parvum and Toxoplasma gondii.
+BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo data set available in their websites, but also against the Theileria Genomes, all available apicomplexan ESTs (from NCBI dbEST) and the <a href="http://eupathdb.org/eupathdb/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast&target=EST">available EST assemblies</a> that include Cryptosporidium parvum and Toxoplasma gondii.
           ]]>
        </attribute>
     </record>
@@ -280,7 +294,9 @@ BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo
        <attribute name="headline">ApiDB.org 3.1 released</attribute>
        <attribute name="date">12 December 2007 00:00</attribute>
        <attribute name="tag">12Dec2007Release31</attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
 
          <![CDATA[
 We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.1. 
@@ -291,10 +307,10 @@ We are pleased to announce this new release of the ApiDB.org Website and Databas
 <ul>
 <li> All our queries offer the same functionality as our component sites: <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.News">Crypto 3.6</a>, <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News">Plasmo 5.4</a> and <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.News">Toxo 4.3</a> recently released with new data.
 <li> All BLAST queries have been consolidated to a single interface, the same as in the component sites.
-<li> More convenient access to help ... please click the  <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
+<li> More convenient access to help ... please click the  <a href="http://eupathdb.org/help.jsp"  target="_blank">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="http://eupathdb.org/help.jsp"  target="_blank">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
 </ul>
 
-Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="/help.jsp"  target="_blank" onClick="poptastic(this.href); return false;">feedback</a> so we can continue improving ApiDB.
+Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="http://eupathdb.org/help.jsp"  target="_blank">feedback</a> so we can continue improving ApiDB.
 
 <br>
 <br>
@@ -327,9 +343,11 @@ ApiDB is a portal that allows you to query simultaneously different apicomplexan
        <attribute name="headline">Tutorials offered also for Windows</attribute>
        <attribute name="date">7 October 2007 00:00</attribute>
        <attribute name="tag">7Oct2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
-Please check the ApiDB <a href="/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsift Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
+Please check the ApiDB <a href="http://apidbdb.org/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsift Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
           ]]>
        </attribute>
     </record>
@@ -345,11 +363,13 @@ have been released
 </attribute>
        <attribute name="date">14 September 2007 00:00</attribute>
        <attribute name="tag">14Sep2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
-Please check the new  <a href="http://trichdb.org">TrichDB.org <img src='/images/trichdb.jpg' border='0' alt='trichdb' height='20' width='35'/>
+Please check the new  <a href="http://trichdb.org">TrichDB.org <img src='http://eupathdb.org/images/trichdb.jpg' border='0' alt='trichdb' height='20' width='35'/>
 </a>
-and <a href="http://giardiadb.org">GiardiaDB.org <img src='/images/giardiadb.gif' border='0' alt='giardiadb' height='20' width='20'/>
+and <a href="http://giardiadb.org">GiardiaDB.org <img src='http://eupathdb.org/images/giardiadb.gif' border='0' alt='giardiadb' height='20' width='20'/>
 </a>
 websites. These soon will be integrated into our portal.
           ]]>
@@ -363,9 +383,11 @@ websites. These soon will be integrated into our portal.
        <attribute name="headline">ApiDB Gene Metrics table</attribute>
        <attribute name="date">18 July 2007 00:00</attribute>
        <attribute name="tag">18Jul2007</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
-Please check the new  <a href="/apidb/apidbGeneMetrics.jsp" >Gene Metrics table</a> with all the organisms with gene information available in ApiDB.
+Please check the new  <a href="http://apidb.org/apidb/apidbGeneMetrics.jsp" >Gene Metrics table</a> with all the organisms with gene information available in ApiDB.
 A link to it has been added in the home pages of all ApiDB sites.
 In ApiDB.org the Gene Metrics link appears in the home page, at the bottom of the sidebar, under "Information and Help".
           ]]>
@@ -378,7 +400,9 @@ In ApiDB.org the Gene Metrics link appears in the home page, at the bottom of th
        <attribute name="headline">ApiDB.org 3.0 released</attribute>
        <attribute name="date">1 June 2007 00:00</attribute>
        <attribute name="tag">1Jun2007</attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
 
          <![CDATA[
 We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.0. 
@@ -435,10 +459,12 @@ ApiDB 3.0 also includes improvements in the following areas:
        <attribute name="tag">
        ApiDBNewFrontPage
        </attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 
-This updated home page for ApiDB.org provides the same functionality (queries and tools) but it adds a new Genomes table with key information. &nbsp;&nbsp;Also a new link to <a href="/static/documentation.shtml" >Data Documentation</a> has been added on the sidebar under "Help and Information". &nbsp;&nbsp;Please send any comments and questions to <a href="/apidb/help.jsp" ">ApiDB.</a>
+This updated home page for ApiDB.org provides the same functionality (queries and tools) but it adds a new Genomes table with key information. &nbsp;&nbsp;Also a new link to <a href="http://apidb.org/static/documentation.shtml" >Data Documentation</a> has been added on the sidebar under "Help and Information". &nbsp;&nbsp;Please send any comments and questions to <a href="http://apidb.org/apidb/help.jsp">ApiDB.</a>
 
          ]]>
        </attribute>
@@ -455,7 +481,9 @@ This updated home page for ApiDB.org provides the same functionality (queries an
        <attribute name="tag">
        4Dec2006Workshop
        </attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
 at the University of Georgia, Athens, GA, USA.
@@ -481,7 +509,9 @@ information and to register.
        <attribute name="headline">ApiDB.org 2.1 released</attribute>
        <attribute name="date">17 November 2006 00:00</attribute>
        <attribute name="tag">oldRelease</attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
 
          <![CDATA[
 We are pleased to announce this new release of the ApiDB.org Website and Database, Version 2.1. <br>It includes improvements in different areas:
@@ -490,7 +520,7 @@ We are pleased to announce this new release of the ApiDB.org Website and Databas
 <p>
 <b> New Features, as in Crypto.org, Plasmo.org and Toxo.org</b> 
 <ul>
-<li> <a class="plain" href="/apidb/help.jsp">User support page</a> for you to send us feedback.
+<li> <a class="plain" href="http://apidb.org/apidb/help.jsp">User support page</a> for you to send us feedback.
 <li> User registration/login. This will allow you two things: to receive emails from us with announcements and to keep a persistent query history that stays between sessions. 
 </ul>
 

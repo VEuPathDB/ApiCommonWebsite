@@ -11,7 +11,9 @@
        </attribute>
        <attribute name="tag">
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
           ]]>
        </attribute>
@@ -22,7 +24,9 @@
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>
        <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 EuPathDB is pleased to announce the members of the scientific working group
 (SWG). The SWG provides EuPathDB with scientific oversight and 
@@ -121,7 +125,9 @@ Plasmodium population biology, drug discovery<br>
        <attribute name="tag">
          crypto0310_news
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 <span style="font-weight: bold;">We are pleased to 
@@ -173,8 +179,10 @@ typically in the form of answering specific questions, using the feature(s) and 
        <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
        <attribute name="date">04 February 2010 15:00</attribute>
        <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="item">           
-         <![CDATA[<body>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
 The NIAID-funded Eukaryotic Pathogen Genome Database
 (<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
 Projects (DBPs) focused on one or more of the eukaryotic
@@ -187,7 +195,6 @@ invitation only, with a deadline of March 31.</i>
 <a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
 Click here to
 download the RFP</a>.
-</body>
           ]]>
        </attribute>
 </record>
@@ -196,8 +203,10 @@ download the RFP</a>.
        <attribute name="headline">"My Basket", A New Feature in CryptoDB</attribute>
        <attribute name="date">22 December 2009 15:00</attribute>
        <attribute name="tag">crypto1209news</attribute>
-       <attribute name="item">           
-         <![CDATA[<body>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
 We are pleased to announce the implementation&nbsp;a new tool in
 CryptoDBDB. &nbsp;The "My
 Basket" tool allows you to select various genes from
@@ -212,7 +221,6 @@ a strategy to save it and perform additional searches or combine it
 with one of your already existing strategies.
 &nbsp;Please note that using the basket feature requires you to
 login first.
-</body>
           ]]>
        </attribute>
     </record>
@@ -228,7 +236,9 @@ login first.
        <attribute name="tag">
          HinxtonWorkShop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[<big><br>
 We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
 (Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
@@ -265,14 +275,16 @@ As usual, if you have any questions please send us an <a href="mailto:help@eupat
        <attribute name="tag">
 				Crypto909news
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
 				<b>We are pleased to
 announce the release of CryptoDB 4.2</b><br>
 <br>
-<u">New Data:</u><br>
+<u>New Data:</u><br>
 <ul>
-  <li><il>C. parvum</il>
+  <li><i>C. parvum</i>
 mitochondrial fraction proteomics provided prepublication by Lorenza
 putignani.</li>
 </ul>
@@ -313,7 +325,9 @@ The EuPathDB team.
        <attribute name="tag">
 				crypto41
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
 				We are please to announce the release of CryptoDB 4.1
 				<p>
@@ -347,7 +361,9 @@ The previous version of CryptoDB may still be accessed <a href='http://old.crypt
        <attribute name="tag">
        06February2009release40
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
        We are please to announce the release of CryptoDB 4.0, which features 
        several new data sets (including many that were graciously provided 
@@ -395,7 +411,9 @@ The previous version of CryptoDB may still be accessed <a href='http://old.crypt
        <attribute name="tag">
        19February2008Release37
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
 
 The ApiDB team is pleased to announce the release of CryptoDB 3.7
@@ -431,7 +449,9 @@ the Genome Browser.
        <attribute name="tag">
        5December2007Release36
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The ApiDB team is pleased to announce the release of CryptoDB 3.6
 <p>
@@ -462,7 +482,9 @@ New features include:
        18June2007CmurisStatus
        </attribute>
  <!--  announcement verbiage by Joana C. Silva, TIGR (with slight edits by CryptoDB) -->
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
          A preliminary assembly of <i>C. muris</i> was obtained at approximately 
          4.5 X coverage, and
@@ -501,7 +523,9 @@ available on the project's website
        <attribute name="tag">
        18June2007Release35
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
          New data and queries in CryptoDB 3.5:
 <ul>
@@ -513,8 +537,8 @@ these are visible on the Genome Sequence Browser. Queries to find genes, or ORFs
 <p>
 New features in CryptoDB 3.5:
 <ul>
-<li>We have added <a href="showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorial movies</a> to help you learn about the functionality of our site. 
-If there are additional tutorials you would like to see added please submit a request via our <a href="help.jsp">support page</a>.</li>
+<li>We have added <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorial movies</a> to help you learn about the functionality of our site. 
+If there are additional tutorials you would like to see added please submit a request via our <a href="http://cryptodb.org/cryptodb/help.jsp">support page</a>.</li>
 <li>Most of the queries have been reorganized to make them more intuitive. Some include a new "Advanced Parameters" section. See for example "Identify Genes based on EST evidence."
 <li>The columns displayed in query result pages are improved.  The result pages also offer options for sorting, adding new columns, and moving columns around.
 <li>Downloading results is improved. A choice of formats is provided including tab-delimited, text, GFF, and FASTA to meet different needs.
@@ -543,7 +567,9 @@ If there are additional tutorials you would like to see added please submit a re
        <attribute name="tag">
        4Dec2006Workshop
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
 at the University of Georgia, Athens, GA, USA.
@@ -576,7 +602,9 @@ information and to register.
        <attribute name="tag">
        21Nov2006muris
        </attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The <b><i>Cryptosporidium muris</i> genome sequencing project</b> has been funded by the
 National Institute of Allergy and Infections Diseases (NIAID), through the
@@ -603,7 +631,9 @@ assemblies and annotations will be deposited with GenBank and CryptoDB.
        <attribute name="tag">
        17Nov2006release34
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
          New data and queries in CryptoDB 3.4:
 <ul>
@@ -631,7 +661,9 @@ permitting the results to be combined with other queries.</li>
        </attribute>
        <attribute name="date">06 July 2006 00:00</attribute>
        <attribute name="tag">06Jul2006blastupdate</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The WU-BLAST programs supporting the CryptoDB BLAST tool were upgraded on 6 July 2006.
 <p>
@@ -648,7 +680,9 @@ The current version is:<br>
        <attribute name="headline">CryptoDB will be closed for maintenance Tuesday, April 25, 2006</attribute>
        <attribute name="date">20 April 2006 00:00</attribute>
        <attribute name="tag">20Apr2006closed</attribute>
-       <attribute name="item">           
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
          <![CDATA[
 The offices and datacenter of CryptoDB.org are moving to new facilities and 
 will need to temporarily suspend services. We apologize for the inconvenience.
@@ -664,7 +698,9 @@ will need to temporarily suspend services. We apologize for the inconvenience.
        <attribute name="tag">
        16Apr2006release33
        </attribute>
-       <attribute name="item">           
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
 New in this release:
 <ul>
@@ -715,7 +751,9 @@ EC number annotations have been added. Sources of EC numbers include Genbank, KE
        <attribute name="headline">CryptoDB Release 3.2 is out</attribute>
        <attribute name="date">25 January 2006 00:00</attribute>
        <attribute name="tag">25Jan2006release32</attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
+
          <![CDATA[
 New in this release:
 <ul>
@@ -735,7 +773,9 @@ then 'Update Image'
        </attribute>
        <attribute name="date">07 November 2005 00:00</attribute>
        <attribute name="tag">09Dec2005release31</attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
+
          <![CDATA[
 Highlights of Release 3.1 include:
 
@@ -765,7 +805,9 @@ New queries for ESTs and genes by protein molecular weight have been added.
        </attribute>
        <attribute name="date">30 September 2005 00:00</attribute>
        <attribute name="tag">30Sep2005Erratum</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 <i>C. hominis</i> gene Chro.rrn021 is annotated as having two exons but in CryptoDB release 3.0 this gene is not returned in the query 'Genes With Exon Count'. This error will be fixed in the next release.
          ]]>
@@ -781,7 +823,9 @@ New queries for ESTs and genes by protein molecular weight have been added.
        </attribute>
        <attribute name="date">16 August 2005 00:00</attribute>
        <attribute name="tag">16Aug2005gff3</attribute>
+       <attribute name="category"></attribute>
        <attribute name="item">
+
          <![CDATA[
 CryptoDB is one of NIAID's Bioinformatics Resource Centers (<a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">BRC</a>)  for Biodefense and Emerging or Re-Emerging Infectious Diseases. As part of our efforts for interoperability among the other BRCs and the research community in general we have released the published <i>Cryptosporidium</i> genome features in standardized GFF3 format. The files may be downloaded via FTP from <a href="ftp://ftp.tigr.org/pub/brc/ApiDB/Cryptosporidium/">ftp://ftp.tigr.org/pub/brc/ApiDB/Cryptosporidium/</a>.
          ]]>
@@ -799,7 +843,9 @@ CryptoDB is one of NIAID's Bioinformatics Resource Centers (<a href="http://www.
        <attribute name="tag">
        welcome
        </attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
+
          <![CDATA[
         CryptoDB is now part of an NIH/NIAID funded Bioinformatics Resource Center 
         to provide Apicomplexan Database Resources. This release represents a major 
