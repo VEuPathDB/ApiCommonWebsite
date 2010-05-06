@@ -926,7 +926,7 @@ Note that a mechanism has now been established to ensure that User Comments on g
 There is still time to enter additional User Comments while the updated annotation is being reviewed in preparation for deposition in GenBank and release on PlasmoDB and GeneDB in early 2008.  Please use the User Comments feature as a repository for valuable information on:
 <ul>
 <li> Naming, e.g. "Apical membrane antigen 1 is also known as AMA1, AMA-1, Pf83, Rhoptry Membrane Antigen, RMA1" or "this gene is now recognizable as XXX based on Pfam domain ###."
-<li> Gene models, e.g. "Corrected cDNA sequence for gene XXX: <sequence>, based on RACE and primer extension for 5' UTR and polyA-tailed cDNA clone for 3' UTR" or "RT-PCR confirms annotated CDS sequence as correct."  Note that confirmation of existing annotation can be as valuable as corrections!
+<li> Gene models, e.g. "Corrected cDNA sequence for gene XXX: &lt;sequence&gt;, based on RACE and primer extension for 5' UTR and polyA-tailed cDNA clone for 3' UTR" or "RT-PCR confirms annotated CDS sequence as correct."  Note that confirmation of existing annotation can be as valuable as corrections!
 <li> Function, e.g. "Enzymatic activity for gene XXX has been confirmed" or "Protein XXX is predicted to target to the apicoplast, but an epitope-tagged construct shows cytoplasmic localization."  Be sure to provide name and/or PubMedID if available.
 </ul>
 
