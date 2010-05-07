@@ -249,7 +249,7 @@ public class NewCommentAction extends CommentAction {
         CommentActionUtility.getCommentFactory(context).addComment(comment, previousCommentId);
 
         String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
-        String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "#" + comment.getCommentId(); 
+        String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "&commentTargetId=" + comment.getCommentTarget() + "#" + comment.getCommentId(); 
 
         StringBuffer body = new StringBuffer();
         if(projectId.equals("TriTrypDB") || organism.equals("Plasmodium falciparum") || organism.equals("Cryptosporidium parvum")) { 
