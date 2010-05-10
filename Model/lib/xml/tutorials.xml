@@ -9,6 +9,37 @@
 
 <xmlAnswer>
 
+ <record>
+       <attribute name="title">PlasmoDB Introduction</attribute>
+       <attribute name="description">Highlights of the PlasmoDB website.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">PlasmoDB/plasmodb_intro_viewlet_swf.html</attribute>
+           <attribute name="duration">7 minutes</attribute>
+           <attribute name="size">5.7 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+<record>
+       <attribute name="title">Favorites</attribute>
+       <attribute name="description">Highlights of Favorites</attribute>
+       <attribute name="uid">17</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Favorites/favorites_viewlet_swf.html</attribute>
+           <attribute name="duration">6 minutes</attribute>
+           <attribute name="size">4.5 mb</attribute>
+         </row>
+       </table>
+   </record>
 
    <record>
        <attribute name="title">AmoebaDB Introduction</attribute>
@@ -16,10 +47,10 @@
        <attribute name="uid">16</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">EuPathDB.org,AmoebaDB</attribute>
+           <attribute name="projects">EuPathDB,AmoebaDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
-           <attribute name="fileName.flv">amoebadb_intro/amoebadb_intro_viewlet_swf.html</attribute>
+           <attribute name="fileName.flv">AmoebaDB/amoebadb_intro_viewlet_swf.html</attribute>
            <attribute name="duration">5 minutes</attribute>
            <attribute name="size">3 mb</attribute>
          </row>
@@ -33,7 +64,7 @@
        <attribute name="uid">15</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB.org,CryptoDB,GiardiaDB,MicrosporidiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">New_Strat/New_Strat_viewlet_swf.html</attribute>
@@ -49,7 +80,7 @@
        <attribute name="uid">14</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB.org,CryptoDB,GiardiaDB,MicrosporidiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>
@@ -83,7 +114,7 @@
            <attribute name="size">20.7 mb</attribute>
          </row>
          <row>
-           <attribute name="projects">EuPathDB.org</attribute>
+           <attribute name="projects">EuPathDB</attribute>
            <attribute name="fileName.mov">QueriesAndTools_ApiDB.mov</attribute>
            <attribute name="fileName.avi">QueriesAndTools_ApiDB.wmv</attribute>
            <attribute name="fileName.flv">QueriesAndTools_ApiDB.flv</attribute>
@@ -91,7 +122,7 @@
            <attribute name="size">15.7 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">TrichDB.org</attribute>
+           <attribute name="projects">TrichDB</attribute>
            <attribute name="fileName.mov">QueriesAndTools_TrichDB_1.0.mov</attribute>
 <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">unavailable</attribute>
@@ -154,7 +185,7 @@
            <attribute name="size">14.9 mb</attribute>
          </row>
  <row>
-           <attribute name="projects">EuPathDB.org</attribute>
+           <attribute name="projects">EuPathDB</attribute>
            <attribute name="fileName.mov">DownloadResults_ApiDB.mov</attribute>
 <attribute name="fileName.avi">DownloadResults_ApiDB.wmv</attribute>
 <attribute name="fileName.flv">DownloadResults_ApiDB.flv</attribute>
@@ -206,7 +237,7 @@
            <attribute name="size">2.7 mb</attribute>
          </row>
  <row>
-           <attribute name="projects">EuPathDB.org</attribute>
+           <attribute name="projects">EuPathDB</attribute>
            <attribute name="fileName.mov">ListOfIDs_ApiDB.mov</attribute>
 <attribute name="fileName.avi">ListOfIDs_ApiDB.wmv</attribute>
 <attribute name="fileName.flv">ListOfIDs_ApiDB.flv</attribute>
@@ -249,7 +280,7 @@
            <attribute name="size">5.5 mb</attribute>
          </row>
 <row>
-           <attribute name="projects">EuPathDB.org</attribute>
+           <attribute name="projects">EuPathDB</attribute>
            <attribute name="fileName.mov">ColumnManagement_ApiDB.mov</attribute>
            <attribute name="fileName.avi">ColumnManagement_ApiDB.wmv</attribute>
            <attribute name="fileName.flv">ColumnManagement_ApiDB.flv</attribute>
