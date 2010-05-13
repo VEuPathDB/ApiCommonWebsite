@@ -18,7 +18,116 @@
        </attribute>
     </record>
 -->
-
+<record>
+       <attribute name="headline">
+         <![CDATA[
+TriTrypDB 2.2 released
+         ]]>
+       </attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">tritryp5_10_news</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of TriTrypDB 2.2<br>
+<br>
+<br>
+This release of TriTrypDB contains the following new datasets and
+features:</span><span style="font-weight: bold;">&nbsp;<br>
+<br>
+New Data:</span><br>
+<br>
+<div style="margin-left: 40px;">Microarray analysis of
+three <span style="font-style: italic;">L.
+major </span>developmental stages graciously provided
+pre-publication by Stephen Beverley's group. Searching this data can be
+performed via the <a
+ href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+expression search page</a> in TriTrypDB.</div>
+<span style="font-weight: bold;"><br>
+Features introduced this year:<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative secreted proteinases upregulated in <span
+ style="font-style: italic;">T. cruzi </span>epimastigotes.
+&nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://tritrypdb.org/tritrypdb/im.do?s=26172522d407b0f5">Putative
+vaccine candidates (unweighted)</a><br>
+  <a href="http://tritrypdb.org/tritrypdb/im.do?s=cd131552af5e584b"><br>
+  </a><a
+ href="http://tritrypdb.org/tritrypdb/im.do?s=cd131552af5e584b">Putative&nbsp;</a><a
+ href="http://tritrypdb.org/tritrypdb/im.do?s=cd131552af5e584b">vaccine
+candidates</a><a
+ href="http://tritrypdb.org/tritrypdb/im.do?s=cd131552af5e584b">
+(Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> (new in this release) allows you to bookmark
+and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">User comments matter:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">There
+are over 400 gene-page comments from TriTrypDB users, all of which have
+beer reviewed by annotators at GeneDB, the Seattle Biomedical Research
+Institute and EuPathDB. &nbsp; Updated genes can be accessed via
+prominent linkouts to GeneDB from TriTrypDB
+gene pages. Comments from you are instrumental to guiding our
+annotators. &nbsp;To learn how you can add a user comment please
+view
+this <a
+ href="http://eupathdb.org/tutorials/Comment_form/Comment_form.html">tutorial</a>.<br>
+</div>
+<span style="font-weight: bold;"><br>
+Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become&nbsp;a feature evaluator, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
        <attribute name="date">31 March 2010 15:00</attribute>

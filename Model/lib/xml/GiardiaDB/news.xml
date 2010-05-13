@@ -13,6 +13,103 @@
        </attribute>
     </record>
 --> 
+<record>
+       <attribute name="headline">New Features in GiardiaDB</attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">giardia05_10_news</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in Giardia 2.1<br>
+<br>
+<br>
+In an effort to continue improving the utility of GiardiaDB </span><span
+ style="font-weight: bold;">we have
+implemented several new features in recent releases. &nbsp;<br>
+<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative secreted enzymes. &nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://giardiadb.org/giardiadb/im.do?s=11cea73c70d44e95">Putative
+secreted enzymes (unweighted)</a><br>
+  <br>
+  <a href="http://giardiadb.org/giardiadb/im.do?s=525c3842824cc776">Putative
+secreted enzymes (Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> allows you to bookmark and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+  <br>
+  <li>A <span style="font-weight: bold;">community
+annotation</span> field has been added to the text
+search page. &nbsp;This makes it possible for the Giardia research
+community to provide expert bulk annotations that would ultimately
+results in changes in the GenBank record and official annotation.
+&nbsp;Currently, there are 164 community annotations provided by
+Rod Adam concerning VSPs. &nbsp;To view community annotations go to
+the text search page in GiardiaDB and limit your search to the
+"Community annotation".&nbsp; To view all genes that have a
+community annotation associated with them simply enter the wild card
+"*" in the text search field.&nbsp; The annotation itself is
+prominently displayed on the gene pages right under the product name.
+&nbsp;You can also click on the comment ID to retrieve additional
+information.</li>
+  <li>A file including <span style="font-weight: bold;">assignment
+of contigs to chromosomes</span> has been made available by
+Hilary Morrison pre-publication in the community file section of
+GiardiaDB. &nbsp;<a
+ href="http://giardiadb.org/giardiadb/communityDownload.do?fname=opticalmap_placement.xls.txt">Links</a>
+to the file are available on all contig pages.</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become&nbsp;a feature evaluatora feature evaluatora feature
+evaluatora feature evaluator, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 
 <record>
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
