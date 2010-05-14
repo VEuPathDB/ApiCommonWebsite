@@ -23,7 +23,7 @@
        <attribute name="headline">New Features in CryptoDB</attribute>
        <attribute name="date">13 May 2010 15:00</attribute>
        <attribute name="tag">crypto05_10_news</attribute>
-       <attribute name="category"></attribute>
+       <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
