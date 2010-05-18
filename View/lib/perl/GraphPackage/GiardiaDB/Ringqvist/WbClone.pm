@@ -3,12 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Ringqvist::WbClone;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlot);
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlot);
 
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-
 
 sub init {
   my $self = shift;
