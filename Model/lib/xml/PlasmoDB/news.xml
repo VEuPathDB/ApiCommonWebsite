@@ -2,12 +2,12 @@
 <xmlAnswer>
 
 <!--
-   <record>
+<record>
        <attribute name="headline">
          <![CDATA[
          ]]>
          </attribute>
-       <attribute name="date">06 June 2008 00:00</attribute>
+       <attribute name="date">13 May 2010 13:00</attribute>
        <attribute name="tag"></attribute>
        <attribute name="category"></attribute>
        <attribute name="item">
@@ -17,6 +17,131 @@
        </attribute>
     </record>
 -->
+
+   <record>
+       <attribute name="headline"><![CDATA[
+PlasmoDB 6.4 released
+         ]]>
+         </attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">plasmo05_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 6.4<br>
+<br>
+<br>
+This release of PlasmoDB contains the following new datasets and
+features:</span><span style="font-weight: bold;">&nbsp;<br>
+<br>
+New Data:</span><br>
+<br>
+<ul>
+  <li><span style="font-style: italic;">PiggyBac</span>
+insertion sites in&nbsp;<span style="font-style: italic;">P.
+falciparum</span> (NF54) from <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19422698">Balu <span
+ style="font-style: italic;">et. al.</span></a>
+are available via the genome browser. &nbsp;To view insertion sites
+turn on the track called "P. falciparum piggyBac Transposable Elements"
+under the heading "Insertions". &nbsp;Here is a quick link to the
+genome browser with a region with insertions: <a
+ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1;stop=2038337;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=AnnotatedGenes-TransposableElements"><span
+ style="font-style: italic;">piggyBac </span>insertions
+in chromosome 11</a>.&nbsp;</li>
+  <br>
+  <li>ChIP-chip data using histone H4 antibodies from <a
+ href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2801526/">Westenberger<span
+ style="font-style: italic;"> et. al.</span></a>
+are available via the genome browser under the ChIP on chip heading.
+You may view tracks for different RBC life stages as in this <a
+ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=850000;stop=1190000;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=AnnotatedGenes-ChIP_Nucleosome_Ring_H4-ChIP_Nucleosome_Troph_H4-ChIP_Nucleosome_Schizont_H4">example</a>.</li>
+  <br>
+  <li>Nucleosome positioning data from <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/20054063">Ponts <span
+ style="font-style: italic;">et. al.</span> </a>&nbsp;are
+available via the genome browser under the ChIP-seq heading.
+&nbsp;You
+may view tracks for different time points during the RBC life cycle as
+in this <a
+ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=850000;stop=1190000;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=AnnotatedGenes-ChipSeq0CombNorm-ChipSeq6CombNorm-ChipSeq12CombNorm-ChipSeq18CombNorm-ChipSeq24CombNorm-ChipSeq30CombNorm-ChipSeq36CombNorm">example</a>.</li>
+</ul>
+<span style="font-weight: bold;"><br>
+Features introduced this year:<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative vaccine candidates. &nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://plasmodb.org/plasmo/im.do?s=0fdc12df42cc3c61">Putative
+vaccine candidates (unweighted)</a><br>
+  <br>
+  <a href="http://plasmodb.org/plasmo/im.do?s=4d4df392a0952327">Putative&nbsp;</a><a
+ href="http://plasmodb.org/plasmo/im.do?s=4d4df392a0952327">vaccine
+candidates</a><a
+ href="http://plasmodb.org/plasmo/im.do?s=4d4df392a0952327">
+(Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> (new in this release) allows you to bookmark
+and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+  <br>
+  <li>We now provide prominent linkouts to GeneDB from PlasmoDB
+gene pages when there is an update in GeneDB not yet available in
+PlasmoDB. &nbsp;This feature enables PlasmoDB users to have easy
+access to the most up-to-date information. &nbsp;It is important to
+highlight that your comments on gene pages in PlasmoDB constitute one
+of the tools made available to the annotators at GeneDB to improve and
+enhance the genome annotation.</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become&nbsp;a feature evaluator, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+
 
 <record>
        <attribute name="headline">EuPathDB Scientific Working Group</attribute>
