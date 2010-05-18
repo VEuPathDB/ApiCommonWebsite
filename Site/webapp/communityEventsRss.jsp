@@ -62,6 +62,7 @@
   <c:set var="date"><x:out select="submissionDate"/></c:set>
   <c:set var="headline"><x:out select="event/name" escapeXml="true"/></c:set>
   <c:set var="eventDate"><x:out select="event/date"/></c:set>
+  <c:set var="presence"><x:out select="event/presence/type"/></c:set>
   <c:set var="tag">ev-<x:out select="recid"/></c:set>
   <c:set var="exturl"><x:out select="event/url"/></c:set>
   <c:set var="item"><x:out select="event/description" escapeXml="true"/></c:set>
@@ -72,6 +73,9 @@
       <link>${exturl}</link>
       <description>  
       ${item}&lt;br&gt;
+      <c:if test="${fn:length(presence) > 0}">
+       ${presence}&lt;br&gt;
+      </c:if>
       ${eventDate}
       </description>
       <guid isPermaLink="false">${tag}</guid>
