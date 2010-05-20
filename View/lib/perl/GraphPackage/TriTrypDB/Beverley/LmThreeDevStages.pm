@@ -30,7 +30,7 @@ sub init {
                            default_y_min => -1.5,
                            force_x_axis_label_horizontal => 1,
                            make_y_axis_fold_incuction => 1,
-                           x_axis_labels => ['M v P', 'A v P'],
+                           x_axis_labels => ['A v P', 'M v P'],
                            plot_title => 'Transcript profiling of 3 L.major developmental stages',
                           },
       pct => {profiles => ['Percents of L.major Beverly Steve array data(red)',
