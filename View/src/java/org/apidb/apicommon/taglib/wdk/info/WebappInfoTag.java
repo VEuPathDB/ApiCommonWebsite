@@ -6,7 +6,7 @@
 
 package org.apidb.apicommon.taglib.wdk.info;
 
-
+import javax.servlet.Servlet;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
@@ -85,7 +85,19 @@ public class WebappInfoTag extends SimpleTagSupport {
     public String getClasspath() {
         return (String) application.getAttribute("org.apache.catalina.jsp_classpath");
     }
-        
+
+    public String getServerInfo() {
+        return application.getServerInfo();
+    }
+    
+    public String getServletInfo() {
+        return ((Servlet)pageContext.getPage()).getServletInfo();
+    }
+    
+    public String getServletApiVersion() {
+        return application.getMajorVersion() + "." + application.getMinorVersion();
+    }
+    
     public void setVar(String var) {
         this.var = var;
     }
