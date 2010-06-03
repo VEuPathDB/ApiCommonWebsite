@@ -69,7 +69,10 @@ sub processParams {
   $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
 
   my $projectId = $cgi->param('project_id'); 
+
   $self->{ignore_gene_alias}= 1 if ($projectId=='ToxoDB');
+  $self->{ignore_gene_alias}= 0 if ($projectId=='EuPathDB');
+
 
   my @inputIds;
   foreach(split(/[,\s]+/, $cgi->param('ids'))) {
@@ -225,6 +228,7 @@ sub handleNonGenomic {
 
   if($type eq "protein" && $self->{geneOrOrf} eq 'gene') {
     $sql = $site->{geneProteinSql}
+
   }
   # use the input ids directly
   elsif($type eq "protein" && $self->{geneOrOrf} ne 'gene') {
@@ -239,7 +243,6 @@ sub handleNonGenomic {
     $sql = $site->{cdsSql};
   }
 
-
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
 
   my $sth = $dbh->prepare($sql);
@@ -251,6 +254,9 @@ sub handleNonGenomic {
     if ($inputId ne $geneOrfSourceId) {
       $descrip = " ($inputId) $descrip";
     }
+
+
+
     $self->writeSeq($seqIO, $seq, $descrip, $geneOrfSourceId, 1, length($seq), 0);
   }
 }
@@ -427,6 +433,7 @@ EOSQL
 # START is in the native strand coordinates
 sub writeSeq {
   my ($self, $seqIO, $seq, $desc, $displayId, $geneStart, $geneEnd, $isReversed) = @_;
+
 
   my $length = length($seq);
 
