@@ -59,7 +59,7 @@ sub run {
 
 	 my $_qh         = $Self->getQueryHandle($Cgi);
 
-	 my $model          = $Cgi->param('model');
+	 my $pkg          = $Cgi->param('project_id');
 	 my $type           = $Cgi->param('type');
 	 my $id             = $Cgi->param('id');
 	 my $sid            = $Cgi->param('sid');
@@ -72,8 +72,8 @@ sub run {
 
 	 my @errors;
 
-	 push(@errors, 'model must be supplied') if not defined $model;
-	 push(@errors, $model . ' is an unallowed value for model arg') if ($model ne 'plasmo' and $model ne 'toxo' and $model ne 'giardia' and $model ne 'tritryp');
+	 push(@errors, 'model must be supplied') if not defined $pkg;
+	 push(@errors, $pkg . ' is an unallowed value for Project_id arg') if ($pkg ne 'PlasmoDB' and $pkg ne 'ToxoDB' and $pkg ne 'GiardiaDB' and $pkg ne 'AmoebaDB' and $pkg ne 'TriTrypDB');
 	 push(@errors, 'type must be supplied' ) if not defined $type;
 	 push(@errors, 'id must be supplied'   ) if not defined $id;
 
@@ -103,17 +103,22 @@ sub run {
 	 my @filesToDelete = ( $fmt_f );
 
 	 # graph package mode
-	 my $pkg;
-	 if ($model eq 'plasmo') {
-	   $pkg = "PlasmoDB";
-	 } elsif ($model eq 'toxo') {
-	   $pkg = "ToxoDB";
-	 } elsif ($model eq 'giardia') {
-	   $pkg = "GiardiaDB";
-	 } elsif ($model eq 'tritryp') {
-	   $pkg = "TriTrypDB";
-	 }
-	 my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
+         
+         #-------Redundant--------#
+	 #my $pkg;
+	 #if ($model eq 'plasmo') {
+	 #  $pkg = "PlasmoDB";
+	 #} elsif ($model eq 'toxo') {
+	 #  $pkg = "ToxoDB";
+	 #} elsif ($model eq 'giardia') {
+	 #  $pkg = "GiardiaDB";
+	 #} elsif ($model eq 'tritryp') {
+	 #  $pkg = "TriTrypDB";
+	 #} elsif ($model eq 'amoeba') {
+	 #  $pkg = "AmoebaDB";
+	 #}
+	 
+         my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          eval "require $class";
          my $_gp = eval {
