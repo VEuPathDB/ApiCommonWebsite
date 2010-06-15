@@ -56,7 +56,7 @@ public class OrclSvcAliases extends WdkTagBase {
             sc.setReturningAttributes(attributeFilter);
             sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
             
-            String filter = "(&(orclNetDescString=*" + hostname + "*)(orclNetDescString=*SERVICE_NAME" + servicename + "*))";
+            String filter = "(orclNetDescString=*" + servicename + "*)";
 
             NamingEnumeration results = dctx.search(base, filter, sc);
             while (results.hasMore()) {
