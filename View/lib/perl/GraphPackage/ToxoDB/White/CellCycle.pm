@@ -33,7 +33,7 @@ sub init {
               default_y_min => 4,
               default_x_min => 0,
               points_pch => $pch,
-              x_axis_labels => ['a', 'b', 1,2,3,4,5,6,7,8,9,10,11,12],
+
              },
       pct => {profiles => ['M.White Cell Cycle Microarray profile pcts'
                           ],
@@ -44,7 +44,7 @@ sub init {
               default_y_min => 0,
               default_x_min => 0,
               points_pch => $pch,
-              x_axis_labels => ['a', 'b', 1,2,3,4,5,6,7,8,9,10,11,12],
+
        }
      });
 
