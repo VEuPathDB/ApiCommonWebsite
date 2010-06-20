@@ -274,8 +274,8 @@ sub writeProfileFiles {
 
   my @rv = ($profile_fn, $elementNames_fn);
 
-  $self->addTempFile($profile_fn);
-  $self->addTempFile($elementNames_fn);
+  $self->addTempFile($profile_fn) if($profile_fn);
+  $self->addTempFile($elementNames_fn) if($elementNames_fn);
 
   if (@errors) {
     $self->reportErrorsAndBlankGraph($r_fh, @errors);
