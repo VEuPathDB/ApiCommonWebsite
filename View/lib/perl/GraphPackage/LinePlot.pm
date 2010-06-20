@@ -231,10 +231,16 @@ for(i in 1:nrow(lines.df)) {
          axes = FALSE
         );
 
+
     if(isTimeSeries) {
       axis(1);
     } else {
-      axis(1, at=x.coords.rank, labels=colnames(lines.df));
+      my.las = 2;
+      if(max(nchar(colnames(lines.df))) < 6) {
+        my.las = 0;
+      }
+
+      axis(1, at=x.coords.rank, labels=colnames(lines.df), las=my.las);
     }
   }
 
