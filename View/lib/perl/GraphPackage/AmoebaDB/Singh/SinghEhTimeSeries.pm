@@ -27,12 +27,10 @@ sub init {
 
   $self->setProfileSetsHash
     ({'fold_induction' => {profiles => ['EhistolyticaAffyProfiles'],
-                           y_axis_label => 'Fold Induction',
+                           y_axis_label => 'RMA Value (log2)',
                            colors => $colors,
-                           make_y_axis_fold_incuction => 1,
                            plot_title => 'E. histolytica Intestinal Colonization/Invasion Affymetrix array Profiles',
-                           default_y_max => 1.5,
-                           default_y_min => -1.5,
+                           r_adjust_profile => 'profile = log2(profile);',
                            x_axis_labels => $xAxisLabels,
                           },
       pct => {profiles => ['EhistolyticaAffyProfilePcts'
@@ -47,7 +45,5 @@ sub init {
 
   return $self;
 }
-
-
 
 1;
