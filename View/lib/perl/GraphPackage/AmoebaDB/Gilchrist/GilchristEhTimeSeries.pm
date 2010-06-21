@@ -29,6 +29,7 @@ sub init {
     ({'rma' => {profiles => ['EhistolyticaNugenProfiles'],
                            y_axis_label => 'RMA Value (log2)',
                            colors => $colors,
+                           default_y_max => 4,
                            plot_title => 'E. histolytica Stage Conversion Nugen array Profiles',
                            r_adjust_profile => 'profile = log2(profile);',
                            x_axis_labels => $xAxisLabels,
