@@ -59,11 +59,15 @@ sub makeRPlotStrings {
 
       my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
 
-      push(@profileFiles, $profileFile);
-      push(@elementNamesFiles, $elementNamesFile);
+      if($profileFile && $elementNamesFile) {
+        push(@profileFiles, $profileFile);
+        push(@elementNamesFiles, $elementNamesFile);
+      }
 
       $i++;
     }
+
+    next unless(scalar @profileFiles > 0);
 
     my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
     my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
@@ -143,7 +147,10 @@ for(i in 1:length(element.names.files)) {
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
 
-par(mar       = c($bottomMargin,4,1,2), xpd=FALSE);
+
+par(mar       = c($bottomMargin,4,1,4), xpd=FALSE);
+
+
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile
@@ -156,9 +163,6 @@ my.las = 2;
 if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
   my.las = 0;
 }
-
-
-
 
 barplot(profile,
         col       = the.colors,
@@ -193,7 +197,10 @@ if($yAxisFoldInductionFromM) {
     }
   }
 
-  axis(2,at=yAxis,labels=yaxis.labels,tick=T);  
+
+  axis(4,at=yAxis,labels=yaxis.labels,tick=T);  
+  axis(2,tick=T,labels=T);
+   mtext('Fold Change', side=4, line=3, cex.lab=1, las=0)
 } else {
   axis(2);  
 }
