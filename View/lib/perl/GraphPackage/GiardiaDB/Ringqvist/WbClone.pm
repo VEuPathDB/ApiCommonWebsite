@@ -22,10 +22,10 @@ sub init {
 
 
   $self->setProfileSetsHash
-    ({fold_change => {profiles => ['Profiles of G.lamblia Ringqvist array data'],
+    ({expr_val => {profiles => ['Profiles of G.lamblia Ringqvist array data'],
               colors => $colors,
               x_axis_labels => ['1.5', '6', '18'],
-              y_axis_label => 'Fold Change',
+              y_axis_label => 'Expression Value',
               make_y_axis_fold_incuction => 1,
 	      r_adjust_profile => 'profile = rbind( c(profile[1,1], 0,0), profile[1,2:4], profile[1,5:7]);',
               force_x_axis_label_horizontal => 1,
