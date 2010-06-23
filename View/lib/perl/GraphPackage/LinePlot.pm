@@ -210,7 +210,7 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
-par(mar       = c($bottomMargin,4,1,2), xpd=FALSE);
+par(mar       = c($bottomMargin,4,1,4), xpd=FALSE);
 
 my.pch = 15;
 
@@ -287,7 +287,9 @@ if($yAxisFoldInductionFromM) {
     }
   }
 
-  axis(2,at=yAxis,labels=yaxis.labels,tick=T);  
+  axis(4,at=yAxis,labels=yaxis.labels,tick=T);  
+  axis(2,tick=T,labels=T);
+  mtext('Fold Change', side=4, line=2, cex.lab=1, las=0)
 } else {
   axis(2);  
 
