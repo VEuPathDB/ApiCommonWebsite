@@ -17,8 +17,8 @@ sub init {
   my $colors =['#D8BFD8'];
 
   $self->setProfileSetsHash
-    ({'fold_induction' => {profiles => ['Expression profiling of Tbrucei Procyclic TbDRBD3 depletion'],
-                           y_axis_label => 'Fold Induction',
+    ({'expr_val' => {profiles => ['Expression profiling of Tbrucei Procyclic TbDRBD3 depletion'],
+                           y_axis_label => 'Expression Value',
                            colors => $colors,
                            make_y_axis_fold_incuction => 1,
                            default_y_max => 1.5,

@@ -17,9 +17,9 @@ sub init {
   my $pch = [15];
 
   $self->setProfileSetsHash
-    ({fold_induction => {profiles => ['Expression profiling of T. brucei differentiation series',
+    ({expr_val => {profiles => ['Expression profiling of T. brucei differentiation series',
                                      ],
-                         y_axis_label => 'Fold Induction',
+                         y_axis_label => 'Expression Value',
                          x_axis_label => ' ',
                          colors => $colors,
                          plot_title => 'Expression profiling of T. brucei differentiation series',
