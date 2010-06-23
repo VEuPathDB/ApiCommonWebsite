@@ -200,7 +200,7 @@ if($yAxisFoldInductionFromM) {
 
   axis(4,at=yAxis,labels=yaxis.labels,tick=T);  
   axis(2,tick=T,labels=T);
-   mtext('Fold Change', side=4, line=3, cex.lab=1, las=0)
+   mtext('Fold Change', side=4, line=2, cex.lab=1, las=0)
 } else {
   axis(2);  
 }
