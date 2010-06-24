@@ -77,7 +77,9 @@ sub makeRPlotStrings {
 
     my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile);
+    my $smoothLines = $profileSetsHash->{$part}->{smooth_spline};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $smoothLines);
 
     unshift @rv, $rCode;
   }
@@ -88,7 +90,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $smoothLines) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -100,6 +102,8 @@ sub rString {
   $xMin = defined($xMin) ? $xMin : "Inf";
 
   $pointsLast = defined($pointsLast) ? 'TRUE' : 'FALSE';
+
+  $smoothLines = defined($smoothLines) ? 'TRUE' : 'FALSE';
 
   $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
 
@@ -251,14 +255,33 @@ for(i in 1:nrow(lines.df)) {
   y.coords = y.coords[,!is.na(colSums(y.coords))];
   x.coords.line = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
-  lines(x.coords.line,
-       y.coords,
-       col  = the.colors[i],
-       bg   = the.colors[i],
-       type = \"o\",
-       pch  = my.pch,
-       cex  = 1.5
-       );
+  if($smoothLines) {
+    points(x.coords.line,
+         y.coords,
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         type = \"p\",
+         pch  = my.pch,
+         cex  = 1.5
+         );
+
+    lines(smooth.spline(x.coords.line, y.coords),
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         cex  = 1.5
+         );
+
+  } else {
+    lines(x.coords.line,
+         y.coords,
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         type = \"o\",
+         pch  = my.pch,
+         cex  = 1.5
+         );
+  }
+
 
   points(x.coords,
        new.points[i,],
