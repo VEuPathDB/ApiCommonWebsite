@@ -26,7 +26,7 @@ sub init {
    $self->setMainLegend({colors => $colors, short_names => $legend,cols => 2});
 
   $self->setProfileSetsHash
-    ({'fold_induction' => {profiles => ['EhistolyticaAffyProfiles'],
+    ({'rma' => {profiles => ['EhistolyticaAffyProfiles'],
                            y_axis_label => 'RMA Value (log2)',
                            default_y_max => 4,
                            colors => $colors,
