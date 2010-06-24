@@ -33,7 +33,7 @@ sub init {
               default_y_min => 4,
               default_x_min => 0,
               points_pch => $pch,
-
+              smooth_spline => 1,
              },
       pct => {profiles => ['M.White Cell Cycle Microarray profile pcts'
                           ],
@@ -44,6 +44,7 @@ sub init {
               default_y_min => 0,
               default_x_min => 0,
               points_pch => $pch,
+              smooth_spline => 1,
 
        }
      });
