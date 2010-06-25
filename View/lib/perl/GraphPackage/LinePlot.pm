@@ -76,10 +76,11 @@ sub makeRPlotStrings {
 
 
     my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
+    my $rTopMarginTitle = $profileSetsHash->{$part}->{r_top_margin_title};
 
     my $smoothLines = $profileSetsHash->{$part}->{smooth_spline};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $smoothLines);
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines);
 
     unshift @rv, $rCode;
   }
@@ -90,7 +91,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $smoothLines) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -108,6 +109,7 @@ sub rString {
   $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
+  $rTopMarginTitle = $rTopMarginTitle ? $rTopMarginTitle : "";
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -214,7 +216,7 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
-par(mar       = c($bottomMargin,4,1,4), xpd=FALSE);
+par(mar       = c($bottomMargin,4,2,4), xpd=TRUE);
 
 my.pch = 15;
 
@@ -319,6 +321,10 @@ if($yAxisFoldInductionFromM) {
 }
 box();
 
+$rTopMarginTitle
+
+
+par(xpd=FALSE);
 grid(nx=NA,ny=NULL,col=\"gray75\");
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
