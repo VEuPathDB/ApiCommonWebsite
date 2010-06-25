@@ -23,17 +23,17 @@ sub init {
 
 
   my $cellCycleTopMargin = "
-lines(c(2,6), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
+lines(c(2,5.75), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
 text(4, y.max + (y.max - y.min)*0.16, 'S(1)');
 
-lines(c(5,7.5), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
+lines(c(5,6.9), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
 text(5.3, y.max + (y.max - y.min)*0.2, 'M');
-text(7.3, y.max + (y.max - y.min)*0.2, 'C');
+text(6.3, y.max + (y.max - y.min)*0.2, 'C');
 
-lines(c(6.1,10.8), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1));
+lines(c(6.1,10.4), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1));
 text(8.5, y.max + (y.max - y.min)*0.16, 'G1');
 
-lines(c(10.2,13.5), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
+lines(c(10,13.2), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
 text(12.2, y.max + (y.max - y.min)*0.2, 'S(2)');
 ";
 
