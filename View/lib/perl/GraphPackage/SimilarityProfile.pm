@@ -47,6 +47,12 @@ sub setMatchProfile         { $_[0]->{'MatchProfile'      } = $_[1]; $_[0] }
 sub getQueryProfile         { $_[0]->{'QueryProfile'      } }
 sub setQueryProfile         { $_[0]->{'QueryProfile'      } = $_[1]; $_[0] }
 
+sub getYmin                 { $_[0]->{'YMin'              } }
+sub setYmin                 { $_[0]->{'YMin'              } = $_[1]; $_[0] }
+
+sub getYmax                 { $_[0]->{'YMax'              } }
+sub setYmax                 { $_[0]->{'YMax'              } = $_[1]; $_[0] }
+
 # ========================================================================
 # ------------------------------- Methods --------------------------------
 # ========================================================================
@@ -106,6 +112,10 @@ sub makeR {
       my $open_R    = $Self->rOpenFile($width, $totalHeight);
       my $preamble_R = $Self->_rStandardComponents($thumb_b);
 
+
+      my $yMin = $Self->getYmin() ? $Self->getYmin() : -2;
+      my $yMax = $Self->getYmax() ? $Self->getYmax() : 2;
+
       print $r_fh <<R;
 
 # ------------------------------- Prepare --------------------------------
@@ -150,7 +160,7 @@ if ($isVis_b{LEGEND} == 1) {
        c("Match", "Query"),
        xjust = 0.5,
        yjust = 0.5,
-       cex   = 0.90,
+       cex   = 1.5,
        bty   = "n",
        col   = c("blue",  "gray" ),
        pt.bg = c("blue",  "gray" ),
@@ -166,8 +176,8 @@ if ($isVis_b{lgr} == 1) {
   screen(screens[screen.i]);
   screen.i <- screen.i + 1;
 
-  y.max = max( 2, data.match\$VALUE, data.query\$VALUE);
-  y.min = min(-2, data.match\$VALUE, data.query\$VALUE);
+  y.max = max( $yMax, data.match\$VALUE, data.query\$VALUE);
+  y.min = min( $yMin, data.match\$VALUE, data.query\$VALUE);
 
   plot(data.match\$ELEMENT_ORDER,
        data.match\$VALUE,
