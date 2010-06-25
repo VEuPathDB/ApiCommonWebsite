@@ -21,7 +21,21 @@ sub init {
 
   my $legend = ['Cell Cycle'];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
+
+  my $cellCycleTopMargin = "
+lines(c(2,6), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
+text(4, y.max + (y.max - y.min)*0.16, 'S(1)');
+
+lines(c(5,7.5), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
+text(5.3, y.max + (y.max - y.min)*0.2, 'M');
+text(7.3, y.max + (y.max - y.min)*0.2, 'C');
+
+lines(c(6.1,10.8), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1));
+text(8.5, y.max + (y.max - y.min)*0.16, 'G1');
+
+lines(c(10.2,13.5), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
+text(12.2, y.max + (y.max - y.min)*0.2, 'S(2)');
+";
 
   $self->setProfileSetsHash
     ({rma => {profiles => ['M.White Cell Cycle Microarray profiles'
@@ -34,6 +48,7 @@ sub init {
               default_x_min => 0,
               points_pch => $pch,
               smooth_spline => 1,
+              r_top_margin_title => $cellCycleTopMargin,
              },
       pct => {profiles => ['M.White Cell Cycle Microarray profile pcts'
                           ],
@@ -45,13 +60,11 @@ sub init {
               default_x_min => 0,
               points_pch => $pch,
               smooth_spline => 1,
-
+              r_top_margin_title => $cellCycleTopMargin,
        }
      });
 
   return $self;
 }
-
-
 
 1;
