@@ -29,17 +29,17 @@ sub init {
                            points_pch => $pch,
                           },
 
-      pct => {profiles => ['Percentiles of T. brucei microarray data from Christine Clayton',
-                          ],
-              y_axis_label => 'Percentile',
-              x_axis_label => ' ',
-              colors => $colors,
-              plot_title => 'Percentiles of T. brucei time series',
-              default_y_max => 10,
-              default_y_min => 4,
-              default_x_min => 0,
-              points_pch => $pch,
-             },
+#      pct => {profiles => ['Percentiles of T. brucei microarray data from Christine Clayton',
+#                          ],
+#              y_axis_label => 'Percentile',
+#              x_axis_label => ' ',
+#              colors => $colors,
+#              plot_title => 'Percentiles of T. brucei time series',
+#              default_y_max => 10,
+#              default_y_min => 4,
+#              default_x_min => 0,
+#              points_pch => $pch,
+#             },
 
      });
 
