@@ -8,6 +8,7 @@ use ApiCommonWebsite::View::GraphPackage;
 
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
+use ApiCommonWebsite::Model::CannedQuery::ProfileFixedValue;
 use ApiCommonWebsite::View::MultiScreen;
 
 use Data::Dumper;
@@ -16,6 +17,9 @@ use Data::Dumper;
 
 sub getScreenSize                { $_[0]->{'_screen_size'                 }}
 sub setScreenSize                { $_[0]->{'_screen_size'                 } = $_[1]; $_[0] }
+
+sub getGraphDefaultValue         { $_[0]->{'_graph_default_value'         }}
+sub setGraphDefaultValue         { $_[0]->{'_graph_default_value'         } = $_[1]; $_[0] }
 
 sub getBottomMarginSize          { $_[0]->{'_bottom_margin_size'          }}
 sub setBottomMarginSize          { $_[0]->{'_bottom_margin_size'          } = $_[1]; $_[0] }
@@ -66,6 +70,17 @@ sub init {
   $self->setTempFiles([]);
 
   $self;
+}
+
+#--------------------------------------------------------------------------------
+
+sub hasGraphDefault {
+  my ($self) = @_;
+
+  if(defined($self->getGraphDefaultValue())) {
+    return 1;
+  }
+  return 0;
 }
 
 #--------------------------------------------------------------------------------
@@ -252,6 +267,20 @@ sub writeProfileFiles {
 
   my $r_fh = $self->getFileHandle();
 
+  my $defaultProfile;
+
+  if($self->hasGraphDefault()) {
+    my $defaultValue = $self->getGraphDefaultValue();
+
+    $defaultProfile = ApiCommonWebsite::Model::CannedQuery::ProfileFixedValue->new
+      ( Name         => "_data_$suffix",
+        Id           => $self->getId(),
+        ProfileSet   => $profileSetName,
+        DefaultValue => $defaultValue,
+      );
+  }
+
+
   my $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name         => "_data_$suffix",
       Id           => $self->getId(),
@@ -264,21 +293,28 @@ sub writeProfileFiles {
         ProfileSet   => $profileSetName,
       );
 
+  my @profileErrors;
   my @errors;
 
   $profile->setElementOrder($elementOrder) if($elementOrder);
   $elementNames->setElementOrder($elementOrder) if($elementOrder);
 
-  my $profile_fn = eval { $profile->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
+  my $profile_fn = eval { $profile->makeTabFile($_qh, $_dict) }; $@ && push(@profileErrors, $@);
   my $elementNames_fn = eval { $elementNames->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
-
-  my @rv = ($profile_fn, $elementNames_fn);
 
   $self->addTempFile($profile_fn) if($profile_fn);
   $self->addTempFile($elementNames_fn) if($elementNames_fn);
 
+  if(@profileErrors) {
+    $profile_fn = eval { $defaultProfile->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
+
+    $self->addTempFile($profile_fn) if($profile_fn);
+  }
+
+  my @rv = ($profile_fn, $elementNames_fn);
+
   if (@errors) {
-    $self->reportErrorsAndBlankGraph($r_fh, @errors);
+    $self->reportErrorsAndBlankGraph($r_fh, (@profileErrors,@errors));
   }
 
   return \@rv;
