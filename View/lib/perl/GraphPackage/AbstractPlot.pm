@@ -90,6 +90,11 @@ sub makeRLegendString {
 
   my $legendHash = $self->getMainLegend();
 
+  unless($legendHash) {
+    return "  screen(screens[screen.i]);
+  screen.i <- screen.i + 1;";
+  }
+
   my $colors = $legendHash->{colors};
   my $names = $legendHash->{short_names};
   my $pch = $legendHash->{points_pch};
@@ -165,9 +170,13 @@ sub makeR {
   push(@rv, $r_f, $out_f);
 
   my $parts = [];
+
+  my $legendSize = 1;
   if($self->getMainLegend()) {
-    push(@$parts, { Name => "_LEGEND",   Size => $self->getLegendSize() });
+    $legendSize = $self->getLegendSize();
   }
+
+  push(@$parts, { Name => "_LEGEND",   Size => $legendSize });
 
   foreach my $ps (keys %$profileSetsHash) {
     push(@$parts, { Name => "$ps",   Size => $self->getScreenSize() });
@@ -196,9 +205,11 @@ sub makeR {
   my $open_R      = $self->rOpenFile($width, $totalHeight);
   my $preamble_R  = $self->_rStandardComponents($thumb_b);
 
-  my $legend = "";
+  my     $legend = "";
+
   my %isVis_b = $mS->partIsVisible();
 
+  # Always want _LEGEND available to visible parts
   if($isVis_b{_LEGEND}) {
     $legend = $self->makeRLegendString();
   }
