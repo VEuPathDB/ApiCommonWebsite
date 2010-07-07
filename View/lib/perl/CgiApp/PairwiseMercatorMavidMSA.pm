@@ -28,6 +28,10 @@ my $taxonToDirNameMap =
    'Trypanosoma vivax'                                => { name => 't_vivax',                 group => 4 },
    'Trypanosoma congolense'                           => { name => 't_congolense',            group => 4 },
 
+   'Encephalitozoon cuniculi GB-M1'                   => { name => 'e_cuniculi',              group => 1 },
+   'Encephalitozoon intestinalis'                     => { name => 'e_intestinalis',          group => 2 },
+   'Enterocytozoon bieneusi H348'                     => { name => 'e_bieneusi',              group => 3 },
+
    'Entamoeba dispar SAW760'                          => { name => 'e_dispar',                group => 1 },
    'Entamoeba histolytica HM-1:IMSS'                  => { name => 'e_histolytica',           group => 2 },
    'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
