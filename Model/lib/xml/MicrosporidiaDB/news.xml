@@ -2,6 +2,67 @@
 
 <xmlAnswer>
 
+<!--
+   <record>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+--> 
+
+<record>
+       <attribute name="headline">MicrosporidiaDB 1.1 Released</attribute>
+       <attribute name="date">7 July 2010 15:00</attribute>
+       <attribute name="tag">micro07_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of MicrosporidiaDB 1.1<br>
+<br>
+<br>
+This release of MicrosporidiaDB includes the genome sequence and
+annotation of <span style="font-style: italic;">Enterocytozoon bieneusi</span></span><span
+style="font-weight: bold;"><br>
+<br>
+</span>
+<ul>
+<li>Sequence and annotation of <span style="font-style: italic;">E.</span>
+<span style="font-style: italic;">bieneusi</span> are described in
+the publication <a href="http://www.ncbi.nlm.nih.gov/pubmed/19132089">"Genomic
+survey of the non-cultivatable opportunistic human pathogen, <span
+style="font-style: italic;">Enterocytozoon bieneusi</span>"</a> and
+were obtained from <a
+href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=genomeprj&amp;cmd=Retrieve&amp;dopt=Overview&amp;list_uids=28163">GenBank</a>.<br>
+</li>
+<li>Genome sequence of <span style="font-style: italic;">E.</span> <span
+style="font-style: italic;">bieneusi</span> can be compared to the
+sequences of&nbsp; <span style="font-style: italic;">E. cuniculi </span>and
+<span style="font-style: italic;">E. intestinalis</span> using
+synteny.</li>
+<li><span style="font-style: italic;">E.</span> <span
+style="font-style: italic;">bieneusi</span> genes may be identified
+based on text terms, ID #, GO terms, chromosomal location, BLAST,
+sequence features (length/MW, exons, signal sequences, Pfam domains,
+user-defined motifs), orthology, etc.</li>
+</ul>
+In addition, this release features the new MicrosporidiaDB logo.&nbsp;
+The original image was provided by Dr. Louis Weiss, Albert Einstein
+College of Medicine.<br>
+<br>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">New Features in MicrosporidiaDB</attribute>
        <attribute name="date">13 May 2010 15:00</attribute>

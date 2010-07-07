@@ -15,6 +15,50 @@
        </attribute>
     </record>
 --> 
+
+record>
+       <attribute name="headline">AmoebaDB 1.1 Released</attribute>
+       <attribute name="date">7 July 2010 15:00</attribute>
+       <attribute name="tag">amoeba07_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.1<br>
+<br>
+<br>
+This release of AmoebaDB includes the following new data sets:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li>Gene expression in <span style="font-style: italic;">Entamoeba
+histolytica</span> cysts and trophozoites.&nbsp; This study is
+described by <a href="http://www.ncbi.nlm.nih.gov/pubmed/17250591">Ehrenkaufer
+<span style="font-style: italic;">et. al.</span></a><br>
+</li>
+<li>Impact of intestinal colonization and invasion on the <span
+style="font-style: italic;">Entamoeba histolytica</span> transcriptome
+This study is described by <a
+href="http://www.ncbi.nlm.nih.gov/pubmed/16569449">Gilchrist <span
+style="font-style: italic;">et. al.</span></a><br>
+</li>
+</ul>
+Genes can be identified based on the fold change in their expression in
+either of the above experiments using the microarray search available
+in AmoebaDB (under the heading "Transcript Expression).&nbsp; <br>
+<br>
+In addition, AmoebaDB now has a logo!&nbsp; Template images used in
+AmoebaDB were kindly provided by Graham Clark, Fiona Henriquez, William
+Petri and Greg Roberts.<br>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">New Features in AmoebaDB</attribute>
        <attribute name="date">13 May 2010 15:00</attribute>

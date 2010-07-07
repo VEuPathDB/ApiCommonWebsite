@@ -14,6 +14,37 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">GiardiaDB 2.2 Released</attribute>
+       <attribute name="date">7 July 2010 15:00</attribute>
+       <attribute name="tag">giardia07_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in Giardia 2.2<br>
+<br>
+This release of GiardiaDB includes the following new data sets:</span><span
+style="font-weight: bold;"> <br>
+<br>
+</span>
+<ul>
+<li><span style="font-style: italic;">Giardia<span
+style="font-style: italic;"> intestinalis</span></span> microarray
+data during host parasite interaction.&nbsp; This data was graciously
+provided prepublication by Emma Ringqvist and Staffan Svärd (Uppsala
+University, Sweden).</li>
+<li>Manually curated SAGE tag data provided by Andrew McArthur and
+described by <a href="http://www.ncbi.nlm.nih.gov/pubmed/20570699">Birkeland
+<span style="font-style: italic;">et. al.</span></a><br>
+</li>
+</ul>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">New Features in GiardiaDB</attribute>
        <attribute name="date">13 May 2010 15:00</attribute>
        <attribute name="tag">giardia05_10_news</attribute>
