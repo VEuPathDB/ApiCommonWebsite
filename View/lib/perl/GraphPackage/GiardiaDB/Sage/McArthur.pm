@@ -37,7 +37,7 @@ sub init {
   $self->setProfileSetsHash
     ({'sage' => {profiles => ['giar sage tag frequencies sense',
                               'giar sage tag frequencies antisense'],
-                 y_axis_label => ' ',
+                 y_axis_label => 'percent',
                  colors => $colors,
                  default_y_max => 0.01,
                  default_y_min => 0,
