@@ -8,7 +8,9 @@ COMMENT_DBLINK=@apidb.login_comment
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
 
-MERCATOR_OUTPUT_DIR=/var/www/Common/data/tritryp_mercator-MAVID
+MERCATOR_OUTPUT_DIR=
+MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/Common/data/tritryp_mercator-MAVID
+
 CNDSRC_BIN=/files/cbil/software/bin
 
 TRYP_BLAST_PATH=

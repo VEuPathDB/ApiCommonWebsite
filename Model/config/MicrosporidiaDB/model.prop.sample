@@ -10,7 +10,9 @@ PROJECT_ID=ToxoDB
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
 
-MERCATOR_OUTPUT_DIR=/var/www/jbresteltoxodb.apidb.org/toxo43_mercator-MAVID
+MERCATOR_OUTPUT_DIR=
+MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/jbresteltoxodb.apidb.org/toxo43_mercator-MAVID
+
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
 # this empty property is required in component sites; it is included in the model and used by the portal with a specific value. 
