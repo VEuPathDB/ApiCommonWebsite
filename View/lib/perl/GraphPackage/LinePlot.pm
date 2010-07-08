@@ -15,7 +15,7 @@ sub init {
   $self->SUPER::init($args);
 
   # Defaults
-  $self->setScreenSize(200);
+  $self->setScreenSize(225);
   $self->setBottomMarginSize(4.5);
 
   return $self;
@@ -76,8 +76,11 @@ sub makeRPlotStrings {
 
 
     my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
+    my $rTopMarginTitle = $profileSetsHash->{$part}->{r_top_margin_title};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile);
+    my $smoothLines = $profileSetsHash->{$part}->{smooth_spline};
+
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines);
 
     unshift @rv, $rCode;
   }
@@ -88,7 +91,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -101,9 +104,12 @@ sub rString {
 
   $pointsLast = defined($pointsLast) ? 'TRUE' : 'FALSE';
 
+  $smoothLines = defined($smoothLines) ? 'TRUE' : 'FALSE';
+
   $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
+  $rTopMarginTitle = $rTopMarginTitle ? $rTopMarginTitle : "";
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -210,7 +216,7 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
-par(mar       = c($bottomMargin,4,1,2), xpd=FALSE);
+par(mar       = c($bottomMargin,4,2,4), xpd=TRUE);
 
 my.pch = 15;
 
@@ -231,10 +237,16 @@ for(i in 1:nrow(lines.df)) {
          axes = FALSE
         );
 
+
     if(isTimeSeries) {
       axis(1);
     } else {
-      axis(1, at=x.coords.rank, labels=colnames(lines.df));
+      my.las = 2;
+      if(max(nchar(colnames(lines.df))) < 6) {
+        my.las = 0;
+      }
+
+      axis(1, at=x.coords.rank, labels=colnames(lines.df), las=my.las);
     }
   }
 
@@ -245,14 +257,33 @@ for(i in 1:nrow(lines.df)) {
   y.coords = y.coords[,!is.na(colSums(y.coords))];
   x.coords.line = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
-  lines(x.coords.line,
-       y.coords,
-       col  = the.colors[i],
-       bg   = the.colors[i],
-       type = \"o\",
-       pch  = my.pch,
-       cex  = 1.5
-       );
+  if($smoothLines) {
+    points(x.coords.line,
+         y.coords,
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         type = \"p\",
+         pch  = my.pch,
+         cex  = 1.5
+         );
+
+    lines(smooth.spline(x.coords.line, y.coords),
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         cex  = 1.5
+         );
+
+  } else {
+    lines(x.coords.line,
+         y.coords,
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         type = \"o\",
+         pch  = my.pch,
+         cex  = 1.5
+         );
+  }
+
 
   points(x.coords,
        new.points[i,],
@@ -281,13 +312,19 @@ if($yAxisFoldInductionFromM) {
     }
   }
 
-  axis(2,at=yAxis,labels=yaxis.labels,tick=T);  
+  axis(4,at=yAxis,labels=yaxis.labels,tick=T);  
+  axis(2,tick=T,labels=T);
+  mtext('Fold Change', side=4, line=2, cex.lab=1, las=0)
 } else {
   axis(2);  
 
 }
 box();
 
+$rTopMarginTitle
+
+
+par(xpd=FALSE);
 grid(nx=NA,ny=NULL,col=\"gray75\");
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 

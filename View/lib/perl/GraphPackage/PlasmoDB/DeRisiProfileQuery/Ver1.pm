@@ -16,9 +16,9 @@ secondary id (query).
 
 use strict;
 use vars qw(@ISA);
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimilarityProfile );
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery;
+use ApiCommonWebsite::View::GraphPackage::SimilarityProfile;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 

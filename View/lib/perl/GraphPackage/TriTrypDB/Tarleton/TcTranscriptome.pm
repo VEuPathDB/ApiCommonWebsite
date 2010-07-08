@@ -24,8 +24,8 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({'fold_induction' => {profiles => ['Profiles of T.cruzi Tarleton Rick array data'],
-                           y_axis_label => 'Fold Induction',
+    ({'expr_val' => {profiles => ['Profiles of T.cruzi Tarleton Rick array data'],
+                           y_axis_label => 'Expression Value',
                            colors => $colors,
                            make_y_axis_fold_incuction => 1,
                            plot_title => 'Transcriptome analysis of the Trypanosoma cruzi life-cycle',

@@ -23,7 +23,7 @@ sub init {
 
   $self->setProfileSetsHash
     ({rma => {profiles => ['expression profiles of three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditoins'],
-              y_axis_label => 'RMA Value (log2)',
+              y_axis_label => 'RMA Value',
               colors => $colors,
               x_axis_labels => ['Tachyzoite', 'Compound 1', 'pH=8.2'],
               r_adjust_profile => 'profile = rbind(profile[1,1:3], profile[1,4:6], profile[1,7:9]);',

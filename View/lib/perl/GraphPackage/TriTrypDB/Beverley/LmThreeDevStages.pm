@@ -22,8 +22,8 @@ sub init {
   $self->setMainLegend({colors => ['#D87093', '#98FB98'], short_names => $legend, cols => 1});
 
   $self->setProfileSetsHash
-    ({'fold_induction' => {profiles => ['Profiles of L.major Beverly Steve array data'],
-                           y_axis_label => 'Fold Induction',
+    ({'expr_val' => {profiles => ['Profiles of L.major Beverly Steve array data'],
+                           y_axis_label => 'Expression Value',
                            colors => $colors,
                            r_adjust_profile => 'profile = cbind(profile[1,1:3], profile[1,4:6]);',
                            default_y_max => 1.5,

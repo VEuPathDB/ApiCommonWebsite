@@ -222,6 +222,22 @@
   </tag>
     
   <tag>
+      <name>orclSvcAliases</name>
+      <tagclass>org.apidb.apicommon.taglib.wdk.info.OrclSvcAliases</tagclass>
+      <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>servicename</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
+  <tag>
       <name>modelConfig</name>
       <tagclass>org.apidb.apicommon.taglib.wdk.info.ModelConfigTag</tagclass>
       <bodycontent>scriptless</bodycontent>

@@ -39,7 +39,7 @@
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
+       <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
@@ -258,7 +258,29 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
-
+ <record>
+       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
+       <attribute name = "Family">Enterocytozoon</attribute>
+       <attribute name = "Organism">E.bieneusi</attribute>
+       <attribute name = "Taxon_ID">481877</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">01-13-2009</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size">3.41</attribute>
+       <attribute name = "Gene_Count">3806</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
  <record>
        <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
        <attribute name = "Family">Plasmodium</attribute>
@@ -404,7 +426,7 @@
        <attribute name = "Organism">P.vivax</attribute>
        <attribute name = "Taxon_ID">126793</attribute>
        <attribute name = "Strain">Sal_1</attribute>
-       <attribute name = "Genome_Version">06-13-2009</attribute>
+       <attribute name = "Genome_Version">06-13-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">27.01</attribute>
        <attribute name = "Gene_Count">5507</attribute>
@@ -427,7 +449,7 @@
        <attribute name = "Organism">P.yoelii</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
        <attribute name = "Strain">17XNL</attribute>
-       <attribute name = "Genome_Version">09-01-2005</attribute>
+       <attribute name = "Genome_Version">10-03-2002</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">22.94</attribute>
        <attribute name = "Gene_Count">7865</attribute>
@@ -450,7 +472,7 @@
        <attribute name = "Organism">N.caninum</attribute>
        <attribute name = "Taxon_ID">29176</attribute>
        <attribute name = "Strain"></attribute>
-       <attribute name = "Genome_Version">08-05-2008</attribute>
+       <attribute name = "Genome_Version">10-06-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">62.48</attribute>
        <attribute name = "Gene_Count">7227</attribute>
@@ -471,7 +493,7 @@
        <attribute name = "Website">ToxoDB, EuPathDB</attribute>
        <attribute name = "Family">Toxoplasma</attribute>
        <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "Taxon_ID">5811</attribute>
+       <attribute name = "Taxon_ID">508771</attribute>
        <attribute name = "Strain">ME49</attribute>
        <attribute name = "Genome_Version">07-16-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
@@ -650,14 +672,14 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq">yes</attribute>
-       <attribute name = "SageTags"></attribute>
+       <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
        <attribute name = "Organism">T.cruzi</attribute>
-       <attribute name = "Taxon_ID">5693</attribute>
+       <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">CL Brener</attribute>
        <attribute name = "Genome_Version">09-10-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>

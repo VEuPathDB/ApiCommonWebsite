@@ -26,13 +26,11 @@ sub init {
    $self->setMainLegend({colors => $colors, short_names => $legend,cols => 2});
 
   $self->setProfileSetsHash
-    ({'fold_induction' => {profiles => ['EhistolyticaAffyProfiles'],
-                           y_axis_label => 'Fold Induction',
+    ({'rma' => {profiles => ['EhistolyticaAffyProfiles'],
+                           y_axis_label => 'RMA Value (log2)',
+                           default_y_max => 15,
                            colors => $colors,
-                           make_y_axis_fold_incuction => 1,
                            plot_title => 'E. histolytica Intestinal Colonization/Invasion Affymetrix array Profiles',
-                           default_y_max => 1.5,
-                           default_y_min => -1.5,
                            x_axis_labels => $xAxisLabels,
                           },
       pct => {profiles => ['EhistolyticaAffyProfilePcts'
@@ -47,7 +45,5 @@ sub init {
 
   return $self;
 }
-
-
 
 1;
