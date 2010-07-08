@@ -70,8 +70,7 @@ sub processParams {
 
   my $projectId = $cgi->param('project_id'); 
 
-  $self->{ignore_gene_alias}= 1 if ($projectId=='ToxoDB');
-  $self->{ignore_gene_alias}= 0 if ($projectId=='EuPathDB');
+  $self->{ignore_gene_alias}= 1 if ($projectId eq 'ToxoDB');
 
 
   my @inputIds;
@@ -334,8 +333,16 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
      THEN $endAnchRev
      ELSE $endAnch END as expect_end,
      CASE WHEN bfmv.strand = 'reverse'
-     THEN substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
-     ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
+     THEN
+       CASE WHEN $startRev < 0
+       THEN substr(s.sequence, 0, greatest(0, ($endRev + 1)))
+       ELSE substr(s.sequence, $startRev, greatest(0, ($endRev - $startRev + 1)))
+       END
+     ELSE
+       CASE WHEN $start < 0
+       THEN substr(s.sequence, 0, greatest(0, ($end + 1)))
+       ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
+       END
      END as sequence
 FROM apidb.geneattributes bfmv, apidb.geneid gi,
      apidb.nasequence s
@@ -401,14 +408,11 @@ EOSQL
     } else {
        if ($isReversed == 0) {
 	   $expectStart = $expectStart + $beginOffset;
-	   $expectEnd = $expectEnd + $endOffset 
+	   $expectEnd = $expectEnd + $endOffset; 
        }
        else {
 	   $expectStart = $expectStart - $endOffset;
 	   $expectEnd = $expectEnd - $beginOffset;
-       }
-       if ($expectStart < 0) {
-	   $expectStart = 0;
        }
       my $expectedLength = $expectEnd - $expectStart  + 1;
 

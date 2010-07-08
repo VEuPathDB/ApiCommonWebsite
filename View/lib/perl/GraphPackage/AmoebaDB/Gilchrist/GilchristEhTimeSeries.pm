@@ -26,16 +26,14 @@ sub init {
    $self->setMainLegend({colors => $colors, short_names => $legend,cols => 1});
 
   $self->setProfileSetsHash
-    ({'fold_induction' => {profiles => ['EhistolyticaNugenProfiles'],
-                           y_axis_label => 'Fold Induction',
+    ({'rma' => {profiles => ['EhistolyticaNugenProfiles'],
+                           y_axis_label => 'RMA Value (log2)',
                            colors => $colors,
-                           make_y_axis_fold_incuction => 1,
+                           default_y_max => 15,
                            plot_title => 'E. histolytica Stage Conversion Nugen array Profiles',
-                           default_y_max => 1.5,
-                           default_y_min => -1.5,
                            x_axis_labels => $xAxisLabels,
                           },
-      pct => {profiles => ['EhistolyticaNugenProfilePct'
+      pct => {profiles => ['EhistolyticaNugenProfilePcts'
                           ],
               y_axis_label => 'Percentile',
               default_y_max => 50,

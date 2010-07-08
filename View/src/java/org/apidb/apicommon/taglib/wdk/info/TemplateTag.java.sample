@@ -1,6 +1,7 @@
 package org.apidb.apicommon.taglib.wdk.info;
 
 import org.apidb.apicommon.taglib.wdk.WdkTagBase;
+import javax.servlet.jsp.JspException;
 
 public class TemplateTag extends WdkTagBase {
 
