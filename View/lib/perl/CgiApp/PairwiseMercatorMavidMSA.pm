@@ -533,7 +533,7 @@ sub validateMacros {
 
   my $project = $cgi->param('project_id');
   my $props =  ApiCommonWebsite::Model::ModelProp->new($project);
-  my $mercatorOutputDir = $props->{MERCATOR_OUTPUT_DIR};
+  my $mercatorOutputDir = $props->{MERCATOR_OUTPUT_DIR_PAIRWISE};
   my $cndsrcBin =  $props->{CNDSRC_BIN};
 
   my $sliceAlignment = "$cndsrcBin/sliceAlignment";
