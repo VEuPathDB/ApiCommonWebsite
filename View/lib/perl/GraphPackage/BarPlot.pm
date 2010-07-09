@@ -148,9 +148,7 @@ for(i in 1:length(element.names.files)) {
 }
 
 
-par(mar       = c($bottomMargin,4,1,4), xpd=FALSE);
-
-
+par(mar       = c($bottomMargin,4,1,4), xpd=FALSE, oma=c(1,1,1,1));
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile
@@ -166,7 +164,6 @@ if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
 
 barplot(profile,
         col       = the.colors,
-        ylab      = '$yAxisLabel',
         ylim      = c(d.min, d.max),
         beside    = TRUE,
         names.arg = element.names,
@@ -174,6 +171,9 @@ barplot(profile,
         las = my.las,
         axes = FALSE
        );
+
+
+mtext('$yAxisLabel', side=2, line=3.5, cex.lab=1, las=0)
 
 if(length(the.legend) > 0) {
   legend(11, d.max, legend=the.legend, cex=0.9, fill=the.colors, inset=0.2) ;
