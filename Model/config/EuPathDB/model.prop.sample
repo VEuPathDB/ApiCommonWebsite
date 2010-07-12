@@ -1,3 +1,5 @@
+# $Revision$
+
 AMOEBA_BLAST_PATH=Common/devSiteFilesMirror/webServices/AmoebaDB/release-1.0/blast
 API_BLAST_PATH=Common/devSiteFilesMirror/webServices/EuPathDB/release-1.0.1/blast
 CRYPTO_BLAST_PATH=Common/devSiteFilesMirror/webServices/CryptoDB/release-4.1/blast
