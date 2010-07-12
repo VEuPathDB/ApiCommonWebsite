@@ -1,3 +1,5 @@
+# $Revision$
+
 LOGIN_SCHEMA=userlogins3.
 
 COMMENT_SCHEMA=comments2.

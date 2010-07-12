@@ -1,3 +1,5 @@
+# $Revision$
+
 # dots.similarity.row_alg_invocation_id for BLASTP
 BLASTP_ALG_ID = 127,128
 
