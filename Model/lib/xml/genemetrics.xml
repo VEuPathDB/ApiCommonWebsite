@@ -346,7 +346,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">2364</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">9747</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">5981</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
@@ -380,7 +380,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">9747</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">5981</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">0</attribute>
@@ -414,7 +414,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">1804</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">4455</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">3272</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
@@ -448,7 +448,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">4175</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">3590</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">0</attribute>
