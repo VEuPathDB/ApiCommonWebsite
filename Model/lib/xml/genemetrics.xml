@@ -31,6 +31,7 @@
        <attribute name="Entamoeba_invadens">11549</attribute>
        <attribute name="Encephalitozoon_cuniculi">2053</attribute>
        <attribute name="Encephalitozoon_intestinalis">1889</attribute>
+       <attribute name="Enterocytozoon_bieneusi">3806</attribute>
    </record>
 
    <record>
@@ -64,6 +65,7 @@
        <attribute name="Entamoeba_invadens">11549</attribute>
        <attribute name="Encephalitozoon_cuniculi">1996</attribute>
        <attribute name="Encephalitozoon_intestinalis">1832</attribute>
+       <attribute name="Enterocytozoon_bieneusi">3633</attribute>
    </record>
 
    <record>
@@ -97,6 +99,7 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">57</attribute>
        <attribute name="Encephalitozoon_intestinalis">57</attribute>
+       <attribute name="Enterocytozoon_bieneusi">173</attribute>
    </record>
 
    <record>
@@ -130,6 +133,7 @@
        <attribute name="Entamoeba_invadens">10</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">1</attribute>
+       <attribute name="Enterocytozoon_bieneusi">3</attribute>
    </record>
 
    <record>
@@ -163,6 +167,7 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -171,31 +176,32 @@
        <attribute name="Cryptosporidium_hominis">3</attribute>
        <attribute name="Cryptosporidium_muris">3</attribute>
        <attribute name="Cryptosporidium_parvum">34</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">30</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">220</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
        <attribute name="Leishmania_infantum">7</attribute>
-       <attribute name="Leishmania_major">52</attribute>
+       <attribute name="Leishmania_major">56</attribute>
        <attribute name="Neospora_caninum">2</attribute>
        <attribute name="Plasmodium_berghei">33</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
-       <attribute name="Plasmodium_falciparum">593</attribute>
+       <attribute name="Plasmodium_falciparum">604</attribute>
        <attribute name="Plasmodium_knowlesi">11</attribute>
        <attribute name="Plasmodium_vivax">13</attribute>
        <attribute name="Plasmodium_yoelii">170</attribute>
-       <attribute name="Toxoplasma_gondii">1197</attribute>
+       <attribute name="Toxoplasma_gondii">1556</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">351</attribute>
+       <attribute name="Trypanosoma_brucei">466</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
-       <attribute name="Trypanosoma_cruzi">32</attribute>
+       <attribute name="Trypanosoma_cruzi">40</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
-       <attribute name="Entamoeba_histolytica">0</attribute>
+       <attribute name="Entamoeba_histolytica">30</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -229,6 +235,7 @@
        <attribute name="Entamoeba_invadens">9862</attribute>
        <attribute name="Encephalitozoon_cuniculi">1982</attribute>
        <attribute name="Encephalitozoon_intestinalis">1810</attribute>
+       <attribute name="Enterocytozoon_bieneusi">2310</attribute>
    </record>
 
    <record>
@@ -262,6 +269,7 @@
        <attribute name="Entamoeba_invadens">4827</attribute>
        <attribute name="Encephalitozoon_cuniculi">950</attribute>
        <attribute name="Encephalitozoon_intestinalis">948</attribute>
+       <attribute name="Enterocytozoon_bieneusi">1255</attribute>
    </record>
 
    <record>
@@ -295,6 +303,7 @@
        <attribute name="Entamoeba_invadens">1249</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -328,6 +337,7 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -336,7 +346,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">2364</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">4755</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">9747</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
@@ -345,22 +355,23 @@
        <attribute name="Neospora_caninum">2605</attribute>
        <attribute name="Plasmodium_berghei">6698</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
-       <attribute name="Plasmodium_falciparum">5550</attribute>
+       <attribute name="Plasmodium_falciparum">5526</attribute>
        <attribute name="Plasmodium_knowlesi">0</attribute>
        <attribute name="Plasmodium_vivax">3728</attribute>
        <attribute name="Plasmodium_yoelii">3360</attribute>
        <attribute name="Toxoplasma_gondii">8696</attribute>
        <attribute name="Trichomonas_vaginalis">10509</attribute>
-       <attribute name="Trypanosoma_brucei">9610</attribute>
+       <attribute name="Trypanosoma_brucei">8448</attribute>
        <attribute name="Trypanosoma_congolense">3471</attribute>
        <attribute name="Trypanosoma_cruzi">7427</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">79</attribute>
-       <attribute name="Entamoeba_histolytica">1223</attribute>
+       <attribute name="Entamoeba_histolytica">6841</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">18</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -369,7 +380,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">1933</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">9747</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">0</attribute>
@@ -390,10 +401,11 @@
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
-       <attribute name="Entamoeba_histolytica">0</attribute>
+       <attribute name="Entamoeba_histolytica">6633</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -402,7 +414,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">1804</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">3272</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">4455</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">1</attribute>
@@ -427,6 +439,7 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">18</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -435,7 +448,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">3590</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">4175</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">0</attribute>
@@ -450,7 +463,7 @@
        <attribute name="Plasmodium_yoelii">0</attribute>
        <attribute name="Toxoplasma_gondii">5666</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">9589</attribute>
+       <attribute name="Trypanosoma_brucei">1148</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
@@ -460,6 +473,7 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -477,7 +491,7 @@
        <attribute name="Neospora_caninum">7</attribute>
        <attribute name="Plasmodium_berghei">3104</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
-       <attribute name="Plasmodium_falciparum">2785</attribute>
+       <attribute name="Plasmodium_falciparum">2991</attribute>
        <attribute name="Plasmodium_knowlesi">0</attribute>
        <attribute name="Plasmodium_vivax">16</attribute>
        <attribute name="Plasmodium_yoelii">672</attribute>
@@ -493,6 +507,7 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -526,6 +541,7 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
    <record>
@@ -559,9 +575,10 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
    </record>
 
-   <record>
+<!--   <record>
        <attribute name = "Metric_Type">TF Binding Site</attribute>
        <attribute name = "Description">Total number of genes having evidence of expression based on transcription factor binding site indentification experiments</attribute>
        <attribute name="Cryptosporidium_hominis">0</attribute>
@@ -592,6 +609,8 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
+       <attribute name="Enterocytozoon_bieneusi"></attribute>
    </record>
+-->
 
 </xmlAnswer>
