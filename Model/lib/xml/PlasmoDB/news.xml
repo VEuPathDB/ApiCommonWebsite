@@ -17,6 +17,28 @@
        </attribute>
     </record>
 -->
+   <record>
+       <attribute name="headline"><![CDATA[
+PlasmoDB 6.5 released
+         ]]>
+         </attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">plasmo07_15_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 6.5<br>
+<br>
+This release of PlasmoDB contains the following new datasets:</span><br>
+<br>
+<ul>
+<li>A proteomics dataset for <i>P. falciparum</i> from 42 and 48 hrs post infection kindly provided prepublication by Paul Bowyer and Matthew Bogyo, Stanford University School of Medicine.</li>
+<li><i>P. falciparum</i> SNP calls for 186 culture adapted strains provided by Jianbing Mu and Xinzhuan Su, NIH.<br>  <i>Plasmodium falciparum</i> genome-wide scans for positive selection, recombination hot spots and resistance to antimalarial drugs.  <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=20101240">Nat. Genet. 2010 Mar;42(3):268-71 Mu et al.</a></li>
+</ul>
+          ]]>
+       </attribute>
+    </record>
 
    <record>
        <attribute name="headline"><![CDATA[

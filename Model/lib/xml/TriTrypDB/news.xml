@@ -18,6 +18,32 @@
        </attribute>
     </record>
 -->
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+TriTrypDB 2.3 released
+         ]]>
+       </attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">tritryp7_15_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<span style="font-weight: bold;">We are pleased to
+announce the release of TriTrypDB 2.3<br>
+<br>
+This release of TriTrypDB contains the following new datasets:</span><br>
+<br>
+<ul>
+<li>Digital gene expression data for <i>T. brucei</i> procyclic and blood form stages provided by Annette Macleod.<br> Digital gene expression analysis of two life cycle stages of the human-infective parasite, <i>Trypanosoma brucei gambiense</i> reveals differentially expressed clusters of co-regulated genes. Veitch NJ, Johnson PC, Trivedi U, Terry S, Wildridge D, MacLeod A. <a href="http://www.ncbi.nlm.nih.gov/pubmed/20175885">BMC Genomics. 2010 Feb 22;11:124.</a></li>
+<li>Links have been added to the <a href="http://snps.tcruzi.org/genes/alignment?assembly_id=436283">TcSNP database of genetic variation in T. cruzi</a> from <i>T. cruzi</i> gene record pages.</li>
+
+</ul>
+          ]]>
+       </attribute>
+    </record>
+
 <record>
        <attribute name="headline">
          <![CDATA[
