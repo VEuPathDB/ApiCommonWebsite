@@ -361,7 +361,7 @@
        <attribute name="Plasmodium_yoelii">3360</attribute>
        <attribute name="Toxoplasma_gondii">8696</attribute>
        <attribute name="Trichomonas_vaginalis">10509</attribute>
-       <attribute name="Trypanosoma_brucei">8448</attribute>
+       <attribute name="Trypanosoma_brucei">8974</attribute>
        <attribute name="Trypanosoma_congolense">3471</attribute>
        <attribute name="Trypanosoma_cruzi">7427</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
@@ -463,7 +463,7 @@
        <attribute name="Plasmodium_yoelii">0</attribute>
        <attribute name="Toxoplasma_gondii">5666</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">1148</attribute>
+       <attribute name="Trypanosoma_brucei">8374</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
