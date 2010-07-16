@@ -20,6 +20,26 @@
     </record>
 -->
 
+<record>
+       <attribute name="headline">New Release of TrichDB</attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">trich07_15_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<b>We are pleased to announce a new release of TrichDB. </b> While this release does not include new data, there are some new features and improvements.<br><br>
+<ul>
+<li>The Basket and Favorites functionality has been extended to include all record classes.</li>
+<li>Queries have been optimized to increase site performance.</li>
+<li>A number of bugs have been fixed.</li>
+</ul>
+
+          ]]>
+       </attribute>
+</record>
+
+
  <record>
        <attribute name="headline">
          <![CDATA[
