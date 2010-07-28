@@ -654,6 +654,29 @@
    </record>
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Crithidia</attribute>
+       <attribute name = "Organism">C.fasciculata</attribute>
+       <attribute name = "Taxon_ID">5656</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">9.1</attribute>
+       <attribute name = "Data_Source">WUSTL Genome Center</attribute>
+       <attribute name = "Genome_Size">35.38</attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
        <attribute name = "Organism">T.brucei</attribute>
        <attribute name = "Taxon_ID">5691</attribute>
