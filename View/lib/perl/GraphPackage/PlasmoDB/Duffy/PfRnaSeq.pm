@@ -26,7 +26,7 @@ sub init {
                    colors => $colors,
                    #force_x_axis_label_horizontal => 1,
                    x_axis_labels => ['3D7', 'PL01', 'PL02'],
-		   plot_title => 'P.falciparum RNA Sequence Coverage',
+		   plot_title => 'P.falciparum NSR Sequence Coverage',
                   },
       pct => {profiles => ['Percents of P.falciparum duffy mRNA Seq data'],
               y_axis_label => 'Percentile',
@@ -35,7 +35,7 @@ sub init {
               colors => $colors,
               #force_x_axis_label_horizontal => 1,
               x_axis_labels => ['3D7', 'PL01', 'PL02'],
-              plot_title => 'P.falciparum RNA Sequence Coverage',
+              plot_title => 'P.falciparum NSR Sequence Coverage',
              },
      });
 
