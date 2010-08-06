@@ -48,6 +48,7 @@ text(12.2, y.max + (y.max - y.min)*0.2, 'S(2)');
               default_x_min => 0,
               points_pch => $pch,
               smooth_spline => 1,
+              spline_approx_n => 60,
               r_top_margin_title => $cellCycleTopMargin,
              },
       pct => {profiles => ['M.White Cell Cycle Microarray profile pcts'
@@ -60,6 +61,7 @@ text(12.2, y.max + (y.max - y.min)*0.2, 'S(2)');
               default_x_min => 0,
               points_pch => $pch,
               smooth_spline => 1,
+              spline_approx_n => 60,
               r_top_margin_title => $cellCycleTopMargin,
        }
      });
