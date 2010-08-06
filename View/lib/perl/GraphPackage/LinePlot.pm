@@ -79,8 +79,9 @@ sub makeRPlotStrings {
     my $rTopMarginTitle = $profileSetsHash->{$part}->{r_top_margin_title};
 
     my $smoothLines = $profileSetsHash->{$part}->{smooth_spline};
+    my $splineApproxN = $profileSetsHash->{$part}->{spline_approx_n};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines);
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines,$splineApproxN);
 
     unshift @rv, $rCode;
   }
@@ -91,7 +92,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines,$splineApproxN) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -110,6 +111,8 @@ sub rString {
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rTopMarginTitle = $rTopMarginTitle ? $rTopMarginTitle : "";
+
+  $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -264,13 +267,16 @@ for(i in 1:nrow(lines.df)) {
          bg   = the.colors[i],
          type = \"p\",
          pch  = my.pch,
-         cex  = 1.5
+         cex  = 1
          );
 
-    lines(smooth.spline(x.coords.line, y.coords),
+    approxInterp = approx(x.coords.line, n=$splineApproxN);
+    predict_x = approxInterp\$y;
+
+    lines(predict(smooth.spline(x=x.coords.line, y=y.coords),predict_x),
          col  = the.colors[i],
          bg   = the.colors[i],
-         cex  = 1.5
+         cex  = 1
          );
 
   } else {
@@ -280,7 +286,7 @@ for(i in 1:nrow(lines.df)) {
          bg   = the.colors[i],
          type = \"o\",
          pch  = my.pch,
-         cex  = 1.5
+         cex  = 1
          );
   }
 
@@ -291,7 +297,7 @@ for(i in 1:nrow(lines.df)) {
        bg   = the.colors[i],
        type = \"p\",
        pch  = my.pch,
-       cex  = 1.5
+       cex  = 1
        );
 }
 
