@@ -169,7 +169,8 @@ barplot(profile,
         names.arg = element.names,
         space=c(0,.5),
         las = my.las,
-        axes = FALSE
+        axes = FALSE,
+        cex.names = 0.8
        );
 
 
