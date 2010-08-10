@@ -154,8 +154,8 @@ par(mar       = c($bottomMargin,4,1,4), xpd=FALSE, oma=c(1,1,1,1));
 $rAdjustProfile
 $rAdjustNames
 
-d.max = max(1.1 * profile, y.max);
-d.min = min(1.1 * profile, y.min);
+d.max = max(1.1 * profile, y.max, na.rm=TRUE);
+d.min = min(1.1 * profile, y.min, na.rm=TRUE);
 
 my.las = 2;
 if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
@@ -169,7 +169,8 @@ barplot(profile,
         names.arg = element.names,
         space=c(0,.5),
         las = my.las,
-        axes = FALSE
+        axes = FALSE,
+        cex.names = 0.8
        );
 
 
