@@ -15,7 +15,7 @@ sub init {
   $self->setScreenSize(200);
   $self->setBottomMarginSize(4);
 
-  my $xAxisLabels = ['Self', '45 min', '3 hr', '7 hr', '7 hr LS'];
+  my $xAxisLabels = ['Control', '45 min', '3 hr', '7 hr', '7 hr LS'];
 
   $self->setProfileSetsHash
     ({'expr_val' => {profiles => ['Hehl encystation expression profile'],
