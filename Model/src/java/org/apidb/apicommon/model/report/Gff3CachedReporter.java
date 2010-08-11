@@ -254,7 +254,7 @@ public class Gff3CachedReporter extends Reporter {
         ResultSet rsTable = null;
         try {
             rsTable = SqlUtils.executeQuery(wdkModel, platform.getDataSource(),
-                    sql.toString());
+                    sql.toString(), "api-report-gff-select-content");
 
             while (rsTable.next()) {
                 String content = platform.getClobData(rsTable, "content");
@@ -312,7 +312,7 @@ public class Gff3CachedReporter extends Reporter {
         ResultSet rsTable = null;
         try {
             rsTable = SqlUtils.executeQuery(wdkModel, platform.getDataSource(),
-                    sql.toString());
+                    sql.toString(), "api-report-gff-select-content");
 
             while (rsTable.next()) {
                 String content = platform.getClobData(rsTable, "content");
