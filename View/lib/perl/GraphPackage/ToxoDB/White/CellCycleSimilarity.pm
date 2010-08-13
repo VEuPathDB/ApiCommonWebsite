@@ -51,6 +51,9 @@ sub init {
   $Self->setYmax(10);
   $Self->setYmin(4);
 
+  $Self->setSmoothSpline(1);
+  $Self->setSplineApproxN(60);
+
   return $Self;
 }
 

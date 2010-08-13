@@ -53,6 +53,13 @@ sub setYmin                 { $_[0]->{'YMin'              } = $_[1]; $_[0] }
 sub getYmax                 { $_[0]->{'YMax'              } }
 sub setYmax                 { $_[0]->{'YMax'              } = $_[1]; $_[0] }
 
+sub getSmoothSpline         { $_[0]->{'SmoothSpline'      } }
+sub setSmoothSpline         { $_[0]->{'SmoothSpline'      } = $_[1]; $_[0] }
+
+sub getSplineApproxN        { $_[0]->{'SplineApproxN'     } }
+sub setSplineApproxN        { $_[0]->{'SplineApproxN'     } = $_[1]; $_[0] }
+
+
 # ========================================================================
 # ------------------------------- Methods --------------------------------
 # ========================================================================
@@ -115,6 +122,9 @@ sub makeR {
 
       my $yMin = $Self->getYmin() ? $Self->getYmin() : -2;
       my $yMax = $Self->getYmax() ? $Self->getYmax() : 2;
+
+      my $smoothLines = defined($Self->getSmoothSpline()) ? 'TRUE' : 'FALSE';
+      my $splineApproxN = defined($Self->getSplineApproxN()) ? $Self->getSplineApproxN() : 60;
 
       print $r_fh <<R;
 
@@ -179,24 +189,70 @@ if ($isVis_b{lgr} == 1) {
   y.max = max( $yMax, data.match\$VALUE, data.query\$VALUE);
   y.min = min( $yMin, data.match\$VALUE, data.query\$VALUE);
 
-  plot(data.match\$ELEMENT_ORDER,
-       data.match\$VALUE,
-       col  = "blue",
-       bg   = "blue",
-       type = "o",
-       pch  = 22,
-       xlab = "",
-       xlim = c(x.min, x.max),
-       ylab = "Expr Val",
-       ylim = c(y.min, y.max)
-      );
-  lines(data.query\$ELEMENT_ORDER,
-        data.query\$VALUE,
-        col  = "gray",
-        bg   = "gray",
-        type = "o",
-        pch  = 22
-       );
+  if($smoothLines) {
+    approxInterpMatch = approx(data.match\$ELEMENT_ORDER, n=$splineApproxN);
+    predict_x_match = approxInterpMatch\$y;
+
+    approxInterpQuery = approx(data.query\$ELEMENT_ORDER, n=$splineApproxN);
+    predict_x_query = approxInterpQuery\$y;
+
+
+    plot(predict(smooth.spline(x=data.match\$ELEMENT_ORDER, y=data.match\$VALUE),predict_x_query),
+         col  = "blue",
+         bg   = "blue",
+         type = "l",
+         xlab = "",
+         xlim = c(x.min, x.max),
+         ylab = "Expr Val",
+         ylim = c(y.min, y.max),
+         xaxt="n"
+        );
+
+    points(data.match\$ELEMENT_ORDER, y=data.match\$VALUE,
+         col  = "blue",
+         bg   = "blue",
+         type = \"p\",
+         pch  = 19,
+         cex  = 1
+         );
+
+
+
+    lines(predict(smooth.spline(x=data.query\$ELEMENT_ORDER, y=data.query\$VALUE),predict_x_query),
+          col  = "black",
+          bg   = "black",
+         );
+
+    points(data.query\$ELEMENT_ORDER, y=data.query\$VALUE,
+         col  = "black",
+         bg   = "black",
+         type = \"p\",
+         pch  = 22,
+         cex  = 1
+         );
+
+
+  } else {
+    plot(data.match\$ELEMENT_ORDER,
+         data.match\$VALUE,
+         col  = "blue",
+         bg   = "blue",
+         type = "o",
+         pch  = 22,
+         xlab = "",
+         xlim = c(x.min, x.max),
+         ylab = "Expr Val",
+         ylim = c(y.min, y.max)
+        );
+    lines(data.query\$ELEMENT_ORDER,
+          data.query\$VALUE,
+          col  = "gray",
+          bg   = "gray",
+          type = "o",
+          pch  = 22
+         );
+  }
+
   plasmodb.grid();
   plasmodb.ticks(1,x.min,x.max,5);
 }
