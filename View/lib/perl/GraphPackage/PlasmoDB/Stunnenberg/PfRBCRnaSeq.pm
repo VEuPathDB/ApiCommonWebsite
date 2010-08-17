@@ -22,7 +22,7 @@ sub init {
   my $xAxisLabels = ['5 hours','10 hours','15 hours','20 hours','25 hours','30 hours','35 hours','40 hours'];
 
   $self->setProfileSetsHash
-    ({'rma' => {profiles => ['Profiles of P.falciparum Stunnenberg mRNA Seq data'],
+    ({coverage => {profiles => ['Profiles of P.falciparum Stunnenberg mRNA Seq data'],
                            y_axis_label => 'Normalized Coverage',
                            default_y_max => 15,
                            colors => $colors,
