@@ -33,7 +33,7 @@ sub init {
 
 	$Self->SUPER::init(@_);
 
-  my $_ttl  = 'Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4 at ring, trophozite and schizont stages.-Averaged';
+  my $_ttl  = 'Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4 at ring, trophozite and schizont stages.';
 
 	$Self->setDataQuery
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -53,28 +53,44 @@ sub init {
   $Self->setDataColors([ '#B22222' ]);
 
 
-$_ttl  = '3D7 clones 3D7AH1S2 and 3D7S8.4 at ring, trophozite and schizont stages.- Averaged Percentiles';
 
-	$Self->setPctQuery
+$_ttl  = 'Percentiles of 3D7 clones 3D7AH1S2 and 3D7S8.4 at 3 life stages Green';
+
+	$Self->setGreenPctQuery
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		( Name         => '_data',
       ProfileSet   => $_ttl,
 		)
 	);
 
-	$Self->setPctNamesQuery
+	$Self->setGreenPctNamesQuery
 	( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
 		( Name         => '_names',
       ProfileSet   => $_ttl,
 		)
 	);
 
+$_ttl  = 'Percentiles of 3D7 clones 3D7AH1S2 and 3D7S8.4 at 3 life stages Red';
+
+	$Self->setRedPctQuery
+	( ApiCommonWebsite::Model::CannedQuery::Profile->new
+		( Name         => '_data',
+      ProfileSet   => $_ttl,
+		)
+	);
+
+	$Self->setRedPctNamesQuery
+	( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
+		( Name         => '_names',
+      ProfileSet   => $_ttl,
+		)
+	);
+
+
   $Self->setPctYaxisLabel('percentile');
   $Self->setPctColors([ '#E6E6FA' ]);
 
   $Self->setTagRx(undef);
-
-  $Self->setPctIsDecimal(1);
 
 	return $Self;
 }

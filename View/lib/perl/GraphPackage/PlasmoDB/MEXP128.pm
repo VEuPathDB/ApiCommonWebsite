@@ -34,20 +34,23 @@ sub setDataYaxisLabel       { $_[0]->{'DataYaxisLabel'       } = $_[1]; $_[0] }
 sub getDataColors           { $_[0]->{'DataColors'           } }
 sub setDataColors           { $_[0]->{'DataColors'           } = $_[1]; $_[0] }
 
-sub getPctNamesQuery        { $_[0]->{'PctNamesQuery'        } }
-sub setPctNamesQuery        { $_[0]->{'PctNamesQuery'        } = $_[1]; $_[0] }
+sub getRedPctNamesQuery        { $_[0]->{'RedPctNamesQuery'        } }
+sub setRedPctNamesQuery        { $_[0]->{'RedPctNamesQuery'        } = $_[1]; $_[0] }
 
-sub getPctQuery             { $_[0]->{'PctQuery'             } }
-sub setPctQuery             { $_[0]->{'PctQuery'             } = $_[1]; $_[0] }
+sub getRedPctQuery             { $_[0]->{'RedPctQuery'             } }
+sub setRedPctQuery             { $_[0]->{'RedPctQuery'             } = $_[1]; $_[0] }
+
+sub getGreenPctNamesQuery        { $_[0]->{'GreenPctNamesQuery'        } }
+sub setGreenPctNamesQuery        { $_[0]->{'GreenPctNamesQuery'        } = $_[1]; $_[0] }
+
+sub getGreenPctQuery             { $_[0]->{'GreenPctQuery'             } }
+sub setGreenPctQuery             { $_[0]->{'GreenPctQuery'             } = $_[1]; $_[0] }
 
 sub getPctYaxisLabel        { $_[0]->{'PctYaxisLabel'        } }
 sub setPctYaxisLabel        { $_[0]->{'PctYaxisLabel'        } = $_[1]; $_[0] }
 
 sub getPctColors            { $_[0]->{'PctColors'            } }
 sub setPctColors            { $_[0]->{'PctColors'            } = $_[1]; $_[0] }
-
-sub getPctIsDecimal         { $_[0]->{'PctIsDecimal'         } }
-sub setPctIsDecimal         { $_[0]->{'PctIsDecimal'         } = $_[1]; $_[0] }
 
 sub getTagRx                { $_[0]->{'TagRx'                } }
 sub setTagRx                { $_[0]->{'TagRx'                } = $_[1]; $_[0] }
@@ -80,8 +83,11 @@ sub makeR {
    my $_names = eval { $Self->getDataNamesQuery()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
    my $_data  = eval { $Self->getDataQuery ()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
 
-   my $_pct_names = eval { $Self->getPctNamesQuery()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
-   my $_pct_data  = eval { $Self->getPctQuery ()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
+   my $_red_pct_names = eval { $Self->getRedPctNamesQuery()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
+   my $_red_pct_data  = eval { $Self->getRedPctQuery ()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
+
+   my $_green_pct_names = eval { $Self->getGreenPctNamesQuery()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
+   my $_green_pct_data  = eval { $Self->getGreenPctQuery ()->getValues($_qh, $_dict) }; $@ && push(@errors, $@);
 
 
    if (@errors) {
@@ -93,12 +99,11 @@ sub makeR {
       my @tags = map { $_->{NAME}  } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_names;
       my @avg  = map { $_->{VALUE} } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_data;
 
-      my @pctTags = map { $_->{NAME}  } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_pct_names;
-      my @pctAvg  = map { $_->{VALUE} } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_pct_data;
+      my @redPctTags = map { $_->{NAME}  } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_red_pct_names;
+      my @redPctAvg  = map { $_->{VALUE} } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_red_pct_data;
 
-      if($Self->getPctIsDecimal()) {
-        @pctAvg  = map {$_ * 100 } @pctAvg;
-      }
+      my @greenPctTags = map { $_->{NAME}  } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_green_pct_names;
+      my @greenPctAvg  = map { $_->{VALUE} } sort { $a->{ELEMENT_ORDER} <=> $b->{ELEMENT_ORDER} } @$_green_pct_data;
 
       my @std  = (0) x scalar @tags;
 
@@ -107,8 +112,13 @@ sub makeR {
       my $ylab   = $Self->getDataYaxisLabel();
       my $colors = join(', ', map { $_ =~ /\(/ ? $_ : "'$_'" } @{$Self->getDataColors()});
 
-      my $pctTags  = join(', ', map { "'$_'" } @pctTags);
-      my $pctAvg    = join(', ', @pctAvg);
+      my $redPctTags  = join(', ', map { "'$_'" } @redPctTags);
+      my $redPctAvg    = join(', ', @redPctAvg);
+
+      my $greenPctTags  = join(', ', map { "'$_'" } @greenPctTags);
+      my $greenPctAvg    = join(', ', @greenPctAvg);
+
+
       my $pctYlab   = $Self->getPctYaxisLabel();
       my $pctColors = join(', ', map { $_ =~ /\(/ ? $_ : "'$_'" } @{$Self->getPctColors()});
 
@@ -151,9 +161,13 @@ the.tags        <- c($tags);
 the.avg         <- c($avg);
 the.colors      <- c($colors);
 
-pct.avg         <- c($pctAvg);
-pct.tags        <- c($pctTags);
-pct.colors      <- c($pctColors);
+red.pct.avg         <- c($redPctAvg);
+red.pct.tags        <- c($redPctTags);
+
+green.pct.avg         <- c($greenPctAvg);
+green.pct.tags        <- c($greenPctTags);
+
+pct.colors      <- c('#A52A2A', '#FFDAB9');
 
 the.std         <- c($std);
 
@@ -224,16 +238,17 @@ if ($isVis_b{hist} == 1) {
 
   par(mar       = c(8,4,1,1));
 
-  c <- barplot(pct.avg,
+  c <- barplot(rbind(red.pct.avg,green.pct.avg),
                col       = pct.colors,
                ylab      = '$pctYlab',
                ylim      = c(0, 100),
-                names.arg = pct.tags,
-               las = 2
+                names.arg = red.pct.tags,
+               las = 2,
+               beside=TRUE
               );
 
   # the suppressWarnings hides complaints about zero-length arrows
-  suppressWarnings( arrows(c, pct.avg - the.std, c, pct.avg+the.std,
+  suppressWarnings( arrows(c, red.pct.avg - the.std, c, red.pct.avg+the.std,
                            col="black",
                            lw=2,
                            angle=90,
