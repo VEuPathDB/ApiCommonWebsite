@@ -310,8 +310,7 @@ if ($isVis_b{hist} == 1) {
                names.arg = name,
                col       = colors,
                horiz     = T,
-               #xlab      = 'log2(data)',
-               xlab      = 'Expression Level
+               xlab      = 'log2 (Expression Level)
 ',
                xlim      = c(x.min, x.max)
               );

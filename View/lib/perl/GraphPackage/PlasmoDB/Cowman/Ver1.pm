@@ -33,9 +33,9 @@ sub init {
 
 	$Self->SUPER::init(@_);
 
-  my $invasion_ttl  = 'Invasion by P. falciparum merozoites suggests a hierarchy of molecular interactions';
-  my $knockout_ttl  = 'P.falciparum strain 3D7, SIR2 knockout';
-  my $switching_ttl = 'Molecular mechanism for switching of P.falciparum invasion pathways into human erythrocytes';
+  my $invasion_ttl  = 'Profiles of Cowman Invasion KO-invasion_merozoites';
+  my $knockout_ttl  = 'Profiles of Cowman Invasion KO-sir2_knockout';
+  my $switching_ttl = 'Profiles of Cowman Invasion KO-molecular_mechanism_invasion';
 
 	$Self->setInvasionDataQuery
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
