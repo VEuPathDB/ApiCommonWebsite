@@ -20,8 +20,8 @@ sub init {
                            y_axis_label => 'Expression Value',
                            colors => ['darkgreen'],
                            make_y_axis_fold_incuction => 1,
-                           default_y_max => 1.5,
-                           default_y_min => -1.5,
+                           default_y_max => 1,
+                           default_y_min => -1,
                           },
       pct => {profiles => ['Stress Response percentiles by temperature or varying DTT concentrations-red values',
                            'Stress Response percentiles by temperature or varying DTT concentrations-green values'
