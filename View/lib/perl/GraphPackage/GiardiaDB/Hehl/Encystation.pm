@@ -15,7 +15,7 @@ sub init {
   $self->setScreenSize(200);
   $self->setBottomMarginSize(4);
 
-  my $xAxisLabels = ['Control', '45 min', '3 hr', '7 hr', '7 hr LS'];
+  my $xAxisLabels = ['Control', '45 minute', '3 hour', '7 hour', '7 hour LS'];
 
   $self->setProfileSetsHash
     ({'expr_val' => {profiles => ['Hehl encystation expression profile'],
@@ -31,7 +31,7 @@ sub init {
                           ],
               y_axis_label => 'Percentile',
               default_y_max => 50,
-              colors =>  ['grey', '#191970'],
+              colors =>  ['darkgreen', '#0066CC'],
               x_axis_labels => $xAxisLabels,
              },
      });
