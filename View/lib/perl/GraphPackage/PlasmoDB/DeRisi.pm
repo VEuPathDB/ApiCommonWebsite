@@ -175,7 +175,7 @@ plasmodb.title("Induction/Repression");
 screen(screens[2]);
 par(yaxp   = c(0,100,1));
 plot(data.percent\$ELEMENT_ORDER, # data.percent.x,
-     100*data.percent\$VALUE,     # data.percent.y,
+     data.percent\$VALUE,     # data.percent.y,
      type   = "l",
      col    = plasmodb.pct.color,
      xlab   = "",
@@ -184,7 +184,7 @@ plot(data.percent\$ELEMENT_ORDER, # data.percent.x,
      ylab   = "%"
     );
 plasmodb.filled.plot(data.percent\$ELEMENT_ORDER,
-                     100*data.percent\$VALUE,
+                     data.percent\$VALUE,
                      border = plasmodb.pct.color,
                      col    = plasmodb.pct.color
                     );

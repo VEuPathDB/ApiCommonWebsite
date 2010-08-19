@@ -22,21 +22,21 @@ sub init {
 	$Self->setSmoothQuery
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		( Name      => 'smooth',
-			ProfileSet => 'DeRisi HB3 Smoothed Averaged',
+			ProfileSet => 'DeRisi HB3 Smoothed',
 		)
 	);
 
 	$Self->setRoughQuery
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		( Name       => 'rough',
-			ProfileSet => 'DeRisi HB3 Normalized repsCollapsed Averaged',
+			ProfileSet => 'DeRisi HB3 non-smoothed',
 		)
 	);
 
 	$Self->setPercentQuery
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		( Name       => 'percent',
-			ProfileSet => 'DeRisi HB3 Percents Averaged',
+			ProfileSet => 'Percentiles of DeRisi HB3 Red',
 		)
 	);
 
