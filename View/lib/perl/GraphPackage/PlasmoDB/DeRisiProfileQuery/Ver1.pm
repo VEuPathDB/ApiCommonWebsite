@@ -36,14 +36,14 @@ sub init {
   $Self->setMatchProfile
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name       => 'match',
-      ProfileSet => 'DeRisi HB3 Smoothed Averaged',
+      ProfileSet => 'DeRisi HB3 Smoothed',
     )
   );
 
   $Self->setQueryProfile
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name         => 'query',
-      ProfileSet   => 'DeRisi HB3 Smoothed Averaged',
+      ProfileSet   => 'DeRisi HB3 Smoothed',
       UseSecondary => 1,
     )
   );
