@@ -263,11 +263,18 @@ for(i in 1:nrow(lines.df)) {
   if($smoothLines) {
     points(x.coords.line,
          y.coords,
-         col  = the.colors[i],
-         bg   = the.colors[i],
+         col  = 'grey75',
+         bg   = 'grey75',
          type = \"p\",
          pch  = my.pch,
-         cex  = 1
+         cex  = 0.5
+         );
+
+    lines(x.coords.line,
+         y.coords,
+         col  = 'grey75',
+         bg  = 'grey75',
+         cex  = 0.5
          );
 
     approxInterp = approx(x.coords.line, n=$splineApproxN);
@@ -297,7 +304,7 @@ for(i in 1:nrow(lines.df)) {
        bg   = the.colors[i],
        type = \"p\",
        pch  = my.pch,
-       cex  = 1
+       cex  = 0.5
        );
 }
 
