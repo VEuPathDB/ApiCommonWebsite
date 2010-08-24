@@ -263,8 +263,8 @@ data.track1.rat      <- log(data.track1.exp / data.track1.mean.exp) / log(2.0);
 data.track2.rat      <- log(data.track2.exp / data.track2.mean.exp) / log(2.0);
 data.track2.rat[1]   <- data.track1.rat[1];
 
-data.track1.pct      <- 100 * c(data.spor.pct\$VALUE, data.sorb.pct\$VALUE);
-data.track2.pct      <- 100 * c(0,                    data.temp.pct\$VALUE, NA);
+data.track1.pct      <- c(data.spor.pct\$VALUE, data.sorb.pct\$VALUE);
+data.track2.pct      <- c(0,                    data.temp.pct\$VALUE, NA);
 data.track2.exp[1]   <- 0;
 
 colors.track1        <- c(colors.spor, colors.sorb);
