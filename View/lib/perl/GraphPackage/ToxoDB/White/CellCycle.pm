@@ -44,7 +44,7 @@ text(12.2, y.max + (y.max - y.min)*0.2, 'S(2)');
               x_axis_label => 'Time Point',
               colors => $colors,
               default_y_max => 10,
-              default_y_min => 4,
+              default_y_min => 5,
               default_x_min => 0,
               points_pch => $pch,
               smooth_spline => 1,
