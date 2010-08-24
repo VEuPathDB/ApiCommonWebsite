@@ -162,16 +162,16 @@ if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
   my.las = 0;
 }
 
-barplot(profile,
-        col       = the.colors,
-        ylim      = c(d.min, d.max),
-        beside    = TRUE,
-        names.arg = element.names,
-        space=c(0,.5),
-        las = my.las,
-        axes = FALSE,
-        cex.names = 0.8
-       );
+plotXPos = barplot(profile,
+           col       = the.colors,
+           ylim      = c(d.min, d.max),
+           beside    = TRUE,
+           names.arg = element.names,
+           space=c(0,.5),
+           las = my.las,
+           axes = FALSE,
+           cex.names = 0.8
+          );
 
 
 mtext('$yAxisLabel', side=2, line=3.5, cex.lab=1, las=0)
@@ -207,6 +207,16 @@ if($yAxisFoldInductionFromM) {
 }
 
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
+
+for(i in 1:nrow(profile)) {
+  for(j in 1:ncol(profile)) {
+    if(is.na(profile[i,j])) {
+      x_coord = plotXPos[i,j];
+      y_coord = (d.min + d.max) / 2;
+      points(x_coord, y_coord, cex=2, col=\"red\", pch=8);
+    }
+  }
+}
 
 box();
 
