@@ -22,12 +22,11 @@ sub init {
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['Profiles of P.falciparum duffy mRNA Seq data'],
-                   y_axis_label => 'Normalized Coverage',
+                   y_axis_label => 'Normalized Coverage (log2)',
                    colors => $colors,
                    force_x_axis_label_horizontal => 1,
-#                   r_adjust_profile => 'for(i in length(profile)) {if(profile[i] < 1) {profile[i] = 1}}; profile = log2(profile); ',
+                   r_adjust_profile => 'for(idx in length(profile)) {if(profile[idx] < 1) {profile[idx] = 1}}; profile = log2(profile); ',
                    x_axis_labels => $legend,
-		   plot_title => 'P.falciparum NSR Sequence Coverage',
                   },
       pct => {profiles => ['Percents of P. falciparum duffy mRNA Seq data'],
               y_axis_label => 'Percentile',
@@ -35,7 +34,6 @@ sub init {
               colors => $colors,
               force_x_axis_label_horizontal => 1,
               x_axis_labels => $legend,
-              plot_title => 'P.falciparum NSR Sequence Coverage',
              },
      });
 

@@ -1,50 +1,42 @@
 package ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq::Ver1;
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq );
-
-# ========================================================================
-# ----------------------------- Declarations -----------------------------
-# ========================================================================
 
 use strict;
+use vars qw( @ISA );
 
-use ApiCommonWebsite::View::GraphPackage;
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
-# ========================================================================
-# ----------------------- Create, Init, and Access -----------------------
-# ========================================================================
-
-# --------------------------------- init ---------------------------------
 
 sub init {
-  my $Self = shift;
+  my $self = shift;
 
-  $Self->SUPER::init(@_);
+  $self->SUPER::init(@_);
 
-  my $name = 'Profiles of P.falciparum Newbold mRNA Seq data';
+  $self->setScreenSize(250);
+  $self->setBottomMarginSize(8);
+#  $self->setLegendSize(60);
 
-  $Self->setExpressionNames
-    ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-      ( Name => 'expressionNames',
-        ProfileSet => $name,
-      ),
-    );
+  my $colors =['#000080'];
 
-  $Self->setBioRep01ExpressionQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => 'Pfalciparum_RNA_Seq',
-        ProfileSet   => $name,
-      )
-    );
+  $self->setProfileSetsHash
+    ({coverage => {profiles => ['Profiles of P.falciparum Newbold mRNA Seq data'],
+                   y_axis_label => 'Normalized Coverage (log2)',
+                   x_axis_label => 'Hours',
+                   default_y_max => 15,
+                   r_adjust_profile => 'for(idx in length(profile)) {if(profile[idx] < 1) {profile[idx] = 1}}; profile = log2(profile); ',
+                   colors => $colors,
+                  },
+      pct => {profiles => ['Percents of P. falciparum Newbold mRNA Seq data'],
+              y_axis_label => 'Percentile',
+              x_axis_label => 'Hours',
+              default_y_max => 50,
+              colors => $colors,
+             },
+     });
 
-   return $Self;
+  return $self;
 }
 
-# ========================================================================
-# ---------------------------- End of Package ----------------------------
-# ========================================================================
-
 1;
+
