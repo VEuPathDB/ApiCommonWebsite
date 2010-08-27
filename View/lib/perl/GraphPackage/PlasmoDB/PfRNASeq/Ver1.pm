@@ -24,7 +24,7 @@ sub init {
 
   $Self->SUPER::init(@_);
 
-  my $name = 'P.falciparum RNA Sequence Profiles';
+  my $name = 'Profiles of P.falciparum Newbold mRNA Seq data';
 
   $Self->setExpressionNames
     ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new

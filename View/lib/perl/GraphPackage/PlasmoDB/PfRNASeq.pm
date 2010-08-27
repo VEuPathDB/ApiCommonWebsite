@@ -126,7 +126,7 @@ data.names      <- c($names);
 
 data.track1.table    <- read.table("$biorep01Exp_f", header=T);
 
-data.track1.rat <- c(data.track1.table\$VALUE);
+data.track1.rat <- c(log2(data.track1.table\$VALUE));
 
 # ------------------------ Merge Data and Colors -------------------------
 
