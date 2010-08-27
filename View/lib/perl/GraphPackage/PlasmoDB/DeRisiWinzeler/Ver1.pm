@@ -32,42 +32,42 @@ sub init {
   $Self->setDeRisi_Hb3_Rat
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name      => 'dhr',
-      ProfileSet => 'DeRisi HB3 Smoothed Averaged',
+      ProfileSet => 'DeRisi HB3 Smoothed',
     )
   );
 
   $Self->setDeRisi_Hb3_Pct
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name       => 'dhp',
-      ProfileSet => 'DeRisi HB3 Percents Averaged',
+      ProfileSet => 'Percentiles of DeRisi HB3 Red',
     )
   );
 
   $Self->setDeRisi_3d7_Rat
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name      => 'd3r',
-      ProfileSet => 'DeRisi 3D7 Smoothed Averaged',
+      ProfileSet => 'DeRisi 3D7 Smoothed',
     )
   );
 
   $Self->setDeRisi_3d7_Pct
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name       => 'd3p',
-      ProfileSet => 'DeRisi 3D7 Percents Averaged',
+      ProfileSet => 'Percentiles of DeRisi 3D7 Red',
     )
   );
 
   $Self->setDeRisi_Dd2_Rat
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name      => 'ddr',
-      ProfileSet => 'DeRisi Dd2 Smoothed Averaged',
+      ProfileSet => 'DeRisi Dd2 Smoothed',
     )
   );
 
   $Self->setDeRisi_Dd2_Pct
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name       => 'ddp',
-      ProfileSet => 'DeRisi Dd2 Percents Averaged',
+      ProfileSet => 'Percentiles of DeRisi Dd2 Red',
     )
   );
 
