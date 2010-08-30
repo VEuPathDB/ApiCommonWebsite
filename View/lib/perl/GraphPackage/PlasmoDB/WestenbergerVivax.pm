@@ -135,7 +135,7 @@ data.pct = data.pct.df\$VALUE;
 
 # ----------------------------- Data Limits ------------------------------
 
-ylim.lgr      <- c(0, min($maxLgRat, max($minLgRat,max(data.moid) + 100 )));
+ylim.lgr      <- c(0, min($maxLgRat, max($minLgRat,max(data.moid) + max(data.moid)*.1)));
 
 # --------------------------- Prepare To Plot ----------------------------
 
