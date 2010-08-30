@@ -18,7 +18,7 @@ sub init {
 
   $Self->SUPER::init(@_);
 
-  my $_ttl  = 'kappe_percents_by_condition_over_all_channels';
+  my $_ttl  = 'kappe_percentiles_by_condition_over_all_channels';
 
   $Self->setDataQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -39,8 +39,9 @@ sub init {
   $Self->setTagRx(undef);
 
   $Self->setYMin(0);
+  $Self->setYMax(100);
 
-  $Self->setYScaleFactor(100);
+  $Self->setYScaleFactor(1);
 
   return $Self;
 }
