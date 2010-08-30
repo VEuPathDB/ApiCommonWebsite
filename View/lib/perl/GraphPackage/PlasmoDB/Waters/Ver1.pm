@@ -33,38 +33,39 @@ sub init {
 
    $Self->SUPER::init(@_);
 
+
 	 $Self->setShortNamesQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
 		 ( Name       => 'shortNames',
-			 ProfileSet => 'Waters HPE Percents Averaged', # representative from below
+			 ProfileSet => 'Waters HPE Percents Red', # representative from below
 		 ),
 	 );
 	 $Self->setLogRatioHpQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name       => 'lgrHp',
-			 ProfileSet => 'Waters HP Timecourse Averaged',
+			 ProfileSet => 'Waters HP Timecourse',
        Floor      => -10,
 		 )
 	 );
 	 $Self->setPercentageHpQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name       => 'pctHp',
-			 ProfileSet => 'Waters HP Percents Averaged',
-       ScaleY     => 100,
+			 ProfileSet => 'Waters HP Percents Red',
+#       ScaleY     => 100,
 		 )
 	 );
 	 $Self->setLogRatioHpeQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name       => 'lgrHpe',
-			 ProfileSet => 'Waters HPE Timecourse Averaged',
+			 ProfileSet => 'Waters HPE Timecourse',
        Floor      => -10,
 		 )
 	 );
 	 $Self->setPercentageHpeQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name       => 'pctHpe',
-			 ProfileSet => 'Waters HPE Percents Averaged',
-       ScaleY     => 100,
+			 ProfileSet => 'Waters HPE Percents Red',
+#       ScaleY     => 100,
 		 )
 	 );
 
