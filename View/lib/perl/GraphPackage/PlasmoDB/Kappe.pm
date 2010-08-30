@@ -131,7 +131,7 @@ sub makeR {
 
       for(my $i = 0; $i < scalar @nTags; $i++) {
         push @pctTags, $nTags[$i];
-        push @pctTags, $dTags[$i];
+#        push @pctTags, $dTags[$i];
       }
 
       if($Self->getPctIsDecimal()) {

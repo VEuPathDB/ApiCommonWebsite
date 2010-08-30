@@ -18,7 +18,7 @@ sub init {
 
   $Self->setColors(['blue']);
 
-  my $_ttl  = 'kappe_fold_changes';
+  my $_ttl  = 'kappe_all_comparisons_profiles';
 
   $Self->setDataQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -36,7 +36,7 @@ sub init {
 
   $Self->setDataYaxisLabel('M value');
 
-  $_ttl  = 'raw_numerators_percents';
+  $_ttl  = 'kappe_all_comparisons_percentiles_red';
 
   $Self->setNumQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -52,7 +52,7 @@ sub init {
       )
 	);
 
-  $_ttl  = 'raw_denominators_percents';
+  $_ttl  = 'kappe_all_comparisons_percentiles_green';
 
   $Self->setDenQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -70,7 +70,7 @@ sub init {
 
   $Self->setPctYaxisLabel('percentile');
 
-  $Self->setPctIsDecimal(1);
+  $Self->setPctIsDecimal(0);
 
   return $Self;
 }
