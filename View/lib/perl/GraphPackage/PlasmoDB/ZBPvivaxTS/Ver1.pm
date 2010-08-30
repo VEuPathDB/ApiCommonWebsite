@@ -24,6 +24,22 @@ sub init {
 
   $Self->SUPER::init(@_);
 
+
+
+
+#ZB Pvivax time series normalized_averaged 1
+#ZB Pvivax time series percentiles 1 Red
+#ZB Pvivax time series percentiles 1 Green
+#ZB Pvivax time series normalized_averaged 2
+#ZB Pvivax time series percentiles 2 Red
+#ZB Pvivax time series percentiles 2 Green
+#ZB Pvivax time series normalized_averaged 3
+#ZB Pvivax time series percentiles 3 Red
+#ZB Pvivax time series percentiles 3 Green
+
+
+
+
   my $name = 'ZB Pvivax time series normalized_averaged 1';
 
   $Self->setExpressionNames
@@ -58,7 +74,7 @@ sub init {
       )
     );
 
-  $name = 'ZB Pvivax time series percentiles 1';
+  $name = 'ZB Pvivax time series percentiles 1 Red';
 
   $Self->setPercentileNames
     ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
@@ -74,7 +90,7 @@ sub init {
       )
     );
 
-  $name = 'ZB Pvivax time series percentiles 2';
+  $name = 'ZB Pvivax time series percentiles 2 Red';
 
   $Self->setBioRep02PercentileQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -83,7 +99,7 @@ sub init {
       )
     );
 
-  $name = 'ZB Pvivax time series percentiles 3';
+  $name = 'ZB Pvivax time series percentiles 3 Red';
 
   $Self->setBioRep03PercentileQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
