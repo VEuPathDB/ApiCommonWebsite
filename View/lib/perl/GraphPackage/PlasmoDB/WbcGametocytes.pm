@@ -256,7 +256,7 @@ if ($isVis_b{abs} == 1) {
   screen(screens[screen.i]);
   screen.i <- screen.i + 1;
 
-  ylim.min = min(-2, data.abs.3d7\$VALUE, data.abs.macs3d7\$VALUE, data.abs.nf54\$VALUE);
+  ylim.min = min(0, data.abs.3d7\$VALUE, data.abs.macs3d7\$VALUE, data.abs.nf54\$VALUE);
   ylim.max = max( 2, data.abs.3d7\$VALUE, data.abs.macs3d7\$VALUE, data.abs.nf54\$VALUE);
 
   plasmodb.par.last();
@@ -270,7 +270,7 @@ if ($isVis_b{abs} == 1) {
        xlab = "Day of gametocytogenesis",
        xlim = c(x.min, x.max),
        ylab = "Absolute Expression",
-       ylim = c(ylim.min, ylim.max)
+       ylim = c(ylim.min+ylim.min*.1, ylim.max+ylim.max*.1)
       );
   lines( data.abs.macs3d7\$ELEMENT_ORDER,
        data.abs.macs3d7\$VALUE,
@@ -290,7 +290,7 @@ if ($isVis_b{abs} == 1) {
        );
   plasmodb.ticks(1, 0, nrow(data.abs.nf54), 5);
   plasmodb.grid();
-  plasmodb.title("Expression Levels (absolute)");
+  plasmodb.title("Expression Levels (log2 absolute)");
 }
 
 # --------------------------------- Done ---------------------------------
