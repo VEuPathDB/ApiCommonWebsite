@@ -21,10 +21,12 @@ sub init {
     ({rma => {profiles => ['Profiles of P. berghei DOZI array data'],
               y_axis_label => 'log2(R/G)',
               colors => $colors,
-              x_axis_labels => ['Rep 1', 'Rep 2'],
+              x_axis_labels => ['KO vs. WT'],
               plot_title => 'DOZI Knock Out vs. Wild Type',
               default_y_max => 2,
               default_y_min => -2,
+              force_x_axis_label_horizontal => 1,
+              make_y_axis_fold_incuction => 1,
              },
      });
 
