@@ -62,8 +62,8 @@ sub makeR {
 
    my $thumb_b   = $Self->getThumbnail();
 
-   my $maxLgRat  = 65000;
-   my $minLgRat  = 150;
+   my $maxLgRat  = 10;
+   my $minLgRat  = 0;
 
    my @_names    = $Self->getShortNamesQuery()->getValues($_qh, $_dict); 
    my $names     = join(',', map { '"'. $_->{NAME}. '"' } @_names);
@@ -174,7 +174,7 @@ if ($isVis_b{rat} == 1) {
   #axis(1,at=seq(1,4),labels=data.names,tick=T);
 #  plasmodb.grid(nx=NA,ny=NULL);
   #lines (c(-100,100), c(0,0), col="gray25");
-  plasmodb.title("Asexual parasites from patient blood (moid expression values)");
+  plasmodb.title("Asexual parasites from patient blood (rma expression values)");
 }
 
 # ---------------------- SCREEN : Percentage Plot ----------------------
