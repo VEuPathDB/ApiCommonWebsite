@@ -38,16 +38,16 @@ sub init {
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		( Name         => '3d7_pct',
       ProfileSet   => 'winzeler_3D7_pct',
-      ScaleY       => 100,
+#      ScaleY       => 100,
       ElementOrder => \@elementOrder,
 		)
 	);
 
 	$Self->setPctQuery_Macs3d7
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		( Name         => 'MACS_3D7_pct',
+		( Name         => 'winzeler_3D7_MACpct',
 			ProfileSet   => 'winzeler_3D7_MACpct',
-      ScaleY       => 100,
+#      ScaleY       => 100,
 		)
 	);
 
@@ -55,7 +55,7 @@ sub init {
 	( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		( Name       => 'NF54_pct',
 			ProfileSet => 'winzeler_NF54_pct',
-      ScaleY     => 100,
+#      ScaleY     => 100,
 		)
 	);
 
