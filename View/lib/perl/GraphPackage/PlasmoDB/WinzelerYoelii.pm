@@ -172,7 +172,7 @@ if ($isVis_b{rat} == 1) {
           beside    = 1,
           las = 2,
           space     = c(0.1, 1),
-          ylab      = "moid expression values",
+          ylab      = "rma expression values",
           names.arg = c($names),
           col       = my.colors,
 #          border    = c(color.strain.hp, color.strain.hpe),
