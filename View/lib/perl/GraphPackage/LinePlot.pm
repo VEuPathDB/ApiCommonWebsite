@@ -187,7 +187,7 @@ x.coords.rank = rank(x.coords, na.last=$pointsLast);
 # if the points df is all NA's that means we can plot as Time Series
 if(sum(is.na(points.df)) == ncol(points.df) * nrow(points.df)) {
   x.min = min(x.min, x.coords, na.rm=TRUE);
-  x.max = max(x.max, x.coords, na.rm=TRUE);
+  x.max = max(x.max, x.coords+x.coords*.1, na.rm=TRUE);
 
   y.max = max(y.max, max(lines.df, na.rm=T), na.rm=TRUE);
   y.min = min(y.min, min(lines.df, na.rm=T), na.rm=TRUE);
@@ -243,6 +243,7 @@ for(i in 1:nrow(lines.df)) {
 
     if(isTimeSeries) {
       axis(1);
+
     } else {
       my.las = 2;
       if(max(nchar(colnames(lines.df))) < 6) {
