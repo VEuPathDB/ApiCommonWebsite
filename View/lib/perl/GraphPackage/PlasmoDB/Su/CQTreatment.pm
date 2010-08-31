@@ -35,7 +35,7 @@ sub init {
               y_axis_label => 'percentile',
               x_axis_labels => ['106/1', '106/1(76I)', '106/1(76I_352K)'],
               colors => $colors,
-              r_adjust_profile => 'profile = profile * 100;profile = cbind(profile[1, 1:2],profile[1,3:4], profile[1,5:6]);',
+              r_adjust_profile => 'profile = cbind(profile[1, 1:2],profile[1,3:4], profile[1,5:6]);',
               force_x_axis_label_horizontal => 1, 
               legend => [],
              },
