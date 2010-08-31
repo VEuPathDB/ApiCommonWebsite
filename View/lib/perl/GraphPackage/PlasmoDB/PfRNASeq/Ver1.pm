@@ -24,6 +24,7 @@ sub init {
                    y_axis_label => 'Normalized Coverage (log2)',
                    x_axis_label => 'Hours',
                    default_y_max => 15,
+                   default_y_min => 0,
                    r_adjust_profile => 'for(idx in length(profile)) {if(profile[idx] < 1) {profile[idx] = 1}}; profile = log2(profile); ',
                    colors => $colors,
                   },
@@ -31,6 +32,7 @@ sub init {
               y_axis_label => 'Percentile',
               x_axis_label => 'Hours',
               default_y_max => 50,
+              default_y_min => 0,
               colors => $colors,
              },
      });
