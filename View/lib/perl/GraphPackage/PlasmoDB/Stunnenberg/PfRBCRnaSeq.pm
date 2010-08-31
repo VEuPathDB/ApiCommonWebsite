@@ -25,7 +25,7 @@ sub init {
                    x_axis_label => 'Hours Post Infection',
                    default_y_max => 15,
                    default_y_min => 0,
-                   r_adjust_profile => 'for(idx in length(profile)) {if(profile[idx] < 1) {profile[idx] = 1}}; profile = log2(profile); ',
+                   r_adjust_profile => 'profile[profile < 1] = 1; profile = log2(profile); ',
                    colors => $colors,
                   },
       pct => {profiles => ['Percents of P. falciparum Stunnenberg mRNA Seq data'],
