@@ -25,7 +25,7 @@ sub init {
                    y_axis_label => 'Normalized Coverage (log2)',
                    colors => $colors,
                    force_x_axis_label_horizontal => 1,
-                   r_adjust_profile => 'for(idx in length(profile)) {if(profile[idx] < 1) {profile[idx] = 1}}; profile = log2(profile); ',
+                   r_adjust_profile => 'profile[profile < 1] = 1; profile = log2(profile); ',
                    x_axis_labels => $legend,
                   },
       pct => {profiles => ['Percents of P. falciparum duffy mRNA Seq data'],
