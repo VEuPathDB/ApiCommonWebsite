@@ -26,15 +26,21 @@ sub init {
 lines(c(2,5.75), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
 text(4, y.max + (y.max - y.min)*0.16, 'S(1)');
 
-lines(c(5,6.9), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
+lines(c(5,6.9), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
 text(5.3, y.max + (y.max - y.min)*0.2, 'M');
 text(6.3, y.max + (y.max - y.min)*0.2, 'C');
 
 lines(c(6.1,10.4), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1));
 text(8.5, y.max + (y.max - y.min)*0.16, 'G1');
 
-lines(c(10,13.2), c(y.max + (y.max - y.min)*0.13, y.max + (y.max - y.min)*0.13));
-text(12.2, y.max + (y.max - y.min)*0.2, 'S(2)');
+lines(c(10,13.2), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
+text(11.25, y.max + (y.max - y.min)*0.2, 'S(2)');
+
+lines(c(12,14), c(y.max + (y.max - y.min)*0.15, y.max + (y.max - y.min)*0.15));
+text(12.3, y.max + (y.max - y.min)*0.22, 'M');
+text(13.3, y.max + (y.max - y.min)*0.22, 'C');
+
+
 ";
 
   $self->setProfileSetsHash
