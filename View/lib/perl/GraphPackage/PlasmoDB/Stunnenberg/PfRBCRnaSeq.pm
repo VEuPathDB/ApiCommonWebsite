@@ -13,8 +13,8 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(250);
-  $self->setBottomMarginSize(8);
+#  $self->setScreenSize(250);
+#  $self->setBottomMarginSize(8);
 #  $self->setLegendSize(60);
 
   my $colors =['#E9967A'];
