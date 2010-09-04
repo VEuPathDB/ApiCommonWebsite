@@ -95,8 +95,12 @@ sub makeRPlotStrings {
 
     my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin, $horizontalXAxis, $yAxisFoldInductionFromM);
 
+    $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});
+
     unshift @rv, $rCode;
   }
+
+  $self->makeHtmlStringFromMatrix();
 
   return \@rv;
 }
@@ -162,6 +166,7 @@ if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
   my.las = 0;
 }
 
+
 plotXPos = barplot(profile,
            col       = the.colors,
            ylim      = c(d.min, d.max),
@@ -217,6 +222,8 @@ for(i in 1:nrow(profile)) {
     }
   }
 }
+
+
 
 box();
 

@@ -42,6 +42,12 @@ sub setMainLegend                { $_[0]->{'_main_legend'                 } = $_
 sub getLegendSize                { $_[0]->{'_legend_size'                 }}
 sub setLegendSize                { $_[0]->{'_legend_size'                 } = $_[1]; $_[0] }
 
+sub getAllNames                  { $_[0]->{'_all_names'                   }}
+sub setAllNames                  { $_[0]->{'_all_names'                   } = $_[1]; $_[0] }
+
+sub getAllValues                 { $_[0]->{'_all_values'                  }}
+sub setAllValues                 { $_[0]->{'_all_values'                  } = $_[1]; $_[0] }
+
 sub getTempFiles                 { $_[0]->{'_temp_files'                  }}
 sub setTempFiles                 { $_[0]->{'_temp_files'                  } = $_[1]; $_[0] }
 sub addTempFile {
@@ -68,6 +74,9 @@ sub init {
   $self->setLegendSize(40);
 
   $self->setTempFiles([]);
+
+  $self->setAllNames([]);
+  $self->setAllValues({});
 
   $self;
 }
@@ -345,6 +354,115 @@ sub rNumericVectorFromArray {
 
   return "$name = c(" . join(',', map {"$_"} @$array) . ");";
 }
+
+
+#--------------------------------------------------------------------------------
+
+sub addToProfileDataMatrix {
+  my ($self, $profileFiles, $elementNamesFiles, $profileSetNames) = @_;
+
+  my $allNames = $self->getAllNames();
+  my $allValues = $self->getAllValues();
+
+  for(my $i = 0; $i < scalar @$profileFiles; $i++) {
+    my $profileFile = $profileFiles->[$i];
+    my $elementNamesFile = $elementNamesFiles->[$i];
+    my $profileSet = $profileSetNames->[$i];
+
+    open(NAMES, $elementNamesFile) or die "Cannot open file $elementNamesFile for reading:$!";
+    open(VALUES, $profileFile) or die "Cannot open file $elementNamesFile for reading:$!";
+
+    my @names = <NAMES>;
+    my @values = <VALUES>;
+
+    unless(scalar @names == scalar @values) {
+      die "Element Names file Different length than Values File";
+    }
+
+    for(my $j = 1; $j < scalar @names; $j++) {
+      my $nameRow = $names[$j];
+      my $valueRow = $values[$j];
+
+      chomp($nameRow, $valueRow);
+
+      my ($neo, $name) = split(/\t/, $nameRow);
+      my ($veo, $value) = split(/\t/, $valueRow);
+
+      my ($digit) = $name =~ /(\d+)/;
+      $digit = -1 unless(defined $digit);
+
+      my $namesHash = {name => $name,
+                       digit => $digit,
+                       elementOrder => $neo,
+                      };
+
+      push @$allNames, $namesHash unless($self->isSeen($name, $allNames));
+
+      $allValues->{$profileSet}->{$name} = $value;
+    }
+
+
+    close NAMES;
+    close VALUES;
+  }
+}
+
+#--------------------------------------------------------------------------------
+
+sub isSeen {
+  my ($self, $x, $ar) = @_;
+
+  foreach(@$ar) {
+    return 1 if($_->{name} eq $x);
+  }
+  return 0;
+}
+
+
+
+#--------------------------------------------------------------------------------
+
+sub makeHtmlStringFromMatrix {
+  my ($self) = @_;
+
+  my $allNames = $self->getAllNames();
+  my $allValues = $self->getAllValues();
+
+  my $outputFile = $self->getOutputFile();
+  open(OUT, ">$outputFile") or die "Cannot open file $outputFile for writing: $!";
+
+  my @sortedNames = map { $_->{name} } sort{$a->{digit} <=> $b->{digit} || $a->{elementOrder} <=> $b->{elementOrder}} @$allNames;
+
+  print OUT "<table border=1>\n  <tr><th width=10>Experiment/Sample</th>\n";
+
+  my @values;
+
+  my @profileSets = keys %$allValues;
+
+    print OUT join("\n", map{ "    <th>$_</th>"} @profileSets);
+    print OUT "  </tr>\n";
+
+  foreach my $elementName (@sortedNames) {
+      print OUT "  <tr>\n";
+      print OUT "  <td>$elementName</td>\n";
+
+    foreach my $profileSet (@profileSets) {
+      my $val = $allValues->{$profileSet}->{$elementName};
+
+      $val = defined $val ? sprintf("%.3f", $val) : "&nbsp;";
+
+      print OUT "  <td>$val</td>\n";
+    }
+      print OUT "  </tr>\n";
+  }
+
+
+  print OUT "</table>\n<br/>";
+
+  close OUT;
+}
+
+
 
 
 #--------------------------------------------------------------------------------
