@@ -16,7 +16,7 @@ sub init {
   $self->setLegendSize(10);
 
   my $colors =['#E9967A', '#66CDAA', '#8B4513'];
-  my $legend = ["Pregnant Women", "Children", "3D7"];
+  my $legend = ["PL01:Pregnant Women", "PL02:Children", "3D7"];
 
   $self->setMainLegend({colors => ['#E9967A', '#66CDAA', '#8B4513'], short_names => $legend, cols => 3});
 
