@@ -222,7 +222,7 @@
        <attribute name="Plasmodium_falciparum">5264</attribute>
        <attribute name="Plasmodium_knowlesi">5080</attribute>
        <attribute name="Plasmodium_vivax">5274</attribute>
-       <attribute name="Plasmodium_yoelii">6296</attribute>
+       <attribute name="Plasmodium_yoelii">6295</attribute>
        <attribute name="Toxoplasma_gondii">7129</attribute>
        <attribute name="Trichomonas_vaginalis">54732</attribute>
        <attribute name="Trypanosoma_brucei">9798</attribute>
@@ -256,7 +256,7 @@
        <attribute name="Plasmodium_falciparum">4415</attribute>
        <attribute name="Plasmodium_knowlesi">2170</attribute>
        <attribute name="Plasmodium_vivax">2143</attribute>
-       <attribute name="Plasmodium_yoelii">2032</attribute>
+       <attribute name="Plasmodium_yoelii">2035</attribute>
        <attribute name="Toxoplasma_gondii">3312</attribute>
        <attribute name="Trichomonas_vaginalis">13172</attribute>
        <attribute name="Trypanosoma_brucei">4715</attribute>
@@ -426,7 +426,7 @@
        <attribute name="Plasmodium_falciparum">4273</attribute>
        <attribute name="Plasmodium_knowlesi">0</attribute>
        <attribute name="Plasmodium_vivax">3540</attribute>
-       <attribute name="Plasmodium_yoelii">3024</attribute>
+       <attribute name="Plasmodium_yoelii">3010</attribute>
        <attribute name="Toxoplasma_gondii">6724</attribute>
        <attribute name="Trichomonas_vaginalis">10470</attribute>
        <attribute name="Trypanosoma_brucei">1255</attribute>
