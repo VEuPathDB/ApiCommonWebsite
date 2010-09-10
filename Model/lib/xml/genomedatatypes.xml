@@ -289,7 +289,7 @@
        <attribute name = "Strain">ANKA</attribute>
        <attribute name = "Genome_Version">06-01-2010</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
-       <attribute name = "Genome_Size">18.00</attribute>
+       <attribute name = "Genome_Size">18.52</attribute>
        <attribute name = "Gene_Count">4970</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -312,7 +312,7 @@
        <attribute name = "Strain">chabaudi</attribute>
        <attribute name = "Genome_Version">06-01-2010</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
-       <attribute name = "Genome_Size">18.80</attribute>
+       <attribute name = "Genome_Size">18.83</attribute>
        <attribute name = "Gene_Count">5182</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -382,7 +382,7 @@
        <attribute name = "Strain">H</attribute>
        <attribute name = "Genome_Version">06-01-2010</attribute>
        <attribute name = "Data_Source">EMBL</attribute>
-       <attribute name = "Genome_Size">23.46</attribute>
+       <attribute name = "Genome_Size">23.73</attribute>
        <attribute name = "Gene_Count">5244</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
