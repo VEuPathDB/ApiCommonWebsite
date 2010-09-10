@@ -40,7 +40,7 @@
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray">yes</attribute>
-       <attribute name = "Proteomics"></attribute>
+       <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
