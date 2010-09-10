@@ -9,6 +9,10 @@
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url">http://www.EuPathDB.org</attribute>
         </row>
+<row>
+          <attribute name="url">http://sites.huji.ac.il/malaria/</attribute>
+          <attribute name="title">Malaria Parasite Metabolic Pathways -- Many New and Updated Pathways</attribute>
+        </row>
         <row>
           <attribute name="title">ToxoDB</attribute>
           <attribute name="url">http://www.ToxoDB.org</attribute>
