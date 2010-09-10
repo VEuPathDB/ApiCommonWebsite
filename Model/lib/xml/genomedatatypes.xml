@@ -471,7 +471,7 @@
        <attribute name = "Genome_Version">10-03-2002</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">22.94</attribute>
-       <attribute name = "Gene_Count">7865</attribute>
+       <attribute name = "Gene_Count">7774</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
