@@ -29,12 +29,12 @@ my $taxonToDirNameMap =
    'Trypanosoma congolense'                           => { name => 't_congolense',            group => 4 },
 
 
-   'Plasmodium falciparum 3D7'                        => { name => 'p_falciparum',            group => 1 },
-   'Plasmodium vivax SaI-1'                           => { name => 'p_vivax',                 group => 2 },
-   'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'p_yoelii',                group => 3 },
-   'Plasmodium berghei str. ANKA'                     => { name => 'p_berghei',               group => 4 },
-   'Plasmodium chabaudi chabaudi'                     => { name => 'p_chabudi',               group => 5 },
-   'Plasmodium knowlesi strain H'                     => { name => 'p_knowlesi',              group => 6 },
+   'Plasmodium falciparum 3D7'                        => { name => 'Pfalciparum',            group => 1 },
+   'Plasmodium vivax SaI-1'                           => { name => 'Pvivax',                 group => 2 },
+   'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'Pyoelii',                group => 3 },
+   'Plasmodium berghei str. ANKA'                     => { name => 'Pberghei',               group => 4 },
+   'Plasmodium chabaudi chabaudi'                     => { name => 'Pchabudi',               group => 5 },
+   'Plasmodium knowlesi strain H'                     => { name => 'Pknowlesi',              group => 6 },
 
    'Encephalitozoon cuniculi GB-M1'                   => { name => 'e_cuniculi',              group => 1 },
    'Encephalitozoon intestinalis'                     => { name => 'e_intestinalis',          group => 2 },
