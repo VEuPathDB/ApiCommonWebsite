@@ -269,6 +269,10 @@ public class Gff3Reporter extends Reporter {
         RecordClass recordClass = question.getRecordClass();
         String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
 
+        int idx = tableCache.indexOf('.');
+        String schema = (idx < 0) ? null : tableCache.substring(0, idx);
+        String table = (idx < 0) ? tableCache : tableCache.substring(idx + 1);
+
         // construct insert sql
         StringBuffer sqlInsert = new StringBuffer("INSERT INTO ");
         sqlInsert.append(tableCache).append(" (wdk_table_id, ");
@@ -278,7 +282,7 @@ public class Gff3Reporter extends Reporter {
         }
         sqlInsert.append(") VALUES (");
         sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression(
-                "apidb", "wdkTable"));
+                schema, table));
         sqlInsert.append(", ");
         sqlInsert.append("?, ?, ?");
         for (int i = 0; i < pkColumns.length; i++) {
