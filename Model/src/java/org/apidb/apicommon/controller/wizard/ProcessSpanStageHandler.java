@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
-import org.apidb.apicomplexa.wsfplugin.spanlogic.SpanCompositionPlugin;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.WizardAction;
 import org.gusdb.wdk.controller.action.WizardForm;
-import org.gusdb.wdk.controller.wizard.QuestionStageHandler;
 import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
@@ -20,25 +18,28 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 
 public class ProcessSpanStageHandler implements StageHandler {
 
+    public static String PARAM_OUTPUT = "span_output";
+    public static String PARAM_VALUE_OUTPUT_A = "a";
+    public static String PARAM_SPAN_B = "a";
+
     private static final String ATTR_QUESTION_NAME = "questionFullName";
 
     private static final Logger logger = Logger.getLogger(ProcessSpanStageHandler.class);
 
-    public Map<String, Object> execute(ActionServlet servlet, HttpServletRequest request,
-            HttpServletResponse response, WizardForm wizardForm)
-            throws Exception {
+    public Map<String, Object> execute(ActionServlet servlet,
+            HttpServletRequest request, HttpServletResponse response,
+            WizardForm wizardForm) throws Exception {
         logger.debug("Entering ProcessSpanStageHandler....");
 
-        String output = (String) wizardForm.getValueOrArray(SpanCompositionPlugin.PARAM_OUTPUT);
+        String output = (String) wizardForm.getValueOrArray(PARAM_OUTPUT);
 
         StepBean step;
-        if (output.equals(SpanCompositionPlugin.PARAM_VALUE_OUTPUT_A)) {
+        if (output.equals(PARAM_VALUE_OUTPUT_A)) {
             // select step a as output
             step = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
         } else {
             // select step b as output
-            String strStepId = request.getParameter(SpanCompositionPlugin.PARAM_SPAN_PREFIX
-                    + "a");
+            String strStepId = request.getParameter(PARAM_SPAN_B);
             int stepId = Integer.valueOf(strStepId);
 
             UserBean user = ActionUtility.getUser(servlet, request);
