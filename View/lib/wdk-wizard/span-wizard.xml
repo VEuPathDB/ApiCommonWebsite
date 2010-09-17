@@ -2,19 +2,19 @@
 <wdkWizard>
   <stage name="span_from_question" 
          display="Select Parameters"
-         handlerClass="org.gusdb.wdk.controller.wizard.SpanFromQuestionStageHandler">
+         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromQuestionStageHandler">
     <description>Select span logic paramters.</description>
     <result type="view">/wdk/jsp/wizard/spanlogic.jsp</result>
   </stage>
   <stage name="span_from_strategy" 
          display="Select Parameters"
-         handlerClass="org.gusdb.wdk.controller.wizard.SpanFromStrategyStageHandler">
+         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromStrategyStageHandler">
     <description>Select span logic paramters.</description>
     <result type="view">/wdk/jsp/wizard/spanlogic.jsp</result>
   </stage>
   <stage name="process_span" 
          display="Process Span Logic operation"
-         handlerClass="org.gusdb.wdk.controller.wizard.ProcessSpanStageHandler">
+         handlerClass="org.apidb.apicommon.controller.wizard.ProcessSpanStageHandler">
     <description>Process span logic operation and redirect to processFilter.</description>
     <result type="action">/processFilter.do</result>
   </stage>
