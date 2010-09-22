@@ -15,7 +15,62 @@
        </attribute>
     </record>
 --> 
-
+<record>
+       <attribute name="headline">AmoebaDB 1.2 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">amoeba09_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.2<br>
+<br>
+<br>
+This release of AmoebaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li>Proteomics data from <span style="font-style: italic;">E.
+histolytica </span>phagosomes of various degrees of maturation
+(<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2211552/">Boettner
+et. al.</a>).&nbsp; This data can be searched in AmoebaDB from the <a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. search page</a> and results can be integrated with other search
+types.&nbsp; An example search strategy that integrates different
+search types can be viewed <a
+href="http://amoebadb.org/amoeba/im.do?s=3a0c08bd343b2607">here</a>.&nbsp;
+This strategy asks for all <span style="font-style: italic;">E.
+histolytica</span> genes&nbsp; with phagosome proteomic evidence, that
+contain transmembrane domains and&nbsp; contain a "kinase" PFAM
+domain.&nbsp; <br>
+</li>
+<li>Gene that have evidence of protein expression also have a
+graphical representation of the peptide hits on their respective gene
+pages (mousing over the graphics provides additional information such
+as peptide sequence).&nbsp; Here is a link to a gene page with
+proteomics evidence -- scroll down to the "Protein" section and show
+"Protein features".&nbsp; Note that samples are color coded.<br>
+</li>
+<li>Proteomics data can also be visualized in the genome
+browser.&nbsp; This <a
+href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?start=1;stop=210398;ref=DS571146;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=31c3276525b0c5ae2d30104f014a4a12;label=Gene-HustonMassSpecPeptides;h_feat=ehi_076870%40yellow%27%29">link</a>
+shows a 200Kb genomic region with the gene models and proteomics track
+turned on.&nbsp; <br>
+</li>
+</ul>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">AmoebaDB 1.1 Released</attribute>
        <attribute name="date">15 July 2010 15:00</attribute>

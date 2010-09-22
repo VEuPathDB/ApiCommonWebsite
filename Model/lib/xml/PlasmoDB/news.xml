@@ -17,7 +17,125 @@
        </attribute>
     </record>
 -->
-   <record>
+<record>
+       <attribute name="headline">PlasmoDB 7.0 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">plasmo09_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 7.0<br>
+<br>
+<br>
+This release of PlasmoDB contains the following new datasets and
+features:</span><span style="font-weight: bold;">&nbsp;<br>
+<br>
+New Data:</span><br>
+<ul>
+<li><span style="font-style: italic;"></span>Updated sequence and
+annotation for <span style="font-style: italic;">Plasmodium</span> <span
+style="font-style: italic;">falciparum</span>, <span
+style="font-style: italic;">P. chabaudi</span>, <span
+style="font-style: italic;">P. knowlesi </span>and <span
+style="font-style: italic;">P. berghei </span>was obtained from the
+Pathogen Sequencing Unit at the Wellcome Trust Sanger Institute.&nbsp;
+Additional details may be viewed <a
+href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=P.berghei_wholeGenomeShotgunSequence,P.chabaudi_chromosomes,P.falciparum_chromosomes,P.gallinaceum.contigs,P.knowlesi_chromosomes,P.reichenowi.contigs,P.vivax_contigsGB,PvivaxChromosomes,P.vivax_mitochondrial,P.yoelii_Annotation&amp;title=Query#P.berghei_wholeGenomeShotgunSequence">here</a>.</li>
+</ul>
+<ul>
+<li>Updated linkouts to the Malaria Parasite Metabolic Pathways
+(MPMP) database.&nbsp; Numerous pathways have been added and updated by
+Dr. Hagai Ginsberg.&nbsp;&nbsp; A full description of new pathways is
+available <a
+href="http://plasmodb.org/plasmo/communityDownload.do?fname=New_maps_on_Malaria_Parasite_Metabolic_pathways.pdf">here</a>
+and genes included in the MPMP database can be searched based on
+metabolic pathway in PlasmoDB <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.<br>
+</li>
+</ul>
+<ul>
+<li><span style="font-style: italic;">Plasmodium falciparum, P.
+vivax, P. yoelii, P. berghei </span>and<span
+style="font-style: italic;"> P. chabaudi</span> predicted ApiAP2
+transcription-factor (TF) binding site data.&nbsp; This data was
+graciously provided prepublication by Dr. Manuel Llinas.&nbsp; Gene
+with predicted binding sites to each ApiAP2 TF may be identified using
+the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByBindingSiteFeature">TF
+binding site search</a> available via the Transcript Expression section
+of PlasmoDB.&nbsp; Search parameter such as distance from the 5' end,
+number of TF binding sites and probability score can be adjusted as
+needed.&nbsp; In addition, TF binding sites can be viewed in the genome
+browser with additional information available when mousing over TF
+binding site graphics.&nbsp; An example genome browser page may be
+viewed <a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=883339;stop=917361;ref=Pf3D7_06;width=800;version=100;flip=;cache=1;drag_and_drop=0;show_tooltips=1;grid=1;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-BindingSites;h_feat=pff1065c@thistle">here</a>.</li>
+</ul>
+<ul>
+<li><span style="font-style: italic;">P. falciparum</span>
+RNA-sequence data from the intraerythrocytic life cycle.&nbsp; This
+data was graciously provided prepublication to the community via
+PlasmoDB by Dr. Richárd Bártfai, Wieteke A.M. Hoeijmakers and Dr.
+Hendrik G. Stunnenberg.&nbsp; Searches against this data may be
+accessed from the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">RNA-seq
+evidence section</a> in the Transcript Expression section
+of PlasmoDB.&nbsp; RNA-seq data may also be viewed on individual gene
+pages where a graphical representation of the gene's expression profile
+throughout the time points of this study is presented.&nbsp;&nbsp; In
+addition,&nbsp; RNA-seq coverage graphs can be viewed through the
+PlasmoDB <a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=840000;stop=910000;ref=Pf3D7_06;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-RnaSeqStunnenberg5Cont-RnaSeqStunnenberg10Cont-RnaSeqStunnenberg15Cont-RnaSeqStunnenberg20Cont-RnaSeqStunnenberg25Cont-RnaSeqStunnenberg30Cont-RnaSeqStunnenberg35Cont-RnaSeqStunnenberg40Cont;h_feat=pff1065c%40thistle">genome
+browser</a>.<br>
+</li>
+</ul>
+<ul>
+<li><span style="font-style: italic;">P. falciparum</span>
+ChIP-sequence data from the intraerythrocytic life cycle.&nbsp; ChIP
+was performed using antibodies to H2A.Z, H3K9ac &amp; H3K4me3. This
+data was graciously provided prepublication to the community via
+PlasmoDB by Dr. Richárd Bártfai, Wieteke A.M. Hoeijmakers and Dr.
+Hendrik G. Stunnenberg.&nbsp; This data can be viewed through the
+PlasmoDB <a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=840000;stop=910000;ref=Pf3D7_06;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-ChipSeqH2A10Stunnenberg-ChipSeqH2A20Stunnenberg-ChipSeqH2A30Stunnenberg-ChipSeqH2A40Stunnenberg-ChipSeqH3K10Stunnenberg-ChipSeqH3K20Stunnenberg-ChipSeqH3K30Stunnenberg-ChipSeqH3K40Stunnenberg-ChipSeqH3K9ac10Stunnenberg-ChipSeqH3K9ac20Stunnenberg-ChipSeqH3K9ac30Stunnenberg-ChipSeqH3K9ac40Stunnenberg;h_feat=pff1065c@thistle">genome
+browser</a>.</li>
+</ul>
+<ul>
+<li><span style="font-style: italic;">P. falciparum</span>
+RNA-sequence data of lab-adapted field parasites from malaria-infected
+pregnant women and children.&nbsp; This data was graciously provided
+prepublication to the community via PlasmoDB by Drs. Marissa Vignali
+and Patrick E. Duffy.&nbsp; Searches against this data may be accessed
+from the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">RNA-seq
+evidence section</a> in the Transcript
+Expression section
+of PlasmoDB.&nbsp; RNA-seq data may also be viewed on individual gene
+pages
+where a graphical representation of the gene's expression profile
+throughout the time points of this study is presented.&nbsp;&nbsp; In
+addition,&nbsp;
+RNA-seq coverage graphs can be viewed through the PlasmoDB <a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=2100000;stop=2270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-RnaSeqDuffCont-RnaSeqDuffPL01-RnaSeqDuffPL02;h_feat=pfl0010c@yellow">genome
+browser</a>.</li>
+</ul>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>Improved organization of the <a
+href="http://plasmodb.org/plasmodb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.</li>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>   
+<record>
        <attribute name="headline"><![CDATA[
 PlasmoDB 6.5 released
          ]]>

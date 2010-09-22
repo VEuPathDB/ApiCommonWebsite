@@ -14,7 +14,57 @@
        </attribute>
     </record>
 --> 
-
+<record>
+       <attribute name="headline">MicrosporidiaDB 1.2 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">micro09_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of MicrosporidiaDB 1.2<br>
+<br>
+<br>
+This release of MicrosporidiaDB includes genome sequence survey data </span><span
+style="font-weight: bold;">from a number of microsporidial species<br>
+<br>
+</span><br>
+The following <span style="font-style: italic;">Microsporidia</span>
+sequences from Genbank's Genome Survey Sequences Database (GSS) are now
+available via MicrosporidiaDB:
+<ul>
+<ul>
+<li><span style="font-style: italic;">Anncaliia algerae</span> <br>
+</li>
+<li style="font-style: italic;">Edhazardia aedis</li>
+<li style="font-style: italic;">Nosema bombycis</li>
+<li><span style="font-style: italic;">Vittaforma corneae</span></li>
+</ul>
+</ul>
+GSS data is available under the heading "Genomic Sequences" on the home
+page and may be searched by <a
+href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">species</a>,
+<a
+href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">genomic
+sequence IDs</a> and <a
+href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
+style="font-style: italic;">.&nbsp; <br>
+</span><br>
+<br>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<br>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">MicrosporidiaDB 1.1 Released</attribute>
        <attribute name="date">15 July 2010 15:00</attribute>
