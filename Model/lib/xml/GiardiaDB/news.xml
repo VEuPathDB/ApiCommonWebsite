@@ -14,6 +14,52 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">GiardiaDB 2.3 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">giardia09_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new data and features in GiardiaDB 2.3<br>
+<br>
+This release of GiardiaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li><span style="font-style: italic;">Giardia<span
+style="font-style: italic;"> intestinalis</span></span> microarray
+data during encystation from Adrian Hehl's group (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/20693303">Morf <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; Three types of
+searches can be performed to
+interrogateinterrogatedinterrogatedinterrogatedinterrogatedinterrogated
+this data and are available in
+the <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.&nbsp; As an example, one may ask for all genes that
+are differentially regulated 7 hours post encystation (under both
+encystation methods used in this study).&nbsp; To see the results of
+this question please follow the shared strategy <a
+href="http://giardiadb.org/giardiadb/im.do?s=26e0b6a97beb9bdd">here</a>.&nbsp;
+Gene pages also contain a graphical representation of the microarray
+results. &nbsp;</li>
+</ul>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>Improved organization of the <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.</li>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">GiardiaDB 2.2 Released</attribute>
        <attribute name="date">15 July 2010 15:00</attribute>
        <attribute name="tag">giardia07_10_news</attribute>

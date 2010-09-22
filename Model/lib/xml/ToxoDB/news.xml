@@ -14,7 +14,69 @@
        </attribute>
     </record>
 --> 
-
+<record>
+       <attribute name="headline">ToxoDB 6.2 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">toxo09_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of ToxoDB 6.2<br>
+</span><br>
+<span style="font-weight: bold;">New Data in this release:</span><span
+style="font-weight: bold;"> <br>
+<br>
+</span>This release of ToxoDB includes the tachyzoite cell-cycle
+microarray
+data from Michael White (<a
+href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0012354"><span
+style="font-style: italic;">Behnke et. al.</span></a>).&nbsp; Searches
+against this data are available in the <a
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a> of ToxoDB under the heading "Tachyzoite Cell Cycle
+(White)".&nbsp; This data can be interrogated using a number of
+searches:<br>
+<ul>
+<li>Genes can be identified based on the fold change in their
+expression between selected time points from the experiment using the
+T.g.
+Cell Cycle (fold change).</li>
+<li>Genes can be identified based on their maximal or minimal
+expression among selected time points using the T.g. Cell Cycle (exprn
+timing) search.</li>
+<li>Genes with a similar expression profile throughout the cell cycle
+compared to an input gene can be identified using the T.g. Cell Cycle
+(similarity) search.&nbsp; For example, genes that have a similar
+expression profile throughout the cell cycle compared to a putative
+nucleoporin can be identified as illustrated by this <a
+href="http://toxodb.org/toxo/im.do?s=590909d092fa1fdf">search strategy</a>.&nbsp;
+A graphical representation of the search results is presented along
+with the list of results showing the expression profile of the
+reference gene and each of the comparator genes.</li>
+</ul>
+In addition to specific searches against the cell cycle data, each gene
+page contains a graphical representation of the gene's expression
+profile throughout the cell cycle.<br>
+<br>
+<span style="font-weight: bold;">New features in this release:</span><br>
+<ul>
+<li>Improved organization of the <a
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.</li>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp; <br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">New Release of ToxoDB</attribute>
        <attribute name="date">15 July 2010 15:00</attribute>
