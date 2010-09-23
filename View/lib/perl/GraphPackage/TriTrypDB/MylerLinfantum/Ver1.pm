@@ -1,87 +1,61 @@
 package ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum::Ver1;
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum );
-
-# ========================================================================
-# ----------------------------- Declarations -----------------------------
-# ========================================================================
-
 use strict;
+use vars qw( @ISA );
 
-use ApiCommonWebsite::View::GraphPackage;
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
-use ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum;
-
-# ========================================================================
-# ----------------------- Create, Init, and Access -----------------------
-# ========================================================================
-
-# --------------------------------- init ---------------------------------
 
 sub init {
-  my $Self = shift;
+  my $self = shift;
 
-  $Self->SUPER::init(@_);
+  $self->SUPER::init(@_);
 
-  my $name = 'Linfantum promastigote time-course biorep01';
+  my $colors = ['#990099','#009999'];
 
-  $Self->setExpressionNames
-    ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-      ( Name => 'expressionNames',
-        ProfileSet => $name,
-      ),
-    );
+  my $pch = [19,22];
 
-  $Self->setBioRep01ExpressionQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => 'PromastigoteTime-courseBiorep01',
-        ProfileSet   => $name,
-      )
-    );
+  my $legend = ['Replicate 1', 'Replicate 2'];
 
-  $name = 'Linfantum promastigote time-course biorep02';
+  $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
-  $Self->setBioRep02ExpressionQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => 'PromastigoteTime-courseBiorep02',
-        ProfileSet   => $name,
-      )
-    );
+  $self->setProfileSetsHash
+    ({'expr_val' => {profiles => ['Linfantum promastigote time-course biorep01',
+                                  'Linfantum promastigote time-course biorep02'
+                                 ],
+                           y_axis_label => 'Expression Value',
+                           x_axis_label => 'Hours',
+                           colors => $colors,
+                           make_y_axis_fold_incuction => 1,
+                           default_y_max => 2,
+                           default_y_min => -2,
+                           default_x_min => 0,
+                           points_pch => $pch,
+                          },
+      'pct' => {profiles => ['Percents of the Linfantum promastigote time-course biorep01',
+                             'Percents of the Linfantum promastigote time-course biorep02'
+                            ],
+                y_axis_label => 'percent',
+                           x_axis_label => 'Hours',
+                colors => $colors,
+                default_y_max => 60,
+                           default_y_min => 0,
+                default_x_min => 0,
+                points_pch => $pch,
+                r_adjust_profile => 'profile = profile*100;',
+               },
+      
+      
+     });
 
-  $name = 'Percents of the Linfantum promastigote time-course biorep01';
-
-
-  $Self->setPercentileNames
-    ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-      ( Name => 'percentileNames',
-        ProfileSet => $name,
-      ),
-    );
-
-  $Self->setBioRep01PercentileQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => 'PercentsPromastigoteTime-courseBiorep01',
-        ProfileSet   => $name,
-      )
-    );
-
-  $name = 'Percents of the Linfantum promastigote time-course biorep02';
-
-  $Self->setBioRep02PercentileQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => 'PercentsPromastigoteTime-courseBiorep02',
-        ProfileSet   => $name,
-      )
-    );
-
-
-
-   return $Self;
+  return $self;
 }
 
-# ========================================================================
-# ---------------------------- End of Package ----------------------------
-# ========================================================================
+
 
 1;
+
+
+
+
+
