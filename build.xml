@@ -43,7 +43,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false"> 
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
       <property name="project" value="CBIL"/>
-      <property name="version" value="trunk"/>
+      <property name="version" value=""/>
     </ant>
   </target>    
     
