@@ -8,18 +8,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
+import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class SpanFromStrategyStageHandler implements StageHandler {
 
     private static final String PARAM_IMPORT_STRATEGY = "importStrategy";
     private static final String ATTR_IMPORT_STEP = "importStep";
+    private static final String SPAN_QUESTION = CConstants.WDK_QUESTION_KEY;
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
@@ -37,9 +41,19 @@ public class SpanFromStrategyStageHandler implements StageHandler {
         UserBean user = ActionUtility.getUser(servlet, request);
         StrategyBean strategy = user.getStrategy(strategyId);
         StepBean step = strategy.getLatestStep();
-        
+        StepBean importStep = step.deepClone();
+        importStep.setIsCollapsible(true);
+        importStep.setCollapsedName("Copy of " + strategy.getName());
+        importStep.update(false);
+
+        // get a span logic question
+        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
+        QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
+
         Map<String, Object> results = new HashMap<String, Object>();
-        results.put(ATTR_IMPORT_STEP, step);
+        results.put(ATTR_IMPORT_STEP, importStep);
+        results.put(SPAN_QUESTION, spanQuestion);
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
         return results;

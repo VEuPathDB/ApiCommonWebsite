@@ -26,6 +26,25 @@ public class ProcessSpanStageHandler implements StageHandler {
 
     private static final Logger logger = Logger.getLogger(ProcessSpanStageHandler.class);
 
+    public static String getSpanQuestion(String type) throws WdkUserException {
+        String questionName = null;
+        if (type.equals("GeneRecordClasses.GeneRecordClass")) {
+            questionName = "SpanQuestions.GenesBySpanLogic";
+        } else if (type.equals("OrfRecordClasses.OrfRecordClass")) {
+            questionName = "SpanQuestions.OrfsBySpanLogic";
+        } else if (type.equals("IsolateRecordClasses.IsolateRecordClass")) {
+            questionName = "SpanQuestions.IsolatesBySpanLogic";
+        } else if (type.equals("SnpRecordClasses.SnpRecordClass")) {
+            questionName = "SpanQuestions.SnpsBySpanLogic";
+        } else if (type.equals("DynSpanRecordClasses.DynSpanRecordClass")) {
+            questionName = "SpanQuestions.DynSpansBySpanLogic";
+        } else {
+            throw new WdkUserException("The record type " + type
+                    + " is not supported in Span Logic operation.");
+        }
+        return questionName;
+    }
+
     public Map<String, Object> execute(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
@@ -45,23 +64,7 @@ public class ProcessSpanStageHandler implements StageHandler {
             UserBean user = ActionUtility.getUser(servlet, request);
             step = user.getStep(stepId);
         }
-        String type = step.getType();
-        String questionName = null;
-        if (type.equals("GeneRecordClasses.GeneRecordClass")) {
-            questionName = "SpanQuestions.GenesBySpanLogic";
-        } else if (type.equals("OrfRecordClasses.OrfRecordClass")) {
-            questionName = "SpanQuestions.OrfsBySpanLogic";
-        } else if (type.equals("IsolateRecordClasses.IsolateRecordClass")) {
-            questionName = "SpanQuestions.IsolatesBySpanLogic";
-        } else if (type.equals("SnpRecordClasses.SnpRecordClass")) {
-            questionName = "SpanQuestions.SnpsBySpanLogic";
-        } else if (type.equals("DynSpanRecordClasses.DynSpanRecordClass")) {
-            questionName = "SpanQuestions.DynSpansBySpanLogic";
-        } else {
-            throw new WdkUserException("The step #" + step.getStepId()
-                    + " of type " + type
-                    + " is not supported in Span Logic operation.");
-        }
+        String questionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
 
         Map<String, Object> results = new HashMap<String, Object>();
         results.put(ATTR_QUESTION_NAME, questionName);

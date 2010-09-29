@@ -22,12 +22,13 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 public class SpanFromQuestionStageHandler implements StageHandler {
 
     private static final String ATTR_IMPORT_STEP = "importStep";
+    private static final String SPAN_QUESTION = CConstants.WDK_QUESTION_KEY;
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    public Map<String, Object> execute(ActionServlet servlet, HttpServletRequest request,
-            HttpServletResponse response, WizardForm wizardForm)
-            throws Exception {
+    public Map<String, Object> execute(ActionServlet servlet,
+            HttpServletRequest request, HttpServletResponse response,
+            WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
 
         // create a new step from question
@@ -67,11 +68,16 @@ public class SpanFromQuestionStageHandler implements StageHandler {
         StepBean step = user.createStep(question, params, filterName, false,
                 true, weight);
 
-        Map<String, Object> results = new HashMap<String, Object>();
-        results.put(ATTR_IMPORT_STEP, step);
+        // get a span logic question
+        String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
+        QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
+
+        Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put(ATTR_IMPORT_STEP, step);
+        attributes.put(SPAN_QUESTION, spanQuestion);
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return results;
+        return attributes;
     }
 
 }
