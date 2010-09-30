@@ -73,6 +73,10 @@ public class Gff3Reporter extends Reporter {
         super(answerValue, startIndex, endIndex);
     }
 
+    public String getConfigInfo() {
+	return "This reporter does not have config info yet.";
+    }
+
     /*
      * (non-Javadoc)
      * 
