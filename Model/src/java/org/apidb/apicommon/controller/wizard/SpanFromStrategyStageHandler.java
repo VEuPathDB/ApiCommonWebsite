@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
+import org.gusdb.wdk.controller.action.WizardAction;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.model.WdkUserException;
@@ -27,16 +28,17 @@ public class SpanFromStrategyStageHandler implements StageHandler {
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    public Map<String, Object> execute(ActionServlet servlet, HttpServletRequest request,
-            HttpServletResponse response, WizardForm wizardForm)
-            throws Exception {
+    public Map<String, Object> execute(ActionServlet servlet,
+            HttpServletRequest request, HttpServletResponse response,
+            WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
 
         // load strategy
         String strStratId = request.getParameter(PARAM_IMPORT_STRATEGY);
         if (strStratId == null || strStratId.length() == 0)
-            throw new WdkUserException("required "+PARAM_IMPORT_STRATEGY+" is missing.");
-        
+            throw new WdkUserException("required " + PARAM_IMPORT_STRATEGY
+                    + " is missing.");
+
         int strategyId = Integer.valueOf(strStratId);
         UserBean user = ActionUtility.getUser(servlet, request);
         StrategyBean strategy = user.getStrategy(strategyId);
@@ -51,11 +53,16 @@ public class SpanFromStrategyStageHandler implements StageHandler {
         String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
         QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
 
-        Map<String, Object> results = new HashMap<String, Object>();
-        results.put(ATTR_IMPORT_STEP, importStep);
-        results.put(SPAN_QUESTION, spanQuestion);
+        Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put(ATTR_IMPORT_STEP, importStep);
+        attributes.put(SPAN_QUESTION, spanQuestion);
+
+        // also set the step ids as the default of the the input params
+        StepBean currentStep = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
+        attributes.put("value(span_a)", currentStep.getStepId());
+        attributes.put("value(span_b)", step.getStepId());
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return results;
+        return attributes;
     }
 }

@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
+import org.gusdb.wdk.controller.action.WizardAction;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.model.WdkUserException;
@@ -75,6 +76,11 @@ public class SpanFromQuestionStageHandler implements StageHandler {
         Map<String, Object> attributes = new HashMap<String, Object>();
         attributes.put(ATTR_IMPORT_STEP, step);
         attributes.put(SPAN_QUESTION, spanQuestion);
+
+        // also set the step ids as the default of the the input params
+        StepBean currentStep = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
+        attributes.put("value(span_a)", currentStep.getStepId());
+        attributes.put("value(span_b)", step.getStepId());
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
         return attributes;
