@@ -10,9 +10,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
-import org.gusdb.wdk.controller.action.WizardAction;
 import org.gusdb.wdk.controller.action.WizardForm;
-import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.ParamBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
@@ -20,14 +18,11 @@ import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
-public class SpanFromQuestionStageHandler implements StageHandler {
-
-    private static final String ATTR_IMPORT_STEP = "importStep";
-    private static final String SPAN_QUESTION = CConstants.WDK_QUESTION_KEY;
+public class SpanFromQuestionStageHandler extends SpanStageHandler {
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    public Map<String, Object> execute(ActionServlet servlet,
+    public StepBean getImportedStep(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
@@ -66,24 +61,11 @@ public class SpanFromQuestionStageHandler implements StageHandler {
         String filterName = request.getParameter("filter");
 
         UserBean user = ActionUtility.getUser(servlet, request);
-        StepBean step = user.createStep(question, params, filterName, false,
+        StepBean importedStep = user.createStep(question, params, filterName, false,
                 true, weight);
 
-        // get a span logic question
-        String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
-        QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
-
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put(ATTR_IMPORT_STEP, step);
-        attributes.put(SPAN_QUESTION, spanQuestion);
-
-        // also set the step ids as the default of the the input params
-        StepBean currentStep = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
-        attributes.put("value(span_a)", currentStep.getStepId());
-        attributes.put("value(span_b)", step.getStepId());
-
         logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return attributes;
+        return importedStep;
     }
 
 }

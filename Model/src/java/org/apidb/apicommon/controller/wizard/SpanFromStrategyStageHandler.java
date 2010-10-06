@@ -1,34 +1,24 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
-import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
-import org.gusdb.wdk.controller.action.WizardAction;
 import org.gusdb.wdk.controller.action.WizardForm;
-import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
-public class SpanFromStrategyStageHandler implements StageHandler {
+public class SpanFromStrategyStageHandler extends SpanStageHandler {
 
     private static final String PARAM_IMPORT_STRATEGY = "importStrategy";
-    private static final String ATTR_IMPORT_STEP = "importStep";
-    private static final String SPAN_QUESTION = CConstants.WDK_QUESTION_KEY;
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    public Map<String, Object> execute(ActionServlet servlet,
+    public StepBean getImportedStep(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
@@ -48,21 +38,7 @@ public class SpanFromStrategyStageHandler implements StageHandler {
         importStep.setCollapsedName("Copy of " + strategy.getName());
         importStep.update(false);
 
-        // get a span logic question
-        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-        String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
-        QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
-
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put(ATTR_IMPORT_STEP, importStep);
-        attributes.put(SPAN_QUESTION, spanQuestion);
-
-        // also set the step ids as the default of the the input params
-        StepBean currentStep = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
-        attributes.put("value(span_a)", currentStep.getStepId());
-        attributes.put("value(span_b)", step.getStepId());
-
         logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return attributes;
+        return importStep;
     }
 }
