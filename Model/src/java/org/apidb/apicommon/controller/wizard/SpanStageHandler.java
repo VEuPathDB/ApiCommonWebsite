@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
+import org.gusdb.wdk.controller.action.QuestionForm;
+import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.action.WizardAction;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
@@ -21,7 +23,7 @@ public abstract class SpanStageHandler implements StageHandler {
 
     private static final String ATTR_IMPORT_STEP = "importStep";
     private static final String ATTR_ALLOW_CHOOSE_OUTPUT = "allowChooseOutput";
-    
+
     private static final String SPAN_QUESTION = CConstants.WDK_QUESTION_KEY;
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
@@ -44,6 +46,14 @@ public abstract class SpanStageHandler implements StageHandler {
         String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(importStep.getType());
         QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
 
+        // initialize the wizardForm so that it has the param information
+        QuestionForm questionForm = new QuestionForm();
+        questionForm.setQuestion(spanQuestion);
+        questionForm.setServlet(servlet);
+        ShowQuestionAction.prepareQuestionForm(spanQuestion, servlet, request,
+                questionForm);
+        wizardForm.copyFrom(questionForm);
+
         Map<String, Object> attributes = new HashMap<String, Object>();
         attributes.put(ATTR_IMPORT_STEP, importStep);
         attributes.put(SPAN_QUESTION, spanQuestion);
@@ -62,7 +72,7 @@ public abstract class SpanStageHandler implements StageHandler {
             // previous step as the input.
             inputStep = currentStep.getPreviousStep();
         }
-        
+
         // if the current has any parent, disable the output choice option
         boolean chooseOutput = (currentStep.getParentStep() == null && currentStep.getNextStep() == null);
         attributes.put(ATTR_ALLOW_CHOOSE_OUTPUT, chooseOutput);
