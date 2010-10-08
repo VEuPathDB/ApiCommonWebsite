@@ -78,8 +78,8 @@ public abstract class SpanStageHandler implements StageHandler {
         attributes.put(ATTR_ALLOW_CHOOSE_OUTPUT, chooseOutput);
 
         // also set the step ids as the default of the the input params
-        attributes.put("value(span_a)", inputStep.getStepId());
-        attributes.put("value(span_b)", importStep.getStepId());
+        wizardForm.setValue("span_a", inputStep.getStepId());
+        wizardForm.setValue("span_b", importStep.getStepId());
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
         return attributes;
