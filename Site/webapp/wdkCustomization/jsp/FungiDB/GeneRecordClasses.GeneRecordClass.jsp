@@ -19,7 +19,7 @@
 
 <c:choose>
 <c:when test="${!wdkRecord.validRecord}">
-<site:header title="MicrosporidiaDB : gene ${id} (${prd})"
+<site:header title="FungiDB : gene ${id} (${prd})"
              summary="${overview.value} (${length.value} bp)"
 		refer="recordPage" 
              divisionName="Gene Record"
@@ -51,7 +51,7 @@
 
 <%-- display page header with recordClass type in banner --%>
 
-<site:header title="MicrosporidiaDB : gene ${id} (${prd})"
+<site:header title="FungiDB : gene ${id} (${prd})"
              summary="${overview.value} (${length.value} bp)"
              divisionName="Gene Record"
              division="queries_tools" 
