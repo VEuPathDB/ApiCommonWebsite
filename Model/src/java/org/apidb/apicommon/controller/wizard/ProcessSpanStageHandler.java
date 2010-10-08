@@ -20,7 +20,7 @@ public class ProcessSpanStageHandler implements StageHandler {
 
     public static String PARAM_OUTPUT = "span_output";
     public static String PARAM_VALUE_OUTPUT_A = "a";
-    public static String PARAM_SPAN_B = "a";
+    public static String PARAM_SPAN_B = "span_b";
 
     private static final String ATTR_QUESTION_NAME = "questionFullName";
 
