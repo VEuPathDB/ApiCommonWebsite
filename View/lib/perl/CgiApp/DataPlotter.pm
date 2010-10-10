@@ -157,7 +157,7 @@ sub run {
       print STDERR join("\t", 'Files', @filesToDelete), "\n";
 	 }
    else {
-			unlink @filesToDelete;
+	  map {unlink $_ if $_} @filesToDelete;
    }
 }
 
