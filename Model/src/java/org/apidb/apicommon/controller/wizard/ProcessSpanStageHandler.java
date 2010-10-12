@@ -58,7 +58,7 @@ public class ProcessSpanStageHandler implements StageHandler {
             step = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
         } else {
             // select step b as output
-            String strStepId = request.getParameter(PARAM_SPAN_B);
+            String strStepId = (String) wizardForm.getValueOrArray(PARAM_SPAN_B);
             int stepId = Integer.valueOf(strStepId);
 
             UserBean user = ActionUtility.getUser(servlet, request);
