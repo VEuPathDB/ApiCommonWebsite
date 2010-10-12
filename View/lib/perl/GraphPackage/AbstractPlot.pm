@@ -449,7 +449,7 @@ sub makeHtmlStringFromMatrix {
     foreach my $profileSet (@profileSets) {
       my $val = $allValues->{$profileSet}->{$elementName};
 
-      $val = defined $val ? sprintf("%.3f", $val) : "&nbsp;";
+      $val = defined $val && $val ne 'NA' ? sprintf("%.3f", $val) : "NA";
 
       print OUT "  <td>$val</td>\n";
     }
