@@ -429,7 +429,7 @@ sub makeHtmlStringFromMatrix {
   my $allValues = $self->getAllValues();
 
   my $outputFile = $self->getOutputFile();
-  open(OUT, ">$outputFile") or die "Cannot open file $outputFile for writing: $!";
+  open(OUT, ">> $outputFile") or die "Cannot open file $outputFile for writing: $!";
 
   my @sortedNames = map { $_->{name} } sort{$a->{digit} <=> $b->{digit} || $a->{elementOrder} <=> $b->{elementOrder}} @$allNames;
 
@@ -457,7 +457,7 @@ sub makeHtmlStringFromMatrix {
   }
 
 
-  print OUT "</table>\n<br/>";
+  print OUT "</table>\n<br/><br/>";
 
   close OUT;
 }
