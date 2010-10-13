@@ -72,5 +72,4 @@ public class ProcessSpanStageHandler implements StageHandler {
         logger.debug("Leaving ProcessSpanStageHandler....");
         return results;
     }
-
 }

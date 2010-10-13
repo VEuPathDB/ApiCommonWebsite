@@ -18,11 +18,11 @@ import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
-public class SpanFromQuestionStageHandler extends SpanStageHandler {
+public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    public StepBean getImportedStep(ActionServlet servlet,
+    public StepBean getChildStep(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
@@ -61,11 +61,11 @@ public class SpanFromQuestionStageHandler extends SpanStageHandler {
         String filterName = request.getParameter("filter");
 
         UserBean user = ActionUtility.getUser(servlet, request);
-        StepBean importedStep = user.createStep(question, params, filterName, false,
+        StepBean childStep = user.createStep(question, params, filterName, false,
                 true, weight);
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return importedStep;
+        return childStep;
     }
 
 }

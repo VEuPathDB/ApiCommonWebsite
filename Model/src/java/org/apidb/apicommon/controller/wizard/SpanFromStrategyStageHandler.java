@@ -12,13 +12,13 @@ import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 
-public class SpanFromStrategyStageHandler extends SpanStageHandler {
+public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
 
     private static final String PARAM_IMPORT_STRATEGY = "importStrategy";
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    public StepBean getImportedStep(ActionServlet servlet,
+    public StepBean getChildStep(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
@@ -33,12 +33,12 @@ public class SpanFromStrategyStageHandler extends SpanStageHandler {
         UserBean user = ActionUtility.getUser(servlet, request);
         StrategyBean strategy = user.getStrategy(strategyId);
         StepBean step = strategy.getLatestStep();
-        StepBean importStep = step.deepClone();
-        importStep.setIsCollapsible(true);
-        importStep.setCollapsedName("Copy of " + strategy.getName());
-        importStep.update(false);
+        StepBean childStep = step.deepClone();
+        childStep.setIsCollapsible(true);
+        childStep.setCollapsedName("Copy of " + strategy.getName());
+        childStep.update(false);
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return importStep;
+        return childStep;
     }
 }
