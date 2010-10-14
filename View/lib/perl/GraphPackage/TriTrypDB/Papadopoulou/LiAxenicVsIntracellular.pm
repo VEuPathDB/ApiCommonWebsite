@@ -25,7 +25,6 @@ sub init {
     ({'expr_val' => {profiles => ['Profiles of Linfantum axenic and intracellular amastigote array data'],
                            y_axis_label => 'Expression Value',
                            colors => $colors,
-                           r_adjust_profile => 'profile = cbind(profile[1,1:3], profile[1,4:6]);',
                            default_y_max => 1.5,
                            default_y_min => -1.5,
                            force_x_axis_label_horizontal => 1,
