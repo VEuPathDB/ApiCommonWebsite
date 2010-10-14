@@ -1,7 +1,5 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,21 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.controller.WdkOutOfSyncException;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.QuestionForm;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
-import org.gusdb.wdk.controller.action.WizardAction;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.controller.wizard.StageHandlerUtility;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
-import org.gusdb.wdk.model.jspwrap.StrategyBean;
-import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.json.JSONException;
 
 public abstract class ShowSpanStageHandler implements StageHandler {
 
@@ -68,18 +60,10 @@ public abstract class ShowSpanStageHandler implements StageHandler {
 
         // determine the previous step
         String action = wizardForm.getAction();
-        StepBean previousStep;
+        StepBean previousStep = StageHandlerUtility.getPreviousStep(servlet, request, wizardForm);
         boolean chooseOutput = true;
-        if (action.equals(WizardForm.ACTION_ADD)) {
-            // add, the current step is the last step of a strategy or a
-            // sub-strategy, use it as the input;
-            previousStep = getRootStep(servlet, request, wizardForm);
-        } else { // revise or insert,
-            // the current step is always the lower step in the graph, no
-            // matter whether it's a boolean, or a combined step. Use the
-            // previous step as the input.
-            StepBean currentStep = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
-            previousStep = currentStep.getPreviousStep();
+        if (!action.equals(WizardForm.ACTION_ADD)) {
+            StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
 
             // now get the new next step after the newly added span step, and
             // determine if the next step allows you to change type
@@ -87,9 +71,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
                     : currentStep.getParentOrNextStep();
             String childType = childStep.getType();
             String previousType = previousStep.getType();
-            if (nextStep != null && !childType.equals(previousType)) {
-                chooseOutput = false;
-            }
+            chooseOutput = (nextStep == null || childType.equals(previousType));
         }
 
         // if the current has any parent, disable the output choice option
@@ -101,41 +83,6 @@ public abstract class ShowSpanStageHandler implements StageHandler {
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
         return attributes;
-    }
-
-    private StepBean getRootStep(ActionServlet servlet,
-            HttpServletRequest request, WizardForm wizardForm)
-            throws WdkUserException, NumberFormatException, WdkModelException,
-            NoSuchAlgorithmException, JSONException, SQLException {
-        // get current strategy
-        String strategyKey = wizardForm.getStrategy();
-        if (strategyKey == null || strategyKey.length() == 0)
-            throw new WdkUserException("No strategy was specified for "
-                    + "processing!");
-
-        // did we get strategyId_stepId?
-        int pos = strategyKey.indexOf("_");
-        String strStratId = (pos > 0) ? strategyKey.substring(0, pos)
-                : strategyKey;
-
-        // get strategy, and verify the checksum
-        UserBean user = ActionUtility.getUser(servlet, request);
-        StrategyBean strategy = user.getStrategy(Integer.parseInt(strStratId));
-        String checksum = request.getParameter(CConstants.WDK_STRATEGY_CHECKSUM_KEY);
-        if (checksum != null && !strategy.getChecksum().equals(checksum))
-            throw new WdkOutOfSyncException("strategy checksum: "
-                    + strategy.getChecksum() + ", but the input checksum: "
-                    + checksum);
-
-        // load branch root, if exists
-        StepBean rootStep;
-        if (pos > 0) {
-            int branchRootId = Integer.valueOf(strategyKey.substring(pos + 1));
-            rootStep = strategy.getStepById(branchRootId);
-        } else {
-            rootStep = strategy.getLatestStep();
-        }
-        return rootStep;
     }
 
 }
