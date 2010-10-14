@@ -19,7 +19,7 @@ sub init {
 
   my $legend = ["Intracellular Amastigote vs Promastigote", "Axenic Amastigote vs Promastigote"];
 
-  $self->setMainLegend({colors => ['#FF4500','#4AA02C'], short_names => $legend, cols => 1});
+  $self->setMainLegend({colors => ['#43C6DB','#4AA02C'], short_names => $legend, cols => 1});
 
   $self->setProfileSetsHash
     ({'expr_val' => {profiles => ['Profiles of Linfantum axenic and intracellular amastigote array data'],
@@ -36,7 +36,7 @@ sub init {
                            'Linfantum axenic and intracellular amastigote array data profile percents(green)'],
                            y_axis_label => 'Percentile',
                            default_y_max => 50,
-                           colors => ['#FF4500', '#43C6DB','#4AA02C','#43C6DB'],
+                           colors => ['#43C6DB', '#F4A460','#4AA02C','#F4A460'],
                            x_axis_labels => ['Ic.A vs P', 'Ax.A vs P'],
                            plot_title => 'Comparison of Axenic and Intracellular Amastigotes (with Promastigotes) using transcription profiling',
              },
