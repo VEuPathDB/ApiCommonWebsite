@@ -75,6 +75,8 @@ sub init {
 
   $self->setTempFiles([]);
 
+  $self->setProfileSetsHash([]);
+
   $self->setAllNames([]);
   $self->setAllValues({});
 
