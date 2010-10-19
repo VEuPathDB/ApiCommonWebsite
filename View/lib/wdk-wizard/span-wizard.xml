@@ -16,7 +16,7 @@
          display="Process Span Logic operation"
          handlerClass="org.apidb.apicommon.controller.wizard.ProcessSpanStageHandler">
     <description>Process span logic operation and redirect to processFilter.</description>
-    <result type="action">/processFilter.do</result>
+    <result type="action">/processStep.do</result>
   </stage>
   <stage name="revise_span" 
          display="Revise Span Parameters"
