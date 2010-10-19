@@ -154,11 +154,12 @@ for(i in 1:length(profile.files)) {
   profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
   profile = profile.df\$VALUE;
 
+  element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
+  element.names = as.character(element.names.df\$NAME);
+
 # allow minor adjustments to profile
 $rAdjustProfile
 
-  element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
-  element.names = as.character(element.names.df\$NAME);
   element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
    is.numeric.element.names = !is.na(element.names.numeric);
 
