@@ -22,7 +22,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch=> $pch});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['Profiles of Derisi HalfLife-Ring',
+    ({ expr_val => {profiles => ['Profiles of Derisi HalfLife-Ring',
 				'Profiles of Derisi HalfLife-Trophozoite',
 				'Profiles of Derisi HalfLife-Schizont',
 				'Profiles of Derisi HalfLife-Late_Schizont',
