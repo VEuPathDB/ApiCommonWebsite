@@ -223,7 +223,7 @@ Scaffolds	In genomic mapping, a series of contigs that are in the right order an
 	
 Sequence similarity	Degree of similarity between two or more protein or nucleotide sequences.
 	
-Signal peptide	Short (3-60 amino acids) peptide sequence that directs the post-translational transport of a protein to certain organelles or for secretion.
+Signal peptide	Short (3-60 amino acids) peptide sequence that directs the co-translational import of a protein to certain organelles or for secretion.
 	
 SignalP	Program that predicts the presence and location of signal peptide cleavage sites in amino acid sequences from Gram-positive and -negative prokaryotes and eukaryotes. The method incorporates a prediction of cleavage sites and a signal peptide/nonsignal peptide prediction based on a combination of several artificial neural networks and hidden Markov models (HMMs).
 	
