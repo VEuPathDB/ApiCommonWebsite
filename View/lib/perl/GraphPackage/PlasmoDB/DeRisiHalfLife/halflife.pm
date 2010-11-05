@@ -23,7 +23,7 @@ sub init {
 
 
   $self->setProfileSetsHash
-    ({hl => {profiles => ['Profiles of Derisi HalfLife-half_life'],
+    ({half_life => {profiles => ['Profiles of Derisi HalfLife-half_life'],
 #             stdev_profiles => ['Profiles of Derisi HalfLife-std_dev'],
               y_axis_label => 'half-life (min)',
               colors => $colors,
