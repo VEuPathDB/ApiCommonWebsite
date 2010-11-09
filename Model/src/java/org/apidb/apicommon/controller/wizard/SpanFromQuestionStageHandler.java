@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
+import org.gusdb.wdk.controller.action.ProcessQuestionAction;
+import org.gusdb.wdk.controller.action.QuestionForm;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.ParamBean;
@@ -27,6 +29,8 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
             WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
 
+        UserBean user = ActionUtility.getUser(servlet, request);
+
         // create a new step from question
         String questionName = request.getParameter(CConstants.QUESTION_FULLNAME_PARAM);
         if (questionName == null || questionName.length() == 0)
@@ -36,12 +40,14 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         QuestionBean question = wdkModel.getQuestion(questionName);
 
-        Map<String, String> params = new HashMap<String, String>();
-        for (ParamBean param : question.getParams()) {
-            String paramName = param.getName();
-            Object value = wizardForm.getValueOrArray(paramName);
-            params.put(paramName, (String) value);
-        }
+        // prepare the params
+        QuestionForm questionForm = new QuestionForm();
+        questionForm.copyFrom(wizardForm);
+        questionForm.setServlet(servlet);
+        questionForm.setQuestion(question);
+
+        Map<String, String> params = ProcessQuestionAction.prepareParams(user,
+                request, questionForm);
 
         // get the assigned weight
         String strWeight = request.getParameter(CConstants.WDK_ASSIGNED_WEIGHT_KEY);
@@ -60,9 +66,8 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
         // create a step from the input
         String filterName = request.getParameter("filter");
 
-        UserBean user = ActionUtility.getUser(servlet, request);
-        StepBean childStep = user.createStep(question, params, filterName, false,
-                true, weight);
+        StepBean childStep = user.createStep(question, params, filterName,
+                false, true, weight);
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
         return childStep;
