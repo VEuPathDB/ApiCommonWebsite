@@ -20,6 +20,7 @@ public class ProcessSpanStageHandler implements StageHandler {
 
     public static String PARAM_OUTPUT = "span_output";
     public static String PARAM_VALUE_OUTPUT_A = "a";
+    public static String PARAM_SPAN_A = "span_a";
     public static String PARAM_SPAN_B = "span_b";
 
     private static final String ATTR_QUESTION_NAME = "questionFullName";
@@ -52,18 +53,13 @@ public class ProcessSpanStageHandler implements StageHandler {
 
         String output = (String) wizardForm.getValueOrArray(PARAM_OUTPUT);
 
-        StepBean step;
-        if (output.equals(PARAM_VALUE_OUTPUT_A)) {
-            // select step a as output
-            step = (StepBean) request.getAttribute(WizardAction.ATTR_STEP);
-        } else {
-            // select step b as output
-            String strStepId = (String) wizardForm.getValueOrArray(PARAM_SPAN_B);
-            int stepId = Integer.valueOf(strStepId);
+        String span = output.equals(PARAM_VALUE_OUTPUT_A) ? PARAM_SPAN_A
+                : PARAM_SPAN_B;
+        String strStepId = (String) wizardForm.getValueOrArray(span);
+        int stepId = Integer.valueOf(strStepId);
 
-            UserBean user = ActionUtility.getUser(servlet, request);
-            step = user.getStep(stepId);
-        }
+        UserBean user = ActionUtility.getUser(servlet, request);
+        StepBean step = user.getStep(stepId);
         String questionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
 
         Map<String, Object> results = new HashMap<String, Object>();
