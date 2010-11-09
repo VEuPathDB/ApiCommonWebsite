@@ -28,6 +28,7 @@ import org.json.JSONException;
 
 public abstract class ShowSpanStageHandler implements StageHandler {
 
+    private static final String ATTR_PREVIOUS_STEP = "previousStep";
     private static final String ATTR_IMPORT_STEP = "importStep";
     private static final String ATTR_ENABLE_OUTPUT = "enableOuput";
 
@@ -108,6 +109,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         String enableOutput = enableOutput(previousStep, childStep, nextStep,
                 nextParam);
         attributes.put(ATTR_ENABLE_OUTPUT, enableOutput);
+        attributes.put(ATTR_PREVIOUS_STEP, previousStep);
 
         // also set the step ids as the default of the the input params
         wizardForm.setValue("span_a", previousStep.getStepId());
@@ -133,6 +135,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         String enableOutput = enableOutput(previousStep, childStep, nextStep,
                 nextParam);
         attributes.put(ATTR_ENABLE_OUTPUT, enableOutput);
+        attributes.put(ATTR_PREVIOUS_STEP, previousStep);
 
         // also set the step ids as the default of the the input params
         wizardForm.setValue("span_a", previousStep.getStepId());
@@ -158,6 +161,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         String enableOutput = enableOutput(previousStep, childStep, nextStep,
                 nextParam);
         attributes.put(ATTR_ENABLE_OUTPUT, enableOutput);
+        attributes.put(ATTR_PREVIOUS_STEP, previousStep);
 
         // also set the step ids as the default of the the input params
         wizardForm.setValue("span_a", previousStep.getStepId());
