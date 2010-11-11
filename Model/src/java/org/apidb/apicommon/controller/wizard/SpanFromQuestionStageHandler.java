@@ -1,6 +1,5 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,13 +13,14 @@ import org.gusdb.wdk.controller.action.ProcessQuestionAction;
 import org.gusdb.wdk.controller.action.QuestionForm;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.jspwrap.ParamBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
+
+    public static final String PARAM_CUSTOM_NAME = "customName";
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
@@ -68,6 +68,12 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
         StepBean childStep = user.createStep(question, params, filterName,
                 false, true, weight);
+        
+        String customName = request.getParameter(PARAM_CUSTOM_NAME);
+        if (customName != null && customName.trim().length() > 0) {
+            childStep.setCustomName(customName);
+            childStep.update(false);
+        }
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
         return childStep;
