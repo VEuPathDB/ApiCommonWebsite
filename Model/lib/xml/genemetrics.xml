@@ -351,7 +351,7 @@
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">41</attribute>
        <attribute name="Leishmania_infantum">8123</attribute>
-       <attribute name="Leishmania_major">232</attribute>
+       <attribute name="Leishmania_major">2490</attribute>
        <attribute name="Neospora_caninum">2605</attribute>
        <attribute name="Plasmodium_berghei">4969</attribute>
        <attribute name="Plasmodium_chabaudi">5179</attribute>
@@ -385,7 +385,7 @@
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">0</attribute>
        <attribute name="Leishmania_infantum">8119</attribute>
-       <attribute name="Leishmania_major">155</attribute>
+       <attribute name="Leishmania_major">2256</attribute>
        <attribute name="Neospora_caninum">0</attribute>
        <attribute name="Plasmodium_berghei">4339</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
