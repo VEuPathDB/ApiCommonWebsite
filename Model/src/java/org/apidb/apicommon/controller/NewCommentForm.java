@@ -50,6 +50,7 @@ public class NewCommentForm extends ActionForm {
     private String locType;
     private String[] targetCategory;
     private String pmIds;
+    private String dois;
     private String accessions;
     private String associatedStableIds;
     private String contig;
@@ -297,6 +298,14 @@ public class NewCommentForm extends ActionForm {
         return this.pmIds;
     }
 
+    public void setDois(String id) {
+        this.dois = id;
+    }
+
+    public String getDois() {
+        return this.dois;
+    }
+
     public void setContig(String contig) {
         this.contig = contig;
     }
@@ -532,6 +541,7 @@ public class NewCommentForm extends ActionForm {
         locType = null;
         targetCategory = null;
         pmIds = null;
+        dois = null;
         accessions = null;
         associatedStableIds = null;
     }

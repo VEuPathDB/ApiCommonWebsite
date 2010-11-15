@@ -68,6 +68,15 @@ public class EditCommentAction extends CommentAction {
           }
         }
 
+        String[] dois = comment.getDois();
+        String doiString = "";
+        if(dois != null && dois.length > 0) {
+          doiString += "&dois=";
+          for(int i = 0; i < dois.length; i++) {
+            doiString += dois[i] + " "; 
+          }
+        }
+
         String[] accessions = comment.getAccessions();
         String accessionsString = "";
         if(accessions != null && accessions.length > 0) {
@@ -112,6 +121,7 @@ public class EditCommentAction extends CommentAction {
                              + "&email=" + email
                              + categoryString
                              + pmIdString
+                             + doiString
                              + accessionsString
                              + associatedString
                              + fileString

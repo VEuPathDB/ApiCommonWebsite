@@ -66,6 +66,7 @@ public class Comment {
     private int[] targetCategoryIds;
     private String[] targetCategoryNames;
     private String[] pmIds;
+    private String[] dois;
     private String[] accessions;
     private String[] files;
     private String[] existingFiles; 
@@ -192,6 +193,14 @@ public class Comment {
      */
     public void setPmIds(String[] pmIds) {
         this.pmIds = pmIds;
+    }
+
+    public String[] getDois() {
+        return dois;
+    }
+
+    public void setDois(String[] dois) {
+        this.dois = dois;
     }
 
     /**
@@ -418,6 +427,9 @@ public class Comment {
         if(databaseName.toLowerCase().equals("pubmed")) {
           this.pmIds = ids;
           return this.pmIds;
+        } else if(databaseName.toLowerCase().equals("doi")) {
+          this.dois = ids;
+          return this.dois;
         } else if(databaseName.toLowerCase().equals("genbank")) {
           this.accessions = ids;
           return this.accessions;

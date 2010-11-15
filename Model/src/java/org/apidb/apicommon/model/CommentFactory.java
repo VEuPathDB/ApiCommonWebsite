@@ -115,6 +115,7 @@ public class CommentFactory {
             int commentId = platform.getNextId(commentSchema, "comments");
             int[] targetCategoryIds = comment.getTargetCategoryIds();
             String[] pmIds = comment.getPmIds();
+            String[] dois = comment.getDois();
             String[] accessions = comment.getAccessions();
             String[] files = comment.getFiles();
             String[] existingFiles = comment.getExistingFiles();
@@ -173,6 +174,10 @@ public class CommentFactory {
 
             if ((pmIds != null) && (pmIds.length > 0)) {
                 savePmIds(commentId, pmIds);
+            }
+
+            if ((dois != null) && (dois.length > 0)) {
+                saveDois(commentId, dois);
             }
 
             if ((accessions != null) && (accessions.length > 0)) {
@@ -430,6 +435,37 @@ public class CommentFactory {
                     statement.setInt(1, commentPmId);
                     statement.setString(2, pmId);
                     statement.setString(3, "pubmed");
+                    statement.setInt(4, commentId);
+                    statement.execute();
+                }
+            }
+        } finally {
+            SqlUtils.closeStatement(statement);
+        }
+    }
+
+    private void saveDois(int commentId, String[] dois) throws SQLException,
+            WdkModelException, WdkUserException {
+        String commentSchema = config.getCommentSchema();
+
+        // construct sql
+        StringBuffer sql = new StringBuffer();
+        sql.append("INSERT INTO " + commentSchema + "CommentReference ");
+        sql.append("(comment_reference_id, source_id, ");
+        sql.append("database_name, comment_id ");
+        sql.append(") VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+                    sql.toString());
+
+            for (String doi : dois) {
+                if ((doi != null) && (doi.trim().length() != 0)) {
+                    int commentPmId = platform.getNextId(commentSchema,
+                            "commentReference");
+                    statement.setInt(1, commentPmId);
+                    statement.setString(2, doi);
+                    statement.setString(3, "doi");
                     statement.setInt(4, commentId);
                     statement.execute();
                 }
@@ -797,6 +833,9 @@ public class CommentFactory {
 
             // load genbank ids
             loadReference(commentId, comment, "genbank");
+
+            // load doi ids
+            loadReference(commentId, comment, "doi");
 
             // load files
             loadFiles(commentId, comment);
