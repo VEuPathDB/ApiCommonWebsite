@@ -303,4 +303,31 @@
     </attribute>
   </tag>
 
+  <tag>
+    <description>
+    Display messages stored in the apicomm database for given project (AmoebaDB,
+    etc) and category (Information, Event, Degraded, etc (see 
+    announce.messages.message_category in apicomm)).
+    </description>
+    <name>messages</name>
+    <tagclass>org.apidb.apicommon.taglib.wdk.SiteMessagesTag</tagclass>
+    <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>projectName</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>messageCategory</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
+
 </taglib>
