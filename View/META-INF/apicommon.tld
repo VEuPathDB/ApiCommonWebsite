@@ -340,6 +340,7 @@
     </description>
     <name>xmlMessages</name>
     <tagclass>org.apidb.apicommon.taglib.wdk.SiteXmlMessagesTag</tagclass>
+    <teiclass>org.apidb.apicommon.taglib.wdk.SiteXmlMessagesTEI</teiclass>
     <bodycontent>scriptless</bodycontent>
       <attribute>
           <name>var</name>
