@@ -27,11 +27,10 @@
            
          <![CDATA[
 <body>
-<span style="font-weight: bold;">We are pleased to
+<b>We are pleased to
 announce the release of TriTrypDB 2.5<br>
 <br>
-This release of TriTrypDB contains the following new datasets:</span><span
-style="font-weight: bold;">&nbsp;<br>
+This release of TriTrypDB contains the following new datasets:</b>
 <br>
 <ul>
 <li><i>L. braziliensis</i> secretome proteomics data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/19703603">Cuervo <i>et. al.</i></a>  This data can be searched from the Mass spec. 
