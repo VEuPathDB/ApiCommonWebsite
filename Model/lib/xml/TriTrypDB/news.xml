@@ -34,28 +34,17 @@ This release of TriTrypDB contains the following new datasets:</span><span
 style="font-weight: bold;">&nbsp;<br>
 <br>
 <ul>
-<li><span style="font-style: italic;">L. braziliensis</span>
-secretome proteomics data from <a
-href="http://www.ncbi.nlm.nih.gov/pubmed/19703603">Cuervo <span style="font-style: italic;">et. al.</span></a>&nbsp;
-This data can be searched from the Mass spec. evidence search page under the heading "Protein Expression" -- listed under <span style="font-style: italic;">Leishmania braziliensis</span>.&nbsp; In
-addition, peptide evidence is displayed on gene pages in the <a style="font-weight: bold;" href="http://tritrypdb.org/gene/LbrM28_V2.2990">Protein Section</a>
-and in the <a href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1067465;stop=1099429;ref=Lbr.chr28;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=41e85df981cbb7858cfc5cce8d035fac;label=Gene-CuervoMassSpecPeptides;h_feat=lbrm28_v2.2990@yellow"><span
-style="font-weight: bold;">genome browser</span></a> by turning on the track specific for this data.<br><br></li>
+<li><i>L. braziliensis</i> secretome proteomics data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/19703603">Cuervo <i>et. al.</i></a>  This data can be searched from the Mass spec. 
+evidence search page under the heading "Protein Expression" -- listed under <i>Leishmania braziliensis</i>.  In
+addition, peptide evidence is displayed on gene pages in the <b><a "href="http://tritrypdb.org/gene/LbrM28_V2.2990">Protein Section</a></b>
+and in the <b><a href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1067465;stop=1099429;ref=Lbr.chr28;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=41e85df981cbb7858cfc5cce8d035fac;label=Gene-CuervoMassSpecPeptides;h_feat=lbrm28_v2.2990@yellow">genome browser</a></b> by turning on the track specific for this data.<br><br></li>
 </ul>
 <ul>
-<li><span style="font-style: italic;">L. major </span>exosome
-proteomics data from <a
-href="http://www.ncbi.nlm.nih.gov/pubmed/20159964">Silverman <span
-style="font-style: italic;">et. al.</span></a>&nbsp; This data can be
-searched from the Mass spec. evidence search page
-under the heading "Protein Expression" -- listed under <span
-style="font-style: italic;">Leishmania major</span>&nbsp; In
-addition, peptide evidence is displayed on gene pages in the <a
-style="font-weight: bold;" href="http://tritrypdb.org/gene/LmjF36.1630">Protein
-Section</a>
-and in the <a
-href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=10000;stop=2670000;ref=Lmjchr36;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=ab2cb79ffb33a31d4cd2444a2e42a5fa;label=Gene-SilvermanMassSpecPeptides;h_feat=lmjf36.1630@yellow"><span
-style="font-weight: bold;">genome browser</span></a> by turning on
+<li><i>L. major </i>exosome proteomics data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/20159964">Silverman <i>et. al.</i></a>  This data can be
+searched from the Mass spec. evidence search page under the heading "Protein Expression" -- listed under <i>Leishmania major</i>.  In
+addition, peptide evidence is displayed on gene pages in the <b><a "href="http://tritrypdb.org/gene/LmjF36.1630">Protein Section</a></b>
+and in the <b><a
+href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=10000;stop=2670000;ref=Lmjchr36;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=ab2cb79ffb33a31d4cd2444a2e42a5fa;label=Gene-SilvermanMassSpecPeptides;h_feat=lmjf36.1630@yellow">genome browser</a><b> by turning on
 the track specific for this data.<br><br></li>
 </ul>
 <ul>
