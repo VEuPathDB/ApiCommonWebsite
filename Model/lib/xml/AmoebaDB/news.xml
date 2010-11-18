@@ -17,7 +17,7 @@
 --> 
 <record>
        <attribute name="headline">AmoebaDB 1.3 Released</attribute>
-       <attribute name="date">11 November 2010 15:00</attribute>
+       <attribute name="date">18 November 2010 15:00</attribute>
        <attribute name="tag">amoeba11_10_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
@@ -34,7 +34,7 @@ style="font-weight: bold;"> <br>
 <span style="font-weight: bold;">Draft</span> assemblies of the
 following genomes (Complete data source information is available <a
 href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=E.dispar_Annotations,E.invadens_Annotations,E.histolytica_Annotations,E.histolyticaDS4_Genome,E.histolyticaKU50_Genome,E.histolyticaMS96_Genome,E.histolyticaHM1_CA_Genome,E.histolyticaKU48_Genome,E.histolyticaKU27_Genome&amp;title=Query#E.histolyticaDS4_Genome">here</a>):
-<br><ul>
+<br><br><ul>
 <ul>
 <li><span style="font-style: italic;">E. histolytica</span> DS4</li>
 <li><span style="font-style: italic;">E. histolytica </span>KU50</li>
@@ -61,7 +61,7 @@ style="font-style: italic;">. <br>
 </span></li>
 <li>Additionally, genomic sequence data may be downloaded from the <a
 href="http://amoebadb.org/common/downloads/release-1.3/">AmoebaDB
-download directory</a>.<br></li>
+download directory</a>.<br><br></li>
 </ul>
 </ul>
 <ul>
