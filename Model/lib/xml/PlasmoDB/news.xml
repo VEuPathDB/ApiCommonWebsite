@@ -17,7 +17,59 @@
        </attribute>
     </record>
 -->
-
+<record>
+       <attribute name="headline">PlasmoDB 7.1 Released</attribute>
+       <attribute name="date">18 November 2010 15:00</attribute>
+       <attribute name="tag">plasmo11_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 7.1<br>
+<br>
+<br>
+This release of PlasmoDB contains the following new data:</span><span
+style="font-weight: bold;">&nbsp;<br>
+</span><br>
+<ul>
+<li><span style="font-style: italic;">P. falciparum </span>blood
+stage proteomics data (trophozoites and early and mature gametocytes)
+from <a href="http://www.ncbi.nlm.nih.gov/pubmed/20332084"><span
+style="font-style: italic;">Silvestrini et. al.</span></a>&nbsp; This
+data can be searched from the Mass spec. evidence search page
+under the heading "Protein Expression" -- listed under <span
+style="font-style: italic;">Plasmodium falciparum </span>and
+selecting "Blood Stage Proteome - Trophozoites, Early Gametocytes (gct
+I/II) and/or Mature Gametocytes (gct V)".&nbsp; In
+addition, peptide evidence is displayed on gene pages in the <a
+style="font-weight: bold;" href="http://plasmodb.org/gene/PFL2405c">Protein
+Section</a>
+and in the <a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1080000;stop=1270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=6436e0c6f1efb6e68613f9388b25e99f;label=AnnotatedGenes-LasonderMassSpecPeptidesBloodStage;h_feat=pfl2415w%40yellow"><span
+style="font-weight: bold;">genome browser</span></a> by turning on
+the track specific for this data.&nbsp; An example search strategy that
+identifies genes that have mass spec evidence in the early gametocytes
+but not in trophozoites or mature gametocytes can be accessed and
+modified <a href="http://plasmodb.org/plasmo/im.do?s=55d0c2d79d37e20d">here</a>.<br>
+</li>
+</ul>
+<br>
+<span style="font-weight: bold;">New Feature in PlasmoDB:</span> you can now add
+publications to your user comments using their <a
+href="http://www.doi.org/index.html">Digital Object Identifier</a>
+(DOI) numbers.&nbsp; To view a list of all genes that have a user
+comment in PlasmoDB, click <a
+href="http://plasmodb.org/plasmo/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;myMultiProp%28text_search_organism%29=Plasmodium%20berghei,Plasmodium%20chabaudi,Plasmodium%20falciparum,Plasmodium%20knowlesi,Plasmodium%20vivax,Plasmodium%20yoelii&amp;myMultiProp%28text_fields%29=User%20comments&amp;myMultiProp%28whole_words%29=no&amp;myProp%28max_pvalue%29=-30&amp;myProp%28text_expression%29=*&amp;myProp%28timestamp%29=Nov%2017,%202010%209:39:32%20PM">here</a>.<br>
+<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span>
+<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>  
 <record>
        <attribute name="headline">
          <![CDATA[
