@@ -34,19 +34,19 @@ style="font-weight: bold;"> <br>
 <span style="font-weight: bold;">Draft</span> assemblies of the
 following genomes (Complete data source information is available <a
 href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=E.dispar_Annotations,E.invadens_Annotations,E.histolytica_Annotations,E.histolyticaDS4_Genome,E.histolyticaKU50_Genome,E.histolyticaMS96_Genome,E.histolyticaHM1_CA_Genome,E.histolyticaKU48_Genome,E.histolyticaKU27_Genome&amp;title=Query#E.histolyticaDS4_Genome">here</a>):
-<ul>
+<br><ul>
 <ul>
 <li><span style="font-style: italic;">E. histolytica</span> DS4</li>
 <li><span style="font-style: italic;">E. histolytica </span>KU50</li>
 <li><span style="font-style: italic;">E. histolytica</span> MS96</li>
 <li><span style="font-style: italic;">E. histolytica</span> HM-1:CA</li>
 <li><span style="font-style: italic;">E. histolytica</span> KU48</li>
-<li><span style="font-style: italic;">E. histolytica</span> KU27 <br>
+<li><span style="font-style: italic;">E. histolytica</span> KU27 <br><br>
 </li>
 </ul>
 </ul>
 <span style="font-style: italic;">Genomic sequence data in AmoebaDB may
-be searched and accessed in multiple ways:</span><br>
+be searched and accessed in multiple ways:</span><br><br>
 <ul>
 <ul>
 <li>Genomic sequence data is available under the heading "Genomic
@@ -61,7 +61,7 @@ style="font-style: italic;">. <br>
 </span></li>
 <li>Additionally, genomic sequence data may be downloaded from the <a
 href="http://amoebadb.org/common/downloads/release-1.3/">AmoebaDB
-download directory</a>.</li>
+download directory</a>.<br></li>
 </ul>
 </ul>
 <ul>
@@ -73,8 +73,8 @@ href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf
 style="font-style: italic;">Entamoeba</span> strain sequencing white
 paper</a>.&nbsp; Additional information on the project at JCVI can be
 accessed <a href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">here</a>.&nbsp;
-<br>
-Two presentations from JCVI are available here:<br>
+<br><br>
+Two presentations from JCVI are available here:<br><br>
 <ul>
 <ul>
 <li><a
@@ -95,6 +95,27 @@ href="http://amoebadb.org/amoeba/showSummary.do?questionFullName=GeneQuestions.G
 <span style="font-weight: bold;"></span>
 </body>
           ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+          AmoebaDB publication in Nucleic Acid Research
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2010 00:00</attribute>
+       <attribute name="tag">NAR2011</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+We are pleased to announce the publication of a paper in Nucleic Acid Research describing AmoebaDB.<br>
+Please cite this manuscript when referencing the AmoebaDB resource in your publications.
+<p>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=20974635">
+AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a> Nucleic Acids Res. 2010 Oct 24. Aurrecoechea C, et al.
+]]>
        </attribute>
     </record>
 <record>

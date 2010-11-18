@@ -14,7 +14,27 @@
        </attribute>
     </record>
 --> 
+<record>
+       <attribute name="headline">
+         <![CDATA[
+          AmoebaDB publication in Nucleic Acid Research
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2010 00:00</attribute>
+       <attribute name="tag">NAR2011</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
 
+We are pleased to announce the publication of a paper in Nucleic Acid Research describing MicrosporidiaDB.<br>
+Please cite this manuscript when referencing the MicrosporidiaDB resource in your publications.
+<p>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=20974635">
+AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a> Nucleic Acids Res. 2010 Oct 24. Aurrecoechea C, et al.
+]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">
          <![CDATA[

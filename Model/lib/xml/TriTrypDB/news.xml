@@ -38,18 +38,11 @@ New Data:</span><br>
 <ul>
 <li><span style="font-style: italic;">L. braziliensis</span>
 secretome proteomics data from <a
-href="http://www.ncbi.nlm.nih.gov/pubmed/19703603">Cuervo <span
-style="font-style: italic;">et. al.</span></a>&nbsp;
-This data can be searched from the Mass spec. evidence search page
-under the heading "Protein Expression" -- listed under <span
-style="font-style: italic;">Leishmania braziliensis</span>.&nbsp; In
-addition, peptide evidence is displayed on gene pages in the <a
-style="font-weight: bold;"
-href="http://tritrypdb.org/gene/LbrM28_V2.2990">Protein Section</a>
-and in the <a
-href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1067465;stop=1099429;ref=Lbr.chr28;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=41e85df981cbb7858cfc5cce8d035fac;label=Gene-CuervoMassSpecPeptides;h_feat=lbrm28_v2.2990@yellow"><span
-style="font-weight: bold;">genome browser</span></a> by turning on
-the track specific for this data.</li>
+href="http://www.ncbi.nlm.nih.gov/pubmed/19703603">Cuervo <span style="font-style: italic;">et. al.</span></a>&nbsp;
+This data can be searched from the Mass spec. evidence search page under the heading "Protein Expression" -- listed under <span style="font-style: italic;">Leishmania braziliensis</span>.&nbsp; In
+addition, peptide evidence is displayed on gene pages in the <a style="font-weight: bold;" href="http://tritrypdb.org/gene/LbrM28_V2.2990">Protein Section</a>
+and in the <a href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1067465;stop=1099429;ref=Lbr.chr28;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=41e85df981cbb7858cfc5cce8d035fac;label=Gene-CuervoMassSpecPeptides;h_feat=lbrm28_v2.2990@yellow"><span
+style="font-weight: bold;">genome browser</span></a> by turning on the track specific for this data.<br></li>
 </ul>
 <ul>
 <li><span style="font-style: italic;">L. major </span>exosome
@@ -65,7 +58,7 @@ Section</a>
 and in the <a
 href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=10000;stop=2670000;ref=Lmjchr36;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=ab2cb79ffb33a31d4cd2444a2e42a5fa;label=Gene-SilvermanMassSpecPeptides;h_feat=lmjf36.1630@yellow"><span
 style="font-weight: bold;">genome browser</span></a> by turning on
-the track specific for this data.</li>
+the track specific for this data.<br></li>
 </ul>
 <ul>
 <li><span style="font-style: italic;">L. infantum </span>differentiation<span
@@ -88,7 +81,7 @@ data is displayed on individual <a style="font-weight: bold;"
 href="http://tritrypdb.org/gene/LinJ08_V3.0690">gene pages</a>
 as graphs and a table in the expression section.&nbsp; You can click on
 "show" to see the table and you can select the type of graph to see
-(fold change graph, percentile graph or both).</li>
+(fold change graph, percentile graph or both).<br></li>
 </ul>
 <ul>
 <li>A draft assembly of the genome sequence of Leishmania major
@@ -98,7 +91,7 @@ Beverly.&nbsp; The assembly spans 30.8 Mb and is made up of a total of
 1904 scaffolds with an N50 scaffold length of over 691kb (N50 contig
 length for the 4009 contigs is 27kb).&nbsp;Complete data source
 information is available <a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#Crithidia_fasciculata_9.1">here</a>.</li>
+href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#Crithidia_fasciculata_9.1">here</a>.<br></li>
 </ul>
 <ul>
 <ul>
@@ -118,7 +111,7 @@ style="font-style: italic;">. <br>
 <ul>
 <li>Additionally, genomic sequence data may be downloaded from the <a
 href="http://tritrypdb.org/common/downloads/release-2.5/">TriTrypDB
-download directory</a>.</li>
+download directory</a>.<br></li>
 </ul>
 </ul>
 <ul>
