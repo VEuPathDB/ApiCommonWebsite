@@ -9,6 +9,10 @@
           <attribute name="title">Pathogenomics of Trypanosomatid parasites</attribute>
           <attribute name="url">http://tritrypdb.org/tritrypdb/communityDownload.do?fname=Trypanosomatid%20Sequencing%2008-08-07.pdf</attribute>
         </row>
+         <row>
+          <attribute name="title">CLIOC: The Leishmania collection of the Oswaldo Cruz Institute</attribute>
+          <attribute name="url"> http://clioc.fiocruz.br/</attribute>
+        </row>
         <row>
           <attribute name="title">GeneDB</attribute>
           <attribute name="url">http://www.genedb.org/</attribute>
