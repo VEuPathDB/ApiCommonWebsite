@@ -4,7 +4,7 @@
          display="Select Parameters"
          handlerClass="org.apidb.apicommon.controller.wizard.SpanFromQuestionStageHandler">
     <description>Select span logic paramters.</description>
-    <result type="view">/wdk/jsp/wizard/spanlogic.jsp</result>
+    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
   </stage>
   <stage name="span_from_strategy" 
          display="Select Parameters"
@@ -22,7 +22,7 @@
          display="Revise Span Parameters"
          handlerClass="org.apidb.apicommon.controller.wizard.SpanFromReviseStageHandler">
     <description>Revise span logic paramters.</description>
-    <result type="view">/wdk/jsp/wizard/spanlogic.jsp</result>
+    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
   </stage>
 
 </wdkWizard>
