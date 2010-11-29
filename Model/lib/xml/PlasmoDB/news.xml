@@ -75,10 +75,11 @@ Microarray Probes".<br>
 </li>
 </ul>
 <br>
-<span style="font-style: italic;">Note: We have corrected
-errors inadvertantly introduced by workflow software into the last
-build of PlasmoDB (7.0), resulting in inaccurate representation of P.
-yoelii liver stage expression profiling data.</span>&nbsp; <span
+<span style="font-style: italic;">Note: We have corrected errors
+inadvertently introduced into the last build of
+PlasmoDB (7.0, released on Sept. 21, 2010) that resulted in inaccurate
+representation of P. yoelii
+liver stage expression profiling data.</span>&nbsp; <span
 style="font-style: italic;">Please do not hesitate to <a
 href="mailto:help@plasmodb.org">contact us</a> if you have any
 questions.</span><br>
