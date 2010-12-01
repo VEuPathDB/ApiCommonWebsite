@@ -64,7 +64,45 @@ public class ProcessSpanStageHandler implements StageHandler {
         Map<String, Object> results = new HashMap<String, Object>();
         results.put(ATTR_QUESTION_NAME, questionName);
 
+        computeRegion(request, wizardForm, results, "a");
+        computeRegion(request, wizardForm, results, "b");
+
         logger.debug("Leaving ProcessSpanStageHandler....");
         return results;
+    }
+
+    private void computeRegion(HttpServletRequest request,
+            WizardForm wizardForm, Map<String, Object> attributes, String region) {
+        String option = request.getParameter("region_" + region);
+        if (option.equals("exact")) {
+            // use exact region of the feature
+            wizardForm.setValue("span_begin_" + region, "start");
+            wizardForm.setValue("span_begin_direction_" + region, "+");
+            wizardForm.setValue("span_begin_offset_" + region, "0");
+            wizardForm.setValue("span_end_" + region, "stop");
+            wizardForm.setValue("span_end_direction_" + region, "+");
+            wizardForm.setValue("span_end_offset_" + region, "0");
+        } else if (option.equals("upstream")) {
+            // use upstream region of the feature
+            String length = request.getParameter("upstream_region_" + region);
+            wizardForm.setValue("span_begin_" + region, "start");
+            wizardForm.setValue("span_begin_direction_" + region, "-");
+            wizardForm.setValue("span_begin_offset_" + region, length);
+            wizardForm.setValue("span_end_" + region, "start");
+            wizardForm.setValue("span_end_direction_" + region, "+");
+            wizardForm.setValue("span_end_offset_" + region, "0");
+        } else if (option.equals("downstream")) {
+            // use the downstream region of the feature
+            String length = request.getParameter("downstream_region_" + region);
+            wizardForm.setValue("span_begin_" + region, "stop");
+            wizardForm.setValue("span_begin_direction_" + region, "+");
+            wizardForm.setValue("span_begin_offset_" + region, "0");
+            wizardForm.setValue("span_end_" + region, "stop");
+            wizardForm.setValue("span_end_direction_" + region, "+");
+            wizardForm.setValue("span_end_offset_" + region, length);
+        } else {
+            // use custom region, the values are filled in the expected fields.
+            // do nothing here
+        }
     }
 }
