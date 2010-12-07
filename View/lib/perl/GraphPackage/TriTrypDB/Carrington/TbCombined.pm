@@ -39,7 +39,7 @@ sub init {
               y_axis_label => 'Percentile',
               force_x_axis_label_horizontal => 1,
               r_adjust_profile => 'profile=t(profile);profile = cbind(profile[1,1:2], profile[1,3:4],profile[1,5:6]);',
-              colors => ['#CCCCCC','#DDDDDD','#999999','#AAAAAA','#555555','#666666'],
+              colors => ['#CCCCCC','dark blue','#999999','dark blue','#555555','dark blue'],
               plot_title => 'Transcriptional profiling of T. brucei - percentile',
              },
 
