@@ -28,6 +28,7 @@ sub init {
                    default_y_max => 1,
                    default_y_min => -1,
                    force_x_axis_label_horizontal => 1,
+                   make_y_axis_fold_incuction => 1,
                   },
       pct => {profiles => ['T. brucei under heat shock array data profile percents (red)',
                            'T. brucei under heat shock array data profile percents (green)'],
