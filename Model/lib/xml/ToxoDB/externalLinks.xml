@@ -22,8 +22,8 @@
           <attribute name="url">http://orthomcl.cbil.upenn.edu</attribute>
         </row>
         <row>
-          <attribute name="title"><![CDATA[Metabolic Pathway Reconstruction for <i>T. gondii</i>]]></attribute>
-          <attribute name="url">http://v3-0.toxodb.org/include/fpPathwayReconstr.html</attribute>
+          <attribute name="title"><![CDATA[KEGG Pathways for <i>T. gondii</i>]]></attribute>
+          <attribute name="url">http://eupathdb.org/common/KEGGpathways/</attribute>
         </row>
         <row>
           <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>

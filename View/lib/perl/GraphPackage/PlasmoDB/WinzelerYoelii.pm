@@ -62,8 +62,8 @@ sub makeR {
 
    my $thumb_b   = $Self->getThumbnail();
 
-   my $minLgRat  = 100;
-   my $maxLgRat  = 65000;
+   my $minLgRat  = 0;
+   my $maxLgRat  = 10;
 
    my @_names    = $Self->getShortNamesQuery()->getValues($_qh, $_dict); 
    my $names     = join(',', map { '"'. $_->{NAME}. '"' } @_names);
@@ -124,7 +124,7 @@ color.strain.hpe <- rgb(  0,   0, 153, max=255);
 my.colors = c(as.vector(matrix("darkgreen", ncol=1, nrow=2)),
               as.vector(matrix("DarkSeaGreen", ncol=1, nrow=2)),
               as.vector(matrix("khaki", ncol=1, nrow=1)),
-              as.vector(matrix("orange", ncol=1, nrow=2)),
+              as.vector(matrix("orange", ncol=1, nrow=1)),
               as.vector(matrix("DarkGoldenRod", ncol=1, nrow=3)),
               as.vector(matrix("DarkGoldenRod3", ncol=1, nrow=2)),
               as.vector(matrix("DarkGoldenRod4", ncol=1, nrow=2)));
@@ -142,7 +142,7 @@ data.pct = data.pct.df\$VALUE;
 
 # ----------------------------- Data Limits ------------------------------
 
-ylim.lgr      <- c(0, min($maxLgRat, max($minLgRat, max(data.moid)+100)));
+ylim.lgr      <- c(0, min($maxLgRat, max($minLgRat, max(data.moid)+ max(data.moid)*.1)));
 
 # --------------------------- Prepare To Plot ----------------------------
 
@@ -172,7 +172,7 @@ if ($isVis_b{rat} == 1) {
           beside    = 1,
           las = 2,
           space     = c(0.1, 1),
-          ylab      = "moid expression values",
+          ylab      = "rma expression values",
           names.arg = c($names),
           col       = my.colors,
 #          border    = c(color.strain.hp, color.strain.hpe),

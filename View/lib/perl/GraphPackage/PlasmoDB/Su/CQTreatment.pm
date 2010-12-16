@@ -12,8 +12,8 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(200);
-  $self->setBottomMarginSize(8);
+#  $self->setScreenSize(200);
+#  $self->setBottomMarginSize(8);
 
   my $colors = ['#F08080', '#7CFC00' ];
 
@@ -27,16 +27,16 @@ sub init {
               y_axis_label => 'RMA Value (log2)',
               x_axis_labels => ['106/1', '106/1(76I)', '106/1(76I_352K)'],
               colors => $colors,
-              plot_title => 'Drug-selected mutants and short term CQ treatment',
               r_adjust_profile => 'profile = cbind(profile[1, 1:2],profile[1,3:4], profile[1,5:6]);',
-              legend => [],
+              force_x_axis_label_horizontal => 1, 
+             legend => [],
              },
-      pct => {profiles => ['Percents of E-GEOD-10022 array from Su'],
+      pct => {profiles => ['Percentiles of E-GEOD-10022 array from Su'],
               y_axis_label => 'percentile',
               x_axis_labels => ['106/1', '106/1(76I)', '106/1(76I_352K)'],
               colors => $colors,
-              plot_title => 'Percentiles of Drug-selected mutants and short term CQ treatment',
-              r_adjust_profile => 'profile = profile * 100;profile = cbind(profile[1, 1:2],profile[1,3:4], profile[1,5:6]);',
+              r_adjust_profile => 'profile = cbind(profile[1, 1:2],profile[1,3:4], profile[1,5:6]);',
+              force_x_axis_label_horizontal => 1, 
               legend => [],
              },
       });

@@ -37,12 +37,25 @@ Institute (<a href="http://www.sbri.org">SBRI</a>).
 <li><i>Leishmania major</i></li>
 <li><i>Leishmania infantum</i></li>
 <li><i>Leishmania braziliensis</i></li>
+<li><i>Leishmania mexicana</i></li>
 <li><i>Trypanosoma congolense</i></li>
 <li><i>Trypanosoma vivax</i></li>
 </ul>
        ]]>
        </attribute>
    </record>
+
+<record>
+       <attribute name="title">Citing Data Providers</attribute>
+       <attribute name="tag">citingproviders</attribute>
+       <attribute name="text">
+       <![CDATA[
+Much of the data in TriTrypDB is provided by ifndependent researchers.  For a list of the data integrated into TriTrypDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+       ]]>
+       </attribute>
+   </record>
+
+
 
  <record>
        <attribute name="title">Data Statistics</attribute>

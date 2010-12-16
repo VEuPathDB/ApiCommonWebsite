@@ -224,7 +224,7 @@ if ($isVis_b{pct} == 1) {
           las       = 2,
           names.arg = data.names,
           col       = my.colors,
-          ylim      = c(0,1),
+          ylim      = c(0,100),
           axis.lty  = "solid"
          );
   plasmodb.title("");

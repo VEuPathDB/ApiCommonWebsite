@@ -277,9 +277,14 @@ if ($isVis_b{winzeler} == 1) {
   print('b');
 
   # take log relative to mean
-  data.wsr.rat  <- unlist(lapply(data.wsr\$VALUE / data.wsr.mean, flooredLg));
+#  data.wsr.rat  <- unlist(lapply(data.wsr\$VALUE / data.wsr.mean, flooredLg));
+#  print('c');
+#  data.wtr.rat  <- unlist(lapply(data.wtr\$VALUE / data.wtr.mean, flooredLg));
+#  print('d');
+
+  data.wsr.rat  <- data.wsr\$VALUE - data.wsr.mean;
   print('c');
-  data.wtr.rat  <- unlist(lapply(data.wtr\$VALUE / data.wtr.mean, flooredLg));
+  data.wtr.rat  <- data.wtr\$VALUE - data.wtr.mean;
   print('d');
 
   print(data.wsr.rat);
@@ -327,7 +332,7 @@ if ($isVis_b{both} == 1) {
   screen.i <- screen.i + 1;
 
   plasmodb.par.last();
-  plot (data.dhp\$ELEMENT_ORDER, 100*data.dhp\$VALUE, col="blue", lwd=3,
+  plot (data.dhp\$ELEMENT_ORDER, data.dhp\$VALUE, col="blue", lwd=3,
         type="l",
         xlab = "Hours Post-Erythtocytic Invasion",
         xlim = c(x.min, x.max),
@@ -335,10 +340,10 @@ if ($isVis_b{both} == 1) {
         ylim = c(0,100),
         lab  = c(5,1,1)
        );
-  lines(data.d3p\$ELEMENT_ORDER, 100*data.d3p\$VALUE, col="red", lwd=3);
-  lines(data.ddp\$ELEMENT_ORDER, 100*data.ddp\$VALUE, col="orange", lwd=3);
-  lines(data.wsp\$ELEMENT_ORDER, 100*data.wsp\$VALUE, col=color.sorb, lwd=3);
-  lines(data.wtp\$ELEMENT_ORDER, 100*data.wtp\$VALUE, col=color.temp, lwd=3);
+  lines(data.d3p\$ELEMENT_ORDER, data.d3p\$VALUE, col="red", lwd=3);
+  lines(data.ddp\$ELEMENT_ORDER, data.ddp\$VALUE, col="orange", lwd=3);
+  lines(data.wsp\$ELEMENT_ORDER, data.wsp\$VALUE, col=color.sorb, lwd=3);
+  lines(data.wtp\$ELEMENT_ORDER, data.wtp\$VALUE, col=color.temp, lwd=3);
 
   plasmodb.grid();
   plasmodb.ticks(1,x.min,x.max,5);

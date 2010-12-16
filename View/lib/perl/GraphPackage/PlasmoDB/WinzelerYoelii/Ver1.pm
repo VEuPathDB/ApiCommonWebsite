@@ -44,7 +44,6 @@ sub init {
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name       => 'pct',
                    ProfileSet => 'winzeler py mixed RMAouput naturalscale percent',
-                   ScaleY => 100,
 		 )
 	 );
 

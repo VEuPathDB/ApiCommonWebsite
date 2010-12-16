@@ -73,47 +73,8 @@ public class Gff3Reporter extends Reporter {
         super(answerValue, startIndex, endIndex);
     }
 
-    /**
-     * (non-Javadoc)
-     * 
-     * @throws WdkModelException
-     * @see org.gusdb.wdk.model.report.Reporter#setProperties(java.util.Map)
-     */
-    @Override
-    public void setProperties(Map<String, String> properties)
-            throws WdkModelException {
-        super.setProperties(properties);
-
-        // check required properties
-        tableCache = properties.get(PROPERTY_TABLE_CACHE);
-        recordName = properties.get(PROPERTY_GFF_RECORD_NAME);
-        proteinName = properties.get(PROPERTY_GFF_PROTEIN_NAME);
-        transcriptName = properties.get(PROPERTY_GFF_TRANSCRIPT_NAME);
-
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.gusdb.wdk.model.report.Reporter#configure(java.util.Map)
-     */
-    @Override
-    public void configure(Map<String, String> config) {
-        super.configure(config);
-
-        // include transcript
-        if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
-            String value = config.get(FIELD_HAS_TRANSCRIPT);
-            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
-        }
-
-        // include protein
-        if (config.containsKey(FIELD_HAS_PROTEIN)) {
-            String value = config.get(FIELD_HAS_PROTEIN);
-            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
-                    : false;
-        }
+    public String getConfigInfo() {
+	return "This reporter does not have config info yet.";
     }
 
     /*
@@ -174,6 +135,26 @@ public class Gff3Reporter extends Reporter {
     }
 
     void initialize() throws SQLException {
+        // check required properties
+        tableCache = properties.get(PROPERTY_TABLE_CACHE);
+        recordName = properties.get(PROPERTY_GFF_RECORD_NAME);
+        proteinName = properties.get(PROPERTY_GFF_PROTEIN_NAME);
+        transcriptName = properties.get(PROPERTY_GFF_TRANSCRIPT_NAME);
+
+        // include transcript
+        if (config.containsKey(FIELD_HAS_TRANSCRIPT)) {
+            String value = config.get(FIELD_HAS_TRANSCRIPT);
+            hasTranscript = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
+        }
+
+        // include protein
+        if (config.containsKey(FIELD_HAS_PROTEIN)) {
+            String value = config.get(FIELD_HAS_PROTEIN);
+            hasProtein = (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")) ? true
+                    : false;
+        }
+
         if (psQuery == null) {
             // prepare the table query
             RecordClass recordClass = this.baseAnswer.getQuestion().getRecordClass();
@@ -269,6 +250,10 @@ public class Gff3Reporter extends Reporter {
         RecordClass recordClass = question.getRecordClass();
         String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
 
+        int idx = tableCache.indexOf('.');
+        String schema = (idx < 0) ? null : tableCache.substring(0, idx);
+        String table = (idx < 0) ? tableCache : tableCache.substring(idx + 1);
+
         // construct insert sql
         StringBuffer sqlInsert = new StringBuffer("INSERT INTO ");
         sqlInsert.append(tableCache).append(" (wdk_table_id, ");
@@ -278,7 +263,7 @@ public class Gff3Reporter extends Reporter {
         }
         sqlInsert.append(") VALUES (");
         sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression(
-                "apidb", "wdkTable"));
+                schema, table));
         sqlInsert.append(", ");
         sqlInsert.append("?, ?, ?");
         for (int i = 0; i < pkColumns.length; i++) {
@@ -490,6 +475,10 @@ public class Gff3Reporter extends Reporter {
         RecordClass recordClass = question.getRecordClass();
         String[] pkColumns = recordClass.getPrimaryKeyAttributeField().getColumnRefs();
 
+        int idx = tableCache.indexOf('.');
+        String schema = (idx < 0) ? null : tableCache.substring(0, idx);
+        String table = (idx < 0) ? tableCache : tableCache.substring(idx + 1);
+
         // construct insert sql
         StringBuffer sqlInsert = new StringBuffer("INSERT INTO ");
         sqlInsert.append(tableCache).append(" (wdk_table_id, ");
@@ -499,7 +488,7 @@ public class Gff3Reporter extends Reporter {
         }
         sqlInsert.append(") VALUES (");
         sqlInsert.append(wdkModel.getUserPlatform().getNextIdSqlExpression(
-                "apidb", "wdkTable"));
+                schema, table));
         sqlInsert.append(", ");
         sqlInsert.append("?, ?, ?");
         for (int i = 0; i < pkColumns.length; i++) {
