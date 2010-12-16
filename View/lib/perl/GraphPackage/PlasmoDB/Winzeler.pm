@@ -223,7 +223,7 @@ $preamble_R
 
 # ------------------------------ Constants -------------------------------
 
-cutoff.exp <- 10;
+cutoff.exp <- 3;
 
 color.temp       <- rgb(153,   0, 153, max=255);
 color.sorb       <- rgb(  0, 153, 153, max=255);
@@ -259,12 +259,14 @@ data.track2.mean.exp <- mean(data.temp.exp\$VALUE);
 data.track1.exp      <- c(data.spor.exp\$VALUE, data.sorb.exp\$VALUE);
 data.track2.exp      <- c(data.spor.exp\$VALUE, data.temp.exp\$VALUE);
 
-data.track1.rat      <- log(data.track1.exp / data.track1.mean.exp) / log(2.0);
-data.track2.rat      <- log(data.track2.exp / data.track2.mean.exp) / log(2.0);
+#data.track1.rat      <- log(data.track1.exp / data.track1.mean.exp) / log(2.0);
+#data.track2.rat      <- log(data.track2.exp / data.track2.mean.exp) / log(2.0);
+data.track1.rat      <- data.track1.exp - data.track1.mean.exp;
+data.track2.rat      <- data.track2.exp - data.track2.mean.exp;
 data.track2.rat[1]   <- data.track1.rat[1];
 
-data.track1.pct      <- 100 * c(data.spor.pct\$VALUE, data.sorb.pct\$VALUE);
-data.track2.pct      <- 100 * c(0,                    data.temp.pct\$VALUE, NA);
+data.track1.pct      <- c(data.spor.pct\$VALUE, data.sorb.pct\$VALUE);
+data.track2.pct      <- c(0,                    data.temp.pct\$VALUE, NA);
 data.track2.exp[1]   <- 0;
 
 colors.track1        <- c(colors.spor, colors.sorb);
@@ -404,7 +406,7 @@ if ($isVis_b{abs} == 1) {
           axis.lty  = "solid",
           cex.axis  = 0.75
         );
-  plasmodb.title("Expression levels (absolute)");
+  plasmodb.title("Expression levels (log2 absolute)");
 }
 
 # --------------------------------- Done ---------------------------------

@@ -83,10 +83,11 @@ sub run {
 
 	 # will declare this content type
 	 my %contentType = ( png  => 'image/png',
-                       pdf  => 'application/pdf',
-											 jpeg => 'image/jpeg',
-											 jpg  => 'image/jpeg',
-											 gif  => 'image/gif',
+                             pdf  => 'application/pdf',
+                             jpeg => 'image/jpeg',
+                             jpg  => 'image/jpeg',
+                             gif  => 'image/gif',
+                             table => 'text/html',
 										 );
 
    # some GDD formats may be different from their formats
@@ -94,7 +95,7 @@ sub run {
    my $gddFormat = $gddFormat{$format} || $format;
 
 	 # some extensions may be different from their format
-	 my %extension = ( 'jpeg' => 'jpg' );
+	 my %extension = ( 'jpeg' => 'jpg', table => 'txt' );
 	 my $ext = $extension{$format} || $format;
 
 	 # write to these files.
@@ -138,6 +139,7 @@ sub run {
    $_gp->setVisibleParts(\@visibleParts);
 
 	 my @files = $_gp->run();
+
 	 push(@filesToDelete, @files);
 
 	 # output the result; expiration date set to disable caching for
@@ -155,7 +157,7 @@ sub run {
       print STDERR join("\t", 'Files', @filesToDelete), "\n";
 	 }
    else {
-			unlink @filesToDelete;
+	  map {unlink $_ if $_} @filesToDelete;
    }
 }
 

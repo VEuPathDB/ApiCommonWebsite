@@ -9,6 +9,10 @@
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url">http://www.EuPathDB.org</attribute>
         </row>
+<row>
+          <attribute name="url">http://sites.huji.ac.il/malaria/</attribute>
+          <attribute name="title">Malaria Parasite Metabolic Pathways -- Many New and Updated Pathways</attribute>
+        </row>
         <row>
           <attribute name="title">ToxoDB</attribute>
           <attribute name="url">http://www.ToxoDB.org</attribute>
@@ -33,6 +37,14 @@
 
 
       <table name="generalInfo">
+        <row>
+          <attribute name="url">http://mheiges.plasmodb.org/plasmo.mheiges/communityDownload.do?fname=_PlasmodiumWhitePaperFinal.pdf</attribute>
+          <attribute name="title">Comprehensive Sequencing Proposal for Plasmodium</attribute>
+        </row>
+        <row>
+          <attribute name="url">http://mheiges.plasmodb.org/plasmo.mheiges/communityDownload.do?fname=Table2_021208-1-2.pdf</attribute>
+          <attribute name="title">Table 2, Comprehensive Sequencing Proposal for Plasmodium</attribute>
+        </row>
         <row>
           <attribute name="url">http://www.sanger.ac.uk/Projects/P_falciparum/project_overview.shtml</attribute>
           <attribute name="title">Malaria Genome Project</attribute>

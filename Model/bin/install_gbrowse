@@ -10,7 +10,8 @@ GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
 #GBROWSE_TAR_FILE=Generic-Genome-Browser-1.64.tar.gz
 GBROWSE_TAR_FILE=Generic-Genome-Browser-1.70.tar.gz
 #BIOPERL_TAR_FILE=bioperl_1.5_nightly_20080918.tgz
-BIOPERL_TAR_FILE=bioperl_1.60_biographics_1.995.tar.gz
+#BIOPERL_TAR_FILE=bioperl_1.60_biographics_1.995.tar.gz
+BIOPERL_TAR_FILE=bioperl_1.60_biographics_2.11.tar.gz
 
 BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
@@ -157,6 +158,7 @@ patch_all() {
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/gbrowse_v1.70.patch
     patch -d $confTargetDir/gbrowse.conf/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/BatchDumper.pm_v1.70.patch
     patch -d $confTargetDir/gbrowse.conf/languages -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/POSIX.pm_v1.70.patch
+    patch -d $htdocsTargetDir/gbrowse -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v1.70/annotation_help.html_v1.70.patch
 }
 
 

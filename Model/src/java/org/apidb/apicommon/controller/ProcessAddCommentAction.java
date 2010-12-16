@@ -69,6 +69,7 @@ public class ProcessAddCommentAction extends CommentAction {
         String commentTarget = request.getParameter("commentTargetId");
         String[] targetCategoryIds = (String[]) request.getParameterValues("targetCategory");
         String pmIdStr = request.getParameter("pmids");
+        String doiStr = request.getParameter("dois");
         String authorsStr = request.getParameter("authors");
         String accessionStr = request.getParameter("accessions");
 
@@ -113,6 +114,11 @@ public class ProcessAddCommentAction extends CommentAction {
         if ((pmIdStr != null) && (pmIdStr.trim().length() != 0)) {
             String[] pmIds = pmIdStr.replaceAll(",", " ").split(" ");
             comment.setPmIds(pmIds);
+        }
+
+        if ((doiStr != null) && (doiStr.trim().length() != 0)) {
+            String[] dois = doiStr.replaceAll(",", " ").split(" ");
+            comment.setDois(dois);
         }
 
         if ((authorsStr != null) && (authorsStr.trim().length() != 0)) {

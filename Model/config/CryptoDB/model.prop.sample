@@ -1,3 +1,5 @@
+# $Revision$
+
 PROJECT_ID=CryptoDB
 
 LOGIN_SCHEMA=userlogins3.

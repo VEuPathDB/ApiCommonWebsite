@@ -49,8 +49,7 @@ sub makeRPlotStrings {
   foreach my $part (keys %$profileSetsHash) {
     next unless ($isVis_b{$part});
 
-    my (@profileFiles, @elementNamesFiles);
-
+    my (@profileFiles, @elementNamesFiles, @stdevFiles);
     my $i = 0;
 
     # each part can have several profile sets
@@ -67,10 +66,18 @@ sub makeRPlotStrings {
       $i++;
     }
 
+     foreach my $profileSetName (@{$profileSetsHash->{$part}->{stdev_profiles}}) {
+       my $suffix = $part . $i;
+       my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
+       push(@stdevFiles, $stdevFile);
+       $i++;
+     }
+
     next unless(scalar @profileFiles > 0);
 
     my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
     my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
+    my $stdevString = $self->rStringVectorFromArray(\@stdevFiles, 'stdev.files');
 
     my $colors = $profileSetsHash->{$part}->{colors};
     my $rColorsString = $self->rStringVectorFromArray($colors, 'the.colors');
@@ -93,10 +100,13 @@ sub makeRPlotStrings {
     my $horizontalXAxis = $profileSetsHash->{$part}->{force_x_axis_label_horizontal};
     my $yAxisFoldInductionFromM = $profileSetsHash->{$part}->{make_y_axis_fold_incuction};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin, $horizontalXAxis, $yAxisFoldInductionFromM);
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $stdevString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin, $horizontalXAxis, $yAxisFoldInductionFromM);
+    $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});
 
     unshift @rv, $rCode;
   }
+
+  $self->makeHtmlStringFromMatrix();
 
   return \@rv;
 }
@@ -104,7 +114,8 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin, $horizontalXAxisLabels,  $yAxisFoldInductionFromM) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $stdevFiles, $colorsString, $legend, $yAxisLabel, $rAdjustNames, $rAdjustProfile, $yMax, $yMin, $horizontalXAxisLabels,  $yAxisFoldInductionFromM) = @_;
+
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
@@ -124,6 +135,7 @@ sub rString {
 
 $profileFiles
 $elementNamesFiles
+$stdevFiles
 $colorsString
 $legend
 
@@ -147,33 +159,48 @@ for(i in 1:length(element.names.files)) {
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
 
+stdev = vector();
+ if(!is.null(stdev.files)) {
+   for(i in 1:length(stdev.files)) {
+     tmp = read.table(stdev.files[i], header=T, sep=\"\\t\");
+     stdev = rbind(stdev, tmp\$VALUE);
+   }
+ }
 
-par(mar       = c($bottomMargin,4,1,4), xpd=FALSE);
+if(!length(stdev) > 0) {
+  stdev = 0;
+}
 
 
+par(mar       = c($bottomMargin,4,1,4), xpd=FALSE, oma=c(1,1,1,1));
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile
 $rAdjustNames
 
-d.max = max(1.1 * profile, y.max);
-d.min = min(1.1 * profile, y.min);
+
+d.max = max(1.1 * profile, 1.1 * (profile + stdev), y.max, na.rm=TRUE);
+d.min = min(1.1 * profile, 1.1 * (profile - stdev), y.min, na.rm=TRUE);
 
 my.las = 2;
 if(max(nchar(element.names)) < 6 || $horizontalXAxisLabels) {
   my.las = 0;
 }
 
-barplot(profile,
-        col       = the.colors,
-        ylab      = '$yAxisLabel',
-        ylim      = c(d.min, d.max),
-        beside    = TRUE,
-        names.arg = element.names,
-        space=c(0,.5),
-        las = my.las,
-        axes = FALSE
-       );
+
+plotXPos = barplot(profile,
+           col       = the.colors,
+           ylim      = c(d.min, d.max),
+           beside    = TRUE,
+           names.arg = element.names,
+           space=c(0,.5),
+           las = my.las,
+           axes = FALSE,
+           cex.names = 0.8
+          );
+
+
+mtext('$yAxisLabel', side=2, line=3.5, cex.lab=1, las=0)
 
 if(length(the.legend) > 0) {
   legend(11, d.max, legend=the.legend, cex=0.9, fill=the.colors, inset=0.2) ;
@@ -206,6 +233,19 @@ if($yAxisFoldInductionFromM) {
 }
 
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
+
+for(i in 1:nrow(profile)) {
+  for(j in 1:ncol(profile)) {
+    if(is.na(profile[i,j])) {
+      x_coord = plotXPos[i,j];
+      y_coord = (d.min + d.max) / 2;
+      points(x_coord, y_coord, cex=2, col=\"red\", pch=8);
+    }
+  }
+}
+
+suppressWarnings(arrows(plotXPos, profile-stdev,  plotXPos, profile+stdev, angle=90, code=3, length=0.05, lw=2));
+
 
 box();
 

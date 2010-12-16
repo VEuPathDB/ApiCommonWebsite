@@ -79,11 +79,16 @@ sub makeRPlotStrings {
     my $rTopMarginTitle = $profileSetsHash->{$part}->{r_top_margin_title};
 
     my $smoothLines = $profileSetsHash->{$part}->{smooth_spline};
+    my $splineApproxN = $profileSetsHash->{$part}->{spline_approx_n};
 
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines);
+    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines,$splineApproxN);
+
+    $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});    
 
     unshift @rv, $rCode;
   }
+
+  $self->makeHtmlStringFromMatrix();
 
   return \@rv;
 }
@@ -91,7 +96,7 @@ sub makeRPlotStrings {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines) = @_;
+  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines,$splineApproxN) = @_;
 
   $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
   $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
@@ -110,6 +115,8 @@ sub rString {
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rTopMarginTitle = $rTopMarginTitle ? $rTopMarginTitle : "";
+
+  $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
 
   my $bottomMargin = $self->getBottomMarginSize();
 
@@ -147,16 +154,22 @@ for(i in 1:length(profile.files)) {
   profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
   profile = profile.df\$VALUE;
 
+  element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
+  element.names = as.character(element.names.df\$NAME);
+
 # allow minor adjustments to profile
 $rAdjustProfile
 
-  element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
-  element.names = as.character(element.names.df\$NAME);
-  is.numeric.element.names = !is.na(as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T)));
-
+  element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
+   is.numeric.element.names = !is.na(element.names.numeric);
 
   for(j in 1:length(element.names)) {
     this.name = element.names[j];
+    this.name.numeric = as.character(element.names.numeric[j]);
+
+    if(!is.na(this.name.numeric)) {
+      this.name = this.name.numeric;
+    }
 
     if(is.null(points.df[[this.name]])) {
       points.df[[this.name]] = NA;
@@ -184,7 +197,7 @@ x.coords.rank = rank(x.coords, na.last=$pointsLast);
 # if the points df is all NA's that means we can plot as Time Series
 if(sum(is.na(points.df)) == ncol(points.df) * nrow(points.df)) {
   x.min = min(x.min, x.coords, na.rm=TRUE);
-  x.max = max(x.max, x.coords, na.rm=TRUE);
+  x.max = max(x.max, x.coords+x.coords*.1, na.rm=TRUE);
 
   y.max = max(y.max, max(lines.df, na.rm=T), na.rm=TRUE);
   y.min = min(y.min, min(lines.df, na.rm=T), na.rm=TRUE);
@@ -240,6 +253,7 @@ for(i in 1:nrow(lines.df)) {
 
     if(isTimeSeries) {
       axis(1);
+
     } else {
       my.las = 2;
       if(max(nchar(colnames(lines.df))) < 6) {
@@ -260,17 +274,27 @@ for(i in 1:nrow(lines.df)) {
   if($smoothLines) {
     points(x.coords.line,
          y.coords,
-         col  = the.colors[i],
-         bg   = the.colors[i],
+         col  = 'grey75',
+         bg   = 'grey75',
          type = \"p\",
          pch  = my.pch,
-         cex  = 1.5
+         cex  = 0.5
          );
 
-    lines(smooth.spline(x.coords.line, y.coords),
+    lines(x.coords.line,
+         y.coords,
+         col  = 'grey75',
+         bg  = 'grey75',
+         cex  = 0.5
+         );
+
+    approxInterp = approx(x.coords.line, n=$splineApproxN);
+    predict_x = approxInterp\$y;
+
+    lines(predict(smooth.spline(x=x.coords.line, y=y.coords),predict_x),
          col  = the.colors[i],
          bg   = the.colors[i],
-         cex  = 1.5
+         cex  = 1
          );
 
   } else {
@@ -280,7 +304,7 @@ for(i in 1:nrow(lines.df)) {
          bg   = the.colors[i],
          type = \"o\",
          pch  = my.pch,
-         cex  = 1.5
+         cex  = 1
          );
   }
 
@@ -291,7 +315,7 @@ for(i in 1:nrow(lines.df)) {
        bg   = the.colors[i],
        type = \"p\",
        pch  = my.pch,
-       cex  = 1.5
+       cex  = 0.5
        );
 }
 

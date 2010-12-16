@@ -19,7 +19,7 @@ database for the phylum <i>Microsporidia</i>.  In its first iteration (released 
 (see below).  
 MicrosporidiaDB integrates whole genome sequence and annotation and will rapidly expand to include experimental data and environmental isolate sequences 
 provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
-
+]]>
 </attribute>
    </record>
 
@@ -33,10 +33,24 @@ provided by community researchers . The database includes supplemental bioinform
 <ul>
 <li><i>Encephalitozoon cuniculi</i></li>
 <li><i>Encephalitozoon intestinalis</i></li>
+<li><i>Enterocytozoon bieneusi</i></li>
 </ul>
        ]]>
        </attribute>
    </record>
+
+
+<record>
+       <attribute name="title">Citing Data Providers</attribute>
+       <attribute name="tag">citingproviders</attribute>
+       <attribute name="text">
+       <![CDATA[
+Much of the data in MicrosporidiaDB is provided by independent researchers.  For a list of the data integrated into MicrosporidiaDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+       ]]>
+       </attribute>
+   </record>
+
+
 
  <record>
        <attribute name="title">Data Statistics</attribute>
@@ -214,6 +228,11 @@ EuPathDB wishes to acknowledge all the community members who
 have contributed data (often pre-publication), entered user
 comments or sent us their suggestions.
 <br><br>
+
+We are grateful to Dr. Louis Weiss (Albert Einstein School of Medicine) for providing the original image used to generate the MicrosporidiaDB logo.
+
+<br><br>
+
 And the team behind EuPathDB:<br>
 Cristina Aurrecoechea<SUP>1</SUP>, Ana Barreto<SUP>2,4</SUP>, John Brestelli<SUP>2,4</SUP>, Brian P. Brunk<SUP>2,7</SUP>, Steve Fischer<SUP>2,4</SUP>, 
 Bindu Gajria<SUP>2,7</SUP>, Xin Gao<SUP>2,7</SUP>, Alan Gingle<SUP>3</SUP>, Greg Grant<SUP>2,4</SUP>, Omar S. Harb<SUP>2,7</SUP>, 

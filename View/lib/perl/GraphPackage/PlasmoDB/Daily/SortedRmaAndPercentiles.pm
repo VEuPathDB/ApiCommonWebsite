@@ -11,41 +11,36 @@ use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 
-my %profileSets = (TGFa =>             ['daily_TGFa_percents', 
-                                        'daily_RMA_sorted_by_TGFa'],
-                   IL12p70 =>          ['daily_IL12p70_percents', 
-                                        'daily_RMA_sorted_by_IL12p70'],
-                   TNFa =>             ['daily_TNFa_percents', 
-                                        'daily_RMA_sorted_by_TNFa'], 
-                   age =>              ['daily_age_percents', 
-                                        'daily_RMA_sorted_by_age'],
-                   parasitemia =>      ['daily_parasitemia_percents', 
-                                        'daily_RMA_sorted_by_parasitemia'],
-                   VCAM1 =>            ['daily_VCAM1_percents', 
-                                        'daily_RMA_sorted_by_VCAM1'],
-                   IL10 =>             ['daily_IL10_percents', 
-                                        'daily_RMA_sorted_by_IL10'],
-                   Lymphotactin =>     ['daily_Lymphotactin_percents', 
-                                        'daily_RMA_sorted_by_Lymphotactin'],
-                   'Tissue-Factor' =>  ['daily_Tissue-Factor_percents', 
-                                        'daily_RMA_sorted_by_Tissue-Factor'],
-                   'P-selectin' =>     ['daily_P-selectin_percents', 
-                                        'daily_RMA_sorted_by_P-selectin'],
-                   hct =>              ['daily_hct_percents', 
-                                        'daily_RMA_sorted_by_hct'],
-                   'patient-number' => ['daily_patient-number_percents', 
-                                        'daily_RMA_sorted_by_patient-number'],
-                   IL15 =>             ['daily_IL15_percents', 
-                                        'daily_RMA_sorted_by_IL15'],
-                   IL6 =>              ['daily_IL6_percents', 
-                                        'daily_RMA_sorted_by_IL6'],
-                   temperature =>      ['daily_temp_percents', 
-                                        'daily_RMA_sorted_by_temp'],
-                   weight =>           ['daily_kg_percents', 
-                                        'daily_RMA_sorted_by_kg'],
-                   'days-ill' =>       ['daily_days-ill_percents', 
-                                        'daily_RMA_sorted_by_days-ill'],
+my %profileSets = (TGFa =>             'daily_TGFa_percents_percentiles',
+                   IL12p70 =>          'daily_IL12p70_percents_percentiles',
+                   TNFa =>             'daily_TNFa_percents_percentiles',
+                   age =>              'daily_age_percents_percentiles',
+                   parasitemia =>      'daily_parasitemia_percents_percentiles',
+                   VCAM1 =>            'daily_VCAM1_percents_percentiles',
+                   IL10 =>             'daily_IL10_percents_percentiles',
+                   Lymphotactin =>     'daily_Lymphotactin_percents_percentiles',
+                   'Tissue-Factor' =>  'daily_Tissue-Factor_percents_percentiles',
+                   'P-selectin' =>     'daily_P-selectin_percents_percentiles',
+                   hct =>              'daily_hct_percents_percentiles',
+                   'patient-number' => 'daily_patient-number_percents_percentiles',
+                   IL15 =>             'daily_IL15_percents_percentiles',
+                   IL6 =>              'daily_IL6_percents_percentiles',
+                   temperature =>      'daily_temp_percents_percentiles',
+                   weight =>           'daily_kg_percents_percentiles',
+                   'days-ill' =>       'daily_days-ill_percents_percentiles',
+#                   'gender' =>         'daily_gender_percents_percentiles     ',
                   );
+
+
+
+
+
+
+
+
+
+
+
 
 
 my %clusters = (167 => 1,
@@ -110,7 +105,7 @@ sub init {
 
   my $type = $Self->getTypeArg();
 
-  my $_ttl = $profileSets{$type}->[0];
+  my $_ttl = $profileSets{$type};
 
   $Self->setPercentileQuery
     ( ApiCommonWebsite::Model::CannedQuery::Profile->new
@@ -128,7 +123,7 @@ sub init {
 
   $Self->setPercentileYaxisLabel('percentile');
 
-  $Self->setPctIsDecimal(1);
+  $Self->setPctIsDecimal(0);
 
   $Self->setClusterColors(\%colors);
   $Self->setClusterSampleMap(\%clusters);

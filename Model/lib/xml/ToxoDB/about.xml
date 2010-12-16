@@ -37,6 +37,18 @@ ToxoDB is a genome database for the genus <i>Toxoplasma</i>, a set of single-cel
        </attribute>
    </record>
 
+
+<record>
+       <attribute name="title">Citing Data Providers</attribute>
+       <attribute name="tag">citingproviders</attribute>
+       <attribute name="text">
+       <![CDATA[
+Much of the data in ToxoDB is provided by independent researchers.  For a list of the data integrated into ToxoDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+       ]]>
+       </attribute>
+   </record>
+
+
 <record>
        <attribute name="title">Data Statistics</attribute>
        <attribute name="tag">stats</attribute>

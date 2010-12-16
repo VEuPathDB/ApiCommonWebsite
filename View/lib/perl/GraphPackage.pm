@@ -71,8 +71,9 @@ sub setVisibleParts         { $_[0]->{'VisibleParts'                } = $_[1]; $
 sub getSecondaryId          { $_[0]->{'SecondaryId'                 } }
 sub setSecondaryId          { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
 
-sub getDataPlotterArg       { $_[0]->{'dataPlotterArg'               } }
-sub getTypeArg              { $_[0]->{'dataPlotterArg'               } }
+sub getDataPlotterArg       { $_[0]->{'dataPlotterArg'              } }
+sub getTypeArg              { $_[0]->{'dataPlotterArg'              } }
+sub setDataPlotterArg       { $_[0]->{'dataPlotterArg'              } = $_[1]; $_[0] }
 
 # ========================================================================
 # ---------------------------- Object Methods ----------------------------
@@ -105,9 +106,11 @@ sub run {
 
    my $rProg = defined $ENV{R_PROGRAM} ? $ENV{R_PROGRAM} : 'R';
 
-   #my $rvs_t   = time();
-   system "$rProg --vanilla --slave < $r_f >/dev/null";
-   #print STDERR join("\t", 'RVS', time() - $rvs_t), "\n";
+   unless($Self->getFormat() eq 'table') {
+     #my $rvs_t   = time();
+     system "$rProg --vanilla --slave < $r_f >/dev/null";
+     #print STDERR join("\t", 'RVS', time() - $rvs_t), "\n";
+ }
 
    return @Rv;
 }
