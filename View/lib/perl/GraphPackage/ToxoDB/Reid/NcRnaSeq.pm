@@ -22,17 +22,17 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['N. caninum Day 3-4 Tachyzoite-diff profiles'],
+    ({coverage => {profiles => ['N. caninum Day 3-4 Tachyzoite-profiles'],
                    y_axis_label => 'normalized coverage',
                    colors => $colors,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    plot_title => 'T.gondii VEG Day 3-4 tachyzoite forms RNA Sequence Coverage',
                   },
-      pct => {profiles => ['N. caninum Day 3-4 Tachyzoite-diff percentiles'],
+      pct => {profiles => ['N. caninum Day 3-4 Tachyzoite-percentiles'],
               y_axis_label => 'Percentile',
               default_y_max => 50,
               colors => $colors,
-              r_adjust_profile => 'profile = profile * 100;',
+              r_adjust_profile => 'profile = profile;',
               plot_title => 'T.gondii VEG Day 3-4 tachyzoite forms RNA Sequence Coverage',
              },
      });
