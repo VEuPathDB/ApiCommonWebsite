@@ -18,7 +18,7 @@ sub init {
 
   # Defaults
   $self->setScreenSize(200);
-  $self->setBottomMarginSize(5);
+  $self->setBottomMarginSize(2.5);
 
   return $self;
 }
