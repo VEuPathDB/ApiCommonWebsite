@@ -73,7 +73,7 @@ public class ProcessSpanStageHandler implements StageHandler {
 
     private void computeRegion(HttpServletRequest request,
             WizardForm wizardForm, Map<String, Object> attributes, String region) {
-        String option = request.getParameter("region_" + region);
+        String option = wizardForm.getValue("region_" + region).toString();
         if (option.equals("exact")) {
             // use exact region of the feature
             wizardForm.setValue("span_begin_" + region, "start");
