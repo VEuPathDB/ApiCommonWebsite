@@ -51,13 +51,18 @@
 
 
    <servlet>
-     <servlet-name>Jersey Web Application</servlet-name>
+     <servlet-name>JerseyService</servlet-name>
      <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
      <init-param>
        <param-name>com.sun.jersey.config.property.packages</param-name>
        <param-value>org.gusdb.wdk.controller.service</param-value>
      </init-param>
    </servlet>
+
+  <servlet-mapping>
+    <servlet-name>JerseyService</servlet-name>
+    <url-pattern>/service/*</url-pattern>
+  </servlet-mapping>
    
 
 
