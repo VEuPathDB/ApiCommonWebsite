@@ -17,16 +17,17 @@ use CGI::Carp qw(fatalsToBrowser set_message);
 
 
 my $taxonToDirNameMap = 
-  {'Leishmania infantum'                              => { name => 'l_infantum',              group => 1 },
-   'Leishmania major'                                 => { name => 'l_major',                 group => 1 },
-   'Leishmania braziliensis'                          => { name => 'l_braziliensis',          group => 1 },
-   'Leishmania mexicana mexicana'                     => { name => 'l_mexicana',              group => 1 },
-   'Trypanosoma cruzi strain Non-Esmeraldo'           => { name => 't_cruzinonesmeraldo',     group => 2 },
-   'Trypanosoma cruzi strain Esmeraldo'               => { name => 't_cruziesmeraldo',        group => 2 },
-   'Trypanosoma brucei gambiense'                     => { name => 't_bruceigambiense',       group => 3 },
-   'Trypanosoma brucei TREU927'                       => { name => 't_brucei927',             group => 3 },
-   'Trypanosoma vivax'                                => { name => 't_vivax',                 group => 4 },
-   'Trypanosoma congolense'                           => { name => 't_congolense',            group => 4 },
+  {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
+   'Leishmania major'                                 => { name => 'LmajorFriedlin',         group => 1 },
+   'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
+   'Leishmania mexicana mexicana'                     => { name => 'Lmexicana',              group => 1 },
+   'Trypanosoma cruzi strain Non-Esmeraldo'           => { name => 'TcruziNonEsmeraldoLike', group => 2 },
+   'Trypanosoma cruzi strain Esmeraldo'               => { name => 'TcruziEsmeraldoLike',    group => 2 },
+   'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
+   'Trypanosoma brucei brucei strain 427'             => { name => 'Tbrucei427',             group => 3 },
+   'Trypanosoma brucei TREU927'                       => { name => 'Tbrucei927',             group => 3 },
+   'Trypanosoma vivax'                                => { name => 'Tvivax',                 group => 4 },
+   'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
 
 
    'Plasmodium falciparum 3D7'                        => { name => 'Pfalciparum',            group => 1 },
