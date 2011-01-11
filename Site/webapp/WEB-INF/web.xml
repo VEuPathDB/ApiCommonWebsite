@@ -50,6 +50,17 @@
   </servlet>
 
 
+   <servlet>
+     <servlet-name>Jersey Web Application</servlet-name>
+     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+     <init-param>
+       <param-name>com.sun.jersey.config.property.packages</param-name>
+       <param-value>org.gusdb.wdk.controller.service</param-value>
+     </init-param>
+   </servlet>
+   
+
+
 <!-- Internal WSF support -->
   <context-param>
     <param-name>wsfConfigDir_param</param-name>
