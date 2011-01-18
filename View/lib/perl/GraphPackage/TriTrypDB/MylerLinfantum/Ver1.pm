@@ -31,6 +31,7 @@ sub init {
                            default_y_min => -2,
                            default_x_min => 0,
                            points_pch => $pch,
+                     r_adjust_profile => 'profile = log2(2^profile/2^profile[1]);',
                           },
       'pct' => {profiles => ['Percents of the Linfantum promastigote time-course biorep01',
                              'Percents of the Linfantum promastigote time-course biorep02'
@@ -42,7 +43,6 @@ sub init {
                            default_y_min => 0,
                 default_x_min => 0,
                 points_pch => $pch,
-                r_adjust_profile => 'profile = profile*100;',
                },
       
       
