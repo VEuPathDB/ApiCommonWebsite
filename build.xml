@@ -70,6 +70,7 @@
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
       <property name="project" value="WDK"/>
       <property name="version" value=""/>
+      <property name="useBranch" value="false"/>
     </ant>
   </target>  
  
