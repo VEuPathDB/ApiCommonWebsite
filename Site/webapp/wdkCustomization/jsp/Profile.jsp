@@ -106,6 +106,10 @@ function validateFields(e)
     </tr>
 
     <tr>
+      <td align="right" width="50%" nowrap><font color="red">*</font>ID: </td>
+      <td align="left">${wdkUser.signature}</td>
+    </tr>
+    <tr>
       <td align="right" width="50%" nowrap><font color="red">*</font> Email: </td>
       <td align="left"><input type="text" name="email" value="${wdkUser.email}" size="20"></td>
     </tr>

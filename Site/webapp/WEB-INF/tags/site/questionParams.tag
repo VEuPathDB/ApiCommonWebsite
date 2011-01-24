@@ -169,6 +169,13 @@
                                 <wdk:datasetParamInput qp="${qP}" />
                             </td>
                         </c:when>
+                        <c:when test="${qP.class.name eq 'org.gusdb.wdk.model.jspwrap.RemoteListParamBean'}">
+                            <td width="30%" align="right" valign="top">
+                                <b id="help_${pNam}" class="help_link" rel="htmltooltip">${qP.prompt}</b></td>
+                            <td align="left" valign="top">
+                                <wdk:remoteListParamInput qp="${qP}" />
+                            </td>
+                        </c:when>
                         <c:otherwise>  <%-- not enumParam --%>
                             <c:choose>
                                 <c:when test="${isReadonly}">
