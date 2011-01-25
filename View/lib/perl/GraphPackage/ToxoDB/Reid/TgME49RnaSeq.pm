@@ -12,8 +12,8 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(180);
-  $self->setBottomMarginSize(4);
+  #$self->setScreenSize(180);
+  #$self->setBottomMarginSize(4);
 
   my $colors =['#66CDAA', '#D87093'];
 
@@ -24,12 +24,14 @@ sub init {
   $self->setProfileSetsHash
     ({coverage => {profiles => ['T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-profiles'],
                    y_axis_label => 'normalized coverage',
+                   force_x_axis_label_horizontal => 1,
                    colors => $colors,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    plot_title => 'T.gondii VEG Day 3-4 tachyzoite forms RNA Sequence Coverage',
                   },
       pct => {profiles => ['T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-percentiles'],
               y_axis_label => 'Percentile',
+              force_x_axis_label_horizontal => 1,
               default_y_max => 50,
               colors => $colors,
               r_adjust_profile => 'profile = profile;',
