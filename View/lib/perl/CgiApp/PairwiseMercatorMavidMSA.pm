@@ -18,7 +18,7 @@ use CGI::Carp qw(fatalsToBrowser set_message);
 
 my $taxonToDirNameMap = 
   {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
-   'Leishmania major'                                 => { name => 'LmajorFriedlin',         group => 1 },
+   'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
    'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
    'Leishmania mexicana mexicana'                     => { name => 'Lmexicana',              group => 1 },
    'Trypanosoma cruzi strain Non-Esmeraldo'           => { name => 'TcruziNonEsmeraldoLike', group => 2 },
