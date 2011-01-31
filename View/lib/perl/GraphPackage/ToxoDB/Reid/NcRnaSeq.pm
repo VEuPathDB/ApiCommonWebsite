@@ -20,9 +20,10 @@ sub init {
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['N. caninum Day 3-4 Tachyzoite-profiles'],
-                   y_axis_label => 'normalized coverage',
+                   y_axis_label => 'RPKM',
                    force_x_axis_label_horizontal => 1,
                    colors => $colors,
+                   default_y_max => 4,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    plot_title => 'N.caninum Day 3-4 tachyzoite forms RNA Sequence Coverage',
                   },

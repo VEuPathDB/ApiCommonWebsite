@@ -23,7 +23,7 @@ sub init {
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles'],
-                   y_axis_label => 'normalized coverage',
+                   y_axis_label => 'RPKM',
                    colors => $colors,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    plot_title => 'T.brucei blood and procyclic forms RNA Sequence Coverage',
