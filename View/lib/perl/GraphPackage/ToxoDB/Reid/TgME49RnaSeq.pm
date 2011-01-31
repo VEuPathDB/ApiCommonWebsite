@@ -26,6 +26,7 @@ sub init {
                    y_axis_label => 'normalized coverage',
                    force_x_axis_label_horizontal => 1,
                    colors => $colors,
+                   default_y_max => 4,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    plot_title => 'T.gondii VEG Day 3-4 tachyzoite forms RNA Sequence Coverage',
                   },
