@@ -40,3 +40,4 @@ public class CommentConfigTest {
         assertTrue("maxWait", config.getMaxWait() >= 0);
     }
 }
+
