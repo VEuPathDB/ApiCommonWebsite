@@ -12,27 +12,30 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(180);
-  $self->setBottomMarginSize(4);
+#  $self->setScreenSize(180);
+#  $self->setBottomMarginSize(4);
 
-  my $colors =['#66CDAA', '#D87093'];
+  my $colors =['#D87093','#66CDAA'];
 
-  my $legend = ["blood form", "procyclic form"];
+  my $legend = ["procyclic form", "blood form"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles'],
                    y_axis_label => 'RPKM',
+                   x_axis_labels => $legend,
                    colors => $colors,
+                   force_x_axis_label_horizontal => 1,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    plot_title => 'T.brucei blood and procyclic forms RNA Sequence Coverage',
                   },
-      pct => {profiles => ['T.brucei George Cross RNA Sequence Profiles Percentile'],
+      pct => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles Percentile'],
               y_axis_label => 'Percentile',
+              x_axis_labels => $legend,
               default_y_max => 50,
               colors => $colors,
-              r_adjust_profile => 'profile = profile * 100;',
+              force_x_axis_label_horizontal => 1,
               plot_title => 'T.brucei blood and procyclic forms RNA Sequence Coverage',
              },
      });
