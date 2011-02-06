@@ -244,7 +244,7 @@ for(i in 1:nrow(profile)) {
   }
 }
 
-suppressWarnings(arrows(plotXPos, profile-stdev,  plotXPos, profile+stdev, angle=90, code=3, length=0.05, lw=2));
+suppressWarnings(arrows(plotXPos, profile,  plotXPos, profile+stdev, angle=90, code=3, length=0.05, lw=2));
 
 
 box();

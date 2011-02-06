@@ -24,16 +24,17 @@ sub init {
                    force_x_axis_label_horizontal => 1,
                    colors => $colors,
                    default_y_max => 4,
-                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
-                   plot_title => 'T.gondii VEG Day 3-4 tachyzoite forms RNA Sequence Coverage',
+                   x_axis_labels => $legend,
+                   stdev_profiles => ['VEG Day 3-4 Tachyzoite aligned to the VEG Genome-diff profiles'],
+                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);stdev=stdev + 1; stdev = log2(stdev);',
                   },
       pct => {profiles => ['T. gondii VEG Day 3-4 Tachyzoite aligned to the VEG Genome-percentiles'],
               y_axis_label => 'Percentile',
               force_x_axis_label_horizontal => 1,
               default_y_max => 50,
               colors => $colors,
-              r_adjust_profile => 'profile = profile;',
-              plot_title => 'T.gondii VEG Day 3-4 tachyzoite forms RNA Sequence Coverage',
+              x_axis_labels => $legend,
+              stdev_profiles => ['VEG Day 3-4 Tachyzoite aligned to the VEG Genome-diff percentiles'],
              },
      });
 
@@ -41,3 +42,5 @@ sub init {
 }
 
 1;
+
+
