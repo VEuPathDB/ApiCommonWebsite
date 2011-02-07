@@ -494,6 +494,12 @@
       name="questionForm">
       <forward name="show_strategy" path="/showStrategy.do"/>
     </action>
+    <action
+      path="/getGenomeInfo"
+      type="org.apidb.apicommon.controller.GetGenomeInfoAction"
+      scope="request"
+      validate="false">
+    </action>
   </action-mappings>
 
   <controller maxFileSize="10M" />
