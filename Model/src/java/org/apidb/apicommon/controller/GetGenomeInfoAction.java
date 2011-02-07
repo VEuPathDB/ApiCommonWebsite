@@ -41,7 +41,7 @@ public class GetGenomeInfoAction extends Action {
         WdkModelBean wdkModelBean = ActionUtility.getWdkModel(servlet);
         WdkModel wdkModel = wdkModelBean.getModel();
         String sql = "SELECT organism, source_id, length, "
-                + "          chromosome AS name, chromosome_order_num AS order"
+                + "          chromosome, chromosome_order_num"
                 + " FROM apidb.SequenceAttributes "
                 + " WHERE chromosome_order_num IS NOT NULL "
                 + " ORDER BY organism, chromosome_order_num";
@@ -76,8 +76,8 @@ public class GetGenomeInfoAction extends Action {
                 for(Sequence sequence : sequences.values()) {
                     JSONObject jsSequence = new JSONObject();
                     jsSequence.put("sourceId", sequence.sourceId);
-                    jsSequence.put("name", sequence.name);
-                    jsSequence.put("order", sequence.order);
+                    jsSequence.put("chromosome", sequence.name);
+                    jsSequence.put("chromosome_order_num", sequence.order);
                     jsSequence.put("length", sequence.length);
                     
                     jsSequences.put(jsSequence);
