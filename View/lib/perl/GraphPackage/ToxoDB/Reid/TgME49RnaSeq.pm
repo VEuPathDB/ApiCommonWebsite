@@ -20,7 +20,7 @@ sub init {
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-profiles'],
-                   y_axis_label => 'RPKM',
+                   y_axis_label => 'log 2 (RPKM)',
                    force_x_axis_label_horizontal => 1,
                    colors => $colors,
                    default_y_max => 4,

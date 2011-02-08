@@ -23,7 +23,7 @@ sub init {
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles'],
-                   y_axis_label => 'RPKM',
+                   y_axis_label => 'log 2 (RPKM)',
                    x_axis_labels => $legend,
                    colors => $colors,
                    force_x_axis_label_horizontal => 1,
