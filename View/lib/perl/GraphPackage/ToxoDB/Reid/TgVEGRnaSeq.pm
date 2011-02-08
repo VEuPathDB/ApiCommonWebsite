@@ -12,7 +12,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors =['#66CDAA', '#D87093'];
+  my $colors =['#6A5ACD', '#CD853F'];
 
   my $legend = ["day 3", "day 4"];
 
