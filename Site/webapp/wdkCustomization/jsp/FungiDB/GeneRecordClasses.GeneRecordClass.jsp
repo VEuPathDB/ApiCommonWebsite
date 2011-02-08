@@ -374,19 +374,19 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/microsporidiadbaa/?
 
 <hr>
 <c:choose>
-<c:when test='${organism_full eq "Encephalitozoon cuniculi GB-M1"}'>
+<c:when test='${organism_full eq "Saccharomyces cerevisiae S288C"}'>
   <c:set var="reference">
-   Sequence and annotations from BioHealthBase for <i>Encephalitozoon cuniculi GB-M1</i> chromosomes in Genbank (sequence and annotated features) format. 
+   Sequence and annotations from SGD for <i>Saccharomyces cerevisiae S288C</i>.
   </c:set>
 </c:when>
-<c:when test='${organism_full eq "Encephalitozoon intestinalis"}'>
+<c:when test='${organism_full eq "Aspergillus nidulans A4"}'>
   <c:set var="reference">
-   Sequence and annotations from Patrick Keeling at Canadian Institute for Advanced Research, Evolutionary Biology Program, Department of Botany, University of British Columbia. Please note that the <i>E. intestinalis</i> genome sequence has not yet been published. You are welcome to browse this data and use information on individual genes for your research ... but using this site constitutes your implicit agreement to refrain from genome-wide analysis pending publication of the <i>E. intestinalis</i> genome. Please contact Patrick Keeling (pkeeling@interchange.ubc.ca) with any questions.
+   Sequence and annotations from Broad Institute.
   </c:set>
 </c:when>
-<c:when test='${organism_full eq "Enterocytozoon bieneusi H348"}'>
+<c:when test='${organism_full eq "Aspergillus clavatus"}'>
   <c:set var="reference">
-   Sequence and annotations from Genbank for Enterocytozoon bieneusi H348 contigs.
+   Sequence and annotations from TIGR/JCVI.
   </c:set>
 </c:when>
 </c:choose>
