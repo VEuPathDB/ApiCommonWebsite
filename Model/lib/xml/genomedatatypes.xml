@@ -301,8 +301,8 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-14-2010</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size"></attribute>
-       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Genome_Size">4.07</attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -325,8 +325,8 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">12-14-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size"></attribute>
-       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Genome_Size">13.27</attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -687,7 +687,7 @@
        <attribute name = "Strain">Friedlin</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">32.86</attribute>
        <attribute name = "Gene_Count">10068</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">SD 75.1</attribute>
