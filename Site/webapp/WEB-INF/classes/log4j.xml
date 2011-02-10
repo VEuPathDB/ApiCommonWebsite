@@ -32,6 +32,8 @@
     <logger name="org.gusdb"><level value="info"/></logger>
     <logger name="org.apidb"><level value="info"/></logger>
     <logger name="org.apache"><level value="warn"/></logger>
+    <!-- debugging KeywordSearchPlugin  for possible stuck queries. mheiges 2/2011 -->
+    <logger name="org.apidb.apicomplexa.wsfplugin.textsearch.KeywordSearchPlugin"><level value="debug"/></logger>
     <logger name="org.apache.catalina.core">
         <level value="info"/><!-- info level required to log stdout/stderr -->
     </logger>
