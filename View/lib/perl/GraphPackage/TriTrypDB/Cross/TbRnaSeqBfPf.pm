@@ -15,28 +15,29 @@ sub init {
 #  $self->setScreenSize(180);
 #  $self->setBottomMarginSize(4);
 
-  my $colors =['#D87093','#66CDAA'];
+  my $colors =['#D87093', '#66CDAA'];
 
-  my $legend = ["procyclic form", "blood form"];
+  my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
+  my $xAxisLabels = ["procyclic form", "blood form"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles'],
+    ({coverage => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles','T.brucei George Cross RNA Sequence diff-Profiles'],
                    y_axis_label => 'log 2 (RPKM)',
-                   x_axis_labels => $legend,
+                   x_axis_labels => $xAxisLabels,
                    colors => $colors,
                    force_x_axis_label_horizontal => 1,
-                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);stdev=stdev + 1; stdev = log2(stdev);',
-                   stdev_profiles => ['T.brucei George Cross RNA Sequence diff-Profiles'],
+                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
+                   stack_bars => 1,
                   },
-      pct => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles Percentile'],
+      pct => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles Percentile','T.brucei George Cross RNA Sequence diff-Profiles Percentile'],
               y_axis_label => 'Percentile',
-              x_axis_labels => $legend,
+              x_axis_labels => $xAxisLabels,
               default_y_max => 50,
               colors => $colors,
               force_x_axis_label_horizontal => 1,
-              stdev_profiles => ['T.brucei George Cross RNA Sequence diff-Profiles Percentile'],
+              stack_bars => 1,
              },
      });
 
