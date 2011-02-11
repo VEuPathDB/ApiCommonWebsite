@@ -761,7 +761,7 @@
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">29.27</attribute>
-       <attribute name = "Gene_Count">11183</attribute>
+       <attribute name = "Gene_Count">11183+</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">gambiense,427</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -810,7 +810,7 @@
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">101.09</attribute>
-       <attribute name = "Gene_Count">12583***</attribute>
+       <attribute name = "Gene_Count">12583++</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
