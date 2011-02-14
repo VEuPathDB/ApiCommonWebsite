@@ -20,7 +20,7 @@ my $taxonToDirNameMap =
   {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
    'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
    'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
-   'Leishmania mexicana mexicana'                     => { name => 'Lmexicana',              group => 1 },
+   'Leishmania mexicana'                              => { name => 'Lmexicana',              group => 1 },
    'Trypanosoma cruzi strain Non-Esmeraldo'           => { name => 'TcruziNonEsmeraldoLike', group => 2 },
    'Trypanosoma cruzi strain Esmeraldo'               => { name => 'TcruziEsmeraldoLike',    group => 2 },
    'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
