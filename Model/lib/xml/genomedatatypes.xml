@@ -707,7 +707,7 @@
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.mexicana</attribute>
-       <attribute name = "Taxon_ID">44270</attribute>
+       <attribute name = "Taxon_ID">5665</attribute>
        <attribute name = "Strain">mexicana</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
