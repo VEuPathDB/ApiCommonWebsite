@@ -12,9 +12,6 @@ sub init {
 
   $self->SUPER::init(@_);
 
-#  $self->setScreenSize(180);
-#  $self->setBottomMarginSize(4);
-
   my $colors =['#D87093', '#66CDAA'];
 
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
@@ -31,13 +28,12 @@ sub init {
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
-      pct => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles Percentile','T.brucei George Cross RNA Sequence diff-Profiles Percentile'],
+      pct => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles Percentile'],
               y_axis_label => 'Percentile',
               x_axis_labels => $xAxisLabels,
               default_y_max => 50,
-              colors => $colors,
+              colors => [$colors->[0]],
               force_x_axis_label_horizontal => 1,
-              stack_bars => 1,
              },
      });
 
