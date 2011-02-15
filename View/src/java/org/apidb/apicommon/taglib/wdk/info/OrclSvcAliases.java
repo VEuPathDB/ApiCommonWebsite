@@ -11,7 +11,7 @@ public class OrclSvcAliases extends WdkTagBase {
     
     private String var;
     private String servicename;
-    private ArrayList<String> names = new ArrayList<String>();
+    private ArrayList<String> namelist = new ArrayList<String>();
     
     public void doTag() throws JspException {
         super.doTag();
@@ -21,14 +21,18 @@ public class OrclSvcAliases extends WdkTagBase {
     
     public String getNames() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < names.size(); i++) {
-            sb.append(names.get(i));
-            if (i < names.size() - 1) {
+        for (int i = 0; i < namelist.size(); i++) {
+            sb.append(namelist.get(i));
+            if (i < namelist.size() - 1) {
                 sb.append(", ");
             }
         }
 
         return sb.toString();
+    }
+
+    public ArrayList<String> getNameArray() {
+        return namelist;
     }
     
     public void setServicename(String servicename) {
@@ -64,7 +68,7 @@ public class OrclSvcAliases extends WdkTagBase {
               Attributes attrs = sr.getAttributes();
         
               Attribute attr = attrs.get("cn");
-              names.add((String)attr.get());
+              namelist.add((String)attr.get());
             }
             dctx.close();
          } catch (NamingException ne) {

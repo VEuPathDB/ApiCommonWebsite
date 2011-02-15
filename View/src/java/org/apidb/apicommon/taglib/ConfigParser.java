@@ -55,12 +55,19 @@ public class ConfigParser extends SimpleTagSupport {
         ServletContext app = pageContext.getServletContext();
 
         InputStream is = app.getResourceAsStream(configfile);
-;
-        if (is == null)
+
+        if (is == null) {
+            if (! configfile.startsWith("/")) {
+                throw new JspException(
+                  "Failed parsing configfile " + configfile + "."
+                  + " Path does not begin with '/'");
+            }
             throw new JspException(
                 "Failed parsing configfile '" + configfile + "'." +
-                "\nCheck that the file exists and is readable: " + app.getRealPath(configfile) );
-            
+                "\nCheck that the file exists and is readable: " +
+                app.getRealPath(configfile) );
+        }
+
         try {	
 	    DocumentBuilder dB = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             config = dB.parse(is);

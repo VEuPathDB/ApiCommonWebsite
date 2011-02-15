@@ -100,7 +100,7 @@ profile throughout the cell cycle.<br>
 <span style="font-weight: bold;">New features in this release:</span><br>
 <ul>
 <li>Improved organization of the <a
-href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence=InternalQuestions.GenesByMicroarrayEvidence">microarray
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
 search page</a>.</li>
 <li>The search strategy window is now resizable.</li>
 </ul>
