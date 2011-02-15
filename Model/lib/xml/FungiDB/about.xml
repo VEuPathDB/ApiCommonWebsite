@@ -14,19 +14,18 @@
        <attribute name="tag">generalinfo</attribute>
        <attribute name="text">
 <![CDATA[
-MicrosporidiaDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
-database for the phylum <i>Microsporidia</i>.  In its first iteration (released in early 2010), MicrosporidiaDB contains the genomes of two  <i>Encephalitozoon</i> species 
+FungiDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
+database for the phylum <i>Microsporidia</i>.  In its first iteration (released in early 2011), FungiDB contains the genomes of 19 Fungi.
 (see below).  
-MicrosporidiaDB integrates whole genome sequence and annotation and will rapidly expand to include experimental data and environmental isolate sequences 
+FungiDB integrates whole genome sequence and annotation and will rapidly expand to include experimental data and environmental isolate sequences 
 provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
 ]]>
 </attribute>
    </record>
 
-  
 
    <record>
-       <attribute name="title">Organisms included in MicrosporidiaDB</attribute>
+       <attribute name="title">Organisms included in FungiDB</attribute>
        <attribute name="tag">organisms</attribute>
        <attribute name="text">
        <![CDATA[
