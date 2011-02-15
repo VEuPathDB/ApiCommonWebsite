@@ -4,11 +4,11 @@
 	
 AA sequence	Amino acid sequence.
 	
-Affymetrix genotyped SNP probes	Probes on Affymetrix SNP (single nucleotide polymorphism) arrays, which are used for SNP genotyping. See Affymetrix microarray technology and <a href="http://www.affymetrix.com/technology/mrd_technology.affx">www.affymetrix.com/technology/mrd_technology.affx</a>
+Affymetrix genotyped SNP probes	Probes on Affymetrix SNP (single nucleotide polymorphism) arrays, which are used for SNP genotyping. See Affymetrix microarray technology and <a href="http://www.affymetrix.com">www.affymetrix.com</a>
 	
-Affymetrix microarray technology	Microarray manufacturing technology developed by Affymetrix. Combines semiconductor fabrication techniques, solid phase chemistry, combinatorial chemistry, molecular biology, and robotics to generate a photolithographic manufacturing process in which oligonucleotides are synthesized directly on a chip. See <a href="http://www.affymetrix.com/technology/manufacturing/index.affx">www.affymetrix.com/technology/manufacturing/index.affx</a>
+Affymetrix microarray technology	Microarray manufacturing technology developed by Affymetrix. Combines semiconductor fabrication techniques, solid phase chemistry, combinatorial chemistry, molecular biology, and robotics to generate a photolithographic manufacturing process in which oligonucleotides are synthesized directly on a chip. See <a href="http://www.affymetrix.com">www.affymetrix.com</a>
 	
-Affymetrix probes	Probe on an Affymetrix microarray designed to determine whether or not the complementary sequence of RNA or DNA is present in a sample. Generally 25 nucleotides in length (25-mers), their short length provides higher specificity than longer probes. See Affymetrix microarray technology and <a href="http://www.affymetrix.com/technology/design/index.affx">www.affymetrix.com/technology/design/index.affx</a>
+Affymetrix probes	Probe on an Affymetrix microarray designed to determine whether or not the complementary sequence of RNA or DNA is present in a sample. Generally 25 nucleotides in length (25-mers), their short length provides higher specificity than longer probes. See Affymetrix microarray technology and <a href="http://www.affymetrix.com">www.affymetrix.com</a>
 	
 Amitochondriate	Eukaryotic organism that lacks a mitochondrion. Examples include Giardia and other parasites such as Trachipleistophora and Entamoeba. However, most of these organisms contain what appear to be mitochondrial remnants as well as mitochondrial genes in their nuclear genomes.
 	
