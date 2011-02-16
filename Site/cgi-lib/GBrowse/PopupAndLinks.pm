@@ -3,6 +3,33 @@ package GBrowse::PopupAndLinks;
 use strict;
 
 use GBrowse::Configuration;
+use XML::Simple;
+
+
+my %MS_EXTDB_NAME_MAP;
+
+BEGIN {
+  my $serverName = $ENV{SERVER_NAME};
+  my $project_id = $ENV{PROJECT_ID};
+
+  if ($project_id !~ /Microsporidia/) {
+
+    my $xml = `wget -qO- "http://$serverName/a/getVocab.do?questionFullName=GeneQuestions.GenesByMassSpec&name=ms_assay&xml=TRUE"`;
+    my $string = XMLin($xml, ForceArray => 1);
+
+    my $terms = $string->{terms}->[0]->{term};
+
+    if(ref($terms) eq 'HASH') {
+
+      foreach my $name (keys %{$terms}) {
+
+        my $display = $terms->{$name}->{content};
+        my $extDbName = $terms->{$name}->{internal};
+        $MS_EXTDB_NAME_MAP{$extDbName} = $display;
+      }
+    }
+  }
+};
 
 #--------------------------------------------------------------------------------
 #  Methods for Links
@@ -62,10 +89,10 @@ sub sageTagLink {
 }
 
 sub ArrayElementLink {
-  my $f = shift;
-  my $name = $f->name;
-  my $link = "/a/showRecord.do?name=ArrayElementRecordClasses.ArrayElementRecordClass&primary_key=$name";
-  return $link;
+#  my $f = shift;
+#  my $name = $f->name;
+#  my $link = "/a/showRecord.do?name=ArrayElementRecordClasses.ArrayElementRecordClass&primary_key=$name";
+  return "javascript:void(0)";
 }
 
 sub snpLink {
@@ -584,14 +611,11 @@ sub orfTitle {
 
 sub ArrayElementTitle {
      my $f = shift;
-     my $name = $f->name;
      my $chr = $f->seq_id;
      my $loc = $f->location->to_FTstring;
-     my ($desc) = $f->get_tag_values("Note");
+     my ($name) = $f->get_tag_values("SourceId");
      my @data;
      push @data, [ 'Name:'  => $name ];
-     push @data, [ 'Description:' => $desc ];
-     # push @data, [ 'Coordinates:' => $f->start . ' .. ' . $f->end ];
      push @data, [ 'Location:'  => "$chr $loc" ];
      hover("Glass Slide Oligo: $name", \@data);
 }
@@ -606,16 +630,18 @@ my ($count) = $f->get_tag_values('Count');
   my ($extdbname) = $f->get_tag_values('ExtDbName');
   $desc =~ s/[\r\n]/<br>/g;
 
-  if($replaceString) {
-    $extdbname =~ s/$replaceString/assay: /i;
-  }
+#  if($replaceString) {
+#    $extdbname =~ s/$replaceString/assay: /i;
+#  }
 
- if($replaceString2) {
-    $extdbname =~ s/$replaceString2/$val2/i;
-  }
+# if($replaceString2) {
+#    $extdbname =~ s/$replaceString2/$val2/i;
+#  }
+  
+  my $displayName = $MS_EXTDB_NAME_MAP{$extdbname} ? $MS_EXTDB_NAME_MAP{$extdbname} : $extdbname;
 
   my @data;
-  push @data, [ 'Experiment:' => "$extdbname" ];
+  push @data, [ 'Experiment:' => $displayName ];
   push @data, [ 'Sequence:' => "$seq" ];
   push @data, [ 'Description:' => "$desc" ] if($desc);
   push @data, [ 'Number of Matches:' => "$count" ] if($count);

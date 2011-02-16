@@ -44,6 +44,9 @@
 	<c:when test="${fn:containsIgnoreCase(modelName, 'EuPathDB')}">
 		<c:set var="listOrganisms" value="${EuPathDBOrgs}" />
 	</c:when>
+	<c:when test="${fn:containsIgnoreCase(modelName, 'AmoebaDB')}">
+		<c:set var="listOrganisms" value="${AmoebaDBOrgs}" />
+	</c:when>
         <c:when test="${fn:containsIgnoreCase(modelName, 'CryptoDB')}">
 		<c:set var="listOrganisms" value="${CryptoDBOrgs}" />
 	</c:when>
@@ -194,7 +197,7 @@
 
  <c:if test="${project != 'EuPathDB'}" >
     	    <li><a href="<c:url value="/communityUpload.jsp"/>">Upload Community Files</a></li>
-    	    <li><a href="<c:url value="/showSummary.do?questionFullName=UserFileQuestions.UserFileUploads"/>">Download Community Files</a></li>
+    	    <li><a onclick="setCurrentTabCookie('application','strategy_results');" href="<c:url value="/showSummary.do?questionFullName=UserFileQuestions.UserFileUploads"/>">Download Community Files</a></li>
 </c:if>
     	    <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs"/>">EuPathDB Publications</a></li> 
   	</ul>

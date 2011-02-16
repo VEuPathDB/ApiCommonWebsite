@@ -18,6 +18,114 @@
     </record>
 -->
 <record>
+       <attribute name="headline">PlasmoDB 7.1 Released</attribute>
+       <attribute name="date">18 November 2010 15:00</attribute>
+       <attribute name="tag">plasmo11_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 7.1<br>
+<br>
+<br>
+This release of PlasmoDB contains the following new data:</span><span
+style="font-weight: bold;">&nbsp;<br>
+</span><br>
+<ul>
+<li><span style="font-style: italic;">P. falciparum </span>blood
+stage proteomics data (trophozoites and early and mature gametocytes)
+from <a href="http://www.ncbi.nlm.nih.gov/pubmed/20332084"><span
+style="font-style: italic;">Silvestrini et. al.</span></a>&nbsp; This
+data can be searched from the Mass spec. evidence search page
+under the heading "Protein Expression" -- listed under <span
+style="font-style: italic;">Plasmodium falciparum </span>and
+selecting "Blood Stage Proteome - Trophozoites, Early Gametocytes (gct
+I/II) and/or Mature Gametocytes (gct V)".&nbsp; In
+addition, peptide evidence is displayed on gene pages in the <a
+style="font-weight: bold;" href="http://plasmodb.org/gene/PFL2405c">Protein
+Section</a>
+and in the <a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1080000;stop=1270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=6436e0c6f1efb6e68613f9388b25e99f;label=AnnotatedGenes-LasonderMassSpecPeptidesBloodStage;h_feat=pfl2415w%40yellow"><span
+style="font-weight: bold;">genome browser</span></a> by turning on
+the track specific for this data.&nbsp; An example search strategy that
+identifies genes that have mass spec evidence in the early gametocytes
+but not in trophozoites or mature gametocytes can be accessed and
+modified <a href="http://plasmodb.org/plasmo/im.do?s=55d0c2d79d37e20d">here</a>.<br>
+</li>
+</ul>
+<br>
+<span style="font-weight: bold;">New Feature in PlasmoDB</span><span
+style="font-weight: bold;">:</span> <br>
+<br>
+<ul>
+<li>You can now add publications to your user comments using their <a
+href="http://www.doi.org/index.html">Digital Object Identifier</a>
+(DOI) numbers.&nbsp; To view a list of all genes that have a user
+comment in PlasmoDB, click <a
+href="http://plasmodb.org/plasmo/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;myMultiProp%28text_search_organism%29=Plasmodium%20berghei,Plasmodium%20chabaudi,Plasmodium%20falciparum,Plasmodium%20knowlesi,Plasmodium%20vivax,Plasmodium%20yoelii&amp;myMultiProp%28text_fields%29=User%20comments&amp;myMultiProp%28whole_words%29=no&amp;myProp%28max_pvalue%29=-30&amp;myProp%28text_expression%29=*&amp;myProp%28timestamp%29=Nov%2017,%202010%209:39:32%20PM">here</a>.</li>
+</ul>
+<ul>
+<li>You can view microarray oligo mapping for all arrays with data in
+PlasmoDB.&nbsp; Oligo mapping can be viewed in the <a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1243200;stop=1248199;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=f1cec45354b677a542dade3988db24e1;label=AnnotatedGenes-MicroArrayProbesPfSanger-MicroArrayProbesPfDerisi">Genome
+Browser</a> by turning on tracks under the heading "Expression
+Microarray Probes".<br>
+</li>
+</ul>
+<br>
+<span style="font-style: italic;">Note: We have corrected errors
+inadvertently introduced into the last build of
+PlasmoDB (7.0, released on Sept. 21, 2010) that resulted in inaccurate
+representation of P. yoelii
+liver stage expression profiling data.</span>&nbsp; <span
+style="font-style: italic;">Please do not hesitate to <a
+href="mailto:help@plasmodb.org">contact us</a> if you have any
+questions.</span><br>
+<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>  
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Driving Biological Projects awarded
+         ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
+       </attribute>
+</record>
+
+<record>
        <attribute name="headline">PlasmoDB 7.0 Released</attribute>
        <attribute name="date">21 September 2010 15:00</attribute>
        <attribute name="tag">plasmo09_10_news</attribute>
@@ -125,7 +233,7 @@ browser</a>.</li>
 <span style="font-weight: bold;">New features in this release include:</span><br>
 <ul>
 <li>Improved organization of the <a
-href="http://plasmodb.org/plasmodb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
 search page</a>.</li>
 <li>The search strategy window is now resizable.</li>
 </ul>

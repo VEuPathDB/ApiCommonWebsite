@@ -259,9 +259,7 @@ FROM   dots.translatedaasequence tas,
        dots.transcript trp
 WHERE  tas.aa_sequence_id = taf.aa_sequence_id and
        taf.na_feature_id = trp.na_feature_id and
-        ( upper(substr(trp.source_id, 1, instr(trp.source_id, '-1', 1, 1) - 1)) = upper('$name') or
-          upper(trp.protein_id) = upper('$name') or
-          upper(trp.product) like upper('%$name%') ) 
+        ( trp.source_id = '$name' or trp.source_id like '$name-%')
 ]]>
     </sql>
   </sqlQuery>
@@ -286,9 +284,9 @@ FROM   dots.translatedaasequence tas,
 WHERE  tas.aa_sequence_id = taf.aa_sequence_id
        and taf.na_feature_id = trp.na_feature_id 
        and trp.parent_id = gf.na_feature_id
-       and (upper(trp.protein_id) = upper('$name') or
-            upper(trp.source_id) = upper('$name') or
-            upper(gf.source_id) = upper('$name') )
+       and (trp.protein_id = '$name' or
+            trp.source_id = '$name' or
+            gf.source_id = '$name' )
 ]]>
       </sql>
     </sqlQuery>
@@ -347,7 +345,7 @@ WHERE msf.na_feature_id =  x.feat_id
     </sql>
   </sqlQuery>
 
-    <sqlQuery name="domain:MassSpecPeptide" excludeProjects="TriTrypDB">
+    <sqlQuery name="domain:MassSpecPeptide">
       <sql>
 <![CDATA[
 SELECT msf.aa_feature_id feature_id,
@@ -597,7 +595,7 @@ SELECT df.aa_feature_id feature_id,
              where  df.aa_sequence_id = $srcfeature_id 
              and al.end_max > $base_start
              and al.start_min < $rend 
-             and xd3.name = 'InterproscanData_RSRC'
+             and xd3.name in ('INTERPRO','InterproscanData_RSRC')
              and gf.na_feature_id = t.parent_id
              and t.na_feature_id = taf.na_feature_id
              and taf.aa_sequence_id = tas.aa_sequence_id

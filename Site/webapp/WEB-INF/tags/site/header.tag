@@ -246,10 +246,6 @@ ${headElement}
    <div style="width:460px;" id="header_rt">
 
    <div align="right"><div id="toplink">
-    <%------ skip skips to menubar.tag ----%>
-   <a href="#skip"><img src="<c:url value='/wdk/images/transparent1.gif'/>" alt="Skip navigational links" width="1" height="1" border="0" /></a>
-
-
    <c:if test="${project == 'TriTrypDB'}">
      <map name="partof">
      <area shape=rect coords="0,0 172,22" href="http://eupathdb.org" alt="EuPathDB home page">
@@ -332,7 +328,7 @@ ${headElement}
     	  <c:if test="${refer == 'customSummary'}">
 		  	<li><a href="javascript:void(0)" onclick="dykOpen()">Did You Know...</a></li>
           </c:if>
-          <li><a href="http://workshop.eupathdb.org/2010/">2010 EuPathDB Workshop</a></li>
+          <li><a href="http://workshop.eupathdb.org/current/">EuPathDB Workshop</a></li>
 <%--	  <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.ExternalLinks"/>">Community Links</a></li> --%>
           <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Glossary"/>">Glossary of Terms</a></li>
           <li><a href="<c:url value="http://eupathdb.org/tutorials/eupathdbFlyer.pdf"/>">EuPathDB Brochure</a></li>

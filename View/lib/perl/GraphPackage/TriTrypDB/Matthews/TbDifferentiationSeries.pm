@@ -39,7 +39,6 @@ sub init {
               default_y_max => 10,
               default_y_min => 4,
               default_x_min => 0,
-              r_adjust_profile => 'profile = profile * 100;',
               points_pch => $pch,
              },
 

@@ -154,16 +154,22 @@ for(i in 1:length(profile.files)) {
   profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
   profile = profile.df\$VALUE;
 
+  element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
+  element.names = as.character(element.names.df\$NAME);
+
 # allow minor adjustments to profile
 $rAdjustProfile
 
-  element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
-  element.names = as.character(element.names.df\$NAME);
-  is.numeric.element.names = !is.na(as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T)));
-
+  element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
+   is.numeric.element.names = !is.na(element.names.numeric);
 
   for(j in 1:length(element.names)) {
     this.name = element.names[j];
+    this.name.numeric = as.character(element.names.numeric[j]);
+
+    if(!is.na(this.name.numeric)) {
+      this.name = this.name.numeric;
+    }
 
     if(is.null(points.df[[this.name]])) {
       points.df[[this.name]] = NA;

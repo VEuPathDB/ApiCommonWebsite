@@ -150,7 +150,7 @@ G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblage
 </c:set>
 
   <c:set var="gnCtxUrl">
-     /cgi-bin/gbrowse_img/giardiadb/?name=${sequence_id}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${gtracks};width=640;embed=1;h_feat=${id}@yellow
+     /cgi-bin/gbrowse_img/giardiadb/?name=${sequence_id}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${gtracks};width=640;embed=1;h_feat=${id}@yellow;genepage=1
   </c:set>
 
   <c:set var="gnCtxDivId" value="gnCtx"/>
@@ -190,7 +190,7 @@ G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblage
 <wdk:wdkTable tblName="GeneLinkouts" isOpen="true" attribution=""/>
 
 <!-- gene alias table -->
-<%-- <wdk:wdkTable tblName="Alias" isOpen="true" attribution=""/> --%>
+<wdk:wdkTable tblName="Alias" isOpen="FALSE" attribution=""/>
 
 <!-- Mercator / Mavid alignments -->
 <c:set var="mercatorAlign">
@@ -287,8 +287,9 @@ G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblage
     InterproscanData
     </c:set>
 
+<c:set var="proteinLength" value="${attrs['protein_length'].value}"/>
 <c:set var="proteinFeaturesUrl">
-http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=${wdkRecord.primaryKey};type=${ptracks};width=640;embed=1
+http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=${wdkRecord.primaryKey}:1..${proteinLength};type=${ptracks};width=640;embed=1;genepage=1
 </c:set>
 <c:if test="${ptracks ne ''}">
     <c:set var="proteinFeaturesImg">
@@ -463,3 +464,5 @@ Castro, J. Ankarklev, D. Palm, J. O. Andersson, S.G. Svard and B. Andersson (Kar
 
 <script type='text/javascript' src='/gbrowse/apiGBrowsePopups.js'></script>
 <script language='JavaScript' type='text/javascript' src='/gbrowse/wz_tooltip.js'></script>
+
+<site:pageLogger name="gene page" />

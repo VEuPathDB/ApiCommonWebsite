@@ -105,6 +105,7 @@ public class NewCommentAction extends CommentAction {
         String[] targetCategoryIds = (String[])cuForm.getTargetCategory();
 
         String pmIdStr = cuForm.getPmIds();
+        String doiStr = cuForm.getDois();
         String accessionStr = cuForm.getAccessions();
         String associatedStableIdsStr = cuForm.getAssociatedStableIds();
         String authorsStr = cuForm.getAuthors();
@@ -151,6 +152,11 @@ public class NewCommentAction extends CommentAction {
         if((pmIdStr != null) && (pmIdStr.trim().length() != 0)) {
           String[] pmIds = handleDelimiter(pmIdStr).split(" ");
           comment.setPmIds(pmIds);
+        }
+
+        if((doiStr != null) && (doiStr.trim().length() != 0)) {
+          String[] dois = handleDelimiter(doiStr).split(" ");
+          comment.setDois(dois);
         }
 
         if((accessionStr != null) && (accessionStr.trim().length() != 0)) {
@@ -264,6 +270,7 @@ public class NewCommentAction extends CommentAction {
         body.append("Source_Id: " + stableId + "\n");
         body.append("Comment: " + content + "\n");
         body.append("PMID: " + pmIdStr + "\n");
+        body.append("DOI(s): " + doiStr + "\n");
         body.append("Uploaded File: ");
         for(String f: files) {
           body.append(f.substring(f.indexOf('|')+1) + "; ");

@@ -36,6 +36,7 @@ import org.xml.sax.SAXException;
  * @author xingao
  * 
  */
+@Deprecated
 public class RecordDumper {
 
     private static final Logger logger = Logger.getLogger(RecordDumper.class);
@@ -169,7 +170,7 @@ public class RecordDumper {
         // output the result
         OutputStream out = new FileOutputStream(file);
         Reporter seqReport = sqlAnswer.createReport(reporterName, config);
-        seqReport.write(out);
+        seqReport.report(out);
         out.close();
 
         // TEST

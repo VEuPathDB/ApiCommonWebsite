@@ -64,9 +64,7 @@
 
         <tr>
         <td>
-
-            <img  id="${imgId}" src="${imgSrc}">
-
+          <img  id="${imgId}" src="<c:url value='/images/spacer.gif'/>">
         </td>
 
                  <c:set var="noExpressionDataTable">false</c:set>
@@ -82,9 +80,10 @@
            <c:import url="${prefix}/../../../../../${tableSrc}"  />  
          </c:set>
 
+<c:set var="toggleName" value="${fn:replace(row['profile_name'].value, ' ', '')}"/>
 
 <wdk:toggle
-    name="${row['profile_name'].value}Data"
+    name="${toggleName}Data"
     displayName="Data Table"
     content="${expressionDataTable}"
     isOpen="${row['dataOpen'].value}"
@@ -141,13 +140,14 @@
   </c:if>
 
 <wdk:toggle
-    name="${row['profile_name'].value}"
+    name="${toggleName}"
     isOpen="${row['mainOpen'].value}"
     noData="${noData}"
     displayName="${row['display_name'].value}"
     content="${expressionContent}"
-    attribution="${row['attribution'].value}"/>
-
+    attribution="${row['attribution'].value}"
+    imageId="${imgId}"
+    imageSource="${imgSrc}" />
 </c:if>
 
 </c:forEach>

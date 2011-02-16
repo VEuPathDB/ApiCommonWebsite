@@ -158,7 +158,7 @@ NRDB,C.muris_scaffoldsGB,C.hominis_scaffoldsGB,C.parvum_scaffoldsGB,C.parvumChr6
 
 <c:if test="${gtracks ne ''}">
   <c:set var="gnCtxUrl">
-     /cgi-bin/gbrowse_img/cryptodb/?name=${contig}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${gtracks};width=640;embed=1;h_feat=${id}@yellow
+     /cgi-bin/gbrowse_img/cryptodb/?name=${contig}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${gtracks};width=640;embed=1;h_feat=${id}@yellow;genepage=1
   </c:set>
 
   <c:set var="gnCtxDivId" value="gnCtx"/>
@@ -309,6 +309,10 @@ CparvumContigs,ChominisContigs,CparvumChr6Scaffold,CparvumESTs
 </c:if>
 
 
+<!-- gene alias table -->
+<wdk:wdkTable tblName="Alias" isOpen="FALSE" attribution=""/>
+
+
 <wdk:wdkTable tblName="Notes" isOpen="true" />
 
 
@@ -343,8 +347,9 @@ ${attrs['linkout'].value}
      InterproscanData,NRDB
     </c:set>
 
+<c:set var="proteinLength" value="${attrs['protein_length'].value}"/>
 <c:set var="proteinFeaturesUrl">
-http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${wdkRecord.primaryKey};type=${ptracks};width=640;embed=1
+http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/cryptodbaa/?name=${wdkRecord.primaryKey}:1..${proteinLength};type=${ptracks};width=640;embed=1;genepage=1
 </c:set>
 <c:if test="${ptracks ne ''}">
     <c:set var="proteinFeaturesImg">
@@ -593,3 +598,5 @@ Teichmann SA, Ivens A, Dear PH.
 </script>
 <script type='text/javascript' src='/gbrowse/apiGBrowsePopups.js'></script>
 <script type='text/javascript' src='/gbrowse/wz_tooltip.js'></script>
+
+<site:pageLogger name="gene page" />

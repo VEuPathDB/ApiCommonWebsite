@@ -5,11 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
+<c:set var="wdkQuestion" value="${requestScope.wdkQuestion}"/>
+<c:set var="recordType" value="${wdkQuestion.recordClass.type}"/>
 
 <%-- QUESTIONS --%>
 <c:set var="plasmoQuestions" value="P.f.study:Field Parasites from Pregnant Women and Children (Duffy),GeneQuestions.GenesByRNASeqPfExpressionFoldChange,P.f.study:Post Infection Time Series (Stunnenberg),GeneQuestions.GenesByRNASeqPfRBCFoldChange,GeneQuestions.GenesByRNASeqPfRBCExprnPercentile,P.f.study:Intraerythrocytic infection cycle (Newbold/Llinas),GeneQuestions.GenesByRNASeqExpressionTiming" />
 <c:set var="tritrypQuestions" value="GeneQuestions.GenesByRNASeqExpressionFoldChange,GeneQuestions.GenesByRNASeqExpressionPercentile"/>
 
+<c:if test="${projectId == 'ToxoDB'}">
+ <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByTgVegRNASeqExpressionPercentile" />
+</c:if>
 
 
 ${Question_Header}
@@ -17,6 +22,7 @@ ${Question_Header}
 
 <%-- div needed for Add Step --%>
 <div id="form_question">
+<h1>Identify ${recordType}s based on ${wdkQuestion.displayName}</h1>
 <center><table width="90%">
 
 <c:set value="2" var="columns"/>
@@ -25,12 +31,16 @@ ${Question_Header}
 
   <c:choose>
     <c:when test="${projectId == 'PlasmoDB'}">
-	<site:queryList4 columns="${columns}" questions="${plasmoQuestions}"/>
-    </c:when>    <c:when test="${projectId == 'TriTrypDB'}">
-	<site:queryList3 columns="${columns}" questions="${tritrypQuestions}"/>
+      <site:queryList4 columns="${columns}" questions="${plasmoQuestions}"/>
+    </c:when>    
+    <c:when test="${projectId == 'TriTrypDB'}">
+      <site:queryList3 columns="${columns}" questions="${tritrypQuestions}"/>
+    </c:when>
+    <c:when test="${projectId == 'ToxoDB'}">
+      <site:queryList3 columns="${columns}" questions="${toxoQuestions}"/>
     </c:when>
     <c:otherwise>  <%-- it must be the portal --%>
-	<site:queryList4 columns="${columns}" questions="${plasmoQuestions},${tritrypQuestions}"/>
+      <site:queryList4 columns="${columns}" questions="${plasmoQuestions},${tritrypQuestions},${toxoQuestions}"/>
     </c:otherwise>
    </c:choose>
 

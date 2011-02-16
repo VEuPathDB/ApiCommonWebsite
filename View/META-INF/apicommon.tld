@@ -303,4 +303,70 @@
     </attribute>
   </tag>
 
+  <tag>
+    <description>
+    Display messages stored in the apicomm database for given project (AmoebaDB,
+    etc) and category (Information, Event, Degraded, etc (see 
+    announce.messages.message_category in apicomm)).
+    </description>
+    <name>messages</name>
+    <tagclass>org.apidb.apicommon.taglib.wdk.SiteMessagesTag</tagclass>
+    <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>projectName</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>messageCategory</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
+  <tag>
+    <description>
+    Generate an XML document of XML records stored in the apicomm database 
+    for given project (all, AmoebaDB, etc) and category (e.g. Event). The
+    XML document is suitable for XSLT.
+    The default is to retrieve only records that are not past their stop date. 
+    This can be changed by setting range to 'expired' or 'all'.
+    The sort order can be specified by setting stopDateSort to ASC or DESC.
+    </description>
+    <name>xmlMessages</name>
+    <tagclass>org.apidb.apicommon.taglib.wdk.SiteXmlMessagesTag</tagclass>
+    <teiclass>org.apidb.apicommon.taglib.wdk.SiteXmlMessagesTEI</teiclass>
+    <bodycontent>scriptless</bodycontent>
+      <attribute>
+          <name>var</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>messageCategory</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>projectName</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>range</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>stopDateSort</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+
 </taglib>

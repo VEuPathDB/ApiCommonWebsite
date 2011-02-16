@@ -43,7 +43,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false"> 
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
       <property name="project" value="CBIL"/>
-      <property name="useBranch" value="false"/>
+      <property name="version" value="internal/api-build-9"/>
     </ant>
   </target>    
     
@@ -69,7 +69,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-26"/>
+      <property name="version" value="WDK_version_1-28"/>
     </ant>
   </target>  
  

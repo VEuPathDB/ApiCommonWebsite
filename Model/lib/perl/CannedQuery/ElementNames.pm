@@ -46,7 +46,7 @@ sub init {
 	$Self->setProfileSet           ( $Args->{ProfileSet          } );
 
   $Self->setSql(<<Sql);
-SELECT pen.element_order, pen.name
+SELECT distinct pen.element_order, pen.name
 FROM   apidb.ProfileSet         ps
 ,      apidb.ProfileElementName pen
 WHERE  ps.name            = '<<ProfileSet>>'

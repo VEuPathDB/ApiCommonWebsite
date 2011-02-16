@@ -75,6 +75,8 @@ sub init {
 
   $self->setTempFiles([]);
 
+  $self->setProfileSetsHash([]);
+
   $self->setAllNames([]);
   $self->setAllValues({});
 
@@ -203,8 +205,8 @@ sub makeR {
   my $totalHeight = $mS->totalHeight();
 
   if ($thumb_b) {
-    $width       *= 0.60;
-    $totalHeight *= 0.60;
+    $width       *= 0.55;
+    $totalHeight *= 0.55;
   }
 
   # used in R code to set locations of screens
@@ -429,7 +431,7 @@ sub makeHtmlStringFromMatrix {
   my $allValues = $self->getAllValues();
 
   my $outputFile = $self->getOutputFile();
-  open(OUT, ">$outputFile") or die "Cannot open file $outputFile for writing: $!";
+  open(OUT, ">> $outputFile") or die "Cannot open file $outputFile for writing: $!";
 
   my @sortedNames = map { $_->{name} } sort{$a->{digit} <=> $b->{digit} || $a->{elementOrder} <=> $b->{elementOrder}} @$allNames;
 
@@ -449,7 +451,7 @@ sub makeHtmlStringFromMatrix {
     foreach my $profileSet (@profileSets) {
       my $val = $allValues->{$profileSet}->{$elementName};
 
-      $val = defined $val ? sprintf("%.3f", $val) : "&nbsp;";
+      $val = defined $val && $val ne 'NA' ? sprintf("%.3f", $val) : "NA";
 
       print OUT "  <td>$val</td>\n";
     }
@@ -457,7 +459,7 @@ sub makeHtmlStringFromMatrix {
   }
 
 
-  print OUT "</table>\n<br/>";
+  print OUT "</table>\n<br/><br/>";
 
   close OUT;
 }

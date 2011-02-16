@@ -190,7 +190,7 @@
 <c:choose>
   <c:when test="${species eq 'falciparum'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+CombinedSNPs
+      AnnotatedGenes+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+CombinedSNPs
     </c:set>
   </c:when>
   <c:when test="${species eq 'yoelii'}">
@@ -200,7 +200,7 @@
   </c:when>
   <c:when test="${species eq 'chabaudi'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC
+      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC
     </c:set>
   </c:when>
   <c:when test="${species eq 'berghei'}">
@@ -210,12 +210,12 @@
   </c:when>
   <c:when test="${species eq 'knowlesi'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC
+      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansVivaxMC+SyntenyGenesVivaxMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC
     </c:set>
   </c:when>
   <c:when test="${species eq 'vivax'}">
     <c:set var="tracks">
-      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC
+      AnnotatedGenes+SyntenySpansFalciparumMC+SyntenyGenesFalciparumMC+SyntenySpansKnowlesiMC+SyntenyGenesKnowlesiMC+SyntenySpansChabaudiMC+SyntenyGenesChabaudiMC+SyntenySpansBergheiMC+SyntenyGenesBergheiMC+SyntenySpansYoeliiMC+SyntenyGenesYoeliiMC
     </c:set>
   </c:when>
   <c:otherwise>
@@ -283,8 +283,8 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
    <c:set var="revCompOn" value="1"/>
   </c:if>
 
-<!-- gene alias table -->
-<%-- <wdk:wdkTable tblName="Alias" isOpen="true" attribution=""/> --%>
+
+
 
 <!-- Mercator / Mavid alignments -->
 <c:set var="mercatorAlign">
@@ -425,9 +425,9 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 --%>
 
 
+<!-- gene alias table -->
+<wdk:wdkTable tblName="Alias" isOpen="FALSE" attribution=""/>
 
-  <wdk:wdkTable tblName="Aliases" isOpen="true"
-                 attribution="P.falciparum_chromosomes,P.berghei_wholeGenomeShotgunSequence,P.chabaudi_chromosomes,P.knowlesi_chromosomes"/>
 
 <c:if test="${binomial eq 'Plasmodium falciparum'}">
   <wdk:wdkTable tblName="Notes" attribution="P.falciparum_chromosomes"/>
@@ -465,7 +465,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 
   <c:if test="${species eq 'falciparum'}">
      <c:set var="ptracks"> 
-       FlorensMassSpecPeptides+KhanMassSpecPeptides+LasonderMassSpecPeptides+PfBowyerMassSpecPeptides+InterproDomains+SignalP+TMHMM+ExportPred+HydropathyPlot+SecondaryStructure+LowComplexity+BLASTP
+       FlorensMassSpecPeptides+KhanMassSpecPeptides+LasonderMassSpecPeptides+LasonderMassSpecPeptidesBloodStage+PfBowyerMassSpecPeptides+InterproDomains+SignalP+TMHMM+ExportPred+HydropathyPlot+SecondaryStructure+LowComplexity+BLASTP
      </c:set>
   </c:if>
   <c:if test="${species eq 'berghei'}">
@@ -479,8 +479,9 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
     </c:set>
   </c:if>
 
+  <c:set var="proteinLength" value="${attrs['protein_length'].value}"/>
   <c:set var="proteinFeaturesUrl">
-   http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/plasmodbaa/?name=${id};type=${ptracks};width=640;embed=1
+   http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/plasmodbaa/?name=${id}:1..${proteinLength};type=${ptracks};width=640;embed=1;genepage=1
    </c:set>
 
    <c:if test="${ptracks ne ''}">
@@ -551,7 +552,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
 
   <c:if test="${binomial eq 'Plasmodium falciparum'}">
       <wdk:wdkTable tblName="MassSpec" isOpen="true"
-                    attribution="Waters_female_gametes,Waters_male_gametes,Waters_mixed_gametes,Pyoelii_LiverStage_LS40,Pyoelii_LiverStage_LS50,FlorensMassSpecData2002,FlorensMassSpecData2004,Pf_Merozoite_Peptides,Lasonder_Mosquito_Oocysts,Lasonder_Mosquito_oocyst_derived_sporozoites,Lasonder_Mosquito_salivary_gland_sporozoites,P.falciparum_Clinical_Proteomics,Pfalciparum_Bowyer_Proteomics_42hrs_Post_Infection,Pfalciparum_Bowyer_Proteomics_48hrs_Post_Infection,P.vivax_Clinical_Proteomics"/>
+                    attribution="Waters_female_gametes,Waters_male_gametes,Waters_mixed_gametes,Pyoelii_LiverStage_LS40,Pyoelii_LiverStage_LS50,FlorensMassSpecData2002,FlorensMassSpecData2004,Pf_Merozoite_Peptides,Lasonder_Mosquito_Oocysts,Lasonder_Mosquito_oocyst_derived_sporozoites,Lasonder_Mosquito_salivary_gland_sporozoites,Pf_Lasonder_Proteomics_Blood_Stages_early_gametocytes_RSRC,P.falciparum_Clinical_Proteomics,Pfalciparum_Bowyer_Proteomics_42hrs_Post_Infection,Pfalciparum_Bowyer_Proteomics_48hrs_Post_Infection,P.vivax_Clinical_Proteomics,Pf_Lasonder_Proteomics_Blood_Stages_trophozoites_RSRC,Pf_Lasonder_Proteomics_Blood_Stages_early_gametocytes_RSRC,Pf_Lasonder_Proteomics_Blood_Stages_late_gametocytes_RSRC"/>
   </c:if>
 
   <c:if test="${binomial eq 'Plasmodium berghei'}">
@@ -1842,8 +1843,11 @@ Annotation of the P. chabaudi AS chromosomes was obtained from the Pathogen Sequ
   </c:choose>
 </div>
 
+<script type='text/javascript' src='/gbrowse/apiGBrowsePopups.js'></script>
 <script type='text/javascript' src='/gbrowse/wz_tooltip.js'></script>
 </c:otherwise>
 </c:choose>
 
 <site:footer/>
+
+<site:pageLogger name="gene page" />
