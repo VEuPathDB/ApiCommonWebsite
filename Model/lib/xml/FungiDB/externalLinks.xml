@@ -11,36 +11,32 @@
             <attribute name="url"><![CDATA[http://www.EuPathDB.org/]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Encephalitozoon cuniculi</i> Map Viewer at NCBI]]></attribute>
-            <attribute name="url"><![CDATA[http://www.ncbi.nlm.nih.gov/mapview/maps.cgi?taxid=6035&chr=I]]></attribute>
+            <attribute name="title"><![CDATA[<i>Saccharomyces cerevisiae</i> atg SGD]]></attribute>
+            <attribute name="url"><![CDATA[http://yeastgenome.org]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Encephalitozoon cuniculi</i> Genome View at NCBI]]></attribute>
-            <attribute name="url"><![CDATA[http://www.ncbi.nlm.nih.gov/mapview/map_search.cgi?taxid=6035]]></attribute>
+            <attribute name="title"><![CDATA[<i>Aspergillus</i> genomes at AspGD]]></attribute>
+            <attribute name="url"><![CDATA[http://www.aspergillusgenome.org/]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Enterocytozoon bieneusi</i> H348, whole genome shotgun sequencing project]]></attribute>
-            <attribute name="url"><![CDATA[http://www.ncbi.nlm.nih.gov/sites/entrez?Db=genome&Cmd=ShowDetailView&TermToSearch=5883]]></attribute>
+            <attribute name="title"><![CDATA[Broad Fungal Genome Initiative]]></attribute>
+            <attribute name="url"><![CDATA[http://www.broadinstitute.org/scientific-community/science/projects/fungal-genome-initiative/fungal-genome-initiative]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Nosema locustae</i> , whole genome shotgun sequencing project]]></attribute> 
-		  <attribute name="url">http://jbpc.mbl.edu/Nosema/</attribute>
+            <attribute name="title"><![CDATA[JGI Mycocosm]]></attribute>
+            <attribute name="url"><![CDATA[http://jgi.doe.gov/fungi]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Spraguea lophii</i> Genome Survey]]></attribute>
-            <attribute name="url"><![CDATA[http://jbpc.mbl.edu/Spraguea-HTML/]]></attribute>
+            <attribute name="title"><![CDATA[PomBase]]></attribute>
+            <attribute name="url"><![CDATA[http://old.genedb.org/genedb/pombe/]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Brachiola algerae</i> Genome Project]]></attribute>
-            <attribute name="url"><![CDATA[http://www.cns.fr/spip/Brachiola-algerae-a-multi-host.html]]></attribute>
+            <attribute name="title"><![CDATA[Ensembl Fungal Genomes]]></attribute>
+            <attribute name="url"><![CDATA[http://fungi.ensembl.org/]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[CDC <i>Microsporidia</i> Page]]></attribute>
-            <attribute name="url"><![CDATA[http://www.cdc.gov/ncidod/dpd/parasites/microsporidia/default.htm]]></attribute>
-        </row>
-        <row>
-            <attribute name="title"><![CDATA[<i>Palaeos</i>]]></attribute>
-            <attribute name="url"><![CDATA[http://www.palaeos.com/Eukarya/Units/StemMetazoa/Microsporidia.html]]></attribute>
+            <attribute name="title"><![CDATA[Comparative Fungal Genome Platform]]></attribute>
+            <attribute name="url"><![CDATA[http://cfgp.snu.ac.kr/]]></attribute>
         </row>
   </table>
 
