@@ -28,14 +28,14 @@
   <target name="WDK-Installation">
     <ant antfile="../WDK/build.xml" target="WDK-Installation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-18"/>
+      <property name="version" value="WDK_version_1-28"/>
     </ant>
   </target>  
 
   <target name="WDK-WebInstallation">
     <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
       <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-18"/>
+      <property name="version" value="WDK_version_1-28"/>
     </ant>
   </target>  
 
