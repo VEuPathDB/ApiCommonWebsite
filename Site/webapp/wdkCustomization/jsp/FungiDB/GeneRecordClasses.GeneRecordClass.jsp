@@ -66,7 +66,8 @@
 
 <h2>
 <center>
-	<wdk:recordPageBasketIcon desc="${prd}"/>
+    <!-- wdk:recordPageBasketIcon  desc="${prd}"/ -->
+    <wdk:recordPageBasketIcon/>
 </center>
 </h2>
 
