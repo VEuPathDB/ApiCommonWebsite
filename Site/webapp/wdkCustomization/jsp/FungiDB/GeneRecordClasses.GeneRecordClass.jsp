@@ -246,7 +246,7 @@ GO,InterproscanData
     </c:set>
 
 <c:set var="proteinFeaturesUrl">
-http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/microsporidiadbaa/?name=${id};type=${ptracks};width=640;embed=1
+http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/fungidbaa/?name=${id};type=${ptracks};width=640;embed=1
 </c:set>
 <c:if test="${ptracks ne ''}">
     <c:set var="proteinFeaturesImg">
