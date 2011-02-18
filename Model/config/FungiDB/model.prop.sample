@@ -12,8 +12,6 @@ INIT_BLAST_PATH=
 
 PROJECT_ID=ToxoDB
 
-SITE_ADMIN_EMAIL = mheiges@uga.edu
-
 MERCATOR_OUTPUT_DIR=
 MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/jbresteltoxodb.apidb.org/toxo43_mercator-MAVID
 
