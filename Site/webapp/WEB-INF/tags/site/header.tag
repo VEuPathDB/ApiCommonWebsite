@@ -390,7 +390,7 @@ ${headElement}
    </div>  <%-- id="header_rt" --%>
 
 <%------------- TOP HEADER:  SITE logo and DATE _______  is a EuPathDB Project  ----------------%>
-   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" align="left" /></a></p>
+   <p><a href="/"><img style="position:relative;top:-4px;left:2px" width="252" height="78" src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" align="left" /></a></p>
 
    <p>&nbsp;</p>
    <p>Version ${version}<br />
