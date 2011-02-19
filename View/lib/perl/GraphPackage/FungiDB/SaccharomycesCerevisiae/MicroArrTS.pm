@@ -24,7 +24,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch, cols => 3});
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments',
+    ({expr_val => {profiles => ['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments',
                            'Expression profiling of saccharomyces cerevisiae s288c pheromone experiments',
                            'Expression profiling of saccharomyces cerevisiae s288c elutriation experiments',
                            'Expression profiling of saccharomyces cerevisiae s288c cdc15 Experiments',
