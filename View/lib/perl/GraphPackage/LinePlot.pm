@@ -171,11 +171,11 @@ $rAdjustProfile
       this.name = this.name.numeric;
     }
 
-    if(is.null(points.df[[this.name]])) {
+    if(is.null(.subset2(points.df, this.name, exact=TRUE))) {
       points.df[[this.name]] = NA;
     }
 
-    if(is.null(lines.df[[this.name]])) {
+    if(is.null(.subset2(lines.df, this.name, exact=TRUE))) {
       lines.df[[this.name]] = NA;
     }
 
