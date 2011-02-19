@@ -159,7 +159,8 @@ for(i in 1:length(profile.files)) {
 }
 
 element.names = vector(\"character\");
-for(i in 1:length(element.names.files)) {
+for(i in 1:1) {
+#for(i in 1:length(element.names.files)) {
   tmp = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = rbind(element.names, as.vector(tmp\$NAME));
 }
@@ -187,9 +188,11 @@ $rAdjustNames
 if($beside) {
   d.max = max(1.1 * profile, 1.1 * (profile + stdev), y.max, na.rm=TRUE);
   d.min = min(1.1 * profile, 1.1 * (profile - stdev), y.min, na.rm=TRUE);
+  my.space=c(0,.5);
 } else {
   d.max = max(1.1 * profile, 1.1 * apply(profile, 2, sum), y.max, na.rm=TRUE);
   d.min = min(1.1 * profile, 1.1 * apply(profile, 2, sum), y.min, na.rm=TRUE);
+  my.space = 0.2;
 }
 
 my.las = 2;
@@ -201,8 +204,8 @@ plotXPos = barplot(profile,
            col       = the.colors,
            ylim      = c(d.min, d.max),
            beside    = $beside,
+           space = my.space,
            names.arg = element.names,
-           space=c(0,.5),
            las = my.las,
            axes = FALSE,
            cex.names = 0.8
