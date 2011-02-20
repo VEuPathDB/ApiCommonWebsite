@@ -7,9 +7,6 @@
               description="Restricts output to only this species"
 %>
 
-<%@ attribute name="model"
-              description="Param used in the cgi (plasmo, tritryp, toxo, giardia)"
-%>
 
         <c:set value="${requestScope.wdkRecord}" var="wdkRecord"/>
 
@@ -25,7 +22,7 @@
 
     <c:set var="secName" value="${row['module'].value}"/>
     <c:set var="imgId" value="img${secName}"/>
-    <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}&model=${model}&fmt=png&id=${row['source_id'].value}"/>
+    <c:set var="preImgSrc" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}&fmt=png&id=${row['source_id'].value}"/>
     <c:set var="imgSrc" value="${preImgSrc}"/>
 
     <c:set var="selectList">
@@ -76,7 +73,7 @@
 
          <c:set var="expressionDataTable">
            <c:set var="prefix" value="<%= request.getRequestURL() %>" />
-           <c:set var="tableSrc" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}&model=${model}&fmt=table&id=${row['source_id'].value}&vp=${defaultVp}"/>
+           <c:set var="tableSrc" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}&fmt=table&id=${row['source_id'].value}&vp=${defaultVp}"/>
            <c:import url="${prefix}/../../../../../${tableSrc}"  />  
          </c:set>
 

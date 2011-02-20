@@ -347,6 +347,22 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/fungidbaa/?name=${i
             </c:otherwise>
         </c:choose>
 
+
+
+
+<c:if test="${binomial eq 'Rhizopus oryzae' || binomial eq 'Neurospora crassa'}">
+  <site:pageDivider name="Expression"/>
+  <site:expressionGraphs species="${binomial}"/>
+
+</c:if>
+
+
+
+
+
+
+
+
 <site:pageDivider name="Sequence"/>
 
 <i>Please note that UTRs are not available for all gene models and may result in the RNA sequence (with introns removed) being identical to the CDS in those cases.</i>
