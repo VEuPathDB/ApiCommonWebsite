@@ -50,8 +50,14 @@ highlighted on gene pages with linkouts to GeneDB.<br>
 <ul>
 <li><span style="font-style: italic;">Trypanosoma brucei </span>Lister
 strain 427<span style="font-style: italic;"> </span>genome sequence
-and annotation provided prepublication by Dr. George Cross.&nbsp; <br>
-</li>
+and annotation provided prepublication by Dr. George Cross.&nbsp; The
+assemblies were evaluated and annotations were transferred from the
+genome reference strain TREU 927 by Matthew Rogers at GeneDB.&nbsp;
+Additional annotation performed by the AutoMagi software by Dr. Peter
+Myler's group at Seattle BioMed are available as a <a
+style="font-weight: bold;"
+href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1;stop=31157;ref=Tb427_02_v4;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=9b51a17bf6f26e7833839c35efe7613a;label=Gene-TbruceiMagiGeneModels;h_feat=tb427.02.170@yellow">genome
+browser track</a>.<br>
 </ul>
 <ul>
 <ul>
@@ -77,7 +83,7 @@ style="font-style: italic; font-weight: bold;"><a
 href="http://www.ncbi.nlm.nih.gov/pubmed/19346560"> et. al.</a></span>).&nbsp;
 Genes with evidence of protein expression based on this experiment can
 be searched via the <a
-href="http://qa.tritrypdb.org/tritrypdb3.0/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
 style="font-weight: bold;">Mass Spec</span>.</a> As usual, results
 from this experiment can be combined with results from other searches
 -- for example, find all genes with evidence of phosphorylated peptides
@@ -112,7 +118,7 @@ with an N50 scaffold length of over 52kb (N50 contig length for the
 31,945 contigs was 3.3kb). The assembly spans 35.5Mb. This assembly is
 subject to change due to ongoing assembly improvement efforts. Complete
 data source information is available <a style="font-weight: bold;"
-href="http://qa.tritrypdb.org/tritrypdb3.0/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
+href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
 </ul>
 <ul>
 <ul>
