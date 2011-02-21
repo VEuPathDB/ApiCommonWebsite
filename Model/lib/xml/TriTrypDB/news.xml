@@ -19,6 +19,129 @@
     </record>
 -->
 <record>
+       <attribute name="headline">
+         <![CDATA[
+          TriTrypDB 3.0 Released
+         ]]>
+       </attribute>
+       <attribute name="date">22 February 2011 00:00</attribute>
+       <attribute name="tag">tritryp2_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of TriTrypDB 3.0<br>
+<br>
+This release of TriTrypDB contains the following new datasets:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li>This release of TriTrypDB includes a complete rebuild of the
+genome sequences and annotation.&nbsp; Annotation improvements come
+from manual curation (spearheaded by GeneDB) and direct contribution of
+the broader kinetoplastid research community through publications and
+User comments on TriTrypDB gene pages.&nbsp; While the annotation is
+current as of November 2010, newer changes at GeneDB are prominently
+highlighted on gene pages with linkouts to GeneDB.<br>
+</li>
+</ul>
+<ul>
+<li><span style="font-style: italic;">Trypanosoma brucei </span>Lister
+strain 427<span style="font-style: italic;"> </span>genome sequence
+and annotation provided prepublication by Dr. George Cross.&nbsp; <br>
+</li>
+</ul>
+<ul>
+<ul>
+<li>Genes may be queried based on gene IDs, text terms, EC numbers,
+GO terms, sequence features (length, introns, signal sequences, Pfam
+domains), etc.</li>
+<li>Genes and sequences may also be interrogated based on BLAST
+similarity, user-defined motifs, etc.</li>
+<li>Please note that Lister 427 genes assembled de-novo, rather
+than using TREU 927 chromosome templates, and including all VSG genes,
+will be available for BLAST searching and BOWTIE mapping at the <a
+style="font-weight: bold;" href="http://tryps.rockefeller.edu/">Cross
+Lab</a> and for BLAST searching at TriTrypDB.<br>
+</li>
+</ul>
+</ul>
+<ul>
+<li>Phosphorylated cytosolic fraction peptides from bloodstream <span
+style="font-style: italic;">T. brucei</span> (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/19346560">Nett</a><span
+style="font-style: italic; font-weight: bold;"><a
+href="http://www.ncbi.nlm.nih.gov/pubmed/19346560"> et. al.</a></span>).&nbsp;
+Genes with evidence of protein expression based on this experiment can
+be searched via the <a
+href="http://qa.tritrypdb.org/tritrypdb3.0/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
+style="font-weight: bold;">Mass Spec</span>.</a> As usual, results
+from this experiment can be combined with results from other searches
+-- for example, find all genes with evidence of phosphorylated peptides
+that are also likely kinases -- visit this <a
+style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/im.do?s=b9602df7836d7719">link
+(or share it with others) </a>to see the results of this search.</li>
+</ul>
+<ul>
+<li>TriTrypDB now provides linkouts to <a style="font-weight: bold;"
+href="http://leishcyc.bio21.unimelb.edu.au/">LeishCyc</a> (database of
+Leishmania metabolic pathways) from relevant Leishmania gene
+pages.&nbsp;
+The linkouts are available in the external links section of gene pages
+--&nbsp; for example: <a style="font-weight: bold;"
+href="http://tritrypdb.org/gene/LmjF07.1070">LmjF.07.1070</a><br>
+</li>
+</ul>
+<ul>
+<li>A draft assembly of the genome sequence of <span
+style="font-style: italic;">Trypanosoma cruzi </span>Esmeraldo strain
+cl3.&nbsp; The sequence data has been graciously made
+available prepublication to the community via TriTrypDB by Dr. Gregory
+A. Buck (Virginia Commonwealth University) and The Genome Center at
+Washington University School of Medicine.&nbsp; Total sequence coverage
+was ~63X (fragments ~47X, 3 Kb paired end (PE) ~11X, 8 Kb PE ~5X) using
+a genome size estimate of 40 Mbp. The combined sequence reads were
+assembled using the Newbler software (Roche 454). The first draft
+assembly was referred to as T_cruzi_Esmeraldo_5.1 and has been cleaned
+of contaminants. The assembly is made up of a total of 23,808 scaffolds
+with an N50 scaffold length of over 52kb (N50 contig length for the
+31,945 contigs was 3.3kb). The assembly spans 35.5Mb. This assembly is
+subject to change due to ongoing assembly improvement efforts. Complete
+data source information is available <a style="font-weight: bold;"
+href="http://qa.tritrypdb.org/tritrypdb3.0/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
+</ul>
+<ul>
+<ul>
+<li>Genomic sequence data is available under the heading "Genomic
+Sequences" on the home
+page and may be searched by <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">species</a>,
+<a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">genomic
+sequence IDs</a> and <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
+style="font-style: italic;">. <br>
+</span></li>
+</ul>
+</ul>
+<ul>
+<ul>
+<li>Additionally, genomic sequence data may be downloaded from the <a
+style="font-weight: bold;"
+href="http://tritrypdb.org/common/downloads/release-2.5/">TriTrypDB
+download directory</a>.</li>
+</ul>
+</ul>
+<span style="font-weight: bold;"></span>
+</body>
+]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">TriTrypDB 2.5 Released</attribute>
        <attribute name="date">18 November 2010 15:00</attribute>
        <attribute name="tag">tritryp11_10_news</attribute>
