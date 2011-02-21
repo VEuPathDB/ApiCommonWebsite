@@ -60,7 +60,6 @@ style="font-weight: bold;"
 href="http://integrate.tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1;stop=31157;ref=Tb427_02_v4;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=9b51a17bf6f26e7833839c35efe7613a;label=Gene-TbruceiMagiGeneModels;h_feat=tb427.02.170@yellow">genome
 browser track</a>.</li>
 </ul>
-<br>
 <ul>
 <ul>
 <li>Genes may be queried based on gene IDs, text terms, EC numbers,
@@ -123,7 +122,6 @@ subject to change due to ongoing assembly improvement efforts. Complete
 data source information is available <a style="font-weight: bold;"
 href="http://qa.tritrypdb.org/tritrypdb3.0/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
 </ul>
-<br>
 <ul>
 <ul>
 <li>Genomic sequence data is available under the heading "Genomic
