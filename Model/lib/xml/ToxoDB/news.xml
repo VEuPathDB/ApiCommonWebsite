@@ -48,10 +48,10 @@ ToxoDB.</li>
 region of the <span style="font-style: italic;">Toxoplasma</span>
 genome with these tracks turned on can be accessed <a
 href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=405135;stop=505134;ref=TGME49_chrVI;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=cda0a88e0c9616ffd179b6addbf9f85f;label=Scaffolds:overview-Gene-ChIPEinsteinME1-ChIPEinsteinME1Peaks"><span
-style="font-weight: bold;">here</span></a>.<br>
-</li>
+style="font-weight: bold;">here</span></a>.</li>
 </ul>
 </ul>
+<br>
 <ul>
 <li><span style="font-style: italic;">T. gondii </span>(VEG) and <span
 style="font-style: italic;">N. caninum</span> (Liverpool) tachyzoite
@@ -78,6 +78,7 @@ style="font-weight: bold;">gene pages</span></a>.&nbsp; <br>
 </li>
 </ul>
 </ul>
+<br>
 <ul>
 <ul>
 <li>RNA-sequence coverage graphs may also be visualized in the <a
@@ -85,6 +86,10 @@ style="font-weight: bold;"
 href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=3130000;stop=3190000;ref=TGME49_chrVI;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=f9ebe7ea4d4813ccd23969a47ad80cb0;label=Scaffolds:overview-Gene-RnaSeqTgVEGTachyzoiteReidDay3-RnaSeqTgVEGTachyzoiteReidDay4">genome
 browser</a>.&nbsp; Data has been mapped to both the VEG and ME49
 genomes.&nbsp; <br>
+<ul>
+<ul>
+</ul>
+</ul>
 </li>
 </ul>
 </ul>
