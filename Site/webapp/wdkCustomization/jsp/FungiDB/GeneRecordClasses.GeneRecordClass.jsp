@@ -350,7 +350,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/fungidbaa/?name=${i
 
 
 
-<c:if test="${binomial eq 'Rhizopus oryzae' || binomial eq 'Neurospora crassa'}">
+<c:if test="${binomial eq 'Rhizopus oryzae' || binomial eq 'Saccharomyces cerevisiae'}">
   <site:pageDivider name="Expression"/>
   <site:expressionGraphs species="${binomial}"/>
 
