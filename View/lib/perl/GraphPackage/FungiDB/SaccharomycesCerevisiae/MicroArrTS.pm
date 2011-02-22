@@ -21,7 +21,7 @@ sub init {
 
   my $legend = ['Cln/Clb', 'pheromone', 'elutriation', 'cdc15', 'Cho et al'];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch, cols => 3});
+  $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch, cols => 5});
 
   $self->setProfileSetsHash
     ({expr_val => {profiles => ['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments',
