@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wdkWizard>
+  <stage name="span_from_question" 
+         display="Select Parameters"
+         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromQuestionStageHandler">
+    <description>Select span logic paramters.</description>
+    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
+  </stage>
+  <stage name="span_from_strategy" 
+         display="Select Parameters"
+         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromStrategyStageHandler">
+    <description>Select span logic paramters.</description>
+    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
+  </stage>
+  <stage name="process_span" 
+         display="Process Span Logic operation"
+         handlerClass="org.apidb.apicommon.controller.wizard.ProcessSpanStageHandler">
+    <description>Process span logic operation and redirect to processFilter.</description>
+    <result type="action">/processStep.do</result>
+  </stage>
+  <stage name="revise_span" 
+         display="Revise Span Parameters"
+         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromReviseStageHandler">
+    <description>Revise span logic paramters.</description>
+    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
+  </stage>
+
+</wdkWizard>
