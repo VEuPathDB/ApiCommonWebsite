@@ -191,11 +191,11 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations,E.bien
                     availableGenomes=""/>
 </c:set>
 
-<wdk:toggle isOpen="false"
+<%-- wdk:toggle isOpen="false"
   name="mercatorAlignment"
   displayName="Multiple Sequence Alignment"
   content="${mercatorAlign}"
-  attribution=""/>
+  attribution=""/ --%>
 
 
 
