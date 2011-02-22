@@ -187,9 +187,11 @@ $rAdjustNames
 if($beside) {
   d.max = max(1.1 * profile, 1.1 * (profile + stdev), y.max, na.rm=TRUE);
   d.min = min(1.1 * profile, 1.1 * (profile - stdev), y.min, na.rm=TRUE);
+  my.space=c(0,.5);
 } else {
   d.max = max(1.1 * profile, 1.1 * apply(profile, 2, sum), y.max, na.rm=TRUE);
   d.min = min(1.1 * profile, 1.1 * apply(profile, 2, sum), y.min, na.rm=TRUE);
+  my.space = 0.2;
 }
 
 my.las = 2;
@@ -202,7 +204,7 @@ plotXPos = barplot(profile,
            ylim      = c(d.min, d.max),
            beside    = $beside,
            names.arg = element.names,
-           space=c(0,.5),
+           space = my.space,
            las = my.las,
            axes = FALSE,
            cex.names = 0.8
