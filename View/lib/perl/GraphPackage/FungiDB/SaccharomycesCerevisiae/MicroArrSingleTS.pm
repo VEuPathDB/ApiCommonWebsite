@@ -13,7 +13,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $colors = ['#4682B4', '#6B8E23', '#00FF00', '#2E8B57'];
-  my $pch = [15,24,20,23,25];
+  my $pch = [24,20,23,25];
 
 
   $self->setProfileSetsHash
