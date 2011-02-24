@@ -233,8 +233,6 @@
 
 <wdk:weight wdkModel="${wdkModel}" wdkQuestion="${wdkQuestion}" />
 
-<wdk:weight wdkModel="${wdkModel}" wdkQuestion="${wdkQuestion}" />
-
 <%-- set the custom name --%>
 <div name="All_weighting" class="param-group" type="ShowHide">
 	  <c:set var="display" value="none"/>
