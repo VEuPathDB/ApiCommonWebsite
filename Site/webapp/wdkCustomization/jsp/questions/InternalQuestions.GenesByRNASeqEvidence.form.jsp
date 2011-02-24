@@ -43,7 +43,6 @@ ${Question_Header}
     <c:when test="${projectId == 'FungiDB'}">
       <site:queryList3 columns="${columns}" questions="${fungiQuestions}"/>
     </c:when>
-
     <c:otherwise>  <%-- it must be the portal --%>
       <site:queryList4 columns="${columns}" questions="${plasmoQuestions},${tritrypQuestions},${toxoQuestions}"/>
     </c:otherwise>

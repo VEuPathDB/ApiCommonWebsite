@@ -9,15 +9,16 @@
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
 <%-- QUESTIONS --%>
-<c:set var="fungiQuestions" value="GeneQuestions.GenesByMicroarrayTimeSeriesSc" />
 <c:set var="amoebaQuestions" value="GeneQuestions.GenesByEHistolyticaExpressionTiming" />
+<c:set var="fungiQuestions" value="GeneQuestions.GenesByMicroarrayTimeSeriesSc" />
+
 
  <c:choose>
     <c:when test="${projectId == 'AmoebaDB'}">
         <jsp:forward page="/showQuestion.do?questionFullName=${amoebaQuestions}" /> 
     </c:when>
     <c:when test="${projectId == 'FungiDB'}">
-        <jsp:forward page="/showQuestion.do?questionFullName=${fungiQuestions}" /> 
+        <jsp:forward page="/showQuestion.do?questionFullName=${fungiQuestions}" />
     </c:when>
     <c:otherwise>
 

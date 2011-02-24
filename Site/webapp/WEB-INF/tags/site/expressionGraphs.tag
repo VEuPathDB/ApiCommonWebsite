@@ -7,6 +7,9 @@
               description="Restricts output to only this species"
 %>
 
+<%@ attribute name="model"
+              description="Param used in the cgi (plasmo, tritryp, toxo, giardia)"
+%>
 
         <c:set value="${requestScope.wdkRecord}" var="wdkRecord"/>
 
@@ -73,7 +76,7 @@
 
          <c:set var="expressionDataTable">
            <c:set var="prefix" value="<%= request.getRequestURL() %>" />
-           <c:set var="tableSrc" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}&fmt=table&id=${row['source_id'].value}"/>
+           <c:set var="tableSrc" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}&model=${model}&fmt=table&id=${row['source_id'].value}"/>
            <c:import url="${prefix}/../../../../../${tableSrc}"  />  
          </c:set>
 

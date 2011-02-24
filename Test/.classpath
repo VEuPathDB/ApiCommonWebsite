@@ -4,7 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WDK Model"/>
 	<classpathentry kind="lib" path="/WSF Test/lib/java/junit-4.4.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Web Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WSF Plugin"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Web Model"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

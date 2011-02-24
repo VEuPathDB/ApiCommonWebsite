@@ -204,13 +204,12 @@ plotXPos = barplot(profile,
            col       = the.colors,
            ylim      = c(d.min, d.max),
            beside    = $beside,
-           space = my.space,
            names.arg = element.names,
+           space = my.space,
            las = my.las,
            axes = FALSE,
            cex.names = 0.8
           );
-
 
 mtext('$yAxisLabel', side=2, line=3.5, cex.lab=1, las=0)
 
