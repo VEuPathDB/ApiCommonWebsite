@@ -11,7 +11,7 @@
 <%-- QUESTIONS --%>
 <c:set var="plasmoQuestions" value="P.f.study:Field Parasites from Pregnant Women and Children (Duffy),GeneQuestions.GenesByRNASeqPfExpressionFoldChange,P.f.study:Post Infection Time Series (Stunnenberg),GeneQuestions.GenesByRNASeqPfRBCFoldChange,GeneQuestions.GenesByRNASeqPfRBCExprnPercentile,P.f.study:Intraerythrocytic infection cycle (Newbold/Llinas),GeneQuestions.GenesByRNASeqExpressionTiming" />
 <c:set var="tritrypQuestions" value="GeneQuestions.GenesByRNASeqExpressionFoldChange,GeneQuestions.GenesByRNASeqExpressionPercentile"/>
-<c:set var="fungiQuestions" value="GeneQuestions.GenesByRnaSeqFoldChangeRo"/>
+<c:set var="fungiQuestions" value="GeneQuestions.GenesByRnaSeqFoldChangeRo,GeneQuestions.GenesByRnaSeqPercentileRo"/>
 
 <c:if test="${projectId == 'ToxoDB'}">
  <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByTgVegRNASeqExpressionPercentile" />
