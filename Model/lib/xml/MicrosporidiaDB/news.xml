@@ -12,7 +12,7 @@
          <![CDATA[
           ]]>
        </attribute>
-    </record>
+   </record>
 --> 
 <record>
        <attribute name="headline">
@@ -28,12 +28,11 @@
          <![CDATA[
 <body>
 <span style="font-weight: bold;">We are pleased to
-announce the release of MicrosporidiaDB 1.3
-<br>
+announce the release of MicrosporidiaDB 1.3<br>
 <br>
 This release of MicrosporidiaDB includes the following new data:<br>
-<br>
 </span>
+<br>
 <ul>
 <li>Genome sequence of <span style="font-style: italic;">Octosporea
 bayeri</span> OER-3-3 described by <a
@@ -58,7 +57,7 @@ href="http://www.ncbi.nlm.nih.gov/nuccore/AEFF00000000">GenBank</a>.<br>
 </ul>
 </body>]]>
        </attribute>
-    </record>
+</record>
 <record>
        <attribute name="headline">
          <![CDATA[
