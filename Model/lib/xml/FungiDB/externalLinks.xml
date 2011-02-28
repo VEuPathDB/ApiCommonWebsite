@@ -7,11 +7,11 @@
 
   <table name="communityLinks">
         <row>
-            <attribute name="title">EuPathDB</attribute>
-            <attribute name="url"><![CDATA[http://www.EuPathDB.org/]]></attribute>
+	    <attribute name="title"><![CDATA[The Hyphal Tip Blog]]></attribute>
+            <attribute name="url"><![CDATA[http://fungalgenomes.org/blog]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Saccharomyces cerevisiae</i> atg SGD]]></attribute>
+            <attribute name="title"><![CDATA[<i>Saccharomyces cerevisiae</i> at SGD]]></attribute>
             <attribute name="url"><![CDATA[http://yeastgenome.org]]></attribute>
         </row>
         <row>
