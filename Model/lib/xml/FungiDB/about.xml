@@ -307,7 +307,7 @@ When citing FungiDB itself, please use:
 <br><br>
 <b>FungiDB: a portal to fungal genome data.</b> <a href="http://fungidb.org">http://fungidb.org</a>.
 
-<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into MicrosporidiaDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
+<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
 
        ]]>
        </attribute>
