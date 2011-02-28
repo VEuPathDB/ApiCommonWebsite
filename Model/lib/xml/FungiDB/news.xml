@@ -15,373 +15,61 @@
     </record>
 --> 
 <record>
-       <attribute name="headline">MicrosporidiaDB 1.2 Released</attribute>
-       <attribute name="date">21 September 2010 15:00</attribute>
-       <attribute name="tag">micro09_10_news</attribute>
+       <attribute name="headline">FungiDB 1.0 beta</attribute>
+       <attribute name="date">14 March 2011 9:00</attribute>
+       <attribute name="tag">fungidb_3-14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
 <body>
 <span style="font-weight: bold;">We are pleased to
-announce the release of MicrosporidiaDB 1.2<br>
+announce the release of FungiDB 1.0 beta<br>
 <br>
 <br>
-This release of MicrosporidiaDB includes genome sequence survey data </span><span
-style="font-weight: bold;">from a number of microsporidial species<br>
+This release of FungiDB includes 18 species of Fungi in Ascomycete, Basidiomycete, and Zygomycota<br>
 <br>
 </span><br>
-The following <span style="font-style: italic;">Microsporidia</span>
-sequences from Genbank's Genome Survey Sequences Database (GSS) are now
-available via MicrosporidiaDB:
+The following Fungal Genomese are now available via FungiDB:
 <ul>
+<li> Eurotiomyctes; Ascomycota</li>
 <ul>
-<li><span style="font-style: italic;">Anncaliia algerae</span> <br>
-</li>
-<li style="font-style: italic;">Edhazardia aedis</li>
-<li style="font-style: italic;">Nosema bombycis</li>
-<li><span style="font-style: italic;">Vittaforma corneae</span></li>
+<li><span style="font-style: italic;">Aspergillus clavatus</span></li>
+<li><span style="font-style: italic;">Aspergillus flavus</span></li>
+<li><span style="font-style: italic;">Aspergillus fumigatus</span></li>
+<li><span style="font-style: italic;">Aspergillus niger</span></li>
+<li><span style="font-style: italic;">Aspergillus nidulans (Emericella nidulans)</span></li>
+<li><span style="font-style: italic;">Aspergillus terreus</span></li>
+<li><span style="font-style: italic;">Coccidoidies immitis</span></li>
+</ul>
+<ul>
+<li> Sordariomycetes; Ascomyocta</li>
+<ul>
+<li><span style="font-style: italic;">Fusarium oxysporum f. sp. lycopersici</span></li>
+<li><span style="font-style: italic;">Gibberella zeae (Fusarium graminearum)</span></li>
+<li><span style="font-style: italic;">Gibberella moniliformis (Fusarium verticillioides)</span></li>
+<li><span style="font-style: italic;">Magnaporthea oryzae</span> formerly <span style="font-style: italic;">(Magnaporthe grisea)</span></li>
+<li><span style="font-style: italic;">Neurospora crassa</span></li>
+</ul>
+<li> Saccharomycotina; Ascomyocta</li>
+<ul>
+<li><span style="font-style: italic;">Candida albicans</span></li>
+<li><span style="font-style: italic;">Saccharomyces cerevisiae</span></li>
+</ul>
+<li> Basidiomycota</li>
+<ul>
+<li><span style="font-style: italic;">Filobasidiella neoformans (Cryptococcus neoformans var grubii)</span></li>
+<li><span style="font-style: italic;">Puccinia graminis</span></li>
+</ul>
+<li> Mucormycotina ("Zygomycota")</li>
+<ul>
+<li><span style="font-style: italic;">Rhizopus oryzae</span></li>
 </ul>
 </ul>
-GSS data is available under the heading "Genomic Sequences" on the home
-page and may be searched by <a
-href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">species</a>,
-<a
-href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">genomic
-sequence IDs</a> and <a
-href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
-style="font-style: italic;">.&nbsp; <br>
-</span><br>
-<br>
-<span style="font-weight: bold;">New features in this release include:</span><br>
-<ul>
-<li>The search strategy window is now resizable.</li>
-</ul>
-<br>
-<br>
-<br>
-<span style="font-weight: bold;"></span>
 </body>
           ]]>
        </attribute>
     </record>
-<record>
-       <attribute name="headline">MicrosporidiaDB 1.1 Released</attribute>
-       <attribute name="date">15 July 2010 15:00</attribute>
-       <attribute name="tag">micro07_10_news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">           
-         <![CDATA[
-<body>
-<span style="font-weight: bold;">We are pleased to
-announce the release of MicrosporidiaDB 1.1<br>
-<br>
-<br>
-This release of MicrosporidiaDB includes the genome sequence and
-annotation of <span style="font-style: italic;">Enterocytozoon bieneusi</span></span><span
-style="font-weight: bold;"><br>
-<br>
-</span>
-<ul>
-<li>Sequence and annotation of <span style="font-style: italic;">E.</span>
-<span style="font-style: italic;">bieneusi</span> are described in
-the publication <a href="http://www.ncbi.nlm.nih.gov/pubmed/19132089">"Genomic
-survey of the non-cultivatable opportunistic human pathogen, <span
-style="font-style: italic;">Enterocytozoon bieneusi</span>"</a> and
-were obtained from <a
-href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=genomeprj&amp;cmd=Retrieve&amp;dopt=Overview&amp;list_uids=28163">GenBank</a>.<br>
-</li>
-<li>Genome sequence of <span style="font-style: italic;">E.</span> <span
-style="font-style: italic;">bieneusi</span> can be compared to the
-sequences of&nbsp; <span style="font-style: italic;">E. cuniculi </span>and
-<span style="font-style: italic;">E. intestinalis</span> using
-synteny.</li>
-<li><span style="font-style: italic;">E.</span> <span
-style="font-style: italic;">bieneusi</span> genes may be identified
-based on text terms, ID #, GO terms, chromosomal location, BLAST,
-sequence features (length/MW, exons, signal sequences, Pfam domains,
-user-defined motifs), orthology, etc.</li>
-</ul>
-In addition, this release features the new MicrosporidiaDB logo.&nbsp;
-The original image was provided by Dr. Louis Weiss, Albert Einstein
-College of Medicine.<br>
-<br>
-<br>
-<br>
-<span style="font-weight: bold;"></span>
-</body>
-          ]]>
-       </attribute>
-    </record>
-<record>
-       <attribute name="headline">New Features in MicrosporidiaDB</attribute>
-       <attribute name="date">13 May 2010 15:00</attribute>
-       <attribute name="tag">micro05_10_news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
-<body>
-<span style="font-weight: bold;">We are pleased to
-announce new features in MicrosporidiaDB 1.0<br>
-<br>
-<br>
-In an effort to continue improving the utility of&nbsp;</span><span
- style="font-weight: bold;">MicrosporidiaDB</span><span
- style="font-weight: bold;">, we have
-implemented several new features in recent releases. &nbsp;<br>
-<br>
-</span>
-<ol>
-  <li><span style="font-weight: bold; font-style: italic;">"My
-Basket"</span> allows one to cherry pick genes and add them to
-the basket for subsequent conversion into a step in a strategy.
-&nbsp;The basket is accessible from the gray menu bar and the
-number of items in your basket is indicated.</li>
-  <br>
-  <li><span style="font-weight: bold; font-style: italic;">Weighted
-searches</span>&nbsp;allows you to assign an arbitrary weight
-to the searches (steps) in
-your search strategy making it possible for you to view a ranked list
-of your results. &nbsp;</li>
-  <div style="margin-left: 40px;">Here is an example of
-the
-same strategy looking for putative secreted enzymes. &nbsp;Notice
-that you
-have a larger number of results with weighting and those can be sorted
-based on the sum of the weights, giving a ranked list of results.<br>
-  <br>
-  <a href="http://microsporidiadb.org/micro/im.do?s=9b66225a87ec7dca">Putative
-secreted enzymes (unweighted)</a><br>
-  <br>
-  <a href="http://microsporidiadb.org/micro/im.do?s=433ccc0b98910715">Putative
-secreted enzymes (Weighted)</a></div>
-  <br>
-  <li><span style="font-weight: bold; font-style: italic;">"My
-Favorites"</span> allows you to bookmark and organize genes you
-access frequently. &nbsp;A tutorial on how to use this feature is
-available <a
- href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
-</ol>
-<span style="font-weight: bold;"></span><span
- style="font-weight: bold;">Feature evaluators still needed:<br>
-<br>
-</span>
-<div style="margin-left: 40px;">We welcome you to *sign
-up* to be an early evaluator of new features on the EuPathDB sites.
-This will be an opportunity for you to help us refine and improve
-features early in the development process.&nbsp;In fact, the "My
-Favorites" feature was the subject of our first survey and feature
-evaluator's comments and suggestions contributed to enhancing this
-feature. <br>
-<br>
-Signing on is easy and will
-require minimal effort on your part in the form of answering questions
-or rendering your opinion. &nbsp;<br>
-<br>
-To become a feature evaluator, <a
- href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
-here</a>.</div>
-<br>
-          ]]>
-       </attribute>
-    </record>
-
-<record>
-       <attribute name="headline">We are pleased to announce the release of Microsporidia 1.0</attribute>
-       <attribute name="date">01 April 2010 15:00</attribute>
-       <attribute name="tag">release_apr_2010</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
-We are pleased to announced the full release of Microsporidia 1.0
-(<a href="http://MicrosporidiaDB.org">http://MicrosporidiaDB.org</a>). &nbsp;<br>
-Leveraging
-bioinformatics infrastructure developed in the context of the EuPathDB
-project (including PlasmoDB, etc), this resource incorporates genome
-sequence and annotation from&nbsp;<span style="font-style: italic;">Encephalitozoon cuniculi </span>and&nbsp;<span style="font-style: italic;">E. intestinalis</span>. &nbsp;<span style="font-weight: bold;"><br>
-<br>
-Highlights include:<br>
-</span>
-<ul>
-<li>Sequence and annotation for&nbsp;<span style="font-style: italic;">Encephalitozoon cuniculi </span>and&nbsp;<span style="font-style: italic;">E. intestinalis&nbsp;</span>(graciously
-provided prepublication by Patrick Keeling's group)</li>
-<li><span style="font-weight: bold;"></span>Genome
-sequence alignments, permitting comparative genomic analysis of synteny
-between <span style="font-style: italic;">E. cuniculi </span>and<span style="font-style: italic;"> E. intestinalis</span>.<span style="font-weight: bold;"></span></li>
-<li><span style="font-weight: bold;"></span>Expressed
-sequence tag data for <span style="font-style: italic;">E.</span>
-<span style="font-style: italic;">cuniculi</span>.<span style="font-style: italic;"></span><span style="font-weight: bold;"></span></li>
-<li><span style="font-weight: bold;"></span>'User
-Comments' may be added to any gene page, enhancing available
-annotation. Such comments become immediately visible and searchable by
-others.<span style="font-weight: bold;"></span></li>
-<li><span style="font-weight: bold;"></span>Identification
-of genes based on text terms, ID #, GO terms, chromosomal
-location, BLAST, sequence features (length/MW, exons, signal sequences,
-Pfam domains, user-defined motifs), orthology, etc.<br>
-</li>
-</ul>
-<span style="font-weight: bold;">Support
-for integrated searches, via the 'search strategy builder'.
-&nbsp;Strategies can be stored and shared with others by logging
-into MicrosporidiaDB.<br>
-Example strategies combining multiple searches can be viewed here:</span><span style="font-weight: bold;"> <br><br></span>
-<a href="http://microsporidiadb.org/micro/im.do?s=ea825c840a708a03">http://microsporidiadb.org/micro/im.do?s=ea825c840a708a03</a><br><br>(This
-strategy looks for genes whose products contain a transmembrane domain
-or a secretion signal peptide that are conserved in Fungi but
-absent form animals. &nbsp;The strategy starts by first running an
-orthology search followed by asking for any of these that also contain
-signal peptides or transmembrane
-domains).<br><br>
-<a href="http://microsporidiadb.org/micro/im.do?s=fe87e063500d52b2">http://microsporidiadb.org/micro/im.do?s=fe87e063500d52b2</a><span style="font-weight: bold;"><br>
-<br>
-</span>(The above strategy identifies&nbsp;any gene in E.
-cuniculi and E. intestinalis that are annotated as hypothetical (or at
-least have the word hypothetical in the product name) that also have GO associations)<span style="font-weight: bold;"><br>
-<br>
-<br>
-</span>
-
-<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:
-</a
->***<br><br>
-</span> 
-<div style="margin-left: 20px;">
-We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
- of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
-Signing up is easy.  Evaluating will require minimal effort on your part, 
-typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
-</div>
-
-<br>
-<span style="font-weight: bold;"><br>
-We look forward to working with you to develop and enhance MicrosporidiaDB in
-the coming years.</span>
-    ]]>
-       </attribute>
-</record>
-
-
-<record>
-       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
-       <attribute name="date">31 March 2010 15:00</attribute>
-       <attribute name="tag">swg_announce_2010</attribute>
-       <attribute name="category"></attribute>
-       <attribute name="item">
-           
-         <![CDATA[
-EuPathDB is pleased to announce the members of the scientific working group
-(SWG). The SWG provides EuPathDB with scientific oversight and 
-guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
-
-<table>
-<tr>
-<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
-Foundation for National Institutes of Health (FNIH)<br>
-Broad expertise in parasitology, large integrative projects (chair)<br>
-</td>
-<td>
-<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
-Wellcome Trust Sanger Institute<br>
-Pathogen genomics & functional annotation<br>
-</td>
-</tr><tr>
-<td>
-<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
-Stanford University<br>
-Toxoplasma biology & host-pathogen interactions<br>
-</td>
-<td>
-<a href="http://www.vcu.edu/micro/buck.htm">Greg Buck</a><br>
-Virginia Commonwealth University<br>
-Pathogenomics of apicomplexan and kinetoplastid parasites<br>
-</td>
-</tr><tr>
-<td>
-<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
-National Institutes of Health (NIAID)<br>
-Laboratory & clinical aspects of malaria biology<br>
-</td>
-<td>
-<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
-Northwestern University<br>
-Biocuration, ontologies, DIctyostelium<br>
-</td>
-</tr><tr>
-<td>
-<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
-University of  Zurich<br>
-Cellular and molecular biology of Giardia<br>
-</td>
-<td>
-<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
-University of British Columbia<br>
-Comparative genomics<br>
-</td>
-</tr><tr>
-<td>
-<a href="http://www.healthsystem.virginia.edu/internet/pathology/faculty/petri.cfm">Bill Petri</a><br>
-University of Virginia<br>
-Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
-</td>
-<td>
-<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
-Ontario Cancer Center<br>
-Bioinformatics tools & analysis<br>
-</td>
-</tr><tr>
-<td>
-<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
-National Institutes of Health (NHGRI)<br>
-Large-scale sequencing<br>
-</td>
-<td>
-<a href="http://tulip.liv.ac.uk/portal/pls/portal/tulwwwmerge.mergepage?p_template=rae_staff_vs&p_tulipproc=raestaff&p_params=%3Fp_func%3DSDVS%26p_select%3DRAE%26p_hash%3DA31689%26p_url%3D192%26p_template%3Drae_staff_vs">Jonathan Wastling</a><br>
-University of Liverpool<br>
-Proteomics of apicomplexan parasites<br>
-</td>
-</tr><tr>
-<td>
-<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
-Albert Einstein College of Medicine<br>
-Microsporidia, Toxoplasma, and clinical microbiology<br>
-</td>
-<td>
-<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
-Harvard School of Public Health<br>
-Plasmodium population biology, drug discovery<br>
-</td></table>
-          ]]>
-       </attribute>
-    </record>
-
-
-<record>
-       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
-       <attribute name="date">04 February 2010 15:00</attribute>
-       <attribute name="tag">eupath_dbp_2010</attribute>
-       <attribute name="category"></attribute>
-       <attribute name="item">
-           
-         <![CDATA[
-The NIAID-funded Eukaryotic Pathogen Genome Database
-(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
-Projects (DBPs) focused on one or more of the eukaryotic
-pathogens supported by this Bioinformatics Resource Center
-(BRC). We anticipate making two awards of up to $600K each
-by July 1, 2010 (a second round of solicitations is expected
-in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
-following which full applications will be solicited by
-invitation only, with a deadline of March 31.</i>  
-<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
-Click here to
-download the RFP</a>.
-          ]]>
-       </attribute>
-</record>
-
 <!--
    <record>
        <attribute name="headline"></attribute>

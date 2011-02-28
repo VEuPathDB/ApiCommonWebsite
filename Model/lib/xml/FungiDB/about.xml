@@ -15,14 +15,12 @@
        <attribute name="text">
 <![CDATA[
 FungiDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
-database for the phylum <i>Microsporidia</i>.  In its first iteration (released in early 2011), FungiDB contains the genomes of 19 Fungi.
+database for the kingdom Fungi.  In its first iteration (released in early 2011), FungiDB contains the genomes of 18 Fungi.
 (see below).  
-FungiDB integrates whole genome sequence and annotation and will rapidly expand to include experimental data and environmental isolate sequences 
-provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
+FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 ]]>
 </attribute>
    </record>
-
 
    <record>
        <attribute name="title">Organisms included in FungiDB</attribute>
@@ -30,9 +28,39 @@ provided by community researchers . The database includes supplemental bioinform
        <attribute name="text">
        <![CDATA[
 <ul>
-<li><i>Encephalitozoon cuniculi</i></li>
-<li><i>Encephalitozoon intestinalis</i></li>
-<li><i>Enterocytozoon bieneusi</i></li>
+<li> Eurotiomyctes; Ascomycota</li>
+<ul>
+<li><span style="font-style: italic;">Aspergillus clavatus</span></li>
+<li><span style="font-style: italic;">Aspergillus flavus</span></li>
+<li><span style="font-style: italic;">Aspergillus fumigatus</span></li>
+<li><span style="font-style: italic;">Aspergillus niger</span></li>
+<li><span style="font-style: italic;">Aspergillus nidulans (Emericella nidulans)</span></li>
+<li><span style="font-style: italic;">Aspergillus terreus</span></li>
+<li><span style="font-style: italic;">Coccidoidies immitis</span></li>
+</ul>
+<ul>
+<li> Sordariomycetes; Ascomyocta</li>
+<ul>
+<li><span style="font-style: italic;">Fusarium oxysporum f. sp. lycopersici</span></li>
+<li><span style="font-style: italic;">Gibberella zeae (Fusarium graminearum)</span></li>
+<li><span style="font-style: italic;">Gibberella moniliformis (Fusarium verticillioides)</span></li>
+<li><span style="font-style: italic;">Magnaporthea oryzae</span> formerly <span style="font-style: italic;">(Magnaporthe grisea)</span></li>
+<li><span style="font-style: italic;">Neurospora crassa</span></li>
+</ul>
+<li> Saccharomycotina; Ascomyocta</li>
+<ul>
+<li><span style="font-style: italic;">Candida albicans</span></li>
+<li><span style="font-style: italic;">Saccharomyces cerevisiae</span></li>
+</ul>
+<li> Basidiomycota</li>
+<ul>
+<li><span style="font-style: italic;">Filobasidiella neoformans (Cryptococcus neoformans var grubii)</span></li>
+<li><span style="font-style: italic;">Puccinia graminis</span></li>
+</ul>
+<li> Mucormycotina ("Zygomycota")</li>
+<ul>
+<li><span style="font-style: italic;">Rhizopus oryzae</span></li>
+</ul>
 </ul>
        ]]>
        </attribute>
@@ -44,12 +72,10 @@ provided by community researchers . The database includes supplemental bioinform
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in MicrosporidiaDB is provided by independent researchers.  For a list of the data integrated into MicrosporidiaDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in FungiDB is provided by independent researchers.  For a list of the data integrated into FungiDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
-
-
 
  <record>
        <attribute name="title">Data Statistics</attribute>
@@ -67,24 +93,6 @@ rganisms currently available in EuPathDB, by various datatypes.
        </attribute>
    </record>
 
-<!--
- <record>
-       <attribute name="title">Understanding Data: Protocols and Methods</attribute>
-       <attribute name="tag">protocols_methods</attribute>
-       <attribute name="text">
-       <![CDATA[
-
-We are interested in including documents and protocols that are useful   
-for the CryptoDB community.  Please send us your suggestions by   
-clicking <a href="help.jsp" target="_blank" onClick="poptastic(this.href); return false;">here</a>.
-<br><br>
-<a href="/static/SOP/">SOPs for Annotation</a>
-
-
-   ]]>
-       </attribute>
-   </record>
--->
 <record>
        <attribute name="title">Understanding Downloads</attribute>
        <attribute name="tag">downloads</attribute>
@@ -125,6 +133,7 @@ a specific scientific advisory team as not yet been assembled.
        </attribute>
    </record>
 
+<!--
 
 <record>
        <attribute name="title">Scientific Working Group</attribute>
@@ -253,7 +262,7 @@ Charles Treatman<SUP>2,7</SUP>, Haiming Wang<SUP>1</SUP>
        ]]>
        </attribute>
    </record>
-
+-->
 
 
  <record>
@@ -261,12 +270,13 @@ Charles Treatman<SUP>2,7</SUP>, Haiming Wang<SUP>1</SUP>
        <attribute name="tag">funding</attribute>
        <attribute name="text">
        <![CDATA[
-MicrosporidiaDB is a member of pathogen-databases that are housed under 
-the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
-Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is 
-mainly distributed between the University of Pennsylvania in 
-Philadelphia, Pennsylvania and the University of Georgia in Athens, 
-Georgia.
+FungiDB is funded through a grant from the <a
+href="http://bwfund.org/">Burroughs Wellcome Fund</a> to Jason Stajich
+(UC Riverside) and David Roos (University of Pennsylvania and
+EuPathDB). <br>
+The EuPathDB team is primarily distributed between the University of
+Pennsylvania in Philadelphia, Pennsylvania and the University of
+Georgia in Athens, Georgia.  
        ]]>
        </attribute>
    </record>
@@ -278,14 +288,16 @@ Georgia.
        <attribute name="tag">use</attribute>
        <attribute name="text">
        <![CDATA[
-The data at this site is provided freely for public use, through
-the contributions of many researchers including those involved in
-generating the genome sequences. The data is not guaranteed to be
-accurate as it often reflects the results of ongoing research.
-When using data obtained from any EuPathDB project, it is important to cite
-the original publications and contributors of that data. 
 
-Please see Citing MicrosporidiaDB below.
+The data at this site is provided freely for public use, through the
+contributions of many researchers including those involved in
+generating the genome sequences. The data is not guaranteed to be
+accurate as it often reflects the results of ongoing research.  When
+using data obtained from FungiDB or an EuPathDB project, it is
+important to cite the original publications and contributors of that
+data.
+
+Please see Citing FungiDB below.
 
        ]]>
        </attribute>
@@ -293,17 +305,15 @@ Please see Citing MicrosporidiaDB below.
 
 
 <record>
-       <attribute name="title">Citing MicrosporidiaDB</attribute>
+       <attribute name="title">Citing FungiDB</attribute>
        <attribute name="tag">citing</attribute>
        <attribute name="text">
        <![CDATA[
-When citing MicrosporidiaDB itself, please use:
+When citing FungiDB itself, please use:
 <br><br>
-<b>EuPathDB: a portal to eukaryotic pathogen databases.</b> <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D415">Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. Epub 2009 Nov 13.</a>
+<b>FungiDB: a portal to fungal genome data.</b> <a href="http://fungidb.org">http://fungidb.org</a>.
 
-
-<br><br>Much of the data in MicrosporidiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into MicrosporidiaDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
-
+<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into MicrosporidiaDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
 
        ]]>
        </attribute>
@@ -316,7 +326,7 @@ When citing MicrosporidiaDB itself, please use:
        <attribute name="text">
        <![CDATA[
 We are interested in including documents and protocols that are useful   
-for the CryptoDB community.  Please send us your suggestions by   
+for the FungiDB community.  Please send us your suggestions by   
 clicking <a href="help.jsp" target="_blank" onClick="poptastic(this.href); return false;">here</a>.
 
 
