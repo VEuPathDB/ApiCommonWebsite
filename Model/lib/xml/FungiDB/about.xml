@@ -117,18 +117,12 @@ There are several kinds of downloads available in a EuPathDB site:
        <attribute name="tag">advisors</attribute>
        <attribute name="text">
        <![CDATA[
-EuPathDB databases rely heavily on community input.  Each project in EuPathDB benefits from the advice and mentoring of members from each specific community. 
-We hold monthly organism calls for each of our databases with members of the scientific advisory teams and others from the community.  
-Anyone interested in joining one of these conference calls is encouraged to contact us.  While monthly conference calls for MicrosporidiaDB are already underway, 
-a specific scientific advisory team as not yet been assembled.
-<br><br>
 
-<b>MicrosporidiaDB</b><br><br>
-<div id="cirbulletlist">
-<ul>
-<li>......
-</ul></div>
-<br>
+FungiDB is an initial developement mode with a beta release scheduled
+for mid-March 2011. A scientific advisory board will be formed during
+the second year of the project to solicit input from the community of
+advivors on fungal genomics data for inclusion in the project.
+
        ]]>
        </attribute>
    </record>
