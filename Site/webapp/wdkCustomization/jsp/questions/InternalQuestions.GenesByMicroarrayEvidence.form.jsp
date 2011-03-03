@@ -12,6 +12,15 @@
 <c:set var="fungiQuestions" value="GeneQuestions.GenesByMicroarrayTimeSeriesSc,." />
 
 
+ <c:choose>
+    <c:when test="${projectId == 'AmoebaDB'}">
+        <jsp:forward page="/showQuestion.do?questionFullName=${amoebaQuestions}" /> 
+    </c:when>
+    <c:otherwise>
+
+
+
+
 <!-- get wdkModel saved in application scope -->
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 
@@ -20,6 +29,7 @@
 
 <wdk:errors/>
 
+<%-- div needed for Add Step --%>
 <div id="form_question">
 
 

@@ -16,6 +16,9 @@
 
 <%-- div needed for Add Step --%>
 <div id="form_question">
+<%--
+<h1>Identify ${recordType}s based on ${wdkQuestion.displayName}</h1>
+--%>
 
 <center><table width="90%">
 

@@ -77,6 +77,8 @@ public class GetDataSourceAction extends Action {
             request.setAttribute(ATTR_ANSWER, answerValue);
         }
 
+        if (displayType == null || displayType.length() == 0) displayType = VALUE_DISPLAY_LIST;
+
         if (displayType.equals(VALUE_DISPLAY_LIST)) return mapping.findForward(forwardList);
         else if (displayType.equals(VALUE_DISPLAY_DETAIL)) return mapping.findForward(forwardDetail);
         else throw new WdkUserException("Unknown display type: " + displayType);
