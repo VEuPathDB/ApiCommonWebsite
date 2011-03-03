@@ -15,7 +15,7 @@
        <attribute name="text">
 <![CDATA[
 FungiDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
-database for the kingdom Fungi.  In its first iteration (released in early 2011), FungiDB contains the genomes of 17 Fungi.
+database for the kingdom Fungi.  In its first iteration (released in early 2011), FungiDB contains the genomes of 18 Fungi covering 17 species.
 (see below).  
 FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 ]]>
@@ -36,7 +36,8 @@ FungiDB integrates whole genome sequence and annotation and will expand to inclu
 <li><span style="font-style: italic;">Aspergillus niger</span></li>
 <li><span style="font-style: italic;">Aspergillus nidulans (Emericella nidulans)</span></li>
 <li><span style="font-style: italic;">Aspergillus terreus</span></li>
-<li><span style="font-style: italic;">Coccidoidies immitis</span></li>
+<li><span style="font-style: italic;">Coccidoidies immitis</span> strain RS</li>
+<li><span style="font-style: italic;">Coccidoidies immitis</span> strain H538.4</li>
 </ul>
 <ul>
 <li> Sordariomycetes; Ascomyocta</li>
@@ -45,7 +46,7 @@ FungiDB integrates whole genome sequence and annotation and will expand to inclu
 <li><span style="font-style: italic;">Gibberella zeae (Fusarium graminearum)</span></li>
 <li><span style="font-style: italic;">Gibberella moniliformis (Fusarium verticillioides)</span></li>
 <li><span style="font-style: italic;">Magnaporthea oryzae</span> formerly <span style="font-style: italic;">(Magnaporthe grisea)</span></li>
-<li><span style="font-style: italic;">Neurospora crassa</span></li>
+<li><span style="font-style: italic;">Neurospora crassa</span> strain OR74A</li>
 </ul>
 <li> Saccharomycotina; Ascomyocta</li>
 <ul>
