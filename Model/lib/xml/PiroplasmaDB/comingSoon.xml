@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+   <record>
+      <attribute name="title">Expected Fall 2007</attribute> 
+      <attribute name="tag">comingSoon</attribute> 
+      <table name="list">
+        <row>
+          <attribute name="headline">
+          <![CDATA[
+            To Be Announced
+          ]]>
+          </attribute>
+          <attribute name="item">
+          <![CDATA[
+           
+          ]]>
+          </attribute>
+        </row>
+      </table>
+   </record>
+
+</xmlAnswer>
