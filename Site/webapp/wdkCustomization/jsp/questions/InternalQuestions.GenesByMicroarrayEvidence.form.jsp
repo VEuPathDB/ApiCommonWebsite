@@ -9,21 +9,8 @@
 <c:set var="projectId" value="${applicationScope.wdkModel.projectId}" />
 
 <%-- QUESTIONS --%>
-<c:set var="amoebaQuestions" value="GeneQuestions.GenesByEHistolyticaExpressionTiming" />
-<c:set var="fungiQuestions" value="GeneQuestions.GenesByMicroarrayTimeSeriesSc" />
+<c:set var="fungiQuestions" value="GeneQuestions.GenesByMicroarrayTimeSeriesSc,." />
 
-
- <c:choose>
-    <c:when test="${projectId == 'AmoebaDB'}">
-        <jsp:forward page="/showQuestion.do?questionFullName=${amoebaQuestions}" /> 
-    </c:when>
-    <c:when test="${projectId == 'FungiDB'}">
-        <jsp:forward page="/showQuestion.do?questionFullName=${fungiQuestions}" />
-    </c:when>
-    <c:otherwise>
-
-
-${Question_Header}
 
 <!-- get wdkModel saved in application scope -->
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
@@ -34,8 +21,6 @@ ${Question_Header}
 <wdk:errors/>
 
 <div id="form_question">
-
-<h1>Identify ${recordType}s based on ${wdkQuestion.displayName}</h1>
 
 
 <center><table width="90%">
@@ -60,6 +45,9 @@ ${Question_Header}
     </tr>
 
 <c:choose>
+ <c:when test = "${project == 'FungiDB'}">
+    <site:queryList4 columns="${columns}" questions="${fungiQuestions}"/>
+  </c:when>
   <c:when test = "${project == 'GiardiaDB'}">
     <site:queryList4 columns="${columns}" questions="${giardiaQuestions}"/>
   </c:when>
@@ -83,8 +71,5 @@ ${Question_Header}
 </div>
 
 
- </c:otherwise>
-</c:choose>
 
 
-${Question_Footer}

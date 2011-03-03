@@ -9,21 +9,14 @@
 <c:set var="recordType" value="${wdkQuestion.recordClass.type}"/>
 
 <%-- QUESTIONS --%>
-<c:set var="plasmoQuestions" value="P.f.study:Field Parasites from Pregnant Women and Children (Duffy),GeneQuestions.GenesByRNASeqPfExpressionFoldChange,P.f.study:Post Infection Time Series (Stunnenberg),GeneQuestions.GenesByRNASeqPfRBCFoldChange,GeneQuestions.GenesByRNASeqPfRBCExprnPercentile,P.f.study:Intraerythrocytic infection cycle (Newbold/Llinas),GeneQuestions.GenesByRNASeqExpressionTiming" />
-<c:set var="tritrypQuestions" value="GeneQuestions.GenesByRNASeqExpressionFoldChange,GeneQuestions.GenesByRNASeqExpressionPercentile"/>
 <c:set var="fungiQuestions" value="GeneQuestions.GenesByRnaSeqFoldChangeRo,GeneQuestions.GenesByRnaSeqPercentileRo"/>
 
-<c:if test="${projectId == 'ToxoDB'}">
- <jsp:forward page="/showQuestion.do?questionFullName=GeneQuestions.GenesByTgVegRNASeqExpressionPercentile" />
-</c:if>
 
-
-${Question_Header}
 <wdk:errors/>
 
 <%-- div needed for Add Step --%>
 <div id="form_question">
-<h1>Identify ${recordType}s based on ${wdkQuestion.displayName}</h1>
+
 <center><table width="90%">
 
 <c:set value="2" var="columns"/>
@@ -31,21 +24,9 @@ ${Question_Header}
 <tr class="headerRow"><td colspan="${columns + 2}" align="center"><b>Choose a Search</b><br><i style="font-size:80%">Mouse over to read description</i></td></tr>
 
   <c:choose>
-    <c:when test="${projectId == 'PlasmoDB'}">
-      <site:queryList4 columns="${columns}" questions="${plasmoQuestions}"/>
-    </c:when>    
-    <c:when test="${projectId == 'TriTrypDB'}">
-      <site:queryList3 columns="${columns}" questions="${tritrypQuestions}"/>
-    </c:when>
-    <c:when test="${projectId == 'ToxoDB'}">
-      <site:queryList3 columns="${columns}" questions="${toxoQuestions}"/>
-    </c:when>
-    <c:when test="${projectId == 'FungiDB'}">
+       <c:when test="${projectId == 'FungiDB'}">
       <site:queryList3 columns="${columns}" questions="${fungiQuestions}"/>
     </c:when>
-    <c:otherwise>  <%-- it must be the portal --%>
-      <site:queryList4 columns="${columns}" questions="${plasmoQuestions},${tritrypQuestions},${toxoQuestions}"/>
-    </c:otherwise>
    </c:choose>
 
 
@@ -53,4 +34,3 @@ ${Question_Header}
 </center>
 </div>
 
-${Question_Footer}
