@@ -150,7 +150,7 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations,E.bien
 
 <c:if test="${gtracks ne ''}">
   <c:set var="gnCtxUrl">
-     /cgi-bin/gbrowse_img/microsporidiadb/?name=${contig}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${gtracks};width=640;embed=1;h_feat=${id}@yellow
+     /cgi-bin/gbrowse_img/fungidb/?name=${contig}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;type=${gtracks};width=640;embed=1;h_feat=${id}@yellow
   </c:set>
 
   <c:set var="gnCtxDivId" value="gnCtx"/>
@@ -159,7 +159,7 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations,E.bien
     <center><div id="${gnCtxDivId}"></div></center>
     
     <c:set var="gbrowseUrl">
-        /cgi-bin/gbrowse/microsporidiadb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
+        /cgi-bin/gbrowse/fungidb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
     <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
   </c:set>
