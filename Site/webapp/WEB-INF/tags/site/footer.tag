@@ -43,16 +43,10 @@
 		Please <a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">Contact Us</a> with any questions or comments
 	</div>
 
-	<span style="position: relative; top: -9px;">
+<%--	<span style="position: relative; top: -9px;">  --%>
+	<span>
 		<a href="http://www.eupathdb.org"><br><img src="/assets/images/eupathdblink.png" alt="Link to EuPathDB homepage"/></a>&nbsp;&nbsp;
-		<a href="http://amoebadb.org"><img border=0 src="/assets/images/AmoebaDB/amoebadb_w30.png"              ></a>&nbsp;
-		<a href="http://cryptodb.org"><img border=0 src="/assets/images/CryptoDB/cryptodb_w50.png"     	width=30></a>&nbsp;
-       		<a href="http://giardiadb.org"><img border=0 src="/assets/images/GiardiaDB/giardiadb_w50.png"  	width=30></a>&nbsp;&nbsp;
-        	<a href="http://microsporidiadb.org"><img border=0 src="/assets/images/MicrosporidiaDB/microdb_w30.png"  ></a>&nbsp;&nbsp;
-        	<a href="http://plasmodb.org"><img border=0 src="/assets/images/PlasmoDB/plasmodb_w50.png"     	width=30></a>&nbsp;&nbsp;
-        	<a href="http://toxodb.org"><img border=0 src="/assets/images/ToxoDB/toxodb_w50.png"           	width=30></a>&nbsp;&nbsp;
-        	<a href="http://trichdb.org"><img border=0 src="/assets/images/TrichDB/trichdb_w65.png"        	height=30></a>&nbsp;&nbsp;
-        	<a href="http://tritrypdb.org"><img border=0 src="/assets/images/TriTrypDB/tritrypdb_w40.png"	width=25></a>
+<%--        	<a href="http://tritrypdb.org"><img border=0 src="/assets/images/TriTrypDB/tritrypdb_w40.png"	width=25></a>    --%>
 	</span>
 
 </div>
