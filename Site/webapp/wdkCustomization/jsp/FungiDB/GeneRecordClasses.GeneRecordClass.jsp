@@ -125,19 +125,9 @@ ${attrs['organism'].value}<br>
 <%-- DNA CONTEXT ---------------------------------------------------%>
 
 <c:choose>
-  <c:when test='${organism_full eq "Encephalitozoon cuniculi GB-M1"}'>
+  <c:when test='${organism_full eq "Rhizopus oryzae RA 99-880"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansEintestinalis+SyntenyGenesEintestinalis+SyntenySpansEbieneusi+SyntenyGenesEbieneusi+Repeat+EST+BLASTX
-    </c:set>
-  </c:when>
-  <c:when test='${organism_full eq "Encephalitozoon intestinalis"}'>
-    <c:set var="gtracks">
-      Gene+SyntenySpansEcuniculi+SyntenyGenesEcuniculi+SyntenySpansEbieneusi+SyntenyGenesEbieneusi+Repeat+EST+BLASTX
-    </c:set>
-  </c:when>
-  <c:when test='${organism_full eq "Enterocytozoon bieneusi H348"}'>
-    <c:set var="gtracks">
-      Gene+SyntenySpansEintestinalis+SyntenyGenesEintestinalis+SyntenySpansEcuniculi+SyntenyGenesEcuniculi++Repeat+EST+BLASTX
+      Gene+RnaSeqRO5H+RnaSeqRO20H+RnaSeqRO3H+EST+BLASTX
     </c:set>
   </c:when>
 
