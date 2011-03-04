@@ -338,7 +338,7 @@ GO,InterproscanData
 
 <c:if test='${organism_full eq "Saccharomyces cerevisisae S288c"}'>
   <a name="ecNumber"></a>
-  <c:if test="${(attrs['so_term_name'].value eq 'protein_coding')
+ <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
     <wdk:wdkTable tblName="EcNumber" isOpen="false"
                    attribution="enzymeDB"/>
   </c:if>
