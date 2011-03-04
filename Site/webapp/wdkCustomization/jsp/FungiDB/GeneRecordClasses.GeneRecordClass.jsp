@@ -286,28 +286,27 @@ GO,InterproscanData
     InterproscanData
     </c:set>
 
-<c:set var="proteinFeaturesUrl">
-http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/fungidbaa/?name=${id};type=${ptracks};width=640;embed=1
-</c:set>
-<c:if test="${ptracks ne ''}">
-    <c:set var="proteinFeaturesImg">
-        <noindex follow><center>
-        <c:catch var="e">
-           <c:import url="${proteinFeaturesUrl}"/>
-        </c:catch>
-        <c:if test="${e!=null}">
-            <site:embeddedError 
-                msg="<font size='-2'>temporarily unavailable</font>" 
-                e="${e}" 
-            />
-        </c:if>
-        </center></noindex>
+    <c:set var="proteinLength" value="${attrs['protein_length'].value}"/>
+    <c:set var="proteinFeaturesUrl">
+    http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=${id}:1..${proteinLength};type=${ptracks};width=640;embed=1;genepage=1
     </c:set>
-
-    <wdk:toggle name="proteinContext"  displayName="Protein Features"
+    <c:if test="${ptracks ne ''}">
+        <c:set var="proteinFeaturesImg">
+            <noindex follow><center>
+            <c:catch var="e">
+               <c:import url="${proteinFeaturesUrl}"/>
+            </c:catch>
+            <c:if test="${e!=null}">
+                <site:embeddedError 
+                    msg="<font size='-2'>temporarily unavailable</font>" 
+                    e="${e}" 
+                />
+            </c:if>
+            </center></noindex>
+        </c:set>
+<wdk:toggle name="proteinContext"  displayName="Protein Features"
              content="${proteinFeaturesImg}"
              attribution="${attribution}"/>
-      <!-- ${proteinFeaturesUrl} -->
 
 </c:if>
 </c:if>
