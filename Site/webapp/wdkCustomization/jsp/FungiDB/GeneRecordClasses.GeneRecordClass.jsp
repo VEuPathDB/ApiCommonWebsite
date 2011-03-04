@@ -336,13 +336,14 @@ GO,InterproscanData
 
 </c:if>
 
-<c:if test='${organism_full eq "Saccharomyces cerevisisae S288c"}'>
+<c:if test="${binomial eq 'Saccharomyces cerevisiae'}">
   <a name="ecNumber"></a>
  <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
     <wdk:wdkTable tblName="EcNumber" isOpen="false"
                    attribution="enzymeDB"/>
   </c:if>
 </c:if>
+
 <%-- ORTHOMCL ------------------------------------------------------%>
 
 <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
