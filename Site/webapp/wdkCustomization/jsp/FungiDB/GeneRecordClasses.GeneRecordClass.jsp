@@ -336,7 +336,7 @@ GO,InterproscanData
 
 </c:if>
 
-<c:if test="${binomial eq 'Saccharomyces cerevisiae'}">
+<c:if test="${binomial eq 'Saccharomyces cerevisiae' || binomial eq 'Aspergillus nidulans' || binomial eq 'Candida albicans'}">
   <a name="ecNumber"></a>
  <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
     <wdk:wdkTable tblName="EcNumber" isOpen="false"
