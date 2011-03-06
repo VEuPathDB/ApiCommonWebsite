@@ -133,31 +133,31 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Aspergillus clavatus NRRL 1"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGeneAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGeneAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
+      Gene+SyntenyGenessflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGenesAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Aspergillus flavus"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGeneAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGeneAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
+      Gene+SyntenyGenesAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGenesAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Aspergillus nidulans FGSC A4"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGeneAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGeneAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGeneAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+Repeat+EST+BLASTX
+      Gene+SyntenyGenesAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGenesAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGenesAfumiatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Aspergillus niger"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGeneAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGeneAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGeneAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
+      Gene+SyntenyGenesAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGenesAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGenesAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Aspergillus terreus"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGeneAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGeneAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGeneAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
+      Gene+SyntenyGenesAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGenesAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGenesAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
