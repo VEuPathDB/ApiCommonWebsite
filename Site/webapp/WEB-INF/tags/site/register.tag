@@ -111,7 +111,7 @@ function validateFields(e)
      <input type="hidden" name="refererUrl" value="${requestScope.refererUrl}">
   </c:if>
 
-  <p> <b>IMPORTANT</b>: If you already registered in another site (AmoebaDB, EuPathDB, CryptoDB ,GiardiaDB, MicrosporidiaDB, PlasmoDB, ToxoDB or TrichDB) you do NOT need to register again.</p>
+  <p> <b>IMPORTANT</b>: If you already registered in another site (AmoebaDB, EuPathDB, CryptoDB ,GiardiaDB, MicrosporidiaDB, PlasmoDB, ToxoDB, TrichDB, or FungiDB) you do NOT need to register again.</p>
 
   <div align="left" style="width:550px;margin:5px;border:1px  solid black;padding:5px;line-height:1.5em;">
 
@@ -259,6 +259,15 @@ function validateFields(e)
               <input type="checkbox" name="preference_global_email_tritrypdb">TriTrypDB</input>
            </c:otherwise>
         </c:choose>
+        <c:choose>
+           <c:when test="${requestScope.preference_global_email_tritrypdb != null}">
+              <input type="checkbox" name="preference_global_email_fungidb" checked>FungiDB</input>
+           </c:when>
+           <c:otherwise>
+              <input type="checkbox" name="preference_global_email_fungidb">FungiDB</input>
+           </c:otherwise>
+        </c:choose>
+
     </td>
     </tr>
     <tr>
