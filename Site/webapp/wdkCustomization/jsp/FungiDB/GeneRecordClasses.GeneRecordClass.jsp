@@ -145,39 +145,39 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Aspergillus nidulans FGSC A4"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGenesAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGenesAfumiatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+Repeat+EST+BLASTX
+      Gene+SyntenySpansAclavatusNRRL1+SyntenyGenesAclavatusNRRL1+SyntenySpansAflavusNRRL3357+SyntenyGenesAflavusNRRL3357+SyntenySpansAfumigatusAf293+SyntenyGenesAfumiatusAf293+SyntenySpansAnigerATCC1015+SyntenyGenesAnigerATCC1015+SyntenySpansAterreusNIH2624+SyntenyGenesAterreusNIH2624+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Aspergillus niger"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGenesAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGenesAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAterreusNIH2624+SyntenySpansAterreusNIH2624+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
+      Gene+SyntenySpansAclavatusNRRL1+SyntenyGenesAclavatusNRRL1+SyntenySpansAflavusNRRL3357+SyntenyGenesAflavusNRRL3357+SyntenySpansAfumigatusAf293+SyntenyGenesAfumigatusAf293+SyntenySpansAterreusNIH2624+SyntenyGenesAterreusNIH2624+SyntenySpansAnidulansA4+SyntenyGenesAnidulansA4+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Aspergillus terreus"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesAclavatusNRRL1+SyntenySpansAclavatusNRRL1+SyntenyGenesAflavusNRRL3357+SyntenySpansAflavusNRRL3357+SyntenyGenesAfumigatusAf293+SyntenySpansAfumigatusAf293+SyntenyGenesAnigerATCC1015+SyntenySpansAnigerATCC1015+SyntenyGenesAnidulansA4+SyntenySpansAnidulansA4+Repeat+EST+BLASTX
+      Gene+SyntenySpansAclavatusNRRL1+SyntenyGenesAclavatusNRRL1+SyntenySpansAflavusNRRL3357+SyntenyGenesAflavusNRRL3357+SyntenySpansAfumigatusAf293+SyntenyGenesAfumigatusAf293+SyntenySpansAnigerATCC1015+SyntenyGenesAnigerATCC1015+SyntenySpansAnidulansA4+SyntenyGenesAnidulansA4+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
 
   <c:when test='${organism_full eq "Coccidioides immitis RS"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesCimmitisH5384+SyntenySpansCimmitisH5384+Repeat+EST+BLASTX
+      Gene+SyntenySpansCimmitisH5384+SyntenyGenesCimmitisH5384+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Coccidioides immitis HS538.4"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesCimmitisRS+SyntenySpansCimmitisRS+Repeat+EST+BLASTX
+      Gene+SyntenySpansCimmitisRS+SyntenyGenesCimmitisRS+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
 
   <c:when test='${organism_full eq "Fusarium graminearum species complex"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesGmoniliforms7600+SyntenySpansGmoniliforms7600+SyntenyGenesFoxysporum+SyntenySpansFoxysporum+SyntenyGenesNcrassaOR74+SyntenySpansNcrassaOR74+SyntenyGenesMoryze7015+SyntenySpansMoryze7015+Repeat+EST+BLASTX
+      Gene+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryze7015+SyntenyGenesMoryze7015+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
@@ -189,31 +189,31 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Fusarium oxysorum"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesGmoniliforms7600+SyntenySpansGmoniliforms7600+SyntenyGenesFgraminearum+SyntenySpansFgraminearum+SyntenyGenesNcrassaOR74+SyntenySpansNcrassaOR74+SyntenyGenesMoryze7015+SyntenySpansMoryze7015+Repeat+EST+BLASTX
+      Gene+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryze7015+SyntenyGenesMoryze7015+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Magnaporthe oryzae 70-15"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesNcrassaOR74+SyntenySpansNcrassaOR74+SyntenyGenesGmoniliforms7600+SyntenySpansGmoniliforms7600+SyntenyGenesFgraminearum+SyntenySpansFgraminearum+SyntenyGenesFoxysporum+SyntenySpansFoxysporum+Repeat+EST+BLASTX
+      Gene+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Neurospora crassa OR74A"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesMoryze7015+SyntenySpansMoryze7015+SyntenyGenesGmoniliforms7600+SyntenySpansGmoniliforms7600+SyntenyGenesFgraminearum+SyntenySpansFgraminearum+SyntenyGenesFoxysporum+SyntenySpansFoxysporum+Repeat+EST+BLASTX
+      Gene+SyntenySpansMoryze7015+SyntenyGenesMoryze7015+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Saccharomyces cerevisisae S288c"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesCalbicansSC5314+SyntenySpansCalbicansSC5314+Repeat+EST+BLASTX
+      Gene+SyntenySpansCalbicansSC5314+SyntenyGenesCalbicansSC5314+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Candida albicans SC5314"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesScerevisiaeS288C+SyntenySpansScerevisiaeS288C+Repeat+EST+BLASTX
+      Gene+SyntenySpansScerevisiaeS288C+SyntenyGenesScerevisiaeS288C+Repeat+EST+BLASTX
     </c:set>
   </c:when>
 </c:choose>
