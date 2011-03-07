@@ -5,8 +5,6 @@
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-${Question_Header}
-
 <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
 
 
@@ -54,7 +52,6 @@ ${Question_Header}
 
 <c:choose>
     <c:when test="${showParams == true}">
-<html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
 <script type="text/javascript" lang="JavaScript 1.2">
 <!-- //
 includedSpeciesName = '${includedSpeciesName}';
@@ -166,11 +163,9 @@ Ack, this form won't work at all without JavaScript support!
   <html:hidden property="value(${excludedSpeciesName})" value="n/a" />
   <html:hidden property="value(${profilePatternName})" value="%"/>
 </div><%-- END OF PARAMS DIV --%>
-</html:form>
     </c:when>
     <c:otherwise>
 
-<h1>Identify ${recordType}s based on ${wdkQuestion.displayName}</h1>
 
 <table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBorders> 
 
@@ -182,8 +177,6 @@ Ack, this form won't work at all without JavaScript support!
 
 <%-- put an anchor here for linking back from help sections --%>
 <A name="${fromAnchorQ}"></A>
-<!--html:form method="get" action="/processQuestion.do" -->
-<html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
 <c:if test="${showParams == null}">
 <script type="text/javascript" lang="JavaScript 1.2">
 includedSpeciesName = '${includedSpeciesName}';
@@ -301,44 +294,6 @@ Ack, this form won't work at all without JavaScript support!
 </c:if>
 </div><%-- END OF PARAMS DIV --%>
 
-<div class="filter-button">
-  <html:submit property="questionSubmit" value="Get Answer"/>
-</div>
-
-</html:form>
-
-<c:if test="${showParams == null}">
-<script type="text/javascript" lang="JavaScript 1.2">
-<!-- //
-toggle(7);
-toggle(7);
-toggle(7);
-// -->
-</script>
-</c:if>
-
-<%-- get the attributions of the question --%>
-<hr>
-<%-- get the property list map of the question --%>
-<c:set var="propertyLists" value="${wdkQuestion.propertyLists}"/>
-
-<%-- display the question specific attribution list --%>
-<site:attributions attributions="${propertyLists['specificAttribution']}" caption="Data sources" />
-
-<hr>
-<%-- display description for wdkQuestion --%>
-<div id="query-description-section"><p><b>Description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p></div>
-
-<%-- get the attributions of the question if not EuPathDB --%>
-<c:if test = "${project != 'EuPathDB'}">
-<hr>
-<%-- get the property list map of the question --%>
-<c:set var="propertyLists" value="${wdkQuestion.propertyLists}"/>
-
-<%-- display the question specific attribution list --%>
-<%-- site:attributions attributions="${propertyLists['specificAttribution']}" caption="Data sources" /--%>
-
-</c:if>
 
   <td valign=top class=dottedLeftBorder></td> 
 
@@ -348,4 +303,3 @@ toggle(7);
   </c:otherwise> <%-- otherwise of showParams == true --%>
 </c:choose>
 
-${Question_Footer}
