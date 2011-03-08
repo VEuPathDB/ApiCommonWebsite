@@ -189,7 +189,7 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Gibberella moniliformis"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesFgraminearum+SyntenySpansFgraminearum+SyntenyGenesFoxysporum+SyntenySpansFoxysporum+SyntenyGenesNcrassaOR74A+SyntenySpansNcrassaOR74A+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
+      Gene+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+SyntenySpansNcrassaOR74A+SyntenyGenesNcrassaOR74A+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
     </c:set>
   </c:when>
 
