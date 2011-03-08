@@ -127,7 +127,7 @@ ${attrs['organism'].value}<br>
 <c:choose>
   <c:when test='${organism_full eq "Rhizopus oryzae RA 99-880"}'>
     <c:set var="gtracks">
-      Gene+RnaSeqRO5H+RnaSeqRO20H+RnaSeqRO3H+EST+BLASTX
+      Gene+RnaSeqRO5H+RnaSeqRO20H+RnaSeqRO3H
     </c:set>
   </c:when>
 
@@ -183,25 +183,25 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Fusarium graminearum species complex"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
+      Gene+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+SyntenySpansNcrassaOR74A+SyntenyGenesNcrassaOR74A+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Gibberella moniliformis"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesFgraminearum+SyntenySpansFgraminearum+SyntenyGenesFoxysporum+SyntenySpansFoxysporum+SyntenyGenesNcrassaOR74+SyntenySpansNcrassaOR74+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
+      Gene+SyntenyGenesFgraminearum+SyntenySpansFgraminearum+SyntenyGenesFoxysporum+SyntenySpansFoxysporum+SyntenyGenesNcrassaOR74A+SyntenySpansNcrassaOR74A+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
     </c:set>
   </c:when>
 
-  <c:when test='${organism_full eq "Fusarium oxysorum"}'>
+  <c:when test='${organism_full eq "Fusarium oxysporum"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
+      Gene+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansNcrassaOR74A+SyntenyGenesNcrassaOR74A+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Magnaporthe oryzae 70-15"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+TandemRepeat
+      Gene+SyntenySpansNcrassaOR74A+SyntenyGenesNcrassaOR74A+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+TandemRepeat
     </c:set>
   </c:when>
 
