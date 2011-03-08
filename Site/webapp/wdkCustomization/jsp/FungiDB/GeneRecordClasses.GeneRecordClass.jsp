@@ -183,7 +183,7 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Fusarium graminearum species complex"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
+      Gene+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
     </c:set>
   </c:when>
 
@@ -195,19 +195,19 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Fusarium oxysorum"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
+      Gene+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+TandemRepeat
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Magnaporthe oryzae 70-15"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+TandemRepeat
+      Gene+SyntenySpansNcrassaOR74+SyntenyGenesNcrassaOR74+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+TandemRepeat
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Neurospora crassa OR74A"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+SyntenySpansGmoniliforms7600+SyntenyGenesGmoniliforms7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+TandemRepeat
+      Gene+SyntenySpansMoryzae7015+SyntenyGenesMoryzae7015+SyntenySpansGmoniliformis7600+SyntenyGenesGmoniliformis7600+SyntenySpansFgraminearum+SyntenyGenesFgraminearum+SyntenySpansFoxysporum+SyntenyGenesFoxysporum+TandemRepeat
     </c:set>
   </c:when>
 
