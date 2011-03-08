@@ -28,7 +28,7 @@ FungiDB integrates whole genome sequence and annotation and will expand to inclu
        <attribute name="text">
        <![CDATA[
 <ul>
-<li> Eurotiomyctes; Ascomycota</li>
+<li> Eurotiomycetes; Ascomycota</li>
 <ul>
 <li><span style="font-style: italic;">Aspergillus clavatus</span></li>
 <li><span style="font-style: italic;">Aspergillus flavus</span></li>
