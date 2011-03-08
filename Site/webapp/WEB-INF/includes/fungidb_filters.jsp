@@ -14,7 +14,7 @@
   <tr>
     <th rowspan=2 align="center">All<br>Results</th>
     <th rowspan=2 align="center">Ortholog<br>Groups</th>
-    <th colspan=8 align="center"><i>Eurotiomyctes</i></th>
+    <th colspan=8 align="center"><i>Eurotiomycetes</i></th>
     <th colspan=5 align="center"><i>Sordariomycetes</i></th>
     <th colspan=2 align="center"><i>Saccharomycotina</i></th>
     <th colspan=2 align="center"><i>Basidiomycota</i></th>
@@ -24,11 +24,11 @@
     <th><i>A.cla</i></th>
     <th><i>A.fla</i></th>
     <th><i>A.fum</i></th>
-    <th><i>A.nig</i></th>
     <th><i>A.nid</i></th>
+    <th><i>A.nig</i></th>
     <th><i>A.ter</i></th>
-    <th><i>C.imm</i> RS</th>
     <th><i>C.imm</i> H538.4</th>
+    <th><i>C.imm</i> RS</th>
     <th><i>F.gra</i></th>
     <th><i>F.oxy</i></th>
     <th><i>G.mon</i></th>
@@ -70,6 +70,12 @@
                           answerValue="${answerValue}" 
                           instanceName="afum_genes" />  
     </td>
+   <td>
+      <wdk:filterInstance strategyId="${strategyId}"
+                          stepId="${stepId}"
+                          answerValue="${answerValue}"
+                          instanceName="anid_genes" />
+    </td>
     <td>
       <wdk:filterInstance strategyId="${strategyId}" 
                           stepId="${stepId}" 
@@ -80,25 +86,19 @@
       <wdk:filterInstance strategyId="${strategyId}" 
                           stepId="${stepId}" 
                           answerValue="${answerValue}" 
-                          instanceName="anid_genes" />  
+                          instanceName="ater_genes" />  
     </td>
     <td>
-      <wdk:filterInstance strategyId="${strategyId}" 
-                          stepId="${stepId}" 
-                          answerValue="${answerValue}" 
-                          instanceName="ater_genes" />  
+      <wdk:filterInstance strategyId="${strategyId}"
+                          stepId="${stepId}"
+                          answerValue="${answerValue}"
+                          instanceName="cimmh5_genes" />
     </td>
     <td>
       <wdk:filterInstance strategyId="${strategyId}" 
                           stepId="${stepId}" 
                           answerValue="${answerValue}" 
                           instanceName="cimmrs_genes" />  
-    </td>
-    <td>
-      <wdk:filterInstance strategyId="${strategyId}" 
-                          stepId="${stepId}" 
-                          answerValue="${answerValue}" 
-                          instanceName="cimmh5_genes" />  
     </td>
     <td>
       <wdk:filterInstance strategyId="${strategyId}" 
