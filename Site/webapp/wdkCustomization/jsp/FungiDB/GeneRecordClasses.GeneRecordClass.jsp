@@ -168,7 +168,7 @@ ${attrs['organism'].value}<br>
     </c:set>
   </c:when>
 
-  <c:when test='${organism_full eq "Coccidioides immitis HS538.4"}'>
+  <c:when test='${organism_full eq "Coccidioides immitis H538.4"}'>
     <c:set var="gtracks">
       Gene+SyntenySpansCimmitisRS+SyntenyGenesCimmitisRS+TandemRepeat
     </c:set>
