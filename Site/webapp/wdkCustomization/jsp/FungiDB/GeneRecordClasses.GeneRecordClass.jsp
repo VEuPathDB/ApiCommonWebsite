@@ -149,6 +149,12 @@ ${attrs['organism'].value}<br>
     </c:set>
   </c:when>
 
+  <c:when test='${organism_full eq "Aspergillus fumigatus Af293"}'>
+    <c:set var="gtracks">
+      Gene+SyntenySpansAclavatusNRRL1+SyntenyGenesAclavatusNRRL1+SyntenySpansAflavusNRRL3357+SyntenyGenesAflavusNRRL3357+SyntenySpansAnigerATCC1015+SyntenyGenesAnigerATCC1015+SyntenySpansAterreusNIH2624+SyntenyGenesAterreusNIH2624+SyntenySpansAnidulansA4+SyntenyGenesAnidulansA4+TandemRepeat
+    </c:set>
+  </c:when>
+
   <c:when test='${organism_full eq "Aspergillus niger"}'>
     <c:set var="gtracks">
       Gene+SyntenySpansAclavatusNRRL1+SyntenyGenesAclavatusNRRL1+SyntenySpansAflavusNRRL3357+SyntenyGenesAflavusNRRL3357+SyntenySpansAfumigatusAf293+SyntenyGenesAfumigatusAf293+SyntenySpansAterreusNIH2624+SyntenyGenesAterreusNIH2624+SyntenySpansAnidulansA4+SyntenyGenesAnidulansA4+TandemRepeat
