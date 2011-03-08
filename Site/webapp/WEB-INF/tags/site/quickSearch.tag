@@ -37,7 +37,7 @@
 <c:set var="ToxoDBOrgs" value="Toxoplasma gondii,Neospora caninum" />
 <c:set var="TrichDBOrgs" value="Trichomonas vaginalis"/>
 <c:set var="TriTrypDBOrgs" value="Leishmania braziliensis,Leishmania infantum,Leishmania major,Leishmania mexicana,Trypanosoma brucei,Trypanosoma cruzi,Trypanosoma congolense,Trypanosoma vivax"/>
-<c:set var = "FungiDBOrgs" value="Aspergillus clavatus,Aspergillus flavus,Aspergillus fumigatus,Aspergillus nidulans,Aspergillus niger,Aspergillus terreus,Candida albicans,Coccidioides immitis,Filobasidiella neoformans,Fusarium graminearum,Fusarium oxysporum,Gibberella moniliformis,Magnaporthe oryzae,Neurospora crassa,Puccinia graminis,Rhizopus oryzae,Saccharomyces cerevisiae"/>
+<c:set var = "FungiDBOrgs" value="Aspergillus clavatus,Aspergillus flavus,Aspergillus fumigatus,Aspergillus nidulans,Aspergillus niger,Aspergillus terreus,Candida albicans,Coccidioides immitis,Cryptococcus neoformans,Fusarium graminearum,Fusarium oxysporum,Gibberella moniliformis,Magnaporthe oryzae,Neurospora crassa,Puccinia graminis,Rhizopus oryzae,Saccharomyces cerevisiae"/>
 <c:set var="EuPathDBOrgs" value="${AmoebaDBOrgs},${CryptoDBOrgs},${GiardiaDBOrgs},${MicrosporidiaDBOrgs},${PlasmoDBOrgs},${ToxoDBOrgs},${TrichDBOrgs},${TriTrypDBOrgs},"/>
 <c:choose>
   	 <c:when test="${fn:containsIgnoreCase(modelName, 'AmoebaDB')}">
