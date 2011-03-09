@@ -490,7 +490,7 @@ ORDER BY
     </sql>
   </sqlQuery>
 
-  <sqlQuery name="gene:syntenyMC" excludeProjects="TrichDB">
+  <sqlQuery name="gene:syntenyMC" excludeProjects="TrichDB,FungiDB">
      <sql>
 <![CDATA[
 with materialized_query as
@@ -1913,7 +1913,7 @@ ORDER BY
   </sqlQuery>
   
   
-  <sqlQuery name="match:syntenySpanMC" includeProjects="TriTrypDB,PlasmoDB,CryptoDB,GiardiaDB,AmoebaDB,MicrosporidiaDB,FungiDB">
+  <sqlQuery name="match:syntenySpanMC" includeProjects="TriTrypDB,PlasmoDB,CryptoDB,GiardiaDB,AmoebaDB,MicrosporidiaDB">
      <sql>
 <![CDATA[
 SELECT
@@ -4024,7 +4024,7 @@ WHERE  exon_loc.na_sequence_id = $srcfeature_id
     </sql>
   </sqlQuery>
 
-  <sqlQuery name="gene:syntenyMC:attribute:Ortholog" excludeProjects="TrichDB">
+  <sqlQuery name="gene:syntenyMC:attribute:Ortholog" excludeProjects="TrichDB,FungiDB">
     <testParamValues project="ToxoDB">
       <param name="name" value="TGME49_039250"/> 
     </testParamValues>
@@ -4485,7 +4485,7 @@ AND ed.name in ('Lmajor_sanger_CosmidEnds_RSRC',
     </sql>
   </sqlQuery>
   
-  <sqlQuery name="gene:syntenyMC:bulksubfeatures" excludeProjects="TrichDB">
+  <sqlQuery name="gene:syntenyMC:bulksubfeatures" excludeProjects="TrichDB,FungiDB">
      <sql>
 <![CDATA[
 WITH materialized_query AS
@@ -4844,7 +4844,7 @@ ORDER BY
   </sqlQuery>
   
   
-  <sqlQuery name="match:syntenySpanMC:bulksubfeatures" excludeProjects="CryptoDB,TrichDB">
+  <sqlQuery name="match:syntenySpanMC:bulksubfeatures" excludeProjects="CryptoDB,TrichDB,FungiDB">
     <testParamValues project="TriTrypDB">
       <param name="srcfeature_id" value="$$na_feat_id_TcChr7-S$$"/>
       <param name="rend" value="564285"/>
