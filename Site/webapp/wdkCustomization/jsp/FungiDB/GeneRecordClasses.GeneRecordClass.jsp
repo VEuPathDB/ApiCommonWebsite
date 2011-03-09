@@ -163,7 +163,7 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Aspergillus terreus"}'>
     <c:set var="gtracks">
-      Gene+SyntenySpansAflavusNRRL3357+SyntenyGenesAflavusNRRL3357+SyntenySpansSyntenySpansAnigerATCC1015+SyntenyGenesAnigerATCC1015+SyntenySpansAclavatusNRRL1+SyntenyGenesAclavatusNRRL1+SyntenySpansAfumigatusAf293+SyntenyGenesAfumigatusAf293+SyntenySpansAnidulansA4+SyntenyGenesAnidulansA4+TandemRepeat
+      Gene+SyntenySpansAflavusNRRL3357+SyntenyGenesAflavusNRRL3357+SyntenySpansAnigerATCC1015+SyntenyGenesAnigerATCC1015+SyntenySpansAclavatusNRRL1+SyntenyGenesAclavatusNRRL1+SyntenySpansAfumigatusAf293+SyntenyGenesAfumigatusAf293+SyntenySpansAnidulansA4+SyntenyGenesAnidulansA4+TandemRepeat
     </c:set>
   </c:when>
 
