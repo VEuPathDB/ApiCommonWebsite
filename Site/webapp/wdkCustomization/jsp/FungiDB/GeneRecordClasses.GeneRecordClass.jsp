@@ -513,21 +513,102 @@ GO,InterproscanData
 
 <hr>
 <c:choose>
-<c:when test='${organism_full eq "Saccharomyces cerevisiae S288C"}'>
-  <c:set var="reference">
-   Sequence and annotations from SGD for <i>Saccharomyces cerevisiae S288C</i>.
+
+
+<c:when test='${organism_full eq "Aspergillus clavatus NRRL 1"}'>
+  <c:set var="reference">                                                  Aspergillus clavatus genomic annotations. Source: J. Craig Venter Institute via Broad Institute Aspergillus Comparative Site                                               
   </c:set>
 </c:when>
-<c:when test='${organism_full eq "Aspergillus nidulans A4"}'>
-  <c:set var="reference">
-   Sequence and annotations from Broad Institute.
+
+<c:when test='${organism_full eq "Aspergillus flavus"}'>
+  <c:set var="reference">                                             Aspergillus flavus (NRRL 3357) genomic annotations. Source: J. Craig Venter Institute via Broad Institute Aspergillus Comparative Site                                        
   </c:set>
 </c:when>
-<c:when test='${organism_full eq "Aspergillus clavatus"}'>
-  <c:set var="reference">
-   Sequence and annotations from TIGR/JCVI.
+
+<c:when test='${organism_full eq "Aspergillus fumigatus Af293"}'>
+  <c:set var="reference">                                     Aspergillus fumigatus (AF293) genomic annotations. Source: JCVI via AspGD.                              
   </c:set>
 </c:when>
+
+<c:when test='${organism_full eq "Aspergillus niger"}'>
+  <c:set var="reference">                                               Aspergillus niger (ATCC 1015) genomic annotations. Source: DOE JGI sequence via Broad Institute Aspergillus Comparative Site                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Aspergillus terreus"}'>
+  <c:set var="reference">                                             Aspergillus terreus (NIH 2624) genomic annotations. Source: Broad Institute.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Candida albicans SC5314"}'>
+  <c:set var="reference">                                     Candida albicans (SC5314) genomic annotations. Source: Candida Genome Database.                              
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Coccidioides immitis H538.4"}'>
+  <c:set var="reference">                                             Coccidioides immitis (H5384) genomic annotations. Source: Broad Institute.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Coccidioides immitis RS"}'>
+  <c:set var="reference">                                             Coccidioides immitis (RS) genomic annotations. Source: Broad Institute.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Cryptococcus neoformans var. grubii H99"}'>
+  <c:set var="reference">                                             Cryptococcus neoformans var. grubii (H99) genomic annotations. Source: The Broad Institute and Duke University.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Fusarium graminearum species complex"}'>
+  <c:set var="reference">                                             Fusarium graminearium (PH-1) genomic annotations. Source: Broad Institute.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Fusarium oxysporum"}'>
+  <c:set var="reference">                                             Fusarium oxysporum f. sp. lycopersici (4287) genomic annotations. Source: Broad Institute.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Magnaporthe oryzae 70-15"}'>
+  <c:set var="reference">                                                          Magnaporthe oryzae (70-15) genomic sequence. Source: Broad Institute                                               
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Neurospora crassa OR74A"}'>
+  <c:set var="reference">                                        Neurospora crassa (OR74A) genomic annotations. Source: Broad Institute.                                   
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Saccharomyces cerevisiae S288c"}'>
+  <c:set var="reference">Sequence and annotations from SGD for <i>Saccharomyces cerevisiae S288C</i>.
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Aspergillus nidulans FGSC A4"}'>
+  <c:set var="reference">                                             Aspergillus nidulans (A4) genomic annotations. Source: The Broad Institute.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Puccinia graminis f. sp. tritici CRL 75-36-700-3"}'>
+  <c:set var="reference">                                             Puccinia graminis genomic annotations. Source: The Broad Institute.                                        
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Rhizopus oryzae RA 99-880"}'>
+  <c:set var="reference">TODO
+  </c:set>
+</c:when>
+
+<c:when test='${organism_full eq "Gibberella moniliformis"}'>
+  <c:set var="reference">TODO
+  </c:set>
+</c:when>
+            <c:otherwise>
+  <c:set var="reference">ERROR:  Need Attribution info for ${organism_full}
+  </c:set>
+            </c:otherwise>
+
 </c:choose>
 
 <site:panel 
