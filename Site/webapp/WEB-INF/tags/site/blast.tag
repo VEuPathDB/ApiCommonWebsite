@@ -5,10 +5,7 @@
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-${Question_Header}
-
 <link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
-
 
 <%-- get wdkQuestion; setup requestScope HashMap to collect help info for footer --%>
 <c:set var="wdkQuestion" value="${requestScope.wdkQuestion}"/>
@@ -27,10 +24,10 @@ ${Question_Header}
     <c:set var="portalsProp" value="${props['PORTALS']}" />
 </c:if>
 
-<!-- <h1>Identify ${recordType}s based on ${wdkQuestion.displayName}</h1> -->
 <c:choose>
     <c:when test="${showParams == true}">
-<html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/processQuestion.do">
+
+
       <div class="params">
 <c:set var="hasOrganism" value="false"/>
 <c:set value="${wdkQuestion.paramMapByGroups}" var="paramGroups"/>
@@ -206,14 +203,12 @@ ${Question_Header}
 
 </c:forEach> <%-- end of foreach on paramGroups --%>
       </div>
-</html:form>
+
     </c:when>
     <c:otherwise>
-<h1>BLAST</h1>
-<table border=0 width=100% cellpadding=3 cellspacing=0 bgcolor=white class=thinTopBorders> 
 
- <tr>
-  <td bgcolor=white valign=top>
+<h1>BLAST</h1>
+
 
 <%-- show all params of question, collect help info along the way --%>
 <c:set value="Help for question: ${wdkQuestion.displayName}" var="fromAnchorQ"/>
@@ -230,6 +225,13 @@ ${Question_Header}
 
 <%-- the js has to be included here in order to appear in the step form --%>
 <script type="text/javascript" src='<c:url value="/wdk/js/wdkQuestion.js"/>'></script>
+
+
+
+
+
+
+
 
 <div class="params">
 <c:if test="${showParams == null}">
@@ -426,29 +428,23 @@ ${Question_Header}
 			"></span>
 </html:form>
 
-<hr>
+
+
 <%-- display description for wdkQuestion --%>
-<p><b>Description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p>
+<%-- <p><b>Description: </b><jsp:getProperty name="wdkQuestion" property="description"/></p> --%>
 
 <%-- get the attributions of the question if not EuPathDB --%>
 <c:if test = "${project != 'EuPathDB'}">
-<hr>
-<%-- get the property list map of the question --%>
-<c:set var="propertyLists" value="${wdkQuestion.propertyLists}"/>
 
-<%-- display the question specific attribution list --%>
-<%-- site:attributions attributions="${propertyLists['specificAttribution']}" caption="Data sources" /--%>
+	<%-- get the property list map of the question --%>
+	<c:set var="propertyLists" value="${wdkQuestion.propertyLists}"/>
+
+	<%-- display the question specific attribution list --%>
+	<%-- site:attributions attributions="${propertyLists['specificAttribution']}" caption="Data sources" /--%>
 
 </c:if>
 
- <%-- </td>--%>
-  <td valign=top class=dottedLeftBorder></td> 
 
-</tr>
-</table> 
-
-  </c:otherwise> <%-- otherwise of showParams == true --%>
+</c:otherwise> <%-- otherwise of showParams == true --%>
 </c:choose>
 
-
-${Question_Footer}
