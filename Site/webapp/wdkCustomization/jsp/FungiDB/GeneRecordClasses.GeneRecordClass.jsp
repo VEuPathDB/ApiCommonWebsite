@@ -586,22 +586,22 @@ GO,InterproscanData
 </c:when>
 
 <c:when test='${organism_full eq "Aspergillus nidulans FGSC A4"}'>
-  <c:set var="reference">                                             Aspergillus nidulans (A4) genomic annotations. Source: The Broad Institute.                                        
+  <c:set var="reference">                                             Aspergillus nidulans (A4) genomic annotations. Source: Aspergillus Genome Database & The Broad Institute.                                        
   </c:set>
 </c:when>
 
 <c:when test='${organism_full eq "Puccinia graminis f. sp. tritici CRL 75-36-700-3"}'>
-  <c:set var="reference">                                             Puccinia graminis genomic annotations. Source: The Broad Institute.                                        
+  <c:set var="reference">                                             Puccinia graminis f. sp tritici CRL 75-36-700-3 genomic annotations. Source: The Broad Institute.                                        
   </c:set>
 </c:when>
 
 <c:when test='${organism_full eq "Rhizopus oryzae RA 99-880"}'>
-  <c:set var="reference">TODO
+  <c:set var="reference">                                             Rhizopus oryzae (RA 99-880) genomic annotation. Source: Broad Institute
   </c:set>
 </c:when>
 
 <c:when test='${organism_full eq "Gibberella moniliformis"}'>
-  <c:set var="reference">TODO
+  <c:set var="reference">                                             Fusarium verticillioides (Gibberella moniliformis) (7600, FRC M3125, NRRL 20956) genomic annotations. Source: Broad Institute.
   </c:set>
 </c:when>
             <c:otherwise>
