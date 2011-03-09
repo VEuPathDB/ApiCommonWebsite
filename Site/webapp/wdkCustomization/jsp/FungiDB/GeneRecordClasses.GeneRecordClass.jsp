@@ -249,7 +249,7 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations,E.bien
     content="${gnCtxImg}" isOpen="true" 
     imageMapDivId="${gnCtxDivId}" imageMapSource="${gnCtxUrl}"
     postLoadJS="/gbrowse/apiGBrowsePopups.js,/gbrowse/wz_tooltip.js"
-    attribution="${attribution}"
+    attribution=""
   />
 </c:if>
 
@@ -338,7 +338,7 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations,E.bien
 GO,InterproscanData
 </c:set>
 
-<wdk:wdkTable tblName="GoTerms" isOpen="true" attribution="${attribution}"/>
+<wdk:wdkTable tblName="GoTerms" isOpen="true" attribution=""/>
 
 </c:if>
 
@@ -346,7 +346,7 @@ GO,InterproscanData
   <a name="ecNumber"></a>
  <c:if test="${attrs['so_term_name'].value eq 'protein_coding'}">
     <wdk:wdkTable tblName="EcNumber" isOpen="false"
-                   attribution="enzymeDB"/>
+                   attribution=""/>
   </c:if>
 </c:if>
 
@@ -358,7 +358,7 @@ GO,InterproscanData
       <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
     </div>
   </c:set>
-  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="OrthoMCL" postscript="${orthomclLink}"/>
+  <wdk:wdkTable tblName="Orthologs" isOpen="true" attribution="" postscript="${orthomclLink}"/>
 
 </c:if>
 
@@ -393,7 +393,7 @@ GO,InterproscanData
         </c:set>
 <wdk:toggle name="proteinContext"  displayName="Protein Features"
              content="${proteinFeaturesImg}"
-             attribution="${attribution}"/>
+             attribution=""/>
 
 </c:if>
 </c:if>
