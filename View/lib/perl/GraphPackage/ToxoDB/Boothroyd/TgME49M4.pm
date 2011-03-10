@@ -6,7 +6,6 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
-
 sub init {
   my $self = shift;
 
@@ -15,11 +14,8 @@ sub init {
   $self->setScreenSize(220);
 	$self->setBottomMarginSize(6.5);
 
-
   my $colors = ['#ff0000', '#000000', '#000000', '#ADDFFF', '#0000ff' ,'#0000ff', '#0000ff'];
   my $legend = ["oocyst", "sporozoite", "tachyzoite", "bradyzoite"];
-
-  #my $xAxisLabels = ["unsporulated", "4 days sporulated", "10 days sporulated", "2 days in vitro", "..."];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
