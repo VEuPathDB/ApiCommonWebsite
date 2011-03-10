@@ -4,7 +4,7 @@
 <%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 
 <site:header title="Login"
-             banner="EuPathDB Account Login"
+             banner="FungiDB Account Login"
              division="login"/>
 
 
@@ -31,7 +31,7 @@
   </c:otherwise>
 </c:choose>
 
-<h1 align="center">EuPathDB Account Login</div>
+<h1 align="center">FungiDB Account Login</div>
 <div align="center">
 
 <p><b>Login</b> so you can:

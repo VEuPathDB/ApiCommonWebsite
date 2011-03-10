@@ -140,41 +140,9 @@ function validateFields(e)
           Send me email alerts about: 
       </td>
       <td nowrap>
-         <input type="checkbox" name="preference_global_email_amoebadb" 
-	        ${(global['preference_global_email_amoebadb'] == 'on')? 'checked' : ''}>
-	    AmoebaDB
-	 </input>
-         <input type="checkbox" name="preference_global_email_apidb" 
-	        ${(global['preference_global_email_apidb'] == 'on')? 'checked' : ''}>
-	    EuPathDB
-	 </input>
-         <input type="checkbox" name="preference_global_email_cryptodb" 
-	        ${(global['preference_global_email_cryptodb'] == 'on')? 'checked' : ''}>
-	    CryptoDB
-	 </input>
-     <input type="checkbox" name="preference_global_email_giardiadb" 
-	        ${(global['preference_global_email_giardiadb'] == 'on')? 'checked' : ''}>
-	    GiardiaDB
-	 </input>
-         <input type="checkbox" name="preference_global_email_microsporidiadb" 
-	        ${(global['preference_global_email_microsporidiadb'] == 'on')? 'checked' : ''}>
-	    MicrosporidiaDB
-	 </input>
-         <input type="checkbox" name="preference_global_email_plasmodb" 
-	        ${(global['preference_global_email_plasmodb'] == 'on')? 'checked' : ''}>
-	    PlasmoDB
-	 </input>
-         <input type="checkbox" name="preference_global_email_toxodb" 
-	        ${(global['preference_global_email_toxodb'] == 'on')? 'checked' : ''}>
-	    ToxoDB
-	 </input>
- <input type="checkbox" name="preference_global_email_trichdb" 
-	        ${(global['preference_global_email_trichdb'] == 'on')? 'checked' : ''}>
-	    TrichDB
-	 </input>
-<input type="checkbox" name="preference_global_email_tritrypdb" 
+	   <input type="checkbox" name="preference_global_email_fungidb" 
 	        ${(global['preference_global_email_tritrypdb'] == 'on')? 'checked' : ''}>
-	    TriTrypDB
+	    FungiDB
 	 </input>
       </td>
     </tr>
