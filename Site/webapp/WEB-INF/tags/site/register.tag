@@ -111,8 +111,6 @@ function validateFields(e)
      <input type="hidden" name="refererUrl" value="${requestScope.refererUrl}">
   </c:if>
 
-  <p> <b>IMPORTANT</b>: If you already registered in another site (AmoebaDB, EuPathDB, CryptoDB ,GiardiaDB, MicrosporidiaDB, PlasmoDB, ToxoDB, TrichDB, or FungiDB) you do NOT need to register again.</p>
-
   <div align="left" style="width:550px;margin:5px;border:1px  solid black;padding:5px;line-height:1.5em;">
 
   <p><b>Why register/subscribe?</b> So you can:</p>
@@ -123,7 +121,7 @@ function validateFields(e)
   <li>Use your favorites to store IDs of permanent interest, for faster access to its record page
   <li>Add a comment on genes and sequences
   <li>Set site preferences, such as items per page displayed in the query result
-  <li>Opt to receive infrequent alerts (at most monthly), by selecting (below) from which EuPathDB sites
+  <li>Opt to receive infrequent alerts (at most monthly)
   </ul>
   </div>
 
@@ -184,82 +182,6 @@ function validateFields(e)
     </td>
     <td nowrap>
         <c:choose>
-           <c:when test="${requestScope.preference_global_email_amoebadb != null}">
-              <input type="checkbox" name="preference_global_email_amoebadb" checked>AmoebaDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_amoebadb">AmoebaDB</input>
-           </c:otherwise>
-        </c:choose>
-        <c:choose>
-           <c:when test="${requestScope.preference_global_email_apidb != null}">
-              <input type="checkbox" name="preference_global_email_apidb" checked>EuPathDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_apidb">EuPathDB</input>
-           </c:otherwise>
-        </c:choose>
-        <c:choose>
-           <c:when test="${requestScope.preference_global_email_cryptodb != null}">
-              <input type="checkbox" name="preference_global_email_cryptodb" checked>CryptoDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_cryptodb">CryptoDB</input>
-           </c:otherwise>
-        </c:choose>
-        <c:choose>
-           <c:when test="${requestScope.preference_global_email_giardiadb != null}">
-              <input type="checkbox" name="preference_global_email_giardiadb" checked>GiardiaDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_giardiadb">GiardiaDB</input>
-           </c:otherwise>
-        </c:choose>
-        <c:choose>
-           <c:when test="${requestScope.preference_global_email_microsporidiadb != null}">
-              <input type="checkbox" name="preference_global_email_microsporidiadb" checked>MicrosporidiaDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_microsporidiadb">MicrosporidiaDB</input>
-           </c:otherwise>
-        </c:choose>
-    </td></tr>
-    <td align="right" width="50%" nowrap>
-    <td nowrap>
-        <c:choose>
-           <c:when test="${requestScope.preference_global_email_plasmodb != null}">
-              <input type="checkbox" name="preference_global_email_plasmodb" checked>PlasmoDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_plasmodb">PlasmoDB</input>
-           </c:otherwise>
-        </c:choose>
-        <c:choose>
-           <c:when test="${requestScope.preference_global_email_toxodb != null}">
-              <input type="checkbox" name="preference_global_email_toxodb" checked>ToxoDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_toxodb">ToxoDB</input>
-           </c:otherwise>
-        </c:choose>
-
-        <c:choose>
-           <c:when test="${requestScope.preference_global_email_trichdb != null}">
-              <input type="checkbox" name="preference_global_email_trichdb" checked>TrichDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_trichdb">TrichDB</input>
-           </c:otherwise>
-        </c:choose>
-          <c:choose>
-           <c:when test="${requestScope.preference_global_email_tritrypdb != null}">
-              <input type="checkbox" name="preference_global_email_tritrypdb" checked>TriTrypDB</input>
-           </c:when>
-           <c:otherwise>
-              <input type="checkbox" name="preference_global_email_tritrypdb">TriTrypDB</input>
-           </c:otherwise>
-        </c:choose>
-        <c:choose>
            <c:when test="${requestScope.preference_global_email_tritrypdb != null}">
               <input type="checkbox" name="preference_global_email_fungidb" checked>FungiDB</input>
            </c:when>
@@ -267,7 +189,6 @@ function validateFields(e)
               <input type="checkbox" name="preference_global_email_fungidb">FungiDB</input>
            </c:otherwise>
         </c:choose>
-
     </td>
     </tr>
     <tr>
@@ -301,7 +222,7 @@ function validateFields(e)
 <div align="left" style="line-height:1.5em;">
 
 <div style="font-size:1.2em;">
-<b>&nbsp;&nbsp;&nbsp;EuPathDB Websites Privacy Policy</b> 
+<b>&nbsp;&nbsp;&nbsp;FungiDB Website Privacy Policy</b> 
 </div>
 <hr>
 <table><tr>

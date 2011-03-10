@@ -67,33 +67,11 @@
 
 <c:set var="releaseDate" value="${applicationScope.wdkModel.releaseDate}" />
 <c:set var="inputDateFormat" value="dd MMMM yyyy HH:mm"/>
+
 <fmt:setLocale value="en-US"/><%-- req. for date parsing when client browser (e.g. curl) doesn't send locale --%>
 <fmt:parseDate pattern="${inputDateFormat}" var="rlsDate" value="${releaseDate}"/> 
-<%-- http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html --%>
 <fmt:formatDate var="releaseDate_formatted" value="${rlsDate}" pattern="d MMM yy"/>
   
-
-
-<%--- Google keys to access the maps for Isolate questions (check with Haiming) ---%>
-<c:if test="${project == 'CryptoDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTMrNE2G2Bled15vogCImXw6TjMNBQeKxJGr2lD8yC0v8vilAhNZXuKjQ" />
-</c:if>
-
-<c:if test="${project == 'PlasmoDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahQTcYCy8iFaEFUpq-RKhUlyaXswfRSkzh9P8XS6wfHjLQhH6aRG_redTg" />
-</c:if>
-
-<c:if test="${project == 'ToxoDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTbXWpA0E7vCdCxcYwpPwzMOEinFhTk3zvyW9eMl1CGc0wQabgrO2GHiA" />
-</c:if>
-
-<c:if test="${project == 'GiardiaDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTlNDst8dXAmD5YyQ2VVS97EWFghhQhZPGp197fIBaqTKkE2AWWB1m7xA" />
-</c:if>
-
-<c:if test="${project == 'EuPathDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahSsTM_yzu3s1MlIlYUNhUGVfJzobxRb1TdHaeE5y5bGlgFsG1VYMy7KCw" />
-</c:if>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -101,32 +79,8 @@
 
 <c:if test="${banner == null}">
 <c:choose>
-      <c:when test = "${project == 'EuPathDB'}">
-             <c:set var="banner" value="EuPathDB : The Eukaryotic Pathogen genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'CryptoDB'}">
-             <c:set var="banner" value="CryptoDB : The Cryptosporidium genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'GiardiaDB'}">
-             <c:set var="banner" value="GiardiaDB : The Giardia genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'PlasmoDB'}">
-             <c:set var="banner" value="PlasmoDB : The Plasmodium genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'ToxoDB'}">
-             <c:set var="banner" value="ToxoDB : The Toxoplasma genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'TrichDB'}">
-             <c:set var="banner" value="TrichDB : The Trichomonas genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'TriTrypDB'}">
-             <c:set var="banner" value="TriTrypDB: The Kinetoplastid genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'AmoebaDB'}">
-             <c:set var="banner" value="AmoebaDB: The Amoeba genome resource"/>
-      </c:when>
-      <c:when test = "${project == 'MicrosporidiaDB'}">
-             <c:set var="banner" value="MicrosporidiaDB: The Microsporidia genome resource"/>
+      <c:when test = "${project == 'FungiDB'}">
+             <c:set var="banner" value="FungiDB : The Fungal genome resource"/>
       </c:when>
 </c:choose>
 </c:if>
@@ -235,30 +189,9 @@ ${headElement}
 
 <div id="header2">
    <div style="width:460px;" id="header_rt">
-
-   <div align="right"><div id="toplink">
-   <c:if test="${project == 'TriTrypDB'}">
-     <map name="partof">
-     <area shape=rect coords="0,0 172,22" href="http://eupathdb.org" alt="EuPathDB home page">
-     <area shape=rect coords="310,0 380,22" href="http://www.genedb.org" alt="GeneDB home page">
-     </map>
-   </c:if>
-
-
-   <c:choose>
-    <c:when test="${project == 'EuPathDB'}">
-       <%-- we have it for now so the page renders correctly --%>
-       <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
-   </c:when>
-   <c:when test="${project == 'TriTrypDB'}">
-     <img  usemap="#partof" src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/>
-   </c:when>
-   <c:otherwise>
-     <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
-   </c:otherwise>
-   </c:choose>
+	<div align="right"><div id="toplink">
+	     <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
    </div></div>
-       
 
     <div style="width:460px;" id="bottom">
       <site:quickSearch /><br />
@@ -339,7 +272,7 @@ ${headElement}
       <li>
         <a href="javascript:void(0)" onclick="popLogin()">Login<img src="/assets/images/${project}/menu_divider5.png" alt="" width="17" height="9" /></a>
         <div id="loginForm" style="display:none;">
-          <h2 style="text-align: center">EuPathDB Account Login</h2>
+          <h2 style="text-align: center">FungiDB Account Login</h2>
           <site:login includeCancel="true" />
         </div>
       </li>
@@ -347,7 +280,7 @@ ${headElement}
       <li>
         <a href="javascript:void(0)" onclick="popRegister()">Register</a>
         <div id="registerForm" style="display:none;">
-          <h2 style="text-align: center">EuPathDB Account Registration</h2>
+          <h2 style="text-align: center">FungiDB Account Registration</h2>
           <site:register includeCancel="true" />
         </div>
       </li>
