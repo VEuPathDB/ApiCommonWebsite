@@ -12,7 +12,9 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(200);
+  $self->setScreenSize(220);
+	$self->setBottomMarginSize(6.5);
+
 
   my $colors = ['#ff0000', '#000000', '#000000', '#ADDFFF', '#0000ff' ,'#0000ff', '#0000ff'];
   my $legend = ["oocyst", "sporozoite", "tachyzoite", "bradyzoite"];
