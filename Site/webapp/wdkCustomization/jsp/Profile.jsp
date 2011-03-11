@@ -141,9 +141,14 @@ function validateFields(e)
       </td>
       <td nowrap>
 	   <input type="checkbox" name="preference_global_email_fungidb" 
-	        ${(global['preference_global_email_tritrypdb'] == 'on')? 'checked' : ''}>
+	        ${(global['preference_global_email_fungidb'] == 'on')? 'checked' : ''}>
 	    FungiDB
 	 </input>
+	<input type="checkbox" name="preference_global_email_microsporidiadb" 
+                ${(global['preference_global_email_microsporidiadb'] == 'on')? 'checked' : ''}>
+            MicrosporidiaDB
+         </input>
+
       </td>
     </tr>
     <tr>

@@ -3,7 +3,6 @@
 <%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="wdk" tagdir="/WEB-INF/tags/wdk" %>
 
 <c:set var="Question_Header" scope="request">
   <c:if test="${requestScope.partial != 'true'}">
@@ -11,11 +10,7 @@
   </c:if>
 </c:set>
 
-<c:set var="Question_Footer" scope="request">
-  <c:if test="${requestScope.partial != 'true'}">
-    <site:footer />
-  </c:if>
-</c:set>
+
 
 ${Question_Header}
 
@@ -48,5 +43,15 @@ ${Question_Header}
 </c:if>
 
 </html:form>
+
+
+<c:set var="Question_Footer" scope="request">
+  <%-- displays question description, can be overridden by the custom question form --%>
+  <site:questionDescription />
+
+  <c:if test="${requestScope.partial != 'true'}">
+    <site:footer />
+  </c:if>
+</c:set>
 
 ${Question_Footer}

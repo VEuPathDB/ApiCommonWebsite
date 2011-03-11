@@ -182,11 +182,21 @@ function validateFields(e)
     </td>
     <td nowrap>
         <c:choose>
-           <c:when test="${requestScope.preference_global_email_tritrypdb != null}">
+           <c:when test="${requestScope.preference_global_email_fungidb != null}">
               <input type="checkbox" name="preference_global_email_fungidb" checked>FungiDB</input>
            </c:when>
            <c:otherwise>
               <input type="checkbox" name="preference_global_email_fungidb">FungiDB</input>
+           </c:otherwise>
+        </c:choose>
+    </td>
+ <td nowrap>
+        <c:choose>
+           <c:when test="${requestScope.preference_global_email_microsporidiadb != null}">
+              <input type="checkbox" name="preference_global_email_microsporidiadb" checked>MicrosporidiaDB</input>
+           </c:when>
+           <c:otherwise>
+              <input type="checkbox" name="preference_global_email_microsporidiadb">MicrosporidiaDB</input>
            </c:otherwise>
         </c:choose>
     </td>
