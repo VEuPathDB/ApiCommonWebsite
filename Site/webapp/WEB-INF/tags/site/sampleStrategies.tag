@@ -181,7 +181,7 @@
 
 <c:if test="${simpleSPKin != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Putative secreted kinases not in mammals</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${simpleSPKin}"/>');" href="javascript:void(0);">Putative secreted kinases not in mammals</a> </td>
 	<td>simple strategy</td>
 	<td>Find genes with kinase activity that have a signal peptide and lack detectable orthologs in mammals.</td>
 </tr>
@@ -189,7 +189,7 @@
 
 <c:if test="${expandedKinSPorTMdiffExp != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Putative secreted kinases with differential expression</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${expandedKinSPorTMdiffExp}"/>');" href="javascript:void(0);">Putative secreted kinases with differential expression</a> </td>
 	<td>nested strategy with ortholog transform</td>
 	<td>Find genes with kinase activity that have a signal peptide or transmembrane domain and have evidence for 5 fold differential expression in the cell cycle.</td>
 </tr>
@@ -197,7 +197,7 @@
 
 <c:if test="${G2M_AlphaFactor != null}">
 <tr align = "left">
-	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Find genes differentially expressed at G2/M and identify those with alpha-factor binding sites</a> </td>
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${G2M_AlphaFactor}"/>');" href="javascript:void(0);">Find genes differentially expressed at G2/M and identify those with alpha-factor binding sites</a> </td>
 	<td>nested strategy using genomic locations</td>
 	<td>Find genes upregulated at G2/M, comparing them with the published list and identify those that contain an alpha-factor binding site upstream of the gene start</td>
 </tr>
