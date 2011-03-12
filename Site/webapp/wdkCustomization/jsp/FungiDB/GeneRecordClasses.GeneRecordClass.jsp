@@ -446,6 +446,12 @@ GO,InterproscanData
             </c:otherwise>
         </c:choose>
 
+<!-- Y2H interactions -->
+
+  <c:if test="${binomial eq 'Saccharomyces cerevisiae'}">
+  <wdk:wdkTable tblName="Y2hInteractions" isOpen="true"
+                 attribution="y2h_data"/>
+  </c:if>
 
 
 
