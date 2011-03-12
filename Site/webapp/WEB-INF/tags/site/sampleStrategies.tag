@@ -70,7 +70,7 @@
 
  <c:when test="${fn:containsIgnoreCase(site, 'FungiDB')}">
       <c:set var="simpleSPKin" value="f727adaa6e1053d4" />
-      <c:set var="expandedKinSPorTMdiffExp" value="027ac2169b2c5b6c" />
+      <c:set var="expandedKinSPorTMdiffExp" value="e3e99047158e4826" />
       <c:set var="G2M_AlphaFactor" value="a2fe34e9ce8b8575" />
    </c:when>
 
