@@ -68,6 +68,11 @@
       <c:set var="expanded" value="3dc751bcbcf93330" />
    </c:when>
 
+ <c:when test="${fn:containsIgnoreCase(site, 'FungiDB')}">
+      <c:set var="simpleSPKin" value="f727adaa6e1053d4" />
+      <c:set var="expandedKinSPorTMdiffExp" value="027ac2169b2c5b6c" />
+      <c:set var="G2M_AlphaFactor" value="a2fe34e9ce8b8575" />
+   </c:when>
 
 </c:choose>
 
@@ -171,6 +176,30 @@
 	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Secreted kinases</a> </td>
 	<td>Secreted kinases not conserved in mammals.</td>
 	<td>Find <i>Entamoeba</i> genes which have characteristics of encoding secretory-pathway proteins (have signal peptide and have a transmembrane domain) and which lack detectable orthologs in mammals.</td>
+</tr>
+</c:if>
+
+<c:if test="${simpleSPKin != null}">
+<tr align = "left">
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Putative secreted kinases not in mammals</a> </td>
+	<td>simple strategy</td>
+	<td>Find genes with kinase activity that have a signal peptide and lack detectable orthologs in mammals.</td>
+</tr>
+</c:if>
+
+<c:if test="${expandedKinSPorTMdiffExp != null}">
+<tr align = "left">
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Putative secreted kinases with differential expression</a> </td>
+	<td>nested strategy with ortholog transform</td>
+	<td>Find genes with kinase activity that have a signal peptide or transmembrane domain and have evidence for 5 fold differential expression in the cell cycle.</td>
+</tr>
+</c:if>
+
+<c:if test="${G2M_AlphaFactor != null}">
+<tr align = "left">
+	<td><a   title="Click to import this strategy in your workspace" onclick="loadSampleStrat('<c:url value="/im.do?s=${secKin}"/>');" href="javascript:void(0);">Find genes differentially expressed at G2/M and identify those with alpha-factor binding sites</a> </td>
+	<td>nested strategy using genomic locations</td>
+	<td>Find genes upregulated at G2/M, comparing them with the published list and identify those that contain an alpha-factor binding site upstream of the gene start</td>
 </tr>
 </c:if>
 
