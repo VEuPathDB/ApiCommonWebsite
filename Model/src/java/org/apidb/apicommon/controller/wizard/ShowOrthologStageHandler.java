@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
-import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.QuestionForm;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
@@ -23,6 +22,10 @@ import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class ShowOrthologStageHandler implements StageHandler {
+
+    private static final String PARAM_QUESTION_NAME = "questionFullName";
+
+    private static final String ATTR_QUESTION = "question";
 
     private static final Logger logger = Logger
             .getLogger(ShowOrthologStageHandler.class);
@@ -44,8 +47,7 @@ public class ShowOrthologStageHandler implements StageHandler {
 
         // get a span logic question
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-        String questionName = request
-                .getParameter(CConstants.QUESTION_FULLNAME_PARAM);
+        String questionName = request.getParameter(PARAM_QUESTION_NAME);
         QuestionBean question = wdkModel.getQuestion(questionName);
         AnswerParamBean answerParam = null;
         for (ParamBean param : question.getParams()) {
@@ -76,6 +78,10 @@ public class ShowOrthologStageHandler implements StageHandler {
         logger.debug("wizard form: " + wizardForm);
 
         Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put(ATTR_QUESTION, question);
+
+        // check the custom form
+        ShowQuestionAction.checkCustomForm(servlet, request, question);
 
         logger.debug("Leaving ShowOrthologStageHandler....");
         return attributes;
