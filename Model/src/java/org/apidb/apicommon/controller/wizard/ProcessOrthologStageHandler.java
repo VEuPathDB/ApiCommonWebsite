@@ -54,14 +54,19 @@ public class ProcessOrthologStageHandler implements StageHandler {
         String questionName = request
                 .getParameter(CConstants.QUESTION_FULLNAME_PARAM);
         QuestionBean question = wdkModel.getQuestion(questionName);
-        List<AnswerParamBean> params = question.getTransformParams();
-        AnswerParamBean param = params.get(0);
+        AnswerParamBean answerParam = null;
+        for(ParamBean param : question.getParams()) {
+            if (param instanceof AnswerParamBean) {
+                answerParam = (AnswerParamBean) param;
+                break;
+            }
+        }
 
         // set the action to revise, and set the current step id as the input id
         // of the ortholog query.
         String stepId = Integer.toString(currentStep.getStepId());
         wizardForm.setAction(WizardForm.ACTION_REVISE);
-        wizardForm.setValue(param.getName(), stepId);
+        wizardForm.setValue(answerParam.getName(), stepId);
 
         Map<String, Object> attributes = new HashMap<String, Object>();
         return attributes;
