@@ -1,9 +1,6 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,26 +15,22 @@ import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.action.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.controller.wizard.StageHandlerUtility;
-import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerParamBean;
-import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.ParamBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
-import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.json.JSONException;
 
-public class ProcessOrthologStageHandler implements StageHandler {
+public class ShowOrthologStageHandler implements StageHandler {
 
     private static final Logger logger = Logger
-            .getLogger(ProcessOrthologStageHandler.class);
+            .getLogger(ShowOrthologStageHandler.class);
 
     public Map<String, Object> execute(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
-        logger.debug("Entering OrthologStageHandler....");
+        logger.debug("Entering ShowOrthologStageHandler....");
 
         // determine where to add the ortholog. If the current step is the root
         // step of a strategy, then we add it to the end; otherwise, we insert
@@ -55,7 +48,7 @@ public class ProcessOrthologStageHandler implements StageHandler {
                 .getParameter(CConstants.QUESTION_FULLNAME_PARAM);
         QuestionBean question = wdkModel.getQuestion(questionName);
         AnswerParamBean answerParam = null;
-        for(ParamBean param : question.getParams()) {
+        for (ParamBean param : question.getParams()) {
             if (param instanceof AnswerParamBean) {
                 answerParam = (AnswerParamBean) param;
                 break;
@@ -64,11 +57,27 @@ public class ProcessOrthologStageHandler implements StageHandler {
 
         // set the action to revise, and set the current step id as the input id
         // of the ortholog query.
-        String stepId = Integer.toString(currentStep.getStepId());
-        wizardForm.setAction(WizardForm.ACTION_REVISE);
-        wizardForm.setValue(answerParam.getName(), stepId);
+        if (answerParam == null)
+            throw new WdkUserException("the ortholog transform doesn't have "
+                    + "any answerParam:" + questionName);
+
+        int inputStepId = currentStep.getStepId();
+        // the name here is hard-coded, it will be used by
+        // ShowQuestionAction.
+        request.setAttribute(ShowQuestionAction.PARAM_INPUT_STEP,
+                Integer.toString(inputStepId));
+
+        // prepare question form
+        logger.debug("Preparing form for question: " + questionName);
+        QuestionForm questionForm = new QuestionForm();
+        ShowQuestionAction.prepareQuestionForm(question, servlet, request,
+                questionForm);
+        wizardForm.copyFrom(questionForm);
+        logger.debug("wizard form: " + wizardForm);
 
         Map<String, Object> attributes = new HashMap<String, Object>();
+
+        logger.debug("Leaving ShowOrthologStageHandler....");
         return attributes;
     }
 }
