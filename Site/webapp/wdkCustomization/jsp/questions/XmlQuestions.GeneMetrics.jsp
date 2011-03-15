@@ -28,11 +28,11 @@
 <tr><td><h2>FungiDB Gene Metrics</h2></td>
     <td align="right"><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">FungiDB Genomes and Data Types >>></a></td>
 </tr>
-
+<tr><td colspan="2">
 FungiDB is an integrated genomic and functional genomic database for the kingdom Fungi. In its first iteration (released in early 2011), FungiDB contains the genomes of 18 Fungi covering 17 species. (see below). FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 
 <br><br>
-<i>(Please mouse over gene metrics for a definitions; mouse over acronims for the organism full name.)</i><br>
+<i>(Please mouse over gene metrics for a definition; mouse over acronims for the organism full name.)</i><br>
 </td></tr>
 </table>
 
@@ -61,7 +61,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
     <td class="mythStyle" title="Aspergillus nidulans FGSC A4"><i>Anid</i></td>
     <td class="mythStyle" title="Aspergillus niger ATCC 1015"><i>Anig</i></td>
     <td class="mythStyle" title="Aspergillus terreus NIH 2624"><i>At</i></td>
-    <td class="mythStyle" title="Coccidioides immitis H538.4"><i>CiHS</i></td>
+    <td class="mythStyle" title="Coccidioides immitis H538.4"><i>CiH</i></td>
     <td  style="border-right:3px solid grey" class="mythStyle" title="Coccidioides immitis RS"><i>CiRS</i></td>
     <td class="mythStyle" title="Fusarium graminearum PH-1 (NRRL 31084)"><i>Fg</i></td>
     <td class="mythStyle" title="Fusarium oxysporum lycopersici f. sp. 4287"><i>Fo</i></td>
@@ -84,7 +84,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 	 <c:set var="Anid" value="${record.attributesMap['Aspergillus_nidulans']}"/>
  	 <c:set var="Anig" value="${record.attributesMap['Aspergillus_niger']}"/>
 	 <c:set var="At" value="${record.attributesMap['Aspergillus_terreus']}"/>
-	 <c:set var="CiHS" value="${record.attributesMap['Coccidioides_immitis_HS']}"/>
+	 <c:set var="CiH" value="${record.attributesMap['Coccidioides_immitis_H538_4']}"/>
 	 <c:set var="CiRS" value="${record.attributesMap['Coccidioides_immitis_RS']}"/>
 	 <c:set var="Fg" value="${record.attributesMap['Fusarium_graminearum']}"/>
 	 <c:set var="Fo" value="${record.attributesMap['Fusarium_oxysporum']}"/>
@@ -106,7 +106,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
     <td class="mytdStyle" align="right">${Anid}</td>
     <td class="mytdStyle" align="right">${Anig}</td>
     <td class="mytdStyle" align="right">${At}</td>
-    <td class="mytdStyle" align="right">${CiHS}</td>
+    <td class="mytdStyle" align="right">${CiH}</td>
     <td style="border-right:3px solid grey"  class="mytdStyle" align="right">${CiRS}</td>
     <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Fg}</td>
     <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Fo}</td>

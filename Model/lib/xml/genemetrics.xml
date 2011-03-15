@@ -9,7 +9,7 @@
        <attribute name="Aspergillus_nidulans">10865</attribute>
        <attribute name="Aspergillus_niger">6679</attribute>
        <attribute name="Aspergillus_terreus">10564</attribute>
-       <attribute name="Coccidioides_immitis_HS">10640</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">10640</attribute>
        <attribute name="Coccidioides_immitis_RS">9878</attribute>
        <attribute name="Fusarium_graminearum">13605</attribute>
        <attribute name="Fusarium_oxysporum">17466</attribute>
@@ -32,7 +32,7 @@
        <attribute name="Aspergillus_nidulans">10691</attribute>
        <attribute name="Aspergillus_niger">6398</attribute>
        <attribute name="Aspergillus_terreus">10402</attribute>
-       <attribute name="Coccidioides_immitis_HS">10524</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">10524</attribute>
        <attribute name="Coccidioides_immitis_RS">9757</attribute>
        <attribute name="Fusarium_graminearum">13279</attribute>
        <attribute name="Fusarium_oxysporum">17466</attribute>
@@ -55,7 +55,7 @@
        <attribute name="Aspergillus_nidulans">174</attribute>
        <attribute name="Aspergillus_niger">281</attribute>
        <attribute name="Aspergillus_terreus">162</attribute>
-       <attribute name="Coccidioides_immitis_HS">116</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">116</attribute>
        <attribute name="Coccidioides_immitis_RS">121</attribute>
        <attribute name="Fusarium_graminearum">326</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -78,7 +78,7 @@
        <attribute name="Aspergillus_nidulans">72</attribute>
        <attribute name="Aspergillus_niger">6</attribute>
        <attribute name="Aspergillus_terreus">2</attribute>
-       <attribute name="Coccidioides_immitis_HS">2</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">2</attribute>
        <attribute name="Coccidioides_immitis_RS">4</attribute>
        <attribute name="Fusarium_graminearum">9</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -101,7 +101,7 @@
        <attribute name="Aspergillus_nidulans">0</attribute>
        <attribute name="Aspergillus_niger">0</attribute>
        <attribute name="Aspergillus_terreus">1</attribute>
-       <attribute name="Coccidioides_immitis_HS">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
        <attribute name="Coccidioides_immitis_RS">0</attribute>
        <attribute name="Fusarium_graminearum">0</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -124,7 +124,7 @@
        <attribute name="Aspergillus_nidulans">10688</attribute>
        <attribute name="Aspergillus_niger">5866</attribute>
        <attribute name="Aspergillus_terreus">9887</attribute>
-       <attribute name="Coccidioides_immitis_HS">9331</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">9331</attribute>
        <attribute name="Coccidioides_immitis_RS">8900</attribute>
        <attribute name="Fusarium_graminearum">13275</attribute>
        <attribute name="Fusarium_oxysporum">15427</attribute>
@@ -147,7 +147,7 @@
        <attribute name="Aspergillus_nidulans">5620</attribute>
        <attribute name="Aspergillus_niger">3162</attribute>
        <attribute name="Aspergillus_terreus">5498</attribute>
-       <attribute name="Coccidioides_immitis_HS">3846</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">3846</attribute>
        <attribute name="Coccidioides_immitis_RS">4068</attribute>
        <attribute name="Fusarium_graminearum">5848</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -170,7 +170,7 @@
        <attribute name="Aspergillus_nidulans">0</attribute>
        <attribute name="Aspergillus_niger">0</attribute>
        <attribute name="Aspergillus_terreus">0</attribute>
-       <attribute name="Coccidioides_immitis_HS">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
        <attribute name="Coccidioides_immitis_RS">0</attribute>
        <attribute name="Fusarium_graminearum">0</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -193,7 +193,7 @@
        <attribute name="Aspergillus_nidulans">0</attribute>
        <attribute name="Aspergillus_niger">0</attribute>
        <attribute name="Aspergillus_terreus">0</attribute>
-       <attribute name="Coccidioides_immitis_HS">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
        <attribute name="Coccidioides_immitis_RS">0</attribute>
        <attribute name="Fusarium_graminearum">0</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -216,7 +216,7 @@
        <attribute name="Aspergillus_nidulans">0</attribute>
        <attribute name="Aspergillus_niger">0</attribute>
        <attribute name="Aspergillus_terreus">0</attribute>
-       <attribute name="Coccidioides_immitis_HS">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
        <attribute name="Coccidioides_immitis_RS">0</attribute>
        <attribute name="Fusarium_graminearum">0</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -239,7 +239,7 @@
        <attribute name="Aspergillus_nidulans">0</attribute>
        <attribute name="Aspergillus_niger">0</attribute>
        <attribute name="Aspergillus_terreus">0</attribute>
-       <attribute name="Coccidioides_immitis_HS">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
        <attribute name="Coccidioides_immitis_RS">0</attribute>
        <attribute name="Fusarium_graminearum">0</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
@@ -262,7 +262,7 @@
        <attribute name="Aspergillus_nidulans">0</attribute>
        <attribute name="Aspergillus_niger">0</attribute>
        <attribute name="Aspergillus_terreus">0</attribute>
-       <attribute name="Coccidioides_immitis_HS">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
        <attribute name="Coccidioides_immitis_RS">0</attribute>
        <attribute name="Fusarium_graminearum">0</attribute>
        <attribute name="Fusarium_oxysporum">0</attribute>
