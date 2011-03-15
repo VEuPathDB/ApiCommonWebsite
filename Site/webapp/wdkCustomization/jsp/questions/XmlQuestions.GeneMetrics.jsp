@@ -25,7 +25,7 @@
 
 
 <table width="100%">
-<tr><td><h2>EuPathDB Gene Metrics</h2></td>
+<tr><td><h2>FungiDB Gene Metrics</h2></td>
     <td align="right"><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">FungiDB Genomes and Data Types >>></a></td>
 </tr>
 
@@ -51,7 +51,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
     <td style="border-right:3px solid grey" colspan="5" class="mythStyle">Sordariomycetes; Ascomyocta</td>
     <td style="border-right:3px solid grey" colspan="2" class="mythStyle">Saccharomycotina; Ascomyocta</td>
     <td style="border-right:3px solid grey" colspan="2" class="mythStyle">Basidiomycota</td>
-    <td class="mythStyle">Mucormycotina(Zygomycota)</td>
+    <td class="mythStyle">Mucormycotina (Zygomycota)</td>
 </tr>
 <tr class="mythStyle">
     <td  style="border-right:3px solid grey" class="mythStyle" title="">Gene Metric</td>
@@ -84,7 +84,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 	 <c:set var="Anid" value="${record.attributesMap['Aspergillus_nidulans']}"/>
  	 <c:set var="Anig" value="${record.attributesMap['Aspergillus_niger']}"/>
 	 <c:set var="At" value="${record.attributesMap['Aspergillus_terreus']}"/>
-	 <c:set var="CiRS" value="${record.attributesMap['Coccidioides_immitis_HS']}"/>
+	 <c:set var="CiHS" value="${record.attributesMap['Coccidioides_immitis_HS']}"/>
 	 <c:set var="CiRS" value="${record.attributesMap['Coccidioides_immitis_RS']}"/>
 	 <c:set var="Fg" value="${record.attributesMap['Fusarium_graminearum']}"/>
 	 <c:set var="Fo" value="${record.attributesMap['Fusarium_oxysporum']}"/>
