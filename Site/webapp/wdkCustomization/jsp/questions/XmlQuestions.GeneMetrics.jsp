@@ -63,16 +63,16 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
     <td class="mythStyle" title="Aspergillus terreus NIH 2624"><i>At</i></td>
     <td class="mythStyle" title="Coccidioides immitis H538.4"><i>CiHS</i></td>
     <td  style="border-right:3px solid grey" class="mythStyle" title="Coccidioides immitis RS"><i>CiRS</i></td>
-    <td class="mythStyle" title=""><i>Fg</i></td>
-    <td class="mythStyle" title=""><i>Fo</i></td>
-    <td class="mythStyle" title=""><i>Fv</i></td>
-    <td class="mythStyle" title=""><i>Mo</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title=""><i>Nc</i></td>
-    <td class="mythStyle" title=""><i>Ca</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title=""><i>Sc</i></td>
-    <td class="mythStyle" title=""><i>Cn</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title=""><i>Pg</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title=""><i>Ro</i></td>
+    <td class="mythStyle" title="Fusarium graminearum PH-1 (NRRL 31084)"><i>Fg</i></td>
+    <td class="mythStyle" title="Fusarium oxysporum lycopersici f. sp. 4287"><i>Fo</i></td>
+    <td class="mythStyle" title="Fusarium verticillioides 7600"><i>Fv</i></td>
+    <td class="mythStyle" title="Magnaporthe oryzae 70-15"><i>Mo</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Neurospora crassa OR74A"><i>Nc</i></td>
+    <td class="mythStyle" title="Candida albicans SC5314"><i>Ca</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Saccharomyces cerevisiae S288c"><i>Sc</i></td>
+    <td class="mythStyle" title="Cryptococcus neoformans var. grubii H99"><i>Cn</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Puccinia graminis f.sp.tritici CRL 75-36-700-3"><i>Pg</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Rhizopus oryzae RA 99-880"><i>Ro</i></td>
 </tr>
 
   <c:forEach items="${xmlAnswer.recordInstances}" var="record">
