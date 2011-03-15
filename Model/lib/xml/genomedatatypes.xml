@@ -8,7 +8,7 @@
        <attribute name = "Strain">NRRL 1</attribute>
        <attribute name = "Genome_Version">1</attribute>
        <attribute name = "Data_Source">Broad/JVI</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">27.86</attribute>
        <attribute name = "Gene_Count">9413</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -32,7 +32,7 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">2</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">36.79</attribute>
        <attribute name = "Gene_Count">12730</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -56,7 +56,7 @@
        <attribute name = "Strain">Af293</attribute>
        <attribute name = "Genome_Version">2010-07-14</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">29.39</attribute>
        <attribute name = "Gene_Count">10067</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -104,7 +104,7 @@
        <attribute name = "Strain">ATCC 1015</attribute>
        <attribute name = "Genome_Version">1</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">37.20</attribute>
        <attribute name = "Gene_Count">6679</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -128,7 +128,7 @@
        <attribute name = "Strain">NIH 2624</attribute>
        <attribute name = "Genome_Version">1</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">29.33</attribute>
        <attribute name = "Gene_Count">10564</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -153,7 +153,7 @@
        <attribute name = "Strain">H538.4</attribute>
        <attribute name = "Genome_Version">1</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">27.73</attribute>
        <attribute name = "Gene_Count">10640</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -177,7 +177,7 @@
        <attribute name = "Strain">RS</attribute>
        <attribute name = "Genome_Version">3</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">28.95</attribute>
        <attribute name = "Gene_Count">9878</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -201,7 +201,7 @@
        <attribute name = "Strain">PH-1 (NRRL 31084)</attribute>
        <attribute name = "Genome_Version">3</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">36.45</attribute>
        <attribute name = "Gene_Count">13605</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -249,7 +249,7 @@
        <attribute name = "Strain">7600</attribute>
        <attribute name = "Genome_Version">3</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">41.78</attribute>
        <attribute name = "Gene_Count">14457</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -273,7 +273,7 @@
        <attribute name = "Strain">70-15</attribute>
        <attribute name = "Genome_Version">6</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">41.70</attribute>
        <attribute name = "Gene_Count">11385</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -297,7 +297,7 @@
        <attribute name = "Strain">OR74A</attribute>
        <attribute name = "Genome_Version">10</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">41.04</attribute>
        <attribute name = "Gene_Count">10154</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -321,7 +321,7 @@
        <attribute name = "Strain">SC5314</attribute>
        <attribute name = "Genome_Version">1</attribute>
        <attribute name = "Data_Source">CGD</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">14.32</attribute>
        <attribute name = "Gene_Count">6444</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -345,7 +345,7 @@
        <attribute name = "Strain">S288c</attribute>
        <attribute name = "Genome_Version">2011-01-05</attribute>
        <attribute name = "Data_Source">SGD</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">12.16</attribute>
        <attribute name = "Gene_Count">6926</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -369,7 +369,7 @@
        <attribute name = "Strain">var.grubii H99</attribute>
        <attribute name = "Genome_Version">2</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">18.88</attribute>
        <attribute name = "Gene_Count">7121</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -393,7 +393,7 @@
        <attribute name = "Strain">f.sp.tritici CRL 75-36-700-3</attribute>
        <attribute name = "Genome_Version">2</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">88.65</attribute>
        <attribute name = "Gene_Count">21065</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -417,7 +417,7 @@
        <attribute name = "Strain">RA 99-880</attribute>
        <attribute name = "Genome_Version">3</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">46.09</attribute>
        <attribute name = "Gene_Count">17652</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
