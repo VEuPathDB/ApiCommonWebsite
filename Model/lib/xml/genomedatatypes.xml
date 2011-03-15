@@ -144,13 +144,14 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
+
  <record>
        <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
        <attribute name = "Family">Coccidioides</attribute>
        <attribute name = "Organism">C.immitis</attribute>
-       <attribute name = "Taxon_ID">246410</attribute>
-       <attribute name = "Strain">RS</attribute>
-       <attribute name = "Genome_Version">3</attribute>
+       <attribute name = "Taxon_ID">396776</attribute>
+       <attribute name = "Strain">H538.4</attribute>
+       <attribute name = "Genome_Version">1</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size"></attribute>
        <attribute name = "Gene_Count">10640</attribute>
@@ -172,12 +173,12 @@
        <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
        <attribute name = "Family">Coccidioides</attribute>
        <attribute name = "Organism">C.immitis</attribute>
-       <attribute name = "Taxon_ID">396776</attribute>
-       <attribute name = "Strain">H538.4</attribute>
-       <attribute name = "Genome_Version">1</attribute>
+       <attribute name = "Taxon_ID">246410</attribute>
+       <attribute name = "Strain">RS</attribute>
+       <attribute name = "Genome_Version">3</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size"></attribute>
-       <attribute name = "Gene_Count"></attribute>
+       <attribute name = "Gene_Count">9878</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
