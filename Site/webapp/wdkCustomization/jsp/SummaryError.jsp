@@ -98,6 +98,7 @@ Your FungiDB team.
 </h3>
 
 
+
 <!-- pager at bottom -->
 <c:if test="${resultOnly}">
     <site:footer/>

@@ -47,7 +47,5 @@
 
 <div class="params">
 	<site:questionParams />
-</div>  <!-- end of div class params -->
-
 
 

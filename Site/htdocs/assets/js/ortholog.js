@@ -12,10 +12,7 @@ function openOrthologFilter(strat_back_id, step_id){
 
         if(openDetail != null) hideDetails(); 
 
-        // need to determine the action
-        var lastStep = strat.getLastStep();
-        var action = (step_id == lastStep.back_step_Id) ? "add" : "insert";
-        var url = "wizard.do?stage=transform&action=" + action;
+        var url = "wizard.do?stage=show_ortholog&action=revise";
         url += "&strategy=" + strat_back_id + "&step=" + step_id;
         url += "&questionFullName=InternalQuestions.GenesByOrthologs";
 
