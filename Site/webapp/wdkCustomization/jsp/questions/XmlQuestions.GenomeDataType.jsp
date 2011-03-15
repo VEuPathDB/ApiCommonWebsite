@@ -30,11 +30,15 @@
 <%------------------------------------%>
 <table width="100%">
 
-<tr><td><h2>EuPathDB Genomes and Data Types</h2></td>
-    <td align="right"><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">EuPathDB Gene Metrics >>></a></td>
+<tr><td><h2>FungiDB Genomes and Data Types</h2></td>
+    <td align="right"><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">FungiDB Gene Metrics >>></a></td>
 </tr>
 
-<tr><td colspan="2">The EuPathDB <a href="http://pathogenportal.org"><b>Bioinformatics Resource Center (BRC)</b></a> designs, develops and maintains the <a href="http://eupathdb.org">EuPathDB</a>, <a href="http://amoebadb.org">AmoebaDB</a>, <a href="http://cryptodb.org">CryptoDB</a>, <a href="http://giardiadb.org">GiardiaDB</a>, <a href="http://microsporidiadb.org">MicrosporidiaDB</a>, <a href="http://plasmodb.org">PlasmoDB</a>, <a href="http://toxodb.org">ToxoDB</a>, <a href="http://trichdb.org">TrichDB</a> (currently unsupported) and <a href="http://tritrypdb.org">TriTrypDB</a> (supported by the Bill and Melinda Gates Foundation) websites.<br><br>
+<tr><td colspan="2">
+
+FungiDB is an integrated genomic and functional genomic database for the kingdom Fungi. In its first iteration (released in early 2011), FungiDB contains the genomes of 18 Fungi covering 17 species. (see below). FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
+
+<br><br>
 <i>(Please mouse over organism names for the genus; mouse over column headers for details; click on red dots to access information on data sources.)</i><br>
 </td>
 </tr>
@@ -43,7 +47,7 @@
 <%------------------------------------%>
 <table class="mytableStyle" width="100%">
 <tr class="mythStyle">
-    <td width="7%" class="mythStyle" title="Website">Website</td>
+    <td width="7%" class="mythStyle" title="Family">Family</td>
     <td class="mythStyle" title="Species">Species</td>
     <td class="mythStyle" title="Click to access this Taxon ID in NCBI">Taxon ID</td>
     <td class="mythStyle" title="Strain">Strain</td>
@@ -78,7 +82,7 @@
 <c:when test="${curWebsite != website}" >
         <c:set var="curWebsite" value="${website}"/>
         <c:set var="separation" value="border-top:3px solid grey"/>
-	<td style="${separation}">${website}</td>
+	<td style="${separation}"><i>${website}</i></td>
 </c:when>
 <c:otherwise>
 	<c:set var="separation" value=""/>
@@ -87,38 +91,17 @@
 </c:choose>
 
 <!-- website/webapp for links to data sources -->
-<c:set var="website" value="${fn:substringBefore(website, ',')}"/>
-<c:if test="${empty website}" >
-        <c:set var="website" value="EuPathDB"/>
-</c:if>
-<c:set var="website" value="${fn:toLowerCase(website)}"/>
-
-<c:choose>
-<c:when test="${website eq 'amoebadb' || website eq 'plasmodb' || website eq 'toxodb'}" >
-        <c:set var="webapp" value="${fn:substringBefore(website, 'db')}"/>
-</c:when>
-<c:when test="${website eq 'microsporidiadb'}" >
-        <c:set var="webapp" value="micro"/>
-</c:when>
-<c:otherwise>
-        <c:set var="webapp" value="${website}"/>
-</c:otherwise>
-</c:choose>
+        <c:set var="webapp" value="fungidb"/>
 
 
-    <td class="mytdStyle" style="text-align:left;${separation}" title="${family}, in ${website}"><i>${record.attributesMap['Organism']}</i></td>
+
+    <td class="mytdStyle" style="text-align:left;${separation}" title="${family}, in FungiDB"><i>${record.attributesMap['Organism']}</i></td>
     <td class="mytdStyle" style="${separation}" title="Click to access this Taxon ID in NCBI">
 	<a href="${ncbiTaxPage1}${record.attributesMap['Taxon_ID']}${ncbiTaxPage2}">${record.attributesMap['Taxon_ID']}</a></td>
     <td class="mytdStyle" style="${separation}">					${record.attributesMap['Strain']}</td>
     <td class="mytdStyle" style="${separation}">
-  	<c:choose>
-  	<c:when test="${website == 'eupathdb'}">
-        	<a href="/common/downloads/">
-  	</c:when>
-  	<c:otherwise>
         	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
-  	</c:otherwise>
-  	</c:choose>
+
 		${record.attributesMap['Genome_Version']}</a></td>
     <td class="mytdStyle" style="${separation}">					${record.attributesMap['Data_Source']}</td>
     <td class="mytdStyle" style="text-align:right;${separation}">			${record.attributesMap['Genome_Size']}</td>
@@ -274,14 +257,6 @@
 </tr>
 </c:forEach>
 
-</table>
-
-
-<table width="100%">
-<tr><td colspan="10"><font size="-2"><hr>* In addition, <i>G. lamblia</i> has 3766 deprecated genes that are not included in the official gene count.</font></td></tr>
-<tr><td colspan="10"><font size="-2">** <i>T.gondii</i> gene groups identified in ToxoDB across the three strains (ME49, GT1, VEG) and the Apicoplast.</font></td></tr>
-<tr><td colspan="10"><font size="-2">+ <i>T.brucei</i> shows the number of distinct genes among theTREU927, gambiense and 427 strains.</font></td></tr>
-<tr><td colspan="10"><font size="-2">++ <i>T.cruzi</i> shows the number of distinct genes among the Esmeraldo like and Non-Esmeraldo like genes, plus the unassigned.</font></td></tr>
 </table>
 
 
