@@ -19,7 +19,30 @@
        </attribute>
     </record>
 -->
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Cryptosporidium Genomic and RNA Sequencing Project
+         ]]>
+         </attribute>
+       <attribute name="date">15 March 2011 13:00</attribute>
+       <attribute name="tag">seq_proj</attribute>
+       <attribute name="category">seq</attribute>
+       <attribute name="item">
+         <![CDATA[
+Dear Cryptosporidium Researcher,<br><br>
 
+We would like to inform you of a proposal being prepared on behalf of the research community to generate genomic and RNA-seq data for a number of Cryptosporidium species, including laboratory propagated and geographic/clinical isolates.  The proposal will be submitted for funding to the National Institutes of Allergy and Infectious Diseases (NIAID) for consideration by the Eukaryotic Pathogen and Disease Vector Sequencing Project working group and coordinating committee.<br><br>
+http://www.niaid.nih.gov/labsandresources/resources/gsc/pathogen/Pages/default.aspx
+<br><br>
+The species we are suggesting include <i>C. parvum</i>, <i>C. hominis</i>, <i>C. meleagridis</i>, <i>C. bovis</i>, <i>C. bailey</i>, <i>C. cuniculus</i> and <i>C. ubiquitum</i>. This sequencing effort will facilitate comparative analyses to identify genes which control host specificity and other clinically and biologically important traits, as well as to extend our understanding of Cryptosporidium populations. All data will be available to the public through the National Center for Biotechnology Information (NCBI) and CryptoDB.org websites.<br><br>
+
+We would like to solicit your input and request your support.  At this time an e-mail expressing your interest in this project or proposing changes would be much appreciated. Please indicate whether you may have access to Cryptosporidium positive clinical or animal samples which could be made available for this project.<br><br>
+
+Please send emails of inquiry and/or support to Giovanni Widmer (giovanni.widmer@tufts.edu)  or Jessie Kissinger (jkissing@uga.edu)
+          ]]>
+       </attribute>
+</record>
 <record>
        <attribute name="headline">
          <![CDATA[
