@@ -365,9 +365,18 @@ L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,T.brucei927_A
 <c:if test="${(attrs['so_term_name'].value eq 'protein_coding')}">
 
 
+
+<%-- uncomment link and remove  when new release of OrthoMCL is available ----%>
+<%--
   <c:set var="orthomclLink">
     <div align="center">
-      <a href="http://orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
+      <a href="http://beta.orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=${orthomcl_name}">Find the group containing ${id} in the OrthoMCL database</a>
+    </div>
+  </c:set>
+------------------------------------------------------------%>
+  <c:set var="orthomclLink">
+    <div align="center">
+        Link to OrthoMCL Database Coming Soon!
     </div>
   </c:set>
 
