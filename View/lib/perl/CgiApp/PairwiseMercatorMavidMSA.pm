@@ -30,6 +30,10 @@ my $taxonToDirNameMap =
    'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
 
 
+   'Theileria annulata strain Ankara'                 => { name => 'TannulataAnkara',        group => 1 },
+   'Theileria parva strain Muguga'                    => { name => 'TparvaMuguga',           group => 2 },
+   'Babesia bovis T2Bo'			              => { name => 'BbovisT2Bo',             group => 3 },
+
    'Plasmodium falciparum 3D7'                        => { name => 'Pfalciparum',            group => 1 },
    'Plasmodium vivax SaI-1'                           => { name => 'Pvivax',                 group => 2 },
    'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'Pyoelii',                group => 3 },
