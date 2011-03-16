@@ -92,7 +92,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 
 <!-- website/webapp for links to data sources -->
         <c:set var="webapp" value="fungidb"/>
-
+	<c:set var="website" value="fungidb"/>
 
 
     <td class="mytdStyle" style="text-align:left;${separation}" title="${family}, in FungiDB"><i>${record.attributesMap['Organism']}</i></td>
@@ -100,8 +100,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 	<a href="${ncbiTaxPage1}${record.attributesMap['Taxon_ID']}${ncbiTaxPage2}">${record.attributesMap['Taxon_ID']}</a></td>
     <td class="mytdStyle" style="${separation}">					${record.attributesMap['Strain']}</td>
     <td class="mytdStyle" style="${separation}">
-        	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
-
+		<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		${record.attributesMap['Genome_Version']}</a></td>
     <td class="mytdStyle" style="${separation}">					${record.attributesMap['Data_Source']}</td>
     <td class="mytdStyle" style="text-align:right;${separation}">			${record.attributesMap['Genome_Size']}</td>
@@ -138,7 +137,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['Isolates'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -149,7 +148,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['SNPs'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -166,7 +165,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
         <a href="/common/downloads/">
   </c:when> 
   <c:otherwise>
-        <a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
   </c:otherwise>
   </c:choose>
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a>
@@ -180,7 +179,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['Microarray'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -191,7 +190,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['Proteomics'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -202,7 +201,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['ChIP_chip'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -213,7 +212,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['RNA_Seq'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">	
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -224,7 +223,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['Chip_Seq'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">	
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -235,7 +234,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['SageTags'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">	
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>
@@ -246,7 +245,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <c:choose>
 <c:when test="${record.attributesMap['Pathways'] == 'yes'}">
     <td class="mytdStyle" style="${separation}">
-	<a href="http://${website}.org/${webapp}/showXmlDataContent.do?name=XmlQuestions.DataSources">
+	<a href="<c:url value='/getDataSource.do?display=detail'/>">
 		<img border=0 src="/assets/images/reddot.gif" width="8" alt="yes"></a></td>
 </c:when>
 <c:otherwise>

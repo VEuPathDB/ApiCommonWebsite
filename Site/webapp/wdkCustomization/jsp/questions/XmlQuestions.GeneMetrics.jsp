@@ -32,7 +32,7 @@
 FungiDB is an integrated genomic and functional genomic database for the kingdom Fungi. In its first iteration (released in early 2011), FungiDB contains the genomes of 18 Fungi covering 17 species. (see below). FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 
 <br><br>
-<i>(Please mouse over gene metrics for a definition; mouse over acronims for the organism full name.)</i><br>
+<i>(Please mouse over gene metrics for a definition; mouse over acronyms for the organism full name.)</i><br>
 </td></tr>
 </table>
 
