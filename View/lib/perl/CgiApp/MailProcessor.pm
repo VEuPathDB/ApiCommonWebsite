@@ -17,7 +17,7 @@ BEGIN {
   set_message(\&handle_errors);
 }
     
-my $MAIL_PROCESSOR_EMAIL = 'apache@pcbi.upenn.edu';
+my $MAIL_PROCESSOR_EMAIL = 'redmine@apidb.org';
 
 sub go {
     my $Self = shift;
@@ -38,7 +38,7 @@ sub go {
     my $browser = join("", @{ $cgi->{'browser'} or [$ENV{HTTP_USER_AGENT}] });
     my $referer = join("", @{ $cgi->{'referer'} or [$ENV{HTTP_REFERER}] });
     my $ipaddr  = join("", @{ $cgi->{'ipaddr'} or [$ENV{REMOTE_ADDR}] });
-    my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'supportform@apidb.org' });
+    my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'websitesupportform@apidb.org' });
 
     my $automaticMsg = "****THIS IS NOT A REPLY**** \nThis is an automatic response, that includes your message for your records, to let you know that we have received your email and will get back to you as soon as possible. Thanks so much for contacting us!\n\nThis was your message:\n\n---------------------\n";
 
@@ -64,7 +64,7 @@ sub go {
 
     my $addCc = join ',', @addCcField; # cleaned, approved list
     
-    # testing mode ($cc instead of help@ email, $to instead of bugzilla's email)
+    # testing mode ($cc instead of help@ email, $to instead of redmine's email)
     #$cc = 'mheiges@gmail.com';
     #$to = 'mheiges@uga.edu';
     
@@ -74,7 +74,7 @@ sub go {
     my $spamWarning;
     if ($isSpam) {
         $subject = "[spam?] $subject";
-        $spamWarning = "THIS MESSAGE HAS BEEN FLAGGED AS POSSIBLE SPAM BY THE APIDB MAILPROCESSOR AND NOT ENTERED IN BUGZILLA\n\n";
+        $spamWarning = "THIS MESSAGE HAS BEEN FLAGGED AS POSSIBLE SPAM BY THE APIDB MAILPROCESSOR AND NOT ENTERED IN THE TRACKER\n\n";
     }
 
     my $metaInfo = ""
@@ -90,7 +90,7 @@ sub go {
 
 # sending email to the user so he/she has a record
     if($cc) {
-      $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $automaticMsg . $message . "---------------------", $addCc);
+      $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $automaticMsg . $message . "\n---------------------", $addCc);
     } else {
       $cfmMsg = "warning: did not cc user because no email was provided\n";
     }
@@ -103,24 +103,16 @@ sub go {
       $cfmMsg = "warning: did not cc support because no support email is provided\n";
     }
 
-#sending email to bugzilla
+#sending email to redmine
     my $short_desc = $subject;
-    $subject = "Bugzilla [$subject]";
     if ($to && $subject && ! $isSpam) {
-      # for auto submission to bugzilla
+      # for auto submission to redmine
       $metaInfo = ""
-        . '@product      = ' . "SupportRequests" . "\n"
-        . '@component    = ' . "$website" . "\n"
-        . '@version      = ' . "$version" . "\n"
-        . '@short_desc   = ' . "$short_desc" . "\n"
-        . '@priority     = ' . "? " . "\n"
-        . '@bug_severity = ' . "feature" . "\n"
-        . '@rep_platform = ' . "all" . "\n"
-        . '@op_sys       = ' . "all" . "\n"
+        . 'Project: ' . "usersupportrequests" . "\n"
+        . 'Category: ' . "$website" . "\n"
         . "\n" . $metaInfo . "\n"
         . "Client IP Address: $ipaddr\n";
      $cfmMsg .= "\n\n" . sendMail($reporterEmail, $to, $subject, $replyTo, $metaInfo, $message);
-
     } elsif  ($subject) {
       $cfmMsg .= ": no recipient is specified."
                . "\n\nThis indicate a problem with the mail form."
