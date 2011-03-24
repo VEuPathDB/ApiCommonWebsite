@@ -1,19 +1,20 @@
 # $Revision$
 
-AMOEBA_BLAST_PATH=Common/devSiteFilesMirror/webServices/AmoebaDB/release-1.0/blast
-API_BLAST_PATH=Common/devSiteFilesMirror/webServices/EuPathDB/release-1.0.1/blast
-CRYPTO_BLAST_PATH=Common/devSiteFilesMirror/webServices/CryptoDB/release-4.1/blast
-MICRO_BLAST_PATH=Common/devSiteFilesMirror/webServices/MicrosporidiaDB/release-1.0/blast
-PLASMO_BLAST_PATH=Common/devSiteFilesMirror/webServices/PlasmoDB/release-5.5/blast
-TOXO_BLAST_PATH=Common/devSiteFilesMirror/webServices/ToxoDB/release-5.1/blast
-GIARDIA_BLAST_PATH=Common/devSiteFilesMirror/webServices/GiardiaDB/release-1.1/blast
-TRICH_BLAST_PATH=Common/devSiteFilesMirror/webServices/TrichDB/release-1.0/blast
-TRYP_BLAST_PATH=Common/devSiteFilesMirror/webServices/TriTrypDB/release-1.1/blast
+API_BLAST_PATH=Common/devSiteFilesMirror/webServices/EuPathDB/release-2.8/blast
+AMOEBA_BLAST_PATH=Common/devSiteFilesMirror/webServices/AmoebaDB/release-1.4/blast
+CRYPTO_BLAST_PATH=Common/devSiteFilesMirror/webServices/CryptoDB/release-4.4/blast
+GIARDIA_BLAST_PATH=Common/devSiteFilesMirror/webServices/GiardiaDB/release-2.3/blast
+MICRO_BLAST_PATH=Common/devSiteFilesMirror/webServices/MicrosporidiaDB/release-1.4/blast
+PIRO_BLAST_PATH=Common/devSiteFilesMirror/webServices/PiroplasmaDB/release-1.0/blast
+PLASMO_BLAST_PATH=Common/devSiteFilesMirror/webServices/PlasmoDB/release-7.2/blast
+TOXO_BLAST_PATH=Common/devSiteFilesMirror/webServices/ToxoDB/release-6.4/blast
+TRICH_BLAST_PATH=Common/devSiteFilesMirror/webServices/TrichDB/release-1.2/blast
+TRYP_BLAST_PATH=Common/devSiteFilesMirror/webServices/TriTrypDB/release-3.1/blast
 
 # depends on apifed regular expression
-SITES="Entamoeba","Cryptosporidium","Giardia","Encephalitozoon","Plasmodium","Toxoplasma","Neospora","Trichomonas","Trypanosoma","Leishmania"
+SITES="Entamoeba","Cryptosporidium","Giardia","Anncaliia","Edhazardia","Encephalitozoon","Enterocytozoon","Nematocida","Nosema","Octosporea","Vittaforma","Plasmodium","Theileria","Babesia","Toxoplasma","Neospora","Trichomonas","Trypanosoma","Leishmania","Crithidia"
 
 # PORTALS=global-set-name;set-name,items-in-set(;set name,items)
-PORTALS="Eukaryotic Pathogens (all)";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora";"Anaerobic Protists","Cryptosporidium","Giardia","Trichomonas";"Kinetoplastid","Crithidia","Trypanosoma","Leishmania";"Amoeba","Entamoeba";"Pathogenic Fungi","Anncaliia","Edhazardia","Encephalitozoon","Enterocytozoon","Nosema","Vittaforma"
+PORTALS="Eukaryotic Pathogens (all)";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora","Theileria","Babesia";"Anaerobic Protists","Cryptosporidium","Giardia","Trichomonas";"Kinetoplastid","Crithidia","Leishmania","Trypanosoma";"Amoeba","Entamoeba";"Pathogenic Fungi","Anncaliia","Edhazardia","Encephalitozoon","Enterocytozoon","Nematocida","Nosema","Octosporea","Vittaforma"
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
