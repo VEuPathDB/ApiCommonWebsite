@@ -25,7 +25,32 @@
        <attribute name="item">
            
          <![CDATA[
-Following extensive discussion with the malaria research community, the list of Plasmodium genome sequencing projects supported by the US National Institutes of Allergy and Infectious Diseases (NIAID) has been updated, replacing entries that have been difficult to source with additional isolates and species of interest.  The initial white paper is available here; click here for the revised list of approved projects.  The Plasmodium sequencing contract has been awarded to the Broad Institute (http://www.broadinstitute.org/science/projects/gscid/genomic-sequencing-center-infectious-diseases), and data is made publicly available to the broader research community via deposition in GenBank and through relevant Bioinformatics Resource Centers (http://www.pathogenportal.net/), including http://PlasmoDB.org.  Further information on the 'white paper' process by which key pathogen species are approved for sequencing is available at (http://www.niaid.nih.gov/LabsAndResources/resources/gsc/Pages/app.aspx).
+<body>
+<div style="text-align: justify;">Following extensive discussion with
+the malaria research community, the list of Plasmodium genome
+sequencing projects supported by the US National Institutes of Allergy
+and Infectious Diseases (NIAID) has been updated, replacing entries
+that have been difficult to source with additional isolates and species
+of interest.&nbsp; <br>
+<br>
+The initial white paper is available <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/communityDownload.do?fname=Plasmodium_Sequencing_White_Paper.pdf">here</a>;
+click <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/communityDownload.do?fname=Table2_021208_SampleStatus_032111%20SampleStatus.pdf">here</a>
+for the revised list of approved projects. &nbsp;The Plasmodium
+sequencing contract has been awarded to the <a
+style="font-weight: bold;"
+href="http://www.broadinstitute.org/science/projects/gscid/genomic-sequencing-center-infectious-diseases">Broad
+Institute</a>, and data is made publicly available to the broader
+research community via deposition in GenBank and through relevant <a
+style="font-weight: bold;" href="http://www.pathogenportal.net/">Bioinformatics
+Resource Centers</a>, including <a style="font-weight: bold;"
+href="http://PlasmoDB.org">PlasmoDB</a>. &nbsp;Further information on
+the 'white paper' process by which key pathogen species are approved
+for sequencing is available <a style="font-weight: bold;"
+href="http://www.niaid.nih.gov/LabsAndResources/resources/gsc/Pages/app.aspx">here</a>.<br>
+</div>
+</body>
           ]]>
        </attribute>
     </record>  
