@@ -270,7 +270,7 @@ can now add publications to your user comments using their <a
 href="http://www.doi.org/index.html">Digital Object Identifier</a>
 (DOI) numbers.&nbsp; To view a list of all genes that have a user
 comment in TriTrypDB, click <a
-href="http://tritrypdb.org/tritrypdb/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;myMultiProp%28text_search_organism%29=Leishmania%20braziliensis,Leishmania%20infantum,Leishmania%20major,Leishmania%20mexicana,Trypanosoma%20brucei,Trypanosoma%20cruzi,Trypanosoma%20congolense,Trypanosoma%20vivax&amp;myMultiProp%28text_fields%29=User%20comments&amp;myMultiProp%28whole_words%29=no&amp;myProp%28max_pvalue%29=-30&amp;myProp%28text_expression%29=*&amp;myProp%28timestamp%29=Nov%2017,%202010%209:36:39%20PM">here</a>.<br>
+href="http://tritrypdb.org/tritrypdb/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;array%28text_search_organism%29=Leishmania%20braziliensis,Leishmania%20infantum,Leishmania%20major,Leishmania%20mexicana,Trypanosoma%20brucei,Trypanosoma%20cruzi,Trypanosoma%20congolense,Trypanosoma%20vivax&amp;array%28text_fields%29=User%20comments&amp;array%28whole_words%29=no&amp;myProp%28max_pvalue%29=-30&amp;value%28text_expression%29=*&amp;value%28timestamp%29=Nov%2017,%202010%209:36:39%20PM">here</a>.<br>
 <span style="font-weight: bold;"></span>
 </body>
 ]]>

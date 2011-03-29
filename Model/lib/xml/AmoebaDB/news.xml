@@ -91,7 +91,7 @@ can now add publications to your user comments using their <a
 href="http://www.doi.org/index.html">Digital Object Identifier</a>
 (DOI) numbers.&nbsp; To view a list of all genes that have a user
 comment in PlasmoDB, click <a
-href="http://amoebadb.org/amoeba/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;myMultiProp%28text_search_organism%29=&amp;myMultiProp%28text_fields%29=User%20comments&amp;myMultiProp%28whole_words%29=no&amp;myProp%28max_pvalue%29=-30&amp;myProp%28text_expression%29=*&amp;myProp%28timestamp%29=Nov%2017,%202010%206:23:53%20PM">here</a>.<br>
+href="http://amoebadb.org/amoeba/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;array%28text_search_organism%29=&amp;array%28text_fields%29=User%20comments&amp;array%28whole_words%29=no&amp;value%28max_pvalue%29=-30&amp;value%28text_expression%29=*&amp;value%28timestamp%29=Nov%2017,%202010%206:23:53%20PM">here</a>.<br>
 <span style="font-weight: bold;"></span>
 </body>
           ]]>

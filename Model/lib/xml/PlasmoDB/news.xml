@@ -101,7 +101,7 @@ style="font-weight: bold;">:</span> <br>
 href="http://www.doi.org/index.html">Digital Object Identifier</a>
 (DOI) numbers.&nbsp; To view a list of all genes that have a user
 comment in PlasmoDB, click <a
-href="http://plasmodb.org/plasmo/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;myMultiProp%28text_search_organism%29=Plasmodium%20berghei,Plasmodium%20chabaudi,Plasmodium%20falciparum,Plasmodium%20knowlesi,Plasmodium%20vivax,Plasmodium%20yoelii&amp;myMultiProp%28text_fields%29=User%20comments&amp;myMultiProp%28whole_words%29=no&amp;myProp%28max_pvalue%29=-30&amp;myProp%28text_expression%29=*&amp;myProp%28timestamp%29=Nov%2017,%202010%209:39:32%20PM">here</a>.</li>
+href="http://plasmodb.org/plasmo/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;array%28text_search_organism%29=Plasmodium%20berghei,Plasmodium%20chabaudi,Plasmodium%20falciparum,Plasmodium%20knowlesi,Plasmodium%20vivax,Plasmodium%20yoelii&amp;array%28text_fields%29=User%20comments&amp;array%28whole_words%29=no&amp;value%28max_pvalue%29=-30&amp;value%28text_expression%29=*&amp;value%28timestamp%29=Nov%2017,%202010%209:39:32%20PM">here</a>.</li>
 </ul>
 <ul>
 <li>You can view microarray oligo mapping for all arrays with data in
