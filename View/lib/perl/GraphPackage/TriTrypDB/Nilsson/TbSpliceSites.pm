@@ -12,7 +12,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors =['#D87093', '#DDDDDD'];
+  my $colors =['#8B4513', '#DDDDDD'];
 
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
   my $xAxisLabels = ["bf long slender","bf Short Stumpy","bf Lister 427","procyclic form","pf Alba 1 non-induced","pf Alba 1 induced","pf Alba 3 and 4 non-induced","pf Alba 3 and 4 induced"];
