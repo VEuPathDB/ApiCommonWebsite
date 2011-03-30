@@ -11,6 +11,8 @@ sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
+  $self->setScreenSize(280);
+  $self->setBottomMarginSize(10);
 
   my $colors =['#8B4513', '#DDDDDD'];
 
@@ -24,7 +26,6 @@ sub init {
                    y_axis_label => 'log 2 (RPKM)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
-                   force_x_axis_label_horizontal => 1,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
