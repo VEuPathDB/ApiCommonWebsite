@@ -29,13 +29,13 @@ sub init {
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
-#      pct => {profiles => [''],
-#              y_axis_label => 'Percentile',
-#              x_axis_labels => $xAxisLabels,
-#              default_y_max => 50,
-#              colors => [$colors->[0]],
-#              force_x_axis_label_horizontal => 1,
-#             },
+      pct => {profiles => ['T.brucei RNASeq Spliced Leader And Poly A Sites from Nilsson percentile'],
+              y_axis_label => 'Percentile',
+              x_axis_labels => $xAxisLabels,
+              default_y_max => 50,
+              colors => [$colors->[0]],
+              force_x_axis_label_horizontal => 1,
+             },
      });
 
   return $self;
