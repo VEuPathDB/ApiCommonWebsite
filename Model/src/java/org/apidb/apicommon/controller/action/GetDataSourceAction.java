@@ -1,6 +1,9 @@
-package org.apidb.apicommon.controller;
+package org.apidb.apicommon.controller.action;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +14,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.gusdb.wdk.controller.action.ActionUtility;
+import org.gusdb.wdk.model.AttributeValue;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
+import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.jspwrap.XmlQuestionSetBean;
@@ -22,7 +27,7 @@ public class GetDataSourceAction extends Action {
 
     private static final String DATA_SOURCE_ALL = "DataSourceQuestions.AllDataSources";
     private static final String DATA_SOURCE_BY_QUESTION = "DataSourceQuestions.DataSourcesByQuestionName";
-    private static final String DATA_SOURCE_BY_RECORD_CLASS = "DataSourceQuestions.DataSourcesByRecordClassAndOrganism";
+    public static final String DATA_SOURCE_BY_RECORD_CLASS = "DataSourceQuestions.DataSourcesByRecordClass";
 
     private static final String PARAM_QUESTION = "question";
     private static final String PARAM_RECORD_CLASS = "recordClass";
@@ -31,7 +36,7 @@ public class GetDataSourceAction extends Action {
     private static final String VALUE_DISPLAY_LIST = "list";
     private static final String VALUE_DISPLAY_DETAIL = "detail";
 
-    private static final String ATTR_ANSWER = "dataSourceAnswer";
+    private static final String ATTR_DATA_SOURCES = "dataSources";
 
     private static final String FORWARD_XML_LIST = "show_xml_list";
     private static final String FORWARD_XML_DETAIL = "show_xml_detail";
@@ -74,20 +79,53 @@ public class GetDataSourceAction extends Action {
             AnswerValueBean answerValue = question.makeAnswerValue(user,
                     params, 0);
 
-            request.setAttribute(ATTR_ANSWER, answerValue);
+            Map<String, List<RecordBean>> categories = formatAnswer(answerValue);
+            request.setAttribute(ATTR_DATA_SOURCES, categories);
         }
 
-        if (displayType == null || displayType.length() == 0) displayType = VALUE_DISPLAY_LIST;
+        if (displayType == null || displayType.length() == 0)
+            displayType = VALUE_DISPLAY_LIST;
 
-        if (displayType.equals(VALUE_DISPLAY_LIST)) return mapping.findForward(forwardList);
-        else if (displayType.equals(VALUE_DISPLAY_DETAIL)) return mapping.findForward(forwardDetail);
-        else throw new WdkUserException("Unknown display type: " + displayType);
+        if (displayType.equals(VALUE_DISPLAY_LIST))
+            return mapping.findForward(forwardList);
+        else if (displayType.equals(VALUE_DISPLAY_DETAIL))
+            return mapping.findForward(forwardDetail);
+        else
+            throw new WdkUserException("Unknown display type: " + displayType);
     }
 
     private boolean hasXmlDataSource(WdkModelBean wdkModel) {
         XmlQuestionSetBean questionSet = wdkModel.getXmlQuestionSetsMap().get(
                 "XmlQuestions");
-        if (questionSet == null) return false;
+        if (questionSet == null)
+            return false;
         return questionSet.getQuestionsMap().containsKey("DataSources");
+    }
+
+    /**
+     * Group data sources by category
+     * 
+     * @param request
+     * @param answerValue
+     * @throws Exception
+     */
+    private Map<String, List<RecordBean>> formatAnswer(
+            AnswerValueBean answerValue)
+            throws Exception {
+        Map<String, List<RecordBean>> categories = new LinkedHashMap<String, List<RecordBean>>();
+        Iterator<RecordBean> records = answerValue.getRecords();
+        while (records.hasNext()) {
+            RecordBean record = records.next();
+            Map<String, AttributeValue> attributeValues = record
+                    .getAttributes();
+            String category = attributeValues.get("categories").toString();
+            List<RecordBean> list = categories.get(category);
+            if (list == null) {
+                list = new ArrayList<RecordBean>();
+                categories.put(category, list);
+            }
+            list.add(record);
+        }
+        return categories;
     }
 }
