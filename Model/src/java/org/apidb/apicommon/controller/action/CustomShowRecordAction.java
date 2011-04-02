@@ -2,9 +2,7 @@ package org.apidb.apicommon.controller.action;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,8 +53,8 @@ public class CustomShowRecordAction extends ShowRecordAction {
         AnswerValueBean answerValue = question.makeAnswerValue(user, params, 0);
 
         // find all referenced attributes and tables;
-        Set<String> attributeRefs = new LinkedHashSet<String>();
-        Set<String> tableRefs = new LinkedHashSet<String>();
+        Map<String, String> attributeRefs = new LinkedHashMap<String, String>();
+        Map<String, String> tableRefs = new LinkedHashMap<String, String>();
         Iterator<RecordBean> dsRecords = answerValue.getRecords();
         while(dsRecords.hasNext()) {
             RecordBean dsRecord = dsRecords.next();
@@ -67,9 +65,9 @@ public class CustomShowRecordAction extends ShowRecordAction {
                     String targetType = row.get("target_type").toString();
                     String targetName = row.get("target_name").toString();
                     if (targetType.equals(TYPE_ATTRIBTUE)) {
-                        attributeRefs.add(targetName);
+                        attributeRefs.put(targetName, targetName);
                     } else if (targetType.equals(TYPE_TABLE)) {
-                        tableRefs.add(targetName);
+                        tableRefs.put(targetName, targetName);
                     }
                 }
             }
