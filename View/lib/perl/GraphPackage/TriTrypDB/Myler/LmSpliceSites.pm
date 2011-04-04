@@ -21,7 +21,7 @@ sub init {
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['Lmajor RNASeq Spliced Leader And Poly A Sites from Myler uniqProfile','Lmajor RNASeq Spliced Leader And Poly A Sites from Myler nonUniqProfile'],
-                   y_axis_label => 'log 2 (RPKM)',
+                   y_axis_label => 'log 2 (# / million aligned tags)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
                    force_x_axis_label_horizontal => 1,
