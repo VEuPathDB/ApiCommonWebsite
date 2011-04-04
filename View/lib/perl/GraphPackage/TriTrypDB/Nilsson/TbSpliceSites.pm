@@ -23,7 +23,7 @@ sub init {
 
   $self->setProfileSetsHash
     ({coverage => {profiles => ['T.brucei RNASeq Spliced Leader And Poly A Sites from Nilsson uniqProfile','T.brucei RNASeq Spliced Leader And Poly A Sites from Nilsson nonUniqProfile'],
-                   y_axis_label => 'log 2 (# / million aligned tags)',
+                   y_axis_label => 'log 2 (normalized tag count)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
