@@ -43,6 +43,14 @@ public class GetDataSourceAction extends Action {
     private static final String FORWARD_LIST = "show_list";
     private static final String FORWARD_DETAIL = "show_detail";
 
+    public static boolean hasXmlDataSource(WdkModelBean wdkModel) {
+        XmlQuestionSetBean questionSet = wdkModel.getXmlQuestionSetsMap().get(
+                "XmlQuestions");
+        if (questionSet == null)
+            return false;
+        return questionSet.getQuestionsMap().containsKey("DataSources");
+    }
+
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
@@ -92,14 +100,6 @@ public class GetDataSourceAction extends Action {
             return mapping.findForward(forwardDetail);
         else
             throw new WdkUserException("Unknown display type: " + displayType);
-    }
-
-    private boolean hasXmlDataSource(WdkModelBean wdkModel) {
-        XmlQuestionSetBean questionSet = wdkModel.getXmlQuestionSetsMap().get(
-                "XmlQuestions");
-        if (questionSet == null)
-            return false;
-        return questionSet.getQuestionsMap().containsKey("DataSources");
     }
 
     /**
