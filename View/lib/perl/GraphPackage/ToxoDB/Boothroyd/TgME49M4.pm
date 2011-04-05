@@ -13,7 +13,7 @@ sub init {
 
   $self->setScreenSize(250);
   $self->setPlotWidth(450);
-  $self->setBottomMarginSize(8);
+  $self->setBottomMarginSize(6);
 
   my $colors = ['#ff0000', '#ff0000', '#ff0000', '#000000', '#0000ff' ,'#0000ff', '#0000ff'];
   my $legend = ["oocyst", "sporozoite", "tachyzoite", "bradyzoite"];
@@ -24,9 +24,11 @@ sub init {
     ({rma => {profiles => ['Expression profiles of Tgondii ME49 Boothroyd experiments'],
               y_axis_label => 'RMA Value (log2)',
               colors => $colors,
+							x_axis_labels => ['d0 unsporulated', 'd4 sporulation', 'd10 sporulation', 'd2 in intro Tz', 'd4 in vitro Bz', 'd8 in vitro Bz', 'd21 IN VIVO Bz'],
               plot_title => 'Tachyzoite comparison of archetypal T.gondii lineages',
              },
       pct => {profiles => ['Expression percentile profiles of Tgondii ME49 Boothroyd experiments'],
+							x_axis_labels => ['d0 unsporulated', 'd4 sporulation', 'd10 sporulation', 'd2 in intro Tz', 'd4 in vitro Bz', 'd8 in vitro Bz', 'd21 IN VIVO Bz'],
               y_axis_label => 'Percentile',
               colors => $colors,
             }
