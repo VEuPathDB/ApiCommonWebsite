@@ -15,10 +15,12 @@ sub init {
   $self->setPlotWidth(450);
   $self->setBottomMarginSize(6);
 
-  my $colors = ['#ff0000', '#ff0000', '#ff0000', '#000000', '#0000ff' ,'#0000ff', '#0000ff'];
+
+  my $colors = ['#FFC0CB', '#D87093', '#D87093', '#FFDAB9', '#AFEEEE' ,'#AFEEEE', '#AFEEEE'];
+
   my $legend = ["oocyst", "sporozoite", "tachyzoite", "bradyzoite"];
 
-  $self->setMainLegend({colors => ['#ff0000', '#ff0000', '#000000', '#0000ff'], short_names => $legend, cols=> 4});
+  $self->setMainLegend({colors => ['#FFC0CB', '#D87093', '#FFDAB9', '#AFEEEE'], short_names => $legend, cols=> 4});
 
   $self->setProfileSetsHash
     ({rma => {profiles => ['Expression profiles of Tgondii ME49 Boothroyd experiments'],
