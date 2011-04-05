@@ -23,7 +23,7 @@
        <attribute name="Trichomonas_vaginalis">99009</attribute>
        <attribute name="Trypanosoma_brucei">11183</attribute> 
        <attribute name="Trypanosoma_congolense">13536</attribute>
-       <attribute name="Trypanosoma_cruzi">12583</attribute>
+       <attribute name="Trypanosoma_cruzi">16372</attribute>
        <attribute name="Trypanosoma_vivax">11989</attribute>
        <attribute name="Leishmania_mexicana">8334</attribute>
        <attribute name="Entamoeba_dispar">8748</attribute>
@@ -57,7 +57,7 @@
        <attribute name="Trichomonas_vaginalis">59672</attribute>
        <attribute name="Trypanosoma_brucei">10532</attribute>
        <attribute name="Trypanosoma_congolense">13459</attribute>
-       <attribute name="Trypanosoma_cruzi">12063</attribute>
+       <attribute name="Trypanosoma_cruzi">15099</attribute>
        <attribute name="Trypanosoma_vivax">11885</attribute>
        <attribute name="Leishmania_mexicana">8250</attribute>
        <attribute name="Entamoeba_dispar">8748</attribute>
@@ -91,7 +91,7 @@
        <attribute name="Trichomonas_vaginalis">39337</attribute>
        <attribute name="Trypanosoma_brucei">652</attribute>
        <attribute name="Trypanosoma_congolense">77</attribute>
-       <attribute name="Trypanosoma_cruzi">520</attribute>
+       <attribute name="Trypanosoma_cruzi">1633</attribute>
        <attribute name="Trypanosoma_vivax">104</attribute>
        <attribute name="Leishmania_mexicana">84</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
@@ -125,7 +125,7 @@
        <attribute name="Trichomonas_vaginalis">0</attribute>
        <attribute name="Trypanosoma_brucei">1266</attribute>
        <attribute name="Trypanosoma_congolense">5</attribute>
-       <attribute name="Trypanosoma_cruzi">2343</attribute>
+       <attribute name="Trypanosoma_cruzi">3322</attribute>
        <attribute name="Trypanosoma_vivax">26</attribute>
        <attribute name="Leishmania_mexicana">99</attribute>
        <attribute name="Entamoeba_dispar">4</attribute>
@@ -181,7 +181,7 @@
        <attribute name="Giardia_Assemblage_E_isolate_P15">30</attribute>
        <attribute name="Leishmania_braziliensis">2</attribute>
        <attribute name="Leishmania_infantum">11</attribute>
-       <attribute name="Leishmania_major">78</attribute>
+       <attribute name="Leishmania_major">79</attribute>
        <attribute name="Neospora_caninum">1</attribute>
        <attribute name="Plasmodium_berghei">36</attribute>
        <attribute name="Plasmodium_chabaudi">8</attribute>
@@ -191,11 +191,11 @@
        <attribute name="Plasmodium_yoelii">195</attribute>
        <attribute name="Toxoplasma_gondii">1620</attribute>
        <attribute name="Trichomonas_vaginalis">15</attribute>
-       <attribute name="Trypanosoma_brucei">849</attribute>
+       <attribute name="Trypanosoma_brucei">902</attribute>
        <attribute name="Trypanosoma_congolense">1</attribute>
-       <attribute name="Trypanosoma_cruzi">68</attribute>
-       <attribute name="Trypanosoma_vivax">1</attribute>
-       <attribute name="Leishmania_mexicana">0</attribute>
+       <attribute name="Trypanosoma_cruzi">121</attribute>
+       <attribute name="Trypanosoma_vivax">2</attribute>
+       <attribute name="Leishmania_mexicana">4</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">54</attribute>
        <attribute name="Entamoeba_invadens">4</attribute>
@@ -213,7 +213,7 @@
        <attribute name="Giardia_Assemblage_A_isolate_WB">5346</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">4391</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">4922</attribute>
-       <attribute name="Leishmania_braziliensis">6388</attribute>
+       <attribute name="Leishmania_braziliensis">6389</attribute>
        <attribute name="Leishmania_infantum">6385</attribute>
        <attribute name="Leishmania_major">6535</attribute>
        <attribute name="Neospora_caninum">6853</attribute>
@@ -227,8 +227,8 @@
        <attribute name="Trichomonas_vaginalis">54732</attribute>
        <attribute name="Trypanosoma_brucei">8211</attribute>
        <attribute name="Trypanosoma_congolense">9646</attribute>
-       <attribute name="Trypanosoma_cruzi">10198</attribute>
-       <attribute name="Trypanosoma_vivax">8390</attribute>
+       <attribute name="Trypanosoma_cruzi">12959</attribute>
+       <attribute name="Trypanosoma_vivax">8393</attribute>
        <attribute name="Leishmania_mexicana">6392</attribute>
        <attribute name="Entamoeba_dispar">7947</attribute>
        <attribute name="Entamoeba_histolytica">7754</attribute>
@@ -261,7 +261,7 @@
        <attribute name="Trichomonas_vaginalis">13172</attribute>
        <attribute name="Trypanosoma_brucei">5326</attribute>
        <attribute name="Trypanosoma_congolense">4079</attribute>
-       <attribute name="Trypanosoma_cruzi">4984</attribute>
+       <attribute name="Trypanosoma_cruzi">5946</attribute>
        <attribute name="Trypanosoma_vivax">3441</attribute>
        <attribute name="Leishmania_mexicana">3491</attribute>
        <attribute name="Entamoeba_dispar">3799</attribute>
@@ -295,7 +295,7 @@
        <attribute name="Trichomonas_vaginalis">487</attribute>
        <attribute name="Trypanosoma_brucei">885</attribute>
        <attribute name="Trypanosoma_congolense">5</attribute>
-       <attribute name="Trypanosoma_cruzi">452</attribute>
+       <attribute name="Trypanosoma_cruzi">522</attribute>
        <attribute name="Trypanosoma_vivax">637</attribute>
        <attribute name="Leishmania_mexicana">591</attribute>
        <attribute name="Entamoeba_dispar">927</attribute>
@@ -351,7 +351,7 @@
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
        <attribute name="Leishmania_braziliensis">41</attribute>
        <attribute name="Leishmania_infantum">8138</attribute>
-       <attribute name="Leishmania_major">8201</attribute>
+       <attribute name="Leishmania_major">8381</attribute>
        <attribute name="Neospora_caninum">7227</attribute>
        <attribute name="Plasmodium_berghei">4969</attribute>
        <attribute name="Plasmodium_chabaudi">5179</attribute>
@@ -363,7 +363,7 @@
        <attribute name="Trichomonas_vaginalis">10509</attribute>
        <attribute name="Trypanosoma_brucei">11141</attribute>
        <attribute name="Trypanosoma_congolense">4957</attribute>
-       <attribute name="Trypanosoma_cruzi">9168</attribute>
+       <attribute name="Trypanosoma_cruzi">10798</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">79</attribute>
@@ -395,9 +395,9 @@
        <attribute name="Plasmodium_yoelii">6749</attribute>
        <attribute name="Toxoplasma_gondii">7263</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">10259</attribute>
+       <attribute name="Trypanosoma_brucei">10257</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
-       <attribute name="Trypanosoma_cruzi">8585</attribute>
+       <attribute name="Trypanosoma_cruzi">10104</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
@@ -431,7 +431,7 @@
        <attribute name="Trichomonas_vaginalis">10470</attribute>
        <attribute name="Trypanosoma_brucei">1380</attribute>
        <attribute name="Trypanosoma_congolense">4957</attribute>
-       <attribute name="Trypanosoma_cruzi">3201</attribute>
+       <attribute name="Trypanosoma_cruzi">3388</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">79</attribute>
@@ -463,7 +463,7 @@
        <attribute name="Plasmodium_yoelii">0</attribute>
        <attribute name="Toxoplasma_gondii">5447</attribute>
        <attribute name="Trichomonas_vaginalis">0</attribute>
-       <attribute name="Trypanosoma_brucei">7834</attribute>
+       <attribute name="Trypanosoma_brucei">9291</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
        <attribute name="Trypanosoma_cruzi">0</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
@@ -499,7 +499,7 @@
        <attribute name="Trichomonas_vaginalis">230</attribute>
        <attribute name="Trypanosoma_brucei">3313</attribute>
        <attribute name="Trypanosoma_congolense">0</attribute>
-       <attribute name="Trypanosoma_cruzi">1752</attribute>
+       <attribute name="Trypanosoma_cruzi">2084</attribute>
        <attribute name="Trypanosoma_vivax">0</attribute>
        <attribute name="Leishmania_mexicana">0</attribute>
        <attribute name="Entamoeba_dispar">0</attribute>
@@ -555,7 +555,7 @@
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
        <attribute name="Leishmania_braziliensis">0</attribute>
        <attribute name="Leishmania_infantum">0</attribute>
-       <attribute name="Leishmania_major">0</attribute>
+       <attribute name="Leishmania_major">8306</attribute>
        <attribute name="Neospora_caninum">7227</attribute>
        <attribute name="Plasmodium_berghei">0</attribute>
        <attribute name="Plasmodium_chabaudi">0</attribute>
