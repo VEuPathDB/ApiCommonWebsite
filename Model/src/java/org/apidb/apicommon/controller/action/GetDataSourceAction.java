@@ -92,7 +92,7 @@ public class GetDataSourceAction extends Action {
         }
 
         if (displayType == null || displayType.length() == 0)
-            displayType = VALUE_DISPLAY_LIST;
+            displayType = VALUE_DISPLAY_DETAIL;
 
         if (displayType.equals(VALUE_DISPLAY_LIST))
             return mapping.findForward(forwardList);
