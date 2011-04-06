@@ -1,7 +1,9 @@
 package org.apidb.apicommon.controller.action;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +39,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         ActionForward forward = super.execute(mapping, form, request, response);
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
 
-        Map<String, String> questionRefs = new LinkedHashMap<String, String>();
+        List<RecordBean> questionRefs = new ArrayList<RecordBean>();
 
         // if xml data source exists, bypass the process
         if (!GetDataSourceAction.hasXmlDataSource(wdkModel)) {
@@ -60,8 +62,6 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             Iterator<RecordBean> dsRecords = answerValue.getRecords();
             while (dsRecords.hasNext()) {
                 RecordBean dsRecord = dsRecords.next();
-                Map<String, AttributeValue> attributes = dsRecord
-                        .getAttributes();
                 TableValue tableValue = dsRecord.getTables().get(
                         TABLE_REFERENCE);
                 for (Map<String, AttributeValue> row : tableValue) {
@@ -69,11 +69,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                     String targetName = row.get("target_name").toString();
                     if (targetType.equals(TYPE_QUESTION)
                             && targetName.equals(questionName)) {
-                        String dsName = attributes.get("data_source_name")
-                                .toString();
-                        String dsDisplay = attributes.get("display_name")
-                                .toString();
-                        questionRefs.put(dsName, dsDisplay);
+                        questionRefs.add(dsRecord);
+                        break;
                     }
                 }
             }
