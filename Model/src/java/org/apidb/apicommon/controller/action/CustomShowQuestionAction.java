@@ -52,7 +52,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
             // get the data source question
             QuestionBean dsQuestion = wdkModel
-                    .getQuestion(GetDataSourceAction.DATA_SOURCE_BY_RECORD_CLASS);
+                    .getQuestion(GetDataSourceAction.DATA_SOURCE_BY_QUESTION);
             Map<String, String> params = new LinkedHashMap<String, String>();
             params.put(PARAM_QUESTION, questionName);
             AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
