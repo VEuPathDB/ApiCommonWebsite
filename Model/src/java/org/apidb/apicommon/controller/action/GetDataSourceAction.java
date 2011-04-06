@@ -26,7 +26,7 @@ import org.gusdb.wdk.model.jspwrap.XmlQuestionSetBean;
 public class GetDataSourceAction extends Action {
 
     private static final String DATA_SOURCE_ALL = "DataSourceQuestions.AllDataSources";
-    private static final String DATA_SOURCE_BY_QUESTION = "DataSourceQuestions.DataSourcesByQuestionName";
+    public static final String DATA_SOURCE_BY_QUESTION = "DataSourceQuestions.DataSourcesByQuestionName";
     public static final String DATA_SOURCE_BY_RECORD_CLASS = "DataSourceQuestions.DataSourcesByRecordClass";
 
     private static final String PARAM_QUESTION = "question";
