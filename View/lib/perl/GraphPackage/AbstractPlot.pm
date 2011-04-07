@@ -390,7 +390,7 @@ sub addToProfileDataMatrix {
       my ($neo, $name) = split(/\t/, $nameRow);
       my ($veo, $value) = split(/\t/, $valueRow);
 
-      my ($digit) = $name =~ /(\d+)/;
+      my ($digit) = $name =~ /(^\d+)/;
       $digit = -1 unless(defined $digit);
 
       my $namesHash = {name => $name,
