@@ -26,8 +26,8 @@
           <attribute name="url">http://eupathdb.org/common/KEGGpathways/</attribute>
         </row>
         <row>
-          <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
-          <attribute name="url"><![CDATA[/common/PubCrawler/]]></attribute>
+          <attribute name="title"><![CDATA[Recent Piroplasmida publications]]></attribute>
+          <attribute name="url"><![CDATA[/pubcrawler/PiroplasmaDB/]]></attribute>
         </row>
       </table>
 
