@@ -34,8 +34,8 @@
 
       <table name="tgSeqCenters">
         <row>
-          <attribute name="url">http://www.tigr.org/tdb/e2k1/tga1/</attribute>
-          <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> Genome Project at TIGR]]></attribute>
+          <attribute name="url">https://sites.google.com/site/toxoplasmagondiigscidproject/home</attribute>
+          <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> GSCID Sequencing Project]]></attribute>
         </row>
         <row>
           <attribute name="url">http://www.sanger.ac.uk/Projects/T_gondii/</attribute>
