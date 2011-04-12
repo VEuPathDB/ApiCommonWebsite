@@ -32,6 +32,9 @@
        <attribute name="Encephalitozoon_cuniculi">2053</attribute>
        <attribute name="Encephalitozoon_intestinalis">1889</attribute>
        <attribute name="Enterocytozoon_bieneusi">3806</attribute>
+       <attribute name="Babesia_bovis">3781</attribute>
+       <attribute name="Theileria_annulata">4167</attribute>
+       <attribute name="Theileria_parva">3856</attribute>
    </record>
 
    <record>
@@ -66,6 +69,9 @@
        <attribute name="Encephalitozoon_cuniculi">1996</attribute>
        <attribute name="Encephalitozoon_intestinalis">1832</attribute>
        <attribute name="Enterocytozoon_bieneusi">3633</attribute>
+       <attribute name="Babesia_bovis">3706</attribute>
+       <attribute name="Theileria_annulata">4082</attribute>
+       <attribute name="Theileria_parva">3796</attribute>
    </record>
 
    <record>
@@ -100,6 +106,9 @@
        <attribute name="Encephalitozoon_cuniculi">57</attribute>
        <attribute name="Encephalitozoon_intestinalis">57</attribute>
        <attribute name="Enterocytozoon_bieneusi">173</attribute>
+       <attribute name="Babesia_bovis">75</attribute>
+       <attribute name="Theileria_annulata">85</attribute>
+       <attribute name="Theileria_parva">60</attribute>
    </record>
 
    <record>
@@ -134,6 +143,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">1</attribute>
        <attribute name="Enterocytozoon_bieneusi">3</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">1</attribute>
    </record>
 
    <record>
@@ -168,40 +180,46 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Community_entries</attribute>
        <attribute name = "Description">Number of genes that have comments/notes from the research community</attribute>
-       <attribute name="Cryptosporidium_hominis">4</attribute>
+       <attribute name="Cryptosporidium_hominis">3</attribute>
        <attribute name="Cryptosporidium_muris">3</attribute>
-       <attribute name="Cryptosporidium_parvum">39</attribute>
-       <attribute name="Giardia_Assemblage_A_isolate_WB">216</attribute>
+       <attribute name="Cryptosporidium_parvum">36</attribute>
+       <attribute name="Giardia_Assemblage_A_isolate_WB">222</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">1</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">30</attribute>
        <attribute name="Leishmania_braziliensis">2</attribute>
-       <attribute name="Leishmania_infantum">11</attribute>
-       <attribute name="Leishmania_major">79</attribute>
-       <attribute name="Neospora_caninum">1</attribute>
-       <attribute name="Plasmodium_berghei">36</attribute>
-       <attribute name="Plasmodium_chabaudi">8</attribute>
-       <attribute name="Plasmodium_falciparum">672</attribute>
-       <attribute name="Plasmodium_knowlesi">14</attribute>
-       <attribute name="Plasmodium_vivax">16</attribute>
-       <attribute name="Plasmodium_yoelii">195</attribute>
-       <attribute name="Toxoplasma_gondii">1620</attribute>
-       <attribute name="Trichomonas_vaginalis">15</attribute>
-       <attribute name="Trypanosoma_brucei">902</attribute>
+       <attribute name="Leishmania_infantum">10</attribute>
+       <attribute name="Leishmania_major">14</attribute>
+       <attribute name="Neospora_caninum">3</attribute>
+       <attribute name="Plasmodium_berghei">3</attribute>
+       <attribute name="Plasmodium_chabaudi">14</attribute>
+       <attribute name="Plasmodium_falciparum">562</attribute>
+       <attribute name="Plasmodium_knowlesi">57</attribute>
+       <attribute name="Plasmodium_vivax">175</attribute>
+       <attribute name="Plasmodium_yoelii">232</attribute>
+       <attribute name="Toxoplasma_gondii">1388</attribute>
+       <attribute name="Trichomonas_vaginalis">13</attribute>
+       <attribute name="Trypanosoma_brucei">577</attribute>
        <attribute name="Trypanosoma_congolense">1</attribute>
-       <attribute name="Trypanosoma_cruzi">121</attribute>
+       <attribute name="Trypanosoma_cruzi">77</attribute>
        <attribute name="Trypanosoma_vivax">2</attribute>
-       <attribute name="Leishmania_mexicana">4</attribute>
-       <attribute name="Entamoeba_dispar">0</attribute>
-       <attribute name="Entamoeba_histolytica">54</attribute>
+       <attribute name="Leishmania_mexicana">22</attribute>
+       <attribute name="Entamoeba_dispar">2</attribute>
+       <attribute name="Entamoeba_histolytica">178</attribute>
        <attribute name="Entamoeba_invadens">4</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">2</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -236,6 +254,9 @@
        <attribute name="Encephalitozoon_cuniculi">1982</attribute>
        <attribute name="Encephalitozoon_intestinalis">1810</attribute>
        <attribute name="Enterocytozoon_bieneusi">2310</attribute>
+       <attribute name="Babesia_bovis">3388</attribute>
+       <attribute name="Theileria_annulata">1981</attribute>
+       <attribute name="Theileria_parva">3670</attribute>
    </record>
 
    <record>
@@ -270,6 +291,9 @@
        <attribute name="Encephalitozoon_cuniculi">950</attribute>
        <attribute name="Encephalitozoon_intestinalis">948</attribute>
        <attribute name="Enterocytozoon_bieneusi">1255</attribute>
+       <attribute name="Babesia_bovis">1642</attribute>
+       <attribute name="Theileria_annulata">1715</attribute>
+       <attribute name="Theileria_parva">1689</attribute>
    </record>
 
    <record>
@@ -304,6 +328,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">253</attribute>
+       <attribute name="Theileria_annulata">182</attribute>
+       <attribute name="Theileria_parva">344</attribute>
    </record>
 
    <record>
@@ -338,6 +365,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -372,6 +402,9 @@
        <attribute name="Encephalitozoon_cuniculi">18</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -406,6 +439,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -440,6 +476,9 @@
        <attribute name="Encephalitozoon_cuniculi">18</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -474,6 +513,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -508,6 +550,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -542,6 +587,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
    <record>
@@ -576,6 +624,9 @@
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
   <record>
@@ -609,7 +660,10 @@
        <attribute name="Entamoeba_invadens">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
-       <attribute name="Enterocytozoon_bieneusi"></attribute>
+       <attribute name="Enterocytozoon_bieneusi">0</attribute>
+       <attribute name="Babesia_bovis">0</attribute>
+       <attribute name="Theileria_annulata">0</attribute>
+       <attribute name="Theileria_parva">0</attribute>
    </record>
 
 </xmlAnswer>
