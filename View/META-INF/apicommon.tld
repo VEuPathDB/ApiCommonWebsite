@@ -50,6 +50,32 @@
   
   <tag>
     <description>
+    Compare value from 'key' param in request with value from secret key
+    file on disk. If matching, do nothing (allowing JSP to continue processing).
+    If not matching, forward to error page.
+    Intended use for restricting access to siteinfo related pages.
+    Secret key of form 1b4e28ba-2fa1-11d2-883f-b9a761bde3fb (can be 
+    generated with uuidgen) extracted by regex matching.
+    Name of secret key file in file attribute.
+    regexFilter allows overriding the default uuid match pattern.
+    </description>
+    <name>checkWSKey</name>
+    <tagclass>org.apidb.apicommon.taglib.wdk.info.CheckWSKeyTag</tagclass>
+    <bodycontent>scriptless</bodycontent>
+    <attribute>
+        <name>keyFile</name>
+        <required>true</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+        <name>regexFilter</name>
+        <required>false</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag> 
+
+  <tag>
+    <description>
     Get HTTP headers for given URL. This is handy for checking if a remote site
     is responding. Connect and data read timeouts are adjustable. The status 
     code can be assigned to a variable in the JSP page scope. Exceptions are
