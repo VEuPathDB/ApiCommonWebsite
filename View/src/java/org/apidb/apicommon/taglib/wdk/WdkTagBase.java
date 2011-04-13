@@ -3,11 +3,11 @@ package org.apidb.apicommon.taglib.wdk;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletResponse;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.jsp.JspException;
-
 
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
@@ -57,6 +57,10 @@ public abstract class WdkTagBase extends SimpleTagSupport {
         return ((PageContext)getJspContext()).getRequest();
     }
 
+    protected ServletResponse getResponse() {
+        return ((PageContext)getJspContext()).getResponse();
+    }
+
     protected ServletContext getContext() {
         return ((PageContext)getJspContext()).
                   getServletConfig().getServletContext();
@@ -65,4 +69,5 @@ public abstract class WdkTagBase extends SimpleTagSupport {
     protected ServletContext getApplication() {
         return getContext();
     }
+
 }
