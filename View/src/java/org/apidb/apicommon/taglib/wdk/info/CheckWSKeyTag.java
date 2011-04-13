@@ -56,9 +56,13 @@ public class CheckWSKeyTag extends WdkTagBase {
             String secretkey = getSecretKey();
             String paramkey = request.getParameter("key");
 
-            if ( ! secretkey.equals(paramkey))
-                request.getRequestDispatcher(invalidKeyPage).
-                        forward(request, this.getResponse());
+            if ( paramkey == null ||
+                 secretkey == null ||
+                 secretkey.length() == 0 ||
+                 ! secretkey.equals(paramkey)
+               )
+               request.getRequestDispatcher(invalidKeyPage).
+                   forward(request, this.getResponse());
         } catch (IOException e) {
             throw new JspException(e);
         } catch (ServletException se) {
