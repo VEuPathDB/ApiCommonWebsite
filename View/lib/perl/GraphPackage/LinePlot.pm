@@ -83,7 +83,12 @@ sub makeRPlotStrings {
 
     my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines,$splineApproxN);
 
-    $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});    
+    my $profileNames = $profileSetsHash->{$part}->{profile_display_names};
+    if ($profileNames){
+      $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileNames);
+    } else {
+      $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});
+    }
 
     unshift @rv, $rCode;
   }
