@@ -104,7 +104,13 @@ sub makeRPlotStrings {
     my $yAxisFoldInductionFromM = $profileSetsHash->{$part}->{make_y_axis_fold_incuction};
 
     my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $stdevString, $rColorsString, $rLegendString, $yAxisLabel, $rXAxisLabelsString, $rAdjustProfile, $yMax, $yMin, $horizontalXAxis, $yAxisFoldInductionFromM, $isStack);
-    $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});
+
+    my $profileNames = $profileSetsHash->{$part}->{profile_display_names};
+    if ($profileNames){
+      $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileNames);
+    } else {
+      $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});
+    }
 
     unshift @rv, $rCode;
   }
