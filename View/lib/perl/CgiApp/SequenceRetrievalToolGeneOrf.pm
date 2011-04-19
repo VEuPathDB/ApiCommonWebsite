@@ -263,7 +263,7 @@ sub handleNonGenomic {
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sh = $dbh->prepare("select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from apidb.GeneId where id = lower(?) order by matchiness desc) where rownum=1");
+  my $sh = $dbh->prepare("select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from apidb.GeneId where lower(id) = lower(?) order by matchiness desc) where rownum=1");
 
   my @ids;
 
@@ -346,7 +346,7 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
      END as sequence
 FROM apidb.geneattributes bfmv, apidb.geneid gi,
      apidb.nasequence s
-WHERE gi.id = lower(?)
+WHERE lower(gi.id) = lower(?)
 AND bfmv.source_id = gi.gene
 AND s.source_id = bfmv.sequence_id
 EOSQL
@@ -397,7 +397,6 @@ EOSQL
 
   my @invalidIds;
   my $sth = $dbh->prepare($sql) or &error($DBI::errstr);
-
 
   foreach my $inputId (@$ids) {
     $sth->execute($inputId);
