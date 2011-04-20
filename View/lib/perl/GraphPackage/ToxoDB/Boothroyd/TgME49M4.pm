@@ -20,7 +20,7 @@ sub init {
 
   my $legend = ["oocyst", "tachyzoite", "bradyzoite"];
 
-  $self->setMainLegend({colors => ['#FFC0CB', '#D87093', '#FFDAB9', '#AFEEEE'], short_names => $legend, cols=> 4});
+  $self->setMainLegend({colors => ['#D87093', '#FFDAB9', '#AFEEEE'], short_names => $legend, cols=> 4});
 
   $self->setProfileSetsHash
     ({rma => {profiles => ['Expression profiles of Tgondii ME49 Boothroyd experiments'],
