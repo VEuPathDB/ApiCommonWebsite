@@ -180,12 +180,21 @@ Cache database service_name: <b>${cacheTable.dbInfo['service_name']}</b>
 
 <hr>
 <h3>api:properties</h3>
+<c:catch var="e">
 <api:properties var="build" propfile="WEB-INF/wdk-model/config/.build.info" />
 Parse Java property file into page scope. Example reading WEB-INF/wdk-model/config/.build.info
 <blockquote>
 Last.build.timestamp: <b>${build['!Last.build.timestamp']}</b>
 </blockquote>
+</c:catch>
+<c:if test="${ e != null }">
+   <blockquote class='fail'>
+    fail: ${e}
+    </blockquote>
+</c:if>
+
 <hr>
+
 <h3>api:configurations</h3>
 parse projectId and url from apifed-config.xml
 
