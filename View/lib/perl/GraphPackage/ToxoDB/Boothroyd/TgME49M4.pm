@@ -16,11 +16,11 @@ sub init {
   $self->setBottomMarginSize(6);
 
 
-  my $colors = ['#D87093', '#D87093', '#D87093', '#FFDAB9', '#AFEEEE' ,'#AFEEEE', '#AFEEEE'];
+  my $colors = ['#D87093', '#D87093', '#D87093', '#E9967A', '#87CEEB', '#87CEEB', '#87CEEB'];
 
   my $legend = ["oocyst", "tachyzoite", "bradyzoite"];
 
-  $self->setMainLegend({colors => ['#D87093', '#FFDAB9', '#AFEEEE'], short_names => $legend, cols=> 4});
+  $self->setMainLegend({colors => ['#D87093', '#E9967A', '#87CEEB'], short_names => $legend, cols=> 3});
 
   $self->setProfileSetsHash
     ({rma => {profiles => ['Expression profiles of Tgondii ME49 Boothroyd experiments'],
