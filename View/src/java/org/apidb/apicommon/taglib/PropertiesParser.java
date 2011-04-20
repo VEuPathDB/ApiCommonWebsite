@@ -52,11 +52,17 @@ public class PropertiesParser extends SimpleTagSupport {
 
         InputStream is = app.getResourceAsStream(propFile);
         
-        if (is == null)
+        if (is == null) {
+            if (! propFile.startsWith("/")) {
+                throw new JspException(
+                  "Failed parsing property file " + propFile + "."
+                  + " Path does not begin with '/'");
+            }
             throw new JspException(
                 "Failed parsing propFile '" + propFile + "'." +
-                "\nCheck that the file exists and is readable: " + app.getRealPath(propFile) );
-            
+                "\nCheck that the file exists and is readable: " + 
+                app.getRealPath(propFile) );
+        }
         try {
             props.load(is);
         } catch (IOException e) {
