@@ -150,9 +150,9 @@
  <record>
        <attribute name = "Website">GiardiaDB, EuPathDB</attribute>
        <attribute name = "Family">Giardia</attribute>
-       <attribute name = "Organism">G.lamblia</attribute>
+       <attribute name = "Organism">G.assemblage_A</attribute>
        <attribute name = "Taxon_ID">184922</attribute>
-       <attribute name = "Strain">ATCC 50803</attribute>
+       <attribute name = "Strain">Isolate_WB</attribute>
        <attribute name = "Genome_Version">09-24-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">11.21</attribute>
@@ -176,7 +176,7 @@
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.assemblage_B</attribute>
        <attribute name = "Taxon_ID">598745</attribute>
-       <attribute name = "Strain">ATCC 50581</attribute>
+       <attribute name = "Strain">Isolate_GS</attribute>
        <attribute name = "Genome_Version">07-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">11.00</attribute>
@@ -200,7 +200,7 @@
        <attribute name = "Family">Giardia</attribute>
        <attribute name = "Organism">G.assemblage_E</attribute>
        <attribute name = "Taxon_ID">658858</attribute>
-       <attribute name = "Strain">P15</attribute>
+       <attribute name = "Strain">Isolate_P15</attribute>
        <attribute name = "Genome_Version">07-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">11.52</attribute>
