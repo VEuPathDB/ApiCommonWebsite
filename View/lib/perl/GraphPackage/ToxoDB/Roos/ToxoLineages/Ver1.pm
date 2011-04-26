@@ -13,6 +13,8 @@ sub init {
   $self->SUPER::init(@_);
 
   $self->setScreenSize(200);
+  $self->setPlotWidth(460); # needed, else some x-axis labels in dynamic column graph dont show up
+
 
   my $colors = ['#4682B4', '#B22222', '#8FBC8F', '#6A5ACD', '#87CEEB', '#CD853F'];
 
