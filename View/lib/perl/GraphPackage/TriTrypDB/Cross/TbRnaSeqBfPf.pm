@@ -20,7 +20,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles','T.brucei George Cross RNA Sequence diff-Profiles'],
+    ({rpkm => {profiles => ['T.brucei George Cross RNA Sequence min-Profiles','T.brucei George Cross RNA Sequence diff-Profiles'],
                    y_axis_label => 'log 2 (RPKM)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
