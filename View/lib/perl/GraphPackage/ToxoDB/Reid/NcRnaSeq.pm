@@ -20,7 +20,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['N. caninum Day 3-4 Tachyzoite-profiles', 
+    ({rpkm => {profiles => ['N. caninum Day 3-4 Tachyzoite-profiles', 
                                 'N. caninum Day 3-4 Tachyzoite-diff profiles'],
                    y_axis_label => 'log 2 (RPKM)',
                    force_x_axis_label_horizontal => 1,
