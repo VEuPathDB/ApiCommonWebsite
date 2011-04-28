@@ -605,7 +605,7 @@ sub validateParams {
   my $referenceGenome;
 
   unless($referenceGenome = $taxonToDirNameMap->{$organism}->{name}) {
-    &userError("Invalid Genome Name [$referenceGenome]: does not match an available Organism");
+    &userError("Invalid Genome Name [$organism]: does not match an available Organism");
   }
 
   my $strand;
