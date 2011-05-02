@@ -12,9 +12,11 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors =['#B8860B', '#DDDDDD'];
+  my $colors0 =['#191970', '#DDDDDD'];
+  my $colors1 =['#B8860B', '#DDDDDD'];
 
-  my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
+  my $legendColors = [$colors0->[0], @$colors1];
+  my $legend = ["Uniquely Mapped - CDS", "Uniquely Mapped - Transcript", "Non-Uniquely Mapped"];
 
   my $xAxisLabels = ['No_Tet',
                      'BFD3',
@@ -22,22 +24,28 @@ sub init {
                      'PF',
                      'DIF'];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend});
-
-
-
+  $self->setMainLegend({colors => $legendColors, short_names => $legend});
 
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['T.brucei Horn RNAi Sequence minProfiles', 'T.brucei Horn RNAi Sequence diffProfiles'],
+    ({     cds_rpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles using CDS coordinates', 'T.brucei Horn RNAi Sequence diffProfiles using CDS coordinates'],
                    y_axis_label => 'log 2 (RPKM)',
                    x_axis_labels => $xAxisLabels,
-                   colors => $colors,
+                   colors => $colors0,
                    force_x_axis_label_horizontal => 1,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
-     });
+
+transcript_rpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles', 'T.brucei Horn RNAi Sequence diffProfiles'],
+                          y_axis_label => 'log 2 (RPKM)',
+                          x_axis_labels => $xAxisLabels,
+                          colors => $colors1,
+                          force_x_axis_label_horizontal => 1,
+                          r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
+                          stack_bars => 1,
+                         },
+     }); 
 
   return $self;
 }
