@@ -15,6 +15,17 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">Annotating genes in FungiDB</attribute>
+       <attribute name="date">3 May 2011 12:00PM</attribute>
+       <attribute name="tag">fungidb_5-3_annotating</attribute>
+       <attribute name="category">tip</attribute>
+       <attribute name="item">           
+         <![CDATA[
+A short blog post at the Hyphal Tip is up to demonstrate how comment pages can be used to add annotation for a gene record page. This is useful way to allow community annotation, registering of gene names, and linking of publication and sequence records to gene pages. The comments page can also be used for listing negative results (e.g. "Knockout has no phenotype") and describing gene model improvements (e.g. "Intron 3 is wrong, the correct exon locations are Chr3: 1020-1401, 1521-1703").
+        ]]>
+       </attribute>
+</record>
+<record>
        <attribute name="headline">FungiDB 1.0 beta</attribute>
        <attribute name="date">14 March 2011 9:00</attribute>
        <attribute name="tag">fungidb_3-14_news</attribute>
