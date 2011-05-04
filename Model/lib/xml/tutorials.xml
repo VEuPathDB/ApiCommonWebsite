@@ -8,6 +8,21 @@
 ]>
 
 <xmlAnswer>
+    <record>
+       <attribute name="title">DNA motif</attribute>
+       <attribute name="description">How to use the DNA motif query</attribute>
+       <attribute name="uid">23</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">DNA_motif/dna_motif_viewlet_swf.html</attribute>
+           <attribute name="duration">4 minutes</attribute>
+           <attribute name="size">4.3 mb</attribute>
+         </row>
+       </table>
+   </record>
 
     <record>
        <attribute name="title">Genomic Co-locations</attribute>
@@ -19,7 +34,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">colocate/colocate_viewlet_swf.html</attribute>
-           <attribute name="duration">5 minutes</attribute>
+           <attribute name="duration">7 minutes</attribute>
            <attribute name="size">3.6 mb</attribute>
          </row>
        </table>
@@ -35,7 +50,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">TextSearch/Text_Search_viewlet_swf.html</attribute>
-           <attribute name="duration">5 minutes</attribute>
+           <attribute name="duration">4 minutes</attribute>
            <attribute name="size">3.2 mb</attribute>
          </row>
        </table>
@@ -51,7 +66,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Registration/register_final_viewlet_swf.html</attribute>
-           <attribute name="duration">6 minutes</attribute>
+           <attribute name="duration">4 minutes</attribute>
            <attribute name="size">4.1 mb</attribute>
          </row>
        </table>
