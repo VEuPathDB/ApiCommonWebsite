@@ -17,9 +17,9 @@ sub init {
   my $colors =['#8B4513', '#DDDDDD'];
 
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
-  my $xAxisLabels = ["ama wt","ama J1 ko","meta wt","meta J1 ko","epi wt","epi J1 ko","trypo wt","trypo J1 ko"];
-  # same as in database??
 
+  # same as in database - might need to be changed
+  my $xAxisLabels = ["ama wt","ama J1 ko","meta wt","meta J1 ko","epi wt","epi J1 ko","trypo wt","trypo J1 ko"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
@@ -32,8 +32,7 @@ sub init {
                    stack_bars => 1,
                   },
 
-# percentiles not loaded yet??
-      pct => {profiles => ['T.brucei RNASeq Spliced Leader And Poly A Sites from Nilsson percentile'],
+      pct => {profiles => ['Tcruzi RNASeq Spliced Leader And Poly A Sites from Nilsson percentile'],
               y_axis_label => 'Percentile',
               x_axis_labels => $xAxisLabels,
               default_y_max => 50,
