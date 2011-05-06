@@ -19,7 +19,87 @@
        </attribute>
     </record>
 -->
-
+<record>
+       <attribute name="headline">New Features in TrichDB</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">trich5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">New Features in TrichDB</span><br>
+<br>
+<ul>
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://trichdb.org/trichdb/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://trichdb.org/trichdb/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;"><br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp; <br>
+</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://trichdb.org/trichdb/im.do?s=e892ef6112576c45">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a></li>
+</ul>
+<a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a>
+</body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">
          <![CDATA[

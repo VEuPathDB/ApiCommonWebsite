@@ -19,6 +19,332 @@
     </record>
 -->
 <record>
+       <attribute name="headline">TriTrypDB 6.4 Released</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">tryp5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;">
+<span style="font-weight: bold;">We are pleased to announce the release
+of TriTrypDB 3.1</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. brucei</span> RNA sequencing
+spliced leader expression data (<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/20700444">Nilsson <span
+style="font-style: italic;">et. al.</span></a>).</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>To search this data, go to the "<a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">Identify
+Genes based on RNA Seq Evidence</a>" and select either fold change or
+percentile searches under the heading "Splice Sites (Nilsson)".</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Graphs and tables representing the expression and
+percentile values for individual genes are available in the
+"Expression" section of gene pages.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li><a style="font-weight: bold;"
+href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=405000;stop=424999;ref=Tb927_07_v4;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=67d7270ce3b931c414ef33f2157bd47b;label=Gene-SpliceSitesNilsson-SpliceSitesNilssonAlba;h_feat=tb927.7.860@yellow">Genome
+browser tracks</a> are available that show splice site locations.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. brucei </span>high-throughput
+phenotyping of bloodstream and procyclic form parasites (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21363968">Alsford <span
+style="font-style: italic;">et. al.</span></a>).</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>To search this data click on "Putative Function" under the
+heading "Identify Genes by" on the home page then click on "<a
+style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByHighTroughputPhenotyping">High-Throughput
+Phenotyping</a>".&nbsp;
+A sample strategy that searches this data for genes that are likely
+essential in all stages or time points examined can be accessed <a
+href="http://tritrypdb.org/tritrypdb/im.do?s=0e54e90e623cbbc2"><span
+style="font-weight: bold;">here</span></a>.&nbsp; <br>
+</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Graphs and tables representing the expression and
+percentile values for individual genes are available in the
+"Phenotype" section of gene pages.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li><a style="font-weight: bold;"
+href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=313336;stop=333335;ref=Tb927_01_v4;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=67d7270ce3b931c414ef33f2157bd47b;label=Gene-RNAiSeq_NoTet-RNAiSeq_BFD3-RNAiSeq_BFD6-RNAiSeq_PF-RNAiSeq_DIF;h_feat=tb927.1.1200@yellow">Genome
+browser tracks</a> of coverage plots for each sample from this
+experiment are available.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. brucei</span> microarray
+data based on induced DHH1 RNA helicase in wild type and DEAD:DQAD
+mutant procyclic trypanosomes (<a style="font-weight: bold;"
+href="induced%20DHH1%20RNA%20helicase%20in%20wild%20type%20and%20DEAD:DQAD%20mutant%20procyclic%20trypansosomes">Kramer
+<span style="font-style: italic;">et. al.</span></a>).</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>To search this data, go to the "<a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Identify
+Genes by Microarray Evidence section</a>"and click on either the fold
+change or percentile searches under the heading "RNA helicase DHH1 and
+post transcriptional regulation (Carrington)".</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Graphs and tables representing the expression and percentile
+values for individual genes are available in the "Expression" section
+of gene pages.<br>
+</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. brucei</span> microarray
+data based on heat shock treated and control procyclic trypanosomes (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/18713834">Kramer <span
+style="font-style: italic;">et. al.</span></a>).</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>To search this data, go to the "<a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Identify
+Genes by Microarray Evidence section</a>"and click on either the fold
+change or percentile searches under the heading "Heat shock and post
+transcriptional regulation (Carrington)".</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Graphs and tables representing the expression and percentile
+values for individual genes are available in the "Expression" section
+of gene pages.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">L. major</span> and <span
+style="font-style: italic;">L. infantum </span>RNA sequence data<span
+style="font-style: italic;"> </span>highlighting splice leader and
+polyA sites are available as genome browser tracks.&nbsp; This data was
+graciously made available prepublication by <a
+style="font-weight: bold;"
+href="http://www.seattlebiomed.org/bio/myler">Dr. Peter Myler's group</a>
+at Seattle BioMed.</li>
+</ul>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">L. mexicana</span> amastigote
+proteomics data (<a href="http://www.ncbi.nlm.nih.gov/pubmed/19900490"><span
+style="font-weight: bold;">Paape </span><span
+style="font-style: italic; font-weight: bold;">et. al.</span></a>).</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>This data can be searched by going to the "<a
+style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Protein
+Expression</a>" section under the heading "Identify Genes by" on the
+home page, then selecting the "<span style="font-style: italic;">L.
+mexicana </span>intracellular Gel free analysis" option.&nbsp; As
+usual results from any search can be combined with other searches in
+TriTrypDB.&nbsp; For example, here is a <a
+href="http://tritrypdb.org/tritrypdb/im.do?s=530f1df942b1bab7"><span
+style="font-weight: bold;">search strategy</span></a> that identifies
+genes with proteomics evidence from this data that have a predicted
+signal peptide.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Proteomics data may also be viewed on gene pages as tables and
+graphical representation (scroll down to the "Protein Expression"
+section) or in the genome browser by selecting the appropriate track(s)
+and updating the image.&nbsp; Here is a link to a <a
+href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1;stop=200000;ref=LmxM.20;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=67d7270ce3b931c414ef33f2157bd47b;label=Gene-AebischerMassSpecPeptides;h_feat=lmxm.36.0180@yellow"><span
+style="font-weight: bold;">genome browser section</span></a>
+highlighting this proteomics data.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. cruzi </span>Sylvio X10/1
+genome sequence data (<a style="font-weight: bold;" href="21408126">Franzen
+<span style="font-style: italic;">et. al.</span></a>).&nbsp;&nbsp;</li>
+</ul>
+<ul>
+<li>Draft assemblies of the genome sequences from the Trypanosomatid
+sequencing white paper.&nbsp; This data is graciously provided
+prepublication and full credit and data usage information is available
+by clicking on the sequence name:<br>
+<br>
+</li>
+<ul style="font-weight: bold;">
+<ul>
+<ul>
+<li><a
+href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
+style="font-style: italic;">T. cruzi</span> cruzi JR cl. 4 (TcI
+lineage)</a></li>
+</ul>
+</ul>
+</ul>
+</ul>
+<ul style="font-weight: bold;">
+<ul>
+<ul>
+<ul>
+<li><a
+href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=LbraziliensisM2903_contigs_RSRC&amp;title=Query#LbraziliensisM2903_contigs_RSRC"><span
+style="font-style: italic;">L. braziliensis</span> clone M2904
+(MHOM/BR/75M2904)</a></li>
+</ul>
+</ul>
+</ul>
+</ul>
+<ul>
+<ul>
+<ul>
+<ul>
+<li><a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=Crithidia_fasciculata_9.1&amp;title=Query#Crithidia_fasciculata_9.1"><span
+style="font-style: italic;">C. fasciculata</span> updated assembly</a><br>
+</li>
+</ul>
+</ul>
+</ul>
+</ul>
+<ul>
+<ul>
+<li>Genomic sequence data is available under the heading "Genomic
+Sequences" on the home
+page and may be searched by <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">species</a>,
+<a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">genomic
+sequence IDs</a> and <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
+style="font-style: italic;">. <br>
+</span></li>
+</ul>
+</ul>
+<ul>
+<ul>
+<li>Additionally, genomic sequence data may be downloaded from the <a
+style="font-weight: bold;"
+href="http://tritrypdb.org/common/downloads/release-3.1/">TriTrypDB
+download directory</a>.</li>
+</ul>
+</ul>
+<span style="font-weight: bold;">
+</span>
+<ul style="text-align: justify;">
+</ul>
+<div style="text-align: justify;">
+</div>
+<br>
+<div style="text-align: justify;">
+<span style="font-weight: bold;">New functionality:</span><br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp; <br>
+</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/im.do?s=14342db338d7884e">example
+search strategy</a> that identifies protein coding genes with a
+putative RNA binding protein-like site in their 3' region. <br>
+</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a></li>
+</ul>
+<div style="text-align: justify;"><br>
+<a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">
          <![CDATA[
           TriTrypDB 3.0 Released
