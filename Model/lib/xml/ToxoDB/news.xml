@@ -15,6 +15,147 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 6.4 Released</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">toxo5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;">
+<span style="font-weight: bold;">We are pleased to announce the release
+of ToxoDB 6.4</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. gondii</span> microarray
+data from oocyst, bradyzoite and tachyzoite developmental stages
+provided by the Boothroyd and Conrad groups pre-publication.&nbsp; This
+data was generated as part of the <a
+href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.News#dbp_award_10202010"><span
+style="font-weight: bold;">driving biological project bioinformatic
+resource funding mechanism</span></a>.&nbsp; <br>
+</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<ul>
+<li>To search this data, go to the "<a style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Identify
+Genes by Microarray Evidence section</a>"and click on either the fold
+change or percentile searches under the heading
+"Oocyst/Tachyzoite/Bradyzoite Development (Boothroyd/Conrad)".&nbsp;
+Here is a search that finds genes that are differentially regulated
+between <a href="http://toxodb.org/toxo/im.do?s=1d7e229eefb12787">d<span
+style="font-weight: bold;">ay 0 oocysts and any of the other
+developmental stages from this study</span></a>.&nbsp;&nbsp;</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>The first unannotated sequences from the Toxoplasma sequencing
+white paper are now available via ToxoDB.&nbsp; You can access the
+genome sequence of <span style="font-style: italic;">T. gondii</span>
+strains MAS, P89 and VAND from the "Genomic Sequences" section under
+the heading "Identify other data types" on the home page.&nbsp; Genome
+sequences from this effort will be incorporated into ToxoDB release as
+they become available.&nbsp; The latest updated information on the
+status of sequencing is available <a
+href="https://sites.google.com/site/toxoplasmagondiigscidproject/home"><span
+style="font-weight: bold;">here</span></a>.&nbsp; The sequencing white
+paper is available <a
+href="http://toxodb.org/toxo/communityDownload.do?fname=Toxo_Sequencing_WhitePaper.pdf"><span
+style="font-weight: bold;">here</span></a>.</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+<span style="font-weight: bold;">New functionality:</span><br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp; <br>
+</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://toxodb.org/toxo/im.do?s=48481038291ab7fa">example search
+strategy</a> that identifies protein coding genes with an AP-2 like
+motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account.</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search.</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites.</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a><br>
+</li>
+</ul>
+<div style="text-align: justify;"><br>
+<a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">
          <![CDATA[
           ToxoDB 6.3 Released
