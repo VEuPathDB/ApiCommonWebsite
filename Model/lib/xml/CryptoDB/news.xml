@@ -19,7 +19,124 @@
        </attribute>
     </record>
 -->
-
+<record>
+       <attribute name="headline">CryptoDB 4.4 Released
+         </attribute>
+       <attribute name="date">03 May 2011 13:00</attribute>
+       <attribute name="tag">crypto5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<body>
+<div style="text-align: justify;">
+<div style="text-align: justify;"><span style="font-weight: bold;">We
+are pleased to announce the release
+of CryptoDB 4.4</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>The pooled <a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/portal/utils/pageresolver.fcgi?recordid=1304530483822814"><span
+style="font-style: italic;">Cryptosporidium parvum</span> KSU-1</a>
+enriched 24-48hr post-infection expressed sequence tag sequences (ESTs)
+have been updated. EST data in CryptoDB can be searched based on <a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsBySimilarity">BLAST</a>,<span
+style="font-weight: bold;"> </span><a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstBySourceId">accession
+numbers</a>,<span style="font-weight: bold;"> </span><a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsByLibrary">library</a>,<span
+style="font-weight: bold;"> </span><a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsWithGeneOverlap">extent
+of gene overlap</a>, etc... Find EST searches under the EST heading in
+the "Identify other Data Types" section of the home page.<br>
+</li>
+</ul>
+<div style="text-align: justify;"><br>
+<span style="font-weight: bold;">New functionality:</span><br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp; <br>
+</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/im.do?s=db57d627778a4b16">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a><br>
+</li>
+</ul>
+<div style="text-align: justify;"><br>
+<a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a>
+</div>
+</div>
+</body>
+          ]]>
+       </attribute>
+</record>
+<record>
 <record>
        <attribute name="headline">
          <![CDATA[

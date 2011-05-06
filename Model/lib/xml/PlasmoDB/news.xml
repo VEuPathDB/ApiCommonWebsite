@@ -18,6 +18,135 @@
     </record>
 -->
 <record>
+       <attribute name="headline">PlasmoDB 7.2 Released</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">plasmo5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;">
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 7.2</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New data:</span><br>
+</div>
+<ul>
+<li><span style="font-style: italic;">P. falciparum</span> mRNA
+half-life data intraerythrocytic developmental cycle (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/17612404">Shock <span
+style="font-style: italic;">et. al.</span></a>)
+is now available as mRNA expression and half-life graphs on gene
+pages.&nbsp; To view this data visit any gene page and scroll down to
+the section called "mRNA half-lives during intraerythrocytic
+development - 3D7 post treatment with actD" in the Expression section
+of any gene page.</li>
+</ul>
+<ul>
+<li><span style="font-style: italic;">P. falciparum</span> <a
+style="font-weight: bold;"
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1016930;stop=1516929;ref=Pf3D7_10;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=3773730293eb07c2332b85e249bf2271;label=AnnotatedGenes-JeffaresSNPs-WTSI_pJazz_clones;h_feat=pf10_0308@yellow">genetic
+diversity estimate graph is provided in the genome browser</a> based on
+<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/20838588">Nygaard <span
+style="font-style: italic;">et. al.</span></a></li>
+</ul>
+<ul>
+<li>Updated linkouts to the <a style="font-weight: bold;"
+href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
+Pathways
+(MPMP) database</a>.&nbsp; Numerous pathways have been added and
+updated by
+Dr. Hagai Ginsberg.&nbsp;&nbsp; A full description of new pathways is
+available <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/communityDownload.do?fname=New%20maps%20on%20Malaria%20Parasite%20Metabolic%20pathway1.pdf">here</a>
+and genes included in the MPMP database can be searched based on
+metabolic pathway in PlasmoDB <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.<br>
+</li>
+</ul>
+<div style="text-align: justify;">
+<span style="font-weight: bold;"></span><br style="font-weight: bold;">
+<span style="font-weight: bold;">New functionality:</span><br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;"><br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp; <br>
+</li>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/im.do?s=0ffa670cc2b0a579">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a></li>
+</ul>
+<a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">Plasmodium genome sequencing project update</attribute>
        <attribute name="date">25 March 2011 15:00</attribute>
        <attribute name="tag">plasmo3_11_news</attribute>
