@@ -128,19 +128,19 @@ ${attrs['organism'].value}<br>
 
   <c:when test='${organism_full eq "Cryptococcus neoformans var. grubii H99"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesPgraminisCRL75367003+SyntenySpansPgraminisCRL75367003+TandemRepeat
+      Gene+SyntenySpansPgraminisCRL75367003+SyntenyGenesPgraminisCRL75367003+TandemRepeat
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Puccinia graminis f. sp. tritici CRL 75-36-700-3	"}'>
     <c:set var="gtracks">
-      Gene+SyntenyGenesCneoformansgrubiiH99+SyntenySpansCneoformansgrubiiH99+TandemRepeat
+      Gene+SyntenySpansCneoformansgrubiiH99+SyntenyGenesCneoformansgrubiiH99+TandemRepeat
     </c:set>
   </c:when>
 
   <c:when test='${organism_full eq "Rhizopus oryzae RA 99-880"}'>
     <c:set var="gtracks">
-      Gene+RnaSeqRO5H+RnaSeqRO20H+RnaSeqRO3H
+      Gene+RnaSeqRO5H+RnaSeqRO20H+RnaSeqRO3H+TandemRepeat
     </c:set>
   </c:when>
 
