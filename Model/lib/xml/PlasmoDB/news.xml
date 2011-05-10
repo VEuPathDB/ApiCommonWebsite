@@ -35,6 +35,7 @@ announce the release of PlasmoDB 7.2</span><br>
 </span><br>
 <span style="font-weight: bold;">
 New data:</span><br>
+<br>
 </div>
 <ul>
 <li><span style="font-style: italic;">P. falciparum</span> mRNA
@@ -48,6 +49,7 @@ the section called "mRNA half-lives during intraerythrocytic
 development - 3D7 post treatment with actD" in the Expression section
 of any gene page.</li>
 </ul>
+<br>
 <ul>
 <li><span style="font-style: italic;">P. falciparum</span> <a
 style="font-weight: bold;"
@@ -57,6 +59,8 @@ diversity estimate graph is provided in the genome browser</a> based on
 href="http://www.ncbi.nlm.nih.gov/pubmed/20838588">Nygaard <span
 style="font-style: italic;">et. al.</span></a></li>
 </ul>
+<span style="font-style: italic;"><br>
+</span>
 <ul>
 <li>Updated linkouts to the <a style="font-weight: bold;"
 href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
@@ -68,12 +72,13 @@ available <a style="font-weight: bold;"
 href="http://plasmodb.org/plasmo/communityDownload.do?fname=New%20maps%20on%20Malaria%20Parasite%20Metabolic%20pathway1.pdf">here</a>
 and genes included in the MPMP database can be searched based on
 metabolic pathway in PlasmoDB <a style="font-weight: bold;"
-href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.<br>
-</li>
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.</li>
 </ul>
+<br>
 <div style="text-align: justify;">
 <span style="font-weight: bold;"></span><br style="font-weight: bold;">
 <span style="font-weight: bold;">New functionality:</span><br>
+<br>
 <span style="font-weight: bold;">
 </span></div>
 <ul style="text-align: justify;">
@@ -98,9 +103,9 @@ example, to return all genes that contain a specific DNA motif within
 1000 nucleotides upstream of the annotated start site. Or you could
 return all genes that have a SNP between two strains within 500
 nucleotides of the start of the gene (or return all SNPs that are
-located in this region relative to genes).&nbsp; <br>
-</li>
+located in this region relative to genes).&nbsp;&nbsp;</li>
 </ul>
+<br>
 <ul style="text-align: justify;">
 <ul>
 <li>Here is an <a style="font-weight: bold;"
@@ -109,6 +114,7 @@ search strategy</a> that identifies protein coding genes with an AP-2
 like motif within 1000 bp of their 5' end.</li>
 </ul>
 </ul>
+<br>
 <ul style="text-align: justify;">
 <ul>
 <li>Tutorials highlighting the <a style="font-weight: bold;"
@@ -118,8 +124,10 @@ href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">location
 relationship functionality</a> are available.</li>
 </ul>
 </ul>
+<br>
 <div style="text-align: justify;">
 In addition, several new tutorials have been developed:<br>
+<br>
 </div>
 <ul style="text-align: justify;">
 <li><a style="font-weight: bold;"
@@ -139,9 +147,9 @@ to find a DNA motif</a></li>
 href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
 to use genomic co-location</a></li>
 </ul>
-<a href="http://twitter.com/eupathdb"><span
+<small><a href="http://twitter.com/eupathdb"><span
 style="font-weight: bold; font-style: italic;">Follow EuPathDB on
-Twitter</span></a>
+Twitter</span></a></small>
 </body>
           ]]>
        </attribute>

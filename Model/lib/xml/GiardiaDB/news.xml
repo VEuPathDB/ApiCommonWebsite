@@ -46,9 +46,9 @@ example, to return all genes that contain a specific DNA motif within
 1000 nucleotides upstream of the annotated start site. Or you could
 return all genes that have a SNP between two strains within 500
 nucleotides of the start of the gene (or return all SNPs that are
-located in this region relative to genes).&nbsp; <br>
-</li>
+located in this region relative to genes).&nbsp;&nbsp;</li>
 </ul>
+<br>
 <ul style="text-align: justify;">
 <ul>
 <li>Here is an <a style="font-weight: bold;"
@@ -57,6 +57,7 @@ search strategy</a> that identifies protein coding genes with an AP-2
 like motif within 1000 bp of their 5' end.</li>
 </ul>
 </ul>
+<br>
 <ul style="text-align: justify;">
 <ul>
 <li>Tutorials highlighting the <a style="font-weight: bold;"
@@ -66,8 +67,10 @@ href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">location
 relationship functionality</a> are available.</li>
 </ul>
 </ul>
+<br>
 <div style="text-align: justify;">
 In addition, several new tutorials have been developed:<br>
+<br>
 </div>
 <ul style="text-align: justify;">
 <li><a style="font-weight: bold;"
@@ -87,9 +90,9 @@ to find a DNA motif</a></li>
 href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
 to use genomic co-location</a></li>
 </ul>
-<a href="http://twitter.com/eupathdb"><span
+<small><a href="http://twitter.com/eupathdb"><span
 style="font-weight: bold; font-style: italic;">Follow EuPathDB on
-Twitter</span></a>
+Twitter</span></a></small>
 </body>
           ]]>
        </attribute>
