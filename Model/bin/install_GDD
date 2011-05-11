@@ -5,6 +5,8 @@
 
 # Requires same webPropFile used in WDK build
 
+GDD_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/R
+
 # only approved paths
 PATH=/usr/local/bin:/usr/bin:/bin
 
@@ -32,7 +34,7 @@ set_R_path() {
 }
 
 set_GDD_version() {
-    local gdd_tar_path="$PROJECT_HOME/ApiCommonWebsite/Site/doc/R"
+    local gdd_tar_path=$GDD_TAR_PATH
     local r_version=$($R_CMD --vanilla --slave < <(echo 'R.Version()$"svn rev"') | cut -d'"' -f2)
 
     case $r_version in
