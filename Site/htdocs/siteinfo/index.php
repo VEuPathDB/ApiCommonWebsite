@@ -1,5 +1,6 @@
 
-<h3 class='banner' align='center'><a href='/'>
+<h3 class='banner' align='center'>
+<a href='/'>
 <? 
   include_once "functions.php.inc";
   print $_SERVER['SERVER_NAME'] . '<br>';
@@ -14,7 +15,8 @@ $ws_key = getWSKey();
 $headers = apache_request_headers();
 
 ?>
-</a></h3>
+</a>
+</h3>
 
 <fmt:formatDate type="both" pattern="${dateFormatStr}" value="<%=new Date()%>" />
 <? 
@@ -37,7 +39,7 @@ $pageMap = array(
         'url' => "/siteinfo/proxyInfo.php",
         'tab' => 1),
     'Build' => array(
-        'url' => "/a/admin/index.jsp?p=Build&key=$ws_key",
+        'url' => "/siteinfo/buildInfo.php",
         'tab' => 1),
     'Announcements' => array(
         'url' => "/cgi-bin/admin/messageConsole.pl",
@@ -71,6 +73,13 @@ $page = ( isset($_GET['p']) ) ? $_GET['p'] : 'Databases';
 <div id="content">
 
 <? 
+
+
+if (!$pageMap[$page]) {
+    print "unknown page '$page'";
+    return;
+}
+
 if (strncmp($pageMap[$page]['url'], 'https://', strlen('http://')) == 0) {
      print $pageMap[$page]['url'];
     include($pageMap[$page]['url']);
