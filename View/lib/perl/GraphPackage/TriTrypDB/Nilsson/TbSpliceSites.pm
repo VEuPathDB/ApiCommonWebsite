@@ -17,8 +17,8 @@ sub init {
   my $colors =['#8B4513', '#DDDDDD'];
 
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
-#  my $xAxisLabels = ["bf long slender","bf Short Stumpy","bf Lister 427","procyclic form","pf Alba 1 non-induced","pf Alba 1 induced","pf Alba 3 and 4 non-induced","pf Alba 3 and 4 induced"];
-  my $xAxisLabels = ["bf long slender","bf short stumpy","bf Lister 427","procyclic form","pf Alba 1 N","pf Alba 1 I","pf Alba 3/4 N","pf Alba 3/4 I"];
+  my $xAxisLabels = ["long slender","short stumpy","Lister 427","procyclic","Alba 1 - ","Alba 1 + ","Alba 3_4 - ","Alba 3_4 + "];
+#  my $xAxisLabels = ["bf long slender","bf short stumpy","bf Lister 427","procyclic form","pf Alba 1 N","pf Alba 1 I","pf Alba 3/4 N","pf Alba 3/4 I"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
