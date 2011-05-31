@@ -18,6 +18,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">DNA_motif/dna_motif_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">dna_motif_search.pdf</attribute>
            <attribute name="duration">4 minutes</attribute>
            <attribute name="size">4.3 mb</attribute>
          </row>
@@ -34,6 +35,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">colocate/colocate_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">7 minutes</attribute>
            <attribute name="size">3.6 mb</attribute>
          </row>
@@ -50,6 +52,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">TextSearch/Text_Search_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">4 minutes</attribute>
            <attribute name="size">3.2 mb</attribute>
          </row>
@@ -66,6 +69,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Registration/register_final_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">4 minutes</attribute>
            <attribute name="size">4.1 mb</attribute>
          </row>
@@ -83,6 +87,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">PlasmoDB/plasmodb_intro_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">7 minutes</attribute>
            <attribute name="size">5.7 mb</attribute>
          </row>
@@ -99,6 +104,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Favorites/favorites_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">6 minutes</attribute>
            <attribute name="size">4.5 mb</attribute>
          </row>
@@ -114,6 +120,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Basket/basket_final_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">6 minutes</attribute>
            <attribute name="size">11 mb</attribute>
          </row>
@@ -131,6 +138,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">AmoebaDB/amoebadb_intro_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">5 minutes</attribute>
            <attribute name="size">3 mb</attribute>
          </row>
@@ -148,6 +156,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">New_Strat/New_Strat_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">5 minutes</attribute>
            <attribute name="size">9 mb</attribute>
          </row>
@@ -164,6 +173,7 @@
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">3 minutes</attribute>
            <attribute name="size">4 mb</attribute>
          </row>
