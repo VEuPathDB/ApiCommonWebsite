@@ -15,7 +15,7 @@ sub init {
   my $colors =['#D87093', '#DDDDDD'];
 
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
-  my $xAxisLabels = ["Early G1 (0.5 Hrs)", "Late G1 (3 Hrs)", "S (5.5 Hrs)", "G2 (7.25 Hrs)"];
+  my $xAxisLabels = ["G1 (0.5 Hrs)", "G1 (3 Hrs)", "S (5.5 Hrs)", "G2 (7.25 Hrs)"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
