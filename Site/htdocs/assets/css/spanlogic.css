@@ -7,24 +7,37 @@
   margin:5px;
 }
 
-#outputGroup,#comparisonGroup{
+#outputGroup{
   margin-top: 15px;
+  float:right;
 }
+
+#comparisonGroup{
+  margin-top: 15px;
+  float:left;
+}
+
 
 .invisible {
   visibility: hidden;
 }  
 
 .instructions {
+  font-size:120%;
+  line-height:20px;
+  white-space:nowrap;
   text-align:center;
+  font-style:italic;
 //  color:#605151;
  // margin-bottom:16px;
 }
 
 .span-step-text{
-  font-style:italic;
+ // font-style:italic;
   white-space:nowrap;
-   padding-bottom: 23px;
+  padding-bottom: 23px;
+  font-size:125%;
+  font-weight:bold;
 }
 
 .span-step-text .param{

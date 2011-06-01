@@ -20,10 +20,16 @@
 </c:set>
 <c:set var="currentStepId" value="${newStepId - 1}" />
 
-<%-- query_form is used for all popups.... for showing questions, long descriptions use all browser space which is annoying so the style in Strategies.css is set to have max-width 75% ; for smaller popups left is set to 140px; the span logic popup is wide so we set itcloser to the left  
+<%-- query_form is used for all popups.... Strategies.css
+     for showing questions, max-width 75% to solve the problem that long descriptions use all browser space --which is annoying
+				BUT the span logic popup below needs often more than 100% (for smaller scrren resolutions): set to 150%
+                            left is set to 140px (good for smaller popups) 
+				BUT the span logic popup below is wide so we set it closer to the left  
+				Problem: IE makes width = max-width independently of the content
 --%>
 <style type="text/css">
-	#query_form {	max-width: 300%; left:45px;} //100% is not good enough when browser window is small and a scroll bar is needed
+	#query_form {	max-width: 150%; left:45px;}
+						
 </style>
 
 <html:form styleId="form_question" method="post" enctype='multipart/form-data' action="/wizard.do"  onsubmit="callWizard('wizard.do?action=${requestScope.action}&step=${wdkStep.stepId}&',this,null,null,'submit')">
@@ -32,10 +38,16 @@
   <c:set var="wdkStep" value="${wdkStep.previousStep}"/>
 </c:if>
 
-<table style="margin-left:auto;margin-right:auto;">
+<table width="100%" style="margin-left:auto;margin-right:auto;">
 <tr>
-<td width="5%"><td>
-<td width="90%" style="vertical-align:top">
+
+<td width="10%" style="text-align:center;vertical-align:middle">
+<a href="<c:url value="/help_spanlogic.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">
+	<img title="Click for help with combining IDs via relative genomic location" src="/assets/images/help_spanlogic.png" width="45px" alt="help with combining IDs via relative genomic location" />
+</a>
+</td>
+
+<td width="80%" style="vertical-align:middle">
  <div class="h2center" style="text-align:center;">Combine Step <span class="current_step_num">${currentStepId}</span> and Step <span class="new_step_num">${newStepId}</span> using relative locations in the genome
 </div>
 
@@ -48,17 +60,27 @@
 <wdk:getPlural pluralMap="${typeMap}"/>
 <c:set var="oldPluralType" value="${typeMap['plural']}"/>
 
-<div class="instructions" style="">Your new <b>${newPluralType}</b> search (Step <span class="new_step_num">${newStepId}</span>) returned <b>${importStep.resultSize} ${newPluralType}</b>.  Use this page to combine them with the <b>${oldPluralType}</b> in your previous result (Step <span class="current_step_num">${currentStepId}</span>).
+<div class="instructions">
+You had <b style="color:blue">${wdkStep.resultSize} ${oldPluralType}</b> in your Strategy <span style="color:blue">(Step</span> <span style="color:blue" class="new_step_num">${currentStepId}</span><span style="color:blue">).</span>
+</b> &nbsp;&nbsp;
+Your new <b>${newPluralType}</b> search <span style="color:#c60056">(Step</span> <span style="color:#c80064" class="new_step_num">${newStepId}</span><span style="color:#c80064">) returned <b>${importStep.resultSize} ${newPluralType}</b>.</span>  
+<%--
+<br>
+To combine these two results based on their relative genomic location, <span style="background:yellow">select 5 parameters</span> in the logic statement below. 
+--%>
+<br><br>
+
 </div>
 </td>
-<td width="5%" style="text-align:right">
-<a href="<c:url value="/help_spanlogic.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">
-	<img title="Click for help with combining IDs via relative genomic location" src="/assets/images/help_spanlogic.png" width="60px" alt="help with combining IDs via relative genomic location" />
+
+<td width="10%" style="text-align:center;vertical-align:top">
+<a href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html" target="_blank" onClick="poptastic(this.href); return false;">
+	<img title="Click for a 7-minute flash tutorial on combining IDs via relative genomic location" src="/assets/images/tut_icon.jpg" width="60px" alt="help with combining IDs via relative genomic location" />
 </a>
 </td>
+
 </tr>
 </table>
-
 
 <span style="display:none" id="strategyId">${wdkStrategy.strategyId}</span>
 <span style="display:none" id="stepId">${wdkStep.stepId}</span>
@@ -66,15 +88,8 @@
 <span style="display:none" id="span_b_num" class="new_step_num">${newStepId}</span>
   
 <input type="hidden" id="stage" value="process_span" />
-  
-<%--
-<div style="text-align:center;padding-top:20px">
-<a href="<c:url value="/help_spanlogic.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">
-	<img title="Click for help with combining IDs via relative genomic location" src="/assets/images/help_spanlogic.png" width="60px" alt="help with combining IDs via relative genomic location" />
-</a>
-</div>
---%>
-<br>
+
+<%-- sentence and region areas --%>
 <div id="spanLogicParams">
 	<wdk:answerParamInput qp="${pMap['span_a']}"/>
 	<wdk:answerParamInput qp="${pMap['span_b']}"/>
@@ -85,7 +100,7 @@
             <input type="hidden" value="${spanParam.value}" id="${spanParam.key}_default"/>
           </c:forEach>
         </c:if>
-<%--	<input type="hidden" value="${importStep.displayType}" id="span_b_type"/>   seems repeated above --%>
+
 	<c:set var="wdkStepRecType" value="${wdkStep.displayType}"/>
 	<c:set var="importStepRecType" value="${importStep.displayType}"/>
 	<c:set var="wdkStepResultSize" value="${wdkStep.resultSize}"/>
@@ -93,10 +108,13 @@
 	<c:if test="${wdkStepResultSize > 1}"><c:set var="wdkStepRecType" value="${wdkStepRecType}s"/></c:if>
 	<c:if test="${importStepResultSize > 1}"><c:set var="importStepRecType" value="${importStepRecType}s"/></c:if>
 
+
+       
 <%-- sentence --%>
-        <table><tr><td>
+        <table>
+	<tr><td>
 	<div class="span-step-text right">
-	  <span>Return each <wdk:enumParamInput qp="${pMap['span_output']}" /> whose <span class="region outputRegion region_a">region</span></span>
+	  <span>"Return each <wdk:enumParamInput qp="${pMap['span_output']}" /> whose <span class="region outputRegion region_a">region</span></span>
         </div>
 
 
@@ -126,7 +144,8 @@
           <span class="region comparisonRegion region_b">region</span> of a
           <span class="comparison_type">...</span> <span class="other_step">in Step</span>
           <span class="comparison_num">...</span> and is on
-          <wdk:enumParamInput qp="${pMap['span_strand']}" /></span>
+          <wdk:enumParamInput qp="${pMap['span_strand']}" />
+           "
 	</div>
         <div id="comparisonGroup">
           <site:spanlogicGraph groupName="b" question="${question}" step="${importStep}" stepType="new_step" />
@@ -141,6 +160,7 @@
       	  You cannot select output because there are steps in the strategy after the current one you are working on.
     	</c:if>
 
+<%-- used --%>
 	<div class="span-step-text bottom">
 	  Return each <span class="span_output"></span> whose <span class="region outputRegion">region</span>
           <span class="span_operation"></span>&nbsp;the <span class="region comparisonRegion">region</span> of a
@@ -148,6 +168,7 @@
           <span class="comparison_num"></span> and is on
           <span class="span_strand"></span>
 	</div>
+
         <input type="hidden" id="span_sentence" name="value(span_sentence)" value="" />
 </div>
 
