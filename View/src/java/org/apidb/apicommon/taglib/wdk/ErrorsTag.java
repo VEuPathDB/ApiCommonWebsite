@@ -43,21 +43,27 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.Globals;
 import org.apache.struts.util.MessageResources;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.UUID;
 
 import javax.mail.Address;
@@ -94,7 +100,8 @@ public class ErrorsTag extends WdkTagBase {
     protected int varScope;
     private String showStacktrace;
     private String logMarker;
-    
+    private Logger logger = Logger.getLogger(getClass().getName());
+
     public ErrorsTag() {
         varScope = PageContext.PAGE_SCOPE;
     }
@@ -107,8 +114,6 @@ public class ErrorsTag extends WdkTagBase {
         
         if ( ! hasErrors() )
             return;
-
-        Logger logger = Logger.getLogger(getClass().getName());
         
         logMarker = UUID.randomUUID().toString();
         String matchedFilterKey = filterMatch();
@@ -125,6 +130,7 @@ public class ErrorsTag extends WdkTagBase {
                 constructAndSendMail();
             } else {
                 logmsg.append("\nError matches filter '" + matchedFilterKey + "'. No error report emailed.");
+                writeFilteredErrorsToLog(matchedFilterKey);
             }
         }
 
@@ -189,7 +195,7 @@ public class ErrorsTag extends WdkTagBase {
                 String regex = filters.getProperty(key);
                 Pattern p = Pattern.compile(regex);
                 Matcher m = p.matcher(allErrors);
-
+         
                 if (m.find()) {
                     /**
                         Found match for primary filter. Now check
@@ -623,6 +629,35 @@ public class ErrorsTag extends WdkTagBase {
              Logger.getLogger(getClass().getName()).error(me);
         }
     }
+    
+    // archive the errors that were not emailed due to matched filter
+    private void writeFilteredErrorsToLog(String matchedFilterKey) {
 
+        String filteredLogDirName = System.getProperty("catalina.base") + "/logs/filtered_errors";
+        File filteredLogDir = new File(filteredLogDirName);
+        if ( ! filteredLogDir.exists())
+            filteredLogDir.mkdir();
+            
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            String logName = sdf.format(new Date()) + ".log";
+
+            FileWriter fw = new FileWriter(filteredLogDirName + "/" + logName, true);
+            BufferedWriter out = new BufferedWriter(fw);
+
+            String from = "tomcat@" + request.getServerName();
+            String subject = getEmailSubject();    
+            String message = getEmailBody();
+
+            out.write("Filter Match: " + matchedFilterKey + "\n");
+            out.write("Subject: " + subject + "\n");
+            out.write("From: " + from + "\n");
+            out.write(message + "\n");
+            out.write("\n//\n");
+            out.close();
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
 
 }
