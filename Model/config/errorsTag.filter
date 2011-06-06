@@ -40,7 +40,7 @@ invalidParam = The parameter .+ does not allow empty value
 
 # A common case is /showRecord.do (with no params). Only filter out
 # those with empty referers. If there's a referer it may indicate a
-# bad link on our site.
+# bad link on our site, so we want to get those emails.
 twoPartNameIsNull = WdkModelException: Error: twoPartName is null
 twoPartNameIsNull.referer = 
 
@@ -49,3 +49,10 @@ questionIsNull.referer =
 
 noStrategyKey = No strategy key was specified for importing
 noStrategyKey.referer =
+
+nullNumber = java.lang.NumberFormatException: null
+nullNumber.referer =
+
+# Only when no referer, maybe coming from an obsolete bookmark
+invalidQuestionSet = WDK Model .+ does not contain a Question set with name 
+invalidQuestionSet.referer =
