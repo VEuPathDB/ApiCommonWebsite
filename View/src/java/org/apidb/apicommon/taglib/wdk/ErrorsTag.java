@@ -26,6 +26,8 @@ package org.apidb.apicommon.taglib.wdk;
 
 import org.apache.struts.taglib.TagUtils;
 
+import java.lang.StackTraceElement;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspContext;
@@ -41,16 +43,26 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.Globals;
 import org.apache.struts.util.MessageResources;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.UUID;
 
@@ -65,6 +77,7 @@ import javax.mail.Transport;
 
 import org.apache.log4j.Logger;
 
+import org.gusdb.wdk.model.WdkException;
 
 public class ErrorsTag extends WdkTagBase {
 
@@ -80,13 +93,14 @@ public class ErrorsTag extends WdkTagBase {
     };
     private static final String PAGE_DIV = 
         "\n************************************************\n";
-
-
+    private static final String FILTER_FILE = "/WEB-INF/wdk-model/config/errorsTag.filter";
+    
     private PageContext pageContext;
     private HttpServletRequest request;
     protected int varScope;
     private String showStacktrace;
     private String logMarker;
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     public ErrorsTag() {
         varScope = PageContext.PAGE_SCOPE;
@@ -102,18 +116,135 @@ public class ErrorsTag extends WdkTagBase {
             return;
         
         logMarker = UUID.randomUUID().toString();
-        Logger.getLogger(getClass().getName()).error(logMarker);
-
-        printActionErrorsToPage();
-
-        if (showStacktrace())
-            printStackTraceToPage();
+        String matchedFilterKey = filterMatch();
+        StringBuffer logmsg = new StringBuffer();
         
-        if (siteIsMonitored())
-            constructAndSendMail();
+        printActionErrorsToPage();
+        printWdkExceptionErrorToPage();
+                
+        if (showStacktrace())
+                printStackTraceToPage();
+        
+        if (siteIsMonitored()) {
+            if (matchedFilterKey == null) {
+                constructAndSendMail();
+            } else {
+                logmsg.append("\nError matches filter '" + matchedFilterKey + "'. No error report emailed.");
+                writeFilteredErrorsToLog(matchedFilterKey);
+            }
+        }
 
+        logger.error(logMarker + logmsg);
+        
+        
     }
+    
+    /**
+     Check for matches to filters.
+     Filters are regular expressions in a property file.
+     The file is optional. In which case, no filtering is performed.
+    
+     Matches are checked against the text of errors and stacktraces.
 
+     Property file example 1. A simple check for missing step ids.
+
+         noStepForUser = The Step #\\d+ of user .+ doesn't exist
+    
+     
+     Compound filtering can be configured with specific subkeys in 
+     the property file (the primary key is always required).
+     
+     Property file example 2. Filter when exceptions contain the words 
+     "twoPartName is null" and also the referer is empty.
+
+        twoPartNameIsNull = twoPartName is null
+        twoPartNameIsNull.referer = 
+
+     Allowed subkeys are
+        referer
+        ip
+    **/
+    private String filterMatch() throws JspException {
+    
+        Properties filters = new Properties();
+        PageContext pageContext = (PageContext) getJspContext();
+        ServletContext app = pageContext.getServletContext();
+        InputStream is = app.getResourceAsStream(FILTER_FILE);
+        
+        if (is == null) return null;
+        
+        try {
+            filters.load(is);
+        } catch (IOException e) {
+            throw new JspException(e);
+        }
+         
+        StringBuffer allErrors = new StringBuffer();
+
+        allErrors.append(getStackTraceAsText());
+        allErrors.append(getActionErrorsAsHTML());
+        
+        if (allErrors != null) {
+           Enumeration<String> e = (Enumeration<String>) filters.propertyNames();
+           while (e.hasMoreElements()) {
+                String key = (String) e.nextElement();
+
+                // don't check subkeys yet
+                if (key.contains(".")) continue;
+
+                String regex = filters.getProperty(key);
+                Pattern p = Pattern.compile(regex);
+                Matcher m = p.matcher(allErrors);
+         
+                if (m.find()) {
+                    /**
+                        Found match for primary filter. Now check
+                        for additional matches from any subkey filters.
+                        Return on first match.
+                    **/
+                    boolean checkedSubkeys = false;
+                    String refererFilter = filters.getProperty(key + ".referer");
+                    String ipFilter      = filters.getProperty(key + ".ip");
+
+                    if (refererFilter != null) {
+                        checkedSubkeys = true;
+                        String referer = (request.getHeader("Referer") != null) ? 
+                            request.getHeader("Referer") : "";
+                        if (refererFilter.equals(referer))
+                            return key + " = " + regex + " AND " 
+                                    + key + ".referer = " + refererFilter;
+                    }
+
+                    if (ipFilter != null) {
+                        checkedSubkeys = true;
+                        String remoteHost = (request.getRemoteHost() != null) ? 
+                            request.getRemoteHost() : "";
+                        if (ipFilter.equals(remoteHost))
+                            return key + " = " + regex + " AND " 
+                                    + key + ".ip = " + ipFilter;
+                    }
+
+                    // subkeys were checked and no matches in subkeys,
+                    // so match is not sufficient to filter
+                    if  (checkedSubkeys) return null;
+                    
+                    // Otherwise no subkeys were checked (so primary
+                    // filter match is sufficient)
+                    return key + " = " + regex;
+                }
+            }
+        }
+        
+        return null;
+        
+        /**
+        TODO if warranted: fine-tuned filtering on stack trace
+        StackTraceElement[] stackElements = rex.getStackTrace();
+        stackElements[i].getFileName();
+            .getLineNumber();
+            .getClassName();        
+        **/
+    }
     public void setShowStacktrace(String showStacktrace) {
         this.showStacktrace = showStacktrace;
     }
@@ -190,7 +321,23 @@ public class ErrorsTag extends WdkTagBase {
             throw new JspException("(IOException) " + ioe);
         }
     }
-
+    
+    private void printWdkExceptionErrorToPage() throws JspException {
+        Exception rex = (Exception) request.
+                getAttribute(Globals.EXCEPTION_KEY); // e.g. WDK exceptions
+        
+        if (rex != null && rex instanceof WdkException) {        
+            try {
+                JspWriter out = getJspContext().getOut();
+                out.println("<br>");
+                out.println("<pre>\n");
+                out.println(((WdkException) rex).formatErrors());
+                out.println("</pre>\n");
+            } catch (IOException ioe) {
+                throw new JspException("(IOException) " + ioe);
+            }
+        }
+    }
     /**
         Equivalent of 
             
@@ -482,6 +629,37 @@ public class ErrorsTag extends WdkTagBase {
              Logger.getLogger(getClass().getName()).error(me);
         }
     }
+    
+    // archive the errors that were not emailed due to matched filter
+    private void writeFilteredErrorsToLog(String matchedFilterKey) {
 
+        String filteredLogDirName = System.getProperty("catalina.base") + "/logs/filtered_errors";
+        File filteredLogDir = new File(filteredLogDirName);
+        if ( ! filteredLogDir.exists())
+            filteredLogDir.mkdir();
+            
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            String remoteHost = (request.getRemoteHost() != null) ? 
+                            request.getRemoteHost() : "_";
+            String logName = remoteHost + "-" + sdf.format(new Date());
+
+            FileWriter fw = new FileWriter(filteredLogDirName + "/" + logName, true);
+            BufferedWriter out = new BufferedWriter(fw);
+
+            String from = "tomcat@" + request.getServerName();
+            String subject = getEmailSubject();    
+            String message = getEmailBody();
+
+            out.write("Filter Match: " + matchedFilterKey + "\n");
+            out.write("Subject: " + subject + "\n");
+            out.write("From: " + from + "\n");
+            out.write(message + "\n");
+            out.write("\n//\n");
+            out.close();
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
 
 }
