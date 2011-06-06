@@ -640,7 +640,9 @@ public class ErrorsTag extends WdkTagBase {
             
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd-HHmmss");
-            String logName = sdf.format(new Date()) + ".log";
+            String remoteHost = (request.getRemoteHost() != null) ? 
+                            request.getRemoteHost() : "_";
+            String logName = remoteHost + "-" + sdf.format(new Date());
 
             FileWriter fw = new FileWriter(filteredLogDirName + "/" + logName, true);
             BufferedWriter out = new BufferedWriter(fw);
