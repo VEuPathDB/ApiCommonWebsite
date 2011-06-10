@@ -40,9 +40,11 @@ my $taxonToDirNameMap =
    'Plasmodium chabaudi chabaudi'                     => { name => 'Pchabudi',               group => 5 },
    'Plasmodium knowlesi strain H'                     => { name => 'Pknowlesi',              group => 6 },
 
-   'Encephalitozoon cuniculi GB-M1'                   => { name => 'e_cuniculi',              group => 1 },
-   'Encephalitozoon intestinalis'                     => { name => 'e_intestinalis',          group => 2 },
-   'Enterocytozoon bieneusi H348'                     => { name => 'e_bieneusi',              group => 3 },
+   'Encephalitozoon cuniculi GB-M1'                   => { name => 'Ecuniculi',              group => 1 },
+   'Encephalitozoon intestinalis'                     => { name => 'Eintestinalis',          group => 2 },
+   'Enterocytozoon bieneusi H348'                     => { name => 'Ebieneusi',              group => 3 },
+   'Encephalitozoon hellem ATCC 50504'                => { name => 'EhellemATCC50504',       group => 4 },
+   'Nosema ceranae BRL01'                             => { name => 'NceranaeBRL01',          group => 5 },
 
    'Entamoeba dispar SAW760'                          => { name => 'e_dispar',                group => 1 },
    'Entamoeba histolytica HM-1:IMSS'                  => { name => 'e_histolytica',           group => 2 },
