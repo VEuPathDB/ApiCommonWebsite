@@ -395,4 +395,13 @@
       </attribute>
   </tag>
 
+  <tag>
+    <description>
+    Reset WDK cache.
+    </description>
+    <name>resetWdkCache</name>
+    <tagclass>org.apidb.apicommon.taglib.wdk.ResetCacheTag</tagclass>
+    <bodycontent>scriptless</bodycontent>
+  </tag>
+
 </taglib>
