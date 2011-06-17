@@ -33,6 +33,13 @@ my $taxonToDirNameMap =
    'Theileria parva strain Muguga'                    => { name => 'TparvaMuguga',           group => 2 },
    'Babesia bovis T2Bo'			              => { name => 'BbovisT2Bo',             group => 3 },
 
+   'Toxoplasma gondii ME49'                           => { name => 'TgondiiME49',            group => 1 },
+   'Toxoplasma gondii RH'                             => { name => 'TgondiiRH',              group => 2 },
+   'Toxoplasma gondii GT1'                            => { name => 'TgondiiGT1',             group => 3 },
+   'Toxoplasma gondii VEG'                            => { name => 'TgondiiVEG',             group => 4 },
+   'Neospora caninum'                                 => { name => 'Ncaninum',               group => 5 },
+   'Eimeria tenella str. Houghton'                    => { name => 'EtenellaHoughton',       group => 6 },
+
    'Plasmodium falciparum 3D7'                        => { name => 'Pfalciparum',            group => 1 },
    'Plasmodium vivax SaI-1'                           => { name => 'Pvivax',                 group => 2 },
    'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'Pyoelii',                group => 3 },
