@@ -41,11 +41,12 @@ my $taxonToDirNameMap =
    'Eimeria tenella str. Houghton'                    => { name => 'EtenellaHoughton',       group => 6 },
 
    'Plasmodium falciparum 3D7'                        => { name => 'Pfalciparum',            group => 1 },
-   'Plasmodium vivax SaI-1'                           => { name => 'Pvivax',                 group => 2 },
-   'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'Pyoelii',                group => 3 },
-   'Plasmodium berghei str. ANKA'                     => { name => 'Pberghei',               group => 4 },
-   'Plasmodium chabaudi chabaudi'                     => { name => 'Pchabudi',               group => 5 },
-   'Plasmodium knowlesi strain H'                     => { name => 'Pknowlesi',              group => 6 },
+   'Plasmodium falciparum IT'                         => { name => 'PfalciparumIT',          group => 2 },
+   'Plasmodium vivax SaI-1'                           => { name => 'Pvivax',                 group => 3 },
+   'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'Pyoelii',                group => 4 },
+   'Plasmodium berghei str. ANKA'                     => { name => 'Pberghei',               group => 5 },
+   'Plasmodium chabaudi chabaudi'                     => { name => 'Pchabudi',               group => 6 },
+   'Plasmodium knowlesi strain H'                     => { name => 'Pknowlesi',              group => 7 },
 
    'Encephalitozoon cuniculi GB-M1'                   => { name => 'Ecuniculi',              group => 1 },
    'Encephalitozoon intestinalis'                     => { name => 'Eintestinalis',          group => 2 },
