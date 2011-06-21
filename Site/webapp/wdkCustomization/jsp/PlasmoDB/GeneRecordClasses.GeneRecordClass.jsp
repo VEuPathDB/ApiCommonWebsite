@@ -339,6 +339,7 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
    <c:set var="revCompOn" value="1"/>
   </c:if>
 
+</c:if>
 
 
 
@@ -355,7 +356,6 @@ P.${species}.contigs,P.${species}_contigsGB,P.${species}_mitochondrial,P.${speci
   content="${mercatorAlign}"
   attribution=""/>
 
-</c:if>
 
 <site:pageDivider name="Annotation"/>
 
