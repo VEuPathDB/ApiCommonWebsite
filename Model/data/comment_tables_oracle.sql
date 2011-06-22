@@ -69,12 +69,16 @@ CREATE TABLE comments2.comments
   LOCATION_STRING VARCHAR2(1000),
   organism VARCHAR(50),
   content clob,
+  is_visible number(1),
+  user_id number(12),
   CONSTRAINT comments_pkey PRIMARY KEY (comment_id),
   CONSTRAINT comments_ct_id_fkey FOREIGN KEY (comment_target_id)
       REFERENCES comments2.comment_target (comment_target_id),
   CONSTRAINT comments_rs_id_fkey FOREIGN KEY (review_status_id)
       REFERENCES comments2.review_status (review_status_id)
 );
+
+create unique index comments2.comment_user_ix on comments2.comments(user_id, comment_id);
 
 GRANT insert, update, delete on comments2.comments to GUS_W;
 GRANT select on comments2.comments to GUS_R;
@@ -85,7 +89,8 @@ CREATE TABLE comments2.external_databases
   external_database_id NUMBER(10) NOT NULL,
   external_database_name varchar(200),
   external_database_version varchar(200),
-  PREV_SCHEMA VARCHAR2(50),          
+  PREV_SCHEMA VARCHAR2(50),
+  PREV_EXTERNAL_DATABASE_ID(10),
   CONSTRAINT external_databases_pkey PRIMARY KEY (external_database_id)
 );
 
