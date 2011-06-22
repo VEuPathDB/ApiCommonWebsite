@@ -90,7 +90,7 @@ CREATE TABLE comments2.external_databases
   external_database_name varchar(200),
   external_database_version varchar(200),
   PREV_SCHEMA VARCHAR2(50),
-  PREV_EXTERNAL_DATABASE_ID(10),
+  PREV_EXTERNAL_DATABASE_ID number(10),
   CONSTRAINT external_databases_pkey PRIMARY KEY (external_database_id)
 );
 
