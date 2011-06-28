@@ -21,6 +21,10 @@
           <attribute name="title">OrthoMCL-DB</attribute>
           <attribute name="url">http://orthomcl.cbil.upenn.edu</attribute>
         </row>
+<row>
+          <attribute name="title">The Biological Resource Centre for Toxoplasma</attribute>
+          <attribute name="url">http://www.toxocrb.com/</attribute>
+        </row>
         <row>
           <attribute name="title"><![CDATA[KEGG Pathways for <i>T. gondii</i>]]></attribute>
           <attribute name="url">http://eupathdb.org/common/KEGGpathways/</attribute>
