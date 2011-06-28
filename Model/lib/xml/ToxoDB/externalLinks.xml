@@ -9,21 +9,17 @@
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url">http://www.EuPathDB.org</attribute>
         </row>
-        <row>
-          <attribute name="title">PlasmoDB</attribute>
-          <attribute name="url">http://www.PlasmoDB.org</attribute>
-        </row>
-        <row>
-          <attribute name="title">CryptoDB</attribute>
-          <attribute name="url">http://www.CryptoDB.org</attribute>
-        </row>
-        <row>
+ <row>
           <attribute name="title">OrthoMCL-DB</attribute>
           <attribute name="url">http://orthomcl.cbil.upenn.edu</attribute>
         </row>
 <row>
-          <attribute name="title">The Biological Resource Centre for Toxoplasma</attribute>
+          <attribute name="title"><![CDATA[The Biological Resource Centre for <i>Toxoplasma </i>]]></attribute>
           <attribute name="url">http://www.toxocrb.com/</attribute>
+        </row>
+<row>
+          <attribute name="url">https://sites.google.com/site/toxoplasmagondiigscidproject/home</attribute>
+          <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> GSCID Sequencing Project]]></attribute>
         </row>
         <row>
           <attribute name="title"><![CDATA[KEGG Pathways for <i>T. gondii</i>]]></attribute>
@@ -33,6 +29,15 @@
           <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
           <attribute name="url"><![CDATA[/pubcrawler/ToxoDB/]]></attribute>
         </row>
+        <row>
+          <attribute name="title">PlasmoDB</attribute>
+          <attribute name="url">http://www.PlasmoDB.org</attribute>
+        </row>
+        <row>
+          <attribute name="title">CryptoDB</attribute>
+          <attribute name="url">http://www.CryptoDB.org</attribute>
+        </row>
+
       </table>
 
 
