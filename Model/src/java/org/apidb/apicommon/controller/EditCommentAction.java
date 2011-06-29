@@ -113,25 +113,26 @@ public class EditCommentAction extends CommentAction {
         // LF \n- line feed URL-encoding %0A
         // CR \r - carriage return URL-encoding %0D
         String content = comment.getContent().replaceAll("(\\r|\\n)+", "%0A");
+        fileString = fileString.replaceAll("(\\r|\\n)+", "%0A");
 
         String commentPage = "/addComment.do?projectId=" + projectId 
                              + "&stableId=" + stableId 
                              + "&commentTargetId=" + commentTargetId
-                             + "&content=" + content
                              + "&locType=" + "genomer"
                              + "&organism=" + comment.getOrganism()
                              + "&locations=" + locString
                              + "&externalDbName=" + edb.getExternalDbName()
+                             + "&headline=" + comment.getHeadline()
                              + "&email=" + email
-                             + categoryString
                              + pmIdString
                              + doiString
                              + accessionsString
                              + associatedString
-                             + fileString
                              + "&strand=" + strand
                              + "&commentId=" + commentId
-                             + "&headline=" + comment.getHeadline();
+                             + categoryString
+                             + "&content=" + content
+                             + fileString;
 
         // redirect to the show comments page
         return new ActionForward(commentPage, true);
