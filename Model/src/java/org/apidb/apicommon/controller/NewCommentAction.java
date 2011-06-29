@@ -115,6 +115,7 @@ public class NewCommentAction extends CommentAction {
         String extDbName = cuForm.getExternalDbName();
         String extDbVersion = cuForm.getExternalDbVersion();
         String locType = cuForm.getLocType(); 
+        String reviewStatus = cuForm.getReviewStatus(); 
         String previousCommentId = cuForm.getCommentId(); 
 
         String coordinateType = null;
@@ -138,6 +139,7 @@ public class NewCommentAction extends CommentAction {
         comment.setProjectVersion(projectVersion);
         comment.setHeadline(headline);
         comment.setOrganism(organism);
+        comment.setReviewStatus(reviewStatus);
         comment.setContent(content);
         comment.setUserId(userId);
 

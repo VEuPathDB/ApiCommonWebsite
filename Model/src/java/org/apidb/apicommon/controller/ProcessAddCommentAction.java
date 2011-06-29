@@ -70,6 +70,7 @@ public class ProcessAddCommentAction extends CommentAction {
         String[] targetCategoryIds = (String[]) request.getParameterValues("targetCategory");
         String pmIdStr = request.getParameter("pmids");
         String doiStr = request.getParameter("dois");
+        String reviewStatus = request.getParameter("reviewStatus");
         String authorsStr = request.getParameter("authors");
         String accessionStr = request.getParameter("accessions");
 
@@ -102,6 +103,7 @@ public class ProcessAddCommentAction extends CommentAction {
         comment.setHeadline(headline);
         comment.setOrganism(organism);
         comment.setContent(content);
+        comment.setReviewStatus(reviewStatus);
 
         if ((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
             int[] targetCategoryIdArray = new int[targetCategoryIds.length];

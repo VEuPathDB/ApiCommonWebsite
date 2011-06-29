@@ -782,7 +782,7 @@ public class CommentFactory {
         sql.append("c.content, ");
         sql.append("substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1) as organism, ");
         sql.append("u.first_name || ' ' || u.last_name || ', ' || u.title  as user_name, ");
-        sql.append("u.organization, c.content FROM ");
+        sql.append("u.organization, c.content, c.review_status_id FROM ");
         sql.append(config.getCommentSchema() + "comments c, ");
         sql.append(config.getUserLoginSchema() + "users"
                 + config.getUserLoginDbLink() + " u ");

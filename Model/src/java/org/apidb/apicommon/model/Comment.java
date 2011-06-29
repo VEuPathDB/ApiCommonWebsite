@@ -13,6 +13,7 @@ import org.gusdb.wdk.model.WdkModelException;
 public class Comment {
 
     public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
+    public static final String COMMENT_REVIEW_STATUS_COMMUNITY = "community";
 
     private int commentId;
     private int userId;
