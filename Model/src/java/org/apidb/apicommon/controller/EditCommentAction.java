@@ -110,10 +110,14 @@ public class EditCommentAction extends CommentAction {
           strand = "-";
         }
 
+        // LF \n- line feed URL-encoding %0A
+        // CR \r - carriage return URL-encoding %0D
+        String content = comment.getContent().replaceAll("(\\r|\\n)+", "%0A");
+
         String commentPage = "/addComment.do?projectId=" + projectId 
                              + "&stableId=" + stableId 
                              + "&commentTargetId=" + commentTargetId
-                             + "&content=" + comment.getContent()
+                             + "&content=" + content
                              + "&locType=" + "genomer"
                              + "&organism=" + comment.getOrganism()
                              + "&locations=" + locString
