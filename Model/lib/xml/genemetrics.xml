@@ -6,6 +6,7 @@
        <attribute name="Cryptosporidium_hominis">3956</attribute>
        <attribute name="Cryptosporidium_muris">3980</attribute>
        <attribute name="Cryptosporidium_parvum">3886</attribute>
+       <attribute name="Eimeria_tenella">7355</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">5981</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">4562</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">5144</attribute>
@@ -29,6 +30,8 @@
        <attribute name="Entamoeba_dispar">8748</attribute>
        <attribute name="Entamoeba_histolytica">8333</attribute>
        <attribute name="Entamoeba_invadens">11549</attribute>
+       <attribute name="Encephalitozoon_hellem">1913</attribute>
+       <attribute name="Nosema_cerenae">2678</attribute>
        <attribute name="Encephalitozoon_cuniculi">2053</attribute>
        <attribute name="Encephalitozoon_intestinalis">1889</attribute>
        <attribute name="Enterocytozoon_bieneusi">3806</attribute>
@@ -43,6 +46,7 @@
        <attribute name="Cryptosporidium_hominis">3886</attribute>
        <attribute name="Cryptosporidium_muris">3937</attribute>
        <attribute name="Cryptosporidium_parvum">3805</attribute>
+       <attribute name="Eimeria_tenella">6913</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">5901</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">4470</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">5064</attribute>
@@ -66,6 +70,8 @@
        <attribute name="Entamoeba_dispar">8748</attribute>
        <attribute name="Entamoeba_histolytica">8306</attribute>
        <attribute name="Entamoeba_invadens">11549</attribute>
+       <attribute name="Encephalitozoon_hellem">1848</attribute>
+       <attribute name="Nosema_cerenae">2614</attribute>
        <attribute name="Encephalitozoon_cuniculi">1996</attribute>
        <attribute name="Encephalitozoon_intestinalis">1832</attribute>
        <attribute name="Enterocytozoon_bieneusi">3633</attribute>
@@ -80,6 +86,7 @@
        <attribute name="Cryptosporidium_hominis">70</attribute>
        <attribute name="Cryptosporidium_muris">43</attribute>
        <attribute name="Cryptosporidium_parvum">81</attribute>
+       <attribute name="Eimeria_tenella">442</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">80</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">92</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">80</attribute>
@@ -103,6 +110,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">27</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">65</attribute>
+       <attribute name="Nosema_cerenae">64</attribute>
        <attribute name="Encephalitozoon_cuniculi">57</attribute>
        <attribute name="Encephalitozoon_intestinalis">57</attribute>
        <attribute name="Enterocytozoon_bieneusi">173</attribute>
@@ -117,6 +126,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">3</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Eimeria_tenella">15</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">2</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">56</attribute>
@@ -140,6 +150,8 @@
        <attribute name="Entamoeba_dispar">4</attribute>
        <attribute name="Entamoeba_histolytica">105</attribute>
        <attribute name="Entamoeba_invadens">10</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">554</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">1</attribute>
        <attribute name="Enterocytozoon_bieneusi">3</attribute>
@@ -154,6 +166,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">409</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">0</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -177,6 +190,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">0</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -191,6 +206,7 @@
        <attribute name="Cryptosporidium_hominis">3</attribute>
        <attribute name="Cryptosporidium_muris">3</attribute>
        <attribute name="Cryptosporidium_parvum">36</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">222</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">1</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">30</attribute>
@@ -214,6 +230,8 @@
        <attribute name="Entamoeba_dispar">2</attribute>
        <attribute name="Entamoeba_histolytica">178</attribute>
        <attribute name="Entamoeba_invadens">4</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -228,20 +246,21 @@
        <attribute name="Cryptosporidium_hominis">3655</attribute>
        <attribute name="Cryptosporidium_muris">3692</attribute>
        <attribute name="Cryptosporidium_parvum">3738</attribute>
+       <attribute name="Eimeria_tenella">6913</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">5346</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">4391</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">4922</attribute>
        <attribute name="Leishmania_braziliensis">6389</attribute>
        <attribute name="Leishmania_infantum">6385</attribute>
        <attribute name="Leishmania_major">6535</attribute>
-       <attribute name="Neospora_caninum">6853</attribute>
+       <attribute name="Neospora_caninum">7082</attribute>
        <attribute name="Plasmodium_berghei">4876</attribute>
        <attribute name="Plasmodium_chabaudi">4981</attribute>
        <attribute name="Plasmodium_falciparum">5264</attribute>
        <attribute name="Plasmodium_knowlesi">5080</attribute>
        <attribute name="Plasmodium_vivax">5274</attribute>
        <attribute name="Plasmodium_yoelii">6296</attribute>
-       <attribute name="Toxoplasma_gondii">7129</attribute>
+       <attribute name="Toxoplasma_gondii">7968</attribute>
        <attribute name="Trichomonas_vaginalis">54732</attribute>
        <attribute name="Trypanosoma_brucei">8211</attribute>
        <attribute name="Trypanosoma_congolense">9646</attribute>
@@ -251,6 +270,8 @@
        <attribute name="Entamoeba_dispar">7947</attribute>
        <attribute name="Entamoeba_histolytica">7754</attribute>
        <attribute name="Entamoeba_invadens">9862</attribute>
+       <attribute name="Encephalitozoon_hellem">1848</attribute>
+       <attribute name="Nosema_cerenae">2614</attribute>
        <attribute name="Encephalitozoon_cuniculi">1982</attribute>
        <attribute name="Encephalitozoon_intestinalis">1810</attribute>
        <attribute name="Enterocytozoon_bieneusi">2310</attribute>
@@ -265,6 +286,7 @@
        <attribute name="Cryptosporidium_hominis">1495</attribute>
        <attribute name="Cryptosporidium_muris">1856</attribute>
        <attribute name="Cryptosporidium_parvum">1689</attribute>
+       <attribute name="Eimeria_tenella">2310</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">1777</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">1669</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">1828</attribute>
@@ -288,6 +310,8 @@
        <attribute name="Entamoeba_dispar">3799</attribute>
        <attribute name="Entamoeba_histolytica">4262</attribute>
        <attribute name="Entamoeba_invadens">4827</attribute>
+       <attribute name="Encephalitozoon_hellem">957</attribute>
+       <attribute name="Nosema_cerenae">965</attribute>
        <attribute name="Encephalitozoon_cuniculi">950</attribute>
        <attribute name="Encephalitozoon_intestinalis">948</attribute>
        <attribute name="Enterocytozoon_bieneusi">1255</attribute>
@@ -302,6 +326,7 @@
        <attribute name="Cryptosporidium_hominis">377</attribute>
        <attribute name="Cryptosporidium_muris">568</attribute>
        <attribute name="Cryptosporidium_parvum">340</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">269</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -325,6 +350,8 @@
        <attribute name="Entamoeba_dispar">927</attribute>
        <attribute name="Entamoeba_histolytica">1098</attribute>
        <attribute name="Entamoeba_invadens">1249</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -339,6 +366,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">37</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">0</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -362,6 +390,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">0</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -376,6 +406,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">2366</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">5981</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
@@ -399,6 +430,8 @@
        <attribute name="Entamoeba_dispar">97</attribute>
        <attribute name="Entamoeba_histolytica">7013</attribute>
        <attribute name="Entamoeba_invadens">15</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">18</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -413,6 +446,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">5981</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -436,6 +470,8 @@
        <attribute name="Entamoeba_dispar">18</attribute>
        <attribute name="Entamoeba_histolytica">6633</attribute>
        <attribute name="Entamoeba_invadens">15</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -450,6 +486,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">580</attribute>
        <attribute name="Cryptosporidium_parvum">1806</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">3272</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">53</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">960</attribute>
@@ -473,6 +510,8 @@
        <attribute name="Entamoeba_dispar">79</attribute>
        <attribute name="Entamoeba_histolytica">1223</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">18</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -487,6 +526,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">4254</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -510,6 +550,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">0</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -524,6 +566,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">1320</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">1744</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -547,6 +590,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">1825</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -561,6 +606,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">0</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -584,6 +630,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">0</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -598,6 +646,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">0</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -621,6 +670,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">0</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
@@ -635,6 +686,7 @@
        <attribute name="Cryptosporidium_hominis">0</attribute>
        <attribute name="Cryptosporidium_muris">0</attribute>
        <attribute name="Cryptosporidium_parvum">0</attribute>
+       <attribute name="Eimeria_tenella">0</attribute>
        <attribute name="Giardia_Assemblage_A_isolate_WB">0</attribute>
        <attribute name="Giardia_Assemblage_B_isolate_GS">0</attribute>
        <attribute name="Giardia_Assemblage_E_isolate_P15">0</attribute>
@@ -658,6 +710,8 @@
        <attribute name="Entamoeba_dispar">0</attribute>
        <attribute name="Entamoeba_histolytica">0</attribute>
        <attribute name="Entamoeba_invadens">0</attribute>
+       <attribute name="Encephalitozoon_hellem">0</attribute>
+       <attribute name="Nosema_cerenae">0</attribute>
        <attribute name="Encephalitozoon_cuniculi">0</attribute>
        <attribute name="Encephalitozoon_intestinalis">0</attribute>
        <attribute name="Enterocytozoon_bieneusi">0</attribute>
