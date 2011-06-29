@@ -58,6 +58,7 @@ public class NewCommentForm extends ActionForm {
     private String commentId = null;
     private String email;
     private String sequence;
+    private String reviewStatus;
 
     private ArrayList categoryList = new ArrayList(); 
 
@@ -127,6 +128,14 @@ public class NewCommentForm extends ActionForm {
 
     public void setEmail(String email) {
        this.email = email;
+    }
+
+    public String getReviewStatus() {
+       return reviewStatus;
+    }
+
+    public void setReviewStatus(String reviewStatus) {
+       this.reviewStatus = reviewStatus;
     }
 
     public String getSequence() {
@@ -544,5 +553,6 @@ public class NewCommentForm extends ActionForm {
         dois = null;
         accessions = null;
         associatedStableIds = null;
+        reviewStatus = null;
     }
 }

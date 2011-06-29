@@ -132,6 +132,7 @@ public class EditCommentAction extends CommentAction {
                              + "&commentId=" + commentId
                              + categoryString
                              + "&content=" + content
+                             + "&reviewStatus=" + comment.getReviewStatus()
                              + fileString;
 
         // redirect to the show comments page
