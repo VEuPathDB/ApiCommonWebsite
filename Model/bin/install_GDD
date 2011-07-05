@@ -58,7 +58,18 @@ get_install_paths() {
         echo
         exit 1
     fi
-    source $WEB_PROP_FILE
+    set_env_from_prop_file "$WEB_PROP_FILE"
+}
+
+set_env_from_prop_file() {
+    while read prop
+    do
+     export $(echo "$prop" |  \
+        sed "/^ *#/d;         \
+             /^[ \t]*$/d;     \
+             s/ *= */=/"      \
+     ) > /dev/null
+    done < "$1"    
 }
 
 mkdirs() {
