@@ -39,13 +39,6 @@
     </ant>
   </target>  
 
-  <target name="FgpUtil-Installation">
-    <ant antfile="../FgpUtil/build.xml" target="FgpUtil-Installation">
-      <property name="project" value="FgpUtil"/>
-      <property name="version" value="internal/api-aug-08"/>
-    </ant>
-  </target>  
-
   <target name="CBIL-Checkout" unless="CBIL.present"> 
     <ant target="defaultProjectCheckout" inheritAll="false"> 
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
@@ -88,14 +81,6 @@
     </ant>
   </target>
 
-  <target name="FgpUtil-Checkout" unless="FgpUtil.present"> 
-    <ant target="defaultProjectCheckout" inheritAll="false"> 
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/FgpUtil" />
-      <property name="project" value="FgpUtil"/>
-      <property name="version" value="internal/api-build-9"/>
-    </ant>
-  </target>
-    
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
@@ -107,13 +92,11 @@
     <available file="../ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
     <available file="../ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
-    <available file="../FgpUtil" type="dir" property="FgpUtil.present" />
     <antcall target="WDK-Checkout" />
     <antcall target="ApiCommonWebService-Checkout" />
     <antcall target="CBIL-Checkout" />
     <antcall target="ApiCommonData-Checkout"/>
     <antcall target="ApiCommonShared-Checkout"/>
-    <antcall target="FgpUtil-Checkout" />
   </target>
   
   
@@ -135,9 +118,6 @@
     <ant target="defaultProjectUpdate">
       <property name="project" value="CBIL"/>
     </ant>
-    <ant target="defaultProjectUpdate">
-      <property name="project" value="FgpUtil"/>
-    </ant>
   </target>
 
 
@@ -151,8 +131,7 @@
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
                                                         ApiCommonWebsite/View-Installation,
-                                                        ApiCommonData/Datasources-Installation,
-                                                        FgpUtil-Installation">
+                                                        ApiCommonData/Datasources-Installation">
 
     <ant target="defaultProjectInstall"/>
     
