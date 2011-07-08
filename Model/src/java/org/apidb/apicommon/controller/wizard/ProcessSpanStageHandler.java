@@ -38,6 +38,8 @@ public class ProcessSpanStageHandler implements StageHandler {
             questionName = "SpanQuestions.SnpsBySpanLogic";
         } else if (type.equals("DynSpanRecordClasses.DynSpanRecordClass")) {
             questionName = "SpanQuestions.DynSpansBySpanLogic";
+        } else if (type.equals("SageTagRecordClasses.SageTagRecordClass")) {
+            questionName = "SpanQuestions.DynSpansBySpanLogic";
         } else {
             throw new WdkUserException("The record type " + type
                     + " is not supported in Span Logic operation.");
