@@ -13,6 +13,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/WSF Plugin"/>
 	<classpathentry kind="lib" path="/WDK Controller/lib/java/struts-1.2.4.jar"/>
 	<classpathentry kind="lib" path="/WSF Service/lib/java/not-deployed/servlet-api-2.4.jar"/>
-	<classpathentry kind="lib" path="C:/Develop/java/oracle/jdbc/ojdbc6.jar"/>
+	<classpathentry kind="var" path="GUS_HOME/lib/java/db_driver/ojdbc5.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
