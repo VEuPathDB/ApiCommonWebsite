@@ -35,7 +35,7 @@
        <attribute name = "Genome_Size">20.80</attribute>
        <attribute name = "Gene_Count">8333</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">DS4,HM-1:CA,KU27,KU48,KU50,MS96</attribute>
+       <attribute name = "Additional_Strains">DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -58,6 +58,30 @@
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">40.89</attribute>
        <attribute name = "Gene_Count">11549</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
+       <attribute name = "Family">Entamoeba</attribute>
+       <attribute name = "Organism">E.moshkovskii</attribute>
+       <attribute name = "Taxon_ID">41668</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">02-02-2011</attribute>
+       <attribute name = "Data_Source">Univ.of Liverpool</attribute>
+       <attribute name = "Genome_Size">26.82</attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -229,9 +253,9 @@
        <attribute name = "Genome_Version">06-19-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">2.50</attribute>
-       <attribute name = "Gene_Count">2053</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Gene_Count">2678</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">EC1,EC2,EC3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -248,13 +272,39 @@
  <record>
        <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
        <attribute name = "Family">Encephalitozoon</attribute>
+       <attribute name = "Organism">E.hellem</attribute>
+       <attribute name = "Taxon_ID">907965</attribute>
+       <attribute name = "Strain">ATCC 50504</attribute>
+       <attribute name = "Genome_Version">04-19-2011</attribute>
+       <attribute name = "Data_Source">Univ.of British Columbia</attribute>
+       <attribute name = "Genome_Size">2.25</attribute>
+       <attribute name = "Gene_Count">2053</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+
+ <record>
+       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
+       <attribute name = "Family">Encephalitozoon</attribute>
        <attribute name = "Organism">E.intestinalis</attribute>
        <attribute name = "Taxon_ID">58839</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">11-23-2009</attribute>
        <attribute name = "Data_Source">P.Keeling</attribute>
        <attribute name = "Genome_Size">2.21</attribute>
-       <attribute name = "Gene_Count">1889</attribute>
+       <attribute name = "Gene_Count">1913</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -278,7 +328,7 @@
        <attribute name = "Genome_Version">01-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">3.41</attribute>
-       <attribute name = "Gene_Count">3806</attribute>
+       <attribute name = "Gene_Count">1889</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -319,6 +369,30 @@
    </record>
  <record>
        <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
+       <attribute name = "Family">Nosema</attribute>
+       <attribute name = "Organism">N.ceranae</attribute>
+       <attribute name = "Taxon_ID">578460</attribute>
+       <attribute name = "Strain">BRL01</attribute>
+       <attribute name = "Genome_Version">06-09-2009</attribute>
+       <attribute name = "Data_Source">NCBI</attribute>
+       <attribute name = "Genome_Size">7.86</attribute>
+       <attribute name = "Gene_Count">3806</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
        <attribute name = "Family">Octosporea</attribute>
        <attribute name = "Organism">O.bayeri</attribute>
        <attribute name = "Taxon_ID">657448</attribute>
@@ -341,6 +415,31 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
+<record>
+       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
+       <attribute name = "Family">Vavraia</attribute>
+       <attribute name = "Organism">V.culicis</attribute>
+       <attribute name = "Taxon_ID">948595</attribute>
+       <attribute name = "Strain">floridensis</attribute>
+       <attribute name = "Genome_Version">04-11-2011</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">6.12</attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
  <record>
        <attribute name = "Website">PiroplasmaDB, EuPathDB</attribute>
        <attribute name = "Family">Babesia</attribute>
@@ -473,7 +572,7 @@
        <attribute name = "Genome_Size">23.26</attribute>
        <attribute name = "Gene_Count">6372</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Dd2,HB3</attribute>
+       <attribute name = "Additional_Strains">IT,Dd2,HB3</attribute>
        <attribute name = "Organellar_Genomes">C10 plastid, NF54 mito</attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -608,6 +707,30 @@
    </record>
 <record>
        <attribute name = "Website">ToxoDB, EuPathDB</attribute>
+       <attribute name = "Family">Elmeria</attribute>
+       <attribute name = "Organism">E.tenella</attribute>
+       <attribute name = "Taxon_ID">413949</attribute>
+       <attribute name = "Strain">Houghton</attribute>
+       <attribute name = "Genome_Version">10-04-2010</attribute>
+       <attribute name = "Data_Source">GeneDB</attribute>
+       <attribute name = "Genome_Size">51.81</attribute>
+       <attribute name = "Gene_Count">7355</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+<record>
+       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
        <attribute name = "Family">Neospora</attribute>
        <attribute name = "Organism">N.caninum</attribute>
        <attribute name = "Taxon_ID">29176</attribute>
@@ -641,7 +764,7 @@
        <attribute name = "Genome_Size">63.01</attribute>
        <attribute name = "Gene_Count">9239**</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">VEG,GT1,RH,CkUg2,p89,VAND,MAS</attribute>
+       <attribute name = "Additional_Strains">FOU,VEG,GT1,RH,CkUg2,p89,VAND,MAS</attribute>
        <attribute name = "Organellar_Genomes">apicoplast</attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -881,8 +1004,8 @@
        <attribute name = "Strain">CL Brener</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">101.09</attribute>
-       <attribute name = "Gene_Count">12583++</attribute>
+       <attribute name = "Genome_Size">101.09check</attribute>
+       <attribute name = "Gene_Count">16372++</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
