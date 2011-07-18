@@ -377,7 +377,38 @@ sub addToProfileDataMatrix {
     my @names = <NAMES>;
     my @values = <VALUES>;
 
-    unless(scalar @names == scalar @values) {
+    my %values;
+    foreach(@values) {
+      chomp $_;
+      my ($k, $v) = split(/\t/, $_);
+      push @{$values{$k}}, $v;
+    }
+
+    my @avgValues = ('Header');
+
+    for(my $i = 1; $i < scalar(keys(%values)); $i++) {
+      my @allValues = @{$values{$i}};
+
+      my $sum = 0;
+      my $naCount = 0;
+      foreach(@allValues) {
+        if($_ eq 'NA') {
+          $naCount++;
+        }
+        else {
+          $sum += $_;
+        }
+      }
+
+      if($naCount == scalar @allValues) {
+        push @avgValues, 'NA';
+      }
+      else {
+        push @avgValues, $sum / scalar @allValues;
+      }
+    }
+
+    unless(scalar @names == scalar @avgValues) {
       die "Element Names file Different length than Values File";
     }
 
