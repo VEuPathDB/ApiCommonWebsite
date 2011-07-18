@@ -51,6 +51,23 @@ sub fetchAuthorList {
 	
 	#return join (", ", @authors);
 }
+
+sub fetchAuthorListLong {
+	my @authors;
+	my $aContent = XMLUtils::extractTagContent ($content, "AuthorList");
+
+	foreach my $author (XMLUtils::extractAllTags ($aContent, "Author")) {
+		my $attrValue = XMLUtils::getAttrValue ($author, "Author", "ValidYN");
+		#Some of them don't have this attribute.
+	    if (!$attrValue || $attrValue eq "Y") {
+			my $lastname = XMLUtils::extractTagContent ($author, "LastName");
+	        my $initials = XMLUtils::extractTagContent ($author, "Initials");
+	        push @authors, "$lastname $initials";
+	    }
+	}
+	
+	return join (", ", @authors);
+}
                                                                                              
 sub fetchTitle {
     my $title = XMLUtils::extractTagContent($content, "ArticleTitle");
