@@ -48,7 +48,7 @@ sub handleIsolates {
 
   my $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
-FROM   apidb.isolatesequence etn
+FROM   ApidbTuning.IsolateSequence etn
 WHERE etn.source_id in ($ids)
 EOSQL
 

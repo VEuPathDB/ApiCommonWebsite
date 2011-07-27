@@ -29,7 +29,7 @@ sub run {
 
   my $sql = <<EOSQL;
 SELECT s.source_id, s.sequence, ' | ' || sa.sequence_description as description
-FROM apidb.nasequence s, apidb.sequenceid si, apidb.sequenceattributes sa
+FROM ApidbTuning.NaSequence s, ApidbTuning.SequenceId si, ApidbTuning.SequenceAttributes sa
 WHERE  si.id = lower(?)
 AND s.source_id = si.sequence
 AND sa.source_id = s.source_id
@@ -118,7 +118,7 @@ sub validateIds {
 
   my $sql = <<EOSQL;
 SELECT s.sequence
-FROM apidb.sequenceid s
+FROM ApidbTuning.SequenceId s
 WHERE s.id = lower(?)
 EOSQL
 

@@ -24,10 +24,10 @@ public class GeneIdValidator {
         ResultSet rs = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT source_id FROM ApiDB.GeneAttributes ");
+        sql.append("SELECT source_id FROM ApidbTuning.GeneAttributes ");
         sql.append("WHERE source_id = ? ");
         sql.append("UNION ");
-        sql.append("SELECT source_id FROM ApiDB.IsolateAttributes ");
+        sql.append("SELECT source_id FROM ApidbTuning.IsolateAttributes ");
         sql.append("WHERE source_id = ? ");
         sql.append("UNION ");
         sql.append("SELECT source_id FROM DoTS.ExternalNASequence ");

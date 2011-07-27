@@ -120,7 +120,7 @@ my $sqlQueries;
 
 $sqlQueries->{geneProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   apidb.geneAttributes bfmv, apidb.proteinSequence seq
+FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
@@ -132,21 +132,21 @@ SELECT bfmv.source_id, seq.sequence,
 	   ELSE 'nt ' || bfmv.end_max || '-' || bfmv.start_min || ' of ' || bfmv.nas_id 
        END as product,
        bfmv.organism as name
-FROM   apidb.orfAttributes bfmv, apidb.orfSequence seq
+FROM   ApidbTuning.OrfAttributes bfmv, ApidbTuning.OrfSequence seq
 WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
 
 $sqlQueries->{transcriptSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   apidb.geneAttributes bfmv, apidb.transcriptSequence seq
+FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.TranscriptSequence seq
 WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
 
 $sqlQueries->{cdsSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   apidb.geneAttributes bfmv, apidb.codingSequence seq
+FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.CodingSequence seq
 WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
@@ -263,7 +263,7 @@ sub handleNonGenomic {
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sh = $dbh->prepare("select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from apidb.GeneId where lower(id) = lower(?) order by matchiness desc) where rownum=1");
+  my $sh = $dbh->prepare("select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from ApidbTuning.GeneId where lower(id) = lower(?) order by matchiness desc) where rownum=1");
 
   my @ids;
 
@@ -276,7 +276,7 @@ sub mapGeneFeatureSourceIds {
     }
 
     unless($best) {
-      my $sql = "select source_id from apidb.geneattributes where lower(source_id) = lower(?)";
+      my $sql = "select source_id from ApidbTuning.GeneAttributes where lower(source_id) = lower(?)";
       my $sh = $dbh->prepare($sql);
 
       $sh->execute($in);
@@ -344,8 +344,8 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM apidb.geneattributes bfmv, apidb.geneid gi,
-     apidb.nasequence s
+FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.GeneId gi,
+     ApidbTuning.NaSequence s
 WHERE lower(gi.id) = lower(?)
 AND bfmv.source_id = gi.gene
 AND s.source_id = bfmv.sequence_id
@@ -377,7 +377,7 @@ select bfmv.source_id, s.source_id, bfmv.organism,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM apidb.orfattributes bfmv, apidb.nasequence s
+FROM ApidbTuning.OrfAttributes bfmv, ApidbTuning.NaSequence s
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 EOSQL
