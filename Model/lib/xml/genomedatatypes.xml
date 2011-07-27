@@ -354,7 +354,7 @@
        <attribute name = "Genome_Size">4.07</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ERTm3</attribute>
+       <attribute name = "Additional_Strains">ERTm2,ERTm3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
