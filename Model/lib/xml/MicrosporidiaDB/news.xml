@@ -57,9 +57,12 @@ EcIII</li>
 <li><span style="font-style: italic;">Nematocida parisii </span>ERTm2</li>
 <li><span style="font-style: italic;">Vavraia culicis</span>
 floridensis&nbsp;</li>
-<li><span style="font-style: italic;">Vittaforma corneae&nbsp;</span></li>
+<li><span style="font-style: italic;">Vittaforma corneae <br>
+</span></li>
 </ul>
 </ul>
+<span style="font-style: italic;"><br>
+</span>
 <ul>
 <ul>
 <li>Genomic sequence data
@@ -74,6 +77,7 @@ or <a style="font-weight: bold;"
 href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a>.</li>
 </ul>
 </ul>
+<br>
 <ul>
 <li>Sequence and annotation for <span style="font-style: italic;">Encephalitozoon
 hellem</span> (graciously provided prepublication by Patrick Keeling's
@@ -92,9 +96,12 @@ style="font-style: italic;">E. hellem</span> genes that have at least
 transmembrane domains and do not have orthologs in mammals:</li>
 </ul>
 </ul>
+<br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-http://microsporidiadb.org/micro/im.do?s=d4174608fb1a4879<br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<a
+style="font-weight: bold;"
+href="http://microsporidiadb.org/micro/im.do?s=d4174608fb1a4879">
+http://microsporidiadb.org/micro/im.do?s=d4174608fb1a4879</a><br>
 <br>
 <ul>
 <li>Sequence and annotation for <span style="font-style: italic;">Nosema
@@ -104,6 +111,8 @@ and published by <a style="font-weight: bold;"
 href="http://www.ncbi.nlm.nih.gov/pubmed/19503607">Cornman <span
 style="font-style: italic;">et. al.</span></a></li>
 </ul>
+<span style="font-style: italic;"><br>
+</span>
 <ul>
 <ul>
 <li>Here is a search that quickly defines&nbsp; <span
@@ -112,27 +121,25 @@ style="font-style: italic;">N. ceranae</span> genes (note the column
 labeled as "Input orthologs" refers to the <span
 style="font-style: italic;">N. ceranae</span> genes in the same
 orthology group as the <span style="font-style: italic;">E. hellem </span>"Gene"
-in the first column).</li>
+in the first column):</li>
 </ul>
 </ul>
+<br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-http://microsporidiadb.org/micro/im.do?s=9aa2e7a6ef1710f9<br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<a
+style="font-weight: bold;"
+href="http://microsporidiadb.org/micro/im.do?s=9aa2e7a6ef1710f9">
+http://microsporidiadb.org/micro/im.do?s=9aa2e7a6ef1710f9</a><br>
 <br>
 <br>
-<a style="font-weight: bold;"
-href="https://www.facebook.com/pages/EuPathDB/133123003429972"><span
-style="font-style: italic;">EuPathDB is now on FaceBook</span></a><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
 <br>
-<br>
-<div style="text-align: justify;"><small><br>
-<a href="http://twitter.com/eupathdb"><span
-style="font-weight: bold; font-style: italic;">Follow EuPathDB on
-Twitter</span></a></small>
-<br>
-<span style="font-weight: bold;"></span>
-</div>
-</body>]]>
+</body>
+]]>
        </attribute>
     </record>
 <record>
