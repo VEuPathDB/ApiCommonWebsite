@@ -18,6 +18,88 @@
     </record>
 -->
 <record>
+       <attribute name="headline">PlasmoDB 8.0 Released</attribute>
+       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="tag">plasmo7_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;">
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 8.0</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New data:</span><br>
+<br>
+</div>
+<span style="font-style: italic;">
+</span>
+<ul>
+<li>Sequence and annotation of the<span style="font-style: italic;">
+P. falciparum </span>IT strain<span style="font-style: italic;"> </span>produced
+by the Parasite Genomics Group at the Wellcome Trust Sanger Institute
+with funding from the EVIMalaR Consortium (a European Commission Funded
+Network of Excellence).<span style="font-style: italic;">&nbsp; </span>While
+this data has been graciously provided prepublication to the community
+its usage for large scale genomic analysis is bound by a <a
+style="font-weight: bold;"
+href="http://plasmodb.org/common/downloads/release-8.0/PfalciparumIT/fasta/">data
+usage
+policy</a>.<span style="font-style: italic;"></span></li>
+</ul>
+<ul>
+<li>Updated linkouts to the <a style="font-weight: bold;"
+href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
+Pathways
+(MPMP) database</a>.&nbsp; Numerous pathways have been added and
+updated by
+Dr. Hagai Ginsberg.&nbsp;&nbsp; A full description of new pathways is
+available <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/communityDownload.do?fname=New%20maps%204.7.2011.pdf">here</a>
+and genes included in the MPMP database can be searched based on
+metabolic pathway in PlasmoDB <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.</li>
+</ul>
+<div style="text-align: justify;">
+<span style="font-weight: bold;"></span><br style="font-weight: bold;">
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now view intron/exon boundaries based on available RNA
+sequence data.&nbsp; boundary determination was performed using the <a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21775302">RNA-Seq Unified
+Mapper (RUM)</a>. To view intron/exon boundary calls, turn on the
+"RNA-seq alignments RUM Intron" track in the genome browser.&nbsp; <a
+style="font-weight: bold;"
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1430000;stop=1439999;ref=Pf3D7_11;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=5f6c1beeb1b94b24ea6ed5148ba1d93c;label=AnnotatedGenes-RUMIntronDuffy-RUMIntronNewbold-RUMIntronStunnenberg">Here
+is a link to a gene</a>
+that is predicted to have multiple splice variants based on the
+annotation provided by GeneDB with the RUM intron tracks turned
+on.&nbsp; To get additional information mouse over the tracks and/or
+the track names.</li>
+</ul>
+<br>
+<a style="font-weight: bold;"
+href="https://www.facebook.com/pages/EuPathDB/133123003429972"><span
+style="font-style: italic;">EuPathDB is now on FaceBook</span></a> <br>
+<br>
+<br>
+<small><a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">PlasmoDB 7.2 Released</attribute>
        <attribute name="date">03 May 2011 15:00</attribute>
        <attribute name="tag">plasmo5_11_news</attribute>

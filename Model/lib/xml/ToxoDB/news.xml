@@ -15,6 +15,168 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 7.0 Released</attribute>
+       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="tag">toxo7_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to announce the release
+of ToxoDB 7.0<br>
+</span><br>
+<span style="font-weight: bold;">This release of ToxoDB contains the
+following new datasets:</span><span style="font-weight: bold;"> </span><br>
+<br>
+<ul>
+<li>Strand-specific RNA sequence&nbsp;<span
+style="font-style: italic;"></span>and non coding RNA (ncRNA) data for
+<span style="font-style: italic;">T. gondii </span>and <span
+style="font-style: italic;">N. caninum</span> (graciously provided
+prepublication by Brian Gregory, University of Pennsylvania).&nbsp;
+This data was generated as part of one of the funded driving biological
+projects.<br>
+</li>
+<br>
+<ul>
+<li>An example
+region of the <span style="font-style: italic;">Toxoplasma</span>
+genome with RNA sequence coverage-plot tracks turned on can be accessed
+<a
+href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=405135;stop=505134;ref=TGME49_chrVI;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=cda0a88e0c9616ffd179b6addbf9f85f;label=Scaffolds:overview-Gene-ChIPEinsteinME1-ChIPEinsteinME1Peaks"><span
+style="font-weight: bold;">here</span></a> (note: experiment was
+performed using VEG parasites and was mapped to both VEG and ME49
+sequence in ToxoDB). &nbsp; This data is represented in two
+tracks:&nbsp; <br>
+</li>
+</ul>
+</ul>
+<ol>
+<ol>
+<ol>
+<li>&nbsp;"<span style="font-style: italic;">T.gondii</span> VEG
+mRNA RNAseq - Unique Aligners - (log2 Coverage) (Gregory)" which
+includes strand-specific coverage plots (Blue for the forward strand
+and red for the reverse strand). <br>
+</li>
+<li>"<span style="font-style: italic;">T.gondii </span>VEG mRNA
+RNAseq - Nonunique Aligners - (log2 Coverage) (Gregory)" which shows
+coverage plots for regions where probes did not uniquely align (ie.
+gives and indication of possible repetitive regions).</li>
+</ol>
+</ol>
+</ol>
+<div style="margin-left: 120px;"><span style="font-style: italic;">Note:
+loading tracks from multiple experiments can help in identifying
+missing genes or alternative gene models. <a
+href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=2654898;stop=2694897;ref=TGME49_chrVI;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=9c4180ebae94066bac7a2db3234310ac;label=Scaffolds:overview-Gene-ORF300-ChIPEinsteinME1-ChIPEinsteinPLK-mRNA_VEG-mRNA_VEG_NU"><span
+style="font-weight: bold;">Here is an example of a
+region with H3K4Me3, H3K4Me1,
+ORF and RNA-seq tracks loaded</span></a>.&nbsp; Notice the region
+between
+TGME49_043540 and TGME49_043550.</span><br>
+</div>
+<br>
+<ol>
+<ul>
+<li>An example
+region of the <span style="font-style: italic;">Toxoplasma</span>
+genome with ncRNA sequence coverage-plot tracks turned on can be
+accessed <a
+href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=415135;stop=455134;ref=TGME49_chrVI;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=9c4180ebae94066bac7a2db3234310ac;label=Scaffolds:overview-Gene-NcRNA_Me49-NcRNA_Me49_NU-NcRNA_RH-NcRNA_RH_NU-mRNA_VEG-mRNA_VEG_NU"><span
+style="font-weight: bold;">here</span></a> (note: experiment was
+performed using RH and ME49 parasites and was mapped to ME49 sequence
+in ToxoDB.&nbsp; RH data was also mapped against the GT1 strain).</li>
+</ul>
+</ol>
+<ul>
+<li>New<span style="font-style: italic;"> T. gondii</span> ME49 <a
+href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=2624898;stop=2724897;ref=TGME49_chrVI;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=9c4180ebae94066bac7a2db3234310ac;label=Scaffolds:overview-Gene-CosmidsLorenzi"><span
+style="font-weight: bold;">cosmid end library mapping</span></a> to
+the genome are now available in the genome browser.&nbsp; The libraries
+were generated in Laura Knolls laboratory, University of Wisconsin.</li>
+</ul>
+<ul>
+<li>Updated restriction fragment polymorphism (RFLP) data provided by
+Chunlei Su, University of Tennessee.&nbsp; RFLP data may be searched
+based on <a style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=IsolateQuestions.IsolateByRFLPGenotype">Genotype</a>
+or&nbsp; <a
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=IsolateQuestions.IsolateByGenotypeNumber"><span
+style="font-weight: bold;">Genotype Number</span></a>.</li>
+</ul>
+<ul>
+<li>The unannotated genome sequence <span style="font-style: italic;">T.
+gondii</span>
+strains FOU provided by the Toxoplasma white paper sequencing project
+is now available.&nbsp; This data can be searched from the&nbsp;
+"Genomic Sequences" section under
+the heading "Identify other data types" on the home page.&nbsp; Genome
+sequences from this effort will be incorporated into ToxoDB release as
+they become available.&nbsp; The latest updated information on the
+status of sequencing is available <a
+href="https://sites.google.com/site/toxoplasmagondiigscidproject/home"><span
+style="font-weight: bold;">here</span></a>.&nbsp; The sequencing white
+paper is available <a
+href="http://toxodb.org/toxo/communityDownload.do?fname=Toxo_Sequencing_WhitePaper.pdf"><span
+style="font-weight: bold;">here</span></a>.</li>
+</ul>
+<ul>
+<li>Genome sequence and annotation of <span
+style="font-style: italic;">Eimeria</span> <span
+style="font-style: italic;">tenella</span> graciously provided
+prepublication by Adam Reid and colleagues (Parasite Genomics group at
+the Wellcome Trust Sanger Institute, UK).&nbsp; Annotated genomes may
+be investigated in ToxoDB using multiple searches for example, genes
+may be identified based on text, ID, BLAST, GO
+terms, presence of transmembrane domains or signal peptides, orthology,
+etc.&nbsp; Here is a search strategy that identifies all <span
+style="font-style: italic;">E. tenella</span> genes predicted to
+contain a secretory signal peptide and are possible kinases (note: the
+orthology step at the end allows identification of possible gene
+families):</li>
+</ul>
+<div style="margin-left: 40px; font-weight: bold;">&nbsp;&nbsp; <a
+href="http://toxodb.org/toxo/im.do?s=b53f2986c60669e6">http://toxodb.org/toxo/im.do?s=b53f2986c60669e6</a></div>
+<ul>
+<ul>
+</ul>
+</ul>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span>
+<ul style="text-align: justify;">
+<li>You can now view intron/exon boundaries based on available RNA
+sequence data.&nbsp; boundary determination was performed using the <a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21775302">RNA-Seq Unified
+Mapper (RUM)</a>. To view intron/exon boundary calls, turn on the
+"RNA-seq alignments RUM Intron" track in the genome browser.&nbsp; <a
+style="font-weight: bold;"
+href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=3392361;stop=3432360;ref=TGME49_chrIX;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=9c4180ebae94066bac7a2db3234310ac;label=Scaffolds:overview-Gene-RUMIntronTgVEGmRNAGreg-RUMIntronTgVEGReid;h_feat=tgme49_089570@beige">Here
+is a link to a gene</a>
+that may require reevaluation based on RUM intron analysis.&nbsp; To
+get additional information mouse over the tracks and/or
+the track names.</li>
+</ul>
+<br>
+<a style="font-weight: bold;"
+href="https://www.facebook.com/pages/EuPathDB/133123003429972"><span
+style="font-style: italic;">EuPathDB is now on FaceBook</span></a> <br>
+<br>
+<div style="text-align: justify;"><small><br>
+<a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small> <br>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">ToxoDB 6.4 Released</attribute>
        <attribute name="date">03 May 2011 15:00</attribute>
        <attribute name="tag">toxo5_11_news</attribute>
