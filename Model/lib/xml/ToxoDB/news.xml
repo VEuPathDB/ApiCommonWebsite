@@ -48,22 +48,40 @@ href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=405135;stop=505134;ref=TGM
 style="font-weight: bold;">here</span></a> (note: experiment was
 performed using VEG parasites and was mapped to both VEG and ME49
 sequence in ToxoDB). &nbsp; This data is represented in two
-tracks:&nbsp; <br>
-</li>
+tracks:&nbsp;&nbsp;</li>
 </ul>
 </ul>
-<ol>
-<ol>
-<ol>
-<li>&nbsp;"<span style="font-style: italic;">T.gondii</span> VEG
+<br>
+<ul>
+<ul>
+<ul>
+<ul>
+<li>&nbsp;"<span style="font-style: italic;">T.gondii</span>
+VEG
 mRNA RNAseq - Unique Aligners - (log2 Coverage) (Gregory)" which
 includes strand-specific coverage plots (Blue for the forward strand
-and red for the reverse strand). <br>
-</li>
-<li>"<span style="font-style: italic;">T.gondii </span>VEG mRNA
+and red for the reverse strand). </li>
+</ul>
+</ul>
+</ul>
+</ul>
+<ul>
+<ul>
+<ul>
+<ul>
+<li>"<span style="font-style: italic;">T.gondii </span>VEG
+mRNA
 RNAseq - Nonunique Aligners - (log2 Coverage) (Gregory)" which shows
 coverage plots for regions where probes did not uniquely align (ie.
 gives and indication of possible repetitive regions).</li>
+</ul>
+</ul>
+</ul>
+</ul>
+<br>
+<ol>
+<ol>
+<ol>
 </ol>
 </ol>
 </ol>
@@ -97,6 +115,7 @@ style="font-weight: bold;">cosmid end library mapping</span></a> to
 the genome are now available in the genome browser.&nbsp; The libraries
 were generated in Laura Knolls laboratory, University of Wisconsin.</li>
 </ul>
+<br>
 <ul>
 <li>Updated restriction fragment polymorphism (RFLP) data provided by
 Chunlei Su, University of Tennessee.&nbsp; RFLP data may be searched
@@ -106,6 +125,7 @@ or&nbsp; <a
 href="http://toxodb.org/toxo/showQuestion.do?questionFullName=IsolateQuestions.IsolateByGenotypeNumber"><span
 style="font-weight: bold;">Genotype Number</span></a>.</li>
 </ul>
+<br>
 <ul>
 <li>The unannotated genome sequence <span style="font-style: italic;">T.
 gondii</span>
@@ -122,6 +142,7 @@ paper is available <a
 href="http://toxodb.org/toxo/communityDownload.do?fname=Toxo_Sequencing_WhitePaper.pdf"><span
 style="font-weight: bold;">here</span></a>.</li>
 </ul>
+<br>
 <ul>
 <li>Genome sequence and annotation of <span
 style="font-style: italic;">Eimeria</span> <span
@@ -137,6 +158,7 @@ contain a secretory signal peptide and are possible kinases (note: the
 orthology step at the end allows identification of possible gene
 families):</li>
 </ul>
+<br>
 <div style="margin-left: 40px; font-weight: bold;">&nbsp;&nbsp; <a
 href="http://toxodb.org/toxo/im.do?s=b53f2986c60669e6">http://toxodb.org/toxo/im.do?s=b53f2986c60669e6</a></div>
 <ul>
@@ -163,15 +185,11 @@ get additional information mouse over the tracks and/or
 the track names.</li>
 </ul>
 <br>
-<a style="font-weight: bold;"
-href="https://www.facebook.com/pages/EuPathDB/133123003429972"><span
-style="font-style: italic;">EuPathDB is now on FaceBook</span></a> <br>
-<br>
-<div style="text-align: justify;"><small><br>
-<a href="http://twitter.com/eupathdb"><span
-style="font-weight: bold; font-style: italic;">Follow EuPathDB on
-Twitter</span></a></small> <br>
-</div>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
 </body>
           ]]>
        </attribute>
