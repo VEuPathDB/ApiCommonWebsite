@@ -16,6 +16,53 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">AmoebaDB 1.5 Released</attribute>
+       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="tag">amoeba7_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;"><span style="font-weight: bold;"></span><span
+style="font-weight: bold;">We are pleased to announce the release
+of AmoebaDB 1.5</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">E. histolytica </span>Rahman<span
+style="font-style: italic;"> </span>and<span
+style="font-style: italic;"> </span>moshkovskii<span
+style="font-style: italic;"> </span>genome
+sequence is now available in AmoebaDB.&nbsp; This data was graciously
+provided prepublication by Gareth Weedall and Neil Hall (Institute of
+Integrative Biology, University of Liverpool, UK).&nbsp;Genomic
+sequence data
+from unannotated genomes can be searched from the "Genomic Sequences"
+section under the heading "Identify other data types" on the home
+page. Sequence data may be searched based on <a
+style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">ID</a>,
+<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">organism</a>
+or <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a>.</li>
+</ul>
+<br><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">AmoebaDB 1.4 Released</attribute>
        <attribute name="date">03 May 2011 15:00</attribute>
        <attribute name="tag">amoeba5_11_news</attribute>

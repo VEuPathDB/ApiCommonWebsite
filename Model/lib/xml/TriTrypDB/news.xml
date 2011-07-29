@@ -19,6 +19,86 @@
     </record>
 -->
 <record>
+       <attribute name="headline">TriTrypDB 3.2 Released</attribute>
+       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="tag">tryp7_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;">
+<span style="font-weight: bold;">We are pleased to announce the release
+of TriTrypDB 3.2</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. brucei</span> RNA sequencing
+Data (<a style="font-weight: bold;"
+href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0018425">Archer
+<span style="font-style: italic;">et. al.</span></a>)</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>To search this data, go to the "<a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">Identify
+Genes based on RNA Seq Evidence</a>" and select either fold change
+(with or without P value) or percentile searches under the heading
+"Cell Cycle (Archer)".</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li>Graphs and tables representing the expression and
+percentile values for individual genes are available in the
+"Expression" section of gene pages.</li>
+</ul>
+</ul>
+<ul style="text-align: justify;">
+<ul>
+<li><a style="font-weight: bold;"
+href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=210712;stop=244749;ref=Tb927_11_01_v4;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=073d784020f7b5bc1fc42a3aad001e93;label=Gene-RnaSeqEarlyG1-RnaSeqLateG1-RnaSeqSPhase-RnaSeqG2Phase;h_feat=tb11.03.0240@yellow">Genome
+browser tracks</a> are available that show RNA-seq coverage plots
+throughout the cell cycle.&nbsp; <br>
+</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">T. cruzi </span>comparative
+genomic hybridization of 16 strains (<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21385342">Minning <span
+style="font-style: italic;">et. al.</span></a>).</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>This data is available as a genome browse track.&nbsp;
+Amplifications are indicated as positive values on the graph while
+deletions are indicated as negative values.&nbsp; A link showing this
+data on the entire chromosome 37 of <span style="font-style: italic;">T.
+cruzi</span> can be accessed <a
+href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1;stop=1355803;ref=TcChr37-S;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=073d784020f7b5bc1fc42a3aad001e93;label=Gene-CGH;h_feat=tc00.1047053507641.290@beige"><span
+style="font-weight: bold;">here</span></a>.</li>
+</ul>
+</ul>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+<br>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">TriTrypDB 3.1 Released</attribute>
        <attribute name="date">03 May 2011 15:00</attribute>
        <attribute name="tag">tryp5_11_news</attribute>
