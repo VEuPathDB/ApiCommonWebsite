@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+
+use lib "$ENV{GUS_HOME}/lib/perl";
+use WDK::Model::CommandHelper;
+use Getopt::Long qw(GetOptions);
+use ApiCommonData::Load::TuningConfig::Utils;
+
+my $GUS_HOME = $ENV{GUS_HOME};
+my $CLASSPATH = &WDK::Model::CommandHelper::getJavaClasspath($GUS_HOME);
+
+my ($propfile, $instance, $schema, $password, $suffix, $project, $version, $subversionDir, $debug);
+
+GetOptions("propfile=s" => \$propfile,
+           "instance=s" => \$instance,
+           "schema=s" => \$schema,
+           "password=s" => \$password,
+           "suffix=s" => \$suffix,
+           "project=s" => \$project,
+           "version=s" => \$version,
+           "subversionDir=s" => \$subversionDir,
+           "debug!" => \$debug,
+	  );
+
+($instance, $schema, $password) = ApiCommonData::Load::TuningConfig::Utils::getDbLoginInfo($instance, $propfile, $schema, $password);
+
+my $datasetId = 1025689; # dataset ID of SSGCID's Google Fusion Table
+my $tuningTable = ssgcid;
+my $columnList = "target,eupathdb,status,selection_criteria,has_clone,has_protein";
+
+open(PROGRAM, "|java $sysProps -classpath $CLASSPATH org.apidb.apicommonwebsite.model.fusiontables.FusionTable $datasetId $tuningTable $suffix $columnList");
+print PROGRAM "$instance\n$schema\n$password";
+close(PROGRAM);
