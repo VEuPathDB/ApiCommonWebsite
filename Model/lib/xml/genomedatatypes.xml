@@ -830,8 +830,8 @@
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.braziliensis</attribute>
-       <attribute name = "Taxon_ID">5660</attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Taxon_ID">420245</attribute>
+       <attribute name = "Strain">MHOM/BR/75/M2904</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">32.09</attribute>
