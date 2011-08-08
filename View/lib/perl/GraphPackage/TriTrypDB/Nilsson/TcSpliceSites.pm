@@ -19,7 +19,8 @@ sub init {
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
 
   # same as in database - might need to be changed
-  my $xAxisLabels = ["ama wt","ama J1 ko","meta wt","meta J1 ko","epi wt","epi J1 ko","trypo wt","trypo J1 ko"];
+#  my $xAxisLabels = ["ama wt","ama J1 ko","meta wt","meta J1 ko","epi wt","epi J1 ko","trypo wt","trypo J1 ko"];
+  my $xAxisLabels = ["Amas. JBP1 ko","Amas. wild type","Epimas. JBP1 ko","Epimas. wild type","Metacyc. JBP1 ko","Metacyc. wild type","Trypo. JBP1 ko","Trypo. wild type"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
