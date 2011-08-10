@@ -11,6 +11,10 @@ sub init {
 
   $self->SUPER::init(@_);
 
+  $self->setScreenSize(250);
+  $self->setPlotWidth(450);
+  $self->setBottomMarginSize(6);
+
   my $colors = ['#D87093', '#D87093','#87CEEB', '#87CEEB'];
 
   my $legend = ["Wild Type", "GCN5-A Knockout", ];
@@ -23,7 +27,7 @@ sub init {
                y_axis_label => 'RMA Value (log2)',
                colors => $colors,
              },
-      pct => {profiles => ['Profiles of GSE22100 GCN5-AE-GEOD-10022 array from Sullivan'],
+      pct => {profiles => ['Percentiles of GSE22100 GCN5-AE-GEOD-10022 array from Sullivan'],
               # x_axis_labels => [],
               y_axis_label => 'Percentile',
               colors => $colors,
