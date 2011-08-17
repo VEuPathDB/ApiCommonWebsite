@@ -15,6 +15,7 @@ sub init {
 
   # Defaults
   $self->setForceNoLines(1);
+  $self->setVaryGlyphByXAxis(1);
 
   return $self;
 }
