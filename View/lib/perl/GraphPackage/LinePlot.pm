@@ -11,6 +11,9 @@ use ApiCommonWebsite::View::GraphPackage::AbstractPlot;
 sub getForceNoLines              { $_[0]->{'_force_no_lines'   }}
 sub setForceNoLines              { $_[0]->{'_force_no_lines'   } = $_[1]; $_[0] }
 
+sub getVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'   }}
+sub setVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'   } = $_[1]; $_[0] }
+
 #--------------------------------------------------------------------------------
 
 sub init {
@@ -124,6 +127,7 @@ sub rString {
   $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
 
   my $forceNoLines = defined($self->getForceNoLines()) ? 'TRUE' : 'FALSE';
+  my $varyGlyphByXAxis = defined($self->getVaryGlyphByXAxis()) ? 'TRUE' : 'FALSE';
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rTopMarginTitle = $rTopMarginTitle ? $rTopMarginTitle : "";
@@ -333,13 +337,20 @@ for(i in 1:nrow(lines.df)) {
   }
 
 
+  my.color = the.colors[i];
+  if($varyGlyphByXAxis) {
+    my.pch = points.pch;
+    my.color = the.colors;
+  }
+
+
   points(x.coords,
        new.points[i,],
-       col  = the.colors[i],
-       bg   = the.colors[i],
+       col  = my.color,
+       bg   = my.color,
        type = \"p\",
        pch  = my.pch,
-       cex  = 0.5
+       cex  = 1
        );
 }
 
