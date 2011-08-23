@@ -8,6 +8,14 @@ use ApiCommonWebsite::View::GraphPackage::AbstractPlot;
 
 #--------------------------------------------------------------------------------
 
+sub getForceNoLines              { $_[0]->{'_force_no_lines'   }}
+sub setForceNoLines              { $_[0]->{'_force_no_lines'   } = $_[1]; $_[0] }
+
+sub getVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'   }}
+sub setVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'   } = $_[1]; $_[0] }
+
+#--------------------------------------------------------------------------------
+
 sub init {
   my $self = shift;
   my $args = ref $_[0] ? shift : {@_};
@@ -118,6 +126,9 @@ sub rString {
 
   $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
 
+  my $forceNoLines = defined($self->getForceNoLines()) ? 'TRUE' : 'FALSE';
+  my $varyGlyphByXAxis = defined($self->getVaryGlyphByXAxis()) ? 'TRUE' : 'FALSE';
+
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
   $rTopMarginTitle = $rTopMarginTitle ? $rTopMarginTitle : "";
 
@@ -168,6 +179,11 @@ $rAdjustProfile
   element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
    is.numeric.element.names = !is.na(element.names.numeric);
 
+  if($forceNoLines) {
+    element.names.numeric = NA;
+    is.numeric.element.names = is.numeric.element.names == 'BANANAS';
+  }
+
   for(j in 1:length(element.names)) {
     this.name = element.names[j];
     this.name.numeric = as.character(element.names.numeric[j]);
@@ -196,8 +212,8 @@ $rAdjustProfile
 isTimeSeries = FALSE;
 
 x.coords = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(lines.df), perl=T));
-
 x.coords.rank = rank(x.coords, na.last=$pointsLast);
+
 
 # if the points df is all NA's that means we can plot as Time Series
 if(sum(is.na(points.df)) == ncol(points.df) * nrow(points.df)) {
@@ -214,12 +230,19 @@ if(sum(is.na(points.df)) == ncol(points.df) * nrow(points.df)) {
   x.min = 1;
   x.max = length(x.coords);
 
-  y.max = max(y.max, max(points.df, na.rm=T), max(lines.df, na.rm=T), na.rm=TRUE);
-  y.min = min(y.min, min(points.df, na.rm=T), min(lines.df, na.rm=T), na.rm=TRUE);
+  if(sum(is.na(lines.df)) == ncol(lines.df) * nrow(lines.df)) {
+    y.max = max(y.max, max(points.df, na.rm=T), na.rm=TRUE);
+    y.min = min(y.min, min(points.df, na.rm=T), na.rm=TRUE);
 
+  } else {
+    y.max = max(y.max, max(points.df, na.rm=T), max(lines.df, na.rm=T), na.rm=TRUE);
+    y.min = min(y.min, min(points.df, na.rm=T), min(lines.df, na.rm=T), na.rm=TRUE);
+  }
   x.coords = seq(x.min, x.max);
+  if($forceNoLines) {
+    x.coords.rank = x.coords;
+  }
 }
-
 
 new.points = as.data.frame(matrix(NA, ncol=ncol(points.df), nrow=nrow(points.df)));
 new.lines = as.data.frame(matrix(NA, ncol=ncol(lines.df), nrow=nrow(lines.df)));
@@ -314,13 +337,20 @@ for(i in 1:nrow(lines.df)) {
   }
 
 
+  my.color = the.colors[i];
+  if($varyGlyphByXAxis) {
+    my.pch = points.pch;
+    my.color = the.colors;
+  }
+
+
   points(x.coords,
        new.points[i,],
-       col  = the.colors[i],
-       bg   = the.colors[i],
+       col  = my.color,
+       bg   = my.color,
        type = \"p\",
        pch  = my.pch,
-       cex  = 0.5
+       cex  = 1
        );
 }
 
