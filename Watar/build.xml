@@ -70,6 +70,7 @@
      >
         <reporter classname="org.testng.reporters.XMLReporter">
               <property name="splitClassAndPackageNames" value="true"/>
+              <property name="stackTraceOutputMethod" value="1"/>
         </reporter>
         <classpath refid="project_classpath"/>
         <xmlfileset dir="${targetDir}/config" includes="smoketest_ng.xml" />
