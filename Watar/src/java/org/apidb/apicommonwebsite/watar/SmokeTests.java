@@ -31,28 +31,37 @@ public class SmokeTests {
         webappname = System.getProperty("webappname");
     }
 
-    //checking HEAD response code for Home page
+    /**
+      * Checking HEAD response code for Home page
+    **/
     @Test(description="Assert HTTP header status is 200 OK for home page.")
     public void HomePage_HttpHeaderStatusIsOK() throws Exception {
         String url = baseurl + "/" + webappname + "/";
         assertHeaderStatusMessageIsOK(url);
     }
 
-    //checking HEAD response code for WsfService page
-    // http://integrate.plasmodb.org/plasmo.integrate/services/WsfService
+    /**
+      * Checks the HEAD response code for WsfService page as a test of Axis installation.
+      * example: http://integrate.plasmodb.org/plasmo.integrate/services/WsfService
+    **/
     @Test(description="Assert HTTP header status is 200 OK for WsfService url as test of Axis installation.")
     public void WsfServicePage_HttpHeaderStatusIsOK() throws Exception {
         String url = baseurl + "/" + webappname + "/services/WsfService";
         assertHeaderStatusMessageIsOK(url);
     }
 
-    @Test(description="Assert HTTP header status is 200 OK for GeneRecord page.", dataProvider="defaultGeneId")
+    @Test(description="Assert HTTP header status is 200 OK for GeneRecord page.", 
+          dataProvider="defaultGeneId",
+          dependsOnMethods={"HomePage_HttpHeaderStatusIsOK"})
     public void GeneRecordPage_HttpHeaderStatusIsOK(String geneId) throws Exception {
         if (geneId == null) throw new Exception("unable to get gene id for testing");
         String url = baseurl + "/" + webappname + geneRecordPath + geneId;
         assertHeaderStatusMessageIsOK(url);
     }
 
+    /** 
+      * Returns the default value from the Gene ID Quick Search form on the front page.
+    **/
     @DataProvider(name="defaultGeneId")
     private Object[][] getDefaultGeneIdFromQuickSearchForm() throws Exception {
         try {
@@ -71,7 +80,9 @@ public class SmokeTests {
         
     }
 
-    /** assert HEAD request returns 200 OK for the given url **/
+    /** 
+      * Assert HEAD request returns 200 OK for the given url.
+    **/
     private void assertHeaderStatusMessageIsOK(String url) throws Exception {
 
         try {
