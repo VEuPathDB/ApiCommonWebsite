@@ -707,7 +707,7 @@
    </record>
 <record>
        <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Elmeria</attribute>
+       <attribute name = "Family">Eimeria</attribute>
        <attribute name = "Organism">E.tenella</attribute>
        <attribute name = "Taxon_ID">413949</attribute>
        <attribute name = "Strain">Houghton</attribute>
@@ -729,6 +729,31 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
+<record>
+       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
+       <attribute name = "Family">Gregarina</attribute>
+       <attribute name = "Organism">G.niphandrodes</attribute>
+       <attribute name = "Taxon_ID">110365</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">06-27-2011</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
+       <attribute name = "Genome_Size">15.36</attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
 <record>
        <attribute name = "Website">ToxoDB, EuPathDB</attribute>
        <attribute name = "Family">Neospora</attribute>
@@ -764,7 +789,7 @@
        <attribute name = "Genome_Size">63.01</attribute>
        <attribute name = "Gene_Count">9239**</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">FOU,VEG,GT1,RH,CkUg2,p89,VAND,MAS</attribute>
+       <attribute name = "Additional_Strains">VEG,GT1,RH,CkUg2,p89,VAND,MAS,RH,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes">apicoplast</attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
