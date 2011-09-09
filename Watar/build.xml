@@ -74,7 +74,6 @@
         </reporter>
         <classpath refid="project_classpath"/>
         <xmlfileset dir="${targetDir}/config" includes="smoketest_ng.xml" />
-        <sysproperty key="org.uncommons.reportng.title" value="EuPathDB BRC Test Report"/>
         <sysproperty key="baseurl" value="${baseurl}"/>
         <sysproperty key="webappname" value="${webappname}"/>
     </testng>
