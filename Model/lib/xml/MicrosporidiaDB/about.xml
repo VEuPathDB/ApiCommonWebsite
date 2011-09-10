@@ -23,23 +23,6 @@ provided by community researchers . The database includes supplemental bioinform
 </attribute>
    </record>
 
-  
-
-   <record>
-       <attribute name="title">Organisms included in MicrosporidiaDB</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Encephalitozoon cuniculi</i></li>
-<li><i>Encephalitozoon intestinalis</i></li>
-<li><i>Enterocytozoon bieneusi</i></li>
-</ul>
-       ]]>
-       </attribute>
-   </record>
-
-
 <record>
        <attribute name="title">Citing Data Providers</attribute>
        <attribute name="tag">citingproviders</attribute>

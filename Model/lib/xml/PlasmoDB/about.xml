@@ -21,37 +21,6 @@ PlasmoDB is a genome database for the genus <i>Plasmodium</i>, a set of single-c
        </attribute>
    </record>
 
-   <record>
-       <attribute name="title">Organisms</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-Annotated genomes:
-<ul>
-<li><i>Plasmodium falciparum</i></li>
-<li><i>Plasmodium vivax</i></li>
-<li><i>Plasmodium yoelii</i></li>
-<li><i>Plasmodium berghei</i></li>
-<li><i>Plasmodium chabaudi</i></li>
-<li><i>Plasmodium knowlesi</i></li>
-</ul>
-<br>
-
-Unannotated genomes:
-<ul>
-<li><i>Plasmodium reichenowi</i></li>
-<li><i>Plasmodium gallinaceum</i></li>
-</ul>
-<br>
-
-Others:
-<ul>
-<li>environmental isolate sequences from numerous species</li>
-</ul>
-
-       ]]>
-       </attribute>
-   </record>
 
  <record>
        <attribute name="title">Citing Data Providers</attribute>

@@ -24,22 +24,6 @@ provided by community researchers . The database includes supplemental bioinform
    </record>
 
   
-
-   <record>
-       <attribute name="title">Organisms included in AmoebaDB</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Entamoeba dispar</i></li>
-<li><i>Entamoeba histolytica</i></li>
-<li><i>Entamoeba invadens</i></li>
-</ul>
-       ]]>
-       </attribute>
-   </record>
-
-
 <record>
        <attribute name="title">Citing Data Providers</attribute>
        <attribute name="tag">citingproviders</attribute>
