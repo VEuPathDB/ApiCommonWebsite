@@ -21,22 +21,6 @@ PiroplasmaDB is a genome database for the genus <i>Piroplasma</i>........
        </attribute>
    </record>
 
-   <record>
-       <attribute name="title">Organisms</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Babesia bovis</i></li>
-<li><i>Theileria annulata </i></li>
-<li><i>Theileria parva </i></li>
-</ul>
-<br>
-
-       ]]>
-       </attribute>
-   </record>
-
 
 <record>
        <attribute name="title">Citing Data Providers</attribute>

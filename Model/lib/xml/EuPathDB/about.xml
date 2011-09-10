@@ -33,31 +33,7 @@ probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), prot
        </attribute>
    </record>
 
-   <record>
-       <attribute name="title">Organisms</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li> <i>Cryptosporidium</i>
-<li> <i>Giardia</i> 
-<li> <i>Entamoeba</i>
-<li> <i>Encephalitozoon</i>
-<li> <i>Leishmania</i> 
-<li> <i>Neospora</i> 
-<li> <i>Plasmodium</i> 
-<li>  <i>Toxoplasma</i> 
-<li> <i>Trichomonas</i>
-<li> <i>Trypanosoma</i>
-</ul>
-
-<br>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-
-       ]]>
-       </attribute>
-   </record>
-
-<record>
+ <record>
        <attribute name="title">Data Statistics</attribute>
        <attribute name="tag">stats</attribute>
        <attribute name="text">

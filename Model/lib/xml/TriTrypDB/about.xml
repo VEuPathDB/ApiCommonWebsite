@@ -26,25 +26,6 @@ Institute (<a href="http://www.sbri.org">SBRI</a>).
 </attribute>
    </record>
 
-  <record>
-       <attribute name="title">Organisms included in TriTrypDB</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Trypanosoma brucei</i></li>
-<li><i>Trypanosoma cruzi</i></li>
-<li><i>Leishmania major</i></li>
-<li><i>Leishmania infantum</i></li>
-<li><i>Leishmania braziliensis</i></li>
-<li><i>Leishmania mexicana</i></li>
-<li><i>Trypanosoma congolense</i></li>
-<li><i>Trypanosoma vivax</i></li>
-</ul>
-       ]]>
-       </attribute>
-   </record>
-
 <record>
        <attribute name="title">Citing Data Providers</attribute>
        <attribute name="tag">citingproviders</attribute>

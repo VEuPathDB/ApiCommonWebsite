@@ -21,22 +21,6 @@ ToxoDB is a genome database for the genus <i>Toxoplasma</i>, a set of single-cel
        </attribute>
    </record>
 
-   <record>
-       <attribute name="title">Organisms</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Toxoplasma gondii (ME49, RH, GT1, Veg strains)</i></li>
-<li><i>Neospora caninum </i></li>
-<li>environmental isolate sequences from numerous species</li>
-</ul>
-<br>
-
-       ]]>
-       </attribute>
-   </record>
-
 
 <record>
        <attribute name="title">Citing Data Providers</attribute>

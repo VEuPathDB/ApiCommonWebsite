@@ -22,23 +22,6 @@ the parasite Cryptosporidium. CryptoDB integrates whole genome sequence and anno
    </record>
 
   
-
-   <record>
-       <attribute name="title">Organisms included in CryptoDB</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Cryptosporidium parvum</i></li>
-<li><i>Cryptosporidium hominis</i></li>
-<li><i>Cryptosporidium muris</i></li>
-<li>environmental isolate sequences from numerous species</li>
-</ul>
-       ]]>
-       </attribute>
-   </record>
-
-
  <record>
        <attribute name="title">Citing Data Providers</attribute>
        <attribute name="tag">citingproviders</attribute>

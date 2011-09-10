@@ -43,21 +43,7 @@ the prokaryotic / eukaryotic divergence.
        </attribute>
    </record>
 
-   <record>
-       <attribute name="title">Organisms</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Giardia Assemblage A isolate WB (Giardia lamblia WBC6, ATCC 50803)</i></li>
-<li><i>Giardia Assemblage B isolate GS</i></li>
-<li><i>Giardia Assemblage E isolate P15</i></li>
-</ul>
-<br>
 
-       ]]>
-       </attribute>
-   </record>
 
  <record>
        <attribute name="title">Citing Data Providers</attribute>

@@ -23,18 +23,6 @@ The T. vaginalis sequencing effort was complemented by EST data from the Chang G
        </attribute>
    </record>
 
-   <record>
-       <attribute name="title">Organisms</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li><i>Trichomonas vaginalis</i></li>
-</ul>
-       ]]>
-       </attribute>
-   </record>
-
 <record>
        <attribute name="title">Citing Data Providers</attribute>
        <attribute name="tag">citingproviders</attribute>
