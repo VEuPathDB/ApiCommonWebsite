@@ -123,20 +123,20 @@ sub run {
 
          eval "require $class";
          my $_gp = eval {
-           $class->new({dataPlotterArg => $typeArg});
+           $class->new({dataPlotterArg => $typeArg,
+                        QueryHandle => $_qh,
+                        Id => $id,
+                        SecondaryId => $sid,
+                        Format => $gddFormat,
+                        OutputFile => $fmt_f,
+                        Thumbnail => $thumbnail_b,
+                        VisibleParts => \@visibleParts,
+                       });
          };
 
 	 if ($@) {
            die "Unable to load driver for '$type' with arg $typeArg : $@";
 	 }
-
-	 $_gp->setQueryHandle($_qh);
-	 $_gp->setId($id);
-   $_gp->setSecondaryId($sid);
-	 $_gp->setFormat($gddFormat);
-   $_gp->setOutputFile($fmt_f);
-   $_gp->setThumbnail($thumbnail_b);
-   $_gp->setVisibleParts(\@visibleParts);
 
 	 my @files = $_gp->run();
 
