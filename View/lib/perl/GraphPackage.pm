@@ -22,7 +22,7 @@ sub new {
 
    my $Self = bless $Args, $Class;
 
-   $Self->init(@_);
+   $Self->init($Args);
 
    return $Self;
 }
