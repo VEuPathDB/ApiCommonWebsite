@@ -1,14 +1,15 @@
 package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Ferdig::DD2_X_HB3;
 
 use strict;
-use vars qw( @ISA );
-
-use ApiCommonWebsite::Model::CannedQuery::Profile;
+use vars qw( @ISA);
 
 use Data::Dumper;
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::ScatterPlot );
+use ApiCommonWebsite::Model::CannedQuery::Profile;
+
 use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
+
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::ScatterPlot);
 
 sub init {
   my $self = shift;
@@ -31,15 +32,19 @@ sub init {
                            ],
                y_axis_label => 'Expression Value',
                x_axis_label => ' ',
-               default_y_max => 2,
-               default_y_min => -2,
+               default_y_max => 1,
+               default_y_min => -1,
+               make_y_axis_fold_incuction => 1,
+               plot_title => 'Expression Values for the progeny of HB3 X DD2',
                 },
      });
+
+  $self->initColorsAndGlyphs();
 
   return $self;
 }
 
-sub run {
+sub initColorsAndGlyphs {
   my $self = shift;
 
   my $parentalAlleles = $self->queryParentalAlleles();
@@ -71,16 +76,16 @@ sub run {
       push @pchs, 20;
     }
   }
+
   $self->{_profile_sets_hash}->{expr}->{colors} = \@colors;
   $self->{_profile_sets_hash}->{expr}->{points_pch} = \@pchs;
-
-  $self->SUPER::run(@_);
 }
 
 sub queryParentalAlleles {
   my ($self) = @_;
 
   my $secondaryId = $self->getSecondaryId();
+
   my $_qh   = $self->getQueryHandle();
 
   my ($profile, $key);

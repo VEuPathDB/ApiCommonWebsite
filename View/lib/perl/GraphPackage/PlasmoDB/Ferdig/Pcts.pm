@@ -18,81 +18,44 @@ sub init {
   $self->setScreenSize(300);
   $self->setPlotWidth(500);
 
-  my $colors = ['#E9967A', '#4682B4'];
-
-  my $legend = ['DD2', 'HB3'];
-
-  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 1});
-
   $self->setProfileSetsHash
-    ({pct => {profiles => ['Percentiles of DD2-HB3 expression from Ferdig - Red'],
+    ({pct => {profiles => ['Percentiles of DD2-HB3 expression from Ferdig - Red',
+                           'Percentiles of DD2-HB3 expression from Ferdig - Green',
+                          ],
                y_axis_label => 'Percentile',
-               x_axis_label => ' ',
+               #x_axis_label => ' ',
                default_y_max => 50,
+               colors => ['#CCCCCC','dark blue'],
              },
      });
+
+  $self->initXAxisLabels();
 
   return $self;
 }
 
-sub run {
+sub initXAxisLabels {
   my $self = shift;
 
-  my $parentalAlleles = $self->queryParentalAlleles();
-
-  my $legend = $self->getMainLegend();
-  my $legendColors = $legend->{colors};
-
-  my $lookup = {'D' => [$legendColors->[0]],
-                'DD2' => [$legendColors->[0]],
-                'H' => [$legendColors->[1]],
-                'HB3' => [$legendColors->[1]],
-               };
-
-  my (@colors);
-
-  foreach(@$parentalAlleles) {
-    s/\s//;
-
-    my $color = $lookup->{$_}->[0];
-
-    if($color) {
-      push @colors, $color;
-    } 
-    else {
-      push @colors , '#C0C0C0';
-    }
-  }
-  $self->{_profile_sets_hash}->{pct}->{colors} = \@colors;
-
-  $self->SUPER::run(@_);
+  my $xAxisLabels = $self->queryFirstProfileXAxisLabels();
+  $self->{_profile_sets_hash}->{pct}->{x_axis_labels} = $xAxisLabels;
 }
 
-
-sub queryParentalAlleles {
+sub queryFirstProfileXAxisLabels {
   my ($self) = @_;
 
-  my $secondaryId = $self->getSecondaryId();
   my $_qh   = $self->getQueryHandle();
 
-  my ($profile, $key);
-  if(defined($secondaryId)) {
-    $key = 'VALUE';
+  my $profileName = $self->{_profile_sets_hash}->{pct}->{profiles}->[0];
 
-    $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => "_haploblockprofile",
-        Id           => $secondaryId,
-        ProfileSet   => 'Haplotype profiles of P falciparum HB3-DD2 progeny - Ferdig eQTL experiment',
-      );
-  }
-  else {
+  my ($profile, $key);
+
     $key = 'NAME';
     $profile = ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-      ( Name         => "_haploblocknames",
+      ( Name         => "_firstProfileXAxis",
         Id           => $self->getId(),
-        ProfileSet   => 'Percentiles of DD2-HB3 expression from Ferdig - Red',
+        ProfileSet   => $profileName,
       );
-  }
 
   my $simpleValues = $profile->getSimpleValues($_qh, {});
 
