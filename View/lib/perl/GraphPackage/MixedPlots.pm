@@ -52,13 +52,14 @@ sub init {
   $self->SUPER::init($args);
 
   # Defaults
-  $self->setScreenSize(200);
+  $self->setScreenSize(225);
   $self->setBottomMarginSize(5);
 
   return $self;
 }
 
 #--------------------------------------------------------------------------------
+
 
 sub makeRPlotStrings {
   my ($self) = @_;

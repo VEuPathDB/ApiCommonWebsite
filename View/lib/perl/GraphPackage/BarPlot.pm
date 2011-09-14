@@ -265,7 +265,7 @@ suppressWarnings(arrows(plotXPos, profile,  plotXPos, profile+stdev, angle=90, c
 
 
 box();
-
+plasmodb.title(\"$plotTitle\");
 
 ";
 
