@@ -1,0 +1,186 @@
+#!/bin/sh
+
+# Unpack and install GBrowse and BioPerl 5 from ApicommonWebsite archived 
+# files.
+
+# Requires same webPropFile used in WDK build
+
+
+GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
+GBROWSE_TAR_FILE=GBrowse-2.39.tar.gz
+BIOPERL_TAR_FILE=bioperl_1.60_biographics_2.11_samtools_1.29.tar.gz
+
+BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
+
+get_install_paths() {
+    WEB_PROP_FILE=$1
+    if [ ! -e "$WEB_PROP_FILE" ]; then 
+        echo "specified webPropFile '$WEB_PROP_FILE' not found"
+        exit 1
+    fi
+    set_env_from_prop_file "$WEB_PROP_FILE"
+}
+
+set_env_from_prop_file() {
+    while read prop
+    do
+     export $(echo "$prop" |  \
+        sed "/^ *#/d;         \
+             /^[ \t]*$/d;     \
+             s/ *= */=/"      \
+     ) > /dev/null
+    done < "$1"    
+}
+
+mkdirs() {
+    echo "INSTALL: making install directories...."
+    mkdir $htdocsTargetDir 2>/dev/null
+    mkdir $cgibinTargetDir 2>/dev/null
+    mkdir $cgilibTargetDir 2>/dev/null
+    mkdir $confTargetDir 2>/dev/null
+}
+
+unpack_gbrowse_src() {
+    echo "INSTALL: unpacking gbrowse source...."
+    
+    # tar-1.14 uses --strip-path, tar-1.14.90+ uses --strip-components
+    if $( tar --strip-path 2>&1 | grep -q 'unrecognized option' ); then
+        strip_opt='--strip-components'
+    else
+        strip_opt='--strip-path'
+    fi
+    
+    if ! (
+        mkdir -p $BUILD_DIR && 
+        tar zxf \
+        $GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE \
+        $strip_opt 1 \
+        -C $BUILD_DIR 2> /dev/null); then
+        echo "FATAL: Unable to un-tar Generic-Genome-Browser package '$GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE'. Exiting..."
+        exit 1
+    fi
+}
+
+post_install_clean() {
+    if [ ! -d "$BUILD_DIR" ]; then
+        return
+    fi
+    if ! rm -rf  $BUILD_DIR; then
+    echo "WARNING: Unable to remove temporary Gbrowse build directory '$BUILD_DIR'"
+    fi
+}
+
+# unpack and install pre-made BioPerl 5 into cgi-lib
+install_local_bioperl() {
+    echo "INSTALL: installing bioperl...."
+    echo "tar zxf $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE"
+    if ! tar zxf \
+        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
+        -C $cgilibTargetDir 2> /dev/null; then
+        echo "FATAL: Unable to un-tar BioPerl package '$GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE'. Exiting..."
+        echo "tar zxf \
+        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
+        -C $cgilibTargetDir"
+        exit 1
+    fi
+}
+
+configure_gb() {
+
+    
+    mkdirs
+    
+    install_local_bioperl
+    
+    export PERL5LIB=$cgilibTargetDir:$PERL5LIB
+    if ! perl -e 'use Bio::Perl 1.5' 2> /dev/null; then
+        echo "BioPerl 1.5 or greater is required but not found."
+        echo "(@INC contains:" `perl -e "print join ' ', @INC"` ")"
+        exit 1
+    fi
+        
+    unpack_gbrowse_src
+    
+    cd $BUILD_DIR
+
+    patch_installer
+
+    echo "INSTALL: perl Build.PL..."
+    
+    perl Build.PL  --htdocs=$htdocsTargetDir/gbrowse2               \
+                   --conf=$confTargetDir/gb2                        \
+                   --tmp=$htdocsTargetDir/gbrowse2/tmp              \
+                   --persistent=$cgilibTargetDir/gb2/persistent     \
+                   --databases=$cgilibTargetDir/gb2/databases       \
+                   --cgibin=$cgibinTargetDir/gb2                    \
+                   --lib=$cgilibTargetDir/gb2                       \
+                   --bin=$cgibinTargetDir/gb2/bin                   \
+                   --prefix=$GUS_HOME                               \
+                   --wwwuser=$USER                                  \
+                   --install_path arch=$cgilibTargetDir/gb2         \
+                   --install_path lib=$cgilibTargetDir/gb2
+
+}
+
+
+build_install() {
+    echo "INSTALL: Build install..."
+    perl Build install
+    if [ "$?" -gt 0 ]; then
+        echo
+        echo "Install failed to complete properly."
+        exit 1
+    fi
+}
+
+patch_installer() {
+    # patch GBrowseInstall.pm to remove interactive and sudo bits
+    echo "INSTALL: patching for non-interactive install"
+    patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/GBrowseInstall_noninter_install.patch
+}
+
+patch_all() {
+    echo "INSTALL: patching...$cgibinTargetDir"
+    arch=$(arch)
+    [ "$arch" == "i686" ] && arch=i386
+}
+
+
+usage() {
+    echo $"Usage: $(basename $0) {webPropFile} {build|build_install|build_install_patch|patch_only}"
+    exit 1
+}
+
+##################################################################
+
+if [ ! -n "$1" ] && [ ! -n "$2" ]; then
+    usage
+fi
+
+get_install_paths $1
+
+case "$2" in
+    build)
+        configure_gb    
+        post_install_clean
+        ;;
+    build_install)
+        configure_gb    
+        build_install
+        post_install_clean
+        ;;
+    build_install_patch)
+        configure_gb    
+        build_install
+        patch_all
+        post_install_clean
+        ;;
+    patch_only)
+        patch_all
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+exit 0
