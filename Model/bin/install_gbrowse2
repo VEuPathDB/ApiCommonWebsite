@@ -107,17 +107,16 @@ configure_gb() {
 
     echo "INSTALL: perl Build.PL..."
     
-    perl Build.PL  --htdocs=$htdocsTargetDir/gbrowse2               \
-                   --conf=$confTargetDir/gb2                        \
-                   --tmp=$htdocsTargetDir/gbrowse2/tmp              \
-                   --persistent=$cgilibTargetDir/gb2/persistent     \
-                   --databases=$cgilibTargetDir/gb2/databases       \
-                   --cgibin=$cgibinTargetDir/gb2                    \
-                   --lib=$cgilibTargetDir/gb2                       \
-                   --bin=$cgibinTargetDir/gb2/bin                   \
-                   --prefix=$GUS_HOME                               \
-                   --wwwuser=$USER                                  \
-                   --install_path arch=$cgilibTargetDir/gb2         \
+    perl Build.PL  --htdocs=$htdocsTargetDir/gbrowse2                          \
+                   --conf=$confTargetDir/gb2                                   \
+                   --tmp=$htdocsTargetDir/gbrowse2/tmp                         \
+                   --persistent=$cgilibTargetDir/gb2/persistent                \
+                   --databases=$cgilibTargetDir/gb2/persistent/databases       \
+                   --cgibin=$cgibinTargetDir/gb2                               \
+                   --bin=$cgibinTargetDir/gb2/bin                              \
+                   --prefix=$GUS_HOME                                          \
+                   --wwwuser=$USER                                             \
+                   --install_path arch=$cgilibTargetDir/gb2                    \
                    --install_path lib=$cgilibTargetDir/gb2
 
 }
@@ -136,13 +135,14 @@ build_install() {
 patch_installer() {
     # patch GBrowseInstall.pm to remove interactive and sudo bits
     echo "INSTALL: patching for non-interactive install"
-    patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/GBrowseInstall_noninter_install.patch
+    patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/noninteractive_install.patch
 }
 
-patch_all() {
+patch_postinstall() {
     echo "INSTALL: patching...$cgibinTargetDir"
     arch=$(arch)
     [ "$arch" == "i686" ] && arch=i386
+    patch -p1 -d $cgibinTargetDir/gb2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/umask.patch
 }
 
 
@@ -172,11 +172,11 @@ case "$2" in
     build_install_patch)
         configure_gb    
         build_install
-        patch_all
+        patch_postinstall
         post_install_clean
         ;;
     patch_only)
-        patch_all
+        patch_postinstall
         ;;
     *)
         usage
