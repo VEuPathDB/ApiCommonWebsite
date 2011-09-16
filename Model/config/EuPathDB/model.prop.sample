@@ -11,10 +11,4 @@ TOXO_BLAST_PATH=Common/devSiteFilesMirror/webServices/ToxoDB/release-6.4/blast
 TRICH_BLAST_PATH=Common/devSiteFilesMirror/webServices/TrichDB/release-1.2/blast
 TRYP_BLAST_PATH=Common/devSiteFilesMirror/webServices/TriTrypDB/release-3.1/blast
 
-# depends on apifed regular expression
-SITES="Entamoeba","Cryptosporidium","Giardia","Anncaliia","Edhazardia","Encephalitozoon","Enterocytozoon","Nematocida","Nosema","Octosporea","Vavraia","Vittaforma","Plasmodium","Theileria","Babesia","Toxoplasma","Neospora","Eimeria","Trichomonas","Trypanosoma","Leishmania","Crithidia"
-
-# PORTALS=global-set-name;set-name,items-in-set(;set name,items)
-PORTALS="Eukaryotic Pathogens (all)";"Apicomplexan","Cryptosporidium","Plasmodium","Toxoplasma","Neospora","Eimeria","Theileria","Babesia";"Anaerobic Protists","Cryptosporidium","Giardia","Trichomonas";"Kinetoplastid","Crithidia","Leishmania","Trypanosoma";"Amoeba","Entamoeba";"Pathogenic Fungi","Anncaliia","Edhazardia","Encephalitozoon","Enterocytozoon","Nematocida","Nosema","Octosporea","Vavraia","Vittaforma"
-
 SITE_ADMIN_EMAIL = mheiges@uga.edu
