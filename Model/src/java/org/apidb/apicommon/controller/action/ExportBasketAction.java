@@ -67,7 +67,7 @@ public class ExportBasketAction extends Action {
 
         // check the existance of the record class, and basket is enabled on it.
         RecordClass recordClass = wdkModel.getRecordClass(rcName);
-        if (!recordClass.hasBasket())
+        if (!recordClass.isUseBasket())
             throw new WdkUserException("The basket is not allowed on "
                     + "recordClass " + rcName);
     }
