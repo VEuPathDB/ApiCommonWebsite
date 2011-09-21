@@ -70,7 +70,7 @@ sub processParams {
 
   my $projectId = $cgi->param('project_id'); 
 
-  $self->{ignore_gene_alias}= 1 if ($projectId eq 'ToxoDB');
+  $self->{ignore_gene_alias}= 1 if ($projectId eq 'ToxoDB' || $projectId eq 'EuPathDB');
 
 
   my @inputIds;
