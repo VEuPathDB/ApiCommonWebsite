@@ -25,10 +25,30 @@
        <attribute name="item">
            
          <![CDATA[
-<br><br>Since the publication of the genome in 2002, work has continued at the Sanger Institute to produce a single base-perfect <i>P. falciparum</i> reference genome.  This new sequence version is an upgrade from version 2.1.4 to version 3 and includes some substantial changes. Barring some highly AT-rich tracts that remain to be fully verified, we expect this to be the last major sequence update. 
-<br>Differences include the correction of major mis-assemblies on chromosome 7 and 8 – one end of chromosome 7 now replaces one end of chromosome 8 (and vice versa), the replacement of all ambiguous bases (N’s) in the genome with the correct sequence and the correction of hundreds of sequencing errors. The original <i>P. falciparum</i> 3D7 genome project was started by three different genome centers - Sanger, TIGR and Stanford – all of whom used different naming schemes (e.g MAL7P1.10, PF11_0344, PFE0010c).  For the submission in 2002 all three naming schemes were used.  In October 2007, the systematic re-annotation of <i>P. falciparum</i> 3D7 started in earnest with a community annotation workshop and work has continued at Sanger ever since. During that time, new genes have been created and other genes have been split.  When a new ID needed to be assigned but a logical numerical identifier was not available, a suffix of ‘a’ and ‘b’ was added to distinguish from the neighbouring gene.  In addition, now that part of chromosome 7 is located on chr8, and vice versa, it would be more confusing to have MAL7 identifiers on chr8 and MAL8 identifiers on chr7.  We have therefore decided to adopt a consistent new scheme to identify genes.  The old identifiers will be maintained as fully searchable systems but will be made significantly less prominent in PlasmoDB and GeneDB.  An important additional change is that both protein-coding and non-protein coding genes will now use the same consistent nomenclature. The new naming scheme complies with the standards set by the International Nucleotide Sequence Database Collaboration (Genbank, EMBL & DDBJ).  All new identifiers now start with a two-part prefix: PF3D7_ to identify the genome and two numerical digits to identify the chromosome, e.g. the first gene on chr1 is now called PF3D7_0100100.  The new naming scheme increments intervals of 100 to allow significant numbers of genes to be added (although we believe that this is unlikely).  This new naming scheme will also be adopted to other genomes that are being worked on at the Sanger Institute, e.g. <i>P. falciparum</i> IT genes will start with PFIT_ .  The new sequence version can be viewed and searched on GeneDB and will be loaded into PlasmoDB in early 2012.  EMBL and GFF format files, together with a conversion table of old:new identifiers, can be downloaded from the following FTP site:<br><br>
+<div align="justify">
+<br>Since the publication of the genome in 2002, work has continued at the Sanger Institute to produce a single base-perfect <i>P. falciparum</i> 
+reference genome.  This new sequence version is an upgrade from version 2.1.4 to version 3 and includes some substantial changes. Barring some highly 
+AT-rich tracts that remain to be fully verified, we expect this to be the last major sequence update. 
+<br>Differences include the correction of major mis-assemblies on chromosome 7 and 8 &#8211; one end of chromosome 7 now replaces one end of 
+chromosome 8 (and vice versa), the replacement of all ambiguous bases (N&#8217;s) in the genome with the correct sequence and the correction of 
+hundreds of sequencing errors. The original <i>P. falciparum</i> 3D7 genome project was started by three different genome centers &#8211; Sanger, 
+TIGR and Stanford &#8211; all of whom used different naming schemes (e.g MAL7P1.10, PF11_0344, PFE0010c).  For the submission in 2002 all three naming 
+schemes were used.  In October 2007, the systematic re-annotation of <i>P. falciparum</i> 3D7 started in earnest with a community annotation workshop 
+and work has continued at Sanger ever since. During that time, new genes have been created and other genes have been split.  When a new ID needed 
+to be assigned but a logical numerical identifier was not available, a suffix of &#8216;a&#8217; and &#8216;b&#8217; was added to distinguish from the 
+neighbouring gene.  In addition, now that part of chromosome 7 is located on chr8, and vice versa, it would be more confusing to have MAL7 identifiers 
+on chr8 and MAL8 identifiers on chr7.  <br>
+We have therefore decided to adopt a consistent new scheme to identify genes.  The old identifiers will be 
+maintained as fully searchable systems but will be made significantly less prominent in PlasmoDB and GeneDB.  An important additional change is that 
+both protein-coding and non-protein coding genes will now use the same consistent nomenclature. The new naming scheme complies with the standards 
+set by the International Nucleotide Sequence Database Collaboration (Genbank, EMBL & DDBJ).  All new identifiers now start with a two-part prefix: 
+PF3D7_ to identify the genome and two numerical digits to identify the chromosome, e.g. the first gene on chr1 is now called PF3D7_0100100.  The new 
+naming scheme increments intervals of 100 to allow significant numbers of genes to be added (although we believe that this is unlikely).  This new 
+naming scheme will also be adopted to other genomes that are being worked on at the Sanger Institute, e.g. <i>P. falciparum</i> IT genes will start with 
+PFIT_ .  The new sequence version can be viewed and searched on GeneDB and will be loaded into PlasmoDB in early 2012.  EMBL and GFF format files, 
+together with a conversion table of old:new identifiers, can be downloaded from the following FTP site:<br><br>
 ftp://ftp.sanger.ac.uk/pub/pathogens/Plasmodium/falciparum/3D7/3D7.latest_version/version3/September_2011/
-
+</div>
           ]]>
        </attribute>
     </record>
