@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import org.apidb.apicommon.controller.DownloadAction;
+import org.apidb.apicommon.controller.MimeTypes;
 import org.apidb.apicommon.model.CommentConfig;
 import org.apidb.apicommon.model.CommentFactory;
 import org.gusdb.wdk.model.Utilities;
@@ -71,7 +72,6 @@ public class UserFileDownloadAction extends DownloadAction {
         CommentConfig commentConfig = factory.getCommentConfig();
         
         String uploadPath = commentConfig.getUserFileUploadDir();
-
         
         String filePath = uploadPath + "/" + projectId + "/" + fname;
         
@@ -84,15 +84,26 @@ public class UserFileDownloadAction extends DownloadAction {
        ActionForm form,
        HttpServletRequest request, 
        HttpServletResponse response) throws Exception {
-    
-        /** Note: content-disposition is broken in Internet Explorer 5.5 
-            Service Pack 1 (SP1). See
-            http://support.microsoft.com/kb/q279667/
-        **/
-        response.setHeader("Content-disposition", 
-                           "attachment; filename=" + file.getName());        
-        String contentType = "application/octet-stream";
+
+       String ext = getFileNameExtension(file.getName());
+       String contentType = MimeTypes.lookupMimeType(ext);
+       
+       if (contentType == null) {
+          contentType = "application/octet-stream";
+          /** Note: content-disposition is broken in Internet Explorer 5.5 
+              Service Pack 1 (SP1). See
+              http://support.microsoft.com/kb/q279667/
+          **/
+          response.setHeader("Content-disposition", 
+                             "attachment; filename=" + file.getName());
+        }
+
         return new FileStreamInfo(contentType, file);
     }
 
+    protected String getFileNameExtension(String fname) throws Exception {
+        int sep = fname.lastIndexOf(".");
+        return fname.substring(sep + 1);
+    }
+  
 }
