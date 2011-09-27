@@ -70,10 +70,8 @@
        <attribute name = "RNA_Seq"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways">yes</attribute>
+       <attribute name = "Pathways"></attribute>
    </record>
-
-
  <record>
        <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
        <attribute name = "Family">Aspergillus</attribute>
@@ -87,18 +85,17 @@
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates">yes</attribute>
-       <attribute name = "SNPs">yes</attribute>
-       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
        <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways">yes</attribute>
+       <attribute name = "Pathways"></attribute>
    </record>
-
  <record>
        <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
        <attribute name = "Family">Aspergillus</attribute>
@@ -206,8 +203,8 @@
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">36.45</attribute>
        <attribute name = "Gene_Count">13605</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ERTm3</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -256,10 +253,10 @@
        <attribute name = "Gene_Count">14457</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
-       <attribute name = "Organellar_Genomes">yes</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
@@ -268,7 +265,6 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
-
  <record>
        <attribute name = "Website">Sordariomycetes; Ascomyocta</attribute>
        <attribute name = "Family">Magnaporthe</attribute>
@@ -332,16 +328,15 @@
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "ESTs"></attribute>
        <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RNA_Seq"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
-
  <record>
        <attribute name = "Website">Saccharomycotina; Ascomyocta</attribute>
        <attribute name = "Family">Saccharomyces</attribute>
@@ -352,8 +347,8 @@
        <attribute name = "Data_Source">SGD</attribute>
        <attribute name = "Genome_Size">12.16</attribute>
        <attribute name = "Gene_Count">6926</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">M2903</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -429,15 +424,16 @@
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "ESTs"></attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RNA_Seq">yes</attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
+
 
 </xmlAnswer>
 
