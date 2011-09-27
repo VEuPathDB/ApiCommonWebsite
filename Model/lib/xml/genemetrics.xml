@@ -21,7 +21,8 @@
        <attribute name="Cryptococcus_neoformans">7121</attribute>
        <attribute name="Puccinia_graminis">21065</attribute>
        <attribute name="Rhizopus_oryzae">17652</attribute>
-    </record>
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">Protein_coding</attribute>
@@ -44,7 +45,8 @@
        <attribute name="Cryptococcus_neoformans">6967</attribute>
        <attribute name="Puccinia_graminis">20534</attribute>
        <attribute name="Rhizopus_oryzae">17413</attribute>
-   </record>
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">Other_categories</attribute>
@@ -67,7 +69,9 @@
        <attribute name="Cryptococcus_neoformans">154</attribute>
        <attribute name="Puccinia_graminis">531</attribute>
        <attribute name="Rhizopus_oryzae">239</attribute>
-   </record>
+
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">Pseudogenes</attribute>
@@ -90,9 +94,12 @@
        <attribute name="Cryptococcus_neoformans">3</attribute>
        <attribute name="Puccinia_graminis">64</attribute>
        <attribute name="Rhizopus_oryzae">2</attribute>
-   </record>
 
-   <record>
+
+</record>
+
+
+<record> 
        <attribute name = "Metric_Type">Community_entries</attribute>
        <attribute name = "Description">Number of genes that have comments/notes from the research community</attribute>
        <attribute name="Aspergillus_clavatus">0</attribute>
@@ -113,7 +120,8 @@
        <attribute name="Cryptococcus_neoformans">0</attribute>
        <attribute name="Puccinia_graminis">0</attribute>
        <attribute name="Rhizopus_oryzae">0</attribute>
-   </record>
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">Orthologs</attribute>
@@ -136,7 +144,9 @@
        <attribute name="Cryptococcus_neoformans">6480</attribute>
        <attribute name="Puccinia_graminis">10045</attribute>
        <attribute name="Rhizopus_oryzae">12110</attribute>
-   </record>
+
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">GO_terms</attribute>
@@ -159,7 +169,9 @@
        <attribute name="Cryptococcus_neoformans">3517</attribute>
        <attribute name="Puccinia_graminis">4776</attribute>
        <attribute name="Rhizopus_oryzae">7533</attribute>
-   </record>
+
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">EC_numbers</attribute>
@@ -182,9 +194,10 @@
        <attribute name="Cryptococcus_neoformans">0</attribute>
        <attribute name="Puccinia_graminis">0</attribute>
        <attribute name="Rhizopus_oryzae">0</attribute>
-   </record>
 
-   <record>
+</record>
+
+<record>
        <attribute name = "Metric_Type">Expression_Total</attribute>
        <attribute name = "Description">Number of genes that have evidence of expression (Transcript + Protein)</attribute>
        <attribute name="Aspergillus_clavatus">0</attribute>
@@ -205,7 +218,8 @@
        <attribute name="Cryptococcus_neoformans">0</attribute>
        <attribute name="Puccinia_graminis">0</attribute>
        <attribute name="Rhizopus_oryzae">17413</attribute>
-   </record>
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">Microarray</attribute>
@@ -228,7 +242,8 @@
        <attribute name="Cryptococcus_neoformans">0</attribute>
        <attribute name="Puccinia_graminis">0</attribute>
        <attribute name="Rhizopus_oryzae">0</attribute>
-   </record>
+
+</record>
 
    <record>
        <attribute name = "Metric_Type">ESTs</attribute>
@@ -251,9 +266,10 @@
        <attribute name="Cryptococcus_neoformans">0</attribute>
        <attribute name="Puccinia_graminis">0</attribute>
        <attribute name="Rhizopus_oryzae">0</attribute>
-   </record>
 
-   <record>
+</record>
+
+<record>       
        <attribute name = "Metric_Type">RNA Seq</attribute>
        <attribute name = "Description">Number of genes that have evidence for transcript expression based on Transcriptome sequencing (RNA Seq) experiments</attribute>
        <attribute name="Aspergillus_clavatus">0</attribute>
@@ -274,6 +290,9 @@
        <attribute name="Cryptococcus_neoformans">0</attribute>
        <attribute name="Puccinia_graminis">0</attribute>
        <attribute name="Rhizopus_oryzae">17413</attribute>
-   </record>
+
+
+</record>
+
 
 </xmlAnswer>
