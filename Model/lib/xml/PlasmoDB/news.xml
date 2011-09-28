@@ -39,7 +39,7 @@ to be assigned but a logical numerical identifier was not available, a suffix of
 neighbouring gene.  In addition, now that part of chromosome 7 is located on chr8, and vice versa, it would be more confusing to have MAL7 identifiers 
 on chr8 and MAL8 identifiers on chr7.  <br><br>
 We have therefore decided to adopt a consistent new scheme to identify genes.  The old identifiers will be 
-maintained as fully searchable systems but will be made significantly less prominent in PlasmoDB and GeneDB.  An important additional change is that 
+maintained as fully searchable synonyms but will be made significantly less prominent in PlasmoDB and GeneDB.  An important additional change is that 
 both protein-coding and non-protein coding genes will now use the same consistent nomenclature. The new naming scheme complies with the standards 
 set by the International Nucleotide Sequence Database Collaboration (Genbank, EMBL & DDBJ).  All new identifiers now start with a two-part prefix: 
 PF3D7_ to identify the genome and two numerical digits to identify the chromosome, e.g. the first gene on chr1 is now called PF3D7_0100100.  The new 
