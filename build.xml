@@ -43,7 +43,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false"> 
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
       <property name="project" value="CBIL"/>
-      <property name="version" value="internal/api-build-9"/>
+      <property name="version" value="internal/api-build-12"/>
     </ant>
   </target>    
     
@@ -51,7 +51,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonData"/>
       <property name="project" value="ApiCommonData"/>
-      <property name="version" value="api-build-9"/>
+      <property name="version" value="api-build-12"/>
       <property name="excludeChildren" value="true"/>
     </ant>
   </target>
@@ -60,7 +60,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonShared"/>
       <property name="project" value="ApiCommonShared"/>
-      <property name="version" value="api-build-9"/>
+      <property name="version" value="api-build-12"/>
       <property name="excludeChildren" value="true"/>
     </ant>
   </target>
@@ -77,7 +77,7 @@
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonWebService" />
       <property name="project" value="ApiCommonWebService"/>
-      <property name="version" value="api-build-9"/>
+      <property name="version" value="api-build-12"/>
     </ant>
   </target>
 
