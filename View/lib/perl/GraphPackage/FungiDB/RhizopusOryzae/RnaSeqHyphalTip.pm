@@ -1,10 +1,10 @@
-package FungiDBWebsite::View::GraphPackage::FungiDB::RhizopusOryzae::RnaSeqHyphalTip;
+package ApiCommonWebsite::View::GraphPackage::FungiDB::RhizopusOryzae::RnaSeqHyphalTip;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( FungiDBWebsite::View::GraphPackage::BarPlot );
-use FungiDBWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 
 sub init {
