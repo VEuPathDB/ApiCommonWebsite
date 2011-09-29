@@ -1,10 +1,10 @@
-package FungiDBWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleTS;
+package ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleTS;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( FungiDBWebsite::View::GraphPackage::LinePlot );
-use FungiDBWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 
 sub init {

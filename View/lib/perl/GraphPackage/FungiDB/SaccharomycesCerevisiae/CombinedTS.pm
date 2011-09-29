@@ -1,15 +1,15 @@
-package FungiDBWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::CombinedTS;
+package ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::CombinedTS;
 
 use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( FungiDBWebsite::View::GraphPackage::MixedPlots );
-use FungiDBWebsite::View::GraphPackage::MixedPlots;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlots );
+use ApiCommonWebsite::View::GraphPackage::MixedPlots;
 
 
-use FungiDBWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleBar;
-use FungiDBWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleTS;
+use ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleBar;
+use ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleTS;
 
 sub init {
   my $self = shift;
@@ -24,8 +24,8 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch=> $pch, , cols => 3});
 
-  my $bar = FungiDBWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleBar->new();
-  my $line = FungiDBWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleTS->new();
+  my $bar = ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleBar->new();
+  my $line = ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleTS->new();
 
   $self->setGraphObjects($bar, $line);
 
