@@ -145,6 +145,7 @@ patch_postinstall() {
     patch -p1 -d $cgibinTargetDir/gb2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/umask.patch
     patch -d $cgilibTargetDir/gb2/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/RenderPanel.pm.patch
     patch -d $cgilibTargetDir/gb2/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
+    patch -d $confTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/GBrowse.conf.patch
 }
 
 
