@@ -47,7 +47,7 @@ naming scheme increments intervals of 100 to allow significant numbers of genes 
 naming scheme will also be adopted to other genomes that are being worked on at the Sanger Institute, e.g. <i>P. falciparum</i> IT genes will start with 
 PFIT_.  The new sequence version can be viewed and searched on GeneDB and will be loaded into PlasmoDB in early 2012.  EMBL and GFF format files, 
 together with a conversion table of old:new identifiers, can be downloaded from the following FTP site:<br><br>
-ftp://ftp.sanger.ac.uk/pub/pathogens/Plasmodium/falciparum/3D7/3D7.latest_version/version3/September_2011/
+ftp://ftp.sanger.ac.uk/pub/pathogens/Plasmodium/falciparum/3D7/3D7.latest_version/version3/October_2011/
 </div>
           ]]>
        </attribute>
