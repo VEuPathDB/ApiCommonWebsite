@@ -566,6 +566,8 @@ sub dblink {
         'apicomm'  => 'apidb.login_comment',
         'apicomms' => 'apidb.login_comment',
         'apicommn' => 'alt.login_comment',
+        'apicommdevs' => 'devs.login_comment',
+        'apicommdevn' => 'devn.login_comment',
     );
     
     return '@' . $dblinkMap{lc($apicomm)};
