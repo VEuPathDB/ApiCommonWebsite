@@ -25,18 +25,17 @@
 
 
 <table width="100%">
-<tr><td><h2>EuPathDB Gene Metrics</h2></td>
-    <td align="right"><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">EuPathDB Genomes and Data Types >>></a></td>
+<tr><td><h2>FungiDB Gene Metrics</h2></td>
+    <td align="right"><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">FungiDB Genomes and Data Types >>></a></td>
 </tr>
+<tr><td colspan="2">
+FungiDB is an integrated genomic and functional genomic database for the kingdom Fungi. In its first iteration (released in early 2011), FungiDB contains the genomes of <b>18 Fungi covering 17 species</b> (see below). FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 
-<tr><td colspan="2">The EuPathDB <a href="http://pathogenportal.org"><b>Bioinformatics Resource Center (BRC)</b></a> designs, develops and maintains the <a href="http://eupathdb.org">EuPathDB</a>,  <a href="http://amoebadb.org">AmoebaDB</a>, <a href="http://cryptodb.org">CryptoDB</a>, <a href="http://giardiadb.org">GiardiaDB</a>,  <a href="http://microsporidiadb.org">MicrosporidiaDB</a>, <a href="http://piroplasmadb.org">PiroplasmaDB</a>, <a href="http://plasmodb.org">PlasmoDB</a>, <a href="http://toxodb.org">ToxoDB</a>, <a href="http://trichdb.org">TrichDB</a> and <a href="http://tritrypdb.org">TriTrypDB</a> websites. <br><br>
-The Gene Metrics table summarizes the number of genes for the organisms currently available in EuPathDB, including their available evidence. High gene numbers (such as for rodent malaria parasites Pb, Pc & Py) reflect incomplete sequence assembly and redundant gene models. <br><br>
-<i>(Please mouse over gene metrics for a definition; mouse over acronyms for the organism full name.)</i><br>
+<br><br>
+<i style="color:#b45f04">(Please mouse over gene metrics for a definition; mouse over acronyms for the organism full name.)</i><br>
 </td></tr>
 </table>
 
-
-<div style="overflow-x:auto">
 <table  class="mytableStyle" width="100%">
 <c:choose>
   <c:when test='${xmlAnswer.resultSize == 0}'>
@@ -48,151 +47,86 @@ The Gene Metrics table summarizes the number of genes for the organisms currentl
 <c:set var="bgcolor" value="#efefef"/> 
 <tr class="mythStyle">
     <td style="background-color:white;border-right:3px solid grey;border-top:0px none;border-left:0 none;"></td>
-    <td style="border-right:3px solid grey" colspan="3" class="mythStyle"><a href="http://amoebadb.org">AmoebaDB</a></td>
-    <td style="border-right:3px solid grey" colspan="3" class="mythStyle"><a href="http://cryptodb.org">CryptoDB</a></td>
-    <td style="border-right:3px solid grey" colspan="3" class="mythStyle"><a href="http://giardiadb.org">GiardiaDB</a></td>
-    <td style="border-right:3px solid grey" colspan="5" class="mythStyle"><a href="http://microsporidiadb.org">&mu;-sporidiaDB</a></td>
-    <td style="border-right:3px solid grey" colspan="3" class="mythStyle"><a href="http://plasmodb.org">PiroplasmaDB</a></td>
-    <td style="border-right:3px solid grey" colspan="6" class="mythStyle"><a href="http://plasmodb.org">PlasmoDB</a></td>
-    <td style="border-right:3px solid grey" colspan="3" class="mythStyle"><a href="http://toxodb.org">ToxoDB</a></td>
-    <td style="border-right:3px solid grey" colspan="1" class="mythStyle"><a href="http://trichdb.org">TrichDB</a></td>
-    <td colspan="8" class="mythStyle"><a href="http://tritrypdb.org">TriTrypDB</a></td>
+    <td style="border-right:3px solid grey" colspan="8" class="mythStyle">Eurotiomycetes; Ascomycota</td>
+    <td style="border-right:3px solid grey" colspan="5" class="mythStyle">Sordariomycetes; Ascomyocta</td>
+    <td style="border-right:3px solid grey" colspan="2" class="mythStyle">Saccharomycotina; Ascomyocta</td>
+    <td style="border-right:3px solid grey" colspan="2" class="mythStyle">Basidiomycota</td>
+    <td class="mythStyle">Mucormycotina; Zygomycota</td>
 </tr>
-<tr class="mythStyle">
+<tr class="mythStyle" style="cursor:pointer">
     <td  style="border-right:3px solid grey" class="mythStyle" title="">Gene Metric</td>
-    <td class="mythStyle" title="Entamoeba dispar, AmoebaDB"><i>Ed</i></td>
-    <td class="mythStyle" title="Entamoeba histolytica, AmoebaDB"><i>Eh</i></td>
-    <td  style="border-right:3px solid grey"class="mythStyle" title="Entamoeba invadens, AmoebaDB"><i>Einv</i></td>
-    <td class="mythStyle" title="Cryptosporidium hominis, CryptoDB"><i>Ch</i></td>
-    <td class="mythStyle" title="Cryptosporidium muris, CryptoDB"  ><i>Cm</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title="Cryptosporidium parvum, CryptoDB" ><i>Cp</i></td>
-    <td class="mythStyle" title="Giardia_Assemblage_A_isolate_WB, GiardiaDB" ><i>GA*</i></td>
-    <td class="mythStyle" title="Giardia_Assemblage_B_isolate_GS, GiardiaDB" ><i>GB</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title="Giardia_Assemblage_E_isolate_P15, GiardiaDB" ><i>GE</i></td>
-    <td class="mythStyle" title="Encephalitozoon cuniculi, MicrosporidiaDB"><i>Ec</i></td>
-    <td class="mythStyle" title="Encephalitozoon intestinalis, MicrosporidiaDB"><i>Eint</i></td>
-    <td class="mythStyle" title="Encephalitozoon hellem, MicrosporidiaDB"><i>Ehel</i></td>
-    <td class="mythStyle" title="Enterocytozoon bieneusi, MicrosporidiaDB"><i>Eb</i></td>
-    <td  style="border-right:3px solid grey"  class="mythStyle" title="Nosema cerenae, MicrosporidiaDB"><i>Ncer</i></td>
-    <td class="mythStyle" title="Babesia bovis, PiroplasmaDB"><i>Bb</i></td>
-    <td class="mythStyle" title="Theileria annulata, PiroplasmaDB"><i>Ta</i></td>
-    <td style="border-right:3px solid grey" class="mythStyle" title="Theileria parva, PiroplasmaDB"><i>Tp</i></td>
-    <td class="mythStyle" title="Plasmodium berghei, PlasmoDB"><i>Pb</i></td>
-    <td class="mythStyle" title="Plasmodium chabaudi, PlasmoDB"><i>Pc</i></td>
-    <td class="mythStyle" title="Plasmodium falciparum, PlasmoDB"><i>Pf</i></td>
-    <td class="mythStyle" title="Plasmodium knowlesi, PlasmoDB"><i>Pk</i></td>
-    <td class="mythStyle" title="Plasmodium vivax, PlasmoDB"><i>Pv</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title="Plasmodium yoelii, PlasmoDB"><i>Py</i></td>
-    <td class="mythStyle" title="Neospora caninum, ToxoDB"><i>Nc</i></td>
-    <td class="mythStyle" title="Eimeria tenella, ToxoDB"><i>Et</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title="Toxoplasma gondii"><i>Tg**</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title="Trichomonas vaginalis,TrichDB"><i>Tva</i></td>
-    <td class="mythStyle" title="Leishmania braziliensis, TriTrypDB"><i>Lb</i></td>
-    <td class="mythStyle" title="Leishmania infantum, TriTrypDB"><i>Li</i></td>
-    <td class="mythStyle" title="Leishmania major, TriTrypDB"><i>Lma</i></td>
-    <td class="mythStyle" title="Leishmania mexicana, TriTrypDB"><i>Lme</i></td>
-    <td class="mythStyle" title="Trypanosoma brucei, TriTrypDB"><i>Tb+</i></td>
-    <td class="mythStyle" title="Trypanosoma congolense, TriTrypDB"><i>Tco</i></td>
-    <td class="mythStyle" title="Trypanosoma cruzi, TriTrypDB"><i>Tcr++</i></td>
-   <td class="mythStyle" title="Trypanosoma vivax, TriTrypDB"><i>Tvi</i></td>
+    <td class="mythStyle" title="Aspergillus clavatus NRRL 1"><i>Ac</i></td>
+    <td class="mythStyle" title="Aspergillus flavus"><i>Afl</i></td>
+    <td class="mythStyle" title="Aspergillus fumigatus Af293"><i>Afu</i></td>
+    <td class="mythStyle" title="Aspergillus nidulans FGSC A4"><i>Anid</i></td>
+    <td class="mythStyle" title="Aspergillus niger ATCC 1015"><i>Anig</i></td>
+    <td class="mythStyle" title="Aspergillus terreus NIH 2624"><i>At</i></td>
+    <td class="mythStyle" title="Coccidioides immitis H538.4"><i>CiH</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Coccidioides immitis RS"><i>CiRS</i></td>
+    <td class="mythStyle" title="Fusarium graminearum PH-1 (NRRL 31084)"><i>Fg</i></td>
+    <td class="mythStyle" title="Fusarium oxysporum lycopersici f. sp. 4287"><i>Fo</i></td>
+    <td class="mythStyle" title="Gibberella moniliformis "><i>Gm</i></td>
+    <td class="mythStyle" title="Magnaporthe oryzae 70-15"><i>Mo</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Neurospora crassa OR74A"><i>Nc</i></td>
+    <td class="mythStyle" title="Candida albicans SC5314"><i>Ca</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Saccharomyces cerevisiae S288c"><i>Sc</i></td>
+    <td class="mythStyle" title="Cryptococcus neoformans var. grubii H99"><i>Cn</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Puccinia graminis f.sp.tritici CRL 75-36-700-3"><i>Pg</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Rhizopus oryzae RA 99-880"><i>Ro</i></td>
 </tr>
 
   <c:forEach items="${xmlAnswer.recordInstances}" var="record">
 
 	 <c:set var="Metric_Type" value="${record.attributesMap['Metric_Type']}"/>
-	 <c:set var="Ed" value="${record.attributesMap['Entamoeba_dispar']}"/>
-	 <c:set var="Eh" value="${record.attributesMap['Entamoeba_histolytica']}"/>
-	 <c:set var="Einv" value="${record.attributesMap['Entamoeba_invadens']}"/>
-	 <c:set var="Ch" value="${record.attributesMap['Cryptosporidium_hominis']}"/>
- 	 <c:set var="Cm" value="${record.attributesMap['Cryptosporidium_muris']}"/>
-	 <c:set var="Cp" value="${record.attributesMap['Cryptosporidium_parvum']}"/>
-	 <c:set var="GA" value="${record.attributesMap['Giardia_Assemblage_A_isolate_WB']}"/>
-	 <c:set var="GB" value="${record.attributesMap['Giardia_Assemblage_B_isolate_GS']}"/>
-	 <c:set var="GE" value="${record.attributesMap['Giardia_Assemblage_E_isolate_P15']}"/>
-         <c:set var="Ec" value="${record.attributesMap['Encephalitozoon_cuniculi']}"/>
-         <c:set var="Eint" value="${record.attributesMap['Encephalitozoon_intestinalis']}"/>
-         <c:set var="Eb" value="${record.attributesMap['Enterocytozoon_bieneusi']}"/>
-         <c:set var="Ehel" value="${record.attributesMap['Encephalitozoon_hellem']}"/>
-         <c:set var="Ncer" value="${record.attributesMap['Nosema_cerenae']}"/>
-         <c:set var="Nc" value="${record.attributesMap['Neospora_caninum']}"/>
-         <c:set var="Et" value="${record.attributesMap['Eimeria_tenella']}"/>
-	 <c:set var="Pb" value="${record.attributesMap['Plasmodium_berghei']}"/>
-	 <c:set var="Pc" value="${record.attributesMap['Plasmodium_chabaudi']}"/>
-	 <c:set var="Pf" value="${record.attributesMap['Plasmodium_falciparum']}"/>
-	 <c:set var="Pk" value="${record.attributesMap['Plasmodium_knowlesi']}"/>
-	 <c:set var="Pv" value="${record.attributesMap['Plasmodium_vivax']}"/>
-	 <c:set var="Py" value="${record.attributesMap['Plasmodium_yoelii']}"/>
-	 <c:set var="Tg" value="${record.attributesMap['Toxoplasma_gondii']}"/>
-	 <c:set var="Tva" value="${record.attributesMap['Trichomonas_vaginalis']}"/>
-         <c:set var="Lb" value="${record.attributesMap['Leishmania_braziliensis']}"/>
-	 <c:set var="Li" value="${record.attributesMap['Leishmania_infantum']}"/>
-	 <c:set var="Lma" value="${record.attributesMap['Leishmania_major']}"/>
-	 <c:set var="Lme" value="${record.attributesMap['Leishmania_mexicana']}"/>
-         <c:set var="Tb" value="${record.attributesMap['Trypanosoma_brucei']}"/> 
-         <c:set var="Tco" value="${record.attributesMap['Trypanosoma_congolense']}"/> 
-         <c:set var="Tcr" value="${record.attributesMap['Trypanosoma_cruzi']}"/> 
-         <c:set var="Tvi" value="${record.attributesMap['Trypanosoma_vivax']}"/> 
-         <c:set var="Bb" value="${record.attributesMap['Babesia_bovis']}"/> 
-         <c:set var="Ta" value="${record.attributesMap['Theileria_annulata']}"/> 
-         <c:set var="Tp" value="${record.attributesMap['Theileria_parva']}"/> 
+	 <c:set var="Ac" value="${record.attributesMap['Aspergillus_clavatus']}"/>
+	 <c:set var="Afl" value="${record.attributesMap['Aspergillus_flavus']}"/>
+	 <c:set var="Afu" value="${record.attributesMap['Aspergillus_fumigatus']}"/>
+	 <c:set var="Anid" value="${record.attributesMap['Aspergillus_nidulans']}"/>
+ 	 <c:set var="Anig" value="${record.attributesMap['Aspergillus_niger']}"/>
+	 <c:set var="At" value="${record.attributesMap['Aspergillus_terreus']}"/>
+	 <c:set var="CiH" value="${record.attributesMap['Coccidioides_immitis_H538_4']}"/>
+	 <c:set var="CiRS" value="${record.attributesMap['Coccidioides_immitis_RS']}"/>
+	 <c:set var="Fg" value="${record.attributesMap['Fusarium_graminearum']}"/>
+	 <c:set var="Fo" value="${record.attributesMap['Fusarium_oxysporum']}"/>
+         <c:set var="Gm" value="${record.attributesMap['Gibberella_moniliformis']}"/>
+         <c:set var="Mo" value="${record.attributesMap['Magnaporthe_oryzae']}"/>
+         <c:set var="Nc" value="${record.attributesMap['Neurospora_crassa']}"/>
+         <c:set var="Ca" value="${record.attributesMap['Candida_albicans']}"/>
+	 <c:set var="Sc" value="${record.attributesMap['Saccharomyces_cerevisiae']}"/>
+	 <c:set var="Cn" value="${record.attributesMap['Cryptococcus_neoformans']}"/>
+	 <c:set var="Pg" value="${record.attributesMap['Puccinia_graminis']}"/>
+	 <c:set var="Ro" value="${record.attributesMap['Rhizopus_oryzae']}"/>
 
 
 
 <tr class="mytdStyle">
-    <td style="border-right:3px solid grey" class="mytdStyle" align="left" title="${record.attributesMap['Description']}">${Metric_Type}</td>
-    <td class="mytdStyle" align="right">${Ed}</td>
-    <td class="mytdStyle" align="right">${Eh}</td>
-    <td style="border-right:3px solid grey"  class="mytdStyle" align="right">${Einv}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Ch}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Cm}</td>
-    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Cp}</td>
-    <td class="mytdStyle" align="right">${GA}</td>
-    <td class="mytdStyle" align="right">${GB}</td>
-    <td style="border-right:3px solid grey" class="mytdStyle" align="right">${GE}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Ncer}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Ehel}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Ec}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Eint}</td>
-    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Eb}</td>
-    <td class="mytdStyle" align="right">${Bb}</td>
-    <td class="mytdStyle" align="right">${Ta}</td>
-    <td style="border-right:3px solid grey" class="mytdStyle" align="right">${Tp}</td>
-    <td class="mytdStyle" align="right">${Pb}</td>
-    <td class="mytdStyle" align="right">${Pc}</td>
-    <td class="mytdStyle" align="right">${Pf}</td>
-    <td class="mytdStyle" align="right">${Pk}</td>    
-    <td class="mytdStyle" align="right">${Pv}</td>
-    <td style="border-right:3px solid grey" class="mytdStyle" align="right">${Py}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Nc}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Et}</td>
-    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Tg}</td>
-    <td style="border-right:3px solid grey" class="mytdStyle" align="right">${Tva}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Lb}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Li}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Lma}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Lme}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Tb}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Tco}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Tcr}</td>
-    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Tvi}</td>
+    <td style="border-right:3px solid grey;cursor:pointer" class="mytdStyle" align="left" title="${record.attributesMap['Description']}">${Metric_Type}</td>
+    <td class="mytdStyle" align="right">${Ac}</td>
+    <td class="mytdStyle" align="right">${Afl}</td>
+    <td class="mytdStyle" align="right">${Afu}</td>
+    <td class="mytdStyle" align="right">${Anid}</td>
+    <td class="mytdStyle" align="right">${Anig}</td>
+    <td class="mytdStyle" align="right">${At}</td>
+    <td class="mytdStyle" align="right">${CiH}</td>
+    <td style="border-right:3px solid grey"  class="mytdStyle" align="right">${CiRS}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Fg}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Fo}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Gm}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Mo}</td>
+    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Nc}</td>
+    <td class="mytdStyle" align="right">${Ca}</td>
+    <td style="border-right:3px solid grey" class="mytdStyle" align="right">${Sc}</td>
+    <td style="background-color:${bgcolor}" class="mytdStyle" align="right">${Cn}</td>
+    <td style="background-color:${bgcolor};border-right:3px solid grey" class="mytdStyle" align="right">${Pg}</td>
+    <td class="mytdStyle" align="right">${Ro}</td>
 </tr>
  
   </c:forEach>
 
-  </table>
-</div>
 
-<table width="100%">
-<tr><td>
-<font size="-1"><b>Babesia</b>: Bb, <i>B. bovis</i>; <b>Cryptosporidium</b>: Ch, <i>C. hominis</i>; Cm, <i>C. muris</i>; Cp, <i>C. parvum</i>;  <b>Eimeria</b>: Et, <i>E. tenella</i>; <b>Encephalitozoon</b>: Ec, <i>E. cuniculi</i>; Eint, <i>E. intestinalis</i>; Ehel, <i>E. hellem</i>; <b>Entamoeba</b>: Ed, <i>E. dispar</i>; Eh, <i>E. histolytica</i>; Einv, <i>E. invadens</i>; <b>Enterocytozoon</b>: Eb, <i>E. bieneusi</i>; <b>Giardia</b> GA, <i>G.Assemblage_A_isolate_WB</i>; GB, <i>G.Assemblage_B_isolate_GS</i>; GE, <i>G.Assemblage_E_isolate_P15</i>; <b>Leishmania</b>: Lb, <i>L. braziliensis</i>; Li, <i>L. infantum</i>; Lma, <i>L. major</i>; Lme, <i>L. mexicana</i>; <b>Neospora</b>: Nc, <i>N. caninum</i>; <b>Nosema</b>: Ncer, <i>N. cerenae</i>; <b>Plasmodium</b>: Pb, <i>P. berghei</i>; Pc, <i>P. chabaudi</i>; Pf, <i>P. falciparum</i>; Pk, <i>P. knowlesi</i>; Pv, <i>P. vivax</i>; Py, <i>P. yoelii</i>; <b>Theileria</b>: Ta, <i>T. annulata</i>; Tp, <i>T. parva</i>; <b>Toxoplasma</b>: Tg, <i>T. gondii</i>; <b>Trichomonas</b>: Tva, <i>T. vaginalis</i>; <b>Trypanosoma</b>: Tb, <i>T. brucei</i>; Tco, <i>T. congolense</i>; Tcr, <i>T. cruzi</i>; Tvi, <i>T. vivax</i>.</font><br>
-</td></tr>
-<br>
-<tr><td colspan="10"><font size="-2"><hr>* In addition, <i>G. lamblia</i> has 3766 deprecated genes that are not included in the official gene count.</font></td></tr>
-<tr><td colspan="10"><font size="-2">** <i>T.gondii</i> gene groups identified in ToxoDB across the three strains (ME49, GT1, VEG) and the A
-picoplast.</font></td></tr>
-<tr><td colspan="10"><font size="-2">+ <i>T.brucei</i> shows the number of distinct genes among theTREU927, gambiense and 427 strains.</font></td></tr>
-<tr><td colspan="10"><font size="-2">++ <i>T.cruzi</i> shows the number of distinct genes among the Esmeraldo like and Non-Esmeraldo like genes, plus the unassigned.</font></td></tr>
-</table>
+
+  </table>
+
 
   </c:otherwise>
 </c:choose>
