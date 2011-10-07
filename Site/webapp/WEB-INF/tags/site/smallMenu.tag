@@ -66,7 +66,7 @@ a#facebook {
 	<li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#use"/>">How to use this resource</a></li>
         <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#citing"/>">How to cite us</a></li>
         <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs"/>">EuPathDB Publications</a></li>
-        <li><a href="/proxystats/awstats.pl?config=${fn:toLowerCase(project)}.org">Website Usage Statistics</a></li>         
+        <li><a href="/proxystats/awstats.pl">Website Usage Statistics</a></li>         
 
         </ul>
       </li>
@@ -157,7 +157,7 @@ a#facebook {
 
 <%--- TWITTER -----%>
 	<li>
-	<a id="twitter" href="http://twitter.com/eupathdb">
+	<a id="twitter" href="http://twitter.com/fungidb">
 		<img title="Follow us on twitter!" src="/assets/images/twitter.gif" width="20"> 
 	<%--	<img title="Follow us on twitter!"  src="<c:url value='/wdk/images/transparent1.gif'/>"  width="16" height="16">  --%>
 	</a>
@@ -165,7 +165,7 @@ a#facebook {
 
 <%--- FACEBOOK -----%>
 	<li>
-	<a id="facebook" href="https://www.facebook.com/pages/EuPathDB/133123003429972" style="margin-left:2px">
+	<a id="facebook" href="https://www.facebook.com/pages/FungiDB/169472636469487" style="margin-left:2px">
 		<img title="Follow us on facebook!" src="/assets/images/facebook-icon.png" width="19">
 	<%--	<img title="Follow us on facebook!"  src="<c:url value='/wdk/images/transparent1.gif'/>"  width="16" height="16">  --%>
 	</a>

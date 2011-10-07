@@ -175,11 +175,11 @@
     <li><a>Community</a>
 	<ul>
 		<li>
-		<a href="http://twitter.com/eupathdb">
+		<a href="http://twitter.com/fungidb">
 			<img style="margin:0px;vertical-align:top" title="Follow us on twitter!" src="/assets/images/twitter.gif" width="20">
 			<span style="vertical-align:top">&nbsp;Follow us on twitter!</span> 
 		</a>
-		<a href="https://www.facebook.com/pages/EuPathDB/133123003429972">
+		<a href="https://www.facebook.com/pages/FungiDB/169472636469487">
 			<img style="margin:0px;margin-left:1px;vertical-align:top" title="Follow us on facebook!" src="/assets/images/facebook-icon.png" width="18">
 			<span style="vertical-align:top">&nbsp;Follow us on facebook!</span> 
 		</a>

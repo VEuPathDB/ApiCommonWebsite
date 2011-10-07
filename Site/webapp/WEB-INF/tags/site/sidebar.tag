@@ -168,13 +168,13 @@ http://www.jarvana.com/jarvana/view/rome/rome/0.9/rome-0.9-javadoc.jar!/index.ht
     <div class="menu_lefttop_drop">
 
 
-<a style="line-height:24px" href="http://twitter.com/eupathdb">
+<a style="line-height:24px" href="http://twitter.com/fungidb">
 	<img style="margin-left:17px;float:left;vertical-align:middle" title="Follow us on twitter!" src="/assets/images/twitter.gif" width="25">
 	<span style="vertical-align:sub">&nbsp;&nbsp;&nbsp;Follow us on twitter!</span>
 
 </a>
 <br>
-<a href="https://www.facebook.com/pages/EuPathDB/133123003429972">
+<a href="https://www.facebook.com/pages/FungiDB/169472636469487">
 	<img style="margin-left:19px;float:left;vertical-align:middle" title="Follow us on facebook!" src="/assets/images/facebook-icon.png" width="22">
 	<span style="vertical-align:sub">&nbsp;&nbsp;&nbsp;Follow us on facebook!</span>
 
@@ -336,8 +336,8 @@ http://www.jarvana.com/jarvana/view/rome/rome/0.9/rome-0.9-javadoc.jar!/index.ht
             <li id='h-5'><a href="/common/cosmid-BAC-tutorial/CosmidandBAC-Tutorial.html"/>Viewing Cosmid and BAC Alignments</a></li>
             <li id='h-4'><a href="/common/array-tutorial/Array-Tutorial.html"/>Viewing Microarray Probes</a></li>
          </c:if>
-            <li id='h-6'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">EuPathDB Data Summary</a></li>
-            <li id='h-'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">EuPathDB Gene Metrics</a></li>
+            <li id='h-6'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GenomeDataType"/>">FungiDB Data Summary</a></li>
+            <li id='h-'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics"/>">FungiDB Gene Metrics</a></li>
             <li id='h-'><a href="http://workshop.eupathdb.org/current/">EuPathDB Workshop</a></li>
 
             <li id='h-3'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.Glossary"/>">Glossary of Terms</a></li>
@@ -345,7 +345,7 @@ http://www.jarvana.com/jarvana/view/rome/rome/0.9/rome-0.9-javadoc.jar!/index.ht
             <li id='h-7'><a href="<c:url value="http://eupathdb.org/tutorials/eupathdbFlyer.pdf"/>">EuPathDB Brochure</a></li>
             <li id='h-'><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs"/>">EuPathDB Publications</a></li>
 
-            <li id='h-2'><a href="/proxystats/awstats.pl?config=${fn:toLowerCase(project)}.org">Website Usage Statistics</a></li>
+            <li id='h-2'><a href="/proxystats/awstats.pl">Website Usage Statistics</a></li>
             <li id='h-1'><a href="<c:url value="/help.jsp"/>" target="_blank" onClick="poptastic(this.href); return false;">Contact Us</a></li>
 
         </ul></div>

@@ -67,33 +67,11 @@
 
 <c:set var="releaseDate" value="${applicationScope.wdkModel.releaseDate}" />
 <c:set var="inputDateFormat" value="dd MMMM yyyy HH:mm"/>
+
 <fmt:setLocale value="en-US"/><%-- req. for date parsing when client browser (e.g. curl) doesn't send locale --%>
 <fmt:parseDate pattern="${inputDateFormat}" var="rlsDate" value="${releaseDate}"/> 
-<%-- http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html --%>
 <fmt:formatDate var="releaseDate_formatted" value="${rlsDate}" pattern="d MMM yy"/>
   
-
-
-<%--- Google keys to access the maps for Isolate questions (check with Haiming) ---%>
-<c:if test="${project == 'CryptoDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTMrNE2G2Bled15vogCImXw6TjMNBQeKxJGr2lD8yC0v8vilAhNZXuKjQ" />
-</c:if>
-
-<c:if test="${project == 'PlasmoDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahQTcYCy8iFaEFUpq-RKhUlyaXswfRSkzh9P8XS6wfHjLQhH6aRG_redTg" />
-</c:if>
-
-<c:if test="${project == 'ToxoDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTbXWpA0E7vCdCxcYwpPwzMOEinFhTk3zvyW9eMl1CGc0wQabgrO2GHiA" />
-</c:if>
-
-<c:if test="${project == 'GiardiaDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahTlNDst8dXAmD5YyQ2VVS97EWFghhQhZPGp197fIBaqTKkE2AWWB1m7xA" />
-</c:if>
-
-<c:if test="${project == 'EuPathDB'}">
-  <c:set var="gkey" value="ABQIAAAAqKP8fsrz5sK-Fsqee-NSahSsTM_yzu3s1MlIlYUNhUGVfJzobxRb1TdHaeE5y5bGlgFsG1VYMy7KCw" />
-</c:if>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -101,8 +79,8 @@
 
 <c:if test="${banner == null}">
 <c:choose>
-      <c:when test = "${project == 'EuPathDB'}">
-             <c:set var="banner" value="EuPathDB : The Eukaryotic Pathogen genome resource"/>
+      <c:when test = "${project == 'FungiDB'}">
+             <c:set var="banner" value="FungiDB : The Fungal genome resource"/>
       </c:when>
       <c:when test = "${project == 'CryptoDB'}">
              <c:set var="banner" value="CryptoDB : The Cryptosporidium genome resource"/>
@@ -182,6 +160,8 @@
 <link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" /> 
 <link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
 <link rel="stylesheet" href="/assets/css/spanlogic.css"         type="text/css" />
+<link rel="stylesheet" href="<c:url value='/misc/Top_menu.css' />" type="text/css">
+
 
 <%-- temporary:  generate url for old version of site --%>
 <script type="text/javascript">
@@ -236,42 +216,20 @@ ${headElement}
 <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 
 <div id="header2">
-   <div style="width:518px;" id="header_rt">
-
-   <div align="right"><div id="toplink">
-   <c:if test="${project == 'TriTrypDB'}">
-     <map name="partof">
-     <area shape=rect coords="0,0 172,22" href="http://eupathdb.org" alt="EuPathDB home page">
-     <area shape=rect coords="310,0 380,22" href="http://www.genedb.org" alt="GeneDB home page">
-     </map>
-   </c:if>
-
-
-   <c:choose>
-    <c:when test="${project == 'EuPathDB'}">
-       <%-- we have it for now so the page renders correctly --%>
-       <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
-   </c:when>
-   <c:when test="${project == 'TriTrypDB'}">
-     <img  usemap="#partof" src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/>
-   </c:when>
-   <c:otherwise>
-     <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
-   </c:otherwise>
-   </c:choose>
+   <div style="width:490px;" id="header_rt">
+	<div align="right"><div id="toplink">
+	     <a href="http://eupathdb.org"><img src="/assets/images/${project}/partofeupath.png" alt="Link to EuPathDB homepage"/></a>   
    </div></div>
-       
 
-    <div style="width:537px;" id="bottom">
-      <site:quickSearch />
-      <site:smallMenu />
+    <div style="width:490px;" id="bottom">
+	<site:quickSearch />
+	<site:smallMenu />
 
    </div>  <%-- id="bottom"    --%>
    </div>  <%-- id="header_rt" --%>
 
-
 <%------------- TOP HEADER:  SITE logo and DATE _______  is a EuPathDB Project  ----------------%>
-   <p><a href="/"><img src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" align="left" /></a></p>
+   <p><a href="/"><img style="position:relative;top:-4px;left:2px" width="252" height="78" src="/assets/images/${project}/title_s.png" alt="Link to ${project} homepage" align="left" /></a></p>
 
    <p>&nbsp;</p>
    <p>Version ${version}<br />
