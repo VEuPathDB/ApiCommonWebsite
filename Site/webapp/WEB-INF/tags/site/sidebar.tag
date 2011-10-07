@@ -194,11 +194,13 @@ http://www.jarvana.com/jarvana/view/rome/rome/0.9/rome-0.9-javadoc.jar!/index.ht
      <hr>
 </c:if>
 
-<!--  EVENTS -->
+<!--  EVENTS
     <b>Upcoming Events</b>
     <site:communityEventListing/>
     <br><br>
     <hr>
+ -->
+
 
 <!--  LINKS to interesting sites -->
     <b>Related Sites</b>
