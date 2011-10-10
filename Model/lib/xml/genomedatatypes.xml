@@ -29,7 +29,7 @@
        <attribute name = "Family">Aspergillus</attribute>
        <attribute name = "Organism">A.flavus</attribute>
        <attribute name = "Taxon_ID">5059</attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Strain">NRRL 3357</attribute>
        <attribute name = "Genome_Version">2</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">36.79</attribute>
@@ -223,9 +223,9 @@
  <record>
        <attribute name = "Website">Sordariomycetes; Ascomyocta</attribute>
        <attribute name = "Family">Fusarium</attribute>
-       <attribute name = "Organism">F.oxysporum lycopersic</attribute>
+       <attribute name = "Organism">F.oxysporum f.sp.lycopersic</attribute>
        <attribute name = "Taxon_ID">426428</attribute>
-       <attribute name = "Strain">f.sp.4287</attribute>
+       <attribute name = "Strain">4287</attribute>
        <attribute name = "Genome_Version">2</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size"></attribute>
@@ -371,9 +371,9 @@
  <record>
        <attribute name = "Website">Basidiomycota</attribute>
        <attribute name = "Family">Cryptococcus</attribute>
-       <attribute name = "Organism">C.neoformans</attribute>
+       <attribute name = "Organism">C.neoformans var.grubii</attribute>
        <attribute name = "Taxon_ID">235443</attribute>
-       <attribute name = "Strain">var.grubii H99</attribute>
+       <attribute name = "Strain">H99</attribute>
        <attribute name = "Genome_Version">2</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">18.88</attribute>
@@ -395,9 +395,9 @@
  <record>
        <attribute name = "Website">Basidiomycota</attribute>
        <attribute name = "Family">Puccinia</attribute>
-       <attribute name = "Organism">P.graminis</attribute>
+       <attribute name = "Organism">P.graminis f.sp.tritici</attribute>
        <attribute name = "Taxon_ID">418459</attribute>
-       <attribute name = "Strain">f.sp.tritici CRL 75-36-700-3</attribute>
+       <attribute name = "Strain">CRL 75</attribute>
        <attribute name = "Genome_Version">2</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">88.65</attribute>

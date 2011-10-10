@@ -56,7 +56,7 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
 <tr class="mythStyle" style="cursor:pointer">
     <td  style="border-right:3px solid grey" class="mythStyle" title="">Gene Metric</td>
     <td class="mythStyle" title="Aspergillus clavatus NRRL 1"><i>Ac</i></td>
-    <td class="mythStyle" title="Aspergillus flavus"><i>Afl</i></td>
+    <td class="mythStyle" title="Aspergillus flavus NRRL 3357"><i>Afl</i></td>
     <td class="mythStyle" title="Aspergillus fumigatus Af293"><i>Afu</i></td>
     <td class="mythStyle" title="Aspergillus nidulans FGSC A4"><i>Anid</i></td>
     <td class="mythStyle" title="Aspergillus niger ATCC 1015"><i>Anig</i></td>
@@ -64,14 +64,14 @@ FungiDB is an integrated genomic and functional genomic database for the kingdom
     <td class="mythStyle" title="Coccidioides immitis H538.4"><i>CiH</i></td>
     <td  style="border-right:3px solid grey" class="mythStyle" title="Coccidioides immitis RS"><i>CiRS</i></td>
     <td class="mythStyle" title="Fusarium graminearum PH-1 (NRRL 31084)"><i>Fg</i></td>
-    <td class="mythStyle" title="Fusarium oxysporum lycopersici f. sp. 4287"><i>Fo</i></td>
+    <td class="mythStyle" title="Fusarium oxysporum f.sp.lycopersici  4287"><i>Fo</i></td>
     <td class="mythStyle" title="Gibberella moniliformis "><i>Gm</i></td>
     <td class="mythStyle" title="Magnaporthe oryzae 70-15"><i>Mo</i></td>
     <td  style="border-right:3px solid grey" class="mythStyle" title="Neurospora crassa OR74A"><i>Nc</i></td>
     <td class="mythStyle" title="Candida albicans SC5314"><i>Ca</i></td>
     <td  style="border-right:3px solid grey" class="mythStyle" title="Saccharomyces cerevisiae S288c"><i>Sc</i></td>
-    <td class="mythStyle" title="Cryptococcus neoformans var. grubii H99"><i>Cn</i></td>
-    <td  style="border-right:3px solid grey" class="mythStyle" title="Puccinia graminis f.sp.tritici CRL 75-36-700-3"><i>Pg</i></td>
+    <td class="mythStyle" title="Cryptococcus neoformans var.grubii H99"><i>Cn</i></td>
+    <td  style="border-right:3px solid grey" class="mythStyle" title="Puccinia graminis f.sp.tritici CRL 75"><i>Pg</i></td>
     <td  style="border-right:3px solid grey" class="mythStyle" title="Rhizopus oryzae RA 99-880"><i>Ro</i></td>
 </tr>
 
