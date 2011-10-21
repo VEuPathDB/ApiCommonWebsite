@@ -28,6 +28,7 @@ sub init {
                   default_y_max => 4,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
+                   x_axis_labels => ['RO3H','RO5H','RO20H']
                   },
       pct => {profiles => ['rhizopus_oryzae_99880 hyphal_tip RNA Sequence min Profiles Percentile'],
               y_axis_label => 'Percentile',
