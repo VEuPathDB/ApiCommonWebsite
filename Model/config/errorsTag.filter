@@ -38,6 +38,9 @@ noStepForUser = The Step #\\d+ of user .+ doesn't exist
 # user submites a form with missing value
 invalidParam = The parameter .+ does not allow empty value
 
+# non-number in number field - weight field is often abused
+invalidNumber = Only integer numbers are allowed
+
 # A common case is /showRecord.do (with no params). Only filter out
 # those with empty referers. If there's a referer it may indicate a
 # bad link on our site, so we want to get those emails.
@@ -56,3 +59,8 @@ nullNumber.referer =
 # Only when no referer, maybe coming from an obsolete bookmark
 invalidQuestionSet = WDK Model .+ does not contain a Question set with name 
 invalidQuestionSet.referer =
+
+# showXmlDataContent.do is no longer used. Only catch if there's a referer
+obsoleteShowXmlDataContent = showXmlDataContent.do$
+obsoleteShowXmlDataContent =
+
