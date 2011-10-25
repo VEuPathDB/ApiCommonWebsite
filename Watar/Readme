@@ -28,3 +28,5 @@ java -cp "$PROJECT_HOME/test_home/lib/java/*"   \
     -Dwebappname='toxo.integrate' \
     org.testng.TestNG \
     -methods 'org.apidb.apicommonwebsite.watar.SmokeTests.WsfServicePage_HttpHeaderStatusIsOK'
+
+
