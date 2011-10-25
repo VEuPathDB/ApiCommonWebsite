@@ -62,5 +62,5 @@ invalidQuestionSet.referer =
 
 # showXmlDataContent.do is no longer used. Only catch if there's a referer
 obsoleteShowXmlDataContent = showXmlDataContent.do$
-obsoleteShowXmlDataContent =
+obsoleteShowXmlDataContent.referer =
 
