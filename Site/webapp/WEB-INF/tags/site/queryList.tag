@@ -34,6 +34,7 @@ function writeData(page, div, quesName, insertStep){
 			if(location.href.indexOf("showApplication") != -1){
 				formatFilterForm("<form>" + $("div.params",data).html() + "</form>", data, 0, insertStep, false, false, false);
 			}
+/*
 			var q = document.createElement('div');
 			$(q).html(data);
 			var qf = $("form#form_question",q);
@@ -50,6 +51,9 @@ function writeData(page, div, quesName, insertStep){
 			t.append(qd);
       document.getElementById(div).innerHTML += "<hr/>"
 			t.append(qa);
+*/
+
+                        t.html($.trim(data));
 			$('html,body').animate({scrollTop: (t.offset().top - 50)},'fast');
 			htmltooltip.render();
 			initParamHandlers(true);
