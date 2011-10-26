@@ -6,7 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlot );
 use ApiCommonWebsite::View::GraphPackage::AbstractPlot;
 
-use Data::Dumper;
+
 
 #--------------------------------------------------------------------------------
 
@@ -62,7 +62,6 @@ sub makeRPlotStrings {
         push(@profileFiles, $profileFile);
         push(@elementNamesFiles, $elementNamesFile);
       }
-      print Dumper $profileSetName;
       $i++;
     }
 
