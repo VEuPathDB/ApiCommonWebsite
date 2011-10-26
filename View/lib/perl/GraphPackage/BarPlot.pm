@@ -62,7 +62,7 @@ sub makeRPlotStrings {
         push(@profileFiles, $profileFile);
         push(@elementNamesFiles, $elementNamesFile);
       }
-
+      print Dumper $profileSetName;
       $i++;
     }
 
@@ -261,7 +261,9 @@ for(i in 1:nrow(profile)) {
   }
 }
 
-suppressWarnings(arrows(plotXPos, profile,  plotXPos, profile+stdev, angle=90, code=3, length=0.05, lw=2));
+lowerBound = profile - stdev;
+upperBound = profile + stdev;
+suppressWarnings(arrows(plotXPos, lowerBound,  plotXPos, upperBound, angle=90, code=3, length=0.05, lw=2));
 
 
 box();
@@ -276,4 +278,4 @@ plasmodb.title(\"$plotTitle\");
 
 
 
-1;
+
