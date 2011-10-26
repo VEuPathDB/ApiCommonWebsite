@@ -82,7 +82,7 @@ my $optRslt = GetOptions(
     "newcache"   => \$recreate_wdkCache,
     );
 
-my $target_site = $ARGV[0];
+my $target_site = lc $ARGV[0];
 
 
 ####################################################################
