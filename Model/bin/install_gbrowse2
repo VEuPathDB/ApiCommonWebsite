@@ -107,17 +107,18 @@ configure_gb() {
 
     echo "INSTALL: perl Build.PL..."
     
-    perl Build.PL  --htdocs=$htdocsTargetDir/gbrowse2                          \
-                   --conf=$confTargetDir/gb2                                   \
-                   --tmp=$htdocsTargetDir/gbrowse2/tmp                         \
-                   --persistent=$cgilibTargetDir/gb2/persistent                \
-                   --databases=$cgilibTargetDir/gb2/persistent/databases       \
-                   --cgibin=$cgibinTargetDir/gb2                               \
-                   --bin=$cgibinTargetDir/gb2/bin                              \
-                   --prefix=$GUS_HOME                                          \
-                   --wwwuser=$USER                                             \
-                   --install_path arch=$cgilibTargetDir/gb2                    \
-                   --install_path lib=$cgilibTargetDir/gb2
+    # gbrowse hardocdes 'gbrowse2' for the htdocs path
+    perl Build.PL  --htdocs=$htdocsTargetDir/gbrowse                          \
+                   --conf=$confTargetDir/gbrowse.conf                         \
+                   --tmp=$htdocsTargetDir/gbrowse/tmp                         \
+                   --persistent=$cgilibTargetDir/persistent                   \
+                   --databases=$cgilibTargetDir/persistent/databases          \
+                   --cgibin=$cgibinTargetDir                                  \
+                   --bin=$cgibinTargetDir/bin                                 \
+                   --prefix=$GUS_HOME                                         \
+                   --wwwuser=$USER                                            \
+                   --install_path arch=$cgilibTargetDir                       \
+                   --install_path lib=$cgilibTargetDir
 
 }
 
@@ -142,10 +143,10 @@ patch_postinstall() {
     echo "INSTALL: patching...$cgibinTargetDir"
     arch=$(arch)
     [ "$arch" == "i686" ] && arch=i386
-    patch -p1 -d $cgibinTargetDir/gb2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/umask.patch
-    patch -d $cgilibTargetDir/gb2/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/RenderPanel.pm.patch
-    patch -d $cgilibTargetDir/gb2/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
-    patch -d $confTargetDir/gb2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/GBrowse.conf.patch
+    patch -p1 -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/umask.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/RenderPanel.pm.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
+    patch -d $confTargetDir/gbrowse.conf -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/GBrowse.conf.patch
 }
 
 
