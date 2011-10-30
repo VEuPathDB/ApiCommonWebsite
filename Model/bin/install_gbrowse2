@@ -143,10 +143,12 @@ patch_installer() {
     # patch GBrowseInstall.pm to remove interactive and sudo bits
     echo "INSTALL: patching for non-interactive install"
     patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/noninteractive_install.patch
+    echo "INSTALL: patching to change state cookie name"
+    patch -p1 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/cookie.patch
 }
 
 patch_postinstall() {
-    echo "INSTALL: patching...$cgibinTargetDir"
+    echo "INSTALL: patching installed files"
     arch=$(arch)
     [ "$arch" == "i686" ] && arch=i386
     patch -p1 -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/umask.patch
