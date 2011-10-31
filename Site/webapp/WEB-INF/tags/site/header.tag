@@ -66,6 +66,10 @@
 </c:otherwise>
 </c:choose>
 <c:set var="EUPATHDB_GALAXY_URL" value="http://galaxy.apidb.org/tool_runner?tool_id=eupathdb" scope="session" />
+<c:set var="CRYPTODB_GALAXY_URL" value="http://galaxy.apidb.org/tool_runner?tool_id=cryptodb" scope="session" />
+<c:set var="CTEGD_RICH_GALAXY_URL" value="http://richgalaxy.ctegd.uga.edu/tool_runner?tool_id=eupathdb" scope="session" />
+<c:set var="CTEGD_GALAXY_URL" value="http://galaxy.ctegd.uga.edu/tool_runner?tool_id=eupathdb" scope="session" />
+<c:set var="BRAZIL_GALAXY_URL" value="http://brazilgalaxy.ctegd.uga.edu/tool_runner?tool_id=eupathdb" scope="session" />
 <%-- end Galaxy flag --%>
 
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
