@@ -18,7 +18,7 @@
 
 <%-- galaxy.psu.edu users; to send data to Galaxy  --%>
 <script type="text/javascript">
-function appendchecked(url) {
+function appendchecked(form, url) {
     var newtxt = '';
     var chkbx = document.downloadConfigForm.selectedFields;
     for(var i = 0; i < chkbx.length; i++) {
@@ -31,7 +31,7 @@ function appendchecked(url) {
             newtxt += chkbx[i].value;
         }
     }
-    document.galaxy_exchange.URL.value = url + newtxt;
+    form.URL.value = url + newtxt;
 }
 </script>
 <%-- end galaxy.psu.edu users  --%>
@@ -165,11 +165,26 @@ function appendchecked(url) {
     <br>
     <form action="${sessionScope.GALAXY_URL}" name="galaxy_exchange" id="galaxy_exchange" method="POST">
       <input type="hidden" name="URL" value="${fn:escapeXml(downloadUrl)}">
-      <input type="submit" name="Send" value="Send to Galaxy" onclick="appendchecked('${fn:escapeXml(downloadUrl)}')">
+      <input type="submit" name="Send" value="Send to PSU Galaxy" onclick="appendchecked(this.form, '${fn:escapeXml(downloadUrl)}')">
     </form>
     </div>
   </c:if>
-  <%-- galaxy.psu.edu users  --%>
+  <%-- end: galaxy.psu.edu users  --%>
+
+  <%-- galaxy.apidb.org users  --%>
+    <div style="text-align:center;background-color:#FFCCFF;border-style:double; width:300px">
+    <c:url var='downloadPath' 
+           value='/getDownloadResult.do;jsessionid=${pageContext.session.id}?step=${step_id}&includeHeader=yes&downloadType=plain&wdkReportFormat=tabular&selectedFields='/>
+    <c:set var='downloadUrl'>
+      ${pageContext.request.scheme}://${pageContext.request.serverName}${downloadPath}
+    </c:set>
+    <br>
+    <form action="${sessionScope.EUPATHDB_GALAXY_URL}" name="galaxy_exchange" id="galaxy_exchange" method="POST">
+      <input type="hidden" name="URL" value="${fn:escapeXml(downloadUrl)}">
+      <input type="submit" name="Send" value="Send to EuPathDB Galaxy" onclick="appendchecked(this.form, '${fn:escapeXml(downloadUrl)}')">
+    </form>
+    </div>
+  <%-- end: galaxy.apidb.org users  --%>
 
   </c:otherwise>
 </c:choose>
