@@ -155,7 +155,7 @@ patch_postinstall() {
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/RenderPanel.pm.patch
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
     patch -d $confTargetDir/gbrowse.conf -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/GBrowse.conf.patch
-    patch -d $cgibinTargetDir/gbrowse_img -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/gbrowse_img.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/gbrowse_img.patch
 }
 
 
