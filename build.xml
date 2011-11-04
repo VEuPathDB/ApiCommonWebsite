@@ -166,7 +166,16 @@
     </ant>
   </target>
 
+
+<!--BB -->
+
   <target name="ApiCommonWebsite/Site-Installation">
+    <!--chmod perm="u+w">
+      <fileset file="${htdocsTargetDir}/gbrowse/images/buttons/ficon.png"/>
+      <fileset file="${htdocsTargetDir}/gbrowse/images/buttons/ficon_2.png"/>
+    </chmod-->
+    <delete file="${htdocsTargetDir}/gbrowse/images/buttons/ficon.png" />
+    <delete file="${htdocsTargetDir}/gbrowse/images/buttons/ficon_2.png" />
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
