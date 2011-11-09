@@ -44,7 +44,7 @@ sub run {
   if ($self->{type} eq 'genomic') {
     $self->handleGenomic($dbh, $seqIO);
   } else {
-    $self->handleNonGenomic($dbh, $seqIO);
+    $self->handleNonGenomic($cgi, $dbh, $seqIO);
   }
 
   
@@ -209,12 +209,14 @@ EOSQL
 
 
 sub handleNonGenomic {
-  my ($self, $dbh, $seqIO) = @_;
+  my ($self, $cgi, $dbh, $seqIO) = @_;
 
   my $sql;
   my $type = $self->{type};
 
-  my $site = ($self->{ignore_gene_alias})? $sqlQueries2:$sqlQueries;
+#  my $site = ($self->{ignore_gene_alias})? $sqlQueries2:$sqlQueries;
+my $projectId = $cgi->param('project_id'); 
+my $site = ($projectId eq 'ToxoDB')? $sqlQueries2:$sqlQueries;
 
   my $inputIds = $self->{inputIds};
   my $ids;
