@@ -186,8 +186,8 @@ if ($isVis_b{lgr} == 1) {
   screen(screens[screen.i]);
   screen.i <- screen.i + 1;
 
-  y.max = max( $yMax, data.match\$VALUE, data.query\$VALUE);
-  y.min = min( $yMin, data.match\$VALUE, data.query\$VALUE);
+  y.max = max( $yMax, data.match\$VALUE, data.query\$VALUE, na.rm=T);
+  y.min = min( $yMin, data.match\$VALUE, data.query\$VALUE, na.rm=T);
 
   if($smoothLines) {
     approxInterpMatch = approx(data.match\$ELEMENT_ORDER, n=$splineApproxN);
