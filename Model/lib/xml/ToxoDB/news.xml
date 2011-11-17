@@ -24,6 +24,224 @@
          <![CDATA[
 <body>
 <span style="font-weight: bold;">We are pleased to announce the release
+of ToxoDB 7.1<br>
+</span><br>
+<span style="font-weight: bold;">This release of ToxoDB contains the
+following new datasets:</span><span style="font-weight: bold;"> </span><br>
+<br>
+<ul>
+<li>Proteomic data from day 10 mature <span
+style="font-style: italic;">T. gondii</span> M4 strain (type II)
+oocysts.&nbsp; These data were graciously provided prepublication
+(Heather M. Fritz, Paul W. Bowyer, Matthew Bogyo, Patricia A. Conrad,
+John C. Boothroyd). &nbsp; Three oocyst fractions were generated and
+examined by mass spec (<a
+href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=Wastling-Rhoptry,Wastling1D_SDSPage,Wastling-1D_SDSPage-Soluble,Wastling-1D_SDSPage-Insoluble,Wastling-MudPIT-Soluble,Wastling-MudPIT-Insoluble,Murray-Roos_Proteomics_Conoid-enriched,Murray-Roos_Proteomics_Conoid-depleted,Dec2006_Tg_membrane_Fayun_Proteomics,Oct2006_Tg_membrane_Fayun_Proteomics,massspec_1D_tg_1frac_020306_Proteomics,massspec_june30_2006_Proteomics,massspec_may02-03_2006_Proteomics,massspec_may10_2006_Proteomics,massspec_May2007_Proteomics,massspec_May22_2007_Proteomics,massspec_membrane_frac_frac_Proteomics,Moreno-1-annotated,massspec_Carruthers_2destinct_peptides,massspec_MudPIT_Twinscan_hits,Tg_Boothroyd_Elias_Moritz_Intracellular_Phosphoproteome_RSRC,Tg_Boothroyd_Elias_Moritz_Purified_Phosphoproteome_RSRC,Tg_Boothroyd_Elias_Moritz_Purified_Totalproteome_RSRC,Tg_Tonkin_TiO2_Bound_Mascot-based_Phosphoproteome_RSRC,Tg_Tonkin_TiO2_Bound_Sequest-based_Phosphoproteome_RSRC,Tg_Tonkin_TiO2_Unbound_Phosphoproteome_RSRC,TgonME49_BoothroydBowyerOocystMembrane_Proteome_RSRC,TgonME49_BoothroydBowyerOocystCytosol_Proteome_RSRC,TgonME49_BoothroydBowyerOocystWalls_Proteome_RSRC&amp;title=Query#TgonME49_BoothroydBowyerOocystMembrane_Proteome_RSRC"><span
+style="font-weight: bold;">additional experimental details are
+available in the data sources section</span></a>).&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<ul>
+<li>Genes with mass spec evidence from each of these fractions may
+be interrogated in ToxoDB.&nbsp; For example, <a
+style="font-weight: bold;"
+href="http://toxodb.org/toxo/im.do?s=d55be40033b9cf83">this search
+strategy</a> identifies genes that have mass spec evidence from the
+outer wall fraction (not treated) that do not have proteomics
+expression evidence from the inner wall (bleach treated)
+fraction.&nbsp; <a style="font-weight: bold;"
+href="http://toxodb.org/toxo/im.do?s=f3b66e811801f65e">This search can
+be further refined </a>to ask how many of these genes also contain
+predicted transmembrane domains.<br>
+</li>
+</ul>
+</ul>
+<br>
+<ul>
+<li>Phosphoproteomic and total proteomic data from intracellular and
+extracellular<span style="font-style: italic;"> T. gondii</span> RH
+strain.&nbsp; This data was graciously provided prepublication and is
+now in press (<a style="font-weight: bold;"
+href="http://www.sciencedirect.com/science/article/pii/S1931312811002885">Treeck
+<span style="font-style: italic;">et. al.</span>, 2011, Cell Host
+&amp; Microbe</a>).&nbsp; <a style="font-weight: bold;"
+href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=Wastling-Rhoptry,Wastling1D_SDSPage,Wastling-1D_SDSPage-Soluble,Wastling-1D_SDSPage-Insoluble,Wastling-MudPIT-Soluble,Wastling-MudPIT-Insoluble,Murray-Roos_Proteomics_Conoid-enriched,Murray-Roos_Proteomics_Conoid-depleted,Dec2006_Tg_membrane_Fayun_Proteomics,Oct2006_Tg_membrane_Fayun_Proteomics,massspec_1D_tg_1frac_020306_Proteomics,massspec_june30_2006_Proteomics,massspec_may02-03_2006_Proteomics,massspec_may10_2006_Proteomics,massspec_May2007_Proteomics,massspec_May22_2007_Proteomics,massspec_membrane_frac_frac_Proteomics,Moreno-1-annotated,massspec_Carruthers_2destinct_peptides,massspec_MudPIT_Twinscan_hits,Tg_Boothroyd_Elias_Moritz_Intracellular_Phosphoproteome_RSRC,Tg_Boothroyd_Elias_Moritz_Purified_Phosphoproteome_RSRC,Tg_Boothroyd_Elias_Moritz_Purified_Totalproteome_RSRC,Tg_Tonkin_TiO2_Bound_Mascot-based_Phosphoproteome_RSRC,Tg_Tonkin_TiO2_Bound_Sequest-based_Phosphoproteome_RSRC,Tg_Tonkin_TiO2_Unbound_Phosphoproteome_RSRC,TgonME49_BoothroydBowyerOocystMembrane_Proteome_RSRC,TgonME49_BoothroydBowyerOocystCytosol_Proteome_RSRC,TgonME49_BoothroydBowyerOocystWalls_Proteome_RSRC&amp;title=Query#Tg_Boothroyd_Elias_Moritz_Purified_Phosphoproteome_RSRC">Additional
+experimental details are available in the data sources section</a>.&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<ul>
+<li><a style="font-weight: bold;"
+href="http://toxodb.org/toxo/im.do?s=0ea82be9687241c0">This search
+strategy</a> identifies Toxoplasma (GT1 and ME49 genes) genes with
+evidence of phosphorylation during the intracellular stage that do not
+have evidence of phosphorylation in purified extracellular parasites.</li>
+</ul>
+</ul>
+<br>
+<ul>
+<li>Calcium-dependent phosphoproteomic data from intracellular <span
+style="font-style: italic;">T. gondii</span> RH strain.&nbsp; This
+data was graciously provided prepublication and is now in press (<a
+style="font-weight: bold;"
+href="http://www.plospathogens.org/article/info%3Adoi%2F10.1371%2Fjournal.ppat.1002222">Nebl
+et. al., 2011, PLoS Pathogens</a>).&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<ul>
+<li><a style="font-weight: bold;"
+href="http://toxodb.org/toxo/im.do?s=599e87b3ec91dc23">This search
+strategy</a> identifies genes that have evidence of calcium-dependent
+phosphorylation based on SEQUEST and MASCOT analysis.</li>
+</ul>
+</ul>
+<br>
+<ul>
+<li><span style="font-weight: bold;">Note</span>: all proteomic data
+can be viewed graphically on gene pages or the genome browser in
+ToxoDB.&nbsp; In addition, moving your cursor over peptide graphics
+displays additional information including the peptide sequence and
+phosphorylation sites when available.&nbsp; For example, you can
+view peptide evidence from all the above described data in the "protein
+features" section on <a style="font-weight: bold;"
+href="http://toxodb.org/gene/TGME49_036890">this
+gene page</a>. Also, all protein expression data in ToxoDB can be
+searched in the "<a style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Protein
+expression</a>" section.&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<li>Microarray data from TgGCN5-A knockout <span
+style="font-style: italic;">T. gondii</span> type I RH strain
+parasites (<a style="font-weight: bold;"
+href="http://www.plospathogens.org/article/info%3Adoi%2F10.1371%2Fjournal.ppat.1001232">Naguleswaran
+<span style="font-style: italic;">et. al.</span>, 2010, PLoS
+Pathogens</a>).&nbsp; Microarray data can be searched in the <a
+style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">transcript
+expression</a> section of ToxoDB.&nbsp; <span
+style="font-weight: bold;"><a
+href="http://toxodb.org/toxo/im.do?s=56b81295ed020d58">Here is an
+search strategy</a> </span>that
+identifies genes that are upregulated in wild type parasites under
+stress conditions and not upregulated in GCN5 knockout parasites under
+the same conditions.</li>
+</ul>
+<br>
+<ul>
+<li>Microarray data from <span style="font-style: italic;">T. gondii</span>
+parasites soon after invasion (<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21166903">Gaji <span
+style="font-style: italic;">et. al.</span>, 2010, Molecular
+Microbiology</a>).&nbsp; Microarray data can be searched in the <a
+style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">transcript
+expression</a> section of ToxoDB.&nbsp; <a
+href="http://toxodb.org/toxo/im.do?s=8553a195f499281c"><span
+style="font-weight: bold;">Here is a search strategy</span></a> that
+identifies genes that are differentially regulated between
+extracellular and intracellular parasites.&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<li>Single nucleotide polymorphism (SNP) data based on comparisons of
+the <span style="font-style: italic;">T. gondii</span>
+RH strain (This data was graciously provided prepublication by Marc-Jan
+Gubbles).&nbsp; Using this data, genes in ToxoDB may be identified
+based
+on their high throughput sequencing (HTS) SNP characteristics
+(comparing RH to GT1 and ME49).&nbsp;&nbsp; On the <a
+style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesBySnps">SNP
+search page</a> (under the heading "Population Biology"), selecting
+"HTS SNP characteristics" allows you to define the type of SNPs you are
+interested in.&nbsp; <br>
+</li>
+</ul>
+<br>
+<ul>
+<ul>
+<li><a style="font-weight: bold;"
+href="http://toxodb.org/toxo/im.do?s=534d434b18dcc8fa"><span
+style="text-decoration: underline;"><span style="font-weight: bold;">T</span></span></a><a
+style="font-weight: bold;"
+href="http://toxodb.org/toxo/im.do?s=534d434b18dcc8fa">his search</a>
+identifies all genes in ME49 that contain 20 or more nonsynonymous SNPs
+compared to RH.&nbsp;&nbsp;</li>
+<li>HTS SNPs are summarized on gene pages in the "SNPs Summary"
+table.</li>
+<li>SNP records can also be searched using the SNP search tools
+under the heading "Identify other data types".&nbsp; Searches include
+identifying SNPs based on ID, genomic location or GeneID.&nbsp; These
+searches return SNP records which are populated with additional
+information such as sequence surrounding a SNP. <br>
+</li>
+<li>In addition, an <a style="font-weight: bold;"
+href="http://toxodb.org/cgi-bin/gbrowse/toxodb_ME49RH/?start=1641788;stop=1641888;ref=DS984732;width=800;version=100;flip=;cache=1;drag_and_drop=0;show_tooltips=1;grid=1;id=a8d1942cdadacb46ed9c634b1dcdc4c3;label=CoverageXyplot-CoverageDensity-Alignment;h_region=DS984732%3A1641838..1641839%40red">alignment
+pileup of reads</a> around a specific SNP can be viewed to assess the
+quality of the SNP call.<br>
+</li>
+</ul>
+</ul>
+<br>
+<ul>
+<li>The unannotated genome sequence <span style="font-style: italic;">T.
+gondii</span>
+strains CatBR9 and the early diverging apicomplexan <span
+style="font-style: italic;">Gregarina niphandrodes</span> provided by
+the <span style="font-style: italic;">Toxoplasma</span> white paper
+sequencing project are now available.&nbsp; This data can be searched
+from the&nbsp;
+"Genomic Sequences" section under
+the heading "Identify other data types" on the home page.&nbsp; Genome
+sequences from this effort will be incorporated into ToxoDB release as
+they become available.&nbsp; A <a style="font-weight: bold;"
+href="https://sites.google.com/site/toxoplasmagondiigscidproject/home">webpage</a>
+with updated information on the
+status of sequencing is maintained by Hernan Lorenzi at the J. Craig
+Venter Institute.&nbsp; In addition, a PDF of the sequencing white
+paper is available for <a
+href="http://toxodb.org/toxo/communityDownload.do?fname=Toxo_Sequencing_WhitePaper.pdf"><span
+style="font-weight: bold;">download</span></a>.</li>
+</ul>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span>
+<ul style="text-align: justify;">
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+<br>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">ToxoDB 7.0 Released</attribute>
+       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="tag">toxo7_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to announce the release
 of ToxoDB 7.0<br>
 </span><br>
 <span style="font-weight: bold;">This release of ToxoDB contains the
