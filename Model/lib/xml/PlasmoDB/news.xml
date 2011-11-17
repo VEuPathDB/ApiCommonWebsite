@@ -18,6 +18,45 @@
     </record>
 -->
 <record>
+       <attribute name="headline">Verson 2 of P. falciparum IT is now available on GeneDB!</attribute>
+       <attribute name="date">17 November 2011 15:00</attribute>
+       <attribute name="tag">genedb_newPFITgenome</attribute>
+       <attribute name="category">genedb</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<div align="justify">
+A new assembly of the P. falciparum IT genome is now available,
+replacing the version 1 sequence that has been available via PlasmoDB
+(since release 8.0) and the Sanger FTP site. The version 1 sequence was
+produced by “correcting” (or morphing) the reference 3D7 sequence,
+using aligned Illumina reads from IT.&nbsp;&nbsp; However, in version
+2, the sequence data have been assembled de novo. A key aim for this
+genome project is to fully assemble the subtelomeric regions. Although
+we were able to correctly assemble some subtelomeric sequences onto the
+“core” of the genome (i.e. the interstitial or housekeeping region),
+many subtelomeric sequences remain problematic and are being actively
+refined. The annotation is automated and no manual curation has taken
+place.<br>
+<br>
+The new version contains new systematic identifiers compliant with
+those now in use for 3D7.&nbsp; However, old identifiers remain in the
+database as fully searchable synonyms.&nbsp; The new version can be
+viewed and searched on GeneDB and will be loaded into PlasmoDB in early
+2012.&nbsp; EMBL and GFF format files can be downloaded from the
+following FTP site:<br>
+<br>
+<span style="font-weight: bold;">ftp://ftp.sanger.ac.uk/pub/pathogens/Plasmodium/falciparum/IT_strain/version_2</span><br>
+<br>
+This work was funded by the Wellcome Trust [grant number
+WT085775/Z/08/Z] and the European Union's 7th Framework Programme
+(FP7/2007-2013) under grant agreement no 242095.<br>
+<br>
+</div>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">A new sequence version of P. falciparum 3D7 is now available on GeneDB!</attribute>
        <attribute name="date">24 September 2011 15:00</attribute>
        <attribute name="tag">genedb_newPFgenome</attribute>
