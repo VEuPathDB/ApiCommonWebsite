@@ -11,15 +11,15 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(250);
+  $self->setScreenSize(300);
   $self->setPlotWidth(450);
-  $self->setBottomMarginSize(6);
+  $self->setBottomMarginSize(9);
 
   my $colors = ['#D87093', '#D87093','#87CEEB', '#87CEEB'];
 
   my $legend = ["Wild Type", "GCN5-A Knockout", ];
 
-  $self->setMainLegend({colors => ['#D87093', '#87CEEB'], short_names => $legend, cols=> 3});
+  $self->setMainLegend({colors => ['#D87093', '#87CEEB'], short_names => $legend, cols=> 2});
 
     $self->setProfileSetsHash
     ({rma => {profiles => ['Profiles of GSE22100 GCN5-AE-GEOD-10022 array from Sullivan'],
