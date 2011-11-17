@@ -15,8 +15,8 @@
     </record>
 --> 
 <record>
-       <attribute name="headline">ToxoDB 7.0 Released</attribute>
-       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="headline">ToxoDB 7.1 Released</attribute>
+       <attribute name="date">11 October 2011 15:00</attribute>
        <attribute name="tag">toxo7_11_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
@@ -235,7 +235,7 @@ href="http://twitter.com/eupathdb">Twitter</a></span><br>
 <record>
        <attribute name="headline">ToxoDB 7.0 Released</attribute>
        <attribute name="date">21 July 2011 15:00</attribute>
-       <attribute name="tag">toxo7_11_news</attribute>
+       <attribute name="tag">toxo7_10_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
