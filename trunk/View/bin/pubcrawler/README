@@ -1,0 +1,32 @@
+this directory contains:
+  - pubcrawlerOriginal.pl    : the pubcrawler.pl as download from pubcrawler 
+  - pubcrawlerApi.pl         : a modified version of that for the Api project
+  - pubcrawlerXXXX.sh        : a project specific .sh to call the .pl file
+  - pubcrawler.config.sample : in the target dir, copy this to 
+                               pubcrawler.config and change the last few lines
+                               (its obvious how)
+  - spacer.gif               : a 1x1 pixel spacer needed by pubcrawler
+
+
+to install pubcrawler in an Api site:
+  1) make the directory my_web_dir/Common  (a dir in which Common resources are kept)
+  2) cp -r ApiCommonWebsite/View/bin/pubcrawler my_web_dir/Common
+  3) In Apache's config file for the site's VirtualHost, 
+     add an alias for the pubcrawler directory
+        Alias /pubcrawler/ "my_web_dir/Common/pubcrawler/"
+     Reload Apache.
+  4) copy the pubcrawler.config.sample to pubcrawler.config and change the
+     last few lines
+  5) test by running pubcrawlerMYPROJECT.sh.  it should produce a log, db and
+     index.html file. See the results at http://www.___db.org/pubcrawler/
+  6) to update nightly, add the following to the crontab file (typically, /etc/crontab):
+          00 3 * * * root my_web_dir/Common/pubcrawler/pubcrawlerMYPROJECT.sh
+
+
+options:
+
+    * use the 'header' option in the config file to override the default html 
+      header. Simple macro substitution with variables in the header is allowed.
+      For example, $$icon$$ is substituted with the value of the icon parameter
+      specified on the command line (-icon) or in the config file (icon).
+      

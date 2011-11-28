@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+    <record>
+       <attribute name="title">DNA motif</attribute>
+       <attribute name="description">How to assemble a list of genomic segments that match a recurring DNA pattern that you specify.</attribute>
+       <attribute name="uid">23</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">DNA_motif/dna_motif_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">dna_motif_search.pdf</attribute>
+           <attribute name="duration">4 min</attribute>
+           <attribute name="size">4.3 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+    <record>
+       <attribute name="title">Genomic Co-locations</attribute>
+       <attribute name="description">How to combine two different searches based on the relative genomic location of search results.</attribute>
+       <attribute name="uid">22</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">colocate/colocate_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">genomic_co_location.pdf</attribute>
+           <attribute name="duration">7 min</attribute>
+           <attribute name="size">3.6 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+  <record>
+       <attribute name="title">Text Search</attribute>
+       <attribute name="description">How to identify genes based on any text term in the gene record.</attribute>
+       <attribute name="uid">21</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">TextSearch/Text_Search_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">Text_Search.pdf</attribute>
+           <attribute name="duration">4 min</attribute>
+           <attribute name="size">3.2 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+<record>
+       <attribute name="title">Registration</attribute>
+       <attribute name="description">How to register and change your password.</attribute>
+       <attribute name="uid">20</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Registration/register_final_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">Register.pdf</attribute>
+           <attribute name="duration">4 min</attribute>
+           <attribute name="size">4.1 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+ <record>
+       <attribute name="title">PlasmoDB Introduction</attribute>
+       <attribute name="description">Highlights of the PlasmoDB website.</attribute>
+       <attribute name="uid">19</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">PlasmoDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">PlasmoDB/plasmodb_intro_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">7 min</attribute>
+           <attribute name="size">5.7 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+<record>
+       <attribute name="title">Favorites</attribute>
+       <attribute name="description">How to use the "My Favorites" function. </attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Favorites/favorites_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">6 min</attribute>
+           <attribute name="size">4.5 mb</attribute>
+         </row>
+       </table>
+   </record>
+<record>
+       <attribute name="title">My Basket</attribute>
+       <attribute name="description">How to use the "My Basket" function.</attribute>
+       <attribute name="uid">17</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Basket/basket_final_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">basket.pdf</attribute>
+           <attribute name="duration">6 min</attribute>
+           <attribute name="size">11 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+   <record>
+       <attribute name="title">AmoebaDB Introduction</attribute>
+       <attribute name="description">Highlights of the AmoebaDB website.</attribute>
+       <attribute name="uid">16</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">AmoebaDB/amoebadb_intro_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">5 min</attribute>
+           <attribute name="size">3 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+   <record>
+       <attribute name="title">Search Strategies</attribute>
+       <attribute name="description">Learn how to combine search results using the search strategy system.</attribute>
+       <attribute name="uid">15</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">New_Strat/New_Strat_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">5 min</attribute>
+           <attribute name="size">9 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+   <record>
+       <attribute name="title">Adding User Comments</attribute>
+       <attribute name="description">How to enter a user comment and/or upload a related file.</attribute>
+       <attribute name="uid">14</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">3 min</attribute>
+           <attribute name="size">4 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+ </xmlAnswer>
+

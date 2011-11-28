@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">Add Step</attribute>
+       <attribute name="image">/images/strathelp/addstep.jpg</attribute>
+       <attribute name="body">
+Running a search places you in the Search Strategy system.  Your search is the first "step" of a new strategy.  To refine your result set, add steps to the strategy as needed.
+Click the Add Step button to add a step.  You will be prompted to choose a search.  Next you will be prompted to combine the new search with the previous results (using intersect, union or minus).  The new results reflect this combination.
+We hope strategies help you get the most from the data!
+       </attribute>
+       <attribute name="tip">
+you can click Add Step to add a step to your strategy.
+       </attribute>
+       <attribute name="showTipAsDidYouKnow">true</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">View prior steps</attribute>
+       <attribute name="image">/images/strathelp/viewresults.jpg</attribute>
+       <attribute name="body">
+To view the results of a prior search or combination, click on a result count in a step box.
+       </attribute>
+       <attribute name="tip">
+you can see results of a previous step by clicking on the number in its box.
+       </attribute>
+       <attribute name="showTipAsDidYouKnow">true</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Step actions menu</attribute>
+       <attribute name="image">/images/strathelp/adjuststep.jpg</attribute>
+       <attribute name="body">
+For a menu of actions/properties for a step's search click on the search name in the step box.
+For a menu of actions/properties for how it is combined with the prior step, click on the Venn diagram.
+       </attribute>
+       <attribute name="tip">
+you can get a menu of step actions by clicking on the plus icon, the step name or the Venn diagram.
+       </attribute>
+       <attribute name="showTipAsDidYouKnow">true</attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Branched (nested) strategy</attribute>
+       <attribute name="image">/images/strathelp/nestedstep.jpg</attribute>
+       <attribute name="body">
+Simple strategies are linear.  More advanced strategies include branches.  (For example one step may need to union two searches.)  The trick is to "nest" a strategy within a step.
+Click the step name to get a menu.  Choose "Make Nested Strategy."  Now that step appears expanded in a panel below.  All steps added to that panel will be nested into the step in the panel above.  The whole nested strategy acts as a single step in the parent strategy.
+       </attribute>
+       <attribute name="tip">
+you can branch a strategy.  Choose Make Nested Strategy in the step actions menu.
+       </attribute>
+       <attribute name="showTipAsDidYouKnow">true</attribute>
+   </record>
+
+
+</xmlAnswer>

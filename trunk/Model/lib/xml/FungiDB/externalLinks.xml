@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<xmlAnswer>
+
+<record>
+
+  <table name="communityLinks">
+        <row>
+	    <attribute name="title"><![CDATA[The Hyphal Tip Blog]]></attribute>
+            <attribute name="url"><![CDATA[http://fungalgenomes.org/blog]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[<i>Saccharomyces cerevisiae</i> at SGD]]></attribute>
+            <attribute name="url"><![CDATA[http://yeastgenome.org]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[<i>Aspergillus</i> genomes at AspGD]]></attribute>
+            <attribute name="url"><![CDATA[http://www.aspergillusgenome.org/]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[Broad Fungal Genome Initiative]]></attribute>
+            <attribute name="url"><![CDATA[http://www.broadinstitute.org/scientific-community/science/projects/fungal-genome-initiative/fungal-genome-initiative]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[JGI Mycocosm]]></attribute>
+            <attribute name="url"><![CDATA[http://jgi.doe.gov/fungi]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[PomBase]]></attribute>
+            <attribute name="url"><![CDATA[http://old.genedb.org/genedb/pombe/]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[Ensembl Fungal Genomes]]></attribute>
+            <attribute name="url"><![CDATA[http://fungi.ensembl.org/]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[Comparative Fungal Genome Platform]]></attribute>
+            <attribute name="url"><![CDATA[http://cfgp.snu.ac.kr/]]></attribute>
+        </row>
+  </table>
+
+</record>
+</xmlAnswer>

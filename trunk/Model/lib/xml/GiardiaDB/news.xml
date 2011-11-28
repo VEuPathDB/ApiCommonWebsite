@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+<!--
+   <record>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+--> 
+<record>
+       <attribute name="headline">New Features in GiardiaDB</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">giardia5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">New Features in GiardiaDB</span><br>
+<br>
+<ul>
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;"><br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://giardiadb.org/giardiadb/im.do?s=1c4c35adc3734f0b">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<br>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a></li>
+</ul>
+<small><a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Driving Biological Projects awarded
+         ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
+       </attribute>
+</record>
+<record>
+       <attribute name="headline">GiardiaDB 2.3 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">giardia09_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new data and features in GiardiaDB 2.3<br>
+<br>
+This release of GiardiaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li><span style="font-style: italic;">Giardia<span
+style="font-style: italic;"> intestinalis</span></span> microarray
+data during encystation from Adrian Hehl's group (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/20693303">Morf <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; Three types of
+searches can be performed to
+interrogateinterrogatedinterrogatedinterrogatedinterrogatedinterrogated
+this data and are available in
+the <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.&nbsp; As an example, one may ask for all genes that
+are differentially regulated 7 hours post encystation (under both
+encystation methods used in this study).&nbsp; To see the results of
+this question please follow the shared strategy <a
+href="http://giardiadb.org/giardiadb/im.do?s=26e0b6a97beb9bdd">here</a>.&nbsp;
+Gene pages also contain a graphical representation of the microarray
+results. &nbsp;</li>
+</ul>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>Improved organization of the <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.</li>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">GiardiaDB 2.2 Released</attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">giardia07_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in Giardia 2.2<br>
+<br>
+This release of GiardiaDB includes the following new data sets:</span><span
+style="font-weight: bold;"> <br>
+<br>
+</span>
+<ul>
+<li><span style="font-style: italic;">Giardia<span
+style="font-style: italic;"> intestinalis</span></span> microarray
+data during host parasite interaction.&nbsp; This data was graciously
+provided prepublication by Emma Ringqvist and Staffan Svärd (Uppsala
+University, Sweden).</li>
+<li>Manually curated SAGE tag data provided by Andrew McArthur and
+described by <a href="http://www.ncbi.nlm.nih.gov/pubmed/20570699">Birkeland
+<span style="font-style: italic;">et. al.</span></a><br>
+</li>
+</ul>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New Features in GiardiaDB</attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">giardia05_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in Giardia 2.1<br>
+<br>
+<br>
+In an effort to continue improving the utility of GiardiaDB </span><span
+ style="font-weight: bold;">we have
+implemented several new features in recent releases. &nbsp;<br>
+<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative secreted enzymes. &nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://giardiadb.org/giardiadb/im.do?s=11cea73c70d44e95">Putative
+secreted enzymes (unweighted)</a><br>
+  <br>
+  <a href="http://giardiadb.org/giardiadb/im.do?s=525c3842824cc776">Putative
+secreted enzymes (Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> allows you to bookmark and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+  <br>
+  <li>A <span style="font-weight: bold;">community
+annotation</span> field has been added to the text
+search page. &nbsp;This makes it possible for the Giardia research
+community to provide expert bulk annotations that would ultimately
+results in changes in the GenBank record and official annotation.
+&nbsp;Currently, there are 164 community annotations provided by
+Rod Adam concerning VSPs. &nbsp;To view community annotations go to
+the text search page in GiardiaDB and limit your search to the
+"Community annotation".&nbsp; To view all genes that have a
+community annotation associated with them simply enter the wild card
+"*" in the text search field.&nbsp; The annotation itself is
+prominently displayed on the gene pages right under the product name.
+&nbsp;You can also click on the comment ID to retrieve additional
+information.</li>
+  <li>A file including <span style="font-weight: bold;">assignment
+of contigs to chromosomes</span> has been made available by
+Hilary Morrison pre-publication in the community file section of
+GiardiaDB. &nbsp;<a
+ href="http://giardiadb.org/giardiadb/communityDownload.do?fname=opticalmap_placement.xls.txt">Links</a>
+to the file are available on all contig pages.</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become&nbsp;a feature evaluatora feature evaluatora feature
+evaluatora feature evaluator, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
+       <attribute name="date">31 March 2010 15:00</attribute>
+       <attribute name="tag">swg_announce_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
+
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/micro/buck.htm">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.healthsystem.virginia.edu/internet/pathology/faculty/petri.cfm">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://tulip.liv.ac.uk/portal/pls/portal/tulwwwmerge.mergepage?p_template=rae_staff_vs&p_tulipproc=raestaff&p_params=%3Fp_func%3DSDVS%26p_select%3DRAE%26p_hash%3DA31689%26p_url%3D192%26p_template%3Drae_staff_vs">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">GiardiaDB new features</attribute>
+       <attribute name="date">15 March 2010 15:00</attribute>
+       <attribute name="tag">giardia_newFeatures_0310</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to 
+announce new features in GiardiaDB 2.1<br><br> 
+</span><span style="font-weight: bold;">New Features:</span><br><br>
+<ul>
+ <li>The gray tool bar at the top of all GiardiaDB web pages has 
+been enhanced to include a link to the "My Basket" feature including an 
+indication of how may items are in the basket.</li> 
+ <li>The genome browser has been updated to version 1.7, which 
+offers enhanced features and stability.&nbsp;</li> 
+ <li>Weighted searches are now available. &nbsp;This feature 
+allows you to assign an arbitrary weight to the searches (steps) in 
+your search strategy making it possible for you to view a ranked list 
+of your results.&nbsp;</li> 
+</ul> 
+<br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
+</div>
+
+
+
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
+       <attribute name="date">04 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_dbp_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+The NIAID-funded Eukaryotic Pathogen Genome Database
+(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
+Projects (DBPs) focused on one or more of the eukaryotic
+pathogens supported by this Bioinformatics Resource Center
+(BRC). We anticipate making two awards of up to $600K each
+by July 1, 2010 (a second round of solicitations is expected
+in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
+following which full applications will be solicited by
+invitation only, with a deadline of March 31.</i>  
+<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
+Click here to
+download the RFP</a>.
+
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">"My Basket", A New Feature in GiardiaDB</attribute>
+       <attribute name="date">22 December 2009 15:00</attribute>
+       <attribute name="tag">giardia1209news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the implementation&nbsp;a new tool in
+GiardiaDB. &nbsp;The "My
+Basket" tool allows you to select various genes from
+your searches and add them to your basket (much like a shopping cart).
+&nbsp;To add genes to your basket simply click on the basket icon
+in a
+result list or on a gene page. &nbsp;A green basket icon indicates
+that a
+genes is already in your basket. &nbsp;You can easily convert your
+basket to
+a strategy to save it and perform additional searches or combine it
+with one of your already existing strategies.
+&nbsp;Please note that using the basket feature requires you to
+login first.
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            <b>Working with Parasite Database Resources Workshop (April 17-21, 2010)</b>
+         ]]>
+       </attribute>
+       <attribute name="date">
+         20 November 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         HinxtonWorkShop
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[<big><br>
+We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
+(Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
+(University of Georgia and University of Pennsylvania, US), and the Seattle Biomedical Research Institute (US). 
+This residential workshop aims to provide experimental biologists with hands-on experience in 
+genomic-scale data analysis, including genome browsers and comparison tools, methods for 
+data integration, and resources for sophisticated data mining.
+Many examples and exercises will be drawn from the kinetoplastida, including <i>Leishmania spp.</i>, 
+<i>Trypanosoma brucei</i>, and <i>Trypanosoma cruzi</i>, although applicants working on other protozoan 
+parasites will also benefit.<br><br>
+
+<span style="font-weight: bold;"><span
+ style="color: red;">!!!!!</span>Application Deadline
+is December 18th 2009<span style="color: red;">!!!!!!</span></span>
+<br><br>
+
+<b>For registration and additional information (including scholarships) please click <a href="http://www.wellcome.ac.uk/Education-resources/Courses-and-conferences/Advanced-Courses/Courses/WTX057366.htm">here</a> (Note: you will be diverted to and external site).
+</b><br><br>
+As usual, if you have any questions please send us an <a href="mailto:help@eupathdb.org">Email</a>. 
+
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">GiardiaDB 2.0 released</attribute>
+       <attribute name="date">16 November 2009 15:00</attribute>
+       <attribute name="tag">giardia1109news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<span style="font-weight: bold;">We are pleased to
+announce the release of GiardiaDB 2.0<br>
+<br>
+</span>This is a major release of GiardiaDB that includes several
+new data types:<br>
+<br>
+<ul>
+  <li>Genome sequence and annotation of <span
+ style="font-style: italic;">Giardia</span> <span
+ style="font-style: italic;">intestinalis</span>
+assemblage B isolate GS. &nbsp;For further information please refer
+to the publication: <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19696920">Draft
+genome sequencing of giardia intestinalis assemblage B isolate GS: is
+human giardiasis caused by two different species? PLoS Pathog. 2009
+Aug;5(8):e1000560 Franzén et al.</a></li>
+</ul>
+<ul>
+  <li>Sequence and annotation of <span
+ style="font-style: italic;">Giardia</span> assemblage
+E isolate P15 was provided by J. Jerlstrom-Hultqvist. O. Franzen, E.
+Castro, J. Ankarklev, D. Palm, J. O. Andersson, S.G. Svard and B.
+Andersson (Karolinska Institutet, Stockholm, Sweden and Uppsala
+University, Uppsala, Sweden). The genome sequence and annotation was
+graciously provided to GiardiaDB prepublication.&nbsp;&nbsp;</li>
+</ul>
+<div style="margin-left: 40px;"><span
+ style="font-style: italic;">note: genomic data may be
+searched in many ways such as identifying all genes from any of the
+assemblages, searching for genes using the text search or identifying
+genes from one assemblage based on functional data in another using
+orthology. &nbsp;In addition, all gene pages include a genomic
+context view </span><span style="font-style: italic;">highlighting
+</span><span style="font-style: italic;">synteny
+between the three assemblages in GiardiaDB.&nbsp; </span></div>
+<ul>
+  <li>Additional stress induction microarray data graciously
+provided by Cornelia Spycher and Adrian Hehl prepublication (University
+of Zürich, Switzerland). &nbsp;Genes may be identified based on
+their expression profile by running one of the&nbsp;<a
+ href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">microarray
+searches </a>and results may be combined with other searches in
+GiardiaDB.</li>
+</ul>
+Additional features and Improvements:<br>
+<br>
+<ul>
+  <li>1012 genes from Giardia lamblia assemblage A isolate WB
+have been undeprecated based on synteny to assemblage B and E genomes.</li>
+</ul>
+<ul>
+  <li>Representation of SAGE tag data on gene pages has been
+improved providing graphical representation of tag counts over the life
+cycle of the parasite.</li>
+</ul>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
+         GiardiaDB 1.3 released
+         ]]>
+       </attribute>
+       <attribute name="date">25 September 2009 15:00</attribute>
+       <attribute name="tag">giardia909news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[<b>We are pleased to
+announce the release of GiardiaDB 1.3</b><br>
+<br>
+<u>New Data:</u><br>
+<ul>
+  <li><i>G.
+intestinalis</i> mitosome enriched fraction proteomics
+provided by Jan Tachezy and described in <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19717741">Rada <i>et. al.</i></a></li>
+  <li><i>Giardia</i>
+isolate data from GenBank are now included -- search for isolates based
+on many criteria such as geographic location, submitter name, isolation
+source and/or host. &nbsp;Also, generate nucleotide sequence
+alignments of isolates you select, and BLAST your sequence against the
+isolate database. <br>
+   </li>
+</ul>
+<u>New/Updated
+Features:</u><br>
+<ul>
+  <li>Now after you perform a BlastN against genomic sequence you
+can
+link from the blast output to the correct coordinates in the genome
+browser.&nbsp; This allows you to explore annotation and other
+functional
+data in relation to your BLAST hits.</li>
+  <li>A table of paralogs (if any) is now available on gene pages
+allowing you to view expanded gene families -- See <a
+ href="http://giardiadb.org/giardiadb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;project_id=GiardiaDB&amp;primary_key=GL50803_15158">GL50803_15158&nbsp;</a>for
+example (scroll down to the Orthologs and Paralogs Table).</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+Please also note that the parent portal site <a
+ href="http://eupathdb.org">EuPathDB</a> has just been
+updated, offering you the ability to explore results across organisms.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.
+]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
+         GiardiaDB 1.2 released
+         ]]>
+       </attribute>
+       <attribute name="date">14 July 2009 15:00</attribute>
+       <attribute name="tag">release12</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the release of GiardiaDB 1.2
+<p>
+This release features a new user interface with added functionality and a graphical strategy system for building complex searches.
+<p>
+The new user interface contains many new features including:
+<ul>
+<li>  A new search strategy interface that enables users to more easily construct complex searches.
+<li>  'User Comments' have been updated to enable submission of supporting evidence including pubmed identifiers and images (or other files). Comments may be added to any gene or sequence page, enhancing available annotation. 
+<li>  Files can now be uploaded and provided to the community via the file repository section.
+</ul>
+<p>
+The previous version of GiardiaDB may still be accessed <a href='http://old.giardiadb.org'>here</a>.
+]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB to take on the kinetoplastida
+         ]]>
+       </attribute>
+       <attribute name="date">
+       1 December 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       1December2008GatesFoundation
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to report
+an award from the <a href="http://www.gatesfoundation.org">Bill & Melinda Gates Foundation</a> in support of a
+TrypDB component of the <a href="http://eupathdb.org/">EuPathDB</a> family of databases,
+encompassing <i>Leishmania</i> species, <i>Trypanosoma brucei</i>, and
+<i>Trypanosoma cruzi</i>.  A coordinated award from the<a href="http://www.wellcome.ac.uk/"> Wellcome Trust</a>
+will permit enhanced annotation of kinetoplastid parasites. 
+These projects represent a collaborative effort between the
+GeneDB team (at the Wellcome Trust Sanger Institute), colleagues
+at the <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a>, and the EuPathDB
+team -- an NIAID-supported Bioinformatics Resource Center. Look
+for the first release of TrypDB in Jan 2009!
+
+ ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.1 Updated
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2008 00:00</attribute>
+       <attribute name="tag">18Nov20081.1.2update</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce an update to GiardiaDB 1.1, which mainly affects the number of deprecated genes available through GiardiaDB and how query results are displayed.
+<p>
+1. In this release, all genes that were available through the genome project database (MBL GiardiaDB) are now included in GiardiaDB.  Hence, there are 4778 deprecated genes in this release.
+<p>
+2. When performing a query, you no longer select whether to query genes only, deprecated genes only, or both.  Instead, when a query is performed, all results will be returned with the option to view (or filter) all results, genes only or deprecated genes only (“genes only” is the default view of the results).
+<p>
+As a reminder, deprecated genes were labeled as such because they appear unlikely to represent true genes, based on incompatibility with longer gene models or alternative models for which functional evidence is available. A number of deprecated genes may in fact be true genes and as evidence becomes available to support this, we will elevate a deprecated gene to a "full" gene status.  We encourage users to notify us of such evidence by email or by adding specific user comments gene pages.
+    ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         Free microarrays
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2008 00:00</attribute>
+       <attribute name="tag">18Nov2008Microarrays</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+Free microarrays:  Please note that the Pathogen Functional Genomics Resource Center (<a href=http://pfgrc.jcvi.org/index.php>PFGRC</a>) at the J. Craig Venter Institute (<a href=http://www.jcvi.org/>JCVI</a>) provides several resources for investigators including microarrays for <i>Giardia lamblia</i> (WB strain, clone C6).<br><br>
+
+Click <a href=http://pfgrc.jcvi.org/index.php/microarray/available_microarrays.html>here</a> to view a list of available microarrays at PFGRC.
+
+    ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB and TrichDB published in Nucleic Acids Research
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2008 00:00</attribute>
+       <attribute name="tag">1Oct2008NAR</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce the publication of the database paper
+introducing both GiardiaDB and TrichDB in the database issue of Nucleic
+Acid Research.
+<p>
+<a href="http://nar.oxfordjournals.org/cgi/content/full/gkn631">GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic
+protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> Nucleic
+Acids Research Advance Access published on September 29, 2008, DOI
+10.1093/nar/gkn631.
+
+          ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.1 is released with new Microarray, Mass Spec., Assemblies and SAGE Data
+         ]]>
+       </attribute>
+       <attribute name="date">12 May 2008 00:00</attribute>
+       <attribute name="tag">12May2008Release1.1</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce that GiardiaDB is now available at <a href="http://giardiadb.org/">www.giardiadb.org</a>.  GiardiaDB is now part of ApiDB/EuPathDB (<a href="http://eupathdb.org">www.eupathdb.org</a>) and funded by <a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">NIH's BRC program</a>.
+<br><br>
+  Please send a message to the support team from the link at the bottom of the GiardiaDB web page (<a href="http://giardiadb.org/giardiadb/help.jsp"  target="_blank">Contact Us!</a>).
+<br><br>
+GiardiaDB 1.1 provides the genome and annotation for the the eukaryotic parasite Giardia lamblia ATCC50803, WBC6 isolate, generated at the MBL and just reported in Science (Science 28 September 2007, Volume 317, pp. 1921-1926). 
+<p>New data available in this release includes: 
+<ul>
+  <li>Genes which were subsumed or largely overlapping with longer genes or genes with more evidence were marked as deprecated and all gene queries allow users to choose whether to query for these genes or not.
+  <li>Ten SAGE tag libraries are now available with queries and record pages.
+  <li>Microarry data from experiments examining stress induction in trophozoites.
+  <li>Proteomics data from trophozoites.
+  <li>All locations are reported on scaffolds but also available in contig coordinates.
+</ul>
+GiardiaDB, like the other ApiDB/EuPathDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify G. lamblia genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs and SAGE tags); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, GiardiaDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The GiardiaDB team
+
+
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.0 is released
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2007 00:00</attribute>
+       <attribute name="tag">1October2007Release1.0</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce that GiardiaDB is now available at <a href="http://giardiadb.org/">www.giardiadb.org</a>.  GiardiaDB is now part of ApiDB (<a href="http://apidb.org">www.apidb.org</a>) and funded by <a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">NIH's BRC program</a>.
+<br><br>
+The previous GiardiaDB, hosted by the MBL's Bay Paul Center, will remain available until the end of 2007.  During this transition period, we ask that you use <a href="http://giardiadb.org/">www.giardiadb.org</a> and notify us if there is a feature, tool, or query that you need that is not available at the new site.  Please send a message to the support team from the link at the bottom of the GiardiaDB web page (<a href="http://giardiadb.org/giardiadb/help.jsp"  target="_blank">Contact Us!</a>).
+<br><br>
+GiardiaDB 1.0 provides the genome and annotation for the the eukaryotic parasite Giardia lamblia ATCC50803, WBC6 isolate, generated at the MBL and just reported in Science (Science 28 September 2007, Volume 317, pp. 1921-1926).   Also provided are expression data from EST and SAGE surveys.
+<br><br>
+GiardiaDB, like the other ApiDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify G. lamblia genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs and SAGE tags); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, GiardiaDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The GiardiaDB team
+
+
+          ]]>
+       </attribute>
+    </record>
+
+
+</xmlAnswer>
+

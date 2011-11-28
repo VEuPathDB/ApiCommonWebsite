@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+   <record>
+       <attribute name="title">General Information</attribute>
+       <attribute name="tag">generalinfo</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+EuPathDB (formerly ApiDB) is an integrated database 
+covering the eukaryotic pathogens in the genera <i>Cryptosporidium</i>, <i>Giardia</i>, <i>Entamoeba</i>, <i>Encephalitozoon</i>,
+<i>Leishmania</i>, <i>Neospora</i>, <i>Plasmodium</i>, <i>Toxoplasma</i>, <i>Trichomonas</i> and <i>Trypanosoma</i>.  
+While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an 
+entry point to all of these resources, and the opportunity to leverage orthology for searches across genera.
+<br><br>
+The EuPathDB databases are funded by NIAID and they have strict guidelines as to which organisms we can support.  EuPathDB is one of four <a href="http://www3.niaid.nih.gov/LabsAndResources/resources/brc/">NIH funded bioinformatics resource centers</a>.  Mainly we are to incorporate any eukaryotic pathogen that is deemed emerging or re-emerging (see <a href="http://www3.niaid.nih.gov/topics/emerging/list.htm">list</a>).  We also have some organisms that are not on the list, those were either added in the past on the behest of the community and additional funding (such as TrichDB), organisms that are related to emerging or re-emerging pathogen (such as Plasmodium or Neospora) and the trypanosomatids (funded as a pilot project by the Bill and Melinda Gates foundation).
+<br><br>
+The EuPathDB family of databases is expected to expand further over the coming years, incorporating new species including the Amoebozoa 
+(Entamoeba, Acanthamoebs), Microsporidia, and additional Apicomplexans, Kinetoplastida and Diplomonads. Of course, we continue collecting data 
+that are being deposited at an ever-increasing rate, including additional genome sequences, microarray data, 
+probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), proteomics data, isolate data, phenotype information and metabolomic data.
+
+
+       ]]>
+       </attribute>
+   </record>
+
+ <record>
+       <attribute name="title">Data Statistics</attribute>
+       <attribute name="tag">stats</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+<div id="cirbulletlist"><ul>
+<li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
+<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
+</ul></div>
+
+       ]]>
+       </attribute>
+   </record>
+
+
+ <record>
+       <attribute name="title">Understanding Data: Protocols and Methods</attribute>
+       <attribute name="tag">protocols_methods</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+For detail on Data Sources and Methods please access specific component sites information:
+<center>
+<table width="50%" border="0" cellpadding="2" cellspacing="2">
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org" style="color:#003366"><b>AmoebaDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.DataSources" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org" style="color:#003366"><b>CryptoDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.DataSources" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/static/SOP/">SOPs for annotation.</a></font></td>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org" style="color:#003366"><b>GiardiaDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org/giardiadb/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://giardiadb.org/giardiadb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+</td>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org" style="color:#003366"><b>MicrosporidiaDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org/micro/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://microsporidiadb.org/micro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+</td>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://plasmodb.org" style="color:#003366"><b>PlasmoDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+</td>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://toxodb.org" style="color:#003366"><b>ToxoDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+</td>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://trichdb.org" style="color:#003366"><b>TrichDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://trichdb.org/trichdb/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://trichdb.org/trichdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+</td>
+</tr>
+
+<tr valign="top">
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://tritrypdb.org" style="color:#003366"><b>TriTrypDB.org:</b></a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+</td>
+</tr>
+
+</table>
+</center>
+<br><br>
+<h4>EST Assemblies</h4>
+EST assemblies are transcript predictions based on genome alignments. 
+ESTs are obtained from dbEST and from researchers who generously provide 
+additional libraries. ESTs are cleaned prior to use; leading or trailing 
+poly A or T sequences are trimmed and vector sequences are masked. ESTs 
+greater than 50 bases long are used for BLAT alignment (Kent,W.J, 2002. 
+Genome Research. 12:656-664) to same species genome sequences with a 
+threshold of 90% minimum sequence identity, minimum score of 30, and the 
+maximum intron length adjusted for the species. The ESTs are then 
+clustered into disjoint sets based on the proximity and quality of their 
+alignments, only the best alignments with a 95% minimum percent identity 
+are used for clustering. Clusters of ESTs are then assembled and 
+consensus sequences produced using the CAP4 assembly program (X. Huang 
+and Madan, A., 1999. Genome Res. 9:868-877). Finally, the predicted 
+consensus transcripts are themselves aligned to the genome.
+
+
+
+       ]]>
+       </attribute>
+   </record>
+
+<record>
+       <attribute name="title">Understanding Downloads</attribute>
+       <attribute name="tag">downloads</attribute>
+       <attribute name="text">
+       <![CDATA[
+There are several kinds of downloads available in a EuPathDB site:
+<div id="cirbulletlist">
+<ul>
+
+<li> Download files that we create at release time. The link to access these files is under the menu item "Downloads":"Data Files". These include fasta files for all available sequences, gff files with complete gene information, and other formats.
+<li> Download files with results generated by running searches. From a result page (after running a search) a user can access the "Download Results" link, to a new page where a few different download formats are offered. The file for download includes all IDs in the result. The user selects a format and, in some formats, the user may request additional information about each ID in the result: single valued attributes (e.g., exon count for a geneID) and multi-valued tables (e.g., set of EC numbers for a geneID).
+<li> Download files that have been uploaded by the community in our websites, available under "Downloads" or "Community".
+<li> Download EuPathDB publications, under the menu item "Downloads".
+
+</ul>
+</div>
+       ]]>
+       </attribute>
+   </record>
+
+  <record>
+       <attribute name="title">Scientific Advisory Team</attribute>
+       <attribute name="tag">advisors</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+Each project in EuPathDB benefits from the advice and mentoring of people from each specific community.
+<br><br>
+
+<b>AmoebaDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>...
+</ul></div>
+<br>
+<b>CryptoDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>Lihua Xiao (Centers for Disease Control and Prevention, USA)
+<li>Gregory Buck (Virginia Commonwealth University, USA)
+<li>Giovanni Widmer (Tufts University, USA)
+<li>Guan Zhu (Texas A&M University, USA)
+</ul></div>
+<br>
+<b>GiardiaDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>John Samuelson (Boston University, USA)</li>
+<li>Hilary Morrison (Marine Biological Laboratories, USA)</li>
+<li>Adrian Hehl (University of Zürich, Switzerland)</li>
+<li>Fran Gillin (University of California - San Diego, USA)</li>
+<li>Scott Dawson (University of California - Davis, USA)</li>
+</ul></div>
+<br>
+<b>MicrosporidiaDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>...
+</ul></div>
+<br>
+<b>PlasmoDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>John Adams (University of South Florida, USA)
+<li>Stuart Ralph (University of Melbourne, Australia)
+<li>Akhil Vaidya (Drexel University, USA)
+<li>Andy Waters (University of Glasgow, United Kingdom)
+</ul></div>
+<br>
+<b>ToxoDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>John Boothroyd (Stanford University, USA)
+<li>Marc-Jan Gubbles (Boston College, USA)
+<li>Vern B. Carruthers (University of Michigan, USA)
+<li>Michael White (University of South Florida, USA)
+</ul></div>
+<br>
+<b>TrichDB</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li> <i>(Unassigned)</i>
+</ul></div>
+<br>
+Our thanks to previous advisors: 
+<div id="cirbulletlist">
+<ul>
+<li>Steven Sullivan (New York University, USA)
+<li>Jane Carlton (New York University, USA)
+</ul></div>
+
+<br><br>
+<b>TriTrypDB</b><br><br>
+<ul>
+<li><div id="cirbulletlist"><ul><b><i>Leishmania</i></b>
+     <li>Richard Burchmore (University of Glasgow, United Kingdom)
+      <li>Barbara Papadopoulou (Laval University, Canada)
+      <li>Jeremy Mottram (University of Glasgow, United Kingdom)
+      <li>Angela Cruz (Universidade de São Paulo, Brazil)
+    </ul></div><br>
+</li>
+<li><div id="cirbulletlist"><ul><b><i>T. cruzi</i></b>
+     <li>John Kelly (London School of Hygiene and Tropical Medicine, United Kingdom)
+     <li>Sergio Schenkman (Universidade Federal de São Paulo, Brazil)
+      <li>Rick tarleton (University of Georgia, USA)
+      <li>Fernan Aguero (Universidad Nacional de General San Martín, Argentina)
+      <li>Brent Weatherly (University of Georgia, USA)
+     </ul></div><br>
+</li>
+<li><div id="cirbulletlist"><ul><b><i>T. brucei, T. congolense, T. vivax</i></b>
+     <li>Vivian Bellofatto (New Jersey Medical School, USA)
+     <li>Antonio Estevez (Institute of Parasitology and Biomedicine "López-Neyra", Spain)
+      <li>George Cross (The Rockefeller University, USA)
+      <li>Laurie Read (State University of Buffalo, USA)
+       <li>March Field (University of Cambridge, United Kingdom)
+      <li>Keith Gull (University of Oxford, United Kingdom)
+      </ul></div>
+</li>
+<br>
+</ul>
+
+
+       ]]>
+       </attribute>
+   </record>
+
+
+<record>
+       <attribute name="title">Scientific Working Group</attribute>
+       <attribute name="tag">swg</attribute>
+       <attribute name="text">   
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
+
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/micro/buck.htm">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.healthsystem.virginia.edu/internet/pathology/faculty/petri.cfm">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://tulip.liv.ac.uk/portal/pls/portal/tulwwwmerge.mergepage?p_template=rae_staff_vs&p_tulipproc=raestaff&p_params=%3Fp_func%3DSDVS%26p_select%3DRAE%26p_hash%3DA31689%26p_url%3D192%26p_template%3Drae_staff_vs">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
+       </attribute>
+</record>
+
+
+   <record>
+       <attribute name="title">Acknowledgements</attribute>
+       <attribute name="tag">acks</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+EuPathDB wishes to acknowledge all the community members who
+have contributed data (often pre-publication), entered user
+comments or sent us their suggestions.
+<br><br>
+And the team behind EuPathDB:<br>
+Cristina Aurrecoechea1, John Brestelli2,4, Brian P. Brunk2,7, Steve Fischer2,4, Bindu Gajria2,7, Xin Gao2,7, Alan Gingle3, Greg Grant2,4, Omar S. Harb2,7, Mark Heiges1, Frank Innamorato2,4, John Iodice2,4, Jessica C. Kissinger1,5, Eileen T. Kraemer6, Wei Li2,7, John A. Miller6, Vishal Nayak2,4, Cary Pennington1, Deborah F. Pinney2,4, David S. Roos7, Chris Ross1, Ganesh Srinivasamoorthy1, Christian J. Stoeckert Jr. 2,4, Ryan Thibodeau1, Charles Treatman2,7, Haiming Wang1
+<br><br>
+<ul>
+<li>1Center for Tropical & Emerging Global Diseases, University of Georgia, Athens, GA 30602 USA
+<li>2Penn Center for Bioinformatics, University of Pennsylvania, Philadelphia, PA 19104 USA
+<li>3Center for Applied Genetic Technologies, University of Georgia, Athens, GA, 30602 USA
+<li>4Department of Genetics, University of Pennsylvania School of Medicine, Philadelphia, PA 19104 USA
+<li>5Department of Genetics, University of Georgia, Athens, GA 30602 USA
+<li>6Department of Computer Science, University of Georgia, Athens, GA 30602 USA
+<li>7Department of Biology, University of Pennsylvania, Philadelphia, PA 19104 USA
+</ul>
+
+       ]]>
+       </attribute>
+   </record>
+
+    <record>
+       <attribute name="title">Funding</attribute>
+       <attribute name="tag">funding</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+The Eukaryotic Pathogen Database (EuPathDB) has been developed as a 
+Bioinformatics Resource Center (BRC), with support from the US National 
+Institutes of Health (NIH).  Additional funding for a kinetoplastid component 
+(TriTrypDB) was recently provided by the Bill and Melinda Gates Foundation, in 
+coordination with independent support for kinetoplastid annotation from the 
+Wellcome Trust.
+
+
+       ]]>
+       </attribute>
+   </record>
+
+
+<record>
+       <attribute name="title">Data Access Policy</attribute>
+       <attribute name="tag">use</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+The data at this site is provided freely for public use, through
+the contributions of many researchers including those involved in
+generating the genome sequences. The data is not guaranteed to be
+accurate as it often reflects the results of ongoing research.
+When using data obtained from EuPathDB, it is important to cite
+the original publications and contributors of that data and
+EuPathDB. Please see Citing EuPathDB below.
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Citing EuPathDB</attribute>
+       <attribute name="tag">citing</attribute>
+       <attribute name="text">
+       <![CDATA[
+
+Much of the data in EuPathDB is provided by independent
+researchers.  Please cite them if you use their data.  For a list
+of the data integrated into EuPathDB and the related
+publications please access the "Data Sources" link located in the "Data Summary" option on the grey menubar located at the top of any page.
+
+<br><br>
+When citing EuPathDB itself, please use:
+<br>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=17098930">
+ApiDB: integrated resources for the apicomplexan bioinformatics resource center.</a>
+2007 Jan;35(NAR Database issue):D427-30. Aurrecoechea C, et al. (to be updated soon)
+       ]]>
+       </attribute>
+   </record>
+
+
+
+
+</xmlAnswer>

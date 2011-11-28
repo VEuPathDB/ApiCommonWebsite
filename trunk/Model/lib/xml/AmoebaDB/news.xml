@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xmlAnswer>
+
+<!--
+   <record>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+--> 
+<record>
+       <attribute name="headline">AmoebaDB 1.5 Released</attribute>
+       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="tag">amoeba7_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;"><span style="font-weight: bold;"></span><span
+style="font-weight: bold;">We are pleased to announce the release
+of AmoebaDB 1.5</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">E. histolytica </span>Rahman<span
+style="font-style: italic;"> </span>and<span
+style="font-style: italic;"> </span>moshkovskii<span
+style="font-style: italic;"> </span>genome
+sequence is now available in AmoebaDB.&nbsp; This data was graciously
+provided prepublication by Gareth Weedall and Neil Hall (Institute of
+Integrative Biology, University of Liverpool, UK).&nbsp;Genomic
+sequence data
+from unannotated genomes can be searched from the "Genomic Sequences"
+section under the heading "Identify other data types" on the home
+page. Sequence data may be searched based on <a
+style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">ID</a>,
+<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">organism</a>
+or <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a>.</li>
+</ul>
+<br><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">AmoebaDB 1.4 Released</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">amoeba5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;"><span style="font-weight: bold;">We
+are pleased to announce the release
+of AmoebaDB 1.4</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">E. histolytica </span>glycoproteins
+proteomics data from <a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed?term=20852023">Carpentieri <span
+style="font-style: italic;">et. al</span></a>.&nbsp; To search this
+data click on the
+protein expression link under the "Identify Genes by:" heading, then
+click on "<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. Evidence</a>".&nbsp; On this page you can expand the
+"<span style="font-style: italic;">Entamoeba histolytica</span>" item
+and select your data "Mass
+Spec/Glycosylation" and click "Get Answer".&nbsp;</li>
+</ul>
+<div style="text-align: justify;"><br>
+</div>
+<ul style="text-align: justify;">
+<ul>
+<li>As usual you can combine search results with other searches in
+a strategy.&nbsp; Here is an <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/im.do?s=bcdb58f14af7325d">example
+search strategy</a> that leverages orthology to identify all <span
+style="font-style: italic;">Entamoeba </span>orthologs of <span
+style="font-style: italic;">E. histolytica</span> genes with
+proteomics evidence from this data, that are predicted to have a
+predicted signal peptide.</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+<div style="text-align: justify;"><br>
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a rel="me"
+style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for example, to return all genes that contain a specific DNA motif
+within 1000 nucleotides upstream of the annotated start site. Or you
+could return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/im.do?s=856a9a5b29f9e99e">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<br>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a><br>
+</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+<small><a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small>
+</div>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">AmoebaDB 1.3 Released</attribute>
+       <attribute name="date">18 November 2010 15:00</attribute>
+       <attribute name="tag">amoeba11_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.3<br>
+<br>
+This release of AmoebaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+<br>
+</span>
+<span style="font-weight: bold;">Draft</span> assemblies of the
+following genomes (Complete data source information is available <a
+href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=E.dispar_Annotations,E.invadens_Annotations,E.histolytica_Annotations,E.histolyticaDS4_Genome,E.histolyticaKU50_Genome,E.histolyticaMS96_Genome,E.histolyticaHM1_CA_Genome,E.histolyticaKU48_Genome,E.histolyticaKU27_Genome&amp;title=Query#E.histolyticaDS4_Genome">here</a>):
+<br><br><ul>
+<ul>
+<li><span style="font-style: italic;">E. histolytica</span> DS4</li>
+<li><span style="font-style: italic;">E. histolytica </span>KU50</li>
+<li><span style="font-style: italic;">E. histolytica</span> MS96</li>
+<li><span style="font-style: italic;">E. histolytica</span> HM-1:CA</li>
+<li><span style="font-style: italic;">E. histolytica</span> KU48</li>
+<li><span style="font-style: italic;">E. histolytica</span> KU27 <br><br>
+</li>
+</ul>
+</ul>
+<span style="font-style: italic;">Genomic sequence data in AmoebaDB may
+be searched and accessed in multiple ways:</span><br><br>
+<ul>
+<ul>
+<li>Genomic sequence data is available under the heading "Genomic
+Sequences" on the home
+page and may be searched by <a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">species</a>,
+<a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">genomic
+sequence IDs</a> and <a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
+style="font-style: italic;">. <br>
+</span></li>
+<li>Additionally, genomic sequence data may be downloaded from the <a
+href="http://amoebadb.org/common/downloads/release-1.3/">AmoebaDB
+download directory</a>.<br><br></li>
+</ul>
+</ul>
+<ul>
+</ul>
+The sequence data has been graciously made available prepublication to
+the community via AmoebaDB by Lis Caler at the J. Craig Venter
+Institute (JCVI) and were generated as part of the <a
+href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf"><span
+style="font-style: italic;">Entamoeba</span> strain sequencing white
+paper</a>.&nbsp; Additional information on the project at JCVI can be
+accessed <a href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">here</a>.&nbsp;
+<br><br>
+Two presentations from JCVI are available here:<br><br>
+<ul>
+<ul>
+<li><a
+href="http://amoebadb.org/amoeba/communityDownload.do?fname=Hannick%20Eh%20MPM%20Poster%202010.pdf">2010
+MPM poster presented by Linda I. Hannick.</a></li>
+<li><a
+href="http://amoebadb.org/amoeba/communityDownload.do?fname=Montreal_presentation.pptx">2010
+presentation at the Montreal Amebiasis meeting by Lis Caler.</a></li>
+</ul>
+</ul>
+<br>
+<span style="font-weight: bold;">New Feature in AmoebaDB:</span> you
+can now add publications to your user comments using their <a
+href="http://www.doi.org/index.html">Digital Object Identifier</a>
+(DOI) numbers.&nbsp; To view a list of all genes that have a user
+comment in PlasmoDB, click <a
+href="http://amoebadb.org/amoeba/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;array%28text_search_organism%29=&amp;array%28text_fields%29=User%20comments&amp;array%28whole_words%29=no&amp;value%28max_pvalue%29=-30&amp;value%28text_expression%29=*&amp;value%28timestamp%29=Nov%2017,%202010%206:23:53%20PM">here</a>.<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+          AmoebaDB publication in Nucleic Acid Research
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2010 00:00</attribute>
+       <attribute name="tag">NAR2011</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+We are pleased to announce the publication of a paper in Nucleic Acid Research describing AmoebaDB.<br>
+Please cite this manuscript when referencing the AmoebaDB resource in your publications.
+<p>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=20974635">
+AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a> Nucleic Acids Res. 2010 Oct 24. Aurrecoechea C, et al.
+]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Driving Biological Projects awarded
+         ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
+       </attribute>
+</record>
+<record>
+       <attribute name="headline">AmoebaDB 1.2 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">amoeba09_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.2<br>
+<br>
+<br>
+This release of AmoebaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li>Proteomics data from <span style="font-style: italic;">E.
+histolytica </span>phagosomes of various degrees of maturation
+(<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2211552/">Boettner
+et. al.</a>).&nbsp; This data can be searched in AmoebaDB from the <a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. search page</a> and results can be integrated with other search
+types.&nbsp; An example search strategy that integrates different
+search types can be viewed <a
+href="http://amoebadb.org/amoeba/im.do?s=3a0c08bd343b2607">here</a>.&nbsp;
+This strategy asks for all <span style="font-style: italic;">E.
+histolytica</span> genes&nbsp; with phagosome proteomic evidence, that
+contain transmembrane domains and&nbsp; contain a "kinase" PFAM
+domain.&nbsp; <br>
+</li>
+<li>Gene that have evidence of protein expression also have a
+graphical representation of the peptide hits on their respective gene
+pages (mousing over the graphics provides additional information such
+as peptide sequence).&nbsp; Here is a link to a gene page with
+proteomics evidence -- scroll down to the "Protein" section and show
+"Protein features".&nbsp; Note that samples are color coded.<br>
+</li>
+<li>Proteomics data can also be visualized in the genome
+browser.&nbsp; This <a
+href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?start=1;stop=210398;ref=DS571146;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=31c3276525b0c5ae2d30104f014a4a12;label=Gene-HustonMassSpecPeptides;h_feat=ehi_076870%40yellow%27%29">link</a>
+shows a 200Kb genomic region with the gene models and proteomics track
+turned on.&nbsp; <br>
+</li>
+</ul>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">AmoebaDB 1.1 Released</attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">amoeba07_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.1<br>
+<br>
+<br>
+This release of AmoebaDB includes the following new data sets:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li>Gene expression in <span style="font-style: italic;">Entamoeba
+histolytica</span> cysts and trophozoites.&nbsp; This study is
+described by <a href="http://www.ncbi.nlm.nih.gov/pubmed/17250591">Ehrenkaufer
+<span style="font-style: italic;">et. al.</span></a><br>
+</li>
+<li>Impact of intestinal colonization and invasion on the <span
+style="font-style: italic;">Entamoeba histolytica</span> transcriptome
+This study is described by <a
+href="http://www.ncbi.nlm.nih.gov/pubmed/16569449">Gilchrist <span
+style="font-style: italic;">et. al.</span></a><br>
+</li>
+</ul>
+Genes can be identified based on the fold change in their expression in
+either of the above experiments using the microarray search available
+in AmoebaDB (under the heading "Transcript Expression).&nbsp; <br>
+<br>
+In addition, AmoebaDB now has a logo!&nbsp; Template images used in
+AmoebaDB were kindly provided by Graham Clark, Fiona Henriquez, William
+Petri and Greg Roberts.<br>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New Features in AmoebaDB</attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">amoeba05_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in AmoebaDB 1.0<br>
+<br>
+<br>
+In an effort to continue improving the utility of&nbsp;</span><span
+ style="font-weight: bold;">AmoebaDB</span><span
+ style="font-weight: bold;"> we have
+implemented several new features in recent releases. &nbsp;<br>
+<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative secreted enzymes. &nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://amoebadb.org/amoeba/im.do?s=1f1149b09f8bdb94">Putative
+secreted enzymes (unweighted)</a><br>
+  <br>
+  <a href="http://amoebadb.org/amoeba/im.do?s=49f654c9c61fd4e1">Putative
+secreted enzymes (Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> allows you to bookmark and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become&nbsp;a feature evaluator tester, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
+       <attribute name="date">31 March 2010 15:00</attribute>
+       <attribute name="tag">swg_announce_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
+
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/micro/buck.htm">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.healthsystem.virginia.edu/internet/pathology/faculty/petri.cfm">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://tulip.liv.ac.uk/portal/pls/portal/tulwwwmerge.mergepage?p_template=rae_staff_vs&p_tulipproc=raestaff&p_params=%3Fp_func%3DSDVS%26p_select%3DRAE%26p_hash%3DA31689%26p_url%3D192%26p_template%3Drae_staff_vs">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
+       </attribute>
+    </record>
+
+
+<record>
+       <attribute name="headline"><![CDATA[AmoebaDB 1.0 released]]>
+       </attribute>
+       <attribute name="date">15 March 2010 15:00
+       </attribute>
+       <attribute name="tag">amoeba0310_news
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to announce the release of AmoebaDB 1.0<br> 
+</span><br> 
+We are pleased to announced the full release of AmoebaDB 1.0 
+(<a href="http://amoebadb.org">http://amoebadb.org</a> or <a href="http://amebadb.org">http://amebadb.org</a>). &nbsp;<br> 
+Leveraging bioinformatics infrastructure developed in the context of the EuPathDB project (including PlasmoDB, etc), this resource 
+incorporates genome sequence and annotation from the Pathema project. &nbsp;
+<span style="font-weight: bold;"><br><br>
+Highlights include:</span>
+<br><br> 
+<ul> 
+ <li><span style="font-weight: bold;">Sequence and annotation for</span> <i>Entamoeba histolytica, E. dispar and E. invadens</i>.</span></li> 
+ <li><span style="font-weight: bold;">Genome sequence alignments</span>, permitting comparative genomic analysis of synteny between <i>Entamoeba</i> species.</li> 
+ <li><span style="font-weight: bold;">Expressed sequence tag data</span> for <i>E.&nbsp;histolytica</i> and <i> E. dispar.</i></li> 
+ <li><span style="font-weight: bold;">'User Comments'</span> may be added to any gene page, enhancing available annotation. 
+        Such comments become immediately visible and searchable by others.</li> 
+ <li><span style="font-weight: bold;">Identification of genes</span> based on text terms, ID #, GO terms, EC #, chromosomal location, BLAST, 
+        sequence features (length/MW, exons, signal sequences, Pfam domains, user-defined motifs), orthology, etc. </li> 
+ <li><span style="font-weight: bold;">Support for integrated searches</span>, via the 'search strategy builder'. &nbsp;Strategies can be stored and shared 
+       with others by logging into AmoebaDB. For an example, <a href="http://amoebadb.org/amoeba/im.do?s=aed2d725b224ff13"><b>open this sample strategy</b></a> 
+       that combines multiple searches, in your browser.</li>
+</ul>
+<br><br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:
+</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, testing and rendering your opinion.
+</div>
+ ]]>
+       </attribute>
+
+</record>
+
+
+<record>
+       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
+       <attribute name="date">04 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_dbp_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The NIAID-funded Eukaryotic Pathogen Genome Database
+(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
+Projects (DBPs) focused on one or more of the eukaryotic
+pathogens supported by this Bioinformatics Resource Center
+(BRC). We anticipate making two awards of up to $600K each
+by July 1, 2010 (a second round of solicitations is expected
+in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
+following which full applications will be solicited by
+invitation only, with a deadline of March 31.</i>  
+<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
+Click here to
+download the RFP</a>.
+          ]]>
+       </attribute>
+</record>
+
+</xmlAnswer>
