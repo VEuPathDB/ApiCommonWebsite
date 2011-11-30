@@ -90,13 +90,14 @@ public class UserFileDownloadAction extends DownloadAction {
        
        if (contentType == null) {
           contentType = "application/octet-stream";
-          /** Note: content-disposition is broken in Internet Explorer 5.5 
-              Service Pack 1 (SP1). See
-              http://support.microsoft.com/kb/q279667/
-          **/
-          response.setHeader("Content-disposition", 
-                             "attachment; filename=" + file.getName());
         }
+
+        /** Note: content-disposition is broken in Internet Explorer 5.5 
+            Service Pack 1 (SP1). See
+            http://support.microsoft.com/kb/q279667/
+        **/
+        response.setHeader("Content-disposition", 
+                           "inline; filename=\"" + file.getName() + "\"");
 
         return new FileStreamInfo(contentType, file);
     }
