@@ -11,7 +11,7 @@ use Data::Dumper;
 
 use ApiCommonWebsite::Model::ModelProp;
 
-use Bio::Graphics::Browser::PadAlignment;
+use Bio::Graphics::Browser2::PadAlignment;
 
 use CGI::Carp qw(fatalsToBrowser set_message);
 
@@ -21,6 +21,7 @@ my $taxonToDirNameMap =
    'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
    'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
    'Leishmania mexicana'                              => { name => 'Lmexicana',              group => 1 },
+   'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTraII',        group => 1 },
    'Trypanosoma cruzi CL Brener Non-Esmeraldo-like'   => { name => 'TcruziNonEsmeraldoLike', group => 2 },
    'Trypanosoma cruzi CL Brener Esmeraldo-like'       => { name => 'TcruziEsmeraldoLike',    group => 2 },
    'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
@@ -136,7 +137,7 @@ sub run {
 
   my $dnas = &makeSequencesForPadAlignment(\@dnaSequences, $referenceGenome);
 
-  my $align = Bio::Graphics::Browser::PadAlignment->new($dnas,\@alignments);
+  my $align = Bio::Graphics::Browser2::PadAlignment->new($dnas,\@alignments);
 
   if($type eq 'fasta_ungapped') {
     my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
