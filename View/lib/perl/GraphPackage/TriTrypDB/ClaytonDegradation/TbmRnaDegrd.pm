@@ -11,7 +11,7 @@ sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
-  $self->setScreenSize(350);
+  $self->setScreenSize(300);
   $self->setBottomMarginSize(10);
 
   my $colors =['#D87093', '#DDDDDD'];
