@@ -52,12 +52,8 @@ public class MDCServletFilter implements Filter {
       chain.doFilter(request, response);
 
     } finally {
-    /** should remove data at the end, but if I do that then
-        internal classes don't get the info. But, hey, what 
-        harm can not cleaning do? **/
-      //MDC.remove("ipAddress");
-      //MDC.remove("sessionId");
-      
+       MDC.remove("ipAddress");
+       MDC.remove("sessionId");
     }
   }
 }
