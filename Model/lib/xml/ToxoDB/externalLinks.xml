@@ -26,8 +26,8 @@
           <attribute name="url">http://eupathdb.org/common/KEGGpathways/</attribute>
         </row>
         <row>
-          <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
-          <attribute name="url"><![CDATA[/pubcrawler/ToxoDB/]]></attribute>
+          <attribute name="title"><![CDATA[Recent <i>EuPathDB</i> publications]]></attribute>
+          <attribute name="url"><![CDATA[showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs]]></attribute>
         </row>
         <row>
           <attribute name="title">PlasmoDB</attribute>
@@ -59,11 +59,11 @@
           <attribute name="title"><![CDATA[EBI <i>Toxoplasma</i> Genome Database]]></attribute>
         </row>
         <row>
-          <attribute name="url">http://www.tigr.org/tdb/tggi/</attribute>
-          <attribute name="title"><![CDATA[TIGR <i>T. gondii</i> Gene Index]]></attribute>
+          <attribute name="url">http://compbio.dfci.harvard.edu/tgi/tgipage.html</attribute>
+          <attribute name="title"><![CDATA[<i>T. gondii</i> Gene Index]]></attribute>
         </row>
         <row>
-          <attribute name="url">http://www.ncbi.nlm.nih.gov/mapview/map_search.cgi?taxid=5811</attribute>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/gquery/?term=Toxoplasma%20gondii</attribute>
           <attribute name="title"><![CDATA[NCBI Entrez Genome <i>Toxoplasma gondii</i>]]></attribute>
         </row>
         <row>
@@ -79,7 +79,7 @@
 
       <table name="toxoBiology">
         <row>
-          <attribute name="url">http://www.cdc.gov/ncidod/dpd/parasites/toxoplasmosis/default.htm</attribute>
+          <attribute name="url">http://www.cdc.gov/parasites/toxoplasmosis/index.html</attribute>
           <attribute name="title">CDC - Toxoplasmosis</attribute>
         </row>
         <row>
@@ -95,7 +95,7 @@
           <attribute name="title">Toxoplasmosis - Prevention CDC MMWR report</attribute>
         </row>
         <row>
-          <attribute name="url">http://gsbs.utmb.edu/microbook/ch084.htm</attribute>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/books/NBK7752/</attribute>
           <attribute name="title">General, Chapter Medical Microbiology, J.P. Dubey</attribute>
         </row>
         <row>
