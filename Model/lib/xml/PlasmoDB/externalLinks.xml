@@ -30,8 +30,8 @@
           <attribute name="url">http://plasmodb.org/common/microarrays/</attribute>
         </row>
         <row>
-          <attribute name="title"><![CDATA[Recent <i>Plasmodium</i> publications]]></attribute>
-          <attribute name="url"><![CDATA[/pubcrawler/PlasmoDB/]]></attribute>
+          <attribute name="title"><![CDATA[Recent <i>EuPathDB</i> publications]]></attribute>
+          <attribute name="url"><![CDATA[showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs]]></attribute>
         </row>
       </table>
 
@@ -191,10 +191,12 @@
           <attribute name="url">http://www2.ncid.cdc.gov/vector/vector.html</attribute>
           <attribute name="title"><![CDATA[<i>Anopheles</i> Genetic Resource Information Project (AGRIP)]]></attribute>
         </row>
+	<!-- BAD (and old) link  - can't find any updated link
         <row>
           <attribute name="url">http://mosquito.colostate.edu/tikiwiki/tiki-page.php?pageName=Mosquito_genomics</attribute>
           <attribute name="title">Mosquito Genomics WWW Server</attribute>
         </row>
+	-->
       </table>
 
       <table name="malariaBio">
@@ -209,16 +211,12 @@
         </row>
 	-->
         <row>
-          <attribute name="url">http://www.malaria.mr4.org/mr4pages/index.html</attribute>
+          <attribute name="url">http://www.mr4.org</attribute>
           <attribute name="title">Malaria Research and Reference Resource Center (MR4)</attribute>
         </row>
         <row>
           <attribute name="url">http://sites.huji.ac.il/malaria/</attribute>
           <attribute name="title">Malaria Parasite Metabolic Pathways</attribute>
-        </row>
-        <row>
-          <attribute name="url">http://www.ebi.ac.uk/parasites/PlasGN/FalcipProteome/proteome.html</attribute>
-          <attribute name="title"><![CDATA[<i>Plasmodium</i> Proteome Classification and Analysis]]></attribute>
         </row>
         <row>
           <attribute name="url">http://bioinfo.icgeb.res.in/codes/model.html</attribute>
@@ -256,10 +254,12 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="url">http://www.rph.wa.gov.au/labs/haem/malaria/index.html</attribute>
           <attribute name="title">Malaria OnLine Resource at Royal Perth Hospital, Australia</attribute>
         </row>
+	<!-- BAD (and old) link  - can't find any updated link
         <row>
           <attribute name="url">http://www.sciencedirect.com/science/issue/5057-2002-999679986-359598</attribute>
           <attribute name="title">International Journal for Parasitology - issue on Malaria</attribute>
         </row>
+	-->
         <row>
           <attribute name="url">http://www.nature.com/nature/focus/malaria</attribute>
           <attribute name="title">Nature Web Focus: Malaria</attribute>
@@ -268,14 +268,12 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="url">http://www.nature.com/news/specials/malaria/index.html</attribute>
           <attribute name="title">Malaria Special Issue</attribute>
         </row>
-        <row>
-          <attribute name="url">http://www.nature.com/news/specials/malaria/malara_movie.swf</attribute>
-          <attribute name="title">Life Cycle of the Malaria Parasite</attribute>
-        </row>
+	<!-- broken link 
         <row>
           <attribute name="url">http://www.inasp.info/health/links/malaria.html</attribute>
           <attribute name="title">International Network for the Availability of Scientific Publications: Malaria</attribute>
         </row>
+	-->
         <row>
           <attribute name="url">http://www.wehi.edu.au/index.html</attribute>
           <attribute name="title">Walter and Eliza hall Institute of Medical Research</attribute>
@@ -285,19 +283,15 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="title">Who/TDR Malaria Database</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.wehi.edu.au/education/wehi-tv/index.html</attribute>
-          <attribute name="title">wehi-tv</attribute>
+          <attribute name="url">http://www.wehi.edu.au/education/wehitv/</attribute>
+          <attribute name="title">WEHI.TV</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.wehi.edu.au/education/wehi-tv/movies.html</attribute>
-          <attribute name="title">wehi-tv movies</attribute>
+          <attribute name="url">http://www.youtube.com/WEHImovies</attribute>
+          <attribute name="title">WEHI movies</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.wehi.edu.au/education/wehi-tv/illustrations.html</attribute>
-          <attribute name="title">wehi-tv illustrations</attribute>
-        </row>
-        <row>
-          <attribute name="url">http://www.vnh.org/Malaria/Malaria.html</attribute>
+          <attribute name="url">http://www-nmcphc.med.navy.mil/downloads/prevmed/malaria/MalariaPocketGuide2007.pdf</attribute>
           <attribute name="title">Navy Medical Department Pocket Guide to Malaria Prevention and Control</attribute>
         </row>
         <row>
@@ -316,7 +310,7 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="title">National Institute of Allergies and Infectious Diseases</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.nmrc.navy.mil/</attribute>
+          <attribute name="url">http://www.med.navy.mil/sites/nmrc/</attribute>
           <attribute name="title">Naval Medical Research Center</attribute>
         </row>
         <row>
@@ -328,7 +322,7 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="title">Wellcome Trust Research Directions in malaria</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.mmv.org/pages</attribute>
+          <attribute name="url">http://www.mmv.org</attribute>
           <attribute name="title">Medicines for Malaria Initiative</attribute>
         </row>
       </table>
