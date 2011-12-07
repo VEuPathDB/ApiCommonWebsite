@@ -1325,7 +1325,7 @@ public class CommentFactory {
             return list;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         } finally {
             SqlUtils.closeResultSet(rs);
             // printStatus();
