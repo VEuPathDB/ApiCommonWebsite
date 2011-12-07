@@ -36,11 +36,11 @@
         </row>
         <row>
             <attribute name="title"><![CDATA[CDC <i>Microsporidia</i> Page]]></attribute>
-            <attribute name="url"><![CDATA[http://www.cdc.gov/ncidod/dpd/parasites/microsporidia/default.htm]]></attribute>
+            <attribute name="url"><![CDATA[http://www.dpd.cdc.gov/dpdx/HTML/Microsporidiosis.htm]]></attribute>
         </row>
         <row>
             <attribute name="title"><![CDATA[<i>Palaeos</i>]]></attribute>
-            <attribute name="url"><![CDATA[http://www.palaeos.com/Eukarya/Units/StemMetazoa/Microsporidia.html]]></attribute>
+            <attribute name="url"><![CDATA[http://palaeos.com/eukarya/stem_metazoa/microsporidia.html]]></attribute>
         </row>
   </table>
 
