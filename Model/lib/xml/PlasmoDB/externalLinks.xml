@@ -38,11 +38,11 @@
 
       <table name="generalInfo">
         <row>
-          <attribute name="url">http://mheiges.plasmodb.org/plasmo.mheiges/communityDownload.do?fname=_PlasmodiumWhitePaperFinal.pdf</attribute>
+          <attribute name="url">http://plasmodb.org/plasmo/communityDownload.do?fname=_PlasmodiumWhitePaperFinal.pdf</attribute>
           <attribute name="title">Comprehensive Sequencing Proposal for Plasmodium</attribute>
         </row>
         <row>
-          <attribute name="url">http://mheiges.plasmodb.org/plasmo.mheiges/communityDownload.do?fname=Table2_021208-1-2.pdf</attribute>
+          <attribute name="url">http://plasmodb.org/plasmo/communityDownload.do?fname=Table2_021208-1-2.pdf</attribute>
           <attribute name="title">Table 2, Comprehensive Sequencing Proposal for Plasmodium</attribute>
         </row>
         <row>
@@ -68,10 +68,12 @@
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Mapsmarkers/PfGMap/pfgmap.html</attribute>
           <attribute name="title">Genetic Maps</attribute>
         </row>
+        <!-- BAD LINK; http://www.lmcg.wisc.edu/ is the NEW site, but no related info yet
         <row>
           <attribute name="url">http://schwartzlab.biotech.wisc.edu/research/research.html#plasmodium</attribute>
           <attribute name="title">Optical Maps</attribute>
         </row>
+	-->
         <row>
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Mapsmarkers/PfSegData/segdata.html</attribute>
           <attribute name="title">Segregation Data</attribute>
@@ -125,6 +127,7 @@
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/</attribute>
           <attribute name="title">National Center for Biotechnology Information (Malaria Genetics and Genomics)</attribute>
         </row> 
+   <!-- BAD (and old) links  - can't find any updated link
         <row>
           <attribute name="url">http://parasite.vetmed.ufl.edu/</attribute>
           <attribute name="title">Malaria Genome Sequence Tag Projects</attribute>
@@ -137,6 +140,7 @@
           <attribute name="url">http://www.sanbi.ac.za/malaria-genesearch/</attribute>
           <attribute name="title"><![CDATA[<i>Plasmodium</i> Transcript Reconstruction Project at SANBI]]></attribute>
         </row> 
+   -->
       </table>
 
       <table name="otherSeqCenters">
@@ -176,7 +180,7 @@
           <attribute name="title"><![CDATA[<i>Anopheles gambiae</i> sequencing project]]></attribute>
         </row>
         <row>
-          <attribute name="url">http://www.anobase.org/AnoDB/index1.html</attribute>
+          <attribute name="url">http://www.anobase.org</attribute>
           <attribute name="title"><![CDATA[<i>Anopheles</i> Database (AnoDB)]]></attribute>
         </row>
         <row>
@@ -198,10 +202,12 @@
           <attribute name="url">http://www.wehi.edu.au/MalDB-www/who.html</attribute>
           <attribute name="title">Malaria Database at WEHI</attribute>
         </row>
+        <!-- BAD LINK; http://www.lmcg.wisc.edu/ is the NEW site, but no related info yet
         <row>
           <attribute name="url">http://schwartzlab.biotech.wisc.edu/research/research.html#plasmodium</attribute>
           <attribute name="title">Optical Mapping</attribute>
         </row>
+	-->
         <row>
           <attribute name="url">http://www.malaria.mr4.org/mr4pages/index.html</attribute>
           <attribute name="title">Malaria Research and Reference Resource Center (MR4)</attribute>
@@ -318,11 +324,11 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="title">The Wellcome Trust</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.wellcome.ac.uk/en/malaria/</attribute>
+          <attribute name="url">http://malaria.wellcome.ac.uk/</attribute>
           <attribute name="title">Wellcome Trust Research Directions in malaria</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.mmv.org/pages/page_main.htm</attribute>
+          <attribute name="url">http://www.mmv.org/pages</attribute>
           <attribute name="title">Medicines for Malaria Initiative</attribute>
         </row>
       </table>
