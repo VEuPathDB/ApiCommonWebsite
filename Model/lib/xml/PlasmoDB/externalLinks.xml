@@ -25,9 +25,13 @@
           <attribute name="title">OrthoMCL-DB</attribute>
           <attribute name="url">http://orthomcl.org</attribute>
         </row>
-				<row>
+	<row>
           <attribute name="title"><![CDATA[<i>Plasmodium</i> Microarrays]]></attribute>
           <attribute name="url">http://plasmodb.org/common/microarrays/</attribute>
+        </row>
+	<row>
+          <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
+          <attribute name="url"><![CDATA[/pubcrawler/ToxoDB/]]></attribute>
         </row>
         <row>
           <attribute name="title"><![CDATA[Recent <i>EuPathDB</i> publications]]></attribute>
