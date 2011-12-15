@@ -82,6 +82,25 @@
        </table>
    </record>
 
+<record>
+       <attribute name="title">GBrowse Overview</attribute>
+       <attribute name="description">How to display genomic sequence and functional genomics data in The Genome Browser.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">GBrowse overview/gbrowse_overview_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">5 min</attribute>
+           <attribute name="size">4.7 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+
     <record>
        <attribute name="title">Genomic Co-locations</attribute>
        <attribute name="description">How to combine two different searches based on the relative genomic location of search results.</attribute>
@@ -99,6 +118,42 @@
        </table>
    </record>
 
+<record>
+       <attribute name="title">Invalid IDs and Strategies</attribute>
+       <attribute name="description">How to fix saved strategies that break with a new database release and what happens to IDs that change.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Invalid IDs and Strategies/invalid_ids_and_strategies_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">3 min</attribute>
+           <attribute name="size">3.1 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+<record>
+       <attribute name="title">Isolates by Geographic Location</attribute>
+       <attribute name="description">How to search for isolates based on the geographic location of sample collection.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Isolates by Geographic Location/isolates_by_geographic_location_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">1.5 min</attribute>
+           <attribute name="size">3.5 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+
  <record>
        <attribute name="title">My Basket</attribute>
        <attribute name="description">How to use the "My Basket" function.</attribute>
@@ -115,6 +170,25 @@
          </row>
        </table>
    </record>
+
+<record>
+       <attribute name="title">Orthology Phylogenetic Profile</attribute>
+       <attribute name="description">How to search for genes based on your user-defined ortholog profile.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Orthology Phylogenetic Profile/orthology_phylogenetic_profile_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">3 min</attribute>
+           <attribute name="size">3.2 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
 
  <record>
        <attribute name="title">PlasmoDB Introduction</attribute>
@@ -149,6 +223,24 @@
          </row>
        </table>
    </record>
+
+<record>
+       <attribute name="title">Restriction Sites in GBrowse</attribute>
+       <attribute name="description">How to view restriction enzyme sites in The Genome Browser.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">unavailable</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Restriction Sites in GBrowse/restriction_sites_in_GBrowse_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">2 min</attribute>
+           <attribute name="size">2.8 mb</attribute>
+         </row>
+       </table>
+   </record>
+
 
  <record>
        <attribute name="title">Search Strategies</attribute>
