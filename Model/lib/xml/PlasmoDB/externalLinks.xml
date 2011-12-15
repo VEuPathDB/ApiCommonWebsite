@@ -53,6 +53,7 @@
           <attribute name="url">http://www.sanger.ac.uk/Projects/P_falciparum/project_overview.shtml</attribute>
           <attribute name="title">Malaria Genome Project</attribute>
         </row>
+	<!-- 
         <row>
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/release_policy.html</attribute>
           <attribute name="title">Data Release (NCBI)</attribute>
@@ -65,25 +66,29 @@
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Rodent/index.html</attribute>
           <attribute name="title">Rodent Malaria</attribute>
         </row>
+	-->
       </table>
 
+      <!--
       <table name="chromosomeMaps">
         <row>
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Mapsmarkers/PfGMap/pfgmap.html</attribute>
           <attribute name="title">Genetic Maps</attribute>
         </row>
+        <row>
+          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Mapsmarkers/PfSegData/segdata.html</attribute>
+          <attribute name="title">Segregation Data</attribute>
+        </row>
+	-->
         <!-- BAD LINK; http://www.lmcg.wisc.edu/ is the NEW site, but no related info yet
         <row>
           <attribute name="url">http://schwartzlab.biotech.wisc.edu/research/research.html#plasmodium</attribute>
           <attribute name="title">Optical Maps</attribute>
         </row>
-	-->
-        <row>
-          <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/Mapsmarkers/PfSegData/segdata.html</attribute>
-          <attribute name="title">Segregation Data</attribute>
-        </row>
       </table>
-
+	-->
+	
+      <!--
       <table name="blastTools">
         <row>
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/plasmodiumbl.html</attribute>
@@ -101,6 +106,7 @@
           <attribute name="title">MEDLINE</attribute>
         </row>
       </table>
+      -->
 
       <table name="pfSeqCenters">
         <row>
@@ -127,10 +133,12 @@
           <attribute name="url">http://www.ebi.ac.uk/parasites/parasite-genome.html</attribute>
           <attribute name="title">European Bioinformatics Institute (EBI/EMBL)</attribute>
         </row>
+	<!--
         <row>
           <attribute name="url">http://www.ncbi.nlm.nih.gov/projects/Malaria/</attribute>
           <attribute name="title">National Center for Biotechnology Information (Malaria Genetics and Genomics)</attribute>
         </row> 
+	-->
    <!-- BAD (and old) links  - can't find any updated link
         <row>
           <attribute name="url">http://parasite.vetmed.ufl.edu/</attribute>
@@ -294,10 +302,12 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="url">http://www.youtube.com/WEHImovies</attribute>
           <attribute name="title">WEHI movies</attribute>
         </row>
+	<!--
         <row>
           <attribute name="url">http://www-nmcphc.med.navy.mil/downloads/prevmed/malaria/MalariaPocketGuide2007.pdf</attribute>
           <attribute name="title">Navy Medical Department Pocket Guide to Malaria Prevention and Control</attribute>
         </row>
+	-->
         <row>
           <attribute name="url">http://www.mara.org.za/</attribute>
           <attribute name="title">MARA/ARMA Home Page</attribute>
