@@ -203,7 +203,7 @@ if ($isVis_b{lgr} == 1) {
          type = "l",
          xlab = "",
          xlim = c(x.min, x.max),
-         ylab = "Expr Val",
+         ylab = "Change in Expr.",
          ylim = c(y.min, y.max),
          xaxt="n"
         );
@@ -241,7 +241,7 @@ if ($isVis_b{lgr} == 1) {
          pch  = 22,
          xlab = "",
          xlim = c(x.min, x.max),
-         ylab = "Expr Val",
+         ylab = "Change in Expr.",
          ylim = c(y.min, y.max)
         );
     lines(data.query\$ELEMENT_ORDER,

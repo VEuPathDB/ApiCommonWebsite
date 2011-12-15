@@ -26,7 +26,7 @@ sub init {
                            y_axis_label => 'Median Expr (standardized)',
                            default_y_max => 1,
                            colors => $colors,
-                           plot_title => 'C.parvum Real Time PCR Expression Profiles',
+                           plot_title => 'C.parvum semi-quant. Real Time PCR Expr. Profiles',
                            x_axis_labels => $xAxisLabels,
                           }
     });
