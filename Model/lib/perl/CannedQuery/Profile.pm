@@ -47,9 +47,10 @@ sub init {
   $Self->SUPER::init($Args);
 
 	$Self->setId                   ( $Args->{Id                  } );
-  $Self->setSecondaryId          ( $Args->{SecondaryId         } );
-  $Self->setUseSecondary         ( $Args->{UseSecondary        } );
+        $Self->setSecondaryId          ( $Args->{SecondaryId         } );
+        $Self->setUseSecondary         ( $Args->{UseSecondary        } );
 	$Self->setProfileSet           ( $Args->{ProfileSet          } );
+        $Self->setElementOrder         ( $Args->{ElementOrder        } ); 
 
   $Self->setSql(<<Sql);
 SELECT profile_AS_STRING
@@ -76,6 +77,9 @@ sub setUseSecondary         { $_[0]->{'UseSecondary'      } = $_[1]; $_[0] }
 
 sub getProfileSet           { $_[0]->{'ProfileSet'        } }
 sub setProfileSet           { $_[0]->{'ProfileSet'        } = $_[1]; $_[0] }
+
+sub getElementOrder         { $_[0]->{'ElementOrder'      } }
+sub setElementOrder         { $_[0]->{'ElementOrder'      } = $_[1]; $_[0] }
 
 # ========================================================================
 # --------------------------- Support Methods ----------------------------
