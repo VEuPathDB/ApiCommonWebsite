@@ -31,11 +31,13 @@ sub init {
   my $Self = shift;
 
   $Self->SUPER::init(@_);
+  my @xAxisLabels = ['2', '6','12', '24','36','48','72'];
 
   $Self->setMatchProfile
   ( ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name       => 'match',
       ProfileSet => 'Cparvum_RT_PCR_Kissinger',
+      ElementOrder => @xAxisLabels,
     )
   );
 
@@ -44,8 +46,11 @@ sub init {
     ( Name         => 'query',
       ProfileSet   => 'Cparvum_RT_PCR_Kissinger',
       UseSecondary => 1,
+      ElementOrder => @xAxisLabels,
     )
   );
+
+
 
   $Self->setYmax(1);
   $Self->setYmin(-1);
