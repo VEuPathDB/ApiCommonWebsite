@@ -151,7 +151,7 @@
        <attribute name = "Website">CryptoDB, EuPathDB</attribute>
        <attribute name = "Family">Cryptosporidium</attribute>
        <attribute name = "Organism">C.parvum</attribute>
-       <attribute name = "Taxon_ID">5807</attribute>
+       <attribute name = "Taxon_ID">353152</attribute>
        <attribute name = "Strain">IOWA</attribute>
        <attribute name = "Genome_Version">02-23-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
@@ -253,7 +253,7 @@
        <attribute name = "Genome_Version">06-19-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">2.50</attribute>
-       <attribute name = "Gene_Count">2678</attribute>
+       <attribute name = "Gene_Count">2053</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">EC1,EC2,EC3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -278,7 +278,7 @@
        <attribute name = "Genome_Version">04-19-2011</attribute>
        <attribute name = "Data_Source">Univ.of British Columbia</attribute>
        <attribute name = "Genome_Size">2.25</attribute>
-       <attribute name = "Gene_Count">2053</attribute>
+       <attribute name = "Gene_Count">1913</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -304,7 +304,7 @@
        <attribute name = "Genome_Version">11-23-2009</attribute>
        <attribute name = "Data_Source">P.Keeling</attribute>
        <attribute name = "Genome_Size">2.21</attribute>
-       <attribute name = "Gene_Count">1913</attribute>
+       <attribute name = "Gene_Count">1889</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -328,7 +328,7 @@
        <attribute name = "Genome_Version">01-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">3.41</attribute>
-       <attribute name = "Gene_Count">1889</attribute>
+       <attribute name = "Gene_Count">3806</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -376,7 +376,7 @@
        <attribute name = "Genome_Version">06-09-2009</attribute>
        <attribute name = "Data_Source">NCBI</attribute>
        <attribute name = "Genome_Size">7.86</attribute>
-       <attribute name = "Gene_Count">3806</attribute>
+       <attribute name = "Gene_Count">2678</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -572,7 +572,7 @@
        <attribute name = "Genome_Size">23.26</attribute>
        <attribute name = "Gene_Count">6372</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">IT,Dd2,HB3</attribute>
+       <attribute name = "Additional_Strains">Dd2,HB3</attribute>
        <attribute name = "Organellar_Genomes">C10 plastid, NF54 mito</attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -584,6 +584,30 @@
        <attribute name = "Chip_Seq">yes</attribute>
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways">yes</attribute>
+   </record>
+ <record>
+       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
+       <attribute name = "Family">Plasmodium</attribute>
+       <attribute name = "Organism">P.falciparum</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain">IT</attribute>
+       <attribute name = "Genome_Version">07-29-2010</attribute>
+       <attribute name = "Data_Source">Sanger</attribute>
+       <attribute name = "Genome_Size">23.26</attribute>
+       <attribute name = "Gene_Count">5519</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">Dd2,HB3</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
    </record>
  <record>
        <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
@@ -674,7 +698,7 @@
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray">yes</attribute>
-       <attribute name = "Proteomics"></attribute>
+       <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
        <attribute name = "Chip_Seq"></attribute>
@@ -714,7 +738,7 @@
        <attribute name = "Genome_Version">10-04-2010</attribute>
        <attribute name = "Data_Source">GeneDB</attribute>
        <attribute name = "Genome_Size">51.81</attribute>
-       <attribute name = "Gene_Count">7355</attribute>
+       <attribute name = "Gene_Count">9262</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -787,10 +811,10 @@
        <attribute name = "Genome_Version">07-16-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">63.01</attribute>
-       <attribute name = "Gene_Count">9239**</attribute>
+       <attribute name = "Gene_Count">8155</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">VEG,GT1,RH,CkUg2,p89,VAND,MAS,RH,FOU,TgCATBr9</attribute>
-       <attribute name = "Organellar_Genomes">apicoplast</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
        <attribute name = "ESTs">yes</attribute>
@@ -802,7 +826,80 @@
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways">yes</attribute>
    </record>
- 
+  <record>
+       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
+       <attribute name = "Family">Toxoplasma</attribute>
+       <attribute name = "Organism">T.gondii</attribute>
+       <attribute name = "Taxon_ID">507601</attribute>
+       <attribute name = "Strain">GT1</attribute>
+       <attribute name = "Genome_Version">07-15-2008</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">8253</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
+       <attribute name = "Family">Toxoplasma</attribute>
+       <attribute name = "Organism">T.gondii</attribute>
+       <attribute name = "Taxon_ID">383379</attribute>
+       <attribute name = "Strain">RH</attribute>
+       <attribute name = "Genome_Version">04-14-2009</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">63</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
+       <attribute name = "Organellar_Genomes">yes</attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
+       <attribute name = "Family">Toxoplasma</attribute>
+       <attribute name = "Organism">T.gondii</attribute>
+       <attribute name = "Taxon_ID">432359</attribute>
+       <attribute name = "Strain">VEG</attribute>
+       <attribute name = "Genome_Version">07-17-2008</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">7997</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+
  <record>
        <attribute name = "Website">TrichDB, EuPathDB</attribute>
        <attribute name = "Family">Trichomonas</attribute>
@@ -853,6 +950,30 @@
    </record>
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Endotrypanum</attribute>
+       <attribute name = "Organism">E.monterogeii</attribute>
+       <attribute name = "Taxon_ID">5705</attribute>
+       <attribute name = "Strain">LV88</attribute>
+       <attribute name = "Genome_Version">1.0</attribute>
+       <attribute name = "Data_Source">WUSTL</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
        <attribute name = "Organism">L.braziliensis</attribute>
        <attribute name = "Taxon_ID">420245</attribute>
@@ -862,10 +983,10 @@
        <attribute name = "Genome_Size">32.09</attribute>
        <attribute name = "Gene_Count">8505</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">M2903</attribute>
+       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
+       <attribute name = "SNPs">yes</attribute>
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics"></attribute>
@@ -875,6 +996,31 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
+ <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
+       <attribute name = "Organism">L.braziliensis</attribute>
+       <attribute name = "Taxon_ID">4202450</attribute>
+       <attribute name = "Strain">M2903</attribute>
+       <attribute name = "Genome_Version">1.0</attribute>
+       <attribute name = "Data_Source">WUSTL</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
@@ -894,7 +1040,7 @@
        <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RNA_Seq">yes</attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -910,10 +1056,10 @@
        <attribute name = "Genome_Size">32.86</attribute>
        <attribute name = "Gene_Count">10068</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">SD 75.1</attribute>
+       <attribute name = "Additional_Strains">SD 75.1,LV39c5</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
+       <attribute name = "SNPs">yes</attribute>
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics"></attribute>
@@ -947,15 +1093,15 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
- <record>
+<record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.tarentolae</attribute>
-       <attribute name = "Taxon_ID">5689</attribute>
-       <attribute name = "Strain"></attribute>
-       <attribute name = "Genome_Version">04-07-2009</attribute>
-       <attribute name = "Data_Source">CIHR group</attribute>
-       <attribute name = "Genome_Size">31.60</attribute>
+       <attribute name = "Organism">L.panamensis</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain">L13</attribute>
+       <attribute name = "Genome_Version">1.1</attribute>
+       <attribute name = "Data_Source">WUSTL</attribute>
+       <attribute name = "Genome_Size"></attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -971,7 +1117,31 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
-
+<record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
+       <attribute name = "Organism">L.tarentolae</attribute>
+       <attribute name = "Taxon_ID">56890001</attribute>
+       <attribute name = "Strain">Parrot-TarII</attribute>
+       <attribute name = "Genome_Version">06-22-2011</attribute>
+       <attribute name = "Data_Source">CHUL, McGill Univ.</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">8531</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ 
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
@@ -981,12 +1151,12 @@
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">29.27</attribute>
-       <attribute name = "Gene_Count">11183+</attribute>
+       <attribute name = "Gene_Count">11425</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">gambiense,427</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
+       <attribute name = "SNPs">yes</attribute>
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics">yes</attribute>
@@ -996,7 +1166,55 @@
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways"></attribute>
    </record>
- 
+  <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
+       <attribute name = "Organism">T.brucei</attribute>
+       <attribute name = "Taxon_ID">31285</attribute>
+       <attribute name = "Strain">gambiense</attribute>
+       <attribute name = "Genome_Version">10-20-2010</attribute>
+       <attribute name = "Data_Source">GeneDB, Sanger</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">10000</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
+       <attribute name = "Organism">T.brucei</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain">Lister strain 427</attribute>
+       <attribute name = "Genome_Version">10-20-2010</attribute>
+       <attribute name = "Data_Source">GeneDB, Sanger</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">8998</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
@@ -1026,16 +1244,16 @@
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
        <attribute name = "Organism">T.cruzi</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
-       <attribute name = "Strain">CL Brener</attribute>
+       <attribute name = "Strain">CL Brener Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">95.12</attribute>
-       <attribute name = "Gene_Count">16372++</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">10600</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
+       <attribute name = "SNPs">yes</attribute>
        <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray">yes</attribute>
        <attribute name = "Proteomics">yes</attribute>
@@ -1044,7 +1262,58 @@
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
+   </record> 
+<record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
+       <attribute name = "Organism">T.cruzi</attribute>
+       <attribute name = "Taxon_ID">353153</attribute>
+       <attribute name = "Strain">CL Brener Non-Esmeraldo-like</attribute>
+       <attribute name = "Genome_Version">10-20-2010</attribute>
+       <attribute name = "Data_Source">GeneDB, Sanger</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">11109</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
    </record>
+<record>
+       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
+       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
+       <attribute name = "Organism">T.cruzi</attribute>
+       <attribute name = "Taxon_ID">353153</attribute>
+       <attribute name = "Strain">CL Brener unassigned</attribute>
+       <attribute name = "Genome_Version">10-20-2010</attribute>
+       <attribute name = "Data_Source">GeneDB, Sanger</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">3397</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record> 
+
+
+
  <record>
        <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
        <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
