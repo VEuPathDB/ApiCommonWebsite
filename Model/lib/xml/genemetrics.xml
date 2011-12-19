@@ -16,10 +16,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">8333</attribute>
        <attribute name = "Entamoeba invadens IP1">11549</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">3806</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">9747</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5981</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">4562</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">5144</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">6580</attribute>
        <attribute name = "Leishmania braziliensis">8505</attribute>
        <attribute name = "Leishmania infantum">8383</attribute>
        <attribute name = "Leishmania major strain Friedlin">10068</attribute>
@@ -67,10 +66,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">8306</attribute>
        <attribute name = "Entamoeba invadens IP1">11549</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">3633</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">9667</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5901</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">4470</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">5064</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">6500</attribute>
        <attribute name = "Leishmania braziliensis">8357</attribute>
        <attribute name = "Leishmania infantum">8241</attribute>
        <attribute name = "Leishmania major strain Friedlin">8412</attribute>
@@ -121,7 +119,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">80</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">92</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">80</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">80</attribute>
        <attribute name = "Leishmania braziliensis">148</attribute>
        <attribute name = "Leishmania infantum">142</attribute>
        <attribute name = "Leishmania major strain Friedlin">1656</attribute>
@@ -172,7 +169,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">2</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">56</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">2</attribute>
        <attribute name = "Leishmania braziliensis">156</attribute>
        <attribute name = "Leishmania infantum">54</attribute>
        <attribute name = "Leishmania major strain Friedlin">93</attribute>
@@ -220,10 +216,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">540</attribute>
        <attribute name = "Entamoeba invadens IP1">4</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">577</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">560</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">1</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">555</attribute>
        <attribute name = "Leishmania braziliensis">8</attribute>
        <attribute name = "Leishmania infantum">27</attribute>
        <attribute name = "Leishmania major strain Friedlin">39</attribute>
@@ -241,7 +236,7 @@
        <attribute name = "Theileria annulata strain Ankara">11</attribute>
        <attribute name = "Theileria parva strain Muguga">2</attribute>
        <attribute name = "Toxoplasma gondii GT1">43</attribute>
-       <attribute name = "Toxoplasma gondii ME49">1714</attribute>
+       <attribute name = "Toxoplasma gondii ME49">1717</attribute>
        <attribute name = "Toxoplasma gondii RH">0</attribute>
        <attribute name = "Toxoplasma gondii VEG">4</attribute>
        <attribute name = "Trichomonas vaginalis G3">37</attribute>
@@ -271,10 +266,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">7754</attribute>
        <attribute name = "Entamoeba invadens IP1">9857</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">2991</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">5978</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5343</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">4391</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">4921</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">8146</attribute>
        <attribute name = "Leishmania infantum">8186</attribute>
        <attribute name = "Leishmania major strain Friedlin">8367</attribute>
@@ -322,10 +316,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">4262</attribute>
        <attribute name = "Entamoeba invadens IP1">4827</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">1255</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">1778</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">1777</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">1669</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">1828</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">1579</attribute>
        <attribute name = "Leishmania braziliensis">3517</attribute>
        <attribute name = "Leishmania infantum">3606</attribute>
        <attribute name = "Leishmania major strain Friedlin">4020</attribute>
@@ -376,7 +369,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">269</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">269</attribute>
        <attribute name = "Leishmania braziliensis">945</attribute>
        <attribute name = "Leishmania infantum">979</attribute>
        <attribute name = "Leishmania major strain Friedlin">992</attribute>
@@ -427,7 +419,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">7079</attribute>
        <attribute name = "Leishmania infantum">0</attribute>
        <attribute name = "Leishmania major strain Friedlin">7458</attribute>
@@ -475,10 +466,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">7955</attribute>
        <attribute name = "Entamoeba invadens IP1">15</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">9747</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5981</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">53</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">960</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">6012</attribute>
        <attribute name = "Leishmania braziliensis">40</attribute>
        <attribute name = "Leishmania infantum">8204</attribute>
        <attribute name = "Leishmania major strain Friedlin">9319</attribute>
@@ -526,10 +516,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">7904</attribute>
        <attribute name = "Entamoeba invadens IP1">15</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">9747</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5981</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
        <attribute name = "Leishmania infantum">8199</attribute>
        <attribute name = "Leishmania major strain Friedlin">8118</attribute>
@@ -577,10 +566,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">1223</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">4455</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">3272</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">53</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">960</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
        <attribute name = "Leishmania infantum">0</attribute>
        <attribute name = "Leishmania major strain Friedlin">0</attribute>
@@ -628,10 +616,9 @@
        <attribute name = "Entamoeba histolytica HM-1:IMSS">0</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">9630</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5955</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">6012</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
        <attribute name = "Leishmania infantum">0</attribute>
        <attribute name = "Leishmania major strain Friedlin">0</attribute>
@@ -682,7 +669,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">1744</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">40</attribute>
        <attribute name = "Leishmania infantum">538</attribute>
        <attribute name = "Leishmania major strain Friedlin">502</attribute>
@@ -733,7 +719,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
        <attribute name = "Leishmania infantum">0</attribute>
        <attribute name = "Leishmania major strain Friedlin">0</attribute>
@@ -784,7 +769,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
        <attribute name = "Leishmania infantum">0</attribute>
        <attribute name = "Leishmania major strain Friedlin">8306</attribute>
@@ -817,6 +801,56 @@
    </record>
 
    <record>
+       <attribute name = "Metric_Type">RT PCR</attribute>
+       <attribute name = "Description">Number of genes that have evidence for transcript expression based on Reat Time PCR experiments</attribute>
+       <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Cryptosporidium hominis">0</attribute>
+       <attribute name = "Cryptosporidium muris">0</attribute>
+       <attribute name = "Cryptosporidium parvum">0</attribute>
+       <attribute name = "Cryptosporidium parvum Iowa II">3287</attribute>
+       <attribute name = "Eimeria tenella str. Houghton">0</attribute>
+       <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
+       <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
+       <attribute name = "Encephalitozoon intestinalis">0</attribute>
+       <attribute name = "Entamoeba dispar SAW760">0</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">0</attribute>
+       <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
+       <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
+       <attribute name = "Leishmania braziliensis">0</attribute>
+       <attribute name = "Leishmania infantum">0</attribute>
+       <attribute name = "Leishmania major strain Friedlin">0</attribute>
+       <attribute name = "Leishmania mexicana">0</attribute>
+       <attribute name = "Leishmania tarentolae Parrot-TarII">0</attribute>
+       <attribute name = "Neospora caninum">0</attribute>
+       <attribute name = "Nosema ceranae BRL01">0</attribute>
+       <attribute name = "Plasmodium berghei str. ANKA">0</attribute>
+       <attribute name = "Plasmodium chabaudi chabaudi">0</attribute>
+       <attribute name = "Plasmodium falciparum 3D7">0</attribute>
+       <attribute name = "Plasmodium falciparum IT">0</attribute>
+       <attribute name = "Plasmodium knowlesi strain H">0</attribute>
+       <attribute name = "Plasmodium vivax SaI-1">0</attribute>
+       <attribute name = "Plasmodium yoelii yoelii str. 17XNL">0</attribute>
+       <attribute name = "Theileria annulata strain Ankara">0</attribute>
+       <attribute name = "Theileria parva strain Muguga">0</attribute>
+       <attribute name = "Toxoplasma gondii GT1">0</attribute>
+       <attribute name = "Toxoplasma gondii ME49">0</attribute>
+       <attribute name = "Toxoplasma gondii RH">0</attribute>
+       <attribute name = "Toxoplasma gondii VEG">0</attribute>
+       <attribute name = "Trichomonas vaginalis G3">0</attribute>
+       <attribute name = "Trypanosoma brucei Lister strain 427">0</attribute>
+       <attribute name = "Trypanosoma brucei TREU927">0</attribute>
+       <attribute name = "Trypanosoma brucei gambiense">0</attribute>
+       <attribute name = "Trypanosoma congolense">0</attribute>
+       <attribute name = "Trypanosoma cruzi CL Brener Esmeraldo-like">0</attribute>
+       <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">0</attribute>
+       <attribute name = "Trypanosoma cruzi strain CL Brener">0</attribute>
+       <attribute name = "Trypanosoma vivax">0</attribute>
+   </record>
+
+   <record>
        <attribute name = "Metric_Type">TF Binding Site</attribute>
        <attribute name = "Description">Total number of genes having evidence of expression based on transcription factor binding site indentification experiments</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
@@ -835,7 +869,6 @@
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Giardia lamblia ATCC 50803">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
        <attribute name = "Leishmania infantum">0</attribute>
        <attribute name = "Leishmania major strain Friedlin">9154</attribute>

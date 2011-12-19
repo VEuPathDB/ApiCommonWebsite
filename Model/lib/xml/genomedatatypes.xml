@@ -20,6 +20,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -44,6 +45,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -68,6 +70,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -92,6 +95,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -117,6 +121,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -143,6 +148,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -167,6 +173,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR">yes</attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -191,6 +198,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways"></attribute>
@@ -215,6 +223,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -239,6 +248,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -264,6 +274,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -289,6 +300,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -315,6 +327,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -339,6 +352,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -363,6 +377,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -387,6 +402,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -411,6 +427,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -435,6 +452,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -460,6 +478,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -484,6 +503,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -508,6 +528,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -532,6 +553,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -556,6 +578,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -581,6 +604,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip">yes</attribute>
        <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq">yes</attribute>
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -605,6 +629,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -629,6 +654,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -653,6 +679,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -677,6 +704,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -701,6 +729,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -725,6 +754,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -749,6 +779,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -773,6 +804,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -798,6 +830,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -822,6 +855,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip">yes</attribute>
        <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -846,6 +880,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -870,6 +905,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -894,6 +930,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -920,6 +957,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
@@ -944,6 +982,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -968,6 +1007,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -992,6 +1032,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1016,6 +1057,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1041,6 +1083,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1065,6 +1108,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1089,6 +1133,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1113,6 +1158,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1137,6 +1183,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1162,6 +1209,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq">yes</attribute>
        <attribute name = "SageTags">yes</attribute>
        <attribute name = "Pathways"></attribute>
@@ -1186,6 +1234,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1210,6 +1259,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1235,6 +1285,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1259,6 +1310,7 @@
        <attribute name = "Proteomics">yes</attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1283,6 +1335,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1307,6 +1360,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
@@ -1334,6 +1388,7 @@
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
        <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
