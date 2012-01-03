@@ -199,6 +199,12 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
+
+    <ant target="webComponentPartCopy">
+      <property name="componentDir" value="${projectsDir}/ApiCommonWebsite/Site"/>
+      <property name="part" value="dashboard"/>
+      <property name="to" value="${htdocsTargetDir}/../dashboard"/>
+    </ant>
     
     <available file="${targetDir}/config/log4j.xml.custom-web" property="custom.weblog4j.present"/>
     <antcall target="installCustomWebLog4j"/>
