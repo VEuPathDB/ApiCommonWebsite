@@ -818,7 +818,7 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-06-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
-       <attribute name = "Genome_Size">62.48</attribute>
+       <attribute name = "Genome_Size">61.04</attribute>
        <attribute name = "Gene_Count">7227</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -868,7 +868,7 @@
        <attribute name = "Strain">GT1</attribute>
        <attribute name = "Genome_Version">07-15-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">62.43</attribute>
        <attribute name = "Gene_Count">8253</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
@@ -893,7 +893,7 @@
        <attribute name = "Strain">RH</attribute>
        <attribute name = "Genome_Version">04-14-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">4.00</attribute>
        <attribute name = "Gene_Count">63</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
@@ -918,7 +918,7 @@
        <attribute name = "Strain">VEG</attribute>
        <attribute name = "Genome_Version">07-17-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">65.35</attribute>
        <attribute name = "Gene_Count">7997</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
@@ -970,7 +970,7 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">9.1</attribute>
        <attribute name = "Data_Source">Beverly, WUSTL Genome Center</attribute>
-       <attribute name = "Genome_Size">35.38</attribute>
+       <attribute name = "Genome_Size">37.05</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -995,7 +995,7 @@
        <attribute name = "Strain">LV88</attribute>
        <attribute name = "Genome_Version">1.0</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">33.25</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1045,7 +1045,7 @@
        <attribute name = "Strain">M2903</attribute>
        <attribute name = "Genome_Version">1.0</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">33.79</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1071,7 +1071,7 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">32.06</attribute>
+       <attribute name = "Genome_Size">32.13</attribute>
        <attribute name = "Gene_Count">8383</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1121,7 +1121,7 @@
        <attribute name = "Strain">mexicana</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">34.52</attribute>
+       <attribute name = "Genome_Size">32.11</attribute>
        <attribute name = "Gene_Count">8334</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1146,7 +1146,7 @@
        <attribute name = "Strain">L13</attribute>
        <attribute name = "Genome_Version">1.1</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">32.47</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1171,7 +1171,7 @@
        <attribute name = "Strain">Parrot-TarII</attribute>
        <attribute name = "Genome_Version">06-22-2011</attribute>
        <attribute name = "Data_Source">CHUL, McGill Univ.</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">31.64</attribute>
        <attribute name = "Gene_Count">8531</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1197,7 +1197,7 @@
        <attribute name = "Strain">TREU927</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">29.27</attribute>
+       <attribute name = "Genome_Size">26.31</attribute>
        <attribute name = "Gene_Count">11425</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">gambiense,427</attribute>
@@ -1222,7 +1222,7 @@
        <attribute name = "Strain">gambiense</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">22.15</attribute>
        <attribute name = "Gene_Count">10000</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1247,7 +1247,7 @@
        <attribute name = "Strain">Lister strain 427</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">25.61</attribute>
        <attribute name = "Gene_Count">8998</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1273,7 +1273,7 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">38.60</attribute>
+       <attribute name = "Genome_Size">38.67</attribute>
        <attribute name = "Gene_Count">13536</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
@@ -1298,7 +1298,7 @@
        <attribute name = "Strain">CL Brener Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">32.53</attribute>
        <attribute name = "Gene_Count">10600</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
@@ -1323,7 +1323,7 @@
        <attribute name = "Strain">CL Brener Non-Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">32.53</attribute>
        <attribute name = "Gene_Count">11109</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
@@ -1348,7 +1348,7 @@
        <attribute name = "Strain">CL Brener unassigned</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">36.01</attribute>
        <attribute name = "Gene_Count">3397</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
@@ -1376,7 +1376,7 @@
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">47.50</attribute>
+       <attribute name = "Genome_Size">16.69</attribute>
        <attribute name = "Gene_Count">11989</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
