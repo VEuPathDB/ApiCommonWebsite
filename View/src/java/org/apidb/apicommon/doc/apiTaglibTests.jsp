@@ -130,55 +130,6 @@ LOGIN_SCHEMA from model.prop: <b>${props['LOGIN_SCHEMA']}</b>
 </blockquote>
 
 <hr>
-
-<h3>api:modelConfig</h3>
-<api:modelConfig var="modelConfig"/>
-<blockquote>
-authenticationConnectionUrl: <b>${modelConfig.props['authenticationConnectionUrl']}</b>
-</blockquote>
-<p>
-Configurations from WDK's ModelConfig class, generally representing values set in <code>${modelConfig.props['gusHome']}/config/${wdkRecord.primaryKey.values['project_id']}/model-config.xml</code> although some processing may occur by the WDK parser.
-<pre>
-<blockquote>
-<c:forEach 
-    var="section" items="${modelConfig.props}"
-><b>${section.key}</b><blockquote><c:forEach 
-    var="cfg" items="${section.value}"
->${cfg.key} = ${fn:escapeXml(cfg.value)}
-</c:forEach></blockquote></c:forEach>
-</blockquote>
-</pre>
-<p>
-<hr>
-
-<h3>api:commentConfig</h3>
-<api:commentConfig var="commentConfig"/>
-<blockquote>
-connectionUrl: <b>${commentConfig.props['connectionUrl']}</b>
-</blockquote>
-<p>
-Configurations from WDK's CommentConfig class, generally representing values set in <code>${modelConfig.props['gusHome']}/config/${wdkRecord.primaryKey.values['project_id']}/comment-config.xml</code> although some processing may occur by the WDK parser.
-The CommentFactory instantiates CommentConfig on first page access requiring it - not at webapp load time.
-<pre>
-<blockquote>
-<c:forEach 
-    var="cfg" items="${commentConfig.props}"
->${cfg.key} = ${fn:escapeXml(cfg.value)}
-</c:forEach>
-</blockquote>
-</pre>
-<p>
-<hr>
-
-<h3>api:wdkUserDB</h3>
-
-<api:wdkUserDB var="cacheTable"/>
-<blockquote>
-Cache database service_name: <b>${cacheTable.dbInfo['service_name']}</b>
-</blockquote>
-<br>
-
-<hr>
 <h3>api:properties</h3>
 <c:catch var="e">
 <api:properties var="build" propfile="WEB-INF/wdk-model/config/.build.info" />
@@ -249,14 +200,6 @@ Design use-case is to check if a site is up.
 
 <hr>
 
-<h3>api:webappInfo</h3>
-<api:webappInfo var="app"/>
-<blockquote>
-Instance Name: ${app.instanceName}<br>
-Instance Uptime: ${app.instanceUptimeText}<br>
-Webapp Uptime: ${app.webappUptimeText}<br>
-Webapp context path: ${app.contextPath}<br>
-Webapp classpath (truncated): ${fn:substring(app.classpath, 0, 100)} ...<br>
 
 </blockquote>
 <hr>
