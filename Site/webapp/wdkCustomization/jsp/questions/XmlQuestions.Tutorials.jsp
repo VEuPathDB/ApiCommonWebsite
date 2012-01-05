@@ -40,7 +40,7 @@
           		<c:if test="${fn:containsIgnoreCase(projects, project)}"> 
                           	<c:set var="urlMov" value="${row[1].value}"/>
                           	<c:if test="${urlMov != 'unavailable' && ! fn:startsWith(urlMov, 'http://')}">
-                            		<c:set var="urlMov">http://eupathdb.org/tutorials/${urlMov}</c:set>
+                            		<c:set var="urlMov">http://www.youtube.com/${urlMov}</c:set>
                           	</c:if>
                           	<c:set var="urlAvi" value="${row[2].value}"/>
                           	<c:if test="${urlAvi != 'unavailable' &&  ! fn:startsWith(urlAvi, 'http://')}">
@@ -65,15 +65,15 @@
 
 
 				<li id='t-${attrs['uid']}'><span style="font-size:120%;font-weight:bold">${attrs['title']}</span><br />
-					${attrs['description']}<br />
+					${attrs['description']}<br />${row[5].value}&nbsp;&nbsp;&nbsp;
                              		<c:if test="${urlMov != 'unavailable'}">
-                          		 	(<a href="${urlMov}">Quick Time</a>)
+                          		 	(<a target="_blank" href="${urlMov}"><img style="vertical-align:middle" src="/assets/images/smallYoutube-icon.png" border='0'></a>)
                              		</c:if>
                              		<c:if test="${urlAvi != 'unavailable'}">
                           		 	(<a href="${urlAvi}">Windows media</a>)
                              		</c:if>
                              		<c:if test="${urlFlv != 'unavailable'}">
-                          		 	(<a href="${urlFlv}">Flash</a>, ${row[5].value})
+                          		 	(<a href="${urlFlv}">Flash</a>)
                              		</c:if>
 					<c:if test="${urlPdf != 'unavailable'}">
                           		 	(<a href="${urlPdf}">PDF</a>)
