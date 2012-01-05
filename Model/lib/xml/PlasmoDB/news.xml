@@ -18,6 +18,32 @@
     </record>
 -->
 <record>
+       <attribute name="headline">Version 1 of P. yoelii yoelii YM is now available on GeneDB!</attribute>
+       <attribute name="date">4 January 2012 15:00</attribute>
+       <attribute name="tag">genedb_newPY_YMgenome</attribute>
+       <attribute name="category">genedb</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<div align="justify">
+A first-pass assembly and annotation of <i>P. yoelii yoelii</i> YM is now publicly available on GeneDB. The assembly was made 
+using short-fragment Illumina reads and scaffolded with 454 paired-reads from a 3kb library. The assembly was 
+computationally improved using PAGIT (http://www.sanger.ac.uk/resources/software/pagit/) and annotated by transfer 
+from the <i>P. berghei</i> ANKA reference. Genes in subtelomeric regions were predicted <i>ab initio</i>. The annotation has been 
+manually re-inspected genome-wide.<br><br>
+<i>P. yoelii yoelii</i> YM can be viewed and searched on GeneDB.  EMBL and GFF format files can be downloaded from the 
+following FTP site:<br><br>
+<b>ftp://ftp.sanger.ac.uk/pub/pathogens/Plasmodium/yoeliiYM/version_1/January_2012</b><br><br>
+A publication describing the new sequence is in preparation and permission should therefore be obtained before undertaking 
+genome-scale or whole chromosome wide analyses.<br><br>
+This work was funded by the Wellcome Trust Sanger Institute and the European Union's 7th Framework Programme (FP7/2007-2013) 
+under grant agreement no 242095. The DNA was provided by Tony Holder (Division of Parasitology, MRC National Institute for Medical 
+Research, Mill Hill, London). 
+</div>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">Verson 2 of P. falciparum IT is now available on GeneDB!</attribute>
        <attribute name="date">17 November 2011 15:00</attribute>
        <attribute name="tag">genedb_newPFITgenome</attribute>
