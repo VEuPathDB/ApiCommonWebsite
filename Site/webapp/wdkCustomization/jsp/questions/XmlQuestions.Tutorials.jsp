@@ -67,7 +67,7 @@
 				<li id='t-${attrs['uid']}'><span style="font-size:120%;font-weight:bold">${attrs['title']}</span><br />
 					${attrs['description']}<br />${row[5].value}&nbsp;&nbsp;&nbsp;
                              		<c:if test="${urlMov != 'unavailable'}">
-                          		 	(<a target="_blank" href="${urlMov}"><img style="vertical-align:middle" src="/assets/images/smallYoutube-icon.png" border='0'></a>)
+                          		 	<a target="_blank" href="${urlMov}"><img style="vertical-align:middle" src="/assets/images/smallYoutube-icon.png" border='0'></a>
                              		</c:if>
                              		<c:if test="${urlAvi != 'unavailable'}">
                           		 	(<a href="${urlAvi}">Windows media</a>)
