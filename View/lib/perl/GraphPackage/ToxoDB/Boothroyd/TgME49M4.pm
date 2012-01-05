@@ -28,7 +28,7 @@ sub init {
 	      x_axis_labels => ['d0 unsporulated', 'd4 sporulation', 'd10 sporulation', 'd2 in vitro Tz', 'd4 in vitro Bz', 'd8 in vitro Bz', 'd21 IN VIVO Bz'],
               y_axis_label => 'RMA Value (log2)',
               colors => $colors,
-              plot_title => 'Tachyzoite comparison of archetypal T.gondii lineages',
+              plot_title => 'oocyst/tz/bz development in the type II strain M4',
              },
       pct => {profiles => ['Expression percentile profiles of Tgondii ME49 Boothroyd experiments'],
 	      profile_display_names => ['Expression percentile profiles'],
