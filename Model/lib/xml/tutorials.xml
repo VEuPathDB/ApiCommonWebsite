@@ -233,7 +233,7 @@
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
-           <attribute name="fileName.flv">Restriction Sites in GBrowse/restriction_sites_in_GBrowse_viewlet_swf.html</attribute>
+           <attribute name="fileName.flv">Restriction Sites in GBrowse/restriction_sites_in_gbrowse_viewlet_swf.html</attribute>
            <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">2 min</attribute>
            <attribute name="size">2.8 mb</attribute>
