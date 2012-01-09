@@ -15,7 +15,7 @@
         </row>
         <row>
           <attribute name="title"><![CDATA[<i>Acanthamoeba castellanii</i> genome project page at NCBI]]></attribute>
-          <attribute name="url"><![CDATA[http://www.ncbi.nlm.nih.gov/sites/entrez?Db=genomeprj&cmd=ShowDetailView&TermToSearch=12731]]></attribute>
+          <attribute name="url"><![CDATA[http://www.ncbi.nlm.nih.gov/genome?term=txid5754%5Borgn%5D]]></attribute>
         </row>
         <row>
           <attribute name="title"><![CDATA[<i>Entamoeba dispar</i> genome project page at NCBI]]></attribute>
@@ -39,7 +39,7 @@
         </row>
         <row>
           <attribute name="title"><![CDATA[Comparative <i>Entamoeba</i> Sequencing Project at the Sanger Institute]]></attribute>
-          <attribute name="url"><![CDATA[http://www.sanger.ac.uk/Projects/Comp_Entamoeba/]]></attribute>
+          <attribute name="url"><![CDATA[http://www.sanger.ac.uk/resources/downloads/protozoa/entamoeba.html]]></attribute>
         </row>
         <row>
           <attribute name="title"><![CDATA[<i>Entamoeba</i> sequencing project at JCVI]]></attribute>
@@ -49,10 +49,6 @@
           <attribute name="title">The Protist EST Program</attribute>
           <attribute name="url"><![CDATA[http://megasun.bch.umontreal.ca/pepdb/pep.html]]></attribute>
         </row>
-        <row>
-          <attribute name="title">Amebiasis: From Pathogenesis to Treatment Modalities (Montreal September 22nd-24th, 2010)</attribute>
-          <attribute name="url"><![CDATA[http://entamoeba.lshtm.ac.uk/montreal/montreal.htm]]></attribute>
-        </row> 
       </table>
 
    </record>
