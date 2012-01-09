@@ -119,8 +119,8 @@
    </record>
 
 <record>
-       <attribute name="title">Invalid IDs and Strategies</attribute>
-       <attribute name="description">How to fix saved strategies that break with a new database release and what happens to IDs that change.</attribute>
+       <attribute name="title">Searches and IDs may change with Database releases</attribute>
+       <attribute name="description">How a new database release might affect IDs or searches in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
        <attribute name="uid">18</attribute>
        <table name="files">
         <row>
