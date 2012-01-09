@@ -1425,7 +1425,7 @@
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs"></attribute>
