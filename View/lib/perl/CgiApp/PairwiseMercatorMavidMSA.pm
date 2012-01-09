@@ -120,6 +120,7 @@ sub run {
     my $alignDir = "$agpDir/alignments";
 
     # if we ran mercator as draft ... we need to translate into assemblies to run sliceAlign
+
     my ($genome, $assembly, $assemblyStart, $assemblyStop, $assemblyStrand) = &translateCoordinates($contig, $agpDir, $start, $stop, $strand);
 
     eval {
@@ -386,7 +387,7 @@ sub findDirectory {
   my ($ref, $genome, $pairwiseDirectories) = @_;
 
   foreach(@$pairwiseDirectories) {
-    if(/$ref/ && /$genome/) {
+    if(/$ref(\-|$)/ && /$genome(\-|$)/) {
       return $_;
     }
   }
@@ -646,6 +647,8 @@ sub validateParams {
   if($length > 100000) {
     &userError("Values provided exceed the Maximum Allowed Alignemnt of 100KB");
   }
+
+
 
   return ($contig, $start, $stop, $strand, $type, $referenceGenome, \@genomes);
 }
