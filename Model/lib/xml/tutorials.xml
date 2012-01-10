@@ -118,22 +118,7 @@
        </table>
    </record>
 
-<record>
-       <attribute name="title">Searches and IDs may change with Database releases</attribute>
-       <attribute name="description">How a new database release might affect IDs or searches in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
-       <attribute name="uid">18</attribute>
-       <table name="files">
-        <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">watch?v=8pP1rhSrjqo</attribute>
-           <attribute name="fileName.avi">unavailable</attribute>
-           <attribute name="fileName.flv">Invalid IDs and Strategies/invalid_ids_and_strategies_viewlet_swf.html</attribute>
-           <attribute name="fileName.pdf">unavailable</attribute>
-           <attribute name="duration">3 min</attribute>
-           <attribute name="size">3.1 mb</attribute>
-         </row>
-       </table>
-   </record>
+
 
 <record>
        <attribute name="title">Isolates by Geographic Location</attribute>
@@ -255,6 +240,23 @@
            <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">5 min</attribute>
            <attribute name="size">9 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+<record>
+       <attribute name="title">Searches and IDs may change with Database releases</attribute>
+       <attribute name="description">How a new database release might affect IDs or searches in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=8pP1rhSrjqo</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Invalid IDs and Strategies/invalid_ids_and_strategies_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">3 min</attribute>
+           <attribute name="size">3.1 mb</attribute>
          </row>
        </table>
    </record>
