@@ -60,7 +60,7 @@
        <attribute name = "Organism">E.histolytica</attribute>
        <attribute name = "UrlFolder">EhistolyticaDS4</attribute>
        <attribute name = "UrlFilename">EhistolyticaDS4</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">885310</attribute>
        <attribute name = "Strain">DS4</attribute>
        <attribute name = "Genome_Version">08-04-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
@@ -114,7 +114,7 @@
        <attribute name = "Organism">E.histolytica</attribute>
        <attribute name = "UrlFolder">EhistolyticaKU27</attribute>
        <attribute name = "UrlFilename">EhistolyticaKU27</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">885311</attribute>
        <attribute name = "Strain">KU27</attribute>
        <attribute name = "Genome_Version">08-17-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
@@ -141,7 +141,7 @@
        <attribute name = "Organism">E.histolytica</attribute>
        <attribute name = "UrlFolder">EhistolyticaKU48</attribute>
        <attribute name = "UrlFilename">EhistolyticaKU48</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">885312</attribute>
        <attribute name = "Strain">KU48</attribute>
        <attribute name = "Genome_Version">08-17-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
@@ -168,7 +168,7 @@
        <attribute name = "Organism">E.histolytica</attribute>
        <attribute name = "UrlFolder">EhistolyticaKU50</attribute>
        <attribute name = "UrlFilename">EhistolyticaKU50</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">885313</attribute>
        <attribute name = "Strain">KU50</attribute>
        <attribute name = "Genome_Version">08-04-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
@@ -195,7 +195,7 @@
        <attribute name = "Organism">E.histolytica</attribute>
        <attribute name = "UrlFolder">EhistolyticaMS96</attribute>
        <attribute name = "UrlFilename">EhistolyticaMS96</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">885314</attribute>
        <attribute name = "Strain">MS96</attribute>
        <attribute name = "Genome_Version">08-24-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
