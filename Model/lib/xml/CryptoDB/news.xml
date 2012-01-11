@@ -27,7 +27,7 @@
        <attribute name="item">
          <![CDATA[
 <body>
-<div style="text-align: justify; font-family: monospace;"><span
+<div style="text-align: justify; font-family: Arial;"><span
 style="font-weight: bold;">We are pleased to
 announce new features in CryptoDB 4.6</span><br>
 <span style="font-weight: bold;"></span><br>
@@ -72,16 +72,16 @@ functionality:</span><br>
 <br>
 <span style="font-weight: bold;">
 </span></div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>The genome browser has been updated.&nbsp; This newer version
 includes several improvements and functionalities.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;"><br>
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>A new column analysis tool is now available that allows you to
 generate a word cloud or histogram based on the data in result
 columns.&nbsp; To access this feature, run any search that returns a
@@ -90,12 +90,12 @@ column name.&nbsp; This will reveal a popup with the option to select
 "Word Cloud".&nbsp; Look for this analysis feature to be activated on
 additional columns in future releases.</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;"><br>
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>Several new tutorials have been generated:</li>
 </ul>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul style="font-weight: bold;">
 <li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
 browser.</a></li>
@@ -111,8 +111,8 @@ with invalid IDs and search strategies.</a></li>
 the orthology phylogenetic profile search.</a></li>
 </ul>
 </ul>
-<br>
-<div style="text-align: justify; font-family: monospace;"><span
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><span
 style="font-style: italic;"></span><span style="font-style: italic;"><span
 style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
 Our bimonthly database releases incorporate new data and correct old
@@ -120,7 +120,7 @@ data when necessary.&nbsp; Changes in annotation and new experimental
 data
 may slightly alter your search results by increasing or decreasing the
 number of hits. When search parameters change with a new release, we
-invalidate (<span style="color: red;">&#216;</span>) the search and ask you
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
 page alone.</span></span><br>

@@ -23,18 +23,15 @@
            
          <![CDATA[
 <body>
-<div style="text-align: justify;"><span
-style="font-weight: bold; font-family: monospace;">We are pleased to
-announce the release
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We are pleased to announce the release
 of ToxoDB 7.2<span style="font-style: italic;"></span></span><br>
-<span style="font-weight: bold; font-family: monospace;"></span><br
-style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;">This release
-of ToxoDB contains the
-following new datasets: </span><br style="font-family: monospace;">
-<br style="font-family: monospace;">
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;">This release of ToxoDB contains the
+following new datasets: </span><br>
+<br>
 </div>
-<ul style="font-family: monospace; text-align: justify;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>Strand-specific RNA-sequence data from <span
 style="font-style: italic;">T. gondii</span> ME49 oocyst stages
 provided prepublication by the John Boothroyd and Brian Gregory
@@ -44,9 +41,9 @@ style="font-weight: bold;">available as genome browser tracks</span>.</a>&nbsp;
 <br>
 </li>
 </ul>
-<div style="text-align: justify;"><br style="font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="font-family: monospace; text-align: justify;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>Note:&nbsp; RNA-sequence data is also used to
 visualize intron/exon boundaries (based on intron-spanning
@@ -56,9 +53,9 @@ style="font-weight: bold;">unified splice junction</span></a> tracks
 can be visualized in the genome browser.</li>
 </ul>
 </ul>
-<div style="text-align: justify;"><br style="font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="font-family: monospace; text-align: justify;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>Microarray data from wild type and several bradyzoite
 differentiation mutants of <span style="font-style: italic;">T. gondii</span>
 type I RH strain (<a href="http://www.ncbi.nlm.nih.gov/pubmed/21209930"><span
@@ -81,22 +78,21 @@ series.&nbsp; In addition, microarray data is displayed on gene pages
 in the expression section where data can be viewed as fold change
 differences, percentile or in tabular format.&nbsp;&nbsp;</li>
 </ul>
-<div style="text-align: justify;"><br style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;">New
-functionality:</span><br style="font-family: monospace;">
-<br style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;"><br>
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
 </span></div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>The genome browser has been updated.&nbsp; This newer version
 includes several improvements and functionalities.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
 </ul>
-<div style="text-align: justify;"><br style="font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>A new column analysis tool is now available that allows you to
 generate a word cloud or histogram based on the data in result
 columns.&nbsp; To access this feature, run any search that returns a
@@ -105,13 +101,12 @@ column name.&nbsp; This will reveal a popup with the option to select
 "Word Cloud".&nbsp; Look for this analysis feature to be activated on
 additional columns in future releases.</li>
 </ul>
-<div style="text-align: justify;"><br style="font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="font-family: monospace; text-align: justify;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>Several new tutorials have been generated:</li>
 </ul>
-<div style="text-align: justify;"></div>
-<ul style="font-family: monospace; text-align: justify;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul style="font-weight: bold;">
 <li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
 browser.</a></li>
@@ -127,34 +122,28 @@ with invalid IDs and search strategies.</a></li>
 the orthology phylogenetic profile search.</a></li>
 </ul>
 </ul>
-<br>
-<div style="text-align: justify;"><span
-style="font-style: italic; font-family: monospace;"><span
-style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
 Our bimonthly database releases incorporate new data and correct old
 data when necessary.&nbsp; Changes in annotation and new experimental
 data
 may slightly alter your search results by increasing or decreasing the
 number of hits. When search parameters change with a new release, we
-invalidate (<span style="color: red;">&#216;</span>) the search and ask you
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
-page alone.</span></span><br style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: monospace;">
-<br style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;"><span
-style="font-style: italic;">EuPathDB
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
 is now on <a
 href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-style="font-weight: bold; font-style: italic; font-family: monospace;">
-and <a href="http://twitter.com/eupathdb">Twitter</a></span>
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span>
 </div>
-<div style="font-family: monospace; text-align: justify;"></div>
 </body>
           ]]>
        </attribute>
