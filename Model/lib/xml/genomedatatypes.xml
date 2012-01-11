@@ -1282,13 +1282,13 @@
        <attribute name = "Website">ToxoDB, EuPathDB</attribute>
        <attribute name = "Family">Toxoplasma</attribute>
        <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiRH</attribute>
+       <attribute name = "UrlFolder">TgondiiApicoplast</attribute>
        <attribute name = "UrlFilename">TgondiiRH</attribute>
        <attribute name = "Taxon_ID">383379</attribute>
-       <attribute name = "Strain">RH</attribute>
+       <attribute name = "Strain">RH Apicoplast</attribute>
        <attribute name = "Genome_Version">04-14-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">4.00</attribute>
+       <attribute name = "Genome_Size">0.035</attribute>
        <attribute name = "Gene_Count">63</attribute>
        <attribute name = "Multiple_Strains">yes</attribute>
        <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
