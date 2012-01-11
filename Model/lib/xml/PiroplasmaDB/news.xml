@@ -23,23 +23,23 @@
            
          <![CDATA[
 <body>
-<span style="font-weight: bold;">We are pleased to
+<span style="font-weight: bold; font-family: Arial;">We are pleased to
 announce new features in&nbsp; PiroplasmaDB<br>
-</span><br>
-<span style="font-weight: bold;">New
-functionality:</span><br>
-<br>
-<span style="font-weight: bold;">
+</span><br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">New
+functionality:</span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">
 </span>
-<ul>
+<ul style="font-family: Arial;">
 <li>The genome browser has been updated.&nbsp; This newer version
 includes several improvements and functionalities.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
 </ul>
-<br>
-<ul>
+<br style="font-family: Arial;">
+<ul style="font-family: Arial;">
 <li>A new column analysis tool is now available that allows you to
 generate a word cloud or histogram based on the data in result
 columns.&nbsp; To access this feature, run any search that returns a
@@ -48,11 +48,11 @@ column name.&nbsp; This will reveal a popup with the option to select
 "Word Cloud".&nbsp; Look for this analysis feature to be activated on
 additional columns in future releases.</li>
 </ul>
-<br>
-<ul>
+<br style="font-family: Arial;">
+<ul style="font-family: Arial;">
 <li>Several new tutorials have been generated:</li>
 </ul>
-<ul>
+<ul style="font-family: Arial;">
 <ul style="font-weight: bold;">
 <li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
 browser.</a></li>
@@ -68,10 +68,9 @@ with invalid IDs and search strategies.</a></li>
 the orthology phylogenetic profile search.</a></li>
 </ul>
 </ul>
-<br>
-<span style="font-style: italic;"></span><span
-style="font-style: italic;"><span style="font-style: italic;"><span
-style="text-decoration: underline;">Note:</span>
+<br style="font-family: Arial;">
+<span style="font-style: italic; font-family: Arial;"><span
+style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
 Our bimonthly database releases incorporate new data and correct old
 data when necessary.&nbsp; Changes in annotation and new experimental
 data
@@ -80,16 +79,21 @@ number of hits. When search parameters change with a new release, we
 invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
-page alone.</span></span><br>
-<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-<br>
-<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+page alone.</span></span><br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;"><span
+style="font-style: italic;"></span></span><br
+style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;"><span
+style="font-style: italic;"></span></span><br
+style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;"><span
+style="font-style: italic;">EuPathDB
 is now on <a
 href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-style="font-weight: bold; font-style: italic;"> and <a
-href="http://twitter.com/eupathdb">Twitter</a></span>
-<span style="font-weight: bold;"></span>
+style="font-weight: bold; font-style: italic; font-family: Arial;">
+and <a href="http://twitter.com/eupathdb">Twitter</a></span>
+<span style="font-weight: bold; font-family: Arial;"></span>
 </body>
           ]]>
        </attribute>

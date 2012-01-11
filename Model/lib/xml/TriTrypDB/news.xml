@@ -27,18 +27,18 @@
            
          <![CDATA[
 <body>
-<span style="font-weight: bold; font-family: monospace;">We are pleased
-to announce the release
+<span style="font-weight: bold; font-family: Arial;">We are pleased to
+announce the release
 of TriTrypDB 4.0<span style="font-style: italic;"></span></span><br
-style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;">
-</span><br style="font-family: monospace;">
-<span style="font-weight: bold; font-family: monospace;">
-New Data: </span><br style="font-family: monospace;">
-<br style="font-family: monospace;">
-<div style="text-align: justify; font-family: monospace;">
+style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">
+</span><br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">
+New Data: </span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;">
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li><span style="font-style: italic;">T. brucei</span> protein
 palmitoylation data (<a
 href="http://www.ncbi.nlm.nih.gov/pubmed/21193548"><span
@@ -47,10 +47,10 @@ style="text-decoration: underline;"><span style="font-weight: bold;">Emmer
 href="http://www.ncbi.nlm.nih.gov/pubmed/21193548"><span
 style="font-style: italic;">et. al.</span></a>).</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>To search this data, go to the "<a style="font-weight: bold;"
 href="http://beta.tritrypdb.org/tritrypdb.b13/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Identify
@@ -62,10 +62,10 @@ evidence. <br>
 </li>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>Mass spec data can also be visualized in the protein section of
 gene pages (for example, scroll down to the "Protein" section of <a
@@ -77,10 +77,10 @@ over peptide graphics displays additional peptide and modification site
 information. &nbsp;&nbsp;</li>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li><span style="font-style: italic;"></span>Single nucleotide
 polymorphism (SNP) calls based on high throughput sequencing data of <span
 style="font-style: italic;">T. brucei </span>927
@@ -89,9 +89,9 @@ identified based on their type (synonymous, nonsynonymous, etc.), their
 frequency and/or their depth of coverage.&nbsp; <br>
 </li>
 </ul>
-<div style="text-align: justify; font-family: monospace;"><br>
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>To search this data click on "<a style="font-weight: bold;"
 href="http://beta.tritrypdb.org/tritrypdb.b13/showQuestion.do?questionFullName=GeneQuestions.GenesByHtsSnps">Identify
@@ -100,8 +100,8 @@ Genes based on HTS SNP Characteristics</a>" under the heading
 </li>
 </ul>
 </ul>
-&nbsp;
-<ul style="text-align: justify; font-family: monospace;">
+<span style="font-family: Arial;">&nbsp;</span>
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>SNP data is represented as a table on gene pages. For example,
 if you visit the gene page for <a
@@ -112,8 +112,8 @@ includes information about the SNPs found in this gene based on this
 comparison.</li>
 </ul>
 </ul>
-<br>
-<ul style="text-align: justify; font-family: monospace;">
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>An additional view of SNPs is available in the <a
 style="font-weight: bold;"
@@ -129,8 +129,8 @@ information.&nbsp; <br>
 </li>
 </ul>
 </ul>
-<br>
-<ul style="text-align: justify; font-family: monospace;">
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>The actual sequence reads in a particular region can be <span
 style="font-weight: bold;">visualized in gbrowse</span> by turning on
@@ -139,10 +139,10 @@ Sequencing (HTS) SNPs".<br>
 </li>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>Transcriptome-wide mRNA degradation data for <span
 style="font-style: italic;">T. brucei</span> (<a
 style="font-weight: bold;"
@@ -157,10 +157,10 @@ and scroll down to the section called "<span style="font-style: italic;">T.
 brucei</span> RNA Sequence of transcriptome-wide mRNA degradation"
 under "Expression".</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li><span style="font-style: italic;">Leishmania tarentolae </span>Parrot-TarII
 <span style="font-style: italic;"></span>genome
 sequence
@@ -174,9 +174,9 @@ Ouellette, Jacques Corbeil, Barbara Papadopoulou, Michel J. Tremblay,
 Frédéric Raymond, Sébastien Boisvert from Université Laval, and Martin
 Olivier from McGill University).</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;"><br>
+<div style="text-align: justify; font-family: Arial;"><br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>Genes may be queried based on gene IDs, text terms, EC numbers,
 GO terms, sequence features (length, introns, signal sequences, Pfam
@@ -191,26 +191,26 @@ similarity, user-defined motifs, etc.</li>
 </li>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;"> <br>
+<div style="text-align: justify; font-family: Arial;"> <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>Draft assemblies of the genome sequences from the Trypanosomatid
 sequencing white paper.&nbsp; This data is graciously provided
 prepublication and full credit and data usage information is available
 by clicking on the sequence name:<br>
 </li>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 <a
 href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
 style="font-style: italic;"></span></a>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul style="font-weight: bold;">
 <ul>
 <ul>
@@ -222,10 +222,9 @@ LV88</a></li>
 </ul>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 </div>
-<ul
-style="font-weight: bold; text-align: justify; font-family: monospace;">
+<ul style="font-weight: bold; text-align: justify; font-family: Arial;">
 <ul>
 <ul>
 <ul>
@@ -239,9 +238,9 @@ style="font-style: italic;">Leishmania major</span> strain LV39c5</a><br>
 </ul>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <ul>
 <ul>
@@ -252,10 +251,10 @@ style="font-style: italic;">Leishmania panamensis </span>strain L13</a></li>
 </ul>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>Genomic sequence data is available under the heading "Genomic
 Sequences" on the home
@@ -269,9 +268,9 @@ style="font-style: italic;">. <br>
 </span></li>
 </ul>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>Additionally, genomic sequence data may be downloaded from the <a
 style="font-weight: bold;"
@@ -279,8 +278,8 @@ href="http://tritrypdb.org/common/downloads/release-4.0/">TriTrypDB
 download directory</a>.</li>
 </ul>
 </ul>
-<br>
-<ul style="text-align: justify; font-family: monospace;">
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
 <li><span style="font-weight: bold; text-decoration: underline;">New
 Gene IDs</span> -- <span style="font-style: italic;">T. cruzi</span>
 IDs have been truncated by GeneDB to make them more user
@@ -291,22 +290,22 @@ a future release the only the new IDs will be displayed at the top of
 the page.<br>
 </li>
 </ul>
-<div style="text-align: justify; font-family: monospace;"> <span
+<div style="text-align: justify; font-family: Arial;"> <span
 style="font-weight: bold;">New functionality:</span><br>
 <br>
 <span style="font-weight: bold;">
 </span></div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>The genome browser has been updated.&nbsp; This newer version
 includes several improvements and functionalities.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>A new column analysis tool is now available that allows you to
 generate a word cloud or histogram based on the data in result
 columns.&nbsp; To access this feature, run any search that returns a
@@ -315,15 +314,15 @@ column name.&nbsp; This will reveal a popup with the option to select
 "Word Cloud".&nbsp; Look for this analysis feature to be activated on
 additional columns in future releases.</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 <br>
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <li>Several new tutorials have been generated:</li>
 </ul>
-<div style="text-align: justify; font-family: monospace;">
+<div style="text-align: justify; font-family: Arial;">
 </div>
-<ul style="text-align: justify; font-family: monospace;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul style="font-weight: bold;">
 <li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
 browser.</a></li>
@@ -339,8 +338,8 @@ with invalid IDs and search strategies.</a></li>
 the orthology phylogenetic profile search.</a></li>
 </ul>
 </ul>
-<br>
-<div style="text-align: justify; font-family: monospace;">
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;">
 <span style="font-style: italic;"><span style="font-style: italic;"></span></span><span
 style="font-style: italic;"><span style="font-style: italic;"><span
 style="text-decoration: underline;">Note:</span>
@@ -349,7 +348,7 @@ data when necessary.&nbsp; Changes in annotation and new experimental
 data
 may slightly alter your search results by increasing or decreasing the
 number of hits. When search parameters change with a new release, we
-invalidate (<span style="color: red;">&#216;</span>) the search and ask you
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
 page alone.</span></span><br>

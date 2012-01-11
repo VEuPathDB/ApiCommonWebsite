@@ -24,9 +24,9 @@
            
          <![CDATA[
 <body>
-<div style="font-family: monospace; text-align: justify;"><span
+<div style="text-align: justify; font-family: Arial;"><span
 style="font-weight: bold;">We are pleased to announce the release
-of AmoebaDB 1.<span style="font-family: monospace;">7</span></span><br>
+of AmoebaDB 1.7</span><br>
 <span style="font-weight: bold;">
 </span><br>
 <span style="font-weight: bold;">
@@ -86,7 +86,7 @@ peptide.&nbsp; <br>
 </li>
 </ul>
 </div>
-<div style="font-family: monospace; text-align: justify;"><br>
+<div style="text-align: justify; font-family: Arial;"><br>
 <span style="font-weight: bold;">New
 functionality:</span><br>
 <br>
@@ -138,7 +138,7 @@ data when necessary.&nbsp; Changes in annotation and new experimental
 data
 may slightly alter your search results by increasing or decreasing the
 number of hits. When search parameters change with a new release, we
-invalidate (<span style="color: red;">&#216;</span>) the search and ask you
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
 page alone.</span></span><br>
