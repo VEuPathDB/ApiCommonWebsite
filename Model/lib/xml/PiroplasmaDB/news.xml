@@ -16,7 +16,7 @@
 --> 
 <record>
        <attribute name="headline">New features in PiroplasmaDB</attribute>
-       <attribute name="date">11 January 2012</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
        <attribute name="tag">piro1211news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
