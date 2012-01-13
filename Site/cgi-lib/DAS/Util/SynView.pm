@@ -13,9 +13,11 @@ sub postgridGB2 {
   my %newdrawn;
   my @group;
   my %seen;
+  my $exon_x2 = 0;
   foreach my $box (@{$panel->boxes}) {
       my ($f, $x1, $y1, $x2, $y2) = @$box;
-      $location{$f->name} = [$x1, $y1, $x2, $y2];
+      $exon_x2 = $x2 and next if ($f->type =~ /exon/i);
+      $location{$f->name} = [$x1, $y1, $exon_x2, $y2];
       next unless $f->isa("Bio::SeqFeatureI");
       next if $f->isa("Bio::Das::Feature");
       my $gene = $f->name;
