@@ -14,6 +14,17 @@
        </attribute>
     </record>
 --> 
+   <record>
+       <attribute name="headline">2.0 alpha released</attribute>
+       <attribute name="date">19 Jan 2012 9:00AM</attribute>
+       <attribute name="tag">fungidb_01-19_release2alpha</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The 2.0 alpha release, with 8 genomes, from 5 Cryptococcus, Tremella mesenterica, Neurospora crassa, and Saccharomyces cerevisiae were released at <a href="http://alpha.fungidb.org">alpha.fungidb.org</a>. This is a pre-release using new workflow and data analysis pipeline. It will soon follow with additional species that incorporate the previously released genomes.
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">Annotating genes in FungiDB</attribute>
        <attribute name="date">3 May 2011 12:00PM</attribute>
