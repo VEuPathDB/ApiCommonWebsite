@@ -1039,7 +1039,7 @@ public class CommentFactory {
         sql.append(config.getCommentSchema() + "MutantStatus d, ");
         sql.append(config.getCommentSchema() + "MutantExpression e, ");
         sql.append("(SELECT pmc.comment_id, ");
-        sql.append("apidb.tab_to_string(cast(collect(mc.mutant_category) as apidb.varchartab),'; ') as mutant_category_name ");
+        sql.append("apidb.tab_to_string(set(cast(collect(mc.mutant_category) as apidb.varchartab)),'; ') as mutant_category_name ");
         sql.append(" FROM ");
         sql.append(config.getCommentSchema() + "MutantCategory mc, ");
         sql.append(config.getCommentSchema() + "PhenotypeMutantCategory pmc ");
