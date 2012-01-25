@@ -36,7 +36,7 @@ following new datasets: </span><br>
 style="font-style: italic;">T. gondii</span> ME49 oocyst stages
 provided prepublication by the John Boothroyd and Brian Gregory
 groups.&nbsp; These data are <a
-href="http://beta.toxodb.org/cgi-bin/gbrowse/toxodb/?start=435135;stop=475134;ref=TGME49_chrVI;width=800;version=100;flip=0;grid=1;id=41b73827e4dc9e6dd5617c2b8af53509;l=OocystRnaSeq%1EGene"><span
+href="/cgi-bin/gbrowse/toxodb/?start=435135;stop=475134;ref=TGME49_chrVI;width=800;version=100;flip=0;grid=1;id=41b73827e4dc9e6dd5617c2b8af53509;l=OocystRnaSeq%1EGene"><span
 style="font-weight: bold;">available as genome browser tracks</span>.</a>&nbsp;
 <br>
 </li>
@@ -48,7 +48,7 @@ style="font-weight: bold;">available as genome browser tracks</span>.</a>&nbsp;
 <li>Note:&nbsp; RNA-sequence data is also used to
 visualize intron/exon boundaries (based on intron-spanning
 reads).&nbsp; Data specific or <a
-href="http://beta.toxodb.org/cgi-bin/gbrowse/toxodb/?start=435135;stop=475134;ref=TGME49_chrVI;width=800;version=100;flip=0;grid=1;id=41b73827e4dc9e6dd5617c2b8af53509;l=Gene%1ERUMIntronUnified"><span
+href="/cgi-bin/gbrowse/toxodb/?start=435135;stop=475134;ref=TGME49_chrVI;width=800;version=100;flip=0;grid=1;id=41b73827e4dc9e6dd5617c2b8af53509;l=Gene%1ERUMIntronUnified"><span
 style="font-weight: bold;">unified splice junction</span></a> tracks
 can be visualized in the genome browser.</li>
 </ul>
@@ -70,7 +70,7 @@ identify differences between wild type and mutant parasites as well as
 genes that are differentially regulated during a bradyzoite
 differentiation time
 course.&nbsp; <span style="font-weight: bold;"><a
-href="http://qa.toxodb.org/toxo.b13/im.do?s=c3f9ec5bb4dc424c">Here is
+href="/toxo/im.do?s=c3f9ec5bb4dc424c">Here is
 a
 search strategy</a> </span>that
 identifies genes that are upregulated during the differentiation
