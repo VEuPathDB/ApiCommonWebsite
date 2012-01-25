@@ -53,7 +53,7 @@ style="font-style: italic;">et. al.</span></a>).</li>
 <ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>To search this data, go to the "<a style="font-weight: bold;"
-href="http://beta.tritrypdb.org/tritrypdb.b13/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Identify
+href="/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Identify
 Genes based on Mass Spec. Evidence</a>" and select "Procyclic form
 palmitoylated proteins (Emmer et al.)" under <span
 style="font-style: italic;">Trypanosoma brucei</span>.&nbsp; This
@@ -69,9 +69,9 @@ evidence. <br>
 <ul>
 <li>Mass spec data can also be visualized in the protein section of
 gene pages (for example, scroll down to the "Protein" section of <a
-href="http://beta.tritrypdb.org/tritrypdb.b13/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=Tb927.8.2160&amp;project_id=TriTrypDB"><span
+href="/tritrypdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=Tb927.8.2160&amp;project_id=TriTrypDB"><span
 style="font-weight: bold;">this gene page</span></a>) and in the <a
-href="http://beta.tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=667617;stop=672616;ref=Tb927_08_v4;width=800;version=100;flip=0;grid=1;id=94322a54b7fa01cd26a8db428b7ebefe;l=AlmeidaMassSpecPeptides%1EGene;h_feat=tb927.8.2160%40yellow"><span
+href="/cgi-bin/gbrowse/tritrypdb/?start=667617;stop=672616;ref=Tb927_08_v4;width=800;version=100;flip=0;grid=1;id=94322a54b7fa01cd26a8db428b7ebefe;l=AlmeidaMassSpecPeptides%1EGene;h_feat=tb927.8.2160%40yellow"><span
 style="font-weight: bold;">genome browser</span></a>.&nbsp; Mousing
 over peptide graphics displays additional peptide and modification site
 information. &nbsp;&nbsp;</li>
@@ -94,7 +94,7 @@ frequency and/or their depth of coverage.&nbsp; <br>
 <ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li>To search this data click on "<a style="font-weight: bold;"
-href="http://beta.tritrypdb.org/tritrypdb.b13/showQuestion.do?questionFullName=GeneQuestions.GenesByHtsSnps">Identify
+href="/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByHtsSnps">Identify
 Genes based on HTS SNP Characteristics</a>" under the heading
 "Population Biology". <br>
 </li>
@@ -117,13 +117,13 @@ comparison.</li>
 <ul>
 <li>An additional view of SNPs is available in the <a
 style="font-weight: bold;"
-href="http://beta.tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=441977;stop=461976;ref=Tb927_01_v4;width=800;version=100;flip=0;grid=1;id=e83e65478c5a6ca68217ce3509d1dbdf;l=HtsAlignmentSNPsByClass%1EGene;h_feat=tb927.1.1740%40yellow">genome
+href="/cgi-bin/gbrowse/tritrypdb/?start=441977;stop=461976;ref=Tb927_01_v4;width=800;version=100;flip=0;grid=1;id=e83e65478c5a6ca68217ce3509d1dbdf;l=HtsAlignmentSNPsByClass%1EGene;h_feat=tb927.1.1740%40yellow">genome
 browser </a>where
 SNPs can be visualized based on their coding potential (represented as
 colored diamonds).&nbsp; Mousing over the diamonds reveals a popup with
 additional information about the SNP at that specific location.&nbsp;
 Also, the mouse over includes a link to the <a
-href="http://beta.tritrypdb.org/a/showRecord.do?name=SnpRecordClasses.SnpRecordClass&amp;primary_key=NGS_SNP.Tb927_01_v4.451312"><span
+href="/a/showRecord.do?name=SnpRecordClasses.SnpRecordClass&amp;primary_key=NGS_SNP.Tb927_01_v4.451312"><span
 style="font-weight: bold;">SNP record page</span></a> with additional
 information.&nbsp; <br>
 </li>
@@ -215,7 +215,7 @@ style="font-style: italic;"></span></a>
 <ul>
 <ul>
 <li><a
-href="http://beta.tritrypdb.org/tritrypdb.b13/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#EmonteLV88_primary_genome_RSRC"><span
+href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#EmonteLV88_primary_genome_RSRC"><span
 style="font-style: italic;">Endotrypanum monterogeii </span>strain
 LV88</a></li>
 </ul>
@@ -231,7 +231,7 @@ LV88</a></li>
 <li><a
 href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=LbraziliensisM2903_contigs_RSRC&amp;title=Query#LbraziliensisM2903_contigs_RSRC"><span
 style="font-style: italic;"></span></a><a
-href="http://beta.tritrypdb.org/tritrypdb.b13/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LmajorLV39c5_primary_genome_RSRC"><span
+href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LmajorLV39c5_primary_genome_RSRC"><span
 style="font-style: italic;">Leishmania major</span> strain LV39c5</a><br>
 </li>
 </ul>
@@ -245,7 +245,7 @@ style="font-style: italic;">Leishmania major</span> strain LV39c5</a><br>
 <ul>
 <ul>
 <li><a style="font-weight: bold;"
-href="http://beta.tritrypdb.org/tritrypdb.b13/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LpanamL13_primary_genome_RSRC"><span
+href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LpanamL13_primary_genome_RSRC"><span
 style="font-style: italic;">Leishmania panamensis </span>strain L13</a></li>
 </ul>
 </ul>
