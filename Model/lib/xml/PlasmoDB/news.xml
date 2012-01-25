@@ -55,10 +55,10 @@ addition, peptide evidence is displayed on gene pages in the <a
 style="font-weight: bold;" href="http://plasmodb.org/gene/PVX_083220">Protein
 Section</a>
 and in the <a
-href="http://beta.plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=294208;stop=314207;ref=CM000453;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=CuiMassSpecPeptides%1EGene;h_feat=pvx_083220%40yellow"><span
+href="/cgi-bin/gbrowse/plasmodb/?start=294208;stop=314207;ref=CM000453;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=CuiMassSpecPeptides%1EGene;h_feat=pvx_083220%40yellow"><span
 style="font-weight: bold;">genome browser</span></a> by turning on
 the track specific for this data.&nbsp; <a style="font-weight: bold;"
-href="http://beta.plasmodb.org/plasmo.b13/im.do?s=fdf774c4ffc8e23a">This
+href="/plasmo/im.do?s=fdf774c4ffc8e23a">This
 search strategy</a> identifies all <span style="font-style: italic;">P.
 vivax</span> genes with mass spec
 evidence from this study.</li>
@@ -83,10 +83,10 @@ addition, peptide evidence is displayed on gene pages in the <a
 style="font-weight: bold;" href="http://plasmodb.org/gene/PF11_0506">Protein
 Section</a>
 and in the <a
-href="http://beta.plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1954465;stop=1964464;ref=Pf3D7_11;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=VossMassSpecPeptides%1EGene;h_feat=pf11_0506%40yellow"><span
+href="/cgi-bin/gbrowse/plasmodb/?start=1954465;stop=1964464;ref=Pf3D7_11;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=VossMassSpecPeptides%1EGene;h_feat=pf11_0506%40yellow"><span
 style="font-weight: bold;">genome browser</span></a> by turning on
 the track specific for this data.&nbsp; <a style="font-weight: bold;"
-href="http://beta.plasmodb.org/plasmo.b13/im.do?s=5c64c3e69b25f955">This
+href="/plasmo/im.do?s=5c64c3e69b25f955">This
 search strategy</a> identifies all <span style="font-style: italic;">P.
 falciparum</span> genes with mass spec
 evidence from this study.&nbsp;</li>
@@ -108,10 +108,10 @@ addition, peptide evidence is displayed on gene pages in the <a
 style="font-weight: bold;" href="http://plasmodb.org/gene/MAL8P1.82">Protein
 Section</a>
 and in the <a
-href="http://beta.plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=737052;stop=742051;ref=Pf3D7_08;width=800;version=100;flip=0;grid=1;id=5cf2afba4e5155b9ebe2784bf8347957;l=BoothroydPhosphoPeptides%1EGene;h_feat=mal8p1.82%40yellow"><span
+href="/cgi-bin/gbrowse/plasmodb/?start=737052;stop=742051;ref=Pf3D7_08;width=800;version=100;flip=0;grid=1;id=5cf2afba4e5155b9ebe2784bf8347957;l=BoothroydPhosphoPeptides%1EGene;h_feat=mal8p1.82%40yellow"><span
 style="font-weight: bold;">genome browser</span></a> by turning on
 the track specific for this data.&nbsp; <a style="font-weight: bold;"
-href="http://beta.plasmodb.org/plasmo.b13/im.do?s=1f596b3d78e0780a">This
+href="/plasmo/im.do?s=1f596b3d78e0780a">This
 search strategy</a> identifies all <span style="font-style: italic;">P.
 falciparum</span> genes with phospho mass spec
 evidence from this study. </li>
@@ -123,7 +123,7 @@ evidence from this study. </li>
 <li><span style="font-style: italic;">P. falciparum</span>
 ChIP-sequence data from the histone variant H2Bv (three time points)
 and&nbsp; CenH3 (schizonts) represented as <a
-href="http://beta.plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1975000;stop=2014999;ref=Pf3D7_11;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=ChipSeq_H2Bv_Stunnenberg%1EChipSeq_CenH3_40h_Stunnenberg%1EGene;h_feat=pf11_0506%40yellow"><span
+href="/cgi-bin/gbrowse/plasmodb/?start=1975000;stop=2014999;ref=Pf3D7_11;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=ChipSeq_H2Bv_Stunnenberg%1EChipSeq_CenH3_40h_Stunnenberg%1EGene;h_feat=pf11_0506%40yellow"><span
 style="font-weight: bold;">coverage plots in the genome browser</span></a>.&nbsp;
 This data was graciously provided prepublication by the Stunnenberg
 group.</li>
@@ -183,7 +183,7 @@ style="font-weight: bold;">associated with the region</span></a>.</li>
 <ul style="font-family: Arial;">
 <ul>
 <li>Both microsatellites and haplotype blocks are available <a
-href="http://beta.plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=155076;stop=190991;ref=Pf3D7_13;width=800;version=100;flip=0;grid=1;id=5cf2afba4e5155b9ebe2784bf8347957;l=Microsatellite%1EHaploBlock%1EGene;h_feat=mal8p1.82%40yellow"><span
+href="/cgi-bin/gbrowse/plasmodb/?start=155076;stop=190991;ref=Pf3D7_13;width=800;version=100;flip=0;grid=1;id=5cf2afba4e5155b9ebe2784bf8347957;l=Microsatellite%1EHaploBlock%1EGene;h_feat=mal8p1.82%40yellow"><span
 style="font-weight: bold;">as tracks in the genome browser</span></a>.&nbsp;
 <br>
 </li>
@@ -224,7 +224,7 @@ href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.
 <ul style="text-align: justify; font-family: Arial;">
 <li><span style="font-weight: bold; text-decoration: underline;">New
 Gene IDs</span> -- Please read the <a style="font-weight: bold;"
-href="http://beta.plasmodb.org/plasmo.b13/showXmlDataContent.do?name=XmlQuestions.News#genedb_newPFgenome">news
+href="/plasmo/showXmlDataContent.do?name=XmlQuestions.News#genedb_newPFgenome">news
 item from GeneDB</a> regarding assignment of new <span
 style="font-style: italic;">P. falciparum </span>gene IDs. We will be
 updating to these new IDs in the next release. Rest assured that both

@@ -38,7 +38,7 @@ Gilchrist and David Mirelman.&nbsp; This data is based on <span
 style="font-style: italic;">E. histolytica </span>G3 vs HM1:IMSS
 Transcript Expression and can be searched in the <a
 style="font-weight: bold;"
-href="http://beta.amoebadb.org/amoeba.b13/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence#attributions-section">microarray
+href="/amoeba/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence#attributions-section">microarray
 section</a> of AmoebaDB under the heading "G3 v. HM1". Genes can be
 identified based on fold change or percentile searches.&nbsp; In
 addition, microarray data is displayed graphically in the expression
@@ -59,7 +59,7 @@ Spec. Evidence</a>". On this page you can expand the
 "<span style="font-style: italic;">Entamoeba histolytica</span>" item
 and select "Human Serum Coated Magnetic Bead-Purified Phagosomes from
 Trophozoite (Marion et. al.)".&nbsp; <a style="font-weight: bold;"
-href="http://beta.amoebadb.org/amoeba.b13/im.do?s=22708ab9c95a4d94">This
+href="/amoeba/im.do?s=22708ab9c95a4d94">This
 search strategy</a> identifies all genes with evidence of protein
 expression based on this data.&nbsp; <br>
 </li>
@@ -79,7 +79,7 @@ Spec. Evidence</a>". On this page you can expand the
 "<span style="font-style: italic;">Entamoeba histolytica</span>" item
 and select "Purified Uropods from Trophozoite (Markiewicz et.
 al.)".&nbsp; <a style="font-weight: bold;"
-href="http://beta.amoebadb.org/amoeba.b13/im.do?s=ead0cf8b9aea076f">This
+href="/amoeba/im.do?s=ead0cf8b9aea076f">This
 search strategy</a> identifies all genes with evidence of protein
 expression based on this data that also have a predicted signal
 peptide.&nbsp; <br>

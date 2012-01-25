@@ -36,14 +36,14 @@ href="http://www.ncbi.nlm.nih.gov/pubmed/21835210">Perry <span
 style="font-style: italic;">et. al.</span></a>).&nbsp; The optical map
 has been incorporated into GiardiaDB where you can use it in searches
 (ie. <a style="font-weight: bold;"
-href="http://beta.giardiadb.org/giardiadb.b13/showQuestion.do?questionFullName=GeneQuestions.GenesByLocation">identifying
+href="/giardiadb/showQuestion.do?questionFullName=GeneQuestions.GenesByLocation">identifying
 genes by chromosomal location</a>) and is graphically represented in
 the genomic context section of gene pages and in the genome
 browser.&nbsp; <br>
 <br>
 <ul>
 <li><a
-href="http://beta.giardiadb.org/cgi-bin/gbrowse/giardiadb/?start=630000;stop=1129999;ref=GLCHR01;width=800;version=100;flip=0;grid=1;id=916467792f65cdeafebde051864c44cd;l=Synteny%1EGene;h_feat=gl50803_846%40yellow"><span
+href="/cgi-bin/gbrowse/giardiadb/?start=630000;stop=1129999;ref=GLCHR01;width=800;version=100;flip=0;grid=1;id=916467792f65cdeafebde051864c44cd;l=Synteny%1EGene;h_feat=gl50803_846%40yellow"><span
 style="font-weight: bold;">This example genome browser view shows a
 500KB region of assemblage A chromosome one in addition to synteny
 tracks from assemblages B and E.</span></a></li>
@@ -51,7 +51,7 @@ tracks from assemblages B and E.</span></a></li>
 <span style="font-weight: bold;"><br>
 </span><br>
 Note that while overall the optical map data and assembly <a
-href="http://beta.giardiadb.org/giardiadb.b13/communityDownload.do?fname=map%20of%20all%20chromsomes%20file.tiff"><span
+href="/giardiadb/communityDownload.do?fname=map%20of%20all%20chromsomes%20file.tiff"><span
 style="font-weight: bold;">data published by the Upcroft group</span></a>
 are in agreement, differences do exist.&nbsp; We encourage all
 interested to review the published literature including the following:<br>
