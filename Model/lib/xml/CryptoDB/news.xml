@@ -42,7 +42,7 @@ the Mark Rutherford (University of Minnesota) and Jessica C. Kissinger
 <ul>
 <li>You can find differentially expressed genes based on this data by
 clicking on <a
-	href="http://beta.cryptodb.org/cryptodb.b13/showQuestion.do?questionFullName=InternalQuestions.GenesByRTPCREvidence"><span
+	href="/cryptodb/showQuestion.do?questionFullName=InternalQuestions.GenesByRTPCREvidence"><span
 style="font-weight: bold;">RT PCR Evidence</span></a>
 under the "Transcript Expression" heading. Clicking on "Identify Genes
 based on C.p. post-infection semi-quantitative Real Time PCR (fold
@@ -56,7 +56,7 @@ input gene.&nbsp; For example, if you were interested in finding genes
 with a similar profile to a "kinesin-related protein K2", you can enter
 the gene ID "cgd3_2590" in the similarity search and return <a
 style="font-weight: bold;"
-href="http://beta.cryptodb.org/cryptodb.b13/im.do?s=8b0ec647dc350658">genes
+href="/cryptodb/im.do?s=8b0ec647dc350658">genes
 with a similar expression profile</a>.</li>
 <li>In addition, a graph of the expression profiles is made available
 in the expression section of <a
