@@ -42,7 +42,7 @@ the Mark Rutherford (University of Minnesota) and Jessica C. Kissinger
 <ul>
 <li>You can find differentially expressed genes based on this data by
 clicking on <a
-href="http://beta.cryptodb.org/cryptodb.b13/showQuestion.do?questionFullName=InternalQuestions.GenesByRTPCREvidence"><span
+	href="http://beta.cryptodb.org/cryptodb.b13/showQuestion.do?questionFullName=InternalQuestions.GenesByRTPCREvidence"><span
 style="font-weight: bold;">RT PCR Evidence</span></a>
 under the "Transcript Expression" heading. Clicking on "Identify Genes
 based on C.p. post-infection semi-quantitative Real Time PCR (fold
