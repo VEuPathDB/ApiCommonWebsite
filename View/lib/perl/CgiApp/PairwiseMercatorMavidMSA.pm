@@ -21,7 +21,7 @@ my $taxonToDirNameMap =
    'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
    'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
    'Leishmania mexicana'                              => { name => 'Lmexicana',              group => 1 },
-   'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTraII',        group => 1 },
+   'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTarII',        group => 1 },
    'Trypanosoma cruzi CL Brener Non-Esmeraldo-like'   => { name => 'TcruziNonEsmeraldoLike', group => 2 },
    'Trypanosoma cruzi CL Brener Esmeraldo-like'       => { name => 'TcruziEsmeraldoLike',    group => 2 },
    'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
