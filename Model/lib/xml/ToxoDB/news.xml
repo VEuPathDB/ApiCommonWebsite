@@ -15,6 +15,140 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 7.2 Released</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
+       <attribute name="tag">toxo12_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We are pleased to announce the release
+of ToxoDB 7.2<span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;">This release of ToxoDB contains the
+following new datasets: </span><br>
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Strand-specific RNA-sequence data from <span
+style="font-style: italic;">T. gondii</span> ME49 oocyst stages
+provided prepublication by the John Boothroyd and Brian Gregory
+groups.&nbsp; These data are <a
+href="/cgi-bin/gbrowse/toxodb/?start=435135;stop=475134;ref=TGME49_chrVI;width=800;version=100;flip=0;grid=1;id=41b73827e4dc9e6dd5617c2b8af53509;l=OocystRnaSeq%1EGene"><span
+style="font-weight: bold;">available as genome browser tracks</span>.</a>&nbsp;
+<br>
+</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>Note:&nbsp; RNA-sequence data is also used to
+visualize intron/exon boundaries (based on intron-spanning
+reads).&nbsp; Data specific or <a
+href="/cgi-bin/gbrowse/toxodb/?start=435135;stop=475134;ref=TGME49_chrVI;width=800;version=100;flip=0;grid=1;id=41b73827e4dc9e6dd5617c2b8af53509;l=Gene%1ERUMIntronUnified"><span
+style="font-weight: bold;">unified splice junction</span></a> tracks
+can be visualized in the genome browser.</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Microarray data from wild type and several bradyzoite
+differentiation mutants of <span style="font-style: italic;">T. gondii</span>
+type I RH strain (<a href="http://www.ncbi.nlm.nih.gov/pubmed/21209930"><span
+style="font-weight: bold;">Lescault </span><span
+style="font-style: italic; font-weight: bold;">et. al.</span><span
+style="font-weight: bold;">, 2010, PLoS One</span></a>).&nbsp;
+Microarray data can be searched in the <a style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">transcript
+expression</a>
+section of ToxoDB.&nbsp; Searching this data allows you to
+identify differences between wild type and mutant parasites as well as
+genes that are differentially regulated during a bradyzoite
+differentiation time
+course.&nbsp; <span style="font-weight: bold;"><a
+href="/toxo/im.do?s=c3f9ec5bb4dc424c">Here is
+a
+search strategy</a> </span>that
+identifies genes that are upregulated during the differentiation
+series.&nbsp; In addition, microarray data is displayed on gene pages
+in the expression section where data can be viewed as fold change
+differences, percentile or in tabular format.&nbsp;&nbsp;</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Several new tutorials have been generated:</li>
+</ul>
+<ul style="text-align: justify; font-family: Arial;">
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">ToxoDB 7.1 Released</attribute>
        <attribute name="date">11 October 2011 15:00</attribute>
        <attribute name="tag">toxo7_11_news</attribute>

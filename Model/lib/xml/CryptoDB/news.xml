@@ -20,6 +20,125 @@
     </record>
 -->
 <record>
+       <attribute name="headline">CryptoDB 4.6 Released</attribute>
+       <attribute name="date">11 January 2012 13:00</attribute>
+       <attribute name="tag">crypto12_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<body>
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We are pleased to
+announce new features in CryptoDB 4.6</span><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-style: italic;">C. parvum</span> post-infection
+semi-quantitative Real Time PCR graciously provided prepublication by
+the Mark Rutherford (University of Minnesota) and Jessica C. Kissinger
+(University of Georgia) labs. <br>
+<br>
+<ul>
+<li>You can find differentially expressed genes based on this data by
+clicking on <a
+href="/cryptodb/showQuestion.do?questionFullName=InternalQuestions.GenesByRTPCREvidence"><span
+style="font-weight: bold;">RT PCR Evidence</span></a>
+under the "Transcript Expression" heading. Clicking on "Identify Genes
+based on C.p. post-infection semi-quantitative Real Time PCR (fold
+change)" reveals search options that allow you to identify genes with a
+desired change in expression.<br>
+</li>
+<li>Clicking on "C.p. post-infection semi-quantitative Real Time PCR
+(similarity)"
+allows you to find genes that have a similar expression profile to an
+input gene.&nbsp; For example, if you were interested in finding genes
+with a similar profile to a "kinesin-related protein K2", you can enter
+the gene ID "cgd3_2590" in the similarity search and return <a
+style="font-weight: bold;"
+href="/cryptodb/im.do?s=8b0ec647dc350658">genes
+with a similar expression profile</a>.</li>
+<li>In addition, a graph of the expression profiles is made available
+in the expression section of <a
+href="http://cryptodb.org/gene/cgd3_2590"><span
+style="font-weight: bold;">each </span><span
+style="font-style: italic; font-weight: bold;">C. parvum</span><span
+style="font-weight: bold;"> gene page</span></a>. <br>
+</li>
+</ul>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Several new tutorials have been generated:</li>
+</ul>
+<ul style="text-align: justify; font-family: Arial;">
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-style: italic;"></span><span style="font-style: italic;"><span
+style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+<span style="font-weight: bold;"></span>
+</div>
+</body>
+          ]]>
+       </attribute>
+</record>
+<record>
        <attribute name="headline">CryptoDB 4.4 Released
          </attribute>
        <attribute name="date">03 May 2011 13:00</attribute>

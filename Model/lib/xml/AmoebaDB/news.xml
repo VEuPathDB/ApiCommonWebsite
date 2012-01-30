@@ -16,6 +16,145 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">AmoebaDB 1.7 Released</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
+       <attribute name="tag">amoeba12_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We are pleased to announce the release
+of AmoebaDB 1.7</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<ul>
+<li><span style="font-style: italic;">E. histolytica microarray data
+graciously provided p</span>republication by Rivka Bracha, Carol A.
+Gilchrist and David Mirelman.&nbsp; This data is based on <span
+style="font-style: italic;">E. histolytica </span>G3 vs HM1:IMSS
+Transcript Expression and can be searched in the <a
+style="font-weight: bold;"
+href="/amoeba/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence#attributions-section">microarray
+section</a> of AmoebaDB under the heading "G3 v. HM1". Genes can be
+identified based on fold change or percentile searches.&nbsp; In
+addition, microarray data is displayed graphically in the expression
+section on gene pages.</li>
+</ul>
+<br>
+<ul>
+<li><span style="font-style: italic;">E. histolytica</span>
+proteomics data from bead-purified phagosomes (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/16153248">Marion <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; To search this
+data click on the
+protein expression link under the "Identify Genes by:" heading, then
+click on "<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. Evidence</a>". On this page you can expand the
+"<span style="font-style: italic;">Entamoeba histolytica</span>" item
+and select "Human Serum Coated Magnetic Bead-Purified Phagosomes from
+Trophozoite (Marion et. al.)".&nbsp; <a style="font-weight: bold;"
+href="/amoeba/im.do?s=22708ab9c95a4d94">This
+search strategy</a> identifies all genes with evidence of protein
+expression based on this data.&nbsp; <br>
+</li>
+</ul>
+<br>
+<ul>
+<li><span style="font-style: italic;">E. histolytica</span>
+proteomics data from Purified Trophozoite Uropods (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21483708">Markiewicz et. al.</a>).&nbsp;
+To search this
+data click on the
+protein expression link under the "Identify Genes by:" heading, then
+click on "<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. Evidence</a>". On this page you can expand the
+"<span style="font-style: italic;">Entamoeba histolytica</span>" item
+and select "Purified Uropods from Trophozoite (Markiewicz et.
+al.)".&nbsp; <a style="font-weight: bold;"
+href="/amoeba/im.do?s=ead0cf8b9aea076f">This
+search strategy</a> identifies all genes with evidence of protein
+expression based on this data that also have a predicted signal
+peptide.&nbsp; <br>
+</li>
+</ul>
+</div>
+<div style="text-align: justify; font-family: Arial;"><br>
+<span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span>
+<ul>
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<br>
+<ul>
+<li>Several new tutorials have been generated:</li>
+</ul>
+<ul>
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<br>
+<span style="font-style: italic;"></span><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span></div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">AmoebaDB 1.5 Released</attribute>
        <attribute name="date">21 July 2011 15:00</attribute>
        <attribute name="tag">amoeba7_11_news</attribute>

@@ -138,12 +138,14 @@ EcuniculiChromosomesAndAnnotations,EintestinalisChromosomesAndAnnotations,E.bien
   <c:set var="gnCtxDivId" value="gnCtx"/>
 
   <c:set var="gnCtxImg">
-    <center><div id="${gnCtxDivId}"></div></center>
     
     <c:set var="gbrowseUrl">
         /cgi-bin/gbrowse/fungidb/?name=${contig}:${context_start_range}..${context_end_range};h_feat=${id}@yellow
     </c:set>
-    <a href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
+    <a id="gbView" href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
+
+    <center><div id="${gnCtxDivId}"></div></center>
+    <a id="gbView" href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
   </c:set>
 
   <wdk:toggle 
@@ -344,8 +346,7 @@ GO,InterproscanData
   </c:if>
 
 
-
-<c:if test="${binomial eq 'Rhizopus oryzae' || binomial eq 'Saccharomyces cerevisiae'}">
+<c:if test="${binomial eq 'Cryptococcus neoformans' || binomial eq 'Saccharomyces cerevisiae' || binomial eq 'Neurospora crassa'}">
   <site:pageDivider name="Expression"/>
   <site:expressionGraphs organism="${organism_full}"/>
 
@@ -445,14 +446,6 @@ GO,InterproscanData
 
 
 <site:footer/>
-
-<script type="text/javascript">
-  document.write(
-    '<img alt="logo" src="/images/pix-white.gif?resolution='
-     + screen.width + 'x' + screen.height + '" border="0">'
-  );
-</script>
-
 
 <script type="text/javascript">
 

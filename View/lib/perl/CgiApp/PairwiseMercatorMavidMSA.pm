@@ -21,7 +21,7 @@ my $taxonToDirNameMap =
    'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
    'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
    'Leishmania mexicana'                              => { name => 'Lmexicana',              group => 1 },
-   'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTraII',        group => 1 },
+   'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTarII',        group => 1 },
    'Trypanosoma cruzi CL Brener Non-Esmeraldo-like'   => { name => 'TcruziNonEsmeraldoLike', group => 2 },
    'Trypanosoma cruzi CL Brener Esmeraldo-like'       => { name => 'TcruziEsmeraldoLike',    group => 2 },
    'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
@@ -120,6 +120,7 @@ sub run {
     my $alignDir = "$agpDir/alignments";
 
     # if we ran mercator as draft ... we need to translate into assemblies to run sliceAlign
+
     my ($genome, $assembly, $assemblyStart, $assemblyStop, $assemblyStrand) = &translateCoordinates($contig, $agpDir, $start, $stop, $strand);
 
     eval {
@@ -386,7 +387,7 @@ sub findDirectory {
   my ($ref, $genome, $pairwiseDirectories) = @_;
 
   foreach(@$pairwiseDirectories) {
-    if(/$ref/ && /$genome/) {
+    if(/$ref(\-|$)/ && /$genome(\-|$)/) {
       return $_;
     }
   }
@@ -646,6 +647,8 @@ sub validateParams {
   if($length > 100000) {
     &userError("Values provided exceed the Maximum Allowed Alignemnt of 100KB");
   }
+
+
 
   return ($contig, $start, $stop, $strand, $type, $referenceGenome, \@genomes);
 }
