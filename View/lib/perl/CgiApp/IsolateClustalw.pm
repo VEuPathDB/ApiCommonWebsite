@@ -9,8 +9,8 @@ use SOAP::Lite;
 use CGI::Session;
 use XML::XPath;
 use XML::XPath::XMLParser;
-use lib $ENV{CGILIB};
-use Bio::Graphics::Browser::PadAlignment;
+#use lib $ENV{CGILIB};
+use Bio::Graphics::Browser2::PadAlignment;
 
 sub run {
   my ($self, $cgi) = @_;
@@ -125,7 +125,7 @@ EOSQL
     #push @segments, [$n[$i], 0, $length, 0, $length];
   }
 
-  my $align = Bio::Graphics::Browser::PadAlignment->new(\@sequences,\@segments);
+  my $align = Bio::Graphics::Browser2::PadAlignment->new(\@sequences,\@segments);
 
   print "<table align=center width=800><tr><td>";
   print "<a href='#tree'><h3>To view a guide tree, click here or scroll to the bottom of the page</h3></a>";
