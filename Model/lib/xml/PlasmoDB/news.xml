@@ -18,6 +18,295 @@
     </record>
 -->
 <record>
+       <attribute name="headline">PlasmoDB 8.2 Released</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
+       <attribute name="tag">plasmo12_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify; font-family: Arial;">
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 8.2</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New data in release 8.1 and 8.2:</span><br>
+<br>
+</div>
+<div style="text-align: justify; font-family: Arial;">
+<span style="font-style: italic;"></span></div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;">P. vivax</span> Schizont stage
+proteome from human blood samples (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/21515433"><span
+style="font-weight: bold;">Roobsoong </span><span
+style="font-style: italic; font-weight: bold;">et. al.</span></a>).&nbsp;
+This data can be searched by choosing "Schizont stage proteome from
+human blood sample (Roobsoong et al.)" in the <span
+style="font-style: italic;">P. vivax</span> section of the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
+style="font-weight: bold;">Mass Spec. Evidence search page</span></a>.
+In
+addition, peptide evidence is displayed on gene pages in the <a
+style="font-weight: bold;" href="http://plasmodb.org/gene/PVX_083220">Protein
+Section</a>
+and in the <a
+href="/cgi-bin/gbrowse/plasmodb/?start=294208;stop=314207;ref=CM000453;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=CuiMassSpecPeptides%1EGene;h_feat=pvx_083220%40yellow"><span
+style="font-weight: bold;">genome browser</span></a> by turning on
+the track specific for this data.&nbsp; <a style="font-weight: bold;"
+href="/plasmo/im.do?s=fdf774c4ffc8e23a">This
+search strategy</a> identifies all <span style="font-style: italic;">P.
+vivax</span> genes with mass spec
+evidence from this study.</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;">P. falciparum</span> nuclear
+and cytosolic fractions from rings, trophozoites, and schizonts
+graciously provided prepublication by Till Voss and colleagues.&nbsp;
+This
+data can be searched by choosing "<span style="font-style: italic;">P.
+falciparum</span>
+cytoplasmic and nuclear fractions from rings, trophozoites and
+schizonts (3D7) (Oehring and Woodcroft et al. - unpublished)" in the <span
+style="font-style: italic;">P. falciparum</span> section of the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
+style="font-weight: bold;">Mass spec. evidence search page</span></a>.
+In
+addition, peptide evidence is displayed on gene pages in the <a
+style="font-weight: bold;" href="http://plasmodb.org/gene/PF11_0506">Protein
+Section</a>
+and in the <a
+href="/cgi-bin/gbrowse/plasmodb/?start=1954465;stop=1964464;ref=Pf3D7_11;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=VossMassSpecPeptides%1EGene;h_feat=pf11_0506%40yellow"><span
+style="font-weight: bold;">genome browser</span></a> by turning on
+the track specific for this data.&nbsp; <a style="font-weight: bold;"
+href="/plasmo/im.do?s=5c64c3e69b25f955">This
+search strategy</a> identifies all <span style="font-style: italic;">P.
+falciparum</span> genes with mass spec
+evidence from this study.&nbsp;</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;">P. falciparum</span> blood
+stage phosphoproteome (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/22018241"><span
+style="font-weight: bold;">Treeck &amp; Sanders <span
+style="font-style: italic;">et. al.</span></span></a>).&nbsp; This
+data can be searched by choosing "Blood stage phosphoproteome and total
+proteome (3D7) (Treeck &amp; Sanders et al.)" in the <span
+style="font-style: italic;">P. falciparum</span> section of the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
+style="font-weight: bold;">Mass spec. evidence search page</span></a>.
+In
+addition, peptide evidence is displayed on gene pages in the <a
+style="font-weight: bold;" href="http://plasmodb.org/gene/MAL8P1.82">Protein
+Section</a>
+and in the <a
+href="/cgi-bin/gbrowse/plasmodb/?start=737052;stop=742051;ref=Pf3D7_08;width=800;version=100;flip=0;grid=1;id=5cf2afba4e5155b9ebe2784bf8347957;l=BoothroydPhosphoPeptides%1EGene;h_feat=mal8p1.82%40yellow"><span
+style="font-weight: bold;">genome browser</span></a> by turning on
+the track specific for this data.&nbsp; <a style="font-weight: bold;"
+href="/plasmo/im.do?s=1f596b3d78e0780a">This
+search strategy</a> identifies all <span style="font-style: italic;">P.
+falciparum</span> genes with phospho mass spec
+evidence from this study. </li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;">P. falciparum</span>
+ChIP-sequence data from the histone variant H2Bv (three time points)
+and&nbsp; CenH3 (schizonts) represented as <a
+href="/cgi-bin/gbrowse/plasmodb/?start=1975000;stop=2014999;ref=Pf3D7_11;width=800;version=100;flip=0;grid=1;id=6c3b4af1919866034614b141fae61097;l=ChipSeq_H2Bv_Stunnenberg%1EChipSeq_CenH3_40h_Stunnenberg%1EGene;h_feat=pf11_0506%40yellow"><span
+style="font-weight: bold;">coverage plots in the genome browser</span></a>.&nbsp;
+This data was graciously provided prepublication by the Stunnenberg
+group.</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<li>Genome-wide expression level polymorphisms (ELPs) from a genetic
+cross between phenotypically distinct parasite clones of <span
+style="font-style: italic;">P. falciparum</span> (HB3 and Dd2) (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/18828674"><span
+style="font-weight: bold;">Gonzales </span><span
+style="font-style: italic; font-weight: bold;">et. al.</span></a>).
+This data may be searched and visualized in many ways:</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="font-family: Arial;">
+<ul>
+<li>Genes may be identified based on their association to genomic
+segments, expression profile similarity or similarity of genetic
+association.&nbsp; These searches are based on the microarray
+expression profiles generated in each of the progeny and can be
+accessed in the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence"><span
+style="font-weight: bold;">microarray search page</span></a> under the
+heading "eQTL studies on Hb3 X Dd2 progeny (Ferdig)".&nbsp;</li>
+</ul>
+</ul>
+<span style="font-family: Arial;">&nbsp;</span>
+<ul style="font-family: Arial;">
+<ul>
+<li>Genomic segments can be identified based on their association
+to genes.&nbsp; This search is available by clicking on "<a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=SpanQuestions.DynSpansByEQTLtoGenes"><span
+style="font-weight: bold;">P.f. eQTL HB3-Dd2 cross (segments by
+association to genes)</span></a>" under the heading "Genomic Segments"
+in the "Identify other data types" section of the PlasmoDB home page. <br>
+</li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<ul style="font-family: Arial;">
+<ul>
+<li>Regions/spans that are associated by eQTL are displayed in a
+table on gene pages (<a href="http://plasmodb.org/gene/PF13_0019"><span
+style="font-weight: bold;">example gene page</span></a>). The table
+"Regions/Spans associated by eQTL experiment on HB3 x DD2 progeny"
+includes a column for haplotype blocks associated the gene, the
+coordinates of the haplotype block, LOD scores, and links to searches
+for genes contained <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByLocation&amp;value%28sequenceId%29=Pf3D7_05&amp;value%28organism%29=Plasmodium+falciparum&amp;value%28end_point%29=225880&amp;value%28start_point%29=86612&amp;weight=10">within
+the region</a> or <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByEQTL_Segments&amp;value%28lod_score%29=1.5&amp;value%28end_point_segment%29=225880&amp;value%28sequence_id%29=Pf3D7_05&amp;value%28liberal_conservative%29=Liberal+Locations&amp;value%28start_point%29=86612&amp;weight=10"><span
+style="font-weight: bold;">associated with the region</span></a>.</li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<ul style="font-family: Arial;">
+<ul>
+<li>Both microsatellites and haplotype blocks are available <a
+href="/cgi-bin/gbrowse/plasmodb/?start=155076;stop=190991;ref=Pf3D7_13;width=800;version=100;flip=0;grid=1;id=5cf2afba4e5155b9ebe2784bf8347957;l=Microsatellite%1EHaploBlock%1EGene;h_feat=mal8p1.82%40yellow"><span
+style="font-weight: bold;">as tracks in the genome browser</span></a>.&nbsp;
+<br>
+</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Improved linking to the <a href="http://pberghei.eu/"><span
+style="font-weight: bold;">Rodent Malaria Genetically Modified (RMgm)</span></a>
+parasites database.&nbsp; A dedicated "Phenotype" table is now
+available on gene pages with information about the genetic modification
+and linkouts to PubMed and the RMgm database.&nbsp; As an example, you
+can scroll down and expand the table under the heading "Phenotype" on
+the&nbsp; gene page for a <a
+href="http://plasmodb.org/gene/PBANKA_091030"><span
+style="font-weight: bold;">putative </span><span
+style="font-style: italic; font-weight: bold;">P. berghei</span><span
+style="font-weight: bold;"> guanylyl cyclase</span></a>.<br>
+</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+&nbsp;&nbsp; <br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Updated linkouts to the <a style="font-weight: bold;"
+href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
+Pathways
+(MPMP) database</a>.&nbsp; Numerous pathways have been added and
+updated by
+Dr. Hagai Ginsburg.&nbsp;&nbsp; Genes included in the MPMP database can
+be searched based on
+metabolic pathway in PlasmoDB <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-weight: bold; text-decoration: underline;">New
+Gene IDs</span> -- Please read the <a style="font-weight: bold;"
+href="/plasmo/showXmlDataContent.do?name=XmlQuestions.News#genedb_newPFgenome">news
+item from GeneDB</a> regarding assignment of new <span
+style="font-style: italic;">P. falciparum </span>gene IDs. We will be
+updating to these new IDs in the next release. Rest assured that both
+PlasmoDB and GeneDB will proper mapping of old IDs to the new ones (in
+other words, you will always be able to search with the old or new
+IDs). Currently in PlasmoDB we are displaying the new Gene ID next to
+the old one at the top of gene pages (<a style="font-weight: bold;"
+href="http://plasmodb.org/gene/PF11_0344">old ID/new ID</a>). &nbsp;
+&nbsp;&nbsp;</li>
+</ul>
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<div style="text-align: justify; font-family: Arial;">
+<span style="font-weight: bold;"></span><br style="font-weight: bold;">
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span>
+<ul>
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<br>
+<ul>
+<li>Several new tutorials have been generated:</li>
+</ul>
+<br>
+<ul>
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<br>
+<span style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span></div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">Version 1 of P. yoelii yoelii YM is now available on GeneDB!</attribute>
        <attribute name="date">4 January 2012 15:00</attribute>
        <attribute name="tag">genedb_newPY_YMgenome</attribute>
@@ -159,7 +448,7 @@ href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
 Pathways
 (MPMP) database</a>.&nbsp; Numerous pathways have been added and
 updated by
-Dr. Hagai Ginsberg.&nbsp;&nbsp; A full description of new pathways is
+Dr. Hagai Ginsburg.&nbsp;&nbsp; A full description of new pathways is
 available <a style="font-weight: bold;"
 href="http://plasmodb.org/plasmo/communityDownload.do?fname=New%20maps%204.7.2011.pdf">here</a>
 and genes included in the MPMP database can be searched based on
@@ -247,7 +536,7 @@ href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
 Pathways
 (MPMP) database</a>.&nbsp; Numerous pathways have been added and
 updated by
-Dr. Hagai Ginsberg.&nbsp;&nbsp; A full description of new pathways is
+Dr. Hagai Ginsburg.&nbsp;&nbsp; A full description of new pathways is
 available <a style="font-weight: bold;"
 href="http://plasmodb.org/plasmo/communityDownload.do?fname=New%20maps%20on%20Malaria%20Parasite%20Metabolic%20pathway1.pdf">here</a>
 and genes included in the MPMP database can be searched based on
@@ -510,7 +799,7 @@ href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.DataSou
 <ul>
 <li>Updated linkouts to the Malaria Parasite Metabolic Pathways
 (MPMP) database.&nbsp; Numerous pathways have been added and updated by
-Dr. Hagai Ginsberg.&nbsp;&nbsp; A full description of new pathways is
+Dr. Hagai Ginsburg.&nbsp;&nbsp; A full description of new pathways is
 available <a
 href="http://plasmodb.org/plasmo/communityDownload.do?fname=New_maps_on_Malaria_Parasite_Metabolic_pathways.pdf">here</a>
 and genes included in the MPMP database can be searched based on

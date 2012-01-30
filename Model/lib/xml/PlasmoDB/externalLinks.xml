@@ -30,8 +30,8 @@
           <attribute name="url">http://plasmodb.org/common/microarrays/</attribute>
         </row>
 	<row>
-          <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
-          <attribute name="url"><![CDATA[/pubcrawler/ToxoDB/]]></attribute>
+          <attribute name="title"><![CDATA[Recent <i>Plasmodium</i> publications]]></attribute>
+          <attribute name="url"><![CDATA[/pubcrawler/PlasmoDB/]]></attribute>
         </row>
         <row>
           <attribute name="title"><![CDATA[Recent <i>EuPathDB</i> publications]]></attribute>

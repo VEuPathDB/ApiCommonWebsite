@@ -20,7 +20,7 @@
        <attribute name="uid">14</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Comment_form/Comment_form.html</attribute>
@@ -54,7 +54,7 @@
        <attribute name="uid">23</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=d_EL--Yu5RQ</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">DNA_motif/dna_motif_viewlet_swf.html</attribute>
@@ -71,7 +71,7 @@
        <attribute name="uid">18</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Favorites/favorites_viewlet_swf.html</attribute>
@@ -88,7 +88,7 @@
        <attribute name="uid">18</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=jxA6VMN97Y8</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">GBrowse overview/gbrowse_overview_viewlet_swf.html</attribute>
@@ -107,7 +107,7 @@
        <attribute name="uid">22</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=XRLfcaVeQns</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">colocate/colocate_viewlet_swf.html</attribute>
@@ -118,22 +118,7 @@
        </table>
    </record>
 
-<record>
-       <attribute name="title">Invalid IDs and Strategies</attribute>
-       <attribute name="description">How to fix saved strategies that break with a new database release and what happens to IDs that change.</attribute>
-       <attribute name="uid">18</attribute>
-       <table name="files">
-        <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
-           <attribute name="fileName.mov">watch?v=8pP1rhSrjqo</attribute>
-           <attribute name="fileName.avi">unavailable</attribute>
-           <attribute name="fileName.flv">Invalid IDs and Strategies/invalid_ids_and_strategies_viewlet_swf.html</attribute>
-           <attribute name="fileName.pdf">unavailable</attribute>
-           <attribute name="duration">3 min</attribute>
-           <attribute name="size">3.1 mb</attribute>
-         </row>
-       </table>
-   </record>
+
 
 <record>
        <attribute name="title">Isolates by Geographic Location</attribute>
@@ -141,7 +126,7 @@
        <attribute name="uid">18</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=-ZNAtzqfy3E</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Isolates by Geographic Location/isolates_by_geographic_location_viewlet_swf.html</attribute>
@@ -160,7 +145,7 @@
        <attribute name="uid">17</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Basket/basket_final_viewlet_swf.html</attribute>
@@ -177,7 +162,7 @@
        <attribute name="uid">18</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=P7ptqGnECJ4</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Orthology Phylogenetic Profile/orthology_phylogenetic_profile_viewlet_swf.html</attribute>
@@ -213,7 +198,7 @@
        <attribute name="uid">20</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=Ovsi2gWgU4c</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Registration/register_final_viewlet_swf.html</attribute>
@@ -230,7 +215,7 @@
        <attribute name="uid">18</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=0IP1d9raiMs</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">Restriction Sites in GBrowse/restriction_sites_in_gbrowse_viewlet_swf.html</attribute>
@@ -248,7 +233,7 @@
        <attribute name="uid">15</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">unavailable</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">New_Strat/New_Strat_viewlet_swf.html</attribute>
@@ -259,13 +244,30 @@
        </table>
    </record>
 
+<record>
+       <attribute name="title">Searches and IDs may change with Database releases</attribute>
+       <attribute name="description">How a new database release might affect IDs or searches in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
+       <attribute name="uid">18</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=8pP1rhSrjqo</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Invalid IDs and Strategies/invalid_ids_and_strategies_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">3 min</attribute>
+           <attribute name="size">3.1 mb</attribute>
+         </row>
+       </table>
+   </record>
+
  <record>
        <attribute name="title">Text Search</attribute>
        <attribute name="description">How to identify genes based on any text term in the gene record.</attribute>
        <attribute name="uid">21</attribute>
        <table name="files">
         <row>
-           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
            <attribute name="fileName.mov">watch?v=s1qDT78Ob-k</attribute>
            <attribute name="fileName.avi">unavailable</attribute>
            <attribute name="fileName.flv">TextSearch/Text_Search_viewlet_swf.html</attribute>

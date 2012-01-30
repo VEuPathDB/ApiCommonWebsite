@@ -19,6 +19,353 @@
     </record>
 -->
 <record>
+       <attribute name="headline">TriTrypDB 4.0 Released</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
+       <attribute name="tag">tryp12_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold; font-family: Arial;">We are pleased to
+announce the release
+of TriTrypDB 4.0<span style="font-style: italic;"></span></span><br
+style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">
+</span><br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">
+New Data: </span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;">T. brucei</span> protein
+palmitoylation data (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/21193548"><span
+style="text-decoration: underline;"><span style="font-weight: bold;">Emmer
+</span></span></a><a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21193548"><span
+style="font-style: italic;">et. al.</span></a>).</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>To search this data, go to the "<a style="font-weight: bold;"
+href="/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Identify
+Genes based on Mass Spec. Evidence</a>" and select "Procyclic form
+palmitoylated proteins (Emmer et al.)" under <span
+style="font-style: italic;">Trypanosoma brucei</span>.&nbsp; This
+search will return all genes that have mass spec palmitoylation
+evidence. <br>
+</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>Mass spec data can also be visualized in the protein section of
+gene pages (for example, scroll down to the "Protein" section of <a
+href="/tritrypdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=Tb927.8.2160&amp;project_id=TriTrypDB"><span
+style="font-weight: bold;">this gene page</span></a>) and in the <a
+href="/cgi-bin/gbrowse/tritrypdb/?start=667617;stop=672616;ref=Tb927_08_v4;width=800;version=100;flip=0;grid=1;id=94322a54b7fa01cd26a8db428b7ebefe;l=AlmeidaMassSpecPeptides%1EGene;h_feat=tb927.8.2160%40yellow"><span
+style="font-weight: bold;">genome browser</span></a>.&nbsp; Mousing
+over peptide graphics displays additional peptide and modification site
+information. &nbsp;&nbsp;</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;"></span>Single nucleotide
+polymorphism (SNP) calls based on high throughput sequencing data of <span
+style="font-style: italic;">T. brucei </span>927
+and 427 provided by George Cross.&nbsp; Genes with SNPs can be
+identified based on their type (synonymous, nonsynonymous, etc.), their
+frequency and/or their depth of coverage.&nbsp; <br>
+</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>To search this data click on "<a style="font-weight: bold;"
+href="/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByHtsSnps">Identify
+Genes based on HTS SNP Characteristics</a>" under the heading
+"Population Biology". <br>
+</li>
+</ul>
+</ul>
+<span style="font-family: Arial;">&nbsp;</span>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>SNP data is represented as a table on gene pages. For example,
+if you visit the gene page for <a
+href="http://tritrypdb.org/gene/Tb927.1.1740"><span
+style="font-weight: bold;">Tb927.1.1740</span></a>,
+you can view a table under the heading "SNPs summary" which
+includes information about the SNPs found in this gene based on this
+comparison.</li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>An additional view of SNPs is available in the <a
+style="font-weight: bold;"
+href="/cgi-bin/gbrowse/tritrypdb/?start=441977;stop=461976;ref=Tb927_01_v4;width=800;version=100;flip=0;grid=1;id=e83e65478c5a6ca68217ce3509d1dbdf;l=HtsAlignmentSNPsByClass%1EGene;h_feat=tb927.1.1740%40yellow">genome
+browser </a>where
+SNPs can be visualized based on their coding potential (represented as
+colored diamonds).&nbsp; Mousing over the diamonds reveals a popup with
+additional information about the SNP at that specific location.&nbsp;
+Also, the mouse over includes a link to the <a
+href="/a/showRecord.do?name=SnpRecordClasses.SnpRecordClass&amp;primary_key=NGS_SNP.Tb927_01_v4.451312"><span
+style="font-weight: bold;">SNP record page</span></a> with additional
+information.&nbsp; <br>
+</li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>The actual sequence reads in a particular region can be <span
+style="font-weight: bold;">visualized in gbrowse</span> by turning on
+the "Sequence Reads" track under the heading "High Throughput
+Sequencing (HTS) SNPs".<br>
+</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Transcriptome-wide mRNA degradation data for <span
+style="font-style: italic;">T. brucei</span> (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21947264">Manful <span
+style="font-style: italic;">et. al.</span></a>).&nbsp;
+This data is represented on gene pages in graphical (fold change and
+percentile) and tabular (raw data) formats.&nbsp; To see this data
+visit any <span style="font-style: italic;">T. brucei</span> gene page
+(<a style="font-weight: bold;"
+href="http://tritrypdb.org/gene/Tb927.8.620">for example Tb927.8.620</a>)
+and scroll down to the section called "<span style="font-style: italic;">T.
+brucei</span> RNA Sequence of transcriptome-wide mRNA degradation"
+under "Expression".</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;">Leishmania tarentolae </span>Parrot-TarII
+<span style="font-style: italic;"></span>genome
+sequence
+and annotation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/21998295"><span
+style="font-weight: bold;">Raymond </span><span
+style="font-style: italic; font-weight: bold;">et. al.</span></a>).&nbsp;
+Chromosome sequence and annotations for <span
+style="font-style: italic;">Leishmania tarentolae</span> are
+provided by the CIHR Group on host pathogen interactions (Marc
+Ouellette, Jacques Corbeil, Barbara Papadopoulou, Michel J. Tremblay,
+Frédéric Raymond, Sébastien Boisvert from Université Laval, and Martin
+Olivier from McGill University).</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>Genes may be queried based on gene IDs, text terms, EC numbers,
+GO terms, sequence features (length, introns, signal sequences, Pfam
+domains), etc.</li>
+</ul>
+<ul>
+<li>Genes and sequences may also be interrogated based on BLAST
+similarity, user-defined motifs, etc.</li>
+</ul>
+<ul>
+<li>Gene pages and synteny data are also available.<br>
+</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"> <br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Draft assemblies of the genome sequences from the Trypanosomatid
+sequencing white paper.&nbsp; This data is graciously provided
+prepublication and full credit and data usage information is available
+by clicking on the sequence name:<br>
+</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+<a
+href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
+style="font-style: italic;"></span></a>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul style="font-weight: bold;">
+<ul>
+<ul>
+<li><a
+href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#EmonteLV88_primary_genome_RSRC"><span
+style="font-style: italic;">Endotrypanum monterogeii </span>strain
+LV88</a></li>
+</ul>
+</ul>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<ul style="font-weight: bold; text-align: justify; font-family: Arial;">
+<ul>
+<ul>
+<ul>
+<li><a
+href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=LbraziliensisM2903_contigs_RSRC&amp;title=Query#LbraziliensisM2903_contigs_RSRC"><span
+style="font-style: italic;"></span></a><a
+href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LmajorLV39c5_primary_genome_RSRC"><span
+style="font-style: italic;">Leishmania major</span> strain LV39c5</a><br>
+</li>
+</ul>
+</ul>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<ul>
+<ul>
+<li><a style="font-weight: bold;"
+href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LpanamL13_primary_genome_RSRC"><span
+style="font-style: italic;">Leishmania panamensis </span>strain L13</a></li>
+</ul>
+</ul>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>Genomic sequence data is available under the heading "Genomic
+Sequences" on the home
+page and may be searched by <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">species</a>,
+<a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">genomic
+sequence IDs</a> and <a style="font-weight: bold;"
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
+style="font-style: italic;">. <br>
+</span></li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>Additionally, genomic sequence data may be downloaded from the <a
+style="font-weight: bold;"
+href="http://tritrypdb.org/common/downloads/release-4.0/">TriTrypDB
+download directory</a>.</li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-weight: bold; text-decoration: underline;">New
+Gene IDs</span> -- <span style="font-style: italic;">T. cruzi</span>
+IDs have been truncated by GeneDB to make them more user
+friendly.&nbsp; Old IDs have been mapped to the new ones (ie. you can
+search with either old or new IDs).&nbsp; Currently the old ID is
+displayed with the new gene ID on gene pages (old ID/new ID).&nbsp; In
+a future release the only the new IDs will be displayed at the top of
+the page.<br>
+</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"> <span
+style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+<br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Several new tutorials have been generated:</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;">
+<span style="font-style: italic;"><span style="font-style: italic;"></span></span><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">TriTrypDB 3.2 Released</attribute>
        <attribute name="date">21 July 2011 15:00</attribute>
        <attribute name="tag">tryp7_11_news</attribute>

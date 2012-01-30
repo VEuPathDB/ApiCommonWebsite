@@ -14,7 +14,7 @@ sub init {
   my $defaultValue = $Args->{DefaultValue} || 0;
 
   $Self->setSql(<<Sql);
-select replace(apidb.tab_to_string(CAST(COLLECT(ps.name) AS apidb.varchartab), chr(9)), ps.name, '$defaultValue') as profile_as_string
+select replace(apidb.tab_to_string(set(CAST(COLLECT(ps.name) AS apidb.varchartab)), chr(9)), ps.name, '$defaultValue') as profile_as_string
 from apidb.profileelementname pen, apidb.profileset ps
 where pen.profile_set_id = ps.profile_set_id
 and ps.name = '<<ProfileSet>>'

@@ -14,6 +14,140 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">New Features and Data in GiardiaDB</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
+       <attribute name="tag">giardia12_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We
+are pleased to announce new data and features in GiardiaDB</span> <span
+style="font-weight: bold;">2.5</span><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New Data:</span><br>
+<br>
+<span style="font-style: italic;">Giardia lamblia </span>Genotype A1
+WB C6 (assemblage A) contigs and scaffolds have been assembled into
+chromosomes based on an optical map (<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21835210">Perry <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; The optical map
+has been incorporated into GiardiaDB where you can use it in searches
+(ie. <a style="font-weight: bold;"
+href="/giardiadb/showQuestion.do?questionFullName=GeneQuestions.GenesByLocation">identifying
+genes by chromosomal location</a>) and is graphically represented in
+the genomic context section of gene pages and in the genome
+browser.&nbsp; <br>
+<br>
+<ul>
+<li><a
+href="/cgi-bin/gbrowse/giardiadb/?start=630000;stop=1129999;ref=GLCHR01;width=800;version=100;flip=0;grid=1;id=916467792f65cdeafebde051864c44cd;l=Synteny%1EGene;h_feat=gl50803_846%40yellow"><span
+style="font-weight: bold;">This example genome browser view shows a
+500KB region of assemblage A chromosome one in addition to synteny
+tracks from assemblages B and E.</span></a></li>
+</ul>
+<span style="font-weight: bold;"><br>
+</span><br>
+Note that while overall the optical map data and assembly <a
+href="/giardiadb/communityDownload.do?fname=map%20of%20all%20chromsomes%20file.tiff"><span
+style="font-weight: bold;">data published by the Upcroft group</span></a>
+are in agreement, differences do exist.&nbsp; We encourage all
+interested to review the published literature including the following:<br>
+<br>
+<ul>
+<li style="font-weight: bold;"><a
+href="http://www.ncbi.nlm.nih.gov/pubmed/20739222">Upcroft JA, Krauer
+KG, Upcroft P. Chromosome sequence maps of the Giardia lamblia
+assemblage A isolate WB. Trends Parasitol. 2010 Oct;26(10):484-91.</a></li>
+<li style="font-weight: bold;"><a
+href="http://www.ncbi.nlm.nih.gov/pubmed/21835210">Perry DA, Morrison
+HG, Adam RD. Optical map of the genotype A1 WB C6 Giardia lamblia
+genome isolate. Mol Biochem Parasitol. 2011 Dec;180(2):112-4.</a></li>
+<li style="font-weight: bold;"><a
+href="http://www.ncbi.nlm.nih.gov/pubmed/20557214">Krauer KG, Burgess
+AG, Dunn LA, Upcroft P, Upcroft JA. Sequence map of the 2 Mb Giardia
+lamblia assemblage A chromosome. J Parasitol. 2010 Jun;96(3):660-2.</a></li>
+<li><a href="http://www.ncbi.nlm.nih.gov/pubmed/19842052"><span
+style="font-weight: bold;">Upcroft JA, Krauer KG, Burgess AG, Dunn LA,
+Chen N, Upcroft P. Sequence map of the 3-Mb Giardia duodenalis
+assemblage A chromosome. Chromosome Res. 2009;17(8):1001-14.</span></a><br>
+</li>
+</ul>
+<br>
+<span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Several new tutorials have been generated:</li>
+</ul>
+<ul style="text-align: justify; font-family: Arial;">
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+<span style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;">
+and <a href="http://twitter.com/eupathdb">Twitter</a></span><small><a
+href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;"></span></a></small>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">New Features in GiardiaDB</attribute>
        <attribute name="date">03 May 2011 15:00</attribute>
        <attribute name="tag">giardia5_11_news</attribute>
