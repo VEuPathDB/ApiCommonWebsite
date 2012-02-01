@@ -1,19 +1,17 @@
 <xmlAnswer>
 
   <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.dispar</attribute>
-       <attribute name = "UrlFolder">Edispar</attribute>
-       <attribute name = "UrlFilename">Edispar</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">dispar</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/Edispar/fasta/EdisparGenomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/Edispar/gff/Edispar_AmoebaDB-1.7.gff</attribute>
        <attribute name = "Taxon_ID">370354</attribute>
        <attribute name = "Strain">SAW760</attribute>
        <attribute name = "Genome_Version">11-27-2009</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">22.96</attribute>
        <attribute name = "Gene_Count">8748</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -28,19 +26,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">Ehistolytica</attribute>
-       <attribute name = "UrlFilename">Ehistolytica</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/Ehistolytica/fasta/EhistolyticaGenomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/Ehistolytica/gff/Ehistolytica_AmoebaDB-1.7.gff</attribute>
        <attribute name = "Taxon_ID">294381</attribute>
        <attribute name = "Strain">HM-1:IMSS</attribute>
        <attribute name = "Genome_Version">11-27-2009</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">20.80</attribute>
        <attribute name = "Gene_Count">8333</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -55,19 +51,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">EhistolyticaDS4</attribute>
-       <attribute name = "UrlFilename">EhistolyticaDS4</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaDS4/fasta/EhistolyticaDS4Genomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">885310</attribute>
        <attribute name = "Strain">DS4</attribute>
        <attribute name = "Genome_Version">08-04-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">19.76</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -82,19 +76,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">EhistolyticaHM1_CA</attribute>
-       <attribute name = "UrlFilename">EhistolyticaHM1_CA</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM1_CA/fasta/EhistolyticaHM1_CAGenomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
-       <attribute name = "Strain">HM1_CA</attribute>
+       <attribute name = "Strain">HM-1:CA</attribute>
        <attribute name = "Genome_Version">08-04-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">17.73</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -109,19 +101,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">EhistolyticaKU27</attribute>
-       <attribute name = "UrlFilename">EhistolyticaKU27</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaKU27/fasta/EhistolyticaKU27Genomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">885311</attribute>
        <attribute name = "Strain">KU27</attribute>
        <attribute name = "Genome_Version">08-17-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">19.65</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -136,19 +126,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">EhistolyticaKU48</attribute>
-       <attribute name = "UrlFilename">EhistolyticaKU48</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaKU48/fasta/EhistolyticaKU48Genomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">885312</attribute>
        <attribute name = "Strain">KU48</attribute>
        <attribute name = "Genome_Version">08-17-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">16.68</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -163,19 +151,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">EhistolyticaKU50</attribute>
-       <attribute name = "UrlFilename">EhistolyticaKU50</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaKU50/fasta/EhistolyticaKU50Genomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">885313</attribute>
        <attribute name = "Strain">KU50</attribute>
        <attribute name = "Genome_Version">08-04-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">11.90</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -190,19 +176,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">EhistolyticaMS96</attribute>
-       <attribute name = "UrlFilename">EhistolyticaMS96</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaMS96/fasta/EhistolyticaMS96Genomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">885314</attribute>
        <attribute name = "Strain">MS96</attribute>
        <attribute name = "Genome_Version">08-24-2010</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">19.02</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -217,19 +201,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.histolytica</attribute>
-       <attribute name = "UrlFolder">EhistolyticaRahman</attribute>
-       <attribute name = "UrlFilename">EhistolyticaRahman</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">histolytica</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaRahman/fasta/EhistolyticaRahmanGenomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">Rahman</attribute>
        <attribute name = "Genome_Version">02-02-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">25.20</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">HM-1:IMSS,DS4,HM-1:CA,KU27,KU48,KU50,MS96,Rahman</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -244,19 +226,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.invadens</attribute>
-       <attribute name = "UrlFolder">Einvadens</attribute>
-       <attribute name = "UrlFilename">Einvadens</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">invadens</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/Einvadens/fasta/EinvadensGenomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/Einvadens/gff/Einvadens_AmoebaDB-1.7.gff</attribute>
        <attribute name = "Taxon_ID">370355</attribute>
        <attribute name = "Strain">IP1</attribute>
        <attribute name = "Genome_Version">11-27-2009</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">40.89</attribute>
        <attribute name = "Gene_Count">11549</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -271,19 +251,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">AmoebaDB, EuPathDB</attribute>
-       <attribute name = "Family">Entamoeba</attribute>
-       <attribute name = "Organism">E.moshkovskii</attribute>
-       <attribute name = "UrlFolder">Emoshkovskii</attribute>
-       <attribute name = "UrlFilename">Emoshkovskii</attribute>
+       <attribute name = "Website">AmoebaDB</attribute>
+       <attribute name = "Genus">Entamoeba</attribute>
+       <attribute name = "Species">moshkovskii</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/Emoshkovskii/fasta/EmoshkovskiiGenomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">41668</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">02-02-2011</attribute>
        <attribute name = "Data_Source">Univ.of Liverpool</attribute>
        <attribute name = "Genome_Size">26.82</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -299,19 +277,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">CryptoDB, EuPathDB</attribute>
-       <attribute name = "Family">Cryptosporidium</attribute>
-       <attribute name = "Organism">C.hominis</attribute>
-       <attribute name = "UrlFolder">Chominis</attribute>
-       <attribute name = "UrlFilename">Chominis</attribute>
+       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Genus">Cryptosporidium</attribute>
+       <attribute name = "Species">hominis</attribute>
+       <attribute name = "URLGenomeFasta">http://CryptoDB.org/common/downloads/Current_Release/Chominis/fasta/ChominisGenomic_CryptoDB-4.6.fasta</attribute>
+       <attribute name = "URLgff">http://CryptoDB.org/common/downloads/Current_Release/Chominis/gff/Chominis_CryptoDB-4.6.gff</attribute>
        <attribute name = "Taxon_ID">237895</attribute>
-       <attribute name = "Strain">TU502</attribute>
+       <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">09-28-2005</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">8.74</attribute>
        <attribute name = "Gene_Count">3956</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -328,19 +304,17 @@
 
 
  <record>
-       <attribute name = "Website">CryptoDB, EuPathDB</attribute>
-       <attribute name = "Family">Cryptosporidium</attribute>
-       <attribute name = "Organism">C.muris</attribute>
-       <attribute name = "UrlFolder">Cmuris</attribute>
-       <attribute name = "UrlFilename">Cmuris</attribute>
+       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Genus">Cryptosporidium</attribute>
+       <attribute name = "Species">muris</attribute>
+       <attribute name = "URLGenomeFasta">http://CryptoDB.org/common/downloads/Current_Release/Cmuris/fasta/CmurisGenomic_CryptoDB-4.6.fasta</attribute>
+       <attribute name = "URLgff">http://CryptoDB.org/common/downloads/Current_Release/Cmuris/gff/Cmuris_CryptoDB-4.6.gff</attribute>
        <attribute name = "Taxon_ID">5808</attribute>
-       <attribute name = "Strain">RN66</attribute>
+       <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">07-28-2008</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">9.21</attribute>
        <attribute name = "Gene_Count">3980</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -355,19 +329,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">CryptoDB, EuPathDB</attribute>
-       <attribute name = "Family">Cryptosporidium</attribute>
-       <attribute name = "Organism">C.parvum</attribute>
-       <attribute name = "UrlFolder">Cparvum</attribute>
-       <attribute name = "UrlFilename">Cparvum</attribute>
+       <attribute name = "Website">CryptoDB</attribute>
+       <attribute name = "Genus">Cryptosporidium</attribute>
+       <attribute name = "Species">parvum</attribute>
+       <attribute name = "URLGenomeFasta">http://CryptoDB.org/common/downloads/Current_Release/Cparvum/fasta/CparvumGenomic_CryptoDB-4.6.fasta</attribute>
+       <attribute name = "URLgff">http://CryptoDB.org/common/downloads/Current_Release/Cparvum/gff/Cparvum_CryptoDB-4.6.gff</attribute>
        <attribute name = "Taxon_ID">353152</attribute>
-       <attribute name = "Strain">IOWA</attribute>
+       <attribute name = "Strain">Iowa II</attribute>
        <attribute name = "Genome_Version">02-23-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">9.10</attribute>
        <attribute name = "Gene_Count">3886</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -382,19 +354,17 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">GiardiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Giardia</attribute>
-       <attribute name = "Organism">G.intestinalis Assemblage A</attribute>
-       <attribute name = "UrlFolder">GintestinalisAssemblageA</attribute>
-       <attribute name = "UrlFilename">GintestinalisAssemblageA</attribute>
+       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Genus">Giardia</attribute>
+       <attribute name = "Species">Assemblage A</attribute>
+       <attribute name = "URLGenomeFasta">http://GiardiaDB.org/common/downloads/Current_Release/GintestinalisAssemblageA/fasta/GintestinalisAssemblageAGenomic_GiardiaDB-2.5.fasta</attribute>
+       <attribute name = "URLgff">http://GiardiaDB.org/common/downloads/Current_Release/GintestinalisAssemblageA/gff/GintestinalisAssemblageA_GiardiaDB-2.5.gff</attribute>
        <attribute name = "Taxon_ID">184922</attribute>
-       <attribute name = "Strain">Isolate_WB</attribute>
+       <attribute name = "Strain">isolate WB</attribute>
        <attribute name = "Genome_Version">09-24-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">11.21</attribute>
        <attribute name = "Gene_Count">5981*</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -409,19 +379,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">GiardiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Giardia</attribute>
-       <attribute name = "Organism">G.intestinalis Assemblage B</attribute>
-       <attribute name = "UrlFolder">GintestinalisAssemblageB</attribute>
-       <attribute name = "UrlFilename">GintestinalisAssemblageB</attribute>
+       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Genus">Giardia</attribute>
+       <attribute name = "Species">Assemblage B</attribute>
+       <attribute name = "URLGenomeFasta">http://GiardiaDB.org/common/downloads/Current_Release/GintestinalisAssemblageB/fasta/GintestinalisAssemblageBGenomic_GiardiaDB-2.5.fasta</attribute>
+       <attribute name = "URLgff">http://GiardiaDB.org/common/downloads/Current_Release/GintestinalisAssemblageB/gff/GintestinalisAssemblageB_GiardiaDB-2.5.gff</attribute>
        <attribute name = "Taxon_ID">598745</attribute>
-       <attribute name = "Strain">Isolate_GS</attribute>
+       <attribute name = "Strain">isolate GS</attribute>
        <attribute name = "Genome_Version">07-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">11.00</attribute>
        <attribute name = "Gene_Count">4562</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -436,19 +404,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">GiardiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Giardia</attribute>
-       <attribute name = "Organism">G.intestinalis Assemblage E</attribute>
-       <attribute name = "UrlFolder">GintestinalisAssemblageE</attribute>
-       <attribute name = "UrlFilename">GintestinalisAssemblageE</attribute>
+       <attribute name = "Website">GiardiaDB</attribute>
+       <attribute name = "Genus">Giardia</attribute>
+       <attribute name = "Species">Assemblage E</attribute>
+       <attribute name = "URLGenomeFasta">http://GiardiaDB.org/common/downloads/Current_Release/GintestinalisAssemblageE/fasta/GintestinalisAssemblageEGenomic_GiardiaDB-2.5.fasta</attribute>
+       <attribute name = "URLgff">http://GiardiaDB.org/common/downloads/Current_Release/GintestinalisAssemblageE/gff/GintestinalisAssemblageE_GiardiaDB-2.5.gff</attribute>
        <attribute name = "Taxon_ID">658858</attribute>
-       <attribute name = "Strain">Isolate_P15</attribute>
+       <attribute name = "Strain">isolate P15</attribute>
        <attribute name = "Genome_Version">07-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">11.52</attribute>
        <attribute name = "Gene_Count">5144</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -464,19 +430,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Encephalitozoon</attribute>
-       <attribute name = "Organism">E.cuniculi</attribute>
-       <attribute name = "UrlFolder">Ecuniculi</attribute>
-       <attribute name = "UrlFilename">Ecuniculi</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Encephalitozoon</attribute>
+       <attribute name = "Species">cuniculi</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/Ecuniculi/fasta/EcuniculiGenomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/Ecuniculi/gff/Ecuniculi_MicrosporidiaDB-2.0.gff</attribute>
        <attribute name = "Taxon_ID">284813</attribute>
        <attribute name = "Strain">GB-M1</attribute>
        <attribute name = "Genome_Version">06-19-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">2.50</attribute>
        <attribute name = "Gene_Count">2053</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">GB-M1,EC1,EC2,EC3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -491,19 +455,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Encephalitozoon</attribute>
-       <attribute name = "Organism">E.cuniculi</attribute>
-       <attribute name = "UrlFolder">EcuniculiEc1</attribute>
-       <attribute name = "UrlFilename">EcuniculiEc1</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Encephalitozoon</attribute>
+       <attribute name = "Species">cuniculi</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEc1/fasta/EcuniculiEc1Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">986730</attribute>
        <attribute name = "Strain">EC1</attribute>
        <attribute name = "Genome_Version">04-11-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">2.29</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">GB-M1,EC1,EC2,EC3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -518,19 +480,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Encephalitozoon</attribute>
-       <attribute name = "Organism">E.cuniculi</attribute>
-       <attribute name = "UrlFolder">EcuniculiEc2</attribute>
-       <attribute name = "UrlFilename">EcuniculiEc2</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Encephalitozoon</attribute>
+       <attribute name = "Species">cuniculi</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEc2/fasta/EcuniculiEc2Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">989654</attribute>
        <attribute name = "Strain">EC2</attribute>
        <attribute name = "Genome_Version">04-11-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">2.28</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">GB-M1,EC1,EC2,EC3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -544,19 +504,17 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record> <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Encephalitozoon</attribute>
-       <attribute name = "Organism">E.cuniculi</attribute>
-       <attribute name = "UrlFolder">EcuniculiEc3</attribute>
-       <attribute name = "UrlFilename">EcuniculiEc3</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Encephalitozoon</attribute>
+       <attribute name = "Species">cuniculi</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEc3/fasta/EcuniculiEc3Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">989655</attribute>
        <attribute name = "Strain">EC3</attribute>
        <attribute name = "Genome_Version">04-11-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">2.27</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">GB-M1,EC1,EC2,EC3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -572,19 +530,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Encephalitozoon</attribute>
-       <attribute name = "Organism">E.hellem</attribute>
-       <attribute name = "UrlFolder">EhellemATCC50504</attribute>
-       <attribute name = "UrlFilename">EhellemATCC50504</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Encephalitozoon</attribute>
+       <attribute name = "Species">hellem</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EhellemATCC50504/fasta/EhellemATCC50504Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EhellemATCC50504/gff/EhellemATCC50504_MicrosporidiaDB-2.0.gff</attribute>
        <attribute name = "Taxon_ID">907965</attribute>
        <attribute name = "Strain">ATCC 50504</attribute>
        <attribute name = "Genome_Version">04-19-2011</attribute>
        <attribute name = "Data_Source">Univ.of British Columbia</attribute>
        <attribute name = "Genome_Size">2.25</attribute>
        <attribute name = "Gene_Count">1913</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -601,19 +557,17 @@
 
 
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Encephalitozoon</attribute>
-       <attribute name = "Organism">E.intestinalis</attribute>
-       <attribute name = "UrlFolder">Eintestinalis</attribute>
-       <attribute name = "UrlFilename">Eintestinalis</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Encephalitozoon</attribute>
+       <attribute name = "Species">intestinalis</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/Eintestinalis/fasta/EintestinalisGenomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/Eintestinalis/gff/Eintestinalis_MicrosporidiaDB-2.0.gff</attribute>
        <attribute name = "Taxon_ID">58839</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">11-23-2009</attribute>
-       <attribute name = "Data_Source">P.Keeling</attribute>
+       <attribute name = "Data_Source">Keeling</attribute>
        <attribute name = "Genome_Size">2.21</attribute>
        <attribute name = "Gene_Count">1889</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -628,19 +582,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Enterocytozoon</attribute>
-       <attribute name = "Organism">E.bieneusi</attribute>
-       <attribute name = "UrlFolder">Ebieneusi</attribute>
-       <attribute name = "UrlFilename">Ebieneusi</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Enterocytozoon</attribute>
+       <attribute name = "Species">bieneusi</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/Ebieneusi/fasta/EbieneusiGenomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/Ebieneusi/gff/Ebieneusi_MicrosporidiaDB-2.0.gff</attribute>
        <attribute name = "Taxon_ID">48187</attribute>
        <attribute name = "Strain">H348</attribute>
        <attribute name = "Genome_Version">01-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">3.41</attribute>
        <attribute name = "Gene_Count">3806</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -655,19 +607,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Nematocida</attribute>
-       <attribute name = "Organism">N.parisii</attribute>
-       <attribute name = "UrlFolder">NparisiiERTm1</attribute>
-       <attribute name = "UrlFilename">NparisiiERTm1</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Nematocida</attribute>
+       <attribute name = "Species">parisii</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm1/fasta/NparisiiERTm1Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">881290</attribute>
        <attribute name = "Strain">ERTm1</attribute>
        <attribute name = "Genome_Version">04-11-2011</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">4.07</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ERTm1,ERTm2,ERTm3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -682,19 +632,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Nematocida</attribute>
-       <attribute name = "Organism">N.parisii</attribute>
-       <attribute name = "UrlFolder">NparisiiERTm2</attribute>
-       <attribute name = "UrlFilename">NparisiiERTm2</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Nematocida</attribute>
+       <attribute name = "Species">parisii</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm2/fasta/NparisiiERTm2Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">ERTm2</attribute>
        <attribute name = "Genome_Version">04-11-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">4.70</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ERTm1,ERTm2,ERTm3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -709,19 +657,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Nematocida</attribute>
-       <attribute name = "Organism">N.parisii</attribute>
-       <attribute name = "UrlFolder">NparisiiERTm3</attribute>
-       <attribute name = "UrlFilename">NparisiiERTm3</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Nematocida</attribute>
+       <attribute name = "Species">parisii</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm3/fasta/NparisiiERTm3Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">935791</attribute>
        <attribute name = "Strain">ERTm3</attribute>
        <attribute name = "Genome_Version">02-23-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">4.15</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ERTm1,ERTm2,ERTm3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -736,19 +682,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Nosema</attribute>
-       <attribute name = "Organism">N.ceranae</attribute>
-       <attribute name = "UrlFolder">NceranaeBRL01</attribute>
-       <attribute name = "UrlFilename">NceranaeBRL01</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Nosema</attribute>
+       <attribute name = "Species">ceranae</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NceranaeBRL01/fasta/NceranaeBRL01Genomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/NceranaeBRL01/gff/NceranaeBRL01_MicrosporidiaDB-2.0.gff</attribute>
        <attribute name = "Taxon_ID">578460</attribute>
        <attribute name = "Strain">BRL01</attribute>
        <attribute name = "Genome_Version">06-09-2009</attribute>
        <attribute name = "Data_Source">NCBI</attribute>
        <attribute name = "Genome_Size">7.86</attribute>
        <attribute name = "Gene_Count">2678</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -763,19 +707,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Octosporea</attribute>
-       <attribute name = "Organism">O.bayeri</attribute>
-       <attribute name = "UrlFolder">Obayeri</attribute>
-       <attribute name = "UrlFilename">Obayeri</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Octosporea</attribute>
+       <attribute name = "Species">bayeri</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/Obayeri/fasta/ObayeriGenomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">657448</attribute>
        <attribute name = "Strain">OER-3-3</attribute>
        <attribute name = "Genome_Version">12-14-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">13.27</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -790,19 +732,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">MicrosporidiaDB, EuPathDB</attribute>
-       <attribute name = "Family">Vavraia</attribute>
-       <attribute name = "Organism">V.culicis</attribute>
-       <attribute name = "UrlFolder">Vculicisfloridensis</attribute>
-       <attribute name = "UrlFilename">Vculicisfloridensis</attribute>
+       <attribute name = "Website">MicrosporidiaDB</attribute>
+       <attribute name = "Genus">Vavraia</attribute>
+       <attribute name = "Species">culicis</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/Vculicisfloridensis/fasta/VculicisfloridensisGenomic_MicrosporidiaDB-2.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">948595</attribute>
        <attribute name = "Strain">floridensis</attribute>
        <attribute name = "Genome_Version">04-11-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">6.12</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -818,19 +758,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">PiroplasmaDB, EuPathDB</attribute>
-       <attribute name = "Family">Babesia</attribute>
-       <attribute name = "Organism">B.bovis</attribute>
-       <attribute name = "UrlFolder">BbovisT2Bo</attribute>
-       <attribute name = "UrlFilename">BbovisT2Bo</attribute>
+       <attribute name = "Website">PiroplasmaDB</attribute>
+       <attribute name = "Genus">Babesia</attribute>
+       <attribute name = "Species">bovis</attribute>
+       <attribute name = "URLGenomeFasta">http://PiroplasmaDB.org/common/downloads/Current_Release/BbovisT2Bo/fasta/BbovisT2BoGenomic_PiroplasmaDB-1.1.fasta</attribute>
+       <attribute name = "URLgff">http://PiroplasmaDB.org/common/downloads/Current_Release/BbovisT2Bo/gff/BbovisT2Bo_PiroplasmaDB-1.1.gff</attribute>
        <attribute name = "Taxon_ID">484906</attribute>
        <attribute name = "Strain">T2Bo</attribute>
        <attribute name = "Genome_Version">04-10-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">8.14</attribute>
        <attribute name = "Gene_Count">3781</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -845,19 +783,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PiroplasmaDB, EuPathDB</attribute>
-       <attribute name = "Family">Theileria</attribute>
-       <attribute name = "Organism">T.annulata</attribute>
-       <attribute name = "UrlFolder">TannulataAnkara</attribute>
-       <attribute name = "UrlFilename">TannulataAnkara</attribute>
+       <attribute name = "Website">PiroplasmaDB</attribute>
+       <attribute name = "Genus">Theileria</attribute>
+       <attribute name = "Species">annulata</attribute>
+       <attribute name = "URLGenomeFasta">http://PiroplasmaDB.org/common/downloads/Current_Release/TannulataAnkara/fasta/TannulataAnkaraGenomic_PiroplasmaDB-1.1.fasta</attribute>
+       <attribute name = "URLgff">http://PiroplasmaDB.org/common/downloads/Current_Release/TannulataAnkara/gff/TannulataAnkara_PiroplasmaDB-1.1.gff</attribute>
        <attribute name = "Taxon_ID">353154</attribute>
-       <attribute name = "Strain">Ankara</attribute>
+       <attribute name = "Strain">strain Ankara</attribute>
        <attribute name = "Genome_Version">07-29-2005</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">8.35</attribute>
        <attribute name = "Gene_Count">4167</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -872,19 +808,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">PiroplasmaDB, EuPathDB</attribute>
-       <attribute name = "Family">Theileria</attribute>
-       <attribute name = "Organism">T.parva</attribute>
-       <attribute name = "UrlFolder">TparvaMuguga</attribute>
-       <attribute name = "UrlFilename">TparvaMuguga</attribute>
+       <attribute name = "Website">PiroplasmaDB</attribute>
+       <attribute name = "Genus">Theileria</attribute>
+       <attribute name = "Species">parva</attribute>
+       <attribute name = "URLGenomeFasta">http://PiroplasmaDB.org/common/downloads/Current_Release/TparvaMuguga/fasta/TparvaMugugaGenomic_PiroplasmaDB-1.1.fasta</attribute>
+       <attribute name = "URLgff">http://PiroplasmaDB_.org/common/downloads/Current_Release/TparvaMuguga/gff/TparvaMuguga_PiroplasmaDB-1.1.gff</attribute>
        <attribute name = "Taxon_ID">333668</attribute>
-       <attribute name = "Strain">Muguga</attribute>
+       <attribute name = "Strain">strain Muguga</attribute>
        <attribute name = "Genome_Version">01-17-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">8.31</attribute>
        <attribute name = "Gene_Count">3856</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -899,19 +833,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.berghei</attribute>
-       <attribute name = "UrlFolder">Pberghei</attribute>
-       <attribute name = "UrlFilename">Pberghei</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">berghei</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pberghei/fasta/data/PbergheiGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pberghei/gff/data/Pberghei_PlasmoDB-8.2.gff</attribute>
        <attribute name = "Taxon_ID">5823</attribute>
-       <attribute name = "Strain">ANKA</attribute>
+       <attribute name = "Strain">str. ANKA</attribute>
        <attribute name = "Genome_Version">06-01-2010</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">18.52</attribute>
        <attribute name = "Gene_Count">4970</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -926,19 +858,17 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.chabaudi</attribute>
-       <attribute name = "UrlFolder">Pchabaudi</attribute>
-       <attribute name = "UrlFilename">Pchabaudi</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">chabaudi</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pchabaudi/fasta/data/PchabaudiGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pchabaudi/gff/data/Pchabaudi_PlasmoDB-8.2.gff</attribute>
        <attribute name = "Taxon_ID">31271</attribute>
        <attribute name = "Strain">chabaudi</attribute>
        <attribute name = "Genome_Version">06-01-2010</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">18.83</attribute>
        <attribute name = "Gene_Count">5182</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -954,19 +884,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.falciparum</attribute>
-       <attribute name = "UrlFolder">Pfalciparum</attribute>
-       <attribute name = "UrlFilename">Pfalciparum</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">falciparum</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pfalciparum/fasta/data/PfalciparumGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pfalciparum/gff/data/Pfalciparum_PlasmoDB-8.2.gff</attribute>
        <attribute name = "Taxon_ID">36329</attribute>
        <attribute name = "Strain">3D7</attribute>
        <attribute name = "Genome_Version">06-01-2010</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">23.26</attribute>
        <attribute name = "Gene_Count">6372</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Dd2,HB3</attribute>
        <attribute name = "Organellar_Genomes">C10 plastid, NF54 mito</attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -981,19 +909,17 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.falciparum</attribute>
-       <attribute name = "UrlFolder">PfalciparumIT</attribute>
-       <attribute name = "UrlFilename">PfalciparumIT</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">falciparum</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PfalciparumIT/fasta/data/PfalciparumITGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PfalciparumIT/gff/data/PfalciparumIT_PlasmoDB-8.2.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">IT</attribute>
        <attribute name = "Genome_Version">07-29-2010</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">23.26</attribute>
        <attribute name = "Gene_Count">5519</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Dd2,HB3</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1008,19 +934,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.gallinaceum</attribute>
-       <attribute name = "UrlFolder">Pgallinaceum</attribute>
-       <attribute name = "UrlFilename">Pgallinaceum</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">gallinaceum</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pgallinaceum/fasta/data/PgallinaceumGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5849</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">12-31-2006</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">16.93</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -1035,19 +959,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.knowlesi</attribute>
-       <attribute name = "UrlFolder">Pknowlesi</attribute>
-       <attribute name = "UrlFilename">Pknowlesi</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">knowlesi</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pknowlesi/fasta/data/PknowlesiGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pknowlesi/gff/data/Pknowlesi_PlasmoDB-8.2.gff</attribute>
        <attribute name = "Taxon_ID">5851</attribute>
-       <attribute name = "Strain">H</attribute>
+       <attribute name = "Strain">strain H</attribute>
        <attribute name = "Genome_Version">06-01-2010</attribute>
        <attribute name = "Data_Source">EMBL</attribute>
        <attribute name = "Genome_Size">23.73</attribute>
        <attribute name = "Gene_Count">5244</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -1062,19 +984,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.reichenowi</attribute>
-       <attribute name = "UrlFolder">Preichenowi</attribute>
-       <attribute name = "UrlFilename">Preichenowi</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">reichenowi</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Preichenowi/fasta/data/PreichenowiGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5854</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">03-11-2004</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">7.38</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -1089,19 +1009,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.vivax</attribute>
-       <attribute name = "UrlFolder">Pvivax</attribute>
-       <attribute name = "UrlFilename">Pvivax</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">vivax</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pvivax/fasta/PvivaxGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pvivax/gff/Pvivax_PlasmoDB-8.2.gff</attribute>
        <attribute name = "Taxon_ID">126793</attribute>
-       <attribute name = "Strain">Sal_1</attribute>
+       <attribute name = "Strain">Sal-1</attribute>
        <attribute name = "Genome_Version">06-13-2007</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">27.01</attribute>
        <attribute name = "Gene_Count">5507</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -1116,19 +1034,17 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">PlasmoDB, EuPathDB</attribute>
-       <attribute name = "Family">Plasmodium</attribute>
-       <attribute name = "Organism">P.yoelii</attribute>
-       <attribute name = "UrlFolder">Pyoelii</attribute>
-       <attribute name = "UrlFilename">Pyoelii</attribute>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">yoelii</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii/fasta/PyoeliiGenomic_PlasmoDB-8.2.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii/gff/Pyoelii_PlasmoDB-8.2.gff</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
-       <attribute name = "Strain">17XNL</attribute>
+       <attribute name = "Strain">yoelii str. 17XNL</attribute>
        <attribute name = "Genome_Version">10-03-2002</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">22.94</attribute>
        <attribute name = "Gene_Count">7774</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs"></attribute>
@@ -1143,19 +1059,17 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
 <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Eimeria</attribute>
-       <attribute name = "Organism">E.tenella</attribute>
-       <attribute name = "UrlFolder">EtenellaHoughton</attribute>
-       <attribute name = "UrlFilename">EtenellaHoughton</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Eimeria</attribute>
+       <attribute name = "Species">tenella</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/fasta/data/EtenellaHoughtonGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/gff/data/EtenellaHoughton_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">413949</attribute>
-       <attribute name = "Strain">Houghton</attribute>
+       <attribute name = "Strain">str. Houghton</attribute>
        <attribute name = "Genome_Version">10-04-2010</attribute>
        <attribute name = "Data_Source">GeneDB</attribute>
        <attribute name = "Genome_Size">51.81</attribute>
        <attribute name = "Gene_Count">9262</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1170,19 +1084,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Gregarina</attribute>
-       <attribute name = "Organism">G.niphandrodes</attribute>
-       <attribute name = "UrlFolder">Gniphandrodes</attribute>
-       <attribute name = "UrlFilename">Gniphandrodes</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Gregarina</attribute>
+       <attribute name = "Species">niphandrodes</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Gniphandrodes/fasta/data/GniphandrodesGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">110365</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">06-27-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">15.36</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1198,19 +1110,17 @@
    </record>
 
 <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Neospora</attribute>
-       <attribute name = "Organism">N.caninum</attribute>
-       <attribute name = "UrlFolder">Ncaninum</attribute>
-       <attribute name = "UrlFilename">Ncaninum</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Neospora</attribute>
+       <attribute name = "Species">caninum</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/fasta/data/NcaninumGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/gff/data/Ncaninum_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">29176</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-06-2009</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">61.04</attribute>
        <attribute name = "Gene_Count">7227</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1225,19 +1135,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiME49</attribute>
-       <attribute name = "UrlFilename">TgondiiME49</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/fasta/TgondiiME49Genomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/gff/TgondiiME49_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">508771</attribute>
        <attribute name = "Strain">ME49</attribute>
        <attribute name = "Genome_Version">07-16-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">63.01</attribute>
        <attribute name = "Gene_Count">8155</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -1252,19 +1160,17 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
   <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiGT1</attribute>
-       <attribute name = "UrlFilename">TgondiiGT1</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/fasta/TgondiiGT1Genomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/gff/TgondiiGT1_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">507601</attribute>
        <attribute name = "Strain">GT1</attribute>
        <attribute name = "Genome_Version">07-15-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">62.43</attribute>
        <attribute name = "Gene_Count">8253</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1279,19 +1185,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiApicoplast</attribute>
-       <attribute name = "UrlFilename">TgondiiRH</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRHApicoplast/fasta/TgondiiRHApicoplastGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRHApicoplast/gff/TgondiiRH_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">383379</attribute>
-       <attribute name = "Strain">RH Apicoplast</attribute>
+       <attribute name = "Strain">RH</attribute>
        <attribute name = "Genome_Version">04-14-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">0.035</attribute>
        <attribute name = "Gene_Count">63</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1306,19 +1210,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiVEG</attribute>
-       <attribute name = "UrlFilename">TgondiiVEG</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/fasta/TgondiiVEGGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/gff/TgondiiVEG_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">432359</attribute>
        <attribute name = "Strain">VEG</attribute>
        <attribute name = "Genome_Version">07-17-2008</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">65.35</attribute>
        <attribute name = "Gene_Count">7997</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1333,19 +1235,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiFOU</attribute>
-       <attribute name = "UrlFilename">TgondiiFOU</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiFOU/fasta/data/TgondiiFOUGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">943167</attribute>
        <attribute name = "Strain">FOU</attribute>
        <attribute name = "Genome_Version">02-01-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">65.34</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1360,19 +1260,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiMAS</attribute>
-       <attribute name = "UrlFilename">TgondiiMAS</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiMAS/fasta/data/TgondiiMASGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">943118</attribute>
        <attribute name = "Strain">MAS</attribute>
        <attribute name = "Genome_Version">02-01-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">63.51</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1386,19 +1284,17 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record><record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">Tgondiip89</attribute>
-       <attribute name = "UrlFilename">Tgondiip89</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Tgondiip89/fasta/data/Tgondiip89Genomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">943119</attribute>
        <attribute name = "Strain">p89</attribute>
        <attribute name = "Genome_Version">02-01-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">64.34</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1412,19 +1308,17 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record><record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiTgCATBr9</attribute>
-       <attribute name = "UrlFilename">TgondiiTgCATBr9</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCATBr9/fasta/data/TgondiiTgCATBr9Genomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">943120</attribute>
        <attribute name = "Strain">TgCATBr9</attribute>
        <attribute name = "Genome_Version">06-23-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">61.80</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1438,19 +1332,17 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record><record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiTgCkUg2</attribute>
-       <attribute name = "UrlFilename">TgondiiTgCkUg2</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCkUg2/fasta/TgondiiTgCkUg2Genomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">TgCkUg2</attribute>
        <attribute name = "Genome_Version">05-04-2009</attribute>
        <attribute name = "Data_Source">Univ.of Leeds</attribute>
        <attribute name = "Genome_Size">41.93</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1464,19 +1356,17 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record><record>
-       <attribute name = "Website">ToxoDB, EuPathDB</attribute>
-       <attribute name = "Family">Toxoplasma</attribute>
-       <attribute name = "Organism">T.gondii</attribute>
-       <attribute name = "UrlFolder">TgondiiVAND</attribute>
-       <attribute name = "UrlFilename">TgondiiVAND</attribute>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB_.org/common/downloads/Current_Release/TgondiiVAND/fasta/data/TgondiiVANDGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">933077</attribute>
        <attribute name = "Strain">VAND</attribute>
        <attribute name = "Genome_Version">02-01-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Size">64.46</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">ME49,VEG,GT1,RH,CkUg2,p89,VAND,MAS,FOU,TgCATBr9</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1492,19 +1382,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">TrichDB, EuPathDB</attribute>
-       <attribute name = "Family">Trichomonas</attribute>
-       <attribute name = "Organism">T.vaginalis</attribute>
-       <attribute name = "UrlFolder">Tvaginalis</attribute>
-       <attribute name = "UrlFilename">Tvaginalis</attribute>
+       <attribute name = "Website">TrichDB</attribute>
+       <attribute name = "Genus">Trichomonas</attribute>
+       <attribute name = "Species">vaginalis</attribute>
+       <attribute name = "URLGenomeFasta">http://TrichDB.org/common/downloads/Current_Release/Tvaginalis/fasta/TvaginalisGenomic_TrichDB-1.3.fasta</attribute>
+       <attribute name = "URLgff">http://TrichDB.org/common/downloads/Current_Release/Tvaginalis/gff/Tvaginalis_TrichDB-1.3.gff</attribute>
        <attribute name = "Taxon_ID">412133</attribute>
        <attribute name = "Strain">G3</attribute>
        <attribute name = "Genome_Version">01-11-2007</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">176.41</attribute>
        <attribute name = "Gene_Count">99009</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1519,19 +1407,17 @@
        <attribute name = "Pathways">yes</attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Crithidia</attribute>
-       <attribute name = "Organism">C.fasciculata</attribute>
-       <attribute name = "UrlFolder">Cfasciculata</attribute>
-       <attribute name = "UrlFilename">Cfasciculata</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Crithidia</attribute>
+       <attribute name = "Species">fasciculata</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Cfasciculata/fasta/CfasciculataGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5656</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">9.1</attribute>
        <attribute name = "Data_Source">Beverly, WUSTL Genome Center</attribute>
        <attribute name = "Genome_Size">37.05</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1546,19 +1432,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Endotrypanum</attribute>
-       <attribute name = "Organism">E.monterogeii</attribute>
-       <attribute name = "UrlFolder">EmonteLV88</attribute>
-       <attribute name = "UrlFilename">EmonteLV88</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Endotrypanum</attribute>
+       <attribute name = "Species">monterogeii</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/EmonteLV88/fasta/EmonteLV88Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
-       <attribute name = "Strain">LV88</attribute>
+       <attribute name = "Strain">strain LV88</attribute>
        <attribute name = "Genome_Version">1.0</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
        <attribute name = "Genome_Size">33.25</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1573,19 +1457,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.braziliensis</attribute>
-       <attribute name = "UrlFolder">Lbraziliensis</attribute>
-       <attribute name = "UrlFilename">Lbraziliensis</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">braziliensis</attribute>
+       <attribute name = "URLGenomeFasta">http://TritrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/gff/Lbraziliensis_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">420245</attribute>
-       <attribute name = "Strain">MHOM/BR/75/M2904</attribute>
+       <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">32.09</attribute>
        <attribute name = "Gene_Count">8505</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">M2904,M2903</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -1600,19 +1482,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.braziliensis</attribute>
-       <attribute name = "UrlFolder">Lbraziliensis</attribute>
-       <attribute name = "UrlFilename">LbraziliensisM2903</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">braziliensis</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisM2903Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">4202450</attribute>
        <attribute name = "Strain">M2903</attribute>
        <attribute name = "Genome_Version">1.0</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
        <attribute name = "Genome_Size">33.79</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">M2904,M2903</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1628,19 +1508,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.infantum</attribute>
-       <attribute name = "UrlFolder">Linfantum</attribute>
-       <attribute name = "UrlFilename">Linfantum</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">infantum</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/fasta/LinfantumGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/gff/Linfantum_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">5671</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">32.13</attribute>
        <attribute name = "Gene_Count">8383</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1655,19 +1533,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.major</attribute>
-       <attribute name = "UrlFolder">Lmajor</attribute>
-       <attribute name = "UrlFilename">LmajorFriedlin</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">major</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorFriedlinGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/gff/LmajorFriedlin_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">347515</attribute>
-       <attribute name = "Strain">Friedlin</attribute>
+       <attribute name = "Strain">strain Friedlin</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">32.86</attribute>
        <attribute name = "Gene_Count">10068</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Friedlin,SD 75.1,LV39c5</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -1682,19 +1558,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.major</attribute>
-       <attribute name = "UrlFolder">LmajorLV39c5</attribute>
-       <attribute name = "UrlFilename">LmajorLV39c5</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">major</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LmajorLV39c5/fasta/LmajorLV39c5Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">860569</attribute>
-       <attribute name = "Strain">LV39c5</attribute>
+       <attribute name = "Strain">strain LV39c5</attribute>
        <attribute name = "Genome_Version">1</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
        <attribute name = "Genome_Size">32.88</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Friedlin,SD 75.1,LV39c5</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1709,19 +1583,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.major</attribute>
-       <attribute name = "UrlFolder">Lmajor</attribute>
-       <attribute name = "UrlFilename">LmajorSD75.1</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">major</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorSD75.1Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">860570</attribute>
-       <attribute name = "Strain">SD75.1</attribute>
+       <attribute name = "Strain">strain SD 75.1</attribute>
        <attribute name = "Genome_Version">07-20-2010</attribute>
        <attribute name = "Data_Source">WTSI</attribute>
        <attribute name = "Genome_Size">32.37</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Friedlin,SD 75.1,LV39c5</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1736,19 +1608,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.mexicana</attribute>
-       <attribute name = "UrlFolder">Lmexicana</attribute>
-       <attribute name = "UrlFilename">Lmexicana</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">mexicana</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/fasta/LmexicanaGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/gff/Lmexicana_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">5665</attribute>
-       <attribute name = "Strain">mexicana</attribute>
+       <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">32.11</attribute>
        <attribute name = "Gene_Count">8334</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1763,19 +1633,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.panamensis</attribute>
-       <attribute name = "UrlFolder">LpanamL13</attribute>
-       <attribute name = "UrlFilename">LpanamL13</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">panamensis</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LpanamL13/fasta/LpanamL13Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5679</attribute>
-       <attribute name = "Strain">L13</attribute>
+       <attribute name = "Strain">strain L13</attribute>
        <attribute name = "Genome_Version">1.1</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
        <attribute name = "Genome_Size">32.47</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1790,19 +1658,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Leishmania</attribute>
-       <attribute name = "Organism">L.tarentolae</attribute>
-       <attribute name = "UrlFolder">LtarParrotTraII</attribute>
-       <attribute name = "UrlFilename">LtarParrotTraII</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Leishmania</attribute>
+       <attribute name = "Species">tarentolae</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/fasta/LtarParrotTraIIGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/gff/LtarParrotTraII_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">56890001</attribute>
        <attribute name = "Strain">Parrot-TarII</attribute>
        <attribute name = "Genome_Version">06-22-2011</attribute>
        <attribute name = "Data_Source">CHUL, McGill Univ.</attribute>
        <attribute name = "Genome_Size">31.64</attribute>
        <attribute name = "Gene_Count">8531</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1818,19 +1684,17 @@
    </record>
  
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.brucei</attribute>
-       <attribute name = "UrlFolder">Tbrucei</attribute>
-       <attribute name = "UrlFilename">TbruceiTreu927</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">brucei</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiTreu927Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiTreu927_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">185431</attribute>
        <attribute name = "Strain">TREU927</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">26.31</attribute>
        <attribute name = "Gene_Count">11425</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">gambiense,427</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -1845,19 +1709,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
   <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.brucei</attribute>
-       <attribute name = "UrlFolder">Tbrucei</attribute>
-       <attribute name = "UrlFilename">TbruceiGambiense</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">brucei</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiGambienseGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiGambiense_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">31285</attribute>
        <attribute name = "Strain">gambiense</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">22.15</attribute>
        <attribute name = "Gene_Count">10000</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1872,19 +1734,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.brucei</attribute>
-       <attribute name = "UrlFolder">Tbrucei</attribute>
-       <attribute name = "UrlFilename">Tbrucei427</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">brucei</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/Tbrucei427Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/Tbrucei427_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">Lister strain 427</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">25.61</attribute>
        <attribute name = "Gene_Count">8998</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1900,19 +1760,17 @@
    </record>
 
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.congolense</attribute>
-       <attribute name = "UrlFolder">Tcongolense</attribute>
-       <attribute name = "UrlFilename">Tcongolense</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">congolense</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/fasta/TcongolenseGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/gff/Tcongolense_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">5692</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">38.67</attribute>
        <attribute name = "Gene_Count">13536</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1927,19 +1785,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.cruzi</attribute>
-       <attribute name = "UrlFolder">Tcruzi</attribute>
-       <attribute name = "UrlFilename">TcruziEsmeraldo-Like</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">cruzi</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldo-LikeGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziEsmeraldo-Like_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">CL Brener Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">32.53</attribute>
        <attribute name = "Gene_Count">10600</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -1954,19 +1810,17 @@
        <attribute name = "Pathways"></attribute>
    </record> 
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.cruzi</attribute>
-       <attribute name = "UrlFolder">Tcruzi</attribute>
-       <attribute name = "UrlFilename">TcruziNonEsmeraldo-Like</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">cruzi</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziNonEsmeraldo-LikeGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziNonEsmeraldo-Like_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">CL Brener Non-Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">32.53</attribute>
        <attribute name = "Gene_Count">11109</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1981,19 +1835,17 @@
        <attribute name = "Pathways"></attribute>
    </record>
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.cruzi</attribute>
-       <attribute name = "UrlFolder">Tcruzi</attribute>
-       <attribute name = "UrlFilename">TcruziUnassignedContigs</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">cruzi</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziUnassignedContigsGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziUnassignedContigs_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
-       <attribute name = "Strain">CL Brener unassigned</attribute>
+       <attribute name = "Strain">strain CL Brener</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">36.01</attribute>
        <attribute name = "Gene_Count">3397</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -2008,19 +1860,17 @@
        <attribute name = "Pathways"></attribute>
    </record> 
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.cruzi</attribute>
-       <attribute name = "UrlFolder">Tcruzi</attribute>
-       <attribute name = "UrlFilename">TcruziEsmeraldo</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">cruzi</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldoGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">366581</attribute>
-       <attribute name = "Strain">esmeraldo</attribute>
+       <attribute name = "Strain">strain esmeraldo</attribute>
        <attribute name = "Genome_Version">6.0</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
        <attribute name = "Genome_Size">26.58</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -2035,19 +1885,17 @@
        <attribute name = "Pathways"></attribute>
    </record> 
 <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.cruzi</attribute>
-       <attribute name = "UrlFolder">Tcruzi</attribute>
-       <attribute name = "UrlFilename">TcruziJRcl4</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">cruzi</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziJRcl4Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">914063</attribute>
-       <attribute name = "Strain">JRcl4</attribute>
+       <attribute name = "Strain">JR cl. 4</attribute>
        <attribute name = "Genome_Version">1.0</attribute>
        <attribute name = "Data_Source">WUSTL</attribute>
        <attribute name = "Genome_Size">36.07</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -2061,19 +1909,17 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record> <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.cruzi</attribute>
-       <attribute name = "UrlFolder">Tcruzi</attribute>
-       <attribute name = "UrlFilename">TcruziSylvioX10-1</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">cruzi</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziSylvioX10-1Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5693000</attribute>
-       <attribute name = "Strain">SylvioX10-1</attribute>
+       <attribute name = "Strain">Sylvio X10/1</attribute>
        <attribute name = "Genome_Version">12-13-2010</attribute>
        <attribute name = "Data_Source">KI</attribute>
        <attribute name = "Genome_Size">24.37</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
-       <attribute name = "Multiple_Strains">yes</attribute>
-       <attribute name = "Additional_Strains">Esmeraldo-like, non-Esmeraldo-like, unassigned; Sylvio X10/1 from KI, esmeraldo from WUSTL, JR cl.4 from WUSTL</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -2091,19 +1937,17 @@
 
 
  <record>
-       <attribute name = "Website">TriTrypDB, EuPathDB</attribute>
-       <attribute name = "Family">Kinetoplastid: Trypanosoma</attribute>
-       <attribute name = "Organism">T.vivax</attribute>
-       <attribute name = "UrlFolder">Tvivax</attribute>
-       <attribute name = "UrlFilename">Tvivax</attribute>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">vivax</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/fasta/TvivaxGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/gff/Tvivax_TriTrypDB-4.0.gff</attribute>
        <attribute name = "Taxon_ID">5699</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
        <attribute name = "Genome_Size">47.50</attribute>
        <attribute name = "Gene_Count">11989</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
