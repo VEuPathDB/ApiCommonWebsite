@@ -1,0 +1,501 @@
+<xmlAnswer>
+  <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Aspergillus</attribute>
+       <attribute name = "Species">clavatus</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">344612</attribute>
+       <attribute name = "Strain">NRRL 1</attribute>
+       <attribute name = "Genome_Version">1</attribute>
+       <attribute name = "Data_Source">Broad/JVI</attribute>
+       <attribute name = "Genome_Size">27.86</attribute>
+       <attribute name = "Gene_Count">9413</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Aspergillus</attribute>
+       <attribute name = "Species">flavus</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">5059</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">2</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">36.79</attribute>
+       <attribute name = "Gene_Count">12730</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Aspergillus</attribute>
+       <attribute name = "Species">fumigatus</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">330879</attribute>
+       <attribute name = "Strain">Af293</attribute>
+       <attribute name = "Genome_Version">2010-07-14</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">29.39</attribute>
+       <attribute name = "Gene_Count">10067</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways">yes</attribute>
+   </record>
+
+
+ <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Aspergillus</attribute>
+       <attribute name = "Species">nidulans</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">227321</attribute>
+       <attribute name = "Strain">FGSC A4</attribute>
+       <attribute name = "Genome_Version">2011-01-05</attribute>
+       <attribute name = "Data_Source">AspGD</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">10865</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates">yes</attribute>
+       <attribute name = "SNPs">yes</attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways">yes</attribute>
+   </record>
+
+ <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Aspergillus</attribute>
+       <attribute name = "Species">niger</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">5061</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">1</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">37.20</attribute>
+       <attribute name = "Gene_Count">6679</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute> 
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Aspergillus</attribute>
+       <attribute name = "Species">terreus</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">33178</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">1</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">29.33</attribute>
+       <attribute name = "Gene_Count">10564</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+ <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Coccidioides</attribute>
+       <attribute name = "Species">immitis</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">396776</attribute>
+       <attribute name = "Strain">H538.4</attribute>
+       <attribute name = "Genome_Version">1</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">27.73</attribute>
+       <attribute name = "Gene_Count">10640</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Coccidioides</attribute>
+       <attribute name = "Species">immitis</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">246410</attribute>
+       <attribute name = "Strain">RS</attribute>
+       <attribute name = "Genome_Version">3</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">28.95</attribute>
+       <attribute name = "Gene_Count">9878</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Sordariomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Fusarium</attribute>
+       <attribute name = "Species">graminearum</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">569360</attribute>
+       <attribute name = "Strain">species complex</attribute>
+       <attribute name = "Genome_Version">3</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">36.45</attribute>
+       <attribute name = "Gene_Count">13605</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">ERTm3</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Sordariomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Fusarium</attribute>
+       <attribute name = "Species">oxysporum f.sp.lycopersic</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">426428</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">2</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">17466</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Sordariomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Gibberella</attribute>
+       <attribute name = "Species">moniliformis</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">117187</attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version">3</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">41.78</attribute>
+       <attribute name = "Gene_Count">14457</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes">yes</attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+
+ <record>
+       <attribute name = "Website">Sordariomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Magnaporthe</attribute>
+       <attribute name = "Species">oryzae</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">242507</attribute>
+       <attribute name = "Strain">70-15</attribute>
+       <attribute name = "Genome_Version">6</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">41.70</attribute>
+       <attribute name = "Gene_Count">11385</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Sordariomycetes; Ascomycota</attribute>
+       <attribute name = "Genus">Neurospora</attribute>
+       <attribute name = "Species">crassa</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">367110</attribute>
+       <attribute name = "Strain">OR74A</attribute>
+       <attribute name = "Genome_Version">10</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">41.04</attribute>
+       <attribute name = "Gene_Count">10154</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Saccharomycotina; Ascomycota</attribute>
+       <attribute name = "Genus">Candida</attribute>
+       <attribute name = "Species">albicans</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">237561</attribute>
+       <attribute name = "Strain">SC5314</attribute>
+       <attribute name = "Genome_Version">1</attribute>
+       <attribute name = "Data_Source">CGD</attribute>
+       <attribute name = "Genome_Size">14.32</attribute>
+       <attribute name = "Gene_Count">6444</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+
+ <record>
+       <attribute name = "Website">Saccharomycotina; Ascomycota</attribute>
+       <attribute name = "Genus">Saccharomyces</attribute>
+       <attribute name = "Species">cerevisiae</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">559292</attribute>
+       <attribute name = "Strain">S288c</attribute>
+       <attribute name = "Genome_Version">2011-01-05</attribute>
+       <attribute name = "Data_Source">SGD</attribute>
+       <attribute name = "Genome_Size">12.16</attribute>
+       <attribute name = "Gene_Count">6926</attribute>
+       <attribute name = "Multiple_Strains">yes</attribute>
+       <attribute name = "Additional_Strains">M2903</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray">yes</attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Basidiomycota</attribute>
+       <attribute name = "Genus">Cryptococcus</attribute>
+       <attribute name = "Species">neoformans var. grubii</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">235443</attribute>
+       <attribute name = "Strain">H99</attribute>
+       <attribute name = "Genome_Version">2</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">18.88</attribute>
+       <attribute name = "Gene_Count">7121</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Basidiomycota</attribute>
+       <attribute name = "Genus">Puccinia</attribute>
+       <attribute name = "Species">graminis f.sp.tritici</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">418459</attribute>
+       <attribute name = "Strain">f. sp. tritici CRL 75-36-700-3</attribute>
+       <attribute name = "Genome_Version">2</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">88.65</attribute>
+       <attribute name = "Gene_Count">21065</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Mucormycotina; Zygomycota</attribute>
+       <attribute name = "Genus">Rhizopus</attribute>
+       <attribute name = "Species">oryzae</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">246409</attribute>
+       <attribute name = "Strain">RA 99-880</attribute>
+       <attribute name = "Genome_Version">3</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">46.09</attribute>
+       <attribute name = "Gene_Count">17652</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+
+</xmlAnswer>
+
+
+
