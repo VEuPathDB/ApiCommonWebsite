@@ -27,7 +27,7 @@ PiroplasmaDB is a genome database for the genus <i>Piroplasma</i>........
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in PiroplamaDB is provided by independent researchers.  For a list of the data integrated into PiroplasmaDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in PiroplamaDB is provided by independent researchers.  For a list of the data integrated into PiroplasmaDB and the related publications see <a href="/a/getDataSource.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -245,7 +245,7 @@ When citing PiroplasmaDB itself, please use:
 <br><br>
 ............
 
-<br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
+<br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="/a/getDataSource.do?display=detail" class="blue"> Data Sources</a>.
        ]]>
        </attribute>
    </record>
