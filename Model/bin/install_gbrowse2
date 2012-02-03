@@ -164,6 +164,7 @@ patch_postinstall() {
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/gbrowse_img.patch
     patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/js_popups.patch
     patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/balloon.config.js.patch
+    patch -d $htdocsTargetDir/gbrowse/css/dropdown -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/dropdown.css.patch
 }
 
 
