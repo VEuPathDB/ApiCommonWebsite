@@ -145,6 +145,8 @@ patch_installer() {
     patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/noninteractive_install.patch
     echo "INSTALL: patching to change state cookie name"
     patch -p1 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/cookie.patch
+    echo "INSTALL: patching MANIFEST"
+    patch -p0 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/manifest.patch
 }
 
 patch_postinstall() {
@@ -164,6 +166,7 @@ patch_postinstall() {
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/gbrowse_img.patch
     patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/js_popups.patch
     patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/balloon.config.js.patch
+    patch -d $htdocsTargetDir/gbrowse/css/dropdown -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/dropdown.css.patch
 }
 
 

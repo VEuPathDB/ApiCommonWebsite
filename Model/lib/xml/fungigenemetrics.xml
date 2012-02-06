@@ -1,0 +1,295 @@
+<xmlAnswer>
+
+   <record>
+       <attribute name = "Metric_Type">Gene_Count_Total</attribute>
+       <attribute name = "Description">Total number of genes represented</attribute>
+       <attribute name="Aspergillus_clavatus">9413</attribute>
+       <attribute name="Aspergillus_flavus">12730</attribute>
+       <attribute name="Aspergillus_fumigatus">10067</attribute>
+       <attribute name="Aspergillus_nidulans">10865</attribute>
+       <attribute name="Aspergillus_niger">6679</attribute>
+       <attribute name="Aspergillus_terreus">10564</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">10640</attribute>
+       <attribute name="Coccidioides_immitis_RS">9878</attribute>
+       <attribute name="Fusarium_graminearum">13605</attribute>
+       <attribute name="Fusarium_oxysporum">17466</attribute>
+       <attribute name="Gibberella_moniliformis">14457</attribute>
+       <attribute name="Magnaporthe_oryzae">11385</attribute>
+       <attribute name="Neurospora_crassa">10154</attribute>
+       <attribute name="Candida_albicans">6444</attribute>
+       <attribute name="Saccharomyces_cerevisiae">6926</attribute>
+       <attribute name="Cryptococcus_neoformans">7121</attribute>
+       <attribute name="Puccinia_graminis">21065</attribute>
+       <attribute name="Rhizopus_oryzae">17652</attribute>
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">Protein_coding</attribute>
+       <attribute name = "Description">Number of genes that are protein coding: it includes pseudogenes</attribute>
+       <attribute name="Aspergillus_clavatus">9114</attribute>
+       <attribute name="Aspergillus_flavus">12471</attribute>
+       <attribute name="Aspergillus_fumigatus">9887</attribute>
+       <attribute name="Aspergillus_nidulans">10691</attribute>
+       <attribute name="Aspergillus_niger">6398</attribute>
+       <attribute name="Aspergillus_terreus">10402</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">10524</attribute>
+       <attribute name="Coccidioides_immitis_RS">9757</attribute>
+       <attribute name="Fusarium_graminearum">13279</attribute>
+       <attribute name="Fusarium_oxysporum">17466</attribute>
+       <attribute name="Gibberella_moniliformis">14161</attribute>
+       <attribute name="Magnaporthe_oryzae">11041</attribute>
+       <attribute name="Neurospora_crassa">9732</attribute>
+       <attribute name="Candida_albicans">6203</attribute>
+       <attribute name="Saccharomyces_cerevisiae">6607</attribute>
+       <attribute name="Cryptococcus_neoformans">6967</attribute>
+       <attribute name="Puccinia_graminis">20534</attribute>
+       <attribute name="Rhizopus_oryzae">17413</attribute>
+
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">Other_categories</attribute>
+       <attribute name = "Description">Number of genes that code for products other than proteins (rRNA, tRNA etc.)</attribute>
+       <attribute name="Aspergillus_clavatus">299</attribute>
+       <attribute name="Aspergillus_flavus">259</attribute>
+       <attribute name="Aspergillus_fumigatus">180</attribute>
+       <attribute name="Aspergillus_nidulans">174</attribute>
+       <attribute name="Aspergillus_niger">281</attribute>
+       <attribute name="Aspergillus_terreus">162</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">116</attribute>
+       <attribute name="Coccidioides_immitis_RS">121</attribute>
+       <attribute name="Fusarium_graminearum">326</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">296</attribute>
+       <attribute name="Magnaporthe_oryzae">344</attribute>
+       <attribute name="Neurospora_crassa">422</attribute>
+       <attribute name="Candida_albicans">241</attribute>
+       <attribute name="Saccharomyces_cerevisiae">319</attribute>
+       <attribute name="Cryptococcus_neoformans">154</attribute>
+       <attribute name="Puccinia_graminis">531</attribute>
+       <attribute name="Rhizopus_oryzae">239</attribute>
+
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">Pseudogenes</attribute>
+       <attribute name = "Description">Number of genes annotated as pseudogenes</attribute>
+       <attribute name="Aspergillus_clavatus">62</attribute>
+       <attribute name="Aspergillus_flavus">6</attribute>
+       <attribute name="Aspergillus_fumigatus">1</attribute>
+       <attribute name="Aspergillus_nidulans">72</attribute>
+       <attribute name="Aspergillus_niger">6</attribute>
+       <attribute name="Aspergillus_terreus">2</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">2</attribute>
+       <attribute name="Coccidioides_immitis_RS">4</attribute>
+       <attribute name="Fusarium_graminearum">9</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">3</attribute>
+       <attribute name="Magnaporthe_oryzae">144</attribute>
+       <attribute name="Neurospora_crassa">16</attribute>
+       <attribute name="Candida_albicans">17</attribute>
+       <attribute name="Saccharomyces_cerevisiae">30</attribute>
+       <attribute name="Cryptococcus_neoformans">3</attribute>
+       <attribute name="Puccinia_graminis">64</attribute>
+       <attribute name="Rhizopus_oryzae">2</attribute>
+
+</record>
+
+<record>       <attribute name = "Metric_Type">Community_entries</attribute>
+       <attribute name = "Description">Number of genes that have comments/notes from the research community</attribute>
+       <attribute name="Aspergillus_clavatus">0</attribute>
+       <attribute name="Aspergillus_flavus">0</attribute>
+       <attribute name="Aspergillus_fumigatus">1</attribute>
+       <attribute name="Aspergillus_nidulans">0</attribute>
+       <attribute name="Aspergillus_niger">0</attribute>
+       <attribute name="Aspergillus_terreus">1</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
+       <attribute name="Coccidioides_immitis_RS">0</attribute>
+       <attribute name="Fusarium_graminearum">0</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">0</attribute>
+       <attribute name="Magnaporthe_oryzae">0</attribute>
+       <attribute name="Neurospora_crassa">0</attribute>
+       <attribute name="Candida_albicans">2</attribute>
+       <attribute name="Saccharomyces_cerevisiae">0</attribute>
+       <attribute name="Cryptococcus_neoformans">0</attribute>
+       <attribute name="Puccinia_graminis">0</attribute>
+       <attribute name="Rhizopus_oryzae">0</attribute>
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">Orthologs</attribute>
+       <attribute name = "Description">Number of genes that have orthologous genes</attribute>
+       <attribute name="Aspergillus_clavatus">8796</attribute>
+       <attribute name="Aspergillus_flavus">11722</attribute>
+       <attribute name="Aspergillus_fumigatus">8930</attribute>
+       <attribute name="Aspergillus_nidulans">10688</attribute>
+       <attribute name="Aspergillus_niger">5866</attribute>
+       <attribute name="Aspergillus_terreus">9887</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">9331</attribute>
+       <attribute name="Coccidioides_immitis_RS">8900</attribute>
+       <attribute name="Fusarium_graminearum">13275</attribute>
+       <attribute name="Fusarium_oxysporum">15427</attribute>
+       <attribute name="Gibberella_moniliformis">12693</attribute>
+       <attribute name="Magnaporthe_oryzae">9834</attribute>
+       <attribute name="Neurospora_crassa">7938</attribute>
+       <attribute name="Candida_albicans">6202</attribute>
+       <attribute name="Saccharomyces_cerevisiae">5422</attribute>
+       <attribute name="Cryptococcus_neoformans">6480</attribute>
+       <attribute name="Puccinia_graminis">10045</attribute>
+       <attribute name="Rhizopus_oryzae">12110</attribute>
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">GO_terms</attribute>
+       <attribute name = "Description">Number of genes that have Gene Ontology terms</attribute>
+       <attribute name="Aspergillus_clavatus">4815</attribute>
+       <attribute name="Aspergillus_flavus">6203</attribute>
+       <attribute name="Aspergillus_fumigatus">5097</attribute>
+       <attribute name="Aspergillus_nidulans">5620</attribute>
+       <attribute name="Aspergillus_niger">3162</attribute>
+       <attribute name="Aspergillus_terreus">5498</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">3846</attribute>
+       <attribute name="Coccidioides_immitis_RS">4068</attribute>
+       <attribute name="Fusarium_graminearum">5848</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">6347</attribute>
+       <attribute name="Magnaporthe_oryzae">5072</attribute>
+       <attribute name="Neurospora_crassa">4328</attribute>
+       <attribute name="Candida_albicans">3335</attribute>
+       <attribute name="Saccharomyces_cerevisiae">3390</attribute>
+       <attribute name="Cryptococcus_neoformans">3517</attribute>
+       <attribute name="Puccinia_graminis">4776</attribute>
+       <attribute name="Rhizopus_oryzae">7533</attribute>
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">EC_numbers</attribute>
+       <attribute name = "Description">Number of genes that have Enzyme Comission numbers</attribute>
+       <attribute name="Aspergillus_clavatus">0</attribute>
+       <attribute name="Aspergillus_flavus">0</attribute>
+       <attribute name="Aspergillus_fumigatus">0</attribute>
+       <attribute name="Aspergillus_nidulans">0</attribute>
+       <attribute name="Aspergillus_niger">0</attribute>
+       <attribute name="Aspergillus_terreus">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
+       <attribute name="Coccidioides_immitis_RS">0</attribute>
+       <attribute name="Fusarium_graminearum">0</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">0</attribute>
+       <attribute name="Magnaporthe_oryzae">0</attribute>
+       <attribute name="Neurospora_crassa">0</attribute>
+       <attribute name="Candida_albicans">0</attribute>
+       <attribute name="Saccharomyces_cerevisiae">1544</attribute>
+       <attribute name="Cryptococcus_neoformans">0</attribute>
+       <attribute name="Puccinia_graminis">0</attribute>
+       <attribute name="Rhizopus_oryzae">0</attribute>
+
+</record>
+
+
+<record>       <attribute name = "Metric_Type">Expression_Total</attribute>
+       <attribute name = "Description">Number of genes that have evidence of expression (Transcript + Protein)</attribute>
+       <attribute name="Aspergillus_clavatus">0</attribute>
+       <attribute name="Aspergillus_flavus">0</attribute>
+       <attribute name="Aspergillus_fumigatus">0</attribute>
+       <attribute name="Aspergillus_nidulans">0</attribute>
+       <attribute name="Aspergillus_niger">0</attribute>
+       <attribute name="Aspergillus_terreus">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
+       <attribute name="Coccidioides_immitis_RS">0</attribute>
+       <attribute name="Fusarium_graminearum">0</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">0</attribute>
+       <attribute name="Magnaporthe_oryzae">0</attribute>
+       <attribute name="Neurospora_crassa">0</attribute>
+       <attribute name="Candida_albicans">0</attribute>
+       <attribute name="Saccharomyces_cerevisiae">6060</attribute>
+       <attribute name="Cryptococcus_neoformans">0</attribute>
+       <attribute name="Puccinia_graminis">0</attribute>
+       <attribute name="Rhizopus_oryzae">17413</attribute>
+
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">Microarray</attribute>
+       <attribute name = "Description">Number of genes that have evidence of transcript expression based on Microarray studies</attribute>
+       <attribute name="Aspergillus_clavatus">0</attribute>
+       <attribute name="Aspergillus_flavus">0</attribute>
+       <attribute name="Aspergillus_fumigatus">0</attribute>
+       <attribute name="Aspergillus_nidulans">0</attribute>
+       <attribute name="Aspergillus_niger">0</attribute>
+       <attribute name="Aspergillus_terreus">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
+       <attribute name="Coccidioides_immitis_RS">0</attribute>
+       <attribute name="Fusarium_graminearum">0</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">0</attribute>
+       <attribute name="Magnaporthe_oryzae">0</attribute>
+       <attribute name="Neurospora_crassa">0</attribute>
+       <attribute name="Candida_albicans">0</attribute>
+       <attribute name="Saccharomyces_cerevisiae">6060</attribute>
+       <attribute name="Cryptococcus_neoformans">0</attribute>
+       <attribute name="Puccinia_graminis">0</attribute>
+       <attribute name="Rhizopus_oryzae">0</attribute>
+
+</record>
+
+   <record>
+       <attribute name = "Metric_Type">ESTs</attribute>
+       <attribute name = "Description">Number of genes that have evidence of transcript expression based on Expressed Sequence Tags studies</attribute>
+       <attribute name="Aspergillus_clavatus">0</attribute>
+       <attribute name="Aspergillus_flavus">0</attribute>
+       <attribute name="Aspergillus_fumigatus">0</attribute>
+       <attribute name="Aspergillus_nidulans">0</attribute>
+       <attribute name="Aspergillus_niger">0</attribute>
+       <attribute name="Aspergillus_terreus">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
+       <attribute name="Coccidioides_immitis_RS">0</attribute>
+       <attribute name="Fusarium_graminearum">0</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">0</attribute>
+       <attribute name="Magnaporthe_oryzae">0</attribute>
+       <attribute name="Neurospora_crassa">0</attribute>
+       <attribute name="Candida_albicans">0</attribute>
+       <attribute name="Saccharomyces_cerevisiae">0</attribute>
+       <attribute name="Cryptococcus_neoformans">0</attribute>
+       <attribute name="Puccinia_graminis">0</attribute>
+       <attribute name="Rhizopus_oryzae">0</attribute>
+
+
+</record>
+
+
+  <record>       <attribute name = "Metric_Type">RNA Seq</attribute>
+       <attribute name = "Description">Number of genes that have evidence for transcript expression based on Transcriptome sequencing (RNA Seq) experiments</attribute>
+       <attribute name="Aspergillus_clavatus">0</attribute>
+       <attribute name="Aspergillus_flavus">0</attribute>       
+       <attribute name="Aspergillus_fumigatus">0</attribute>
+       <attribute name="Aspergillus_nidulans">0</attribute>
+       <attribute name="Aspergillus_niger">0</attribute>
+       <attribute name="Aspergillus_terreus">0</attribute>
+       <attribute name="Coccidioides_immitis_H538_4">0</attribute>
+       <attribute name="Coccidioides_immitis_RS">0</attribute>
+       <attribute name="Fusarium_graminearum">0</attribute>
+       <attribute name="Fusarium_oxysporum">0</attribute>
+       <attribute name="Gibberella_moniliformis">0</attribute>
+       <attribute name="Magnaporthe_oryzae">0</attribute>
+       <attribute name="Neurospora_crassa">0</attribute>
+       <attribute name="Candida_albicans">0</attribute>
+       <attribute name="Saccharomyces_cerevisiae">0</attribute>
+       <attribute name="Cryptococcus_neoformans">0</attribute>
+       <attribute name="Puccinia_graminis">0</attribute>
+       <attribute name="Rhizopus_oryzae">17413</attribute>
+
+
+</record>
+
+</xmlAnswer>
