@@ -244,7 +244,7 @@
        </table>
    </record>
 
-<record>
+<record id="140">
        <attribute name="title">Searches and IDs may change with Database releases</attribute>
        <attribute name="description">How a new database release might affect IDs or searches in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
        <attribute name="uid">140</attribute>
