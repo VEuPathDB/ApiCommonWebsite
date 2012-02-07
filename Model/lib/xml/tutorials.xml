@@ -17,7 +17,7 @@
  <record>
        <attribute name="title">Adding User Comments</attribute>
        <attribute name="description">How to enter a user comment and/or upload a related file.</attribute>
-       <attribute name="uid">14</attribute>
+       <attribute name="uid">10</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -34,7 +34,7 @@
   <record>
        <attribute name="title">AmoebaDB Introduction</attribute>
        <attribute name="description">Highlights of the AmoebaDB website.</attribute>
-       <attribute name="uid">16</attribute>
+       <attribute name="uid">20</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB</attribute>
@@ -51,7 +51,7 @@
     <record>
        <attribute name="title">DNA motif</attribute>
        <attribute name="description">How to assemble a list of genomic segments that match a recurring DNA pattern that you specify.</attribute>
-       <attribute name="uid">23</attribute>
+       <attribute name="uid">30</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -68,7 +68,7 @@
 <record>
        <attribute name="title">Favorites</attribute>
        <attribute name="description">How to use the "My Favorites" function. </attribute>
-       <attribute name="uid">18</attribute>
+       <attribute name="uid">40</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -85,7 +85,7 @@
 <record>
        <attribute name="title">GBrowse Overview</attribute>
        <attribute name="description">How to display genomic sequence and functional genomics data in The Genome Browser.</attribute>
-       <attribute name="uid">18</attribute>
+       <attribute name="uid">50</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -104,7 +104,7 @@
     <record>
        <attribute name="title">Genomic Co-locations</attribute>
        <attribute name="description">How to combine two different searches based on the relative genomic location of search results.</attribute>
-       <attribute name="uid">22</attribute>
+       <attribute name="uid">60</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -123,7 +123,7 @@
 <record>
        <attribute name="title">Isolates by Geographic Location</attribute>
        <attribute name="description">How to search for isolates based on the geographic location of sample collection.</attribute>
-       <attribute name="uid">18</attribute>
+       <attribute name="uid">70</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -142,7 +142,7 @@
  <record>
        <attribute name="title">My Basket</attribute>
        <attribute name="description">How to use the "My Basket" function.</attribute>
-       <attribute name="uid">17</attribute>
+       <attribute name="uid">80</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -159,7 +159,7 @@
 <record>
        <attribute name="title">Orthology Phylogenetic Profile</attribute>
        <attribute name="description">How to search for genes based on your user-defined ortholog profile.</attribute>
-       <attribute name="uid">18</attribute>
+       <attribute name="uid">90</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -178,7 +178,7 @@
  <record>
        <attribute name="title">PlasmoDB Introduction</attribute>
        <attribute name="description">Highlights of the PlasmoDB website.</attribute>
-       <attribute name="uid">19</attribute>
+       <attribute name="uid">100</attribute>
        <table name="files">
         <row>
            <attribute name="projects">PlasmoDB</attribute>
@@ -195,7 +195,7 @@
 <record>
        <attribute name="title">Registration</attribute>
        <attribute name="description">How to register and change your password.</attribute>
-       <attribute name="uid">20</attribute>
+       <attribute name="uid">110</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -212,7 +212,7 @@
 <record>
        <attribute name="title">Restriction Sites in GBrowse</attribute>
        <attribute name="description">How to view restriction enzyme sites in The Genome Browser.</attribute>
-       <attribute name="uid">18</attribute>
+       <attribute name="uid">120</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -230,7 +230,7 @@
  <record>
        <attribute name="title">Search Strategies</attribute>
        <attribute name="description">Learn how to combine search results using the search strategy system.</attribute>
-       <attribute name="uid">15</attribute>
+       <attribute name="uid">130</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -247,7 +247,7 @@
 <record>
        <attribute name="title">Searches and IDs may change with Database releases</attribute>
        <attribute name="description">How a new database release might affect IDs or searches in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
-       <attribute name="uid">18</attribute>
+       <attribute name="uid">140</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
@@ -264,7 +264,7 @@
  <record>
        <attribute name="title">Text Search</attribute>
        <attribute name="description">How to identify genes based on any text term in the gene record.</attribute>
-       <attribute name="uid">21</attribute>
+       <attribute name="uid">150</attribute>
        <table name="files">
         <row>
            <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
