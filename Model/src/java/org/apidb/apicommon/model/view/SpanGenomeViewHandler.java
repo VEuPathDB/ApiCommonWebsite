@@ -29,6 +29,7 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
     private static final String ATTRIBUTE_SOURCE_ID = "source_id";
     private static final String ATTRIBUTE_SEQUENCE_SOURCE_ID = "seq_source_id";
     private static final String ATTRIBUTE_SEQUENCE_LENGTH = "sequence_length";
+    private static final String ATTRIBUTE_STRAND = "strand";
 
     private static final String PROP_SEQUENCES = "sequences";
 
@@ -59,11 +60,14 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
                             ATTRIBUTE_START).getValue());
                     int end = Integer.valueOf((String)recordInstance.getAttributeValue(
                             ATTRIBUTE_END).getValue());
+                    boolean strand = (recordInstance.getAttributeValue(
+                            ATTRIBUTE_STRAND).getValue().toString().equals("+"));
 
                     DynamicSpan span = new DynamicSpan(sourceId);
                     span.setSequenceId(sequenceId);
                     span.setStart(start);
                     span.setEnd(end);
+                    span.setForward(strand);
 
                     Sequence sequence = sequences.get(sequenceId);
                     if (sequence == null) {

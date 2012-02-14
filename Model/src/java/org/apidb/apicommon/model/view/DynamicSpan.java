@@ -6,6 +6,7 @@ public class DynamicSpan {
     private String sequenceId;
     private int start;
     private int end;
+    private boolean forward;
 
     public DynamicSpan(String sourceId) {
         this.sourceId = sourceId;
@@ -39,4 +40,11 @@ public class DynamicSpan {
         return sourceId;
     }
 
+    public boolean isForward() {
+        return forward;
+    }
+
+    public void setForward(boolean forward) {
+        this.forward = forward;
+    }
 }
