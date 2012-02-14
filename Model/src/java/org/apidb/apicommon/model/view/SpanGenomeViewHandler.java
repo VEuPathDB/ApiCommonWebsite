@@ -14,7 +14,7 @@ import org.gusdb.wdk.model.RecordInstance;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.view.SummaryViewHandler;
+import org.gusdb.wdk.model.view.SummaryViewHandler;
 import org.json.JSONException;
 
 /**
