@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.RecordInstance;
 import org.gusdb.wdk.model.WdkModelException;
@@ -30,6 +31,8 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
     private static final String ATTRIBUTE_SEQUENCE_LENGTH = "sequence_length";
 
     private static final String PROP_SEQUENCES = "sequences";
+
+    private static final Logger logger = Logger.getLogger(SpanGenomeViewHandler.class);
     
     /*
      * (non-Javadoc)
@@ -40,6 +43,7 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
      */
     public Map<String, Object> process(Step step) throws WdkModelException,
             WdkUserException {
+        logger.debug("Entering SpanGenomeViewHandler...");
         Map<String, Sequence> sequences = new HashMap<String, Sequence>();
         try {
             AnswerValue answerValue = step.getAnswerValue();
@@ -49,12 +53,12 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
                             ATTRIBUTE_SOURCE_ID).getValue();
                     String sequenceId = (String) recordInstance.getAttributeValue(
                             ATTRIBUTE_SEQUENCE_SOURCE_ID).getValue();
-                    int length = (Integer) recordInstance.getAttributeValue(
-                            ATTRIBUTE_SEQUENCE_LENGTH).getValue();
-                    int start = (Integer) recordInstance.getAttributeValue(
-                            ATTRIBUTE_START).getValue();
-                    int end = (Integer) recordInstance.getAttributeValue(
-                            ATTRIBUTE_END).getValue();
+                    int length = Integer.valueOf((String)recordInstance.getAttributeValue(
+                            ATTRIBUTE_SEQUENCE_LENGTH).getValue());
+                    int start = Integer.valueOf((String)recordInstance.getAttributeValue(
+                            ATTRIBUTE_START).getValue());
+                    int end = Integer.valueOf((String)recordInstance.getAttributeValue(
+                            ATTRIBUTE_END).getValue());
 
                     DynamicSpan span = new DynamicSpan(sourceId);
                     span.setSequenceId(sequenceId);
@@ -81,12 +85,19 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
 
             Map<String, Object> results  = new HashMap<String, Object>();
             results.put(PROP_SEQUENCES, array);
+            logger.debug("Leaving SpanGenomeViewHandler...");
             return results;
         } catch (NoSuchAlgorithmException ex) {
+            logger.error(ex);
+            ex.printStackTrace();
             throw new WdkModelException(ex);
         } catch (JSONException ex) {
+            logger.error(ex);
+            ex.printStackTrace();
             throw new WdkModelException(ex);
         } catch (SQLException ex) {
+            logger.error(ex);
+            ex.printStackTrace();
             throw new WdkModelException(ex);
         }
 
