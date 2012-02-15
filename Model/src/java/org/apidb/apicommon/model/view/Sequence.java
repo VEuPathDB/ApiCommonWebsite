@@ -6,12 +6,13 @@ import java.util.List;
 public class Sequence {
 
     private final String sourceId;
-    private final List<DynamicSpan> dynamicSpans;
+    private final List<Span> dynamicSpans;
     private int length;
+    private float percentLength;
     
     public Sequence(String sourceId) {
         this.sourceId = sourceId;
-        this.dynamicSpans = new ArrayList<DynamicSpan>();
+        this.dynamicSpans = new ArrayList<Span>();
     }
 
     public int getLength() {
@@ -26,11 +27,19 @@ public class Sequence {
         return sourceId;
     }
     
-    public void addSpan(DynamicSpan span) {
+    public void addSpan(Span span) {
         dynamicSpans.add(span);
     }
     
-    public DynamicSpan[] getSpans() {
-        return dynamicSpans.toArray(new DynamicSpan[0]);
+    public Span[] getSpans() {
+        return dynamicSpans.toArray(new Span[0]);
+    }
+
+    public float getPercentLength() {
+        return percentLength;
+    }
+
+    public void setPercentLength(float percentLength) {
+        this.percentLength = percentLength;
     }
 }

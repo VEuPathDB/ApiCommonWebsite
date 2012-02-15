@@ -1,14 +1,16 @@
 package org.apidb.apicommon.model.view;
 
-public class DynamicSpan {
+public class Span {
 
     private final String sourceId;
     private String sequenceId;
     private int start;
     private int end;
     private boolean forward;
+    private float percentStart;
+    private float percentLength;
 
-    public DynamicSpan(String sourceId) {
+    public Span(String sourceId) {
         this.sourceId = sourceId;
     }
 
@@ -46,5 +48,21 @@ public class DynamicSpan {
 
     public void setForward(boolean forward) {
         this.forward = forward;
+    }
+
+    public float getPercentStart() {
+        return percentStart;
+    }
+
+    public void setPercentStart(float percentStart) {
+        this.percentStart = percentStart;
+    }
+
+    public float getPercentLength() {
+        return percentLength;
+    }
+
+    public void setPercentLength(float percentLength) {
+        this.percentLength = percentLength;
     }
 }

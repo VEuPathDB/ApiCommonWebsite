@@ -22,19 +22,31 @@ import org.json.JSONException;
  * @author jerric
  * 
  */
-public class SpanGenomeViewHandler implements SummaryViewHandler {
-
-    private static final String ATTRIBUTE_START = "start_min";
-    private static final String ATTRIBUTE_END = "end_max";
-    private static final String ATTRIBUTE_SOURCE_ID = "source_id";
-    private static final String ATTRIBUTE_SEQUENCE_SOURCE_ID = "seq_source_id";
-    private static final String ATTRIBUTE_SEQUENCE_LENGTH = "sequence_length";
-    private static final String ATTRIBUTE_STRAND = "strand";
+public abstract class GenomeViewHandler implements SummaryViewHandler {
 
     private static final String PROP_SEQUENCES = "sequences";
+    private static final String PROP_MAX_LENGTH = "maxLength";
 
-    private static final Logger logger = Logger.getLogger(SpanGenomeViewHandler.class);
-    
+    private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
+
+    private final String attrSourceId;
+    private final String attrSequenceId;
+    private final String attrSequenceLength;
+    private final String attrStart;
+    private final String attrEnd;
+    private final String attrStrand;
+
+    public GenomeViewHandler(String attrSourceId, String attrSequenceId,
+            String attrSequenceLength, String attrStart, String attrEnd,
+            String attrStrand) {
+        this.attrSourceId = attrSourceId;
+        this.attrSequenceId = attrSequenceId;
+        this.attrSequenceLength = attrSequenceLength;
+        this.attrStart = attrStart;
+        this.attrEnd = attrEnd;
+        this.attrStrand = attrStrand;
+    }
+
     /*
      * (non-Javadoc)
      * 
@@ -47,23 +59,24 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
         logger.debug("Entering SpanGenomeViewHandler...");
         Map<String, Sequence> sequences = new HashMap<String, Sequence>();
         try {
+            int maxLength = 0;
             AnswerValue answerValue = step.getAnswerValue();
             for (AnswerValue answer : answerValue.getFullAnswers()) {
                 for (RecordInstance recordInstance : answer.getRecordInstances()) {
                     String sourceId = (String) recordInstance.getAttributeValue(
-                            ATTRIBUTE_SOURCE_ID).getValue();
+                            attrSourceId).getValue();
                     String sequenceId = (String) recordInstance.getAttributeValue(
-                            ATTRIBUTE_SEQUENCE_SOURCE_ID).getValue();
-                    int length = Integer.valueOf((String)recordInstance.getAttributeValue(
-                            ATTRIBUTE_SEQUENCE_LENGTH).getValue());
-                    int start = Integer.valueOf((String)recordInstance.getAttributeValue(
-                            ATTRIBUTE_START).getValue());
-                    int end = Integer.valueOf((String)recordInstance.getAttributeValue(
-                            ATTRIBUTE_END).getValue());
+                            attrSequenceId).getValue();
+                    int length = Integer.valueOf((String) recordInstance.getAttributeValue(
+                            attrSequenceLength).getValue());
+                    int start = Integer.valueOf((String) recordInstance.getAttributeValue(
+                            attrStart).getValue());
+                    int end = Integer.valueOf((String) recordInstance.getAttributeValue(
+                            attrEnd).getValue());
                     boolean strand = (recordInstance.getAttributeValue(
-                            ATTRIBUTE_STRAND).getValue().toString().equals("+"));
+                            attrStrand).getValue().toString().equals("+"));
 
-                    DynamicSpan span = new DynamicSpan(sourceId);
+                    Span span = new Span(sourceId);
                     span.setSequenceId(sequenceId);
                     span.setStart(start);
                     span.setEnd(end);
@@ -76,9 +89,13 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
                         sequences.put(sequenceId, sequence);
                     }
                     sequence.addSpan(span);
+
+                    if (maxLength < length) maxLength = length;
                 }
             }
-            
+            // compute sizes for the sequences & spans
+            computeSizes(sequences, maxLength);
+
             // sort sequences by source ids
             String[] sequenceIds = sequences.keySet().toArray(new String[0]);
             Arrays.sort(sequenceIds);
@@ -87,8 +104,9 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
                 array[i] = sequences.get(sequenceIds[i]);
             }
 
-            Map<String, Object> results  = new HashMap<String, Object>();
+            Map<String, Object> results = new HashMap<String, Object>();
             results.put(PROP_SEQUENCES, array);
+            results.put(PROP_MAX_LENGTH, maxLength);
             logger.debug("Leaving SpanGenomeViewHandler...");
             return results;
         } catch (NoSuchAlgorithmException ex) {
@@ -104,7 +122,24 @@ public class SpanGenomeViewHandler implements SummaryViewHandler {
             ex.printStackTrace();
             throw new WdkModelException(ex);
         }
-
     }
 
+    private void computeSizes(Map<String, Sequence> sequences, int maxLength) {
+        for (Sequence sequence : sequences.values()) {
+            float pctLength = round(sequence.getLength() * 100F / maxLength);
+            sequence.setPercentLength(pctLength);
+            
+            for (Span span : sequence.getSpans()) {
+                float pctStart = round (span.getStart() * 100F / maxLength);
+                int length = Math.abs(span.getEnd() - span.getStart() + 1);
+                pctLength = round(length * 100F / maxLength);
+                span.setPercentStart(pctStart);
+                span.setPercentLength(pctLength);
+            }
+        }
+    }
+
+    private float round(float value) {
+        return Math.round(value * 1000) / 1000F;
+    }
 }
