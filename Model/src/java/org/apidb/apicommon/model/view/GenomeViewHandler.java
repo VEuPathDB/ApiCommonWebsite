@@ -61,7 +61,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
             String sql = prepareSql(answerValue.getIdSql());
             DataSource dataSource = wdkModel.getQueryPlatform().getDataSource();
             resultSet = SqlUtils.executeQuery(wdkModel, dataSource, sql,
-                    "genome-view", 1000);
+                    "genome-view", 2000);
 
             int maxLength = 0;
             Map<String, Sequence> sequences = new HashMap<String, Sequence>();
