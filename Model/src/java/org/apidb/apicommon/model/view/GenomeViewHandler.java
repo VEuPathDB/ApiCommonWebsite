@@ -4,16 +4,20 @@
 package org.apidb.apicommon.model.view;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.AnswerValue;
-import org.gusdb.wdk.model.RecordInstance;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.view.SummaryViewHandler;
 import org.json.JSONException;
@@ -24,28 +28,20 @@ import org.json.JSONException;
  */
 public abstract class GenomeViewHandler implements SummaryViewHandler {
 
+    protected static final String COLUMN_START = "start_min";
+    protected static final String COLUMN_END = "end_max";
+    protected static final String COLUMN_SOURCE_ID = "source_id";
+    protected static final String COLUMN_SEQUENCE_ID = "sequence_id";
+    protected static final String COLUMN_SEQUENCE_LENGTH = "sequence_length";
+    protected static final String COLUMN_STRAND = "strand";
+
     private static final String PROP_SEQUENCES = "sequences";
     private static final String PROP_MAX_LENGTH = "maxLength";
 
     private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
 
-    private final String attrSourceId;
-    private final String attrSequenceId;
-    private final String attrSequenceLength;
-    private final String attrStart;
-    private final String attrEnd;
-    private final String attrStrand;
-
-    public GenomeViewHandler(String attrSourceId, String attrSequenceId,
-            String attrSequenceLength, String attrStart, String attrEnd,
-            String attrStrand) {
-        this.attrSourceId = attrSourceId;
-        this.attrSequenceId = attrSequenceId;
-        this.attrSequenceLength = attrSequenceLength;
-        this.attrStart = attrStart;
-        this.attrEnd = attrEnd;
-        this.attrStrand = attrStrand;
-    }
+    public abstract String prepareSql(String idSql) throws WdkModelException,
+            WdkUserException;
 
     /*
      * (non-Javadoc)
@@ -57,42 +53,39 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     public Map<String, Object> process(Step step) throws WdkModelException,
             WdkUserException {
         logger.debug("Entering SpanGenomeViewHandler...");
-        Map<String, Sequence> sequences = new HashMap<String, Sequence>();
+
+        ResultSet resultSet = null;
         try {
-            int maxLength = 0;
+            WdkModel wdkModel = step.getQuestion().getWdkModel();
             AnswerValue answerValue = step.getAnswerValue();
-            for (AnswerValue answer : answerValue.getFullAnswers()) {
-                for (RecordInstance recordInstance : answer.getRecordInstances()) {
-                    String sourceId = (String) recordInstance.getAttributeValue(
-                            attrSourceId).getValue();
-                    String sequenceId = (String) recordInstance.getAttributeValue(
-                            attrSequenceId).getValue();
-                    int length = Integer.valueOf((String) recordInstance.getAttributeValue(
-                            attrSequenceLength).getValue());
-                    int start = Integer.valueOf((String) recordInstance.getAttributeValue(
-                            attrStart).getValue());
-                    int end = Integer.valueOf((String) recordInstance.getAttributeValue(
-                            attrEnd).getValue());
-                    boolean strand = (recordInstance.getAttributeValue(
-                            attrStrand).getValue().toString().equals("+"));
+            String sql = prepareSql(answerValue.getIdSql());
+            DataSource dataSource = wdkModel.getQueryPlatform().getDataSource();
+            resultSet = SqlUtils.executeQuery(wdkModel, dataSource, sql,
+                    "genome-view", 1000);
 
-                    Span span = new Span(sourceId);
-                    span.setSequenceId(sequenceId);
-                    span.setStart(start);
-                    span.setEnd(end);
-                    span.setForward(strand);
+            int maxLength = 0;
+            Map<String, Sequence> sequences = new HashMap<String, Sequence>();
+            while (resultSet.next()) {
+                String sequenceId = resultSet.getString(COLUMN_SEQUENCE_ID);
+                Sequence sequence = sequences.get(sequenceId);
+                if (sequence == null) {
+                    sequence = new Sequence(sequenceId);
+                    sequences.put(sequenceId, sequence);
 
-                    Sequence sequence = sequences.get(sequenceId);
-                    if (sequence == null) {
-                        sequence = new Sequence(sequenceId);
-                        sequence.setLength(length);
-                        sequences.put(sequenceId, sequence);
-                    }
-                    sequence.addSpan(span);
-
+                    int length = resultSet.getInt(COLUMN_SEQUENCE_LENGTH);
+                    sequence.setLength(length);
                     if (maxLength < length) maxLength = length;
                 }
+
+                String spanId = resultSet.getString(COLUMN_SOURCE_ID);
+                Span span = new Span(spanId);
+                span.setSequenceId(sequenceId);
+                span.setStart(resultSet.getInt(COLUMN_START));
+                span.setEnd(resultSet.getInt(COLUMN_END));
+                span.setForward(resultSet.getBoolean(COLUMN_STRAND));
+                sequence.addSpan(span);
             }
+
             // compute sizes for the sequences & spans
             computeSizes(sequences, maxLength);
 
@@ -121,6 +114,8 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
             logger.error(ex);
             ex.printStackTrace();
             throw new WdkModelException(ex);
+        } finally {
+            SqlUtils.closeResultSet(resultSet);
         }
     }
 
@@ -129,10 +124,10 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
             int sequenceLength = sequence.getLength();
             float pctLength = round(sequenceLength * 100F / maxLength);
             sequence.setPercentLength(pctLength);
-            
+
             // the percent length of span is relative to the local sequence
             for (Span span : sequence.getSpans()) {
-                float pctStart = round (span.getStart() * 100F / sequenceLength);
+                float pctStart = round(span.getStart() * 100F / sequenceLength);
                 int length = Math.abs(span.getEnd() - span.getStart() + 1);
                 pctLength = round(length * 100F / sequenceLength);
                 span.setPercentStart(pctStart);

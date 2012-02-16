@@ -3,26 +3,34 @@
  */
 package org.apidb.apicommon.model.view;
 
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+
 /**
  * @author jerric
  * 
  */
 public class DynamicSpanGenomeViewHandler extends GenomeViewHandler {
 
-    private static final String ATTRIBUTE_START = "start_min";
-    private static final String ATTRIBUTE_END = "end_max";
-    private static final String ATTRIBUTE_SOURCE_ID = "source_id";
-    private static final String ATTRIBUTE_SEQUENCE_SOURCE_ID = "seq_source_id";
-    private static final String ATTRIBUTE_SEQUENCE_LENGTH = "sequence_length";
-    private static final String ATTRIBUTE_STRAND = "strand";
+    @Override
+    public String prepareSql(String idSql) throws WdkModelException,
+            WdkUserException {
+        StringBuilder sql = new StringBuilder("SELECT ");
+        sql.append("    ids.source_id AS " + COLUMN_SOURCE_ID + ", ");
+        sql.append("    ids.sequence_id AS " + COLUMN_SEQUENCE_ID + ", ");
+        sql.append("    sa.length AS " + COLUMN_SEQUENCE_LENGTH + ", ");
+        sql.append("    ids.start_min AS " + COLUMN_START + ", ");
+        sql.append("    ids.end_max AS " + COLUMN_END + ", ");
+        sql.append("    ids.strand AS " + COLUMN_STRAND);
+        sql.append(" FROM (SELECT source_id, ");
+        sql.append("            regexp_substr(source_id, '[^:]+', 1, 1) as sequence_id, ");
+        sql.append("            regexp_substr(regexp_substr(source_id, '[^:]+', 1, 2), '[^\\-]+', 1,1) as start_min, ");
+        sql.append("            regexp_substr(regexp_substr(source_id, '[^:]+', 1, 2), '[^\\-]+', 1,2) as end_max, ");
+        sql.append("            CASE regexp_substr(source_id, '[^:]+', 1, 3) WHEN 'f' THEN 1 ELSE 0 END AS strand ");
+        sql.append("       FROM (" + idSql + ") ");
+        sql.append("      ) ids, ApidbTuning.SequenceAttributes sa");
+        sql.append(" WHERE ids.sequence_id = sa.source_id");
 
-    /**
-     * 
-     */
-    public DynamicSpanGenomeViewHandler() {
-        super(ATTRIBUTE_SOURCE_ID, ATTRIBUTE_SEQUENCE_SOURCE_ID,
-                ATTRIBUTE_SEQUENCE_LENGTH, ATTRIBUTE_START, ATTRIBUTE_END,
-                ATTRIBUTE_STRAND);
+        return sql.toString();
     }
-
 }
