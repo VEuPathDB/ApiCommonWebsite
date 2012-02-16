@@ -3,26 +3,33 @@
  */
 package org.apidb.apicommon.model.view;
 
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+
 /**
  * @author jerric
  * 
  */
 public class GeneGenomeViewHandler extends GenomeViewHandler {
 
-    private static final String ATTRIBUTE_START = "start_min";
-    private static final String ATTRIBUTE_END = "end_max";
-    private static final String ATTRIBUTE_SOURCE_ID = "source_id";
-    private static final String ATTRIBUTE_SEQUENCE_SOURCE_ID = "sequence_id";
-    private static final String ATTRIBUTE_SEQUENCE_LENGTH = "sequence_length";
-    private static final String ATTRIBUTE_STRAND = "gene_strand";
+    @Override
+    public String prepareSql(String idSql) throws WdkModelException,
+            WdkUserException {
+        StringBuilder sql = new StringBuilder("SELECT ");
+        sql.append("    ga.source_id AS " + COLUMN_SOURCE_ID + ", ");
+        sql.append("    ga.sequence_id AS " + COLUMN_SEQUENCE_ID + ", ");
+        sql.append("    sa.length AS " + COLUMN_SEQUENCE_LENGTH + ", ");
+        sql.append("    ga.start_min AS " + COLUMN_START + ", ");
+        sql.append("    ga.end_max AS " + COLUMN_END + ", ");
+        sql.append("    CASE ga.strand WHEN 'forward' THEN 1 ELSE 0 END AS "
+                + COLUMN_STRAND);
+        sql.append(" FROM ApidbTuning.GeneAttributes ga, ");
+        sql.append("      ApiDBTuning.SequenceAttributes sa, ");
+        sql.append("      (" + idSql + ") idq ");
+        sql.append(" WHERE ga.sequence_id = sa.source_id ");
+        sql.append("  AND ga.source_id = idq.source_id ");
 
-    /**
-     * 
-     */
-    public GeneGenomeViewHandler() {
-        super(ATTRIBUTE_SOURCE_ID, ATTRIBUTE_SEQUENCE_SOURCE_ID,
-                ATTRIBUTE_SEQUENCE_LENGTH, ATTRIBUTE_START, ATTRIBUTE_END,
-                ATTRIBUTE_STRAND);
+        return sql.toString();
     }
 
 }
