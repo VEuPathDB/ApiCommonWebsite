@@ -126,13 +126,15 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
     private void computeSizes(Map<String, Sequence> sequences, int maxLength) {
         for (Sequence sequence : sequences.values()) {
-            float pctLength = round(sequence.getLength() * 100F / maxLength);
+            int sequenceLength = sequence.getLength();
+            float pctLength = round(sequenceLength * 100F / maxLength);
             sequence.setPercentLength(pctLength);
             
+            // the percent length of span is relative to the local sequence
             for (Span span : sequence.getSpans()) {
-                float pctStart = round (span.getStart() * 100F / maxLength);
+                float pctStart = round (span.getStart() * 100F / sequenceLength);
                 int length = Math.abs(span.getEnd() - span.getStart() + 1);
-                pctLength = round(length * 100F / maxLength);
+                pctLength = round(length * 100F / sequenceLength);
                 span.setPercentStart(pctStart);
                 span.setPercentLength(pctLength);
             }
