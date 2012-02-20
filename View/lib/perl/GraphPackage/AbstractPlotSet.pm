@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::AbstractPlot;
+package ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
 
 use strict;
 use vars qw( @ISA );
