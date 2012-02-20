@@ -7,8 +7,8 @@ use ApiCommonWebsite::Model::CannedQuery::Profile;
 
 use Data::Dumper;
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
+use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
 
 sub init {
   my $self = shift;
