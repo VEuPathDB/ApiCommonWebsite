@@ -33,9 +33,7 @@ public class CommentConfigParser extends XmlParser {
             IOException, WdkModelException {
         // validate the configuration file
         URL configURL = makeURL(gusHome, getConfigFile(projectId));
-        if (!validate(configURL))
-            throw new WdkModelException("Relax-NG validation failed on "
-                    + configURL.toExternalForm());
+        validate(configURL);
 
         return (CommentConfig) digester.parse(configURL.openStream());
     }
