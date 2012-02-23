@@ -21,7 +21,7 @@ $(document).ready(function(){
  
 function addFileSelRow() {
   var rmBtn = $("<td>")
-          .append($("<img>").attr("src", "images/remove.gif")
+          .append($("<img>").attr("src", "/assets/images/remove.gif")
              .click(function(){  
                 $(this).parents("table:first").parents("tr:first").remove();
                 zebraStripe();
