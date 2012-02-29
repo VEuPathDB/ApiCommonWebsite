@@ -8,8 +8,8 @@
 
 GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
 GBROWSE_TAR_FILE=GBrowse-2.39.tar.gz
-BIOPERL_TAR_FILE=bioperl_1.60_biographics_2.11_samtools_1.29.tar.gz
-#BIOPERL_TAR_FILE=BioPerl-1.6.1.tar.gz
+#BIOPERL_TAR_FILE=bioperl_1.60_biographics_2.11_samtools_1.29.tar.gz
+BIOPERL_TAR_FILE=BioPerl-1.6.1.tar.gz
 BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.26.tar.gz
 BIOSAMTOOLS_TAR_FILE=Bio-SamTools-1.33.tar.gz
 
@@ -125,9 +125,9 @@ configure_gb() {
     
     install_local_bioperl
 
-    #install_local_biographics
+    install_local_biographics
 
-    #install_local_biosamtools
+    install_local_biosamtools
     
     export PERL5LIB=$cgilibTargetDir:$PERL5LIB
     if ! perl -e 'use Bio::Perl 1.5' 2> /dev/null; then
