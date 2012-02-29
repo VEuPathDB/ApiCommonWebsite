@@ -1,10 +1,10 @@
-package ApiCommonWebsite::View::GraphPackage::MixedPlots;
+package ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlot );
-use ApiCommonWebsite::View::GraphPackage::AbstractPlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlotSet );
+use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
 
 #--------------------------------------------------------------------------------
 # NOTE:  Each Graph Object makes an Array of Hashes.  The Hash Keys Must Be 

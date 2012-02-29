@@ -2,8 +2,8 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum::Ver1;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlotSet );
+use ApiCommonWebsite::View::GraphPackage::LinePlotSet;
 
 
 sub init {

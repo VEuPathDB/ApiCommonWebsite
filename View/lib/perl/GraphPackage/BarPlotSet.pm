@@ -1,10 +1,10 @@
-package ApiCommonWebsite::View::GraphPackage::BarPlot;
+package ApiCommonWebsite::View::GraphPackage::BarPlotSet;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlot );
-use ApiCommonWebsite::View::GraphPackage::AbstractPlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlotSet );
+use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
 
 
 

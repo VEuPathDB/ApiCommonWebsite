@@ -4,8 +4,8 @@ use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlots );
-use ApiCommonWebsite::View::GraphPackage::MixedPlots;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
 
 use ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrSingleBar;
