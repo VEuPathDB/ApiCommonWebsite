@@ -32,6 +32,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     protected static final String COLUMN_END = "end_max";
     protected static final String COLUMN_SOURCE_ID = "source_id";
     protected static final String COLUMN_SEQUENCE_ID = "sequence_id";
+    protected static final String COLUMN_CHROMOSOME = "chromosome";
     protected static final String COLUMN_SEQUENCE_LENGTH = "sequence_length";
     protected static final String COLUMN_STRAND = "strand";
 
@@ -75,6 +76,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
                     int length = resultSet.getInt(COLUMN_SEQUENCE_LENGTH);
                     sequence.setLength(length);
                     if (maxLength < length) maxLength = length;
+                    sequence.setChromosome(resultSet.getString(COLUMN_CHROMOSOME));
                 }
 
                 String spanId = resultSet.getString(COLUMN_SOURCE_ID);

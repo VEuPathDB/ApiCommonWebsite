@@ -1,6 +1,10 @@
 package org.apidb.apicommon.model.view;
 
+import java.text.DecimalFormat;
+
 public class Span {
+
+    private static final DecimalFormat FORMAT = new DecimalFormat("#,###");
 
     private final String sourceId;
     private String sequenceId;
@@ -25,6 +29,10 @@ public class Span {
     public int getStart() {
         return start;
     }
+    
+    public String getStartFormatted() {
+        return FORMAT.format(start);
+    }
 
     public void setStart(int start) {
         this.start = start;
@@ -32,6 +40,10 @@ public class Span {
 
     public int getEnd() {
         return end;
+    }
+    
+    public String getEndFormatted() {
+        return FORMAT.format(end);
     }
 
     public void setEnd(int end) {
