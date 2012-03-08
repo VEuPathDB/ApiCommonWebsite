@@ -4,8 +4,8 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::MEXP128::Ver1;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
+use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
 
 
 sub init {

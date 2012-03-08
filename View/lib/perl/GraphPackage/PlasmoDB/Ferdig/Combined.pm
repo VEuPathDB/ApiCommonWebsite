@@ -6,8 +6,8 @@ use vars qw( @ISA );
 use Data::Dumper;
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlots );
-use ApiCommonWebsite::View::GraphPackage::MixedPlots;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
 use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Ferdig::DD2_X_HB3;
 use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Ferdig::Pcts;

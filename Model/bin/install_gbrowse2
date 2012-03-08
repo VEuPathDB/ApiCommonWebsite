@@ -7,8 +7,11 @@
 
 
 GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
-GBROWSE_TAR_FILE=GBrowse-2.39.tar.gz
-BIOPERL_TAR_FILE=bioperl_1.60_biographics_2.11_samtools_1.29.tar.gz
+GBROWSE_TAR_FILE=GBrowse-2.48.tar.gz
+#GBROWSE_TAR_FILE=GBrowse-2.39.tar.gz
+BIOPERL_TAR_FILE=BioPerl-1.6.1.tar.gz
+BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.26.tar.gz
+BIOSAMTOOLS_TAR_FILE=Bio-SamTools-1.33.tar.gz
 
 BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
@@ -70,7 +73,7 @@ post_install_clean() {
     fi
 }
 
-# unpack and install pre-made BioPerl 5 into cgi-lib
+# unpack and install pre-made BioPerl v1.6.1 into cgi-lib
 install_local_bioperl() {
     echo "INSTALL: installing bioperl...."
     echo "tar zxf $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE"
@@ -85,12 +88,46 @@ install_local_bioperl() {
     fi
 }
 
+# unpack and install pre-made BioGraphics v2.26 into cgi-lib
+install_local_biographics() {
+    echo "INSTALL: installing bioperl...."
+    echo "tar zxf $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE"
+    if ! tar zxf \
+        $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
+        -C $cgilibTargetDir 2> /dev/null; then
+        echo "FATAL: Unable to un-tar BioGraphics package '$GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE'. Exiting..."
+        echo "tar zxf \
+        $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
+        -C $cgilibTargetDir"
+        exit 1
+    fi
+}
+
+# unpack and install pre-made BioSamTools v1.33 into cgi-lib
+install_local_biosamtools() {
+    echo "INSTALL: installing bioperl...."
+    echo "tar zxf $GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE"
+    if ! tar zxf \
+        $GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE \
+        -C $cgilibTargetDir 2> /dev/null; then
+        echo "FATAL: Unable to un-tar BioSamTools package '$GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE'. Exiting..."
+        echo "tar zxf \
+        $GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE \
+        -C $cgilibTargetDir"
+        exit 1
+    fi
+}
+
 configure_gb() {
 
     
     mkdirs
     
     install_local_bioperl
+
+    install_local_biographics
+
+    install_local_biosamtools
     
     export PERL5LIB=$cgilibTargetDir:$PERL5LIB
     if ! perl -e 'use Bio::Perl 1.5' 2> /dev/null; then
@@ -142,31 +179,33 @@ build_install() {
 patch_installer() {
     # patch GBrowseInstall.pm to remove interactive and sudo bits
     echo "INSTALL: patching for non-interactive install"
-    patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/noninteractive_install.patch
+    patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/noninteractive_install.patch
     echo "INSTALL: patching to change state cookie name"
-    patch -p1 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/cookie.patch
+    patch -p1 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/cookie.patch
     echo "INSTALL: patching MANIFEST"
-    patch -p0 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/manifest.patch
+    patch -p0 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/manifest.patch
 }
 
 patch_postinstall() {
     echo "INSTALL: patching installed files"
     arch=$(arch)
     [ "$arch" == "i686" ] && arch=i386
-    patch -p1 -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/umask.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/RenderPanels.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/DataSource.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/RegionSearch.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Plugin.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/DataLoader.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/Render -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/HTML.pm.patch
-    patch -d $confTargetDir/gbrowse.conf -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/GBrowse.conf.patch
-    patch -d $confTargetDir/gbrowse.conf/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/SequenceDumper.pm.patch
-    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/gbrowse_img.patch
-    patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/js_popups.patch
-    patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/balloon.config.js.patch
-    patch -d $htdocsTargetDir/gbrowse/css/dropdown -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/dropdown.css.patch
+    patch -p1 -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/umask.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/RenderPanels.pm.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/DataSource.pm.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/Plugin.pm.patch
+    patch -d $confTargetDir/gbrowse.conf -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/GBrowse.conf.patch
+    patch -d $confTargetDir/gbrowse.conf/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/SequenceDumper.pm.patch
+    patch -d $confTargetDir/gbrowse.conf/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/TrackDumper.pm.patch
+    patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/balloon.config.js.patch
+    patch -d $htdocsTargetDir/gbrowse/css/dropdown -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/dropdown.css.patch
+    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/gbrowse_img.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/RegionSearch.pm.patch
+    patch -d $confTargetDir/gbrowse.conf/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/TrackDumper.pm.patch
+#    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/DataLoader.pm.patch
+#    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/Render -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/HTML.pm.patch
+#    patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/js_popups.patch
+#    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
 }
 
 
