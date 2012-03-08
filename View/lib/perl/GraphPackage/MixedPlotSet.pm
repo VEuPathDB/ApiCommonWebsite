@@ -5,13 +5,26 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlotSet );
 use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
-
+use Data::Dumper;
 #--------------------------------------------------------------------------------
 # NOTE:  Each Graph Object makes an Array of Hashes.  The Hash Keys Must Be 
 #        unique accross all combined graphs for this code to work.
 #--------------------------------------------------------------------------------
 
+#--------------------------------------------------------------------------------
+
+sub setMainLegend {
+  my ($self, $hash) = @_;
+
+  $hash->{fill} = 1;
+  $hash->{points_pch} = [];
+  $self->SUPER::setMainLegend($hash);
+}
+
+#--------------------------------------------------------------------------------
+
 sub getGraphObjects { $_[0]->{_graph_objects} }
+
 sub setGraphObjects { 
   my $self = shift;
 
@@ -19,25 +32,30 @@ sub setGraphObjects {
     die "Graph Ojbects Array Not Defined Correctly" ;
   }
 
-  my %profileSetParts;
+  my $profileSetsHash = {};
 
   my $graphs = [];
-  foreach my $graph (@_) {
 
-    # Check that all graph parts are unique
-    my $psh = $graph->getProfileSetsHash();
-    foreach my $part (keys %$psh) {
-      if($profileSetParts{$part}) {
-        die "Seen Key [$part] More than once";
-      }
-      $profileSetParts{$part}++;
+  
+  foreach my $plotPart (@_) {
+    my $name = $plotPart->getPartName();
+    my $size = $plotPart->getScreenSize();
+    unless ($name) {  
+      die "Part name must be defined"; 
     }
-    push @{$graphs}, $graph;
+    $profileSetsHash->{$name}->{size}  = $size;
+    $profileSetsHash->{$name}->{count}++ ;
+
+    push @{$graphs}, $plotPart;
   }
 
-  # Each Graph Ojbect Defines its own ProfileSetsHash
-  # This objects ProfileSetsHash only needs to state the union of the parts as hash keys
-  $self->setProfileSetsHash(\%profileSetParts);
+  #for the mixedPlot, this hash only contains the size and name, this is a workaround for backward compatibility
+  $self->setProfileSetsHash($profileSetsHash);
+  foreach my $name (keys %$profileSetsHash) {
+    unless ($profileSetsHash->{$name}->{count} == 1) {
+      die "Non-unique part name $name is defiend for mixed plot";
+    }
+  }
 
   $self->{_graph_objects} = $graphs; 
 }
@@ -53,50 +71,53 @@ sub init {
 
   # Defaults
   $self->setScreenSize(225);
-  $self->setBottomMarginSize(5);
-
   return $self;
 }
 
 #--------------------------------------------------------------------------------
 
-
 sub makeRPlotStrings {
   my ($self) = @_;
 
   my $graphObjects = $self->getGraphObjects();
-
   my $ms = $self->getMultiScreen();
   my $id = $self->getId();
+  my $secId = $self->getSecondaryId();
   my $name = $self->getName();
   my $qh = $self->getQueryHandle();
   my $format = $self->getFormat();
   my $output = $self->getOutputFile();
-  my $thumb = $self->getThumbnail();
-  my $vp = $self->getVisibleParts();
-  my $secId = $self->getSecondaryId();
+  my %isVis_b = $ms->partIsVisible();
   my $dp = $self->getDataPlotterArg();
 
-  my $tempFiles = $self->getTempFiles();
+
 
   my @rv;
 
-  foreach my $graph (@$graphObjects) {
-    $graph->setMultiScreen($ms);
-    $graph->setId($id);
-    $graph->setName($name);
-    $graph->setQueryHandle($qh);
-    $graph->setFormat($format);
-    $graph->setOutputFile($output);
-    $graph->setThumbnail($thumb);
-    $graph->setVisibleParts($vp);
-    $graph->setSecondaryId($secId);
-    $graph->setDataPlotterArg($dp);
-    $graph->setTempFiles($tempFiles);
-
-
-    push @rv, @{$graph->makeRPlotStrings()};
+  foreach my $plotPart (@$graphObjects) {
+    my $partName = $plotPart->getPartName();
+    next unless ($isVis_b{$partName});
+    $plotPart->setId($id);
+    $plotPart->setName($name);
+#TODO: Need to give this to PlotPart.pm
+    $plotPart->setQueryHandle($qh);
+    $plotPart->setFormat($format);
+    $plotPart->setOutputFile($output);
+    $plotPart->setSecondaryId($secId);
+    $plotPart->setDataPlotterArg($dp);
+#TODO: Need to pass PlotPart.pm tempFiles to MixedPlot.pm (maybe)
+    push @rv, $plotPart->makeRPlotString();
+    my $profileFiles = $plotPart->getProfileFiles();
+    my $elementFiles = $plotPart->getElementNameFiles();
+    my @tempFiles = (@$profileFiles,@$elementFiles);
+    foreach my $file (@tempFiles) {
+      $self->addTempFile($file);
+    }
+    
+    $self->addToProfileDataMatrix($profileFiles, $elementFiles, $plotPart->getProfileSetDisplayNames);
   }
+  $self->makeHtmlStringFromMatrix();
+
   return \@rv;
 }
 
