@@ -1,119 +1,143 @@
-package ApiCommonWebsite::View::GraphPackage::LinePlotSet;
+package ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlotSet );
-use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlotPart );
+use ApiCommonWebsite::View::GraphPackage::PlotPart;
 use ApiCommonWebsite::View::GraphPackage::Util;
 
+use Data::Dumper;
 #--------------------------------------------------------------------------------
 
-sub getForceNoLines              { $_[0]->{'_force_no_lines'   }}
-sub setForceNoLines              { $_[0]->{'_force_no_lines'   } = $_[1]; $_[0] }
+sub getForceNoLines              { $_[0]->{'_force_no_lines'                }}
+sub setForceNoLines              { $_[0]->{'_force_no_lines'                } = $_[1]}
 
-sub getVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'   }}
-sub setVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'   } = $_[1]; $_[0] }
+sub getVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'          }}
+sub setVaryGlyphByXAxis          { $_[0]->{'_vary_glyph_by_x_axis'          } = $_[1]}
+
+sub getPointsPch                 { $_[0]->{'_points_pch'                    }}
+sub setPointsPch                 { $_[0]->{'_points_pch'                    } = $_[1]}
+
+sub getDefaultXMax               { $_[0]->{'_default_x_max'                 }}
+sub setDefaultXMax               { $_[0]->{'_default_x_max'                 } = $_[1]}
+
+sub getDefaultXMin               { $_[0]->{'_default_x_min'                 }}
+sub setDefaultXMin               { $_[0]->{'_default_x_min'                 } = $_[1]}
+
+sub getXaxisLabel                { $_[0]->{'_x_axis_label'                  }}
+sub setXaxisLabel                { $_[0]->{'_x_axis_label'                  } = $_[1]}
+
+sub getArePointsLast             { $_[0]->{'_are_points_last'               }}
+sub setArePointsLast             { $_[0]->{'_are_points_last'               } = $_[1]}
+
+sub getRTopMarginTitle           { $_[0]->{'_top_margin_title'              }}
+sub setRTopMarginTitle           { $_[0]->{'_top_margin_title'              } = $_[1]}
+
+sub getSmoothLines               { $_[0]->{'_smooth_lines'                  }}
+sub setSmoothLines               { $_[0]->{'_smooth_lines'                  } = $_[1]}
+
+sub getSplineApproxN             { $_[0]->{'_spline_approx_n'               }}
+sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = $_[1]}
 
 #--------------------------------------------------------------------------------
 
-sub init {
-  my $self = shift;
-  my $args = ref $_[0] ? shift : {@_};
-
-  $self->SUPER::init($args);
-
-  # Defaults
-  $self->setScreenSize(225);
-  $self->setBottomMarginSize(4.5);
-
-  return $self;
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
+   $self->SUPER::init;
+   $self->setXaxisLabel("Whoops! Object forgot to call setXaxisLabel");
+   $self->setPointsPch([15]);
+   return $self;
 }
 
 #--------------------------------------------------------------------------------
-
-sub makeRPlotStrings {
+sub makeRPlotString {
   my ($self) = @_;
-
   my @rv;
 
-  my $profileSetsHash = $self->getProfileSetsHash();
+  my $part = $self->getPartName();
+  
+  my (@profileFiles, @elementNamesFiles, @stdevFiles);
+  my $i = 0;
+  my ($pf, $enf);
+  # each part can have several profile sets
+  my $profiles = $self->getProfileSetNames;
+  foreach my $profileSetName (@$profiles) {
 
-  my $ms = $self->getMultiScreen();
+    my $suffix = $part . $i;
+    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
 
-  my %isVis_b = $ms->partIsVisible();
-
-  foreach my $part (keys %$profileSetsHash) {
-    next unless ($isVis_b{$part});
-
-    my (@profileFiles, @elementNamesFiles);
-
-    # each part can have several profile sets
-    my $i = 0;
-    foreach my $profileSetName (@{$profileSetsHash->{$part}->{profiles}}) {
-      my $suffix = $part . $i;
-
-      my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
-
+    if($profileFile && $elementNamesFile) {
+ 
       push(@profileFiles, $profileFile);
       push(@elementNamesFiles, $elementNamesFile);
 
-      $i++;
     }
-
-    my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
-    my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
-
-    my $colors = $profileSetsHash->{$part}->{colors};
-    my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
-
-    my $pointsPch = $profileSetsHash->{$part}->{points_pch};
-    my $rPointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pointsPch, 'points.pch');
-
-    my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
-    my $xAxisLabel = $profileSetsHash->{$part}->{x_axis_label};
-    my $plotTitle = $profileSetsHash->{$part}->{plot_title};
-
-    my $yMax = $profileSetsHash->{$part}->{default_y_max};
-    my $yMin = $profileSetsHash->{$part}->{default_y_min};
-
-    my $xMin = $profileSetsHash->{$part}->{default_x_min};
-    my $xMax = $profileSetsHash->{$part}->{default_x_max};
-
-    my $pointsLast = $profileSetsHash->{$part}->{are_points_last};
-    my $yAxisFoldInductionFromM = $profileSetsHash->{$part}->{make_y_axis_fold_incuction};
-
-
-    my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
-    my $rTopMarginTitle = $profileSetsHash->{$part}->{r_top_margin_title};
-
-    my $smoothLines = $profileSetsHash->{$part}->{smooth_spline};
-    my $splineApproxN = $profileSetsHash->{$part}->{spline_approx_n};
-
-    my $rCode = $self->rString($plotTitle, $profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines,$splineApproxN);
-
-    my $profileNames = $profileSetsHash->{$part}->{profile_display_names};
-    if ($profileNames){
-      $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileNames);
-    } else {
-      $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, $profileSetsHash->{$part}->{profiles});
-    }
-
-    unshift @rv, $rCode;
+    $i++;
   }
 
-  $self->makeHtmlStringFromMatrix();
+  my $stDevProfiles = $self->getStDevProfileSetNames;
+  if (scalar $stDevProfiles> 0) {
+    foreach my  $profileSetName (@$stDevProfiles) {
+      my $suffix = $part . $i;
+      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
+      push(@stdevFiles, $stdevFile);
+      $i++;
+    }
+  }
+  next unless(scalar @profileFiles > 0);
+  my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
+  my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
+  my $stdevString ='';
+  if (scalar $stDevProfiles> 0) {
+    $stdevString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@stdevFiles, 'stdev.files');
+  }
+  my $colors = $self->getColors();
+  unless ($colors) {
+    my $cols = scalar @profileFiles;
+    while ($cols) {
+      push @$colors, '#009900';
+      $cols--;
+    }
+  }
 
-  return \@rv;
+  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
+
+  my $pointsPch = $self->getPointsPch;
+  my $rPointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pointsPch, 'points.pch');
+#  TODO: Determine if this is a property of the PlotSet or the PlotPart. May need to set from MixedPlotSet
+#  my $legend = $profileSetsHash->{$part}->{legend};
+#  my $rLegendString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legend, 'the.legend');
+
+  my $rCode = $self->rString($profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString);
+
+  return $rCode;
 }
 
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $plotTitle, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString, $yAxisLabel, $xAxisLabel, $yMax, $yMin, $xMax, $xMin, $pointsLast, $yAxisFoldInductionFromM, $rAdjustProfile, $rTopMarginTitle, $smoothLines,$splineApproxN) = @_;
+  my ($self, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString) = @_;
 
-  $yAxisLabel = $yAxisLabel ? $yAxisLabel : "Whoops! no y_axis_label";
-  $xAxisLabel = $xAxisLabel ? $xAxisLabel : "Whoops! no x_axis_label";
+  my $rAdjustProfile = $self->getAdjustProfile();
+  my $yAxisLabel = $self->getYaxisLabel();
+  my $xAxisLabel = $self->getXaxisLabel();
+  my $plotTitle = $self->getPlotTitle();
+
+  my $yMax = $self->getDefaultYMax();
+  my $yMin = $self->getDefaultYMin();
+
+  my $xMax = $self->getDefaultXMax();
+  my $xMin = $self->getDefaultXMin();
+
+  my $yAxisFoldInductionFromM = $self->getMakeYAxisFoldInduction();
+
+  my $pointsLast = $self->getArePointsLast();
+  my $rTopMarginTitle = $self->getRTopMarginTitle();
+
+  my $smoothLines = $self->getSmoothLines();
+  my $splineApproxN = $self->getSplineApproxN();
 
   $yMax = $yMax ? $yMax : "-Inf";
   $yMin = defined($yMin) ? $yMin : "Inf";
@@ -136,6 +160,8 @@ sub rString {
   $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
 
   my $bottomMargin = $self->getBottomMarginSize();
+
+  my $defaultPch = $self->getPointsPch()->[0];
 
   my $rv = "
 # ---------------------------- LINE PLOT ----------------------------
@@ -260,7 +286,7 @@ for(j in 1:length(x.coords.rank)) {
 
 par(mar       = c($bottomMargin,4,2,4), xpd=TRUE);
 
-my.pch = 15;
+my.pch = $defaultPch;
 
 for(i in 1:nrow(lines.df)) {
 
@@ -392,12 +418,11 @@ lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 plasmodb.title(\"$plotTitle\");
 
 ";
-
   return $rv;
 }
 
-
-
-
-
 1;
+
+
+
+

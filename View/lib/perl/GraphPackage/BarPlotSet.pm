@@ -5,6 +5,7 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlotSet );
 use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 
 
@@ -74,20 +75,20 @@ sub makeRPlotStrings {
 
     next unless(scalar @profileFiles > 0);
 
-    my $profileFilesString = $self->rStringVectorFromArray(\@profileFiles, 'profile.files');
-    my $elementNamesString = $self->rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
-    my $stdevString = $self->rStringVectorFromArray(\@stdevFiles, 'stdev.files');
+    my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
+    my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
+    my $stdevString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@stdevFiles, 'stdev.files');
 
     my $colors = $profileSetsHash->{$part}->{colors};
-    my $rColorsString = $self->rStringVectorFromArray($colors, 'the.colors');
+    my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
 
     my $rXAxisLabelsString;
     if(my $xAxisLabels = $profileSetsHash->{$part}->{x_axis_labels}) {
-      $rXAxisLabelsString = $self->rStringVectorFromArray($xAxisLabels, 'element.names');
+      $rXAxisLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($xAxisLabels, 'element.names');
     }
 
     my $legend = $profileSetsHash->{$part}->{legend};
-    my $rLegendString = $self->rStringVectorFromArray($legend, 'the.legend');
+    my $rLegendString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legend, 'the.legend');
 
     my $rAdjustProfile = $profileSetsHash->{$part}->{r_adjust_profile};
     my $yAxisLabel = $profileSetsHash->{$part}->{y_axis_label};
