@@ -10,17 +10,21 @@ use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileFixedValue;
 use ApiCommonWebsite::View::MultiScreen;
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 use Data::Dumper;
 
 #--------------------------------------------------------------------------------
 
+#TODO: would like to factor out into PlotPart.pm
 sub getScreenSize                { $_[0]->{'_screen_size'                 }}
 sub setScreenSize                { $_[0]->{'_screen_size'                 } = $_[1]; $_[0] }
 
+#TODO: this needs to be factored into PlotPart
 sub getGraphDefaultValue         { $_[0]->{'_graph_default_value'         }}
 sub setGraphDefaultValue         { $_[0]->{'_graph_default_value'         } = $_[1]; $_[0] }
 
+#TODO: needs would like to factor into PlotPart
 sub getBottomMarginSize          { $_[0]->{'_bottom_margin_size'          }}
 sub setBottomMarginSize          { $_[0]->{'_bottom_margin_size'          } = $_[1]; $_[0] }
 
@@ -84,7 +88,7 @@ sub init {
 }
 
 #--------------------------------------------------------------------------------
-
+#TODO: needs to be factored out into PlotPart.pm/ Also needs to be added to BarPlot/LinePlot 
 sub hasGraphDefault {
   my ($self) = @_;
 
@@ -112,9 +116,9 @@ sub makeRLegendString {
   my $fill = $legendHash->{fill};
   my $nCols = $legendHash->{cols};
 
-  my $rColorsString = $self->rStringVectorFromArray($colors, 'legend.colors');
-  my $rNamesString = $self->rStringVectorFromArray($names, 'legend.names');
-  my $rPointsPchString = $self->rNumericVectorFromArray($pch, 'points.pch');
+  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'legend.colors');
+  my $rNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($names, 'legend.names');
+  my $rPointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pch, 'points.pch');
   my $rFill = $fill ? "TRUE" : "FALSE";
 
   $nCols = defined($nCols) ? $nCols : 2;
@@ -168,8 +172,6 @@ sub makeR {
 
   my @rv;
 
-  my $profileSetsHash = $self->getProfileSetsHash();
-
   my $thumb_b   = $self->getThumbnail();
 
   my $r_f = $self->getOutputFile(). '.R';
@@ -189,8 +191,13 @@ sub makeR {
 
   push(@$parts, { Name => "_LEGEND",   Size => $legendSize });
 
+
+  my $profileSetsHash = $self->getProfileSetsHash();
+
   foreach my $ps (keys %$profileSetsHash) {
-    push(@$parts, { Name => "$ps",   Size => $self->getScreenSize() });
+    my $sizeFromHash = $profileSetsHash->{$ps}->{size};
+    my $size = defined $sizeFromHash ? $sizeFromHash : $self->getScreenSize();
+    push(@$parts, { Name => "$ps",   Size => $size});
   }
 
   my $mS = ApiCommonWebsite::View::MultiScreen->new
@@ -281,6 +288,7 @@ RCODE
 
 #--------------------------------------------------------------------------------
 
+#TODO: factor out into PlotPart.pm
 sub writeProfileFiles {
   my ($self, $profileSetName, $suffix, $elementOrder) = @_;
 
@@ -320,16 +328,15 @@ sub writeProfileFiles {
 
   $profile->setElementOrder($elementOrder) if($elementOrder);
   $elementNames->setElementOrder($elementOrder) if($elementOrder);
-
   my $profile_fn = eval { $profile->makeTabFile($_qh, $_dict) }; $@ && push(@profileErrors, $@);
   my $elementNames_fn = eval { $elementNames->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
-
+#TODO: factor into PlotPart, each PlotPart must be responsible for deleting temp files 
   $self->addTempFile($profile_fn) if($profile_fn);
   $self->addTempFile($elementNames_fn) if($elementNames_fn);
 
   if(@profileErrors) {
     $profile_fn = eval { $defaultProfile->makeTabFile($_qh, $_dict) }; $@ && push(@errors, $@);
-
+#TODO: factor into PlotPart, each PlotPart must be responsible for deleting temp files 
     $self->addTempFile($profile_fn) if($profile_fn);
   }
 
@@ -340,21 +347,6 @@ sub writeProfileFiles {
   }
 
   return \@rv;
-}
-
-
-#--------------------------------------------------------------------------------
-
-sub rStringVectorFromArray {
-  my ($self, $stringArray, $name) = @_;
-
-  return "$name = c(" . join(',', map {"\"$_\""} @$stringArray) . ");";
-}
-
-sub rNumericVectorFromArray {
-  my ($self, $array, $name) = @_;
-
-  return "$name = c(" . join(',', map {"$_"} @$array) . ");";
 }
 
 
@@ -429,7 +421,7 @@ sub addToProfileDataMatrix {
                        elementOrder => $neo,
                       };
 
-      push @$allNames, $namesHash unless($self->isSeen($name, $allNames));
+      push @$allNames, $namesHash unless(ApiCommonWebsite::View::GraphPackage::Util::isSeen($name, $allNames));
 
       $allValues->{$profileSet}->{$name} = $value;
     }
@@ -439,19 +431,6 @@ sub addToProfileDataMatrix {
     close VALUES;
   }
 }
-
-#--------------------------------------------------------------------------------
-
-sub isSeen {
-  my ($self, $x, $ar) = @_;
-
-  foreach(@$ar) {
-    return 1 if($_->{name} eq $x);
-  }
-  return 0;
-}
-
-
 
 #--------------------------------------------------------------------------------
 
