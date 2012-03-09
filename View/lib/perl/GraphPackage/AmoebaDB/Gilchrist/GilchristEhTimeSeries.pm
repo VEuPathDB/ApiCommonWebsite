@@ -30,7 +30,6 @@ sub init {
                            y_axis_label => 'RMA Value (log2)',
                            colors => $colors,
                            default_y_max => 15,
-                           plot_title => 'E. histolytica Stage Conversion Nugen array Profiles',
                            x_axis_labels => $xAxisLabels,
                           },
       pct => {profiles => ['EhistolyticaNugenProfilePcts'
@@ -38,7 +37,6 @@ sub init {
               y_axis_label => 'Percentile',
               default_y_max => 50,
               colors =>  ['#800517', '#307D7E','#254117', '#7E3517', '#806517'],
-              plot_title => 'E. histolytica Stage Conversion Nugen array Profiles',
               x_axis_labels => $xAxisLabels,
              },
      });
