@@ -30,7 +30,6 @@ sub init {
                            y_axis_label => 'RMA Value (log2)',
                            default_y_max => 15,
                            colors => $colors,
-                           plot_title => 'E. histolytica Intestinal Colonization/Invasion Affymetrix array Profiles',
                            x_axis_labels => $xAxisLabels,
                           },
       pct => {profiles => ['EhistolyticaAffyProfilePcts'
@@ -38,7 +37,6 @@ sub init {
               y_axis_label => 'Percentile',
               default_y_max => 50,
               colors =>  ['#E9967A', '#8B4513','#66CDAA', '#556B2F', '#87CEEB','#008080', '#C9BE62'],
-              plot_title => 'E. histolytica Intestinal Colonization/Invasion Affymetrix array Profiles',
               x_axis_labels => $xAxisLabels,
              },
      });
