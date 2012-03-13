@@ -19,3 +19,6 @@ CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 # In the component sites it is empty; the full path for blast files appears in the wublast config file.
 FUNGI_BLAST_PATH=
 
+# social media link IDs
+FACEBOOK_ID=FungiDB
+TWITTER_ID=FungiDB
