@@ -79,6 +79,8 @@ public class CustomShowRecordAction extends ShowRecordAction {
         UserBean user = ActionUtility.getUser(servlet, request);
         RecordClassBean recordClass = wdkModel.getRecordClass(rcName);
         Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
+        pkValues.put("source_id", sourceId);
+        pkValues.put("project_id", wdkModel.getProjectId());
         return recordClass.hasMultipleRecords(user, pkValues);
     }
 
