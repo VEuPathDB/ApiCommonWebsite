@@ -1,5 +1,7 @@
 package org.apidb.apicommon.controller.action;
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -10,20 +12,27 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.ShowRecordAction;
 import org.gusdb.wdk.model.AttributeValue;
 import org.gusdb.wdk.model.TableValue;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
+import org.gusdb.wdk.model.jspwrap.RecordClassBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.json.JSONException;
 
 public class CustomShowRecordAction extends ShowRecordAction {
 
+    private static final String PARAM_NAME = "name";
+    private static final String PARAM_SOURCE_ID = "source_id";
+
     private static final String PARAM_RECORD_CLASS = "record_class";
+
     private static final String TABLE_REFERENCE = "References";
     private static final String TYPE_ATTRIBTUE = "attribute";
     private static final String TYPE_TABLE = "table";
@@ -31,50 +40,76 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private static final String ATTR_REFERENCE_ATTRIBUTES = "ds_ref_attributes";
     private static final String ATTR_REFERENCE_TABLES = "ds_ref_tables";
 
+    private static final String PATTERN_SOURCE_ID = "\\$\\{SOURCE_ID\\}";
+
+    private static final String FORWARD_ID_QUESTION = "run-question";
+
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        // run execute from parent
-        ActionForward forward = super.execute(mapping, form, request, response);
+        // need to check if the old record is mapped to more than one records
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        String rcName = request.getParameter(PARAM_NAME);
+        String sourceId = request.getParameter(PARAM_SOURCE_ID);
+        ActionForward forward;
+        if (hasMultipleRecords(request, wdkModel, rcName, sourceId)) {
+            // the old id is mapped to multiple ids, run a id question to get
+            // the result.
+            forward = mapping.findForward(FORWARD_ID_QUESTION);
+            String url = forward.getPath().replaceAll(PATTERN_SOURCE_ID,
+                    sourceId);
+            forward = new ActionForward(url, false);
+        } else { // map to single Id, load data sources & go to record page.
+            // run execute from parent
+            forward = super.execute(mapping, form, request, response);
 
+            // if xml data source exists, bypass the process
+            if (!GetDataSourceAction.hasXmlDataSource(wdkModel)) {
+                loadDataSources(request, wdkModel, rcName);
+            }
+        }
+        return forward;
+    }
+
+    private boolean hasMultipleRecords(HttpServletRequest request,
+            WdkModelBean wdkModel, String rcName, String sourceId)
+            throws WdkModelException, NoSuchAlgorithmException,
+            WdkUserException, SQLException, JSONException {
+        UserBean user = ActionUtility.getUser(servlet, request);
+        RecordClassBean recordClass = wdkModel.getRecordClass(rcName);
+        Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
+        return recordClass.hasMultipleRecords(user, pkValues);
+    }
+
+    private void loadDataSources(HttpServletRequest request,
+            WdkModelBean wdkModel, String rcName) throws Exception {
         Map<String, String> attributeRefs = new LinkedHashMap<String, String>();
         Map<String, String> tableRefs = new LinkedHashMap<String, String>();
 
-        // if xml data source exists, bypass the process
-        if (!GetDataSourceAction.hasXmlDataSource(wdkModel)) {
+        // load the recordClass based data sources
+        UserBean user = ActionUtility.getUser(servlet, request);
 
-            // load the recordClass based data sources
-            UserBean user = ActionUtility.getUser(servlet, request);
-            RecordBean record = (RecordBean) request
-                    .getAttribute(CConstants.WDK_RECORD_KEY);
-            String rcName = record.getRecordClass().getFullName();
+        // get the data source question
+        QuestionBean question = wdkModel.getQuestion(GetDataSourceAction.DATA_SOURCE_BY_RECORD_CLASS);
+        Map<String, String> params = new LinkedHashMap<String, String>();
+        params.put(PARAM_RECORD_CLASS, rcName);
+        AnswerValueBean answerValue = question.makeAnswerValue(user, params, 0);
 
-            // get the data source question
-            QuestionBean question = wdkModel
-                    .getQuestion(GetDataSourceAction.DATA_SOURCE_BY_RECORD_CLASS);
-            Map<String, String> params = new LinkedHashMap<String, String>();
-            params.put(PARAM_RECORD_CLASS, rcName);
-            AnswerValueBean answerValue = question.makeAnswerValue(user,
-                    params, 0);
-
-            // find all referenced attributes and tables;
-            Iterator<RecordBean> dsRecords = answerValue.getRecords();
-            while (dsRecords.hasNext()) {
-                RecordBean dsRecord = dsRecords.next();
-                TableValue tableValue = dsRecord.getTables().get(
-                        TABLE_REFERENCE);
-                for (Map<String, AttributeValue> row : tableValue) {
-                    String recordType = row.get("record_type").toString();
-                    if (recordType.equals(rcName)) {
-                        String targetType = row.get("target_type").toString();
-                        String targetName = row.get("target_name").toString();
-                        if (targetType.equals(TYPE_ATTRIBTUE)) {
-                            attributeRefs.put(targetName, targetName);
-                        } else if (targetType.equals(TYPE_TABLE)) {
-                            tableRefs.put(targetName, targetName);
-                        }
+        // find all referenced attributes and tables;
+        Iterator<RecordBean> dsRecords = answerValue.getRecords();
+        while (dsRecords.hasNext()) {
+            RecordBean dsRecord = dsRecords.next();
+            TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
+            for (Map<String, AttributeValue> row : tableValue) {
+                String recordType = row.get("record_type").toString();
+                if (recordType.equals(rcName)) {
+                    String targetType = row.get("target_type").toString();
+                    String targetName = row.get("target_name").toString();
+                    if (targetType.equals(TYPE_ATTRIBTUE)) {
+                        attributeRefs.put(targetName, targetName);
+                    } else if (targetType.equals(TYPE_TABLE)) {
+                        tableRefs.put(targetName, targetName);
                     }
                 }
             }
@@ -82,8 +117,5 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
         request.setAttribute(ATTR_REFERENCE_ATTRIBUTES, attributeRefs);
         request.setAttribute(ATTR_REFERENCE_TABLES, tableRefs);
-
-        return forward;
     }
-
 }
