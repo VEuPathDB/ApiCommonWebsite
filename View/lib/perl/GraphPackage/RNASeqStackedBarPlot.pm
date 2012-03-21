@@ -16,7 +16,8 @@ sub new {
    $self->setYaxisLabel('Normalized Coverage (log2)');
    $self->setIsStacked(1);
    $self->setIsLogged(1);
-
+   $self->setDefaultYMin(4);
+   $self->setAdjustProfile('profile=profile + 1; profile = log2(profile);');
    
    return $self;
 }
