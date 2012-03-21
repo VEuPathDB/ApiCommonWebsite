@@ -24,7 +24,8 @@ sub init {
                                         'C.neoformans NRG1 Expression-diff']);
   $stackedCoverage->setColors($colors);
   $stackedCoverage->setForceHorizontalXAxis(1);
-  $stackedCoverage->setSampleLabels(['H99 Wildtype','nrg1 KO',
+  $stackedCoverage->setSampleLabels(['H99 Wildtype',
+                                     'nrg1 KO',
                                      'nrg1 Over-expression']);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();

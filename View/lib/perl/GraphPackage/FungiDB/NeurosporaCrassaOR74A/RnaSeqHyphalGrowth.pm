@@ -1,11 +1,12 @@
 package ApiCommonWebsite::View::GraphPackage::FungiDB::NeurosporaCrassaOR74A::RnaSeqHyphalGrowth;
-
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
+use ApiCommonWebsite::View::GraphPackage::PercentilePlot;
+use ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot;
 
 sub init {
   my $self = shift;
@@ -13,34 +14,28 @@ sub init {
   $self->SUPER::init(@_);
 
   my $colors =['#D87093', '#DDDDDD'];
-
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
-  $self->setProfileSetsHash
-    ({coverage => {profiles => ['NcraOR74A Hyphal Growth RNASeq', 
-                                'NcraOR74A Hyphal Growth RNASeq - diff'
-                               ],
-                   y_axis_label => 'log 2 (RPKM)',
-                   colors => $colors,
-                  default_y_max => 4,
-                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
-                   stack_bars => 1,
-                   force_x_axis_label_horizontal => 1,
-                   x_axis_labels => ['3 HR', '5 HR', '20 HR']
+  my $stackedCoverage = ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot->new();
+  $stackedCoverage->setProfileSetNames(['NcraOR74A Hyphal Growth RNASeq', 
+                                        'NcraOR74A Hyphal Growth RNASeq - diff'
+                                        ]);
+  $stackedCoverage->setColors($colors);
+  $stackedCoverage->setForceHorizontalXAxis(1);
+  $stackedCoverage->setSampleLabels(['3 HR', 
+                                     '5 HR', 
+                                     '20 HR']);
 
+  my $percentile = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
+  $percentile->setProfileSetNames(['percentile - NcraOR74A Hyphal Growth RNASeq']);
+  $percentile->setForceHorizontalXAxis(1);
+  $percentile->setColors([$colors->[0]]);
 
-                  },
-      pct => {profiles => ['percentile - NcraOR74A Hyphal Growth RNASeq'],
-              y_axis_label => 'Percentile',
-              default_y_max => 50,
-                   force_x_axis_label_horizontal => 1,
-              colors => [$colors->[0]],
-             },
-     });
-
+  $self->setGraphObjects($stackedCoverage, $percentile);
   return $self;
+
 }
 
 
