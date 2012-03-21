@@ -14,9 +14,9 @@ use Data::Dumper;
 sub new {
    my ($class, $args) = @_;
    my $self = $class->SUPER::new($args);
-   $self->setPartName('coverage');
-   $self->setYaxisLabel('Percentiles');
-   $self->setDefaultYMax(100);
-   $self->setIsLogged(1);
+   $self->setPartName('percentile');
+   $self->setYaxisLabel('Percentile');
+   $self->setDefaultYMax(50);
+   $self->setIsLogged(0);
    return $self;
 }

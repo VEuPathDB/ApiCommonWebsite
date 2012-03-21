@@ -3,44 +3,36 @@ package ApiCommonWebsite::View::GraphPackage::FungiDB::CryptococcusNeoformansGru
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
+use ApiCommonWebsite::View::GraphPackage::PercentilePlot;
+use ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  my $colors =['#D87093', '#DDDDDD'];
 
+  my $colors =['#D87093', '#DDDDDD'];
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
+  my $stackedCoverage = ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot->new();
+  $stackedCoverage->setProfileSetNames(['C.neoformans NRG1 Expression', 
+                                        'C.neoformans NRG1 Expression-diff']);
+  $stackedCoverage->setColors($colors);
+  $stackedCoverage->setForceHorizontalXAxis(1);
+  $stackedCoverage->setSampleLabels(['H99 Wildtype','nrg1 KO',
+                                     'nrg1 Over-expression']);
 
-  $self->setProfileSetsHash
-    ({coverage => {profiles => ['C.neoformans NRG1 Expression', 
-                                'C.neoformans NRG1 Expression-diff profiles'
-                               ],
-                   y_axis_label => 'log 2 (RPKM)',
-                   colors => $colors,
-                  default_y_max => 4,
-                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
-                   stack_bars => 1,
-                   force_x_axis_label_horizontal => 1,
-                   x_axis_labels => ['H99 Wildtype','nrg1 KO','nrg1 Over-expression']
-                  },
-      pct => {profiles => ['percentile - C.neoformans NRG1 Expression'],
-              y_axis_label => 'Percentile',
-              default_y_max => 50,
-                   force_x_axis_label_horizontal => 1,
-              colors => [$colors->[0]],
-             },
-     });
-
-
-
-
+  my $percentile = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
+  $percentile->setProfileSetNames(['percentile - C.neoformans NRG1 Expression']);
+  $percentile->setForceHorizontalXAxis(1);
+  $percentile->setColors([$colors->[0]]);
+  
+  $self->setGraphObjects($stackedCoverage, $percentile);
   return $self;
 }
 
