@@ -10,8 +10,8 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 use Data::Dumper;
 #--------------------------------------------------------------------------------
 
-sub getIsStackPlot               { $_[0]->{'_stack_bars'                     }}
-sub setIsStackPlot               { $_[0]->{'_stack_bars'                     } = $_[1]}
+sub getIsStacked               { $_[0]->{'_stack_bars'                     }}
+sub setIsStacked               { $_[0]->{'_stack_bars'                     } = $_[1]}
 
 sub getForceHorizontalXAxis      { $_[0]->{'_force_x_horizontal'             }}
 sub setForceHorizontalXAxis      { $_[0]->{'_force_x_horizontal'             } = $_[1]}
@@ -102,7 +102,7 @@ sub rString {
   my $yMax = $self->getDefaultYMax();
   my $yMin = $self->getDefaultYMin();
 
-  my $isStack = $self->getIsStackPlot();
+  my $isStack = $self->getIsStacked();
 
   my $horizontalXAxisLabels = $self->getForceHorizontalXAxis();
   my $yAxisFoldInductionFromM = $self->getMakeYAxisFoldInduction();
