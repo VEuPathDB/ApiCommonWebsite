@@ -17,6 +17,7 @@ sub new {
    $self->setPartName('percentile');
    $self->setYaxisLabel('Percentile');
    $self->setDefaultYMax(50);
+   $self->setDefaultYMin(0);
    $self->setIsLogged(0);
    return $self;
 }
