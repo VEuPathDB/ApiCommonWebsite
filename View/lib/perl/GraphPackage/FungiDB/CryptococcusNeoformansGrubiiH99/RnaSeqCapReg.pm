@@ -24,14 +24,14 @@ sub init {
   $stackedCoverage->setProfileSetNames(['C.neoformans- ada2-delta, nrg1-delta, cir1-delta and KN99-alpha analysis', 
                                         'C.neoformans- ada2-delta, nrg1-delta, cir1-delta and KN99-alpha analysis-diff']);
   $stackedCoverage->setColors($colors);
-  $stackedCoverage->setForceHorizontalXAxis(1);
+#  $stackedCoverage->setForceHorizontalXAxis(1);
   $stackedCoverage->setSampleLabels($sampleNames);
-                                    
+  $stackedCoverage->setBottomMarginSize(5);                                  
                    
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
   $percentile->setProfileSetNames(['percentile - C.neoformans- ada2-delta, nrg1-delta, cir1-delta and KN99-alpha analysis']);
-  $percentile->setForceHorizontalXAxis(1);
+#  $percentile->setForceHorizontalXAxis(1);
   $percentile->setColors([$colors->[0]]);
   $percentile->setSampleLabels($sampleNames);
   $self->setGraphObjects($stackedCoverage, $percentile);
