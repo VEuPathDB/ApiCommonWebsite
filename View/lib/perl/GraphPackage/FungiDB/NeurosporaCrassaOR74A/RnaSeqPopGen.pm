@@ -14,6 +14,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
+  $self->setPlotWidth(800);
 
   my $colors =['#29ACF2', '#DDDDDD'];
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
@@ -26,14 +27,14 @@ sub init {
   $stackedCoverage->setColors($colors);
 #  $stackedCoverage->setForceHorizontalXAxis(1);
   $stackedCoverage->setSampleLabels($sampleNames);
-  $stackedCoverage->setBottomMarginSize(5);                                  
-                   
+  $stackedCoverage->setBottomMarginSize(5);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
   $percentile->setProfileSetNames(['percentile - N Crassa population genomics']);
 #  $percentile->setForceHorizontalXAxis(1);
   $percentile->setColors([$colors->[0]]);
   $percentile->setSampleLabels($sampleNames);
+  $percentile->setBottomMarginSize(5);
   $self->setGraphObjects($stackedCoverage, $percentile);
   return $self;
 }
