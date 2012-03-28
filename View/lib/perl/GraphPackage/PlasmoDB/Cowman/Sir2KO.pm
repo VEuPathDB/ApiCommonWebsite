@@ -32,7 +32,7 @@ sub init {
               r_adjust_profile => 'profile = rbind(profile[1,1:3], profile[1,4:6], profile[1,7:9]);',
               legend => ['Wild Type', 'sir2A KO', 'sir2B KO'],
              },
-      pct => {profiles => ['Percentiles of of E-TABM-438 from Cowman'],
+      pct => {profiles => ['percentile - Profiles of E-TABM-438 from Cowman'],
               y_axis_label => 'percentile',
               x_axis_labels => $xAxisLabels,
               colors => $colors,

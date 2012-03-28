@@ -20,7 +20,7 @@ sub init {
   my $colors =['#000080'];
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['Profiles of P.falciparum Newbold mRNA Seq data'],
+    ({coverage => {profiles => ['P. falciparum Newbold mRNA Seq data'],
                    y_axis_label => 'Normalized Coverage (log2)',
                    x_axis_label => 'Hours',
                    default_y_max => 15,
@@ -28,7 +28,7 @@ sub init {
                    r_adjust_profile => 'profile[profile < 1] = 1; profile = log2(profile); ',
                    colors => $colors,
                   },
-      pct => {profiles => ['Percents of P. falciparum Newbold mRNA Seq data'],
+      pct => {profiles => ['percentile - P. falciparum Newbold mRNA Seq data'],
               y_axis_label => 'Percentile',
               x_axis_label => 'Hours',
               default_y_max => 50,
