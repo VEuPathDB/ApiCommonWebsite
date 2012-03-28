@@ -23,7 +23,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
   $self->setProfileSetsHash
-    ({rma => {profiles => ['Profiles of E-GEOD-10022 array from Su'],
+    ({rma => {profiles => ['E-GEOD-10022 array from Su'],
               y_axis_label => 'RMA Value (log2)',
               x_axis_labels => ['106/1', '106/1(76I)', '106/1(76I_352K)'],
               colors => $colors,
@@ -31,7 +31,7 @@ sub init {
               force_x_axis_label_horizontal => 1, 
              legend => [],
              },
-      pct => {profiles => ['Percentiles of E-GEOD-10022 array from Su'],
+      pct => {profiles => ['percentile - E-GEOD-10022 array from Su'],
               y_axis_label => 'percentile',
               x_axis_labels => ['106/1', '106/1(76I)', '106/1(76I_352K)'],
               colors => $colors,

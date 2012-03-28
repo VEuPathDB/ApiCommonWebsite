@@ -21,14 +21,14 @@ sub init {
   $self->setMainLegend({colors => ['#E9967A', '#66CDAA', '#8B4513'], short_names => $legend, cols => 3});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['Profiles of P.falciparum duffy mRNA Seq data'],
+    ({coverage => {profiles => ['P.falciparum duffy mRNA Seq data'],
                    y_axis_label => 'Normalized Coverage (log2)',
                    colors => $colors,
                    force_x_axis_label_horizontal => 1,
                    r_adjust_profile => 'profile[profile < 1] = 1; profile = log2(profile); ',
                    x_axis_labels => $legend,
                   },
-      pct => {profiles => ['Percents of P. falciparum duffy mRNA Seq data'],
+      pct => {profiles => ['percentile - P.falciparum duffy mRNA Seq data'],
               y_axis_label => 'Percentile',
               default_y_max => 100,
               colors => $colors,

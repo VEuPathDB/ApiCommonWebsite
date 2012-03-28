@@ -26,8 +26,8 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['Profiles of P.falciparum Stunnenberg mRNA Seq data',
-                                'Scaled Profiles of P.falciparum Stunnenberg mRNA Seq data',
+    ({coverage => {profiles => ['missing',
+                                'Scaled missing',
                                ],
                    y_axis_label => 'Normalized Coverage (log2)',
                    x_axis_label => 'Hours Post Infection',
