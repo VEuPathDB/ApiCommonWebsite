@@ -118,7 +118,7 @@ public class GetDataSourceAction extends Action {
             RecordBean record = records.next();
             Map<String, AttributeValue> attributeValues = record
                     .getAttributes();
-            String category = attributeValues.get("categories").toString();
+            String category = attributeValues.get("category").toString();
             List<RecordBean> list = categories.get(category);
             if (list == null) {
                 list = new ArrayList<RecordBean>();
