@@ -68,8 +68,8 @@ sub makeRPlotString {
     my $suffix = $part . $i;
     my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
 
+
     if($profileFile && $elementNamesFile) {
- 
       push(@profileFiles, $profileFile);
       push(@elementNamesFiles, $elementNamesFile);
 
@@ -86,7 +86,7 @@ sub makeRPlotString {
       $i++;
     }
   }
-  next unless(scalar @profileFiles > 0);
+  die "No Profile Files" unless(scalar @profileFiles > 0);
   my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
   my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
   my $stdevString ='';
