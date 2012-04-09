@@ -47,6 +47,10 @@ sub setDefaultYMax               { $_[0]->{'_default_y_max'                 } = 
 sub getDefaultYMin               { $_[0]->{'_default_y_min'                 }}
 sub setDefaultYMin               { $_[0]->{'_default_y_min'                 } = $_[1]}
 
+sub getSampleLabels               { $_[0]->{'_sample_labels'                  }}
+sub setSampleLabels               { $_[0]->{'_sample_labels'                  } = $_[1]}
+
+
 sub getProfileSetDisplayNames    {
   my ($self) = @_;
   if ($self->{'_profile_set_display_names'}) {
@@ -121,6 +125,7 @@ sub init {
   # Default 
   $self->setProfileFiles([]);
   $self->setElementNameFiles([]);
+  $self->setSampleLabels([]);
   $self;
 }
 
