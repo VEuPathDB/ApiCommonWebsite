@@ -48,6 +48,8 @@ sub new {
    $self->SUPER::init;
    $self->setXaxisLabel("Whoops! Object forgot to call setXaxisLabel");
    $self->setPointsPch([15]);
+   $self->setDefaultYMax(2);
+   $self->setDefaultYMin(-2);
    return $self;
 }
 
@@ -62,12 +64,16 @@ sub makeRPlotString {
   my $i = 0;
   my ($pf, $enf);
   # each part can have several profile sets
+
+
+  my $profileSampleLabels = $self->getSampleLabels();
+
+
   my $profiles = $self->getProfileSetNames;
   foreach my $profileSetName (@$profiles) {
 
     my $suffix = $part . $i;
-    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
-
+    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $profileSampleLabels->[$i])};
 
     if($profileFile && $elementNamesFile) {
       push(@profileFiles, $profileFile);
@@ -81,7 +87,7 @@ sub makeRPlotString {
   if (scalar $stDevProfiles> 0) {
     foreach my  $profileSetName (@$stDevProfiles) {
       my $suffix = $part . $i;
-      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
+      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $profileSampleLabels->[$i])};
       push(@stdevFiles, $stdevFile);
       $i++;
     }
