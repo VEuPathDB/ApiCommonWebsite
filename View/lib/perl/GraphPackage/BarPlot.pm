@@ -16,9 +16,6 @@ sub setIsStacked               { $_[0]->{'_stack_bars'                     } = $
 sub getForceHorizontalXAxis      { $_[0]->{'_force_x_horizontal'             }}
 sub setForceHorizontalXAxis      { $_[0]->{'_force_x_horizontal'             } = $_[1]}
 
-sub getSampleLabels               { $_[0]->{'_sample_labels'                  }}
-sub setSampleLabels               { $_[0]->{'_sample_labels'                  } = $_[1]}
-
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -39,10 +36,18 @@ sub makeRPlotString {
   my ($pf, $enf);
   # each part can have several profile sets
   my $profiles = $self->getProfileSetNames;
+
+  my $profileSampleLabels = $self->getSampleLabels();
+
   foreach my $profileSetName (@$profiles) {
 
+    my $sampleLabels = $profileSampleLabels->[$i];
+    unless(ref($sampleLabels) eq 'ARRAY') {
+      $sampleLabels = $profileSampleLabels;
+    }
+
     my $suffix = $part . $i;
-    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
+    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $sampleLabels)};
 
     if($profileFile && $elementNamesFile) {
 
@@ -56,8 +61,14 @@ sub makeRPlotString {
   my $stDevProfiles = $self->getStDevProfileSetNames;
   if (scalar $stDevProfiles> 0) {
     foreach my  $profileSetName (@$stDevProfiles) {
+
+      my $sampleLabels = $profileSampleLabels->[$i];
+      unless(ref($sampleLabels) eq 'ARRAY') {
+        $sampleLabels = $profileSampleLabels;
+      }
+
       my $suffix = $part . $i;
-      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
+      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $sampleLabels)};
       push(@stdevFiles, $stdevFile);
       $i++;
     }
@@ -74,10 +85,6 @@ sub makeRPlotString {
 
   my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
 
-  my $rSampleLabelsString;
-  if(my $sampleLabels = $self->getSampleLabels()) {
-    $rSampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'element.names');
-  }
 
 #  TODO: Determine if this is a property of the PlotSet or the PlotPart. May need to set from MixedPlotSet
 #  my $legend = $profileSetsHash->{$part}->{legend};
@@ -85,7 +92,7 @@ sub makeRPlotString {
 
 
   
-  my $rCode = $self->rString($profileFilesString, $elementNamesString, $stdevString, $rColorsString,  $rSampleLabelsString);
+  my $rCode = $self->rString($profileFilesString, $elementNamesString, $stdevString, $rColorsString);
 
   return $rCode;
 }
@@ -93,7 +100,7 @@ sub makeRPlotString {
 #--------------------------------------------------------------------------------
 
 sub rString {
-  my ($self, $profileFiles, $elementNamesFiles, $stdevFiles, $colorsString, $sampleNames ) = @_;
+  my ($self, $profileFiles, $elementNamesFiles, $stdevFiles, $colorsString ) = @_;
 
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
@@ -108,7 +115,6 @@ sub rString {
   my $yAxisFoldInductionFromM = $self->getMakeYAxisFoldInduction();
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
-  $sampleNames = $sampleNames ? $sampleNames : "";
 
   $horizontalXAxisLabels = defined($horizontalXAxisLabels) ? 'TRUE' : 'FALSE';
 
@@ -163,8 +169,6 @@ par(mar       = c($bottomMargin,4,2,4), xpd=FALSE, oma=c(1,1,1,1));
 
 # Allow Subclass to fiddle with the data structure and x axis names
 $rAdjustProfile
-$sampleNames
-
 
 if($beside) {
   d.max = max(1.1 * profile, 1.1 * (profile + stdev), y.max, na.rm=TRUE);
