@@ -146,8 +146,9 @@ sub makeR {
       my $_mS = ApiCommonWebsite::View::MultiScreen->new
       ( Parts => [ { Name => 'LEGEND', Size => 40  },
                    { Name => 'rat',    Size => 240 },
-                   { Name => 'pct',    Size => 120 },
-                   { Name => 'abs',    Size => 120 },
+                   { Name => 'pct',    Size => 150 },
+                   { Name => 'logabs',    Size => 150 },
+                   { Name => 'abs',    Size => 150 },
                  ],
         VisibleParts  => $Self->getVisibleParts(),
         Thumbnail     => $thumb_b,
@@ -338,7 +339,6 @@ if ($isVis_b{rat} == 1) {
        cex       = 1.25,
        col       = colors.track1,
        bg        = colors.track1,
-       xlab      = "Life Stage",
        ylab      = "log2(Exp/Avg)",
        xaxt      = "n"
       );
@@ -390,7 +390,7 @@ if ($isVis_b{pct} == 1) {
 
 # do bar plot, try to get x-axis line.
 
-if ($isVis_b{abs} == 1) {
+if ($isVis_b{logabs} == 1) {
   screen(screens[screen.i]);
   screen.i <- screen.i + 1;
 
@@ -401,13 +401,33 @@ if ($isVis_b{abs} == 1) {
           names.arg = data.names,
           col       = colors,
           border    = colors,
-          xlab      = "Life Stage",
           ylab      = "Expression",
           axis.lty  = "solid",
           cex.axis  = 0.75
         );
   plasmodb.title("Expression levels (log2 absolute)");
 }
+
+if ($isVis_b{abs} == 1) {
+  screen(screens[screen.i]);
+  screen.i <- screen.i + 1;
+
+  plasmodb.par.last();
+  barplot( 2^data.exp,
+          beside    = 1,
+          space     = c(0.1, 1),
+          names.arg = data.names,
+          col       = colors,
+          border    = colors,
+          xlab      = "Life Stage",
+          ylab      = "Expression",
+          axis.lty  = "solid",
+          cex.axis  = 0.75
+        );
+  plasmodb.title("Expression levels (absolute)");
+}
+
+
 
 # --------------------------------- Done ---------------------------------
 
