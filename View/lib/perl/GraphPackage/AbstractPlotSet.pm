@@ -354,7 +354,7 @@ sub writeProfileFiles {
 
 sub addToProfileDataMatrix {
   my ($self, $profileFiles, $elementNamesFiles, $profileSetNames) = @_;
-
+  return;
   my $allNames = $self->getAllNames();
   my $allValues = $self->getAllValues();
 
