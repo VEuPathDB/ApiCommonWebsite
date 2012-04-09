@@ -53,7 +53,12 @@ sub init {
 	 $Self->setSorbitolPercentileQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name         => 'sorbPct',
-			 ProfileSet   => 'winzeler_cc_sorbPct',
+			 ProfileSet   => 'percentile - winzeler_cc_sorbExp',
+
+
+
+
+
        #ElementOrder => \@sorb_times,
 		 )
 	 );
@@ -75,7 +80,7 @@ sub init {
 	 $Self->setTemperaturePercentileQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name         => 'tempPct',
-			 ProfileSet   => 'winzeler_cc_tempPct',
+			 ProfileSet   => 'percentile - winzeler_cc_tempExp',
        #ElementOrder => \@temp_times,
 		 )
 	 );
@@ -96,7 +101,7 @@ sub init {
 	 $Self->setSporozoitePercentileQuery
 	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
 		 ( Name       => 'sporPct',
-			 ProfileSet => 'winzeler_cc_sporPct',
+			 ProfileSet => 'percentile - winzeler_cc_sporExp',
 		 )
 	 );
 	 #$Self->setSporozoiteLogPQuery
