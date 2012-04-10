@@ -432,6 +432,70 @@ plasmodb.title(\"$plotTitle\");
 
 1;
 
+#--------------------------------------------------------------------------------
 
+package ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
 
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
 
+   $self->setPartName('percentile');
+   $self->setYaxisLabel('Percentile');
+   $self->setDefaultYMax(50);
+   $self->setDefaultYMin(0);
+
+   $self->setIsLogged(0);
+
+   return $self;
+}
+1;
+
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
+
+   $self->setDefaultYMax(2);
+   $self->setDefaultYMin(-2);
+
+   $self->setPartName('exprn_val');
+   $self->setYaxisLabel("Expression Values");
+
+   $self->setMakeYAxisFoldInduction(1);
+   $self->setIsLogged(1);
+
+   return $self;
+}
+
+1;
+
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::LinePlot::RMA;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
+
+   $self->setDefaultYMax(4);
+   $self->setDefaultYMin(0);
+
+   $self->setPartName('rma');
+   $self->setYaxisLabel("RMA Value (log2)");
+
+   $self->setIsLogged(1);
+
+   return $self;
+}
+
+1;

@@ -20,8 +20,10 @@ sub setPartName                  { $_[0]->{'_part_name'                     } = 
 sub getProfileSetNames           { $_[0]->{'_profile_set_names'             }}
 sub setProfileSetNames           { $_[0]->{'_profile_set_names'             } = $_[1]}
 
-sub getStDevProfileSetNames      { $_[0]->{'_std_dev_profile_set_names'      } || []}
-sub setStDevProfileSetNames      { $_[0]->{'_std_dev_profile_set_names'      } = $_[1] }
+sub getStDevProfileSetNames      { $_[0]->{'_std_err_profile_set_names'      } || []}
+sub getStErrProfileSetNames      { $_[0]->{'_std_err_profile_set_names'      } || []}
+sub setStDevProfileSetNames      { $_[0]->{'_std_err_profile_set_names'      } = $_[1] }
+sub setStErrProfileSetNames      { $_[0]->{'_std_err_profile_set_names'      } = $_[1] }
 
 sub getYaxisLabel                { $_[0]->{'_y_axis_label'                  }}
 sub setYaxisLabel                { $_[0]->{'_y_axis_label'                  } = $_[1]}
