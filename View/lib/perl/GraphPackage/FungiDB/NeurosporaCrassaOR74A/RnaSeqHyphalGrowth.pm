@@ -5,8 +5,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
-use ApiCommonWebsite::View::GraphPackage::PercentilePlot;
-use ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
@@ -18,7 +17,7 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
-  my $stackedCoverage = ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot->new();
+  my $stackedCoverage = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new();
   $stackedCoverage->setProfileSetNames(['NcraOR74A Hyphal Growth RNASeq', 
                                         'NcraOR74A Hyphal Growth RNASeq - diff'
                                         ]);
@@ -28,7 +27,7 @@ sub init {
                                      '5 HR', 
                                      '20 HR']);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
   $percentile->setProfileSetNames(['percentile - NcraOR74A Hyphal Growth RNASeq']);
   $percentile->setForceHorizontalXAxis(1);
   $percentile->setColors([$colors->[0]]);

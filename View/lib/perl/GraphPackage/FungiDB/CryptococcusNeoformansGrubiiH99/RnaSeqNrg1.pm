@@ -6,8 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
-use ApiCommonWebsite::View::GraphPackage::PercentilePlot;
-use ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
@@ -19,7 +18,7 @@ sub init {
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
-  my $stackedCoverage = ApiCommonWebsite::View::GraphPackage::RNASeqStackedBarPlot->new();
+  my $stackedCoverage = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new();
   $stackedCoverage->setProfileSetNames(['C.neoformans NRG1 Expression', 
                                         'C.neoformans NRG1 Expression-diff']);
   $stackedCoverage->setColors($colors);
@@ -28,7 +27,7 @@ sub init {
                                      'nrg1 KO',
                                      'nrg1 Over-expression']);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
   $percentile->setProfileSetNames(['percentile - C.neoformans NRG1 Expression']);
   $percentile->setForceHorizontalXAxis(1);
   $percentile->setColors([$colors->[0]]);
