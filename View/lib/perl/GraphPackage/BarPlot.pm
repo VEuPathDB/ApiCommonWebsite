@@ -47,10 +47,9 @@ sub makeRPlotString {
     }
 
     my $suffix = $part . $i;
-    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $sampleLabels)};
+    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
 
     if($profileFile && $elementNamesFile) {
-
       push(@profileFiles, $profileFile);
       push(@elementNamesFiles, $elementNamesFile);
 
@@ -68,12 +67,12 @@ sub makeRPlotString {
       }
 
       my $suffix = $part . $i;
-      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $sampleLabels)};
+      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
       push(@stdevFiles, $stdevFile);
       $i++;
     }
   }
-  next unless(scalar @profileFiles > 0);
+  die "no profile files" unless(scalar @profileFiles > 0);
   my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
   my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
   my $stdevString ='';
@@ -141,8 +140,10 @@ screen.i <- screen.i + 1;
 profile = vector();
 for(i in 1:length(profile.files)) {
   tmp = read.table(profile.files[i], header=T, sep=\"\\t\");
-  tmp = aggregate(tmp, list(tmp\$ELEMENT_ORDER), mean, na.rm=T)
 
+  if(!is.null(tmp\$ELEMENT_ORDER)) {
+    tmp = aggregate(tmp, list(tmp\$ELEMENT_ORDER), mean, na.rm=T)
+  }
   profile = rbind(profile, tmp\$VALUE);
 }
 
@@ -156,6 +157,10 @@ stdev = vector();
  if(!is.null(stdev.files)) {
    for(i in 1:length(stdev.files)) {
      tmp = read.table(stdev.files[i], header=T, sep=\"\\t\");
+
+     if(!is.null(tmp\$ELEMENT_ORDER)) {
+        tmp = aggregate(tmp, list(tmp\$ELEMENT_ORDER), mean, na.rm=T)
+      }
      stdev = rbind(stdev, tmp\$VALUE);
    }
  }
@@ -252,6 +257,86 @@ plasmodb.title(\"$plotTitle\");
 
 1;
 
+package ApiCommonWebsite::View::GraphPackage::BarPlot::RMA;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
 
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
+
+   $self->setDefaultYMax(4);
+   $self->setDefaultYMin(0);
+
+   $self->setPartName('rma');
+   $self->setYaxisLabel("RMA Value (log2)");
+
+   $self->setIsLogged(1);
+   return $self;
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
+   $self->setPartName('percentile');
+   $self->setYaxisLabel('Percentile');
+   $self->setDefaultYMax(50);
+   $self->setDefaultYMin(0);
+   $self->setIsLogged(0);
+   return $self;
+}
+1;
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
+
+   $self->setPartName('coverage');
+   $self->setYaxisLabel('Normalized Coverage (log2)');
+   $self->setIsStacked(1);
+   $self->setIsLogged(1);
+   $self->setDefaultYMin(0);
+   $self->setDefaultYMax(4);
+   $self->setAdjustProfile('profile=profile + 1; profile = log2(profile);');
+
+   return $self;
+}
+
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+   my ($class, $args) = @_;
+   my $self = $class->SUPER::new($args);
+
+   $self->setDefaultYMax(2);
+   $self->setDefaultYMin(-2);
+
+   $self->setPartName('exprn_val');
+   $self->setYaxisLabel("Expression Values");
+
+   $self->setMakeYAxisFoldInduction(1);
+   $self->setIsLogged(1);
+
+   return $self;
+}
+
+1;
+
+
+1;
 
 

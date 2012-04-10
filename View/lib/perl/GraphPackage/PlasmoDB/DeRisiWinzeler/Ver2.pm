@@ -10,8 +10,6 @@ use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
 
-use Data::Dumper;
-
 sub init {
   my $self = shift;
 
@@ -21,20 +19,18 @@ sub init {
   my @legend = ('HB3', '3D7', 'DD2', '3D7 Sorbitol', '3D7 Temperature');
 
   $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 3});
-
   $self->setPlotWidth(450);
 
-  my $derisi = ApiCommonWebsite::View::GraphPackage::LinePlot->new();
+  my $derisi = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
   $derisi->setProfileSetNames(['DeRisi HB3 Smoothed',
                                'DeRisi 3D7 Smoothed',
                                'DeRisi Dd2 Smoothed']);
   $derisi->setColors([@colors[0..2]]);
-  $derisi->setPartName('derisi');
+  $derisi->setPlotTitle('DeRisi - log ratios');
   $derisi->setPointsPch([15,15,15]);
-  $derisi->setPlotTitle("DeRisi - log ratios");
-  $derisi->setYaxisLabel("lg(Cy5/Cy3)");
+  $derisi->setPartName('derisi');
 
-  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot->new();
+  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
   $winzeler->setProfileSetNames(['winzeler_cc_sorbExp',
                                  'winzeler_cc_tempExp'
                               ]);
@@ -48,10 +44,9 @@ sub init {
   $winzeler->setPartName('winzeler');
   $winzeler->setPointsPch([15,15]);
   $winzeler->setPlotTitle("Winzeler - log ratios");
-  $winzeler->setYaxisLabel("lg(Exp/Avg)");
   $winzeler->setAdjustProfile('profile = profile - mean(profile[profile > 0])');
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new();
   $percentile->setProfileSetNames(['red percentile - DeRisi HB3 Smoothed',
                                    'red percentile - DeRisi 3D7 Smoothed',
                                    'red percentile - DeRisi Dd2 Smoothed',
@@ -60,11 +55,9 @@ sub init {
                                   ]);
 
   $percentile->setSampleLabels([undef,undef,undef,\@sorb_times, \@temp_times]);
-  $percentile->setPartName('percentile');
   $percentile->setColors(\@colors);
   $percentile->setPlotTitle('Combined Expression Percentiles');
   $percentile->setPointsPch(['NA','NA','NA','NA','NA']);
-  $percentile->setYaxisLabel("%");
 
   $self->setGraphObjects($derisi, $winzeler, $percentile);
 
