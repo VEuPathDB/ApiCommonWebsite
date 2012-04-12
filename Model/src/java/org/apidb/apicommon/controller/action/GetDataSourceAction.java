@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -42,6 +43,8 @@ public class GetDataSourceAction extends Action {
     private static final String FORWARD_XML_DETAIL = "show_xml_detail";
     private static final String FORWARD_LIST = "show_list";
     private static final String FORWARD_DETAIL = "show_detail";
+
+    private static final Logger logger = Logger.getLogger(GetDataSourceAction.class);
 
     public static boolean hasXmlDataSource(WdkModelBean wdkModel) {
         XmlQuestionSetBean questionSet = wdkModel.getXmlQuestionSetsMap().get(
