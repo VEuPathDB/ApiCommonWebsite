@@ -70,8 +70,8 @@ sub setScreenSize                { $_[0]->{'_screen_size'                 } = $_
 sub getGraphDefaultValue         { $_[0]->{'_graph_default_value'         }}
 sub setGraphDefaultValue         { $_[0]->{'_graph_default_value'         } = $_[1]}
 
-sub getBottomMarginSize          { $_[0]->{'_bottom_margin_size'          }}
-sub setBottomMarginSize          { $_[0]->{'_bottom_margin_size'          } = $_[1]}
+sub getElementNameMarginSize          { $_[0]->{'_element_name_margin_size'          }}
+sub setElementNameMarginSize          { $_[0]->{'_element_name_margin_size'          } = $_[1]}
 
 sub getProfileFiles              { $_[0]->{'_profile_files'               }}
 sub setProfileFiles              { $_[0]->{'_profile_files'               } = $_[1]}
@@ -110,7 +110,7 @@ sub new {
 
    #Setting Defaults
    $self->setScreenSize(250);
-   $self->setBottomMarginSize(3);
+   $self->setElementNameMarginSize(3);
    $self->setYaxisLabel('Please Fill in Y-Axis Label');
 #   $self->setIsLogged(0);
    $self->setDefaultYMax(10);
