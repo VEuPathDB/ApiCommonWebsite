@@ -84,9 +84,11 @@ sub makeRPlotString {
   }
 
   my $stDevProfiles = $self->getStDevProfileSetNames;
+
+  $i = 0;
   if (scalar $stDevProfiles> 0) {
     foreach my  $profileSetName (@$stDevProfiles) {
-      my $suffix = $part . $i;
+      my $suffix = $part . "stderr" . $i;
       my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $profileSampleLabels->[$i])};
       push(@stdevFiles, $stdevFile);
       $i++;
@@ -209,9 +211,6 @@ for(i in 1:length(profile.files)) {
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
-# allow minor adjustments to profile
-$rAdjustProfile
-
   element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
    is.numeric.element.names = !is.na(element.names.numeric);
 
@@ -244,6 +243,9 @@ $rAdjustProfile
     }
   }
 }
+
+# allow minor adjustments to profile
+$rAdjustProfile
 
 isTimeSeries = FALSE;
 
