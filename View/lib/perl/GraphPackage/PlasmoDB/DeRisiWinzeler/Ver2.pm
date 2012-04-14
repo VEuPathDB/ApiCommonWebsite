@@ -9,6 +9,7 @@ use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -21,45 +22,48 @@ sub init {
   $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 3});
   $self->setPlotWidth(450);
 
-  my $derisi = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
-  $derisi->setProfileSetNames(['DeRisi HB3 Smoothed',
-                               'DeRisi 3D7 Smoothed',
-                               'DeRisi Dd2 Smoothed']);
-  $derisi->setColors([@colors[0..2]]);
-  $derisi->setPlotTitle('DeRisi - log ratios');
-  $derisi->setPointsPch([15,15,15]);
-  $derisi->setPartName('derisi');
+#   my $derisi = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
+#   $derisi->setProfileSetNames(['DeRisi HB3 Smoothed',
+#                                'DeRisi 3D7 Smoothed',
+#                                'DeRisi Dd2 Smoothed']);
+#   $derisi->setColors([@colors[0..2]]);
+#   $derisi->setPlotTitle('DeRisi - log ratios');
+#   $derisi->setPointsPch([15,15,15]);
+#   $derisi->setPartName('derisi');
 
-  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
-  $winzeler->setProfileSetNames(['winzeler_cc_sorbExp',
-                                 'winzeler_cc_tempExp'
-                              ]);
+
 
   my @temp_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
   my @sorb_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
 
-  $winzeler->setSampleLabels([\@sorb_times, \@temp_times]);
+  my @winzelerProfileArray = (['winzeler_cc_sorbExp','', \@sorb_times],
+                              ['winzeler_cc_tempExp', '', \@temp_times]
+                             );
 
+  my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
+
+  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
+  $winzeler->setProfileSets($winzelerProfileSets);
   $winzeler->setColors([@colors[3..4]]);
   $winzeler->setPartName('winzeler');
   $winzeler->setPointsPch([15,15]);
   $winzeler->setPlotTitle("Winzeler - log ratios");
-  $winzeler->setAdjustProfile('profile = profile - mean(profile[profile > 0])');
+  $winzeler->setAdjustProfile('lines.df = lines.df - mean(lines.df[lines.df > 0], na.rm=T)');
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new();
-  $percentile->setProfileSetNames(['red percentile - DeRisi HB3 Smoothed',
-                                   'red percentile - DeRisi 3D7 Smoothed',
-                                   'red percentile - DeRisi Dd2 Smoothed',
-                                   'percentile - winzeler_cc_sorbExp',
-                                   'percentile - winzeler_cc_tempExp'
-                                  ]);
+#   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new();
+#   $percentile->setProfileSetNames(['red percentile - DeRisi HB3 Smoothed',
+#                                    'red percentile - DeRisi 3D7 Smoothed',
+#                                    'red percentile - DeRisi Dd2 Smoothed',
+#                                    'percentile - winzeler_cc_sorbExp',
+#                                    'percentile - winzeler_cc_tempExp'
+#                                   ]);
 
-  $percentile->setSampleLabels([undef,undef,undef,\@sorb_times, \@temp_times]);
-  $percentile->setColors(\@colors);
-  $percentile->setPlotTitle('Combined Expression Percentiles');
-  $percentile->setPointsPch(['NA','NA','NA','NA','NA']);
+#   $percentile->setSampleLabels([undef,undef,undef,\@sorb_times, \@temp_times]);
+#   $percentile->setColors(\@colors);
+#   $percentile->setPlotTitle('Combined Expression Percentiles');
+#   $percentile->setPointsPch(['NA','NA','NA','NA','NA']);
 
-  $self->setGraphObjects($derisi, $winzeler, $percentile);
+  $self->setGraphObjects($winzeler);
 
   return $self;
 }

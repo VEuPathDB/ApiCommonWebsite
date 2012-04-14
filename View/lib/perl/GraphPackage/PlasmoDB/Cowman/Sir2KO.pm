@@ -20,16 +20,30 @@ sub init {
 
   my $radjust = "colnames(profile.df) = rep(c(\"ring\", \"trophozoite\", \"schizont\"), 3);profile.df = rbind(profile.df[1,1:3], profile.df[1,4:6], profile.df[1,7:9]);";
 
+  my $wildTypeSamples = ['ring','trophozoite','schizont','','','','','',''];
+  my $sir2ASamples = ['','','','ring','trophozoite','schizont','','',''];
+  my $sir2BSamples = ['','','', '','','', 'ring','trophozoite','schizont'];
+
+  my @profileArray = (['Profiles of E-TABM-438 from Cowman', 'standard error - Profiles of E-TABM-438 from Cowman', $wildTypeSamples ],
+                      ['Profiles of E-TABM-438 from Cowman', 'standard error - Profiles of E-TABM-438 from Cowman', $sir2ASamples ],
+                      ['Profiles of E-TABM-438 from Cowman', 'standard error - Profiles of E-TABM-438 from Cowman', $sir2BSamples ],
+                     );
+
+  my @percentileArray = (['percentile - Profiles of E-TABM-438 from Cowman', '', $wildTypeSamples],
+                         ['percentile - Profiles of E-TABM-438 from Cowman', '', $sir2ASamples],
+                         ['percentile - Profiles of E-TABM-438 from Cowman', '', $sir2BSamples],
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new();
-  $rma->setProfileSetNames(['Profiles of E-TABM-438 from Cowman']);
-  $rma->setStErrProfileSetNames(['standard error - Profiles of E-TABM-438 from Cowman']);
-  $rma->setAdjustProfile($radjust . "colnames(stdev.df) = rep(c(\"ring\", \"trophozoite\", \"schizont\"), 3);stdev.df = rbind(stdev.df[1,1:3], stdev.df[1,4:6], stdev.df[1,7:9]);");
+  $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
-  $percentile->setProfileSetNames(['percentile - Profiles of E-TABM-438 from Cowman']);
-  $percentile->setAdjustProfile($radjust);
+  $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
 

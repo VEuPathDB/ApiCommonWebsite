@@ -8,7 +8,7 @@ use vars qw( @ISA );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -22,22 +22,27 @@ sub init {
 
   $self->setPlotWidth(450);
 
-  my $absolute = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new();
-  $absolute->setProfileSetNames([' winzeler_3D7_gametocyte',
-                                 ' winzeler_3D7_MAC',
-                                 ' winzeler_NF54_gametocyte'
-                                 ]);
+  my @profileArray = ([' winzeler_3D7_gametocyte'],
+                      [' winzeler_3D7_MAC'],
+                      [' winzeler_NF54_gametocyte'],
+                     );
 
+  my @percentileArray = (['percentile -  winzeler_3D7_gametocyte'],
+                         ['percentile -  winzeler_3D7_MAC'],
+                         ['percentile -  winzeler_NF54_gametocyte']
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
+  my $absolute = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new();
+  $absolute->setProfileSets($profileSets);
   $absolute->setColors(\@colors);
   $absolute->setPointsPch([19,19,19]);
-  $absolute->setPlotTitle("Expression Levels (log2 Absolute)");
+  $absolute->setPlotTitle("Expression Levels");
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new();
-  $percentile->setProfileSetNames(['percentile -  winzeler_3D7_gametocyte',
-                                 'percentile -  winzeler_3D7_MAC',
-                                 'percentile -  winzeler_NF54_gametocyte'
-                                 ]);
-
+  $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@colors);
   $percentile->setPointsPch([19,19,19]);
   $percentile->setPlotTitle("Expression Levels (Percentiled)");

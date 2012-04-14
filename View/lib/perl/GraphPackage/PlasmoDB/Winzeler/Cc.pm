@@ -1,121 +1,91 @@
-
 package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Cc;
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler );
 
-=pod
-
-=head1 Summary
-
-=cut
-
-# ========================================================================
-# ----------------------------- Declarations -----------------------------
-# ========================================================================
+use vars qw( @ISA );
 
 use strict;
 
-use ApiCommonWebsite::View::GraphPackage;
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler;
-#use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
-
-
-# ========================================================================
-# ----------------------- Create, Init, and Access -----------------------
-# ========================================================================
-
-# --------------------------------- init ---------------------------------
+use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
 
 sub init {
-   my $Self = shift;
+  my $self = shift;
 
-   $Self->SUPER::init(@_);
+  $self->SUPER::init(@_);
 
-   #my @temp_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
-   #my @sorb_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
+  my @colors = ('cyan', 'purple', 'brown' );
+  my $legend = ['sorbitol', 'temperature', 'sporozoite'];
 
-	 $Self->setShortNamesQuery
-	 ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-		 ( Name => 'shortNames',
-			 ProfileSet => 'x',
-		 ),
-	 );
-	 $Self->setSorbitolExpressionQuery
-	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		 ( Name         => 'sorbExp',
-			 ProfileSet   => 'winzeler_cc_sorbExp',
-       Floor        => 1/1000,
-       #ElementOrder => \@sorb_times,
-		 )
-	 );
-	 $Self->setSorbitolPercentileQuery
-	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		 ( Name         => 'sorbPct',
-			 ProfileSet   => 'percentile - winzeler_cc_sorbExp',
+  $self->setMainLegend({colors => \@colors, short_names => $legend, cols => 4});
 
 
+  my @temp_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
+  my @sorb_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
+
+  my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
+
+  # Want line graph for ER-LS so the element names must be numeric when they are read in
+  my @tempNames = (2..7, "M");
+  my @sorbNames = (2..7, "M", "G");
+
+  my @winzelerProfileArray = (['winzeler_cc_sorbExp','', \@sorbNames],
+                              ['winzeler_cc_tempExp', '', \@tempNames],
+                              ['winzeler_cc_sporExp', 'standard error - winzeler_cc_sporExp', [1]]
+                             );
+
+  my @winzelerPercentileArray = (['percentile - winzeler_cc_sorbExp'],
+                                 ['percentile - winzeler_cc_tempExp'],
+                                 ['percentile - winzeler_cc_sporExp']
+                                );
+
+  my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
+  my $winzelerPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerPercentileArray);
+
+  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
+  $winzeler->setProfileSets($winzelerProfileSets);
+  $winzeler->setColors(\@colors);
+  $winzeler->setPartName('winzeler');
+  $winzeler->setPointsPch([15,15,15]);
+  $winzeler->setPlotTitle("Induction/Repression");
+  $winzeler->setAdjustProfile('points.df = points.df - mean(points.df[points.df > 0], na.rm=T);lines.df = lines.df - mean(lines.df[lines.df > 0], na.rm=T)');
+  $winzeler->setArePointsLast(1);
+  $winzeler->setSampleLabels(\@winzelerNames);
 
 
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new();
+  $rma->setProfileSets($winzelerProfileSets);
+  $rma->setColors(\@colors);
+  $rma->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
+  $rma->setSampleLabels(\@winzelerNames);
+  $rma->setPlotTitle("Expression Levels");
+  $rma->setSpaceBetweenBars(1);
 
-       #ElementOrder => \@sorb_times,
-		 )
-	 );
-	 #$Self->setSorbitolLogPQuery
-	 #( ApiCommonWebsite::Model::CannedQuery::Profile->new
-	#	 ( Name         => 'sorbLgp',
-	#		 ProfileSet   => 'winzeler_cc_sorbLgp',
-       #ElementOrder => \@sorb_times,
-	#	 )
-	# );
-	 $Self->setTemperatureExpressionQuery
-	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		 ( Name       => 'tempExp',
-			 ProfileSet => 'winzeler_cc_tempExp',
-       Floor      => 1/1000,
-       #ElementOrder => \@temp_times,
-		 )
-	 );
-	 $Self->setTemperaturePercentileQuery
-	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		 ( Name         => 'tempPct',
-			 ProfileSet   => 'percentile - winzeler_cc_tempExp',
-       #ElementOrder => \@temp_times,
-		 )
-	 );
-	 #$Self->setTemperatureLogPQuery
-	 #( ApiCommonWebsite::Model::CannedQuery::Profile->new
-	#	 ( Name         => 'tempLgp',
-	#		 ProfileSet   => 'winzeler_cc_tempLgp',
-       #ElementOrder => \@temp_times,
-	#	 )
-	# );
-	 $Self->setSporozoiteExpressionQuery
-	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		 ( Name       => 'sporExp',
-			 ProfileSet => 'winzeler_cc_sporExp',
-       #Floor      => 1/1000,
-		 )
-	 );
-	 $Self->setSporozoitePercentileQuery
-	 ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-		 ( Name       => 'sporPct',
-			 ProfileSet => 'percentile - winzeler_cc_sporExp',
-		 )
-	 );
-	 #$Self->setSporozoiteLogPQuery
-	 #( ApiCommonWebsite::Model::CannedQuery::Profile->new
-	#	 ( Name       => 'sporLgp',
-	#		 ProfileSet => 'winzeler_cc_sporLgp',
-	#	 )
-	# );
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
+  $percentile->setProfileSets($winzelerPercentileSets);
+  $percentile->setColors(\@colors);
+  $percentile->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
+  $percentile->setSampleLabels(\@winzelerNames);
+  $percentile->setPlotTitle("Expression Levels (Percentiled)");
+  $percentile->setSpaceBetweenBars(1);
 
-   return $Self;
+  $self->setGraphObjects($winzeler, $rma, $percentile);
+
+  return $self;
+
+
 }
 
-# ========================================================================
-# ---------------------------- End of Package ----------------------------
-# ========================================================================
-
 1;
+
+
+
+
+
+
+
+
+
+

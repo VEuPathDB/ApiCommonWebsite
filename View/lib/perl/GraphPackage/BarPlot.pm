@@ -18,12 +18,21 @@ sub setForceHorizontalXAxis      { $_[0]->{'_force_x_horizontal'             } =
 sub getIsHorizontal              { $_[0]->{'_is_horizontal'                     }}
 sub setIsHorizontal              { $_[0]->{'_is_horizontal'                     } = $_[1]}
 
+sub getHighlightMissingValues    { $_[0]->{'_highlight_missing_values'                     }}
+sub setHighlightMissingValues    { $_[0]->{'_highlight_missing_values'                     } = $_[1]}
+
+sub getSpaceBetweenBars              { $_[0]->{'_space_between_bars'                     }}
+sub setSpaceBetweenBars              { $_[0]->{'_space_between_bars'                     } = $_[1]}
+
+
 #--------------------------------------------------------------------------------
 
 sub new {
    my ($class, $args) = @_;
    my $self = $class->SUPER::new($args);
    $self->SUPER::init;
+
+   $self->setSpaceBetweenBars(0.1);
    return $self;
 }
 
@@ -31,86 +40,15 @@ sub new {
 sub makeRPlotString {
   my ($self) = @_;
 
-  my $part = $self->getPartName();
-  
-  my (@profileFiles, @elementNamesFiles, @stdevFiles);
-  my $i = 0;
-  my ($pf, $enf);
-  # each part can have several profile sets
-  my $profiles = $self->getProfileSetNames;
-
-  my $profileSampleLabels = $self->getSampleLabels();
-
-  foreach my $profileSetName (@$profiles) {
-
-    my $sampleLabels = $profileSampleLabels->[$i];
-    unless(ref($sampleLabels) eq 'ARRAY') {
-      $sampleLabels = $profileSampleLabels;
-    }
-
-    my $suffix = $part . $i;
-    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
-
-    if($profileFile && $elementNamesFile) {
-      push(@profileFiles, $profileFile);
-      push(@elementNamesFiles, $elementNamesFile);
-
-    }
-
-    print STDERR "PF=$profileFile\n";
-    print STDERR "ENF=$elementNamesFile\n";
-
-    $i++;
-  }
+  my $sampleLabels = $self->getSampleLabels();
+  my $sampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'x.axis.label');
+  my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
 
-  my $stDevProfiles = $self->getStDevProfileSetNames;
-  $i = 0;
-  if (scalar $stDevProfiles> 0) {
-    foreach my  $profileSetName (@$stDevProfiles) {
-
-      my $sampleLabels = $profileSampleLabels->[$i];
-      unless(ref($sampleLabels) eq 'ARRAY') {
-        $sampleLabels = $profileSampleLabels;
-      }
-
-      my $suffix = $part . "stderr" . $i;
-      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix)};
-      push(@stdevFiles, $stdevFile);
-
-      print STDERR "STDEV=$stdevFile\n";
-      $i++;
-    }
-  }
-
-  die "no profile files" unless(scalar @profileFiles > 0);
-  my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
-  my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
-  my $stdevString ='';
-  if (scalar $stDevProfiles> 0) {
-    $stdevString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@stdevFiles, 'stdev.files');
-  }
+  my ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
 
   my $colors = $self->getColors();
-
-  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
-
-
-#  TODO: Determine if this is a property of the PlotSet or the PlotPart. May need to set from MixedPlotSet
-#  my $legend = $profileSetsHash->{$part}->{legend};
-#  my $rLegendString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legend, 'the.legend');
-
-
-  
-  my $rCode = $self->rString($profileFilesString, $elementNamesString, $stdevString, $rColorsString);
-
-  return $rCode;
-}
-
-#--------------------------------------------------------------------------------
-
-sub rString {
-  my ($self, $profileFiles, $elementNamesFiles, $stdevFiles, $colorsString ) = @_;
+  my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
 
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
@@ -124,26 +62,30 @@ sub rString {
 
   my $horizontalXAxisLabels = $self->getForceHorizontalXAxis();
   my $yAxisFoldInductionFromM = $self->getMakeYAxisFoldInduction();
+  my $highlightMissingValues = $self->getHighlightMissingValues();
+
+  $highlightMissingValues = $highlightMissingValues ? 'TRUE' : 'FALSE';
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
 
-  $horizontalXAxisLabels = defined($horizontalXAxisLabels) ? 'TRUE' : 'FALSE';
+  $horizontalXAxisLabels = $horizontalXAxisLabels ? 'TRUE' : 'FALSE';
 
-  $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
+  $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
   my $beside = $isStack ? 'FALSE' : 'TRUE';
   my $horiz = $isHorizontal ? 'TRUE' : 'FALSE';
 
   my $bottomMargin = $self->getElementNameMarginSize();
+  my $spaceBetweenBars = $self->getSpaceBetweenBars();
 
   my $rv = "
 # ---------------------------- BAR PLOT ----------------------------
 
 $profileFiles
 $elementNamesFiles
-$stdevFiles
+$stderrFiles
 $colorsString
-
+$sampleLabelsString
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -161,8 +103,8 @@ y.max = $yMax;
 profile.df = as.data.frame(matrix(nrow=length(profile.files)));
 profile.df\$V1 = NULL;
 
-stdev.df = as.data.frame(matrix(nrow=length(profile.files)));
-stdev.df\$V1 = NULL;
+stderr.df = as.data.frame(matrix(nrow=length(profile.files)));
+stderr.df\$V1 = NULL;
 
 
 for(i in 1:length(profile.files)) {
@@ -176,14 +118,18 @@ for(i in 1:length(profile.files)) {
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
-   if(!is.null(stdev.files)) {
-     stdev.tmp = read.table(stdev.files[i], header=T, sep=\"\\t\");
+   if(!stderr.files[i] == '') {
+     stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
-     if(!is.null(stdev.tmp\$ELEMENT_ORDER)) {
-       stdev.tmp = aggregate(stdev.tmp, list(stdev.tmp\$ELEMENT_ORDER), mean, na.rm=T)
+     if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
+       stderr.tmp = aggregate(stderr.tmp, list(stderr.tmp\$ELEMENT_ORDER), mean, na.rm=T)
      }
-    stdev = stdev.tmp\$VALUE;
+    stderr = stderr.tmp\$VALUE;
+   } else {
+     stderr = element.names;
+     stderr = NA;
    }
+
 
   for(j in 1:length(element.names)) {
     this.name = element.names[j];
@@ -195,13 +141,11 @@ for(i in 1:length(profile.files)) {
 
     profile.df[[this.name]][i] = profile[j];
 
-    if(!is.null(stdev.files)) {
-      if(is.null(.subset2(stdev.df, this.name, exact=TRUE))) {
-       stdev.df[[this.name]] = NA;
-      }
-
-      stdev.df[[this.name]][i] = stdev[j];
+    if(is.null(.subset2(stderr.df, this.name, exact=TRUE))) {
+     stderr.df[[this.name]] = NA;
     }
+
+    stderr.df[[this.name]][i] = stderr[j];
   }
 }
 
@@ -215,25 +159,24 @@ if($yAxisFoldInductionFromM) {
 }
 
 
-# stdev.df will either be the same dim as profile.df or 0
-if(length(stdev.df) == 0) {
-  stdev.df = 0;
+# stderr.df will either be the same dim as profile.df or 0
+if(length(stderr.df) == 0) {
+  stderr.df = 0;
 }
 
+
+my.space = $spaceBetweenBars;
+
 if($beside) {
-  d.max = max(1.1 * profile.df, 1.1 * (profile.df + stdev.df), y.max, na.rm=TRUE);
-  d.min = min(1.1 * profile.df, 1.1 * (profile.df - stdev.df), y.min, na.rm=TRUE);
-  my.space=c(0,.2);
+  d.max = max(1.1 * profile.df, 1.1 * (profile.df + stderr.df), y.max, na.rm=TRUE);
+  d.min = min(1.1 * profile.df, 1.1 * (profile.df - stderr.df), y.min, na.rm=TRUE);
+  my.space=c(0, my.space);
 } else {
   d.max = max(1.1 * profile.df, 1.1 * apply(profile.df, 2, sum), y.max, na.rm=TRUE);
   d.min = min(1.1 * profile.df, 1.1 * apply(profile.df, 2, sum), y.min, na.rm=TRUE);
-  my.space = 2;
+  my.space = my.space;
 }
 
-my.las = 2;
-if(max(nchar(element.names)) < 4 || $horizontalXAxisLabels) {
-  my.las = 0;
-}
 
 # c(bottom,left,top,right)
 
@@ -259,16 +202,29 @@ if($horiz) {
   yaxis.line = 3.5;
 }
 
+if($overrideXAxisLabels) {
+  my.labels = x.axis.label;
+} else {
+  my.labels = colnames(profile.df);
+}
+
+my.las = 0;
+if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
+  my.las = 2;
+}
+
+
+
   plotXPos = barplot(as.matrix(profile.df),
              col       = the.colors,
              xlim      = x.lim,
              ylim      = y.lim,
              beside    = $beside,
-             names.arg = colnames(profile.df),
+             names.arg = my.labels,
              space = my.space,
              las = my.las,
              axes = FALSE,
-             cex.names = 0.9,
+             cex.names = 1,
              axis.lty  = \"solid\",
              horiz=$horiz
             );
@@ -299,8 +255,8 @@ if($yAxisFoldInductionFromM) {
   axis(yaxis.side);
 }
 
-lowerBound = as.matrix(profile.df - stdev.df);
-upperBound = as.matrix(profile.df + stdev.df);
+lowerBound = as.matrix(profile.df - stderr.df);
+upperBound = as.matrix(profile.df + stderr.df);
 
 if($horiz) {
   lines (c(0,0), c(0,length(profile.df) * 2), col=\"gray25\");
@@ -309,12 +265,15 @@ if($horiz) {
 } else {
   lines (c(0,length(profile.df) * 2), c(0,0), col=\"gray25\");
 
-  for(i in 1:nrow(profile.df)) {
-    for(j in 1:ncol(profile.df)) {
-      if(is.na(profile.df[i,j])) {
-        x_coord = plotXPos[i,j];
-        y_coord = (d.min + d.max) / 2;
-        points(x_coord, y_coord, cex=2, col=\"red\", pch=8);
+
+  if($highlightMissingValues) {
+    for(i in 1:nrow(profile.df)) {
+      for(j in 1:ncol(profile.df)) {
+        if(is.na(profile.df[i,j])) {
+          x_coord = plotXPos[i,j];
+          y_coord = (d.min + d.max) / 2;
+          points(x_coord, y_coord, cex=2, col=\"red\", pch=8);
+        }
       }
     }
   }
@@ -345,6 +304,8 @@ sub new {
    $self->setPartName('rma');
    $self->setYaxisLabel("RMA Value (log2)");
 
+   $self->setPlotTitle("RMA Normalized Expression Value");
+
    $self->setIsLogged(1);
    return $self;
 }
@@ -363,6 +324,8 @@ sub new {
    $self->setDefaultYMax(50);
    $self->setDefaultYMin(0);
    $self->setIsLogged(0);
+
+   $self->setPlotTitle("Expression Value (Percentiled)");
    return $self;
 }
 1;
@@ -376,12 +339,13 @@ sub new {
    my $self = $class->SUPER::new($args);
 
    $self->setPartName('coverage');
-   $self->setYaxisLabel('Normalized Coverage (log2)');
+   $self->setYaxisLabel('RPKM (log2)');
    $self->setIsStacked(1);
    $self->setIsLogged(1);
    $self->setDefaultYMin(0);
    $self->setDefaultYMax(4);
-   $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile);');
+   $self->setPlotTitle("Normalized Coverage");
+   $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
 
    return $self;
 }
@@ -398,9 +362,10 @@ sub new {
 
    $self->setDefaultYMax(2);
    $self->setDefaultYMin(-2);
+   $self->setYaxisLabel('Expression Value');
 
    $self->setPartName('exprn_val');
-   $self->setYaxisLabel("Expression Values");
+   $self->setPlotTitle("Expression Values - log(ratio)");
 
    $self->setMakeYAxisFoldInduction(1);
    $self->setIsLogged(1);

@@ -56,77 +56,18 @@ sub new {
 #--------------------------------------------------------------------------------
 sub makeRPlotString {
   my ($self) = @_;
-  my @rv;
 
-  my $part = $self->getPartName();
-  
-  my (@profileFiles, @elementNamesFiles, @stdevFiles);
-  my $i = 0;
-  my ($pf, $enf);
-  # each part can have several profile sets
+  my $sampleLabels = $self->getSampleLabels();
+  my $sampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'x.axis.label');
+  my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
-
-  my $profileSampleLabels = $self->getSampleLabels();
-
-
-  my $profiles = $self->getProfileSetNames;
-  foreach my $profileSetName (@$profiles) {
-
-    my $suffix = $part . $i;
-    my ($profileFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $profileSampleLabels->[$i])};
-
-    if($profileFile && $elementNamesFile) {
-      push(@profileFiles, $profileFile);
-      push(@elementNamesFiles, $elementNamesFile);
-    }
-    $i++;
-
-  }
-
-  my $stDevProfiles = $self->getStDevProfileSetNames;
-
-  $i = 0;
-  if (scalar $stDevProfiles> 0) {
-    foreach my  $profileSetName (@$stDevProfiles) {
-      my $suffix = $part . "stderr" . $i;
-      my ($stdevFile, $elementNamesFile) = @{$self->writeProfileFiles($profileSetName, $suffix, $profileSampleLabels->[$i])};
-      push(@stdevFiles, $stdevFile);
-      $i++;
-    }
-  }
-  die "No Profile Files" unless(scalar @profileFiles > 0);
-  my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
-  my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
-  my $stdevString ='';
-  if (scalar $stDevProfiles> 0) {
-    $stdevString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@stdevFiles, 'stdev.files');
-  }
   my $colors = $self->getColors();
-  unless ($colors) {
-    my $cols = scalar @profileFiles;
-    while ($cols) {
-      push @$colors, '#009900';
-      $cols--;
-    }
-  }
+  my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
 
-  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
+  my $pointsPch = $self->getPointsPch();
+  my $pointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pointsPch, 'points.pch');
 
-  my $pointsPch = $self->getPointsPch;
-  my $rPointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pointsPch, 'points.pch');
-#  TODO: Determine if this is a property of the PlotSet or the PlotPart. May need to set from MixedPlotSet
-#  my $legend = $profileSetsHash->{$part}->{legend};
-#  my $rLegendString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legend, 'the.legend');
-
-  my $rCode = $self->rString($profileFilesString, $elementNamesString, $rColorsString, $rPointsPchString);
-
-  return $rCode;
-}
-
-#--------------------------------------------------------------------------------
-
-sub rString {
-  my ($self, $profileFiles, $elementNamesFiles, $colorsString, $pointsPchString) = @_;
+  my ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
 
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
@@ -167,17 +108,19 @@ sub rString {
 
   $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
 
-  my $bottomMargin = $self->getBottomMarginSize();
+  my $bottomMargin = $self->getElementNameMarginSize();
 
   my $defaultPch = $self->getPointsPch()->[0];
 
-  my $rv = "
+  my $rcode = "
 # ---------------------------- LINE PLOT ----------------------------
 
 $profileFiles
 $elementNamesFiles
 $colorsString
 $pointsPchString
+$sampleLabelsString
+$stderrFiles
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -200,6 +143,9 @@ lines.df\$V1 = NULL;
 points.df = as.data.frame(matrix(nrow=length(profile.files)));
 points.df\$V1 = NULL;
 
+stderr.df = as.data.frame(matrix(nrow=length(profile.files)));
+stderr.df\$V1 = NULL;
+
 for(i in 1:length(profile.files)) {
   profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
 
@@ -218,6 +164,17 @@ for(i in 1:length(profile.files)) {
     element.names.numeric = NA;
     is.numeric.element.names = is.numeric.element.names == 'BANANAS';
   }
+   if(!stderr.files[i] == '') {
+     stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
+
+     if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
+       stderr.tmp = aggregate(stderr.tmp, list(stderr.tmp\$ELEMENT_ORDER), mean, na.rm=T)
+     }
+    stderr = stderr.tmp\$VALUE;
+   } else {
+     stderr = element.names;
+     stderr = NA;
+   }
 
   for(j in 1:length(element.names)) {
     this.name = element.names[j];
@@ -240,6 +197,12 @@ for(i in 1:length(profile.files)) {
 
     } else {
       points.df[[this.name]][i] = profile[j];
+    }
+
+    if(is.null(.subset2(stderr.df, this.name, exact=TRUE))) {
+     stderr.df[[this.name]] = NA;
+
+     stderr.df[[this.name]][i] = stderr[j];
     }
   }
 }
@@ -317,24 +280,43 @@ for(i in 1:nrow(lines.df)) {
         );
 
 
-    if(isTimeSeries) {
-      axis(1);
+   my.las= 0;
+   my.at = axTicks(1);
+   my.labels = colnames(new.lines)
 
-    } else {
-      my.las = 2;
-      if(max(nchar(colnames(lines.df))) < 6) {
-        my.las = 0;
-      }
+   if($overrideXAxisLabels) {
+     if(max(nchar(x.axis.label)) > 4) {
+       my.las = 2;
+     }
 
-      axis(1, at=x.coords.rank, labels=colnames(lines.df), las=my.las);
-    }
-  }
+     if(isTimeSeries) {
+       my.labels = x.axis.label;
+     } else {
+       my.at = 1:length(x.coords.rank);
+       my.labels = x.axis.label;
+     }
+   } else {
+     if(isTimeSeries) {
+       my.at = NULL;
+       my.labels = TRUE;
+     } else {
+         if(max(nchar(colnames(lines.df))) > 4) {
+           my.las = 2;
+         }
+       my.at = x.coords.rank;
+       my.labels = colnames(new.lines);
+     }
+   }
 
+   axis(1, at=my.at, labels=my.labels, las=my.las);
+
+
+ }
   # To have connected lines... you can't have NA's
   y.coords = new.lines[i,];
   colnames(y.coords) = as.character(x.coords);
 
-  y.coords = y.coords[,!is.na(colSums(y.coords))];
+  y.coords = y.coords[!is.na(colSums(y.coords))];
   x.coords.line = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
   if($smoothLines) {
@@ -364,6 +346,7 @@ for(i in 1:nrow(lines.df)) {
          );
 
   } else {
+
     lines(x.coords.line,
          y.coords,
          col  = the.colors[i],
@@ -372,6 +355,7 @@ for(i in 1:nrow(lines.df)) {
          pch  = my.pch,
          cex  = 1
          );
+
   }
 
 
@@ -425,11 +409,11 @@ par(xpd=FALSE);
 grid(nx=NA,ny=NULL,col=\"gray75\");
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
-
 plasmodb.title(\"$plotTitle\");
 
 ";
-  return $rv;
+
+  return $rcode;
 }
 
 1;
@@ -445,9 +429,10 @@ sub new {
    my $self = $class->SUPER::new($args);
 
    $self->setPartName('percentile');
-   $self->setYaxisLabel('Percentile');
    $self->setDefaultYMax(50);
    $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Percentile');
+   $self->setPlotTitle("Expression Values (Percentiled)");
 
    $self->setIsLogged(0);
 
@@ -470,6 +455,8 @@ sub new {
 
    $self->setPartName('exprn_val');
    $self->setYaxisLabel("Expression Values");
+
+   $self->setPlotTitle("Expression Values - log(ratio)");
 
    $self->setMakeYAxisFoldInduction(1);
    $self->setIsLogged(1);
@@ -494,6 +481,8 @@ sub new {
 
    $self->setPartName('rma');
    $self->setYaxisLabel("RMA Value (log2)");
+
+   $self->setPlotTitle("RMA Normalized Expression Value");
 
    $self->setIsLogged(1);
 
