@@ -20,15 +20,24 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $xAxisLabels, cols=>3});
 
+  my @profileArray = (['Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', 'standard error - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', ''],
+                     );
+
+  my @percentileArray = (['red percentile - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4'],
+                         ['green percentile - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4'],
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
+
   my $loess = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new();
-  $loess->setProfileSetNames(['Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4']);
-  $loess->setStErrProfileSetNames(['standard error - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4']);
+  $loess->setProfileSets($profileSets);
   $loess->setColors($colors);
   $loess->setForceHorizontalXAxis(1);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
-  $percentile->setProfileSetNames(['red percentile - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4',
-                                   'green percentile - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4']);
+  $percentile->setProfileSets($percentileSets);
   $percentile->setColors(['#A52A2A', '#FFDAB9', '#B0C4DE','#FFDAB9','#483D8B','#FFDAB9']);
   $percentile->setForceHorizontalXAxis(1);
   $self->setGraphObjects($loess, $percentile);

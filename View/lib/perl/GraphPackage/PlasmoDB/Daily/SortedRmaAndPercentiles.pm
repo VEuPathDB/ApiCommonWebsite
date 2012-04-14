@@ -32,17 +32,6 @@ my %profileSets = (TGFa =>             'percentile - daily_TGFa',
                   );
 
 
-
-
-
-
-
-
-
-
-
-
-
 my %clusters = (167 => 1,
                 104 => 1,
                 67 =>      1,

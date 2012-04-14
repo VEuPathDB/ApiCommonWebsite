@@ -20,19 +20,27 @@ sub init {
 
   $self->setMainLegend({colors => $legendColors, short_names => $legend, cols => 1});
 
+  my @profileArray = (['Profiles of Cowman Invasion KO-averaged', 'standard error - Profiles of Cowman Invasion KO-averaged']
+                     );
+
+  my @percentileArray = (['percentile - Profiles of Cowman Invasion KO-averaged']
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new();
-  $rma->setProfileSetNames(['Profiles of Cowman Invasion KO-averaged']);
-  $rma->setStErrProfileSetNames(['standard error - Profiles of Cowman Invasion KO-averaged']);
+  $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setIsHorizontal(1);
-  $rma->setElementNameMarginSize(9);
+  $rma->setElementNameMarginSize(10);
   $rma->setScreenSize(500);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
-  $percentile->setProfileSetNames(['percentile - Profiles of Cowman Invasion KO-averaged']);
+  $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setIsHorizontal(1);
-  $percentile->setElementNameMarginSize(9);
+  $percentile->setElementNameMarginSize(10);
   $percentile->setScreenSize(500);
   
   $self->setGraphObjects($rma, $percentile);

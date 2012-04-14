@@ -107,16 +107,27 @@ sub makeRPlotStrings {
     $plotPart->setDataPlotterArg($dp);
 #TODO: Need to pass PlotPart.pm tempFiles to MixedPlot.pm (maybe)
     push @rv, $plotPart->makeRPlotString();
-    my $profileFiles = $plotPart->getProfileFiles();
-    my $elementFiles = $plotPart->getElementNameFiles();
-    my @tempFiles = (@$profileFiles,@$elementFiles);
-    foreach my $file (@tempFiles) {
+
+    my $profileSets = $plotPart->getProfileSets();
+
+    my @profileFiles = map { $_->getProfileFile() } @$profileSets;
+    my @elementNamesFiles = map { $_->getElementNamesFile() } @$profileSets;
+
+    my @stderrProfileSets = map { $_->getRelatedProfileSet() } @$profileSets;
+    my @stderrFiles;
+    foreach(@stderrProfileSets) {
+      if($_) {
+        push @stderrFiles, $_->getProfileFile();
+      }
+    }
+
+    foreach my $file (@profileFiles, @elementNamesFiles, @stderrFiles) {
       $self->addTempFile($file);
     }
-    
-    $self->addToProfileDataMatrix($profileFiles, $elementFiles, $plotPart->getProfileSetDisplayNames);
+
+    #$self->addToProfileDataMatrix($profileFiles, $elementFiles, $plotPart->getProfileSetDisplayNames);
   }
-  $self->makeHtmlStringFromMatrix();
+  #$self->makeHtmlStringFromMatrix();
 
   return \@rv;
 }
