@@ -23,6 +23,8 @@ sub go {
     my $Self = shift;
     my $cgi = CGI->new();
 
+    my $betatest = join("", @{ $cgi->{'betatest'} });
+
     my $to1 = join("", @{ $cgi->{'to1'} });
     my $to2 = join("", @{ $cgi->{'to2'} });
     my $to = "$to1$to2";
@@ -88,6 +90,18 @@ sub go {
     my $cfmMsg;
 #    my $message = $automaticMsg . $message . "---------------------";
 
+    if($betatest) {
+	my $q1 = join("", @{ $cgi->{'q1'} });
+	my $q2 = join("", @{ $cgi->{'q2'} });
+	my $q3 = join("", @{ $cgi->{'q3'} });
+	my $a1 = join("", @{ $cgi->{'a1'} });
+	my $a2 = join("", @{ $cgi->{'a2'} });
+	my $a3 = join("", @{ $cgi->{'a3'} });
+
+	$message = "\n" .$q1 . ": " . $a1 . "\n" . $q2 . ": " . $a2 . "\n" . $q3 . ": " . $a3 . "\n\n---------------------\n\n" . $message . "\n";
+    }
+
+
 # sending email to the user so he/she has a record
     if($cc) {
       $cfmMsg = sendMail($cc, $replyTo, $subject, $cc, $metaInfo, $automaticMsg . $message . "\n---------------------", $addCc);
@@ -130,6 +144,7 @@ sub go {
     # apache understands /a/ as current webapp
     print $cgi->redirect("http://" . $ENV{'SERVER_NAME'} . "/a/helpback.jsp");
 }
+
 
 sub sendMail { return &_cpanMailSendmail(@_); }
 
