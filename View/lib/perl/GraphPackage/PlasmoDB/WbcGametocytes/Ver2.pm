@@ -35,13 +35,13 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $absolute = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new();
+  my $absolute = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
   $absolute->setProfileSets($profileSets);
   $absolute->setColors(\@colors);
   $absolute->setPointsPch([19,19,19]);
   $absolute->setPlotTitle("Expression Levels");
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@colors);
   $percentile->setPointsPch([19,19,19]);

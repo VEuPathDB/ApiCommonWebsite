@@ -58,10 +58,9 @@ sub setElementNameMarginSize          { $_[0]->{'_element_name_margin_size'     
 #----------------------------------------------------------------------------------------------
 
 sub new {
-   my $class = shift;
-   my $args = ref $_[0] ? shift :{};
+  my $class = shift;
 
-   my $self = bless $args, $class;
+   my $self = $class->SUPER::new(@_);
 
    #Setting Defaults
    $self->setScreenSize(250);
@@ -70,19 +69,13 @@ sub new {
    $self->setDefaultYMax(10);
    $self->setDefaultYMin(0);
    $self->setColors(["#000099"]);
+
+  $self->setSampleLabels([]);
+
    return $self;
 }
 
 #----------------------------------------------------------------------------------------------
-
-sub init {
-  my ($self) = @_;
-
-  $self->SUPER::init(@_);
-
-  $self->setSampleLabels([]);
-  $self;
-}
 
 sub makeFilesForR {
   my ($self) = @_;

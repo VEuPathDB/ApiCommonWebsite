@@ -31,7 +31,7 @@ sub init {
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - P. falciparum Newbold mRNA Seq data']]);
 
 
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new();
+  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets([$profileSets->[0]]);
   $line->setPartName('coverage_line');
   $line->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
@@ -40,13 +40,13 @@ sub init {
 
 
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new();
+  my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
   $stacked->setSampleLabels(\@sampleNames);
 
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
 

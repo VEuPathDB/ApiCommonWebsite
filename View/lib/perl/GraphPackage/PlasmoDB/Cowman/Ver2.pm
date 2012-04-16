@@ -29,14 +29,14 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new();
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setIsHorizontal(1);
   $rma->setElementNameMarginSize(10);
   $rma->setScreenSize(500);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setIsHorizontal(1);
