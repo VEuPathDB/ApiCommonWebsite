@@ -31,11 +31,11 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['newbold gene profiles sorted mild-severe']]);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - newbold gene profiles sorted mild-severe']]);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new();
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors(\@allColors);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@allColors);
 

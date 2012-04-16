@@ -31,12 +31,12 @@ sub init {
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
 
-  my $loess = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new();
+  my $loess = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $loess->setProfileSets($profileSets);
   $loess->setColors($colors);
   $loess->setForceHorizontalXAxis(1);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(['#A52A2A', '#FFDAB9', '#B0C4DE','#FFDAB9','#483D8B','#FFDAB9']);
   $percentile->setForceHorizontalXAxis(1);

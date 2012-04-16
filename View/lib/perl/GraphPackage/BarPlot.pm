@@ -28,9 +28,9 @@ sub setSpaceBetweenBars              { $_[0]->{'_space_between_bars'            
 #--------------------------------------------------------------------------------
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
-   $self->SUPER::init;
+  my $class = shift;
+
+   my $self = $class->SUPER::new(@_);
 
    $self->setSpaceBetweenBars(0.1);
    return $self;
@@ -295,8 +295,10 @@ use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
+  my $class = shift;
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
 
    $self->setDefaultYMax(4);
    $self->setDefaultYMin(0);
@@ -304,7 +306,7 @@ sub new {
    $self->setPartName('rma');
    $self->setYaxisLabel("RMA Value (log2)");
 
-   $self->setPlotTitle("RMA Normalized Expression Value");
+   $self->setPlotTitle("RMA Normalized Expression Value - $id");
 
    $self->setIsLogged(1);
    return $self;
@@ -317,15 +319,17 @@ use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
    $self->setPartName('percentile');
    $self->setYaxisLabel('Percentile');
    $self->setDefaultYMax(50);
    $self->setDefaultYMin(0);
    $self->setIsLogged(0);
 
-   $self->setPlotTitle("Expression Value (Percentiled)");
+   $self->setPlotTitle("Expression Value (Percentiled) - $id");
    return $self;
 }
 1;
@@ -335,8 +339,10 @@ use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
 
    $self->setPartName('coverage');
    $self->setYaxisLabel('RPKM (log2)');
@@ -344,7 +350,7 @@ sub new {
    $self->setIsLogged(1);
    $self->setDefaultYMin(0);
    $self->setDefaultYMax(4);
-   $self->setPlotTitle("Normalized Coverage");
+   $self->setPlotTitle("Normalized Coverage - $id");
    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
 
    return $self;
@@ -357,15 +363,17 @@ use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
 
    $self->setDefaultYMax(2);
    $self->setDefaultYMin(-2);
    $self->setYaxisLabel('Expression Value');
 
    $self->setPartName('exprn_val');
-   $self->setPlotTitle("Expression Values - log(ratio)");
+   $self->setPlotTitle("Expression Values - log(ratio) - $id");
 
    $self->setMakeYAxisFoldInduction(1);
    $self->setIsLogged(1);

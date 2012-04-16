@@ -44,7 +44,7 @@ sub init {
   my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
   my $winzelerPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerPercentileArray);
 
-  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new();
+  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $winzeler->setProfileSets($winzelerProfileSets);
   $winzeler->setColors(\@colors);
   $winzeler->setPartName('winzeler');
@@ -55,7 +55,7 @@ sub init {
   $winzeler->setSampleLabels(\@winzelerNames);
 
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new();
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($winzelerProfileSets);
   $rma->setColors(\@colors);
   $rma->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
@@ -63,7 +63,7 @@ sub init {
   $rma->setPlotTitle("Expression Levels");
   $rma->setSpaceBetweenBars(1);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($winzelerPercentileSets);
   $percentile->setColors(\@colors);
   $percentile->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');

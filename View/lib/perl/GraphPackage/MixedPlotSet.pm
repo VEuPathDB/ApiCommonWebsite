@@ -90,8 +90,6 @@ sub makeRPlotStrings {
   my %isVis_b = $ms->partIsVisible();
   my $dp = $self->getDataPlotterArg();
 
-
-
   my @rv;
 
   foreach my $plotPart (@$graphObjects) {

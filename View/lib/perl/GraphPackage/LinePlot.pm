@@ -43,9 +43,10 @@ sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = 
 #--------------------------------------------------------------------------------
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
-   $self->SUPER::init;
+  my $class = shift;
+
+   my $self = $class->SUPER::new(@_);
+
    $self->setXaxisLabel("Whoops! Object forgot to call setXaxisLabel");
    $self->setPointsPch([15]);
    $self->setDefaultYMax(2);
@@ -425,14 +426,15 @@ use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
 use strict;
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
+  my $class = shift;
+  my $self = $class->SUPER::new(@_);
+  my $id = $self->getId();
 
    $self->setPartName('percentile');
    $self->setDefaultYMax(50);
    $self->setDefaultYMin(0);
    $self->setYaxisLabel('Percentile');
-   $self->setPlotTitle("Expression Values (Percentiled)");
+   $self->setPlotTitle("Expression Values (Percentiled) - $id");
 
    $self->setIsLogged(0);
 
@@ -447,8 +449,9 @@ use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
 use strict;
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
+  my $class = shift;
+  my $self = $class->SUPER::new(@_);
+  my $id = $self->getId();
 
    $self->setDefaultYMax(2);
    $self->setDefaultYMin(-2);
@@ -456,7 +459,7 @@ sub new {
    $self->setPartName('exprn_val');
    $self->setYaxisLabel("Expression Values");
 
-   $self->setPlotTitle("Expression Values - log(ratio)");
+   $self->setPlotTitle("Expression Values - log(ratio) - $id");
 
    $self->setMakeYAxisFoldInduction(1);
    $self->setIsLogged(1);
@@ -473,8 +476,9 @@ use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
 use strict;
 
 sub new {
-   my ($class, $args) = @_;
-   my $self = $class->SUPER::new($args);
+  my $class = shift;
+  my $self = $class->SUPER::new(@_);
+  my $id = $self->getId();
 
    $self->setDefaultYMax(4);
    $self->setDefaultYMin(0);
@@ -482,7 +486,7 @@ sub new {
    $self->setPartName('rma');
    $self->setYaxisLabel("RMA Value (log2)");
 
-   $self->setPlotTitle("RMA Normalized Expression Value");
+   $self->setPlotTitle("RMA Normalized Expression Value - $id");
 
    $self->setIsLogged(1);
 
