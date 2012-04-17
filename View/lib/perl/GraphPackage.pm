@@ -17,12 +17,19 @@ use Time::HiRes qw ( time );
 # --------------------------------- new ----------------------------------
 
 sub new {
-   my $Class = shift;
-   my $Args = ref $_[0] ? shift :{};
+   my ($class, $argsRef) = @_;
 
-   my $Self = bless $Args, $Class;
+   $argsRef = ref $argsRef ? $argsRef : {};
 
-   $Self->init($Args);
+   my %args;
+
+   foreach(keys %$argsRef) {
+     $args{$_} = $argsRef->{$_};
+   }
+
+   my $Self = bless \%args, $class;
+
+   $Self->init(\%args);
 
    return $Self;
 }
