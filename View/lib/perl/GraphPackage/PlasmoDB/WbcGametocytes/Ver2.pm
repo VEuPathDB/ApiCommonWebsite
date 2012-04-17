@@ -39,13 +39,11 @@ sub init {
   $absolute->setProfileSets($profileSets);
   $absolute->setColors(\@colors);
   $absolute->setPointsPch([19,19,19]);
-  $absolute->setPlotTitle("Expression Levels");
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@colors);
   $percentile->setPointsPch([19,19,19]);
-  $percentile->setPlotTitle("Expression Levels (Percentiled)");
 
   $self->setGraphObjects($absolute, $percentile);
 

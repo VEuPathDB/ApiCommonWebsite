@@ -1,6 +1,5 @@
 package ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq::Ver2;
 
-
 use strict;
 use vars qw( @ISA );
 
@@ -36,15 +35,14 @@ sub init {
   $line->setPartName('coverage_line');
   $line->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
   $line->setYaxisLabel('RPKM (log2)');
-  $line->setPlotTitle("Normalized Coverage");
 
-
+  my $id = $self->getId();
+  $line->setPlotTitle("Normalized Coverage - $id");
 
   my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
   $stacked->setSampleLabels(\@sampleNames);
-
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);

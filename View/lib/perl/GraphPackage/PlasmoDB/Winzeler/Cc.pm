@@ -49,7 +49,6 @@ sub init {
   $winzeler->setColors(\@colors);
   $winzeler->setPartName('winzeler');
   $winzeler->setPointsPch([15,15,15]);
-  $winzeler->setPlotTitle("Induction/Repression");
   $winzeler->setAdjustProfile('points.df = points.df - mean(points.df[points.df > 0], na.rm=T);lines.df = lines.df - mean(lines.df[lines.df > 0], na.rm=T)');
   $winzeler->setArePointsLast(1);
   $winzeler->setSampleLabels(\@winzelerNames);
@@ -60,7 +59,6 @@ sub init {
   $rma->setColors(\@colors);
   $rma->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
   $rma->setSampleLabels(\@winzelerNames);
-  $rma->setPlotTitle("Expression Levels");
   $rma->setSpaceBetweenBars(1);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
@@ -68,7 +66,6 @@ sub init {
   $percentile->setColors(\@colors);
   $percentile->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
   $percentile->setSampleLabels(\@winzelerNames);
-  $percentile->setPlotTitle("Expression Levels (Percentiled)");
   $percentile->setSpaceBetweenBars(1);
 
   $self->setGraphObjects($winzeler, $rma, $percentile);
