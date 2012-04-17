@@ -13,11 +13,13 @@ sub makeProfileSets {
     my $mainProfileSet = $row->[0];
     my $relatedProfileSet = $row->[1];
     my $elementNames = $row->[2];
+    my $alternateSourceId = $row->[3];
+    my $scale = $row->[4];
 
-    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $elementNames);
+    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $elementNames, $alternateSourceId, $scale);
 
     if($relatedProfileSet) {
-      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $elementNames);
+      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $elementNames, $alternateSourceId, $scale);
       $profileSet->setRelatedProfileSet($relatedSet);
     }
     push @rv, $profileSet;
