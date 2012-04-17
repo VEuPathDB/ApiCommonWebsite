@@ -18,18 +18,28 @@ sub init {
   my $pch = [22];
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
-  my $radjust = "colnames(profile.df) = c(rep(\"106/1\", 2), rep(\"106/1(76I)\", 2), rep(\"106/1(76I_352K)\",2));profile.df = rbind(profile.df[1, c(1,3,5)],profile.df[1,c(2,4,6)]);";
+  my $untreated = ['106/1','','106/1 (76I)','', '106/1 (76I_352K)', ''];
+  my $treated = ['', '106/1','','106/1 (76I)','', '106/1 (76I_352K)'];
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new();
-  $rma->setProfileSetNames(['E-GEOD-10022 array from Su']);
-  $rma->setStErrProfileSetNames(['standard error - E-GEOD-10022 array from Su']);
-  $rma->setAdjustProfile($radjust . "colnames(stdev.df) = c(rep(\"106/1\", 2), rep(\"106/1(76I)\", 2), rep(\"106/1(76I_352K)\",2));stdev.df = rbind(stdev.df[1, c(1,3,5)],stdev.df[1,c(2,4,6)]);");
+
+  my @profileArray = (['E-GEOD-10022 array from Su', 'standard error - E-GEOD-10022 array from Su', $untreated],
+                      ['E-GEOD-10022 array from Su', 'standard error - E-GEOD-10022 array from Su', $treated]
+                     );
+
+  my @percentileArray = (['percentile - E-GEOD-10022 array from Su', '', $untreated],
+                         ['percentile - E-GEOD-10022 array from Su', '', $treated],
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new();
-  $percentile->setProfileSetNames(['percentile - E-GEOD-10022 array from Su']);
-  $percentile->setAdjustProfile($radjust);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
 

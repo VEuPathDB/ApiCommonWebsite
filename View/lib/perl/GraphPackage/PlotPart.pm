@@ -47,6 +47,9 @@ sub setDefaultYMin               { $_[0]->{'_default_y_min'                 } = 
 sub getSampleLabels               { $_[0]->{'_sample_labels'                  }}
 sub setSampleLabels               { $_[0]->{'_sample_labels'                  } = $_[1]}
 
+sub getRPostscript               { $_[0]->{'_r_postscript'              }}
+sub setRPostscript               { $_[0]->{'_r_postscript'              } = $_[1]}
+
 #----------------------------------------------------------------------------------------------
 
 sub getScreenSize                { $_[0]->{'_screen_size'                 }}
@@ -62,6 +65,8 @@ sub new {
 
    my $self = $class->SUPER::new(@_);
 
+  my $id = $self->getId();
+
    #Setting Defaults
    $self->setScreenSize(250);
    $self->setElementNameMarginSize(3);
@@ -69,6 +74,8 @@ sub new {
    $self->setDefaultYMax(10);
    $self->setDefaultYMin(0);
    $self->setColors(["#000099"]);
+
+  $self->setPlotTitle($id);
 
   $self->setSampleLabels([]);
 
@@ -90,6 +97,7 @@ sub makeFilesForR {
   for(my $i = 0; $i < scalar @$profileSets; $i++) {
     my $profileSet = $profileSets->[$i];
     my $suffix = $part . $i;
+
     $profileSet->writeFiles($id, $qh, $suffix);
   }
 

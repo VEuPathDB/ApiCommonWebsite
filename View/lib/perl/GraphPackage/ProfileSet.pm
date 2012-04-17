@@ -27,23 +27,15 @@ sub setProfileFile              { $_[0]->{'_profile_file'               } = $_[1
 sub getElementNamesFile         { $_[0]->{'_element_names_file'           }}
 sub setElementNamesFile         { $_[0]->{'_element_names_file'           } = $_[1]}
 
-#--------------------------------------------------------------------------------
-# sub getGraphDefaultValue         { $_[0]->{'_graph_default_value'         }}
-# sub setGraphDefaultValue         { $_[0]->{'_graph_default_value'         } = $_[1]}
+sub getAlternateSourceId              { $_[0]->{'_alternate_source_id'               }}
+sub setAlternateSourceId              { $_[0]->{'_alternate_source_id'               } = $_[1]}
 
-# sub hasGraphDefault {
-#   my ($self) = @_;
-
-#   if(defined($self->getGraphDefaultValue())) {
-#     return 1;
-#   }
-#   return 0;
-# }
-
+sub getScale              { $_[0]->{'_scale'               }}
+sub setScale              { $_[0]->{'_scale'               } = $_[1]}
 
 
 sub new {
-  my ($class, $name, $elementNames) = @_;
+  my ($class, $name, $elementNames, $alternateSourceId, $scale) = @_;
 
   unless($name) {
     die "ProfileSet Name missing: $!";
@@ -57,12 +49,16 @@ sub new {
     $elementNames = [];
   }
   $self->setElementNames($elementNames);
+  $self->setAlternateSourceId($alternateSourceId);
+  $self->setScale($scale);
 
   return $self;
 }
 
 sub writeFiles {
   my ($self, $id, $qh, $suffix) = @_;
+
+  $id = $self->getAlternateSourceId() ? $self->getAlternateSourceId() : $id;
 
   $self->writeProfileFile($id, $qh, $suffix);
   $self->writeElementNamesFile($id, $qh, $suffix);
@@ -82,10 +78,17 @@ sub writeProfileFile {
   my $profileSetName = $self->getName();
   my $elementNames = $self->getElementNames();
 
+  my $scale = $self->getScale();
+
+  if($self->getAlternateSourceId()) {
+    print STDERR $self->getAlternateSourceId() . "SCALE=$scale\n";
+  }
+
   my $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name         => "_data_$suffix",
       Id           => $id,
       ProfileSet   => $profileSetName,
+      Scale        => $scale,
     );
 
   $profile->prepareDictionary($_dict);

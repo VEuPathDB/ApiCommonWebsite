@@ -10,6 +10,9 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 use Data::Dumper;
 #--------------------------------------------------------------------------------
 
+sub getIsFilled                  { $_[0]->{'_is_filled'                     }}
+sub setIsFilled                  { $_[0]->{'_is_filled'                     } = $_[1]}
+
 sub getForceNoLines              { $_[0]->{'_force_no_lines'                }}
 sub setForceNoLines              { $_[0]->{'_force_no_lines'                } = $_[1]}
 
@@ -30,9 +33,6 @@ sub setXaxisLabel                { $_[0]->{'_x_axis_label'                  } = 
 
 sub getArePointsLast             { $_[0]->{'_are_points_last'               }}
 sub setArePointsLast             { $_[0]->{'_are_points_last'               } = $_[1]}
-
-sub getRTopMarginTitle           { $_[0]->{'_top_margin_title'              }}
-sub setRTopMarginTitle           { $_[0]->{'_top_margin_title'              } = $_[1]}
 
 sub getSmoothLines               { $_[0]->{'_smooth_lines'                  }}
 sub setSmoothLines               { $_[0]->{'_smooth_lines'                  } = $_[1]}
@@ -84,7 +84,7 @@ sub makeRPlotString {
   my $yAxisFoldInductionFromM = $self->getMakeYAxisFoldInduction();
 
   my $pointsLast = $self->getArePointsLast();
-  my $rTopMarginTitle = $self->getRTopMarginTitle();
+  my $rPostscript = $self->getRPostscript();
 
   my $smoothLines = $self->getSmoothLines();
   my $splineApproxN = $self->getSplineApproxN();
@@ -95,17 +95,18 @@ sub makeRPlotString {
   $xMax = $xMax ? $xMax : "-Inf";
   $xMin = defined($xMin) ? $xMin : "Inf";
 
-  $pointsLast = defined($pointsLast) ? 'TRUE' : 'FALSE';
+  $pointsLast = $pointsLast ? 'TRUE' : 'FALSE';
 
-  $smoothLines = defined($smoothLines) ? 'TRUE' : 'FALSE';
+  $smoothLines = $smoothLines ? 'TRUE' : 'FALSE';
 
-  $yAxisFoldInductionFromM = defined($yAxisFoldInductionFromM) ? 'TRUE' : 'FALSE';
+  $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
-  my $forceNoLines = defined($self->getForceNoLines()) ? 'TRUE' : 'FALSE';
-  my $varyGlyphByXAxis = defined($self->getVaryGlyphByXAxis()) ? 'TRUE' : 'FALSE';
+  my $forceNoLines = $self->getForceNoLines() ? 'TRUE' : 'FALSE';
+  my $varyGlyphByXAxis = $self->getVaryGlyphByXAxis() ? 'TRUE' : 'FALSE';
+  my $isFilled = $self->getIsFilled() ? 'TRUE' : 'FALSE';
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
-  $rTopMarginTitle = $rTopMarginTitle ? $rTopMarginTitle : "";
+  $rPostscript = $rPostscript ? $rPostscript : "";
 
   $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
 
@@ -348,6 +349,14 @@ for(i in 1:nrow(lines.df)) {
 
   } else {
 
+
+    if($isFilled) {
+      polygon( c( x.coords.line[1], x.coords.line, x.coords.line[length(x.coords.line)]),
+               c( 0,         y.coords, 0),
+               col = the.colors[i],
+               border = the.colors[i]
+         );
+    }
     lines(x.coords.line,
          y.coords,
          col  = the.colors[i],
@@ -403,7 +412,7 @@ if($yAxisFoldInductionFromM) {
 }
 box();
 
-$rTopMarginTitle
+$rPostscript
 
 
 par(xpd=FALSE);
@@ -491,6 +500,27 @@ sub new {
    $self->setIsLogged(1);
 
    return $self;
+}
+
+1;
+
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::LinePlot::Filled;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+  my $class = shift;
+  my $self = $class->SUPER::new(@_);
+  my $id = $self->getId();
+
+  $self->setDefaultYMin(0);
+  $self->setPartName('filled');
+
+  $self->setIsFilled(1);
+  
+  return $self;
 }
 
 1;

@@ -18,8 +18,6 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
 
-  my $radjust = "colnames(profile.df) = rep(c(\"ring\", \"trophozoite\", \"schizont\"), 3);profile.df = rbind(profile.df[1,1:3], profile.df[1,4:6], profile.df[1,7:9]);";
-
   my $wildTypeSamples = ['ring','trophozoite','schizont','','','','','',''];
   my $sir2ASamples = ['','','','ring','trophozoite','schizont','','',''];
   my $sir2BSamples = ['','','', '','','', 'ring','trophozoite','schizont'];
