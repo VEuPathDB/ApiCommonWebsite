@@ -3,76 +3,59 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe::ReplicatesAverage
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe );
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe;
-
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 sub init {
-  my $Self = shift;
+  my $self = shift;
 
-  $Self->SUPER::init(@_);
+  $self->SUPER::init(@_);
 
-  $Self->setColors(['blue']);
+  my $colors = [ '#D87093', 'darkblue'];
+  my $avgColors = [ '#A0522D'];
 
-  my $_ttl  = 'kappe_all_comparisons_profiles';
+#kappe_profiles_averaged_over_all_channels
+#percentile - kappe_profiles_averaged_over_all_channels
+#standard error - kappe_profiles_averaged_over_all_channels
 
-  $Self->setDataQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => '_data',
-        ProfileSet   => $_ttl,
-      )
-    );
+  my @profileSetsArray = (['kappe_all_comparisons_profiles', 'standard error - kappe_all_comparisons_profiles', '']);
+  my @percentileSetsArray = (['red percentile - kappe_all_comparisons_profiles'],
+                             ['green percentile - kappe_all_comparisons_profiles'],
+                             );
 
-  $Self->setDataNamesQuery
-    ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-      ( Name         => '_names',
-        ProfileSet   => $_ttl,
-      )
-    );
 
-  $Self->setDataYaxisLabel('M value');
 
-  $_ttl  = 'kappe_all_comparisons_percentiles_red';
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $avgPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - kappe_profiles_averaged_over_all_channels']]);
 
-  $Self->setNumQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => '_data',
-        ProfileSet   => $_ttl,
-      )
-    );
+  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  $ratio->setProfileSets($profileSets);
+  $ratio->setColors([$colors->[0]]);
+  $ratio->setElementNameMarginSize(7);
 
-  $Self->setNumNamesQuery
-    ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-      ( Name         => '_names',
-        ProfileSet   => $_ttl,
-      )
-	);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setSpaceBetweenBars(0.5);
+  $percentile->setElementNameMarginSize(7);
 
-  $_ttl  = 'kappe_all_comparisons_percentiles_green';
+  my $avgPercentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $avgPercentile->setProfileSets($avgPercentileSets);
+  $avgPercentile->setColors($avgColors);
+  $avgPercentile->setPartName("percentile_combined");
+  $avgPercentile->setForceHorizontalXAxis(1);
 
-  $Self->setDenQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-      ( Name         => '_data',
-        ProfileSet   => $_ttl,
-      )
-    );
+  $self->setGraphObjects($ratio, $percentile, $avgPercentile);
 
-  $Self->setDenNamesQuery
-    ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
-      ( Name         => '_names',
-        ProfileSet   => $_ttl,
-      )
-    );
+  return $self;
 
-  $Self->setPctYaxisLabel('percentile');
 
-  $Self->setPctIsDecimal(0);
-
-  return $Self;
 }
 
 1;
+
+
+
