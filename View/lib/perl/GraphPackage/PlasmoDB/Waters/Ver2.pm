@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Waters::Dozi;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Waters::Ver2;
 
 use strict;
 use vars qw( @ISA );
@@ -13,12 +13,22 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors = ['#B22222', 'darkblue' ];
+  my $colors = ['#B22222', 'darkblue', '#8B008B', 'darkblue' ];
+
+  my @legendColors = ($colors->[0], $colors->[2], $colors->[1]);
+  my @legend = ("HP", "HPE", "Control");
+
+  $self->setMainLegend({colors => \@legendColors, short_names => \@legend, cols => 3});
 
 
-  my @profileSetNames = (['P. berghei DOZI array data', 'standard error - P. berghei DOZI array data']);
-  my @percentileSetNames = (['red percentile - P. berghei DOZI array data'],
-                            ['green percentile - P. berghei DOZI array data']
+  my @profileSetNames = (['Waters HP'],
+                         ['Waters HPE']
+                        );
+
+  my @percentileSetNames = (['red percentile - Waters HP'],
+                            ['green percentile - Waters HP'],
+                            ['red percentile - Waters HPE'],
+                            ['green percentile - Waters HPE'],
                            );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
@@ -26,13 +36,11 @@ sub init {
 
   my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
-  $ratio->setColors([$colors->[0]]);
-  $ratio->setForceHorizontalXAxis(1);
+  $ratio->setColors([$colors->[0], $colors->[2]]);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
-  $percentile->setForceHorizontalXAxis(1);
 
   $self->setGraphObjects($ratio, $percentile);
 
