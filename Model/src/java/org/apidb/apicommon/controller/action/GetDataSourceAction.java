@@ -79,12 +79,15 @@ public class GetDataSourceAction extends Action {
             QuestionBean question;
             Map<String, String> params = new LinkedHashMap<String, String>();
             if (questionName != null) {
+                logger.debug("Getting data sources by question: " + questionName);
                 question = wdkModel.getQuestion(DATA_SOURCE_BY_QUESTION);
                 params.put("question_name", questionName);
             } else if (rcName != null) {
+                logger.debug("Getting data sources by recordClass: " + rcName);
                 question = wdkModel.getQuestion(DATA_SOURCE_BY_RECORD_CLASS);
                 params.put("record_class", rcName);
             } else {
+                logger.debug("Getting all data sources: ");
                 question = wdkModel.getQuestion(DATA_SOURCE_ALL);
             }
             AnswerValueBean answerValue = question.makeAnswerValue(user,
