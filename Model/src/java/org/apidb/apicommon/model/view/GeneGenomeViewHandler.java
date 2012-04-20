@@ -20,6 +20,7 @@ public class GeneGenomeViewHandler extends GenomeViewHandler {
         sql.append("    ga.sequence_id AS " + COLUMN_SEQUENCE_ID + ", ");
         sql.append("    sa.length AS " + COLUMN_SEQUENCE_LENGTH + ", ");
         sql.append("    sa.chromosome AS " + COLUMN_CHROMOSOME + ", ");
+        sql.append("    sa.organism AS " + COLUMN_ORGANISM + ", ");
         sql.append("    ga.start_min AS " + COLUMN_START + ", ");
         sql.append("    ga.end_max AS " + COLUMN_END + ", ");
         sql.append("    CASE ga.strand WHEN 'forward' THEN 1 ELSE 0 END AS "
