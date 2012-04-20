@@ -13,6 +13,7 @@ public class Sequence {
     private int length;
     private float percentLength;
     private String chromosome;
+    private String organism;
 
     public Sequence(String sourceId) {
         this.sourceId = sourceId;
@@ -58,8 +59,17 @@ public class Sequence {
     public String getChromosome() {
         return chromosome;
     }
-
+    
     public void setChromosome(String chromosome) {
         this.chromosome = chromosome;
     }
+    
+    public String getOrganism() {
+        return organism;
+    }
+
+    public void setOrganism(String organism) {
+	this.organism = organism;
+    }
+
 }
