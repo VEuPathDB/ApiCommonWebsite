@@ -11,6 +11,8 @@ use FileHandle;
 
 use CBIL::Util::V;
 
+use Data::Dumper;
+
 # ========================================================================
 # --------------------- Create, Init, and Accessors ----------------------
 # ========================================================================
@@ -117,73 +119,71 @@ sub getValues {
 # --------------------------- getSimpleValues ----------------------------
 
 sub getSimpleValues {
-	 my $Self = shift;
-	 my $Qh   = shift;
-	 my $Dict = shift;
+  my $Self = shift;
+  my $Qh   = shift;
+  my $Dict = shift;
 
-	 my @Rv;
+  my @Rv;
 
-	 my %table;
+  my %table;
 
-	 # prepare dictionary
-	 $Dict = $Self->prepareDictionary($Dict);
+  # prepare dictionary
+  $Dict = $Self->prepareDictionary($Dict);
 
-	 my $scale        = $Self->getScale()  || 1;
-	 my $offset       = $Self->getOffset() || 0;
-   my $elementOrder = $Self->getElementOrder();
+  my $scale        = $Self->getScale()  || 1;
+  my $offset       = $Self->getOffset() || 0;
+  my $elementOrder = $Self->getElementOrder();
 
-	 # execute SQL and get result
-	 my $_sql = $Self->getExpandedSql($Dict);
-	 my $_sh  = $Qh->prepare($_sql);
-   $_sh->execute();
-   my $rows_n = 0;
-	 while (my $_row = $_sh->fetchrow_hashref()) {
-      $rows_n++;
-			my @keys = keys %$_row;
+  # execute SQL and get result
+  my $_sql = $Self->getExpandedSql($Dict);
+  my $_sh  = $Qh->prepare($_sql);
+  $_sh->execute();
+  my $rows_n = 0;
+  while (my $_row = $_sh->fetchrow_hashref()) {
+    $rows_n++;
+    my @keys = keys %$_row;
 
-			# result contains a tab-delimited profile; split and pretend it
-			# was separate rows.
-			if (grep { $_ eq 'PROFILE_AS_STRING' } @keys) {
-				 my @profile = split /\t/, $_row->{'PROFILE_AS_STRING'};
-				 delete $_row->{'PROFILE_AS_STRING'};
+    # result contains a tab-delimited profile; split and pretend it
+    # was separate rows.
+    if (grep { $_ eq 'PROFILE_AS_STRING' } @keys) {
+      my @profile = split /\t/, $_row->{'PROFILE_AS_STRING'};
+      delete $_row->{'PROFILE_AS_STRING'};
 
-				 for (my $i = 0; $i < @profile; $i++) {
-            my $eo         = defined $elementOrder
-            ?  $elementOrder->[$i]
+      for (my $i = 0; $i < @profile; $i++) {
+        my $eo         = defined $elementOrder
+          ?  $elementOrder->[$i]
             : ($i+1) * $scale + $offset;
-            if (defined $eo) {
-               my $pseudo_row = { %$_row,
-                                  VALUE         => $Self->_treatValue($profile[$i]),
-                                  ELEMENT_ORDER => $eo,
-                                };
-               push(@Rv, $pseudo_row);
-            }
-				 }
-			}
+        if ($eo) {
+          my $pseudo_row = { %$_row,
+                             VALUE         => $Self->_treatValue($profile[$i]),
+#                             ELEMENT_ORDER => $eo,
+                           };
+          push(@Rv, $pseudo_row);
+        }
+      }
+    }
 
-			# just add to list.
-			else {
-         $_row->{VALUE}          = $Self->_treatValue($_row->{VALUE});
+    # just add to list.
+    else {
+     $_row->{VALUE}          = $Self->_treatValue($_row->{VALUE});
 
-         if (defined $elementOrder) {
-            $_row->{ELEMENT_ORDER} = $elementOrder->[$_row->{ELEMENT_ORDER}];
-         }
+      if (defined $elementOrder) {
+        $_row->{ELEMENT_ORDER} = $elementOrder->[$_row->{ELEMENT_ORDER}];
+      } else {
+        $_row->{ELEMENT_ORDER} *= $scale;
+        $_row->{ELEMENT_ORDER} += $offset;
+      }
 
-         else {
-            $_row->{ELEMENT_ORDER} *= $scale;
-            $_row->{ELEMENT_ORDER} += $offset;
-         }
+      push(@Rv, $_row);
+    }
+  }
+  $_sh->finish();
 
-				 push(@Rv, $_row);
-			}
-	 }
-	 $_sh->finish();
+  if ($rows_n == 0) {
+    die join("\t", ref $Self, 'no rows returned for query', $Self->getName(), $_sql);
+  }
 
-   if ($rows_n == 0) {
-      die join("\t", ref $Self, 'no rows returned for query', $Self->getName(), $_sql);
-   }
-
-	 return wantarray ? @Rv : \@Rv;
+  return wantarray ? @Rv : \@Rv;
 }
 
 # -------------------------- getCollatedValues ---------------------------
@@ -300,7 +300,6 @@ sub makeTabFile {
 	 my $File = shift;
 
    my $Rv;
-
 	 my $tab_f = $File;
    if (not defined $tab_f) {
 
@@ -316,6 +315,7 @@ sub makeTabFile {
                          );
       }
    }
+
 
 	 my @_rows = $Self->getValues($Qh, $Dict);
    die sprintf("No rows in query result '%s' for id '%s' with sql as follows:\n%s",
