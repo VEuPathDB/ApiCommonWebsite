@@ -89,22 +89,37 @@ Override super class getValues call.
 
 sub getValues {
    my $Self = shift;
-	 my $Qh   = shift;
-	 my $Dict = shift;
+   my $Qh   = shift;
+   my $Dict = shift;
+
+   my $elementOrder = $Self->getElementOrder();
 
    my @Rv;
 
-	 # prepare dictionary
-	 $Dict = $Self->prepareDictionary($Dict);
+   # prepare dictionary
+   $Dict = $Self->prepareDictionary($Dict);
 
-	 # execute SQL and get result
-	 my $_sql = $Self->getExpandedSql($Dict);
-	 my $_sh  = $Qh->prepare($_sql);
+   # execute SQL and get result
+   my $_sql = $Self->getExpandedSql($Dict);
+   my $_sh  = $Qh->prepare($_sql);
    $_sh->execute();
-	 while (my $_row = $_sh->fetchrow_hashref()) {
-      push(@Rv, $_row);
-      #$Rv[$_row->{ELEMENT_ORDER}]->{NAME} = $_row->{NAME};
-   }
+
+
+   my $i = 0;
+     while (my $_row = $_sh->fetchrow_hashref()) {
+       my $eo = $elementOrder->[$i];
+
+       if(scalar @$elementOrder > 0) {
+         $_row->{NAME} = $eo;
+         push(@Rv, $_row) if($eo);
+       }
+       else {
+         push(@Rv, $_row);
+       }
+       #$Rv[$_row->{ELEMENT_ORDER}]->{NAME} = $_row->{NAME};
+
+       $i++;
+     }
    $_sh->finish();
 
    return wantarray ? @Rv : \@Rv;
