@@ -253,8 +253,8 @@ new.lines = as.data.frame(matrix(NA, ncol=ncol(lines.df), nrow=nrow(lines.df)));
 for(j in 1:length(x.coords.rank)) {
   colRank = x.coords.rank[j];
 
-  new.lines[[colRank]] = lines.df[[j]];
-  new.points[[colRank]] = points.df[[j]];
+  new.lines[[colRank]] = as.data.frame(lines.df)[[j]];
+  new.points[[colRank]] = as.data.frame(points.df)[[j]];
 
   colnames(new.lines)[colRank] = colnames(lines.df)[j];
   colnames(new.points)[colRank] = colnames(points.df)[j];
@@ -489,17 +489,24 @@ sub new {
   my $self = $class->SUPER::new(@_);
   my $id = $self->getId();
 
-   $self->setDefaultYMax(4);
-   $self->setDefaultYMin(0);
+  my $wantLogged = $self->getWantLogged();
 
-   $self->setPartName('rma');
-   $self->setYaxisLabel("RMA Value (log2)");
+  # RMAExpress is log2
+  if($wantLogged eq '0') {
+    $self->setAdjustProfile('lines.df = 2^(lines.df);points.df = 2^(points.df);stderr.df = 2^(stderr.df);');
+  }
 
-   $self->setPlotTitle("RMA Normalized Expression Value - $id");
+  $self->setDefaultYMax(4);
+  $self->setDefaultYMin(0);
 
-   $self->setIsLogged(1);
+  $self->setPartName('rma');
+  $self->setYaxisLabel("RMA Value (log2)");
 
-   return $self;
+  $self->setPlotTitle("RMA Normalized Expression Value - $id");
+  
+  $self->setIsLogged(1);
+
+  return $self;
 }
 
 1;

@@ -296,20 +296,26 @@ use strict;
 
 sub new {
   my $class = shift;
-   my $self = $class->SUPER::new(@_);
+  my $self = $class->SUPER::new(@_);
 
-   my $id = $self->getId();
+  my $id = $self->getId();
+  my $wantLogged = $self->getWantLogged();
 
-   $self->setDefaultYMax(4);
-   $self->setDefaultYMin(0);
+  # RMAExpress is log2
+  if($wantLogged eq '0') {
+    $self->setAdjustProfile('profile.df = 2^(profile.df);stderr.df = 2^stderr.df;');
+  }
 
-   $self->setPartName('rma');
-   $self->setYaxisLabel("RMA Value (log2)");
+  $self->setDefaultYMax(4);
+  $self->setDefaultYMin(0);
 
-   $self->setPlotTitle("RMA Normalized Expression Value - $id");
+  $self->setPartName('rma');
+  $self->setYaxisLabel("RMA Value (log2)");
 
-   $self->setIsLogged(1);
-   return $self;
+  $self->setPlotTitle("RMA Normalized Expression Value - $id");
+
+  $self->setIsLogged(1);
+  return $self;
 }
 
 1;
@@ -340,20 +346,25 @@ use strict;
 
 sub new {
   my $class = shift; 
-   my $self = $class->SUPER::new(@_);
+  my $self = $class->SUPER::new(@_);
 
-   my $id = $self->getId();
+  my $id = $self->getId();
+  my $wantLogged = $self->getWantLogged();
 
-   $self->setPartName('coverage');
-   $self->setYaxisLabel('RPKM (log2)');
-   $self->setIsStacked(1);
-   $self->setIsLogged(1);
-   $self->setDefaultYMin(0);
-   $self->setDefaultYMax(4);
-   $self->setPlotTitle("Normalized Coverage - $id");
-   $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
+  $self->setPartName('coverage');
+  $self->setYaxisLabel('RPKM (log2)');
+  $self->setIsStacked(1);
+  $self->setIsLogged(1);
+  $self->setDefaultYMin(0);
+  $self->setDefaultYMax(4);
+  $self->setPlotTitle("Normalized Coverage - $id");
 
-   return $self;
+  # RUM RPKM Are Not logged in the db
+  if($wantLogged) {
+    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
+  }
+
+  return $self;
 }
 
 #--------------------------------------------------------------------------------

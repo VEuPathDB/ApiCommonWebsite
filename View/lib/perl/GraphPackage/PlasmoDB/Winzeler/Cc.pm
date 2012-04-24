@@ -57,7 +57,7 @@ sub init {
   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($winzelerProfileSets);
   $rma->setColors(\@colors);
-  $rma->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
+  $rma->addAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
   $rma->setSampleLabels(\@winzelerNames);
   $rma->setSpaceBetweenBars(1);
 

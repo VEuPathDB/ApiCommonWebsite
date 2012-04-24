@@ -37,6 +37,12 @@ sub setMakeYAxisFoldInduction    { $_[0]->{'_make_y_axis_fold_induction'    } = 
 
 sub getAdjustProfile             { $_[0]->{'_r_adjust_profile'              }}
 sub setAdjustProfile             { $_[0]->{'_r_adjust_profile'              } = $_[1]}
+sub addAdjustProfile {
+  my ($self, $ap) = @_;
+
+  my $existing = $self->getAdjustProfile();
+  $self->setAdjustProfile($existing, $ap);
+}
 
 sub getDefaultYMax               { $_[0]->{'_default_y_max'                 }}
 sub setDefaultYMax               { $_[0]->{'_default_y_max'                 } = $_[1]}

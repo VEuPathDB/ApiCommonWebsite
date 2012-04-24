@@ -63,6 +63,7 @@ sub run {
 	 my $type           = $Cgi->param('type');
 	 my $id             = $Cgi->param('id');
 	 my $sid            = $Cgi->param('sid');
+	 my $wantLogged     = $Cgi->param('wl');
 	 my $format         = $Cgi->param('fmt')    || 'png';
 	 my $quiet_b        = $Cgi->param('quiet');
 	 my $save_b         = $Cgi->param('save');
@@ -127,6 +128,7 @@ sub run {
                         QueryHandle => $_qh,
                         Id => $id,
                         SecondaryId => $sid,
+                        WantLogged => $wantLogged,
                         Format => $gddFormat,
                         OutputFile => $fmt_f,
                         Thumbnail => $thumbnail_b,
