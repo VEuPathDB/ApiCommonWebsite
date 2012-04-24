@@ -5,13 +5,6 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlotSet );
 use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
-use Data::Dumper;
-#--------------------------------------------------------------------------------
-# NOTE:  Each Graph Object makes an Array of Hashes.  The Hash Keys Must Be 
-#        unique accross all combined graphs for this code to work.
-#--------------------------------------------------------------------------------
-
-#--------------------------------------------------------------------------------
 
 sub setMainLegend {
   my ($self, $hash) = @_;
@@ -81,29 +74,13 @@ sub makeRPlotStrings {
 
   my $graphObjects = $self->getGraphObjects();
   my $ms = $self->getMultiScreen();
-  my $id = $self->getId();
-  my $secId = $self->getSecondaryId();
-  my $name = $self->getName();
-  my $qh = $self->getQueryHandle();
-  my $format = $self->getFormat();
-  my $output = $self->getOutputFile();
   my %isVis_b = $ms->partIsVisible();
-  my $dp = $self->getDataPlotterArg();
 
   my @rv;
 
   foreach my $plotPart (@$graphObjects) {
     my $partName = $plotPart->getPartName();
     next unless ($isVis_b{$partName});
-    $plotPart->setId($id);
-    $plotPart->setName($name);
-#TODO: Need to give this to PlotPart.pm
-    $plotPart->setQueryHandle($qh);
-    $plotPart->setFormat($format);
-    $plotPart->setOutputFile($output);
-    $plotPart->setSecondaryId($secId);
-    $plotPart->setDataPlotterArg($dp);
-#TODO: Need to pass PlotPart.pm tempFiles to MixedPlot.pm (maybe)
     push @rv, $plotPart->makeRPlotString();
 
     my $profileSets = $plotPart->getProfileSets();
