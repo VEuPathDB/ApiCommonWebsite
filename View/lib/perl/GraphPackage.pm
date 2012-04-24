@@ -48,6 +48,7 @@ sub init {
    $Self->setThumbnail            ( $Args->{Thumbnail           } );
    $Self->setVisibleParts         ( $Args->{VisibleParts        } );
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
+   $Self->setWantLogged           ( $Args->{WantLogged         } );
 
    return $Self;
 }
@@ -77,6 +78,9 @@ sub setVisibleParts         { $_[0]->{'VisibleParts'                } = $_[1]; $
 
 sub getSecondaryId          { $_[0]->{'SecondaryId'                 } }
 sub setSecondaryId          { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
+
+sub getWantLogged           { $_[0]->{'WantLogged'                 } }
+sub setWantLogged           { $_[0]->{'WantLogged'                 } = $_[1]; $_[0] }
 
 sub getDataPlotterArg       { $_[0]->{'dataPlotterArg'              } }
 sub getTypeArg              { $_[0]->{'dataPlotterArg'              } }
