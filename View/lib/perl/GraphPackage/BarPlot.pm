@@ -301,20 +301,21 @@ sub new {
   my $id = $self->getId();
   my $wantLogged = $self->getWantLogged();
 
+  $self->setYaxisLabel("RMA Value (log2)");
+  $self->setIsLogged(1);
+
   # RMAExpress is log2
   if($wantLogged eq '0') {
     $self->setAdjustProfile('profile.df = 2^(profile.df);stderr.df = 2^stderr.df;');
+    $self->setYaxisLabel("RMA Value");
   }
 
   $self->setDefaultYMax(4);
   $self->setDefaultYMin(0);
 
   $self->setPartName('rma');
-  $self->setYaxisLabel("RMA Value (log2)");
+  $self->setPlotTitle("RMA Expression Value - $id");
 
-  $self->setPlotTitle("RMA Normalized Expression Value - $id");
-
-  $self->setIsLogged(1);
   return $self;
 }
 
@@ -352,9 +353,8 @@ sub new {
   my $wantLogged = $self->getWantLogged();
 
   $self->setPartName('coverage');
-  $self->setYaxisLabel('RPKM (log2)');
+  $self->setYaxisLabel('RPKM');
   $self->setIsStacked(1);
-  $self->setIsLogged(1);
   $self->setDefaultYMin(0);
   $self->setDefaultYMax(4);
   $self->setPlotTitle("Normalized Coverage - $id");
@@ -362,6 +362,8 @@ sub new {
   # RUM RPKM Are Not logged in the db
   if($wantLogged) {
     $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
+    $self->setYaxisLabel('RPKM (log2)');
+    $self->setIsLogged(1);
   }
 
   return $self;

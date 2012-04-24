@@ -491,20 +491,20 @@ sub new {
 
   my $wantLogged = $self->getWantLogged();
 
+  $self->setYaxisLabel("RMA Value (log2)");
+  $self->setPlotTitle("RMA Expression Value - $id");
+  $self->setIsLogged(1);
+
   # RMAExpress is log2
   if($wantLogged eq '0') {
     $self->setAdjustProfile('lines.df = 2^(lines.df);points.df = 2^(points.df);stderr.df = 2^(stderr.df);');
+    $self->setYaxisLabel("RMA Value");
   }
 
   $self->setDefaultYMax(4);
   $self->setDefaultYMin(0);
 
   $self->setPartName('rma');
-  $self->setYaxisLabel("RMA Value (log2)");
-
-  $self->setPlotTitle("RMA Normalized Expression Value - $id");
-  
-  $self->setIsLogged(1);
 
   return $self;
 }
