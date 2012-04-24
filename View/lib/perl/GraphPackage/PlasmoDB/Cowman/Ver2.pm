@@ -16,7 +16,7 @@ sub init {
   my $legendColors = ['red', 'green', 'blue' ];
   my $legend = ['merozoite invasion', 'SIR2 KO', 'sialic acid-dependent vs. -independent red cell receptor invasion'];
 
-  my $colors = ['red', 'red', 'red', 'green', 'green', 'red','red', 'green', 'green', 'blue', 'blue', 'blue'];
+  my $colors = ['green', 'green', 'green', 'green', 'blue', 'blue', 'blue', 'red', 'red', 'red', 'red', 'red'];
 
   $self->setMainLegend({colors => $legendColors, short_names => $legend, cols => 1});
 
