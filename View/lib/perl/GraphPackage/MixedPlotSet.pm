@@ -9,8 +9,8 @@ use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
 sub setMainLegend {
   my ($self, $hash) = @_;
 
-  $hash->{fill} = 1;
-  $hash->{points_pch} = [];
+  $hash->{fill} = 1 unless(defined $hash->{fill});
+  $hash->{points_pch} = [] unless(defined $hash->{points_pch});
   $self->SUPER::setMainLegend($hash);
 }
 

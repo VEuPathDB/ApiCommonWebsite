@@ -3,20 +3,16 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Ferdig::DD2_X_HB3;
 use strict;
 use vars qw( @ISA);
 
-use Data::Dumper;
-
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
-
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::ScatterPlot);
+use ApiCommonWebsite::Model::CannedQuery::Profile;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(300);
   $self->setPlotWidth(500);
 
   my $pch = [19,24];
@@ -25,19 +21,21 @@ sub init {
 
   my $legend = ['DD2', 'HB3'];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
+  $self->setMainLegend({colors => $colors, 
+                        short_names => $legend, 
+                        points_pch => $pch,
+                       });
 
-  $self->setProfileSetsHash
-    ({expr => {profiles => ['Profiles of DD2-HB3 expression from Ferdig',
-                           ],
-               y_axis_label => 'Expression Value',
-               x_axis_label => ' ',
-               default_y_max => 1,
-               default_y_min => -1,
-               make_y_axis_fold_incuction => 1,
-               plot_title => 'Expression Values for the progeny of HB3 X DD2',
-                },
-     });
+  my @profileSetNames = (['Profiles of DD2-HB3 expression from Ferdig']);
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+
+  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::LogRatio->new(@_);
+  $scatter->setProfileSets($profileSets);
+  $scatter->setPlotTitle("Expression Values for the progeny of HB3 X DD2");
+  $scatter->setDefaultYMax(1);
+  $scatter->setDefaultYMin(-1);
+  $scatter->setElementNameMarginSize(4);
+  $self->setGraphObjects($scatter);
 
   $self->initColorsAndGlyphs();
 
@@ -61,6 +59,8 @@ sub initColorsAndGlyphs {
 
   my (@colors, @pchs);
 
+
+
   foreach(@$parentalAlleles) {
     s/\s//;
 
@@ -77,8 +77,11 @@ sub initColorsAndGlyphs {
     }
   }
 
-  $self->{_profile_sets_hash}->{expr}->{colors} = \@colors;
-  $self->{_profile_sets_hash}->{expr}->{points_pch} = \@pchs;
+  my $graphObjs = $self->getGraphObjects();
+  my $scatter = $graphObjs->[0];
+
+  $scatter->setColors(\@colors);
+  $scatter->setPointsPch(\@pchs);
 }
 
 sub queryParentalAlleles {
