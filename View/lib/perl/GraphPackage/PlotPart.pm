@@ -10,8 +10,6 @@ use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileFixedValue;
 use ApiCommonWebsite::View::GraphPackage::Util;
 
-use Data::Dumper;
-
 #----------------------------------------------------------------------------------------------
 
 sub getProfileSets               { $_[0]->{'_profile_sets'           }}
@@ -117,9 +115,9 @@ sub makeFilesForR {
   my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
   my $stderrString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@stderrFiles, 'stderr.files');
 
-  print STDERR Dumper \@profileFiles;
-  print STDERR Dumper \@elementNamesFiles;
-  print STDERR Dumper \@stderrFiles;
+#  print STDERR Dumper \@profileFiles;
+#  print STDERR Dumper \@elementNamesFiles;
+#  print STDERR Dumper \@stderrFiles;
 
   return($profileFilesString, $elementNamesString, $stderrString);
 }

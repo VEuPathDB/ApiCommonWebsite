@@ -12,8 +12,6 @@ use ApiCommonWebsite::Model::CannedQuery::ProfileFixedValue;
 use ApiCommonWebsite::View::MultiScreen;
 use ApiCommonWebsite::View::GraphPackage::Util;
 
-use Data::Dumper;
-
 #--------------------------------------------------------------------------------
 
 #TODO: would like to factor out into PlotPart.pm
@@ -354,7 +352,7 @@ sub writeProfileFiles {
 
 sub addToProfileDataMatrix {
   my ($self, $profileFiles, $elementNamesFiles, $profileSetNames) = @_;
-  return;
+
   my $allNames = $self->getAllNames();
   my $allValues = $self->getAllValues();
 
@@ -370,15 +368,25 @@ sub addToProfileDataMatrix {
     my @values = <VALUES>;
 
     my %values;
+    my $index = 1;
+
     foreach(@values) {
       chomp $_;
+      next if /VALUE/;
       my ($k, $v) = split(/\t/, $_);
-      push @{$values{$k}}, $v;
+
+      if(defined $v) {
+        push @{$values{$k}}, $v;
+      } else {
+        push @{$values{$index}}, $k;
+        $index++;
+      }
     }
+
 
     my @avgValues = ('Header');
 
-    for(my $i = 1; $i < scalar(keys(%values)); $i++) {
+    for(my $i = 1; $i < scalar(keys(%values)) + 1; $i++) {
       my @allValues = @{$values{$i}};
 
       my $sum = 0;
@@ -396,7 +404,7 @@ sub addToProfileDataMatrix {
         push @avgValues, 'NA';
       }
       else {
-        push @avgValues, $sum / scalar @allValues;
+        push @avgValues, $sum / (scalar(@allValues) - $naCount);
       }
     }
 
@@ -406,12 +414,11 @@ sub addToProfileDataMatrix {
 
     for(my $j = 1; $j < scalar @names; $j++) {
       my $nameRow = $names[$j];
-      my $valueRow = $values[$j];
 
-      chomp($nameRow, $valueRow);
+      chomp $nameRow;
 
       my ($neo, $name) = split(/\t/, $nameRow);
-      my ($veo, $value) = split(/\t/, $valueRow);
+      my $value = $avgValues[$j];
 
       my ($digit) = $name =~ /(^\d+)/;
       $digit = -1 unless(defined $digit);
@@ -423,13 +430,16 @@ sub addToProfileDataMatrix {
 
       push @$allNames, $namesHash unless(ApiCommonWebsite::View::GraphPackage::Util::isSeen($name, $allNames));
 
-      $allValues->{$profileSet}->{$name} = $value;
+      my $distinctProfileSet = $i > 0 ? $profileSet . "_" . $i : $profileSet;
+
+      $allValues->{$distinctProfileSet}->{$name} = $value;
     }
 
 
     close NAMES;
     close VALUES;
   }
+
 }
 
 #--------------------------------------------------------------------------------
@@ -449,7 +459,7 @@ sub makeHtmlStringFromMatrix {
 
   my @values;
 
-  my @profileSets = keys %$allValues;
+  my @profileSets = sort keys %$allValues;
 
     print OUT join("\n", map{ "    <th>$_</th>"} @profileSets);
     print OUT "  </tr>\n";

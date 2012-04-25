@@ -305,7 +305,7 @@ sub new {
   $self->setIsLogged(1);
 
   # RMAExpress is log2
-  if($wantLogged eq '0') {
+  if(defined($wantLogged) && $wantLogged eq '0') {
     $self->setAdjustProfile('profile.df = 2^(profile.df);stderr.df = 2^stderr.df;');
     $self->setYaxisLabel("RMA Value");
   }
