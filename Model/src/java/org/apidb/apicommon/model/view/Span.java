@@ -13,6 +13,7 @@ public class Span {
     private boolean forward;
     private float percentStart;
     private float percentLength;
+    private String context;
 
     public Span(String sourceId) {
         this.sourceId = sourceId;
@@ -76,5 +77,13 @@ public class Span {
 
     public void setPercentLength(float percentLength) {
         this.percentLength = percentLength;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
+
+    public String getContext() {
+        return sequenceId + ":" + context;
     }
 }

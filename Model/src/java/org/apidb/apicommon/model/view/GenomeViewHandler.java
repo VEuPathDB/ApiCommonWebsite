@@ -35,6 +35,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     protected static final String COLUMN_CHROMOSOME = "chromosome";
     protected static final String COLUMN_ORGANISM = "organism";
     protected static final String COLUMN_SEQUENCE_LENGTH = "sequence_length";
+    protected static final String COLUMN_CONTEXT = "context";
     protected static final String COLUMN_STRAND = "strand";
 
     private static final String PROP_SEQUENCES = "sequences";
@@ -87,6 +88,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
                 span.setStart(resultSet.getInt(COLUMN_START));
                 span.setEnd(resultSet.getInt(COLUMN_END));
                 span.setForward(resultSet.getBoolean(COLUMN_STRAND));
+                span.setContext(resultSet.getString(COLUMN_CONTEXT));
                 sequence.addSpan(span);
             }
 
