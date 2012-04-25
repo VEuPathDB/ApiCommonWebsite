@@ -3,6 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::PlotPart;
 use strict;
 use vars qw( @ISA );
 
+use Data::Dumper;
+
 @ISA = qw( ApiCommonWebsite::View::GraphPackage );
 use ApiCommonWebsite::View::GraphPackage;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
@@ -105,6 +107,12 @@ sub makeFilesForR {
     $profileSet->writeFiles($id, $qh, $suffix);
   }
 
+  return $self->profileFilesAsRVectors($profileSets);
+}
+
+sub profileFilesAsRVectors {
+  my ($self, $profileSets) = @_;
+
   my @profileFiles = map { $_->getProfileFile() } @$profileSets;
   my @elementNamesFiles = map { $_->getElementNamesFile() } @$profileSets;
 
@@ -120,8 +128,8 @@ sub makeFilesForR {
 #  print STDERR Dumper \@stderrFiles;
 
   return($profileFilesString, $elementNamesString, $stderrString);
-}
 
+}
 
 
 

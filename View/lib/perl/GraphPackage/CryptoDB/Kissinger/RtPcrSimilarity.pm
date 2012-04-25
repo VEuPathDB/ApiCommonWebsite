@@ -1,67 +1,41 @@
 package ApiCommonWebsite::View::GraphPackage::CryptoDB::Kissinger::RtPcrSimilarity;
 
-=pod
-
-=head1 Description
-
-Grabs the smoothed averaged HB3 data for primary id (match) and
-secondary id (query).
-
-=cut
-
-# ========================================================================
-# ----------------------------- Declarations -----------------------------
-# ========================================================================
 
 use strict;
-use vars qw(@ISA);
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimilarityProfile );
+use vars qw( @ISA );
 
-use ApiCommonWebsite::View::GraphPackage::SimilarityProfile;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::SimilarityPlot;
 
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-
-# ========================================================================
-# ------------------------------- Methods --------------------------------
-# ========================================================================
-
-# --------------------------------- init ---------------------------------
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 sub init {
-  my $Self = shift;
+  my $self = shift;
 
-  $Self->SUPER::init(@_);
-  my @xAxisLabels = ['2', '6','12', '24','36','48','72'];
+  $self->SUPER::init(@_);
 
-  $Self->setMatchProfile
-  ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-    ( Name       => 'match',
-      ProfileSet => 'Cparvum_RT_PCR_Kissinger',
-      ElementOrder => @xAxisLabels,
-    )
-  );
+  my @colors = ('blue', 'grey');
+  my @legend = ('Match', 'Query');
 
-  $Self->setQueryProfile
-  ( ApiCommonWebsite::Model::CannedQuery::Profile->new
-    ( Name         => 'query',
-      ProfileSet   => 'Cparvum_RT_PCR_Kissinger',
-      UseSecondary => 1,
-      ElementOrder => @xAxisLabels,
-    )
-  );
+  $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
+  $self->setPlotWidth(450);
 
+  # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
+  my @profileArray = (['Cparvum_RT_PCR_Kissinger'],
+                      ['Cparvum_RT_PCR_Kissinger'],
+                     );
 
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  $Self->setYmax(1);
-  $Self->setYmin(-1);
+  my $similarity = ApiCommonWebsite::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
+  $similarity->setProfileSets($profileSets);
+  $similarity->setColors(\@colors);
+  $similarity->setPointsPch([15,15]);
 
-#  $Self->setSmoothSpline(1);
-#  $Self->setSplineApproxN(60);
+  $self->setGraphObjects($similarity);
 
-  return $Self;
+  return $self;
 }
 
-# ---------------------------- End of Package ----------------------------
-
 1;
-

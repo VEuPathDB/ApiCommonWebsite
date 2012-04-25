@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::White::CellCycleSimilarity;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery::Ver2;
 
 use strict;
 use vars qw( @ISA );
@@ -21,8 +21,8 @@ sub init {
   $self->setPlotWidth(450);
 
   # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
-  my @profileArray = (['M.White Cell Cycle Microarray profiles'],
-                      ['M.White Cell Cycle Microarray profiles'],
+  my @profileArray = (['DeRisi HB3 Smoothed'],
+                      ['DeRisi HB3 Smoothed'],
                      );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -38,4 +38,3 @@ sub init {
 }
 
 1;
-
