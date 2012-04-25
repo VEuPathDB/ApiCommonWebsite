@@ -86,6 +86,8 @@ sub makeRPlotStrings {
     my $profileSets = $plotPart->getProfileSets();
 
     my @profileFiles = map { $_->getProfileFile() } @$profileSets;
+    my @profileSetNames = map { $_->getName() } @$profileSets;
+
     my @elementNamesFiles = map { $_->getElementNamesFile() } @$profileSets;
 
     my @stderrProfileSets = map { $_->getRelatedProfileSet() } @$profileSets;
@@ -99,10 +101,14 @@ sub makeRPlotStrings {
     foreach my $file (@profileFiles, @elementNamesFiles, @stderrFiles) {
       $self->addTempFile($file);
     }
-
-    #$self->addToProfileDataMatrix($profileFiles, $elementFiles, $plotPart->getProfileSetDisplayNames);
+    if($self->getFormat() eq 'table') {
+      $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, \@profileSetNames);
+    }
   }
-  #$self->makeHtmlStringFromMatrix();
+  
+  if($self->getFormat() eq 'table') {
+    $self->makeHtmlStringFromMatrix();
+  }
 
   return \@rv;
 }
