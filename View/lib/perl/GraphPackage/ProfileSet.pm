@@ -80,10 +80,6 @@ sub writeProfileFile {
 
   my $scale = $self->getScale();
 
-  if($self->getAlternateSourceId()) {
-    print STDERR $self->getAlternateSourceId() . "SCALE=$scale\n";
-  }
-
   my $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
     ( Name         => "_data_$suffix",
       Id           => $id,
