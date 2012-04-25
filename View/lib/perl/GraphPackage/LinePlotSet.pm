@@ -168,7 +168,10 @@ points.df\$V1 = NULL;
 
 for(i in 1:length(profile.files)) {
   profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
-  profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
+
+  if(!is.null(profile.df\$ELEMENT_ORDER)) {
+    profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
+  }
   profile = profile.df\$VALUE;
 
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
