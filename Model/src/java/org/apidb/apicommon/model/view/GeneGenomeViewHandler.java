@@ -23,6 +23,7 @@ public class GeneGenomeViewHandler extends GenomeViewHandler {
         sql.append("    sa.organism AS " + COLUMN_ORGANISM + ", ");
         sql.append("    ga.start_min AS " + COLUMN_START + ", ");
         sql.append("    ga.end_max AS " + COLUMN_END + ", ");
+        sql.append("    ga.context_start || '..' || ga.context_end AS context, ");
         sql.append("    CASE ga.strand WHEN 'forward' THEN 1 ELSE 0 END AS "
                 + COLUMN_STRAND);
         sql.append(" FROM ApidbTuning.GeneAttributes ga, ");
