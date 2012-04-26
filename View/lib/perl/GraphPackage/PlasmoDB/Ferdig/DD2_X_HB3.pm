@@ -6,6 +6,7 @@ use vars qw( @ISA);
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 
 sub init {
@@ -35,10 +36,17 @@ sub init {
   $scatter->setDefaultYMax(1);
   $scatter->setDefaultYMin(-1);
   $scatter->setElementNameMarginSize(4);
-  $self->setGraphObjects($scatter);
+
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['red percentile - Profiles of DD2-HB3 expression from Ferdig'],
+                                                                                    ['green percentile - Profiles of DD2-HB3 expression from Ferdig']]);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors(['#CCCCCC','dark blue']);
+
+  $self->setGraphObjects($scatter, $percentile);
 
   $self->initColorsAndGlyphs();
-
   return $self;
 }
 
