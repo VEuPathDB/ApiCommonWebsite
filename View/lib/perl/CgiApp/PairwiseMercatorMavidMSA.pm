@@ -41,13 +41,18 @@ my $taxonToDirNameMap =
    'Neospora caninum'                                 => { name => 'Ncaninum',               group => 5 },
    'Eimeria tenella str. Houghton'                    => { name => 'EtenellaHoughton',       group => 6 },
 
-   'Plasmodium falciparum 3D7'                        => { name => 'Pfalciparum',            group => 1 },
-   'Plasmodium falciparum IT'                         => { name => 'PfalciparumIT',          group => 2 },
-   'Plasmodium vivax SaI-1'                           => { name => 'Pvivax',                 group => 3 },
-   'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'Pyoelii',                group => 4 },
-   'Plasmodium berghei str. ANKA'                     => { name => 'Pberghei',               group => 5 },
-   'Plasmodium chabaudi chabaudi'                     => { name => 'Pchabudi',               group => 6 },
-   'Plasmodium knowlesi strain H'                     => { name => 'Pknowlesi',              group => 7 },
+   'Plasmodium falciparum 3D7'                        => { name => 'pfal3D7',                group => 1 },
+   'Plasmodium falciparum IT'                         => { name => 'pfalIT',                 group => 2 },
+   'Plasmodium vivax SaI-1'                           => { name => 'pvivSaI1',               group => 3 },
+   'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'pyoe17XNL',              group => 4 },
+   'Plasmodium berghei str. ANKA'                     => { name => 'pberANKA',               group => 5 },
+   'Plasmodium chabaudi chabaudi'                     => { name => 'pchachabaudi',           group => 6 },
+   'Plasmodium knowlesi strain H'                     => { name => 'pknoH',                  group => 7 },
+   'Plasmodium gallinaceum'                           => { name => 'pgalUnk',                group => 8 },
+   'Plasmodium reichenowi'                            => { name => 'preiLaverania',          group => 9 },
+
+
+
 
    'Encephalitozoon cuniculi GB-M1'                   => { name => 'Ecuniculi',              group => 1 },
    'Encephalitozoon intestinalis'                     => { name => 'Eintestinalis',          group => 2 },
