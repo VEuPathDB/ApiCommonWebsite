@@ -1,5 +1,7 @@
 package org.apidb.apicommon.controller.action;
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -12,16 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.model.AttributeValue;
 import org.gusdb.wdk.model.TableValue;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.json.JSONException;
 
 public class CustomShowQuestionAction extends ShowQuestionAction {
 
@@ -31,12 +37,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
     private static final String ATTR_REFERENCE_QUESTIONS = "ds_ref_questions";
 
-    @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        // run execute from parent
-        ActionForward forward = super.execute(mapping, form, request, response);
+    public static void loadDataSources(ActionServlet servlet,
+            HttpServletRequest request) throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
 
         List<RecordBean> questionRefs = new ArrayList<RecordBean>();
@@ -46,13 +48,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
             // load the recordClass based data sources
             UserBean user = ActionUtility.getUser(servlet, request);
-            QuestionBean question = (QuestionBean) request
-                    .getAttribute(CConstants.WDK_QUESTION_KEY);
+            QuestionBean question = (QuestionBean) request.getAttribute(CConstants.WDK_QUESTION_KEY);
             String questionName = question.getFullName();
 
             // get the data source question
-            QuestionBean dsQuestion = wdkModel
-                    .getQuestion(GetDataSourceAction.DATA_SOURCE_BY_QUESTION);
+            QuestionBean dsQuestion = wdkModel.getQuestion(GetDataSourceAction.DATA_SOURCE_BY_QUESTION);
             Map<String, String> params = new LinkedHashMap<String, String>();
             params.put(PARAM_QUESTION, questionName);
             AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
@@ -77,8 +77,16 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         }
 
         request.setAttribute(ATTR_REFERENCE_QUESTIONS, questionRefs);
+    }
 
-        return forward;
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        loadDataSources(servlet, request);
+        
+        // run execute from parent
+        return super.execute(mapping, form, request, response);
     }
 
 }
