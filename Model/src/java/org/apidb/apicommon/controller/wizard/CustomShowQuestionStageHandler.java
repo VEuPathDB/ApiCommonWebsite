@@ -1,0 +1,30 @@
+package org.apidb.apicommon.controller.wizard;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionServlet;
+import org.apidb.apicommon.controller.action.CustomShowQuestionAction;
+import org.gusdb.wdk.controller.action.WizardForm;
+import org.gusdb.wdk.controller.wizard.ShowQuestionStageHandler;
+
+public class CustomShowQuestionStageHandler extends ShowQuestionStageHandler {
+
+    /* (non-Javadoc)
+     * @see org.gusdb.wdk.controller.wizard.ShowQuestionStageHandler#execute(org.apache.struts.action.ActionServlet, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.gusdb.wdk.controller.action.WizardForm)
+     */
+    @Override
+    public Map<String, Object> execute(ActionServlet servlet,
+            HttpServletRequest request, HttpServletResponse response,
+            WizardForm wizardForm) throws Exception {
+        // load data sources
+        CustomShowQuestionAction.loadDataSources(servlet, request);
+        
+        // call execute() from parent;
+        return super.execute(servlet, request, response, wizardForm);
+    }
+
+    
+}

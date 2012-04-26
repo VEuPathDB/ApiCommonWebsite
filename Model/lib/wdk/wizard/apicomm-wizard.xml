@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wdkWizard>
-  <stage name="span_from_question" 
-         display="Select Parameters"
-         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromQuestionStageHandler">
-    <description>Select span logic paramters.</description>
-    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
-  </stage>
-  <stage name="span_from_strategy" 
-         display="Select Parameters"
-         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromStrategyStageHandler">
-    <description>Select span logic paramters.</description>
-    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
-  </stage>
-  <stage name="process_span" 
-         display="Process Span Logic operation"
-         handlerClass="org.apidb.apicommon.controller.wizard.ProcessSpanStageHandler">
-    <description>Process span logic operation and redirect to processFilter.</description>
-    <result type="action">/processStep.do</result>
-  </stage>
-  <stage name="revise_span" 
-         display="Revise Span Parameters"
-         handlerClass="org.apidb.apicommon.controller.wizard.SpanFromReviseStageHandler">
-    <description>Revise span logic paramters.</description>
-    <result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp</result>
-  </stage>
 
-  <!-- show the transform question page -->
-  <stage name="show_ortholog"
-         display="Select parameters for Transform"
-         handlerClass="org.apidb.apicommon.controller.wizard.ShowOrthologStageHandler">
-    <description>Go to transform question page.</description>
-    <result type="view">/wdkCustomization/jsp/wizard/ortholog.jsp</result>
-  </stage>
+	<!-- show question page, and allow user to choose the params, this page 
+		will go to one of the three stages: boolean, process_transform, or span. 
+		This stage is customized to process data source. -->
+	<stage name="question" display="Select parameters"
+		handlerClass="org.apidb.apicommon.controller.wizard.CustomShowQuestionStageHandler">
+		<description>Please choose parameters and the operation.</description>
+		<result type="view">/wdk/jsp/wizard/question.jsp</result>
+	</stage>
 
-  <!-- process the question. the question could be any question other than a boolean operation. -->
-  <stage name="process_ortholog"
-         display="Process Normal or Transform Question">
-    <description>Process a normal question (the first question) or a transform.</description>
-    <result type="action">/processStep.do</result>
-  </stage>
+	<stage name="span_from_question" display="Select Parameters"
+		handlerClass="org.apidb.apicommon.controller.wizard.SpanFromQuestionStageHandler">
+		<description>Select span logic paramters.</description>
+		<result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp
+		</result>
+	</stage>
+	<stage name="span_from_strategy" display="Select Parameters"
+		handlerClass="org.apidb.apicommon.controller.wizard.SpanFromStrategyStageHandler">
+		<description>Select span logic paramters.</description>
+		<result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp
+		</result>
+	</stage>
+	<stage name="process_span" display="Process Span Logic operation"
+		handlerClass="org.apidb.apicommon.controller.wizard.ProcessSpanStageHandler">
+		<description>Process span logic operation and redirect to
+			processFilter.
+		</description>
+		<result type="action">/processStep.do</result>
+	</stage>
+	<stage name="revise_span" display="Revise Span Parameters"
+		handlerClass="org.apidb.apicommon.controller.wizard.SpanFromReviseStageHandler">
+		<description>Revise span logic paramters.</description>
+		<result type="view">/wdkCustomization/jsp/wizard/spanlogic.jsp
+		</result>
+	</stage>
+
+	<!-- show the transform question page -->
+	<stage name="show_ortholog" display="Select parameters for Transform"
+		handlerClass="org.apidb.apicommon.controller.wizard.ShowOrthologStageHandler">
+		<description>Go to transform question page.</description>
+		<result type="view">/wdkCustomization/jsp/wizard/ortholog.jsp</result>
+	</stage>
+
+	<!-- process the question. the question could be any question other than 
+		a boolean operation. -->
+	<stage name="process_ortholog" display="Process Normal or Transform Question">
+		<description>Process a normal question (the first question) or a
+			transform.
+		</description>
+		<result type="action">/processStep.do</result>
+	</stage>
 
 </wdkWizard>
