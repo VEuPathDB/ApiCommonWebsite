@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiWinzeler::Ver2;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::OverlayIRBC::Ver2;
 
 use strict;
 use vars qw( @ISA );

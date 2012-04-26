@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::PfRNASeq::Ver2;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Newbold::IRBC;
 
 use strict;
 use vars qw( @ISA );

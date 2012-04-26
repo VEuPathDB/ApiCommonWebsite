@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Newbold::Ver2;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Newbold::Patients;
 
 use strict;
 use vars qw( @ISA );
