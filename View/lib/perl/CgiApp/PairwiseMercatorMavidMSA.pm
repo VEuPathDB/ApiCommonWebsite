@@ -48,9 +48,6 @@ my $taxonToDirNameMap =
    'Plasmodium berghei str. ANKA'                     => { name => 'pberANKA',               group => 5 },
    'Plasmodium chabaudi chabaudi'                     => { name => 'pchachabaudi',           group => 6 },
    'Plasmodium knowlesi strain H'                     => { name => 'pknoH',                  group => 7 },
-   'Plasmodium gallinaceum'                           => { name => 'pgalUnk',                group => 8 },
-   'Plasmodium reichenowi'                            => { name => 'preiLaverania',          group => 9 },
-
 
 
 
