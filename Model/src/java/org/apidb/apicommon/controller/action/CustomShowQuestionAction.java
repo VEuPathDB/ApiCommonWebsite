@@ -48,8 +48,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
             // load the recordClass based data sources
             UserBean user = ActionUtility.getUser(servlet, request);
-            QuestionBean question = (QuestionBean) request.getAttribute(CConstants.WDK_QUESTION_KEY);
-            String questionName = question.getFullName();
+            String questionName =  request.getParameter("questionFullName");
+            QuestionBean question = wdkModel.getQuestion(questionName);
 
             // get the data source question
             QuestionBean dsQuestion = wdkModel.getQuestion(GetDataSourceAction.DATA_SOURCE_BY_QUESTION);
