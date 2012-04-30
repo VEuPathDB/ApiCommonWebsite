@@ -9,36 +9,29 @@ use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
-
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
   my @colors = ('cyan', 'purple', 'brown' );
-  my $legend = ['sorbitol', 'temperature', 'sporozoite'];
+  my $legend = ['sorbitol', 'temperature', 'sporozoite & gametocyte'];
 
-  $self->setMainLegend({colors => \@colors, short_names => $legend, cols => 4});
-
-
-  my @temp_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
-  my @sorb_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
+  $self->setMainLegend({colors => \@colors, short_names => $legend, cols => 2});
 
   my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
 
   # Want line graph for ER-LS so the element names must be numeric when they are read in
-  my @tempNames = (2..7, "M");
-  my @sorbNames = (2..7, "M", "G");
+  my @tempSorbNames = (2..7, "M");
 
-  my @winzelerProfileArray = (['winzeler_cc_sorbExp','', \@sorbNames],
-                              ['winzeler_cc_tempExp', '', \@tempNames],
-                              ['winzeler_cc_sporExp', 'standard error - winzeler_cc_sporExp', [1]]
+  my @winzelerProfileArray = (['winzeler_cc_sorbExp','', \@tempSorbNames],
+                              ['winzeler_cc_tempExp', '', \@tempSorbNames],
+                              ['winzeler_cc_sexExp', 'standard error - winzeler_cc_sexExp', [1, 'G']]
                              );
 
   my @winzelerPercentileArray = (['percentile - winzeler_cc_sorbExp'],
                                  ['percentile - winzeler_cc_tempExp'],
-                                 ['percentile - winzeler_cc_sporExp']
+                                 ['percentile - winzeler_cc_sexExp']
                                 );
 
   my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
@@ -54,21 +47,22 @@ sub init {
   $winzeler->setSampleLabels(\@winzelerNames);
 
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
-  $rma->setProfileSets($winzelerProfileSets);
-  $rma->setColors(\@colors);
-  $rma->addAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
-  $rma->setSampleLabels(\@winzelerNames);
-  $rma->setSpaceBetweenBars(1);
+   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+   $rma->setProfileSets($winzelerProfileSets);
+   $rma->setColors(\@colors);
+   $rma->addAdjustProfile('profile.df = cbind(profile.df[,8], profile.df[,1:7], profile.df[,9]);');
+   $rma->setSampleLabels(\@winzelerNames);
+   $rma->setSpaceBetweenBars(1);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
-  $percentile->setProfileSets($winzelerPercentileSets);
-  $percentile->setColors(\@colors);
-  $percentile->setAdjustProfile('profile.df = cbind(profile.df[,9], profile.df[,1:8]);');
-  $percentile->setSampleLabels(\@winzelerNames);
-  $percentile->setSpaceBetweenBars(1);
+   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+   $percentile->setProfileSets($winzelerPercentileSets);
+   $percentile->setColors(\@colors);
+   $percentile->addAdjustProfile('profile.df = cbind(profile.df[,8], profile.df[,1:7], profile.df[,9]);');
+   $percentile->setSampleLabels(\@winzelerNames);
+   $percentile->setSpaceBetweenBars(1);
 
   $self->setGraphObjects($winzeler, $rma, $percentile);
+
 
   return $self;
 
