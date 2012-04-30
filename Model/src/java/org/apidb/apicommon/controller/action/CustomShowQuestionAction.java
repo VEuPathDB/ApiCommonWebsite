@@ -1,7 +1,5 @@
 package org.apidb.apicommon.controller.action;
 
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -20,14 +18,11 @@ import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.model.AttributeValue;
 import org.gusdb.wdk.model.TableValue;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.json.JSONException;
 
 public class CustomShowQuestionAction extends ShowQuestionAction {
 
@@ -48,8 +43,14 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
             // load the recordClass based data sources
             UserBean user = ActionUtility.getUser(servlet, request);
-            String questionName =  request.getParameter("questionFullName");
-            QuestionBean question = wdkModel.getQuestion(questionName);
+            String questionName = request.getParameter("questionFullName");
+            QuestionBean question;
+            if (questionName == null) {
+                question = (QuestionBean) request.getAttribute(CConstants.WDK_QUESTION_KEY);
+                questionName = question.getFullName();
+            } else {
+                question = wdkModel.getQuestion(questionName);
+            }
 
             // get the data source question
             QuestionBean dsQuestion = wdkModel.getQuestion(GetDataSourceAction.DATA_SOURCE_BY_QUESTION);
@@ -84,7 +85,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         loadDataSources(servlet, request);
-        
+
         // run execute from parent
         return super.execute(mapping, form, request, response);
     }
