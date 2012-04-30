@@ -84,10 +84,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        ActionForward forward = super.execute(mapping, form, request, response);
         loadDataSources(servlet, request);
 
         // run execute from parent
-        return super.execute(mapping, form, request, response);
+        return forward;
     }
 
 }
