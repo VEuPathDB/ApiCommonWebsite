@@ -6,8 +6,6 @@
 **/
 package org.apidb.apicommon.jmx.mbeans.apidb;
 
-import org.apidb.apicommon.jmx.mbeans.apidb.AbstractDBExt;
-import javax.servlet.ServletContext;
 
 public class UserDBExt extends AbstractDBExt implements UserDBExtMBean   {
 

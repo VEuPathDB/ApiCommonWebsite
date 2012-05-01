@@ -1,40 +1,33 @@
 package org.apidb.apicommon.controller;
 
-import org.apidb.apicommon.model.UserFileUploadException;
-
-import org.apache.log4j.Logger;
-
-import java.io.*;
-import java.util.HashMap;
-import java.security.MessageDigest;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.HashMap;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
-import org.json.JSONException;
-import org.xml.sax.SAXException;
-import java.sql.SQLException;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts.action.ActionForm;
+import org.apache.log4j.Logger;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
-
-import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.model.Utilities;
-import org.gusdb.wdk.model.jspwrap.UserBean;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-
 import org.apidb.apicommon.model.UserFile;
 import org.apidb.apicommon.model.UserFileFactory;
+import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.model.Utilities;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.jspwrap.UserBean;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.json.JSONException;
+import org.xml.sax.SAXException;
 
 public class UserFileUploadAction extends Action {
     
@@ -54,11 +47,11 @@ public class UserFileUploadAction extends Action {
     ActionForward forward = new ActionForward(referer, false);
 
     cuForm = (UserFileUploadForm)form;
-    HashMap<Integer, Object> formSet = cuForm.getFormFiles();
+    HashMap<Integer, FormFile> formSet = cuForm.getFormFiles();
     HashMap<Integer, String> noteSet = cuForm.getFormNotes();
 
     for(Integer i : formSet.keySet()) {
-      FormFile formFile = (FormFile) formSet.get(i);
+      FormFile formFile = formSet.get(i);
 
       if (formFile == null) continue;
       

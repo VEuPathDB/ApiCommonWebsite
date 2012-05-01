@@ -13,13 +13,13 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping; 
-import org.apache.struts.util.LabelValueBean;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
+import org.apache.struts.util.LabelValueBean;
 import org.apidb.apicommon.model.GeneIdValidator;
-import org.apidb.apicommon.model.MultiBox; 
+import org.apidb.apicommon.model.MultiBox;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
@@ -60,9 +60,9 @@ public class NewCommentForm extends ActionForm {
     private String sequence;
     private String reviewStatus;
 
-    private ArrayList categoryList = new ArrayList(); 
+    private ArrayList<LabelValueBean> categoryList = new ArrayList<LabelValueBean>(); 
 
-    public ArrayList getCategoryList() {
+    public ArrayList<LabelValueBean> getCategoryList() {
         return categoryList;
     } 
 
@@ -76,11 +76,11 @@ public class NewCommentForm extends ActionForm {
             // if not, it will thorw "No Collection found" exception,
             // the following code has already been handled in reset.
             // revisit this later
-            ServletContext context = servlet.getServletContext();
+            //ServletContext context = servlet.getServletContext();
             //String targetId = request.getParameter("commentTargetId"); 
-            String targetId = getCommentTargetId(); 
+            //String targetId = getCommentTargetId(); 
 
-            ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" ); 
+            //ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" ); 
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -532,7 +532,7 @@ public class NewCommentForm extends ActionForm {
 
         ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" );
    
-        categoryList = new ArrayList();
+        categoryList = new ArrayList<LabelValueBean>();
         for(MultiBox c : list) { 
            categoryList.add(new LabelValueBean(c.getName(), c.getValue()));
         } 

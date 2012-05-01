@@ -52,9 +52,9 @@ public class PhenotypeForm extends ActionForm {
     private String mutationType;
     private String phenotypeLoc;
 
-    private ArrayList reporterList; 
+    private ArrayList<LabelValueBean> reporterList; 
 
-    public ArrayList getReporterList() {
+    public ArrayList<LabelValueBean> getReporterList() {
         return reporterList;
     } 
 
@@ -351,7 +351,7 @@ public class PhenotypeForm extends ActionForm {
         ServletContext context = servlet.getServletContext(); 
         ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("mutant_reporter", "mutant_reporter_id", "MutantReporter", null);
 
-        reporterList = new ArrayList();
+        reporterList = new ArrayList<LabelValueBean>();
         for(MultiBox c : list) { 
            reporterList.add(new LabelValueBean(c.getName(), c.getValue()));
         } 

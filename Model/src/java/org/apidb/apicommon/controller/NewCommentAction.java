@@ -19,8 +19,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 import org.apidb.apicommon.model.Comment;
-import org.apidb.apicommon.model.Location;
-import org.apidb.apicommon.model.ExternalDatabase;
 import org.apidb.apicommon.model.UserFile;
 import org.apidb.apicommon.model.UserFileFactory;
 import org.gusdb.wdk.controller.CConstants;
@@ -35,7 +33,6 @@ import org.xml.sax.SAXException;
 public class NewCommentAction extends CommentAction {
 
     private NewCommentForm cuForm;
-    private EditCommentForm edForm;
 
     public ActionForward execute(ActionMapping mapping, 
                                  ActionForm form, 
@@ -181,7 +178,7 @@ public class NewCommentAction extends CommentAction {
         }
 
         try {
-            if (locType == null ) { } else {
+            if (locType != null ) {
                comment.setLocations(reversed, locations, coordinateType);
             }
         } catch (Exception e) {

@@ -4,26 +4,25 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 import java.util.Map;
+
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
-import javax.management.MalformedObjectNameException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerFactory;
+import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
 import javax.servlet.ServletContext;
+
 import org.apache.log4j.Logger;
-import org.apidb.apicommon.jmx.ContextThreadLocal;
 
 public class MBeanRegistration {
 
   private static final Logger logger = Logger.getLogger(MBeanRegistration.class);
   private MBeanServer server;
-  private List<ObjectName> registeredMBeans = new ArrayList<ObjectName>();  
-  private ServletContext servletcontext;
+  private List<ObjectName> registeredMBeans = new ArrayList<ObjectName>();
   
   private Map<String, String> mbeanClassNames = MBeanSet.mbeanClassNames;
 
@@ -85,7 +84,7 @@ public class MBeanRegistration {
     Class<?> clazz = getClass(classname);
     if (clazz == null) return null;
     try {
-      Constructor con = clazz.getConstructor();
+      Constructor<?> con = clazz.getConstructor();
       bean = con.newInstance();
     } catch (InstantiationException ie) {
         logger.warn(ie);
@@ -99,7 +98,7 @@ public class MBeanRegistration {
     return bean;
   }
 
-  private Class getClass(String classname) {
+  private Class<?> getClass(String classname) {
     try {
       ClassLoader loader = Thread.currentThread().getContextClassLoader();
       return Class.forName(classname, false, loader);
@@ -126,10 +125,10 @@ public class MBeanRegistration {
   private MBeanServer getMBeanServer() {
     MBeanServer mbserver = null;
 
-    ArrayList mbservers = MBeanServerFactory.findMBeanServer(null);
+    ArrayList<MBeanServer> mbservers = MBeanServerFactory.findMBeanServer(null);
 
     if (mbservers.size() > 0) {
-      mbserver = (MBeanServer) mbservers.get(0);
+      mbserver = mbservers.get(0);
     }
 
     if (mbserver == null) {

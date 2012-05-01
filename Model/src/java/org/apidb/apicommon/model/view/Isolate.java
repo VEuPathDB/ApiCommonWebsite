@@ -1,7 +1,5 @@
 package org.apidb.apicommon.model.view;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Isolate {
 

@@ -11,8 +11,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apidb.apicommon.model.Comment;
 import org.apidb.apicommon.model.CommentFactory;
-import org.gusdb.wdk.controller.ApplicationInitListener;
-import org.gusdb.wdk.controller.CConstants;
 
 public class ShowCommentAction extends CommentAction {
 
@@ -29,7 +27,6 @@ public class ShowCommentAction extends CommentAction {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ServletContext application = getServlet().getServletContext();
 
         // get the factory
         ServletContext context = servlet.getServletContext();
