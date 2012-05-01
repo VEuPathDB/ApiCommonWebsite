@@ -29,6 +29,7 @@ import org.json.JSONException;
 public class CustomShowRecordAction extends ShowRecordAction {
 
     private static final String PARAM_NAME = "name";
+    private static final String PARAM_PRIMARY_KEY = "primary_key";
     private static final String PARAM_SOURCE_ID = "source_id";
 
     private static final String PARAM_RECORD_CLASS = "record_class";
@@ -52,6 +53,8 @@ public class CustomShowRecordAction extends ShowRecordAction {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         String rcName = request.getParameter(PARAM_NAME);
         String sourceId = request.getParameter(PARAM_SOURCE_ID);
+        if (sourceId == null) sourceId = request.getParameter(PARAM_PRIMARY_KEY);
+
         ActionForward forward;
         if (hasMultipleRecords(request, wdkModel, rcName, sourceId)) {
             // the old id is mapped to multiple ids, run a id question to get
