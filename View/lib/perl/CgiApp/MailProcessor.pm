@@ -23,8 +23,10 @@ sub go {
     my $Self = shift;
     my $cgi = CGI->new();
 
-    my $betatest = join("", @{ $cgi->{'betatest'} });
-
+    my $betatest="false";
+    if($cgi->{'betatest'}) {
+	my $betatest = join("", @{ $cgi->{'betatest'} });
+    }
     my $to1 = join("", @{ $cgi->{'to1'} });
     my $to2 = join("", @{ $cgi->{'to2'} });
     my $to = "$to1$to2";
@@ -90,7 +92,7 @@ sub go {
     my $cfmMsg;
 #    my $message = $automaticMsg . $message . "---------------------";
 
-    if($betatest) {
+    if($betatest != "false") {
 	my $q1 = join("", @{ $cgi->{'q1'} });
 	my $q2 = join("", @{ $cgi->{'q2'} });
 	my $q3 = join("", @{ $cgi->{'q3'} });
