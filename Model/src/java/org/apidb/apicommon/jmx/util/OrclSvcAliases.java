@@ -60,7 +60,7 @@ public class OrclSvcAliases {
             
             String filter = "(orclNetDescString=*" + servicename + "*)";
 
-            NamingEnumeration results = dctx.search(base, filter, sc);
+            NamingEnumeration<SearchResult> results = dctx.search(base, filter, sc);
             while (results.hasMore()) {
               SearchResult sr = (SearchResult) results.next();
               Attributes attrs = sr.getAttributes();

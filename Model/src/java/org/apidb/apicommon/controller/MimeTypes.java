@@ -124,12 +124,13 @@ public class MimeTypes {
 
   static {
     mimeTypeMapping = new HashMap<String, String>(200) {
-      private void put1(String key, String value) {
-        if (put(key, value) != null) {
-          throw new IllegalArgumentException("Duplicated extension: " + key);
-        }
-      }
-      {
+    	private static final long serialVersionUID = 1L;
+    	private void put1(String key, String value) {
+    		if (put(key, value) != null) {
+    			throw new IllegalArgumentException("Duplicated extension: " + key);
+    		}
+    	}
+    {
       put1("xul", MIME_APPLICATION_VND_MOZZILLA_XUL_XML);
       put1("json", MIME_APPLICATION_JSON);
       put1("ice", MIME_X_CONFERENCE_X_COOLTALK);

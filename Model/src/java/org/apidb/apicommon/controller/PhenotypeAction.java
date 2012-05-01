@@ -100,7 +100,7 @@ public class PhenotypeAction extends CommentAction {
         comment.setMutationType(Integer.parseInt(mutationType));
         comment.setMutationMethod(Integer.parseInt(mutationMethod));
         comment.setMutantExpression(Integer.parseInt(mutantExpression));
-        comment.setPhenotypeLoc(Integer.parseInt(mutantExpression));
+        comment.setPhenotypeLoc(Integer.parseInt(phenotypeLoc));
         comment.setUserId(userId);
 
         comment.addExternalDatabase(extDbName, extDbVersion);

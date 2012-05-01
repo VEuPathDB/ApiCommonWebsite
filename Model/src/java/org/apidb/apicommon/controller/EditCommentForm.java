@@ -4,7 +4,9 @@ import org.apache.struts.action.ActionForm;
 
 public class EditCommentForm extends ActionForm {
 
-    private String stableId;
+	private static final long serialVersionUID = 1L;
+
+	private String stableId;
     private String projectId;
     private String commentTargetId;
     private String commentId;

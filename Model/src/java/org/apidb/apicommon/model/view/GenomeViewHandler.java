@@ -3,7 +3,6 @@
  */
 package org.apidb.apicommon.model.view;
 
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -20,7 +19,6 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.view.SummaryViewHandler;
-import org.json.JSONException;
 
 /**
  * @author jerric
@@ -108,14 +106,6 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
             results.put(PROP_MAX_LENGTH, maxLength);
             logger.debug("Leaving SpanGenomeViewHandler...");
             return results;
-        } catch (NoSuchAlgorithmException ex) {
-            logger.error(ex);
-            ex.printStackTrace();
-            throw new WdkModelException(ex);
-        } catch (JSONException ex) {
-            logger.error(ex);
-            ex.printStackTrace();
-            throw new WdkModelException(ex);
         } catch (SQLException ex) {
             logger.error(ex);
             ex.printStackTrace();

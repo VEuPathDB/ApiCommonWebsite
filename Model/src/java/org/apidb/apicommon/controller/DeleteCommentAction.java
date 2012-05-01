@@ -15,7 +15,6 @@ public class DeleteCommentAction extends CommentAction {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ServletContext application = getServlet().getServletContext();
 
         // get the factory
         ServletContext context = servlet.getServletContext();

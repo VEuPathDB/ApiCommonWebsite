@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public interface AbstractDBMBean {
   public void refresh();
+  // TODO: remove suppression when revisiting this project
+  @SuppressWarnings("rawtypes")
   public ArrayList getDblinkList();
   public String getglobal_name();
   public String getversion();

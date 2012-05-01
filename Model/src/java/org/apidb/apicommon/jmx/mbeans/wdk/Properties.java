@@ -18,7 +18,8 @@ import org.apache.log4j.Logger;
 public class Properties extends BeanBase implements DynamicMBean {
 
   Map<String, String> props;
-  private static final Logger logger = Logger.getLogger(Properties.class);
+  @SuppressWarnings("unused")
+private static final Logger logger = Logger.getLogger(Properties.class.getName());
 
   public Properties() {
     super();
@@ -45,7 +46,7 @@ public class Properties extends BeanBase implements DynamicMBean {
 
   public AttributeList setAttributes(AttributeList list) {
     AttributeList retlist = new AttributeList();
-    Iterator itr = list.iterator();
+    Iterator<?> itr = list.iterator();
     while( itr.hasNext() ) {
       Attribute attr = (Attribute)itr.next();
       String name = attr.getName();

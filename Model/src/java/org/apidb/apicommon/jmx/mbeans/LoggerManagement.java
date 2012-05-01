@@ -45,7 +45,7 @@ public class LoggerManagement implements DynamicMBean {
 	loggerMap.put(rootLoggerName, rootLoggerLevel);
 	
 	// Get all other loggers
-	Enumeration e = LogManager.getCurrentLoggers();	
+	Enumeration<?> e = LogManager.getCurrentLoggers();	
 	while (e.hasMoreElements()) {
 		Logger managedLogger = (Logger) e.nextElement();
 		String loggerName = managedLogger.getName();
@@ -167,7 +167,6 @@ public class LoggerManagement implements DynamicMBean {
     String levelName = (String) value;
     
     Logger thisLogger = Logger.getLogger(name);
-    Level oldLevel = thisLogger.getEffectiveLevel();
     Level newLevel = Level.toLevel(levelName, Level.INFO);
 
     thisLogger.setLevel(newLevel);
@@ -178,7 +177,7 @@ public class LoggerManagement implements DynamicMBean {
     logger.debug("setAttributes ");
 
     AttributeList retlist = new AttributeList();
-    Iterator itr = list.iterator();
+    Iterator<?> itr = list.iterator();
 
     while( itr.hasNext() ) {
       Attribute attr = (Attribute)itr.next();

@@ -1,19 +1,20 @@
 package org.apidb.apicommon.jmx.util;
 
+import javax.servlet.ServletContext;
+
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.WdkModelException;
-import javax.servlet.ServletContext;
-
 
 public class Util {
+
+  @SuppressWarnings("unused")
+  private static final Logger logger = Logger.getLogger(Util.class.getName());
+  
   protected ServletContext context;
   protected WdkModelBean wdkModelBean;
   protected WdkModel wdkModel;
-  private static final Logger logger = Logger.getLogger(Util.class);
 
   public Util(ServletContext context) {
     this.context = context;

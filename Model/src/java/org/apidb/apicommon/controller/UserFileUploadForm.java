@@ -2,26 +2,25 @@ package org.apidb.apicommon.controller;
 
 import java.util.HashMap;
 import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletContext;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-
-import org.apache.struts.upload.FormFile;
-import org.apache.struts.upload.MultipartRequestHandler;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.Globals;
 
 import org.apache.log4j.Logger;
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.upload.FormFile;
+import org.apache.struts.upload.MultipartRequestHandler;
 
 public class UserFileUploadForm extends ActionForm {
     
-    private Logger logger = Logger.getLogger(UserFileUploadForm.class);
+	private static final long serialVersionUID = 1L;
+	
+	@SuppressWarnings("unused")
+	private Logger logger = Logger.getLogger(UserFileUploadForm.class);
 	private HashMap<Integer, FormFile> formFiles = null; 
 	private HashMap<Integer, String> formNotes = null; 
     private FormFile file;
@@ -29,8 +28,8 @@ public class UserFileUploadForm extends ActionForm {
     private String title;
 
 	public UserFileUploadForm() {
-		formFiles = new HashMap();
-		formNotes = new HashMap();
+		formFiles = new HashMap<Integer, FormFile>();
+		formNotes = new HashMap<Integer, String>();
 	}
 
     public void setFile(int indx, FormFile file) {
@@ -45,7 +44,7 @@ public class UserFileUploadForm extends ActionForm {
     public void setFormFiles(int indx, FormFile file) {
         this.formFiles.put(indx, file);
     }
-	public HashMap getFormFiles() {
+	public HashMap<Integer, FormFile> getFormFiles() {
         return formFiles;
 	}
     
@@ -69,7 +68,7 @@ public class UserFileUploadForm extends ActionForm {
     public void setFormNotes(int indx, String notes) {
         this.formNotes.put(indx, notes);
     }
-	public HashMap getFormNotes() {
+	public HashMap<Integer, String> getFormNotes() {
         return formNotes;
 	}
 

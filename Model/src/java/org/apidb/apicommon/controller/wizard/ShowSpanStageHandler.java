@@ -173,7 +173,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         if (nextStep == null) return "ab";
 
         QuestionBean question = nextStep.getQuestion();
-        Map<String, ParamBean> params = question.getParamsMap();
+        Map<String, ParamBean<?>> params = question.getParamsMap();
         AnswerParamBean param = (AnswerParamBean) params.get(nextParam);
 
         String previousType = previousStep.getType();

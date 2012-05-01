@@ -50,7 +50,7 @@ public class ShowOrthologStageHandler implements StageHandler {
         String questionName = request.getParameter(PARAM_QUESTION_NAME);
         QuestionBean question = wdkModel.getQuestion(questionName);
         AnswerParamBean answerParam = null;
-        for (ParamBean param : question.getParams()) {
+        for (ParamBean<?> param : question.getParams()) {
             if (param instanceof AnswerParamBean) {
                 answerParam = (AnswerParamBean) param;
                 break;

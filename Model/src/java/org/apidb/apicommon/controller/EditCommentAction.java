@@ -20,7 +20,6 @@ public class EditCommentAction extends CommentAction {
                                  HttpServletRequest request, 
                                  HttpServletResponse response)
             throws Exception {
-        ServletContext application = getServlet().getServletContext();
 
         // get the factory
         ServletContext context = servlet.getServletContext();

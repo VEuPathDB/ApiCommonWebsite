@@ -17,7 +17,7 @@ public abstract class AbstractDB extends BeanBase {
 
 
   HashMap<String, String> metaDataMap;
-  ArrayList<Map> dblinkList;
+  ArrayList<Map<String, String>> dblinkList;
   DataSource dataSource;
   
   private static final Logger logger = Logger.getLogger(AbstractDB.class);
@@ -42,7 +42,7 @@ public abstract class AbstractDB extends BeanBase {
 
   public void refresh() { init(); }
 
-  public ArrayList<Map> getDblinkList() { return dblinkList; }
+  public ArrayList<Map<String,String>> getDblinkList() { return dblinkList; }
   public String getglobal_name() { return metaDataMap.get("global_name"); }
   public String getversion() { return metaDataMap.get("version"); }
   public String getserver_name() { return metaDataMap.get("server_name"); }
@@ -131,7 +131,7 @@ public abstract class AbstractDB extends BeanBase {
 
   private void populateDblinkList() {
     String sql = getDblinkSql();
-    dblinkList = new ArrayList<Map>();
+    dblinkList = new ArrayList<Map<String, String>>();
     ResultSet rs = null;
     PreparedStatement ps = null;
 

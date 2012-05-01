@@ -1,12 +1,10 @@
 package org.apidb.apicommon.jmx.mbeans.wdk;
 
-import java.lang.Class;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+
 import javax.management.Attribute;
 import javax.management.AttributeList;
 import javax.management.AttributeNotFoundException;
@@ -17,6 +15,7 @@ import javax.management.MBeanException;
 import javax.management.MBeanInfo;
 import javax.management.MBeanOperationInfo;
 import javax.management.ReflectionException;
+
 import org.apache.log4j.Logger;
 
 public abstract class AbstractConfig extends BeanBase implements DynamicMBean {
@@ -49,7 +48,7 @@ public abstract class AbstractConfig extends BeanBase implements DynamicMBean {
 
   public AttributeList setAttributes(AttributeList list) {
     AttributeList retlist = new AttributeList();
-    Iterator itr = list.iterator();
+    Iterator<?> itr = list.iterator();
     while( itr.hasNext() ) {
       Attribute attr = (Attribute)itr.next();
       String name = attr.getName();
@@ -130,7 +129,7 @@ public abstract class AbstractConfig extends BeanBase implements DynamicMBean {
 
   protected void setValuesFromGetters(String section, Object config) {
     try {
-      Class c = Class.forName(config.getClass().getName());
+      Class<?> c = Class.forName(config.getClass().getName());
       Method[] methods = c.getMethods();
         for (int i = 0; i < methods.length; i++) {
           Method method = methods[i];
