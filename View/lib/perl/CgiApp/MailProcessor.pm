@@ -23,10 +23,8 @@ sub go {
     my $Self = shift;
     my $cgi = CGI->new();
 
-    my $betatest="false";
-    if($cgi->{'betatest'}) {
-	my $betatest = join("", @{ $cgi->{'betatest'} });
-    }
+    my $betatest = join("", @{ $cgi->{'betatest'} or [] });
+
     my $to1 = join("", @{ $cgi->{'to1'} });
     my $to2 = join("", @{ $cgi->{'to2'} });
     my $to = "$to1$to2";
@@ -46,7 +44,7 @@ sub go {
 
     my $automaticMsg = "****THIS IS NOT A REPLY**** \nThis is an automatic response, that includes your message for your records, to let you know that we have received your email and will get back to you as soon as possible. Thanks so much for contacting us!\n\nThis was your message:\n\n---------------------\n";
 
-    my @addCcField = split(/,/, join("", @{ $cgi->{'addCc'} }));
+    my @addCcField = split(/,/, join("", @{ $cgi->{'addCc'} or [] }));
     if (scalar (@addCcField > 4)) { @addCcField = @addCcField[0..9]; } # max 10 addresses
     
     my $message = join("", @{ $cgi->{'message'} or [] });
@@ -92,13 +90,14 @@ sub go {
     my $cfmMsg;
 #    my $message = $automaticMsg . $message . "---------------------";
 
-    if($betatest != "false") {
-	my $q1 = join("", @{ $cgi->{'q1'} });
-	my $q2 = join("", @{ $cgi->{'q2'} });
-	my $q3 = join("", @{ $cgi->{'q3'} });
-	my $a1 = join("", @{ $cgi->{'a1'} });
-	my $a2 = join("", @{ $cgi->{'a2'} });
-	my $a3 = join("", @{ $cgi->{'a3'} });
+
+    if($betatest eq "true") {
+	my $q1 = join("", @{ $cgi->{'q1'} or []});
+	my $q2 = join("", @{ $cgi->{'q2'} or []});
+	my $q3 = join("", @{ $cgi->{'q3'} or []});
+	my $a1 = join("", @{ $cgi->{'a1'} or []});
+	my $a2 = join("", @{ $cgi->{'a2'} or []});
+	my $a3 = join("", @{ $cgi->{'a3'} or []});
 
 	$message = "\n" .$q1 . ": " . $a1 . "\n" . $q2 . ": " . $a2 . "\n" . $q3 . ": " . $a3 . "\n\n---------------------\n\n" . $message . "\n";
     }
