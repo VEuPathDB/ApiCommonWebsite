@@ -28,10 +28,10 @@ public class GetDataSourceAction extends Action {
 
     private static final String DATA_SOURCE_ALL = "DataSourceQuestions.AllDataSources";
     public static final String DATA_SOURCE_BY_QUESTION = "DataSourceQuestions.DataSourcesByQuestionName";
-    public static final String DATA_SOURCE_BY_RECORD_CLASS = "DataSourceQuestions.DataSourcesByRecordClass";
+    public static final String DATA_SOURCE_BY_REFERENCE = "DataSourceQuestions.DataSourcesByReferenceName";
 
     private static final String PARAM_QUESTION = "question";
-    private static final String PARAM_RECORD_CLASS = "recordClass";
+    private static final String PARAM_REFERENCE = "reference";
     private static final String PARAM_DISPLAY_TYPE = "display";
 
     private static final String VALUE_DISPLAY_LIST = "list";
@@ -62,7 +62,7 @@ public class GetDataSourceAction extends Action {
         UserBean user = ActionUtility.getUser(servlet, request);
 
         String questionName = request.getParameter(PARAM_QUESTION);
-        String rcName = request.getParameter(PARAM_RECORD_CLASS);
+        String reference = request.getParameter(PARAM_REFERENCE);
         String displayType = request.getParameter(PARAM_DISPLAY_TYPE);
 
         String forwardList, forwardDetail;
@@ -82,10 +82,10 @@ public class GetDataSourceAction extends Action {
                 logger.debug("Getting data sources by question: " + questionName);
                 question = wdkModel.getQuestion(DATA_SOURCE_BY_QUESTION);
                 params.put("question_name", questionName);
-            } else if (rcName != null) {
-                logger.debug("Getting data sources by recordClass: " + rcName);
-                question = wdkModel.getQuestion(DATA_SOURCE_BY_RECORD_CLASS);
-                params.put("record_class", rcName);
+            } else if (reference != null) {
+                logger.debug("Getting data sources by reference: " + reference);
+                question = wdkModel.getQuestion(DATA_SOURCE_BY_REFERENCE);
+                params.put("reference_name", reference);
             } else {
                 logger.debug("Getting all data sources: ");
                 question = wdkModel.getQuestion(DATA_SOURCE_ALL);
