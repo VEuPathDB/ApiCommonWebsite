@@ -29,6 +29,7 @@ public class GetDataSourceAction extends Action {
     private static final String DATA_SOURCE_ALL = "DataSourceQuestions.AllDataSources";
     public static final String DATA_SOURCE_BY_QUESTION = "DataSourceQuestions.DataSourcesByQuestionName";
     public static final String DATA_SOURCE_BY_REFERENCE = "DataSourceQuestions.DataSourcesByReferenceName";
+    public static final String DATA_SOURCE_BY_RECORD_CLASS = "DataSourceQuestions.DataSourcesByRecordClass";
 
     private static final String PARAM_QUESTION = "question";
     private static final String PARAM_REFERENCE = "reference";
