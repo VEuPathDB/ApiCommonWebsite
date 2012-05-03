@@ -1,23 +1,22 @@
 package org.apidb.apicommon.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.util.LabelValueBean;
-
-import org.apidb.apicommon.model.MultiBox; 
+import org.apidb.apicommon.model.MultiBox;
 
 public class PhenotypeForm extends ActionForm {
 
@@ -310,8 +309,8 @@ public class PhenotypeForm extends ActionForm {
 
         if (maxLengthExceeded != null && maxLengthExceeded.booleanValue()) {
             errors.add(
-                    ActionErrors.GLOBAL_ERROR,
-                    new ActionError("mapped.properties",
+                    ActionErrors.GLOBAL_MESSAGE,
+                    new ActionMessage("mapped.properties",
                             "file upload is larger than the allowed "
                                     + maxFileSize,
                             "(total for all files) contact us for further instructions"));
@@ -319,14 +318,14 @@ public class PhenotypeForm extends ActionForm {
         }
 
         if ((getHeadline() == null) || (getHeadline().trim().equals(""))) {
-            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+            errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                     "mapped.properties", "no headline ", "no headline !!!!"));
             return errors;
         }
 
         if ((getPhenotypeDescription() == null)
                 || (getPhenotypeDescription().trim().equals(""))) {
-            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+            errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                     "mapped.properties", "No Phenotype Description ",
                     "No Phenotype Description !!!!"));
             return errors;

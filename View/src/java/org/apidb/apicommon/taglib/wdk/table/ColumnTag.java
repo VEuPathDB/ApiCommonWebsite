@@ -7,7 +7,7 @@ import java.util.Iterator;
 import	java.util.Map.Entry;
 
 public class ColumnTag extends SimpleTagSupport {
-    private Iterator iterator;
+    private Iterator<?> iterator;
     private String var;
 
     public void doTag() throws JspException, IOException {
@@ -20,7 +20,7 @@ public class ColumnTag extends SimpleTagSupport {
             return;
         }
         while (iterator.hasNext()) {
-            Entry col = (Entry)iterator.next();
+            Entry<?,?> col = (Entry<?,?>)iterator.next();
             getJspContext().setAttribute(var, col.getValue());
             getJspBody().invoke(null);
         }

@@ -1,16 +1,18 @@
 package org.apidb.apicommon.taglib.wdk.table;
 
-import javax.servlet.jsp.JspException;
 import java.io.IOException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-import java.util.Map;
 import java.util.Iterator;
-import org.gusdb.wdk.model.TableValue;
+import java.util.Map;
+
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
+
+import org.gusdb.wdk.model.AttributeValue;
 
 public class RowTag extends SimpleTagSupport {
-    private Iterator iterator;
+    private Iterator<Map<String, AttributeValue>> iterator;
     private String var;
-    private Map row;
+    private Map<String, AttributeValue> row;
 
     public void doTag() throws JspException, IOException {
         TableTag wdkTable = (TableTag)findAncestorWithClass(
@@ -23,7 +25,7 @@ public class RowTag extends SimpleTagSupport {
         }
         
         while (iterator.hasNext()) {
-            row = (Map)iterator.next();
+            row = iterator.next();
             getJspContext().setAttribute(var, row);
             getJspBody().invoke(null);
         }
@@ -34,7 +36,7 @@ public class RowTag extends SimpleTagSupport {
         this.var = var;
     }
     
-    protected Map getRow() {
+    protected Map<String, AttributeValue> getRow() {
         return row;
     }
 }

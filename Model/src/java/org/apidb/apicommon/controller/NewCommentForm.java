@@ -10,10 +10,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -408,8 +408,8 @@ public class NewCommentForm extends ActionForm {
 
         if (maxLengthExceeded != null && maxLengthExceeded.booleanValue()) {
             errors.add(
-                    ActionErrors.GLOBAL_ERROR,
-                    new ActionError("mapped.properties",
+                    ActionErrors.GLOBAL_MESSAGE,
+                    new ActionMessage("mapped.properties",
                             "file upload is larger than the allowed "
                                     + maxFileSize,
                             "(total for all files) contact us for further instructions"));
@@ -418,8 +418,8 @@ public class NewCommentForm extends ActionForm {
 
         if ((getStableId() == null) || (getStableId().trim().equals(""))) {
             errors.add(
-                    ActionErrors.GLOBAL_ERROR,
-                    new ActionError(
+                    ActionErrors.GLOBAL_MESSAGE,
+                    new ActionMessage(
                             "mapped.properties",
                             "No gene name ",
                             "This is probably due to browse session reset. Please go back to that gene page and start it again!"));
@@ -427,14 +427,14 @@ public class NewCommentForm extends ActionForm {
         }
 
         if ((getHeadline() == null) || (getHeadline().trim().equals(""))) {
-            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+            errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                     "mapped.properties", "No headline ",
                     "headline is required!"));
             return errors;
         }
 
         if ((getContent() == null) || (getContent().trim().equals(""))) {
-            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+            errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                     "mapped.properties", "No content ", "content is required!"));
             return errors;
         }
@@ -451,8 +451,8 @@ public class NewCommentForm extends ActionForm {
 
             if (!validator.checkStableIds(related_id)) {
                 errors.add(
-                        ActionErrors.GLOBAL_ERROR,
-                        new ActionError(
+                        ActionErrors.GLOBAL_MESSAGE,
+                        new ActionMessage(
                                 "mapped.properties",
                                 "Invalid Gene Identifier",
                                 "In Part III, Gene Identifier \""
@@ -476,7 +476,7 @@ public class NewCommentForm extends ActionForm {
 
         for (Integer i : formFiles.keySet()) {
             if (formFiles.get(i) == null) {
-                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                         "mapped.properties", "File not found",
                         "select a file for upload"));
                 return errors;
@@ -484,7 +484,7 @@ public class NewCommentForm extends ActionForm {
 
             if (formFiles.get(i).getFileName() == null
                     || formFiles.get(i).getFileName().trim().length() == 0) {
-                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                         "mapped.properties", "File not found",
                         "select a file for upload"));
             }
@@ -494,7 +494,7 @@ public class NewCommentForm extends ActionForm {
             if (formFiles.get(i) == null) continue;
             if (formNotes.get(i) == null
                     || formNotes.get(i).trim().length() == 0) {
-                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                         "mapped.properties", "No description",
                         "please add a description"));
             }
@@ -502,8 +502,8 @@ public class NewCommentForm extends ActionForm {
             if (formNotes.get(i) != null
                     && formNotes.get(i).trim().length() > 4000) {
                 errors.add(
-                        ActionErrors.GLOBAL_ERROR,
-                        new ActionError("mapped.properties",
+                        ActionErrors.GLOBAL_MESSAGE,
+                        new ActionMessage("mapped.properties",
                                 "description is too long ("
                                         + formNotes.get(i).trim().length()
                                         + " characters)",

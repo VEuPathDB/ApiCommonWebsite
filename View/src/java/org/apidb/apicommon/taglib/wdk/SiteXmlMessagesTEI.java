@@ -11,7 +11,7 @@ public class SiteXmlMessagesTEI extends TagExtraInfo {
 
     public ValidationMessage[] validate(TagData data) {
 
-        ArrayList errors = new ArrayList();
+        ArrayList<ValidationMessage> errors = new ArrayList<ValidationMessage>();
         
         validateRange(errors, data.getAttribute("range"));
         validateStopDateSort(errors, data.getAttribute("stopDateSort"));
@@ -24,7 +24,7 @@ public class SiteXmlMessagesTEI extends TagExtraInfo {
         return vmsg;
     }
         
-    public void validateRange(ArrayList errors, Object data) {
+    public void validateRange(ArrayList<ValidationMessage> errors, Object data) {
 
         if (data == null)
             return;
@@ -46,7 +46,7 @@ public class SiteXmlMessagesTEI extends TagExtraInfo {
     
     }
         
-    public void validateStopDateSort(ArrayList errors, Object data) {
+    public void validateStopDateSort(ArrayList<ValidationMessage> errors, Object data) {
 
         if (data == null)
             return;

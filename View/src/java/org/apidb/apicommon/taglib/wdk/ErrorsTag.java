@@ -24,59 +24,45 @@ $Id$
 **/
 package org.apidb.apicommon.taglib.wdk;
 
-import org.apache.struts.taglib.TagUtils;
-
-import java.lang.StackTraceElement;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.JspContext;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
-import org.apache.struts.Globals;
-import org.apache.struts.util.MessageResources;
-
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.UUID;
 
-import javax.mail.Address;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
 
 import org.apache.log4j.Logger;
-
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+import org.apache.struts.taglib.TagUtils;
 import org.gusdb.wdk.model.WdkException;
 
 public class ErrorsTag extends WdkTagBase {
@@ -185,9 +171,8 @@ public class ErrorsTag extends WdkTagBase {
         allErrors.append(getActionErrorsAsHTML());
         
         if (allErrors != null) {
-           Enumeration<String> e = (Enumeration<String>) filters.propertyNames();
-           while (e.hasMoreElements()) {
-                String key = (String) e.nextElement();
+           Set<String> propertyNames = filters.stringPropertyNames();
+           for (String key : propertyNames) {
 
                 // don't check subkeys yet
                 if (key.contains(".")) continue;
@@ -356,8 +341,8 @@ public class ErrorsTag extends WdkTagBase {
         String message  = "false";
         String bundle   = null;
         String property = null;
-        String header   = null;
-        String footer   = null;
+        //String header   = null;
+        //String footer   = null;
         String locale   = Globals.LOCALE_KEY;
         String name     = Globals.ERROR_KEY;
         
@@ -367,6 +352,7 @@ public class ErrorsTag extends WdkTagBase {
             name = Globals.MESSAGE_KEY;
         }
 
+        /* dead code for now 
         if (header != null && header.length() > 0) {
             String headerMessage = TagUtils.getInstance().
                     message(pageContext, bundle, locale, header);
@@ -374,11 +360,12 @@ public class ErrorsTag extends WdkTagBase {
                 sb.append(headerMessage);
             }
         }
-
+        */
+        
         ActionMessages messages = TagUtils.getInstance().
                             getActionMessages(pageContext, name);
 
-        Iterator i = (property == null) ? messages.get() : messages.get(property);
+        Iterator<?> i = (property == null) ? messages.get() : messages.get(property);
 
         if (! i.hasNext()) return null;
         
@@ -395,7 +382,8 @@ public class ErrorsTag extends WdkTagBase {
             }
         }
         sb.append("</ul>\n");
-        
+
+        /* dead code for now 
         if (footer != null && footer.length() > 0) {
             String footerMessage = TagUtils.getInstance().
                     message(pageContext, bundle, locale, footer);
@@ -403,7 +391,8 @@ public class ErrorsTag extends WdkTagBase {
                 sb.append(footerMessage);
             }
         }
-
+        */
+        
         return sb.toString();
     }
     
@@ -558,10 +547,11 @@ public class ErrorsTag extends WdkTagBase {
         }
     }
     
+    @SuppressWarnings("unused")
     private void appendServletContextAttributes(StringBuffer sb) {
         sb.append("ServletContext Attributes\n\n");
         ServletContext context = this.getContext();
-        Enumeration contextAttributes = context.getAttributeNames();
+        Enumeration<?> contextAttributes = context.getAttributeNames();
         while (contextAttributes.hasMoreElements()) {
             String attr = (String)contextAttributes.nextElement();
             String value = context.getAttribute(attr).toString();
@@ -571,7 +561,7 @@ public class ErrorsTag extends WdkTagBase {
 
     private void appendRequestScopeAttributes(StringBuffer sb) {
         sb.append("Associated Request-Scope Attributes\n\n");
-        Enumeration requestScope = request.getAttributeNames();
+        Enumeration<?> requestScope = request.getAttributeNames();
         while (requestScope.hasMoreElements()) {
             String attr = (String)requestScope.nextElement();
             String value = (attr.toLowerCase().startsWith("email") ||
@@ -587,8 +577,10 @@ public class ErrorsTag extends WdkTagBase {
         sb.append("Session Attributes\n\n");
         HttpSession session = request.getSession();
         if (session != null) {
-            for (String name : session.getValueNames()) {
-                sb.append(name + " = " + session.getValue(name) + "\n");
+        	Enumeration<?> attributeNames = session.getAttributeNames();
+            while (attributeNames.hasMoreElements()) {
+            	String name = (String)attributeNames.nextElement();
+                sb.append(name + " = " + session.getAttribute(name) + "\n");
             }
         }
     }

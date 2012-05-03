@@ -5,27 +5,22 @@ Parse a specified java config file to a XML Document and export it to the JSP pa
 Feb 6, 2008, carypen@uga.edu,mheiges@uga.edu
 **/
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
-
-import java.util.Collections;
-import java.util.Enumeration;
+import java.io.InputStream;
 import java.util.LinkedHashMap;
-import java.util.List;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.NamedNodeMap;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
-import javax.servlet.ServletContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class ConfigParser extends SimpleTagSupport {
 
@@ -44,12 +39,10 @@ public class ConfigParser extends SimpleTagSupport {
         configfile = file;
     }
 
-    @SuppressWarnings( "unchecked" )
     public void doTag() throws JspException { 
 
         if (var == null || configfile == null) return;
 
-        LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
         Document config = null;
         PageContext pageContext = (PageContext) getJspContext();
         ServletContext app = pageContext.getServletContext();
