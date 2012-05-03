@@ -16,16 +16,12 @@ package org.apidb.apicommon.taglib.wdk;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
-import java.util.ArrayList; 
+import java.util.ArrayList;
 
 import javax.servlet.jsp.JspException;
-
 import javax.sql.DataSource;
 
-import org.apidb.apicommon.taglib.wdk.WdkTagBase;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 
@@ -34,7 +30,7 @@ public class SiteMessagesTag extends WdkTagBase {
     private String var;
     private String projectName;
     private String messageCategory;
-    public ArrayList messages;
+    public ArrayList<String> messages;
 
     public void doTag() throws JspException {
         super.doTag();

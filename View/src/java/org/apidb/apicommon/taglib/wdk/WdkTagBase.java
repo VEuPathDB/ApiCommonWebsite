@@ -1,19 +1,17 @@
 package org.apidb.apicommon.taglib.wdk;
 
 
-import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspContext;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.WdkModel;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 
 public abstract class WdkTagBase extends SimpleTagSupport {

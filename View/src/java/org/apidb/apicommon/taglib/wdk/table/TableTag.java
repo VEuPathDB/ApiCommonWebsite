@@ -30,8 +30,8 @@ public class TableTag extends SimpleTagSupport {
 
     private void setTableFieldValue() throws JspException {
         try {
-            Map tables = getRecord().getTables();
-            tableFieldValue = (TableValue)tables.get(tableName);
+            Map<String, TableValue> tables = getRecord().getTables();
+            tableFieldValue = tables.get(tableName);
         } catch (Exception e) {
             throw new JspException(e);
         }

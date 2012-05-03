@@ -6,18 +6,15 @@ Throws exceptions for connection and read timeouts - these timeouts
 can be defined with attributes.
 **/
 
-import javax.servlet.jsp.JspContext;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
-import javax.servlet.ServletContext;
-
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.MalformedURLException;
-
-import java.io.IOException;
 
 public class HttpStatus extends SimpleTagSupport {
 
