@@ -36,10 +36,12 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
     private static final String TABLE_REFERENCE = "References";
     private static final String TYPE_ATTRIBTUE = "attribute";
+    private static final String TYPE_PROFILE_GRAPH = "profile_graph";
     private static final String TYPE_TABLE = "table";
 
     private static final String ATTR_REFERENCE_ATTRIBUTES = "ds_ref_attributes";
     private static final String ATTR_REFERENCE_TABLES = "ds_ref_tables";
+    private static final String ATTR_REFERENCE_PROFILE_GRAPHS = "ds_ref_profile_graphs";
 
     private static final String PATTERN_SOURCE_ID = "\\$\\{SOURCE_ID\\}";
 
@@ -89,6 +91,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
     private void loadDataSources(HttpServletRequest request,
             WdkModelBean wdkModel, String rcName) throws Exception {
+        Map<String, String> profileGraphRefs = new LinkedHashMap<String, String>();
         Map<String, String> attributeRefs = new LinkedHashMap<String, String>();
         Map<String, String> tableRefs = new LinkedHashMap<String, String>();
 
@@ -113,6 +116,8 @@ public class CustomShowRecordAction extends ShowRecordAction {
                     String targetName = row.get("target_name").toString();
                     if (targetType.equals(TYPE_ATTRIBTUE)) {
                         attributeRefs.put(targetName, targetName);
+                    } else if (targetType.equals(TYPE_PROFILE_GRAPH)) {
+                        profileGraphRefs.put(targetName, targetName);
                     } else if (targetType.equals(TYPE_TABLE)) {
                         tableRefs.put(targetName, targetName);
                     }
@@ -120,6 +125,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
             }
         }
 
+        request.setAttribute(ATTR_REFERENCE_PROFILE_GRAPHS, profileGraphRefs);
         request.setAttribute(ATTR_REFERENCE_ATTRIBUTES, attributeRefs);
         request.setAttribute(ATTR_REFERENCE_TABLES, tableRefs);
     }
