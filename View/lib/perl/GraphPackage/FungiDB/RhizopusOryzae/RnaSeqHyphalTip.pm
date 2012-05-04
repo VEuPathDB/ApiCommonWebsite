@@ -3,8 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::FungiDB::RhizopusOryzae::RnaSeqHyp
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleRNASeq );
+use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
 
 
 sub init {
@@ -12,34 +12,18 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors =['#D87093', '#DDDDDD'];
+  my $sampleNames = ['RO3H','RO5H','RO20H'];
 
-  my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
-#  my $xAxisLabels = ["procyclic form", ""];
+  $self->setSampleNames($sampleNames);
+  $self->setMinRpkmProfileSet('rhizopus_oryzae_99880 hyphal_tip RNA Sequence min Profiles');
+  $self->setDiffRpkmProfileSet('rhizopus_oryzae_99880 hyphal_tip RNA Sequence diff Profiles');
+  $self->setPctProfileSet('rhizopus_oryzae_99880 hyphal_tip RNA Sequence min Profiles Percentile');
+  $self->setColor('#D87093');
+  $self->makeGraphs(@_);
 
-  $self->setMainLegend({colors => $colors, short_names => $legend});
-
-  $self->setProfileSetsHash
-    ({coverage => {profiles => ['rhizopus_oryzae_99880 hyphal_tip RNA Sequence min Profiles', 
-                                'rhizopus_oryzae_99880 hyphal_tip RNA Sequence diff Profiles'
-                               ],
-                   y_axis_label => 'log 2 (RPKM)',
-                   colors => $colors,
-                  default_y_max => 4,
-                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
-                   stack_bars => 1,
-                   x_axis_labels => ['RO3H','RO5H','RO20H']
-                  },
-      pct => {profiles => ['rhizopus_oryzae_99880 hyphal_tip RNA Sequence min Profiles Percentile'],
-              y_axis_label => 'Percentile',
-              default_y_max => 50,
-              colors => [$colors->[0]],
-             },
-     });
 
   return $self;
 }
-
 
 
 1;
