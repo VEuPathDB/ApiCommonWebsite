@@ -41,7 +41,10 @@ sub addAdjustProfile {
   my ($self, $ap) = @_;
 
   my $existing = $self->getAdjustProfile();
-  $self->setAdjustProfile($existing . $ap);
+
+  if($ap) {
+    $self->setAdjustProfile($existing . $ap);
+  }
 }
 
 sub getDefaultYMax               { $_[0]->{'_default_y_max'                 }}

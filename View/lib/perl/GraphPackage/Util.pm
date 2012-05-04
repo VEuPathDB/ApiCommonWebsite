@@ -32,7 +32,7 @@ sub makeProfileSets {
 sub rStringVectorFromArray {
   my ($stringArray, $name) = @_;
 
-  return "$name = c(" . join(',', map {"\"$_\""} @$stringArray) . ");";
+  return "$name = c(" . join(',', map { defined $_ ? "\"$_\"" : "\"\""} @$stringArray) . ");";
 }
 
 sub rNumericVectorFromArray {

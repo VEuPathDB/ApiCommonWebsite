@@ -24,6 +24,9 @@ sub setAdditionalRCode { $_[0]->{_additional_r_code} = $_[1] }
 sub getColor { $_[0]->{_color} }
 sub setColor { $_[0]->{_color} = $_[1] }
 
+sub getSampleNames { $_[0]->{_sample_names} }
+sub setSampleNames { $_[0]->{_sample_names} = $_[1] }
+
 
 sub setBottomMarginSize {
   my ($self, $ms) = @_;
@@ -50,17 +53,19 @@ sub makeGraphs {
   my $additionalRCode = $self->getAdditionalRCode();
   my $color = $self->getColor() ? $self->getColor() : 'blue';
 
+  my $sampleNames = $self->getSampleNames();
+
   my @colors = ($color, '#DDDDDD');
   my @legend = ("Uniquely Mapped", "Non-Uniquely Mapped");
 
   $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
 
-  my @profileArray = ([$minRpkmProfileSet],
-                      [$diffRpkmProfileSet],
+  my @profileArray = ([$minRpkmProfileSet, '', $sampleNames],
+                      [$diffRpkmProfileSet, '', $sampleNames],
                      );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$pctProfileSet]]);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$pctProfileSet, '', $sampleNames]]);
 
   my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
   $stacked->setProfileSets($profileSets);
