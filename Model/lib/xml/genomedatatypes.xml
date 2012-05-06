@@ -1040,7 +1040,7 @@
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/fasta/PlasmoDB-9.0_Pyoelii17XNL_Genome.fasta</attribute>
        <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/gff/Pyoelii17XNL_PlasmoDB-9.0.gff</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
-       <attribute name = "Strain">yoelii str. 17XNL</attribute>
+       <attribute name = "Strain">yoelii 17XNL</attribute>
        <attribute name = "Genome_Version">10-03-2002</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">22.94</attribute>
