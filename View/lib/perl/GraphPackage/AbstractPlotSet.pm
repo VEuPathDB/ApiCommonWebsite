@@ -71,6 +71,11 @@ sub init {
 
   $self->SUPER::init(@_);
 
+  my $r_f = $self->getOutputFile(). '.R';
+  my $r_fh = FileHandle->new(">$r_f") || die "Can not open R file '$r_f': $!";
+
+  $self->setFileHandle($r_fh);
+
   # Default 
   $self->setPlotWidth(425);
   $self->setLegendSize(40);
@@ -173,10 +178,8 @@ sub makeR {
   my $thumb_b   = $self->getThumbnail();
 
   my $r_f = $self->getOutputFile(). '.R';
-  my $r_fh = FileHandle->new(">$r_f") || die "Can not open R file '$r_f': $!";
+  my $r_fh = $self->getFileHandle();
   my $out_f     = $self->getOutputFile();
-
-  $self->setFileHandle($r_fh);
 
   push(@rv, $r_f, $out_f);
 

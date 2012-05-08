@@ -34,6 +34,9 @@ sub getScale              { $_[0]->{'_scale'               }}
 sub setScale              { $_[0]->{'_scale'               } = $_[1]}
 
 
+sub logError              { push @{$_[0]->{'_errors'}}, $_[1] }
+sub errors                { $_[0]->{'_errors'               }}
+
 sub new {
   my ($class, $name, $elementNames, $alternateSourceId, $scale) = @_;
 
@@ -52,6 +55,9 @@ sub new {
   $self->setAlternateSourceId($alternateSourceId);
   $self->setScale($scale);
 
+  # initialize errors array;
+  $self->{_errors} = [];
+
   return $self;
 }
 
@@ -67,10 +73,16 @@ sub writeFiles {
   if(my $relatedProfileSet = $self->getRelatedProfileSet()) {
     $suffix = "related" . $suffix;
     $relatedProfileSet->writeProfileFile($id, $qh, $suffix);
+
+    # track the error for a related profile set (can assume only 1)
+    if(my $relatedError = $relatedProfileSet->errors()->[0]) {
+      $self->logError($relatedError);
+    }
+
   }
 }
 
-sub writeProfileFile {
+sub writeProfileFile{
   my ($self, $id, $qh, $suffix) = @_;
 
   my $_dict = {};
@@ -90,7 +102,7 @@ sub writeProfileFile {
   $profile->prepareDictionary($_dict);
   $profile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
 
-  my $profile_fn = $profile->makeTabFile($qh, $_dict);
+  my $profile_fn = eval { $profile->makeTabFile($qh, $_dict) }; $@ && $self->logError($@);
 
   $self->setProfileFile($profile_fn);
 
@@ -112,7 +124,7 @@ sub writeElementNamesFile {
 
   $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
 
-  my $elementNames_fn = $elementNamesProfile->makeTabFile($qh, $_dict);
+  my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
 
   $self->setElementNamesFile($elementNames_fn);
 }
