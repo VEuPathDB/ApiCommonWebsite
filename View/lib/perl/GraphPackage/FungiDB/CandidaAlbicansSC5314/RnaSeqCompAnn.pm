@@ -11,9 +11,9 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setMinRpkmProfileSet("C albicans comprehensive annotation");
-  $self->setDiffRpkmProfileSet("C albicans comprehensive annotation - diff");
-  $self->setPctProfileSet("percentile - C albicans comprehensive annotation");
+  $self->setMinRpkmProfileSet("C albicans Comprehensive Annotation");
+  $self->setDiffRpkmProfileSet("C albicans Comprehensive Annotation-diff");
+  $self->setPctProfileSet("percentile - C albicans Comprehensive Annotation");
   $self->setColor("#D87093");
   $self->makeGraphs(@_);
 
