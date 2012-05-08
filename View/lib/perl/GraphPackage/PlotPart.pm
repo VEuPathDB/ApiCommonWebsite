@@ -67,6 +67,8 @@ sub setScreenSize                { $_[0]->{'_screen_size'                 } = $_
 sub getElementNameMarginSize          { $_[0]->{'_element_name_margin_size'          }}
 sub setElementNameMarginSize          { $_[0]->{'_element_name_margin_size'          } = $_[1]}
 
+sub getErrorsFileHandle                { $_[0]->{'_file_handle'                 } }
+
 #----------------------------------------------------------------------------------------------
 
 sub new {
@@ -108,6 +110,11 @@ sub makeFilesForR {
     my $suffix = $part . $i;
 
     $profileSet->writeFiles($id, $qh, $suffix);
+    my $errors = $profileSet->errors();
+    if(scalar @$errors > 0) {
+      my $r_fh = $self->getErrorsFileHandle();
+      $self->reportErrorsAndBlankGraph($r_fh, @$errors);
+    }
   }
 
   return $self->profileFilesAsRVectors($profileSets);
