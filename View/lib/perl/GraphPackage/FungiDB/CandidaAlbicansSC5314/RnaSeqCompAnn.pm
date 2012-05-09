@@ -11,7 +11,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $sampleNames =["Cellwall Damaging Environment", "High Oxidative Stress", "Low Oxidative Stress", "Media Containing Serum", "medium at PH4", "medium at PH8", "Nitrosative Stress", "Non Cellwall Damage Environment", "Non Nitrosative Environment", "Non Oxidation Stress", "YPD", "YPD media", "YPD media containing Serum"];
+  my $sampleNames =["CelwalDamageEnv", "HighOxi_Stress", "LowOxi_Stress", "Media_Serum", "medium_PH4", "medium_PH8", "Nitro_Stress", "N_CelwalDamageEnv", "N_NitroEnv", "N_Oxi_Stress", "YPD", "YPDmedia", "YPDmedia_Serum"];
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet("C albicans Comprehensive Annotation");
@@ -20,7 +20,7 @@ sub init {
   $self->setColor("#D87093");
   $self->makeGraphs(@_);
 
-  $self->setBottomMarginSize(4);
+  $self->setBottomMarginSize(8);
   return $self;
 }
 
