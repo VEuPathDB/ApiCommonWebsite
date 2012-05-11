@@ -1410,7 +1410,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Crithidia</attribute>
        <attribute name = "Species">fasciculata</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Cfasciculata/fasta/CfasciculataGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Cfasciculata/fasta/CfasciculataGenomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5656</attribute>
        <attribute name = "Strain"></attribute>
@@ -1435,7 +1435,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Endotrypanum</attribute>
        <attribute name = "Species">monterogeii</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/EmonteLV88/fasta/EmonteLV88Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/EmonteLV88/fasta/EmonteLV88Genomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">strain LV88</attribute>
@@ -1460,8 +1460,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">braziliensis</attribute>
-       <attribute name = "URLGenomeFasta">http://TritrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/gff/Lbraziliensis_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TritrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/gff/Lbraziliensis_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">420245</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1485,7 +1485,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">braziliensis</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisM2903Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisM2903Genomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">4202450</attribute>
        <attribute name = "Strain">M2903</attribute>
@@ -1511,8 +1511,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">infantum</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/fasta/LinfantumGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/gff/Linfantum_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/fasta/LinfantumGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/gff/Linfantum_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">5671</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1536,8 +1536,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">major</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorFriedlinGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/gff/LmajorFriedlin_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorFriedlinGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/gff/LmajorFriedlin_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">347515</attribute>
        <attribute name = "Strain">strain Friedlin</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1561,7 +1561,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">major</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LmajorLV39c5/fasta/LmajorLV39c5Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LmajorLV39c5/fasta/LmajorLV39c5Genomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">860569</attribute>
        <attribute name = "Strain">strain LV39c5</attribute>
@@ -1586,7 +1586,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">major</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorSD75.1Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorSD75.1Genomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">860570</attribute>
        <attribute name = "Strain">strain SD 75.1</attribute>
@@ -1611,8 +1611,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">mexicana</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/fasta/LmexicanaGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/gff/Lmexicana_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/fasta/LmexicanaGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/gff/Lmexicana_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">5665</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1636,7 +1636,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">panamensis</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LpanamL13/fasta/LpanamL13Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LpanamL13/fasta/LpanamL13Genomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5679</attribute>
        <attribute name = "Strain">strain L13</attribute>
@@ -1661,8 +1661,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">tarentolae</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/fasta/LtarParrotTraIIGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/gff/LtarParrotTraII_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/fasta/LtarParrotTraIIGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/gff/LtarParrotTraII_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">56890001</attribute>
        <attribute name = "Strain">Parrot-TarII</attribute>
        <attribute name = "Genome_Version">06-22-2011</attribute>
@@ -1687,8 +1687,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">brucei</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiTreu927Genomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiTreu927_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiTreu927Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiTreu927_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">185431</attribute>
        <attribute name = "Strain">TREU927</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1712,8 +1712,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">brucei</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiGambienseGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiGambiense_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiGambienseGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiGambiense_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">31285</attribute>
        <attribute name = "Strain">gambiense</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1737,8 +1737,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">brucei</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/Tbrucei427Genomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/Tbrucei427_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/Tbrucei427Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/Tbrucei427_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">Lister strain 427</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1763,8 +1763,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">congolense</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/fasta/TcongolenseGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/gff/Tcongolense_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/fasta/TcongolenseGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/gff/Tcongolense_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">5692</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1788,8 +1788,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldo-LikeGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziEsmeraldo-Like_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldo-LikeGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziEsmeraldo-Like_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">CL Brener Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1813,8 +1813,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziNonEsmeraldo-LikeGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziNonEsmeraldo-Like_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziNonEsmeraldo-LikeGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziNonEsmeraldo-Like_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">CL Brener Non-Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1838,8 +1838,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziUnassignedContigsGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziUnassignedContigs_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziUnassignedContigsGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziUnassignedContigs_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">strain CL Brener</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1863,7 +1863,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldoGenomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldoGenomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">366581</attribute>
        <attribute name = "Strain">strain esmeraldo</attribute>
@@ -1888,7 +1888,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziJRcl4Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziJRcl4Genomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">914063</attribute>
        <attribute name = "Strain">JR cl. 4</attribute>
@@ -1912,7 +1912,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziSylvioX10-1Genomic_TriTrypDB-4.0.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziSylvioX10-1Genomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5693000</attribute>
        <attribute name = "Strain">Sylvio X10/1</attribute>
@@ -1940,8 +1940,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">vivax</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/fasta/TvivaxGenomic_TriTrypDB-4.0.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/gff/Tvivax_TriTrypDB-4.0.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/fasta/TvivaxGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/gff/Tvivax_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">5699</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
