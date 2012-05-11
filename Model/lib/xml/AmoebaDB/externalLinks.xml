@@ -9,6 +9,18 @@
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url"><![CDATA[http://www.EuPathDB.org/]]></attribute>
         </row>
+       <row>
+       <attribute name="title">EuPathDB Workshops</attribute>
+          <attribute name="url">http://eupathdb.org/workshop</attribute>
+        </row> 
+        <row>
+          <attribute name="title">BRCs Pathogen Portal</attribute>
+          <attribute name="url">http://www.pathogenportal.org/</attribute>
+        </row> 
+        <row>
+          <attribute name="title">OrthoMCL</attribute>
+          <attribute name="url">http://orthomcl.org/</attribute>
+        </row> 
         <row>
           <attribute name="title"><![CDATA[The <i>Entamoeba</i> Homepage]]></attribute>
           <attribute name="url"><![CDATA[http://entamoeba.lshtm.ac.uk/]]></attribute>
