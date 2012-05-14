@@ -21,7 +21,10 @@
           <attribute name="title">OrthoMCL</attribute>
           <attribute name="url">http://orthomcl.org/</attribute>
         </row> 
-
+         <row>
+          <attribute name="title">ApicoAP, apicoplast-targeted proteins tool</attribute>
+          <attribute name="url">http://code.google.com/p/apicoap/</attribute>
+        </row>
         <row>
           <attribute name="title">PlasmoDB</attribute>
           <attribute name="url">http://www.PlasmoDB.org</attribute>

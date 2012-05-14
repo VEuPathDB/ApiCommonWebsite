@@ -9,7 +9,7 @@
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url">http://www.EuPathDB.org</attribute>
         </row>
- <row>
+         <row>
           <attribute name="title">EuPathDB Workshops</attribute>
           <attribute name="url">http://eupathdb.org/workshop</attribute>
         </row> 
@@ -21,9 +21,13 @@
           <attribute name="title">OrthoMCL</attribute>
           <attribute name="url">http://orthomcl.org/</attribute>
         </row> 
-<row>
+         <row>
           <attribute name="url">http://sites.huji.ac.il/malaria/</attribute>
           <attribute name="title">Malaria Parasite Metabolic Pathways -- Many New and Updated Pathways</attribute>
+        </row>
+         <row>
+          <attribute name="title">ApicoAP, apicoplast-targeted proteins tool</attribute>
+          <attribute name="url">http://code.google.com/p/apicoap/</attribute>
         </row>
         <row>
           <attribute name="title">ToxoDB</attribute>

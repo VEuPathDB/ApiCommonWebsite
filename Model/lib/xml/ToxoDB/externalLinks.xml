@@ -34,6 +34,10 @@
           <attribute name="title"><![CDATA[KEGG Pathways for <i>T. gondii</i>]]></attribute>
           <attribute name="url">http://eupathdb.org/common/KEGGpathways/</attribute>
         </row>
+         <row>
+          <attribute name="title">ApicoAP, apicoplast-targeted proteins tool</attribute>
+          <attribute name="url">http://code.google.com/p/apicoap/</attribute>
+        </row>
 	<row>
           <attribute name="title"><![CDATA[Recent <i>Toxoplasma</i> publications]]></attribute>
           <attribute name="url"><![CDATA[/pubcrawler/ToxoDB/]]></attribute>
