@@ -967,7 +967,7 @@
        <attribute name = "Taxon_ID">5851</attribute>
        <attribute name = "Strain">strain H</attribute>
        <attribute name = "Genome_Version">03-01-2012</attribute>
-       <attribute name = "Data_Source">EMBL</attribute>
+       <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">23.74</attribute>
        <attribute name = "Gene_Count">5307</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
