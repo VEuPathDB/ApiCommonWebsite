@@ -865,7 +865,7 @@
        <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pchabaudichabaudi/gff/data/Pchabaudi_PlasmoDB-9.0.gff</attribute>
        <attribute name = "Taxon_ID">31271</attribute>
        <attribute name = "Strain">chabaudi</attribute>
-       <attribute name = "Genome_Version">03-01-2012</attribute>
+       <attribute name = "Genome_Version">03-01-2011</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">18.87</attribute>
        <attribute name = "Gene_Count">5258</attribute>
