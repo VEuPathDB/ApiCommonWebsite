@@ -256,6 +256,10 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="url">http://malaria.ucsf.edu/</attribute>
           <attribute name="title">DeRisi Lab: Malaria Transcriptome Database</attribute>
         </row>
+        <row>
+          <attribute name="url">http://fullmal.hgc.jp/index_ajax.html</attribute>
+          <attribute name="title">Malaria Full-Length cDNA Database</attribute>
+        </row>
       </table>
 
       <table name="malariaGeneral">
