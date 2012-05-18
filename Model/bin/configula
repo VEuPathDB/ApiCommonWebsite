@@ -477,44 +477,50 @@ sub emailSubject {
 }
 
 sub blast_sourceid_regex {
-    my ($twig, $node) = @_;
-    my $regex;
+    return;
+    # use regexes in sample file as is
 
-    if ($product eq 'EuPathDB') {
-        my $type = $node->atts->{'key'};
-
-        if ($type eq 'SourceIdRegex_Transcripts' ||
-                $type eq 'SourceIdRegex_Isolates' ||          
-                $type eq 'SourceIdRegex_Assemblies' ||          
-                $type eq 'SourceIdRegex_Proteins') {            
-            $regex = '^(?:\S+?\|)?(?:\S+?\|)?(\S+?)\s*\|';
-
-        } elsif ($type eq 'SourceIdRegex_ORF' ||
-                    $type eq 'SourceIdRegex_Genomics' || 
-                    $type eq 'SourceIdRegex_EST'  ||
-                    $type eq 'SourceIdRegex_GSS') { 
-            $regex = '^>*(?:\S+?\|)?([^\|]+?)\s*\|';
-        }
-    } else {
-        $regex = '^>*(?:\w*\|)*(\S+)' ;
-    }
-
-    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
+#    my ($twig, $node) = @_;
+#    my $regex;
+#
+#    if ($product eq 'EuPathDB') {
+#        my $type = $node->atts->{'key'};
+#
+#        if ($type eq 'SourceIdRegex_Transcripts' ||
+#                $type eq 'SourceIdRegex_Isolates' ||          
+#                $type eq 'SourceIdRegex_Assemblies' ||          
+#                $type eq 'SourceIdRegex_Proteins') {            
+#            $regex = '^(?:\S+?\|)?(?:\S+?\|)?(\S+?)\s*\|';
+#
+#        } elsif ($type eq 'SourceIdRegex_ORF' ||
+#                    $type eq 'SourceIdRegex_Genomics' || 
+#                    $type eq 'SourceIdRegex_EST'  ||
+#                    $type eq 'SourceIdRegex_GSS') { 
+#            $regex = '^>*(?:\S+?\|)?([^\|]+?)\s*\|';
+#        }
+#    } else {
+#        $regex = '^>*(?:\w*\|)*(\S+)' ;
+#    }
+#
+#    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
 }
 
 sub blast_organism_regex {
-    my ($twig, $node) = @_;
-    my $regex;
-
-    if ($product eq 'EuPathDB') {
-        $regex = '^(?:.*organism=|>\s*)([^_|\s]+)(_|\s)';
-    } elsif ($product eq 'TrichDB') {
-        $regex = '>?(\S+?)_';
-    } else {
-        $regex = '\|\s*organism=([^_|\s]+)' ;
-    }
-
-    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
+    return;
+    # use regexes in sample file as is
+#
+#    my ($twig, $node) = @_;
+#    my $regex;
+#
+#    if ($product eq 'EuPathDB') {
+#        $regex = '^(?:.*organism=|>\s*)([^_|\s]+)(_|\s)';
+#    } elsif ($product eq 'TrichDB') {
+#        $regex = '>?(\S+?)_';
+#    } else {
+#        $regex = '\|\s*organism=([^_|\s]+)' ;
+#    }
+#
+#    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
 }
 
 # Portal site only: make relative paths into absolute urls:
