@@ -11,7 +11,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $sampleNames =["Experiment1", "Experiment2", "Experiment3", "Experiment4", "Experiment5", "Experiment6"];
+  my $sampleNames =["Replicate1", "Replicate2", "Replicate3", "Replicate4", "Replicate5", "Replicate6"];
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet('H. arabidopsidis expression during infection');
