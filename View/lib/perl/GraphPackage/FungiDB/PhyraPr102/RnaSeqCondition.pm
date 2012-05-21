@@ -13,7 +13,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $sampleNames =["Chlyma.fastq", "Spores.fastq", "Tomato.fastq", "V8Liq.fastq"];
+  my $sampleNames =["Chlyma", "Spores", "Tomato", "V8Liq"];
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet('P. ramorum expression in Chlamydospora, P. ramorum expression in zoospores, P. ramorum expression is Tomato media, P. ramorum expression in V8 Liquid media');
