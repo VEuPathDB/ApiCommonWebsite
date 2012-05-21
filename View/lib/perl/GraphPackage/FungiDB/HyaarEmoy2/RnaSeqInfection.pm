@@ -15,7 +15,7 @@ sub init {
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet('H. arabidopsidis expression during infection');
-  #$self->setDiffRpkmProfileSet("H. arabidopsidis expression during infection profile");
+  $self->setDiffRpkmProfileSet('H. arabidopsidis expression during infection profile');
   $self->setPctProfileSet('percentile - H. arabidopsidis expression during infection');
   $self->setColor("#D87093");
   $self->makeGraphs(@_);
