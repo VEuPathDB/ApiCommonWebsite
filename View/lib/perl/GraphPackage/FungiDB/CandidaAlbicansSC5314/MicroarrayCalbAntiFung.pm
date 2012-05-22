@@ -23,14 +23,14 @@ sub init {
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetNames);
 
   my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
-  $ratio->setProfileSets($profileSets);
-  $ratio->setColors([$colors->[0]]);
-  $ratio->setForceHorizontalXAxis(1);
+#  $ratio->setProfileSets($profileSets);
+#  $ratio->setColors([$colors->[0]]);
+#  $ratio->setForceHorizontalXAxis(1);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
-  $percentile->setProfileSets($percentileSets);
-  $percentile->setColors($colors);
-  $percentile->setForceHorizontalXAxis(1);
+#  $percentile->setProfileSets($percentileSets);
+#  $percentile->setColors($colors);
+#  $percentile->setForceHorizontalXAxis(1);
 
   $self->setGraphObjects($ratio, $percentile);
 
@@ -38,19 +38,6 @@ sub init {
 
 #  $self->setMainLegend({colors => $colors, short_names => $legend, cols=> 3});
 
-#    $self->setProfileSetsHash
-#    ({rma => {profiles => ['expression profiles of CalbAntiFungMicroarray'],
-#              stdev_profiles => ['expression profile standard errors of CalbAntiFungMicroarray'],
-#               #  x_axis_labels => [],
-#               y_axis_label => 'RMA Value (log2)',
-#               colors => $colors,
-#             },
-#      pct => {profiles => ['expression profile percentiles of CalbAntiFungMicroarray'],
-              # x_axis_labels => [],
-#              y_axis_label => 'Percentile',
-#              colors => $colors,
-#            }
-#     });
 
   return $self;
 }
