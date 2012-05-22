@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::FungiDB::CryptococcusNeoformansGrubiiH99::MicroarrayCalbAntiFung;
+package ApiCommonWebsite::View::GraphPackage::FungiDB::CandidaAlbicansSC5314::MicroarrayCalbAntiFung;
 
 use strict;
 use vars qw( @ISA );
