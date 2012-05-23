@@ -14,16 +14,23 @@ sub init {
 
   my $colors =['blue'];
 
-  $self->setProfileSetsHash
-    ({Cln_Clb => {profiles => ['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments'],
-                   y_axis_label => 'Expression Value',
-force_x_axis_label_horizontal => 1,
-                   colors => $colors,
-                   make_y_axis_fold_incuction => 1,
-                   default_y_max => 1,
-              default_y_min => -1,
-                  },
-     });
+  my @profileSetNames = (['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments']);
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+
+  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  $ratio->setProfileSets($profileSets);
+
+#  $self->setProfileSetsHash
+#    ({Cln_Clb => {profiles => ['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments'],
+#                   y_axis_label => 'Expression Value',
+#force_x_axis_label_horizontal => 1,
+#                   colors => $colors,
+#                   make_y_axis_fold_incuction => 1,
+#                   default_y_max => 1,
+#              default_y_min => -1,
+#                  },
+#     });
 
   return $self;
 }
