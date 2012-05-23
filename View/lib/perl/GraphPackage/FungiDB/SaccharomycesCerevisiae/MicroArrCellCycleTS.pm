@@ -38,7 +38,22 @@ sub init {
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
   $pheromonePlot->setPartName('pheromone');
 
-  $self->setGraphObjects($clnClbPlot, $pheromonePlot);
+  my $elutriationProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c elutriation experiments']]);
+  my $elutriationPlot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $elutriationPlot->setProfileSets($elutriationProfileSets);
+  $elutriationPlot->setPartName('elutriation');
+
+  my $cdc15ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c cdc15 Experiments']]);
+  my $cdc15Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $cdc15Plot->setProfileSets($cdc15ProfileSets);
+  $cdc15Plot->setPartName('cdc15');
+
+  my $cdc28ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c microarray from Cho et al.']]);
+  my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $cdc28Plot->setProfileSets($cdc28ProfileSets);
+  $cdc28Plot->setPartName('cdc28');
+
+  $self->setGraphObjects($clnClbPlot, $pheromonePlot, $elutriationPlot, $cdc15Plot, $cdc28Plot);
 
   return $self;
 }
