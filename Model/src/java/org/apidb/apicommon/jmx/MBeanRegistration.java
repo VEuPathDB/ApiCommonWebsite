@@ -53,7 +53,7 @@ public class MBeanRegistration {
     } catch (MBeanRegistrationException mbre) {
         throw new RuntimeException(mbre);    
     } catch (InstanceAlreadyExistsException iaee) {
-        throw new RuntimeException(iaee);    
+        logger.error(iaee);
     } catch (NotCompliantMBeanException ncmbe) {
         throw new RuntimeException(ncmbe);
     }
