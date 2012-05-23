@@ -16,9 +16,9 @@ sub init {
   my $sampleNames =["Chlyma", "Spores", "Tomato", "V8Liq"];
 
   $self->setSampleNames($sampleNames);
-  $self->setMinRpkmProfileSet('P. ramorum expression in Chlamydospora, P. ramorum expression in zoospores, P. ramorum expression is Tomato media, P. ramorum expression in V8 Liquid media');
-  $self->setDiffRpkmProfileSet('P. ramorum expression in Chlamydospora, P. ramorum expression in zoospores, P. ramorum expression is Tomato media, P. ramorum expression in V8 Liquid media-diff');
-  $self->setPctProfileSet('percentile - P. ramorum expression in Chlamydospora, P. ramorum expression in zoospores, P. ramorum expression is Tomato media, P. ramorum expression in V8 Liquid media');
+  $self->setMinRpkmProfileSet('P. ramorum expression in different sporulating condition and media');
+  $self->setDiffRpkmProfileSet('P. ramorum expression in different sporulating condition and media');
+  $self->setPctProfileSet('percentile - P. ramorum expression in different sporulating condition and media');
   $self->setColor('#29ACF2');
   $self->makeGraphs(@_);
 
