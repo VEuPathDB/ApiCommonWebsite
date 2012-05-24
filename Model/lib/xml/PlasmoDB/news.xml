@@ -18,6 +18,142 @@
     </record>
 -->
 <record>
+       <attribute name="headline">PlasmoDB 9.0 Released</attribute>
+       <attribute name="date">23 May 2012 15:00</attribute>
+       <attribute name="tag">plasmo05_12_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>plasmo05_12</title>
+</head>
+<body>
+<div style="font-family: Arial; text-align: justify;">
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 9.0</span><span
+style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;">
+</span><br>
+This is a major release of PlasmoDB which constitutes a complete
+rebuild of the database.&nbsp; This means that all genomes, data and
+analysis were redone and improved. In addition, many of the
+expression searches were updated to enable you to perform more accurate
+searches.&nbsp; We encourage you to explore these searches and as usual
+we look forward to hearing from you about how to further improve
+them.&nbsp; <br>
+<br>
+Since this is a major update, we are keeping the old version (<a
+style="font-weight: bold;" href="http://old.plasmodb.org">PlasmoDB 8.2</a>)
+available so you can access your old querries and previous analysis if
+needed.<br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New Data:</span><br>
+</div>
+<div style="font-family: Arial; text-align: justify;"><span
+style="font-style: italic;"></span>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>The following genomes and annotation have been updated from
+GeneDB:</li>
+</ul>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><span style="font-style: italic;">P. falciparum</span> 3D7
+(February
+2012 GeneDB version) <span style="font-style: italic;">Note: The new
+P. falciparum gene IDs have
+been fully integrated in this release.&nbsp; Old gene IDs are still
+displayed on gene pages and searches can still be performed with old
+gene IDs.</span> </li>
+<li><span style="font-style: italic;">P. falciparum </span>IT
+(February
+2012 GeneDB version)<span style="font-style: italic;"></span></li>
+<li><span style="font-style: italic;">P. berghei</span>&nbsp; ANKA
+(March 2012 GeneDB version)<br>
+</li>
+<li><span style="font-style: italic;">P. chabaudi</span> AS (March
+2011 GeneDB version) <span style="font-style: italic;">Note: A newer
+version of this genome and annotation will be included in the next
+release of PlasmoDB.<br>
+</span></li>
+</ul>
+</ul>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Strand-specific, amplification-free transcriptome sequence (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/20081834">FRT-Seq</a>) from <span
+style="font-style: italic;">P. falciparum</span> 3D7 parasites (Pooled
+red blood cell stage).&nbsp; This data was graciously provided
+prepublication by the Berriman and Newbold labs and may be visualized
+as a track in the genome browser.&nbsp; <a style="font-weight: bold;"
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1190700;stop=1240699;ref=Pf3D7_06_v3;width=800;version=100;flip=0;grid=1;id=d84b8c628a88e60af27b19119a69f911;l=RnaSeqOttoCont%1EGene">Here
+is an example genome browser view of chromosome 6 with the "Pf RNA-Seq
+- Sanger FRT (log2) [Newbold / Berriman labs]" turned on</a>.&nbsp;
+Note that histogram colors correspond to transcript direction (blue =
+forward strand, red = reverse strand).<br style="font-family: Arial;">
+</li>
+</ul>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Updated linkouts to the <a style="font-weight: bold;"
+href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
+Pathways
+(MPMP) database</a>.&nbsp; Numerous pathways have been added and
+updated by
+Dr. Hagai Ginsburg.&nbsp;&nbsp; Genes included in the MPMP database can
+be searched based on
+metabolic pathway in PlasmoDB <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.</li>
+</ul>
+<div style="font-family: Arial; text-align: justify;"><span
+style="font-weight: bold;"></span><span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<ul>
+<li>We are rolling out a new feature that allows you to view a
+graphical representation of your gene results mapped to genomic
+sequences.&nbsp; To use this feature, run any gene search then click on
+the "Genome View" tab.&nbsp; This view allows you to interactively
+visualize the genomic distribution of your results -- you can zoom
+in/out, sort results or visit specific gene pages.&nbsp; This is being
+released as a beta feature which we hope to improve in the coming
+months based on your valuable feedback.</li>
+</ul>
+<ul>
+<li>With many of the expression graphs on gene pages you now have the
+option to view the data on a log2 scale, as percentile or as raw
+expression values.<br>
+</li>
+</ul>
+&nbsp;<br>
+<span style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span></div>
+</body>
+</html>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">PlasmoDB 8.2 Released</attribute>
        <attribute name="date">11 January 2012 15:00</attribute>
        <attribute name="tag">plasmo12_11_news</attribute>
