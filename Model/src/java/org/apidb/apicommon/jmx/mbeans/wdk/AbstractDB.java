@@ -72,19 +72,19 @@ public abstract class AbstractDB extends BeanBase {
     try {
       method = wdkModel.getClass().getMethod(methodName);
     } catch (SecurityException se) {
-      logger.fatal(se);
+      logger.error(se);
     } catch (NoSuchMethodException nsme) {
-      logger.fatal(nsme);
+      logger.error(nsme);
     }
 
     try {
       platform = (DBPlatform)method.invoke(wdkModel);
     } catch (IllegalArgumentException iae) {
-      logger.fatal(iae);
+      logger.error(iae);
     } catch (IllegalAccessException iae) {
-      logger.fatal(iae);
+      logger.error(iae);
     } catch (InvocationTargetException ite) {
-      logger.fatal(ite);
+      logger.error(ite);
     }
     
     return platform;
@@ -160,7 +160,7 @@ public abstract class AbstractDB extends BeanBase {
         dblinkList.add(map);
       }
     } catch (SQLException sqle) {
-      logger.fatal(sqle);
+      logger.error(sqle);
     } finally {
         SqlUtils.closeResultSet(rs);
     }
@@ -185,7 +185,7 @@ public abstract class AbstractDB extends BeanBase {
         }
       }
     } catch (SQLException sqle) {
-      logger.fatal(sqle);
+      logger.error(sqle);
     } finally {
         SqlUtils.closeResultSet(rs);
     }  
@@ -209,7 +209,7 @@ public abstract class AbstractDB extends BeanBase {
         }
       }
     } catch (SQLException sqle) {
-      logger.fatal(sqle);
+      logger.error(sqle);
     } finally {
         SqlUtils.closeResultSet(rs);
     }
