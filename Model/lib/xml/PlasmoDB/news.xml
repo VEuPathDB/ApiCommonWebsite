@@ -49,7 +49,13 @@ them.&nbsp; <br>
 Since this is a major update, we are keeping the old version (<a
 style="font-weight: bold;" href="http://old.plasmodb.org">PlasmoDB 8.2</a>)
 available so you can access your old querries and previous analysis if
-needed.<br>
+needed. A<a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByOldAnnotation">
+query is availble</a> to identify genes that have changed between
+releases 8.2 and 9.0.&nbsp; In addition, you can view gene models from
+the previous release as a <a style="font-weight: bold;"
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=886494;stop=917853;ref=Pf3D7_02_v3;width=800;version=100;flip=0;grid=1;id=f8185909a53487c6f854ad46c720c922;l=Gene%1EVersion82Genes;h_feat=pf3d7_0222900%40yellow">genome
+browser track</a>.&nbsp; <br>
 <br style="font-weight: bold;">
 <span style="font-weight: bold;">New Data:</span><br>
 </div>
