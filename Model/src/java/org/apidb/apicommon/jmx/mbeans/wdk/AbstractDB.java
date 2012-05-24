@@ -17,6 +17,7 @@ public abstract class AbstractDB extends BeanBase {
 
 
   HashMap<String, String> metaDataMap;
+  HashMap<String, String> servernameDataMap;
   ArrayList<Map<String, String>> dblinkList;
   DataSource dataSource;
   
@@ -37,16 +38,19 @@ public abstract class AbstractDB extends BeanBase {
 
   private void init() {
     populateDatabaseMetaDataMap();
+    populateServernameDataMap();
     populateDblinkList();
   }
 
   public void refresh() { init(); }
 
   public ArrayList<Map<String,String>> getDblinkList() { return dblinkList; }
+
+  public String getserver_name() { return servernameDataMap.get("server_name"); }
+  public String getserver_ip() { return servernameDataMap.get("server_ip"); }
+
   public String getglobal_name() { return metaDataMap.get("global_name"); }
   public String getversion() { return metaDataMap.get("version"); }
-  public String getserver_name() { return metaDataMap.get("server_name"); }
-  public String getserver_ip() { return metaDataMap.get("server_ip"); }
   public String getsystem_date() { return metaDataMap.get("system_date"); }
   public String getlogin() { return metaDataMap.get("login"); }
   public String getservice_name() { return metaDataMap.get("service_name"); }
@@ -86,6 +90,15 @@ public abstract class AbstractDB extends BeanBase {
     return platform;
   }
 
+  // refactor this for Oracle vs Postgres
+  private String getServerNameSql() {
+    StringBuffer sql = new StringBuffer();
+    sql.append(" select                                     ");
+    sql.append(" UTL_INADDR.get_host_name as server_name,   ");
+    sql.append(" UTL_INADDR.get_host_address as server_ip   ");
+    sql.append(" from dual                                  ");
+    return sql.toString();
+  }
 
   // refactor this for Oracle vs Postgres
   private String getMetaDataSql() {
@@ -95,8 +108,6 @@ public abstract class AbstractDB extends BeanBase {
     sql.append(" select                                                          ");
     sql.append(" global_name,                                                    ");
     sql.append(" ver.banner version,                                             ");
-    sql.append(" UTL_INADDR.get_host_name as server_name,                        ");
-    sql.append(" UTL_INADDR.get_host_address as server_ip,                       ");
     sql.append(" to_char(sysdate, 'Dy DD-Mon-YYYY HH24:MI:SS') system_date,      ");
     sql.append(" sys_context('USERENV', 'SESSION_USER'       ) login,            ");
     sql.append(" sys_context('userenv', 'SERVICE_NAME'       ) service_name,     ");
@@ -156,12 +167,36 @@ public abstract class AbstractDB extends BeanBase {
 
   }
   
+  private void populateServernameDataMap() {
+    String sql = getServerNameSql();
+    servernameDataMap = new HashMap<String, String>();
+    ResultSet rs = null;
+    PreparedStatement ps = null;
+    logger.debug("querying database for servername information");    
+    try {
+      ps = SqlUtils.getPreparedStatement(dataSource, sql);
+      rs = ps.executeQuery();
+     if (rs.next()) {
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int numColumns = rsmd.getColumnCount();
+        for (int i=1; i<numColumns+1; i++) {
+          String columnName = rsmd.getColumnName(i).toLowerCase();
+          servernameDataMap.put(columnName, rs.getString(columnName) );
+        }
+      }
+    } catch (SQLException sqle) {
+      logger.fatal(sqle);
+    } finally {
+        SqlUtils.closeResultSet(rs);
+    }  
+  }
+  
   private void populateDatabaseMetaDataMap() {
     String sql = getMetaDataSql();
     metaDataMap = new HashMap<String, String>();
     ResultSet rs = null;
     PreparedStatement ps = null;
-    logger.debug("querying database for information");    
+    logger.debug("querying database for misc. information");    
     try {
       ps = SqlUtils.getPreparedStatement(dataSource, sql);
       rs = ps.executeQuery();
