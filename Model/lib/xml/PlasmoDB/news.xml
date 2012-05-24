@@ -49,9 +49,10 @@ them.&nbsp; <br>
 Since this is a major update, we are keeping the old version (<a
 style="font-weight: bold;" href="http://old.plasmodb.org">PlasmoDB 8.2</a>)
 available so you can access your old querries and previous analysis if
-needed.<br>
+needed. <br>
 <br style="font-weight: bold;">
 <span style="font-weight: bold;">New Data:</span><br>
+<br>
 </div>
 <div style="font-family: Arial; text-align: justify;"><span
 style="font-style: italic;"></span>
@@ -60,6 +61,7 @@ style="font-style: italic;"></span>
 <li>The following genomes and annotation have been updated from
 GeneDB:</li>
 </ul>
+<br>
 <ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li><span style="font-style: italic;">P. falciparum</span> 3D7
@@ -78,10 +80,21 @@ gene IDs.</span> </li>
 <li><span style="font-style: italic;">P. chabaudi</span> AS (March
 2011 GeneDB version) <span style="font-style: italic;">Note: A newer
 version of this genome and annotation will be included in the next
-release of PlasmoDB.<br>
-</span></li>
+release of PlasmoDB.</span></li>
 </ul>
 </ul>
+<br>
+<div style="margin-left: 80px;"><span style="font-style: italic;">Note:
+A</span><a style="font-weight: bold; font-style: italic;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByOldAnnotation">
+query is availble</a><span style="font-style: italic;"> to identify
+genes that have changed between releases 8.2 and 9.0.&nbsp; In
+addition, you can view gene models from the previous release as a </span><a
+style="font-weight: bold; font-style: italic;"
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=886494;stop=917853;ref=Pf3D7_02_v3;width=800;version=100;flip=0;grid=1;id=f8185909a53487c6f854ad46c720c922;l=Gene%1EVersion82Genes;h_feat=pf3d7_0222900%40yellow">genome
+browser track</a><span style="font-style: italic;">. <br>
+<br>
+</span> </div>
 <ul style="text-align: justify; font-family: Arial;">
 <li>Strand-specific, amplification-free transcriptome sequence (<a
 style="font-weight: bold;"
@@ -94,9 +107,9 @@ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1190700;stop=1240699;r
 is an example genome browser view of chromosome 6 with the "Pf RNA-Seq
 - Sanger FRT (log2) [Newbold / Berriman labs]" turned on</a>.&nbsp;
 Note that histogram colors correspond to transcript direction (blue =
-forward strand, red = reverse strand).<br style="font-family: Arial;">
-</li>
+forward strand, red = reverse strand).</li>
 </ul>
+<br>
 <ul style="text-align: justify; font-family: Arial;">
 <li>Updated linkouts to the <a style="font-weight: bold;"
 href="http://sites.huji.ac.il/malaria/">Malaria Parasite Metabolic
@@ -108,6 +121,7 @@ be searched based on
 metabolic pathway in PlasmoDB <a style="font-weight: bold;"
 href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMetabolicPathway">here</a>.</li>
 </ul>
+<br>
 <div style="font-family: Arial; text-align: justify;"><span
 style="font-weight: bold;"></span><span style="font-weight: bold;">New
 functionality:</span><br>
@@ -122,6 +136,7 @@ in/out, sort results or visit specific gene pages.&nbsp; This is being
 released as a beta feature which we hope to improve in the coming
 months based on your valuable feedback.</li>
 </ul>
+<br>
 <ul>
 <li>With many of the expression graphs on gene pages you now have the
 option to view the data on a log2 scale, as percentile or as raw
@@ -150,6 +165,7 @@ style="font-weight: bold; font-style: italic;"> and <a
 href="http://twitter.com/eupathdb">Twitter</a></span></div>
 </body>
 </html>
+
           ]]>
        </attribute>
     </record>
