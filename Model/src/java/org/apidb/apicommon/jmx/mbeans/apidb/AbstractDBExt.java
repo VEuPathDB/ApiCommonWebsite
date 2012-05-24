@@ -23,6 +23,7 @@ public class AbstractDBExt extends AbstractDB  {
 
   public void refresh() { 
     super.refresh();
+    this.osa = getOrclSvcAliases();
   }
 
   protected OrclSvcAliases getOrclSvcAliases() {
