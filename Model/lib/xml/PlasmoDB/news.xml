@@ -48,7 +48,7 @@ them.&nbsp; <br>
 <br>
 Since this is a major update, we are keeping the old version (<a
 style="font-weight: bold;" href="http://old.plasmodb.org">PlasmoDB 8.2</a>)
-available so you can access your old querries and previous analysis if
+available so you can access your old queries and previous analysis if
 needed. <br>
 <br style="font-weight: bold;">
 <span style="font-weight: bold;">New Data:</span><br>
@@ -87,7 +87,7 @@ release of PlasmoDB.</span></li>
 <div style="margin-left: 80px;"><span style="font-style: italic;">Note:
 A</span><a style="font-weight: bold; font-style: italic;"
 href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByOldAnnotation">
-query is availble</a><span style="font-style: italic;"> to identify
+query is available</a><span style="font-style: italic;"> to identify
 genes that have changed between releases 8.2 and 9.0.&nbsp; In
 addition, you can view gene models from the previous release as a </span><a
 style="font-weight: bold; font-style: italic;"
