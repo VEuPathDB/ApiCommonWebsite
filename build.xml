@@ -205,7 +205,9 @@
       <property name="part" value="dashboard"/>
       <property name="to" value="${htdocsTargetDir}/../dashboard"/>
     </ant>
-    
+    <available file="${htdocsTargetDir}/../dashboard" type="dir" property="dashboard.present"/>
+    <antcall target="dashboardDoc"/>
+
     <available file="${targetDir}/config/log4j.xml.custom-web" property="custom.weblog4j.present"/>
     <antcall target="installCustomWebLog4j"/>
     <available file="${webappTargetDir}/WEB-INF/classes/log4j.xml" property="weblog4j.present"/>
@@ -247,7 +249,22 @@
     <basename property="webapp" file="${webappDir}"/>
     <replace file="${webappTargetDir}/WEB-INF/classes/log4j.xml" token="@WEBAPP@" value="${webapp}"/>
   </target>
-  
+
+  <target name="dashboardDoc" if="dashboard.present">
+    <echo message="Compiling phpdoc" />
+    <exec executable="phpdoc" 
+      failonerror="false"
+      failifexecutionfails="false"
+    >
+      <arg line="--ignore phpdoc/,css/,js/,config/,test/,images/,doc/" />
+      <arg line="--defaultpackagename dashboard" />
+      <arg line="--title /dashboard" />
+      <arg line="-t ${htdocsTargetDir}/../dashboard/phpdoc" />
+      <arg line="-d ${htdocsTargetDir}/../dashboard" />
+      <arg line="-o HTML:Smarty:PHP" />
+      <arg value="-q"/>      
+    </exec>
+  </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
