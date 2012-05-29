@@ -2,6 +2,7 @@ package org.apidb.apicommon.jmx;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,9 @@ import javax.servlet.ServletContext;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Registers mbeans named in MBeanSet.mbeanClassNames.
+ */
 public class MBeanRegistration {
 
   private static final Logger logger = Logger.getLogger(MBeanRegistration.class);
@@ -30,11 +34,17 @@ public class MBeanRegistration {
   public MBeanRegistration() {
   }
 
+  /** 
+   * Initialization and registration.
+   */
   public void init() {
     server = getMBeanServer();
     registerMBeans();  
   }
 
+  /** 
+   * Unregister mbeans and cleanup
+   */
   public void destroy() {
       unregisterMBeans();
   }
@@ -115,11 +125,33 @@ public class MBeanRegistration {
   }
 
   private String getContextName() {
-    ServletContext servletcontext = ContextThreadLocal.get();
-    String appPath = servletcontext.getRealPath("/");
-    String[] elements = appPath.split("/");
-    String context = elements[elements.length -2];
-    return context;
+    ServletContext sc = ContextThreadLocal.get();
+    String contextName = null;
+
+    if (sc.getMajorVersion() > 2 || sc.getMajorVersion() == 2 && sc.getMinorVersion() >= 5) {
+      // Servlet API is >= 2.5 and has ServletContext getContextPath() method but 
+      // we have to make an indiret method call so code compiles for API < 2.5
+      try {
+        Method m = sc.getClass().getMethod("getContextPath", new Class[] {});
+        contextName = (String) m.invoke(sc, null);
+      } catch (SecurityException se) {
+        throw new RuntimeException(se);
+      } catch (NoSuchMethodException nsme) {
+        throw new RuntimeException(nsme);
+      } catch (IllegalArgumentException iae) {
+        throw new RuntimeException(iae);
+      } catch (IllegalAccessException iae) {
+        throw new RuntimeException(iae);
+      } catch (InvocationTargetException ite) {
+        throw new RuntimeException(ite);
+      }
+    } else {
+      // hack for old servlet API: use the name of the tempdir
+      String tmpdir = ((java.io.File) sc.getAttribute("javax.servlet.context.tempdir")).getName();
+      contextName = "/" + tmpdir;
+    }
+
+    return contextName;
   }
 
   private MBeanServer getMBeanServer() {

@@ -16,7 +16,7 @@ class ReloadWebapp extends JmxModule {
             'type' => 'exec',
             'mbean' => "$domain:" .
                        'j2eeType=WebModule,name=//' . 
-                       $engine_host . '/' . $context . 
+                       $engine_host . $context . 
                        ',J2EEApplication=none,J2EEServer=none',
             'operation' => 'reload',
         )

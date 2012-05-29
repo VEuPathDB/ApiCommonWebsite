@@ -18,7 +18,7 @@ class WebappInfo extends JmxModule {
       array(
           'type' => 'read',
           'mbean' => "$domain:" .
-                     'type=Loader,path=/' . $context . 
+                     'type=Loader,path=' . $context . 
                      ',host=' . $engine_host,
           'attribute' => array('loaderRepositoriesString') // attribute in array to force array in response
       ),
@@ -26,7 +26,7 @@ class WebappInfo extends JmxModule {
           'type' => 'read',
           'mbean' => "$domain:" .
                      'j2eeType=WebModule,name=//' . 
-                     $engine_host . '/' . $context . 
+                     $engine_host . $context . 
                      ',J2EEApplication=none,J2EEServer=none',
           'attribute' => $attribute
       ),
