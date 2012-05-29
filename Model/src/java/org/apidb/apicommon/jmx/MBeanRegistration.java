@@ -133,7 +133,7 @@ public class MBeanRegistration {
       // we have to make an indiret method call so code compiles for API < 2.5
       try {
         Method m = sc.getClass().getMethod("getContextPath", new Class[] {});
-        contextName = (String) m.invoke(sc, (Class<?>) null);
+        contextName = (String) m.invoke(sc, (Object[]) null);
       } catch (SecurityException se) {
         throw new RuntimeException(se);
       } catch (NoSuchMethodException nsme) {
