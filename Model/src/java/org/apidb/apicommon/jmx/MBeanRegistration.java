@@ -49,8 +49,21 @@ public class MBeanRegistration {
   public void destroy() {
       unregisterMBeans();
   }
-
+  
   private String getHostName() {
+    // temp method until getHostNameBROKEN_IN_TC5() can be fixed
+    return "localhost";
+  }
+  
+  private String getHostNameBROKEN_IN_TC5() {
+
+// tomcat 5 throws
+// java.lang.ClassNotFoundException: org.apache.catalina.core.StandardContext
+// with the following code. This class is in $CATALINA_BASE/server/lib/catalina.jar
+//
+// The host lookup works in TC 6.0.33
+// Hard code until this can be resolved.
+  
      /**
        * I can't find a direct way to get the Host we are deploying into. I did find
        * this technique in
