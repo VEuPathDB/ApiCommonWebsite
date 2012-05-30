@@ -1,6 +1,7 @@
 package org.apidb.apicommon.jmx;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -49,6 +50,34 @@ public class MBeanRegistration {
       unregisterMBeans();
   }
 
+  private String getHostName() {
+     /**
+       * I can't find a direct way to get the Host we are deploying into. I did find
+       * this technique in
+       * fr.xebia.management.ServletContextAwareMBeanServerFactory
+       */
+    String hostName = null;
+    try {
+      ServletContext servletContext = ContextThreadLocal.get();
+      
+      Field standardContextHostNameField = Class.forName("org.apache.catalina.core.StandardContext").getDeclaredField("hostName");
+      standardContextHostNameField.setAccessible(true);
+
+      Field applicationContextFacadeContextField = Class.forName("org.apache.catalina.core.ApplicationContextFacade").getDeclaredField("context");
+      applicationContextFacadeContextField.setAccessible(true);
+      
+      Field applicationContextContextField = Class.forName("org.apache.catalina.core.ApplicationContext").getDeclaredField("context");
+      applicationContextContextField.setAccessible(true);
+
+      Object applicationContext = applicationContextFacadeContextField.get(servletContext);
+      Object standardContext = applicationContextContextField.get(applicationContext);
+      hostName = (String) standardContextHostNameField.get(standardContext);
+    } catch (Exception e) {
+      logger.error(e);
+    }
+    return hostName;
+  }
+  
   private void registerMBeans() {
     try {
       for (Map.Entry<String, String> entry : mbeanClassNames.entrySet()) {
@@ -119,12 +148,13 @@ public class MBeanRegistration {
   }
 
   private ObjectName makeObjectName(String pObjectNameString) throws MalformedObjectNameException, NullPointerException { 
-    String context = getContextName();
-    String objectNameString = pObjectNameString + ",context=" + context;
+    String path = getContextPath();
+    String host = getHostName();
+    String objectNameString = pObjectNameString + ",path=//" + host + path;
     return new ObjectName(objectNameString);
   }
 
-  private String getContextName() {
+  private String getContextPath() {
     ServletContext sc = ContextThreadLocal.get();
     String contextName = null;
 
