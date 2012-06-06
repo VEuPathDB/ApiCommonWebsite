@@ -47,9 +47,10 @@
 
 
 <%-- ========dialogs that need to appear in various pages========= --%>
+<!-- gbrowse requires to set an initial display:none -->
 
 <!-- Annotation Change dialog -->
-<div id="dialog-annot-change" title="Annotation changes">
+<div id="dialog-annot-change" title="Annotation changes" style="display:none">
 <ul class="cirbulletlist">
 <li>Genome annotations are constantly updated to reflect new biological information concerning the sequences.
 <br><br>
@@ -58,7 +59,7 @@
 </div>
 
 <!-- Revised searches dialog -->
-<div id="dialog-revise-search"  title="Redesigned searches">
+<div id="dialog-revise-search"  title="Redesigned searches"  style="display:none">
 <ul class="cirbulletlist">
 <li>Searches are sometimes 'redesigned' if database revisions lead to new parameters and/or new parameter choices. 
 <br><br><br>
