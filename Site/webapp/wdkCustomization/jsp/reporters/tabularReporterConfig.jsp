@@ -18,20 +18,16 @@
 
 <%-- galaxy.psu.edu users; to send data to Galaxy  --%>
 <script type="text/javascript">
-function appendchecked(url) {
-    var newtxt = '';
+function appendchecked(form, url) {
+    var newtxt = 'primary_key';
     var chkbx = document.downloadConfigForm.selectedFields;
-    for(var i = 0; i < chkbx.length; i++) {
-        if( chkbx[i].type=="hidden" ||
-            (chkbx[i].type == 'checkbox' && chkbx[i].checked === true)
-          ) {
-            if(newtxt.length !== 0) {
-                newtxt += ',';
-            }
-            newtxt += chkbx[i].value;
-        }
+    for (var i = 0; i < chkbx.length; i++) {
+       if( chkbx[i].value != "primary_key" && (chkbx[i].type=="hidden" ||
+               (chkbx[i].type == 'checkbox' && chkbx[i].checked === true))) {
+           newtxt += ',' + chkbx[i].value;
+       }
     }
-    document.galaxy_exchange.URL.value = url + newtxt;
+    form.URL.value = url + newtxt;
 }
 </script>
 <%-- end galaxy.psu.edu users  --%>
@@ -154,22 +150,39 @@ function appendchecked(url) {
 </table>
 </form>
 
+
+<%-- BEGIN GALAXY  --%>
+  <c:url var='downloadPath' 
+         value='/getDownloadResult.do;jsessionid=${pageContext.session.id}?step=${step_id}&includeHeader=yes&downloadType=plain&wdkReportFormat=tabular&selectedFields='/>
+  <c:set var='downloadUrl'>
+    ${pageContext.request.scheme}://${pageContext.request.serverName}${downloadPath}
+  </c:set>
+
   <%-- galaxy.psu.edu users; send data to Galaxy  --%>
   <c:if test="${!empty sessionScope.GALAXY_URL}">
     <div style="text-align:center;background-color:#FFCCFF;border-style:double; width:300px">
-    <c:url var='downloadPath' 
-           value='/getDownloadResult.do;jsessionid=${pageContext.session.id}?step=${step_id}&includeHeader=yes&downloadType=plain&wdkReportFormat=tabular&selectedFields='/>
-    <c:set var='downloadUrl'>
-      ${pageContext.request.scheme}://${pageContext.request.serverName}${downloadPath}
-    </c:set>
     <br>
     <form action="${sessionScope.GALAXY_URL}" name="galaxy_exchange" id="galaxy_exchange" method="POST">
       <input type="hidden" name="URL" value="${fn:escapeXml(downloadUrl)}">
-      <input type="submit" name="Send" value="Send to Galaxy" onclick="appendchecked('${fn:escapeXml(downloadUrl)}')">
+      <input type="submit" name="Send" value="Send to PSU Galaxy" onclick="appendchecked(this.form, '${fn:escapeXml(downloadUrl)}')">
     </form>
     </div>
   </c:if>
-  <%-- galaxy.psu.edu users  --%>
+  <%-- end: galaxy.psu.edu users  --%>
+
+  <%-- galaxy UGA users; send data to UGA Galaxy  --%>
+  <div style="text-align:center;background-color:#FFCCFF;border-style:double; width:300px">
+  <br>
+  <form action="${sessionScope.CTEGD_RICH_GALAXY_URL}" name="CTEGD_RICH_GALAXY_URL" id="CTEGD_RICH_GALAXY_URL" method="POST">
+   <input type="hidden" name="URL" value="${fn:escapeXml(downloadUrl)}">
+     <input type="submit" name="Send" value="Send to CTEGD Rich Galaxy" onclick="appendchecked(this.form, '${fn:escapeXml(downloadUrl)}')">
+  </form>
+  </div>  
+<%-- END GALAXY  --%>
+
+
+
+
 
   </c:otherwise>
 </c:choose>
