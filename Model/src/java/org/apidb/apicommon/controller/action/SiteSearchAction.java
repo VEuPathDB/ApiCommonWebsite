@@ -38,16 +38,18 @@ public class SiteSearchAction extends Action {
 
     private static final String FORWARD_QUESTION = "to-question";
     private static final String FORWARD_SUMMARY = "to-summary";
+    private static final String FORWARD_HTML = "to-html";
 
     private static final String TYPE_ALL = "all";
     private static final String TYPE_GENE = "gene";
     private static final String TYPE_ISOLATE = "isolate";
+    private static final String TYPE_HTML = "html";
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        logger.info("Entering site ssearch...");
+        logger.info("Entering site search...");
 
         // need to check if the old record is mapped to more than one records
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
@@ -65,6 +67,13 @@ public class SiteSearchAction extends Action {
 
             String isoUrl = getQuestionUrl(wdkModel, QUESTION_ISOLATE, keyword);
             request.setAttribute(ATTR_ISOLATE_URL, isoUrl);
+        } else if (type.equals(TYPE_HTML)) {
+            forward = mapping.findForward(FORWARD_HTML);
+            request.setAttribute(ATTR_KEYWORD, keyword);
+            String url = forward.getPath();
+            url += (url.indexOf('?') < 0) ? '?' : '&';
+            url += "keyword" + keyword;
+            forward = new ActionForward(url, false);
         } else { // go to search result page
             forward = mapping.findForward(FORWARD_QUESTION);
             String url = forward.getPath();
