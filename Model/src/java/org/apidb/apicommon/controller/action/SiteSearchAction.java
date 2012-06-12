@@ -57,6 +57,11 @@ public class SiteSearchAction extends Action {
         String keyword = request.getParameter(PARAM_KEYWORD);
         logger.debug("type=" + type + ", keyword=" + keyword);
 
+        // determine if isolate question exists
+        boolean hasIsolate = true;
+        try { wdkModel.getQuestion(QUESTION_ISOLATE); }
+        catch (Exception ex) { hasIsolate = false; }
+
         ActionForward forward;
         if (type.equals(TYPE_ALL)) { // go to summary page
             forward = mapping.findForward(FORWARD_SUMMARY);
@@ -65,8 +70,10 @@ public class SiteSearchAction extends Action {
             String geneUrl = getQuestionUrl(wdkModel, QUESTION_GENE, keyword);
             request.setAttribute(ATTR_GENE_URL, geneUrl);
 
-            String isoUrl = getQuestionUrl(wdkModel, QUESTION_ISOLATE, keyword);
-            request.setAttribute(ATTR_ISOLATE_URL, isoUrl);
+            if (hasIsolate) {
+                String isoUrl = getQuestionUrl(wdkModel, QUESTION_ISOLATE, keyword);
+                request.setAttribute(ATTR_ISOLATE_URL, isoUrl);
+            }
         } else if (type.equals(TYPE_HTML)) {
             forward = mapping.findForward(FORWARD_HTML);
             request.setAttribute(ATTR_KEYWORD, keyword);
@@ -75,19 +82,18 @@ public class SiteSearchAction extends Action {
             url += "keyword" + keyword;
             forward = new ActionForward(url, false);
         } else { // go to search result page
-            forward = mapping.findForward(FORWARD_QUESTION);
-            String url = forward.getPath();
-            url += (url.indexOf('?') < 0) ? '?' : '&';
-
             String questionName;
             if (type.equals(TYPE_GENE)) {
                 questionName = QUESTION_GENE;
-            } else if (type.equals(TYPE_ISOLATE)) {
+            } else if (hasIsolate && type.equals(TYPE_ISOLATE)) {
                 questionName = QUESTION_ISOLATE;
             } else {
                 throw new WdkUserException("Unknown site search type: " + type);
             }
 
+            forward = mapping.findForward(FORWARD_QUESTION);
+            String url = forward.getPath();
+            url += (url.indexOf('?') < 0) ? '?' : '&';
             url += getQuestionUrl(wdkModel, questionName, keyword);
             forward = new ActionForward(url, false);
         }
