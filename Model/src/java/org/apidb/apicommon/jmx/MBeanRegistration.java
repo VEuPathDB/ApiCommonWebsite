@@ -55,7 +55,8 @@ public class MBeanRegistration {
     return "localhost";
   }
   
-  private String getHostNameBROKEN_IN_TC5() {
+  @SuppressWarnings("unused")
+private String getHostNameBROKEN_IN_TC5() {
 
 // tomcat 5 throws
 // java.lang.ClassNotFoundException: org.apache.catalina.core.StandardContext
