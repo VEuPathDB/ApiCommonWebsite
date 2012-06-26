@@ -772,7 +772,7 @@
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
@@ -797,7 +797,7 @@
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
@@ -822,7 +822,7 @@
        <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
