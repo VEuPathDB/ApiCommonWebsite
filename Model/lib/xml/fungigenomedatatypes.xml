@@ -635,7 +635,7 @@
        <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
        <attribute name = "Taxon_ID">578456</attribute>
        <attribute name = "Strain">DSM 1558</attribute>
-       <attribute name = "Genome_Version">>2009-06-01</attribute>
+       <attribute name = "Genome_Version">2009-06-01</attribute>
        <attribute name = "Data_Source">JGI</attribute>
        <attribute name = "Genome_Size">28.64</attribute>
        <attribute name = "Gene_Count">8359</attribute>
@@ -689,7 +689,7 @@
        <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
        <attribute name = "Taxon_ID">763924</attribute>
        <attribute name = "Strain">LT1534</attribute>
-       <attribute name = "Genome_Version">>11</attribute>
+       <attribute name = "Genome_Version">11</attribute>
        <attribute name = "Data_Source">JGI</attribute>
        <attribute name = "Genome_Size">64.02</attribute>
        <attribute name = "Gene_Count">19804</attribute>
