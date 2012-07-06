@@ -186,7 +186,7 @@ public class CommentFactory {
 
 						System.out.println( ">>>>> sequene: is " + sequence);
 
-            if ((sequence != null) && (sequence.trim() != "")) {
+            if ((sequence != null) && (sequence.trim().equals(""))) {
                 saveSequence(commentId, sequence);
             }
 
@@ -758,7 +758,7 @@ public class CommentFactory {
                     // the ResultSet is closed manually, instead of using
                     // SqlUtilssince we need to keep the underline statement
                     // open during the for loop
-                    rsQueryDb.close();
+                    if (rsQueryDb != null) rsQueryDb.close();
                 }
 
                 // add the reference link

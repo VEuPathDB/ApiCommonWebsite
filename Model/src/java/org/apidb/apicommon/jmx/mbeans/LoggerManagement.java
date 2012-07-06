@@ -135,7 +135,17 @@ public class LoggerManagement implements DynamicMBean {
   
   public Object invoke(String name, Object[] args, String[] sig) 
   throws MBeanException, ReflectionException {
-    logger.debug("invoke " + sig);
+    // convert string array to string
+    StringBuilder buffer = new StringBuilder();
+    if (sig != null) {
+    for (String piece : sig) {
+      if (buffer.length() >0)buffer.append(" ");
+      buffer.append(piece);
+    }
+    } else {
+      buffer.append("null");
+    }
+    logger.debug("invoke " + buffer);
     if (name.equals("reload") &&
             (args == null || args.length == 0) &&
             (sig == null || sig.length == 0)) {

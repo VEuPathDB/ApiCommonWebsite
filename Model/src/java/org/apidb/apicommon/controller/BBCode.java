@@ -113,7 +113,12 @@ public class BBCode {
     }
 
     public static void main(String[] args) {
-        File commentFile = new File("/home/praveenc/sandbox/comment.txt");
+      if (args.length != 1) {
+        System.err.println("bbcode <comment_file>");
+        System.exit(-1);
+      }
+      
+        File commentFile = new File(args[0]);
         String comment = "";
 
         try {

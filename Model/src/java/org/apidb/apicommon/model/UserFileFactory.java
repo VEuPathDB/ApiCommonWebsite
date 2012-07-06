@@ -114,6 +114,8 @@ public class UserFileFactory {
                 userFile.setFileSize(fileOnDisk.length());
 
                 insertUserFileMetaData(userFile);
+            } else {
+              throw new UserFileUploadException("File name not specified.");
             }
         } catch (IOException ioe) {
             String msg = "Could not write '" + fileName + "' to '" + filePath
@@ -122,11 +124,13 @@ public class UserFileFactory {
             throw new UserFileUploadException(msg + "\n" + ioe);
         } catch (Exception e) {
             logger.warn(e);
+            if (fileOnDisk != null) {
             logger.warn("Deleting " + fileOnDisk.getPath());
             if (fileOnDisk.exists() && !fileOnDisk.delete())
                 logger.warn("\nUnable to delete "
                         + fileOnDisk.getPath()
                         + ". This file may not be correctly recorded in the database.");
+            }
             throw new UserFileUploadException(e);
         }
 
