@@ -42,7 +42,7 @@ public class EditCommentAction extends CommentAction {
             locString += locs[i].toString() + ",";
         }
 
-        if(locString != "") {
+        if(locString.length() > 0) {
 
           locString = locString.substring(0, locString.lastIndexOf(","));
         }

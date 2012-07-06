@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="/WSF Test/lib/java/junit-4.4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WSF Plugin"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Web Model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WDK Test"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

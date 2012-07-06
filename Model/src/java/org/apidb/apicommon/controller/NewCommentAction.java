@@ -178,9 +178,7 @@ public class NewCommentAction extends CommentAction {
         }
 
         try {
-            if (locType != null ) {
                comment.setLocations(reversed, locations, coordinateType);
-            }
         } catch (Exception e) {
             request.setAttribute(
                     "submitStatus",
