@@ -196,11 +196,13 @@ sub writetree {
 
   my $range = 10000000;
   my $random = int(rand($range));
-
-  open(TREE, ">$dir/$random.tree");
+  my $tree_file = "$dir/$random.tree";
+  
+  open(TREE, ">$tree_file");
   print TREE $tree;
   close(TREE); 
-
+  chmod 0666, $tree_file;
+  
   return "/gbrowse/tmp/clustalw/$random.tree";
 
 }
