@@ -28,7 +28,7 @@ The T. vaginalis sequencing effort was complemented by EST data from the Chang G
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in TrichDB is provided by independent researchers.  For a list of the data integrated into TrichDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in TrichDB is provided by independent researchers.  For a list of the data integrated into TrichDB and the related publications see <a href="getDataSource.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -97,7 +97,7 @@ rganisms currently available in EuPathDB, by various datatypes.
 
        <![CDATA[
 
-Please access: <a href="http://trichdb.org/a/showXmlDataContent.do?name=XmlQuestions.DataSources">Data Sources</a> and <a href="http://trichdb.org/a/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>.
+Please access: <a href="http://trichdb.org/a/getDataSource.do?display=detail">Data Sources</a> and <a href="http://trichdb.org/a/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>.
 
        ]]>
        </attribute>
@@ -315,7 +315,7 @@ GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist p
 researchers.  Please cite them if you use their data.  For a list
 of the data integrated into TrichDB and the related
 publications please see <a
-href="showXmlDataContent.do?name=XmlQuestions.DataSources"
+href="getDataSource.do?display=detail"
 class="blue"> Data Sources</a>.
        ]]>
        </attribute>

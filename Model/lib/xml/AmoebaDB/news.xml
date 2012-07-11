@@ -349,7 +349,7 @@ style="font-weight: bold;"> <br>
 </span>
 <span style="font-weight: bold;">Draft</span> assemblies of the
 following genomes (Complete data source information is available <a
-href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=E.dispar_Annotations,E.invadens_Annotations,E.histolytica_Annotations,E.histolyticaDS4_Genome,E.histolyticaKU50_Genome,E.histolyticaMS96_Genome,E.histolyticaHM1_CA_Genome,E.histolyticaKU48_Genome,E.histolyticaKU27_Genome&amp;title=Query#E.histolyticaDS4_Genome">here</a>):
+href="http://amoebadb.org/amoeba/getDataSource.do?display=detail&amp;datasets=E.dispar_Annotations,E.invadens_Annotations,E.histolytica_Annotations,E.histolyticaDS4_Genome,E.histolyticaKU50_Genome,E.histolyticaMS96_Genome,E.histolyticaHM1_CA_Genome,E.histolyticaKU48_Genome,E.histolyticaKU27_Genome&amp;title=Query#E.histolyticaDS4_Genome">here</a>):
 <br><br><ul>
 <ul>
 <li><span style="font-style: italic;">E. histolytica</span> DS4</li>

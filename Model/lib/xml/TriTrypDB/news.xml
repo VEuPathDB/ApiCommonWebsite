@@ -207,7 +207,7 @@ by clicking on the sequence name:<br>
 <div style="text-align: justify; font-family: Arial;">
 <br>
 <a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
 style="font-style: italic;"></span></a>
 </div>
 <ul style="text-align: justify; font-family: Arial;">
@@ -215,7 +215,7 @@ style="font-style: italic;"></span></a>
 <ul>
 <ul>
 <li><a
-href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#EmonteLV88_primary_genome_RSRC"><span
+href="/tritrypdb/getDataSource.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#EmonteLV88_primary_genome_RSRC"><span
 style="font-style: italic;">Endotrypanum monterogeii </span>strain
 LV88</a></li>
 </ul>
@@ -229,9 +229,9 @@ LV88</a></li>
 <ul>
 <ul>
 <li><a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=LbraziliensisM2903_contigs_RSRC&amp;title=Query#LbraziliensisM2903_contigs_RSRC"><span
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=LbraziliensisM2903_contigs_RSRC&amp;title=Query#LbraziliensisM2903_contigs_RSRC"><span
 style="font-style: italic;"></span></a><a
-href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LmajorLV39c5_primary_genome_RSRC"><span
+href="/tritrypdb/getDataSource.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LmajorLV39c5_primary_genome_RSRC"><span
 style="font-style: italic;">Leishmania major</span> strain LV39c5</a><br>
 </li>
 </ul>
@@ -245,7 +245,7 @@ style="font-style: italic;">Leishmania major</span> strain LV39c5</a><br>
 <ul>
 <ul>
 <li><a style="font-weight: bold;"
-href="/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LpanamL13_primary_genome_RSRC"><span
+href="/tritrypdb/getDataSource.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes,EmonteLV88_primary_genome_RSRC,LbraziliensisM2903_contigs_RSRC,LmajorLV39c5_primary_genome_RSRC,LpanamL13_primary_genome_RSRC,TcruziTC1_contigs_RSRC,TcruziJRcl4_contigs_RSRC&amp;title=Query#LpanamL13_primary_genome_RSRC"><span
 style="font-style: italic;">Leishmania panamensis </span>strain L13</a></li>
 </ul>
 </ul>
@@ -644,14 +644,14 @@ by clicking on the sequence name:<br>
 </ul>
 <br>
 <a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
 style="font-style: italic;"></span></a>
 <ul>
 <ul style="font-weight: bold;">
 <ul>
 <ul>
 <li><a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=TcruziJRcl4_contigs_RSRC&amp;title=Query#TcruziJRcl4_contigs_RSRC"><span
 style="font-style: italic;">T. cruzi</span> cruzi JR cl. 4 (TcI
 lineage)</a></li>
 </ul>
@@ -663,7 +663,7 @@ lineage)</a></li>
 <ul>
 <ul>
 <li><a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=LbraziliensisM2903_contigs_RSRC&amp;title=Query#LbraziliensisM2903_contigs_RSRC"><span
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=LbraziliensisM2903_contigs_RSRC&amp;title=Query#LbraziliensisM2903_contigs_RSRC"><span
 style="font-style: italic;">L. braziliensis</span> clone M2903
 (MHOM/BR/75M2903)</a></li>
 </ul>
@@ -675,7 +675,7 @@ style="font-style: italic;">L. braziliensis</span> clone M2903
 <ul>
 <ul>
 <li><a style="font-weight: bold;"
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=Crithidia_fasciculata_9.1&amp;title=Query#Crithidia_fasciculata_9.1"><span
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=Crithidia_fasciculata_9.1&amp;title=Query#Crithidia_fasciculata_9.1"><span
 style="font-style: italic;">C. fasciculata</span> updated assembly</a></li>
 </ul>
 </ul>
@@ -894,7 +894,7 @@ with an N50 scaffold length of over 52kb (N50 contig length for the
 31,945 contigs was 3.3kb). The assembly spans 35.5Mb. This assembly is
 subject to change due to ongoing assembly improvement efforts. Complete
 data source information is available <a style="font-weight: bold;"
-href="http://qa.tritrypdb.org/tritrypdb3.0/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
+href="http://qa.tritrypdb.org/tritrypdb3.0/getDataSource.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
 </ul>
 <ul>
 <ul>
@@ -1006,7 +1006,7 @@ Beverley.&nbsp; The assembly spans 30.8 Mb and is made up of a total of
 1904 scaffolds with an N50 scaffold length of over 691kb (N50 contig
 length for the 4009 contigs is 27kb).&nbsp;Complete data source
 information is available <a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#Crithidia_fasciculata_9.1">here</a>.</li>
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#Crithidia_fasciculata_9.1">here</a>.</li>
 </ul>
 <br>
 <ul>
@@ -1113,7 +1113,7 @@ Stephen Beverley, Washington University School of Medicine.&nbsp; A
 combination of next-generation sequencing and Sanger reads were
 produced for a draft assembly by The Genome Center at Washington
 University.&nbsp; Complete data source information is available <a
-href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.DataSources&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#Crithidia_fasciculata_9.1">here</a>.</li>
+href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#Crithidia_fasciculata_9.1">here</a>.</li>
 <ul>
 <li>Genomic sequence data is available under the heading "Genomic
 Sequences" on the home
