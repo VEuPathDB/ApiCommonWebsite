@@ -73,7 +73,7 @@ FungiDB integrates whole genome sequence and annotation and will expand to inclu
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in FungiDB is provided by independent researchers.  For a list of the data integrated into FungiDB and the related publications see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in FungiDB is provided by independent researchers.  For a list of the data integrated into FungiDB and the related publications see <a href="getDataSource.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -309,7 +309,7 @@ When citing FungiDB itself, please use:
 <b><a href="http://www.ncbi.nlm.nih.gov/pubmed/22064857">FungiDB: an integrated functional genomics database for fungi</a></b>.
 Stajich JE, Harris T, Brunk BP, Brestelli J, Fischer S, Harb OS, Kissinger JC, Li W, Nayak V, Pinney DF, Stoeckert CJ Jr, Roos DS. Nucleic Acids Res. 2012 Jan 1;40(D1):D675-D681.
 
-<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="showXmlDataContent.do?name=XmlQuestions.DataSources" class="blue"> Data Sources</a>.
+<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="getDataSource.do?display=detail" class="blue"> Data Sources</a>.
 
        ]]>
        </attribute>
