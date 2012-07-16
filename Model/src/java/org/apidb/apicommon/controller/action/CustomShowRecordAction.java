@@ -1,5 +1,6 @@
 package org.apidb.apicommon.controller.action;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -8,10 +9,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apidb.apicommon.model.ProjectMapper;
 import org.gusdb.wdk.controller.action.ActionUtility;
 import org.gusdb.wdk.controller.action.ShowRecordAction;
 import org.gusdb.wdk.model.AttributeValue;
@@ -25,12 +28,14 @@ import org.gusdb.wdk.model.jspwrap.RecordClassBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.json.JSONException;
+import org.xml.sax.SAXException;
 
 public class CustomShowRecordAction extends ShowRecordAction {
 
     private static final String PARAM_NAME = "name";
     private static final String PARAM_PRIMARY_KEY = "primary_key";
     private static final String PARAM_SOURCE_ID = "source_id";
+    private static final String PARAM_PROJECT_ID = "project_id";
 
     private static final String PARAM_RECORD_CLASS = "record_class";
 
@@ -56,6 +61,12 @@ public class CustomShowRecordAction extends ShowRecordAction {
         String rcName = request.getParameter(PARAM_NAME);
         String sourceId = request.getParameter(PARAM_SOURCE_ID);
         if (sourceId == null) sourceId = request.getParameter(PARAM_PRIMARY_KEY);
+        
+        // if the action is used EuPathDB, we will redirect record page to component project.
+        if (wdkModel.getProjectId().equals("EuPathDB")) {
+          String projectId = request.getParameter(PARAM_PROJECT_ID);
+          return redirectByProject(wdkModel, rcName, projectId, sourceId);
+        }
 
         ActionForward forward;
         if (hasMultipleRecords(request, wdkModel, rcName, sourceId)) {
@@ -75,6 +86,16 @@ public class CustomShowRecordAction extends ShowRecordAction {
             }
         }
         return forward;
+    }
+    
+    private ActionForward redirectByProject(WdkModelBean wdkModel,
+        String recordClass, String projectId, String sourceId) 
+            throws WdkModelException, SAXException, IOException, 
+            ParserConfigurationException {
+      // get project mapper
+      ProjectMapper mapper = ProjectMapper.getMapper(wdkModel.getModel());
+      String url = mapper.getRecordUrl(recordClass, projectId, sourceId);
+      return new ActionForward(url, true);
     }
 
     private boolean hasMultipleRecords(HttpServletRequest request,
