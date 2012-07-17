@@ -73,11 +73,12 @@ sub defineGraphs {
   $line->setProfileSets($profileSets);
   $line->setColors($color);
   $line->setPointsPch(\@pch);
-  $line->setPartName("expr_val_$tag");
+  $line->setPartName("exprn_val_$tag");
   my $lineTitle = $line->getPlotTitle();
   $line->setPlotTitle("$tag - $lineTitle");
   $line->setXaxisLabel("Hours");
 
+  print STDERR Dumper($line);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetNames);
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
@@ -87,7 +88,7 @@ sub defineGraphs {
   my $pctTitle = $percentile->getPlotTitle();
   $percentile->setPlotTitle("$tag - $pctTitle");
   $percentile->setXaxisLabel("Hours");
-
+  print STDERR Dumper($percentile);
   return($line, $percentile);
 }
 1;
