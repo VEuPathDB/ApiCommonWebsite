@@ -16,51 +16,8 @@ use Bio::Graphics::Browser2::PadAlignment;
 use CGI::Carp qw(fatalsToBrowser set_message);
 
 
-my $taxonToDirNameMap = 
-  {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
-   'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
-   'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
-   'Leishmania mexicana'                              => { name => 'Lmexicana',              group => 1 },
-   'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTarII',        group => 1 },
-   'Trypanosoma cruzi CL Brener Non-Esmeraldo-like'   => { name => 'TcruziNonEsmeraldoLike', group => 2 },
-   'Trypanosoma cruzi CL Brener Esmeraldo-like'       => { name => 'TcruziEsmeraldoLike',    group => 2 },
-   'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
-   'Trypanosoma brucei brucei strain 427'             => { name => 'Tbrucei427',             group => 3 },
-   'Trypanosoma brucei TREU927'                       => { name => 'Tbrucei927',             group => 3 },
-   'Trypanosoma vivax'                                => { name => 'Tvivax',                 group => 4 },
-   'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
+my %taxonToDirNameMap;
 
-   'Theileria annulata strain Ankara'                 => { name => 'TannulataAnkara',        group => 1 },
-   'Theileria parva strain Muguga'                    => { name => 'TparvaMuguga',           group => 2 },
-   'Babesia bovis T2Bo'			              => { name => 'BbovisT2Bo',             group => 3 },
-
-   'Toxoplasma gondii ME49'                           => { name => 'TgondiiME49',            group => 1 },
-   'Toxoplasma gondii RH'                             => { name => 'TgondiiRH',              group => 2 },
-   'Toxoplasma gondii GT1'                            => { name => 'TgondiiGT1',             group => 3 },
-   'Toxoplasma gondii VEG'                            => { name => 'TgondiiVEG',             group => 4 },
-   'Neospora caninum'                                 => { name => 'Ncaninum',               group => 5 },
-   'Eimeria tenella str. Houghton'                    => { name => 'EtenellaHoughton',       group => 6 },
-
-   'Plasmodium falciparum 3D7'                        => { name => 'pfal3D7',                group => 1 },
-   'Plasmodium falciparum IT'                         => { name => 'pfalIT',                 group => 2 },
-   'Plasmodium vivax SaI-1'                           => { name => 'pvivSaI1',               group => 3 },
-   'Plasmodium yoelii yoelii str. 17XNL'              => { name => 'pyoe17XNL',              group => 4 },
-   'Plasmodium berghei str. ANKA'                     => { name => 'pberANKA',               group => 5 },
-   'Plasmodium chabaudi chabaudi'                     => { name => 'pchachabaudi',           group => 6 },
-   'Plasmodium knowlesi strain H'                     => { name => 'pknoH',                  group => 7 },
-
-
-
-   'Encephalitozoon cuniculi GB-M1'                   => { name => 'Ecuniculi',              group => 1 },
-   'Encephalitozoon intestinalis'                     => { name => 'Eintestinalis',          group => 2 },
-   'Enterocytozoon bieneusi H348'                     => { name => 'Ebieneusi',              group => 3 },
-   'Encephalitozoon hellem ATCC 50504'                => { name => 'EhellemATCC50504',       group => 4 },
-   'Nosema ceranae BRL01'                             => { name => 'NceranaeBRL01',          group => 5 },
-
-   'Entamoeba dispar SAW760'                          => { name => 'e_dispar',                group => 1 },
-   'Entamoeba histolytica HM-1:IMSS'                  => { name => 'e_histolytica',           group => 2 },
-   'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
-  };
 
 sub getSortingGroupsHash {
   my ($reference) = @_;
@@ -103,6 +60,8 @@ sub run {
   my ($self, $cgi) = @_;
 
   my $dbh = $self->getQueryHandle($cgi);
+
+  &setTaxonToDirNameMap($cgi, $dbh);
 
   my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh);
   my ($mercatorOutputDir, $sliceAlign, $fa2clustal, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
@@ -202,6 +161,64 @@ sub run {
   exit(0);
 }
 
+#-------------------------------------------------------------------------------
+#Make Organism Hash Map
+#-------------------------------------------------------------------------------
+
+sub setTaxonToDirNameMap {
+  my ($cgi,$dbh)  = @_;
+  my $project = $cgi->param('project_id');
+
+  if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb/) {
+
+     my $sql = <<EOSQL;
+SELECT distinct ga.organism, taxon.grp, org.abbrev 
+FROM   ApiDBTuning.GeneAttributes ga, ApiDB.Organism org,
+       (SELECT organism, row_number() over (order by organism) as grp 
+        FROM (SELECT distinct REGEXP_SUBSTR(organism, '[[:alpha:]]+ ') as organism
+              FROM ApiDBTuning.GeneAttributes 
+             )
+       ) taxon 
+WHERE  ga.taxon_id = org.taxon_id
+AND    ga.gene_type = 'protein coding'
+AND    REGEXP_SUBSTR(ga.organism, '[[:alpha:]]+ ') = taxon.organism
+EOSQL
+
+     my $sth = $dbh->prepare($sql);
+     $sth->execute();
+
+     if(my $hashref = $sth->fetchrow_hashref()) {
+       $taxonToDirNameMap->{$hashref->{ORGANISM}}->{name}->$hashref->{ABBREV};
+       $taxonToDirNameMap->{$hashref->{ORGANISM}}->{group}->$hashref->{GRP};
+     }
+  } else {  
+     $taxonToDirNameMap = 
+     {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
+      'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
+      'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
+      'Leishmania mexicana'                              => { name => 'Lmexicana',              group => 1 },
+      'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTarII',        group => 1 },
+      'Trypanosoma cruzi CL Brener Non-Esmeraldo-like'   => { name => 'TcruziNonEsmeraldoLike', group => 2 },
+      'Trypanosoma cruzi CL Brener Esmeraldo-like'       => { name => 'TcruziEsmeraldoLike',    group => 2 },
+      'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
+      'Trypanosoma brucei brucei strain 427'             => { name => 'Tbrucei427',             group => 3 },
+      'Trypanosoma brucei TREU927'                       => { name => 'Tbrucei927',             group => 3 },
+      'Trypanosoma vivax'                                => { name => 'Tvivax',                 group => 4 },
+      'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
+
+      'Toxoplasma gondii ME49'                           => { name => 'TgondiiME49',            group => 1 },
+      'Toxoplasma gondii RH'                             => { name => 'TgondiiRH',              group => 2 },
+      'Toxoplasma gondii GT1'                            => { name => 'TgondiiGT1',             group => 3 },
+      'Toxoplasma gondii VEG'                            => { name => 'TgondiiVEG',             group => 4 },
+      'Neospora caninum'                                 => { name => 'Ncaninum',               group => 5 },
+      'Eimeria tenella str. Houghton'                    => { name => 'EtenellaHoughton',       group => 6 },
+
+      'Entamoeba dispar SAW760'                          => { name => 'e_dispar',                group => 1 },
+      'Entamoeba histolytica HM-1:IMSS'                  => { name => 'e_histolytica',           group => 2 },
+      'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
+     };
+  }
+}
 #--------------------------------------------------------------------------------
 # Methods for generating PadAlignment
 #--------------------------------------------------------------------------------
