@@ -23,7 +23,7 @@ sub getSortingGroupsHash {
   my ($reference) = @_;
 
   my %groupsHash;
-  foreach my $sp (keys %$taxonToDirNameMap) {
+  foreach my $sp (keys %taxonToDirNameMap) {
     my $hash = $taxonToDirNameMap->{$sp};
 
     my $name = $hash->{name};
