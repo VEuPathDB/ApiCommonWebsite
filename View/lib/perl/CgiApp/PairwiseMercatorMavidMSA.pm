@@ -16,15 +16,13 @@ use Bio::Graphics::Browser2::PadAlignment;
 use CGI::Carp qw(fatalsToBrowser set_message);
 
 
-my %taxonToDirNameMap;
-
-
 sub getSortingGroupsHash {
-  my ($reference) = @_;
+  my ($reference,$taxonDirHash) = @_;
 
   my %groupsHash;
-  foreach my $sp (keys %taxonToDirNameMap) {
-    my $hash = $taxonToDirNameMap->{$sp};
+
+  foreach my $sp (keys %$taxonDirHash) {
+    my $hash = $taxonDirHash->{$sp};
 
     my $name = $hash->{name};
     my $group = $hash->{group};
@@ -61,9 +59,9 @@ sub run {
 
   my $dbh = $self->getQueryHandle($cgi);
 
-  &setTaxonToDirNameMap($cgi, $dbh);
+  my %taxonToDirNameMap = getTaxonToDirMap($cgi, $dbh);
 
-  my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh);
+  my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh,\%taxonToDirNameMap);
   my ($mercatorOutputDir, $sliceAlign, $fa2clustal, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
 
   &createHeader($cgi, $type);
@@ -97,7 +95,7 @@ sub run {
     &makePadAlignmentInputFromMultiFasta($multiFasta, \@dnaSequences, \@alignments, $referenceGenome);
   }
 
-  my $dnas = &makeSequencesForPadAlignment(\@dnaSequences, $referenceGenome);
+  my $dnas = &makeSequencesForPadAlignment(\@dnaSequences, $referenceGenome, \%taxonToDirNameMap);
 
   my $align = Bio::Graphics::Browser2::PadAlignment->new($dnas,\@alignments);
 
@@ -128,7 +126,7 @@ sub run {
     my $locationTable = &getLocationsFromDefline($cgi, \@dnaSequences, $referenceGenome);
     my $referenceStart = {};
 
-    my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
+    my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome,\%taxonToDirNameMap);
 
     print STDOUT "<br /><table border=1 cellpadding='6px' RULES=GROUPS FRAMES=BOX valign='left'>\n";
     print STDOUT"<tr><thead align='left'><th>Genome</th><th>Sequence</th><th>Start</th><th>End</th><th>Strand</th><th>#Nucleotides</th></tr></thead>\n";
@@ -165,8 +163,10 @@ sub run {
 #Make Organism Hash Map
 #-------------------------------------------------------------------------------
 
-sub setTaxonToDirNameMap {
+sub getTaxonToDirMap {
   my ($cgi,$dbh)  = @_;
+  my %taxonToDirMap;
+
   my $project = $cgi->param('project_id');
 
   if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb/) {
@@ -188,11 +188,11 @@ EOSQL
      $sth->execute();
 
      if(my $hashref = $sth->fetchrow_hashref()) {
-       $taxonToDirNameMap->{$hashref->{ORGANISM}}->{name}->$hashref->{ABBREV};
-       $taxonToDirNameMap->{$hashref->{ORGANISM}}->{group}->$hashref->{GRP};
+       $taxonToDirMap{$hashref->{ORGANISM}}{name} = $hashref->{ABBREV};
+       $taxonToDirMap{$hashref->{ORGANISM}}{group} = $hashref->{GRP};
      }
   } else {  
-     $taxonToDirNameMap = 
+     %taxonToDirMap = 
      {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
       'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
       'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
@@ -218,15 +218,17 @@ EOSQL
       'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
      };
   }
+return %taxonToDirMap; 
 }
+
 #--------------------------------------------------------------------------------
 # Methods for generating PadAlignment
 #--------------------------------------------------------------------------------
 
 sub makeSequencesForPadAlignment {
-  my ($dnaSequences, $referenceGenome) = @_;
+  my ($dnaSequences, $referenceGenome, $taxonToDirNameMap) = @_;
 
-  my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome);
+  my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome,$taxonToDirNameMap);
   my $ref = shift @$dnaSequences;
 
   my @sorted = sort {$sortingGroupsHash->{$a->id()} <=> $sortingGroupsHash->{$b->id()} } @$dnaSequences;
@@ -618,7 +620,7 @@ sub validateMacros {
 #--------------------------------------------------------------------------------
 
 sub validateParams {
-  my ($cgi, $dbh) = @_;
+  my ($cgi, $dbh, $taxonDirHash) = @_;
 
   my $contig       = $cgi->param('contig');
   my $start        = $cgi->param('start');
@@ -635,7 +637,7 @@ sub validateParams {
 
   my $referenceGenome;
 
-  unless($referenceGenome = $taxonToDirNameMap->{$organism}->{name}) {
+  unless($referenceGenome = $taxonDirHash->{$organism}->{name}) {
     &userError("Invalid Genome Name [$organism]: does not match an available Organism");
   }
 
