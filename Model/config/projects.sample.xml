@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- the timeout, in seconds, of a remote call to a project. -->
 <projects timeout="0" xmlns="http://www.eupathdb.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.eupathdb.org ../../lib/rng/projects.xsd ">
+  xsi:schemaLocation="http://www.eupathdb.org ../lib/rng/projects.xsd ">
+  <project name="EuPathDB" site="http://eupathdb.org/eupathdb/" />
   <project name="AmoebaDB" site="http://toxodb.org/toxo/" />
   <project name="CryptoDB" site="http://cryptodb.org/cryptodb/" />
   <project name="GiardiaDB" site="http://giardiadb.org/giardiadb/"></project>
