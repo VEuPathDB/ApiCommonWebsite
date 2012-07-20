@@ -51,6 +51,7 @@ public class ProjectMapper {
     ProjectMapper mapper = projectMappers.get(wdkModel);
     if (mapper == null) {
       mapper = new ProjectMapper(wdkModel);
+      mapper.initialize();
       projectMappers.put(wdkModel, mapper);
     }
     return mapper;
@@ -72,20 +73,18 @@ public class ProjectMapper {
    */
   private long timeout;
 
-  private ProjectMapper(WdkModel wdkModel) throws WdkModelException,
-      SAXException, IOException, ParserConfigurationException {
+  protected ProjectMapper(WdkModel wdkModel)  {
     this.wdkModel = wdkModel;
     this.projects = new HashMap<>();
     this.organisms = new HashMap<>();
 
-    initialize();
   }
 
-  private void initialize() throws WdkModelException, SAXException,
+  protected void initialize() throws WdkModelException, SAXException,
       IOException, ParserConfigurationException {
     // check if project config exists
     File projectsFile = new File(wdkModel.getGusHome() + "/config/"
-        + wdkModel.getProjectId() + "/" + PROJECTS_FILE);
+        + PROJECTS_FILE);
     if (!projectsFile.exists())
       throw new WdkModelException("The project config file doesn't exist: "
           + projectsFile.getAbsolutePath());
@@ -129,8 +128,15 @@ public class ProjectMapper {
     String site = getSite(projectId);
     return site + "services/WsfService";
   }
+  
+  public String getBaseUrl(String projectId) {
+    String site = getSite(projectId);
+    // remove the webapp from the url
+    int pos = site.substring(1, site.length() - 1).lastIndexOf("/");
+    return site.substring(0, pos);
+  }
 
-  private String getSite(String projectId) {
+  protected String getSite(String projectId) {
     // get the site. if site doesn't exist, use the current site
     String site = projects.get(projectId);
     return (site == null) ? "" : site;
