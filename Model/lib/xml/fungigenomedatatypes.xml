@@ -716,9 +716,9 @@
        <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
        <attribute name = "Taxon_ID">403677</attribute>
        <attribute name = "Strain">T30-4</attribute>
-       <attribute name = "Genome_Version">>2009-10-27</attribute>
+       <attribute name = "Genome_Version">2009-10-27</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size">22854</attribute>
+       <attribute name = "Genome_Size">228.54</attribute>
        <attribute name = "Gene_Count">17907</attribute>
        <attribute name = "Multiple_Strains"></attribute>
        <attribute name = "Additional_Strains"></attribute>
