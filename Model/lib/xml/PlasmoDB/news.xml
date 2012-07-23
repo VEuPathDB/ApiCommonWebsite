@@ -910,7 +910,7 @@ href="http://www.ncbi.nlm.nih.gov/pubmed/21775302">RNA-Seq Unified
 Mapper (RUM)</a>. To view intron/exon boundary calls, turn on the
 "RNA-seq alignments RUM Intron" track in the genome browser.&nbsp; <a
 style="font-weight: bold;"
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1430000;stop=1439999;ref=Pf3D7_11;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=5f6c1beeb1b94b24ea6ed5148ba1d93c;label=AnnotatedGenes-RUMIntronDuffy-RUMIntronNewbold-RUMIntronStunnenberg">Here
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1430000;stop=1439999;ref=Pf3D7_11;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=5f6c1beeb1b94b24ea6ed5148ba1d93c;label=Gene-RUMIntronDuffy-RUMIntronNewbold-RUMIntronStunnenberg">Here
 is a link to a gene</a>
 that is predicted to have multiple splice variants based on the
 annotation provided by GeneDB with the RUM intron tracks turned
@@ -963,7 +963,7 @@ of any gene page.</li>
 <ul>
 <li><span style="font-style: italic;">P. falciparum</span> <a
 style="font-weight: bold;"
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1016930;stop=1516929;ref=Pf3D7_10;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=3773730293eb07c2332b85e249bf2271;label=AnnotatedGenes-JeffaresSNPs-WTSI_pJazz_clones;h_feat=pf10_0308@yellow">genetic
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1016930;stop=1516929;ref=Pf3D7_10;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=3773730293eb07c2332b85e249bf2271;label=Gene-JeffaresSNPs-WTSI_pJazz_clones;h_feat=pf10_0308@yellow">genetic
 diversity estimate graph is provided in the genome browser</a> based on
 <a style="font-weight: bold;"
 href="http://www.ncbi.nlm.nih.gov/pubmed/20838588">Nygaard <span
@@ -1131,7 +1131,7 @@ addition, peptide evidence is displayed on gene pages in the <a
 style="font-weight: bold;" href="http://plasmodb.org/gene/PFL2405c">Protein
 Section</a>
 and in the <a
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1080000;stop=1270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=6436e0c6f1efb6e68613f9388b25e99f;label=AnnotatedGenes-LasonderMassSpecPeptidesBloodStage;h_feat=pfl2415w%40yellow"><span
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1080000;stop=1270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=6436e0c6f1efb6e68613f9388b25e99f;label=Gene-LasonderMassSpecPeptidesBloodStage;h_feat=pfl2415w%40yellow"><span
 style="font-weight: bold;">genome browser</span></a> by turning on
 the track specific for this data.&nbsp; An example search strategy that
 identifies genes that have mass spec evidence in the early gametocytes
@@ -1153,7 +1153,7 @@ href="http://plasmodb.org/plasmo/showSummary.do?questionFullName=GeneQuestions.G
 <ul>
 <li>You can view microarray oligo mapping for all arrays with data in
 PlasmoDB.&nbsp; Oligo mapping can be viewed in the <a
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1243200;stop=1248199;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=f1cec45354b677a542dade3988db24e1;label=AnnotatedGenes-MicroArrayProbesPfSanger-MicroArrayProbesPfDerisi">Genome
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1243200;stop=1248199;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=f1cec45354b677a542dade3988db24e1;label=Gene-MicroArrayProbesPfSanger-MicroArrayProbesPfDerisi">Genome
 Browser</a> by turning on tracks under the heading "Expression
 Microarray Probes".<br>
 </li>
@@ -1264,7 +1264,7 @@ needed.&nbsp; In addition, TF binding sites can be viewed in the genome
 browser with additional information available when mousing over TF
 binding site graphics.&nbsp; An example genome browser page may be
 viewed <a
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=883339;stop=917361;ref=Pf3D7_06;width=800;version=100;flip=;cache=1;drag_and_drop=0;show_tooltips=1;grid=1;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-BindingSites;h_feat=pff1065c@thistle">here</a>.</li>
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=883339;stop=917361;ref=Pf3D7_06;width=800;version=100;flip=;cache=1;drag_and_drop=0;show_tooltips=1;grid=1;id=5e34fc82bb97015347ac950c4404cf72;label=Gene-BindingSites;h_feat=pff1065c@thistle">here</a>.</li>
 </ul>
 <ul>
 <li><span style="font-style: italic;">P. falciparum</span>
@@ -1280,7 +1280,7 @@ pages where a graphical representation of the gene's expression profile
 throughout the time points of this study is presented.&nbsp;&nbsp; In
 addition,&nbsp; RNA-seq coverage graphs can be viewed through the
 PlasmoDB <a
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=840000;stop=910000;ref=Pf3D7_06;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-RnaSeqStunnenberg5Cont-RnaSeqStunnenberg10Cont-RnaSeqStunnenberg15Cont-RnaSeqStunnenberg20Cont-RnaSeqStunnenberg25Cont-RnaSeqStunnenberg30Cont-RnaSeqStunnenberg35Cont-RnaSeqStunnenberg40Cont;h_feat=pff1065c%40thistle">genome
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=840000;stop=910000;ref=Pf3D7_06;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=Gene-RnaSeqStunnenberg5Cont-RnaSeqStunnenberg10Cont-RnaSeqStunnenberg15Cont-RnaSeqStunnenberg20Cont-RnaSeqStunnenberg25Cont-RnaSeqStunnenberg30Cont-RnaSeqStunnenberg35Cont-RnaSeqStunnenberg40Cont;h_feat=pff1065c%40thistle">genome
 browser</a>.<br>
 </li>
 </ul>
@@ -1292,7 +1292,7 @@ data was graciously provided prepublication to the community via
 PlasmoDB by Dr. Richárd Bártfai, Wieteke A.M. Hoeijmakers and Dr.
 Hendrik G. Stunnenberg.&nbsp; This data can be viewed through the
 PlasmoDB <a
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=840000;stop=910000;ref=Pf3D7_06;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-ChipSeqH2A10Stunnenberg-ChipSeqH2A20Stunnenberg-ChipSeqH2A30Stunnenberg-ChipSeqH2A40Stunnenberg-ChipSeqH3K10Stunnenberg-ChipSeqH3K20Stunnenberg-ChipSeqH3K30Stunnenberg-ChipSeqH3K40Stunnenberg-ChipSeqH3K9ac10Stunnenberg-ChipSeqH3K9ac20Stunnenberg-ChipSeqH3K9ac30Stunnenberg-ChipSeqH3K9ac40Stunnenberg;h_feat=pff1065c@thistle">genome
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=840000;stop=910000;ref=Pf3D7_06;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=Gene-ChipSeqH2A10Stunnenberg-ChipSeqH2A20Stunnenberg-ChipSeqH2A30Stunnenberg-ChipSeqH2A40Stunnenberg-ChipSeqH3K10Stunnenberg-ChipSeqH3K20Stunnenberg-ChipSeqH3K30Stunnenberg-ChipSeqH3K40Stunnenberg-ChipSeqH3K9ac10Stunnenberg-ChipSeqH3K9ac20Stunnenberg-ChipSeqH3K9ac30Stunnenberg-ChipSeqH3K9ac40Stunnenberg;h_feat=pff1065c@thistle">genome
 browser</a>.</li>
 </ul>
 <ul>
@@ -1311,7 +1311,7 @@ where a graphical representation of the gene's expression profile
 throughout the time points of this study is presented.&nbsp;&nbsp; In
 addition,&nbsp;
 RNA-seq coverage graphs can be viewed through the PlasmoDB <a
-href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=2100000;stop=2270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=AnnotatedGenes-RnaSeqDuffCont-RnaSeqDuffPL01-RnaSeqDuffPL02;h_feat=pfl0010c@yellow">genome
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=2100000;stop=2270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=Gene-RnaSeqDuffCont-RnaSeqDuffPL01-RnaSeqDuffPL02;h_feat=pfl0010c@yellow">genome
 browser</a>.</li>
 </ul>
 <span style="font-weight: bold;">New features in this release include:</span><br>
@@ -1381,7 +1381,7 @@ are available via the genome browser. &nbsp;To view insertion sites
 turn on the track called "P. falciparum piggyBac Transposable Elements"
 under the heading "Insertions". &nbsp;Here is a quick link to the
 genome browser with a region with insertions: <a
- href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1;stop=2038337;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=AnnotatedGenes-TransposableElements"><span
+ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1;stop=2038337;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=Gene-TransposableElements"><span
  style="font-style: italic;">piggyBac </span>insertions
 in chromosome 11</a>.&nbsp;</li>
   <br>
@@ -1390,7 +1390,7 @@ in chromosome 11</a>.&nbsp;</li>
  style="font-style: italic;"> et. al.</span></a>
 are available via the genome browser under the ChIP on chip heading.
 You may view tracks for different RBC life stages as in this <a
- href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=850000;stop=1190000;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=AnnotatedGenes-ChIP_Nucleosome_Ring_H4-ChIP_Nucleosome_Troph_H4-ChIP_Nucleosome_Schizont_H4">example</a>.</li>
+ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=850000;stop=1190000;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=Gene-ChIP_Nucleosome_Ring_H4-ChIP_Nucleosome_Troph_H4-ChIP_Nucleosome_Schizont_H4">example</a>.</li>
   <br>
   <li>Nucleosome positioning data from <a
  href="http://www.ncbi.nlm.nih.gov/pubmed/20054063">Ponts <span
@@ -1399,7 +1399,7 @@ available via the genome browser under the ChIP-seq heading.
 &nbsp;You
 may view tracks for different time points during the RBC life cycle as
 in this <a
- href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=850000;stop=1190000;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=AnnotatedGenes-ChipSeq0CombNorm-ChipSeq6CombNorm-ChipSeq12CombNorm-ChipSeq18CombNorm-ChipSeq24CombNorm-ChipSeq30CombNorm-ChipSeq36CombNorm">example</a>.</li>
+ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=850000;stop=1190000;ref=Pf3D7_11;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=8f78c428af13ed4911cb7a52c6fb380d;label=Gene-ChipSeq0CombNorm-ChipSeq6CombNorm-ChipSeq12CombNorm-ChipSeq18CombNorm-ChipSeq24CombNorm-ChipSeq30CombNorm-ChipSeq36CombNorm">example</a>.</li>
 </ul>
 <span style="font-weight: bold;"><br>
 Features introduced this year:<br>
