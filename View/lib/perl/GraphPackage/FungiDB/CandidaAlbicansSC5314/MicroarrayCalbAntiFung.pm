@@ -12,7 +12,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors = ['#29ACF2', '#DDDDDD'];
+  my $colors = ['#B22222', '#00FF00'];
 
   my @profileSetNames = (['C.albicans activity against antifungal', 'standard error - C.albicans activity against antifungal']);
   my @percentileSetNames = (['red percentile - C.albicans activity against antifungal'],
@@ -24,13 +24,13 @@ sub init {
 
   my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
-#  $ratio->setColors([$colors->[0]]);
-#  $ratio->setForceHorizontalXAxis(1);
+  $ratio->setColors([$colors->[0]]);
+  $ratio->setForceHorizontalXAxis(1);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
-#  $percentile->setColors($colors);
-#  $percentile->setForceHorizontalXAxis(1);
+  $percentile->setColors($colors);
+  $percentile->setForceHorizontalXAxis(1);
 
   $self->setGraphObjects($ratio, $percentile);
 
