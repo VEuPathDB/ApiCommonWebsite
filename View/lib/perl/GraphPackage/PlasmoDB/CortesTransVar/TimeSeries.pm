@@ -43,10 +43,10 @@ sub init {
   my @d10Colors =  @colorSet[0..4];
 
   my @parentalGraphs = $self->defineGraphs('Parental',$parental_strains, \@parentalColors, $profileBase, 'red percentile'); 
-   my @_3d7Graphs = $self->defineGraphs('3D7 derived',$_3d7strains, \@_3d7Colors, $profileBase, 'red percentile');
-   my @_7g8Graphs = $self->defineGraphs('7G8 derived',$_7g8strains, \@_7g8Colors, $profileBase, 'red percentile');
-   my @hb3Graphs = $self->defineGraphs('HB3 derived',$hb3strains, \@hb3Colors, $profileBase, 'red percentile');
-   my @d10Graphs = $self->defineGraphs('D10 derived',$d10strains, \@d10Colors, $profileBase, 'red percentile');
+   my @_3d7Graphs = $self->defineGraphs('3D7_derived',$_3d7strains, \@_3d7Colors, $profileBase, 'red percentile');
+   my @_7g8Graphs = $self->defineGraphs('7G8_derived',$_7g8strains, \@_7g8Colors, $profileBase, 'red percentile');
+   my @hb3Graphs = $self->defineGraphs('HB3_derived',$hb3strains, \@hb3Colors, $profileBase, 'red percentile');
+   my @d10Graphs = $self->defineGraphs('D10_derived',$d10strains, \@d10Colors, $profileBase, 'red percentile');
 
   $self->setGraphObjects(@parentalGraphs, @_3d7Graphs,  @_7g8Graphs, @hb3Graphs, @d10Graphs);
 
