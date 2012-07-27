@@ -837,7 +837,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">berghei</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/fasta/data/PlasmoDB-9.0_PbergheiANKA_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/gff/data/PbergheiANKA_PlasmoDB-9.0.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/gff/data/PPlasmoDB-9.0_bergheiANKA.gff</attribute>
        <attribute name = "Taxon_ID">5823</attribute>
        <attribute name = "Strain">ANKA</attribute>
        <attribute name = "Genome_Version">03-01-2012</attribute>
@@ -862,7 +862,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">chabaudi</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pchabaudichabaudi/fasta/data/PlasmoDB-9.0_Pchabaudichabaudi_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pchabaudichabaudi/gff/data/Pchabaudi_PlasmoDB-9.0.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pchabaudichabaudi/gff/data/PlasmoDB-9.0_Pchabaudichabaudi.gff</attribute>
        <attribute name = "Taxon_ID">31271</attribute>
        <attribute name = "Strain">chabaudi</attribute>
        <attribute name = "Genome_Version">03-01-2011</attribute>
@@ -888,7 +888,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">falciparum</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pfalciparum3D7/fasta/data/PlasmoDB-9.0_Pfalciparum3D7_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pfalciparum3D7/gff/data/Pfalciparum3D7_PlasmoDB-9.0.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pfalciparum3D7/gff/data/PlasmoDB-9.0_Pfalciparum3D7.gff</attribute>
        <attribute name = "Taxon_ID">36329</attribute>
        <attribute name = "Strain">3D7</attribute>
        <attribute name = "Genome_Version">02-01-2012</attribute>
@@ -913,7 +913,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">falciparum</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PfalciparumIT/fasta/data/PlasmoDB-9.0_PfalciparumIT_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PfalciparumIT/gff/data/PfalciparumIT_PlasmoDB-9.0.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PfalciparumIT/gff/data/PlasmoDB-9.0_PfalciparumIT.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">IT</attribute>
        <attribute name = "Genome_Version">02-01-2012</attribute>
@@ -963,7 +963,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">knowlesi</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PknowlesiH/fasta/data/PlasmoDB-9.0_PknowlesiH_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PknowlesiH/gff/data/PknowlesiH_PlasmoDB-9.0.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PknowlesiH/gff/data/PlasmoDB-9.0_PknowlesiH.gff</attribute>
        <attribute name = "Taxon_ID">5851</attribute>
        <attribute name = "Strain">strain H</attribute>
        <attribute name = "Genome_Version">03-01-2012</attribute>
@@ -1013,7 +1013,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">vivax</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PvivaxSaI1/fasta/PlasmoDB-9.0_PvivaxSaI1_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PvivaxSaI1/gff/PvivaxSaI1_PlasmoDB-9.0.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PvivaxSaI1/gff/PlasmoDB-9.0_PvivaxSaI1.gff</attribute>
        <attribute name = "Taxon_ID">126793</attribute>
        <attribute name = "Strain">Sal-1</attribute>
        <attribute name = "Genome_Version">06-13-2007</attribute>
@@ -1038,7 +1038,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">yoelii</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/fasta/PlasmoDB-9.0_Pyoelii17XNL_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/gff/Pyoelii17XNL_PlasmoDB-9.0.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/gff/PlasmoDB-9.0_Pyoelii17XNL.gff</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
        <attribute name = "Strain">yoelii 17XNL</attribute>
        <attribute name = "Genome_Version">10-03-2002</attribute>
@@ -1113,8 +1113,8 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Neospora</attribute>
        <attribute name = "Species">caninum</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/fasta/data/NcaninumGenomic_ToxoDB-7.2.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/gff/data/Ncaninum_ToxoDB-7.2.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/NeosporaCaninum/fasta/data/NeosporaCaninumGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/NeosporaCaninum/gff/data/NeosporaCaninum_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">29176</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-06-2009</attribute>
@@ -1661,8 +1661,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">tarentolae</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/fasta/LtarParrotTraIIGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/gff/LtarParrotTraII_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/fasta/LtarParrotTarIIGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTarII/gff/LtarParrotTarII_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">56890001</attribute>
        <attribute name = "Strain">Parrot-TarII</attribute>
        <attribute name = "Genome_Version">06-22-2011</attribute>
