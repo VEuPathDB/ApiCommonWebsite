@@ -837,7 +837,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">berghei</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/fasta/data/PlasmoDB-9.0_PbergheiANKA_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/gff/data/PPlasmoDB-9.0_bergheiANKA.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/gff/data/PlasmoDB-9.0_bergheiANKA.gff</attribute>
        <attribute name = "Taxon_ID">5823</attribute>
        <attribute name = "Strain">ANKA</attribute>
        <attribute name = "Genome_Version">03-01-2012</attribute>
@@ -1012,8 +1012,8 @@
        <attribute name = "Website">PlasmoDB</attribute>
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">vivax</attribute>
-       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PvivaxSaI1/fasta/PlasmoDB-9.0_PvivaxSaI1_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PvivaxSaI1/gff/PlasmoDB-9.0_PvivaxSaI1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PvivaxSaI1/fasta/data/PlasmoDB-9.0_PvivaxSaI1_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PvivaxSaI1/gff/data/PlasmoDB-9.0_PvivaxSaI1.gff</attribute>
        <attribute name = "Taxon_ID">126793</attribute>
        <attribute name = "Strain">Sal-1</attribute>
        <attribute name = "Genome_Version">06-13-2007</attribute>
@@ -1037,8 +1037,8 @@
        <attribute name = "Website">PlasmoDB</attribute>
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">yoelii</attribute>
-       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/fasta/PlasmoDB-9.0_Pyoelii17XNL_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/gff/PlasmoDB-9.0_Pyoelii17XNL.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/fasta/data/PlasmoDB-9.0_Pyoelii17XNL_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/gff/data/PlasmoDB-9.0_Pyoelii17XNL.gff</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
        <attribute name = "Strain">yoelii 17XNL</attribute>
        <attribute name = "Genome_Version">10-03-2002</attribute>
@@ -1661,7 +1661,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">tarentolae</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTraII/fasta/LtarParrotTarIIGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTarII/fasta/LtarParrotTarIIGenomic_TriTrypDB-4.1.fasta</attribute>
        <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTarII/gff/LtarParrotTarII_TriTrypDB-4.1.gff</attribute>
        <attribute name = "Taxon_ID">56890001</attribute>
        <attribute name = "Strain">Parrot-TarII</attribute>
