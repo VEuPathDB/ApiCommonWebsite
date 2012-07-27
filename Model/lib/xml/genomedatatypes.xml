@@ -1113,8 +1113,8 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Neospora</attribute>
        <attribute name = "Species">caninum</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/NeosporaCaninum/fasta/data/NeosporaCaninumGenomic_ToxoDB-7.2.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/NeosporaCaninum/gff/data/NeosporaCaninum_ToxoDB-7.2.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/fasta/data/NcaninumGenomic_ToxoDB-7.2.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/gff/data/Ncaninum_ToxoDB-7.2.gff</attribute>
        <attribute name = "Taxon_ID">29176</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-06-2009</attribute>
