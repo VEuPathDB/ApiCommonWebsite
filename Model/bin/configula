@@ -106,7 +106,7 @@ my $comment_config = "$wdk_product_config_dir/comment-config.xml";
 my $model_config = "$wdk_product_config_dir/model-config.xml";
 my $model_prop = "$wdk_product_config_dir/model.prop";
 my $wdkquery_config = "$wdk_config_dir/wdkquery-config.xml";
-my $wuBlast_config = "$wdk_config_dir/wuBlast-config.xml";
+my $blast_config = "$wdk_config_dir/blast-config.xml";
 my $motifSearch_config = "$wdk_config_dir/motifSearch-config.xml";
 my $profileSimilarity_config = "$wdk_config_dir/profileSimilarity-config.xml";
 my $apifed_config = "$wdk_config_dir/apifed-config.xml";
@@ -172,19 +172,19 @@ if ( ! -f "$wdkquery_config.sample" ) {
       "$wdkquery_config.sample"
     ) or die "copy failed: $!";
 }
-if ( ! -f "$wuBlast_config.xml.sample" ) {
+if ( ! -f "$blast_config.sample" ) {
     copy(
-      "$project_home/ApiCommonWebService/WSFPlugin/config/wuBlast-config.xml.sample",
-      "$wuBlast_config.sample"
+      "$project_home/ApiCommonWebService/WSFPlugin/config/blast-config.xml.sample",
+      "$blast_config.sample"
     ) or die "copy failed: $!";
 }
-if ( ! -f "$motifSearch_config.xml.sample" ) {
+if ( ! -f "$motifSearch_config.sample" ) {
     copy(
       "$project_home/ApiCommonWebService/WSFPlugin/config/motifSearch-config.xml.sample",
       "$motifSearch_config.sample"
     ) or die "copy failed: $!";
 }
-if ( ! -f "$profileSimilarity_config.xml.sample" ) {
+if ( ! -f "$profileSimilarity_config.sample" ) {
     copy(
       "$project_home/ApiCommonWebService/WSFPlugin/config/profileSimilarity-config.xml.sample",
       "$profileSimilarity_config.sample"
@@ -278,7 +278,7 @@ print "writing $wdkquery_config\n";
 $w_q->print(\*WQC);
 
 
-# wuBlast-config.xml ###############################################
+# blast-config.xml ###############################################
 my $blastdb_env = "$webservice_files_mirror";
 
 my $blast_datapath;
@@ -300,25 +300,18 @@ my $wb_c= new XML::Twig(
                     {'key' => 'Project'} => 'EuPathDB');
             }
       },
-      'entry[@key="AppPath"]'  => sub { 
+      'entry[@key="BlastPath"]'  => sub { 
             $_[1]->set_text("$blast_app_path");
       },
-      'entry[@key="BlastDbEnv"]'  => 
-                sub { $_[1]->set_text("$blastdb_env") },
-      'entry[@key="DataPath"]'  => 
-                sub { $_[1]->set_text("$blast_datapath") },
       'entry[@key="TempPath"]'  => 
                 sub { $_[1]->set_text("$blast_tmp_dir") },
-      'entry[@key=~/UrlMap_.+/]'  => \&blast_urlmap,
-      'entry[@key=~/SourceIdRegex_.+/]'  => \&blast_sourceid_regex,
-      'entry[@key=~/OrganismRegex_.+/]'  => \&blast_organism_regex,
     }
 );
 
-$wb_c->parsefile("${wuBlast_config}.sample");
+$wb_c->parsefile("${blast_config}.sample");
 
-open(WBC, ">$wuBlast_config") || die "can not open $wuBlast_config\n";
-print "writing $wuBlast_config\n";
+open(WBC, ">$blast_config") || die "can not open $blast_config\n";
+print "writing $blast_config\n";
 $wb_c->print(\*WBC); 
 
 # motifSearch-config.xml ###############################################
@@ -474,78 +467,6 @@ EOF
 sub emailSubject {
     my ($twig, $node) = @_;
     $node->set_text("Your $product Password");
-}
-
-sub blast_sourceid_regex {
-    return;
-    # use regexes in sample file as is
-
-#    my ($twig, $node) = @_;
-#    my $regex;
-#
-#    if ($product eq 'EuPathDB') {
-#        my $type = $node->atts->{'key'};
-#
-#        if ($type eq 'SourceIdRegex_Transcripts' ||
-#                $type eq 'SourceIdRegex_Isolates' ||          
-#                $type eq 'SourceIdRegex_Assemblies' ||          
-#                $type eq 'SourceIdRegex_Proteins') {            
-#            $regex = '^(?:\S+?\|)?(?:\S+?\|)?(\S+?)\s*\|';
-#
-#        } elsif ($type eq 'SourceIdRegex_ORF' ||
-#                    $type eq 'SourceIdRegex_Genomics' || 
-#                    $type eq 'SourceIdRegex_EST'  ||
-#                    $type eq 'SourceIdRegex_GSS') { 
-#            $regex = '^>*(?:\S+?\|)?([^\|]+?)\s*\|';
-#        }
-#    } else {
-#        $regex = '^>*(?:\w*\|)*(\S+)' ;
-#    }
-#
-#    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
-}
-
-sub blast_organism_regex {
-    return;
-    # use regexes in sample file as is
-#
-#    my ($twig, $node) = @_;
-#    my $regex;
-#
-#    if ($product eq 'EuPathDB') {
-#        $regex = '^(?:.*organism=|>\s*)([^_|\s]+)(_|\s)';
-#    } elsif ($product eq 'TrichDB') {
-#        $regex = '>?(\S+?)_';
-#    } else {
-#        $regex = '\|\s*organism=([^_|\s]+)' ;
-#    }
-#
-#    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
-}
-
-# Portal site only: make relative paths into absolute urls:
-# /tritrypdb/showRecord.do?
-# becomes
-# http://qa.tritrypdb.org/tritrypdb/showRecord.do?
-#
-# The hostname 
-sub blast_urlmap {
-    my ($twig, $node) = @_;
-    return if $product ne 'EuPathDB';
-
-    my $url = $node->trimmed_text;
-    
-    return if $url =~ m/^http/i; 
-    
-    my ($webapp) = $url =~ m#^/([a-z]+)/#;
-    my $abs_url = 
-        'http://' .
-        (($host_class) ? "$host_class." : '') .
-        domain_from_webapp($webapp) .
-        $url;
-    
-    
-    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $abs_url));
 }
 
 sub commentConfig {
@@ -718,8 +639,8 @@ sub site_versions {
         PrettyPrint => 'nice',
         keep_atts_order => 1,
         TwigHandlers => {
-          'modelName[@displayName]'  => sub { 
-             $site_versions{$_[1]->att("displayName")} = $_[1]->att("version"); 
+          'constant[@name="releaseVersion"]'  => sub { 
+             $site_versions{$_[1]->att("includeProjects")} = $_[1]->text;
            },
         }
     );
