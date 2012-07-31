@@ -107,6 +107,7 @@ my $model_config = "$wdk_product_config_dir/model-config.xml";
 my $model_prop = "$wdk_product_config_dir/model.prop";
 my $wdkquery_config = "$wdk_config_dir/wdkquery-config.xml";
 my $blast_config = "$wdk_config_dir/blast-config.xml";
+my $projects_config = "$wdk_config_dir/projects.xml";
 my $motifSearch_config = "$wdk_config_dir/motifSearch-config.xml";
 my $profileSimilarity_config = "$wdk_config_dir/profileSimilarity-config.xml";
 my $apifed_config = "$wdk_config_dir/apifed-config.xml";
@@ -176,6 +177,12 @@ if ( ! -f "$blast_config.sample" ) {
     copy(
       "$project_home/ApiCommonWebService/WSFPlugin/config/blast-config.xml.sample",
       "$blast_config.sample"
+    ) or die "copy failed: $!";
+}
+if ( ! -f "projects.sample.xml" ) {
+    copy(
+      "$project_home/ApiCommonWebsite/Model/config/projects.sample.xml",
+      "projects.sample.xml"
     ) or die "copy failed: $!";
 }
 if ( ! -f "$motifSearch_config.sample" ) {
@@ -277,6 +284,11 @@ open(WQC, ">$wdkquery_config") || die "can not open $wdkquery_config\n";
 print "writing $wdkquery_config\n";
 $w_q->print(\*WQC);
 
+# projects.xml ###############################################
+copy(
+  "projects.sample.xml",
+  "projects.xml"
+) or die "copy failed: $!";
 
 # blast-config.xml ###############################################
 my $blastdb_env = "$webservice_files_mirror";
