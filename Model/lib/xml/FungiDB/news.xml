@@ -15,6 +15,24 @@
     </record>
 --> 
    <record>
+       <attribute name="headline">2.0 released</attribute>
+       <attribute name="date">1 Aug 2012 9:00AM</attribute>
+       <attribute name="tag">fungidb_08-01_release2</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+The 2.0 release, with 31 genomes including 6 Oomycetes was released at <a
+href="http://fungidb.org">fungidb.org</a>.The release includes improved
+view of the lists of species, links to OrthoMCL, inclusion of
+Microarray and RNA-Seq datasets from C.albicans, S. cerevisiae, N. crassa, S.pombe, and
+P. ramorum. The inclusion of the Oomycetes represents a collaboration
+with Brett Tyler's group at Oregon State University.
+ This is the first full release using new workflow and data analysis pipeline that has
+incorporated automation into the system.
+          ]]>
+       </attribute>
+    </record>
+   <record>
        <attribute name="headline">2.0 alpha released</attribute>
        <attribute name="date">19 Jan 2012 9:00AM</attribute>
        <attribute name="tag">fungidb_01-19_release2alpha</attribute>
