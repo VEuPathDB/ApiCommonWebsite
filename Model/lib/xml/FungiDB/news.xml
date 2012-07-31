@@ -26,14 +26,14 @@ href="http://fungidb.org">fungidb.org</a>.The release includes improved
 view of the lists of species, links to OrthoMCL, inclusion of
 Microarray and RNA-Seq datasets from C.albicans, S. cerevisiae, N. crassa, S.pombe, and
 P. ramorum. The inclusion of the Oomycetes represents a collaboration
-with Brett Tyler's group at Oregon State University.
- This is the first full release using new workflow and data analysis pipeline that has
+with <a href="http://bpp.oregonstate.edu/tyler">Brett Tyler's</a> group at Oregon State University.
+This is the first full release using new workflow and data analysis pipeline that has
 incorporated automation into the system.
 
-This release of FungiDB includes 31 genomes of Fungi and Oomycetes<br>
+This release of FungiDB includes 31 genomes of Fungi and Oomycetes.<br>
 <br>
 </span><br>
-The following Fungal Genomes are now available via FungiDB:
+The following Genomes are now available via FungiDB:
 <ul>
 <li> Eurotiomycetes; Ascomycota</li>
 <ul>
