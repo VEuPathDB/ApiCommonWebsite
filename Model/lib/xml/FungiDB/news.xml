@@ -29,6 +29,69 @@ P. ramorum. The inclusion of the Oomycetes represents a collaboration
 with Brett Tyler's group at Oregon State University.
  This is the first full release using new workflow and data analysis pipeline that has
 incorporated automation into the system.
+
+This release of FungiDB includes 31 genomes of Fungi and Oomycetes<br>
+<br>
+</span><br>
+The following Fungal Genomes are now available via FungiDB:
+<ul>
+<li> Eurotiomycetes; Ascomycota</li>
+<ul>
+<li><span style="font-style: italic;">Aspergillus clavatus</span></li>
+<li><span style="font-style: italic;">Aspergillus flavus</span></li>
+<li><span style="font-style: italic;">Aspergillus fumigatus</span> strain Af293</li>
+<li><span style="font-style: italic;">Aspergillus nidulans</span> strain A4</li>
+<li><span style="font-style: italic;">Aspergillus niger</span></li>
+<li><span style="font-style: italic;">Aspergillus terreus</span></li>
+<li><span style="font-style: italic;">Coccidoidies immitis</span> strain RS</li>
+<li><span style="font-style: italic;">Coccidoidies immitis</span> strain H538.4</li>
+</ul>
+<li> Sordariomycetes; Ascomyocta</li>
+<ul>
+<li><span style="font-style: italic;">Fusarium oxysporum f. sp. lycopersici</span></li>
+<li><span style="font-style: italic;">Fusarium graminearum</span></li>
+<li><span style="font-style: italic;">Gibberella moniliformis (Fusarium verticillioides)</span></li>
+<li><span style="font-style: italic;">Magnaporthea oryzae</span></li>
+<li><span style="font-style: italic;">Neurospora crassa</span> strain OR74A</li>
+<li><span style="font-style: italic;">Neurospora tetrasperma</span></li>
+<li><span style="font-style: italic;">Neurospora discreta</span></li>
+<li><span style="font-style: italic;">Sordaria macrospora</span></li>
+
+</ul>
+<li> Taphrinomycotina; Ascomyocta</li>
+<ul>
+<li><span style="font-style: italic;">Schizosaccharomyces pombe</span></li>
+</ul>
+
+<li> Saccharomycotina; Ascomyocta</li>
+<ul>
+<li><span style="font-style: italic;">Candida albicans</span></li>
+<li><span style="font-style: italic;">Saccharomyces cerevisiae</span></li>
+</ul>
+<li> Basidiomycota</li>
+<ul>
+<li><span style="font-style: italic;">Cryptococcus neoformans</span> var. <span style="font-style: italic;">grubii</span>)</span> strain H99</li>
+
+<li><span style="font-style: italic;">Cryptococcus neoformans</span> var. <span style="font-style: italic;">neoformans</span>)</span>
+strain JEC21</li>
+<li><span style="font-style: italic;">Cryptococcus neoformans</span> var. <span style="font-style: italic;">neoformans</span>)</span> strain B3501</li>
+<li><span style="font-style: italic;">Cryptococcus gattii</span> strain WM276</li>
+<li><span style="font-style: italic;">Cryptococcus gattii</span> strain R265</li>
+<li><span style="font-style: italic;">Tremella mesenterica</span></li>
+
+</ul>
+<li> Oomycetes; Stramenopiles</li>
+<ul>
+<li><span style="font-style: italic;">Phytophthora capsici</span></li>
+<li><span style="font-style: italic;">Phytophthora infestans</span></li>
+<li><span style="font-style: italic;">Phytophthora ramorum</span></li>
+<li><span style="font-style: italic;">Phytophthora sojae</span></li>
+<li><span style="font-style: italic;">Pythium ultimatum</span></li>
+<li><span style="font-style: italic;">Hyaloperonospora arabidopsidis</span></li>
+</ul>
+</ul>
+</body>
+
           ]]>
        </attribute>
     </record>
