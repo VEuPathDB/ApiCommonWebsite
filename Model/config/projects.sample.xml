@@ -5,6 +5,7 @@
   <project name="EuPathDB" site="http://eupathdb.org/eupathdb/" />
   <project name="AmoebaDB" site="http://toxodb.org/toxo/" />
   <project name="CryptoDB" site="http://cryptodb.org/cryptodb/" />
+  <project name="FungiDB" site="http://fungidb.org/fungidb/"></project>
   <project name="GiardiaDB" site="http://giardiadb.org/giardiadb/"></project>
   <project name="MicrosporidiaDB" site="http://microsporidiadb.org/micro/" />
   <project name="PiroplasmaDB" site="http://piroplasmadb.org/piro/" />
