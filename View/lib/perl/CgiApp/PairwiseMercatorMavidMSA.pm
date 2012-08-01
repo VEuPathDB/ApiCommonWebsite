@@ -175,13 +175,11 @@ sub getTaxonToDirMap {
 SELECT distinct ga.organism, taxon.grp, org.abbrev 
 FROM   ApiDBTuning.GeneAttributes ga, ApiDB.Organism org,
        (SELECT organism, row_number() over (order by organism) as grp 
-        FROM (SELECT distinct REGEXP_SUBSTR(organism, '[[:alpha:]]+ ') as organism
-              FROM ApiDBTuning.GeneAttributes 
-             )
+        FROM (SELECT distinct organism FROM ApiDBTuning.GeneAttributes)
        ) taxon 
 WHERE  ga.taxon_id = org.taxon_id
 AND    ga.gene_type = 'protein coding'
-AND    REGEXP_SUBSTR(ga.organism, '[[:alpha:]]+ ') = taxon.organism
+AND    ga.organism = taxon.organism
 EOSQL
 
      my $sth = $dbh->prepare($sql);
