@@ -1278,5 +1278,9 @@ a#gbView {
 	#gene-metrics_filter { font-weight:bold; }
 
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         = the style for rendering motifs in the motif search result
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.motif { color: red; }
 
 /*THE END */
