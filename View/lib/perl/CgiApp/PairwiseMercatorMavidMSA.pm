@@ -59,9 +59,9 @@ sub run {
 
   my $dbh = $self->getQueryHandle($cgi);
 
-  my %taxonToDirNameMap = getTaxonToDirMap($cgi, $dbh);
+  my $taxonToDirNameMap = getTaxonToDirMap($cgi, $dbh);
 
-  my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh,\%taxonToDirNameMap);
+  my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh,$taxonToDirNameMap);
   my ($mercatorOutputDir, $sliceAlign, $fa2clustal, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
 
   &createHeader($cgi, $type);
@@ -95,7 +95,7 @@ sub run {
     &makePadAlignmentInputFromMultiFasta($multiFasta, \@dnaSequences, \@alignments, $referenceGenome);
   }
 
-  my $dnas = &makeSequencesForPadAlignment(\@dnaSequences, $referenceGenome, \%taxonToDirNameMap);
+  my $dnas = &makeSequencesForPadAlignment(\@dnaSequences, $referenceGenome, $taxonToDirNameMap);
 
   my $align = Bio::Graphics::Browser2::PadAlignment->new($dnas,\@alignments);
 
@@ -126,7 +126,7 @@ sub run {
     my $locationTable = &getLocationsFromDefline($cgi, \@dnaSequences, $referenceGenome);
     my $referenceStart = {};
 
-    my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome,\%taxonToDirNameMap);
+    my $sortingGroupsHash = &getSortingGroupsHash($referenceGenome,$taxonToDirNameMap);
 
     print STDOUT "<br /><table border=1 cellpadding='6px' RULES=GROUPS FRAMES=BOX valign='left'>\n";
     print STDOUT"<tr><thead align='left'><th>Genome</th><th>Sequence</th><th>Start</th><th>End</th><th>Strand</th><th>#Nucleotides</th></tr></thead>\n";
@@ -185,7 +185,7 @@ EOSQL
      my $sth = $dbh->prepare($sql);
      $sth->execute();
 
-     if(my $hashref = $sth->fetchrow_hashref()) {
+     while (my $hashref = $sth->fetchrow_hashref()) {
        $taxonToDirMap{$hashref->{ORGANISM}}{name} = $hashref->{ABBREV};
        $taxonToDirMap{$hashref->{ORGANISM}}{group} = $hashref->{GRP};
      }
@@ -216,7 +216,7 @@ EOSQL
       'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
      };
   }
-return %taxonToDirMap; 
+return \%taxonToDirMap; 
 }
 
 #--------------------------------------------------------------------------------
