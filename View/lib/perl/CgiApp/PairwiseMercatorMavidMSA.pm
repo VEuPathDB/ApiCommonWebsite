@@ -165,7 +165,7 @@ sub run {
 
 sub getTaxonToDirMap {
   my ($cgi,$dbh)  = @_;
-  my %taxonToDirMap;
+  my $taxonToDirMap;
 
   my $project = $cgi->param('project_id');
 
@@ -186,11 +186,10 @@ EOSQL
      $sth->execute();
 
      while (my $hashref = $sth->fetchrow_hashref()) {
-       $taxonToDirMap{$hashref->{ORGANISM}}{name} = $hashref->{ABBREV};
-       $taxonToDirMap{$hashref->{ORGANISM}}{group} = $hashref->{GRP};
+       $taxonToDirMap->{$hashref->{ORGANISM}} = {name => $hashref->{ABBREV}, group => $hashref->{GRP} };
      }
   } else {  
-     %taxonToDirMap = 
+     $taxonToDirMap = 
      {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
       'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
       'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
@@ -216,7 +215,7 @@ EOSQL
       'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
      };
   }
-return \%taxonToDirMap; 
+return $taxonToDirMap; 
 }
 
 #--------------------------------------------------------------------------------
