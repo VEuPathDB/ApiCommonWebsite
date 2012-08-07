@@ -134,7 +134,7 @@ public class ProjectMapper {
     //if (site.length() == 0) return "";
 
     // remove the webapp from the url
-    int pos = site.substring(1, site.length() - 1).lastIndexOf("/");
+    int pos = site.substring(0, site.length() - 1).lastIndexOf("/");
     return site.substring(0, pos);
   }
 
