@@ -69,16 +69,6 @@ sub defineGraphs {
     push(@pch,15);
   }
 
-   my $legend = ApiCommonWebsite::View::GraphPackage::LegendPlot->new(@_);
-   $legend->setPointsPch(\@pch);
-   $legend->setColors($color);
-   $legend->setShortNames($names);
-   $legend->setPartName("_LEGEND_$tag");
-   $legend->setScreenSize(80);
-   my $legendTitle = $legend->getPlotTitle();
-   $legend->setPlotTitle("$tag - $legendTitle");
-
-
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
@@ -101,7 +91,7 @@ sub defineGraphs {
   $percentile->setPlotTitle("$tag - $pctTitle");
   $percentile->setXaxisLabel("Hours");
 
-  return($legend, $line, $percentile );
+  return( $line, $percentile );
 
 }
 1;
