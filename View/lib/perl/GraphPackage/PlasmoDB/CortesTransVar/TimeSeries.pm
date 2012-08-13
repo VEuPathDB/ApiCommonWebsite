@@ -7,6 +7,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
+use ApiCommonWebsite::View::GraphPackage::LegendPlot;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
@@ -68,17 +69,27 @@ sub defineGraphs {
     push(@pch,15);
   }
 
+   my $legend = ApiCommonWebsite::View::GraphPackage::LegendPlot->new(@_);
+   $legend->setPointsPch(\@pch);
+   $legend->setColors($color);
+   $legend->setShortNames($names);
+   $legend->setPartName("_LEGEND_$tag");
+   $legend->setScreenSize(80);
+   my $legendTitle = $legend->getPlotTitle();
+   $legend->setPlotTitle("$tag - $legendTitle");
+
+
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors($color);
   $line->setPointsPch(\@pch);
   $line->setPartName("exprn_val_$tag");
+  $line->setScreenSize(250);
   my $lineTitle = $line->getPlotTitle();
   $line->setPlotTitle("$tag - $lineTitle");
   $line->setXaxisLabel("Hours");
 
-  print STDERR Dumper($line);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetNames);
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
@@ -86,9 +97,11 @@ sub defineGraphs {
   $percentile->setColors($color);
   $percentile->setPartName("percentile_$tag");
   my $pctTitle = $percentile->getPlotTitle();
+  $line->setScreenSize(250);
   $percentile->setPlotTitle("$tag - $pctTitle");
   $percentile->setXaxisLabel("Hours");
-  print STDERR Dumper($percentile);
-  return($line, $percentile);
+
+  return($legend, $line, $percentile );
+
 }
 1;
