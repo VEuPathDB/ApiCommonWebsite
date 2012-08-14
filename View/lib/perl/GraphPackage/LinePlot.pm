@@ -448,7 +448,10 @@ if($hasExtraLegend) {
          my.labels,
          cex   = 0.8,
          ncol  = 1,
-         fill=the.colors,
+         col   = the.colors,
+         pt.bg = the.colors,
+         pch   = points.pch,
+         lty   = 'solid',
          bty='n',
          xjust=1,
          yjust=1
