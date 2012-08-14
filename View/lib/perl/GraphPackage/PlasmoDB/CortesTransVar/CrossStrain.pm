@@ -36,13 +36,13 @@ sub init {
   my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
   $ratio->setColors(\@colors);
-  $ratio->setHasExtraLegend(1);
+  $ratio->setElementNameMarginSize (6);
 
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@colors);
-  $percentile->setHasExtraLegend(1);
+  $percentile->setElementNameMarginSize (6);
 
   $self->setGraphObjects($ratio, $percentile);
 
