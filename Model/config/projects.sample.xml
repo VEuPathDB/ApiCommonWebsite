@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+  THe file projects.xml will be added to your gus_home/config, if there is none.
 
-  THIS URLS are used to access record page:
+  THESE URLS are used to access record page:
         - in any result in the portal,
         - in blast results
         - in motif results
         - (any result using a wsf plugin)
+
+  SOON (once ApiFedplugin gets updated) this file will be used by the portal to access specific component sites' WSF.
+
+  Feel free to update your project.xml to point to your own sites (same for qa and integrate).
 
 -->
 <!-- the timeout, in seconds, of a remote call to a project. -->
