@@ -6,15 +6,19 @@
 <%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <%@ taglib prefix="nested" uri="http://jakarta.apache.org/struts/tags-nested" %>
 
-<!-- get wdkModel saved in application scope -->
+<%-- get wdkModel saved in application scope --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
 <c:set value="${wdkModel.displayName}" var="project"/>
 
-<!-- get wdkAnswer from requestScope -->
+<%-- get wdkAnswer from requestScope --%>
 <jsp:useBean id="wdkUser" scope="session" type="org.gusdb.wdk.model.jspwrap.UserBean"/>
 <c:set value="${requestScope.wdkStep}" var="wdkStep"/>
 <c:set var="wdkAnswer" value="${wdkStep.answerValue}" />
 <c:set var="format" value="${requestScope.wdkReportFormat}"/>
+
+<%-- display page header --%>
+<imp:header banner="Create and download a Full Records Report" />
+
 
 <script language="JavaScript" type="text/javascript">
 <!-- //
@@ -34,25 +38,21 @@ function makeSelection(state)
 //-->
 </script>
 
-
-<!-- display page header -->
-<imp:header banner="Create and download a Full Records Report" />
-
-<!-- display the parameters of the question, and the format selection form -->
+<%-- display the parameters of the question, and the format selection form --%>
 <imp:reporter/>
 
-<!-- display description for page -->
+<%-- display description for page --%>
 <h3>Generate a report that contents the complete information for each record.</h3>
 
 
-<!-- handle empty result set situation -->
+<%-- handle empty result set situation --%>
 <c:choose>
   <c:when test='${wdkAnswer.resultSize == 0}'>
     No results for your query
   </c:when>
   <c:otherwise>
 
-<!-- content of current page -->
+<%-- content of current page --%>
 <form name="downloadConfigForm" method="get" action="<c:url value='/getDownloadResult.do' />">
   <table  width="100%">
   <tr><td width="20%"></td>
