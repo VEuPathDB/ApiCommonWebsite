@@ -9,20 +9,20 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 
 #--------------------------------------------------------------------------------
 
-sub getIsStacked               { $_[0]->{'_stack_bars'                     }}
-sub setIsStacked               { $_[0]->{'_stack_bars'                     } = $_[1]}
+sub getIsStacked                 { $_[0]->{'_stack_bars'                     }}
+sub setIsStacked                 { $_[0]->{'_stack_bars'                     } = $_[1]}
 
 sub getForceHorizontalXAxis      { $_[0]->{'_force_x_horizontal'             }}
 sub setForceHorizontalXAxis      { $_[0]->{'_force_x_horizontal'             } = $_[1]}
 
-sub getIsHorizontal              { $_[0]->{'_is_horizontal'                     }}
-sub setIsHorizontal              { $_[0]->{'_is_horizontal'                     } = $_[1]}
+sub getIsHorizontal              { $_[0]->{'_is_horizontal'                  }}
+sub setIsHorizontal              { $_[0]->{'_is_horizontal'                  } = $_[1]}
 
-sub getHighlightMissingValues    { $_[0]->{'_highlight_missing_values'                     }}
-sub setHighlightMissingValues    { $_[0]->{'_highlight_missing_values'                     } = $_[1]}
+sub getHighlightMissingValues    { $_[0]->{'_highlight_missing_values'       }}
+sub setHighlightMissingValues    { $_[0]->{'_highlight_missing_values'       } = $_[1]}
 
-sub getSpaceBetweenBars              { $_[0]->{'_space_between_bars'                     }}
-sub setSpaceBetweenBars              { $_[0]->{'_space_between_bars'                     } = $_[1]}
+sub getSpaceBetweenBars          { $_[0]->{'_space_between_bars'             }}
+sub setSpaceBetweenBars          { $_[0]->{'_space_between_bars'             } = $_[1]}
 
 
 #--------------------------------------------------------------------------------

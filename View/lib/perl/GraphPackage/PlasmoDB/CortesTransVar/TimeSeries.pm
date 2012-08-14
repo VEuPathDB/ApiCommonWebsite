@@ -25,7 +25,6 @@ sub init {
   my $hb3strains = ['hb3b','ab10','hb3a','ab6','bb8','bc4'];
   my $d10strains = ['e3','f1','g2','d10','g4'];
 
-
   my @colorSet = ('#FF0000','#FF6600','#FFFF00','#009900','#0000CC','#660033',);
   my @colors = (@colorSet[0..4],@colorSet[0..4],@colorSet[0..5],@colorSet[0..4],@colorSet[0..3],);
   my @legend = ("3d7 derived strains","7g8 derived strains", "hb3 derived strains", "d10 derived strains");
@@ -69,6 +68,7 @@ sub defineGraphs {
   my @pch;
   my @profileSetNames;
   my @percentileSetNames;
+  my $bottomMargin = 6;
 
   foreach my $name (@$names) {
     
@@ -86,6 +86,10 @@ sub defineGraphs {
   $line->setPointsPch($pointsPch);
   $line->setPartName("exprn_val_$tag");
   $line->setScreenSize(250);
+  $line->setElementNameMarginSize($bottomMargin);
+  $line->setHasExtraLegend(1);
+  $line->setExtraLegendSize(4.5);
+  $line->setLegendLabels($names);
   my $lineTitle = $line->getPlotTitle();
   $line->setPlotTitle("$tag - $lineTitle");
   $line->setXaxisLabel("Hours");
@@ -97,7 +101,11 @@ sub defineGraphs {
   $percentile->setColors($color);
   $percentile->setPartName("percentile_$tag");
   my $pctTitle = $percentile->getPlotTitle();
-  $line->setScreenSize(250);
+  $percentile->setScreenSize(250);
+  $percentile->setElementNameMarginSize($bottomMargin);
+  $percentile->setHasExtraLegend(1);
+  $percentile->setExtraLegendSize(4.5);
+  $percentile->setLegendLabels($names);
   $percentile->setPlotTitle("$tag - $pctTitle");
   $percentile->setXaxisLabel("Hours");
 

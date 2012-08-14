@@ -40,6 +40,8 @@ sub setSmoothLines               { $_[0]->{'_smooth_lines'                  } = 
 sub getSplineApproxN             { $_[0]->{'_spline_approx_n'               }}
 sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = $_[1]}
 
+sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
+sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -114,6 +116,16 @@ sub makeRPlotString {
 
   my $defaultPch = $self->getPointsPch()->[0];
 
+  my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
+  my $extraLegendSize = $self->getExtraLegendSize();
+
+  my $legendLabels = $self->getLegendLabels;
+  my $legendLabelsString; 
+  if ($self->getHasExtraLegend ) {
+      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
+    }
+  my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
+
   my $rcode = "
 # ---------------------------- LINE PLOT ----------------------------
 
@@ -123,6 +135,7 @@ $colorsString
 $pointsPchString
 $sampleLabelsString
 $stderrFiles
+$legendLabelsString
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -260,7 +273,15 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
-par(mar       = c($bottomMargin,4,2,4), xpd=TRUE);
+# extra legend size specified in # of lines
+
+extra.legend.size = 0;
+if($hasExtraLegend) {
+  extra.legend.size = $extraLegendSize;
+}
+
+
+par(mar       = c($bottomMargin,4,2,4 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
 
 my.pch = $defaultPch;
 
@@ -375,7 +396,6 @@ for(i in 1:nrow(lines.df)) {
     my.color = the.colors;
   }
 
-
   points(x.coords,
        new.points[i,],
        col  = my.color,
@@ -412,8 +432,30 @@ if($yAxisFoldInductionFromM) {
 }
 box();
 
-$rPostscript
 
+
+if($hasExtraLegend) {
+  # To add a legend into the margin... you need to convert ndc coordinates into user coordinates
+  figureRegionXMax = par()\$fig[2];
+  figureRegionYMax = par()\$fig[4];
+
+  if ($hasLegendLabels) {
+      my.labels = legend.label;
+      }
+
+  legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
+         grconvertY(figureRegionYMax, from='ndc', to='user'),
+         my.labels,
+         cex   = 0.8,
+         ncol  = 1,
+         fill=the.colors,
+         bty='n',
+         xjust=1,
+         yjust=1
+        );
+}
+
+$rPostscript
 
 par(xpd=FALSE);
 grid(nx=NA,ny=NULL,col=\"gray75\");

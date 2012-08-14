@@ -14,8 +14,8 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 
 #----------------------------------------------------------------------------------------------
 
-sub getProfileSets               { $_[0]->{'_profile_sets'           }}
-sub setProfileSets               { $_[0]->{'_profile_sets'           } = $_[1]}
+sub getProfileSets               { $_[0]->{'_profile_sets'                  }}
+sub setProfileSets               { $_[0]->{'_profile_sets'                  } = $_[1]}
 
 sub getPartName                  { $_[0]->{'_part_name'                     }}
 sub setPartName                  { $_[0]->{'_part_name'                     } = $_[1]}
@@ -53,27 +53,27 @@ sub setDefaultYMax               { $_[0]->{'_default_y_max'                 } = 
 sub getDefaultYMin               { $_[0]->{'_default_y_min'                 }}
 sub setDefaultYMin               { $_[0]->{'_default_y_min'                 } = $_[1]}
 
-sub getSampleLabels               { $_[0]->{'_sample_labels'                  }}
-sub setSampleLabels               { $_[0]->{'_sample_labels'                  } = $_[1]}
+sub getSampleLabels               { $_[0]->{'_sample_labels'                }}
+sub setSampleLabels               { $_[0]->{'_sample_labels'                } = $_[1]}
 
-sub getRPostscript               { $_[0]->{'_r_postscript'              }}
-sub setRPostscript               { $_[0]->{'_r_postscript'              } = $_[1]}
+sub getRPostscript               { $_[0]->{'_r_postscript'                  }}
+sub setRPostscript               { $_[0]->{'_r_postscript'                  } = $_[1]}
 
 #----------------------------------------------------------------------------------------------
 
-sub getScreenSize                { $_[0]->{'_screen_size'                 }}
-sub setScreenSize                { $_[0]->{'_screen_size'                 } = $_[1]}
+sub getScreenSize                { $_[0]->{'_screen_size'                   }}
+sub setScreenSize                { $_[0]->{'_screen_size'                   } = $_[1]}
 
-sub getElementNameMarginSize          { $_[0]->{'_element_name_margin_size'          }}
-sub setElementNameMarginSize          { $_[0]->{'_element_name_margin_size'          } = $_[1]}
+sub getElementNameMarginSize     { $_[0]->{'_element_name_margin_size'      }}
+sub setElementNameMarginSize     { $_[0]->{'_element_name_margin_size'      } = $_[1]}
 
-sub getErrorsFileHandle                { $_[0]->{'_file_handle'                 } }
+sub getErrorsFileHandle          { $_[0]->{'_file_handle'                   }}
 
-sub getHasExtraLegend            { $_[0]->{'_has_extra_legend'                 }}
-sub setHasExtraLegend            { $_[0]->{'_has_extra_legend'                 } = $_[1]}
+sub getHasExtraLegend            { $_[0]->{'_has_extra_legend'              }}
+sub setHasExtraLegend            { $_[0]->{'_has_extra_legend'              } = $_[1]}
 
-sub getExtraLegendSize            { $_[0]->{'_extra_legend_size'                 }}
-sub setExtraLegendSize            { $_[0]->{'_extra_legend_size'                 } = $_[1]}
+sub getExtraLegendSize           { $_[0]->{'_extra_legend_size'             }}
+sub setExtraLegendSize           { $_[0]->{'_extra_legend_size'             } = $_[1]}
 
 
 
