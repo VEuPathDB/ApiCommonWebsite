@@ -198,7 +198,7 @@ EOSQL
       'Trypanosoma cruzi CL Brener Non-Esmeraldo-like'   => { name => 'TcruziNonEsmeraldoLike', group => 2 },
       'Trypanosoma cruzi CL Brener Esmeraldo-like'       => { name => 'TcruziEsmeraldoLike',    group => 2 },
       'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
-      'Trypanosoma brucei brucei strain 427'             => { name => 'Tbrucei427',             group => 3 },
+      'Trypanosoma brucei Lister strain 427'             => { name => 'Tbrucei427',             group => 3 },
       'Trypanosoma brucei TREU927'                       => { name => 'Tbrucei927',             group => 3 },
       'Trypanosoma vivax'                                => { name => 'Tvivax',                 group => 4 },
       'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
