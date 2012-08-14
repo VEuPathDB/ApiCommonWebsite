@@ -28,13 +28,13 @@ sub init {
 
   my @colorSet = ('#FF0000','#FF6600','#FFFF00','#009900','#0000CC','#660033',);
   my @colors = (@colorSet[0..4],@colorSet[0..4],@colorSet[0..5],@colorSet[0..4],@colorSet[0..3],);
-  my @legend = (@$_3d7strains);
-  push(@legend, @$_7g8strains);
-  push(@legend, @$hb3strains);
-  push(@legend, @$d10strains);
+  my @legend = ("3d7 derived strains","7g8 derived strains", "hb3 derived strains", "d10 derived strains");
 
+  my @legendColors;
+  push @legendColors, 'black' for 1 .. 4;
+  my @pointsPCH = (19, 24, 15, 23);
   $self->setLegendSize(80);
-  $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 6});
+  $self->setMainLegend({colors => \@legendColors, short_names => \@legend, points_pch => \@pointsPCH, cols => 2, fill=> 0},);
 
   $self->setPlotWidth(450);
   my @parentalColors = @colorSet[0..3];
@@ -42,12 +42,22 @@ sub init {
   my @_7g8Colors = @colorSet[0..4];
   my @hb3Colors = @colorSet[0..5];
   my @d10Colors =  @colorSet[0..4];
+  
+  my @_3d7Pch;
+  my @_7g8Pch;
+  my @hb3Pch;
+  my @d10Pch;
 
-  my @parentalGraphs = $self->defineGraphs('Parental',$parental_strains, \@parentalColors, $profileBase, 'red percentile'); 
-   my @_3d7Graphs = $self->defineGraphs('3D7_derived',$_3d7strains, \@_3d7Colors, $profileBase, 'red percentile');
-   my @_7g8Graphs = $self->defineGraphs('7G8_derived',$_7g8strains, \@_7g8Colors, $profileBase, 'red percentile');
-   my @hb3Graphs = $self->defineGraphs('HB3_derived',$hb3strains, \@hb3Colors, $profileBase, 'red percentile');
-   my @d10Graphs = $self->defineGraphs('D10_derived',$d10strains, \@d10Colors, $profileBase, 'red percentile');
+  push @_3d7Pch, $pointsPCH[0] for 1 .. 5;
+  push @_7g8Pch, $pointsPCH[1] for 1 .. 5;
+  push @hb3Pch, $pointsPCH[2] for 1 .. 6;
+  push @d10Pch, $pointsPCH[3] for 1 .. 5;
+  
+  my @parentalGraphs = $self->defineGraphs('Parental',$parental_strains, \@parentalColors, $profileBase, 'red percentile', \@pointsPCH); 
+  my @_3d7Graphs = $self->defineGraphs('3D7_derived',$_3d7strains, \@_3d7Colors, $profileBase, 'red percentile', \@_3d7Pch );
+  my @_7g8Graphs = $self->defineGraphs('7G8_derived',$_7g8strains, \@_7g8Colors, $profileBase, 'red percentile', \@_7g8Pch );
+  my @hb3Graphs = $self->defineGraphs('HB3_derived',$hb3strains, \@hb3Colors, $profileBase, 'red percentile', \@hb3Pch);
+  my @d10Graphs = $self->defineGraphs('D10_derived',$d10strains, \@d10Colors, $profileBase, 'red percentile', \@d10Pch);
 
   $self->setGraphObjects(@parentalGraphs, @_3d7Graphs,  @_7g8Graphs, @hb3Graphs, @d10Graphs);
 
@@ -55,7 +65,7 @@ sub init {
 }
 
 sub defineGraphs {
-  my ($self, $tag, $names, $color,  $profile_base, $percentile_prefix,) = @_;
+  my ($self, $tag, $names, $color,  $profile_base, $percentile_prefix, $pointsPch) = @_;
   my @pch;
   my @profileSetNames;
   my @percentileSetNames;
@@ -66,14 +76,14 @@ sub defineGraphs {
     my @percentileSetName = ("$percentile_prefix - $profile_base $name");
     push(@profileSetNames, [@profileSetName]);
     push(@percentileSetNames, [@percentileSetName]);
-    push(@pch,15);
+
   }
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors($color);
-  $line->setPointsPch(\@pch);
+  $line->setPointsPch($pointsPch);
   $line->setPartName("exprn_val_$tag");
   $line->setScreenSize(250);
   my $lineTitle = $line->getPlotTitle();
@@ -83,7 +93,7 @@ sub defineGraphs {
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetNames);
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
-  $percentile->setPointsPch(\@pch);
+  $percentile->setPointsPch($pointsPch);
   $percentile->setColors($color);
   $percentile->setPartName("percentile_$tag");
   my $pctTitle = $percentile->getPlotTitle();
