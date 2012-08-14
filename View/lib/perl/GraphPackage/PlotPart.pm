@@ -69,22 +69,31 @@ sub setElementNameMarginSize          { $_[0]->{'_element_name_margin_size'     
 
 sub getErrorsFileHandle                { $_[0]->{'_file_handle'                 } }
 
+sub getHasExtraLegend            { $_[0]->{'_has_extra_legend'                 }}
+sub setHasExtraLegend            { $_[0]->{'_has_extra_legend'                 } = $_[1]}
+
+sub getExtraLegendSize            { $_[0]->{'_extra_legend_size'                 }}
+sub setExtraLegendSize            { $_[0]->{'_extra_legend_size'                 } = $_[1]}
+
+
+
 #----------------------------------------------------------------------------------------------
 
 sub new {
   my $class = shift;
 
-   my $self = $class->SUPER::new(@_);
+  my $self = $class->SUPER::new(@_);
 
   my $id = $self->getId();
 
-   #Setting Defaults
-   $self->setScreenSize(250);
-   $self->setElementNameMarginSize(3);
-   $self->setYaxisLabel('Please Fill in Y-Axis Label');
-   $self->setDefaultYMax(10);
-   $self->setDefaultYMin(0);
-   $self->setColors(["#000099"]);
+  #Setting Defaults
+  $self->setScreenSize(250);
+  $self->setElementNameMarginSize(3);
+  $self->setYaxisLabel('Please Fill in Y-Axis Label');
+  $self->setDefaultYMax(10);
+  $self->setDefaultYMin(0);
+  $self->setColors(["#000099"]);
+  $self->setExtraLegendSize(4.5);
 
   $self->setPlotTitle($id);
 
