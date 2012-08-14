@@ -78,6 +78,9 @@ sub makeRPlotString {
   my $bottomMargin = $self->getElementNameMarginSize();
   my $spaceBetweenBars = $self->getSpaceBetweenBars();
 
+  my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
+  my $extraLegendSize = $self->getExtraLegendSize();
+
   my $rv = "
 # ---------------------------- BAR PLOT ----------------------------
 
@@ -177,12 +180,17 @@ if($beside) {
   my.space = my.space;
 }
 
-
 # c(bottom,left,top,right)
 
+# extra legend size specified in # of lines
+
+extra.legend.size = 0;
+if($hasExtraLegend) {
+  extra.legend.size = $extraLegendSize;
+}
 
 if($horiz) {
-  par(mar       = c(5,names.margin,fold.induction.margin,2), xpd=FALSE, oma=c(1,1,1,1));
+  par(mar       = c(5, names.margin,fold.induction.margin,2 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   x.lim = c(d.min, d.max);
   y.lim = NULL;
 
@@ -192,7 +200,7 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin,4,2,fold.induction.margin), xpd=FALSE, oma=c(1,1,1,1));
+  par(mar       = c(names.margin,4,2,fold.induction.margin + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
@@ -212,7 +220,6 @@ my.las = 0;
 if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
   my.las = 2;
 }
-
 
 
   plotXPos = barplot(as.matrix(profile.df),
@@ -258,12 +265,17 @@ if($yAxisFoldInductionFromM) {
 lowerBound = as.matrix(profile.df - stderr.df);
 upperBound = as.matrix(profile.df + stderr.df);
 
+
+plotLength = max(plotXPos) + min(plotXPos);
+
 if($horiz) {
-  lines (c(0,0), c(0,length(profile.df) * 2), col=\"gray25\");
+#  lines (c(0,0), c(0,length(profile.df) * 2), col=\"gray25\");
+  lines (c(0,0), c(0,plotLength), col=\"gray25\");
 
   suppressWarnings(arrows(lowerBound,  plotXPos, upperBound, plotXPos, angle=90, code=3, length=0.05, lw=2));
 } else {
-  lines (c(0,length(profile.df) * 2), c(0,0), col=\"gray25\");
+#  lines (c(0,length(profile.df) * 2), c(0,0), col=\"gray25\");
+  lines (c(0,plotLength), c(0,0), col=\"gray25\");
 
 
   if($highlightMissingValues) {
@@ -281,6 +293,25 @@ if($horiz) {
 }
 
 box();
+
+
+if($hasExtraLegend) {
+  # To add a legend into the margin... you need to convert ndc coordinates into user coordinates
+  figureRegionXMax = par()\$fig[2];
+  figureRegionYMax = par()\$fig[4];
+
+  legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
+         grconvertY(figureRegionYMax, from='ndc', to='user'),
+         my.labels,
+         cex   = 0.8,
+         ncol  = 1,
+         fill=the.colors,
+         bty='n',
+         xjust=1,
+         yjust=1
+        );
+}
+
 plasmodb.title(\"$plotTitle\");
 
 ";
