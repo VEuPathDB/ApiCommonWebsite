@@ -200,7 +200,7 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin,4,2,fold.induction.margin + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
+  par(mar       = c(names.margin,4,2,fold.induction.margin + extra.legend.size), xpd=NA);
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
@@ -367,7 +367,7 @@ sub new {
    $self->setDefaultYMin(0);
    $self->setIsLogged(0);
 
-   $self->setPlotTitle("Expression Value (Percentiled) - $id");
+   $self->setPlotTitle("Percentile - $id");
    return $self;
 }
 1;
@@ -417,7 +417,7 @@ sub new {
    $self->setYaxisLabel('Expression Value');
 
    $self->setPartName('exprn_val');
-   $self->setPlotTitle("Expression Values - log(ratio) - $id");
+   $self->setPlotTitle("Log(ratio) - $id");
 
    $self->setMakeYAxisFoldInduction(1);
    $self->setIsLogged(1);
