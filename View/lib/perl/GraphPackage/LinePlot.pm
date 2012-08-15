@@ -281,7 +281,7 @@ if($hasExtraLegend) {
 }
 
 
-par(mar       = c($bottomMargin,4,2,4 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
+par(mar       = c($bottomMargin,4,2,4 + extra.legend.size), xpd=NA);
 
 my.pch = $defaultPch;
 
@@ -438,13 +438,16 @@ if($hasExtraLegend) {
   # To add a legend into the margin... you need to convert ndc coordinates into user coordinates
   figureRegionXMax = par()\$fig[2];
   figureRegionYMax = par()\$fig[4];
+  figureRegionYMin = par()\$fig[3];
+  centerPoint = (figureRegionYMax + figureRegionYMin ) / 2;
+
 
   if ($hasLegendLabels) {
       my.labels = legend.label;
       }
 
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
-         grconvertY(figureRegionYMax, from='ndc', to='user'),
+         grconvertY(centerPoint, from='ndc', to='user'),
          my.labels,
          cex   = 0.8,
          ncol  = 1,
@@ -454,7 +457,7 @@ if($hasExtraLegend) {
          lty   = 'solid',
          bty='n',
          xjust=1,
-         yjust=1
+         yjust=0
         );
 }
 
@@ -488,7 +491,7 @@ sub new {
    $self->setDefaultYMax(50);
    $self->setDefaultYMin(0);
    $self->setYaxisLabel('Percentile');
-   $self->setPlotTitle("Expression Values (Percentiled) - $id");
+   $self->setPlotTitle("Percentile - $id");
 
    $self->setIsLogged(0);
 
@@ -513,7 +516,7 @@ sub new {
    $self->setPartName('exprn_val');
    $self->setYaxisLabel("Expression Values");
 
-   $self->setPlotTitle("Expression Values - log(ratio) - $id");
+   $self->setPlotTitle("Log(ratio) - $id");
 
    $self->setMakeYAxisFoldInduction(1);
    $self->setIsLogged(1);
