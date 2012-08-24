@@ -204,7 +204,6 @@ EOSQL
       'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
 
       'Toxoplasma gondii ME49'                           => { name => 'TgondiiME49',            group => 1 },
-      'Toxoplasma gondii RH'                             => { name => 'TgondiiRH',              group => 2 },
       'Toxoplasma gondii GT1'                            => { name => 'TgondiiGT1',             group => 3 },
       'Toxoplasma gondii VEG'                            => { name => 'TgondiiVEG',             group => 4 },
       'Neospora caninum'                                 => { name => 'Ncaninum',               group => 5 },
