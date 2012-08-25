@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 public final class JmxInitListener implements ServletContextListener {
 
   @SuppressWarnings("unused")
-private static final Logger logger = Logger.getLogger(JmxInitListener.class);
+  private static final Logger logger = Logger.getLogger(JmxInitListener.class);
   MBeanRegistration registration;
   
   public void contextInitialized(ServletContextEvent sce) {
