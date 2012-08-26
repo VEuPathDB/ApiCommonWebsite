@@ -471,7 +471,6 @@
        <attribute name = "Species">cuniculi</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEC1/fasta/data/MicrosporidiaDB-&relMicro;_EcuniculiEC1_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEC1/gff/data/MicrosporidiaDB-&relMicro;_EcuniculiEC1.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">986730</attribute>
        <attribute name = "Strain">EC1</attribute>
        <attribute name = "Genome_Version">09-29-2011</attribute>
@@ -497,7 +496,6 @@
        <attribute name = "Species">cuniculi</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEC2/fasta/data/MicrosporidiaDB-&relMicro;_EcuniculiEC2_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEC2/gff/data/MicrosporidiaDB-&relMicro;_EcuniculiEC2.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">989654</attribute>
        <attribute name = "Strain">EC2</attribute>
        <attribute name = "Genome_Version">09-29-2011</attribute>
@@ -522,7 +520,6 @@
        <attribute name = "Species">cuniculi</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEC3/fasta/data/MicrosporidiaDB-&relMicro;_EcuniculiEC3_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiEC3/gff/data/MicrosporidiaDB-&relMicro;_EcuniculiEC3.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">989655</attribute>
        <attribute name = "Strain">EC3</attribute>
        <attribute name = "Genome_Version">09-29-2011</attribute>
@@ -702,7 +699,6 @@
        <attribute name = "Species">parisii</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm1/fasta/data/MicrosporidiaDB-&relMicro;_NparisiiERTm1_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm1/gff/data/MicrosporidiaDB-&relMicro;_NparisiiERTm1.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">881290</attribute>
        <attribute name = "Strain">ERTm1</attribute>
        <attribute name = "Genome_Version">05-14-2012</attribute>
@@ -728,7 +724,6 @@
        <attribute name = "Species">parisii</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm2/fasta/data/MicrosporidiaDB-&relMicro;_NparisiiERTm3_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm3/gff/data/MicrosporidiaDB-&relMicro;_NparisiiERTm3.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">935791</attribute>
        <attribute name = "Strain">ERTm3</attribute>
        <attribute name = "Genome_Version">05-14-2012</attribute>
@@ -754,7 +749,6 @@
        <attribute name = "Species">sp. 1</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NematocidaSp1ERTm2/fasta/data/MicrosporidiaDB-&relMicro;_NematocidaSp1ERTm2_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/NematocidaSp1ERTm2/gff/data/MicrosporidiaDB-&relMicro;_NematocidaSp1ERTm2.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">944018</attribute>
        <attribute name = "Strain">ERTm2</attribute>
        <attribute name = "Genome_Version">02-28-2012</attribute>
