@@ -292,7 +292,7 @@
        <attribute name = "Species">hominis</attribute>
        <attribute name = "URLGenomeFasta">http://CryptoDB.org/common/downloads/Current_Release/ChominisTU502/fasta/data/CryptoDB-&relCrypto;_ChominisTU502_Genome.fasta</attribute>
        <attribute name = "URLgff">http://CryptoDB.org/common/downloads/Current_Release/ChominisTU502/gff/data/CryptoDB-&relCrypto;_ChominisTU502.gff</attribute>
-       <attribute name = "Taxon_ID">237895</attribute>
+       <attribute name = "Taxon_ID">353151</attribute>
        <attribute name = "Strain">TU502</attribute>
        <attribute name = "Genome_Version">09-28-2005</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
@@ -319,7 +319,7 @@
        <attribute name = "Species">muris</attribute>
        <attribute name = "URLGenomeFasta">http://CryptoDB.org/common/downloads/Current_Release/CmurisRN66/fasta/data/CryptoDB-&relCrypto;_CmurisRN66_Genome.fasta</attribute>
        <attribute name = "URLgff">http://CryptoDB.org/common/downloads/Current_Release/CmurisRN66/gff/data/CryptoDB-&relCrypto;_CmurisRN66.gff</attribute>
-       <attribute name = "Taxon_ID">5808</attribute>
+       <attribute name = "Taxon_ID">441375</attribute>
        <attribute name = "Strain">RN66</attribute>
        <attribute name = "Genome_Version">07-28-2008</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
@@ -445,9 +445,9 @@
        <attribute name = "Species">aedis</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EaedisUSNM41457/fasta/data/MicrosporidiaDB-3.0_EaedisUSNM41457_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">1003232</attribute>
        <attribute name = "Strain">USNM 41457</attribute>
-       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Genome_Version">10-17-2011</attribute>
        <attribute name = "Data_Source"></attribute>
        <attribute name = "Genome_Size">51.42</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
@@ -474,7 +474,7 @@
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">986730</attribute>
        <attribute name = "Strain">EC1</attribute>
-       <attribute name = "Genome_Version">04-11-2011</attribute>
+       <attribute name = "Genome_Version">09-29-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">2.24</attribute>
        <attribute name = "Gene_Count">1898</attribute>
@@ -500,7 +500,7 @@
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">989654</attribute>
        <attribute name = "Strain">EC2</attribute>
-       <attribute name = "Genome_Version">04-11-2011</attribute>
+       <attribute name = "Genome_Version">09-29-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">2.24</attribute>
        <attribute name = "Gene_Count">1902</attribute>
@@ -525,7 +525,7 @@
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">989655</attribute>
        <attribute name = "Strain">EC3</attribute>
-       <attribute name = "Genome_Version">04-11-2011</attribute>
+       <attribute name = "Genome_Version">09-29-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">2.24</attribute>
        <attribute name = "Gene_Count">1898</attribute>
@@ -550,7 +550,7 @@
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EcuniculiGBM1/gff/data/MicrosporidiaDB-&relMicro;_EcuniculiGBM1.gff</attribute>
        <attribute name = "Taxon_ID">284813</attribute>
        <attribute name = "Strain">GB-M1</attribute>
-       <attribute name = "Genome_Version">06-19-2008</attribute>
+       <attribute name = "Genome_Version">06-30-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">2.50</attribute>
        <attribute name = "Gene_Count">2029</attribute>
@@ -601,7 +601,7 @@
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EhellemSwiss/gff/data/MicrosporidiaDB-&relMicro;_EhellemSwiss.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">Swiss</attribute>
-       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Genome_Version">09-29-2011</attribute>
        <attribute name = "Data_Source"></attribute>
        <attribute name = "Genome_Size">2.18</attribute>
        <attribute name = "Gene_Count">1864</attribute>
@@ -625,9 +625,9 @@
        <attribute name = "Species">intestinalis</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EintestinalisATCC50506/fasta/data/MicrosporidiaDB-&relMicro;_EintestinalisATCC50506_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EintestinalisATCC50506/gff/data/MicrosporidiaDB-&relMicro;_EintestinalisATCC50506.gff</attribute>
-       <attribute name = "Taxon_ID">58839</attribute>
+       <attribute name = "Taxon_ID">876142</attribute>
        <attribute name = "Strain">ATCC 50506</attribute>
-       <attribute name = "Genome_Version">11-23-2009</attribute>
+       <attribute name = "Genome_Version">10-18-2010</attribute>
        <attribute name = "Data_Source">Keeling</attribute>
        <attribute name = "Genome_Size">2.22</attribute>
        <attribute name = "Gene_Count">1892</attribute>
@@ -650,7 +650,7 @@
        <attribute name = "Species">bieneusi</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/EbieneusiH348/fasta/data/MicrosporidiaDB-&relMicro;_EbieneusiH348_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/EbieneusiH348/gff/data/MicrosporidiaDB-&relMicro;_EbieneusiH348.gff</attribute>
-       <attribute name = "Taxon_ID">48187</attribute>
+       <attribute name = "Taxon_ID">481877</attribute>
        <attribute name = "Strain">H348</attribute>
        <attribute name = "Genome_Version">01-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
@@ -678,7 +678,7 @@
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">657448</attribute>
        <attribute name = "Strain">OER-3-3</attribute>
-       <attribute name = "Genome_Version">12-14-2009</attribute>
+       <attribute name = "Genome_Version">12-28-2012</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">13.27</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
@@ -705,7 +705,7 @@
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">881290</attribute>
        <attribute name = "Strain">ERTm1</attribute>
-       <attribute name = "Genome_Version">04-11-2011</attribute>
+       <attribute name = "Genome_Version">05-14-2012</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">4.07</attribute>
        <attribute name = "Gene_Count">2724</attribute>
@@ -731,7 +731,7 @@
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">935791</attribute>
        <attribute name = "Strain">ERTm3</attribute>
-       <attribute name = "Genome_Version">04-11-2011</attribute>
+       <attribute name = "Genome_Version">05-14-2012</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">4.15</attribute>
        <attribute name = "Gene_Count">2788</attribute>
@@ -755,9 +755,9 @@
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NematocidaSp1ERTm2/fasta/data/MicrosporidiaDB-&relMicro;_NematocidaSp1ERTm2_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/NematocidaSp1ERTm2/gff/data/MicrosporidiaDB-&relMicro;_NematocidaSp1ERTm2.gff</attribute>
        <attribute name = "URLgff"></attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">944018</attribute>
        <attribute name = "Strain">ERTm2</attribute>
-       <attribute name = "Genome_Version">02-23-2011</attribute>
+       <attribute name = "Genome_Version">02-28-2012</attribute>
        <attribute name = "Data_Source">Broad</attribute>
        <attribute name = "Genome_Size">4.70</attribute>
        <attribute name = "Gene_Count">2831</attribute>
@@ -834,7 +834,7 @@
        <attribute name = "URLgff">http://PiroplasmaDB.org/common/downloads/Current_Release/BbovisT2Bo/gff/data/PiroplasmaDB-&relPiro;_BbovisT2Bo.gff</attribute>
        <attribute name = "Taxon_ID">484906</attribute>
        <attribute name = "Strain">T2Bo</attribute>
-       <attribute name = "Genome_Version">04-10-2008</attribute>
+       <attribute name = "Genome_Version">03-10-2010</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">8.18</attribute>
        <attribute name = "Gene_Count">3781</attribute>
@@ -859,7 +859,7 @@
        <attribute name = "URLgff">http://PiroplasmaDB.org/common/downloads/Current_Release/TannulataAnkara/gff/data/PiroplasmaDB-&relPiro;_TannulataAnkara.gff</attribute>
        <attribute name = "Taxon_ID">353154</attribute>
        <attribute name = "Strain">strain Ankara</attribute>
-       <attribute name = "Genome_Version">07-29-2005</attribute>
+       <attribute name = "Genome_Version">05-21-2010</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">8.35</attribute>
        <attribute name = "Gene_Count">3845</attribute>
@@ -884,7 +884,7 @@
        <attribute name = "URLgff">http://PiroplasmaDB_.org/common/downloads/Current_Release/TparvaMuguga/gff/data/PiroplasmaDB-&relPiro;_TparvaMuguga.gff</attribute>
        <attribute name = "Taxon_ID">333668</attribute>
        <attribute name = "Strain">strain Muguga</attribute>
-       <attribute name = "Genome_Version">01-17-2007</attribute>
+       <attribute name = "Genome_Version">03-10-2010</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">8.35</attribute>
        <attribute name = "Gene_Count">4167</attribute>
