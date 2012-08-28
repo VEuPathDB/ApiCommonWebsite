@@ -89,7 +89,7 @@ public class GetDataSourceAction extends Action {
             } else if (datasets != null) {
               logger.debug("Getting data sources by names: " + datasets);
               question = wdkModel.getQuestion(DATA_SOURCE_BY_NAMES);
-              params.put("dataset_names", datasets);
+              params.put("data_source_name", datasets);
             } else if (reference != null) {
               logger.debug("Getting data sources by reference: " + reference);
               question = wdkModel.getQuestion(DATA_SOURCE_BY_REFERENCE);
