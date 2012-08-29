@@ -205,6 +205,7 @@ patch_postinstall() {
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/CachedTrack.pm.patch
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/Util.pm.patch
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2/Render -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/HTML.pm.patch
+    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/DataLoader -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/bam.pm.patch
     #patch -d $cgilibTargetDir/Bio/Graphics/Glyph -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/secondary_structure.pm.patch
 #    patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/js_popups.patch
 #    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
