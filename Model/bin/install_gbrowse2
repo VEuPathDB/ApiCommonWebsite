@@ -11,7 +11,7 @@ GBROWSE_TAR_FILE=GBrowse-2.48.tar.gz
 #GBROWSE_TAR_FILE=GBrowse-2.39.tar.gz
 BIOPERL_TAR_FILE=BioPerl-1.6.1.tar.gz
 BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.26.tar.gz
-BIOSAMTOOLS_TAR_FILE=Bio-SamTools-1.33.tar.gz
+BIOSAMTOOLS_TAR_FILE=Bio-SamTools-1.35.tar.gz
 
 BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
