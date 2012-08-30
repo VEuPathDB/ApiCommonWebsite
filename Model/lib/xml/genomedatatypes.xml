@@ -448,7 +448,7 @@
        <attribute name = "Taxon_ID">1003232</attribute>
        <attribute name = "Strain">USNM 41457</attribute>
        <attribute name = "Genome_Version">10-17-2011</attribute>
-       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">51.42</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -599,7 +599,7 @@
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">Swiss</attribute>
        <attribute name = "Genome_Version">09-29-2011</attribute>
-       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Data_Source">Univ.of British Columbia</attribute>
        <attribute name = "Genome_Size">2.18</attribute>
        <attribute name = "Gene_Count">1864</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -804,7 +804,7 @@
        <attribute name = "Strain">floridensis</attribute>
        <attribute name = "Genome_Version">04-11-2011</attribute>
        <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size">12.15</attribute>
+       <attribute name = "Genome_Size">6.12</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
