@@ -1,4 +1,4 @@
-package org.apidb.apicommon.jmx.mbeans.wdk;
+package org.apidb.apicommon.jmx.mbeans;
 
 public interface ServletVersionsMBean {
   public String getServerInfo();

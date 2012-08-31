@@ -1,4 +1,6 @@
-package org.apidb.apicommon.jmx.mbeans.wdk;
+package org.apidb.apicommon.jmx.mbeans;
+
+import org.gusdb.wdk.jmx.mbeans.BeanBase;
 
 public class ServletVersions extends BeanBase implements ServletVersionsMBean   {
 
@@ -7,7 +9,7 @@ public class ServletVersions extends BeanBase implements ServletVersionsMBean   
    * e.g. Apache Tomcat/5.5.30
    */
   public String getServerInfo() {
-    return context.getServerInfo();
+    return getContext().getServerInfo();
   }
 
   /**
@@ -25,7 +27,7 @@ public class ServletVersions extends BeanBase implements ServletVersionsMBean   
    * Servlet API version that the servlet container supports.
    */
   public String getServletApiVersion() {
-    return context.getMajorVersion() + "." + context.getMinorVersion();
+    return getContext().getMajorVersion() + "." + getContext().getMinorVersion();
   }
 
 }
