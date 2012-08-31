@@ -88,7 +88,7 @@ my $target_site = lc $ARGV[0];
 ####################################################################
 # system values
 ####################################################################
-my $euparc = "$ENV{HOME}/.euparc";
+my $euparc = find_euparc();
 my $web_base_dir = '/var/www';
 my $site_symlink = "$web_base_dir/$target_site";
 my $product = dirname(readlink $site_symlink);
@@ -128,7 +128,7 @@ my $host_class = host_class();
 ####################################################################
 # pre-flight sanity checks
 ####################################################################
-check_euparc();
+
 
 ####################################################################
 ####################################################################
@@ -670,18 +670,15 @@ sub testDbConnection {
     
 }
 
-sub check_euparc {
-    
-    if (! -f $euparc ) {
-        die "Required $euparc file not found\n";
+sub find_euparc  {
+    # ibuilder shell sets HOME to be the website and 
+    # REAL_HOME to that of joeuser
+    if ( -r "$ENV{REAL_HOME}/.euparc") {
+        return "$ENV{REAL_HOME}/.euparc";
+    } elsif ( -r "$ENV{HOME}/.euparc") {
+        return "$ENV{HOME}/.euparc";
     }
-
-    my ($dev, $ino, $mode, $nlink, $uid, $gid, $rdev, $size, 
-        $atime, $mtime, $ctime, $blksize, $blocks) = lstat($euparc);
-        
-    my $permissions = sprintf "%04o", S_IMODE($mode);
-    
-   # print "UID $uid PERMS $permissions";
+    die "Required .euparc file not found\n";
 }
 
 sub recreate_wdkCache {
