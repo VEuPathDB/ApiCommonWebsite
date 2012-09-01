@@ -65,8 +65,8 @@ public class CustomShowRecordAction extends ShowRecordAction {
         // if the action is used EuPathDB, we will redirect record page to component project.
         if (wdkModel.getProjectId().equals("EuPathDB")) {
           String projectId = request.getParameter(PARAM_PROJECT_ID);
-          if (projectId == null) projectId = wdkModel.getProjectId();
-          return redirectByProject(wdkModel, rcName, projectId, sourceId);
+          if (projectId != null)
+            return redirectByProject(wdkModel, rcName, projectId, sourceId);
         }
 
         ActionForward forward;
