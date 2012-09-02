@@ -687,7 +687,7 @@ sub testDbConnection {
     my $dbh = DBI->connect("dbi:Oracle:$db", $login, $password, {
           PrintError =>0,
           RaiseError =>0
-        }) or warn "\nWARN: Can't connect to $db with $login/$password: $DBI::errstr\n\n";;
+        }) or warn "\nWARN: Can't connect to $db with $login: $DBI::errstr\n\n";;
     
     
 }
