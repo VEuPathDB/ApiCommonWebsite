@@ -11,7 +11,7 @@ integrate.microsporidiadb.org  micr-rbld   apicommN  microintegrate        uga_f
 integrate.orthomcl.org         orth500s    apicommS  apidbintegrate        uga_fed
 integrate.piroplasmadb.org     piro-rbld   apicommN  pirointegrate         uga_fed
 integrate.plasmodb.org         plas-inc    apicommN  plasmodbintegrate     uga_fed
-integrate.toxodb.org           toxo-inc    apicommN  toxodbintegrate       uga_fed
+integrate.toxodb.org           toxo-rbld   apicommN  toxodbintegrate       uga_fed
 integrate.trichdb.org          tvag-inc    apicommN  trichdbintegrate      uga_fed
 integrate.tritrypdb.org        tryp-inc    apicommN  trypdbintegrate       uga_fed
 
@@ -24,7 +24,7 @@ q1.microsporidiadb.org         micr-rbld   apicommN  microwww              uga_f
 q2.orthomcl.org                orth500s    apicommS  apidbwww              uga_fed
 q1.piroplasmadb.org            piro-rbld   apicommN  pirowww               uga_fed
 q1.plasmodb.org                plas-inc    apicommN  plasmodbwww           uga_fed
-q1.toxodb.org                  toxo-inc    apicommN  toxodbwww             uga_fed
+q1.toxodb.org                  toxo-rbld   apicommN  toxodbwww             uga_fed
 q1.trichdb.org                 tvag-inc    apicommN  trichdbwww            uga_fed
 q1.tritrypdb.org               tryp-inc    apicommN  trypdbwww             uga_fed
 
@@ -37,7 +37,7 @@ q2.microsporidiadb.org         micr-rbld   apicommN  microwww              uga_f
 q2.orthomcl.org                orth500n    apicommN  apidbwww              uga_fed
 q2.piroplasmadb.org            piro-rbld   apicommN  pirowww               uga_fed
 q2.plasmodb.org                plas-inc    apicommN  plasmodbwww           uga_fed
-q2.toxodb.org                  toxo-inc    apicommN  toxodbwww             uga_fed
+q2.toxodb.org                  toxo-rbld   apicommN  toxodbwww             uga_fed
 q2.trichdb.org                 tvag-inc    apicommN  trichdbwww            uga_fed
 q2.tritrypdb.org               tryp-inc    apicommN  trypdbwww             uga_fed
 
