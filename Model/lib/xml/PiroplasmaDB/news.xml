@@ -38,8 +38,8 @@ style="font-weight: bold;">
 This release of PiroplasmaDB constitutes a complete
 rebuild of the database.&nbsp; This means that all genomes, data and
 analysis were redone and improved. We encourage you to explore this
-release and as usual
-we look forward to hearing from with suggestions for further
+release and as usual we look forward to hearing from with suggestions
+for further
 improvement and any problems you may encounter.&nbsp; <br>
 <br>
 <span style="font-weight: bold;">
@@ -58,22 +58,23 @@ style="font-style: italic;">B. bovis</span>.&nbsp; Searches against
 this data are available by selection "<a style="font-weight: bold;"
 href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Microarray</a>"
 in the "Transcript Expression" section under the heading "Identify
-Genes by" on the home page.&nbsp; </li>
+Genes by" on the home page.</li>
 </ul>
-<div style="text-align: justify; font-family: Arial;">
-</div>
-<div style="margin-left: 40px; text-align: justify; font-family: Arial;">Searches
+<div style="margin-left: 40px;"><span style="font-family: Arial;">Searches
 for gens based on their
 expression profile may be combined with other available searches in
 PiroplasmaDB.&nbsp; For example, the following shared search strategy
 identifies predicted secreted genes that are differentially regulated
-between virulent and attenuated strains:<br>
+between virulent and attenuated strains:</span><br>
 </div>
 <div style="text-align: justify; font-family: Arial;">
-<br>
 </div>
-<div style="margin-left: 80px; text-align: justify; font-family: Arial;"><span
-style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span><br>
+<div style="text-align: justify; font-family: Arial;">
+<a href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><br>
+</a></div>
+<div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
+href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><span
+style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span></a><br>
 </div>
 <div style="text-align: justify; font-family: Arial;">
 <br>
@@ -86,11 +87,12 @@ the <a style="font-weight: bold;"
 href="http://piroplasmadb.org/gene/BBOV_IV001490">variant erythrocyte
 surface antigens</a> and scroll down to the
 expression section.<br>
+<br>
 </div>
 <div style="text-align: justify; font-family: Arial;">
 </div>
 <ul style="text-align: justify; font-family: Arial;">
-<li>&nbsp;Isolate data from environmental samples, <span
+<li>Isolate data from environmental samples, <span
 style="font-style: italic;">Theileriidae</span> and <span
 style="font-style: italic;">Babesiidae</span> obtained from Genbank
 are now
@@ -104,11 +106,12 @@ strategy that identifies all Theileria isolates from Africa:<br>
 </li>
 </ul>
 <div style="text-align: justify; font-family: Arial;">
-<br>
-<span style="font-weight: bold;"></span>
+<a href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3"><br>
+<span style="font-weight: bold;"></span></a>
 </div>
-<div style="margin-left: 80px; text-align: justify; font-family: Arial;">
-ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span><br>
+<div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
+href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3">
+ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span></a><br>
 </div>
 <div style="text-align: justify; font-family: Arial;">
 <br>
