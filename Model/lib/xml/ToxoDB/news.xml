@@ -15,6 +15,85 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 7.3 Released</attribute>
+       <attribute name="date">31 August 2012 15:00</attribute>
+       <attribute name="tag">toxo08_12_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>Toxo08_12_news</title>
+</head>
+<body>
+<div style="font-family: Arial; text-align: justify;"><span
+style="font-weight: bold;">We are pleased to announce the release
+of ToxoDB 7.3</span><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;">New Data in this release:<br>
+<br>
+</span>
+<ul>
+<li>ChIP-on-Chip identification of chromosome-wide binding sites of
+Toxoplasma TBP1, TBP2, RNA polymerase (Rpb9 subunit) and the lysine
+methyltransferase TgSET8. These data were graciously provided to
+ToxoDB pre-publication by Mohamed-Ali Hakimi.&nbsp; <br>
+</li>
+</ul>
+<div style="margin-left: 80px;">This data may be
+visualized as <a style="font-weight: bold;" href="http://goo.gl/Mxo4T">Genome
+Browser tracks</a> by selecting the track called "Type I (RH) MYC
+(Hakimi)".&nbsp; Additionally, this data may be searched using a
+dedicated <a style="font-weight: bold;"
+href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByChIPchip">query
+that allows you to search for genes based on their proximity to peaks
+identified by the ChIP-chip experiments</a>.<br>
+</div>
+<ul>
+</ul>
+<span style="font-weight: bold;"><br>
+New
+functionality:</span><br>
+<br>
+Graphical representation of your gene results mapped to genomic
+sequences.&nbsp; To use this feature, run any gene search then click on
+the "Genome View" tab.&nbsp; This view allows you to interactively
+visualize the genomic distribution of your results -- you can zoom
+in/out, sort results or visit specific gene pages.&nbsp;&nbsp;<br>
+</div>
+<div style="text-align: justify;">
+<br>
+<br style="font-family: Arial;">
+</div>
+<div style="font-family: Arial; text-align: justify;"><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span>
+</div>
+</body>
+</html>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">ToxoDB 7.2 Released</attribute>
        <attribute name="date">11 January 2012 15:00</attribute>
        <attribute name="tag">toxo12_11_news</attribute>

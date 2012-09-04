@@ -18,6 +18,100 @@
     </record>
 -->
 <record>
+       <attribute name="headline">PlasmoDB 9.1 Released</attribute>
+       <attribute name="date">31 August 2012 15:00</attribute>
+       <attribute name="tag">plasmo08_12_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>plasmo08_12</title>
+</head>
+<body>
+<div style="font-family: Arial; text-align: justify;">
+<span style="font-weight: bold;">We are pleased to
+announce the release of PlasmoDB 9.1</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New Data in this release:</span><br>
+<br>
+</div>
+<div style="text-align: justify; font-family: Arial;">
+</div>
+<div style="font-family: Arial; text-align: justify;"><span
+style="font-style: italic;"></span>
+</div>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><span style="font-style: italic;">P. falciparum</span> schizont
+phosphoproteomic data (<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/22127061">Solyakov et al.</a>).&nbsp;
+This
+data can be searched by choosing "Schizont Phospho-proteomic analysis
+(Solyakov et al.)" in the <span style="font-style: italic;">P.
+falciparum</span> section of the <a
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
+style="font-weight: bold;">Mass spec. evidence search page</span></a>.
+Peptides from this dataset are displayed on gene pages in the <a
+href="http://plasmodb.org/gene/PF3D7_1149000"><span
+style="font-weight: bold;">Protein section</span></a> and in the
+Genome Browser by turning on the <a style="font-weight: bold;"
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1838341;stop=2038340;ref=Pf3D7_11_v3;width=800;version=100;flip=0;grid=1;id=5cc2e495ddd82740efe816ccb900a3d8;l=Gene%1ETobinPhosphoPeptides;h_feat=pf3d7_1149000%40yellow">data
+track: Pf. Mass Spec – Schizont Pohspho-proteomic analysis (Solyakov et
+al.)</a>. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+</li>
+</ul>
+<br>
+<div style="margin-left: 40px; font-family: Arial;">
+<div style="margin-left: 40px;">
+<ul style="list-style-type: circle;">
+<li>Click <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/im.do?s=610ffb3f192cddbd">here</a> to
+access a
+search strategy that identifies all <span style="font-style: italic;">P.
+falciparum</span> genes with evidence of phosphorylation from this
+study and from a previously incorporated phosphoproteomic study (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/22018241"><span
+style="font-weight: bold;">Treeck &amp; Sanders <span
+style="font-style: italic;">et. al.</span></span></a>).</li>
+</ul>
+</div>
+<br>
+</div>
+<div style="font-family: Arial; text-align: justify;">&nbsp;<br>
+<span style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span></div>
+</body>
+</html>
+
+
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">PlasmoDB 9.0 Released</attribute>
        <attribute name="date">23 May 2012 15:00</attribute>
        <attribute name="tag">plasmo05_12_news</attribute>
@@ -165,7 +259,6 @@ style="font-weight: bold; font-style: italic;"> and <a
 href="http://twitter.com/eupathdb">Twitter</a></span></div>
 </body>
 </html>
-
           ]]>
        </attribute>
     </record>

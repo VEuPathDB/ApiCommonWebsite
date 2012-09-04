@@ -20,6 +20,134 @@
     </record>
 -->
 <record>
+       <attribute name="headline">CryptoDB 4.0 Released</attribute>
+       <attribute name="date">31 August 2012 13:00</attribute>
+       <attribute name="tag">crypto08_12_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>crypto_0812_news</title>
+</head>
+<body>
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We are pleased to
+announce the release of CryptoDB 5.0</span><br>
+<span style="font-weight: bold;">
+</span><br>
+This release of CryptoDB constitutes a complete
+rebuild of the database.&nbsp; This means that all genomes, data and
+analysis were redone and improved. We encourage you to explore this
+release and as usual
+we look forward to hearing from you with suggestions for further
+improvement and any problems you may encounter.&nbsp; <br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New Data in this release:</span><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Single nucleotide polymorphism (SNP) calls based on high
+throughput (HTS) sequencing of <span style="font-style: italic;">C.
+parvum<span style="font-style: italic;"> </span></span>Iowa II and
+TU114 strains (<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/22522000">Widmer <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; To identify
+genes based on their SNP characteristics, click on "<a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=InternalQuestions.GenesBySnps">SNP
+Characteristics</a>" under the "Population Biology" heading in the
+"Identify Genes By" section of the home page. &nbsp;&nbsp; The Widmer <span
+style="font-style: italic;">et. al.</span> data can be queried by
+clicking on "HTS SNP Characteristics".</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>SNP searches may be combined with other searches, for example, <a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/im.do?s=0a2f79d9abbcfe07">this
+search strategy</a> identifies secreted (predicted by SignalP) <span
+style="font-style: italic;">C. parvum</span> genes that contain at
+least 10 non-synonymous SNPs.</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li>SNPs may also be visualized in tabular format on gene pages or
+as a <a style="font-weight: bold;"
+href="http://cryptodb.org/cgi-bin/gbrowse/cryptodb/?start=12983;stop=44278;ref=CM000429;width=800;version=100;flip=0;grid=1;id=1402408ecb15b2235061f0d26d2db2e4;l=HtsAlignmentSNPsByClass%1EGene;h_feat=cgd1_120%40yellow">Genome
+Browser track</a>.
+In the Genome Browser select the track called "HTS SNPs by coding
+potential".&nbsp; Individual diamonds in the genome browser track
+represent SNPs.&nbsp; Mousing over these graphics reveals additional
+information such as the type of SNP, the position of the SNP and the
+nucleotide and amino acid changes.</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><span style="font-weight: bold;"><a
+href="http://cryptodb.org/cgi-bin/gbrowse/cryptodb/?start=27631;stop=29630;ref=CM000429;width=800;version=100;flip=0;grid=1;id=1402408ecb15b2235061f0d26d2db2e4;l=Widmer_HTS_TU114_Alignment%1EHtsAlignmentSNPsByClass%1EGene;h_feat=cgd1_120%40yellow">Alignment
+of highthrough put sequence reads</a> </span>are also available via
+the Genome Browser.<br>
+</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><a style="font-weight: bold;"
+href="http://cryptodb.org/a/showRecord.do?name=SnpRecordClasses.SnpRecordClass&amp;primary_key=NGS_SNP.AAEE01000006.29235">Individual
+SNP records may also be visualized</a>.&nbsp; <br>
+</li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+Graphical representation of your gene results mapped to genomic
+sequences.&nbsp; To use this feature, run any gene search then click on
+the "Genome View" tab.&nbsp; This view allows you to interactively
+visualize the genomic distribution of your results -- you can zoom
+in/out, sort results or visit specific gene pages.<br>
+<br>
+</div>
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span>
+</div>
+</body>
+</html>
+          ]]>
+       </attribute>
+</record>
+<record>
        <attribute name="headline">CryptoDB 4.6 Released</attribute>
        <attribute name="date">11 January 2012 13:00</attribute>
        <attribute name="tag">crypto12_11_news</attribute>
