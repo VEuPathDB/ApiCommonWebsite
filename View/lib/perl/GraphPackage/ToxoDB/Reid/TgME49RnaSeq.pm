@@ -3,9 +3,11 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Reid::TgME49RnaSeq;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -17,27 +19,25 @@ sub init {
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
   my $xAxisLabels = ["day 3", "day 4"];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend});
+  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
 
-  $self->setProfileSetsHash
-    ({rpkm => {profiles => ['T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-profiles',
-                                'T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-diff profiles'],
-                   y_axis_label => 'log 2 (RPKM)',
-                   force_x_axis_label_horizontal => 1,
-                   colors => $colors,
-                   default_y_max => 4,
-                   x_axis_labels => $xAxisLabels ,
-                   stack_bars => 1,
-                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
-                  },
-      pct => {profiles => ['T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-percentiles'],
-              y_axis_label => 'Percentile',
-              force_x_axis_label_horizontal => 1,
-              default_y_max => 50,
-              colors => [$colors->[0]],
-              x_axis_labels => $xAxisLabels ,
-             },
-     });
+   my @profileSetsArray = (['T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome', '', ''],
+                           ['T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-diff', '', ''],
+                          );
+  my @percentileSetsArray = (['percentile - T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome', '','']);
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
+  $stacked->setProfileSets($profileSets);
+  $stacked->setColors($colors);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors([@$colors[0]]);
+
+  $self->setGraphObjects($stacked, $percentile);
 
   return $self;
 }

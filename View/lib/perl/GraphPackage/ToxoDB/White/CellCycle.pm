@@ -3,16 +3,15 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::White::CellCycle;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlotSet );
-use ApiCommonWebsite::View::GraphPackage::LinePlotSet;
-
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(250);
   $self->setBottomMarginSize(6.5);
 
   my $colors = ['#CD853F'];
@@ -43,34 +42,36 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 
 ";
 
-  $self->setProfileSetsHash
-    ({rma => {profiles => ['M.White Cell Cycle Microarray profiles'
-                          ],
-              y_axis_label => 'RMA Value (log2)',
-              x_axis_label => 'Time Point',
-              colors => $colors,
-              default_y_max => 10,
-              default_y_min => 5,
-              default_x_min => 0,
-              points_pch => $pch,
-              smooth_spline => 1,
-              spline_approx_n => 60,
-              r_top_margin_title => $cellCycleTopMargin,
-             },
-      pct => {profiles => ['M.White Cell Cycle Microarray profile pcts'
-                          ],
-              y_axis_label => 'percentile',
-              x_axis_label => 'Time Point',
-              colors => $colors,
-              default_y_max => 50,
-              default_y_min => 0,
-              default_x_min => 0,
-              points_pch => $pch,
-              smooth_spline => 1,
-              spline_approx_n => 60,
-              r_top_margin_title => $cellCycleTopMargin,
-       }
-     });
+  my @profileSetsArray = (['M.White Cell Cycle Microarray','', ''],
+                         );
+  my @percentileSetsArray = (['percentile - M.White Cell Cycle Microarray', '',''],
+                            );
+
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setPointsPch($pch);
+  $rma->setDefaultYMax(10);
+  $rma->setDefaultYMin(4);
+  $rma->setSmoothLines(1);
+  $rma->setSplineApproxN(61);
+  $rma->setTitleLine(2.25);
+  $rma->setRPostscript($cellCycleTopMargin);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setPointsPch($pch);
+  $percentile->setSmoothLines(1);
+  $percentile->setSplineApproxN(61);
+  $percentile->setTitleLine(2.25);
+  $percentile->setRPostscript($cellCycleTopMargin);
+
+  $self->setGraphObjects($rma, $percentile);
 
   return $self;
 }

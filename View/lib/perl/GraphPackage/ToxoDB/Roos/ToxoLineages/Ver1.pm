@@ -3,28 +3,33 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::ToxoLineages::Ver1;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(200);
-  $self->setPlotWidth(460); # needed, else some x-axis labels in dynamic column graph dont show up
+  $self->setPlotWidth(450);
 
+  my $colors = ['#4682B4', '#B22222', '#8FBC8F', '#6A5ACD', '#87CEEB', '#CD853F',];
 
-  my $colors = ['#4682B4', '#B22222', '#8FBC8F', '#6A5ACD', '#87CEEB', '#CD853F'];
+  my @profileSetsArray = (['Expression profiling of T. gondii strains', 'standard error - Expression profiling of T. gondii strains', '']);
 
-  $self->setProfileSetsHash
-    ({rma => {profiles => ['Expression profiling of the 3 archetypal T. gondii lineages'],
-              y_axis_label => 'RMA Value (log2)',
-              colors => $colors,
-              plot_title => 'Tachyzoite comparison of archetypal T.gondii lineages',
-             },
-     });
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setDefaultYMax(10);
+  $rma->setSpaceBetweenBars(0.3);
+  $rma->setPlotTitle('Tachyzoite comparison of archetypal T.gondii lineages');
+
+  $self->setGraphObjects($rma);
 
   return $self;
 }

@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::TzBz;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlotSet );
-use ApiCommonWebsite::View::GraphPackage::LinePlotSet;
-
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
@@ -20,34 +20,33 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
-  $self->setProfileSetsHash
-    ({rma => {profiles => ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions',
-                           'expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions',
-                           'expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions',
-                           'expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions',
-                          ],
-              y_axis_label => 'RMA Value (log2)',
-              x_axis_label => 'Hours',
-              colors => $colors,
-              plot_title => 'Tachyzoites under Bradyzoite-inducing conditions (Pru and RH)',
-              default_y_max => 10,
-              default_y_min => 4,
-              points_pch => $pch,
-             },
-      pct => {profiles => ['expression profile percentiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions',
-                           'expression profile percentiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions',
-                           'expression profile percentiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions',
-                           'expression profile percentiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions'
-                          ],
-              y_axis_label => 'percentile',
-              x_axis_label => 'Hours',
-              colors => $colors,
-              plot_title => 'Tachyzoites under Bradyzoite-inducing conditions (Pru and RH) percentiles',
-              default_y_max => 50,
-              default_y_min => 0,
-              points_pch => $pch,
-       }
-     });
+     my @profileSetsArray = (['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'standard error - expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', ''],
+                             ['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)','', ''],
+                             ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', '', ''],
+                             ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions','standard error - expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', ''],
+                            );
+  my @percentileSetsArray = (['percentile - expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', '',''],
+                             ['percentile - expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)','',''],
+                             ['percentile - expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions','',''],
+                             ['percentile - expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions','',''],
+                            );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setPointsPch($pch);
+  $rma->setDefaultYMax(10);
+  $rma->setDefaultYMin(4);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setPointsPch($pch);
+  
+  $self->setGraphObjects($rma, $percentile);
 
   return $self;
 }

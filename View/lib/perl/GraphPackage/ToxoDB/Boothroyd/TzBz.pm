@@ -3,39 +3,38 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Boothroyd::TzBz;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlotSet );
-use ApiCommonWebsite::View::GraphPackage::LinePlotSet;
-
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
+  $self->setPlotWidth(450);
+
   my $colors = ['#8FBC8F'];
 
-  $self->setProfileSetsHash
-    ({rma => {profiles => ['expression profiles of T. gondii Matt_Tz-Bz time series'],
-              y_axis_label => 'RMA Value (log2)',
-              x_axis_label => 'Days',
-              colors => $colors,
-              plot_title => 'Tachyzoite to Bradyzoite Differentiation Time Series',
-              default_y_max => 10,
-              default_y_min => 4,
-             },
+   my @profileSetsArray = (['expression profiles of T. gondii Matt_Tz-Bz time series', 'standard error - expression profiles of T. gondii Matt_Tz-Bz time series', '']);
+  my @percentileSetsArray = (['percentile - expression profiles of T. gondii Matt_Tz-Bz time series', '',''],);
 
-      pct => {profiles => ['expression profile percentiles of T. gondii Matt_Tz-Bz time series'],
-              y_axis_label => 'percentile',
-              x_axis_label => 'Days',
-              colors => $colors,
-              plot_title => 'Tachyzoite to Bradyzoite Differentiation Time Series - Percentiles',
-              default_y_max => 50,
-              default_y_min => 0,
-             }
-     });
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setDefaultYMax(10);
+  $rma->setDefaultYMin(4);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+
+  $self->setGraphObjects($rma, $percentile);
 
   return $self;
 }
-
 
 1;
