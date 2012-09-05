@@ -23,131 +23,118 @@
            
          <![CDATA[
 <html>
-<head>
-<meta content="text/html; charset=ISO-8859-1"
-http-equiv="content-type">
-<title>piro08_12</title>
-</head>
-<body>
-<div style="text-align: justify; font-family: Arial;">
-<span style="font-weight: bold;">We are pleased to
-announce the release of PiroplasmaDB 2.0</span><br
-style="font-weight: bold;">
-<span style="font-weight: bold;">
-</span><br>
-This release of PiroplasmaDB constitutes a complete
-rebuild of the database.&nbsp; This means that all genomes, data and
-analysis were redone and improved. We encourage you to explore this
-release and as usual we look forward to hearing from with suggestions
-for further
-improvement and any problems you may encounter.&nbsp; <br>
-<br>
-<span style="font-weight: bold;">
-New data in this release:</span><br>
-<span style="font-weight: bold;">
-</span><br>
-</div>
-<ul style="text-align: justify; font-family: Arial;">
-<li><span style="font-style: italic;">Babesia bovis</span> microarray
-data from <a style="font-weight: bold;"
-href="http://www.ncbi.nlm.nih.gov/pubmed/21838895">Lau <span
-style="font-style: italic;">et. al.</span></a> Incorporation of this
-data enables you to search for genes that are differentially regulated
-between virulent and attenuated strains of <span
-style="font-style: italic;">B. bovis</span>.&nbsp; Searches against
-this data are available by selection "<a style="font-weight: bold;"
-href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Microarray</a>"
-in the "Transcript Expression" section under the heading "Identify
-Genes by" on the home page.</li>
-</ul>
-<br><div style="margin-left: 40px;"><span style="font-family: Arial;">Searches
-for gens based on their
-expression profile may be combined with other available searches in
-PiroplasmaDB.&nbsp; For example, the following shared search strategy
-identifies predicted secreted genes that are differentially regulated
-between virulent and attenuated strains:</span><br>
-</div>
-<div style="text-align: justify; font-family: Arial;">
-</div>
-<div style="text-align: justify; font-family: Arial;">
-<a href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><br>
-</a></div>
-<div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><span
-style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span></a><br>
-</div>
-<div style="text-align: justify; font-family: Arial;">
-<br>
-</div>
-<div style="margin-left: 40px; text-align: justify; font-family: Arial;">In
-addition, graphical representations of expression profiles are
-available on all <span style="font-style: italic;">B. bovis</span>
-gene pages.&nbsp; As an example, you can visit the gene page for one of
-the <a style="font-weight: bold;"
-href="http://piroplasmadb.org/gene/BBOV_IV001490">variant erythrocyte
-surface antigens</a> and scroll down to the
-expression section.<br>
-<br>
-</div>
-<div style="text-align: justify; font-family: Arial;">
-</div>
-<ul style="text-align: justify; font-family: Arial;">
-<li>Isolate data from environmental samples, <span
-style="font-style: italic;">Theileriidae</span> and <span
-style="font-style: italic;">Babesiidae</span> obtained from Genbank
-are now
-available.&nbsp; These data may be searched based on multiple criteria
-including geographic location, isolation source, host, strain,
-etc.&nbsp; Searches against isolate data are available under the
-"Isolates" section under the heading "Identify other data types" on the
-home
-page.&nbsp; Isolate searches may be combined such as the following
-strategy that identifies all Theileria isolates from Africa:<br>
-</li>
-</ul>
-<div style="text-align: justify; font-family: Arial;">
-<a href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3"><br>
-<span style="font-weight: bold;"></span></a>
-</div>
-<div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3">
-ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span></a><br>
-</div>
-<div style="text-align: justify; font-family: Arial;">
-<br>
-<span style="font-weight: bold;"></span><br>
-<span style="font-weight: bold;">
-</span><br>
-<span style="font-weight: bold;">
-New
-functionality:</span><br>
-<br>
-Graphical representation of your gene results mapped to genomic
-sequences.&nbsp; To use this feature, run any gene search then click on
-the "Genome View" tab.&nbsp; This view allows you to interactively
-visualize the genomic distribution of your results -- you can zoom
-in/out, sort results or visit specific gene pages.&nbsp; <br>
-<br>
-<br>
-<span style="font-style: italic;"><span style="font-style: italic;"><span
-style="text-decoration: underline;">Note:</span>
-Our bimonthly database releases incorporate new data and correct old
-data when necessary.&nbsp; Changes in annotation and new experimental
-data
-may slightly alter your search results by increasing or decreasing the
-number of hits. When search parameters change with a new release, we
-invalidate (<span style="color: red;">Ø</span>) the search and ask you
-to rerun it. When IDs are updated or removed, we map the old IDs to the
-new ones, remove the old IDs from your Basket, and leave your Favorites
-page alone.</span></span><br>
-<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-is now on <a
-href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-style="font-weight: bold; font-style: italic;"> and <a
-href="http://twitter.com/eupathdb">Twitter</a></span><br>
-</div>
-</body>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>piro08_12</title>
+  </head>
+  <body>
+    <div style="text-align: justify; font-family: Arial;"> <span style="font-weight: bold;">We
+        are pleased to announce the release of
+        PiroplasmaDB 2.0</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;"> </span><br>
+      <font face="Arial">This release of </font>PiroplasmaDB<font face="Arial">
+        constitutes a complete
+        rebuild of the database.&nbsp; This means that all genomes and
+        data were reloaded and reanalyzed.&nbsp; </font><font face="Arial">It
+        is possible that many of your stored search strategies will need to be
+        rerun to accommodate the new analyses (please see note at the bottom of
+        this news item).&nbsp; </font><font face="Arial">We encourage you to
+        explore this release and, as usual,
+        we look forward to hearing from you with suggestions for further
+        improvement and any problems you may encounter. </font><br>
+      <br>
+      <span style="font-weight: bold;"> New data in this release:</span><br>
+      <span style="font-weight: bold;"> </span><br>
+    </div>
+    <ul style="text-align: justify; font-family: Arial;">
+      <li><span style="font-style: italic;">Babesia bovis</span> microarray
+        data from <a style="font-weight: bold;" href="http://www.ncbi.nlm.nih.gov/pubmed/21838895">Lau
+          <span style="font-style: italic;">et. al.</span></a> Incorporation of
+        this
+        data enables you to search for genes that are differentially regulated
+        between virulent and attenuated strains of <span style="font-style: italic;">B.
+          bovis</span>.&nbsp; Searches against
+        this data are available by selection "<a style="font-weight: bold;" href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Microarray</a>"
+        in the "Transcript Expression" section under the heading "Identify
+        Genes by" on the home page.</li>
+    </ul>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;"><br>
+        Searches for gens based on their expression profile may be combined
+        with other available searches in PiroplasmaDB.&nbsp; For example, the
+        following shared search strategy identifies predicted secreted genes
+        that are differentially regulated between virulent and attenuated
+        strains:</span><br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> </div>
+    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><br>
+      </a></div>
+    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
+        href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><span
+          style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span></a><br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> <br>
+    </div>
+    <div style="margin-left: 40px; text-align: justify; font-family: Arial;">In
+      addition, graphical representations of expression profiles are
+      available on all <span style="font-style: italic;">B. bovis</span>
+      gene pages.&nbsp; As an example, you can visit the gene page for one of
+      the <a style="font-weight: bold;" href="http://piroplasmadb.org/gene/BBOV_IV001490">variant
+        erythrocyte
+        surface antigens</a> and scroll down to the expression section.<br>
+      <br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> </div>
+    <ul style="text-align: justify; font-family: Arial;">
+      <li>Isolate data from environmental samples, <span style="font-style: italic;">Theileriidae</span>
+        and <span style="font-style: italic;">Babesiidae</span> obtained from
+        Genbank
+        are now available.&nbsp; These data may be searched based on multiple
+        criteria including geographic location, isolation source, host, strain,
+        etc.&nbsp; Searches against isolate data are available under the
+        "Isolates" section under the heading "Identify other data types" on the
+        home page.&nbsp; Isolate searches may be combined such as the following
+        strategy that identifies all Theileria isolates from Africa:<br>
+      </li>
+    </ul>
+    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3"><br>
+        <span style="font-weight: bold;"></span></a> </div>
+    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
+        href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3">
+        ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span></a><br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> <br>
+      <span style="font-weight: bold;"></span><br>
+      <span style="font-weight: bold;"> </span><br>
+      <span style="font-weight: bold;"> New functionality:</span><br>
+      <br>
+      Graphical representation of your gene results mapped to genomic
+      sequences.&nbsp; To use this feature, run any gene search then click on
+      the "Genome View" tab.&nbsp; This view allows you to interactively
+      visualize the genomic distribution of your results -- you can zoom
+      in/out, sort results or visit specific gene pages.&nbsp; <br>
+      <br>
+      <br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly
+          database releases incorporate new data and correct old data when
+          necessary.&nbsp; Changes in annotation and new experimental data may
+          slightly alter your search results by increasing or decreasing the
+          number of hits. When search parameters change with a new release, we
+          invalidate (<span style="color: red;">Ø</span>) the search and ask you
+          to rerun it. When IDs are updated or removed, we map the old IDs to
+          the
+          new ones, remove the old IDs from your Basket, and leave your
+          Favorites
+          page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is
+          now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">
+        and <a href="http://twitter.com/eupathdb">Twitter</a></span><br>
+    </div>
+  </body>
 </html>
           ]]>
        </attribute>
