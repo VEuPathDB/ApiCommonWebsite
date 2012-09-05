@@ -3,15 +3,15 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Matrajt::BzMutant;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(300);
   $self->setPlotWidth(450);
   $self->setBottomMarginSize(7);
 
@@ -21,19 +21,25 @@ sub init {
 
   $self->setMainLegend({colors => ['#996600', '#FF0000', '#FF6600','#FFFF00','#33FF66', '#009900', '#0000CC', '#660033',], short_names => $legend, cols=> 5});
 
-    $self->setProfileSetsHash
-    ({rma => {profiles => ['expression profiles of TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant'],
-              stdev_profiles => ['expression profile standard errors of TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant'],
-               #  x_axis_labels => [],
-               y_axis_label => 'RMA Value (log2)',
-               colors => $colors,
-             },
-      pct => {profiles => ['expression profile percentiles of TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant'],
-              # x_axis_labels => [],
-              y_axis_label => 'Percentile',
-              colors => $colors,
-            }
-     });
+  my @profileSetsArray = (['TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', 'standard error - TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', '']);
+  my @percentileSetsArray = (['percentile - TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', '',''],);
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setElementNameMarginSize (10);
+  $rma->setScreenSize(300);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setElementNameMarginSize (10);
+  $percentile->setScreenSize(300);
+
+  $self->setGraphObjects($rma, $percentile);
 
   return $self;
 }
