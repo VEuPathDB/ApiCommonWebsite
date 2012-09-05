@@ -20,7 +20,7 @@
     </record>
 -->
 <record>
-       <attribute name="headline">CryptoDB 4.0 Released</attribute>
+       <attribute name="headline">CryptoDB 5.0 Released</attribute>
        <attribute name="date">31 August 2012 13:00</attribute>
        <attribute name="tag">crypto08_12_news</attribute>
        <attribute name="category">release</attribute>
