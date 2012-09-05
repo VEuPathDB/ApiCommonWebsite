@@ -42,6 +42,10 @@ sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = 
 
 sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
 sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
+
+sub getTitleLine                 { $_[0]->{'_title_line'                    }}
+sub setTitleLine                 { $_[0]->{'_title_line'                    } = $_[1]}
+
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -118,6 +122,8 @@ sub makeRPlotString {
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
+
+  my $titleLine = $self->getTitleLine();
 
   my $legendLabels = $self->getLegendLabels;
   my $legendLabelsString; 
@@ -280,8 +286,12 @@ if($hasExtraLegend) {
   extra.legend.size = $extraLegendSize;
 }
 
+title.line = 0.5;
+if($titleLine) {
+  title.line = $titleLine;
+}
 
-par(mar       = c($bottomMargin,4,2,4 + extra.legend.size), xpd=NA);
+par(mar       = c($bottomMargin,4,1.5 + title.line,4 + extra.legend.size), xpd=NA);
 
 my.pch = $defaultPch;
 
@@ -467,7 +477,7 @@ par(xpd=FALSE);
 grid(nx=NA,ny=NULL,col=\"gray75\");
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
-plasmodb.title(\"$plotTitle\");
+plasmodb.title(\"$plotTitle\", line=title.line);
 
 ";
 
