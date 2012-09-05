@@ -218,8 +218,8 @@ plasmodb.trophozoite.color <- rgb(1.0,0.5,1.0);
 
 # -------------------------------- titles --------------------------------
 
-plasmodb.title <- function ( title.string ) {
-  title(title.string, font.main = 2, col.main = plasmodb.title.color, adj=0, line=0.5);
+plasmodb.title <- function ( title.string, line=0.5 ) {
+  title(title.string, font.main = 2, col.main = plasmodb.title.color, adj=0, line=line);
 }
 
 # ----------------------------- plot margins -----------------------------
