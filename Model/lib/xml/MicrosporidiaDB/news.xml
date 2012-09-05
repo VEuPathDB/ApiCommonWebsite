@@ -28,66 +28,56 @@
     <title>Micro08_12_news</title>
   </head>
   <body>
-    <div style="text-align: justify; font-family: Arial;">
-      <span style="font-weight: bold;">We are pleased to
-        announce the release of MicrosporidiaDB 3.0</span><br style="font-weight: bold;">
-      <span style="font-weight: bold;">
-        <br>
-      </span>This release of MicrosporidiaDB constitutes a complete
-      rebuild of the database.&nbsp; <font face="Arial">This means that all
-        genomes and data were reloaded and reanalyzed.&nbsp; </font><font face="Arial">It
+    <div style="text-align: justify; font-family: Arial;"> <span style="font-weight: bold;">We
+        are pleased to announce the release of MicrosporidiaDB 3.0</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;"> <br>
+      </span>This release of MicrosporidiaDB constitutes a complete rebuild of
+      the database.&nbsp; <font face="Arial">This means that all genomes and
+        data were reloaded and reanalyzed.&nbsp; </font><font face="Arial">It
         is possible that many of your stored search strategies will need to be
         rerun to accommodate the new analyses (please see note at the bottom of
         this news item).&nbsp; </font><font face="Arial">We encourage you to
-        explore this release and, as usual,
-        we look forward to hearing from you with suggestions for further
-        improvement and any problems you may encounter. </font><br>
+        explore this release and, as usual, we look forward to hearing from you
+        with suggestions for further improvement and any problems you may
+        encounter. </font><br>
       <br>
-      <span style="font-weight: bold;">
-        New data in this release:<br>
+      <span style="font-weight: bold;"> New data in this release:<br>
         <br>
       </span><br>
       <ul>
-        <li>
-          Genomic sequence and annotation from the following organisms:</li>
+        <li> Genomic sequence and annotation from the following organisms:</li>
       </ul>
       <br>
       <span style="font-weight: bold;"></span>
       <ul style="margin-left: 80px;">
         <li><span style="font-style: italic;">Nematocida parisii</span> ERTm1
-          and ERTm3 (The Broad Institute)</li>
+          and ERTm3 (The Broad Institute)<br>
+        </li>
       </ul>
       <ul style="margin-left: 80px;">
         <li><span style="font-style: italic;">Nematocida sp.</span> 1 ERTm2 (The
-          Broad Institute)</li>
+          Broad Institute)<br>
+        </li>
       </ul>
       <ul style="margin-left: 80px;">
         <li><span style="font-style: italic;">Encephalitozoon cuniculi</span>
           EC1, <span style="font-style: italic;"></span>EC2 and EC3 (Sequencing
           by The Broad Institute, assembly and annotation provided by
-          Jean-Francois Pombert in Patrick Keeling's group)</li>
+          Jean-Francois Pombert in Patrick Keeling's group)<br>
+        </li>
       </ul>
       <ul style="margin-left: 80px;">
-      </ul>
-      <ul>
-        <ul>
-          <ul style="list-style-type: disc;">
-            <li><span style="font-style: italic;">Encephalitozoon hellem</span>
-              Swiss (provided by Jean-Francois Pombert in Patrick Keeling's
-              group)</li>
-          </ul>
-        </ul>
+        <li><span style="font-style: italic;">Encephalitozoon hellem</span>
+          Swiss (provided by Jean-Francois Pombert in Patrick Keeling's group)</li>
       </ul>
       <br>
       <ul>
-        <li>
-          In addition, the assembled but
-          unannotated genome of <span style="font-style: italic;">Vavraia
-            culicis</span> floridensis is
-          available (The Broad Institute).&nbsp; Search for genomic sequences
-          using any of the searches found in the "Genomic Sequences"
-          section under the heading "Identify other data types" on the home
-          page. <br>
+        <li>In addition, the assembled but unannotated genome of <span style="font-style: italic;">Vavraia
+            culicis</span> floridensis is available (The Broad Institute).&nbsp;
+          Search for genomic sequences using any of the searches found in the
+          "Genomic Sequences" section under the heading "Identify other data
+          types" on the home page. <br>
+          <br>
         </li>
       </ul>
       <ul>
@@ -96,42 +86,37 @@
           including geographic location, isolation source, host, strain,
           etc.&nbsp; Searches against isolate data are available in the
           "Isolates" section under the heading "Identify other data types" on
-          the
-          home
-          page. </li>
+          the home page. </li>
       </ul>
       <span style="font-weight: bold;"><br>
         <br>
-        New
-        functionality:</span><br>
+        New functionality:</span><br>
       <br>
       Graphical representation of your gene results mapped to genomic
       sequences.&nbsp; To use this feature, run any gene search then click on
       the "Genome View" tab.&nbsp; This view allows you to interactively
-      visualize the genomic distribution of your results -- you can zoom
-      in/out, sort results or visit specific gene pages.&nbsp; <br>
+      visualize the genomic distribution of your results -- you can zoom in/out,
+      sort results or visit specific gene pages.&nbsp; <br>
       <br>
       <br>
       <span style="font-style: italic;"><span style="font-style: italic;"><span
             style="text-decoration: underline;">Note:</span>
           Our bimonthly database releases incorporate new data and correct old
           data when necessary.&nbsp; Changes in annotation and new experimental
-          data
-          may slightly alter your search results by increasing or decreasing the
-          number of hits. When search parameters change with a new release, we
-          invalidate (<span style="color: red;">Ø</span>) the search and ask you
-          to rerun it. When IDs are updated or removed, we map the old IDs to
-          the
-          new ones, remove the old IDs from your Basket, and leave your
-          Favorites
-          page alone.</span></span><br>
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
       <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB is now on 
-        <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+          is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
         style="font-weight: bold; font-style: italic;">
         and <a href="http://twitter.com/eupathdb">Twitter</a></span></div>
     <br style="font-family: Arial;">
     <br style="font-family: Arial;">
+    
   </body>
 </html>
 ]]>
