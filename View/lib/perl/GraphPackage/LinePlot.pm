@@ -43,8 +43,6 @@ sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = 
 sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
 sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
 
-sub getTitleLine                 { $_[0]->{'_title_line'                    }}
-sub setTitleLine                 { $_[0]->{'_title_line'                    } = $_[1]}
 
 #--------------------------------------------------------------------------------
 
@@ -286,10 +284,7 @@ if($hasExtraLegend) {
   extra.legend.size = $extraLegendSize;
 }
 
-title.line = 0.5;
-if($titleLine) {
-  title.line = $titleLine;
-}
+title.line = $titleLine;
 
 par(mar       = c($bottomMargin,4,1.5 + title.line,4 + extra.legend.size), xpd=NA);
 

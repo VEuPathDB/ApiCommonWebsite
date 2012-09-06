@@ -75,6 +75,8 @@ sub makeRPlotString {
   my $beside = $isStack ? 'FALSE' : 'TRUE';
   my $horiz = $isHorizontal ? 'TRUE' : 'FALSE';
 
+  my $titleLine = $self->getTitleLine();
+
   my $bottomMargin = $self->getElementNameMarginSize();
   my $spaceBetweenBars = $self->getSpaceBetweenBars();
 
@@ -189,8 +191,11 @@ if($hasExtraLegend) {
   extra.legend.size = $extraLegendSize;
 }
 
+
+title.line = $titleLine;
+
 if($horiz) {
-  par(mar       = c(5, names.margin,fold.induction.margin,2 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
+  par(mar       = c(5, names.margin,title.line + fold.induction.margin,2 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   x.lim = c(d.min, d.max);
   y.lim = NULL;
 
@@ -200,7 +205,7 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin,4,2,fold.induction.margin + extra.legend.size), xpd=NA);
+  par(mar       = c(names.margin,4, 1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
@@ -312,7 +317,7 @@ if($hasExtraLegend) {
         );
 }
 
-plasmodb.title(\"$plotTitle\");
+plasmodb.title(\"$plotTitle\", line=title.line);
 
 ";
 
