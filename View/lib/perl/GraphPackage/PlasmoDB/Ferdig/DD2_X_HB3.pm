@@ -97,6 +97,9 @@ sub queryParentalAlleles {
 
   my $secondaryId = $self->getSecondaryId();
 
+  # temp patch for build15 til we can reload the haplock profiles
+  $secondaryId ~= s/_v\d//;
+
   my $_qh   = $self->getQueryHandle();
 
   my ($profile, $key);
