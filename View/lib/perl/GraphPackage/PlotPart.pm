@@ -75,7 +75,8 @@ sub setHasExtraLegend            { $_[0]->{'_has_extra_legend'              } = 
 sub getExtraLegendSize           { $_[0]->{'_extra_legend_size'             }}
 sub setExtraLegendSize           { $_[0]->{'_extra_legend_size'             } = $_[1]}
 
-
+sub getTitleLine                 { $_[0]->{'_title_line'                    }}
+sub setTitleLine                 { $_[0]->{'_title_line'                    } = $_[1]}
 
 #----------------------------------------------------------------------------------------------
 
@@ -94,6 +95,8 @@ sub new {
   $self->setDefaultYMin(0);
   $self->setColors(["#000099"]);
   $self->setExtraLegendSize(4.5);
+
+  $self->setTitleLine(0.5);
 
   $self->setPlotTitle($id);
 
