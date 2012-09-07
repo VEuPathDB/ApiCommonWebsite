@@ -327,36 +327,7 @@ print "writing $blast_config\n";
 $wb_c->print(\*WBC); 
 
 # motifSearch-config.xml ###############################################
-my $ms_c= new XML::Twig( 
-    keep_spaces => 1, 
-    PrettyPrint => 'nice',
-    keep_atts_order => 1,
-    # SourceIdRegex and OrganismRegex are removed in >= Build 10
-    TwigHandlers => {
-      'entry[@key="DataDir"]'  => 
-                sub { $_[1]->set_text("$rls_webservice_data_dir/motif") },
-      'entry[@key="SourceIdRegex"]'  => 
-                sub {
-                    my $regex = ($product eq 'TrichDB') ?
-                        '^\S+?\|\S*?\|(\S+?)\|' :
-                        '^>(?:\w*\|)*(\S+)';
-                    $_[1]->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
-                },
-      'entry[@key="OrganismRegex"]'  => 
-                sub {
-                    my $regex = ($product eq 'TrichDB') ?
-                        '>?(\S+?)_' :
-                        '\|\s*organism=([^_ ]+)';
-                    $_[1]->set_content(XML::Twig::Elt->new( '#CDATA' => $regex));
-                },
-    }
-);
-
-$ms_c->parsefile("${motifSearch_config}.sample");
-
-open(MSC, ">$motifSearch_config") || die "can not open $motifSearch_config\n";
-print "writing $motifSearch_config\n";
-$ms_c->print(\*MSC); 
+# Do Nothing
 
 # profileSimilarity-config.xml ###############################################
 my $ps_c= new XML::Twig( 
