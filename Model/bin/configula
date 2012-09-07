@@ -327,7 +327,7 @@ print "writing $blast_config\n";
 $wb_c->print(\*WBC); 
 
 # motifSearch-config.xml ###############################################
-# Do Nothing
+copy("${motifSearch_config}.sample", "$motifSearch_config");
 
 # profileSimilarity-config.xml ###############################################
 my $ps_c= new XML::Twig( 
