@@ -11,7 +11,8 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-  my $sampleNames = ["CL1", "CL2", "CL3", "CL4"];
+  #my $sampleNames = ["CL1", "CL2", "CL3", "CL4"];
+  my $sampleNames = ["1.2e9", "2.5e9"];
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet("CparIowaII Lippuner calf intestine oocyst infection");
