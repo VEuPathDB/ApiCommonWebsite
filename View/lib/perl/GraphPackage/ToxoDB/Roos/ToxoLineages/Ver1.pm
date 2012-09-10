@@ -25,11 +25,18 @@ sub init {
   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
-  $rma->setDefaultYMax(10);
-  $rma->setSpaceBetweenBars(0.3);
+#  $rma->setDefaultYMax(10);
+#  $rma->setSpaceBetweenBars(0.3);
   $rma->setPlotTitle('Tachyzoite comparison of archetypal T.gondii lineages');
 
-  $self->setGraphObjects($rma);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - Expression profiling of T. gondii strains']]);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  
+  $self->setGraphObjects($rma, $percentile);
+
 
   return $self;
 }
