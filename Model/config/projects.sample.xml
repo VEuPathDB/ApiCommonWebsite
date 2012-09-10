@@ -17,7 +17,7 @@
 <projects timeout="0" xmlns="http://www.eupathdb.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.eupathdb.org ../lib/rng/projects.xsd ">
   <project name="EuPathDB" site="http://eupathdb.org/eupathdb/" />
-  <project name="AmoebaDB" site="http://toxodb.org/toxo/" />
+  <project name="AmoebaDB" site="http://amoebadb.org/amoeba/" />
   <project name="CryptoDB" site="http://cryptodb.org/cryptodb/" />
   <project name="FungiDB" site="http://fungidb.org/fungidb/"></project>
   <project name="GiardiaDB" site="http://giardiadb.org/giardiadb/"></project>
