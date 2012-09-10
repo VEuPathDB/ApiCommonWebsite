@@ -1,14 +1,14 @@
 # $Revision$
 
-API_BLAST_PATH=Common/devSiteFilesMirror/webServices/EuPathDB/release-2.8/blast
-AMOEBA_BLAST_PATH=Common/devSiteFilesMirror/webServices/AmoebaDB/release-1.4/blast
-CRYPTO_BLAST_PATH=Common/devSiteFilesMirror/webServices/CryptoDB/release-4.4/blast
-GIARDIA_BLAST_PATH=Common/devSiteFilesMirror/webServices/GiardiaDB/release-2.3/blast
-MICRO_BLAST_PATH=Common/devSiteFilesMirror/webServices/MicrosporidiaDB/release-1.4/blast
-PIRO_BLAST_PATH=Common/devSiteFilesMirror/webServices/PiroplasmaDB/release-1.0/blast
-PLASMO_BLAST_PATH=Common/devSiteFilesMirror/webServices/PlasmoDB/release-7.2/blast
-TOXO_BLAST_PATH=Common/devSiteFilesMirror/webServices/ToxoDB/release-6.4/blast
-TRICH_BLAST_PATH=Common/devSiteFilesMirror/webServices/TrichDB/release-1.2/blast
-TRYP_BLAST_PATH=Common/devSiteFilesMirror/webServices/TriTrypDB/release-3.1/blast
+API_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/EuPathDB/release-2.15/blast
+AMOEBA_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/AmoebaDB/release-1.7/blast
+CRYPTO_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/CryptoDB/release-5.0/blast
+GIARDIA_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/GiardiaDB/release-2.5/blast
+MICRO_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/MicrosporidiaDB/release-3.0/blast
+PIRO_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/PiroplasmaDB/release-2.0/blast
+PLASMO_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/PlasmoDB/release-9.1/blast
+TOXO_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/ToxoDB/release-7.3/blast
+TRICH_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/TrichDB/release-1.3/blast
+TRYP_BLAST_PATH=/var/www/Common/prodSiteFilesMirror/webServices/TriTrypDB/release-4.1/blast
 
-SITE_ADMIN_EMAIL = mheiges@uga.edu
+SITE_ADMIN_EMAIL=mheiges@uga.edu, aurreco@uga.edu
