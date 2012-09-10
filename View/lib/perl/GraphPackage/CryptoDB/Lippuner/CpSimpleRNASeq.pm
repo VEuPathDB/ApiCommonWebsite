@@ -14,9 +14,9 @@ sub init {
   my $sampleNames = ["CL1", "CL2", "CL3", "CL4"];
 
   $self->setSampleNames($sampleNames);
-  $self->setMinRpkmProfileSet("CparIowaII Lippuner mRNA Seq data");
-  $self->setDiffRpkmProfileSet("CparIowaII Lippuner mRNA Seq data-diff");
-  $self->setPctProfileSet("percentile - CparIowaII Lippuner mRNA Seq data");
+  $self->setMinRpkmProfileSet("CparIowaII Lippuner calf intestine oocyst infection");
+  $self->setDiffRpkmProfileSet("CparIowaII Lippuner calf intestine oocyst infection-diff");
+  $self->setPctProfileSet("percentile - CparIowaII Lippuner calf intestine oocyst infection");
   $self->setColor("#D87093");
   $self->makeGraphs(@_);
   $self->setBottomMarginSize(8);
