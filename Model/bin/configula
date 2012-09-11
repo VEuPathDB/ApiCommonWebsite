@@ -106,25 +106,7 @@ my $map_file = "$wdk_config_dir/master_configuration_set";
 my $webapp = basename(readlink $site_symlink);
 my ($webapp_nover) = $webapp =~ m/(^[a-zA-Z_]+)/;
 
-my $comment_config_origin            = "$project_home/ApiCommonWebsite/Model/config/$product/comment-config.xml.sample";
-my $model_config_origin              = "$project_home/ApiCommonWebsite/Model/config/$product/model-config.xml.sample";
-my $model_prop_origin                = "$project_home/ApiCommonWebsite/Model/config/$product/model.prop.sample";
-my $wdkquery_config_origin           = "$project_home/ApiCommonWebService/WSFPlugin/config/wdkquery-config.xml.sample";
-my $blast_config_origin              = "$project_home/ApiCommonWebService/WSFPlugin/config/blast-config.xml.sample";
-my $projects_config_origin           = "$project_home/ApiCommonWebsite/Model/config/projects.sample.xml";
-my $motifSearch_config_origin        = "$project_home/ApiCommonWebService/WSFPlugin/config/motifSearch-config.xml.sample";
-my $profileSimilarity_config_origin  = "$project_home/ApiCommonWebService/WSFPlugin/config/profileSimilarity-config.xml.sample";
-my $apifed_config_origin             = "$project_home/ApiCommonWebService/WSFPlugin/config/apifed-config.xml.sample";
 
-my $comment_config                   = "$wdk_product_config_dir/comment-config.xml";
-my $model_config                     = "$wdk_product_config_dir/model-config.xml";
-my $model_prop                       = "$wdk_product_config_dir/model.prop";
-my $wdkquery_config                  = "$wdk_config_dir/wdkquery-config.xml";
-my $blast_config                     = "$wdk_config_dir/blast-config.xml";
-my $projects_config                  = "$wdk_config_dir/projects.xml";
-my $motifSearch_config               = "$wdk_config_dir/motifSearch-config.xml";
-my $profileSimilarity_config         = "$wdk_config_dir/profileSimilarity-config.xml";
-my $apifed_config                    = "$wdk_config_dir/apifed-config.xml";
 
 my %config_files = (
     'comment_config' => {
@@ -218,7 +200,9 @@ my $userDb_connectionUrl = 'jdbc:oracle:oci:@' . $userDb_database;
 # is especially desired for production sites
 my $webServiceUrl = 'http://' . $target_site . '/' . $webapp_nover . '/services/WsfService';
 
-# install configuration files from source sample files 
+# Install all configuration files from source sample files.
+# Note that later we may reopen the source file and parse it into the dest file,
+# so this blanket copy step may include some unnecessary copying.
 for my $cf (keys %config_files) {
     copy( 
         $config_files{$cf}{'source'},
@@ -264,10 +248,10 @@ my $m_c= new XML::Twig(
     }
 );
 
-$m_c->parsefile("${model_config}.sample");
+$m_c->parsefile($config_files{'model_config'}{'source'});
 
-open(MC, ">$model_config") || die "can not open $model_config\n";
-print "writing $model_config\n";
+open(MC, ">$config_files{'model_config'}{'dest'}") || die "can not open $config_files{'model_config'}{'dest'}\n";
+print "writing $config_files{'model_config'}{'dest'}\n";
 $m_c->print(\*MC); 
 
 recreate_wdkCache() if $recreate_wdkCache;
@@ -282,16 +266,16 @@ my $c_c= new XML::Twig(
     }
 );
 
-$c_c->parsefile("${comment_config}.sample");
+$c_c->parsefile($config_files{'comment_config'}{'source'});
 
-open(CC, ">$comment_config") || die "can not open $comment_config\n";
-print "writing $comment_config\n";
+open(CC, ">$config_files{'comment_config'}{'dest'}") || die "can not open $config_files{'comment_config'}{'dest'}\n";
+print "writing $config_files{'comment_config'}{'dest'}\n";
 $c_c->print(\*CC); 
 
 
 # model.prop #######################################################
-print "writing $model_prop\n";
-parseprop("${model_prop}.sample");
+print "writing $config_files{'model_prop'}{'dest'}\n";
+parseprop();
 
 
 # wdkquery-config.xml ##############################################
@@ -306,10 +290,10 @@ my $w_q = new XML::Twig(
     }
 );
 
-$w_q->parsefile("${wdkquery_config}.sample");
+$w_q->parsefile($config_files{'wdkquery_config'}{'source'});
 
-open(WQC, ">$wdkquery_config") || die "can not open $wdkquery_config\n";
-print "writing $wdkquery_config\n";
+open(WQC, ">$config_files{'wdkquery_config'}{'dest'}") || die "can not open $config_files{'wdkquery_config'}{'dest'}\n";
+print "writing $config_files{'wdkquery_config'}{'dest'}\n";
 $w_q->print(\*WQC);
 
 # projects.xml ###############################################
@@ -344,14 +328,14 @@ my $wb_c= new XML::Twig(
     }
 );
 
-$wb_c->parsefile("${blast_config}.sample");
+$wb_c->parsefile($config_files{'blast_config'}{'source'});
 
-open(WBC, ">$blast_config") || die "can not open $blast_config\n";
-print "writing $blast_config\n";
+open(WBC, ">$config_files{'blast_config'}{'dest'}") || die "can not open $config_files{'blast_config'}{'dest'}\n";
+print "writing $config_files{'blast_config'}{'dest'}\n";
 $wb_c->print(\*WBC); 
 
 # motifSearch-config.xml ###############################################
-copy("${motifSearch_config}.sample", "$motifSearch_config");
+# already copied from source, do nothing else
 
 
 # profileSimilarity-config.xml ###############################################
@@ -379,10 +363,10 @@ my $ps_c= new XML::Twig(
     }
 );
 
-$ps_c->parsefile("${profileSimilarity_config}.sample");
+$ps_c->parsefile($config_files{'profileSimilarity_config'}{'source'});
 
-open(PSC, ">$profileSimilarity_config") || die "can not open $profileSimilarity_config\n";
-print "writing $profileSimilarity_config\n";
+open(PSC, ">$config_files{'profileSimilarity_config'}{'dest'}") || die "can not open $config_files{'profileSimilarity_config'}{'dest'}\n";
+print "writing $config_files{'profileSimilarity_config'}{'dest'}\n";
 $ps_c->print(\*PSC); 
 
 
@@ -411,10 +395,10 @@ if ($product eq 'EuPathDB') {
         }
     );
     
-    $af_c->parsefile("${apifed_config}.sample");
+    $af_c->parsefile($config_files{'apifed_config'}{'source'});
     
-    open(AFC, ">$apifed_config") || die "can not open $apifed_config\n";
-    print "writing $apifed_config\n";
+    open(AFC, ">$config_files{'apifed_config'}{'dest'}") || die "can not open $config_files{'apifed_config'}{'dest'}\n";
+    print "writing $config_files{'apifed_config'}{'dest'}\n";
     $af_c->print(\*AFC); 
 }
 
@@ -524,7 +508,6 @@ sub std_password {
 }
 
 sub parseprop {
-    my ($model_prop_sample) = @_;
     my $cndsrc_bin;
     
     for my $path (
@@ -544,16 +527,16 @@ sub parseprop {
     
     if ( ! $cndsrc_bin) {
         warn "*** could not find valid value for CNDSRC_BIN for  *****\n";
-        warn "*** $model_prop *****\n";
+        warn "*** $config_files{'model_prop'}{'dest'} *****\n";
     }
     
     if ($cndsrc_bin && ! -d $cndsrc_bin) {
-        warn "******* $model_prop has invalid value for CNDSRC_BIN *********\n"
+        warn "******* $config_files{'model_prop'}{'dest'} has invalid value for CNDSRC_BIN *********\n"
     }
     
     
-    open(IN, $model_prop_sample);
-    open(OUT, ">$model_prop") || die "can not open $model_prop\n";
+    open(IN, $config_files{'model_prop'}{'source'});
+    open(OUT, ">$config_files{'model_prop'}{'dest'}") || die "can not open $config_files{'model_prop'}{'dest'}\n";
     my $revision;
     while (<IN>) {
         (m/\$Revision:\s+(\d+)/) && ($revision = $1);
