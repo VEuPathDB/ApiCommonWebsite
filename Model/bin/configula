@@ -19,6 +19,9 @@ use XML::Simple;
 use Getopt::Long;
 use File::Copy;
 
+my ($this_script) = basename $0;
+print "$this_script $Revision$\n";
+
 my %dblinkMap;
 ####################################################################
 # project defaults
