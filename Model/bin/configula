@@ -20,7 +20,7 @@ use Getopt::Long;
 use File::Copy;
 
 my ($this_script) = basename $0;
-print "$this_script $Revision$\n";
+print $this_script . ' $Revision$' . "\n";
 
 my %dblinkMap;
 ####################################################################
