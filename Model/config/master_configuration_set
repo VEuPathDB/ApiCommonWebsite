@@ -8,7 +8,7 @@ integrate.eupathdb.org         eupaBn      apicommN  apidbintegrate        uga_f
 integrate.fungidb.org          fungbl3n    apicommN  fungidbintegrate      uga_fed
 integrate.giardiadb.org        giar-inc    apicommN  giardiadbintegrate    uga_fed
 integrate.microsporidiadb.org  micr-rbld   apicommN  microintegrate        uga_fed
-integrate.orthomcl.org         orth500s    apicommS  apidbintegrate        uga_fed
+integrate.orthomcl.org         orth500s    apicommS  orthointegrate        uga_fed
 integrate.piroplasmadb.org     piro-rbld   apicommN  pirointegrate         uga_fed
 integrate.plasmodb.org         plas-inc    apicommN  plasmodbintegrate     uga_fed
 integrate.toxodb.org           toxo-rbld   apicommN  toxodbintegrate       uga_fed
@@ -21,7 +21,7 @@ q1.eupathdb.org                eupaBn      apicommN  apidbwww              uga_f
 q1.fungidb.org                 fungbl3n    apicommN  fungidbwww            uga_fed
 q1.giardiadb.org               giar-inc    apicommN  giardiadbwww          uga_fed
 q1.microsporidiadb.org         micr-rbld   apicommN  microwww              uga_fed
-q2.orthomcl.org                orth500s    apicommS  apidbwww              uga_fed
+q1.orthomcl.org                orth500s    apicommS  orthowww              uga_fed
 q1.piroplasmadb.org            piro-rbld   apicommN  pirowww               uga_fed
 q1.plasmodb.org                plas-inc    apicommN  plasmodbwww           uga_fed
 q1.toxodb.org                  toxo-rbld   apicommN  toxodbwww             uga_fed
@@ -34,7 +34,7 @@ q2.eupathdb.org                eupaBn      apicommN  apidbwww              uga_f
 q2.fungidb.org                 fungbl3n    apicommN  fungidbwww            uga_fed
 q2.giardiadb.org               giar-inc    apicommN  giardiadbwww          uga_fed
 q2.microsporidiadb.org         micr-rbld   apicommN  microwww              uga_fed
-q2.orthomcl.org                orth500n    apicommN  apidbwww              uga_fed
+q2.orthomcl.org                orth500n    apicommN  orthowww              uga_fed
 q2.piroplasmadb.org            piro-rbld   apicommN  pirowww               uga_fed
 q2.plasmodb.org                plas-inc    apicommN  plasmodbwww           uga_fed
 q2.toxodb.org                  toxo-rbld   apicommN  toxodbwww             uga_fed
@@ -47,6 +47,7 @@ w1.eupathdb.org                eupaAs      apicommS  apidbwww              uga_f
 w1.fungidb.org                 fung201s    apicommS  fungidbwww            uga_fed
 w1.giardiadb.org               giar253s    apicommS  giardiadbwww          uga_fed
 w1.microsporidiadb.org         micr300s    apicommS  microwww              uga_fed
+w1.orthomcl.org                orth500s    apicommS  orthowww              uga_fed
 w1.piroplasmadb.org            piro200s    apicommS  pirowww               uga_fed
 w1.plasmodb.org                plas910s    apicommS  plasmodbwww           uga_fed
 w1.toxodb.org                  toxo730s    apicommS  toxodbwww             uga_fed
@@ -59,6 +60,7 @@ w2.eupathdb.org                eupaAn      apicommN  apidbwww              uga_f
 w2.fungidb.org                 fung201n    apicommN  fungidbwww            uga_fed
 w2.giardiadb.org               giar253n    apicommN  giardiadbwww          uga_fed
 w2.microsporidiadb.org         micr300n    apicommN  microwww              uga_fed
+w2.orthomcl.org                orth500n    apicommN  orthowww              uga_fed
 w2.piroplasmadb.org            piro200n    apicommN  pirowww               uga_fed
 w2.plasmodb.org                plas910n    apicommN  plasmodbwww           uga_fed
 w2.toxodb.org                  toxo730n    apicommN  toxodbwww             uga_fed
