@@ -351,7 +351,8 @@ print "writing $blast_config\n";
 $wb_c->print(\*WBC); 
 
 # motifSearch-config.xml ###############################################
-# Do Nothing
+copy("${motifSearch_config}.sample", "$motifSearch_config");
+
 
 # profileSimilarity-config.xml ###############################################
 my $ps_c= new XML::Twig( 
@@ -572,17 +573,17 @@ sub parseprop {
             s/MERCATOR_OUTPUT_DIR\s*=.*/MERCATOR_OUTPUT_DIR=$mercator_output_dir/;
         }
         if ($product eq 'EuPathDB') {
-            s;AMOEBA_BLAST_PATH\s*=.*;AMOEBA_BLAST_PATH=AmoebaDB/release-$site_versions{AmoebaDB}/blast;;
-            s;API_BLAST_PATH\s*=.*;API_BLAST_PATH=EuPathDB/release-$site_versions{EuPathDB}/blast;;
-            s;CRYPTO_BLAST_PATH\s*=.*;CRYPTO_BLAST_PATH=CryptoDB/release-$site_versions{CryptoDB}/blast;;
-            s;FUNGI_BLAST_PATH\s*=.*;FUNGI_BLAST_PATH=FungiDB/release-$site_versions{FungiDB}/blast;;
-            s;GIARDIA_BLAST_PATH\s*=.*;GIARDIA_BLAST_PATH=GiardiaDB/release-$site_versions{GiardiaDB}/blast;;
-            s;MICRO_BLAST_PATH\s*=.*;MICRO_BLAST_PATH=MicrosporidiaDB/release-$site_versions{MicrosporidiaDB}/blast;;
-            s;PIRO_BLAST_PATH\s*=.*;PIRO_BLAST_PATH=PiroplasmaDB/release-$site_versions{PiroplasmaDB}/blast;;
-            s;PLASMO_BLAST_PATH\s*=.*;PLASMO_BLAST_PATH=PlasmoDB/release-$site_versions{PlasmoDB}/blast;;
-            s;TOXO_BLAST_PATH\s*=.*;TOXO_BLAST_PATH=ToxoDB/release-$site_versions{ToxoDB}/blast;;
-            s;TRICH_BLAST_PATH\s*=.*;TRICH_BLAST_PATH=TrichDB/release-$site_versions{TrichDB}/blast;;
-            s;TRYP_BLAST_PATH\s*=.*;TRYP_BLAST_PATH=TriTrypDB/release-$site_versions{TriTrypDB}/blast;;
+            s;AMOEBA_BLAST_PATH\s*=.*;AMOEBA_BLAST_PATH=$webservice_files_mirror/AmoebaDB/release-$site_versions{AmoebaDB}/blast;;
+            s;API_BLAST_PATH\s*=.*;API_BLAST_PATH=$webservice_files_mirror/EuPathDB/release-$site_versions{EuPathDB}/blast;;
+            s;CRYPTO_BLAST_PATH\s*=.*;CRYPTO_BLAST_PATH=$webservice_files_mirror/CryptoDB/release-$site_versions{CryptoDB}/blast;;
+            s;FUNGI_BLAST_PATH\s*=.*;FUNGI_BLAST_PATH=$webservice_files_mirror/FungiDB/release-$site_versions{FungiDB}/blast;;
+            s;GIARDIA_BLAST_PATH\s*=.*;GIARDIA_BLAST_PATH=$webservice_files_mirror/GiardiaDB/release-$site_versions{GiardiaDB}/blast;;
+            s;MICRO_BLAST_PATH\s*=.*;MICRO_BLAST_PATH=$webservice_files_mirror/MicrosporidiaDB/release-$site_versions{MicrosporidiaDB}/blast;;
+            s;PIRO_BLAST_PATH\s*=.*;PIRO_BLAST_PATH=$webservice_files_mirror/PiroplasmaDB/release-$site_versions{PiroplasmaDB}/blast;;
+            s;PLASMO_BLAST_PATH\s*=.*;PLASMO_BLAST_PATH=$webservice_files_mirror/PlasmoDB/release-$site_versions{PlasmoDB}/blast;;
+            s;TOXO_BLAST_PATH\s*=.*;TOXO_BLAST_PATH=$webservice_files_mirror/ToxoDB/release-$site_versions{ToxoDB}/blast;;
+            s;TRICH_BLAST_PATH\s*=.*;TRICH_BLAST_PATH=$webservice_files_mirror/TrichDB/release-$site_versions{TrichDB}/blast;;
+            s;TRYP_BLAST_PATH\s*=.*;TRYP_BLAST_PATH=$webservice_files_mirror/TriTrypDB/release-$site_versions{TriTrypDB}/blast;;
         } else {
             s;AMOEBA_BLAST_PATH\s*=.*;AMOEBA_BLAST_PATH=;;
             s;API_BLAST_PATH\s*=.*;API_BLAST_PATH=;;
