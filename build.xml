@@ -11,8 +11,8 @@
     </ant>
   </target>  
 
-  <target name="ApiCommonShared/Model-Installation">
-    <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared/Model-Installation">
+  <target name="ApiCommonShared-Installation">
+    <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared-Installation">
       <property name="project" value="ApiCommonShared"/>
       <property name="version" value="api-aug-08"/>
     </ant>
@@ -127,7 +127,7 @@
 
   <target name="ApiCommonWebsite-Installation" depends="CBIL-Installation,
                                                         WDK-Installation,
-                                                        ApiCommonShared/Model-Installation,
+                                                        ApiCommonShared-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
                                                         ApiCommonWebsite/View-Installation,
