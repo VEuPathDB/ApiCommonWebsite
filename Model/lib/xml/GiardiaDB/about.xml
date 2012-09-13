@@ -136,13 +136,20 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
 <div id="cirbulletlist">
 <ul>
 <li>John Samuelson (Boston University, USA)</li>
-<li>Hilary Morrison (Marine Biological Laboratories, USA)</li>
 <li>Adrian Hehl (University of Zürich, Switzerland)</li>
-<li>cornelia Spycher (University of Zürich, Switzerland)</li>
+<li>Cornelia Spycher (University of Zürich, Switzerland)</li>
 <li>Fran Gillin (University of California - San Diego, USA)</li>
-<li>Scott Dawson (University of California - Davis, USA)</li>
+<li>Staffan Svard (Uppsala University, Sweden)</li>
 </ul></div>
+<br>
+<b>Previous Advisors</b><br><br>
+<div id="cirbulletlist">
+<ul>
+<li>Hilary Morrison (Marine Biological Laboratories, USA)</li>
+<li>Scott Dawson (University of California - Davis, USA)</li>
 
+</ul></div>
+<br>
        ]]>
        </attribute>
    </record>
@@ -185,13 +192,13 @@ Additional data include Serial Analysis of Gene Expression (SAGE) tags (NCBI/GEO
 </tr>
 </table>
 </center>
--->
+
 
 
        ]]>
        </attribute>
    </record>
-
+-->
 <record>
        <attribute name="title">Funding</attribute>
        <attribute name="tag">funding</attribute>
