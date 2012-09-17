@@ -80,14 +80,22 @@ my (
     $userDb_database,
     $recreate_wdkCache
 );
-my $optRslt = GetOptions(
-    "alogin=s"   => \$appDb_login,
-    "adb=s"      => \$appDb_database,
-    "udb=s"      => \$userDb_database,
-    "newcache"   => \$recreate_wdkCache,
-    "usemap"     => \$g_use_map,  # get config data from a master file from gus_home/config
-    "skipdbtest" => \$g_skip_db_test, # for when you know this will fail
-    );
+
+{
+  local $SIG{__WARN__} = sub { 
+    my $message = shift;
+    die "FATAL: " . $message;
+  };
+  
+  my $optRslt = GetOptions(
+      "alogin=s"   => \$appDb_login,
+      "adb=s"      => \$appDb_database,
+      "udb=s"      => \$userDb_database,
+      "newcache"   => \$recreate_wdkCache,
+      "usemap"     => \$g_use_map,  # get config data from a master file from gus_home/config
+      "skipdbtest" => \$g_skip_db_test, # for when you know this will fail
+      );
+}
 
 my $target_site = lc $ARGV[0];
 
