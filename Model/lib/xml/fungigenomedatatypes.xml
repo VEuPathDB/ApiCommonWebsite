@@ -790,7 +790,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">Oomycetes; Phytophthora</attribute>
+       <attribute name = "Website">Oomycetes; Pythiales</attribute>
        <attribute name = "Genus">Pythium</attribute>
        <attribute name = "Species">ultimum</attribute>
        <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
@@ -817,7 +817,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">Oomycetes; Phytophthora</attribute>
+       <attribute name = "Website">Oomycetes; Peronosporales</attribute>
        <attribute name = "Genus">Hyaloperonospora</attribute>
        <attribute name = "Species">arabidopsidis</attribute>
        <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
