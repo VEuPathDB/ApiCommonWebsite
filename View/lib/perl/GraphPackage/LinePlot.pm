@@ -286,7 +286,7 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-par(mar       = c($bottomMargin,4,1.5 + title.line,4 + extra.legend.size), xpd=NA);
+par(mar       = c($bottomMargin,4,1.5 + title.line, 1 + extra.legend.size), xpd=NA);
 
 my.pch = $defaultPch;
 
