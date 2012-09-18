@@ -38,8 +38,6 @@ sub init {
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setPointsPch($pch);
-  $rma->setDefaultYMax(10);
-  $rma->setDefaultYMin(4);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);

@@ -20,10 +20,12 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch => $pch});
 
-     my @profileSetsArray = (['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)','', ''],
-	 ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', '', '']
-	 );
-  my @percentileSetsArray = (['percentile - expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions', '',''],['percentile - expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)','','']);
+  my @profileSetsArray = (['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)','', ''],
+                          ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', '', '']
+                          );
+
+  my @percentileSetsArray = (['percentile - expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', '',''],
+                             ['percentile - expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)','','']);
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
@@ -32,8 +34,6 @@ sub init {
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setPointsPch($pch);
-  $rma->setDefaultYMax(10);
-  $rma->setDefaultYMin(4);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);

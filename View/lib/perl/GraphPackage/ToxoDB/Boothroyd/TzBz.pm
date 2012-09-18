@@ -12,8 +12,6 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(450);
-
   my $colors = ['#8FBC8F'];
 
    my @profileSetsArray = (['expression profiles of T. gondii Matt_Tz-Bz time series', 'standard error - expression profiles of T. gondii Matt_Tz-Bz time series', '']);
@@ -25,8 +23,6 @@ sub init {
   my $rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
-  $rma->setDefaultYMax(10);
-  $rma->setDefaultYMin(4);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);

@@ -12,8 +12,6 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(450);
-
   my $colors = ['#D87093', '#D87093', '#D87093', '#E9967A', '#87CEEB', '#87CEEB', '#87CEEB'];
 
   my $legend = ["oocyst", "tachyzoite", "bradyzoite"];
