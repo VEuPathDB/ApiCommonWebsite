@@ -230,7 +230,7 @@
 
    <record>
        <attribute name = "Metric_Type">Community_entries</attribute>
-       <attribute name = "Description">Number of genes that have comments,notes from the research community</attribute>
+       <attribute name = "Description">Number of genes that have user comments, from the research community</attribute>
        <attribute name = "Babesia bovis T2Bo">46</attribute>
        <attribute name = "Cryptosporidium hominis TU502">43</attribute>
        <attribute name = "Cryptosporidium muris RN66">51</attribute>
