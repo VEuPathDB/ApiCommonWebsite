@@ -195,7 +195,7 @@ if($hasExtraLegend) {
 title.line = $titleLine;
 
 if($horiz) {
-  par(mar       = c(5, names.margin,title.line + fold.induction.margin,2 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
+  par(mar       = c(5, names.margin,title.line + fold.induction.margin, 2 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   x.lim = c(d.min, d.max);
   y.lim = NULL;
 
@@ -205,14 +205,14 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin,4, 1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
+  par(mar       = c(names.margin, 4, 1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
   yaxis.side = 2;
   foldchange.side = 4;
 
-  yaxis.line = 3.5;
+  yaxis.line = 3;
 }
 
 if($overrideXAxisLabels) {
