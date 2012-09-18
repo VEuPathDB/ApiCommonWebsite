@@ -12,13 +12,9 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setBottomMarginSize(6.5);
-
   my $colors = ['#CD853F'];
 
   my $pch = [19];
-
-  my $legend = ['Cell Cycle'];
 
 
   my $cellCycleTopMargin = "
@@ -61,6 +57,8 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $rma->setSplineApproxN(61);
   $rma->setTitleLine(2.25);
   $rma->setRPostscript($cellCycleTopMargin);
+  $rma->setElementNameMarginSize(6.3);
+  $rma->setXaxisLabel("Time Point");
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
@@ -70,6 +68,8 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $percentile->setSplineApproxN(61);
   $percentile->setTitleLine(2.25);
   $percentile->setRPostscript($cellCycleTopMargin);
+  $percentile->setElementNameMarginSize(6.3);
+  $percentile->setXaxisLabel("Time Point");
 
   $self->setGraphObjects($rma, $percentile);
 

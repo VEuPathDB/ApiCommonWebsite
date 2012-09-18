@@ -14,7 +14,6 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(450);
 
   my $colors = ['#4682B4', '#B22222', '#8FBC8F', '#6A5ACD', '#87CEEB', '#CD853F',];
 
@@ -25,8 +24,6 @@ sub init {
   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
-#  $rma->setDefaultYMax(10);
-#  $rma->setSpaceBetweenBars(0.3);
   $rma->setPlotTitle('Tachyzoite comparison of archetypal T.gondii lineages');
 
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - Expression profiling of T. gondii strains']]);
