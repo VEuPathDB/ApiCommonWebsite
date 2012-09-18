@@ -12,11 +12,12 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(450);
 
   my $colors = [ '#E9967A', '#87CEFA', '#00BFFF', '#4169E1', '#0000FF', ];
 
   my $legend = ['Extracellular\nTachyzoite (0 hrs)', 'Bradyzoite (24 hrs)', 'Bradyzoite (36 hrs)',' Bradyzoite (48 hrs)', 'Bradyzoite (72 hrs)'];
+  my $shortNames = ['Tachy 0HR', 'Brady 24HR', 'Brady 36HR', 'Brady 48HR', 'Brady 72HR'];
+
 
   $self->setMainLegend({colors => [ '#E9967A', '#87CEFA', '#00BFFF','#4169E1', '#0000FF', ], short_names => $legend, cols=> 3});
 
@@ -29,14 +30,14 @@ sub init {
   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
-  $rma->setElementNameMarginSize (10);
-  $rma->setScreenSize(300);
+  $rma->setSampleLabels($shortNames);
+  $rma->setElementNameMarginSize (6);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
-  $percentile->setElementNameMarginSize (10);
-  $percentile->setScreenSize(300);
+  $percentile->setSampleLabels($shortNames);
+  $percentile->setElementNameMarginSize (6);
 
   $self->setGraphObjects($rma, $percentile);
 
