@@ -118,8 +118,75 @@
        </table>
    </record>
 
+<record>
+       <attribute name="title">Identify Genes based on Gene ID</attribute>
+       <attribute name="description">How to find genes by entering a list of a list of gene IDs.</attribute>
+       <attribute name="uid">19Sept2012_1</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=yyhqMSxkg98</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Identify Genes by Gene ID/identify_genes_by_gene_id_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">2 min</attribute>
+           <attribute name="size">6.4 mb</attribute>
+         </row>
+       </table>
+   </record>
 
 
+<record>
+       <attribute name="title">Identify Genes based on Organism</attribute>
+       <attribute name="description">How to obtain a list of all genes from an organism.</attribute>
+       <attribute name="uid">19Sept2012_2</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=ceqTOPjdv_g</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Identify Genes by Organism/identify_genes_by_organism_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">1.5 min</attribute>
+           <attribute name="size">6.4 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+<record>
+       <attribute name="title">Identify Genes based on Text</attribute>
+       <attribute name="description">How to use the search, 'Identify Genes based on Text', to find genes whose gene records or annotations contain the same word or phrase.</attribute>
+       <attribute name="uid">19Sept2012_3</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=GtRd8TXtJhU</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Identify Genes by Text/identify_genes_by_text_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">2 min</attribute>
+           <attribute name="size">6.2 mb</attribute>
+         </row>
+       </table>
+   </record>
+  
+  <record>
+       <attribute name="title">Identify Genes based on User Comments</attribute>
+       <attribute name="description">How use the search, Identify Genes based on User Comments', to get a list of alal genes that contain user comments.</attribute>
+       <attribute name="uid">19Sept2012_4</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=26iz6r8FYvM</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Identify Genes by User Comments/identify_genes_by_user_comments_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">1.5 min</attribute>
+           <attribute name="size">6.2 mb</attribute>
+         </row>
+       </table>
+   </record>
+    
 <record>
        <attribute name="title">Isolates by Geographic Location</attribute>
        <attribute name="description">How to search for isolates based on the geographic location of sample collection.</attribute>
@@ -136,7 +203,6 @@
          </row>
        </table>
    </record>
-
 
 
  <record>
@@ -172,8 +238,6 @@
          </row>
        </table>
    </record>
-
-
 
  <record>
        <attribute name="title">PlasmoDB Introduction</attribute>
@@ -246,7 +310,7 @@
 
 <record id="140">
        <attribute name="title">Searches and IDs may change with Database releases</attribute>
-       <attribute name="description">How a new database release might affect IDs or searches in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
+       <attribute name="description">How a new database release might affect IDs or searches that you have saved in your 'My Strategies' folder. How to revise searches with the new release.</attribute>
        <attribute name="uid">140</attribute>
        <table name="files">
         <row>
@@ -260,7 +324,24 @@
          </row>
        </table>
    </record>
-
+   
+<record>
+       <attribute name="title">The Sequence Retrieval Tool</attribute>
+       <attribute name="description">How to use the Sequence Retrieval Tool to download gene sequence, genomic sequence or multiple sequence alignments.</attribute>
+       <attribute name="uid">19Sept2012_5</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=R2TY9_Pocck</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Sequnce Retrieval Tool/sequnce_retrieval_tool_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">3 min</attribute>
+           <attribute name="size">6.2 mb</attribute>
+         </row>
+       </table>
+   </record>
+   
  <record>
        <attribute name="title">Text Search</attribute>
        <attribute name="description">How to identify genes based on any text term in the gene record.</attribute>
