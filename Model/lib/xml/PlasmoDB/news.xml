@@ -82,6 +82,99 @@ style="font-style: italic;">et. al.</span></span></a>).</li>
 </ul>
 </div>
 <br>
+<ul style="text-align: justify; font-family: Arial;">
+<li>Single nucleotide polymorphism calls based on high throughput
+sequencing data of:</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><span style="font-style: italic;">P. falciparum</span>&nbsp;
+isolates: 7G8, CS2, GB4, T9_94, V1_S generated at the the Sanger
+institute (<a style="font-weight: bold;"
+href="Single%20nucleotide%20polymorphism%20calls%20based%20on%20high%20throughput%20sequencing%20data%20of:">additional
+details available here</a>).</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><span style="font-style: italic;">P. vivax </span>isolates:
+Brazil I, Mauritaniza I, North Korea and India- VII generated at the
+the Broad Institute (<a style="font-weight: bold;"
+href="Single%20nucleotide%20polymorphism%20calls%20based%20on%20high%20throughput%20sequencing%20data%20of:">additional
+details available here</a>).</li>
+</ul>
+</ul>
+<br>
+<ul>
+<ul>
+<ul>
+<li><font face="Arial">To identify genes based on their SNP
+characteristics, click on "<a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByHtsSnps">SNP
+Characteristics</a>" under the "Population Biology" heading in the
+"Identify Genes By" section of the home page. &nbsp;&nbsp; You can
+select whether you to identify SNPs in <span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="font-style: italic;">P. vivax </span></span></span>or <span
+style="font-style: italic;">P. falciparum </span>using the organism
+drop-down menu.</font></li>
+</ul>
+</ul>
+</ul>
+<font face="Arial"></font>
+<ul>
+<ul>
+<ul>
+<li><font face="Arial">SNP searches may be combined with other
+searches, for example, <a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/im.do?s=0bb92940672255a8">this
+search strategy</a> identifies secreted (predicted by SignalP) <span
+style="font-style: italic;">P. vivax</span> genes that contain at
+least 10 non-synonymous SNPs between the Sal1 and India-VII isolates.</font></li>
+</ul>
+</ul>
+</ul>
+<font face="Arial"></font>
+<ul>
+<ul>
+<ul>
+<li><font face="Arial">SNPs may also be visualized in tabular
+format on gene pages or as a <a style="font-weight: bold;"
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=3013885;stop=3023884;ref=PviS_CM000455;width=800;version=100;flip=0;grid=1;id=92cab3ccf37d8dcd44a48a8db9fa3bb5;l=HtsAlignmentSNPsByClass%1EGene;h_feat=pvx_101555%40yellow">Genome
+Browser track</a>. In the Genome Browser select the track called "HTS
+SNPs by coding potential".&nbsp; Individual diamonds in the genome
+browser track represent SNPs.&nbsp; Mousing over these graphics reveals
+additional information such as the type of SNP, the position of the SNP
+and the nucleotide and amino acid changes.</font></li>
+</ul>
+</ul>
+</ul>
+<font face="Arial"></font>
+<ul>
+<ul>
+<ul>
+<li><font face="Arial"><span style="font-weight: bold;"><a
+href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1294740;stop=1294839;ref=Pf3D7_11_v3;width=800;version=100;flip=0;grid=1;id=92cab3ccf37d8dcd44a48a8db9fa3bb5;l=Gene%1Epfal3D7_Sanger_HTS_Isolates_7G8_Alignment;h_feat=pf3d7_1133400%40yellow">Alignment
+of highthrough put sequence reads</a> </span>are also available via
+the Genome Browser.</font></li>
+</ul>
+</ul>
+</ul>
+<font face="Arial"></font>
+<ul>
+<ul>
+<ul>
+<li><font face="Arial"><a style="font-weight: bold;"
+href="http://plasmodb.org/plasmo/showRecord.do?name=SnpRecordClasses.SnpRecordClass&amp;source_id=NGS_SNP.Pf3D7_08_v3.1820&amp;project_id=PlasmoDB">Individual
+SNP records may also be visualized</a>. SNP record pages include
+information such as the type of the SNP, strain information and links
+to the read alignments supporting the SNP call.</font></li>
+</ul>
+</ul>
+</ul>
+<br>
 </div>
 <div style="font-family: Arial; text-align: justify;">&nbsp;<br>
 <span style="font-style: italic;"><span style="font-style: italic;"><span
