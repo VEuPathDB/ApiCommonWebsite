@@ -120,7 +120,7 @@
 
 <record>
        <attribute name="title">Identify Genes based on Gene ID</attribute>
-       <attribute name="description">How to find genes by entering a list of a list of gene IDs.</attribute>
+       <attribute name="description">How to us the search 'Identify Genes based on Gene ID', find genes by entering a list of gene IDs.</attribute>
        <attribute name="uid">19Sept2012_1</attribute>
        <table name="files">
         <row>
@@ -138,7 +138,7 @@
 
 <record>
        <attribute name="title">Identify Genes based on Organism</attribute>
-       <attribute name="description">How to obtain a list of all genes from an organism.</attribute>
+       <attribute name="description">How to use the search, 'Identify Genes based on Organism', obtain a list of all genes from an organism.</attribute>
        <attribute name="uid">19Sept2012_2</attribute>
        <table name="files">
         <row>
@@ -172,7 +172,7 @@
   
   <record>
        <attribute name="title">Identify Genes based on User Comments</attribute>
-       <attribute name="description">How use the search, Identify Genes based on User Comments', to get a list of alal genes that contain user comments.</attribute>
+       <attribute name="description">How use the search, 'Identify Genes based on User Comments', to get a list of all genes for which user comments have been entered.</attribute>
        <attribute name="uid">19Sept2012_4</attribute>
        <table name="files">
         <row>
