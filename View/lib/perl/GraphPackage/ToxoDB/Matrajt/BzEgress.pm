@@ -6,6 +6,10 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
+
+
+
+sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
