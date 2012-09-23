@@ -3,17 +3,14 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::White::TzBz;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
-
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
-
-  $self->setScreenSize(200);
-  $self->setBottomMarginSize(3);
 
   my $legend = ["GT1", "ME49", "CTGara"];
 
@@ -21,27 +18,46 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
 
 
-  $self->setProfileSetsHash
-    ({rma => {profiles => ['expression profiles of three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditoins'],
-              y_axis_label => 'RMA Value',
-              colors => $colors,
-              x_axis_labels => ['Tachyzoite', 'Compound 1', 'pH=8.2'],
-              r_adjust_profile => 'profile = rbind(profile[1,1:3], profile[1,4:6], profile[1,7:9]);',
-              force_x_axis_label_horizontal => 1,
-              plot_title => 'Normal-tachyzoite vs. Induced-bradyzoite - 3 Tgondii Strains',
-             },
 
-      pct => {profiles => ['expression profile percentiles of three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditoins'],
-              y_axis_label => 'percentile',
-              colors => $colors,
-              x_axis_labels => ['Tachyzoite', 'Compound 1', 'pH=8.2'],
-              r_adjust_profile => 'profile = rbind(profile[1,1:3], profile[1,4:6], profile[1,7:9]);',
-              force_x_axis_label_horizontal => 1,
-              plot_title => 'Normal-tachyzoite vs. Induced-bradyzoite Percentiles - 3 Tgondii Strains',
-             }
-     });
+  my $gt1Samples = ['Tachyzoite', 'Compound 1', 'pH=8.2','','','','','',''];
+  my $me49Samples = ['','','','Tachyzoite', 'Compound 1', 'pH=8.2','','',''];
+  my $ctgaraSamples = ['','','', '','','', 'Tachyzoite', 'Compound 1', 'pH=8.2'];
+
+
+  my @profileSetsArray = (['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 
+                           'standard error - three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 
+                           $gt1Samples],
+                          ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 
+                           'standard error - three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 
+                           $me49Samples],
+                          ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 
+                           'standard error - three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 
+                           $ctgaraSamples],
+                          );
+
+  my @percentileSetsArray = (['percentile - three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', '',$gt1Samples],
+                             ['percentile - three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', '',$me49Samples],
+                             ['percentile - three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', '',$ctgaraSamples],
+                             );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setForceHorizontalXAxis(1);
+
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setForceHorizontalXAxis(1);
+
+  $self->setGraphObjects($rma, $percentile);
 
   return $self;
+
 }
 
 
