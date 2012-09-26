@@ -99,7 +99,7 @@ public class GetDataSourceAction extends Action {
                 question = wdkModel.getQuestion(DATA_SOURCE_ALL);
             }
             AnswerValueBean answerValue = question.makeAnswerValue(user,
-                    params, 0);
+                    params, true, 0);
 
             Map<String, List<RecordBean>> categories = formatAnswer(answerValue);
             request.setAttribute(ATTR_DATA_SOURCES, categories);
