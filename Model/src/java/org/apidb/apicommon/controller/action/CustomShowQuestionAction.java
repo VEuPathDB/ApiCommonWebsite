@@ -57,7 +57,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             Map<String, String> params = new LinkedHashMap<String, String>();
             params.put(PARAM_QUESTION, questionName);
             AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
-                    params, 0);
+                    params, true, 0);
 
             // find all referenced attributes and tables;
             Iterator<RecordBean> dsRecords = answerValue.getRecords();

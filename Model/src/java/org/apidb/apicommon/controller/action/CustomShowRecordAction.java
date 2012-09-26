@@ -124,7 +124,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         QuestionBean question = wdkModel.getQuestion(GetDataSourceAction.DATA_SOURCE_BY_RECORD_CLASS);
         Map<String, String> params = new LinkedHashMap<String, String>();
         params.put(PARAM_RECORD_CLASS, rcName);
-        AnswerValueBean answerValue = question.makeAnswerValue(user, params, 0);
+        AnswerValueBean answerValue = question.makeAnswerValue(user, params, true, 0);
 
         // find all referenced attributes and tables;
         Iterator<RecordBean> dsRecords = answerValue.getRecords();

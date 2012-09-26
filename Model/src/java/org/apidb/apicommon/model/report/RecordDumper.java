@@ -154,7 +154,7 @@ public class RecordDumper {
         User user = wdkModel.getSystemUser();
         Map<String, String> params = new LinkedHashMap<String, String>();
         params.put(organismParam, organism);
-        AnswerValue sqlAnswer = question.makeAnswerValue(user, params, 0);
+        AnswerValue sqlAnswer = question.makeAnswerValue(user, params, true, 0);
 
         // decide the path-file name
         File dir = new File(baseDir, organism.replace(' ', '_'));
