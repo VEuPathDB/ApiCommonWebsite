@@ -11,7 +11,7 @@ sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
-
+  $self->setBottomMarginSize(6);
   my $sampleNames = ["Spherules", "Hyphae"];
 
   $self->setSampleNames($sampleNames);
