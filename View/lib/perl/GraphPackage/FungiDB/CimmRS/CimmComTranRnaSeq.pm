@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::FungiDB::CimmRS::RnaSeqCimmComTran;
+package ApiCommonWebsite::View::GraphPackage::FungiDB::CimmRS::CimmComTranRnaSeq;
 
 use strict;
 use vars qw( @ISA );
