@@ -15,7 +15,7 @@ sub init {
   my $sampleNames = ["RO3H", "RO5H", "RO20H"];
 
   #$self->setPlotWidth(800);
-  #$self->setBottomMarginSize(7);
+  $self->setBottomMarginSize(5);
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet("R oryzae hyphal growth on solid media");
