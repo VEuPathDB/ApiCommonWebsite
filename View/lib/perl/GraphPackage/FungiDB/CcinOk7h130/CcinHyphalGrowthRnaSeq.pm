@@ -15,7 +15,7 @@ sub init {
   my $sampleNames = ["Cc-9D", "Cc-15D"];
 
   #$self->setPlotWidth(800);
-  #$self->setBottomMarginSize(7);
+  $self->setBottomMarginSize(5);
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet("C cinereus hyphal growth expression");
