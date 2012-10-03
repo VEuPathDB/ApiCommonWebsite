@@ -12,12 +12,12 @@ sub init {
 
   $self->SUPER::init(@_);
 
+  my $sampleNames = ["RO3H", "RO5H", "RO20H"];
+
   #$self->setPlotWidth(800);
   #$self->setBottomMarginSize(7);
-  my $sampleNames = ['RO3H','RO5H','RO20H'];
-  $self->setSampleNames($sampleNames);
 
-  $self->setAdditionalRCode("colnames(profile.df) =  sub(\".fastq\", \"\", colnames(profile.df));");
+  $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet("R oryzae hyphal growth on solid media");
   $self->setDiffRpkmProfileSet("R oryzae hyphal growth on solid media-diff");
   $self->setPctProfileSet("percentile - R oryzae hyphal growth on solid media");

@@ -11,8 +11,11 @@ sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
-  $self->setBottomMarginSize(6);
+
   my $sampleNames = ["Spherules", "Hyphae"];
+
+  #$self->setPlotWidth(800);
+  $self->setBottomMarginSize(6);
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet("C. posadasii saprobic hyphae and parasitic spherules");
@@ -20,7 +23,6 @@ sub init {
   $self->setPctProfileSet("percentile - C. posadasii saprobic hyphae and parasitic spherules");
   $self->setColor("#29ACF2");
   $self->makeGraphs(@_);
-
 
   return $self;
 }
