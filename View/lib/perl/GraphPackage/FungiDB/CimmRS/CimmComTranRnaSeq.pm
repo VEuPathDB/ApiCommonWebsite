@@ -12,10 +12,12 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  #$self->setPlotWidth(800);
-  #$self->setBottomMarginSize(7);
+  my $sampleNames = ["Spherules", "Hyphae"];
 
-  $self->setAdditionalRCode("colnames(profile.df) =  sub(\".fastq\", \"\", colnames(profile.df));");
+  #$self->setPlotWidth(800);
+  $self->setBottomMarginSize(6);
+
+  $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet("C immitis saprobic hyphae and parasitic spherules");
   $self->setDiffRpkmProfileSet("C immitis saprobic hyphae and parasitic spherules-diff");
   $self->setPctProfileSet("percentile - C immitis saprobic hyphae and parasitic spherules");
