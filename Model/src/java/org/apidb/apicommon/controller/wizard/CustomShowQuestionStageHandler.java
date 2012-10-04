@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.apidb.apicommon.controller.action.CustomShowQuestionAction;
-import org.gusdb.wdk.controller.action.WizardForm;
+import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.controller.wizard.ShowQuestionStageHandler;
 
 public class CustomShowQuestionStageHandler extends ShowQuestionStageHandler {

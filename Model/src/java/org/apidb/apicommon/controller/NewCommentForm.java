@@ -20,7 +20,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.util.LabelValueBean;
 import org.apidb.apicommon.model.GeneIdValidator;
 import org.apidb.apicommon.model.MultiBox;
-import org.gusdb.wdk.controller.action.ActionUtility;
+import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class NewCommentForm extends ActionForm {

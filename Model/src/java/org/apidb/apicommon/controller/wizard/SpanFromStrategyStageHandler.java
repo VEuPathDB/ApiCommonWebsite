@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
-import org.gusdb.wdk.controller.action.ActionUtility;
-import org.gusdb.wdk.controller.action.WizardForm;
+import org.gusdb.wdk.controller.actionutil.ActionUtility;
+import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.StrategyBean;
