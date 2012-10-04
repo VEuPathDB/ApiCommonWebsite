@@ -39,7 +39,7 @@ public class UserFileUploadAction extends Action {
                                HttpServletRequest request,
                                HttpServletResponse response) throws Exception {
 
-    String referer = (String) request.getParameter(CConstants.WDK_REFERER_URL_KEY);
+    String referer = (String) request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
     if (referer == null) referer = request.getHeader("referer");
 
     int index = referer.lastIndexOf("/");

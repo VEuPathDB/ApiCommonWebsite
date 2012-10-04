@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import javax.servlet.jsp.JspException;
 import javax.sql.DataSource;
 
+import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 
@@ -67,6 +68,8 @@ public class SiteMessagesTag extends WdkTagBase {
                 messages.add(rs.getString(1) );
             }
         } catch (SQLException sqle) {
+            throw new JspException(sqle);
+        } catch (WdkModelException sqle) {
             throw new JspException(sqle);
         } finally {
             SqlUtils.closeResultSet(rs);

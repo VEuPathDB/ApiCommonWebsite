@@ -866,7 +866,7 @@ public class CommentFactory {
     }
 
     private void loadReference(int commentId, Comment comment,
-            String databaseName) throws SQLException {
+            String databaseName) throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT source_id ");
         sql.append(" FROM ");
@@ -890,13 +890,17 @@ public class CommentFactory {
                 comment.addReference(ids.toArray(new String[ids.size()]),
                         databaseName);
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadAuthor(int commentId, Comment comment,
-            String databaseName) throws SQLException {
+            String databaseName) throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT source_id ");
         sql.append(" FROM ");
@@ -920,13 +924,17 @@ public class CommentFactory {
                 comment.addReference(ids.toArray(new String[ids.size()]),
                         databaseName);
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadTargetCategoryNames(int commentId, Comment comment)
-            throws SQLException {
+            throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT b.category, b.target_category_id");
         sql.append(" FROM ");
@@ -958,13 +966,17 @@ public class CommentFactory {
                 }
                 comment.setTargetCategoryIds(tid);
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadMutantMarkerNames(int commentId, Comment comment)
-            throws SQLException {
+            throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT b.mutant_marker ");
         sql.append(" FROM ");
@@ -987,13 +999,17 @@ public class CommentFactory {
             if (ids.size() > 0) {
                 comment.addMutantMarkerNames(ids.toArray(new String[ids.size()]));
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadMutantReporterNames(int commentId, Comment comment)
-            throws SQLException {
+            throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT b.mutant_reporter ");
         sql.append(" FROM ");
@@ -1016,13 +1032,17 @@ public class CommentFactory {
             if (ids.size() > 0) {
                 comment.setMutantReporterNames(ids.toArray(new String[ids.size()]));
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadPhenotype(int commentId, Comment comment)
-            throws SQLException {
+            throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT a.background, a.mutant_description, ");
         sql.append("a.phenotype_description, ");
@@ -1072,12 +1092,16 @@ public class CommentFactory {
                 comment.setPhenotypeLocName(rs.getString("phenotype_loc"));
             }
 
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
-    private void loadFiles(int commentId, Comment comment) throws SQLException {
+    private void loadFiles(int commentId, Comment comment) throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT file_id, name, notes ");
         sql.append(" FROM ");
@@ -1101,13 +1125,17 @@ public class CommentFactory {
             if (ids.size() > 0) {
                 comment.addFiles(ids.toArray(new String[ids.size()]));
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadStableIds(int commentId, Comment comment)
-            throws SQLException {
+            throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT stable_id ");
         sql.append(" FROM ");
@@ -1129,13 +1157,17 @@ public class CommentFactory {
             if (ids.size() > 0) {
                 comment.addAssociatedStableIds(ids.toArray(new String[ids.size()]));
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadLocations(int commentId, Comment comment)
-            throws SQLException {
+            throws WdkModelException {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT location_start, location_end, is_reverse, ");
         sql.append("coordinate_type FROM ");
@@ -1156,13 +1188,17 @@ public class CommentFactory {
                 String coordinateType = rs.getString("coordinate_type");
                 comment.addLocation(reversed, start, end, coordinateType);
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     private void loadExternalDbs(int commentId, Comment comment)
-            throws SQLException {
+            throws WdkModelException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -1184,15 +1220,18 @@ public class CommentFactory {
                 String externalDbVersion = rs.getString("external_database_version");
                 comment.addExternalDatabase(externalDbName, externalDbVersion);
             }
-        } finally {
+        }
+        catch (SQLException e) {
+        	throw new WdkModelException(e);
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
         }
     }
 
     public Comment[] queryComments(String email, String projectName,
             String stableId, String conceptual, String reviewStatus,
-            String keyword, String commentTargetId) throws WdkModelException,
-            WdkUserException {
+            String keyword, String commentTargetId) throws WdkModelException {
         DataSource dataSource = platform.getDataSource();
 
         StringBuffer where = new StringBuffer();
@@ -1274,7 +1313,7 @@ public class CommentFactory {
     }
 
     public void deleteComment(String email, String commentId)
-            throws WdkModelException, WdkUserException {
+            throws WdkModelException {
         String commentSchema = config.getCommentSchema();
         DataSource dataSource = platform.getDataSource();
 
@@ -1286,9 +1325,8 @@ public class CommentFactory {
                     + commentId + "'" + "  AND email = '" + email + "'";
             SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-hide-comment");
 
-        } catch (SQLException ex) {
-            throw new WdkModelException(ex);
-        } finally {
+        }
+        finally {
             SqlUtils.closeResultSet(rs);
 
             // print connection status

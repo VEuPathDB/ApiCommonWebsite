@@ -42,7 +42,7 @@ public class NewCommentAction extends CommentAction {
         // get comment factory, and initialize it if necessary
 
         // get the referer link
-        String referer = (String) request.getParameter(CConstants.WDK_REFERER_URL_KEY);
+        String referer = (String) request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
         if (referer == null) referer = request.getHeader("referer"); 
 
         int index = referer.lastIndexOf("/");
