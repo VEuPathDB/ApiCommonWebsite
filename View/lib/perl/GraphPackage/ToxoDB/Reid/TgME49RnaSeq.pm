@@ -15,7 +15,7 @@ sub init {
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet('T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome');
-  $self->setDiffRpkmProfileSet('T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome-diff');
+  $self->setDiffRpkmProfileSet('T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome -diff');
   $self->setPctProfileSet('percentile - T. gondii VEG Day 3-4 Tachyzoite aligned to the TgME49 Genome');
   $self->setColor("#6A5ACD");
   $self->makeGraphs(@_);
