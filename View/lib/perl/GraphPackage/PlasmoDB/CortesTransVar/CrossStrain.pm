@@ -19,16 +19,16 @@ sub init {
   $self->setMainLegend({colors => $legendColors, short_names => $shortNames, cols => 2});
 
 
-  my $strainNames=['P.f. 10g','P.f. 1,2b','P.f. 3d7b','P.f. 7g8','P.f. ab10','P.f. ab6',
-                    'P.f. bb8','P.f. bc4','P.f. d10','P.f. e3','P.f. f1','P.f. g2',
-                    'P.f. g4','P.f. hb3a','P.f. hb3b','P.f. kg7','P.f. ld10','P.f. w41',
-                    'P.f. we5','P.f. zf8',];
+  my $strainNames=['P.f. 10G','P.f. 1,2B','P.f. 3D7-B','P.f. 7G8','P.f. AB10','P.f. AB6',
+                    'P.f. BB8','P.f. BC4','P.f. D10','P.f. E3','P.f. F1','P.f. G2',
+                    'P.f. G4','P.f. HB3A','P.f. HB3B','P.f. KG7','P.f. LD10','P.f. W41',
+                    'P.f. WE5','P.f. ZF8',];
 
   my $colorSet = [ '#FF0000', '#FF0000', '#FF0000','#FFFF00', '#009900','#009900','#009900','#009900', '#0000CC','#0000CC','#0000CC','#0000CC','#0000CC', '#009900','#009900','#FFFF00','#FFFF00', '#FF0000', '#FFFF00','#FFFF00',];
   my @colors = @$colorSet;
 
-  my @profileSetNames = (['Profiles of transcriptional variation in Plasmodium falciparum all_strains', '' ,$strainNames]);
-  my @percentileSetNames = (['red percentile - Profiles of transcriptional variation in Plasmodium falciparum all_strains','',$strainNames]);
+  my @profileSetNames = (['Cortes CGH Profiles', '' ,$strainNames]);
+  my @percentileSetNames = (['red percentile - Cortes CGH Profiles','',$strainNames]);
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetNames);
