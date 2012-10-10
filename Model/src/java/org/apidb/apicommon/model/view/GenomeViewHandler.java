@@ -123,7 +123,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
             // the percent length of span is relative to the local sequence
             for (Span span : sequence.getSpans()) {
-                double pctStart = Math.round(span.getStart() * 100D / sequenceLength);
+                double pctStart = round(span.getStart() * 100F / sequenceLength);
                 int length = Math.abs(span.getEnd() - span.getStart() + 1);
                 pctLength = round(length * 100F / sequenceLength);
                 span.setPercentStart((float)pctStart);
@@ -133,6 +133,6 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     }
 
     private float round(float value) {
-        return Math.round(value * 1000) / 1000F;
+        return Math.round(value * 10000) / 10000F;
     }
 }
