@@ -50,4 +50,25 @@ sub isSeen {
   return 0;
 }
 
+sub getLighterColorFromHex {
+  my ($color) = @_;
+
+  unless($color =~ /^\#\w\w\w\w\w\w$/) {
+    print STDERR "Must use hex values for input color\n";
+    return $color
+  }
+
+  my @col = (hex(substr($color, 1, 2)),
+             hex(substr($color, 3, 2)),
+             hex(substr($color,5, 2))
+             );
+
+  my @lighter = (255 - (255 - $col[0]) / 4,
+                 255 - (255 - $col[1]) / 4,
+                 255 - (255 - $col[2]) / 4
+                 );
+
+  return "#" . sprintf("%02X%02X%02X", $lighter[0], $lighter[1], $lighter[2]);
+}
+
 1;

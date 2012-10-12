@@ -392,7 +392,7 @@ sub new {
   $self->setYaxisLabel('RPKM');
   $self->setIsStacked(1);
   $self->setDefaultYMin(0);
-  $self->setDefaultYMax(4);
+  $self->setDefaultYMax(20);
   $self->setPlotTitle("Normalized Coverage - $id");
 
   # RUM RPKM Are Not logged in the db
