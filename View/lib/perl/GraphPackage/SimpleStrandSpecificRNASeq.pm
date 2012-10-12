@@ -58,8 +58,8 @@ sub makeGraphs {
   $sense->setSampleNames($self->getSampleNames);
 
   my ($senseStacked, $sensePct) = @{$sense->getGraphObjects()};
-  $senseStacked->setPartName($senseStacked->getPartName . " sense");
-  $sensePct->setPartName($sensePct->getPartName . " sense");
+  $senseStacked->setPartName($senseStacked->getPartName . "_sense");
+  $sensePct->setPartName($sensePct->getPartName . "_sense");
   $senseStacked->setPlotTitle($senseStacked->getPlotTitle() . " - sense");
   $sensePct->setPlotTitle($sensePct->getPlotTitle() . " - sense");
 
@@ -74,8 +74,8 @@ sub makeGraphs {
   $antisense->setSampleNames($self->getSampleNames);
 
   my ($antisenseStacked, $antisensePct) = @{$antisense->getGraphObjects()};
-  $antisenseStacked->setPartName($antisenseStacked->getPartName . " antisense");
-  $antisensePct->setPartName($antisensePct->getPartName . " antisense");
+  $antisenseStacked->setPartName($antisenseStacked->getPartName . "_antisense");
+  $antisensePct->setPartName($antisensePct->getPartName . "_antisense");
   $antisenseStacked->setPlotTitle($antisenseStacked->getPlotTitle() . " - antisense");
   $antisensePct->setPlotTitle($antisensePct->getPlotTitle() . " - antisense");
 
