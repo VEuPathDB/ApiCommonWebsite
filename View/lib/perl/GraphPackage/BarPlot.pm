@@ -400,6 +400,7 @@ sub new {
     $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
     $self->setYaxisLabel('RPKM (log2)');
     $self->setIsLogged(1);
+    $self->setDefaultYMax(4);
   }
 
   return $self;
