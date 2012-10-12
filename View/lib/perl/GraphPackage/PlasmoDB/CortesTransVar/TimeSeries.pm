@@ -18,13 +18,12 @@ sub init {
   
 
   my $profileBase = 'Profiles of transcriptional variation in Plasmodium falciparum';
-  my $ref_strain = ['3d7a',];
-  my $parental_strains = ['7g8','hb3a','d10'];
-  my $_3d7strains = ['3d7a','10g','1_2b','3d7b','w41'];
-  my $_7g8strains = ['kg7','7g8','ld10', 'we5', 'zf8'];
-  my $hb3strains = ['hb3b','ab10','hb3a','ab6','bb8','bc4'];
-  my $d10strains = ['e3','f1','g2','d10','g4'];
-  my $parental_strains = ['7g8','hb3a','d10'];
+  my $ref_strain = ['3D7A',];
+  my $_3d7strains = ['3D7A','10G','1_2B','3D7B','W41'];
+  my $_7g8strains = ['KG7','7G8','LD10', 'WE5', 'ZF8'];
+  my $hb3strains = ['HB3B','AB10','HB3A','AB6','BB8','BC4'];
+  my $d10strains = ['E3','F1','G2','D10','G4'];
+  my $parental_strains = ['7G8','HB3A','D10'];
 
   my @colorSet = ('#FF0000','#FF6600','#FFFF00','#009900','#0000CC','#660033',);
   my @colors = (@colorSet[0..4],@colorSet[0..4],@colorSet[0..5],@colorSet[0..4],@colorSet[0..3],);
@@ -74,12 +73,14 @@ sub defineGraphs {
   my $bottomMargin = 6;
 
   foreach my $name (@$names) {
-
+    $name = lc($name);
+    $name =~s/,/_/;
     my @profileSetName = ("$profile_base $name");
     my @percentileSetName = ("$percentile_prefix - $profile_base $name");
     push(@profileSetNames, [@profileSetName]);
     push(@percentileSetNames, [@percentileSetName]);
-    
+    $name = uc($name);
+    $name =~s/_/,/;
   }
 
 
@@ -109,8 +110,6 @@ sub defineGraphs {
    my $pctTitle = $percentile->getPlotTitle();
    $percentile->setScreenSize(250);
    $percentile->setElementNameMarginSize($bottomMargin);
-   $percentile->setSmoothLines(1);
-   $percentile->setSplineApproxN(200);
    $percentile->setHasExtraLegend(1);
    $percentile->setExtraLegendSize(6.5);
    $percentile->setLegendLabels($names);
