@@ -3,26 +3,27 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Boothroyd::TgM4RnaSeqOocys
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleRNASeq );
-use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq );
+use ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  $self->setMinRpkmProfileSet('T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome.');
-  $self->setDiffRpkmProfileSet('T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome.-diff');
-  $self->setPctProfileSet('percentile - T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome.');
-  $self->setColor("orange");
-  $self->makeGraphs(@_);
+  $self->setMinSenseRpkmProfileSet("T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome. - sense strand");
+  $self->setMinAntisenseRpkmProfileSet("T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome. - antisense strand");
 
-  $self->setBottomMarginSize(4);
+  $self->setDiffSenseRpkmProfileSet("T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome. - sense strand - diff");
+  $self->setDiffAntisenseRpkmProfileSet("T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome. - antisense strand - diff");
+
+  $self->setPctSenseProfileSet("percentile - T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome. - sense strand");
+  $self->setPctAntisenseProfileSet("percentile - T. gondii M4 oocyte time series mRNA Illumina sequences aligned to the ME49 Genome. - antisense strand");
+
+  $self->setColor("#995C7A");
+
+  $self->makeGraphs(@_);
 
   return $self;
 }
-
-1;
-
-
 
