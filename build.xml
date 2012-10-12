@@ -4,12 +4,36 @@
   <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
+ <target name="EuPathSiteCommon-Installation">
+    <ant antfile="../EuPathSiteCommon/build.xml" target="EuPathSiteCommon-Installation">
+      <property name="project" value="EuPathSiteCommon"/>
+      <property name="version" value="??"/>
+    </ant>
+  </target>
+
+  <target name="EuPathSiteCommon-WebInstallation">
+    <ant antfile="../EuPathSiteCommon/build.xml" target="EuPathSiteCommon-WebInstallation">
+      <property name="project" value="EuPathSiteCommon"/>
+      <property name="version" value="??"/>
+    </ant>
+  </target>
+
+  <target name="EuPathSiteCommon-Checkout" unless="EuPathSiteCommon.present">
+    <ant target="defaultProjectCheckout" inheritAll="false">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/EuPathSiteCommon"/>
+      <property name="project" value="EuPathSiteCommon"/>
+      <property name="version" value="??"/>
+    </ant>
+  </target>
+
+<!-- already in apicommonshare build 
   <target name="CBIL-Installation">
     <ant antfile="../CBIL/build.xml" target="CBIL-Installation">
       <property name="project" value="CBIL"/>
       <property name="version" value="internal/api-aug-08"/>
     </ant>
   </target>  
+-->
 
   <target name="ApiCommonShared-Installation">
     <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared-Installation">
@@ -25,6 +49,7 @@
     </ant>
   </target>  
 
+<!-- in eupathcommon now
   <target name="WDK-Installation">
     <ant antfile="../WDK/build.xml" target="WDK-Installation">
       <property name="project" value="WDK"/>
@@ -45,8 +70,9 @@
       <property name="project" value="CBIL"/>
       <property name="version" value="internal/api-build-9"/>
     </ant>
-  </target>    
-    
+  </target>     
+-->
+
   <target name="ApiCommonData-Checkout" unless="ApiCommonData.present"> 
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonData"/>
@@ -65,6 +91,7 @@
     </ant>
   </target>
  
+<!-- in eupathcommon now
   <target name="WDK-Checkout" unless="WDK.present"> 
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
@@ -72,6 +99,7 @@
       <property name="version" value="WDK_version_1-28"/>
     </ant>
   </target>  
+-->
  
   <target name="ApiCommonWebService-Checkout" unless="ApiCommonWebService.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
@@ -87,14 +115,16 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-ChildCheckout">
-    <available file="../CBIL" type="dir" property="CBIL.present" />
-    <available file="../WDK" type="dir" property="WDK.present" />
+<!--    <available file="../CBIL" type="dir" property="CBIL.present" />
+    <available file="../WDK" type="dir" property="WDK.present" />  -->
+    <available file="../EuPathSiteCommon" type="dir"  property="EuPathSiteCommon.present" />
     <available file="../ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
     <available file="../ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
-    <antcall target="WDK-Checkout" />
+<!--     <antcall target="CBIL-Checkout" />
+    <antcall target="WDK-Checkout" /> -->
+    <antcall target="EuPathSiteCommon-Checkout"/>
     <antcall target="ApiCommonWebService-Checkout" />
-    <antcall target="CBIL-Checkout" />
     <antcall target="ApiCommonData-Checkout"/>
     <antcall target="ApiCommonShared-Checkout"/>
   </target>
@@ -109,24 +139,36 @@
       <property name="project" value="ApiCommonData"/>
       <property name="excludeChildren" value="true"/>
     </ant>
+    <ant target="defaultProjectUpdate">
+      <property name="project" value="EuPathSiteCommon"/>
+    </ant>
      <ant target="defaultProjectUpdate">
       <property name="project" value="ApiCommonShared"/>
     </ant>
+<!--
    <ant target="defaultProjectUpdate">
       <property name="project" value="WDK"/>
     </ant>
     <ant target="defaultProjectUpdate">
       <property name="project" value="CBIL"/>
     </ant>
+-->
   </target>
 
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
+<!--
   <target name="ApiCommonWebsite-Installation" depends="CBIL-Installation,
                                                         WDK-Installation,
+                                                        ApiCommonShared-Installation,
+                                                        ApiCommonWebsite/Site-Installation,
+                                                        ApiCommonWebsite/Model-Installation,
+                                                        ApiCommonWebsite/View-Installation,
+                                                        ApiCommonData/Datasources-Installation">
+-->
+ <target name="ApiCommonWebsite-Installation" depends="EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
@@ -195,9 +237,14 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooo  Web Installation  oooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
+<!--
   <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
                                                            WDK-WebInstallation,
+                                                           ApiCommonWebsite/Site-WebInstallation">
+ </target>
+-->
+  <target name="ApiCommonWebsite-WebInstallation" depends="EuPathSiteCommon-WebInstallation,
+                                                           ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/Site-WebInstallation">
  </target>
 
