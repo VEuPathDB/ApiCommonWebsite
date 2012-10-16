@@ -203,11 +203,11 @@ EOSQL
       'Trypanosoma vivax'                                => { name => 'Tvivax',                 group => 4 },
       'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
 
-      'Toxoplasma gondii ME49'                           => { name => 'TgondiiME49',            group => 1 },
-      'Toxoplasma gondii GT1'                            => { name => 'TgondiiGT1',             group => 3 },
-      'Toxoplasma gondii VEG'                            => { name => 'TgondiiVEG',             group => 4 },
-      'Neospora caninum'                                 => { name => 'Ncaninum',               group => 5 },
-      'Eimeria tenella str. Houghton'                    => { name => 'EtenellaHoughton',       group => 6 },
+      'Toxoplasma gondii ME49'                           => { name => 'tgonME49',               group => 1 },
+      'Toxoplasma gondii GT1'                            => { name => 'tgonGT1',                group => 3 },
+      'Toxoplasma gondii VEG'                            => { name => 'tgonVEG',                group => 4 },
+      'Neospora caninum'                                 => { name => 'ncanLIV',                group => 5 },
+      'Eimeria tenella str. Houghton'                    => { name => 'etenHoughton',           group => 6 },
 
       'Entamoeba dispar SAW760'                          => { name => 'e_dispar',                group => 1 },
       'Entamoeba histolytica HM-1:IMSS'                  => { name => 'e_histolytica',           group => 2 },
