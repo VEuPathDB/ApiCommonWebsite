@@ -9,7 +9,7 @@
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url">http://www.EuPathDB.org</attribute>
         </row>
-<row>
+        <row>
           <attribute name="title">EuPathDB Workshops</attribute>
           <attribute name="url">http://workshop.eupathdb.org/</attribute>
         </row> 
@@ -22,11 +22,11 @@
           <attribute name="url">http://orthomcl.org/</attribute>
         </row> 
 
-<row>
+        <row>
           <attribute name="title"><![CDATA[The Biological Resource Centre for <i>Toxoplasma </i>]]></attribute>
           <attribute name="url">http://www.toxocrb.com/</attribute>
         </row>
-<row>
+        <row>
           <attribute name="url">https://sites.google.com/site/toxoplasmagondiigscidproject/home</attribute>
           <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> GSCID Sequencing Project]]></attribute>
         </row>
@@ -60,10 +60,6 @@
 
       <table name="tgSeqCenters">
         <row>
-          <attribute name="url">https://sites.google.com/site/toxoplasmagondiigscidproject/home</attribute>
-          <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> GSCID Sequencing Project]]></attribute>
-        </row>
-        <row>
           <attribute name="url">http://www.sanger.ac.uk/Projects/T_gondii/</attribute>
           <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> Genome Project at Sanger]]></attribute>
         </row>
@@ -76,7 +72,7 @@
           <attribute name="title"><![CDATA[EBI <i>Toxoplasma</i> Genome Database]]></attribute>
         </row>
         <row>
-          <attribute name="url">http://compbio.dfci.harvard.edu/tgi/tgipage.html</attribute>
+          <attribute name="url">http://compbio.dfci.harvard.edu/cgi-bin/tgi/gimain.pl?gudb=t_gondii</attribute>
           <attribute name="title"><![CDATA[<i>T. gondii</i> Gene Index]]></attribute>
         </row>
         <row>
@@ -115,10 +111,12 @@
           <attribute name="url">http://www.ncbi.nlm.nih.gov/books/NBK7752/</attribute>
           <attribute name="title">General, Chapter Medical Microbiology, J.P. Dubey</attribute>
         </row>
+<!--
         <row>
           <attribute name="url">http://boothroydlablocal.stanford.edu/snp_maps/</attribute>
           <attribute name="title"><![CDATA[<i>Toxoplasma gondii</i> SNP Maps]]></attribute>
         </row>
+  -->
       </table>
 
       <table name="funding">
