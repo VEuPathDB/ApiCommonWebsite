@@ -19,8 +19,9 @@ Also includes conditional error reporting via email. Email addresses are set
 in the SITE_ADMIN_EMAIL property of the WDK's model.prop . Only public sites 
 compose and send email reports.
 
-$Id$
+- Mark Heiges <mheiges@uga.edu>, February 2010
 
+Last edit $Id$
 **/
 package org.apidb.apicommon.taglib.wdk;
 
@@ -515,7 +516,11 @@ public class ErrorsTag extends WdkTagBase {
         String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
         StringBuffer errorUrl = new StringBuffer();
         errorUrl.append(request.getScheme() + "://" + request.getServerName());
-        errorUrl.append(request.getAttribute("javax.servlet.forward.request_uri"));
+        String forwardRequestUri = request.getAttribute("javax.servlet.forward.request_uri");
+        if (forwardRequestUri != null)
+            errorUrl.append(forwardRequestUri);
+        else
+            errorUrl.append("  <warning: javax.servlet.forward.request_uri is null. URL is indeterminate>");
         if (queryString != null) 
             errorUrl.append("?" + queryString);
 
