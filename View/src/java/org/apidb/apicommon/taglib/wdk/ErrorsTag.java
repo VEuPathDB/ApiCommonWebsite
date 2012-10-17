@@ -516,17 +516,34 @@ public class ErrorsTag extends WdkTagBase {
         String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
         StringBuffer errorUrl = new StringBuffer();
         errorUrl.append(request.getScheme() + "://" + request.getServerName());
-        String forwardRequestUri = request.getAttribute("javax.servlet.forward.request_uri");
-        if (forwardRequestUri != null)
-            errorUrl.append(forwardRequestUri);
-        else
-            errorUrl.append("  <warning: javax.servlet.forward.request_uri is null. URL is indeterminate>");
-        if (queryString != null) 
-            errorUrl.append("?" + queryString);
-
+        errorUrl.append(currentRequestURI());
         sb.append("Error on: " + "\n  " + errorUrl + "\n");
     }
 
+    private String currentRequestURI() {
+        String currentRequestURI = "";
+        
+        String queryString = "?" + (String)request.getAttribute("javax.servlet.forward.query_string");
+        String requestURI = (String)request.getAttribute("javax.servlet.forward.request_uri");
+        
+        if (requestURI == "null") {
+            queryString = "?" + (String)request.getAttribute("javax.servlet.include.query_string");
+            requestURI = (String)request.getAttribute("javax.servlet.include.request_uri");
+        }
+
+        if (requestURI == "null") {
+            queryString = "?" + (String)request.getQueryString();
+            requestURI = request.getRequestURI();
+        }
+
+        if (queryString.equals("?null")) 
+            queryString = "";
+        
+        currentRequestURI = requestURI + queryString;
+
+        return currentRequestURI;
+    }
+    
     private void appendUserAgent(StringBuffer sb) {
         String userAgent = (String)request.getHeader("user-agent");
         sb.append("UserAgent: " + "\n  " + userAgent + "\n");
