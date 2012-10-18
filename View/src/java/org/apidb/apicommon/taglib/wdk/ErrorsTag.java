@@ -76,6 +76,8 @@ public class ErrorsTag extends WdkTagBase {
         "w2.",
         "b1.",
         "b2.",
+        "q1.",
+        "q2.",
         "www."
     };
     private static final String PAGE_DIV = 
