@@ -518,6 +518,14 @@ public class ErrorsTag extends WdkTagBase {
         errorUrl.append(request.getScheme() + "://" + request.getServerName());
         errorUrl.append(currentRequestURI());
         sb.append("Error on: " + "\n  " + errorUrl + "\n");
+        sb.append("<debug> " + "\n  " + 
+                 "javax.servlet.forward.request_uri: " + 
+                         (String)request.getAttribute("javax.servlet.forward.request_uri") +
+                "javax.servlet.include.request_uri: " +  
+                         (String)request.getAttribute("javax.servlet.include.request_uri") +
+                 "getRequestUri: " + request.getRequestURI() +
+                 "</debug>\n"
+        );
     }
 
     private String currentRequestURI() {
