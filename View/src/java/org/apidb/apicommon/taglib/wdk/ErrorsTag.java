@@ -517,17 +517,14 @@ public class ErrorsTag extends WdkTagBase {
     private void appendErrorUrl(StringBuffer sb) {
         String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
         StringBuffer errorUrl = new StringBuffer();
-        errorUrl.append(request.getScheme() + "://" + request.getServerName());
-        errorUrl.append(currentRequestURI());
-        sb.append("Error on: " + "\n  " + errorUrl + "\n");
-        sb.append("<debug> " + "\n  " + 
-                 "javax.servlet.forward.request_uri: " + 
-                         (String)request.getAttribute("javax.servlet.forward.request_uri") +
-                "javax.servlet.include.request_uri: " +  
-                         (String)request.getAttribute("javax.servlet.include.request_uri") +
-                 "getRequestUri: " + request.getRequestURI() +
-                 "</debug>\n"
-        );
+        String currentRequestURI = currentRequestURI();
+        if (currentRequestURI == null || currentRequestURI.equals("null")) {
+            errorUrl.append("<unable to determine request URI>");
+        } else {
+            errorUrl.append("\n  " + request.getScheme() + "://" + request.getServerName());
+            errorUrl.append(currentRequestURI);
+        }
+        sb.append("Error on: " + errorUrl + "\n");
     }
 
     private String currentRequestURI() {
@@ -537,14 +534,9 @@ public class ErrorsTag extends WdkTagBase {
         String requestURI = (String)request.getAttribute("javax.servlet.forward.request_uri");
         
         if (requestURI == "null") {
-            queryString = "?" + (String)request.getAttribute("javax.servlet.include.query_string");
-            requestURI = (String)request.getAttribute("javax.servlet.include.request_uri");
+             return null;
         }
 
-        if (requestURI == "null") {
-            queryString = "?" + (String)request.getQueryString();
-            requestURI = request.getRequestURI();
-        }
 
         if (queryString.equals("?null")) 
             queryString = "";
