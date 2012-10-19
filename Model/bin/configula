@@ -75,12 +75,20 @@ my (
     $userDb_database,
     $recreate_wdkCache
 );
-my $optRslt = GetOptions(
-    "alogin=s"   => \$appDb_login,
-    "adb=s"      => \$appDb_database,
-    "udb=s"      => \$userDb_database,
-    "newcache"   => \$recreate_wdkCache,
-    );
+
+{
+  local $SIG{__WARN__} = sub { 
+    my $message = shift;
+    die "FATAL: " . $message;
+  };
+  
+  my $optRslt = GetOptions(
+      "alogin=s"   => \$appDb_login,
+      "adb=s"      => \$appDb_database,
+      "udb=s"      => \$userDb_database,
+      "newcache"   => \$recreate_wdkCache,
+      );
+}
 
 my $target_site = lc $ARGV[0];
 
