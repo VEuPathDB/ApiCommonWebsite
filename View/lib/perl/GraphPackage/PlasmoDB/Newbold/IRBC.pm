@@ -32,12 +32,12 @@ sub init {
 
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets([$profileSets->[0]]);
-  $line->setPartName('coverage_line');
+  $line->setPartName('rpkm_line');
   $line->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
   $line->setYaxisLabel('RPKM (log2)');
 
   my $id = $self->getId();
-  $line->setPlotTitle("Normalized Coverage - $id");
+  $line->setPlotTitle("RPKM - $id");
 
   my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
   $stacked->setProfileSets($profileSets);
