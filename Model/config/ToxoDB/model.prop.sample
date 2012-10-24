@@ -16,8 +16,4 @@ MERCATOR_OUTPUT_DIR=/var/www/Common/devSiteFilesMirror/webServices/ToxoDB/releas
 MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/Common/devSiteFilesMirror/webServices/ToxoDB/release-7.0/mercator_pairwise
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
-# this empty property is required in component sites; it is included in the model and used by the portal with a specific value. 
-# In the component sites it is empty; the full path for blast files appears in the wublast config file.
-TOXO_BLAST_PATH=
-
 TOXO_COMMENT_SCHEMA=toxocomm.

@@ -15,5 +15,4 @@ MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/Common/data/tritryp_mercator-MAVID
 
 CNDSRC_BIN=/files/cbil/software/bin
 
-TRYP_BLAST_PATH=
 
