@@ -388,12 +388,12 @@ sub new {
   my $id = $self->getId();
   my $wantLogged = $self->getWantLogged();
 
-  $self->setPartName('coverage');
+  $self->setPartName('rpkm');
   $self->setYaxisLabel('RPKM');
   $self->setIsStacked(1);
   $self->setDefaultYMin(0);
   $self->setDefaultYMax(20);
-  $self->setPlotTitle("Normalized Coverage - $id");
+  $self->setPlotTitle("RPKM - $id");
 
   # RUM RPKM Are Not logged in the db
   if($wantLogged) {

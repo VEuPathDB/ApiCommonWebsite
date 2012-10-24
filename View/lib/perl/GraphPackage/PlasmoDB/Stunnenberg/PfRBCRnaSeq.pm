@@ -34,14 +34,14 @@ sub init {
 
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets([$profileSets->[0],$profileSets->[2]]);
-  $line->setPartName('coverage_line');
+  $line->setPartName('rpkm_line');
   $line->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
   $line->setYaxisLabel('RPKM (log2)');
   $line->setPointsPch($pch);
   $line->setColors([$colors->[0], $colors->[1]]);
 
   my $id = $self->getId();
-  $line->setPlotTitle("Normalized Coverage - $id");
+  $line->setPlotTitle("RPKM - $id");
 
 
   my @sampleLabels = (5,10,15,20,25,30,35,40);
@@ -54,7 +54,7 @@ sub init {
   my $stackedScaled = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
   $stackedScaled->setProfileSets([$profileSets->[2], $profileSets->[3]]);
   $stackedScaled->setColors([$colors->[1],$colors->[2]] );
-  $stackedScaled->setPartName("scaled_coverage");
+  $stackedScaled->setPartName("scaled_rpkm");
   $stackedScaled->setSampleLabels(\@sampleLabels);
   $stackedScaled->setPlotTitle("Scaled " . $stackedScaled->getPlotTitle());
 

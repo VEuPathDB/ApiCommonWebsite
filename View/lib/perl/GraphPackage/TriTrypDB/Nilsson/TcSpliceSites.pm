@@ -25,7 +25,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({coverage => {profiles => ['Tcruzi RNASeq Spliced Leader And Poly A Sites from Nilsson uniqProfile','Tcruzi RNASeq Spliced Leader And Poly A Sites from Nilsson nonUniqProfile'],
+    ({rpkm => {profiles => ['Tcruzi RNASeq Spliced Leader And Poly A Sites from Nilsson uniqProfile','Tcruzi RNASeq Spliced Leader And Poly A Sites from Nilsson nonUniqProfile'],
                    y_axis_label => 'log 2 (normalized tag count)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
