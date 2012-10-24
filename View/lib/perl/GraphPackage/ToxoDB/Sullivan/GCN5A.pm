@@ -12,17 +12,14 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(300);
-  $self->setPlotWidth(450);
-  $self->setBottomMarginSize(12);
-
   my $colors = ['#D87093', '#D87093','#87CEEB', '#87CEEB'];
   my $legendColors = [@$colors[1..2]];
 
   my $legend = ["Wild Type", "GCN5-A Knockout", ];
+  my $elementNames = ["WT:Stressed","WT:Unstressed","KO:Stressed","KO:Unstressed"];
 
-  my @profileSetsArray = (['Toxoplasma gondii GCN5-A Knockout Array from Sullivan', 'standard error - Toxoplasma gondii GCN5-A Knockout Array from Sullivan', '']);
-  my @percentileSetsArray = (['percentile - Toxoplasma gondii GCN5-A Knockout Array from Sullivan', '',''],);
+  my @profileSetsArray = (['Toxoplasma gondii GCN5-A Knockout Array from Sullivan', 'standard error - Toxoplasma gondii GCN5-A Knockout Array from Sullivan', $elementNames]);
+  my @percentileSetsArray = (['percentile - Toxoplasma gondii GCN5-A Knockout Array from Sullivan', '',$elementNames],);
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
@@ -33,12 +30,12 @@ sub init {
   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
-  $rma->setElementNameMarginSize (12);
+  $rma->setElementNameMarginSize (7);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
-  $percentile->setElementNameMarginSize (12);
+  $percentile->setElementNameMarginSize (7);
 
   $self->setGraphObjects($rma, $percentile);
 
