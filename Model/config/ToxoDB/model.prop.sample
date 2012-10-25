@@ -17,3 +17,6 @@ MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/Common/devSiteFilesMirror/webServices/Toxo
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
 TOXO_COMMENT_SCHEMA=toxocomm.
+
+WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/EuPathDB/
+
