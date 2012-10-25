@@ -18,3 +18,6 @@ MERCATOR_OUTPUT_DIR=/var/www/PlasmoDB/plasmo.jbrestel/plasmo55-strains_mercator-
 CNDSRC_BIN=/files/cbil/software/bin
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
+
+WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/EuPathDB/
+

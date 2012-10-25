@@ -15,6 +15,8 @@ MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/jbresteltoxodb.apidb.org/toxo43_mercator-M
 
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
+WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/FungiDB/
+
 # social media link IDs
 FACEBOOK_ID=FungiDB
 TWITTER_ID=FungiDB
