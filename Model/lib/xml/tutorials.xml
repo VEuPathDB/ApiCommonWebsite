@@ -117,7 +117,41 @@
          </row>
        </table>
    </record>
-
+   
+ <record>
+       <attribute name="title">Highlights of a Gene Page</attribute>
+       <attribute name="description">This tutorial describes the structure of gene record pages and highlights the data listed there. Watching this video, you will learn how to read a gene record page.  </attribute>
+       <attribute name="uid">25Oct2012_2</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=9xOeCSA2RAA</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Highlights of a Gene Page/highlights_of_a_gene_page_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">5 min</attribute>
+           <attribute name="size">6.3 mb</attribute>
+         </row>
+       </table>
+   </record>
+   
+ <record>
+       <attribute name="title">Identify Genes based on EST Evidence</attribute>
+       <attribute name="description">This tutorial describes the search 'Identify Genes based on EST Evidence'. Find genes that map to expressed sequence tags to provide expression evidence for that gene at the transcript level.</attribute>
+       <attribute name="uid">25Oct2012_3</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=Rp5H6o3gMzw</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Identify Genes based on EST Evidence/identify_genes_based_on_est_evidence_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">2.5 min</attribute>
+           <attribute name="size">6.3 mb</attribute>
+         </row>
+       </table>
+   </record>
+ 
 <record>
        <attribute name="title">Identify Genes based on Gene ID</attribute>
        <attribute name="description">How to us the search 'Identify Genes based on Gene ID', to find genes by entering a list of gene IDs.</attribute>
@@ -134,7 +168,7 @@
          </row>
        </table>
    </record>
-   
+  
 <record>
        <attribute name="title">Identify Genes based on Mass Spec. Evidence</attribute>
        <attribute name="description">How to use the search 'Identify Genes base on Mass Spec. Evidence'. Find genes that map to peptides from proteomics experiments to provide expression evidence at the protein level. </attribute>
@@ -153,7 +187,7 @@
    </record>
    
     <record>
-       <attribute name="title">Identigy Genes based on Reagents Availability</attribute>
+       <attribute name="title">Identify Genes based on Reagents Availability</attribute>
        <attribute name="description">How to use the search 'Identify Genes based on Reagents Availability' which returns a list of genes supported by the Malaria Research and Reference Resource Center.</attribute>
        <attribute name="uid">2Oct2012_2</attribute>
        <table name="files">
@@ -233,6 +267,23 @@
            <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">1.5 min</attribute>
            <attribute name="size">3.5 mb</attribute>
+         </row>
+       </table>
+   </record>
+   
+ <record>
+       <attribute name="title">Mapping a list of old gene IDs to new ones</attribute>
+       <attribute name="description">This tutorial describes the structure of gene record pages and highlights the data listed there. Watching this video, you will learn how to read a gene record page.  </attribute>
+       <attribute name="uid">25Oct2012_1</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=bNkU8BWWTcs</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Mapping a list of old Gene IDs to new ones/mapping_a_list_of_old_gene_IDs_to_new_ones_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">2 min</attribute>
+           <attribute name="size">6.4 mb</attribute>
          </row>
        </table>
    </record>
