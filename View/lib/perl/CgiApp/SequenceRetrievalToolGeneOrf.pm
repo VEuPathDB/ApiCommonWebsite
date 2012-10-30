@@ -246,6 +246,8 @@ my $site = ($projectId eq 'ToxoDB')? $sqlQueries2:$sqlQueries;
 
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
 
+
+  my @invalidIds;
   my $sth = $dbh->prepare($sql);
   for my $inputId (@$ids) {
     $sth->execute($inputId);
@@ -253,13 +255,13 @@ my $site = ($projectId eq 'ToxoDB')? $sqlQueries2:$sqlQueries;
     my $descrip = " | $organism | $product | $type ";
 
     if ($inputId ne $geneOrfSourceId) {
-      $descrip = " ($inputId) $descrip";
+      push(@invalidIds, $inputId);
+    } else {
+      $self->writeSeq($seqIO, $seq, $descrip, $geneOrfSourceId, 1, length($seq), 0);
     }
-
-
-
-    $self->writeSeq($seqIO, $seq, $descrip, $geneOrfSourceId, 1, length($seq), 0);
   }
+  print "\nInvalid IDs:\n" . join("  \n", @invalidIds) if (scalar(@invalidIds));
+
 }
 
 sub mapGeneFeatureSourceIds {
