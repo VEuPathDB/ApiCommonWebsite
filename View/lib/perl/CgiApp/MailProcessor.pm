@@ -11,8 +11,12 @@ use ApiCommonWebsite::View::CgiApp::SpamCan;
 BEGIN {
    sub handle_errors {
       my $msg = shift;
-      print "<h1>Error</h1>";
+      print "<html><body>";
+      print "<h2>Unable to send message</h2>";
       print "<p>$msg</p>";
+      print "<a href=\"javascript:window.history.back()\">Try Again</a> -or- ";
+      print "<a href=\"javascript:window.close()\">Close this window</a>";
+      print "</body></html>";
   }
   set_message(\&handle_errors);
 }
@@ -50,18 +54,12 @@ sub go {
     my $message = join("", @{ $cgi->{'message'} or [] });
 
     # quick patch to avoid email header injection. Needs review.
-    my $disallowed = '[\]\[\(\)|;\^,\/\n\r]';
-    $to =~ m/$disallowed/ &&
-        die("disallowed character '$&' in To line: '$to'\n");
-    $cc =~ m/$disallowed/ &&
-        die("disallowed character '$&' in Cc line: '$cc'\n");
-    $replyTo =~ m/$disallowed/ &&
-        die("disallowed character '$&' in ReplyTo line: '$replyTo'\n");
-    $subject =~ m/[\n\r]/ &&
-        die("disallowed character '$&' in Subject line: '$subject'\n");
+    checkEmail($to, 'To');
+    checkEmail($cc, 'CC');
+    checkEmail($replyTo, 'ReplyTo');
+    checkBadChars($subject, "Subject");
     for my $addCc (@addCcField) {
-        $addCc =~ m/$disallowed/ &&
-            die("disallowed character '$&' in Cc line: '$addCc'\n");
+    	checkEmail($addCc, 'CC');
     }
 
     my $addCc = join ',', @addCcField; # cleaned, approved list
@@ -146,8 +144,22 @@ sub go {
     print $cgi->redirect("http://" . $ENV{'SERVER_NAME'} . "/a/helpback.jsp");
 }
 
+sub checkEmail {
+	my($value, $fieldName) = @_;
+    my $validEmail = '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$';
+    $value !~ m/$validEmail/ && die("Invalid email address in $fieldName line: '$value'\n");
+    checkBadChars($value, $fieldName); # safety check
+}
 
-sub sendMail { return &_cpanMailSendmail(@_); }
+sub checkBadChars {
+	my ($value, $fieldName) = @_;
+    my $disallowed = '[\]\[\(\)|;\^,\/\n\r]';
+    $value =~ m/$disallowed/ && die("Disallowed character '$&' in $fieldName line: '$value'\n");
+}
+
+sub sendMail {
+	return &_cpanMailSendmail(@_);
+}
 
 sub _cpanMailSendmail {
     my ($from, $to, $subject, $replyTo, $metaInfo, $message, $addCc) = @_;
