@@ -24,5 +24,5 @@ MERCATOR_OUTPUT_DIR_PAIRWISE=
 
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
-WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/EuPathDB/
+WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/
 

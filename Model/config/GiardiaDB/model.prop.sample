@@ -14,7 +14,7 @@ MERCATOR_OUTPUT_DIR_PAIRWISE=/dogs/and/cats/living/together/mercator_pairwise
 MERCATOR_OUTPUT_DIR=/var/www/Common/devSiteFilesMirror/webServices/GiardiaDB/release-2.0/mercator
 CNDSRC_BIN=/files/cbil/software/bin
 
-WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/EuPathDB/
+WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
 

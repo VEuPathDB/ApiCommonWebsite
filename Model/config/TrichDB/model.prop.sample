@@ -36,5 +36,5 @@ WEBAPP_NAME=trichdb1.0
 
 PROJECT_ID=TrichDB
 
-WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/EuPathDB/
+WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/
 
