@@ -63,6 +63,14 @@ sub getPassword {
 }
 
 # return to appDb value, for backward compatibility
+sub getDblApicomm {
+    my ($self) = @_;
+    ($self->{appDb})
+        ? $self->{appDb}->{userDbLink}
+		: $self->{userDbLink}
+}
+
+# return to appDb value, for backward compatibility
 sub getDbiDsn {
     my ($self) = @_;
     ($self->{appDb})
