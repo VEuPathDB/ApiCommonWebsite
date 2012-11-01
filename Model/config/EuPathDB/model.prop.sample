@@ -2,5 +2,5 @@
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
 
-WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/EuPathDB/
+WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/ 
 
