@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+<xmlAnswer>
+
+    <record id="answer-value-records-error-msg.basket">
+      <attribute name="title">There is an error with your basket results</attribute>
+      <attribute name="content"><![CDATA[
+        It appears that there is a problem with your basket results.
+        This may be due to IDs of this record type changing or being retired.
+        Unfortunately, you may be required to <a href="javascript:void();"
+        onclick="emptyBasket();">clear</a> your basket in order to retain functionlity.
+        Feel free to <a href="help.jsp" class="open-window-contact-us">contact us</a> with any
+        feedback.
+        ]]></attribute>
+    </record>
+
+    <record id="answer-value-records-error-msg.default">
+      <attribute name="title">There is an error with your results</attribute>
+      <attribute name="content"><![CDATA[
+        It appears something has gone wrong when retreiving your results.
+        Please <a href="help.jsp" class="open-window-contact-us">contact us</a> so that
+        we can investigate what may be causing this.
+        ]]></attribute>
+    </record>
+
+</xmlAnswer>
