@@ -18,6 +18,59 @@
     </record>
 -->
 <record>
+       <attribute name="headline">
+         <![CDATA[DEVELOPMENT OF A MOLECULAR BARCODE FOR PLASMODIUM VIVAX
+         ]]>
+         </attribute>
+       <attribute name="date">02 November 2012 13:00</attribute>
+       <attribute name="tag">plasmo_icmer_news</attribute>
+       <attribute name="category">icmer1</attribute>
+       <attribute name="item">
+           
+         <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <p>
+      <!--StartFragment-->
+    </p>
+    <p align="justify" style="margin-bottom:6.0pt;mso-pagination:none;mso-layout-grid-align:
+none;text-autospace:none" class="MsoNormal"><span style="font-family:Optima;mso-bidi-font-family:
+Helvetica">The Harvard School of Public Health and Broad Institute including
+        Professors Sarah Volkman, Manoj Duraisingh, Daniel Hartl, Daniel
+        Neafsey,
+        Pardis Sabeti, and Dyann Wirth with funding support from the Bill and
+        Melinda
+        Gates Foundation (BMGF) are in the process of developing a molecular
+        barcode
+        tool for <i style="mso-bidi-font-style:normal">Plasmodium vivax</i>
+        with the
+        collaboration of the malaria community.<span style="mso-spacerun:yes"> 
+        </span>We invite members of this community who are interested in either
+        collaboration or potential application of this tool to participate in
+        this
+        endeavor. <br />
+      </span></p>
+    <p align="justify" style="margin-bottom:6.0pt;mso-pagination:none;mso-layout-grid-align:
+none;text-autospace:none" class="MsoNormal"><span style="font-family:Optima;mso-bidi-font-family:
+Helvetica"><br />
+      </span></p>
+    <p align="justify" style="margin-bottom:6.0pt;mso-pagination:none;mso-layout-grid-align:
+none;text-autospace:none" class="MsoNormal"><span style="font-family:Optima;mso-bidi-font-family:
+Helvetica">Additional information is available in <strong><a href="http://plasmodb.org/plasmo/communityDownload.do?fname=Pvivax_MolecularBarcode_ConceptPaper_MalariaCommunity.pdf">this
+            downloadable document</a></strong>.<br />
+      </span></p>
+    <span style="font-family:Optima;mso-bidi-font-family:
+Helvetica"><span style="mso-spacerun:yes"></span></span><!--EndFragment-->
+  </body>
+</html>  
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">PlasmoDB 9.1 Released</attribute>
        <attribute name="date">31 August 2012 15:00</attribute>
        <attribute name="tag">plasmo08_12_news</attribute>
