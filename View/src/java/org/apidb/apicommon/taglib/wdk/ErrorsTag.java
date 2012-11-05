@@ -515,7 +515,7 @@ public class ErrorsTag extends WdkTagBase {
     }
 
     private void appendErrorUrl(StringBuffer sb) {
-        String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
+        //String queryString = (String)request.getAttribute("javax.servlet.forward.query_string");
         StringBuffer errorUrl = new StringBuffer();
         String currentRequestURI = currentRequestURI();
         if (currentRequestURI == null || currentRequestURI.equals("null")) {
