@@ -3,8 +3,8 @@
  <!ENTITY relCrypto "5.0">
  <!ENTITY relMicro "3.0">
  <!ENTITY relPiro "2.0">
- <!ENTITY relPlasmo "9.1">
- <!ENTITY relToxo "7.3">
+ <!ENTITY relPlasmo "9.2">
+ <!ENTITY relToxo "8.0">
 ]>
 
 <xmlAnswer>
@@ -945,6 +945,31 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
    </record>
+<record>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">cynomolgi</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pc/fasta/data/PlasmoDB-&relPlasmo;_Pc_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pc/gff/data/PlasmoDB-&relPlasmo;_Pc.gff</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain"></attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">5776</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways">yes</attribute>
+   </record>
 
  <record>
        <attribute name = "Website">PlasmoDB</attribute>
@@ -1121,6 +1146,31 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways">yes</attribute>
    </record>
+ <record>
+       <attribute name = "Website">PlasmoDB</attribute>
+       <attribute name = "Genus">Plasmodium</attribute>
+       <attribute name = "Species">yoelii</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii/fasta/data/PlasmoDB-&relPlasmo;_Pyoelii_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii/gff/data/PlasmoDB-&relPlasmo;_Pyoelii.gff</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain">yoelii YM</attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">5811</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
 <record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Eimeria</attribute>
@@ -1128,11 +1178,11 @@
        <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/fasta/data/EtenellaHoughtonGenomic_ToxoDB-&relToxo;.fasta</attribute>
        <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/gff/data/EtenellaHoughton_ToxoDB-&relToxo;.gff</attribute>
        <attribute name = "Taxon_ID">413949</attribute>
-       <attribute name = "Strain">str. Houghton</attribute>
-       <attribute name = "Genome_Version">10-04-2010</attribute>
+       <attribute name = "Strain">strain Houghton</attribute>
+       <attribute name = "Genome_Version">10-04-2010***</attribute>
        <attribute name = "Data_Source">GeneDB</attribute>
-       <attribute name = "Genome_Size">51.81</attribute>
-       <attribute name = "Gene_Count">9262</attribute>
+       <attribute name = "Genome_Size">51.81***</attribute>
+       <attribute name = "Gene_Count">9235</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1178,12 +1228,12 @@
        <attribute name = "Species">caninum</attribute>
        <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/fasta/data/NcaninumGenomic_ToxoDB-&relToxo;.fasta</attribute>
        <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/gff/data/Ncaninum_ToxoDB-&relToxo;.gff</attribute>
-       <attribute name = "Taxon_ID">29176</attribute>
-       <attribute name = "Strain"></attribute>
-       <attribute name = "Genome_Version">10-06-2009</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain">Liverpool</attribute>
+       <attribute name = "Genome_Version">10-06-2009**</attribute>
        <attribute name = "Data_Source">Sanger</attribute>
-       <attribute name = "Genome_Size">61.04</attribute>
-       <attribute name = "Gene_Count">7227</attribute>
+       <attribute name = "Genome_Size">61.04***</attribute>
+       <attribute name = "Gene_Count">7266</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
@@ -1205,10 +1255,10 @@
        <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/gff/TgondiiME49_ToxoDB-&relToxo;.gff</attribute>
        <attribute name = "Taxon_ID">508771</attribute>
        <attribute name = "Strain">ME49</attribute>
-       <attribute name = "Genome_Version">07-16-2008</attribute>
+       <attribute name = "Genome_Version">07-16-2008***</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">63.01</attribute>
-       <attribute name = "Gene_Count">8155</attribute>
+       <attribute name = "Genome_Size">63.01***</attribute>
+       <attribute name = "Gene_Count">8814</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
        <attribute name = "SNPs">yes</attribute>
@@ -1370,7 +1420,34 @@
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
-   </record><record>
+   </record>
+<record>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB_.org/common/downloads/Current_Release/TgondiiRUB/fasta/data/TgondiiRUBGenomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain">RUB</attribute>
+       <attribute name = "Genome_Version"></attribute>
+       <attribute name = "Data_Source"></attribute>
+       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+
+<record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
@@ -1418,7 +1495,8 @@
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
-   </record><record>
+   </record>
+<record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
