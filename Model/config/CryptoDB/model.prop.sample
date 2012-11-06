@@ -19,8 +19,6 @@ CHOMINISCONTIGS = C.hominis scaffold from Genbank
 CMURISCONTIGS = C.muris scaffold from Genbank
 CPARVUMCHRMAP = Cparvum contig to chromosome map
 
-MERCATOR_OUTPUT_DIR=/var/www/Common/data/crypto37_mercator-MAVID
-MERCATOR_OUTPUT_DIR_PAIRWISE=
 
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 

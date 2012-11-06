@@ -12,9 +12,6 @@ COMMENT_DBLINK=@apidb.LOGIN_COMMENT
 
 PROJECT_ID=PlasmoDB
 
-MERCATOR_OUTPUT_DIR_PAIRWISE=/files/cbil/data/cbil/apiSiteFiles/webServices/PlasmoDB/release-6.4/mercator
-MERCATOR_OUTPUT_DIR=/var/www/PlasmoDB/plasmo.jbrestel/plasmo55-strains_mercator-MAVID
-
 CNDSRC_BIN=/files/cbil/software/bin
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu

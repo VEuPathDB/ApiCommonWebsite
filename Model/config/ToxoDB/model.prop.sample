@@ -12,8 +12,6 @@ PROJECT_ID=ToxoDB
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
 
-MERCATOR_OUTPUT_DIR=/var/www/Common/devSiteFilesMirror/webServices/ToxoDB/release-7.0/mercator
-MERCATOR_OUTPUT_DIR_PAIRWISE=/var/www/Common/devSiteFilesMirror/webServices/ToxoDB/release-7.0/mercator_pairwise
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
 TOXO_COMMENT_SCHEMA=toxocomm.
