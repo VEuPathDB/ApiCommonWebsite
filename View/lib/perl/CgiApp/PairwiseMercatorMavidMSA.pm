@@ -10,11 +10,11 @@ use Bio::Seq;
 use Data::Dumper;
 
 use ApiCommonWebsite::Model::ModelProp;
+use ApiCommonWebsite::Model::ModelApicommonXml;
 
 use Bio::Graphics::Browser2::PadAlignment;
 
 use CGI::Carp qw(fatalsToBrowser set_message);
-
 
 sub getSortingGroupsHash {
   my ($reference,$taxonDirHash) = @_;
@@ -565,8 +565,15 @@ sub validateMacros {
   my ($cgi) = @_;
 
   my $project = $cgi->param('project_id');
+
   my $props =  ApiCommonWebsite::Model::ModelProp->new($project);
-  my $mercatorOutputDir = $props->{MERCATOR_OUTPUT_DIR_PAIRWISE};
+  my $model = ApiCommonWebsite::Model::ModelApicommonXml->new();
+
+  my $buildNumber = $model->getBuildNumberByProjectId($project);
+  my $wsMirror = $props->{WEBSERVICEMIRROR};
+
+  my $mercatorOutputDir = $wsMirror . "/$project/build-$buildNumber/mercator_pairwise/";
+
   my $cndsrcBin =  $props->{CNDSRC_BIN};
 
   my $sliceAlignment = "$cndsrcBin/sliceAlignment";
