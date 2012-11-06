@@ -13,8 +13,8 @@
        <attribute name = "Website">AmoebaDB</attribute>
        <attribute name = "Genus">Entamoeba</attribute>
        <attribute name = "Species">dispar</attribute>
-       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/Edispar/fasta/EdisparGenomic_AmoebaDB-1.7.fasta</attribute>
-       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/Edispar/gff/Edispar_AmoebaDB-1.7.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EdisparSAW760/fasta/EdisparSAW760Genomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/EdisparSAW760/gff/EdisparSAW760_AmoebaDB-1.7.gff</attribute>
        <attribute name = "Taxon_ID">370354</attribute>
        <attribute name = "Strain">SAW760</attribute>
        <attribute name = "Genome_Version">11-27-2009</attribute>
@@ -89,8 +89,8 @@
        <attribute name = "Website">AmoebaDB</attribute>
        <attribute name = "Genus">Entamoeba</attribute>
        <attribute name = "Species">histolytica</attribute>
-       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/Ehistolytica/fasta/EhistolyticaGenomic_AmoebaDB-1.7.fasta</attribute>
-       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/Ehistolytica/gff/Ehistolytica_AmoebaDB-1.7.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM-1:IMSS/fasta/EhistolyticaHM-1\:IMSSGenomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM-1:IMSS/gff/EhistolyticaHM-1\:IMSS_AmoebaDB-1.7.gff</attribute>
        <attribute name = "Taxon_ID">294381</attribute>
        <attribute name = "Strain">HM-1:IMSS</attribute>
        <attribute name = "Genome_Version">11-27-2009</attribute>
@@ -239,8 +239,8 @@
        <attribute name = "Website">AmoebaDB</attribute>
        <attribute name = "Genus">Entamoeba</attribute>
        <attribute name = "Species">invadens</attribute>
-       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/Einvadens/fasta/EinvadensGenomic_AmoebaDB-1.7.fasta</attribute>
-       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/Einvadens/gff/Einvadens_AmoebaDB-1.7.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EinvadensIP1/fasta/EinvadensIP1Genomic_AmoebaDB-1.7.fasta</attribute>
+       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/EinvadensIP1/gff/EinvadensIP1_AmoebaDB-1.7.gff</attribute>
        <attribute name = "Taxon_ID">370355</attribute>
        <attribute name = "Strain">IP1</attribute>
        <attribute name = "Genome_Version">11-27-2009</attribute>
@@ -949,10 +949,10 @@
        <attribute name = "Website">PlasmoDB</attribute>
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">cynomolgi</attribute>
-       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pc/fasta/data/PlasmoDB-&relPlasmo;_Pc_Genome.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PcynomolgiB/fasta/data/PlasmoDB-&relPlasmo;_Pc_Genome.fasta</attribute>
        <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pc/gff/data/PlasmoDB-&relPlasmo;_Pc.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
-       <attribute name = "Strain"></attribute>
+       <attribute name = "Strain">B</attribute>
        <attribute name = "Genome_Version"></attribute>
        <attribute name = "Data_Source"></attribute>
        <attribute name = "Genome_Size"></attribute>
