@@ -12,9 +12,6 @@ PROJECT_ID=PiroplasmaDB
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
 
-MERCATOR_OUTPUT_DIR=/var/www/jbrestelpiroplasmadb.apidb.org/piro43_mercator-MAVID
-MERCATOR_OUTPUT_DIR_PAIRWISE=
-
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
 PIRO_COMMENT_SCHEMA=pirocomm.
