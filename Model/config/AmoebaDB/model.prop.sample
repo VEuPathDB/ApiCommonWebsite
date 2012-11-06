@@ -12,9 +12,6 @@ PROJECT_ID=AmoebaDB
 
 SITE_ADMIN_EMAIL = mheiges@uga.edu
 
-MERCATOR_OUTPUT_DIR=/var/www/jbresteltoxodb.apidb.org/toxo43_mercator-MAVID
-MERCATOR_OUTPUT_DIR_PAIRWISE=
-
 CNDSRC_BIN=/usr/local/cndsrc-2006.09.19/bin/
 
 WEBSERVICEMIRROR=/var/www/Common/apiSiteFilesMirror/webServices/
