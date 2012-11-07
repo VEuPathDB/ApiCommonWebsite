@@ -5,6 +5,7 @@
  <!ENTITY relPiro "2.0">
  <!ENTITY relPlasmo "9.2">
  <!ENTITY relToxo "8.0">
+ <!ENTITY relTryp "4.2">
 ]>
 
 <xmlAnswer>
@@ -371,9 +372,9 @@
        <attribute name = "URLgff">http://GiardiaDB.org/common/downloads/Current_Release/GintestinalisAssemblageA/gff/GintestinalisAssemblageA_GiardiaDB-2.5.gff</attribute>
        <attribute name = "Taxon_ID">184922</attribute>
        <attribute name = "Strain">isolate WB</attribute>
-       <attribute name = "Genome_Version">09-24-2007</attribute>
+       <attribute name = "Genome_Version">08-22-2011</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">11.21</attribute>
+       <attribute name = "Genome_Size">12.37</attribute>
        <attribute name = "Gene_Count">5981*</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates">yes</attribute>
@@ -651,7 +652,7 @@
        <attribute name = "Strain">H348</attribute>
        <attribute name = "Genome_Version">01-13-2009</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">4.31</attribute>
+       <attribute name = "Genome_Size">3.86</attribute>
        <attribute name = "Gene_Count">3806</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
@@ -949,13 +950,13 @@
        <attribute name = "Website">PlasmoDB</attribute>
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">cynomolgi</attribute>
-       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PcynomolgiB/fasta/data/PlasmoDB-&relPlasmo;_Pc_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pc/gff/data/PlasmoDB-&relPlasmo;_Pc.gff</attribute>
-       <attribute name = "Taxon_ID"></attribute>
-       <attribute name = "Strain">B</attribute>
-       <attribute name = "Genome_Version"></attribute>
-       <attribute name = "Data_Source"></attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PcynomolgiB/fasta/data/PlasmoDB-&relPlasmo;_PcynomolgiB_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PcynomolgiB/gff/data/PlasmoDB-&relPlasmo;_PcynomolgiB.gff</attribute>
+       <attribute name = "Taxon_ID">1120755</attribute>
+       <attribute name = "Strain">strain B</attribute>
+       <attribute name = "Genome_Version">06-01-2012</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size">26.18</attribute>
        <attribute name = "Gene_Count">5776</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
@@ -1129,7 +1130,7 @@
        <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii17XNL/gff/data/PlasmoDB-&relPlasmo;_Pyoelii17XNL.gff</attribute>
        <attribute name = "Taxon_ID">352914</attribute>
        <attribute name = "Strain">yoelii 17XNL</attribute>
-       <attribute name = "Genome_Version">10-03-2002</attribute>
+       <attribute name = "Genome_Version">09-01-2005</attribute>
        <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">22.94</attribute>
        <attribute name = "Gene_Count">7774</attribute>
@@ -1150,13 +1151,13 @@
        <attribute name = "Website">PlasmoDB</attribute>
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">yoelii</attribute>
-       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii/fasta/data/PlasmoDB-&relPlasmo;_Pyoelii_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/Pyoelii/gff/data/PlasmoDB-&relPlasmo;_Pyoelii.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PyoeliiYM/fasta/data/PlasmoDB-&relPlasmo;_PyoeliiYM_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PyoeliiYM/gff/data/PlasmoDB-&relPlasmo;_PyoeliiYM.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">yoelii YM</attribute>
-       <attribute name = "Genome_Version"></attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Version">07-01-2012</attribute>
+       <attribute name = "Data_Source">GeneDB</attribute>
+       <attribute name = "Genome_Size">22.03</attribute>
        <attribute name = "Gene_Count">5811</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
@@ -1175,13 +1176,13 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Eimeria</attribute>
        <attribute name = "Species">tenella</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/fasta/data/EtenellaHoughtonGenomic_ToxoDB-&relToxo;.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/gff/data/EtenellaHoughton_ToxoDB-&relToxo;.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/fasta/data/ToxoDB-&relToxo;_EtenellaHoughton_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/EtenellaHoughton/gff/data/ToxoDB-&relToxo;_EtenellaHoughton.gff</attribute>
        <attribute name = "Taxon_ID">413949</attribute>
        <attribute name = "Strain">strain Houghton</attribute>
-       <attribute name = "Genome_Version">10-04-2010***</attribute>
+       <attribute name = "Genome_Version">10-04-2010</attribute>
        <attribute name = "Data_Source">GeneDB</attribute>
-       <attribute name = "Genome_Size">51.81***</attribute>
+       <attribute name = "Genome_Size">51.81</attribute>
        <attribute name = "Gene_Count">9235</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
@@ -1200,7 +1201,7 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Gregarina</attribute>
        <attribute name = "Species">niphandrodes</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Gniphandrodes/fasta/data/GniphandrodesGenomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Gniphandrodes/fasta/data/ToxoDB-&relToxo;_Gniphandrodes_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">110365</attribute>
        <attribute name = "Strain"></attribute>
@@ -1226,13 +1227,13 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Neospora</attribute>
        <attribute name = "Species">caninum</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/fasta/data/NcaninumGenomic_ToxoDB-&relToxo;.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/Ncaninum/gff/data/Ncaninum_ToxoDB-&relToxo;.gff</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/NcaninumLIV/fasta/data/ToxoDB-&relToxo;_NcaninumLIV_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/NcaninumLIV/gff/data/ToxoDB-&relToxo;_NcaninumLiverpool.gff</attribute>
+       <attribute name = "Taxon_ID">572307</attribute>
        <attribute name = "Strain">Liverpool</attribute>
-       <attribute name = "Genome_Version">10-06-2009**</attribute>
-       <attribute name = "Data_Source">Sanger</attribute>
-       <attribute name = "Genome_Size">61.04***</attribute>
+       <attribute name = "Genome_Version">08-12-2011</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size">59.10</attribute>
        <attribute name = "Gene_Count">7266</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
@@ -1247,111 +1248,11 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
- <record>
-       <attribute name = "Website">ToxoDB</attribute>
-       <attribute name = "Genus">Toxoplasma</attribute>
-       <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/fasta/TgondiiME49Genomic_ToxoDB-&relToxo;.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/gff/TgondiiME49_ToxoDB-&relToxo;.gff</attribute>
-       <attribute name = "Taxon_ID">508771</attribute>
-       <attribute name = "Strain">ME49</attribute>
-       <attribute name = "Genome_Version">07-16-2008***</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">63.01***</attribute>
-       <attribute name = "Gene_Count">8814</attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates">yes</attribute>
-       <attribute name = "SNPs">yes</attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray">yes</attribute>
-       <attribute name = "Proteomics">yes</attribute>
-       <attribute name = "ChIP_chip">yes</attribute>
-       <attribute name = "RNA_Seq">yes</attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags">yes</attribute>
-       <attribute name = "Pathways">yes</attribute>
-   </record>
-  <record>
-       <attribute name = "Website">ToxoDB</attribute>
-       <attribute name = "Genus">Toxoplasma</attribute>
-       <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/fasta/TgondiiGT1Genomic_ToxoDB-&relToxo;.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/gff/TgondiiGT1_ToxoDB-&relToxo;.gff</attribute>
-       <attribute name = "Taxon_ID">507601</attribute>
-       <attribute name = "Strain">GT1</attribute>
-       <attribute name = "Genome_Version">07-15-2008</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">62.43</attribute>
-       <attribute name = "Gene_Count">8253</attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
-       <attribute name = "Website">ToxoDB</attribute>
-       <attribute name = "Genus">Toxoplasma</attribute>
-       <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRHApicoplast/fasta/TgondiiRHApicoplastGenomic_ToxoDB-&relToxo;.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRHApicoplast/gff/TgondiiRH_ToxoDB-&relToxo;.gff</attribute>
-       <attribute name = "Taxon_ID">383379</attribute>
-       <attribute name = "Strain">RH</attribute>
-       <attribute name = "Genome_Version">04-14-2009</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">0.035</attribute>
-       <attribute name = "Gene_Count">63</attribute>
-       <attribute name = "Organellar_Genomes">yes</attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
-       <attribute name = "Website">ToxoDB</attribute>
-       <attribute name = "Genus">Toxoplasma</attribute>
-       <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/fasta/TgondiiVEGGenomic_ToxoDB-&relToxo;.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/gff/TgondiiVEG_ToxoDB-&relToxo;.gff</attribute>
-       <attribute name = "Taxon_ID">432359</attribute>
-       <attribute name = "Strain">VEG</attribute>
-       <attribute name = "Genome_Version">07-17-2008</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
-       <attribute name = "Genome_Size">65.35</attribute>
-       <attribute name = "Gene_Count">7997</attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
 <record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiFOU/fasta/data/TgondiiFOUGenomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiFOU/fasta/data/ToxoDB-&relToxo;_TgondiiFOU_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">943167</attribute>
        <attribute name = "Strain">FOU</attribute>
@@ -1372,11 +1273,36 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
+ <record>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/fasta/ToxoDB-&relToxo;_TgondiiGT1_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/gff/ToxoDB-&relToxo;_TgondiiGT1.gff</attribute>
+       <attribute name = "Taxon_ID">507601</attribute>
+       <attribute name = "Strain">GT1</attribute>
+       <attribute name = "Genome_Version">07-15-2008</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
+       <attribute name = "Genome_Size">61.53</attribute>
+       <attribute name = "Gene_Count">8253</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
 <record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiMAS/fasta/data/TgondiiMASGenomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiMAS/fasta/data/ToxoDB-&relToxo;_TgondiiMAS_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">943118</attribute>
        <attribute name = "Strain">MAS</attribute>
@@ -1396,19 +1322,46 @@
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
-   </record><record>
+   </record>
+ <record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Tgondiip89/fasta/data/Tgondiip89Genomic_ToxoDB-&relToxo;.fasta</attribute>
-       <attribute name = "URLgff"></attribute>
-       <attribute name = "Taxon_ID">943119</attribute>
-       <attribute name = "Strain">p89</attribute>
-       <attribute name = "Genome_Version">02-01-2011</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/fasta/ToxoDB-&relToxo;_TgondiiME49_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/gff/ToxoDB-&relToxo;_TgondiiME49.gff</attribute>
+       <attribute name = "Taxon_ID">508771</attribute>
+       <attribute name = "Strain">ME49</attribute>
+       <attribute name = "Genome_Version">08-28-2012</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
-       <attribute name = "Genome_Size">64.34</attribute>
-       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Genome_Size">65.13</attribute>
+       <attribute name = "Gene_Count">8814</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates">yes</attribute>
+       <attribute name = "SNPs">yes</attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray">yes</attribute>
+       <attribute name = "Proteomics">yes</attribute>
+       <attribute name = "ChIP_chip">yes</attribute>
+       <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags">yes</attribute>
+       <attribute name = "Pathways">yes</attribute>
+   </record>
+ 
+ <record>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRH/fasta/ToxoDB-&relToxo;_TgondiiRH_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRH/gff/ToxoDB-&relToxo;_TgondiiRH.gff</attribute>
+       <attribute name = "Taxon_ID">383379</attribute>
+       <attribute name = "Strain">RH</attribute>
+       <attribute name = "Genome_Version">04-14-2009</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size">4.04</attribute>
+       <attribute name = "Gene_Count">63</attribute>
+       <attribute name = "Organellar_Genomes">yes</attribute>
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
@@ -1421,17 +1374,20 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
+
+
+
 <record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB_.org/common/downloads/Current_Release/TgondiiRUB/fasta/data/TgondiiRUBGenomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB_.org/common/downloads/Current_Release/TgondiiRUB/fasta/data/ToxoDB-&relToxo;_TgondiiRUB_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">935652</attribute>
        <attribute name = "Strain">RUB</attribute>
-       <attribute name = "Genome_Version"></attribute>
-       <attribute name = "Data_Source"></attribute>
-       <attribute name = "Genome_Size"></attribute>
+       <attribute name = "Genome_Version">08-31-2011</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size">62.61</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
@@ -1451,7 +1407,7 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCATBr9/fasta/data/TgondiiTgCATBr9Genomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCATBr9/fasta/data/ToxoDB-&relToxo;_TgondiiTgCATBr9_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">943120</attribute>
        <attribute name = "Strain">TgCATBr9</attribute>
@@ -1475,7 +1431,7 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCkUg2/fasta/TgondiiTgCkUg2Genomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCkUg2/fasta/ToxoDB-&relToxo;_TgondiiTgCkUg2_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">TgCkUg2</attribute>
@@ -1500,13 +1456,63 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB_.org/common/downloads/Current_Release/TgondiiVAND/fasta/data/TgondiiVANDGenomic_ToxoDB-&relToxo;.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB_.org/common/downloads/Current_Release/TgondiiVAND/fasta/data/ToxoDB-&relToxo;_TgondiiVAND_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">933077</attribute>
        <attribute name = "Strain">VAND</attribute>
        <attribute name = "Genome_Version">02-01-2011</attribute>
        <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">64.46</attribute>
+       <attribute name = "Gene_Count">N.A.</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/fasta/ToxoDB-&relToxo;_TgondiiVEG_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/gff/ToxoDB-&relToxo;_TgondiiVEG.gff</attribute>
+       <attribute name = "Taxon_ID">432359</attribute>
+       <attribute name = "Strain">VEG</attribute>
+       <attribute name = "Genome_Version">07-17-2008</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Size">65.35</attribute>
+       <attribute name = "Gene_Count">7997</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+<record>
+       <attribute name = "Website">ToxoDB</attribute>
+       <attribute name = "Genus">Toxoplasma</attribute>
+       <attribute name = "Species">gondii</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/Tgondiip89/fasta/data/ToxoDB-&relToxo;_Tgondiip89_Genome.fasta</attribute>
+       <attribute name = "URLgff"></attribute>
+       <attribute name = "Taxon_ID">943119</attribute>
+       <attribute name = "Strain">p89</attribute>
+       <attribute name = "Genome_Version">02-01-2011</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
+       <attribute name = "Genome_Size">64.34</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
        <attribute name = "Isolates"></attribute>
@@ -1551,7 +1557,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Crithidia</attribute>
        <attribute name = "Species">fasciculata</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Cfasciculata/fasta/CfasciculataGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Cfasciculata/fasta/CfasciculataGenomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5656</attribute>
        <attribute name = "Strain"></attribute>
@@ -1576,7 +1582,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Endotrypanum</attribute>
        <attribute name = "Species">monterogeii</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/EmonteLV88/fasta/EmonteLV88Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/EmonteLV88/fasta/EmonteLV88Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">strain LV88</attribute>
@@ -1601,8 +1607,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">braziliensis</attribute>
-       <attribute name = "URLGenomeFasta">http://TritrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/gff/Lbraziliensis_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TritrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/gff/Lbraziliensis_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">420245</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1626,7 +1632,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">braziliensis</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisM2903Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisM2903Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">4202450</attribute>
        <attribute name = "Strain">M2903</attribute>
@@ -1652,8 +1658,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">infantum</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/fasta/LinfantumGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/gff/Linfantum_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/fasta/LinfantumGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Linfantum/gff/Linfantum_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">5671</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1677,8 +1683,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">major</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorFriedlinGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/gff/LmajorFriedlin_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorFriedlinGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/gff/LmajorFriedlin_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">347515</attribute>
        <attribute name = "Strain">strain Friedlin</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1702,7 +1708,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">major</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LmajorLV39c5/fasta/LmajorLV39c5Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LmajorLV39c5/fasta/LmajorLV39c5Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">860569</attribute>
        <attribute name = "Strain">strain LV39c5</attribute>
@@ -1727,7 +1733,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">major</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorSD75.1Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmajor/fasta/LmajorSD75.1Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">860570</attribute>
        <attribute name = "Strain">strain SD 75.1</attribute>
@@ -1752,8 +1758,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">mexicana</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/fasta/LmexicanaGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/gff/Lmexicana_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/fasta/LmexicanaGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lmexicana/gff/Lmexicana_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">5665</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1777,7 +1783,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">panamensis</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LpanamL13/fasta/LpanamL13Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LpanamL13/fasta/LpanamL13Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5679</attribute>
        <attribute name = "Strain">strain L13</attribute>
@@ -1802,8 +1808,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Leishmania</attribute>
        <attribute name = "Species">tarentolae</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTarII/fasta/LtarParrotTarIIGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTarII/gff/LtarParrotTarII_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTarII/fasta/LtarParrotTarIIGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/LtarParrotTarII/gff/LtarParrotTarII_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">56890001</attribute>
        <attribute name = "Strain">Parrot-TarII</attribute>
        <attribute name = "Genome_Version">06-22-2011</attribute>
@@ -1828,8 +1834,33 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">brucei</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiTreu927Genomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiTreu927_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/Tbrucei427Genomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/Tbrucei427_TriTrypDB-&relTryp;.gff</attribute>
+       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Strain">Lister strain 427</attribute>
+       <attribute name = "Genome_Version">10-20-2010</attribute>
+       <attribute name = "Data_Source">GeneDB, Sanger</attribute>
+       <attribute name = "Genome_Size">25.61</attribute>
+       <attribute name = "Gene_Count">8998</attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">TriTrypDB</attribute>
+       <attribute name = "Genus">Trypanosoma</attribute>
+       <attribute name = "Species">brucei</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiTreu927Genomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiTreu927_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">185431</attribute>
        <attribute name = "Strain">TREU927</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1853,8 +1884,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">brucei</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiGambienseGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiGambiense_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/TbruceiGambienseGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/TbruceiGambiense_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">31285</attribute>
        <attribute name = "Strain">gambiense</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1874,38 +1905,14 @@
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
    </record>
- <record>
-       <attribute name = "Website">TriTrypDB</attribute>
-       <attribute name = "Genus">Trypanosoma</attribute>
-       <attribute name = "Species">brucei</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/Tbrucei427Genomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/Tbrucei427_TriTrypDB-4.1.gff</attribute>
-       <attribute name = "Taxon_ID"></attribute>
-       <attribute name = "Strain">Lister strain 427</attribute>
-       <attribute name = "Genome_Version">10-20-2010</attribute>
-       <attribute name = "Data_Source">GeneDB, Sanger</attribute>
-       <attribute name = "Genome_Size">25.61</attribute>
-       <attribute name = "Gene_Count">8998</attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
+
 
  <record>
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">congolense</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/fasta/TcongolenseGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/gff/Tcongolense_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/fasta/TcongolenseGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcongolense/gff/Tcongolense_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">5692</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1929,8 +1936,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldo-LikeGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziEsmeraldo-Like_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldo-LikeGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziEsmeraldo-Like_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">CL Brener Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1954,8 +1961,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziNonEsmeraldo-LikeGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziNonEsmeraldo-Like_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziNonEsmeraldo-LikeGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziNonEsmeraldo-Like_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">CL Brener Non-Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -1979,8 +1986,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziUnassignedContigsGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziUnassignedContigs_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziUnassignedContigsGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziUnassignedContigs_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">353153</attribute>
        <attribute name = "Strain">strain CL Brener</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
@@ -2004,7 +2011,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldoGenomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldoGenomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">366581</attribute>
        <attribute name = "Strain">strain esmeraldo</attribute>
@@ -2029,7 +2036,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziJRcl4Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziJRcl4Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">914063</attribute>
        <attribute name = "Strain">JR cl. 4</attribute>
@@ -2053,7 +2060,7 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">cruzi</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziSylvioX10-1Genomic_TriTrypDB-4.1.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziSylvioX10-1Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">5693000</attribute>
        <attribute name = "Strain">Sylvio X10/1</attribute>
@@ -2081,8 +2088,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">vivax</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/fasta/TvivaxGenomic_TriTrypDB-4.1.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/gff/Tvivax_TriTrypDB-4.1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/fasta/TvivaxGenomic_TriTrypDB-&relTryp;.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tvivax/gff/Tvivax_TriTrypDB-&relTryp;.gff</attribute>
        <attribute name = "Taxon_ID">5699</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
