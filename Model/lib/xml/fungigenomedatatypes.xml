@@ -682,168 +682,6 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">Oomycetes; Phytophthora</attribute>
-       <attribute name = "Genus">Phytophthora</attribute>
-       <attribute name = "Species">capsici</attribute>
-       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "Taxon_ID">763924</attribute>
-       <attribute name = "Strain">LT1534</attribute>
-       <attribute name = "Genome_Version">11</attribute>
-       <attribute name = "Data_Source">JGI</attribute>
-       <attribute name = "Genome_Size">64.02</attribute>
-       <attribute name = "Gene_Count">19804</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
-       <attribute name = "Website">Oomycetes; Phytophthora</attribute>
-       <attribute name = "Genus">Phytophthora</attribute>
-       <attribute name = "Species">infestans</attribute>
-       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "Taxon_ID">403677</attribute>
-       <attribute name = "Strain">T30-4</attribute>
-       <attribute name = "Genome_Version">2009-10-27</attribute>
-       <attribute name = "Data_Source">Broad</attribute>
-       <attribute name = "Genome_Size">228.54</attribute>
-       <attribute name = "Gene_Count">17907</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
-       <attribute name = "Website">Oomycetes; Phytophthora</attribute>
-       <attribute name = "Genus">Phytophthora</attribute>
-       <attribute name = "Species">ramorum</attribute>
-       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "Taxon_ID">164328</attribute>
-       <attribute name = "Strain">Pr102</attribute>
-       <attribute name = "Genome_Version">1</attribute>
-       <attribute name = "Data_Source">JGI</attribute>
-       <attribute name = "Genome_Size">66.65</attribute>
-       <attribute name = "Gene_Count">16150</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs"></attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq">yes</attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
-       <attribute name = "Website">Oomycetes; Phytophthora</attribute>
-       <attribute name = "Genus">Phytophthora</attribute>
-       <attribute name = "Species">sojae</attribute>
-       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "Taxon_ID">67593</attribute>
-       <attribute name = "Strain">P6497</attribute>
-       <attribute name = "Genome_Version">5</attribute>
-       <attribute name = "Data_Source">JGI</attribute>
-       <attribute name = "Genome_Size">82.60</attribute>
-       <attribute name = "Gene_Count">26584</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
-       <attribute name = "Website">Oomycetes; Pythiales</attribute>
-       <attribute name = "Genus">Pythium</attribute>
-       <attribute name = "Species">ultimum</attribute>
-       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "Taxon_ID">431595</attribute>
-       <attribute name = "Strain">DAOM BR144</attribute>
-       <attribute name = "Genome_Version">2010-04-29</attribute>
-       <attribute name = "Data_Source">JCVI</attribute>
-       <attribute name = "Genome_Size">44.91</attribute>
-       <attribute name = "Gene_Count">15291</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs">yes</attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq"></attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
-       <attribute name = "Website">Oomycetes; Peronosporales</attribute>
-       <attribute name = "Genus">Hyaloperonospora</attribute>
-       <attribute name = "Species">arabidopsidis</attribute>
-       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-       <attribute name = "Taxon_ID">559515</attribute>
-       <attribute name = "Strain">Emoy2</attribute>
-       <attribute name = "Genome_Version">8</attribute>
-       <attribute name = "Data_Source">VBI</attribute>
-       <attribute name = "Genome_Size">82.05</attribute>
-       <attribute name = "Gene_Count">14665</attribute>
-       <attribute name = "Multiple_Strains"></attribute>
-       <attribute name = "Additional_Strains"></attribute>
-       <attribute name = "Organellar_Genomes"></attribute>
-       <attribute name = "Isolates"></attribute>
-       <attribute name = "SNPs"></attribute>
-       <attribute name = "ESTs"></attribute>
-       <attribute name = "Microarray"></attribute>
-       <attribute name = "Proteomics"></attribute>
-       <attribute name = "ChIP_chip"></attribute>
-       <attribute name = "RNA_Seq">yes</attribute>
-       <attribute name = "RT_PCR"></attribute>
-       <attribute name = "Chip_Seq"></attribute>
-       <attribute name = "SageTags"></attribute>
-       <attribute name = "Pathways"></attribute>
-   </record>
- <record>
        <attribute name = "Website">Eurotiomycetes; Ascomycota</attribute>
        <attribute name = "Genus">Coccidioides</attribute>
        <attribute name = "Species">posadasii</attribute>
@@ -898,7 +736,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">Agaricomycetes; Coprinopsis</attribute>
+       <attribute name = "Website">Agaricamycotina; Basidiomycota</attribute>
        <attribute name = "Genus">Coprinopsis</attribute>
        <attribute name = "Species">cinerea</attribute>
        <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
@@ -979,7 +817,7 @@
        <attribute name = "Pathways"></attribute>
    </record>
  <record>
-       <attribute name = "Website">Ustilaginomycetes; Ustilago</attribute>
+       <attribute name = "Website">Ustilaginomycetes; Basidiomycota</attribute>
        <attribute name = "Genus">Ustilago</attribute>
        <attribute name = "Species">maydis</attribute>
        <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
@@ -1007,7 +845,7 @@
    </record>
 
  <record>
-       <attribute name = "Website">Basidiomycota</attribute>
+       <attribute name = "Website">Puccinimycotina; Basidiomycota</attribute>
        <attribute name = "Genus">Puccinia</attribute>
        <attribute name = "Species">graminis f.sp.tritici</attribute>
        <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
@@ -1052,6 +890,168 @@
        <attribute name = "Isolates"></attribute>
        <attribute name = "SNPs"></attribute>
        <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+<record>
+       <attribute name = "Website">Phytophthora; Oomycetes</attribute>
+       <attribute name = "Genus">Phytophthora</attribute>
+       <attribute name = "Species">capsici</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">763924</attribute>
+       <attribute name = "Strain">LT1534</attribute>
+       <attribute name = "Genome_Version">11</attribute>
+       <attribute name = "Data_Source">JGI</attribute>
+       <attribute name = "Genome_Size">64.02</attribute>
+       <attribute name = "Gene_Count">19804</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Phytophthora; Oomycetes</attribute>
+       <attribute name = "Genus">Phytophthora</attribute>
+       <attribute name = "Species">infestans</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">403677</attribute>
+       <attribute name = "Strain">T30-4</attribute>
+       <attribute name = "Genome_Version">2009-10-27</attribute>
+       <attribute name = "Data_Source">Broad</attribute>
+       <attribute name = "Genome_Size">228.54</attribute>
+       <attribute name = "Gene_Count">17907</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Phytophthora; Oomycetes</attribute>
+       <attribute name = "Genus">Phytophthora</attribute>
+       <attribute name = "Species">ramorum</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">164328</attribute>
+       <attribute name = "Strain">Pr102</attribute>
+       <attribute name = "Genome_Version">1</attribute>
+       <attribute name = "Data_Source">JGI</attribute>
+       <attribute name = "Genome_Size">66.65</attribute>
+       <attribute name = "Gene_Count">16150</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq">yes</attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Phytophthora; Oomycetes</attribute>
+       <attribute name = "Genus">Phytophthora</attribute>
+       <attribute name = "Species">sojae</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">67593</attribute>
+       <attribute name = "Strain">P6497</attribute>
+       <attribute name = "Genome_Version">5</attribute>
+       <attribute name = "Data_Source">JGI</attribute>
+       <attribute name = "Genome_Size">82.60</attribute>
+       <attribute name = "Gene_Count">26584</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Pythiales; Oomycetes</attribute>
+       <attribute name = "Genus">Pythium</attribute>
+       <attribute name = "Species">ultimum</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">431595</attribute>
+       <attribute name = "Strain">DAOM BR144</attribute>
+       <attribute name = "Genome_Version">2010-04-29</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
+       <attribute name = "Genome_Size">44.91</attribute>
+       <attribute name = "Gene_Count">15291</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs">yes</attribute>
+       <attribute name = "Microarray"></attribute>
+       <attribute name = "Proteomics"></attribute>
+       <attribute name = "ChIP_chip"></attribute>
+       <attribute name = "RNA_Seq"></attribute>
+       <attribute name = "RT_PCR"></attribute>
+       <attribute name = "Chip_Seq"></attribute>
+       <attribute name = "SageTags"></attribute>
+       <attribute name = "Pathways"></attribute>
+   </record>
+ <record>
+       <attribute name = "Website">Peronosporales; Oomycetes</attribute>
+       <attribute name = "Genus">Hyaloperonospora</attribute>
+       <attribute name = "Species">arabidopsidis</attribute>
+       <attribute name = "URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
+       <attribute name = "Taxon_ID">559515</attribute>
+       <attribute name = "Strain">Emoy2</attribute>
+       <attribute name = "Genome_Version">8</attribute>
+       <attribute name = "Data_Source">VBI</attribute>
+       <attribute name = "Genome_Size">82.05</attribute>
+       <attribute name = "Gene_Count">14665</attribute>
+       <attribute name = "Multiple_Strains"></attribute>
+       <attribute name = "Additional_Strains"></attribute>
+       <attribute name = "Organellar_Genomes"></attribute>
+       <attribute name = "Isolates"></attribute>
+       <attribute name = "SNPs"></attribute>
+       <attribute name = "ESTs"></attribute>
        <attribute name = "Microarray"></attribute>
        <attribute name = "Proteomics"></attribute>
        <attribute name = "ChIP_chip"></attribute>
