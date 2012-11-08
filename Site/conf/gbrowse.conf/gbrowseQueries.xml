@@ -1153,6 +1153,28 @@ and d.name $$operator$$ $$edname$$
     </sql>
   </sqlQuery>
 
+<!-- PATCH FOR BUILD16 -->
+  <sqlQuery name="NextGenSeq:coverageLogSubtracksSuPatch"  includeProjects="PlasmoDB">
+     <sql>
+       <![CDATA[
+select  distinct $$edname$$ || '_' || c.sample || '_' || $$subtrackField$$ as feature_id,
+       'NextGenSeq'  as type, 
+       '$source'     as source,
+       $base_start  as startm,
+       $rend        as end,
+       'subtrackField=' || $$subtrackField$$ || '$dlm' || 'sample=' || c.sample as atts
+from APIDB.nextgenseqcoverage c, SRES.externaldatabaserelease r, sres.externaldatabase d
+where c.external_database_release_id = r.external_database_release_id
+and r.external_database_id = d.external_database_id
+and c.mapping_start <= $rend
+and c.mapping_end >= $base_start
+and c.na_sequence_id = $srcfeature_id
+and d.name $$operator$$ $$edname$$
+       ]]>
+    </sql>
+  </sqlQuery>
+
+
 
       <sqlQuery name="splice:curated" includeProjects="TriTrypDB">
      <sql>
@@ -5787,6 +5809,47 @@ GROUP BY start_interval,end_interval,sample,is_reversed,multiple, name
 ]]>
     </sql>
   </sqlQuery>
+
+
+<!-- Patch for build 16 -->
+   <sqlQuery name="NextGenSeq:coverageLogSubtracksSuPatch:bulksubfeatures"  includeProjects="PlasmoDB">
+     <sql>
+<![CDATA[
+SELECT start_interval feature_id,
+       'NextGenSeq' type,
+       '$source' source,
+       decode($$negativeValuesField$$, 1, 1, -1) * abs(round(log(2,max(coverage*max_cov/sum_coverage)),2)) score, 
+       $$edname$$ || '_' || sample || '_' || $$subtrackField$$ parent_id,
+       round(start_interval * (($rend - $base_start + 1) / 800)) startm,
+       round(end_interval * (($rend - $base_start + 1) / 800)) end,
+       'multiple=' || multiple  || '$dlm' ||
+       'sample=' || sample  || '$dlm' || 
+       'is_reversed=' || is_reversed  as atts
+FROM (SELECT ceil((csc.mapping_start + 1) / (($rend - $base_start + 1) / 800)) start_interval, 
+             ceil(csc.mapping_end / (($rend - $base_start + 1) / 800)) end_interval, 
+             is_reversed,
+             csc.coverage, csc.sample,ed.name, csc.multiple, s.sum_coverage, s.max_cov
+      FROM   apidb.NextGenSeqCoverage csc,
+             ( SELECT ss.ext_db_name, ss.sample, ss.sum_coverage, m.max_cov
+               FROM   apidbtuning.nextgenseqstats ss, 
+                      ( SELECT max(sum_coverage) as max_cov, ext_db_name
+                        FROM APIDBTUNING.nextgenseqstats
+                        GROUP BY ext_db_name) m
+               WHERE ss.ext_db_name = m.ext_db_name) s,
+             sres.externaldatabaserelease edr,
+             sres.externaldatabase ed
+      WHERE csc.external_database_release_id = edr.external_database_release_id
+        AND edr.external_database_id = ed.external_database_id
+        AND ed.name $$operator$$ $$edname$$
+        AND csc.na_sequence_id = $srcfeature_id
+        AND csc.mapping_start + 1 <= $rend
+        AND s.ext_db_name = ed.name
+        AND csc.mapping_end >= $base_start - 1)
+GROUP BY start_interval,end_interval,sample,is_reversed,multiple, name
+]]>
+    </sql>
+  </sqlQuery>
+
 
 
    <sqlQuery name="NextGenSeq:coverageLog:bulksubfeatures"  includeProjects="TriTrypDB">

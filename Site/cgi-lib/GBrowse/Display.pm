@@ -411,6 +411,48 @@ sub colorByRnaSeq {
 }
 
 
+sub colorByRnaSeqSu {
+  my ($f, $optColor) = @_;
+  my ($isReversed) = $f->get_tag_values('is_reversed');
+  my ($multiple) = $f->get_tag_values('multiple');
+  my $score = $f->score();
+
+  # pos strand unique = BLUE
+  if($isReversed eq '0' && $multiple eq '0') {
+    return 'red';
+  }
+  # neg strand unique = BLUE
+  if($isReversed eq '1' && $multiple eq '0') {
+    return 'blue';
+  }
+
+  # pos strand multiple align = lightblue
+  if($isReversed eq '0' && $multiple eq '1') {
+    #return 'mediumslateblue';
+    return 'peru';
+  }
+  # neg strand multiple align = pink
+  if($isReversed eq '1' && $multiple eq '1') {
+    #return 'hotpink';
+    return 'orange';
+
+  }
+
+  if($multiple eq '0' && $optColor) {
+    return $optColor;
+  }
+
+  # multiple aligners w/o strand info
+  if($multiple eq '1' || $score < 0) {
+    #return 'lightslategray';
+    return 'wheat';
+  }
+
+  return 'black';
+}
+
+
+
 
 sub colorFromBinaryColorScore {
   my ($f, $first, $second) = @_;

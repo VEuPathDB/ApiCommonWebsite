@@ -11,14 +11,19 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setMinSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - sense strand");
-  $self->setMinAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - antisense strand");
+#================================================================================
+#   NOTE!!!!
+#    THESE ARE PATCHED FOR BUILD16 BECAUSE SENSE/ANTISENSE WERE SWAPPED IN LOADING
+#================================================================================
 
-  $self->setDiffSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - sense strand - diff");
-  $self->setDiffAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - antisense strand - diff");
+  $self->setMinAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - sense strand");
+  $self->setMinSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - antisense strand");
 
-  $self->setPctSenseProfileSet("percentile - P. falciparum Su Strand Specific RNA Seq data - sense strand");
-  $self->setPctAntisenseProfileSet("percentile - P. falciparum Su Strand Specific RNA Seq data - antisense strand");
+  $self->setDiffAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - sense strand - diff");
+  $self->setDiffSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - antisense strand - diff");
+
+  $self->setPctAntisenseProfileSet("percentile - P. falciparum Su Strand Specific RNA Seq data - sense strand");
+  $self->setPctSenseProfileSet("percentile - P. falciparum Su Strand Specific RNA Seq data - antisense strand");
 
   $self->setColor("#8F006B");
 
