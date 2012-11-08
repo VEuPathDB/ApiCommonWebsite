@@ -1609,7 +1609,7 @@
        <attribute name = "Species">braziliensis</attribute>
        <attribute name = "URLGenomeFasta">http://TritrypDB.org/common/downloads/Current_Release/Lbraziliensis/fasta/LbraziliensisGenomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Lbraziliensis/gff/Lbraziliensis_TriTrypDB-&relTryp;.gff</attribute>
-       <attribute name = "Taxon_ID">420245</attribute>
+       <attribute name = "Taxon_ID">5660</attribute>
        <attribute name = "Strain"></attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
@@ -1836,7 +1836,7 @@
        <attribute name = "Species">brucei</attribute>
        <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/fasta/Tbrucei427Genomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tbrucei/gff/Tbrucei427_TriTrypDB-&relTryp;.gff</attribute>
-       <attribute name = "Taxon_ID"></attribute>
+       <attribute name = "Taxon_ID">1854310</attribute>
        <attribute name = "Strain">Lister strain 427</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
@@ -1938,7 +1938,7 @@
        <attribute name = "Species">cruzi</attribute>
        <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziEsmeraldo-LikeGenomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziEsmeraldo-Like_TriTrypDB-&relTryp;.gff</attribute>
-       <attribute name = "Taxon_ID">353153</attribute>
+       <attribute name = "Taxon_ID">3665810</attribute>
        <attribute name = "Strain">CL Brener Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
@@ -1963,7 +1963,7 @@
        <attribute name = "Species">cruzi</attribute>
        <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/fasta/TcruziNonEsmeraldo-LikeGenomic_TriTrypDB-&relTryp;.fasta</attribute>
        <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/Tcruzi/gff/TcruziNonEsmeraldo-Like_TriTrypDB-&relTryp;.gff</attribute>
-       <attribute name = "Taxon_ID">353153</attribute>
+       <attribute name = "Taxon_ID">36658100</attribute>
        <attribute name = "Strain">CL Brener Non-Esmeraldo-like</attribute>
        <attribute name = "Genome_Version">10-20-2010</attribute>
        <attribute name = "Data_Source">GeneDB, Sanger</attribute>
