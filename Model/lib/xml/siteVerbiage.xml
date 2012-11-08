@@ -11,10 +11,9 @@
     <record id="answer-value-records-error-msg.basket">
       <attribute name="title">There is an error with your basket results</attribute>
       <attribute name="content"><![CDATA[
-        It appears that there is a problem with your basket results.
-        This may be due to IDs of this record type changing or being retired.
-        Unfortunately, you may be required to <a href="javascript:void();"
-        onclick="emptyBasket();">clear</a> your basket in order to retain functionlity.
+        Your basket is not working because some IDs have changed or been retired
+        since your last visit. Please <a href="javascript:void();"
+        onclick="emptyBasket();">empty your basket</a> to restore its functionality.
         Feel free to <a href="help.jsp" class="open-window-contact-us">contact us</a> with any
         feedback.
         ]]></attribute>
