@@ -15,6 +15,30 @@
     </record>
 --> 
    <record>
+       <attribute name="headline">FungiDB 2.1 released</attribute>
+       <attribute name="date">12 Nov 2012 12:00AM</attribute>
+       <attribute name="tag">fungidb_11-12_release2.1</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+FungiDB 2.1 is released and includes 39 Fungal genomes from
+       Ascomycota, Basidiomycota, and Mucormycotina (Zygomycota) and 6
+       genomes of Oomycetes.  This release builds on the 2.0 release
+       from August to include 6 additional species, RNA-Seq from a
+       population of <span style="font-style: italic;">Neurospora strains</span>, growth time points in 3 fungi
+       <span style="font-style: italic;">Coprinopsis</span>, <span style="font-style: italic;">Neurospora</span>, and <span style="font-style: italic;">Rhizopus</span>, and <span style="font-style: italic;">Phytophora</span>
+       species. The 6 new genomes include <span style="font-style: italic;">Batrachochytrium
+       dendrobatidis</span>, <span style="font-style: italic;">Coprinopsis cinereus</span>, <span style="font-style: italic;">Histoplasma capsulatum</span>,
+       <span style="font-style: italic;">Coccidioides
+       posadasii</span>, <span style="font-style: italic;">Rhizopus
+       oryzae</span> (<span style="font-style:
+       italic;">R. delemar</span>), and <span style="font-style:
+       italic;">Ustilago maydis</span>.
+
+          ]]>
+       </attribute>
+    </record>
+   <record>
        <attribute name="headline">2.0 released</attribute>
        <attribute name="date">1 Aug 2012 9:00AM</attribute>
        <attribute name="tag">fungidb_08-01_release2</attribute>
