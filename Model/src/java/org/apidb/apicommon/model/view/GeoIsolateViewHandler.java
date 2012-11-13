@@ -23,7 +23,7 @@ public class GeoIsolateViewHandler extends IsolateViewHandler {
         sql.append("  AND v.isolate_vocabulary_id = m.isolate_vocabulary_id ");
         sql.append("  AND i.na_sequence_id = m.na_sequence_id ");
         sql.append("  AND g.country = v.term ");
-        sql.append("  AND i.source_id = idq.source_id(+) ");
+        sql.append("  AND i.source_id = idq.source_id ");
         sql.append(" ) group by country, data_type, lat, lng ");
 
         return sql.toString();
