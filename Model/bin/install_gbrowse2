@@ -40,7 +40,7 @@ mkdirs() {
     mkdir $htdocsTargetDir 2>/dev/null
     mkdir $cgibinTargetDir 2>/dev/null
     mkdir $cgilibTargetDir 2>/dev/null
-    mkdir $confTargetDir 2>/dev/null
+    mkdir $GUS_HOME/lib/gbrowse 2>/dev/null
 }
 
 unpack_gbrowse_src() {
@@ -152,7 +152,7 @@ configure_gb() {
     export TMPDIR=$BUILD_DIR
 
     perl Build.PL  --htdocs=$htdocsTargetDir/gbrowse                          \
-                   --conf=$confTargetDir                                      \
+                   --conf=$GUS_HOME/lib/gbrowse                               \
                    --tmp=$htdocsTargetDir/gbrowse/tmp                         \
                    --persistent=$cgilibTargetDir/persistent                   \
                    --databases=$cgilibTargetDir/persistent/databases          \
@@ -194,10 +194,10 @@ patch_postinstall() {
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/RenderPanels.pm.patch
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/DataSource.pm.patch
     patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/Plugin.pm.patch
-    patch -d $confTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/GBrowse.conf.patch
-    patch -d $confTargetDir/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/SequenceDumper.pm.patch
-    patch -d $confTargetDir/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/TrackDumper.pm.patch
-    patch -d $confTargetDir/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/PrimerDesigner.pm.patch
+    patch -d $GUS_HOME/lib/gbrowse -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/GBrowse.conf.patch
+    patch -d $GUS_HOME/lib/gbrowse/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/SequenceDumper.pm.patch
+    patch -d $GUS_HOME/lib/gbrowse/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/TrackDumper.pm.patch
+    patch -d $GUS_HOME/lib/gbrowse/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/PrimerDesigner.pm.patch
     patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/balloon.config.js.patch
     patch -d $htdocsTargetDir/gbrowse/css/dropdown -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/dropdown.css.patch
     patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/gbrowse_img.patch
