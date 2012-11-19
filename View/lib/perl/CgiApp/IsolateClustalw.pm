@@ -9,7 +9,6 @@ use SOAP::Lite;
 use CGI::Session;
 use XML::XPath;
 use XML::XPath::XMLParser;
-#use lib $ENV{CGILIB};
 use Bio::Graphics::Browser2::PadAlignment;
 
 sub run {
@@ -46,18 +45,32 @@ sub handleIsolates {
 
   my $ids = $self->{ids};
 
-  my $sql = <<EOSQL;
+  my $type = $cgi->param('type');
+  my $loc  = $cgi->param('loc');
+  my $sid  = $cgi->param('sid');
+
+  $loc =~ s/,//g;
+  my $sql = "";
+
+  if($type =~ /htsSNP/i) {
+    $ids =~ s/'(\w)/'$sid\.$1/g;
+    $sql = <<EOSQL;
+select source_id, substr(nas.sequence, $loc-50,50) as sequence from dots.nasequence nas
+where nas.source_id in ($ids) 
+EOSQL
+  } else {  # regular isolates
+    $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
 FROM   ApidbTuning.IsolateSequence etn
 WHERE etn.source_id in ($ids)
 EOSQL
+  }
 
   my $sequence;
   my $sth = $dbh->prepare($sql);
   $sth->execute();
   while(my ($id, $seq) = $sth->fetchrow_array()) {
     $sequence .= ">$id\n$seq\n";
-    
   }
 
   # previouse url.
