@@ -11,7 +11,6 @@ GBROWSE_TAR_FILE=GBrowse-2.48.tar.gz
 BIOPERL_TAR_FILE=BioPerl-1.6.1.tar.gz
 BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.29.tar.gz
 #BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.31.tar.gz
-BIOSAMTOOLS_TAR_FILE=Bio-SamTools-1.35.tar.gz
 
 BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
@@ -103,21 +102,6 @@ install_local_biographics() {
     fi
 }
 
-# unpack and install pre-made BioSamTools v1.33 into cgi-lib
-install_local_biosamtools() {
-    echo "INSTALL: installing bioperl...."
-    echo "tar zxf $GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE"
-    if ! tar zxf \
-        $GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE \
-        -C $cgilibTargetDir 2> /dev/null; then
-        echo "FATAL: Unable to un-tar BioSamTools package '$GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE'. Exiting..."
-        echo "tar zxf \
-        $GBROWSE_TAR_PATH/$BIOSAMTOOLS_TAR_FILE \
-        -C $cgilibTargetDir"
-        exit 1
-    fi
-}
-
 configure_gb() {
 
     
@@ -127,8 +111,6 @@ configure_gb() {
 
     install_local_biographics
 
-    install_local_biosamtools
-    
     export PERL5LIB=$cgilibTargetDir:$PERL5LIB
     if ! perl -e 'use Bio::Perl 1.5' 2> /dev/null; then
         echo "BioPerl 1.5 or greater is required but not found."
