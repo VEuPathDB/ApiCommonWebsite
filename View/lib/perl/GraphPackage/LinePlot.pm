@@ -40,6 +40,9 @@ sub setSmoothLines               { $_[0]->{'_smooth_lines'                  } = 
 sub getSplineApproxN             { $_[0]->{'_spline_approx_n'               }}
 sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = $_[1]}
 
+sub getSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     }}
+sub setSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     } = $_[1]}
+
 sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
 sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
 
@@ -86,7 +89,8 @@ sub makeRPlotString {
   my $xMin = $self->getDefaultXMin();
 
   my $yAxisFoldInductionFromM = $self->getMakeYAxisFoldInduction();
-
+  
+  my $df = $self->getSplineDF;
   my $pointsLast = $self->getArePointsLast();
   my $rPostscript = $self->getRPostscript();
 
@@ -101,7 +105,10 @@ sub makeRPlotString {
 
   $pointsLast = $pointsLast ? 'TRUE' : 'FALSE';
 
-  $smoothLines = $smoothLines ? 'TRUE' : 'FALSE';
+  $smoothLines = $smoothLines ? 'TRUE' : 'FALSE'; 
+
+  my $dfString = ", df=$df";
+  $df = defined($df) ? $dfString : "";
 
   $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
@@ -140,6 +147,7 @@ $pointsPchString
 $sampleLabelsString
 $stderrFiles
 $legendLabelsString
+
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -367,7 +375,7 @@ for(i in 1:nrow(lines.df)) {
     approxInterp = approx(x.coords.line, n=$splineApproxN);
     predict_x = approxInterp\$y;
 
-    lines(predict(smooth.spline(x=x.coords.line, y=y.coords),predict_x),
+    lines(predict(smooth.spline(x=x.coords.line, y=y.coords$df),predict_x),
          col  = the.colors[i],
          bg   = the.colors[i],
          cex  = 1
