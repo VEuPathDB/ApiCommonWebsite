@@ -52,6 +52,11 @@ sub handleIsolates {
 
   $start =~ s/,//g;
   $end =~ s/,//g;
+
+  if($end eq '') {
+    $end   = $start - 50;
+    $start = $start - 50;
+  }
   my $sql = "";
 
   if($type =~ /htsSNP/i) {
