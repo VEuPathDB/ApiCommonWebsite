@@ -45,19 +45,22 @@ sub handleIsolates {
 
   my $ids = $self->{ids};
 
-  my $type = $cgi->param('type');
-  my $loc  = $cgi->param('loc');
-  my $sid  = $cgi->param('sid');
+  my $type  = $cgi->param('type');
+  my $start = $cgi->param('start');
+  my $end   = $cgi->param('end');
+  my $sid   = $cgi->param('sid');
 
-  $loc =~ s/,//g;
+  $start =~ s/,//g;
+  $end =~ s/,//g;
   my $sql = "";
 
   if($type =~ /htsSNP/i) {
     $ids =~ s/'(\w)/'$sid\.$1/g;
     $sql = <<EOSQL;
-select source_id, substr(nas.sequence, $loc-50,50) as sequence from dots.nasequence nas
+select source_id, substr(nas.sequence, $start,$end) as sequence from dots.nasequence nas
 where nas.source_id in ($ids) 
 EOSQL
+    warn "sql: $sql";
   } else {  # regular isolates
     $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
