@@ -61,11 +61,11 @@ sub handleIsolates {
 
   if($type =~ /htsSNP/i) {
     $ids =~ s/'(\w)/'$sid\.$1/g;
+    $ids .= ",'$sid'" if $ids =~ /3D7/;  # assume ref is 3D7 fix this soon
     $sql = <<EOSQL;
-select source_id, substr(nas.sequence, $start,$end) as sequence from dots.nasequence nas
-where nas.source_id in ($ids) 
+select source_id, substr(nas.sequence, $start,$end-$start+1) as sequence from dots.nasequence nas
+where nas.source_id in ($ids, '$ref') 
 EOSQL
-    warn "sql: $sql";
   } else {  # regular isolates
     $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
