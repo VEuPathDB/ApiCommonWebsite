@@ -19,12 +19,12 @@
             showConnections="false"
             showConnectionsInterval="10"
             showConnectionsDuration="600"
-            userDbLink="@apidb.login_comment" 
+            userDbLink="@devS.login_comment" 
             />
              
     <userDb login=""
             password=""
-            connectionUrl="jdbc:oracle:oci:@apicomm"
+            connectionUrl="jdbc:oracle:oci:@apicommDevS"
             platform="Oracle"
             maxActive="20"
             maxIdle="1"
