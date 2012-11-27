@@ -202,9 +202,17 @@ my ($prod_site) = $target_site =~ m/([^\.]+\.org)/;
 my $appDb_password = std_password($appDb_login, $appDb_database);
 my $appDb_connectionUrl = 'jdbc:oracle:oci:@' . $appDb_database;
 
+if ( ! $appDb_password ) {
+  die "Did not find password for $appDb_login in $euparc . Quitting with no changes made.\n";
+}
+
 my $userDb_login = $userDb_login || 'uga_fed';
 my $userDb_password = std_password($userDb_login, $userDb_database);;
 my $userDb_connectionUrl = 'jdbc:oracle:oci:@' . $userDb_database;
+
+if ( ! $userDb_password ) {
+  die "Did not find password for $appDb_login in $euparc . Quitting with no changes made.\n";
+}
 
 
 # webapp_nover is always valid thanks to apache redirects, and
