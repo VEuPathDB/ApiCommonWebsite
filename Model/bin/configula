@@ -35,7 +35,7 @@ my $g_showConnectionsInterval = "10";
 my $g_showConnectionsDuration = "600";
 my $g_maxActive = "20";
 my $g_maxWait = "50";
-my $g_userDbLink = '@apidb.login_comment';
+my $g_userDbLink = '@prods.login_comment';
 my $g_use_map = 0;
 my $g_skip_db_test = 0;
 
@@ -493,9 +493,8 @@ sub commentConfig {
 sub dblink {
     my ($apicomm) = @_;
     %dblinkMap = (
-        'apicomm'  => 'apidb.login_comment',
-        'apicomms' => 'apidb.login_comment',
-        'apicommn' => 'alt.login_comment',
+        'apicomms'    => 'prods.login_comment',
+        'apicommn'    => 'prodn.login_comment',
         'apicommdevs' => 'devs.login_comment',
         'apicommdevn' => 'devn.login_comment',
     );
