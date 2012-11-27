@@ -388,17 +388,11 @@ sub colorByRnaSeq {
 
   # pos strand multiple align = lightblue
   if($isReversed eq '0' && $multiple eq '1') {
-    #return 'mediumslateblue';
-    return 'orange';
+    return 'grey';
   }
   # neg strand multiple align = pink
   if($isReversed eq '1' && $multiple eq '1') {
-    #return 'hotpink';
-    return 'peru';
-  }
-
-  if($multiple eq '0' && $optColor) {
-    return $optColor;
+    return 'lightgrey';
   }
 
   # multiple aligners w/o strand info
