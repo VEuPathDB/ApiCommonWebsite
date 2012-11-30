@@ -343,8 +343,8 @@
        <attribute name = "Website">CryptoDB</attribute>
        <attribute name = "Genus">Cryptosporidium</attribute>
        <attribute name = "Species">parvum</attribute>
-       <attribute name = "URLGenomeFasta">http://CryptoDB.org/common/downloads/Current_Release/CparvumIowaII/fasta/CryptoDB-&relCrypto;_CparvumIowaII_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://CryptoDB.org/common/downloads/Current_Release/CparvumIowaII/gff/CryptoDB-&relCrypto;_CparvumIowaII.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://CryptoDB.org/common/downloads/Current_Release/CparvumIowaII/fasta/data/CryptoDB-&relCrypto;_CparvumIowaII_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://CryptoDB.org/common/downloads/Current_Release/CparvumIowaII/gff/data/CryptoDB-&relCrypto;_CparvumIowaII.gff</attribute>
        <attribute name = "Taxon_ID">353152</attribute>
        <attribute name = "Strain">Iowa II</attribute>
        <attribute name = "Genome_Version">02-23-2007</attribute>
@@ -723,7 +723,7 @@
        <attribute name = "Website">MicrosporidiaDB</attribute>
        <attribute name = "Genus">Nematocida</attribute>
        <attribute name = "Species">parisii</attribute>
-       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm2/fasta/data/MicrosporidiaDB-&relMicro;_NparisiiERTm3_Genome.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm3/fasta/data/MicrosporidiaDB-&relMicro;_NparisiiERTm3_Genome.fasta</attribute>
        <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/NparisiiERTm3/gff/data/MicrosporidiaDB-&relMicro;_NparisiiERTm3.gff</attribute>
        <attribute name = "Taxon_ID">935791</attribute>
        <attribute name = "Strain">ERTm3</attribute>
@@ -901,7 +901,7 @@
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">berghei</attribute>
        <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/fasta/data/PlasmoDB-&relPlasmo;_PbergheiANKA_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/gff/data/PlasmoDB-&relPlasmo;_bergheiANKA.gff</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PbergheiANKA/gff/data/PlasmoDB-&relPlasmo;_PbergheiANKA.gff</attribute>
        <attribute name = "Taxon_ID">5823</attribute>
        <attribute name = "Strain">ANKA</attribute>
        <attribute name = "Genome_Version">03-01-2012</attribute>
@@ -1151,8 +1151,8 @@
        <attribute name = "Website">PlasmoDB</attribute>
        <attribute name = "Genus">Plasmodium</attribute>
        <attribute name = "Species">yoelii</attribute>
-       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PyoeliiYM/fasta/data/PlasmoDB-&relPlasmo;_PyoeliiYM_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PyoeliiYM/gff/data/PlasmoDB-&relPlasmo;_PyoeliiYM.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://PlasmoDB.org/common/downloads/Current_Release/PyoeliiyoeliiYM/fasta/data/PlasmoDB-&relPlasmo;_PyoeliiyoeliiYM_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://PlasmoDB.org/common/downloads/Current_Release/PyoeliiyoeliiYM/gff/data/PlasmoDB-&relPlasmo;_PyoeliiyoeliiYM.gff</attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">yoelii YM</attribute>
        <attribute name = "Genome_Version">07-01-2012</attribute>
@@ -1277,8 +1277,8 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/fasta/ToxoDB-&relToxo;_TgondiiGT1_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/gff/ToxoDB-&relToxo;_TgondiiGT1.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/fasta/data/ToxoDB-&relToxo;_TgondiiGT1_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiGT1/gff/data/ToxoDB-&relToxo;_TgondiiGT1.gff</attribute>
        <attribute name = "Taxon_ID">507601</attribute>
        <attribute name = "Strain">GT1</attribute>
        <attribute name = "Genome_Version">07-15-2008</attribute>
@@ -1327,8 +1327,8 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/fasta/ToxoDB-&relToxo;_TgondiiME49_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/gff/ToxoDB-&relToxo;_TgondiiME49.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/fasta/data/ToxoDB-&relToxo;_TgondiiME49_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiME49/gff/data/ToxoDB-&relToxo;_TgondiiME49.gff</attribute>
        <attribute name = "Taxon_ID">508771</attribute>
        <attribute name = "Strain">ME49</attribute>
        <attribute name = "Genome_Version">08-28-2012</attribute>
@@ -1353,8 +1353,8 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRH/fasta/ToxoDB-&relToxo;_TgondiiRH_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRH/gff/ToxoDB-&relToxo;_TgondiiRH.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRH/fasta/data/ToxoDB-&relToxo;_TgondiiRH_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRH/gff/data/ToxoDB-&relToxo;_TgondiiRH.gff</attribute>
        <attribute name = "Taxon_ID">383379</attribute>
        <attribute name = "Strain">RH</attribute>
        <attribute name = "Genome_Version">09-25-2006</attribute>
@@ -1427,11 +1427,13 @@
        <attribute name = "Chip_Seq"></attribute>
        <attribute name = "SageTags"></attribute>
        <attribute name = "Pathways"></attribute>
-   </record><record>
+   </record>
+
+<record>
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCkUg2/fasta/ToxoDB-&relToxo;_TgondiiTgCkUg2_Genome.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiTgCkUg2/fasta/data/ToxoDB-&relToxo;_TgondiiTgCkUg2_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">TgCkUg2</attribute>
@@ -1481,8 +1483,8 @@
        <attribute name = "Website">ToxoDB</attribute>
        <attribute name = "Genus">Toxoplasma</attribute>
        <attribute name = "Species">gondii</attribute>
-       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/fasta/ToxoDB-&relToxo;_TgondiiVEG_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/gff/ToxoDB-&relToxo;_TgondiiVEG.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/fasta/data/ToxoDB-&relToxo;_TgondiiVEG_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/gff/data/ToxoDB-&relToxo;_TgondiiVEG.gff</attribute>
        <attribute name = "Taxon_ID">432359</attribute>
        <attribute name = "Strain">VEG</attribute>
        <attribute name = "Genome_Version">09-11-2008</attribute>
