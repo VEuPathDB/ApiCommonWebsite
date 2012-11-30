@@ -64,7 +64,7 @@ sub handleIsolates {
     $ids .= ",'$sid'" if $ids =~ /3D7/;  # assume ref is 3D7 fix this soon
     $sql = <<EOSQL;
 select source_id, substr(nas.sequence, $start,$end-$start+1) as sequence from dots.nasequence nas
-where nas.source_id in ($ids, '$ref') 
+where nas.source_id in ($ids) 
 EOSQL
   } else {  # regular isolates
     $sql = <<EOSQL;
