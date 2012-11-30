@@ -1232,7 +1232,7 @@
        <attribute name = "Taxon_ID">572307</attribute>
        <attribute name = "Strain">Liverpool</attribute>
        <attribute name = "Genome_Version">08-12-2011</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Data_Source">Sanger</attribute>
        <attribute name = "Genome_Size">59.10</attribute>
        <attribute name = "Gene_Count">7266</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -1386,7 +1386,7 @@
        <attribute name = "Taxon_ID">935652</attribute>
        <attribute name = "Strain">RUB</attribute>
        <attribute name = "Genome_Version">08-31-2011</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">62.61</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
