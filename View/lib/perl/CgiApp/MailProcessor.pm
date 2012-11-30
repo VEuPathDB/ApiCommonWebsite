@@ -1,9 +1,9 @@
 package ApiCommonWebsite::View::CgiApp::MailProcessor;
 
-
 use strict;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
+use CGI 'param';
 use Mail::Send;
 use Mail::Sendmail;
 use ApiCommonWebsite::View::CgiApp::SpamCan;
@@ -27,31 +27,33 @@ sub go {
     my $Self = shift;
     my $cgi = CGI->new();
 
-    my $betatest = join("", @{ $cgi->{'betatest'} or [] });
+    my $betatest = param('betatest');
 
-    my $to1 = join("", @{ $cgi->{'to1'} });
-    my $to2 = join("", @{ $cgi->{'to2'} });
+    my $to1 = param('to1');
+    my $to2 = param('to2');
     my $to = "$to1$to2";
-    my $cc1 = join("", @{ $cgi->{'cc1'} });
-    my $cc2 = join("", @{ $cgi->{'cc2'} });
+    my $cc1 = param('cc1');
+    my $cc2 = param('cc2');
     my $cc = "$cc1$cc2";
-    my $subject = join("", @{ $cgi->{'subject'} });
-    my $replyTo = join("", @{ $cgi->{'replyTo'} or ['anonymous']}) || 'anonymous';
-    my $privacy = join("", @{ $cgi->{'privacy'} or [] });
-    my $uid     = join("", @{ $cgi->{'uid'} or [] });
-    my $website = join("", @{ $cgi->{'website'} or [$ENV{SERVER_NAME}] });
-    my $version = join("", @{ $cgi->{'version'} or [] });
-    my $browser = join("", @{ $cgi->{'browser'} or [$ENV{HTTP_USER_AGENT}] });
-    my $referer = join("", @{ $cgi->{'referer'} or [$ENV{HTTP_REFERER}] });
-    my $ipaddr  = join("", @{ $cgi->{'ipaddr'} or [$ENV{REMOTE_ADDR}] });
-    my $reporterEmail = join("", @{ $cgi->{'reporterEmail'} or 'websitesupportform@apidb.org' });
+    my $subject = param('subject');
+    my $replyTo = (param('replyTo') or 'anonymous');
+    my $privacy = param('privacy');
+    my $uid     = param('uid');
+    my $website = (param('website') or $ENV{SERVER_NAME});
+    my $version = param('version');
+    my $browser = (param('browser') or $ENV{HTTP_USER_AGENT});
+    my $referer = (param('referer') or $ENV{HTTP_REFERER});
+    my $ipaddr  = (param('ipaddr') or $ENV{REMOTE_ADDR});
+    my $reporterEmail = (param('reporterEmail') or 'websitesupportform@apidb.org');
 
     my $automaticMsg = "****THIS IS NOT A REPLY**** \nThis is an automatic response, that includes your message for your records, to let you know that we have received your email and will get back to you as soon as possible. Thanks so much for contacting us!\n\nThis was your message:\n\n---------------------\n";
 
-    my @addCcField = split(/,/, join("", @{ $cgi->{'addCc'} or [] }));
+    my $rawAddCcField = param('addCc');
+    $rawAddCcField =~ s/ //g;
+    my @addCcField = split(/,/, $rawAddCcField);
     if (scalar (@addCcField > 4)) { @addCcField = @addCcField[0..9]; } # max 10 addresses
     
-    my $message = join("", @{ $cgi->{'message'} or [] });
+    my $message = param('message');
 
     # quick patch to avoid email header injection. Needs review.
     checkEmail($to, 'To');
@@ -90,14 +92,14 @@ sub go {
 
 
     if($betatest eq "true") {
-	my $q1 = join("", @{ $cgi->{'q1'} or []});
-	my $q2 = join("", @{ $cgi->{'q2'} or []});
-	my $q3 = join("", @{ $cgi->{'q3'} or []});
-	my $a1 = join("", @{ $cgi->{'a1'} or []});
-	my $a2 = join("", @{ $cgi->{'a2'} or []});
-	my $a3 = join("", @{ $cgi->{'a3'} or []});
+      my $q1 = param('q1');
+      my $q2 = param('q2');
+      my $q3 = param('q3');
+      my $a1 = param('a1');
+      my $a2 = param('a2');
+      my $a3 = param('a3');
 
-	$message = "\n" .$q1 . ": " . $a1 . "\n" . $q2 . ": " . $a2 . "\n" . $q3 . ": " . $a3 . "\n\n---------------------\n\n" . $message . "\n";
+      $message = "\n" .$q1 . ": " . $a1 . "\n" . $q2 . ": " . $a2 . "\n" . $q3 . ": " . $a3 . "\n\n---------------------\n\n" . $message . "\n";
     }
 
 
