@@ -1357,8 +1357,8 @@
        <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiRH/gff/ToxoDB-&relToxo;_TgondiiRH.gff</attribute>
        <attribute name = "Taxon_ID">383379</attribute>
        <attribute name = "Strain">RH</attribute>
-       <attribute name = "Genome_Version">04-14-2009</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Version">09-25-2006</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">4.04</attribute>
        <attribute name = "Gene_Count">63</attribute>
        <attribute name = "Organellar_Genomes">yes</attribute>
@@ -1436,7 +1436,7 @@
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">TgCkUg2</attribute>
        <attribute name = "Genome_Version">05-04-2009</attribute>
-       <attribute name = "Data_Source">Univ.of Leeds</attribute>
+       <attribute name = "Data_Source">Genbank</attribute>
        <attribute name = "Genome_Size">41.93</attribute>
        <attribute name = "Gene_Count">N.A.</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
@@ -1485,8 +1485,8 @@
        <attribute name = "URLgff">http://ToxoDB.org/common/downloads/Current_Release/TgondiiVEG/gff/ToxoDB-&relToxo;_TgondiiVEG.gff</attribute>
        <attribute name = "Taxon_ID">432359</attribute>
        <attribute name = "Strain">VEG</attribute>
-       <attribute name = "Genome_Version">07-17-2008</attribute>
-       <attribute name = "Data_Source">Genbank</attribute>
+       <attribute name = "Genome_Version">09-11-2008</attribute>
+       <attribute name = "Data_Source">JCVI</attribute>
        <attribute name = "Genome_Size">65.35</attribute>
        <attribute name = "Gene_Count">7997</attribute>
        <attribute name = "Organellar_Genomes"></attribute>
