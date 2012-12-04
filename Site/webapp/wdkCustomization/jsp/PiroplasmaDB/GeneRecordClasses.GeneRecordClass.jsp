@@ -140,10 +140,6 @@ ${attrs['organism'].value}<br>
 
 <%-- DNA CONTEXT ---------------------------------------------------%>
 
-<c:set var="attribution">
-<%-- G.lamblia_contigsGB,G.intestinalisAssemblageB_contigsGB,G.intestinalisAssemblageE_contigsGB --%>
-</c:set>
-
 
   <c:set var="gnCtxUrl">
      /cgi-bin/gbrowse_img/piroplasmadb/?name=${sequence_id}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;l=${gtracks};width=640;embed=1;h_feat=${fn:toLowerCase(id)}@yellow;genepage=1
@@ -282,9 +278,6 @@ ${attrs['organism'].value}<br>
 
 <imp:pageDivider name="Protein Features"/>
    
-    <c:set var="attribution">
-    InterproscanData
-    </c:set>
 
 <c:set var="proteinLength" value="${attrs['protein_length'].value}"/>
 <c:set var="proteinFeaturesUrl">
@@ -355,7 +348,7 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/piroplasmadbaa/?nam
                  attribution=""/>
 
  
-<imp:wdkTable tblName="PdbSimilarities" postscript="${attrs['pdb_blast_form'].value}" attribution="PDBProteinSequences"/>
+<imp:wdkTable tblName="PdbSimilarities" postscript="${attrs['pdb_blast_form'].value}" attribution=""/>
 
 <imp:wdkTable tblName="Ssgcid" isOpen="true" attribution="" />
 
