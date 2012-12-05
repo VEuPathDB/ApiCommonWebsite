@@ -4,7 +4,8 @@
 
 # ./configula  --alogin=cryptodbwww --adb=cryp120n --udb=apicomm q1.cryptodb.org
 
-# writes model-cconfig.xml, model.prop and comment-config.xml from
+# writes model-config.xml, model.prop 
+# and comment-config.xml from
 # coresponding *.sample files
 
 # This script is rated 'chmod +x'
@@ -160,7 +161,7 @@ my %config_files = (
 
 
 # read for product version number
-my $apiCommonModel = "$gus_home/lib/wdk/apiCommonModel.xml";
+my $wdk_model_xml = "$gus_home/lib/wdk/apiCommonModel.xml";
 my %site_versions = site_versions();
 my $site_version = $site_versions{$product};
 my $common_webservices_dir = (-e "/var/www/Common/prodSiteFilesMirror") ?
@@ -245,7 +246,7 @@ if (! -d $webservice_files_mirror) {
 } elsif (! -d $rls_webservice_data_dir) {
   warn "\nWARN: '$rls_webservice_data_dir' does not exist. \n" .
      "  Check that version '$site_version' in \n".
-     "  '$apiCommonModel'\n" .
+     "  '$wdk_model_xml'\n" .
      "  matches release-N directory.\n\n";
 }
     
@@ -318,40 +319,7 @@ $w_q->print(\*WQC);
 # projects.xml ###############################################
 
 # blast-config.xml ###############################################
-my $blastdb_env = "$webservice_files_mirror";
-
-my $blast_datapath;
-if ($product eq 'EuPathDB') {
-    $blast_datapath = "";
-} else {
-    $blast_datapath = "$product/release-$site_version/blast";
-}
-
-my $wb_c= new XML::Twig( 
-    keep_spaces => 1, 
-    PrettyPrint => 'nice',
-    keep_atts_order => 1,
-    TwigHandlers => {
-       'properties' => sub {
-            if ($product eq 'EuPathDB') {
-                $_[1]->root->first_child('entry')->
-                    insert_new_elt(before => 'entry' => 
-                    {'key' => 'Project'} => 'EuPathDB');
-            }
-      },
-      'entry[@key="BlastPath"]'  => sub { 
-            $_[1]->set_text("$blast_app_path");
-      },
-      'entry[@key="TempPath"]'  => 
-                sub { $_[1]->set_text("$blast_tmp_dir") },
-    }
-);
-
-$wb_c->parsefile($config_files{'blast_config'}{'source'});
-
-open(WBC, ">$config_files{'blast_config'}{'dest'}") || die "can not open $config_files{'blast_config'}{'dest'}\n";
-print "writing $config_files{'blast_config'}{'dest'}\n";
-$wb_c->print(\*WBC); 
+# do nothing
 
 # motifSearch-config.xml ###############################################
 # already copied from source, do nothing else
@@ -428,37 +396,40 @@ if ($product eq 'EuPathDB') {
 
 sub modelConfig {
     my ($twig, $node) = @_;
-    $node->set_att('supportEmail'  => 'help@' . $prod_site);
-    $node->set_att('webServiceUrl' => $webServiceUrl);
-    $node->set_att('secretKeyFile' => $secretKeyFile);
-    $node->set_att('modelName' => $modelName);
-    $node->set_att('smtpServer' => $smtpServer);
-    $node->set_att('defaultRole' => $defaultRole);
+    $node->set_att('login'         => $appDb_login)          if ($node->att('login'));
+    $node->set_att('password'      => $appDb_password)       if ($node->att('password'));
+    $node->set_att('connectionUrl' => $appDb_connectionUrl)  if ($node->att('connectionUrl'));
+    $node->set_att('supportEmail'  => 'help@' . $prod_site)  if ($node->att('supportEmail'));
+    $node->set_att('webServiceUrl' => $webServiceUrl)        if ($node->att('webServiceUrl'));
+    $node->set_att('secretKeyFile' => $secretKeyFile)        if ($node->att('secretKeyFile'));
+    $node->set_att('modelName'     => $modelName)            if ($node->att('modelName'));
+    $node->set_att('smtpServer'    => $smtpServer)           if ($node->att('smtpServer'));
+    $node->set_att('defaultRole'   => $defaultRole)          if ($node->att('defaultRole'));
 }
 
 sub appDb {
     my ($twig, $node) = @_;
-    $node->set_att('login' => $appDb_login);
-    $node->set_att('password' => $appDb_password);
-    $node->set_att('connectionUrl' => $appDb_connectionUrl);
-    $node->set_att('platform' => $g_platform);
-    $node->set_att('maxActive' => $g_maxActive);
-    $node->set_att('maxIdle' => $appDb_maxIdle);
-    $node->set_att('minIdle' => $appDb_minIdle);
-    $node->set_att('maxWait' => $g_maxWait);
-    $node->set_att('showConnections' => $g_showConnections);
-    $node->set_att('showConnectionsInterval' => $g_showConnectionsInterval);
-    $node->set_att('showConnectionsDuration' => $g_showConnectionsDuration);
-    $node->set_att('userDbLink' => dblink($userDb_database));
+    $node->set_att('login'                    => $appDb_login)                if ($node->att('login'));
+    $node->set_att('password'                 => $appDb_password)             if ($node->att('password'));
+    $node->set_att('connectionUrl'            => $appDb_connectionUrl)        if ($node->att('connectionUrl'));
+    $node->set_att('platform'                 => $g_platform)                 if ($node->att('platform'));
+    $node->set_att('maxActive'                => $g_maxActive)                if ($node->att('maxActive'));
+    $node->set_att('maxIdle'                  => $appDb_maxIdle)              if ($node->att('maxIdle'));
+    $node->set_att('minIdle'                  => $appDb_minIdle)              if ($node->att('minIdle'));
+    $node->set_att('maxWait'                  => $g_maxWait)                  if ($node->att('maxWait'));
+    $node->set_att('showConnections'          => $g_showConnections)          if ($node->att('showConnections'));
+    $node->set_att('showConnectionsInterval'  => $g_showConnectionsInterval)  if ($node->att('showConnectionsInterval'));
+    $node->set_att('showConnectionsDuration'  => $g_showConnectionsDuration)  if ($node->att('showConnectionsDuration'));
+    $node->set_att('userDbLink'               => dblink($userDb_database))    if ($node->att('userDbLink'));
 }
 
 sub userDb {
     my ($twig, $node) = @_;
-    $node->set_att('login' => $userDb_login);
-    $node->set_att('password' => $userDb_password);
-    $node->set_att('connectionUrl' => $userDb_connectionUrl);
-    $node->set_att('wdkEngineSchema' => $userDb_wdkEngineSchema);
-    $node->set_att('userSchema' => $userDb_userSchema);
+    $node->set_att('login'            => $userDb_login)               if ($node->att('login'));
+    $node->set_att('password'         => $userDb_password)            if ($node->att('password'));
+    $node->set_att('connectionUrl'    => $userDb_connectionUrl)       if ($node->att('connectionUrl'));
+    $node->set_att('wdkEngineSchema'  => $userDb_wdkEngineSchema)     if ($node->att('wdkEngineSchema'));
+    $node->set_att('userSchema'       => $userDb_userSchema)          if ($node->att('userSchema'));
 }
 
 sub emailContent {
@@ -653,7 +624,7 @@ sub site_versions {
            },
         }
     );
-    $acm->parsefile("$apiCommonModel");
+    $acm->parsefile("$wdk_model_xml");
     return %site_versions;
 }
 
