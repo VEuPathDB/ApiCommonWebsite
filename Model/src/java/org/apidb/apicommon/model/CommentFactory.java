@@ -3,6 +3,7 @@
  */
 package org.apidb.apicommon.model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.dbms.ConnectionContainer;
 import org.gusdb.wdk.model.dbms.DBPlatform;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 
@@ -23,7 +25,7 @@ import org.gusdb.wdk.model.dbms.SqlUtils;
  * @author xingao
  * 
  */
-public class CommentFactory {
+public class CommentFactory implements ConnectionContainer {
 
     private static CommentFactory factory;
 
@@ -1378,5 +1380,16 @@ public class CommentFactory {
         int active = platform.getActiveCount();
         int idle = platform.getIdleCount();
         logger.info("Comment connections: active=" + active + ", idle=" + idle);
+    }
+
+    /* (non-Javadoc)
+     * @see org.gusdb.wdk.model.dbms.ConnectionContainer#getConnection(java.lang.String)
+     * 
+     * The key is ignored, and will always return the connection comment db.
+     */
+    @Override
+    public Connection getConnection(String key) throws WdkModelException,
+        SQLException {
+      return platform.getDataSource().getConnection();
     }
 }
