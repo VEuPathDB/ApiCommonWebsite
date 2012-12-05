@@ -64,13 +64,13 @@ sub processParams {
   $self->{upstreamSign}     = $cgi->param('upstreamSign');
   $self->{downstreamSign}   = $cgi->param('downstreamSign');
 
-
-  # to allow for NOT mapping an id to the latest one (use in ToxoDB)
+  # to allow for NOT mapping an id to the latest one
   $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
 
   my $projectId = $cgi->param('project_id'); 
 
-  $self->{ignore_gene_alias}= 1 if ($projectId eq 'ToxoDB' || $projectId eq 'EuPathDB');
+  # ToxoDB does have automated models anymore. so no special case needed for it
+  #  $self->{ignore_gene_alias}= 1 if ($projectId eq 'ToxoDB' || $projectId eq 'EuPathDB');
 
 
   my @inputIds;
@@ -151,7 +151,7 @@ WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
 
-my $sqlQueries2; #for ToxoDB
+my $sqlQueries2; #NOT NEEDED for ToxoDB from bld_16 onwards
 
 $sqlQueries2->{geneProteinSql} = <<EOSQL;
 SELECT gf.source_id, tas.sequence, gf.product, tn.name
@@ -214,9 +214,10 @@ sub handleNonGenomic {
   my $sql;
   my $type = $self->{type};
 
-#  my $site = ($self->{ignore_gene_alias})? $sqlQueries2:$sqlQueries;
-my $projectId = $cgi->param('project_id'); 
-my $site = ($projectId eq 'ToxoDB')? $sqlQueries2:$sqlQueries;
+  ##  my $site = ($self->{ignore_gene_alias})? $sqlQueries2:$sqlQueries;
+  #my $projectId = $cgi->param('project_id');
+  #my $site = ($projectId eq 'ToxoDB')? $sqlQueries2:$sqlQueries;
+  my $site = $sqlQueries;
 
   my $inputIds = $self->{inputIds};
   my $ids;
