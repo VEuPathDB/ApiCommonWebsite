@@ -18,7 +18,7 @@ sub init {
   
 
   my $profileBase = 'Profiles of transcriptional variation in Plasmodium falciparum';
-  my $ref_strain = ['3D7A',];
+
   my $_3d7strains = ['3D7A','10G','1_2B','3D7B','W41'];
   my $_7g8strains = ['KG7','7G8','LD10', 'WE5', 'ZF8'];
   my $hb3strains = ['HB3B','AB10','HB3A','AB6','BB8','BC4'];
@@ -36,7 +36,6 @@ sub init {
   $self->setMainLegend({colors => \@legendColors, short_names => \@legend, points_pch => \@pointsPCH, cols => 2, fill=> 0},);
 
   $self->setPlotWidth(450);
-  my @refColor = ($colorSet[0],);
   my @_3d7Colors = @colorSet[0..4];
   my @_7g8Colors = @colorSet[0..4];
   my @hb3Colors = @colorSet[0..5];
@@ -53,14 +52,13 @@ sub init {
   push @hb3Pch, $pointsPCH[2] for 1 .. 6;
   push @d10Pch, $pointsPCH[3] for 1 .. 5;
   
-  my @refGraph = $self->defineGraphs('Reference_3D7-A',$ref_strain, \@refColor, $profileBase, 'red percentile', \@_3d7Pch);
   my @parentalGraphs = $self->defineGraphs('Parental',$parental_strains, \@parentalColors, $profileBase, 'red percentile', \@pointsPCH); 
   my @_3d7Graphs = $self->defineGraphs('3D7_derived',$_3d7strains, \@_3d7Colors, $profileBase, 'red percentile', \@_3d7Pch );
   my @_7g8Graphs = $self->defineGraphs('7G8_derived',$_7g8strains, \@_7g8Colors, $profileBase, 'red percentile', \@_7g8Pch );
   my @hb3Graphs = $self->defineGraphs('HB3_derived',$hb3strains, \@hb3Colors, $profileBase, 'red percentile', \@hb3Pch);
   my @d10Graphs = $self->defineGraphs('D10_derived',$d10strains, \@d10Colors, $profileBase, 'red percentile', \@d10Pch);
 
-  $self->setGraphObjects( @refGraph, @_3d7Graphs,  @_7g8Graphs, @hb3Graphs, @d10Graphs, @parentalGraphs );
+  $self->setGraphObjects( @_3d7Graphs,  @_7g8Graphs, @hb3Graphs, @d10Graphs, @parentalGraphs );
 
   return $self;
 }
@@ -94,6 +92,7 @@ sub defineGraphs {
    $line->setElementNameMarginSize($bottomMargin);
    $line->setSmoothLines(1);
    $line->setSplineApproxN(200);
+   $line->setSplineDF(5);
    $line->setHasExtraLegend(1);
    $line->setExtraLegendSize(6.5);
    $line->setLegendLabels($names);
