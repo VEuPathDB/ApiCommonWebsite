@@ -12,6 +12,7 @@
 
 use strict;
 use File::Basename;
+use File::Path qw(make_path);
 use Cwd qw(realpath);
 use Fcntl ':mode';
 use DBI;
@@ -118,9 +119,14 @@ my $map_file = "$wdk_config_dir/master_configuration_set";
 my $webapp = basename(readlink $site_symlink);
 my ($webapp_nover) = $webapp =~ m/(^[a-zA-Z_]+)/;
 
-
+# read for product version number
+my $wdk_model_xml = "$gus_home/lib/wdk/OrthoMCL.xml";
 
 my %config_files = (
+    'wdk_model_xml' => {
+        'source' => "$project_home/OrthoMCLShared/Model/lib/wdk/OrthoMCL.xml",
+        'dest' => "$gus_home/lib/wdk/OrthoMCL.xml"
+        },
     'comment_config' => {
         'source' => "$project_home/ApiCommonWebsite/Model/config/$product/comment-config.xml.sample",
         'dest' => "$wdk_product_config_dir/comment-config.xml"
@@ -159,9 +165,19 @@ my %config_files = (
         },
 );
 
+# Install all configuration files from source sample files.
+# Note that later we may reopen the source file and parse it into the dest file,
+# so this blanket copy step may include some unnecessary copying.
+for my $cf (keys %config_files) {
+   print dirname($config_files{$cf}{'dest'}) . "\n";
+    make_path(dirname($config_files{$cf}{'dest'}), {verbose => 1});
+    copy( 
+        $config_files{$cf}{'source'},
+        $config_files{$cf}{'dest'} 
+    ) or die "copy $config_files{$cf}{'source'} failed : $!";
+}
 
-# read for product version number
-my $wdk_model_xml = "$gus_home/lib/wdk/apiCommonModel.xml";
+
 my %site_versions = site_versions();
 my $site_version = $site_versions{$product};
 my $common_webservices_dir = (-e "/var/www/Common/prodSiteFilesMirror") ?
@@ -219,17 +235,6 @@ if ( ! $userDb_password ) {
 # webapp_nover is always valid thanks to apache redirects, and
 # is especially desired for production sites
 my $webServiceUrl = 'http://' . $target_site . '/' . $webapp_nover . '/services/WsfService';
-
-# Install all configuration files from source sample files.
-# Note that later we may reopen the source file and parse it into the dest file,
-# so this blanket copy step may include some unnecessary copying.
-for my $cf (keys %config_files) {
-    copy( 
-        $config_files{$cf}{'source'},
-        $config_files{$cf}{'dest'} 
-    ) or die "copy $config_files{$cf}{'source'} failed : $!";
-}
-
 
 ####################################################################
 # configuration sanity checks
