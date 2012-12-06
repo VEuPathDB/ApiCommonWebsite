@@ -169,7 +169,6 @@ my %config_files = (
 # Note that later we may reopen the source file and parse it into the dest file,
 # so this blanket copy step may include some unnecessary copying.
 for my $cf (keys %config_files) {
-   print dirname($config_files{$cf}{'dest'}) . "\n";
     make_path(dirname($config_files{$cf}{'dest'}), {verbose => 1});
     copy( 
         $config_files{$cf}{'source'},
