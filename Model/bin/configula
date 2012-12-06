@@ -120,12 +120,12 @@ my $webapp = basename(readlink $site_symlink);
 my ($webapp_nover) = $webapp =~ m/(^[a-zA-Z_]+)/;
 
 # read for product version number
-my $wdk_model_xml = "$gus_home/lib/wdk/OrthoMCL.xml";
+my $wdk_model_xml = "$gus_home/lib/wdk/apiCommonModel.xml";
 
 my %config_files = (
     'wdk_model_xml' => {
-        'source' => "$project_home/OrthoMCLShared/Model/lib/wdk/OrthoMCL.xml",
-        'dest' => "$gus_home/lib/wdk/OrthoMCL.xml"
+        'source' => "$project_home/ApiCommonWebsite/Model/lib/wdk/apiCommonModel.xml",
+        'dest' => "$gus_home/lib/wdk/apiCommonModel.xml"
         },
     'comment_config' => {
         'source' => "$project_home/ApiCommonWebsite/Model/config/$product/comment-config.xml.sample",
