@@ -124,7 +124,7 @@ my $wdk_model_xml = "$gus_home/lib/wdk/apiCommonModel.xml";
 
 my %config_files = (
     'wdk_model_xml' => {
-        'source' => "$project_home/ApiCommonWebsite/Model/lib/wdk/apiCommonModel.xml",
+        'source' => "$project_home/ApiCommonShared/Model/lib/wdk/apiCommonModel.xml",
         'dest' => "$gus_home/lib/wdk/apiCommonModel.xml"
         },
     'comment_config' => {
