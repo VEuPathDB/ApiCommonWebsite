@@ -230,7 +230,6 @@ if ( ! $userDb_password ) {
   die "Did not find password for $appDb_login in $euparc . Quitting with no changes made.\n";
 }
 
-
 # webapp_nover is always valid thanks to apache redirects, and
 # is especially desired for production sites
 my $webServiceUrl = 'http://' . $target_site . '/' . $webapp_nover . '/services/WsfService';
@@ -400,40 +399,40 @@ if ($product eq 'EuPathDB') {
 
 sub modelConfig {
     my ($twig, $node) = @_;
-    $node->set_att('login'         => $appDb_login)          if ($node->att('login'));
-    $node->set_att('password'      => $appDb_password)       if ($node->att('password'));
-    $node->set_att('connectionUrl' => $appDb_connectionUrl)  if ($node->att('connectionUrl'));
-    $node->set_att('supportEmail'  => 'help@' . $prod_site)  if ($node->att('supportEmail'));
-    $node->set_att('webServiceUrl' => $webServiceUrl)        if ($node->att('webServiceUrl'));
-    $node->set_att('secretKeyFile' => $secretKeyFile)        if ($node->att('secretKeyFile'));
-    $node->set_att('modelName'     => $modelName)            if ($node->att('modelName'));
-    $node->set_att('smtpServer'    => $smtpServer)           if ($node->att('smtpServer'));
-    $node->set_att('defaultRole'   => $defaultRole)          if ($node->att('defaultRole'));
+    $node->set_att('login'         => $appDb_login)          if (defined $node->att('login'));
+    $node->set_att('password'      => $appDb_password)       if (defined $node->att('password'));
+    $node->set_att('connectionUrl' => $appDb_connectionUrl)  if (defined $node->att('connectionUrl'));
+    $node->set_att('supportEmail'  => 'help@' . $prod_site)  if (defined $node->att('supportEmail'));
+    $node->set_att('webServiceUrl' => $webServiceUrl)        if (defined $node->att('webServiceUrl'));
+    $node->set_att('secretKeyFile' => $secretKeyFile)        if (defined $node->att('secretKeyFile'));
+    $node->set_att('modelName'     => $modelName)            if (defined $node->att('modelName'));
+    $node->set_att('smtpServer'    => $smtpServer)           if (defined $node->att('smtpServer'));
+    $node->set_att('defaultRole'   => $defaultRole)          if (defined $node->att('defaultRole'));
 }
 
 sub appDb {
     my ($twig, $node) = @_;
-    $node->set_att('login'                    => $appDb_login)                if ($node->att('login'));
-    $node->set_att('password'                 => $appDb_password)             if ($node->att('password'));
-    $node->set_att('connectionUrl'            => $appDb_connectionUrl)        if ($node->att('connectionUrl'));
-    $node->set_att('platform'                 => $g_platform)                 if ($node->att('platform'));
-    $node->set_att('maxActive'                => $g_maxActive)                if ($node->att('maxActive'));
-    $node->set_att('maxIdle'                  => $appDb_maxIdle)              if ($node->att('maxIdle'));
-    $node->set_att('minIdle'                  => $appDb_minIdle)              if ($node->att('minIdle'));
-    $node->set_att('maxWait'                  => $g_maxWait)                  if ($node->att('maxWait'));
-    $node->set_att('showConnections'          => $g_showConnections)          if ($node->att('showConnections'));
-    $node->set_att('showConnectionsInterval'  => $g_showConnectionsInterval)  if ($node->att('showConnectionsInterval'));
-    $node->set_att('showConnectionsDuration'  => $g_showConnectionsDuration)  if ($node->att('showConnectionsDuration'));
-    $node->set_att('userDbLink'               => dblink($userDb_database))    if ($node->att('userDbLink'));
+    $node->set_att('login'                    => $appDb_login)                if (defined $node->att('login'));
+    $node->set_att('password'                 => $appDb_password)             if (defined $node->att('password'));
+    $node->set_att('connectionUrl'            => $appDb_connectionUrl)        if (defined $node->att('connectionUrl'));
+    $node->set_att('platform'                 => $g_platform)                 if (defined $node->att('platform'));
+    $node->set_att('maxActive'                => $g_maxActive)                if (defined $node->att('maxActive'));
+    $node->set_att('maxIdle'                  => $appDb_maxIdle)              if (defined $node->att('maxIdle'));
+    $node->set_att('minIdle'                  => $appDb_minIdle)              if (defined $node->att('minIdle'));
+    $node->set_att('maxWait'                  => $g_maxWait)                  if (defined $node->att('maxWait'));
+    $node->set_att('showConnections'          => $g_showConnections)          if (defined $node->att('showConnections'));
+    $node->set_att('showConnectionsInterval'  => $g_showConnectionsInterval)  if (defined $node->att('showConnectionsInterval'));
+    $node->set_att('showConnectionsDuration'  => $g_showConnectionsDuration)  if (defined $node->att('showConnectionsDuration'));
+    $node->set_att('userDbLink'               => dblink($userDb_database))    if (defined $node->att('userDbLink'));
 }
 
 sub userDb {
     my ($twig, $node) = @_;
-    $node->set_att('login'            => $userDb_login)               if ($node->att('login'));
-    $node->set_att('password'         => $userDb_password)            if ($node->att('password'));
-    $node->set_att('connectionUrl'    => $userDb_connectionUrl)       if ($node->att('connectionUrl'));
-    $node->set_att('wdkEngineSchema'  => $userDb_wdkEngineSchema)     if ($node->att('wdkEngineSchema'));
-    $node->set_att('userSchema'       => $userDb_userSchema)          if ($node->att('userSchema'));
+    $node->set_att('login'            => $userDb_login)               if (defined $node->att('login'));
+    $node->set_att('password'         => $userDb_password)            if (defined $node->att('password'));
+    $node->set_att('connectionUrl'    => $userDb_connectionUrl)       if (defined $node->att('connectionUrl'));
+    $node->set_att('wdkEngineSchema'  => $userDb_wdkEngineSchema)     if (defined $node->att('wdkEngineSchema'));
+    $node->set_att('userSchema'       => $userDb_userSchema)          if (defined $node->att('userSchema'));
 }
 
 sub emailContent {
