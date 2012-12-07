@@ -179,11 +179,13 @@ for my $cf (keys %config_files) {
 
 my %site_versions = site_versions();
 my $site_version = $site_versions{$product};
+my %build_numbers = build_numbers();
+my $build_number = $build_numbers{$product};
 my $common_webservices_dir = (-e "/var/www/Common/prodSiteFilesMirror") ?
     "Common/prodSiteFilesMirror/webServices" :
     "Common/devSiteFilesMirror/webServices";
 my $webservice_files_mirror = "$web_base_dir/$common_webservices_dir";
-my $rls_webservice_data_dir = "$webservice_files_mirror/$product/release-$site_version";
+my $rls_webservice_data_dir = "$webservice_files_mirror/$product/build-$build_number";
 
 my $server_hostname = qx(/bin/hostname);
 
@@ -248,9 +250,9 @@ if (! -d $webservice_files_mirror) {
   warn "\nWARN: '$webservice_files_mirror' does not exist\n\n";
 } elsif (! -d $rls_webservice_data_dir) {
   warn "\nWARN: '$rls_webservice_data_dir' does not exist. \n" .
-     "  Check that version '$site_version' in \n".
+     "  Check that buildNumber '$build_number' in \n".
      "  '$wdk_model_xml'\n" .
-     "  matches release-N directory.\n\n";
+     "  matches build-N directory.\n\n";
 }
     
 ####################################################################
@@ -629,6 +631,41 @@ sub site_versions {
     );
     $acm->parsefile("$wdk_model_xml");
     return %site_versions;
+}
+
+# The buildNumber settings can be defined in aggregate as includeProjects
+#  <constant name="buildNumber" includeProjects="PiroplasmaDB,TriTrypDB,TrichDB,ToxoDB,PlasmoDB,MicrosporidiaDB,AmoebaDB,CryptoDB,EuPathDB,GiardiaDB">16</constant>
+#  <constant name="buildNumber" includeProjects="FungiDB">4</constant>
+#  <constant name="buildNumber" includeProjects="InitDB">0</constant>
+# So have to iterate.
+sub build_numbers {
+    my %aggregate_build_numbers;
+    my %build_numbers;
+    my $acm = new XML::Twig( 
+        keep_spaces => 1, 
+        PrettyPrint => 'nice',
+        keep_atts_order => 1,
+        TwigHandlers => {
+          'constant[@name="buildNumber"]'  => sub { 
+             $aggregate_build_numbers{$_[1]->att("includeProjects")} = $_[1]->text;
+           },
+        }
+    );
+    $acm->parsefile("$wdk_model_xml");
+    
+    # We now have a hash like
+    #    'PiroplasmaDB,TriTrypDB,TrichDB,ToxoDB' => 15,
+    #    'FungiDB' => 4,
+    # Split the keys on commas.
+    for my $projects_included (keys %aggregate_build_numbers) {
+        #  $projects_included == 'PiroplasmaDB,TriTrypDB,TrichDB,ToxoDB'
+        my @include_projects = split(',', $projects_included); 
+        for my $project (@include_projects) {
+            $build_numbers{$project} = $aggregate_build_numbers{$projects_included};
+        }
+    }
+
+    return %build_numbers;
 }
 
 sub testDbConnection {
