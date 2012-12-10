@@ -79,6 +79,8 @@ sub defineGraphs {
     push(@percentileSetNames, [@percentileSetName]);
     $name = uc($name);
     $name =~s/_/,/;
+    $name =~s/3D7A/3D7-A/;
+    $name =~s/3D7B/3D7-B/;
   }
 
 
