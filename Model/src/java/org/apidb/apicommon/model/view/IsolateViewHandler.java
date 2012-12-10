@@ -22,7 +22,7 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
     private static final String PROP_SEQUENCES = "isolates";
     private static final String PROP_MAX_LENGTH = "maxLength";
 
-    private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
+    private static final Logger logger = Logger.getLogger(IsolateViewHandler.class);
 
     public abstract String prepareSql(String idSql) throws WdkModelException,
             WdkUserException;
