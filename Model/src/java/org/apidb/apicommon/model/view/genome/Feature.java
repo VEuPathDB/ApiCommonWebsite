@@ -1,21 +1,21 @@
-package org.apidb.apicommon.model.view;
+package org.apidb.apicommon.model.view.genome;
 
 import java.text.DecimalFormat;
 
-public class Span {
+public class Feature {
 
     private static final DecimalFormat FORMAT = new DecimalFormat("#,###");
 
     private final String sourceId;
     private String sequenceId;
-    private int start;
-    private int end;
+    private long start;
+    private long end;
     private boolean forward;
-    private float percentStart;
-    private float percentLength;
+    private double percentStart;
+    private double percentLength;
     private String context;
 
-    public Span(String sourceId) {
+    public Feature(String sourceId) {
         this.sourceId = sourceId;
     }
 
@@ -27,7 +27,7 @@ public class Span {
         this.sequenceId = sequenceId;
     }
 
-    public int getStart() {
+    public long getStart() {
         return start;
     }
     
@@ -35,11 +35,11 @@ public class Span {
         return FORMAT.format(start);
     }
 
-    public void setStart(int start) {
+    public void setStart(long start) {
         this.start = start;
     }
 
-    public int getEnd() {
+    public long getEnd() {
         return end;
     }
     
@@ -47,7 +47,7 @@ public class Span {
         return FORMAT.format(end);
     }
 
-    public void setEnd(int end) {
+    public void setEnd(long end) {
         this.end = end;
     }
 
@@ -63,19 +63,19 @@ public class Span {
         this.forward = forward;
     }
 
-    public float getPercentStart() {
+    public double getPercentStart() {
         return percentStart;
     }
 
-    public void setPercentStart(float percentStart) {
+    public void setPercentStart(double percentStart) {
         this.percentStart = percentStart;
     }
 
-    public float getPercentLength() {
+    public double getPercentLength() {
         return percentLength;
     }
 
-    public void setPercentLength(float percentLength) {
+    public void setPercentLength(double percentLength) {
         this.percentLength = percentLength;
     }
 

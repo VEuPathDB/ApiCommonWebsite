@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.apidb.apicommon.model.view;
+package org.apidb.apicommon.model.view.genome;
 
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
