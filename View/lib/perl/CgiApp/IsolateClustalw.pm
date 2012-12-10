@@ -148,11 +148,19 @@ EOSQL
 
   my $align = Bio::Graphics::Browser2::PadAlignment->new(\@sequences,\@segments);
 
+  my %origins = ();
+  if($start) {
+     foreach my $id (split /,/, $ids) {
+        $id =~ s/'//g;
+        $origins{$id} = $start;
+     }
+  }
+
   print "<table align=center width=800><tr><td>";
   print "<a href='#tree'><h3>To view a guide tree, click here or scroll to the bottom of the page</h3></a>";
   print "</td></tr>";
   print "<tr><td>";
-  print $cgi->pre($align->alignment( {}, { show_mismatches   => 1,
+  print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
                                            show_similarities => 1, 
                                            show_matches      => 1})); 
 
