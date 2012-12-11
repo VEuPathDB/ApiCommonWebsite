@@ -61,7 +61,7 @@ sub handleIsolates {
 
   if($type =~ /htsSNP/i) {
     $ids =~ s/'(\w)/'$sid\.$1/g;
-    $ids .= ",'$sid'" if $ids =~ /3D7/;  # assume ref is 3D7 fix this soon
+    $ids .= ",'$sid'";   # always compare with reference isolate
     $sql = <<EOSQL;
 select source_id, substr(nas.sequence, $start,$end-$start+1) as sequence from dots.nasequence nas
 where nas.source_id in ($ids) 
@@ -149,7 +149,7 @@ EOSQL
   my $align = Bio::Graphics::Browser2::PadAlignment->new(\@sequences,\@segments);
 
   my %origins = ();
-  if($start) {
+  if ($type =~ /htsSNP/i){
      foreach my $id (split /,/, $ids) {
         $id =~ s/'//g;
         $origins{$id} = $start;
@@ -161,8 +161,8 @@ EOSQL
   print "</td></tr>";
   print "<tr><td>";
   print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
-                                           show_similarities => 1, 
-                                           show_matches      => 1})); 
+                                                  show_similarities => 1, 
+                                                  show_matches      => 1})); 
 
   print "</td></tr>";
 
