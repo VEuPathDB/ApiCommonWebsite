@@ -78,6 +78,7 @@ EOSQL
   my $sth = $dbh->prepare($sql);
   $sth->execute();
   while(my ($id, $seq) = $sth->fetchrow_array()) {
+    $id =~ s/^[^\.]+\.//g;
     $sequence .= ">$id\n$seq\n";
   }
 
@@ -152,12 +153,14 @@ EOSQL
   if ($type =~ /htsSNP/i){
      foreach my $id (split /,/, $ids) {
         $id =~ s/'//g;
+        $id =~ s/^[^\.]+\.//g;
         $origins{$id} = $start;
      }
   }
 
-  print "<table align=center width=800><tr><td>";
-  print "<a href='#tree'><h3>To view a guide tree, click here or scroll to the bottom of the page</h3></a>";
+  print "<table align=center width=800>";
+  print "<tr><td>";
+  print "<a href='#tree'><h3>To view a guide tree, click here or scroll to the bottom of the page</h3></a>" if ($type !~ /htsSNP/i);
   print "</td></tr>";
   print "<tr><td>";
   print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
@@ -165,6 +168,8 @@ EOSQL
                                                   show_matches      => 1})); 
 
   print "</td></tr>";
+
+  if ($type !~ /htsSNP/i){  # don't show the tree if it's htsSNPs
 
   print "<tr><td><pre><a name='tree'>Guide Tree</a></pre></td></tr>";
   my @parts = $result->packager->parts;
@@ -186,6 +191,8 @@ EOSQL
   foreach(@ws_params) { 
     print $_->string_value, "\n"; 
   } 
+
+  }
   
   print "</pre></td></tr>";
   print "</table>";
