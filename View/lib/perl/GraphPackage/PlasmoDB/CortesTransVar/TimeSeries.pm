@@ -51,8 +51,10 @@ sub init {
   push @_7g8Pch, $pointsPCH[1] for 1 .. 5;
   push @hb3Pch, $pointsPCH[2] for 1 .. 6;
   push @d10Pch, $pointsPCH[3] for 1 .. 5;
+
+  my @parentalPch =@pointsPCH[1..3];
   
-  my @parentalGraphs = $self->defineGraphs('Parental',$parental_strains, \@parentalColors, $profileBase, 'red percentile', \@pointsPCH); 
+  my @parentalGraphs = $self->defineGraphs('Parental',$parental_strains, \@parentalColors, $profileBase, 'red percentile', \@parentalPch); 
   my @_3d7Graphs = $self->defineGraphs('3D7_derived',$_3d7strains, \@_3d7Colors, $profileBase, 'red percentile', \@_3d7Pch );
   my @_7g8Graphs = $self->defineGraphs('7G8_derived',$_7g8strains, \@_7g8Colors, $profileBase, 'red percentile', \@_7g8Pch );
   my @hb3Graphs = $self->defineGraphs('HB3_derived',$hb3strains, \@hb3Colors, $profileBase, 'red percentile', \@hb3Pch);
