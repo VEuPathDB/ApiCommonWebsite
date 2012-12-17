@@ -3,38 +3,33 @@ package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Hehl::Stress2;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
-
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(200);
-  $self->setBottomMarginSize(4);
+  my $colors= ['darkgreen', 'grey'];
 
-  my $xAxisLabels = ['Control', '30 min', '60 min', '120 min'];
+  my @profileSetsArray = (['Stress Response profiles by varying DTT incubation time', 'standard error - Stress Response profiles by varying DTT incubation time', ]);
+  my @percentileSetsArray = (['red percentile - Stress Response profiles by varying DTT incubation time', '',],
+                             ['green percentile - Stress Response profiles by varying DTT incubation time', '',]);
 
-  $self->setProfileSetsHash
-    ({'expr_val' => {profiles => ['Stress response Dynamics in Trophozoites (time series)-Averaged'],
-                     y_axis_label => 'Expression Value',
-                     colors => ['darkgreen'],
-                     make_y_axis_fold_incuction => 1,
-                     default_y_max => 1,
-                     default_y_min => -1,
-                     x_axis_labels => $xAxisLabels,
-                          },
-      pct => {profiles => ['Stress Response percentiles by varying DTT incubation time-red values',
-                           'Stress Response percentiles by varying DTT incubation time-green values'
-                          ],
-              y_axis_label => 'Percentile',
-              default_y_max => 50,
-              colors =>  ['grey', '#191970'],
-              x_axis_labels => $xAxisLabels,
-             },
-     });
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  $ratio->setProfileSets($profileSets);
+  $ratio->setColors([$colors->[0]]);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+
+  $self->setGraphObjects($ratio, $percentile,);
 
   return $self;
 }
