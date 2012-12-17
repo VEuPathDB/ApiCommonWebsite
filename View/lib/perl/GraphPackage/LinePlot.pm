@@ -6,6 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::PlotPart );
 use ApiCommonWebsite::View::GraphPackage::PlotPart;
 use ApiCommonWebsite::View::GraphPackage::Util;
+use ApiCommonWebsite::View::GraphPackage;
 
 use Data::Dumper;
 #--------------------------------------------------------------------------------
@@ -129,6 +130,8 @@ sub makeRPlotString {
   my $extraLegendSize = $self->getExtraLegendSize();
 
   my $titleLine = $self->getTitleLine();
+
+  my $scale = $self->getThumbnail ? 0.67: 1;
 
   my $legendLabels = $self->getLegendLabels;
   my $legendLabelsString; 
@@ -294,7 +297,7 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-par(mar       = c($bottomMargin,4,1.5 + title.line, 1 + extra.legend.size), xpd=NA);
+par(mar       = c($bottomMargin,4,1.5 + title.line, 2 + extra.legend.size), xpd=NA);
 
 my.pch = $defaultPch;
 
@@ -438,7 +441,7 @@ if($yAxisFoldInductionFromM) {
 
   axis(4,at=yAxis,labels=yaxis.labels,tick=T);  
   axis(2,tick=T,labels=T);
-  mtext('Fold Change', side=4, line=2, cex.lab=1, las=0)
+  mtext('Fold Change', side=4, line=2, cex=$scale, las=0)
 } else {
   axis(2);  
 
@@ -462,7 +465,7 @@ if($hasExtraLegend) {
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(centerPoint, from='ndc', to='user'),
          my.labels,
-         cex   = 0.8,
+         cex   = 0.8 * $scale,
          ncol  = 1,
          col   = the.colors,
          pt.bg = the.colors,

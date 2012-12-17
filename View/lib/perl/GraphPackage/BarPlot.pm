@@ -6,6 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::PlotPart );
 use ApiCommonWebsite::View::GraphPackage::PlotPart;
 use ApiCommonWebsite::View::GraphPackage::Util;
+use ApiCommonWebsite::View::GraphPackage;
 
 #--------------------------------------------------------------------------------
 
@@ -79,6 +80,9 @@ sub makeRPlotString {
 
   my $bottomMargin = $self->getElementNameMarginSize();
   my $spaceBetweenBars = $self->getSpaceBetweenBars();
+
+  my $thumb=$self->getThumbnail;
+  my $scale = $thumb ? 0.67: 1;
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
@@ -195,7 +199,7 @@ if($hasExtraLegend) {
 title.line = $titleLine;
 
 if($horiz) {
-  par(mar       = c(5, names.margin,title.line + fold.induction.margin, 2 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
+  par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   x.lim = c(d.min, d.max);
   y.lim = NULL;
 
@@ -205,7 +209,7 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin, 4, 1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
+  par(mar       = c(names.margin, 5, 1.5 + title.line,fold.induction.margin + extra.legend.size+1), xpd=NA);
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
@@ -236,12 +240,13 @@ if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
              space = my.space,
              las = my.las,
              axes = FALSE,
-             cex.names = 1,
+             cex.axis=$scale,
+             cex.names=$scale,
              axis.lty  = \"solid\",
              horiz=$horiz
             );
 
-mtext('$yAxisLabel', side=yaxis.side, line=yaxis.line, cex.lab=1, las=0)
+mtext('$yAxisLabel', side=yaxis.side, line=yaxis.line, cex=$scale, las=0)
 yAxis = axis(foldchange.side, tick=F, labels=F);
 
 if($yAxisFoldInductionFromM) {
@@ -260,7 +265,7 @@ if($yAxisFoldInductionFromM) {
     }
   }
 
-  mtext('Fold Change', side=foldchange.side, line=2, cex.lab=1, las=0)
+  mtext('Fold Change', side=foldchange.side, line=2, cex=$scale, las=0)
   axis(foldchange.side,at=yAxis,labels=foldchange.labels,tick=T);  
   axis(yaxis.side,tick=T,labels=T);
 } else {
@@ -308,7 +313,7 @@ if($hasExtraLegend) {
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(figureRegionYMax, from='ndc', to='user'),
          my.labels,
-         cex   = 0.8,
+         cex   = 0.8 * 0.67,
          ncol  = 1,
          fill=the.colors,
          bty='n',
