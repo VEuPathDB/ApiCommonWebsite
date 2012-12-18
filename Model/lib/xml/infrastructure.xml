@@ -77,14 +77,17 @@ A significant component of our dataloading system is our ability to automate the
        <attribute name="tag">community</attribute>
        <attribute name="text">   
          <![CDATA[
-<p>A significant portion of our effort is toward satisfying community needs directly by interacting with them and training them to use our EuPathDB resources.  Users can contact us directly by clicking the "Contact Us" links in the header or footer of any page.  We respond to these requests within two business days if at all possible.  Additionally, we hold semi-annual meetings with our Scientific Working Group to discuss high level goals and deliverables for the project.  Our manager for community outreach also organizes and holds bi-monthly meetings with each of our organism specific (one per component site with TriTrypDB separated into three) Scientific Advisory Groups in order to hear aboiut new datasets, set priorities and share with the community current activities.</p><br>
-<p>We also attend a large number of meetings and hold multiple workshops each year in order to better educate our users in how to best utilize the tools that we provide and address any concerns that they may have.  We make available all EuPathDB workshop exercises on our websites to provide easy access to these materials.</p><br>
+<p>EuPathDB serves a global scientific community that demands direct active support and community involvement.   EuPathDB outreach activities include:</p><br>
  <div id="cirbulletlist">
 <ul>
-  <li><a href="showXmlDataContent.do?name=XmlQuestions.AboutAll#swg">Scientific Working Group members</a>
-  <li><a href="showXmlDataContent.do?name=XmlQuestions.About#advisors">Scientific Advisory Group members</a> (specific component sites only)
-  <li><a href="http://tinyurl.com/7qjxumg">Google map showing locations where workshops have been held</a>
-  <li><a href="http://workshop.eupathdb.org/current/index.php?page=schedule">June 2012 EuPathDB workshop syllabus with exercises</a>
+  <li>Organizing and running hands on training workshops and webinars (<a href="http://tinyurl.com/7qjxumg">Google Map</a>).
+  <li>Developing educational material in the form of <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">exercises</a> and <a href="http://www.youtube.com/user/EuPathDB/">online tutorials</a>.
+  <li>Responding to support emails for users who contact us directly by clicking the "Contact Us" links in the header or footer of any EuPathDB webpage (average response time is 48 hours).
+  <li>Holding semi-annual meetings with our <a href="showXmlDataContent.do?name=XmlQuestions.AboutAll#swg">Scientific Working Group</a> to discuss high-level goals and deliverables for the project.
+  <li>Holding bimonthly conference calls with our <a href="showXmlDataContent.do?name=XmlQuestions.About#advisors">Scientific Advisory Groups</a> (these are organism specific, one per component site with TriTrypDB separated into three) to learn about new datasets, set priorities and share with the community current activities.
+  <li>Attending national and international meetings with active participation in the form of posters, presentations or help desks.
+  <li>Authoring <a href="http://www.eupathdb.org/eupathdb/showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs">peer reviewed manuscripts</a>.
+  <li>Maintaining active social media presence in the form of a <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook page</a> and <a href="https://twitter.com/eupathdb">Twitter feed</a>.
 </ul>
 </div>
        ]]>
