@@ -131,7 +131,8 @@ sub makeRPlotString {
 
   my $titleLine = $self->getTitleLine();
 
-  my $scale = $self->getThumbnail ? 0.67: 1;
+  my $scale = $self->getScalingFactor;
+  print STDERR "the scale is $scale";
 
   my $legendLabels = $self->getLegendLabels;
   my $legendLabelsString; 
@@ -297,7 +298,7 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-par(mar       = c($bottomMargin,4,1.5 + title.line, 2 + extra.legend.size), xpd=NA);
+par(mar       = c($bottomMargin,4,1.5 + title.line, 1 + extra.legend.size), xpd=NA);
 
 my.pch = $defaultPch;
 
@@ -460,12 +461,13 @@ if($hasExtraLegend) {
 
   if ($hasLegendLabels) {
       my.labels = legend.label;
+      my.cex = 0.8 * $scale;
       }
 
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(centerPoint, from='ndc', to='user'),
          my.labels,
-         cex   = 0.8 * $scale,
+         cex   = my.cex,
          ncol  = 1,
          col   = the.colors,
          pt.bg = the.colors,

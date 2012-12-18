@@ -81,8 +81,7 @@ sub makeRPlotString {
   my $bottomMargin = $self->getElementNameMarginSize();
   my $spaceBetweenBars = $self->getSpaceBetweenBars();
 
-  my $thumb=$self->getThumbnail;
-  my $scale = $thumb ? 0.67: 1;
+  my $scale = $self->getScalingFactor;
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
@@ -209,7 +208,7 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin, 5, 1.5 + title.line,fold.induction.margin + extra.legend.size+1), xpd=NA);
+  par(mar       = c(names.margin, 4, 1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
@@ -313,7 +312,7 @@ if($hasExtraLegend) {
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(figureRegionYMax, from='ndc', to='user'),
          my.labels,
-         cex   = 0.8 * 0.67,
+         cex   = (0.8 * $scale),
          ncol  = 1,
          fill=the.colors,
          bty='n',

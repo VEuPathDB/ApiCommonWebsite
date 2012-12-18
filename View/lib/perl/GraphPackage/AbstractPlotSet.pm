@@ -211,11 +211,10 @@ sub makeR {
 
   my $width       = $self->getPlotWidth();
   my $totalHeight = $mS->totalHeight();
+  my $scale       = $self->getScalingFactor();
 
-  if ($thumb_b) {
-    $width       *= 0.55;
-    $totalHeight *= 0.55;
-  }
+  $width       *= $scale;
+  $totalHeight *= $scale;
 
   # used in R code to set locations of screens
   my $screens     = $mS->rScreenVectors();
