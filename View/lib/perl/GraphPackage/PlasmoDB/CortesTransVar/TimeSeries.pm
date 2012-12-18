@@ -98,7 +98,7 @@ sub defineGraphs {
    $line->setSplineApproxN(200);
    $line->setSplineDF(5);
    $line->setHasExtraLegend(1);
-   $line->setExtraLegendSize(6.5);
+   $line->setExtraLegendSize(7);
    $line->setLegendLabels($names);
    my $lineTitle = $line->getPlotTitle();
    $line->setPlotTitle("$tag - $lineTitle");

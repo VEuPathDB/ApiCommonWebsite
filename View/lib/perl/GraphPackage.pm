@@ -48,43 +48,53 @@ sub init {
    $Self->setThumbnail            ( $Args->{Thumbnail           } );
    $Self->setVisibleParts         ( $Args->{VisibleParts        } );
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
-   $Self->setWantLogged           ( $Args->{WantLogged         } );
+   $Self->setWantLogged           ( $Args->{WantLogged          } );
+
+   my $Thumb = $Self->getThumbnail();
+
+   my $thumbSF = 0.60;
+
+   my $scalingFactor =  $Thumb ? $thumbSF : 1.0;
+   $Self->setScalingFactor( $scalingFactor );   
 
    return $Self;
 }
 
 # ------------------------------ accessors -------------------------------
 
-sub getName                 { $_[0]->{'Name'                        } }
-sub setName                 { $_[0]->{'Name'                        } = $_[1]; $_[0] }
+sub getName                    { $_[0]->{'Name'                        } }
+sub setName                    { $_[0]->{'Name'                        } = $_[1]; $_[0] }
 
-sub getQueryHandle          { $_[0]->{'QueryHandle'                 } }
-sub setQueryHandle          { $_[0]->{'QueryHandle'                 } = $_[1]; $_[0] }
+sub getQueryHandle             { $_[0]->{'QueryHandle'                 } }
+sub setQueryHandle             { $_[0]->{'QueryHandle'                 } = $_[1]; $_[0] }
 
-sub getFormat               { $_[0]->{'Format'                      } }
-sub setFormat               { $_[0]->{'Format'                      } = $_[1]; $_[0] }
+sub getFormat                  { $_[0]->{'Format'                      } }
+sub setFormat                  { $_[0]->{'Format'                      } = $_[1]; $_[0] }
 
-sub getOutputFile           { $_[0]->{'OutputFile'                  } }
-sub setOutputFile           { $_[0]->{'OutputFile'                  } = $_[1]; $_[0] }
+sub getOutputFile              { $_[0]->{'OutputFile'                  } }
+sub setOutputFile              { $_[0]->{'OutputFile'                  } = $_[1]; $_[0] }
 
-sub getId                   { $_[0]->{'Id'                          } }
-sub setId                   { $_[0]->{'Id'                          } = $_[1]; $_[0] }
+sub getId                      { $_[0]->{'Id'                          } }
+sub setId                      { $_[0]->{'Id'                          } = $_[1]; $_[0] }
 
-sub getThumbnail            { $_[0]->{'Thumbnail'                   } }
-sub setThumbnail            { $_[0]->{'Thumbnail'                   } = $_[1]; $_[0] }
+sub getThumbnail               { $_[0]->{'Thumbnail'                   } }
+sub setThumbnail               { $_[0]->{'Thumbnail'                   } = $_[1]; $_[0] }
 
-sub getVisibleParts         { $_[0]->{'VisibleParts'                } }
-sub setVisibleParts         { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
+sub getScalingFactor           { $_[0]->{'ScalingFactor'               } }
+sub setScalingFactor           { $_[0]->{'ScalingFactor'               } = $_[1]; $_[0] }
 
-sub getSecondaryId          { $_[0]->{'SecondaryId'                 } }
-sub setSecondaryId          { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
+sub getVisibleParts            { $_[0]->{'VisibleParts'                } }
+sub setVisibleParts            { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
 
-sub getWantLogged           { $_[0]->{'WantLogged'                 } }
-sub setWantLogged           { $_[0]->{'WantLogged'                 } = $_[1]; $_[0] }
+sub getSecondaryId             { $_[0]->{'SecondaryId'                 } }
+sub setSecondaryId             { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
 
-sub getDataPlotterArg       { $_[0]->{'dataPlotterArg'              } }
-sub getTypeArg              { $_[0]->{'dataPlotterArg'              } }
-sub setDataPlotterArg       { $_[0]->{'dataPlotterArg'              } = $_[1]; $_[0] }
+sub getWantLogged              { $_[0]->{'WantLogged'                  } }
+sub setWantLogged              { $_[0]->{'WantLogged'                  } = $_[1]; $_[0] }
+
+sub getDataPlotterArg          { $_[0]->{'dataPlotterArg'              } }
+sub getTypeArg                 { $_[0]->{'dataPlotterArg'              } }
+sub setDataPlotterArg          { $_[0]->{'dataPlotterArg'              } = $_[1]; $_[0] }
 
 # ========================================================================
 # ---------------------------- Object Methods ----------------------------
@@ -198,7 +208,7 @@ sub _rPreamble {
    my $Self  = shift;
    my $Thumb = shift;
 
-   my $scale = $Thumb ? 0.67 : 1.0;
+   my $scale = $Self->getScalingFactor;
 
    my $Rv = <<StandardComponents;
 
