@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xml [
+  <!ENTITY nbsp "&#160;"> 
+  <!ENTITY lt   "&#60;"> 
+  <!ENTITY gt   "&#62;">
+  <!ENTITY sl   "&#47;">
+]>
+
+<xmlAnswer>
+
+
+
+
+
+
+   <record>
+       <attribute name="title">Data Loading and Database Schema</attribute>
+       <attribute name="tag">data</attribute>
+       <attribute name="text">   
+         <![CDATA[
+
+We use the <b>G</b>enomics <b>U</b>nified <b>S</b>chema (GUS) database schema and data loading infrastructure available at <a href="http://www.gusdb.org">GusDB.org</a>.  This includes not only a comprehensive database schema for integrating and representing genomic and functional (or post) genomic data but also tools for loading said data into that system.  We have made some extenstions to the schema and tools for EuPathDB specific purposes primarily to generate de-normalized views of the data for query optimization purposes.</p><br>
+<p>
+Our data are all stored in Oracle11g databases.  Our software infrastructure also supports PostgreSQL but we have some Oracle specific SQL constructs in our model that would need to be changed in order to run successfully in PostgreSQL.  </p><br>
+<p>
+We load all data using an in house engineered workflow sytem called ReFlow.  Documentation and code for ReFlow can be found on the <a href="http://code.google.com/p/reflow-genomics/">ReFlow google code repository</a>.  Briefly, ReFlow is engineered to be an efficient graph based workflow system any step of which has the ability to be undone and subsequently rerun with updated data.  This was a significant requirement as it enables us to undo entire genomes when the annotation or underlying sequence changes.  This results in automated removal of all data dependent on that genome and when it is re-run with the new annotation, all dependent data are recomputed and reloaded automatically, thus greatly improving our ability to keep these complex databases up-to-date.  
+A significant component of our dataloading system is our ability to automate the running of large compute tasks on compute clusters located at the University of Pennsylvania and the University of Georgia.  The ReFlow workflow sytem utilizes another piece of software developed at the University of Pennsylvania to schedule, manage and monitor running tasks called <a href="http://www.google.com/url?q=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fpub%3Fid%3D1BixZ5t2c0hnOZES-Rk2wG2loAQqclcmRj7AeKQjZMHA">DistribJob</a>.  DistribJob distributes tasks generated from a large input dataset such as a set of sequences to compute nodes in a cluster for analysis and retrieves and collates the results in an efficient manner.</p>
+<br>
+<div id="cirbulletlist">
+<ul>
+  <li><a href="http://www.gusdb.org">GUS Schema and Tools</a>
+  <li><a href="http://code.google.com/p/reflow-genomics/">ReFlow Workflow System</a>
+  <li><a href="http://www.google.com/url?q=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fpub%3Fid%3D1BixZ5t2c0hnOZES-Rk2wG2loAQqclcmRj7AeKQjZMHA">DistribJob Cluster Task Management</a>
+</ul>
+</div>
+       ]]>
+
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Web Presentation System and User Interfaces</attribute>
+       <attribute name="tag">wdk</attribute>
+       <attribute name="text">   
+         <![CDATA[
+<p>Our websites are based on code that we developed and have released to the community called the Strategies-WDK (Strategies Web Development Kit) which enables the graphical strategies search system.  You can download the software and see documentation for this toolkit at <a href="http://code.google.com/p/strategies-wdk/">Strategies-WDK google code website</a>.  This toolkit enables us to represent our data as an XML model which is then turned into the web interfaces that are presented to users using these tools.</p>
+<br>
+<div id="cirbulletlist">
+<ul>
+  <li><a href="http://code.google.com/p/strategies-wdk/">Strategies-WDK Website</a>
+  <li><a href="http://docs.google.com/View?id=dhg6jf8m_0fkkzr3hj">Strategies-WDK Documentation</a>
+</ul>
+</div>
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">System Hardware and Third Party Software</attribute>
+       <attribute name="tag">hardware</attribute>
+       <attribute name="text">   
+         <![CDATA[
+<p>EuPathDB maintains redundant production database and web servers at the University of Pennsylvania and the University of Georgia to assure minimal interruptions for our users.  Additionally EuPathDB compute and data loading servers are located at the University of Pennsylvania.  These servers are managed by Puppet in order to keep them up-to-date and in sync with needs.  Both Universities also maintain large compute clusters that are heavily utilized by EuPathDB in order to analyze and load incoming data in a timely fashion.  The linked document below describes our actual hardware and includes a list of third-party software required in order to analyze, load and present data via our websites.</p>
+<br>
+<div id="cirbulletlist">
+<ul>
+  <li><a href="/documents/EuPathDB_Hardware_3P_Software.pdf">Hardware and Third Party Software</a>
+</ul>
+</div>
+       ]]>
+       </attribute>
+   </record>
+
+   <record>
+       <attribute name="title">Community Interactions and Data Submission Policies</attribute>
+       <attribute name="tag">community</attribute>
+       <attribute name="text">   
+         <![CDATA[
+<p>A significant portion of our effort is toward satisfying community needs directly by interacting with them and training them to use our EuPathDB resources.  Users can contact us directly by clicking the "Contact Us" links in the header or footer of any page.  We respond to these requests within two business days if at all possible.  Additionally, we hold semi-annual meetings with our Scientific Working Group to discuss high level goals and deliverables for the project.  Our manager for community outreach also organizes and holds bi-monthly meetings with each of our organism specific (one per component site with TriTrypDB separated into three) Scientific Advisory Groups in order to hear aboiut new datasets, set priorities and share with the community current activities.</p><br>
+<p>We also attend a large number of meetings and hold multiple workshops each year in order to better educate our users in how to best utilize the tools that we provide and address any concerns that they may have.  We make available all EuPathDB workshop exercises on our websites to provide easy access to these materials.</p><br>
+ <div id="cirbulletlist">
+<ul>
+  <li><a href="showXmlDataContent.do?name=XmlQuestions.AboutAll#swg">Scientific Working Group members</a>
+  <li><a href="showXmlDataContent.do?name=XmlQuestions.About#advisors">Scientific Advisory Group members</a> (specific component sites only)
+  <li><a href="http://tinyurl.com/7qjxumg">Google map showing locations where workshops have been held</a>
+  <li><a href="http://workshop.eupathdb.org/current/index.php?page=schedule">June 2012 EuPathDB workshop syllabus with exercises</a>
+</ul>
+</div>
+       ]]>
+
+       </attribute>
+   </record>
+
+ 
+
+</xmlAnswer>
