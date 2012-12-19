@@ -52,7 +52,7 @@ sub init {
 
    my $Thumb = $Self->getThumbnail();
 
-   my $thumbSF = 0.60;
+   my $thumbSF = 0.62;
 
    my $scalingFactor =  $Thumb ? $thumbSF : 1.0;
    $Self->setScalingFactor( $scalingFactor );   
