@@ -3,19 +3,15 @@ package ApiCommonWebsite::View::GraphPackage::AmoebaDB::Gilchrist::GilchristEhTi
 use strict;
 use vars qw( @ISA );
 
-
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
-
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
 
-  $self->setScreenSize(250);
-  $self->setBottomMarginSize(9);
-  $self->setLegendSize(60);
 
   my $colors =['#800517', '#307D7E','#254117', '#7E3517', '#806517'];
 
@@ -25,25 +21,30 @@ sub init {
 
    $self->setMainLegend({colors => $colors, short_names => $legend,cols => 1});
 
-  $self->setProfileSetsHash
-    ({'rma' => {profiles => ['EhistolyticaNugenProfiles'],
-                           y_axis_label => 'RMA Value (log2)',
-                           colors => $colors,
-                           default_y_max => 15,
-                           x_axis_labels => $xAxisLabels,
-                          },
-      pct => {profiles => ['EhistolyticaNugenProfilePcts'
-                          ],
-              y_axis_label => 'Percentile',
-              default_y_max => 50,
-              colors =>  ['#800517', '#307D7E','#254117', '#7E3517', '#806517'],
-              x_axis_labels => $xAxisLabels,
-             },
-     });
+  my @profileSetsArray = (['E. histolytica Impact of intestinal colonization and invasion on transcriptome', 'standard error - E. histolytica Impact of intestinal colonization and invasion on transcriptome',$xAxisLabels ]);
+  my @percentileSetsArray = (['percentile - E. histolytica Impact of intestinal colonization and invasion on transcriptome', '', $xAxisLabels ],);
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setElementNameMarginSize (9);
+  $rma->setScreenSize(300);
+  $rma->setDefaultYMax(12);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setElementNameMarginSize (9);
+  $percentile->setScreenSize(300);
+
+  $self->setGraphObjects($rma, $percentile,);
 
   return $self;
-}
 
+}
 
 
 1;

@@ -240,7 +240,6 @@ if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
              las = my.las,
              axes = FALSE,
              cex.axis=$scale,
-             cex.names=$scale,
              axis.lty  = \"solid\",
              horiz=$horiz
             );
