@@ -61,7 +61,16 @@ A significant component of our dataloading system is our ability to automate the
        <attribute name="tag">hardware</attribute>
        <attribute name="text">   
          <![CDATA[
-<p>EuPathDB maintains redundant production database and web servers at the University of Pennsylvania and the University of Georgia to assure minimal interruptions for our users.  Additionally EuPathDB compute and data loading servers are located at the University of Pennsylvania.  These servers are managed by Puppet in order to keep them up-to-date and in sync with needs.  Both Universities also maintain large compute clusters that are heavily utilized by EuPathDB in order to analyze and load incoming data in a timely fashion.  The linked document below describes our actual hardware and includes a list of third-party software required in order to analyze, load and present data via our websites.</p>
+<p>
+EuPathDB maintains redundant database and content web servers at the University of Pennsylvania and the University of Georgia to minimize interruptions for our users during maintenance periods. Additionally EuPathDB compute and data loading servers are located at the University of Pennsylvania. 
+<br><br>
+Server configurations are coordinated and deployed through Puppet automation software (<a href="http://puppetlabs.com/" target="_blank">http://puppetlabs.com/</a>). Custom infrastructure software is versioned and deployed through standard RPM/YUM mechanisms. When appropriate, software builds are automated using Jenkins Continuous Integration Server (<a href="http://jenkins-ci.org/" target="_blank">http://jenkins-ci.org/</a>) and deloyed into an internal Sonatype Nexus (<a href="http://www.sonatype.org/nexus/" target="_blank">http://www.sonatype.org/nexus/</a>) repository.  
+<br><br>
+System infrastructure statistics (CPU load, I/O, etc) are gathered with colletd (<a href="http://collectd.org/" target="_blank">http://collectd.org/</a>) and in-house applications and feed to Graphite (<a href="http://graphite.wikidot.com/" target="_blank">http://graphite.wikidot.com/</a>) for human review. Nagios (<a href="http://www.nagios.org/" target="_blank">http://www.nagios.org/</a>) provides notifications of system degradations.
+<br><br>
+Both Universities also maintain large compute clusters that are heavily utilized by EuPathDB in order to analyze and load incoming data in a timely fashion. The linked document below describes our actual hardware and includes a list of third-party software required in order to analyze, load and present data via our websites.
+
+</p>
 <br>
 <div id="cirbulletlist">
 <ul>
