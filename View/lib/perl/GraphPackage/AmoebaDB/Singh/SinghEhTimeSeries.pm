@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::AmoebaDB::Singh::SinghEhTimeSeries
 use strict;
 use vars qw( @ISA );
 
-
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 
 sub init {
@@ -25,23 +25,28 @@ sub init {
 
    $self->setMainLegend({colors => $colors, short_names => $legend,cols => 2});
 
-  $self->setProfileSetsHash
-    ({'rma' => {profiles => ['EhistolyticaAffyProfiles'],
-                           y_axis_label => 'RMA Value (log2)',
-                           default_y_max => 15,
-                           colors => $colors,
-                           x_axis_labels => $xAxisLabels,
-                          },
-      pct => {profiles => ['EhistolyticaAffyProfilePcts'
-                          ],
-              y_axis_label => 'Percentile',
-              default_y_max => 50,
-              colors =>  ['#E9967A', '#8B4513','#66CDAA', '#556B2F', '#87CEEB','#008080', '#C9BE62'],
-              x_axis_labels => $xAxisLabels,
-             },
-     });
+  my @profileSetsArray = (['E. histolytica Gene expression in cysts and trophozoites', 'standard error - E. histolytica Gene expression in cysts and trophozoites',$xAxisLabels ]);
+  my @percentileSetsArray = (['percentile - E. histolytica Gene expression in cysts and trophozoites', '', $xAxisLabels ],);
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setElementNameMarginSize (7);
+  $rma->setScreenSize(250);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setElementNameMarginSize (7);
+  $percentile->setScreenSize(250);
+
+  $self->setGraphObjects($rma, $percentile,);
 
   return $self;
+
 }
 
 1;
