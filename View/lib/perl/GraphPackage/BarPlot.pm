@@ -456,8 +456,30 @@ sub new {
 
    return $self;
 }
-1;
 
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::MassSpec;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(10);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Mass');
+
+   $self->setPartName('mass_spec');
+   $self->setPlotTitle("Mass Profile - $id");
+
+   $self->setMakeYAxisFoldInduction(0);
+   $self->setIsLogged(0);
+
+   return $self;
+}
 
 1;
 
