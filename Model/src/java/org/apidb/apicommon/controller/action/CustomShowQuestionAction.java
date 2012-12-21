@@ -32,14 +32,14 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
     private static final String ATTR_REFERENCE_QUESTIONS = "ds_ref_questions";
 
-    public static void loadDataSources(ActionServlet servlet,
+    public static void loadDatasets(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
 
         List<RecordBean> questionRefs = new ArrayList<RecordBean>();
 
         // if xml data source exists, bypass the process
-        if (!GetDataSourceAction.hasXmlDataSource(wdkModel)) {
+        if (!GetDatasetAction.hasXmlDataset(wdkModel)) {
 
             // load the recordClass based data sources
             UserBean user = ActionUtility.getUser(servlet, request);
@@ -53,7 +53,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             }
 
             // get the data source question
-            QuestionBean dsQuestion = wdkModel.getQuestion(GetDataSourceAction.DATA_SOURCE_BY_QUESTION);
+            QuestionBean dsQuestion = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_QUESTION);
             Map<String, String> params = new LinkedHashMap<String, String>();
             params.put(PARAM_QUESTION, questionName);
             AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
@@ -85,7 +85,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ActionForward forward = super.execute(mapping, form, request, response);
-        loadDataSources(servlet, request);
+        loadDatasets(servlet, request);
 
         // run execute from parent
         return forward;

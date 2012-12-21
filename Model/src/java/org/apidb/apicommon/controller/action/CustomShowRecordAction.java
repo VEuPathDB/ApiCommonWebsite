@@ -82,8 +82,8 @@ public class CustomShowRecordAction extends ShowRecordAction {
             forward = super.execute(mapping, form, request, response);
 
             // if xml data source exists, bypass the process
-            if (!GetDataSourceAction.hasXmlDataSource(wdkModel)) {
-                loadDataSources(request, wdkModel, rcName);
+            if (!GetDatasetAction.hasXmlDataset(wdkModel)) {
+                loadDatasets(request, wdkModel, rcName);
             }
         }
         return forward;
@@ -111,7 +111,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         return recordClass.hasMultipleRecords(user, pkValues);
     }
 
-    private void loadDataSources(HttpServletRequest request,
+    private void loadDatasets(HttpServletRequest request,
             WdkModelBean wdkModel, String rcName) throws Exception {
         Map<String, String> profileGraphRefs = new LinkedHashMap<String, String>();
         Map<String, String> attributeRefs = new LinkedHashMap<String, String>();
@@ -121,7 +121,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         UserBean user = ActionUtility.getUser(servlet, request);
 
         // get the data source question
-        QuestionBean question = wdkModel.getQuestion(GetDataSourceAction.DATA_SOURCE_BY_RECORD_CLASS);
+        QuestionBean question = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_RECORD_CLASS);
         Map<String, String> params = new LinkedHashMap<String, String>();
         params.put(PARAM_RECORD_CLASS, rcName);
         AnswerValueBean answerValue = question.makeAnswerValue(user, params, true, 0);
