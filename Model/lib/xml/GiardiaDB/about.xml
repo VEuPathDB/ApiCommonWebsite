@@ -50,7 +50,7 @@ the prokaryotic / eukaryotic divergence.
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in GiardiaDB is provided by independent researchers.  For a list of the data integrated into GiardiaDB and the related publications see <a href="getDataSource.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in GiardiaDB is provided by independent researchers.  For a list of the data integrated into GiardiaDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -246,7 +246,7 @@ GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist p
 researchers.  Please cite them if you use their data.  For a list
 of the data integrated into GiardiaDB and the related
 publications please see <a
-href="getDataSource.do?display=detail"
+href="getDataset.do?display=detail"
 class="blue"> Data Sources</a>.
        ]]>
        </attribute>

@@ -61,53 +61,53 @@ For detail on Data Sources and Methods please access specific component sites in
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org" style="color:#003366"><b>AmoebaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org/amoeba/getDataSource.do?display=detail" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org/amoeba/getDataset.do?display=detail" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>
 </tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org" style="color:#003366"><b>CryptoDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org/cryptodb/getDataSource.do?display=detail" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/static/SOP/">SOPs for annotation.</a></font></td>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org/cryptodb/getDataset.do?display=detail" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/static/SOP/">SOPs for annotation.</a></font></td>
 </tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org" style="color:#003366"><b>GiardiaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org/giardiadb/getDataSource.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://giardiadb.org/giardiadb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org/giardiadb/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://giardiadb.org/giardiadb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org" style="color:#003366"><b>MicrosporidiaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org/micro/getDataSource.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://microsporidiadb.org/micro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org/micro/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://microsporidiadb.org/micro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://piroplasmadb.org" style="color:#003366"><b>PiroplasmaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://piroplasmadb.org/piro/getDataSource.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://piroplasmadb.org/piro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://piroplasmadb.org/piro/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://piroplasmadb.org/piro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://plasmodb.org" style="color:#003366"><b>PlasmoDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://plasmodb.org/plasmo/getDataSource.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://plasmodb.org/plasmo/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://toxodb.org" style="color:#003366"><b>ToxoDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://toxodb.org/toxo/getDataSource.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://toxodb.org/toxo/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://trichdb.org" style="color:#003366"><b>TrichDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://trichdb.org/trichdb/getDataSource.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://trichdb.org/trichdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://trichdb.org/trichdb/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://trichdb.org/trichdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr>
 
 <tr valign="top">
     <td align="left" ><font face="Arial,Helvetica"><a href="http://tritrypdb.org" style="color:#003366"><b>TriTrypDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://tritrypdb.org/tritrypdb/getDataSource.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
+    <td align="left" ><font face="Arial,Helvetica"><a href="http://tritrypdb.org/tritrypdb/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
 </td>
 </tr>
 
