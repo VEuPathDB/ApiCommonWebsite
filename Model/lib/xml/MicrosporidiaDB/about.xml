@@ -28,7 +28,7 @@ provided by community researchers . The database includes supplemental bioinform
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in MicrosporidiaDB is provided by independent researchers.  For a list of the data integrated into MicrosporidiaDB and the related publications see <a href="getDataSource.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in MicrosporidiaDB is provided by independent researchers.  For a list of the data integrated into MicrosporidiaDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -94,7 +94,7 @@ When citing MicrosporidiaDB itself, please use:
 <b>EuPathDB: a portal to eukaryotic pathogen databases.</b> <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D415">Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. Epub 2009 Nov 13.</a>
 
 
-<br><br>Much of the data in MicrosporidiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into MicrosporidiaDB and the related publications please see <a href="getDataSource.do?display=detail" class="blue"> Data Sources</a>.
+<br><br>Much of the data in MicrosporidiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into MicrosporidiaDB and the related publications please see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.
 
 
        ]]>
