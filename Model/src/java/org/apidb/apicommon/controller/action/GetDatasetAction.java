@@ -24,13 +24,13 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.jspwrap.XmlQuestionSetBean;
 
-public class GetDataSourceAction extends Action {
+public class GetDatasetAction extends Action {
 
-    private static final String DATA_SOURCE_ALL = "DataSourceQuestions.AllDataSources";
-    public static final String DATA_SOURCE_BY_QUESTION = "DataSourceQuestions.DataSourcesByQuestionName";
-    public static final String DATA_SOURCE_BY_NAMES = "DataSourceQuestions.DataSourcesByDatasetNames";
-    public static final String DATA_SOURCE_BY_REFERENCE = "DataSourceQuestions.DataSourcesByReferenceName";
-    public static final String DATA_SOURCE_BY_RECORD_CLASS = "DataSourceQuestions.DataSourcesByRecordClass";
+    private static final String DATA_SOURCE_ALL = "DatasetQuestions.AllDatasets";
+    public static final String DATA_SOURCE_BY_QUESTION = "DatasetQuestions.DatasetsByQuestionName";
+    public static final String DATA_SOURCE_BY_NAMES = "DatasetQuestions.DatasetsByDatasetNames";
+    public static final String DATA_SOURCE_BY_REFERENCE = "DatasetQuestions.DatasetsByReferenceName";
+    public static final String DATA_SOURCE_BY_RECORD_CLASS = "DatasetQuestions.DatasetsByRecordClass";
 
     private static final String PARAM_QUESTION = "question";
     private static final String PARAM_REFERENCE = "reference";
@@ -40,21 +40,21 @@ public class GetDataSourceAction extends Action {
     private static final String VALUE_DISPLAY_LIST = "list";
     private static final String VALUE_DISPLAY_DETAIL = "detail";
 
-    private static final String ATTR_DATA_SOURCES = "dataSources";
+    private static final String ATTR_DATA_SOURCES = "datasets";
 
     private static final String FORWARD_XML_LIST = "show_xml_list";
     private static final String FORWARD_XML_DETAIL = "show_xml_detail";
     private static final String FORWARD_LIST = "show_list";
     private static final String FORWARD_DETAIL = "show_detail";
 
-    private static final Logger logger = Logger.getLogger(GetDataSourceAction.class);
+    private static final Logger logger = Logger.getLogger(GetDatasetAction.class);
 
-    public static boolean hasXmlDataSource(WdkModelBean wdkModel) {
+    public static boolean hasXmlDataset(WdkModelBean wdkModel) {
         XmlQuestionSetBean questionSet = wdkModel.getXmlQuestionSetsMap().get(
                 "XmlQuestions");
         if (questionSet == null)
             return false;
-        return questionSet.getQuestionsMap().containsKey("DataSources");
+        return questionSet.getQuestionsMap().containsKey("Datasets");
     }
 
     @Override
@@ -72,7 +72,7 @@ public class GetDataSourceAction extends Action {
         String forwardList, forwardDetail;
 
         // check if xml data source exists, if so, redirect to it
-        if (hasXmlDataSource(wdkModel)) {
+        if (hasXmlDataset(wdkModel)) {
             forwardList = FORWARD_XML_LIST;
             forwardDetail = FORWARD_XML_DETAIL;
         } else {
