@@ -470,7 +470,8 @@ sub new {
 
    $self->setDefaultYMax(10);
    $self->setDefaultYMin(0);
-   $self->setYaxisLabel('Mass');
+#   $self->setYaxisLabel('Mass');
+   $self->setYaxisLabel('');
 
    $self->setPartName('mass_spec');
    $self->setPlotTitle("Mass Profile - $id");
