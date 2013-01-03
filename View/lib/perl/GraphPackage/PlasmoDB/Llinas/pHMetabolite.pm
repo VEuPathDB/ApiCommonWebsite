@@ -14,25 +14,25 @@ sub init {
 
   $self->setPlotWidth(800);
 
-  my $colors = ['dodgerblue', 'salmon', 'forestgreen', '#6495ED', '#E9967A', '#2F4F4F' ];
-  my $legend = ['Percoll pellet', 'RBC pellet', 'Saponin pelllet', 'Percoll media', 'RBC media', 'Saponin media'];
+  my $colors = ['dodgerblue', 'slateblue', 'forestgreen', '#2F4F4F', 'salmon', '#E9967A'];
+  my $legend = ['Percoll pellet', 'Percoll media', 'Saponin pellet', 'Saponin media', 'RBC pellet', 'RBC media'];
 
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3 });
 
-my $percollPellet = ['','pH 6.4','pH 7.4','pH 8.4','','','','','','','','','','','','','','',''];
-my $rbcPellet     = ['','','','','pH 6.4','pH 7.4','pH 8.4','','','','','','','','','','','',''];
-my $saponinPellet = ['','','','','','','','pH 6.4','pH 7.4','pH 8.4','','','','','','','','',''];
-my $percolMedia   = ['','','','','','','','','','','','pH 6.4','pH 7.4','pH 8.4','','','','',''];
-my $rbcMedia      = ['','','','','','','','','','','','','','','pH 6.4','pH 7.4','pH 8.4','',''];
-my $saponinMedia  = ['','','','','','','','','','','','','','','','','pH 6.4','pH 7.4','pH 8.4'];
+  my $percollPellet = ['','pH 6.4','pH 7.4','pH 8.4','','','','','','','','','','','','','','',''];
+  my $rbcPellet     = ['','','','','pH 6.4','pH 7.4','pH 8.4','','','','','','','','','','','',''];
+  my $saponinPellet = ['','','','','','','','pH 6.4','pH 7.4','pH 8.4','','','','','','','','',''];
+  my $percolMedia   = ['','','','','','','','','','','','pH 6.4','pH 7.4','pH 8.4','','','','',''];
+  my $rbcMedia      = ['','','','','','','','','','','','','','','pH 6.4','pH 7.4','pH 8.4','',''];
+  my $saponinMedia  = ['','','','','','','','','','','','','','','','','pH 6.4','pH 7.4','pH 8.4'];
 
 
   my @profileSetNames = (['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $percollPellet],
-			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $rbcPellet],
-			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $saponinPellet],
 			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $percolMedia],
-			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $rbcMedia],
-			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $saponinMedia]
+			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $saponinPellet],
+			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $saponinMedia],
+			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $rbcPellet],
+			 ['Profiles of Metabolites from Llinas','standard error - Profiles of Metabolites from Llinas', $rbcMedia]
 			);
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
