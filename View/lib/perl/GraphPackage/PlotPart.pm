@@ -123,10 +123,7 @@ sub makeFilesForR {
 
     $profileSet->writeFiles($id, $qh, $suffix);
     my $errors = $profileSet->errors();
-    if(scalar @$errors > 0) {
-      my $r_fh = $self->getErrorsFileHandle();
-      $self->reportErrorsAndBlankGraph($r_fh, @$errors);
-    }
+    die "No profile values returned" if (scalar @$errors > 0);
   }
 
   return $self->profileFilesAsRVectors($profileSets);
@@ -150,6 +147,28 @@ sub profileFilesAsRVectors {
 #  print STDERR Dumper \@stderrFiles;
 
   return($profileFilesString, $elementNamesString, $stderrString);
+
+}
+
+sub blankPlotPart {
+
+my ($self)= @_;
+my $plotTitle = $self->getPlotTitle();
+
+return <<DummyR
+
+
+screen(screens[screen.i]);
+screen.i <- screen.i + 1;
+
+par(yaxs="i", xaxs="i", xaxt="n", yaxt="n", bty="n", mar=c(0.1,2,3,0.1));
+
+plot(c(0),c(0), xlab='', ylab='',type="l",col="orange", xlim=c(0,1),ylim=c(0,1));
+text(0.5, 0.5, "none",col="black",cex=4.0);
+
+plasmodb.title(\"$plotTitle\");
+
+DummyR
 
 }
 

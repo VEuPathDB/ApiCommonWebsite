@@ -362,6 +362,8 @@ sub addToProfileDataMatrix {
     my $profileFile = $profileFiles->[$i];
     my $elementNamesFile = $elementNamesFiles->[$i];
     my $profileSet = $profileSetNames->[$i];
+    
+    next unless ($profileFile && $elementNamesFile);
 
     open(NAMES, $elementNamesFile) or die "Cannot open file $elementNamesFile for reading:$!";
     open(VALUES, $profileFile) or die "Cannot open file $elementNamesFile for reading:$!";

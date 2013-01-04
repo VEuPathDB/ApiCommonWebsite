@@ -46,7 +46,19 @@ sub makeRPlotString {
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
 
-  my ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
+  my ($profileFiles, $elementNamesFiles, $stderrFiles);
+
+  eval{
+    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
+  };
+
+  if($@) {
+    my $profileSets = $self->getProfileSets();
+    map { $_->setProfileFile(undef);
+          $_->setElementNamesFile(undef);
+        } @$profileSets;
+    return $self->blankPlotPart();
+  }
 
   my $colors = $self->getColors();
   my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
