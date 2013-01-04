@@ -76,7 +76,19 @@ sub makeRPlotString {
   my $pointsPch = $self->getPointsPch();
   my $pointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pointsPch, 'points.pch');
 
-  my ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
+   my ($profileFiles, $elementNamesFiles, $stderrFiles);
+
+  eval{
+   ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
+  };
+
+  if($@) {
+    my $profileSets = $self->getProfileSets();
+    map { $_->setProfileFile(undef);
+          $_->setElementNamesFile(undef);
+        } @$profileSets;
+    return $self->blankPlotPart();
+  }
 
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
