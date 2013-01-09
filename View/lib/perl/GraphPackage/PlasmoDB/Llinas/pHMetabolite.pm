@@ -15,7 +15,7 @@ sub init {
   $self->setPlotWidth(800);
 
   my $colors = ['dodgerblue', 'slateblue', 'forestgreen', '#2F4F4F', 'salmon', '#E9967A'];
-  my $legend = ['Percoll pellet', 'Percoll media', 'Saponin pellet', 'Saponin media', 'RBC pellet', 'RBC media'];
+  my $legend = ['Percoll pellet', 'Percoll media', 'Saponin pellet', 'Saponin media', 'Uninfected RBC pellet', 'Uninfected RBC media'];
 
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3 });
 
