@@ -876,7 +876,7 @@
        <attribute name = "Genus">Theileria</attribute>
        <attribute name = "Species">parva</attribute>
        <attribute name = "URLGenomeFasta">http://PiroplasmaDB.org/common/downloads/Current_Release/TparvaMuguga/fasta/data/PiroplasmaDB-&relPiro;_TparvaMuguga_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://PiroplasmaDB_.org/common/downloads/Current_Release/TparvaMuguga/gff/data/PiroplasmaDB-&relPiro;_TparvaMuguga.gff</attribute>
+       <attribute name = "URLgff">http://PiroplasmaDB.org/common/downloads/Current_Release/TparvaMuguga/gff/data/PiroplasmaDB-&relPiro;_TparvaMuguga.gff</attribute>
        <attribute name = "Taxon_ID">333668</attribute>
        <attribute name = "Strain">strain Muguga</attribute>
        <attribute name = "Genome_Version">03-10-2010</attribute>
