@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import org.gusdb.wdk.model.AttributeValue;
+import org.gusdb.wdk.model.record.attribute.AttributeValue;
 
 public class RowTag extends SimpleTagSupport {
     private Iterator<Map<String, AttributeValue>> iterator;

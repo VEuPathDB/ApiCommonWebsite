@@ -1,13 +1,15 @@
 package org.apidb.apicommon.taglib.wdk.table;
 
-import javax.servlet.jsp.JspException;
 import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
-import java.util.Map;
-import org.gusdb.wdk.model.TableValue;
-import org.gusdb.wdk.model.jspwrap.RecordBean;
+
 import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.model.jspwrap.RecordBean;
+import org.gusdb.wdk.model.record.TableValue;
 
 public class TableTag extends SimpleTagSupport {
     private String var;
