@@ -12,13 +12,13 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.AnswerValue;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.SummaryViewHandler;
 import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.model.view.SummaryViewHandler;
 
 /**
  * @author jerric

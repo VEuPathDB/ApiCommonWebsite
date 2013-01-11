@@ -3,7 +3,7 @@
  */
 package org.apidb.apicommon.model;
 
-import org.gusdb.wdk.model.ModelConfigDB;
+import org.gusdb.wdk.model.config.ModelConfigDB;
 
 /**
  * @author xingao
