@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import org.gusdb.wdk.model.AttributeField;
+import org.gusdb.wdk.model.record.attribute.AttributeField;
 
 public class ColumnHeaderTag extends SimpleTagSupport {
 	
