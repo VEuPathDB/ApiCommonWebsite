@@ -169,7 +169,7 @@ sub getTaxonToDirMap {
 
   my $project = $cgi->param('project_id');
 
-  if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb/) {
+  if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb|amoebadb|giardiadb/) {
 
      my $sql = <<EOSQL;
 SELECT distinct ga.organism, taxon.grp, org.abbrev 
@@ -208,13 +208,9 @@ EOSQL
       'Toxoplasma gondii VEG'                            => { name => 'tgonVEG',                group => 4 },
       'Neospora caninum'                                 => { name => 'ncanLIV',                group => 5 },
       'Eimeria tenella str. Houghton'                    => { name => 'etenHoughton',           group => 6 },
-
-      'Entamoeba dispar SAW760'                          => { name => 'e_dispar',                group => 1 },
-      'Entamoeba histolytica HM-1:IMSS'                  => { name => 'e_histolytica',           group => 2 },
-      'Entamoeba invadens IP1'                           => { name => 'e_invadens',              group => 3 },
      };
   }
-return $taxonToDirMap; 
+return $taxonToDirMap;
 }
 
 #--------------------------------------------------------------------------------
