@@ -411,12 +411,13 @@ sub new {
   $self->setPlotTitle("RPKM - $id");
 
   # RUM RPKM Are Not logged in the db
-  if($wantLogged) {
-    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
-    $self->setYaxisLabel('RPKM (log2)');
-    $self->setIsLogged(1);
-    $self->setDefaultYMax(4);
-  }
+  # JB:  Cannot take the log2 of the diff profiles then add
+#  if($wantLogged) {
+#    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
+#    $self->setYaxisLabel('RPKM (log2)');
+#    $self->setIsLogged(1);
+#    $self->setDefaultYMax(4);
+#  }
 
   return $self;
 }
