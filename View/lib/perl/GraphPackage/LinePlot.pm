@@ -400,7 +400,7 @@ for(i in 1:nrow(lines.df)) {
   } else {
 
 
-    if($isFilled) {
+    if($isFilled && length(x.coords.line > 1)) {
       polygon( c( x.coords.line[1], x.coords.line, x.coords.line[length(x.coords.line)]),
                c( 0,         y.coords, 0),
                col = the.colors[i],
@@ -619,23 +619,13 @@ sub new {
   my $self = $class->SUPER::new(@_);
   my $id = $self->getId();
 
-  my $wantLogged = $self->getWantLogged();
-
   $self->setPartName('rpkm');
   $self->setYaxisLabel('RPKM');
   $self->setDefaultYMin(0);
   $self->setDefaultYMax(20);
   $self->setPlotTitle("RPKM - $id");
 
-  # RUM RPKM Are Not logged in the db
-  if($wantLogged) {
-    $self->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
-    $self->setYaxisLabel('RPKM (log2)');
-    $self->setIsLogged(1);
-    $self->setDefaultYMax(4);
-  }
-
-   $self->setPointsPch(['NA']);
+  $self->setPointsPch(['NA']);
 
   $self->setIsFilled(1);
   
