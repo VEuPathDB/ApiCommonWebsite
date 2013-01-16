@@ -608,4 +608,39 @@ sub new {
   return $self;
 }
 
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::LinePlot::RNASeq;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+  my $class = shift;
+  my $self = $class->SUPER::new(@_);
+  my $id = $self->getId();
+
+  my $wantLogged = $self->getWantLogged();
+
+  $self->setPartName('rpkm');
+  $self->setYaxisLabel('RPKM');
+  $self->setDefaultYMin(0);
+  $self->setDefaultYMax(20);
+  $self->setPlotTitle("RPKM - $id");
+
+  # RUM RPKM Are Not logged in the db
+  if($wantLogged) {
+    $self->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
+    $self->setYaxisLabel('RPKM (log2)');
+    $self->setIsLogged(1);
+    $self->setDefaultYMax(4);
+  }
+
+   $self->setPointsPch(['NA']);
+
+  $self->setIsFilled(1);
+  
+  return $self;
+}
+
+
 1;
