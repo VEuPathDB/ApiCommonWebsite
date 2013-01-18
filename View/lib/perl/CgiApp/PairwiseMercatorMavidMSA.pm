@@ -10,7 +10,7 @@ use Bio::Seq;
 use Data::Dumper;
 
 use ApiCommonWebsite::Model::ModelProp;
-use ApiCommonWebsite::Model::ModelApicommonXml;
+use EuPathSiteCommon::Model::ModelXML;
 
 use Bio::Graphics::Browser2::PadAlignment;
 
@@ -563,7 +563,7 @@ sub validateMacros {
   my $project = $cgi->param('project_id');
 
   my $props =  ApiCommonWebsite::Model::ModelProp->new($project);
-  my $model = ApiCommonWebsite::Model::ModelApicommonXml->new();
+  my $model = EuPathSiteCommon::Model::ModelXML->new('apiCommonModel.xml');
 
   my $buildNumber = $model->getBuildNumberByProjectId($project);
   my $wsMirror = $props->{WEBSERVICEMIRROR};
