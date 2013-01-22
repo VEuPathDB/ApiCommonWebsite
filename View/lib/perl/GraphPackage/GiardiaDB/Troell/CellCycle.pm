@@ -5,7 +5,7 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
 
 sub init {
@@ -21,15 +21,17 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
 
-  my $expression = ApiCommonWebsite::View::GraphPackage::BarPlot::QuantileNormalized->new(@_);
+  my $expression = ApiCommonWebsite::View::GraphPackage::LinePlot::QuantileNormalized->new(@_);
   $expression->setProfileSets($profileSets);
   $expression->setColors([$colors->[0]]);
   $expression->setElementNameMarginSize (5);
+  $expression->setXaxisLabel("Hours");
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setElementNameMarginSize (5);
+  $percentile->setXaxisLabel("Hours");
 
   $self->setGraphObjects($expression, $percentile,);
 
