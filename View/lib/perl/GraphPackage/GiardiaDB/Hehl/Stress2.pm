@@ -24,10 +24,12 @@ sub init {
   my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
   $ratio->setColors([$colors->[0]]);
+  $ratio->setElementNameMarginSize(6);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
+  $percentile->setElementNameMarginSize(6);
 
   $self->setGraphObjects($ratio, $percentile,);
 

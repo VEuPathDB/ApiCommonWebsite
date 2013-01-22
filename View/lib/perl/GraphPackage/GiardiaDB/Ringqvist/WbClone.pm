@@ -12,11 +12,12 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $colors = ['#B22222', '#6A5ACD', '#87CEEB' ];
+  my $legendColors = ['#B22222', '#6A5ACD', '#87CEEB' ];
+  my $ratioColors = ['#B22222', '#6A5ACD', '#6A5ACD',  '#6A5ACD',  '#87CEEB', '#87CEEB', '#87CEEB',];
   my $pctColors = ['#B22222', '#191970', '#6A5ACD', '#191970', '#6A5ACD', '#191970', '#6A5ACD', '#191970', '#87CEEB','#191970', '#87CEEB','#191970', '#87CEEB','#191970'];
   my $legend =  ['DMEM', 'TYDK', 'Caco'];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
+  $self->setMainLegend({colors => $legendColors, short_names => $legend, cols => 3});
 
 
   my @profileSetsArray = (['Host Parasite Interaction', 'standard error - Host Parasite Interaction', ]);
@@ -28,11 +29,13 @@ sub init {
 
   my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
-  $ratio->setColors([$colors->[0]]);
+  $ratio->setColors($ratioColors);
+  $ratio->setElementNameMarginSize(6);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($pctColors);
+  $percentile->setElementNameMarginSize(6);
 
   $self->setGraphObjects($ratio, $percentile,);
 
