@@ -10,15 +10,21 @@ public class Region {
   private double percentStart;
   private double percentLength;
   private String sequenceId;
-  private boolean forward;
 
   private final List<Feature> features = new ArrayList<>();
 
-  public Region(String sequenceId, long start, long end, boolean forward) {
+  public Region(String sequenceId, long start, long end) {
     this.sequenceId = sequenceId;
     this.start = start;
     this.end = end;
-    this.forward = forward;
+  }
+
+  public String getSourceId() {
+    return sequenceId + "-" + start + "-" + end;
+  }
+
+  public String toString() {
+    return getSourceId();
   }
 
   public long getStart() {
@@ -43,14 +49,6 @@ public class Region {
 
   public void setSequenceId(String sequenceId) {
     this.sequenceId = sequenceId;
-  }
-
-  public boolean isForward() {
-    return forward;
-  }
-
-  public void setForward(boolean forward) {
-    this.forward = forward;
   }
 
   public List<Feature> getFeatures() {
@@ -81,4 +79,21 @@ public class Region {
     this.percentLength = percentLength;
   }
 
+  public int getForwardCount() {
+    int count = 0;
+    for (Feature feature : features) {
+      if (feature.isForward())
+        count++;
+    }
+    return count;
+  }
+
+  public int getReverseCount() {
+    int count = 0;
+    for (Feature feature : features) {
+      if (!feature.isForward())
+        count++;
+    }
+    return count;
+  }
 }

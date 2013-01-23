@@ -35,13 +35,12 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
   protected static final String COLUMN_SEQUENCE_LENGTH = "sequence_length";
   protected static final String COLUMN_CONTEXT = "context";
   protected static final String COLUMN_STRAND = "strand";
+  protected static final String COLUMN_DESCRIPTION = "description";
 
   private static final String PROP_SEQUENCES = "sequences";
   private static final String PROP_MAX_LENGTH = "maxLength";
 
-  private static final int DETAIL_LIMIT = 1000;
-
-  private static final double SEGMENTS = 20;
+  private static final double SEGMENTS = 100;
 
   private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
 
@@ -87,12 +86,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       double pctLength = round(sequence.getLength() * 100D / maxLength);
       sequence.setPercentLength(pctLength);
 
-      // format features by max length
-      formatFeatures(sequence, maxLength);
-
-      // format regions if needed
-      if (sequence.getFeatureCount() > DETAIL_LIMIT)
-        formatRegions(sequence, maxLength);
+      formatRegions(sequence, maxLength);
     }
 
     Map<String, Object> results = new HashMap<String, Object>();
@@ -152,16 +146,6 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     return maxLength;
   }
 
-  public void formatFeatures(Sequence sequence, long maxLength) {
-    for (Feature feature : sequence.getFeatures()) {
-      double pctStart = round(feature.getStart() * 100D / maxLength);
-      long length = Math.abs(feature.getEnd() - feature.getStart() + 1);
-      double pctLength = round(length * 100D / maxLength);
-      feature.setPercentStart((float) pctStart);
-      feature.setPercentLength(pctLength);
-    }
-  }
-
   public void formatRegions(Sequence sequence, long maxLength) {
     long sequenceLength = sequence.getLength();
     long segmentLength = Math.round(maxLength / SEGMENTS);
@@ -170,19 +154,17 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       // determine the start & stop of the current region.
       long stop = start + segmentLength - 1;
       if (stop > sequenceLength
-          || (sequenceLength - stop) / (double) segmentLength < 0.1)
+          || (sequenceLength - stop) / (double) segmentLength < 0.5)
         stop = sequenceLength;
 
       // create two regions at the same section.
-      Region forward = new Region(sequence.getSourceId(), start, stop, true);
-      Region reverse = new Region(sequence.getSourceId(), start, stop, false);
+      Region region = new Region(sequence.getSourceId(), start, stop);
 
       double pctStart = round(start * 100D / maxLength);
-      double pctLength = round((stop - start + 1) * 100 / maxLength);
-      forward.setPercentStart(pctStart);
-      forward.setPercentLength(pctLength);
-      sequence.addRegion(forward);
-      sequence.addRegion(reverse);
+      double pctLength = round((stop - start + 1) * 100D / maxLength - 0.1);
+      region.setPercentStart(pctStart);
+      region.setPercentLength(pctLength);
+      sequence.addRegion(region);
 
       start = stop + 1;
     }
@@ -192,7 +174,20 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       List<Region> regions = sequence.getRegions(feature.getStart(),
           feature.getEnd(), feature.isForward());
       for (Region region : regions) {
-        region.addFeature(feature);
+        // each region should have its own copy of feature
+        Feature clone = new Feature(feature);
+
+        // format feature within the region
+        long fStart = Math.max(0, feature.getStart() - region.getStart());
+        double pctStart = round(fStart * 100D / segmentLength);
+
+        long fLength = Math.min(segmentLength,
+            feature.getEnd() - region.getEnd());
+        double pctLength = round(fLength * 100D / segmentLength);
+        clone.setPercentStart(pctStart);
+        clone.setPercentLength(pctLength);
+
+        region.addFeature(clone);
       }
     }
   }
