@@ -49,8 +49,7 @@ public class Sequence {
   public List<Region> getRegions(long start, long end, boolean forward) {
     List<Region> list = new ArrayList<>();
     for (Region region : regions) {
-      if (region.isForward() == forward && start <= region.getEnd()
-          && end >= region.getStart())
+      if (start <= region.getEnd() && end >= region.getStart())
         list.add(region);
     }
     return list;

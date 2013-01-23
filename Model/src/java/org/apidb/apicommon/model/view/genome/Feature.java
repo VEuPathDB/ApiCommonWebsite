@@ -19,6 +19,17 @@ public class Feature {
         this.sourceId = sourceId;
     }
 
+    public Feature(Feature feature) {
+      this.context = feature.context;
+      this.end = feature.end;
+      this.forward = feature.forward;
+      this.percentLength = feature.percentLength;
+      this.percentStart = feature.percentStart;
+      this.sequenceId = feature.sequenceId;
+      this.sourceId = feature.sourceId;
+      this.start = feature.start;
+    }
+
     public String getSequenceId() {
         return sequenceId;
     }
