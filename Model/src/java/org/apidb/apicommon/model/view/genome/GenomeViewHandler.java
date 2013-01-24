@@ -178,12 +178,11 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
         Feature clone = new Feature(feature);
 
         // format feature within the region
-        long fStart = Math.max(0, feature.getStart() - region.getStart());
-        double pctStart = round(fStart * 100D / segmentLength);
+        long visualStart = Math.max(feature.getStart(), region.getStart());
+        long visualEnd = Math.min(feature.getEnd(), region.getEnd());
+        double pctStart = round((visualStart - region.getStart()) * 100D / segmentLength);
 
-        long fLength = Math.min(segmentLength,
-            feature.getEnd() - region.getEnd());
-        double pctLength = round(fLength * 100D / segmentLength);
+        double pctLength = round((visualEnd - visualStart + 1) * 100D / segmentLength);
         clone.setPercentStart(pctStart);
         clone.setPercentLength(pctLength);
 

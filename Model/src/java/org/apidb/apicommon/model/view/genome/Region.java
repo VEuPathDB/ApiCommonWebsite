@@ -1,10 +1,13 @@
 package org.apidb.apicommon.model.view.genome;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Region {
 
+  private static final DecimalFormat FORMAT = new DecimalFormat("#,###");
+  
   private long start;
   private long end;
   private double percentStart;
@@ -30,6 +33,10 @@ public class Region {
   public long getStart() {
     return start;
   }
+    
+    public String getStartFormatted() {
+        return FORMAT.format(start);
+    }
 
   public void setStart(long start) {
     this.start = start;
@@ -38,6 +45,10 @@ public class Region {
   public long getEnd() {
     return end;
   }
+
+    public String getEndFormatted() {
+        return FORMAT.format(end);
+    }
 
   public void setEnd(long end) {
     this.end = end;
