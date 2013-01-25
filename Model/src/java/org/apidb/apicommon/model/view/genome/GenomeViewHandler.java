@@ -133,6 +133,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     feature.setEnd(resultSet.getInt(COLUMN_END));
     feature.setForward(resultSet.getBoolean(COLUMN_STRAND));
     feature.setContext(resultSet.getString(COLUMN_CONTEXT));
+    feature.setDescription(resultSet.getString(COLUMN_DESCRIPTION));
 
     return feature;
   }
