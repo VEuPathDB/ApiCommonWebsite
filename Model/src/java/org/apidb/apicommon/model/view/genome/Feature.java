@@ -14,6 +14,7 @@ public class Feature {
     private double percentStart;
     private double percentLength;
     private String context;
+    private String description;
 
     public Feature(String sourceId) {
         this.sourceId = sourceId;
@@ -28,6 +29,7 @@ public class Feature {
       this.sequenceId = feature.sequenceId;
       this.sourceId = feature.sourceId;
       this.start = feature.start;
+      this.description = feature.description;
     }
 
     public String getSequenceId() {
@@ -36,6 +38,14 @@ public class Feature {
 
     public void setSequenceId(String sequenceId) {
         this.sequenceId = sequenceId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getStart() {

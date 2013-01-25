@@ -23,6 +23,7 @@ public class DynamicSpanGenomeViewHandler extends GenomeViewHandler {
         sql.append("    sa.organism AS " + COLUMN_ORGANISM + ", ");
         sql.append("    ids.start_min AS " + COLUMN_START + ", ");
         sql.append("    ids.end_max AS " + COLUMN_END + ", ");
+        sql.append("    '' AS " + COLUMN_DESCRIPTION + ", ");
         sql.append("    ids.start_min || '..' || ids.end_max AS context, ");
         sql.append("    ids.strand AS " + COLUMN_STRAND);
         sql.append(" FROM (SELECT source_id, ");
