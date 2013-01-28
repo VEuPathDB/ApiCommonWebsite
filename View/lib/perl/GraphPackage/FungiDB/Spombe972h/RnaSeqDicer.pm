@@ -13,7 +13,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $sampleNames =["dcr1Delta", "dcr1Deltaloop2", "dcr1-SHSS", "Wild Type"];
+  my $sampleNames =["Wild Type", "dcr1Deltaloop2", "dcr1-SHSS", "dcr1Delta"];
 
   $self->setSampleNames($sampleNames);
   $self->setMinRpkmProfileSet('S Pombe Dicer Protein');
