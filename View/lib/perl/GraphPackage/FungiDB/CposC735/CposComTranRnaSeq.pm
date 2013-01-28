@@ -12,7 +12,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $sampleNames = ["Spherules", "Hyphae"];
+  my $sampleNames = ["Hyphae","Spherules"];
 
   #$self->setPlotWidth(800);
   $self->setBottomMarginSize(6);
