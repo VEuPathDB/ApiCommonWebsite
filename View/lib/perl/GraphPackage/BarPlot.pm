@@ -175,7 +175,7 @@ $rAdjustProfile
 names.margin = $bottomMargin;
 fold.induction.margin = 1;
 if($yAxisFoldInductionFromM) {
-  fold.induction.margin = 2.5;
+  fold.induction.margin = 3.5;
 }
 
 
@@ -209,6 +209,11 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
+if(d.max > 999 || d.min < -999) {
+   left.margin.size = max(nchar(d.max),nchar(d.min))/2;
+} else {
+   left.margin.size = 4;
+}
 if($horiz) {
   par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   x.lim = c(d.min, d.max);
@@ -220,14 +225,14 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin, 4, 1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
+  par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
   yaxis.side = 2;
   foldchange.side = 4;
 
-  yaxis.line = 3;
+  yaxis.line = left.margin.size - 1;
 }
 
 if($overrideXAxisLabels) {
