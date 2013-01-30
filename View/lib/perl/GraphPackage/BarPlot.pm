@@ -197,6 +197,16 @@ if($beside) {
   my.space = my.space;
 }
 
+# set left margin size based on longest tick mark label
+
+long.tick = nchar(max(pretty(c(d.min,d.max))));
+
+left.margin.size = 4;
+
+if((long.tick +1 ) > left.margin.size) {
+    left.margin.size = ((long.tick)+1);
+}
+
 # c(bottom,left,top,right)
 
 # extra legend size specified in # of lines
@@ -209,7 +219,6 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-left.margin.size = 4;
 
 if($horiz) {
   par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
@@ -257,16 +266,7 @@ if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
              axis.lty  = \"solid\",
              horiz=$horiz
             );
-ticks = as.character(axTicks(yaxis.side));
 
-long.tick = max(nchar(ticks));
-
-if(!($horiz) && ((long.tick) +1) > left.margin.size) {
-    left.margin.size = ((long.tick)+1);
-    par(mar = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
-    yaxis.line = left.margin.size - 1;
-
-}
 
 mtext('$yAxisLabel', side=yaxis.side, line=yaxis.line, cex=$scale, las=0)
 yAxis = axis(foldchange.side, tick=F, labels=F);
