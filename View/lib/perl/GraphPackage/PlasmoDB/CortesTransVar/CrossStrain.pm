@@ -28,10 +28,9 @@ sub init {
   my @colors = @$colorSet;
 
   my @profileSetNames = (['Cortes CGH Profiles', '' ,$strainNames]);
-#  my @percentileSetNames = (['red percentile - Cortes CGH Profiles','',$strainNames]);
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
-#   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetNames);
+
 
   my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
@@ -39,12 +38,6 @@ sub init {
   $ratio->setElementNameMarginSize (6);
   $ratio->setYaxisLabel('Copy Number Variations (log 2)');
   $ratio->setMakeYAxisFoldInduction(0);
-
-
-#   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
-#   $percentile->setProfileSets($percentileSets);
-#   $percentile->setColors(\@colors);
-#   $percentile->setElementNameMarginSize (6);
 
   $self->setGraphObjects($ratio);
 
