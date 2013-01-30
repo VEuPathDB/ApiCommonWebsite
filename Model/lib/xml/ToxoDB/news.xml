@@ -15,6 +15,46 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">12th International Congress on Toxoplasmosis </attribute>
+       <attribute name="date">30 January 2013 15:00</attribute>
+       <attribute name="tag">toxocongress2013</attribute>
+       <attribute name="category">meeting</attribute>
+       <attribute name="item">  
+         <![CDATA[
+ <body>The 12th International Congress on Toxoplasmosis will be
+    held at St Catherine's College, Oxford. 22nd - 26th June 2013
+    <p><br />
+      Registration is now open at preferential prices until 14th April, 2013.<br />
+      <br />
+      <strong>Full registration closes on 14th May 2013.</strong><br />
+      <br />
+      <strong><a href="http://www.evimalar.org/toxoplasmosis-conference/toxoplasmosis-conference.html">Click
+          here for further information, registration &amp; abstract submission</a></strong><br />
+      <br />
+      <em>Scientific Organisers:</em><br />
+      David Ferguson, <br />
+      <em>Nuffield Department of Clinical Laboratory Science, University of
+        Oxford, UK</em><br />
+      <br />
+      Markus Meissner,<br />
+      <em>Infection Immunity and Inflammation Life Sciences, University of
+        Glasgow, UK</em><br />
+      <br />
+      Frank Seeber, <br />
+      <em>Humboldt-Universität zu Berlin, Germany</em><br />
+      <br />
+      Mohamed-Ali Hakimi, <br />
+      <em>CNRS / Université Grenoble, France</em><br />
+      <br />
+      Jonathan Wastling, <br />
+      <em>Institute of Infection and Global Health, University of Liverpool, UK</em><br />
+      <br />
+    </p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">ToxoDB 7.3 Released</attribute>
        <attribute name="date">31 August 2012 15:00</attribute>
        <attribute name="tag">toxo08_12_news</attribute>
