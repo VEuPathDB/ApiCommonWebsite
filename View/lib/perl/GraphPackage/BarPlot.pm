@@ -209,11 +209,8 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-if(d.max > 999 || d.min < -999) {
-   left.margin.size = max(nchar(d.max),nchar(d.min))/2;
-} else {
-   left.margin.size = 4;
-}
+left.margin.size = 4;
+
 if($horiz) {
   par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   x.lim = c(d.min, d.max);
@@ -260,9 +257,20 @@ if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
              axis.lty  = \"solid\",
              horiz=$horiz
             );
+ticks = as.character(axTicks(yaxis.side));
+
+long.tick = max(nchar(ticks));
+
+if(!($horiz) && ((long.tick) +1) > left.margin.size) {
+    left.margin.size = ((long.tick)+1);
+    par(mar = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
+    yaxis.line = left.margin.size - 1;
+
+}
 
 mtext('$yAxisLabel', side=yaxis.side, line=yaxis.line, cex=$scale, las=0)
 yAxis = axis(foldchange.side, tick=F, labels=F);
+
 
 if($yAxisFoldInductionFromM) {
   foldchange.labels = vector();
@@ -286,6 +294,7 @@ if($yAxisFoldInductionFromM) {
 } else {
   axis(yaxis.side);
 }
+
 
 lowerBound = as.matrix(profile.df - stderr.df);
 upperBound = as.matrix(profile.df + stderr.df);
@@ -493,6 +502,29 @@ sub new {
 
    $self->setPartName('mass_spec');
    $self->setPlotTitle("Mass Profile - $id");
+
+   $self->setMakeYAxisFoldInduction(0);
+   $self->setIsLogged(0);
+
+   return $self;
+}
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(0.01);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Percents');
+
+   $self->setPartName('sage_tags');
+   $self->setPlotTitle("Sage Tag Profile - $id");
 
    $self->setMakeYAxisFoldInduction(0);
    $self->setIsLogged(0);
