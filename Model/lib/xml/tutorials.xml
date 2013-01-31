@@ -31,6 +31,23 @@
        </table>
    </record>
 
+<record>
+       <attribute name="title">About Genomic Segments</attribute>
+       <attribute name="description">This tutorial describes the EuPathDB Genomic Segment and what it is used for on our site.</attribute>
+       <attribute name="uid">31Jan2013_1</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=sHmtYKEvS40</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">About the Genomic Segment/about_the_genomic_segment_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">2.5 min</attribute>
+           <attribute name="size">6.4 mb</attribute>
+         </row>
+       </table>
+   </record>
+
   <record>
        <attribute name="title">AmoebaDB Introduction</attribute>
        <attribute name="description">Highlights of the AmoebaDB website.</attribute>
@@ -254,8 +271,27 @@
        </table>
    </record>
     
+    <record>
+       <attribute name="title">Identify Genomic Segments based on Genomic Location</attribute>
+       <attribute name="description">This tutorial describes how to run the search 'Identify Genomic Segments based on Genomic Location'. 
+       Use this search to create records and IDs for any region of the genome between 1 and 100,000 nucleotides long. 
+       Once created, use the search strategy system to colocate other features to your segment. </attribute>
+       <attribute name="uid">31Jan2013_2</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=aV8hrnkRCCo</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Identify Genomic Segments based on Genomic Location/identify_genomic_segments_based_on_genomic_location_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">3.3 min</attribute>
+           <attribute name="size">6.4 mb</attribute>
+         </row>
+       </table>
+   </record>
+    
 <record>
-       <attribute name="title">Isolates by Geographic Location</attribute>
+       <attribute name="title">Identify Isolates based on Geographic Location</attribute>
        <attribute name="description">How to search for isolates based on the geographic location of sample collection.</attribute>
        <attribute name="uid">70</attribute>
        <table name="files">
@@ -270,6 +306,8 @@
          </row>
        </table>
    </record>
+   
+   
    
  <record>
        <attribute name="title">Mapping a list of old gene IDs to new ones</attribute>
