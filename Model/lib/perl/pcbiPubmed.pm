@@ -13,7 +13,8 @@ require Exporter;
 use strict;
 use LWP::Simple;
 use XMLUtils;
-                                                                                             
+use Encode;
+
 my $ncbiEutilsUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?"
                     . "db=pubmed&retmode=xml&rettype=abstract&id=";
                                                                                              
@@ -24,12 +25,15 @@ my ($id, $content);
 
 
 sub setPubmedID {
-    my ($pubmed_id) = @_;
+  my ($pubmed_id) = @_;
+  return unless $pubmed_id;
 	$id = $pubmed_id;
-	
-	$content = LWP::Simple::get ($ncbiEutilsUrl . $pubmed_id)
+  my $raw_content = LWP::Simple::get ($ncbiEutilsUrl . $pubmed_id);
+  # Some versions of LWP::Simple (5.827) use $resp->decoded_content , others (1.41) 
+  # use $resp->content . Encode accordingly.
+  $content = (utf8::is_utf8($raw_content)) ? encode('UTF-8', $raw_content) : $raw_content;  
 }
-                                                                                             
+
 sub fetchPubmedUrl {
     return $publicationPubmedUrl . $id;
 }
