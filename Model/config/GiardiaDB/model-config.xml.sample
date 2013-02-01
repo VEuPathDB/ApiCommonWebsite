@@ -9,8 +9,8 @@
              >
              
     <queryMonitor
-             slowQueryThreshold="1"
-             brokenQueryThreshold="5"
+             baseline="0.1"
+             slow="5"
              />
              
     <appDb  login="XXXXXXXX"

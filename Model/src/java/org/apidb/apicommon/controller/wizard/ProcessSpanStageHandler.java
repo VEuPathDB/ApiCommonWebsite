@@ -61,7 +61,7 @@ public class ProcessSpanStageHandler implements StageHandler {
 
         UserBean user = ActionUtility.getUser(servlet, request);
         StepBean step = user.getStep(stepId);
-        String questionName = ProcessSpanStageHandler.getSpanQuestion(step.getType());
+        String questionName = ProcessSpanStageHandler.getSpanQuestion(step.getRecordClass().getFullName());
 
         Map<String, Object> results = new HashMap<String, Object>();
         results.put(ATTR_QUESTION_NAME, questionName);

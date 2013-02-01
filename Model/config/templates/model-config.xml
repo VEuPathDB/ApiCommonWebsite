@@ -9,8 +9,8 @@
              >
              
     <queryMonitor
-             slowQueryThreshold="${querymonitor.slow_query_threshold}"
-             brokenQueryThreshold="${querymonitor.broken_query_threshold}"
+             baseline="${querymonitor.baseline_query_threshold}"
+             slow="${querymonitor.slow_query_threshold}"
              />
              
     <appDb  login="${appdb.login}"
