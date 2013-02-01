@@ -51,7 +51,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
 
         // get a span logic question
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-        String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(childStep.getType());
+        String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(childStep.getRecordClass().getFullName());
         QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
 
         // initialize the wizardForm so that it has the param information
@@ -176,8 +176,8 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         Map<String, ParamBean<?>> params = question.getParamsMap();
         AnswerParamBean param = (AnswerParamBean) params.get(nextParam);
 
-        String previousType = previousStep.getType();
-        String childType = childStep.getType();
+        String previousType = previousStep.getRecordClass().getFullName();
+        String childType = childStep.getRecordClass().getFullName();
 
         String output = "";
         if (param.allowRecordClass(previousType)) output += "a";

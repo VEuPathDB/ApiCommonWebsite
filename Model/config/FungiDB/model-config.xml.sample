@@ -8,6 +8,11 @@
              secretKeyFile="/usr/local/tomcat_instances/shared/.apidb_wdk_key"
              >
              
+    <queryMonitor
+             baseline="0.1"
+             slow="5"
+             />
+             
     <appDb  login=""
             password=""
             connectionUrl="jdbc:oracle:oci:@mic000"

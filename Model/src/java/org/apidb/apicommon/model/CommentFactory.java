@@ -1294,7 +1294,7 @@ public class CommentFactory implements ConnectionContainer {
         List<Comment> comments = new ArrayList<Comment>();
         ResultSet rs = null;
         try {
-            rs = SqlUtils.executeQuery(wdkModel, dataSource, sql.toString(), "wdk-comment-select-comment");
+            rs = SqlUtils.executeQuery(wdkModel, dataSource, sql.toString(), "api-comment-select-comment");
             while (rs.next()) {
                 int commentId = rs.getInt("comment_id");
                 Comment comment = getComment(commentId);

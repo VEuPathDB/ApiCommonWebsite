@@ -68,7 +68,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       AnswerValue answerValue = step.getAnswerValue();
       String sql = prepareSql(answerValue.getIdSql());
       resultSet = SqlUtils.executeQuery(wdkModel, dataSource, sql,
-          "genome-view", 2000);
+          step.getQuestion().getQuery().getFullName() + "__genome-view", 2000);
 
       sequences = loadSequences(resultSet);
     } catch (SQLException ex) {
