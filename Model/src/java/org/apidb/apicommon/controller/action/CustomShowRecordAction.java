@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.log4j.Logger;
+
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -52,10 +54,14 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
     private static final String FORWARD_ID_QUESTION = "run-question";
 
+    private static final Logger logger = Logger.getLogger(CustomShowRecordAction.class);
+
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        logger.info("Entering CustomShowRecordAction...");
+
         // need to check if the old record is mapped to more than one records
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         String rcName = request.getParameter(PARAM_NAME);
@@ -82,10 +88,13 @@ public class CustomShowRecordAction extends ShowRecordAction {
             forward = super.execute(mapping, form, request, response);
 
             // if xml data source exists, bypass the process
+            logger.debug("has xml dataset: " + GetDatasetAction.hasXmlDataset(wdkModel));
             if (!GetDatasetAction.hasXmlDataset(wdkModel)) {
                 loadDatasets(request, wdkModel, rcName);
             }
         }
+ 
+        logger.info("Leaving CustomShowRecordAction...");
         return forward;
     }
     
@@ -133,9 +142,11 @@ public class CustomShowRecordAction extends ShowRecordAction {
             TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
             for (Map<String, AttributeValue> row : tableValue) {
                 String recordType = row.get("record_type").toString();
+
                 if (recordType.equals(rcName)) {
                     String targetType = row.get("target_type").toString();
                     String targetName = row.get("target_name").toString();
+                    
                     if (targetType.equals(TYPE_ATTRIBTUE)) {
                         attributeRefs.put(targetName, targetName);
                     } else if (targetType.equals(TYPE_PROFILE_GRAPH)) {

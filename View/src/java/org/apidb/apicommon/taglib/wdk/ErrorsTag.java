@@ -125,7 +125,6 @@ public class ErrorsTag extends WdkTagBase {
 
         logger.error(logMarker + logmsg);
         
-        
     }
     
     /**
