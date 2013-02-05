@@ -49,6 +49,7 @@ sub handleIsolates {
   my $start = $cgi->param('start');
   my $end   = $cgi->param('end');
   my $sid   = $cgi->param('sid');
+  my $project_id = $cgi->param('project_id');
 
   $start =~ s/,//g;
   $end =~ s/,//g;
@@ -78,7 +79,7 @@ EOSQL
   my $sth = $dbh->prepare($sql);
   $sth->execute();
   while(my ($id, $seq) = $sth->fetchrow_array()) {
-    $id =~ s/^[^\.]+\.//g;
+    $id =~ s/^[^\.]+\.//g unless ($project_id =~ /ToxoDB/i);
     $sequence .= ">$id\n$seq\n";
   }
 
@@ -153,7 +154,10 @@ EOSQL
   if ($type =~ /htsSNP/i){
      foreach my $id (split /,/, $ids) {
         $id =~ s/'//g;
-        $id =~ s/^[^\.]+\.//g;
+        if($project_id =~ /ToxoDB/i) {
+        }  else {
+          $id =~ s/^[^\.]+\.//g;
+        }
         $origins{$id} = $start;
      }
   }
