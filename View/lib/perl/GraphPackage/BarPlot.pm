@@ -473,10 +473,10 @@ sub new {
 
    $self->setDefaultYMax(4);
    $self->setDefaultYMin(0);
-   $self->setYaxisLabel('Expression Value');
+   $self->setYaxisLabel('Expression Value (log2)');
 
    $self->setPartName('exprn_val');
-   $self->setPlotTitle("Expression Values - $id");
+   $self->setPlotTitle("Expression Values (log2) - $id");
 
    $self->setMakeYAxisFoldInduction(0);
    $self->setIsLogged(1);
