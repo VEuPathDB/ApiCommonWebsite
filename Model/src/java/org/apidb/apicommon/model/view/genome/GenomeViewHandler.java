@@ -5,6 +5,7 @@ package org.apidb.apicommon.model.view.genome;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,8 +40,11 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
   private static final String PROP_SEQUENCES = "sequences";
   private static final String PROP_MAX_LENGTH = "maxLength";
+  private static final String PROP_SEGMENT_SIZE = "segmentSize";
 
-  private static final double SEGMENTS = 100;
+  private static final long MIN_SEGMENT_SIZE = 10000;
+  private static final double MAX_SEGMENTS = 100;
+  private static final int MAX_SEQUENCES = 50;
 
   private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
 
@@ -68,7 +72,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       AnswerValue answerValue = step.getAnswerValue();
       String sql = prepareSql(answerValue.getIdSql());
       resultSet = SqlUtils.executeQuery(wdkModel, dataSource, sql,
-          step.getQuestion().getQuery().getFullName() + "__genome-view", 2000);
+          "genome-view", 2000);
 
       sequences = loadSequences(resultSet);
     } catch (SQLException ex) {
@@ -78,20 +82,29 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     } finally {
       SqlUtils.closeResultSet(resultSet);
     }
-
+    
+    // check if want to display the detail view, or density view
+    int maxFeatures = 0;
+    for (Sequence sequence : sequences) {
+      int featureCount = sequence.getFeatureCount();
+      if (maxFeatures < featureCount) maxFeatures = featureCount;
+    }
+    
     // get the max length, then format sequences
     long maxLength = getMaxLength(sequences);
+    long segmentSize = getSegmentSize(maxLength);
     for (Sequence sequence : sequences) {
       // compute the percent length of a sequence.
       double pctLength = round(sequence.getLength() * 100D / maxLength);
       sequence.setPercentLength(pctLength);
 
-      formatRegions(sequence, maxLength);
+      formatRegions(sequence, maxLength, segmentSize);
     }
 
     Map<String, Object> results = new HashMap<String, Object>();
     results.put(PROP_SEQUENCES, sequences);
     results.put(PROP_MAX_LENGTH, maxLength);
+    results.put(PROP_SEGMENT_SIZE, segmentSize);
     logger.debug("Leaving SpanGenomeViewHandler...");
     return results;
   }
@@ -109,7 +122,16 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       Feature feature = createFeature(sequenceId, resultSet);
       sequence.addFeature(feature);
     }
-    return sequences.values().toArray(new Sequence[0]);
+    Sequence[] array = sequences.values().toArray(new Sequence[0]);
+    Arrays.sort(array);
+
+    // keep only the top # of the sequences
+    if (array.length > MAX_SEQUENCES) {
+      Sequence[] newArray = new Sequence[MAX_SEQUENCES];
+      System.arraycopy(array, 0, newArray, 0, MAX_SEQUENCES);
+      array = newArray;
+    }
+    return array;
   }
 
   private Sequence createSequence(String sequenceId, ResultSet resultSet)
@@ -147,22 +169,20 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     return maxLength;
   }
 
-  public void formatRegions(Sequence sequence, long maxLength) {
+  public void formatRegions(Sequence sequence, long maxLength, long segmentSize) {
     long sequenceLength = sequence.getLength();
-    long segmentLength = Math.round(maxLength / SEGMENTS);
     long start = 1;
     while (start <= sequenceLength) {
       // determine the start & stop of the current region.
-      long stop = start + segmentLength - 1;
-      if (stop > sequenceLength
-          || (sequenceLength - stop) / (double) segmentLength < 0.5)
+      long stop = start + segmentSize - 1;
+      if (stop > sequenceLength)
         stop = sequenceLength;
 
       // create two regions at the same section.
       Region region = new Region(sequence.getSourceId(), start, stop);
 
       double pctStart = round(start * 100D / maxLength);
-      double pctLength = round((stop - start + 1) * 100D / maxLength - 0.1);
+      double pctLength = round((stop - start + 1) * 100D / maxLength);
       region.setPercentStart(pctStart);
       region.setPercentLength(pctLength);
       sequence.addRegion(region);
@@ -181,9 +201,11 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
         // format feature within the region
         long visualStart = Math.max(feature.getStart(), region.getStart());
         long visualEnd = Math.min(feature.getEnd(), region.getEnd());
-        double pctStart = round((visualStart - region.getStart()) * 100D / segmentLength);
+        double pctStart = round((visualStart - region.getStart()) * 100D
+            / segmentSize);
 
-        double pctLength = round((visualEnd - visualStart + 1) * 100D / segmentLength);
+        double pctLength = round((visualEnd - visualStart + 1) * 100D
+            / segmentSize);
         clone.setPercentStart(pctStart);
         clone.setPercentLength(pctLength);
 
@@ -194,5 +216,20 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
   private double round(double value) {
     return Math.round(value * 1000) / 1000D;
+  }
+
+  private long getSegmentSize(long maxLength) {
+    if (maxLength <= MIN_SEGMENT_SIZE)
+      return maxLength;
+
+    if (maxLength / MAX_SEGMENTS < MIN_SEGMENT_SIZE) {
+      // segments too small, each one will have min size
+      return MIN_SEGMENT_SIZE;
+    } else { // segments too big, will get the ceiling of the
+      String strSize = Long.toString(Math.round(1.0 * maxLength / MAX_SEGMENTS));
+      long lead = Math.round(Math.ceil(Long.valueOf(strSize.substring(0, 3)) / 50D) * 5);
+      long size = lead * Math.round(Math.pow(10, strSize.length() - 2));
+      return size;
+    }
   }
 }

@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sequence {
+public class Sequence implements Comparable<Sequence> {
 
   private static final DecimalFormat FORMAT = new DecimalFormat("#,###");
 
@@ -93,6 +93,15 @@ public class Sequence {
 
   public void setOrganism(String organism) {
     this.organism = organism;
+  }
+
+  @Override
+  public int compareTo(Sequence sequence) {
+    long diff = this.length - sequence.length;
+    if (diff != 0)
+      return (diff > 0) ? 1 : -1;
+    else
+      return sourceId.compareTo(sequence.sourceId);
   }
 
 }
