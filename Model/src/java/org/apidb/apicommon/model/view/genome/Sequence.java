@@ -99,7 +99,7 @@ public class Sequence implements Comparable<Sequence> {
   public int compareTo(Sequence sequence) {
     long diff = this.length - sequence.length;
     if (diff != 0)
-      return (diff > 0) ? 1 : -1;
+      return (diff > 0) ? -1 : 1;
     else
       return sourceId.compareTo(sequence.sourceId);
   }
