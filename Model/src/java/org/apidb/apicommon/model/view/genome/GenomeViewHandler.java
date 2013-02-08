@@ -93,6 +93,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     // get the max length, then format sequences
     long maxLength = getMaxLength(sequences);
     long segmentSize = getSegmentSize(maxLength);
+    logger.debug("Segment size: " + segmentSize + ", maxLength=" + maxLength);
     for (Sequence sequence : sequences) {
       // compute the percent length of a sequence.
       double pctLength = round(sequence.getLength() * 100D / maxLength);
@@ -183,6 +184,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
       double pctStart = round(start * 100D / maxLength);
       double pctLength = round((stop - start + 1) * 100D / maxLength);
+      if (pctLength >= 1) pctLength -= 0.1;
       region.setPercentStart(pctStart);
       region.setPercentLength(pctLength);
       sequence.addRegion(region);
