@@ -301,6 +301,15 @@ for(j in 1:length(x.coords.rank)) {
   colnames(new.points)[colRank] = colnames(points.df)[j];
 }
 
+# set left margin size based on longest tick mark label
+
+long.tick = nchar(max(pretty(c(y.min,y.max))));
+
+left.margin.size = 4;
+
+if((long.tick +1 ) > left.margin.size) {
+    left.margin.size = ((long.tick)+1);
+}
 # extra legend size specified in # of lines
 
 extra.legend.size = 0;
@@ -310,7 +319,7 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-par(mar       = c($bottomMargin,4,1.5 + title.line, 1 + extra.legend.size), xpd=NA);
+par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, 1 + extra.legend.size), xpd=NA);
 
 my.pch = $defaultPch;
 
