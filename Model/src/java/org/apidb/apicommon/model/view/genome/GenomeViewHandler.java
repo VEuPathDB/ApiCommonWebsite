@@ -44,7 +44,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
   private static final long MIN_SEGMENT_SIZE = 10000;
   private static final double MAX_SEGMENTS = 100;
-  private static final int MAX_SEQUENCES = 50;
+  private static final int MAX_SEQUENCES = 150;
 
   private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
 
