@@ -97,7 +97,7 @@ public class Sequence implements Comparable<Sequence> {
 
   @Override
   public int compareTo(Sequence sequence) {
-    long diff = this.length - sequence.length;
+    long diff = this.features.size() - sequence.features.size();
     if (diff != 0)
       return (diff > 0) ? -1 : 1;
     else
