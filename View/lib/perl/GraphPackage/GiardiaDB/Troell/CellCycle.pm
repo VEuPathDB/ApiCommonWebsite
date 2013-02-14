@@ -27,8 +27,8 @@ sub init {
   $expression->setElementNameMarginSize (5);
   $expression->setXaxisLabel("Hours");
   $expression->setAdjustProfile('lines.df = lines.df - lines.df[,1];');
-  $expression->setDefaultYMin(-2);
-  $expression->setDefaultYMax(2);
+  $expression->setDefaultYMin(-1);
+  $expression->setDefaultYMax(1);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
