@@ -36,6 +36,7 @@ public class GetDatasetAction extends Action {
     private static final String PARAM_REFERENCE = "reference";
     private static final String PARAM_DATASETS = "datasets";
     private static final String PARAM_DISPLAY_TYPE = "display";
+    private static final String PARAM_RECORD_CLASS = "recordClass";
 
     private static final String VALUE_DISPLAY_LIST = "list";
     private static final String VALUE_DISPLAY_DETAIL = "detail";
@@ -68,6 +69,7 @@ public class GetDatasetAction extends Action {
         String reference = request.getParameter(PARAM_REFERENCE);
         String datasets = request.getParameter(PARAM_DATASETS);
         String displayType = request.getParameter(PARAM_DISPLAY_TYPE);
+        String rcName = request.getParameter(PARAM_RECORD_CLASS);
 
         String forwardList, forwardDetail;
 
@@ -94,6 +96,7 @@ public class GetDatasetAction extends Action {
               logger.debug("Getting data sources by reference: " + reference);
               question = wdkModel.getQuestion(DATA_SOURCE_BY_REFERENCE);
               params.put("reference_name", reference);
+              if (rcName != null) params.put("record_class", rcName);
             } else {
                 logger.debug("Getting all data sources: ");
                 question = wdkModel.getQuestion(DATA_SOURCE_ALL);
