@@ -41,10 +41,14 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
   private static final String PROP_SEQUENCES = "sequences";
   private static final String PROP_MAX_LENGTH = "maxLength";
   private static final String PROP_SEGMENT_SIZE = "segmentSize";
+  private static final String PROP_IS_DETAIL = "isDetail";
+  
+  private static final String PROP_IS_TRUNCATE = "isTruncate";
 
   private static final long MIN_SEGMENT_SIZE = 10000;
   private static final double MAX_SEGMENTS = 100;
-  private static final int MAX_SEQUENCES = 150;
+
+  private static final long MAX_FEATURES = 2000;
 
   private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
 
@@ -60,6 +64,13 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
   public Map<String, Object> process(Step step) throws WdkModelException,
       WdkUserException {
     logger.debug("Entering SpanGenomeViewHandler...");
+    Map<String, Object> results = new HashMap<String, Object>();
+
+    // don't render 
+    if (step.getResultSize() > MAX_FEATURES) {
+        results.put(PROP_IS_TRUNCATE, "true");
+        return results;
+    }
 
     // load sequences
     Sequence[] sequences;
@@ -102,7 +113,9 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       formatRegions(sequence, maxLength, segmentSize);
     }
 
-    Map<String, Object> results = new HashMap<String, Object>();
+    // only use detail view for now
+    results.put(PROP_IS_DETAIL, "true");
+
     results.put(PROP_SEQUENCES, sequences);
     results.put(PROP_MAX_LENGTH, maxLength);
     results.put(PROP_SEGMENT_SIZE, segmentSize);
@@ -126,12 +139,6 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     Sequence[] array = sequences.values().toArray(new Sequence[0]);
     Arrays.sort(array);
 
-    // keep only the top # of the sequences
-    if (array.length > MAX_SEQUENCES) {
-      Sequence[] newArray = new Sequence[MAX_SEQUENCES];
-      System.arraycopy(array, 0, newArray, 0, MAX_SEQUENCES);
-      array = newArray;
-    }
     return array;
   }
 
@@ -194,6 +201,12 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
     // assign features to regions
     for (Feature feature : sequence.getFeatures()) {
+      // compute the percent location of the feature on sequence
+      double pctStart = round(feature.getStart() * 100D / maxLength);
+      double pctLength = round((feature.getEnd() - feature.getStart() + 1) * 100D / maxLength);
+      feature.setPercentStart(pctStart);
+      feature.setPercentLength(pctLength);
+
       List<Region> regions = sequence.getRegions(feature.getStart(),
           feature.getEnd(), feature.isForward());
       for (Region region : regions) {
@@ -203,11 +216,8 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
         // format feature within the region
         long visualStart = Math.max(feature.getStart(), region.getStart());
         long visualEnd = Math.min(feature.getEnd(), region.getEnd());
-        double pctStart = round((visualStart - region.getStart()) * 100D
-            / segmentSize);
-
-        double pctLength = round((visualEnd - visualStart + 1) * 100D
-            / segmentSize);
+        pctStart = round((visualStart - region.getStart()) * 100D / segmentSize);
+        pctLength = round((visualEnd - visualStart + 1) * 100D / segmentSize);
         clone.setPercentStart(pctStart);
         clone.setPercentLength(pctLength);
 
