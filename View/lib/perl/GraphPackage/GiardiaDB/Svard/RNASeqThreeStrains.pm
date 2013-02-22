@@ -21,6 +21,7 @@ sub init {
   $self->setPctAntisenseProfileSet("percentile - Strand-specific RNA-Seq from trophozoites of isolate WB and P15 and GS - antisense strand");
 
   $self->setColor("#8F006B");
+  $self->setIsPairedEnd(1);
   $self->setBottomMarginSize(4);
 
   $self->makeGraphs(@_);

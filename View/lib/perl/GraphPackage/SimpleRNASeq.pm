@@ -27,6 +27,8 @@ sub setColor { $_[0]->{_color} = $_[1] }
 sub getSampleNames { $_[0]->{_sample_names} }
 sub setSampleNames { $_[0]->{_sample_names} = $_[1] }
 
+sub getIsPairedEnd { $_[0]->{_is_paired_end} }
+sub setIsPairedEnd { $_[0]->{_is_paired_end} = $_[1] }
 
 sub setBottomMarginSize {
   my ($self, $ms) = @_;
@@ -52,6 +54,7 @@ sub makeGraphs {
   my $pctProfileSet = $self->getPctProfileSet();
   my $additionalRCode = $self->getAdditionalRCode();
   my $color = $self->getColor() ? $self->getColor() : 'blue';
+  my $isPairedEnd = $self->getIsPairedEnd();
 
   my $sampleNames = $self->getSampleNames();
 
@@ -67,7 +70,15 @@ sub makeGraphs {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$pctProfileSet, '', $sampleNames]]);
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
+  my $stacked;
+
+  if($isPairedEnd){
+    $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::PairedEndRNASeqStacked->new(@_);
+  }
+  else {
+    $stacked  = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_)
+  }
+ 
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
   $stacked->addAdjustProfile($additionalRCode);

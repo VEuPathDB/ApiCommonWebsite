@@ -42,6 +42,7 @@ sub init {
   my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::RNASeq->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
+  $stacked->setIsPairedEnd(1);
 
   $stacked->addAdjustProfile($additionalRCode);
   $stacked->setXaxisLabel("hours");

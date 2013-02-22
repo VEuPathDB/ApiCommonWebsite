@@ -21,6 +21,7 @@ sub init {
   $self->setDiffRpkmProfileSet('C.neoformans NRG1 Expression-diff');
   $self->setPctProfileSet('percentile - C.neoformans NRG1 Expression');
   $self->setColor("#D87093");
+  $self->setIsPairedEnd(1);
   $self->makeGraphs(@_);
 
 

@@ -22,6 +22,7 @@ sub init {
   $self->setDiffRpkmProfileSet("C cinereus hyphal growth expression-diff");
   $self->setPctProfileSet("percentile - C cinereus hyphal growth expression");
   $self->setColor("#29ACF2");
+  $self->setIsPairedEnd(1);
   $self->makeGraphs(@_);
 
   return $self;
