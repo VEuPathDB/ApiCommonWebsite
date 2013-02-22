@@ -9,6 +9,8 @@ use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
 use ApiCommonWebsite::View::GraphPackage::Util;
 
+use Data::Dumper;
+
 sub getMinSenseRpkmProfileSet { $_[0]->{_min_sense_rpkm_profile_set} }
 sub setMinSenseRpkmProfileSet { $_[0]->{_min_sense_rpkm_profile_set} = $_[1] }
 
@@ -36,6 +38,8 @@ sub setColor { $_[0]->{_color} = $_[1] }
 sub getSampleNames { $_[0]->{_sample_names} }
 sub setSampleNames { $_[0]->{_sample_names} = $_[1] }
 
+sub getIsPairedEnd { $_[0]->{_is_paired_end} }
+sub setIsPairedEnd { $_[0]->{_is_paired_end} = $_[1] }
 
 sub setBottomMarginSize { $_[0]->{_bottom_margin_size} = $_[1] }
 sub getBottomMarginSize { $_[0]->{_bottom_margin_size} }
@@ -54,6 +58,8 @@ sub makeGraphs {
   my $color = $self->getColor();
   my $bottomMarginSize = $self->getBottomMarginSize();
 
+  my $isPairedEnd = $self->getIsPairedEnd();
+
   my $lighterColor = ApiCommonWebsite::View::GraphPackage::Util::getLighterColorFromHex($color);
 
   my @colors = ($color, '#DDDDDD', $lighterColor, '#DDDDDD');
@@ -65,6 +71,7 @@ sub makeGraphs {
   $sense->setDiffRpkmProfileSet($self->getDiffSenseRpkmProfileSet());
   $sense->setPctProfileSet($self->getPctSenseProfileSet());
   $sense->setColor($color);
+  $sense->setIsPairedEnd($isPairedEnd);
   $sense->makeGraphs(@_);
   $sense->setBottomMarginSize($bottomMarginSize);
   $sense->setAdditionalRCode($self->getAdditionalRCode());
@@ -81,6 +88,7 @@ sub makeGraphs {
   $antisense->setDiffRpkmProfileSet($self->getDiffAntisenseRpkmProfileSet());
   $antisense->setPctProfileSet($self->getPctAntisenseProfileSet());
   $antisense->setColor($lighterColor);
+  $antisense->setIsPairedEnd($isPairedEnd);
   $antisense->makeGraphs(@_);
   $antisense->setBottomMarginSize($bottomMarginSize);
   $antisense->setAdditionalRCode($self->getAdditionalRCode());
