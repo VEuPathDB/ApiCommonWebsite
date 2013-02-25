@@ -13,6 +13,9 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 sub getXAxisLabel { $_[0]->{_x_axis_label} }
 sub setXAxisLabel { $_[0]->{_x_axis_label} = $_[1] }
 
+sub getIsPairedEnd { $_[0]->{_is_paired_end} }
+sub setIsPairedEnd { $_[0]->{_is_paired_end} = $_[1] }
+
 sub makeGraphs {
   my $self = shift;
 
@@ -21,6 +24,7 @@ sub makeGraphs {
   my $pctProfileSet = $self->getPctProfileSet();
   my $additionalRCode = $self->getAdditionalRCode();
   my $color = $self->getColor() ? $self->getColor() : 'blue';
+  my $isPairedEnd = $self->getIsPairedEnd();
 
   my $sampleNames = $self->getSampleNames();
 
@@ -37,12 +41,20 @@ sub makeGraphs {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$pctProfileSet, '', $sampleNames]]);
 
+  my $stacked;
+
+  if($isPairedEnd){
+    $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
+  }
+  else {
+    $stacked  = ApiCommonWebsite::View::GraphPackage::LinePlot::RNASeq->new(@_)
+  }
 
   $additionalRCode = "lines.df[1,] = lines.df[1,] + lines.df[2,];\n$additionalRCode";
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::RNASeq->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
+  $stacked->setIsPairedEnd($isPairedEnd);
   $stacked->addAdjustProfile($additionalRCode);
   $stacked->setXaxisLabel($self->getXAxisLabel());
 
