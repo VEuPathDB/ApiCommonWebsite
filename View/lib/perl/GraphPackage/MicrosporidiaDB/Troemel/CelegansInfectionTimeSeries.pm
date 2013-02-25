@@ -6,7 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+use ApiCommonWebsite::View::GraphPackage::SimpleRNASeqLinePlot;
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::View::GraphPackage::Util;
 
@@ -39,10 +39,9 @@ sub init {
   my $additionalRCode = "lines.df[2,] = lines.df[2,] + lines.df[3,];";
 
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::RNASeq->new(@_);
+  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
-  $stacked->setIsPairedEnd(1);
 
   $stacked->addAdjustProfile($additionalRCode);
   $stacked->setXaxisLabel("hours");
