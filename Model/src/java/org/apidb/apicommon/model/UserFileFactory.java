@@ -265,7 +265,7 @@ public class UserFileFactory {
             ex.printStackTrace();
             throw new WdkModelException(ex);
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
         return exists;
     }

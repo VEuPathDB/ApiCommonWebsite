@@ -115,7 +115,7 @@ public class SiteXmlMessagesTag extends WdkTagBase {
         } catch (SQLException sqle) {
             throw sqle;
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
         
         return messages;

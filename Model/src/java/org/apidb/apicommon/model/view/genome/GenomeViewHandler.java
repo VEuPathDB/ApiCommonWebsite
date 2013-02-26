@@ -91,7 +91,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       ex.printStackTrace();
       throw new WdkModelException(ex);
     } finally {
-      SqlUtils.closeResultSet(resultSet);
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
     
     // check if want to display the detail view, or density view

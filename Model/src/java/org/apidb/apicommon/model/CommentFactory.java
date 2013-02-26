@@ -96,7 +96,7 @@ public class CommentFactory implements ConnectionContainer {
             throw new WdkModelException(ex);
         } finally {
             // close the connection
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
         return target;
     }
@@ -582,7 +582,7 @@ public class CommentFactory implements ConnectionContainer {
                 SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-update-comment-id");
             }
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -599,7 +599,7 @@ public class CommentFactory implements ConnectionContainer {
 
             SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-update-visible");
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -616,7 +616,7 @@ public class CommentFactory implements ConnectionContainer {
 
             SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-update-previous-comment-id");
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -860,7 +860,7 @@ public class CommentFactory implements ConnectionContainer {
             ex.printStackTrace();
             throw new WdkModelException(ex);
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
 
             // print connection status
             printStatus();
@@ -897,7 +897,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -931,7 +931,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -973,7 +973,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1006,7 +1006,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1039,7 +1039,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1099,7 +1099,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1132,7 +1132,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1164,7 +1164,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1195,7 +1195,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1227,7 +1227,7 @@ public class CommentFactory implements ConnectionContainer {
         	throw new WdkModelException(e);
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
@@ -1303,7 +1303,7 @@ public class CommentFactory implements ConnectionContainer {
         } catch (SQLException ex) {
             throw new WdkModelException(ex);
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
 
             // print connection status
             printStatus();
@@ -1329,7 +1329,7 @@ public class CommentFactory implements ConnectionContainer {
 
         }
         finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
 
             // print connection status
             printStatus();
@@ -1367,7 +1367,7 @@ public class CommentFactory implements ConnectionContainer {
             e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
             // printStatus();
         }
     }
