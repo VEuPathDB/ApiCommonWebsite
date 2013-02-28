@@ -41,7 +41,8 @@ sub new {
 # where <queryMonitor> is an element and baseline= is an attribute of that element
 #
 # It dies if the accessed element or attribute is not found.
-# To test for existence either catch the exception or use $self->{login}sub AUTOLOAD {
+# To test for existence either catch the exception or use $self->{login}
+sub AUTOLOAD {
     my $attr = our $AUTOLOAD;
     $attr =~ s/.*:://;
     return if $attr =~ /^[A-Z]+$/;  # skip methods such as DESTROY
