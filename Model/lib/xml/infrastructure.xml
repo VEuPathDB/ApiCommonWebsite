@@ -30,6 +30,10 @@ A significant component of our dataloading system is our ability to automate the
 <div id="cirbulletlist">
 <ul>
   <li><a href="http://www.gusdb.org">GUS Schema and Tools</a>
+    <ul>
+      <li><a href="http://www.gusdb.org/SchemaBrowser/categoryList.htm">GUS Schema</a>
+      <li><a href="http://www.gusdb.org/documentation/3.5/developers/developersguide.pdf">GUS developers guide</a>
+    </ul>
   <li><a href="http://code.google.com/p/reflow-genomics/">ReFlow Workflow System</a>
   <li><a href="http://www.google.com/url?q=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fpub%3Fid%3D1BixZ5t2c0hnOZES-Rk2wG2loAQqclcmRj7AeKQjZMHA">DistribJob Cluster Task Management</a>
 </ul>
