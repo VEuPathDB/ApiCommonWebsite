@@ -10,9 +10,21 @@
 <xmlAnswer>
 
 
+   <record>
+       <attribute name="title">Overview</attribute>
+       <attribute name="tag">overview</attribute>
+       <attribute name="text">   
+         <![CDATA[
+This document provides a high-level overview of the software infrastructure utilized by the EuPathDB BRC to load, integrate and provide data to users.  The links provide details for each of the components summarized here.  If you would like a PDF of this information, please download from the following link.
+<div id="cirbulletlist">
+<ul>
+  <li><a href="/documents/EuPathDB_Infrastructure.pdf">EuPathDB_Infrastructure.pdf</a>
+</ul>
+</div>
+       ]]>
 
-
-
+       </attribute>
+   </record>
 
    <record>
        <attribute name="title">Data Loading and Database Schema</attribute>
