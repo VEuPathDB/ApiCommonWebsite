@@ -3,7 +3,9 @@
    <record>
        <attribute name = "Metric_Type">Gene_Count_Total</attribute>
        <attribute name = "Description">Total number of genes</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">16163</attribute>
        <attribute name = "Babesia bovis T2Bo">3781</attribute>
+       <attribute name = "Babesia microti strain RI">3554</attribute>
        <attribute name = "Cryptosporidium hominis TU502">3956</attribute>
        <attribute name = "Cryptosporidium muris RN66">3980</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">3886</attribute>
@@ -11,18 +13,20 @@
        <attribute name = "Encephalitozoon cuniculi EC1">1898</attribute>
        <attribute name = "Encephalitozoon cuniculi EC2">1902</attribute>
        <attribute name = "Encephalitozoon cuniculi EC3">1898</attribute>
-       <attribute name = "Encephalitozoon cuniculi GB-M1">2053</attribute>
+       <attribute name = "Encephalitozoon cuniculi GB-M1">2029</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">1913</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">1864</attribute>
-       <attribute name = "Encephalitozoon intestinalis">1889</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">1892</attribute>
-       <attribute name = "Entamoeba dispar SAW760">8748</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">1883</attribute>
+       <attribute name = "Entamoeba dispar SAW760">10262</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">8333</attribute>
-       <attribute name = "Entamoeba invadens IP1">11549</attribute>
+       <attribute name = "Entamoeba invadens IP1">11975</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">12518</attribute>
+       <attribute name = "Entamoeba nuttalli P19">6193</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">3806</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">5981</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">4562</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">5144</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">5159</attribute>
        <attribute name = "Leishmania braziliensis">8505</attribute>
        <attribute name = "Leishmania infantum">8383</attribute>
        <attribute name = "Leishmania major strain Friedlin">10068</attribute>
@@ -57,12 +61,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">11109</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">3397</attribute>
        <attribute name = "Trypanosoma vivax">11989</attribute>
+       <attribute name = "Vavraia culicis floridensis">2830</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">2295</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Protein_coding</attribute>
        <attribute name = "Description">Number of genes that are protein coding: it includes pseudogenes</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">15688</attribute>
        <attribute name = "Babesia bovis T2Bo">3706</attribute>
+       <attribute name = "Babesia microti strain RI">3494</attribute>
        <attribute name = "Cryptosporidium hominis TU502">3886</attribute>
        <attribute name = "Cryptosporidium muris RN66">3937</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">3805</attribute>
@@ -73,15 +81,17 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">1996</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">1848</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">1813</attribute>
-       <attribute name = "Encephalitozoon intestinalis">1832</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">1833</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">1832</attribute>
        <attribute name = "Entamoeba dispar SAW760">8748</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">8306</attribute>
        <attribute name = "Entamoeba invadens IP1">11549</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">12449</attribute>
+       <attribute name = "Entamoeba nuttalli P19">6187</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">3633</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">5901</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">4470</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">5064</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">5067</attribute>
        <attribute name = "Leishmania braziliensis">8357</attribute>
        <attribute name = "Leishmania infantum">8241</attribute>
        <attribute name = "Leishmania major strain Friedlin">8412</attribute>
@@ -116,12 +126,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">10834</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">2135</attribute>
        <attribute name = "Trypanosoma vivax">11885</attribute>
+       <attribute name = "Vavraia culicis floridensis">2780</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">2248</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Other_categories</attribute>
        <attribute name = "Description">Number of genes that code for products other than proteins (rRNA, tRNA etc.)</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">475</attribute>
        <attribute name = "Babesia bovis T2Bo">75</attribute>
+       <attribute name = "Babesia microti strain RI">60</attribute>
        <attribute name = "Cryptosporidium hominis TU502">70</attribute>
        <attribute name = "Cryptosporidium muris RN66">43</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">81</attribute>
@@ -129,18 +143,20 @@
        <attribute name = "Encephalitozoon cuniculi EC1">51</attribute>
        <attribute name = "Encephalitozoon cuniculi EC2">51</attribute>
        <attribute name = "Encephalitozoon cuniculi EC3">51</attribute>
-       <attribute name = "Encephalitozoon cuniculi GB-M1">57</attribute>
+       <attribute name = "Encephalitozoon cuniculi GB-M1">33</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">65</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">51</attribute>
-       <attribute name = "Encephalitozoon intestinalis">57</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">59</attribute>
-       <attribute name = "Entamoeba dispar SAW760">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">51</attribute>
+       <attribute name = "Entamoeba dispar SAW760">1514</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">27</attribute>
-       <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba invadens IP1">426</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">69</attribute>
+       <attribute name = "Entamoeba nuttalli P19">6</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">173</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">80</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">92</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">80</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">92</attribute>
        <attribute name = "Leishmania braziliensis">148</attribute>
        <attribute name = "Leishmania infantum">142</attribute>
        <attribute name = "Leishmania major strain Friedlin">1656</attribute>
@@ -175,12 +191,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">275</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">1262</attribute>
        <attribute name = "Trypanosoma vivax">104</attribute>
+       <attribute name = "Vavraia culicis floridensis">50</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">47</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Pseudogenes</attribute>
        <attribute name = "Description">Number of genes annotated as pseudogenes</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">4282</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">2</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">3</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">0</attribute>
@@ -191,15 +211,17 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">1</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
-       <attribute name = "Entamoeba dispar SAW760">4</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">1</attribute>
+       <attribute name = "Entamoeba dispar SAW760">7</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">105</attribute>
-       <attribute name = "Entamoeba invadens IP1">10</attribute>
+       <attribute name = "Entamoeba invadens IP1">24</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">3</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">2</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">56</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">60</attribute>
        <attribute name = "Leishmania braziliensis">156</attribute>
        <attribute name = "Leishmania infantum">54</attribute>
        <attribute name = "Leishmania major strain Friedlin">93</attribute>
@@ -234,12 +256,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">1448</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">890</attribute>
        <attribute name = "Trypanosoma vivax">26</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Community_entries</attribute>
        <attribute name = "Description">Number of genes that have comments,notes from the research community</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">31</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">42</attribute>
        <attribute name = "Cryptosporidium muris RN66">50</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">77</attribute>
@@ -250,18 +276,20 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">1</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">1</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">1</attribute>
-       <attribute name = "Entamoeba dispar SAW760">21</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">367</attribute>
-       <attribute name = "Entamoeba invadens IP1">10</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
+       <attribute name = "Entamoeba dispar SAW760">22</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">370</attribute>
+       <attribute name = "Entamoeba invadens IP1">11</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">356</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">2</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
-       <attribute name = "Leishmania braziliensis">10</attribute>
+       <attribute name = "Leishmania braziliensis">11</attribute>
        <attribute name = "Leishmania infantum">25</attribute>
-       <attribute name = "Leishmania major strain Friedlin">99</attribute>
+       <attribute name = "Leishmania major strain Friedlin">102</attribute>
        <attribute name = "Leishmania mexicana">28</attribute>
        <attribute name = "Leishmania tarentolae Parrot-TarII">0</attribute>
        <attribute name = "Nematocida parisii ERTm1">0</attribute>
@@ -272,7 +300,7 @@
        <attribute name = "Plasmodium berghei ANKA">73</attribute>
        <attribute name = "Plasmodium chabaudi chabaudi">53</attribute>
        <attribute name = "Plasmodium cynomolgi strain B">0</attribute>
-       <attribute name = "Plasmodium falciparum 3D7">732</attribute>
+       <attribute name = "Plasmodium falciparum 3D7">745</attribute>
        <attribute name = "Plasmodium falciparum IT">2</attribute>
        <attribute name = "Plasmodium knowlesi strain H">97</attribute>
        <attribute name = "Plasmodium vivax SaI-1">212</attribute>
@@ -281,24 +309,28 @@
        <attribute name = "Theileria annulata strain Ankara">23</attribute>
        <attribute name = "Theileria parva strain Muguga">26</attribute>
        <attribute name = "Toxoplasma gondii GT1">148</attribute>
-       <attribute name = "Toxoplasma gondii ME49">1525</attribute>
+       <attribute name = "Toxoplasma gondii ME49">1552</attribute>
        <attribute name = "Toxoplasma gondii RH">0</attribute>
        <attribute name = "Toxoplasma gondii VEG">58</attribute>
        <attribute name = "Trichomonas vaginalis G3">38</attribute>
        <attribute name = "Trypanosoma brucei Lister strain 427">8</attribute>
-       <attribute name = "Trypanosoma brucei TREU927">1120</attribute>
+       <attribute name = "Trypanosoma brucei TREU927">1148</attribute>
        <attribute name = "Trypanosoma brucei gambiense">6</attribute>
        <attribute name = "Trypanosoma congolense">3</attribute>
        <attribute name = "Trypanosoma cruzi CL Brener Esmeraldo-like">223</attribute>
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">249</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">137</attribute>
        <attribute name = "Trypanosoma vivax">3</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Orthologs</attribute>
        <attribute name = "Description">Number of genes that have orthologous genes</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">9358</attribute>
        <attribute name = "Babesia bovis T2Bo">3706</attribute>
+       <attribute name = "Babesia microti strain RI">2762</attribute>
        <attribute name = "Cryptosporidium hominis TU502">3886</attribute>
        <attribute name = "Cryptosporidium muris RN66">3936</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">3805</attribute>
@@ -306,28 +338,30 @@
        <attribute name = "Encephalitozoon cuniculi EC1">1846</attribute>
        <attribute name = "Encephalitozoon cuniculi EC2">1850</attribute>
        <attribute name = "Encephalitozoon cuniculi EC3">1846</attribute>
-       <attribute name = "Encephalitozoon cuniculi GB-M1">1979</attribute>
-       <attribute name = "Encephalitozoon hellem ATCC 50504">1841</attribute>
-       <attribute name = "Encephalitozoon hellem Swiss">1811</attribute>
-       <attribute name = "Encephalitozoon intestinalis">1811</attribute>
+       <attribute name = "Encephalitozoon cuniculi GB-M1">1996</attribute>
+       <attribute name = "Encephalitozoon hellem ATCC 50504">1846</attribute>
+       <attribute name = "Encephalitozoon hellem Swiss">1809</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">1833</attribute>
-       <attribute name = "Entamoeba dispar SAW760">7950</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">7754</attribute>
-       <attribute name = "Entamoeba invadens IP1">9857</attribute>
-       <attribute name = "Enterocytozoon bieneusi H348">2991</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">5343</attribute>
-       <attribute name = "Giardia Assemblage B isolate GS">4391</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">4921</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">1822</attribute>
+       <attribute name = "Entamoeba dispar SAW760">8748</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">8306</attribute>
+       <attribute name = "Entamoeba invadens IP1">11548</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">12163</attribute>
+       <attribute name = "Entamoeba nuttalli P19">6123</attribute>
+       <attribute name = "Enterocytozoon bieneusi H348">3631</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5901</attribute>
+       <attribute name = "Giardia Assemblage B isolate GS">4470</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">5065</attribute>
        <attribute name = "Leishmania braziliensis">8146</attribute>
        <attribute name = "Leishmania infantum">8186</attribute>
        <attribute name = "Leishmania major strain Friedlin">8367</attribute>
        <attribute name = "Leishmania mexicana">8161</attribute>
        <attribute name = "Leishmania tarentolae Parrot-TarII">8174</attribute>
-       <attribute name = "Nematocida parisii ERTm1">2633</attribute>
-       <attribute name = "Nematocida parisii ERTm3">2663</attribute>
-       <attribute name = "Nematocida sp. 1 ERTm2">2483</attribute>
+       <attribute name = "Nematocida parisii ERTm1">2630</attribute>
+       <attribute name = "Nematocida parisii ERTm3">2665</attribute>
+       <attribute name = "Nematocida sp. 1 ERTm2">2449</attribute>
        <attribute name = "Neospora caninum Liverpool">7113</attribute>
-       <attribute name = "Nosema ceranae BRL01">2017</attribute>
+       <attribute name = "Nosema ceranae BRL01">2109</attribute>
        <attribute name = "Plasmodium berghei ANKA">5012</attribute>
        <attribute name = "Plasmodium chabaudi chabaudi">5168</attribute>
        <attribute name = "Plasmodium cynomolgi strain B">5683</attribute>
@@ -338,7 +372,7 @@
        <attribute name = "Plasmodium yoelii yoelii 17XNL">7508</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">5707</attribute>
        <attribute name = "Theileria annulata strain Ankara">3796</attribute>
-       <attribute name = "Theileria parva strain Muguga">4033</attribute>
+       <attribute name = "Theileria parva strain Muguga">4019</attribute>
        <attribute name = "Toxoplasma gondii GT1">8077</attribute>
        <attribute name = "Toxoplasma gondii ME49">7789</attribute>
        <attribute name = "Toxoplasma gondii RH">26</attribute>
@@ -352,12 +386,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">9210</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">41</attribute>
        <attribute name = "Trypanosoma vivax">10038</attribute>
+       <attribute name = "Vavraia culicis floridensis">1887</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">1834</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">GO_terms</attribute>
        <attribute name = "Description">Number of genes that have Gene Ontology terms</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">5464</attribute>
        <attribute name = "Babesia bovis T2Bo">1689</attribute>
+       <attribute name = "Babesia microti strain RI">1586</attribute>
        <attribute name = "Cryptosporidium hominis TU502">1574</attribute>
        <attribute name = "Cryptosporidium muris RN66">2003</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">1754</attribute>
@@ -365,18 +403,20 @@
        <attribute name = "Encephalitozoon cuniculi EC1">1059</attribute>
        <attribute name = "Encephalitozoon cuniculi EC2">1056</attribute>
        <attribute name = "Encephalitozoon cuniculi EC3">1059</attribute>
-       <attribute name = "Encephalitozoon cuniculi GB-M1">950</attribute>
-       <attribute name = "Encephalitozoon hellem ATCC 50504">957</attribute>
+       <attribute name = "Encephalitozoon cuniculi GB-M1">1071</attribute>
+       <attribute name = "Encephalitozoon hellem ATCC 50504">1076</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">1038</attribute>
-       <attribute name = "Encephalitozoon intestinalis">948</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">1062</attribute>
-       <attribute name = "Entamoeba dispar SAW760">3799</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">4262</attribute>
-       <attribute name = "Entamoeba invadens IP1">4827</attribute>
-       <attribute name = "Enterocytozoon bieneusi H348">1255</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">1777</attribute>
-       <attribute name = "Giardia Assemblage B isolate GS">1669</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">1828</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">1056</attribute>
+       <attribute name = "Entamoeba dispar SAW760">3786</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">4334</attribute>
+       <attribute name = "Entamoeba invadens IP1">4801</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">4546</attribute>
+       <attribute name = "Entamoeba nuttalli P19">2821</attribute>
+       <attribute name = "Enterocytozoon bieneusi H348">1411</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">2331</attribute>
+       <attribute name = "Giardia Assemblage B isolate GS">2082</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">2383</attribute>
        <attribute name = "Leishmania braziliensis">3517</attribute>
        <attribute name = "Leishmania infantum">3606</attribute>
        <attribute name = "Leishmania major strain Friedlin">4020</attribute>
@@ -386,7 +426,7 @@
        <attribute name = "Nematocida parisii ERTm3">983</attribute>
        <attribute name = "Nematocida sp. 1 ERTm2">1006</attribute>
        <attribute name = "Neospora caninum Liverpool">3395</attribute>
-       <attribute name = "Nosema ceranae BRL01">965</attribute>
+       <attribute name = "Nosema ceranae BRL01">1041</attribute>
        <attribute name = "Plasmodium berghei ANKA">2103</attribute>
        <attribute name = "Plasmodium chabaudi chabaudi">2405</attribute>
        <attribute name = "Plasmodium cynomolgi strain B">2063</attribute>
@@ -411,12 +451,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">4699</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">499</attribute>
        <attribute name = "Trypanosoma vivax">3441</attribute>
+       <attribute name = "Vavraia culicis floridensis">1131</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">1081</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">EC_numbers</attribute>
        <attribute name = "Description">Number of genes that have Enzyme Comission numbers</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">290</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">61</attribute>
        <attribute name = "Cryptosporidium muris RN66">582</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">86</attribute>
@@ -427,15 +471,17 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
-       <attribute name = "Entamoeba dispar SAW760">927</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">1098</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
+       <attribute name = "Entamoeba dispar SAW760">1966</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">1132</attribute>
        <attribute name = "Entamoeba invadens IP1">1249</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">358</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">269</attribute>
-       <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">313</attribute>
+       <attribute name = "Giardia Assemblage B isolate GS">67</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">74</attribute>
        <attribute name = "Leishmania braziliensis">945</attribute>
        <attribute name = "Leishmania infantum">979</attribute>
        <attribute name = "Leishmania major strain Friedlin">992</attribute>
@@ -449,7 +495,7 @@
        <attribute name = "Plasmodium berghei ANKA">49</attribute>
        <attribute name = "Plasmodium chabaudi chabaudi">45</attribute>
        <attribute name = "Plasmodium cynomolgi strain B">0</attribute>
-       <attribute name = "Plasmodium falciparum 3D7">1135</attribute>
+       <attribute name = "Plasmodium falciparum 3D7">1146</attribute>
        <attribute name = "Plasmodium falciparum IT">1</attribute>
        <attribute name = "Plasmodium knowlesi strain H">274</attribute>
        <attribute name = "Plasmodium vivax SaI-1">378</attribute>
@@ -470,12 +516,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">459</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">8</attribute>
        <attribute name = "Trypanosoma vivax">637</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">SNP</attribute>
        <attribute name = "Description">Number of genes that have Single Nucleotide Polymorphism(s)</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">2633</attribute>
@@ -486,11 +536,13 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">0</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">4281</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">4493</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
@@ -508,7 +560,7 @@
        <attribute name = "Plasmodium berghei ANKA">0</attribute>
        <attribute name = "Plasmodium chabaudi chabaudi">0</attribute>
        <attribute name = "Plasmodium cynomolgi strain B">0</attribute>
-       <attribute name = "Plasmodium falciparum 3D7">5489</attribute>
+       <attribute name = "Plasmodium falciparum 3D7">5595</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
        <attribute name = "Plasmodium vivax SaI-1">5082</attribute>
@@ -517,7 +569,7 @@
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
        <attribute name = "Theileria parva strain Muguga">0</attribute>
        <attribute name = "Toxoplasma gondii GT1">0</attribute>
-       <attribute name = "Toxoplasma gondii ME49">7860</attribute>
+       <attribute name = "Toxoplasma gondii ME49">8420</attribute>
        <attribute name = "Toxoplasma gondii RH">0</attribute>
        <attribute name = "Toxoplasma gondii VEG">0</attribute>
        <attribute name = "Trichomonas vaginalis G3">0</attribute>
@@ -529,12 +581,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">10583</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">2043</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Expression_Total</attribute>
        <attribute name = "Description">Number of genes that have evidence of expression (Transcript + Protein)</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">3571</attribute>
        <attribute name = "Babesia bovis T2Bo">3698</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">580</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">3521</attribute>
@@ -545,21 +601,23 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">18</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
-       <attribute name = "Entamoeba dispar SAW760">97</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">7955</attribute>
-       <attribute name = "Entamoeba invadens IP1">15</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
+       <attribute name = "Entamoeba dispar SAW760">79</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">7950</attribute>
+       <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">5981</attribute>
-       <attribute name = "Giardia Assemblage B isolate GS">53</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">960</attribute>
+       <attribute name = "Giardia Assemblage B isolate GS">57</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">958</attribute>
        <attribute name = "Leishmania braziliensis">41</attribute>
        <attribute name = "Leishmania infantum">8204</attribute>
        <attribute name = "Leishmania major strain Friedlin">9319</attribute>
        <attribute name = "Leishmania mexicana">1682</attribute>
        <attribute name = "Leishmania tarentolae Parrot-TarII">0</attribute>
-       <attribute name = "Nematocida parisii ERTm1">0</attribute>
+       <attribute name = "Nematocida parisii ERTm1">2724</attribute>
        <attribute name = "Nematocida parisii ERTm3">0</attribute>
        <attribute name = "Nematocida sp. 1 ERTm2">0</attribute>
        <attribute name = "Neospora caninum Liverpool">7266</attribute>
@@ -588,12 +646,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">10366</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">782</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Microarray</attribute>
        <attribute name = "Description">Number of genes that have evidence of transcript expression based on Microarray studies</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">3698</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">3287</attribute>
@@ -604,13 +666,15 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
-       <attribute name = "Entamoeba dispar SAW760">18</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">7904</attribute>
-       <attribute name = "Entamoeba invadens IP1">15</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
+       <attribute name = "Entamoeba dispar SAW760">0</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">7896</attribute>
+       <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">5981</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5980</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
@@ -618,7 +682,7 @@
        <attribute name = "Leishmania major strain Friedlin">8118</attribute>
        <attribute name = "Leishmania mexicana">0</attribute>
        <attribute name = "Leishmania tarentolae Parrot-TarII">0</attribute>
-       <attribute name = "Nematocida parisii ERTm1">0</attribute>
+       <attribute name = "Nematocida parisii ERTm1">2724</attribute>
        <attribute name = "Nematocida parisii ERTm3">0</attribute>
        <attribute name = "Nematocida sp. 1 ERTm2">0</attribute>
        <attribute name = "Neospora caninum Liverpool">7266</attribute>
@@ -647,12 +711,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">5776</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">691</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">EST</attribute>
        <attribute name = "Description">Number of genes that have evidence of transcript expression based on Expressed Sequence Tags studies</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">3571</attribute>
        <attribute name = "Babesia bovis T2Bo">13</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">580</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">1806</attribute>
@@ -663,15 +731,17 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">18</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">79</attribute>
-       <attribute name = "Entamoeba histolytica HM-1:IMSS">1223</attribute>
+       <attribute name = "Entamoeba histolytica HM-1:IMSS">1226</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">3272</attribute>
-       <attribute name = "Giardia Assemblage B isolate GS">53</attribute>
-       <attribute name = "Giardia Assemblage E isolate P15">960</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">3286</attribute>
+       <attribute name = "Giardia Assemblage B isolate GS">57</attribute>
+       <attribute name = "Giardia Assemblage E isolate P15">958</attribute>
        <attribute name = "Leishmania braziliensis">1</attribute>
        <attribute name = "Leishmania infantum">11</attribute>
        <attribute name = "Leishmania major strain Friedlin">440</attribute>
@@ -706,12 +776,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">2711</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">82</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">SAGE_Tags</attribute>
        <attribute name = "Description">Number of genes that have evidence of transcript expression based on SAGE Tags studies</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">0</attribute>
@@ -722,13 +796,15 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">0</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">0</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">5955</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5949</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
@@ -765,12 +841,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">0</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">0</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">Proteomics</attribute>
        <attribute name = "Description">Number of genes that have evidence of protein expression based on Mass Spectrometry studies</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">1320</attribute>
@@ -781,13 +861,15 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">0</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">2442</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">1744</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">1857</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
        <attribute name = "Leishmania braziliensis">40</attribute>
@@ -812,7 +894,7 @@
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
        <attribute name = "Theileria parva strain Muguga">0</attribute>
        <attribute name = "Toxoplasma gondii GT1">4488</attribute>
-       <attribute name = "Toxoplasma gondii ME49">5366</attribute>
+       <attribute name = "Toxoplasma gondii ME49">5382</attribute>
        <attribute name = "Toxoplasma gondii RH">0</attribute>
        <attribute name = "Toxoplasma gondii VEG">0</attribute>
        <attribute name = "Trichomonas vaginalis G3">1830</attribute>
@@ -824,12 +906,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">1594</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">96</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">ChIP_chip</attribute>
        <attribute name = "Description">Number of genes that have evidence of transcript expression based on the ChIP on chip studies</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">0</attribute>
@@ -840,11 +926,13 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">0</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">0</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
@@ -883,12 +971,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">0</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">0</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">RnaSeq</attribute>
        <attribute name = "Description">Number of genes that have evidence for transcript expression based on Transcriptome sequencing (RNA Seq) experiments</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">0</attribute>
@@ -899,13 +991,15 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">0</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">0</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
-       <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
+       <attribute name = "Giardia Assemblage A isolate WB">5981</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
        <attribute name = "Giardia Assemblage E isolate P15">0</attribute>
        <attribute name = "Leishmania braziliensis">0</attribute>
@@ -942,12 +1036,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">10049</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">0</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">RT PCR</attribute>
        <attribute name = "Description">Number of genes that have evidence for transcript expression based on Reat Time PCR experiments</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">3287</attribute>
@@ -958,11 +1056,13 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">0</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">0</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
@@ -1001,12 +1101,16 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">0</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">0</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
    <record>
        <attribute name = "Metric_Type">TF Binding Site</attribute>
        <attribute name = "Description">Total number of genes having evidence of expression based on transcription factor binding site indentification experiments</attribute>
+       <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">0</attribute>
+       <attribute name = "Babesia microti strain RI">0</attribute>
        <attribute name = "Cryptosporidium hominis TU502">0</attribute>
        <attribute name = "Cryptosporidium muris RN66">0</attribute>
        <attribute name = "Cryptosporidium parvum Iowa II">0</attribute>
@@ -1017,11 +1121,13 @@
        <attribute name = "Encephalitozoon cuniculi GB-M1">0</attribute>
        <attribute name = "Encephalitozoon hellem ATCC 50504">0</attribute>
        <attribute name = "Encephalitozoon hellem Swiss">0</attribute>
-       <attribute name = "Encephalitozoon intestinalis">0</attribute>
        <attribute name = "Encephalitozoon intestinalis ATCC 50506">0</attribute>
+       <attribute name = "Encephalitozoon romaleae SJ-2008">0</attribute>
        <attribute name = "Entamoeba dispar SAW760">0</attribute>
        <attribute name = "Entamoeba histolytica HM-1:IMSS">0</attribute>
        <attribute name = "Entamoeba invadens IP1">0</attribute>
+       <attribute name = "Entamoeba moshkovskii Laredo">0</attribute>
+       <attribute name = "Entamoeba nuttalli P19">0</attribute>
        <attribute name = "Enterocytozoon bieneusi H348">0</attribute>
        <attribute name = "Giardia Assemblage A isolate WB">0</attribute>
        <attribute name = "Giardia Assemblage B isolate GS">0</attribute>
@@ -1060,6 +1166,8 @@
        <attribute name = "Trypanosoma cruzi CL Brener Non-Esmeraldo-like">0</attribute>
        <attribute name = "Trypanosoma cruzi strain CL Brener">0</attribute>
        <attribute name = "Trypanosoma vivax">0</attribute>
+       <attribute name = "Vavraia culicis floridensis">0</attribute>
+       <attribute name = "Vittaforma corneae ATCC 50505">0</attribute>
    </record>
 
 </xmlAnswer>
