@@ -64,7 +64,10 @@ sub handleIsolates {
     $ids =~ s/'(\w)/'$sid\.$1/g;
     $ids .= ",'$sid'";   # always compare with reference isolate
     $sql = <<EOSQL;
-select source_id, substr(nas.sequence, $start,$end-$start+1) as sequence from dots.nasequence nas
+select CASE WHEN source_id='$sid' THEN source_id
+            ELSE replace(source_id, '$sid.', '')
+            END as source_id, 
+            substr(nas.sequence, $start,$end-$start+1) as sequence from dots.nasequence nas
 where nas.source_id in ($ids) 
 EOSQL
   } else {  # regular isolates
@@ -155,6 +158,9 @@ EOSQL
      foreach my $id (split /,/, $ids) {
         $id =~ s/'//g;
         if($project_id =~ /ToxoDB/i) {
+          if ($id ne $sid) {
+             $id =~ s/$sid\.//; 
+          } 
         }  else {
           $id =~ s/^[^\.]+\.//g;
         }
