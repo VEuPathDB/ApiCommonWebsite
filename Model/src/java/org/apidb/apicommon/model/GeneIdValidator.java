@@ -50,7 +50,7 @@ public class GeneIdValidator {
             return false;
         } finally {
              // close the connection
-             SqlUtils.closeResultSet(rs);
+             SqlUtils.closeResultSetAndStatement(rs);
         }
 
         return false;

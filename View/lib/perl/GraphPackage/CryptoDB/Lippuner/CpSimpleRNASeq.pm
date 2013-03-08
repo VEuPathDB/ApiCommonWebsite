@@ -20,6 +20,7 @@ sub init {
   $self->setPctProfileSet("percentile - CparIowaII Lippuner calf intestine oocyst infection");
   $self->setColor("#D87093");
   $self->makeGraphs(@_);
+  $self->setIsPairedEnd(1);
   $self->setBottomMarginSize(5);
 
   return $self;

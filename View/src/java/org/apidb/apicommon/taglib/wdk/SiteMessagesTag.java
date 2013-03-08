@@ -72,7 +72,7 @@ public class SiteMessagesTag extends WdkTagBase {
         } catch (WdkModelException sqle) {
             throw new JspException(sqle);
         } finally {
-            SqlUtils.closeResultSet(rs);
+            SqlUtils.closeResultSetAndStatement(rs);
         }
 
     }

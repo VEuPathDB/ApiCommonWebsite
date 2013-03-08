@@ -14,6 +14,7 @@ sub init {
   $self->setDiffRpkmProfileSet("N. caninum Day 3-4 Tachyzoite - diff");
   $self->setPctProfileSet("percentile - N. caninum Day 3-4 Tachyzoite");
   $self->setColor("#6A5ACD");
+  $self->setIsPairedEnd(1);
   $self->makeGraphs(@_);
   $self->setBottomMarginSize(4.5);
 

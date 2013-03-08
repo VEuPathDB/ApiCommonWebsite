@@ -436,6 +436,32 @@ sub new {
   return $self;
 }
 
+package ApiCommonWebsite::View::GraphPackage::BarPlot::PairedEndRNASeqStacked;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked);
+use strict;
+
+sub new {
+  my $class = shift; 
+  my $self = $class->SUPER::new(@_);
+
+  my $id = $self->getId();
+
+  $self->setPartName('fpkm');
+  $self->setYaxisLabel('FPKM');
+  $self->setPlotTitle("FPKM - $id");
+
+  # RUM RPKM Are Not logged in the db
+  # JB:  Cannot take the log2 of the diff profiles then add
+#  if($wantLogged) {
+#    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
+#    $self->setYaxisLabel('RPKM (log2)');
+#    $self->setIsLogged(1);
+#    $self->setDefaultYMax(4);
+#  }
+
+  return $self;
+}
+
 #--------------------------------------------------------------------------------
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio;

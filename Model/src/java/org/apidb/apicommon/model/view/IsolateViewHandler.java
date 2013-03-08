@@ -76,7 +76,7 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
             ex.printStackTrace();
             throw new WdkModelException(ex);
         } finally {
-            SqlUtils.closeResultSet(resultSet);
+            SqlUtils.closeResultSetAndStatement(resultSet);
         }
     }
 }

@@ -33,6 +33,15 @@ sub new {
     return $self;
 }
 
+# This is a "method proxy" for getters.  It can be called like this:
+#   $self->getLogin, $self->getLogin(), $self->login or $self->login()
+# where <login> is a root element in the model-config file.
+#
+# The method is recursive so it can also handle $self->getQueryMonitor->getBaseline
+# where <queryMonitor> is an element and baseline= is an attribute of that element
+#
+# It dies if the accessed element or attribute is not found.
+# To test for existence either catch the exception or use $self->{login}
 sub AUTOLOAD {
     my $attr = our $AUTOLOAD;
     $attr =~ s/.*:://;

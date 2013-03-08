@@ -10,9 +10,21 @@
 <xmlAnswer>
 
 
+   <record>
+       <attribute name="title">Overview</attribute>
+       <attribute name="tag">overview</attribute>
+       <attribute name="text">   
+         <![CDATA[
+This document provides a high-level overview of the software infrastructure utilized by the EuPathDB BRC to load, integrate and provide data to users.  The links provide details for each of the components summarized here.  If you would like a PDF of this information, please download from the following link.
+<div id="cirbulletlist">
+<ul>
+  <li><a href="/documents/EuPathDB_Infrastructure_combined.pdf">EuPathDB_Infrastructure_combined.pdf</a>
+</ul>
+</div>
+       ]]>
 
-
-
+       </attribute>
+   </record>
 
    <record>
        <attribute name="title">Data Loading and Database Schema</attribute>
@@ -30,6 +42,10 @@ A significant component of our dataloading system is our ability to automate the
 <div id="cirbulletlist">
 <ul>
   <li><a href="http://www.gusdb.org">GUS Schema and Tools</a>
+    <ul>
+      <li><a href="http://www.gusdb.org/SchemaBrowser/categoryList.htm">GUS Schema</a>
+      <li><a href="http://www.gusdb.org/documentation/3.5/developers/developersguide.pdf">GUS developers guide</a>
+    </ul>
   <li><a href="http://code.google.com/p/reflow-genomics/">ReFlow Workflow System</a>
   <li><a href="http://www.google.com/url?q=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fpub%3Fid%3D1BixZ5t2c0hnOZES-Rk2wG2loAQqclcmRj7AeKQjZMHA">DistribJob Cluster Task Management</a>
 </ul>
@@ -49,7 +65,7 @@ A significant component of our dataloading system is our ability to automate the
 <div id="cirbulletlist">
 <ul>
   <li><a href="http://code.google.com/p/strategies-wdk/">Strategies-WDK Website</a>
-  <li><a href="http://docs.google.com/View?id=dhg6jf8m_0fkkzr3hj">Strategies-WDK Documentation</a>
+  <li><a href="https://docs.google.com/document/d/1kmNWkkcInKoxxiuUJqbc4QPWuySQud0OuECJ2TmEMTo/pub">Strategies-WDK Documentation</a>
 </ul>
 </div>
        ]]>

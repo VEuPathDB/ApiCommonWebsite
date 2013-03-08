@@ -16,7 +16,7 @@
        <![CDATA[
 
 EuPathDB (formerly ApiDB) is an integrated database 
-covering the eukaryotic pathogens in the genera <i>Babesia</i>, <i>Crithidia</i>, <i>Cryptosporidium</i>, <i>Edhazardia</i>, <i>Eimeria</i>, <i>Encephalitozoon</i>, <i>Endotrypanum</i>, <i>Entamoeba</i>, <i>Enterocytozoon</i>, <i>Giardia</i>, <i>Gregarina</i>, <i>Hamiltosporidium</i>, <i>Leishmania</i>, <i>Nematocida</i>, <i>Neospora</i>, <i>Nosema</i>, <i>Plasmodium</i>, <i>Theileria</i>, <i>Toxoplasma</i>, <i>Trichomonas</i>, <i>Trypanosoma</i> and <i>Vavraia</i>.
+covering the eukaryotic pathogens in the genera <i>Acanthamoeba</i>, <i>Annacaliia</i>, <i>Babesia</i>, <i>Crithidia</i>, <i>Cryptosporidium</i>, <i>Edhazardia</i>, <i>Eimeria</i>, <i>Encephalitozoon</i>, <i>Endotrypanum</i>, <i>Entamoeba</i>, <i>Enterocytozoon</i>, <i>Giardia</i>, <i>Gregarina</i>, <i>Hamiltosporidium</i>, <i>Leishmania</i>, <i>Nematocida</i>, <i>Neospora</i>, <i>Nosema</i>, <i>Plasmodium</i>, <i>Theileria</i>, <i>Toxoplasma</i>, <i>Trichomonas</i>, <i>Trypanosoma</i> and <i>Vavraia</i>, <i>Vittaforma</i>).
   
 While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an 
 entry point to all of these resources, and the opportunity to leverage orthology for searches across genera.
