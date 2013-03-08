@@ -643,6 +643,25 @@ sub new {
 
 #--------------------------------------------------------------------------------
 
+package ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot::RNASeq );
+use strict;
+
+sub new {
+  my $class = shift;
+  my $self = $class->SUPER::new(@_);
+  my $id = $self->getId();
+
+  $self->setPartName('fpkm');
+  $self->setYaxisLabel('FPKM');
+  $self->setPlotTitle("FPKM - $id");
+
+  return $self;
+}
+
+
+#--------------------------------------------------------------------------------
+
 package ApiCommonWebsite::View::GraphPackage::LinePlot::QuantileNormalized;
 use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
 use strict;

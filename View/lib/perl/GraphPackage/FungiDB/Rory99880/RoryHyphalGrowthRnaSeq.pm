@@ -22,6 +22,7 @@ sub init {
   $self->setDiffRpkmProfileSet("R oryzae hyphal growth on solid media-diff");
   $self->setPctProfileSet("percentile - R oryzae hyphal growth on solid media");
   $self->setColor("#29ACF2");
+  $self->setIsPairedEnd(1);
   $self->makeGraphs(@_);
 
   return $self;

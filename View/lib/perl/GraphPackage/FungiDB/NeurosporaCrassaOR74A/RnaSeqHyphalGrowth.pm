@@ -15,6 +15,7 @@ sub init {
   $self->setDiffRpkmProfileSet("NcraOR74A Hyphal Growth RNASeq - diff");
   $self->setPctProfileSet("percentile - NcraOR74A Hyphal Growth RNASeq");
   $self->setColor("#D87093");
+  $self->setIsPairedEnd(1);
   $self->makeGraphs(@_);
 
   $self->setBottomMarginSize(4);

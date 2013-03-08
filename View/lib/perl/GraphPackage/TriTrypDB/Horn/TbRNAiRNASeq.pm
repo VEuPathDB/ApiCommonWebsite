@@ -26,10 +26,10 @@ sub init {
 
   $self->setMainLegend({colors => $legendColors, short_names => $legend});
 
-
+#this is a pairedEnd experiment, call method setIsPairedEnd(1);
   $self->setProfileSetsHash
-    ({     cds_rpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles using CDS coordinates', 'T.brucei Horn RNAi Sequence diffProfiles using CDS coordinates'],
-                   y_axis_label => 'log 2 (RPKM)',
+    ({     cds_fpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles using CDS coordinates', 'T.brucei Horn RNAi Sequence diffProfiles using CDS coordinates'],
+                   y_axis_label => 'log 2 (FPKM)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors0,
                    force_x_axis_label_horizontal => 1,
@@ -37,8 +37,8 @@ sub init {
                    stack_bars => 1,
                   },
 
-transcript_rpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles', 'T.brucei Horn RNAi Sequence diffProfiles'],
-                          y_axis_label => 'log 2 (RPKM)',
+transcript_fpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles', 'T.brucei Horn RNAi Sequence diffProfiles'],
+                          y_axis_label => 'log 2 (FPKM)',
                           x_axis_labels => $xAxisLabels,
                           colors => $colors1,
                           force_x_axis_label_horizontal => 1,
