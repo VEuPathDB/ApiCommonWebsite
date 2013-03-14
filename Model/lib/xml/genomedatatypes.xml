@@ -92,7 +92,7 @@
        <attribute name = "Website">AmoebaDB</attribute>
        <attribute name = "Genus">Entamoeba</attribute>
        <attribute name = "Species">histolytica</attribute>
-       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM1_CA/fasta/data/AmoebaDB-&relAmoeba;_EhistolyticaHM1_CA_Genome.fasta</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM1CA/fasta/data/AmoebaDB-&relAmoeba;_EhistolyticaHM1CA_Genome.fasta</attribute>
        <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">HM-1:CA</attribute>
@@ -117,8 +117,8 @@
        <attribute name = "Website">AmoebaDB</attribute>
        <attribute name = "Genus">Entamoeba</attribute>
        <attribute name = "Species">histolytica</attribute>
-       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM-1:IMSS/fasta/data/AmoebaDB-&relAmoeba;_EhistolyticaHM-1:IMSS_Genome</attribute>
-       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM-1:IMSS/gff/data/AmoebaDB-&relAmoeba;_EhistolyticaHM-1:IMSS.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM1IMSS/fasta/data/AmoebaDB-&relAmoeba;_EhistolyticaHM1IMSS_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://amoebadb.org/common/downloads/Current_Release/EhistolyticaHM1IMSS/gff/data/AmoebaDB-&relAmoeba;_EhistolyticaHM1IMSS.gff</attribute>
        <attribute name = "Taxon_ID">294381</attribute>
        <attribute name = "Strain">HM-1:IMSS</attribute>
        <attribute name = "Genome_Version">11-27-2009</attribute>
@@ -499,7 +499,7 @@
        <attribute name = "Genus">Anncaliia</attribute>
        <attribute name = "Species">algerae</attribute>
        <attribute name = "URLGenomeFasta">http://MicrosporidiaDB.org/common/downloads/Current_Release/AalgeraeUndeen/fasta/data/MicrosporidiaDB-&relMicro;_AalgeraeUndeen_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://MicrosporidiaDB.org/common/downloads/Current_Release/AalgeraeUndeen/gff/data/MicrosporidiaDB-&relMicro;_AalgeraeUndeen.gff</attribute>
+       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID">1150868</attribute>
        <attribute name = "Strain">Undeen</attribute>
        <attribute name = "Genome_Version">06-01-2012</attribute>
