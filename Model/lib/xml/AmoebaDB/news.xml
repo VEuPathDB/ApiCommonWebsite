@@ -23,14 +23,16 @@
        <attribute name="item">
            
          <![CDATA[
-  <body><span style="font-family: Arial;"></span> <span style="font-family: Arial;"><b
+   <body><span style="font-family: Arial;"></span> <span style="font-family: Arial;"><b
         style="mso-bidi-font-weight:normal">We
         are pleased to announce the release of AmoebaDB 2.0<o:p></o:p></b></span>
     <dl style="text-align: justify;">
       <dd><br>
         <span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal"></b></span></dd>
       <dt><span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
-            data in this release<o:p></o:p></b></span></dt>
+            data in this release</b></span></dt>
+      <dd><br>
+      </dd>
     </dl>
     <ul>
       <li><span style="font-family: Arial;"><span style="mso-bidi-font-style:normal"><span
@@ -41,6 +43,10 @@
                 style="mso-bidi-font-style:normal">
               </span></span>Acanthamoeba castellanii</i> str. Neff (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/23375108">Clarke
               <span style="font-style: italic;">et al.</span></a></strong>).&nbsp;&nbsp;</span></li>
+    </ul>
+    <span style=" font-family: Arial;"><br>
+    </span>
+    <ul>
       <ul>
       </ul>
     </ul>
@@ -67,7 +73,9 @@
         transmembrane domain or both, that has a kinase GO function associated
         with it and that is conserved in amoebozoa:</span><span style="font-family: Arial;"><br>
         <br>
-        <a href="http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1"><strong>http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1</strong></a></span></div>
+        <a href="http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1"><strong>http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1</strong></a><br>
+        <br>
+      </span></div>
     <ul>
       <li><span style="font-family: Arial;"><span style="mso-bidi-font-style:normal">Genome
             sequence and annotation of </span><i style="mso-bidi-font-style:normal">Entamoeba
@@ -75,6 +83,10 @@
           and were generated as part of the <strong><a href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf">Entamoeba
               strain sequencing white paper</a></strong>.&nbsp; Additional
           information on the project at JCVI can be accessed <strong><a href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">here</a></strong>).</span></li>
+    </ul>
+    <span style=" font-family: Arial;"><br>
+    </span>
+    <ul>
     </ul>
     <span style=" font-family: Arial;"> </span>
     <dl style="text-align: justify;">
