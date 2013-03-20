@@ -68,6 +68,8 @@ sub run {
 	 my $quiet_b        = $Cgi->param('quiet');
 	 my $save_b         = $Cgi->param('save');
 	 my $typeArg        = $Cgi->param('typeArg');
+         my $template     = $Cgi->param('template');
+
    my $thumbnail_b    = $Cgi->param('thumb');
    my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
@@ -104,22 +106,8 @@ sub run {
 
 	 my @filesToDelete = ( $fmt_f );
 
-	 # graph package mode
-         
-         #-------Redundant--------#
-	 #my $pkg;
-	 #if ($model eq 'plasmo') {
-	 #  $pkg = "PlasmoDB";
-	 #} elsif ($model eq 'toxo') {
-	 #  $pkg = "ToxoDB";
-	 #} elsif ($model eq 'giardia') {
-	 #  $pkg = "GiardiaDB";
-	 #} elsif ($model eq 'tritryp') {
-	 #  $pkg = "TriTrypDB";
-	 #} elsif ($model eq 'amoeba') {
-	 #  $pkg = "AmoebaDB";
-	 #}
-	 
+
+	 $pkg = "Templates" if($template);
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          eval "require $class";
@@ -137,7 +125,7 @@ sub run {
          };
 
 	 if ($@) {
-           die "Unable to load driver for '$type' with arg $typeArg : $@";
+           die "Unable to load driver for '$type': $@";
 	 }
 
 	 my @files = $_gp->run();
