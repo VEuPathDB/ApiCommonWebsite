@@ -12,7 +12,7 @@ sub init {
   $self->SUPER::init(@_);
 
 
-  my $datasetName = $self->getSecondaryId();
+  my $datasetName = $self->getDataset();
 
   my $dbh = $self->getQueryHandle();
 
@@ -47,16 +47,13 @@ and d.name = ?";
   $self->setDiffRpkmProfileSet($diffProfile);
   $self->setPctProfileSet($percentileProfile);
 
-
-  # TODO:  Need to inject these from props
-  $self->setIsPairedEnd(1);
-  $self->setColor("#D87093");
-  $self->setBottomMarginSize(8);
-
-  $self->makeGraphs(@_);
-
-
   return $self;
 }
 
 1;
+
+#--------------------------------------------------------------------------------
+
+
+# TEMPLATE_ANCHOR rnaSeqStrandNonSpecificGraph
+
