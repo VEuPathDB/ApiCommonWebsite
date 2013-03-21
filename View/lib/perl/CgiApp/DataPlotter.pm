@@ -69,6 +69,7 @@ sub run {
 	 my $save_b         = $Cgi->param('save');
 	 my $typeArg        = $Cgi->param('typeArg');
          my $template     = $Cgi->param('template');
+         my $dataset     = $Cgi->param('dataset');
 
    my $thumbnail_b    = $Cgi->param('thumb');
    my @visibleParts   = split(',', $Cgi->param('vp') || '');
@@ -106,16 +107,20 @@ sub run {
 
 	 my @filesToDelete = ( $fmt_f );
 
-
 	 $pkg = "Templates" if($template);
+
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          eval "require $class";
+         eval "import $class";
+
+	 $class = $class . "::$dataset" if($template);
          my $_gp = eval {
            $class->new({dataPlotterArg => $typeArg,
                         QueryHandle => $_qh,
                         Id => $id,
                         SecondaryId => $sid,
+                        Dataset => $dataset,
                         WantLogged => $wantLogged,
                         Format => $gddFormat,
                         OutputFile => $fmt_f,
