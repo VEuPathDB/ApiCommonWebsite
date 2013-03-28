@@ -16,6 +16,127 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">AmoebaDB 2.0 Released</attribute>
+       <attribute name="date">11 March 2013 15:00</attribute>
+       <attribute name="tag">amoeba3_11_release</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+   <body><span style="font-family: Arial;"></span> <span style="font-family: Arial;"><b
+        style="mso-bidi-font-weight:normal">We
+        are pleased to announce the release of AmoebaDB 2.0<o:p></o:p></b></span>
+    <dl style="text-align: justify;">
+      <dd><br>
+        <span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal"></b></span></dd>
+      <dt><span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+            data in this release</b></span></dt>
+      <dd><br>
+      </dd>
+    </dl>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="mso-bidi-font-style:normal"><span
+              style="font-family: Arial;"><span
+                style="mso-bidi-font-style:normal">Genome
+                sequence and annotation of</span></span></span><i style="mso-bidi-font-style:normal"><span
+              style="font-family: Arial;"><span
+                style="mso-bidi-font-style:normal">
+              </span></span>Acanthamoeba castellanii</i> str. Neff (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/23375108">Clarke
+              <span style="font-style: italic;">et al.</span></a></strong>).&nbsp;&nbsp;</span></li>
+    </ul>
+    <span style=" font-family: Arial;"><br>
+    </span>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <span style=" font-family: Arial;"> </span>
+    <dl style="text-align: justify;">
+    </dl>
+    <dl>
+    </dl>
+    <dl>
+    </dl>
+    <dl>
+    </dl>
+    <div style="margin-left: 80px;"><span style="font-family: Arial;">Annotated
+        genomes may be searched using a variety of tools.&nbsp; For example, to
+        find all genes in Acanthamoeba, click on "<strong><a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByTaxon">Organism</a></strong>"
+        under "Text, ID, organism" under the heading "identify genes by" on the
+        home page.&nbsp; Once on the search page you can select </span><span style="font-family: Arial;"><span
+          style="font-family: Arial;">"Acanthamoeba
+          castellanii str. Neff" under "Acanthamoeba". </span></span><span style="font-family: Arial;"><br>
+        <br>
+        You can combine searches in AmoebaDB to identify genes in Acanthamoeba
+        with specific characteristics.&nbsp; For example, this search identifies
+        any gene that has either a secretory signal peptide or at least one
+        transmembrane domain or both, that has a kinase GO function associated
+        with it and that is conserved in amoebozoa:</span><span style="font-family: Arial;"><br>
+        <br>
+        <a href="http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1"><strong>http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1</strong></a><br>
+        <br>
+      </span></div>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="mso-bidi-font-style:normal">Genome
+            sequence and annotation of </span><i style="mso-bidi-font-style:normal">Entamoeba
+            nuttalli</i> P19 (Lis Caler at the J. Craig Venter Institute (JCVI)
+          and were generated as part of the <strong><a href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf">Entamoeba
+              strain sequencing white paper</a></strong>.&nbsp; Additional
+          information on the project at JCVI can be accessed <strong><a href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">here</a></strong>).</span></li>
+    </ul>
+    <span style=" font-family: Arial;"><br>
+    </span>
+    <ul>
+    </ul>
+    <span style=" font-family: Arial;"> </span>
+    <dl style="text-align: justify;">
+    </dl>
+    <ul>
+      <li><span style="font-family: Arial;">Entamoeba repeat elements<u><o:p></o:p></u>
+          (Provided by Lis Caler (JCVI)), this dataset maps repeat elements
+          (LINE, SINE, ERE) in E invadens IP1, and E. dispar SAW760. View repeat
+          elements aligned to the genome in the GBrowse track: <strong><a href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?start=1;stop=14763;ref=DS548829;width=800;version=100;flip=0;grid=1;id=69238127c0507ada35790c337917c266;l=RepeatElements%1EGene;h_feat=edi_244000%40yellow">Entamoeba
+Repeat
+              Elements</a></strong></span></li>
+    </ul>
+    <span style=" font-family: Arial;"> </span><br>
+    <span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+        Functionality:<o:p></o:p></b></span><br>
+    <span style="font-family: Arial;"><u><br>
+        PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span style="font-family: Arial;"><br>
+      <br>
+    </span>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
+        primers to any region of the genome using this interactive, graphic
+        interface. To reach this tool, <strong><a href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?name=DS548829:1..14763;h_feat=edi_244000@yellow">open
+the
+            AmoebaDB Genome Browser</a></strong> at your genomic region of
+        interest, choose "Design PCR primers" from the dropdown menu and click "GO".<span
+          style="mso-spacerun:yes">&nbsp;
+          </span>To design primers, focus on a PCR product size range by
+        highlighting the area on the scale, then enter your preferred PCR
+        parameters in the text boxes and click Design Primer.<o:p></o:p></span></div>
+    <span style="font-family: Arial;"> </span> <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">
+      and <a href="http://twitter.com/eupathdb">Twitter</a></span> <br style="font-family: Arial;">
+    <br style="font-family: Arial;">
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>
        <attribute name="tag">eupathworkshop</attribute>

@@ -261,7 +261,7 @@
    </record>
 
    <record>
-       <attribute name = "Metric_Type">Community_entries</attribute>
+       <attribute name = "Metric_Type">Community_entries**</attribute>
        <attribute name = "Description">Number of genes that have comments,notes from the research community</attribute>
        <attribute name = "Acanthamoeba castellanii str. Neff">0</attribute>
        <attribute name = "Babesia bovis T2Bo">31</attribute>

@@ -15,6 +15,124 @@
     </record>
 --> 
 <record>
+      <attribute name="headline">PiroplasmaDB 3.0 Released</attribute>
+       <attribute name="date">11 March 2013 15:00</attribute>
+       <attribute name="tag">piro0313news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body><span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;">
+      <!--StartFragment--> </p>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><a
+          name="piro0812news"><b
+            style="mso-bidi-font-weight:normal"><o:p></o:p></b></a></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news"><b
+            style="mso-bidi-font-weight:
+normal">We are pleased to announce the release of PiropasmaDB 3.0<o:p></o:p></b></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news"><b
+            style="mso-bidi-font-weight:
+normal">New data in this release:<br>
+          </b></span></span></p>
+    <p style="text-align: justify;" class="MsoNormal"><br>
+      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><b
+            style="mso-bidi-font-weight:
+normal"><o:p></o:p></b></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNoSpacing"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news"><u>Genomic
+sequence
+            and annotation for <i style="mso-bidi-font-style:normal">Babesia
+              microti</i> R1<br>
+          </u></span></span></p>
+    <p style="text-align: justify;" class="MsoNoSpacing"><br>
+      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><u><o:p></o:p></u></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news">The
+          <i style="mso-bidi-font-style:normal">Babesia microti</i> R1 genome
+          and annotation (</span><strong><a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411"><span
+              style="mso-bookmark:piro0812news">Genbank</span></a></strong><span
+          style="mso-bookmark:piro0812news">)
+          is fully integrated into PiroplasmaDB (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609"><strong>Cornillot
+              </strong><strong><em>et al.</em></strong></a>). <span style="mso-spacerun:yes">&nbsp;</span>Use
+          the </span><span style="mso-bookmark:piro0812news">searches available
+          in PiroplasmaDB</span><span style="mso-bookmark:piro0812news"> to find
+        </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=c0867e0adfea68c9"><span
+              style="mso-bookmark:piro0812news"><i
+                style="mso-bidi-font-style:normal">B.
+                microti</i> genes</span></a></strong><span style="mso-bookmark:piro0812news">
+          or </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=b435e285f75ae48f"><span
+              style="mso-bookmark:piro0812news">genomic
+              sequences</span></a></strong><span style="mso-bookmark:piro0812news">
+          <span style="mso-spacerun:yes">&nbsp;</span>based on a variety of
+          parameters and combine searches to identify genes with specific
+          characteristics.<span style="mso-spacerun:yes">&nbsp; </span>For
+          example, the following strategy combines several searches to find
+          signal peptide and/or transmembrane domain containing genes that are
+          conserved in Piroplasma but not in Haemosporidia. <br>
+        </span></span></p>
+    <p style="text-align: justify;" class="MsoNormal"><br>
+      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoPlainText"><span style="font-family: Arial;"><strong><span
+            style="mso-bookmark:piro0812news"><span
+              style="mso-spacerun:yes">&nbsp;</span></span></strong><strong><a
+            href="http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543"><span
+              style="mso-bookmark:piro0812news">http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543</span></a></strong><span
+          style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
+    <span style="font-family: Arial;"> </span> <br>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><b
+          style="mso-bidi-font-weight:normal">New
+          Functionality:<o:p></o:p></b></span><br>
+      <span style="font-family: Arial;"><u><br>
+          PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span
+        style="font-family: Arial;"><br>
+        <br>
+      </span>
+    </p>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
+        primers to any region of the genome using this interactive, graphic
+        interface. To reach this tool, </span><span style="font-family: Arial;"><span
+          style="font-family: Arial;"><strong><a
+              href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?name=FO082874:1554539..1586300;h_feat=bbm_iii04375@yellow">open
+the
+              PiroplasmaDB Genome Browser</a></strong> </span>at your genomic
+        region of interest, choose "Design PCR primers" from the dropdown menu
+        and click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
+        primers, focus on a PCR product size range by highlighting the area on
+        the scale, then enter your preferred PCR parameters in the text boxes
+        and click Design Primer.<o:p></o:p></span></div>
+    <span style="font-family: Arial;"> </span> <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">
+      and <a href="http://twitter.com/eupathdb">Twitter</a></span> <br style="font-family: Arial;">
+    <p style="text-align: justify;" class="MsoNormal"><br>
+      <span style="font-family: Arial;"><o:p></o:p></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;"><!--EndFragment--> </p>
+    <span style="font-family: Arial;"> </span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>
        <attribute name="tag">eupathworkshop</attribute>
