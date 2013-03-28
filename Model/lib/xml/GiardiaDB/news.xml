@@ -13,6 +13,81 @@
        </attribute>
     </record>
 --> 
+  <record>
+       <attribute name="headline">GiardiaDB 3.0 released</attribute>
+       <attribute name="date">11 march 2013 15:00</attribute>
+       <attribute name="tag">giardia11_03_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">         
+         <![CDATA[
+<body><span style="font-family: Arial;"><strong>We are pleased to announce the
+        release of Giardia</strong><strong>DB 3</strong><strong>.0</strong><br>
+      <br>
+      <b>New data in this release:</b><br>
+      <br>
+      Basal body proteomics data from <em>G. lamblia</em> Assemblage A (WB)
+      trophozoits (<a href="www.ncbi.nlm.nih.gov/pubmed/21723868"><span style="font-weight: bold;">Lauwaet
+          <em>et al.</em></span></a>). <br>
+      <br>
+    </span>
+    <ul>
+      <li><span style="font-family: Arial;">To search this data click on the
+          protein expression link under the "Identify Genes by:" heading on the
+          home page, then click on "<strong><a href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+              Spec. Evidence</a></strong>".&nbsp; On this page select the
+          "Assemblage A (WB) basal body proteome" sample and click "Get
+          Answer".&nbsp; <a href="http://giardiadb.org/giardiadb/im.do?s=bb153666f8375e37"><strong>This
+              is an example search strategy that finds all genes with mass spec
+              evidence from this experiment</strong></a>.</span></li>
+    </ul>
+    <span style="font-family: Arial;"><br>
+    </span>
+    <ul>
+      <li><span style="font-family: Arial;">Mass spec data may also be
+          visualized on gene pages and in the Genome browser.&nbsp; <strong><a
+              href="http://giardiadb.org/cgi-bin/gbrowse/giardiadb/?start=370000;stop=396999;ref=GLCHR01;width=800;version=100;flip=0;grid=1;id=6185a3b9137aef8758961bb459a19824;l=GillinMassSpecPeptides%1EGene">This
+              view shows a section of a section of chromosome 1 with the
+              proteomics track for this data turned on</a></strong>.</span></li>
+    </ul>
+    <p><span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal"><br>
+        </b></span></p>
+    <p><span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+          Functionality:<o:p></o:p></b><br>
+      </span> <span style="font-family: Arial;"><u><br>
+          PCR Primer Design tool added to GBrowse. <o:p></o:p></u><br>
+      </span> <span style="font-family: Arial;"><br>
+      </span>
+    </p>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
+        primers to any region of the genome using this interactive, graphic
+        interface. To reach this tool, <strong><a href="http://giardiadb.org/cgi-bin/gbrowse/giardiadb/">open
+the
+            GiardiaDB Genome Browser</a></strong> at your genomic region of
+        interest, choose "Design PCR primers" from the dropdown menu and click
+        "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design primers,
+        focus on a PCR product size range by highlighting the area on the scale,
+        then enter your preferred PCR parameters in the text boxes and click
+        Design Primer.<o:p></o:p></span></div>
+    <span style="font-family: Arial;"> <br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+          is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">
+        and <a href="http://twitter.com/eupathdb">Twitter</a></span> </span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>

@@ -68,13 +68,16 @@ sub run {
 	 my $quiet_b        = $Cgi->param('quiet');
 	 my $save_b         = $Cgi->param('save');
 	 my $typeArg        = $Cgi->param('typeArg');
+         my $template     = $Cgi->param('template');
+         my $dataset     = $Cgi->param('dataset');
+
    my $thumbnail_b    = $Cgi->param('thumb');
    my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
 	 my @errors;
 
 	 push(@errors, 'model must be supplied') if not defined $pkg;
-	 push(@errors, $pkg . ' is an unallowed value for Project_id arg') if ($pkg ne 'PlasmoDB' and $pkg ne 'ToxoDB' and $pkg ne 'GiardiaDB' and $pkg ne 'AmoebaDB' and $pkg ne 'TriTrypDB' and $pkg ne 'FungiDB' and $pkg ne 'CryptoDB' and $pkg ne 'PiroplasmaDB' and $pkg ne 'MicrosporidiaDB');
+	 push(@errors, $pkg . ' is an unallowed value for Project_id arg') if ($pkg ne 'PlasmoDB' and $pkg ne 'ToxoDB' and $pkg ne 'GiardiaDB' and $pkg ne 'AmoebaDB' and $pkg ne 'TriTrypDB' and $pkg ne 'FungiDB' and $pkg ne 'CryptoDB' and $pkg ne 'PiroplasmaDB' and $pkg ne 'MicrosporidiaDB' and $pkg ne 'HostDB');
 	 push(@errors, 'type must be supplied' ) if not defined $type;
 	 push(@errors, 'id must be supplied'   ) if not defined $id;
 
@@ -104,30 +107,20 @@ sub run {
 
 	 my @filesToDelete = ( $fmt_f );
 
-	 # graph package mode
-         
-         #-------Redundant--------#
-	 #my $pkg;
-	 #if ($model eq 'plasmo') {
-	 #  $pkg = "PlasmoDB";
-	 #} elsif ($model eq 'toxo') {
-	 #  $pkg = "ToxoDB";
-	 #} elsif ($model eq 'giardia') {
-	 #  $pkg = "GiardiaDB";
-	 #} elsif ($model eq 'tritryp') {
-	 #  $pkg = "TriTrypDB";
-	 #} elsif ($model eq 'amoeba') {
-	 #  $pkg = "AmoebaDB";
-	 #}
-	 
+	 $pkg = "Templates" if($template);
+
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          eval "require $class";
+         eval "import $class";
+
+	 $class = $class . "::$dataset" if($template);
          my $_gp = eval {
            $class->new({dataPlotterArg => $typeArg,
                         QueryHandle => $_qh,
                         Id => $id,
                         SecondaryId => $sid,
+                        Dataset => $dataset,
                         WantLogged => $wantLogged,
                         Format => $gddFormat,
                         OutputFile => $fmt_f,
@@ -137,7 +130,7 @@ sub run {
          };
 
 	 if ($@) {
-           die "Unable to load driver for '$type' with arg $typeArg : $@";
+           die "Unable to load driver for '$type': $@";
 	 }
 
 	 my @files = $_gp->run();
