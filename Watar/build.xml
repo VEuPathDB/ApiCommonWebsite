@@ -30,6 +30,12 @@
   >
   </target>
 
+  <target name="cleaninstall">
+    <echo>Deleting ${targetDir}</echo>
+    <delete includeEmptyDirs="true" dir="${targetDir}"/>
+    <antcall target="install"/>
+  </target>
+
   <target name="testinit">
       <tstamp>
           <format property="start.time" pattern="yyyy-MM-dd'T'k:mm" />
