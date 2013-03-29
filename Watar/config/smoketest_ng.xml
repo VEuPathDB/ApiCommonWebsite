@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="5" verbose="1" name="ApiCommon Smoke Testes" annotations="JDK">
+<suite thread-count="5" verbose="1" name="ApiCommon Smoke Tests" annotations="JDK">
     
     <test name="Misc Pages" junit="false" enabled="true">
         <classes>
