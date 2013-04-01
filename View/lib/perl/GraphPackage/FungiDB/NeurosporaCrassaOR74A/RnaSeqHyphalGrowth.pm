@@ -12,7 +12,7 @@ sub init {
   $self->SUPER::init(@_);
 
   $self->setMinRpkmProfileSet("NcraOR74A Hyphal Growth RNASeq");
-  $self->setDiffRpkmProfileSet("NcraOR74A Hyphal Growth RNASeq - diff");
+  $self->setDiffRpkmProfileSet("NcraOR74A Hyphal Growth RNASeq-diff");
   $self->setPctProfileSet("percentile - NcraOR74A Hyphal Growth RNASeq");
   $self->setColor("#D87093");
   $self->setIsPairedEnd(0);
