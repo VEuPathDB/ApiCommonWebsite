@@ -148,7 +148,9 @@ EOSQL
 	push(@ends, $end);
     }
     $sth->execute(uc($inputId));
-    next if (my ($id) = $sth->fetchrow_array());
+
+    my $ref = $sth->fetchall_arrayref;
+    next if ( $#$ref == 0 );
     push(@badIds, $inputId);
   }
   if (scalar(@badIds) != 0) {
