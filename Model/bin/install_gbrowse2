@@ -5,14 +5,13 @@
 
 # Requires same webPropFile used in WDK build
 
+GBROWSE_SRC_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse/src
 
-GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
-GBROWSE_TAR_FILE=GBrowse-2.48.tar.gz
-BIOPERL_TAR_FILE=BioPerl-1.6.1.tar.gz
-BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.29.tar.gz
-#BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.31.tar.gz
+GBROWSE_SRC_DIR=GBrowse
+BIOPERL_SRC_DIR=BioPerl
+BIOGRAPHICS_SRC_DIR=BioGraphics
 
-BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
+#BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
 
 get_install_paths() {
     WEB_PROP_FILE=$1
@@ -64,46 +63,75 @@ unpack_gbrowse_src() {
 }
 
 post_install_clean() {
-    if [ ! -d "$BUILD_DIR" ]; then
-        return
-    fi
-    if ! rm -rf  $BUILD_DIR; then
-    echo "WARNING: Unable to remove temporary Gbrowse build directory '$BUILD_DIR'"
-    fi
+
+    tmpfiles=( _build Build blib INSTALL.SKIP htdocs/tmp lib/Bio/Graphics/Browser2/CAlign.c )
+
+    echo "Cleaning up temporary files..."
+    for tmp in ${tmpfiles[@]}; do
+      echo "Deleting $GBROWSE_SRC_PATH/$GBROWSE_SRC_DIR/$tmp"
+      rm -rf $GBROWSE_SRC_PATH/$GBROWSE_SRC_DIR/$tmp
+    done
+
+    #if [ ! -d "$BUILD_DIR" ]; then
+    #    return
+    #fi
+    #if ! rm -rf  $BUILD_DIR; then
+    #echo "WARNING: Unable to remove temporary Gbrowse build directory '$BUILD_DIR'"
+    #fi
+}
+
+copy_without_svn() {
+    srcdir=$1
+    destdir=$2
+    cd $srcdir
+    for file in `find . | grep -v "\.svn" | sed 's/^\.\///' | sort`; do
+        if [[ -d $srcdir/$file && ( ! -d $destdir/$file ) ]]; then
+            #echo "Making dir: $destdir"
+            mkdir $destdir/$file
+        fi
+        if [[ -f $srcdir/$file ]]; then
+            #echo "Copying $file to $destdir/$file"
+            cp $srcdir/$file $destdir/$file
+        fi
+    done
+    cd -
 }
 
 # unpack and install pre-made BioPerl v1.6.1 into cgi-lib
 install_local_bioperl() {
     echo "INSTALL: installing bioperl...."
-    echo "tar zxf $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE"
-    if ! tar zxf \
-        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
-        -C $cgilibTargetDir 2> /dev/null; then
-        echo "FATAL: Unable to un-tar BioPerl package '$GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE'. Exiting..."
-        echo "tar zxf \
-        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
-        -C $cgilibTargetDir"
-        exit 1
-    fi
+    copy_without_svn $GBROWSE_SRC_PATH/$BIOPERL_SRC_DIR $cgilibTargetDir
+
+    #echo "tar zxf $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE"
+    #if ! tar zxf \
+    #    $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
+    #    -C $cgilibTargetDir 2> /dev/null; then
+    #    echo "FATAL: Unable to un-tar BioPerl package '$GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE'. Exiting..."
+    #    echo "tar zxf \
+    #    $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
+    #    -C $cgilibTargetDir"
+    #    exit 1
+    #fi
 }
 
 # unpack and install pre-made BioGraphics v2.26 into cgi-lib
 install_local_biographics() {
     echo "INSTALL: installing bioperl...."
-    echo "tar zxf $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE"
-    if ! tar zxf \
-        $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
-        -C $cgilibTargetDir 2> /dev/null; then
-        echo "FATAL: Unable to un-tar BioGraphics package '$GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE'. Exiting..."
-        echo "tar zxf \
-        $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
-        -C $cgilibTargetDir"
-        exit 1
-    fi
+    copy_without_svn $GBROWSE_SRC_PATH/$BIOGRAPHICS_SRC_DIR $cgilibTargetDir
+
+    #echo "tar zxf $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE"
+    #if ! tar zxf \
+    #    $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
+    #    -C $cgilibTargetDir 2> /dev/null; then
+    #    echo "FATAL: Unable to un-tar BioGraphics package '$GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE'. Exiting..."
+    #    echo "tar zxf \
+    #    $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
+    #    -C $cgilibTargetDir"
+    #    exit 1
+    #fi
 }
 
 configure_gb() {
-
     
     mkdirs
     
@@ -118,11 +146,13 @@ configure_gb() {
         exit 1
     fi
         
-    unpack_gbrowse_src
+    #unpack_gbrowse_src
     
-    cd $BUILD_DIR
+    #cd $BUILD_DIR
 
-    patch_installer
+    #patch_installer
+
+    cd $GBROWSE_SRC_PATH/$GBROWSE_SRC_DIR
 
     echo "INSTALL: perl Build.PL..."
 
@@ -224,11 +254,11 @@ case "$2" in
     build_install_patch)
         configure_gb    
         build_install
-        patch_postinstall
+        #patch_postinstall
         post_install_clean
         ;;
     patch_only)
-        patch_postinstall
+        #patch_postinstall
         ;;
     *)
         usage
