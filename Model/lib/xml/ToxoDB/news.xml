@@ -30,31 +30,31 @@
     Proteomics of the lysine-acetylome of intra- and extracellular <em>T.
       gondii </em>(RH) tachyzoites (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22544907"><strong>Jeffers
         <em>e</em><em>t al.</em></strong></a> and <a href="http://www.ncbi.nlm.nih.gov/pubmed/23403842"><strong>Xue
-        <em>et al.</em></strong></a>). <br>
+        <em>et al.</em></strong></a>). <<br><br>
     <ul>
       <li>Genes with mass spec evidence from intracellular and/or extracellular
         samples may be interrogated in ToxoDB.&nbsp; For example, <a href="http://toxodb.org/toxo/im.do?s=00d80d8594a80091"><span
             style="font-weight: bold;">this
             two-step search strategy</span></a> identifies genes that have mass
         spec evidence from intracellular parasites but no evidence from
-        extracellular parasites. </li>
+        extracellular parasites. <br></li>
     </ul>
     <ul>
       <li>Visit the Protein section of individual gene record pages to view
-        proteomics data in tabulated and graphic form.</li>
+        proteomics data in tabulated and graphic form.<br></li>
     </ul>
     <ul>
       <li>View peptides in a genomic context using the <a href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=1654900;stop=1659599;ref=TGME49_chrX;width=800;version=100;flip=0;grid=1;id=db092309f5f25d4f6d904efd8f837565;l=SullivanMassSpecPeptides%1EGene;h_feat=tgme49_235920%40yellow"><strong>Genome
-            Browser</strong></a>. </li>
+            Browser</strong></a>. <br><br></li>
     </ul>
     High throughput sequencing (HTS) of over 60&nbsp; <em>T. gondii</em>
     strains (unpublished).&nbsp; Paired end Illumina sequencing was performed on
     more than 60 strains spanning the 16 haplogroups identified in the <em>T.
       gondii</em> sequencing <a href="http://toxodb.org/toxo/communityDownload.do?fname=Toxo_Sequencing_WhitePaper.pdf"><strong>white
-        paper</strong></a>. HTS SNP data may be searched in two ways:<br>
+        paper</strong></a>. HTS SNP data may be searched in two ways:<br><br><br>
     <ol>
       <ol>
-        <li>Genes with specified SNP characteristics may be identified using the
+        <li>1. Genes with specified SNP characteristics may be identified using the
           "<a style="font-weight: bold;" href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesBySnps">HTS
             SNP Characteristics</a>" query located under the "Population
           Biology" search category.&nbsp; All SNPs are mapped onto the ME49
@@ -70,7 +70,7 @@
           reads.<br>
           <br>
         </ul>
-        <li>SNPs may be identified using any of the queries located under the
+        <li>2. SNPs may be identified using any of the queries located under the
           heading "SNPs" in the "Identify other data types" section.&nbsp; SNPs
           may be identified based on their <strong><a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=SnpQuestions.SnpBySourceId">IDs</a></strong>,
           <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalSnpQuestions.SnpsByGeneId"><span
