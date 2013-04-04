@@ -22,6 +22,124 @@
        <attribute name="category">release</attribute>
        <attribute name="item">           
          <![CDATA[
+<body><span style="font-family: Arial;"><strong>We are pleased to
+        announce the release of MicrosporidiaDB </strong><strong>4</strong><strong>.0</strong><br>
+      <br>
+      <strong>New data in this release:</strong><br>
+      <br>
+    </span><br>
+    <span style="font-family: Arial;"><span style="font-family: Arial;"><span style="text-decoration: underline;">RNA-sequencing
+          of <em>N. parisii </em>ERT1 infection in <em>C. elegans</em> (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22813931"><strong>Cuomo
+              </strong><strong><em>et al.</em></strong></a>)</span><br>
+        <br>
+      </span></span>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="font-family: Arial;"><a
+              href="http://microsporidiadb.org/micro/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence"><strong>Search
+                this dataset</strong></a> to find <em>N. parisii</em> genes
+            that are differentially expressed between time points during the
+            first 64 hours post-infection or by their percentile
+            expression.&nbsp; </span></span></li>
+    </ul>
+    <span style=" font-family: Arial;"><span style=" font-family: Arial;"></span></span>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="font-family: Arial;">View
+            RNA-Seq reads aligned to the genome with the GBrowse track:&nbsp; <a
+              href="http://microsporidiadb.org/cgi-bin/gbrowse/microsporidiadb/?start=376500&amp;stop=379099&amp;ref=JH605027&amp;width=800&amp;version=100&amp;flip=0&amp;grid=1&amp;id=9c588ce7e7b98d362ccabd63d53ca68c&amp;l=Gene%1Ecoverage_nparERTm1_Troemel_Time_Course_rnaSeq_RSRC&amp;h_feat=nepg_02165%40yellow&amp;auth_tkt=MDYzZTA1YTRiNDViOGRiYTA0Yzc1NTQ3MzM4YTdlOTQ1MTQxMWY0Y2FwaWRiIWFwaWRiITEzNjMyMjIzNDg6MC4wLjAuMA=="><strong><em>N.
+                  parisii </em></strong><strong>Infection Time Series (log2)
+                (Cuomo et al.)</strong></a>.&nbsp; </span></span></li>
+    </ul>
+    <span style=" font-family: Arial;"><span style=" font-family: Arial;"></span></span>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="font-family: Arial;">View
+            a plot of transcript level vs. hours post-infection for individual <em>N.
+              parisii</em> genes in the Expression section of gene pages.&nbsp;
+          </span></span></li>
+    </ul>
+    <span style=" font-family: Arial;"><span style=" font-family: Arial;"></span></span>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="font-family: Arial;">
+            Combine this dataset with other data in MicrosporidiaDB using a
+            search strategy.&nbsp; For example, <a href="http://microsporidiadb.org/micro/im.do?s=afc0e62c682516ef"><span
+                style="font-weight: bold;">this
+                strategy</span></a> identifies <em>N. parisii</em> genes </span>that
+          are upregulated late in the time course compared to early time points.<span
+            style="text-decoration: underline;"></span></span></li>
+    </ul>
+    <span style="font-family: Arial;"><span style="text-decoration: underline;"><br>
+        Genomic sequence and annotation for the following organisms:</span></span><span
+      style="font-family: Arial;"><br>
+      <br>
+    </span>
+    <ul>
+      <li><span style="font-family: Arial;"><em>Encephalitozoon romaleae</em>
+          SJ-2008 (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22802648"><strong>Pombert
+              <span style="font-style: italic;">et al.</span></strong></a>)</span></li>
+    </ul>
+    <span style=" font-family: Arial;"></span>
+    <ul>
+      <li><span style="font-family: Arial;"><em>Vavraia culicis</em> floridensis
+          (The Broad Institute)</span></li>
+    </ul>
+    <span style=" font-family: Arial;"></span>
+    <ul>
+      <li><span style="font-family: Arial;"><em>Vittaforma corneae</em> ATCC
+          50505 (The Broad Institute)</span></li>
+    </ul>
+    <ul>
+    </ul>
+    <span style="font-family: Arial;"><br>
+      Unannotated genomic sequence for:<br>
+    </span>
+    <ul>
+      <li><span style="font-family: Arial;"><em>Anncaliia algerae</em> Undeen (<a
+            href="http://www.ncbi.nlm.nih.gov/pubmed/23072807"><span
+              style="font-style: italic; font-weight: bold;">Peyretaillade
+              et al.</span></a>)</span></li>
+    </ul>
+    <span style="font-family: Arial;"> </span><br>
+    <span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+        Functionality:<o:p></o:p></b></span><br>
+    <span style="font-family: Arial;"><u><br>
+        PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span style="font-family: Arial;"><br>
+      <br>
+    </span>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
+        primers to any region of the genome using this interactive, graphic
+        interface. To reach this tool, <strong><a href="http://microsporidiadb.org/cgi-bin/gbrowse/microsporidiadb/">open
+the
+            MicrosporidiaDB Genome Browser</a></strong> at your genomic region
+        of interest, choose "Design PCR primers" from the dropdown menu and
+        click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
+        primers, focus on a PCR product size range by highlighting the area on
+        the scale, then enter your preferred PCR parameters in the text boxes
+        and click Design Primer.<o:p></o:p></span></div>
+    <span style="font-family: Arial;"> </span> <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">
+      and <a href="http://twitter.com/eupathdb">Twitter</a></span> <br style="font-family: Arial;">
+  </body>
+          ]]>
+       </attribute>
+   </record>
+<record>
+       <attribute name="headline">MicrosporidiaDB 4.0 released</attribute>
+       <attribute name="date">11 March 2013 15:00</attribute>
+       <attribute name="tag">micro03_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
 <body>
     <div style="text-align: justify; font-family: Arial;"> <span style="font-weight: bold;">We
         are pleased to announce the release of MicrosporidiaDB 3.0</span><br style="font-weight: bold;">
