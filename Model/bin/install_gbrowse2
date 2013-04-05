@@ -98,7 +98,7 @@ configure_gb() {
 
     # Build.PL have_c_compiler() uses ExtUtils::CBuilder::Base to test compile sample C code 
     # in File::Spec->tmpdir, which is /tmp unless $TMPDIR is set. 
-    # Using /tmp causes race conditions when several sites are built an once
+    # Using /tmp causes race conditions when several sites are built at once
     # and the /tmp/compilet.c objects get deleted from one build while still in use by another.
     # So we must ensure that each have_c_compiler() is isolated.
     mkdir -p $BUILD_DIR
