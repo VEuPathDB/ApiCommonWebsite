@@ -55,4 +55,15 @@
         </classes>
     </test>
 
+    <test name="OrthoMCL" junit="false" enabled="true">
+        <groups>
+          <run>
+            <include name="deployment"/>
+          </run>
+        </groups>
+        <classes>
+            <class name="org.apidb.apicommonwebsite.watar.SmokeTests"/>
+        </classes>
+    </test>
+
 </suite> 
