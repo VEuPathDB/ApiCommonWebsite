@@ -33,31 +33,36 @@ public class SmokeTests {
         webappname = System.getProperty("webappname");
     }
 
-    @Test(description="Assert HTTP header status is 200 OK for home page.")
+    @Test(description="Assert HTTP header status is 200 OK for home page.",
+          groups = { "deployment" })
     public void HomePage_HttpHeaderStatusIsOK() throws Exception {
         String url = baseurl + "/" + webappname + "/";
         assertHeaderStatusMessageIsOK(url);
     }
 
-    @Test(description="Assert HTTP header status is 200 OK for WsfService url as test of Axis installation.")
+    @Test(description="Assert HTTP header status is 200 OK for WsfService url as test of Axis installation.",
+          groups = { "deployment", "webservice" })
     public void WsfServicePage_HttpHeaderStatusIsOK() throws Exception {
         String url = baseurl + "/" + webappname + Utilities.WSF_PATH;
         assertHeaderStatusMessageIsOK(url);
     }
 
-    @Test(description="Assert HTTP header status is 200 OK for News url as test of valid XML record.")
+    @Test(description="Assert HTTP header status is 200 OK for News url as test of valid XML record.", 
+          groups = { "xmlrecord" })
     public void News_HttpHeaderStatusIsOK() throws Exception {
         String url = baseurl + "/" + webappname + Utilities.NEWS_PATH;
         assertHeaderStatusMessageIsOK(url);
     }
 
-    @Test(description="Assert HTTP header status is 200 OK for Methods url as test of valid XML record.")
+    @Test(description="Assert HTTP header status is 200 OK for Methods url as test of valid XML record.", 
+          groups = { "xmlrecord" })
     public void Methods_HttpHeaderStatusIsOK() throws Exception {
         String url = baseurl + "/" + webappname + Utilities.METHODS_PATH;
         assertHeaderStatusMessageIsOK(url);
     }
 
-    @Test(description="Assert HTTP header status is 200 OK for GeneRecord page.", 
+    @Test(description="Assert HTTP header status is 200 OK for GeneRecord page.",
+          groups = { "wdkrecord" },
           dataProvider="defaultGeneId",
           dependsOnMethods={"HomePage_HttpHeaderStatusIsOK"})
     public void GeneRecordPage_HttpHeaderStatusIsOK(String geneId) throws Exception {
