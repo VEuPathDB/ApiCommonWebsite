@@ -40,7 +40,7 @@
       <tstamp>
           <format property="start.time" pattern="yyyy-MM-dd'T'k:mm" />
       </tstamp>
-
+      
       <!-- use Jenkins BUILD_NUMBER if available otherwise timestamp -->
       <property name="env.BUILD_NUMBER" value="${start.time}"/>
       <property name="buildNumber" value="${env.BUILD_NUMBER}"/>
@@ -48,6 +48,10 @@
       <taskdef name="testng" classname="org.testng.TestNGAntTask" >
           <classpath refid="project_classpath"/>
       </taskdef>
+
+      <property name="outputdir" value="${targetDir}/results/${buildNumber}" />
+      <mkdir dir="${targetDir}/results" />
+      <mkdir dir="${targetDir}/results/${buildNumber}" />
 
   </target>
 
@@ -65,15 +69,31 @@
   </target>
 
   <target name="smoketest" depends="testinit">
-    <property name="outputdir" value="${targetDir}/results/${buildNumber}" />
-    <mkdir dir="${targetDir}/results" />
-    <mkdir dir="${targetDir}/results/${buildNumber}" />
     <testng 
         outputdir="${outputdir}"
         useDefaultListeners="false"
         listeners="org.testng.reporters.XMLReporter"
         verbose="3"
      >
+        <reporter classname="org.testng.reporters.XMLReporter">
+              <property name="splitClassAndPackageNames" value="true"/>
+              <property name="stackTraceOutputMethod" value="0"/>
+        </reporter>
+        <classpath refid="project_classpath"/>
+        <xmlfileset dir="${targetDir}/config" includes="smoketest_ng.xml" />
+        <sysproperty key="baseurl" value="${baseurl}"/>
+        <sysproperty key="webappname" value="${webappname}"/>
+    </testng>
+  </target>
+
+  <target name="testbynames" depends="testinit">
+    <testng 
+        testnames="${testnames}"
+        outputdir="${outputdir}"
+        useDefaultListeners="false"
+        listeners="org.testng.reporters.XMLReporter"
+        verbose="3"
+    >
         <reporter classname="org.testng.reporters.XMLReporter">
               <property name="splitClassAndPackageNames" value="true"/>
               <property name="stackTraceOutputMethod" value="0"/>

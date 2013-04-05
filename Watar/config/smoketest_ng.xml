@@ -7,4 +7,40 @@
         </classes>
     </test>
 
+    <test name="Integration" junit="false" enabled="true">
+        <groups>
+          <run>
+            <include name="deployment"/>
+          </run>
+        </groups>
+        <classes>
+            <class name="org.apidb.apicommonwebsite.watar.SmokeTests"/>
+        </classes>
+    </test>
+
+    <test name="QA" junit="false" enabled="true">
+        <groups>
+          <run>
+            <include name="deployment"/>
+            <include name="xmlrecord"/>
+          </run>
+        </groups>
+        <classes>
+            <class name="org.apidb.apicommonwebsite.watar.SmokeTests"/>
+        </classes>
+    </test>
+
+    <test name="WWW" junit="false" enabled="true">
+        <groups>
+          <run>
+            <include name="deployment"/>
+            <include name="xmlrecord"/>
+            <include name="wdkrecord"/>
+          </run>
+        </groups>
+        <classes>
+            <class name="org.apidb.apicommonwebsite.watar.SmokeTests"/>
+        </classes>
+    </test>
+
 </suite> 
