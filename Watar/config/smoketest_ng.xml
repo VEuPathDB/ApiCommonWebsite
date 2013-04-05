@@ -43,4 +43,16 @@
         </classes>
     </test>
 
+    <test name="PortalWWW" junit="false" enabled="true">
+        <groups>
+          <run>
+            <include name="deployment"/>
+            <include name="xmlrecord"/>
+          </run>
+        </groups>
+        <classes>
+            <class name="org.apidb.apicommonwebsite.watar.SmokeTests"/>
+        </classes>
+    </test>
+
 </suite> 
