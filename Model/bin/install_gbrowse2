@@ -4,8 +4,8 @@
 
 # Requires same webPropFile used in WDK build
 
-#GBROWSE_SRC_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse/src
-GBROWSE_SRC_PATH=$PROJECT_HOME/GBrowse/src
+GBROWSE_SRC_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse/src
+#GBROWSE_SRC_PATH=$PROJECT_HOME/GBrowse/src
 
 GBROWSE_SRC_DIR=GBrowse
 BIOPERL_SRC_DIR=BioPerl
