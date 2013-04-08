@@ -43,6 +43,10 @@
   </target>  
 -->
 
+  <target name="GBrowse-Installation">
+    <ant antfile="../GBrowse/build.xml" target="GBrowse-Installation"/>
+  </target>
+
   <target name="ApiCommonShared-Installation">
     <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared-Installation">
       <property name="project" value="ApiCommonShared"/>
@@ -177,7 +181,8 @@
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonData/Datasources-Installation">
 -->
- <target name="ApiCommonWebsite-Installation" depends="EuPathSiteCommon-Installation,
+ <target name="ApiCommonWebsite-Installation" depends="GBrowse-Installation,
+                                                       EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,
