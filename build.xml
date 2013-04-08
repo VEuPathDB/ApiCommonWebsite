@@ -181,7 +181,8 @@
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonData/Datasources-Installation">
 -->
- <target name="ApiCommonWebsite-Installation" depends="GBrowse-Installation,
+<!--GBrowse-Installation,-->
+ <target name="ApiCommonWebsite-Installation" depends="
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonWebsite/Site-Installation,
