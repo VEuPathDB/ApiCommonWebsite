@@ -1,18 +1,17 @@
 #!/bin/sh
 
-# Unpack and install GBrowse and BioPerl 5 from ApicommonWebsite archived 
-# files.
+# Install modified GBrowse and BioPerl from ApicommonWebsite files.
 
 # Requires same webPropFile used in WDK build
 
+GBROWSE_SRC_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse/src
+#GBROWSE_SRC_PATH=$PROJECT_HOME/GBrowse/src
 
-GBROWSE_TAR_PATH=$PROJECT_HOME/ApiCommonWebsite/Site/doc/gbrowse
-GBROWSE_TAR_FILE=GBrowse-2.48.tar.gz
-BIOPERL_TAR_FILE=BioPerl-1.6.1.tar.gz
-BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.29.tar.gz
-#BIOGRAPHICS_TAR_FILE=Bio-Graphics-2.31.tar.gz
+GBROWSE_SRC_DIR=GBrowse
+BIOPERL_SRC_DIR=BioPerl
+BIOGRAPHICS_SRC_DIR=BioGraphics
 
-BUILD_DIR=$GBROWSE_TAR_PATH/gbrowse_build_tmp
+BUILD_DIR=$GBROWSE_SRC_PATH/gbrowse_build_tmp
 
 get_install_paths() {
     WEB_PROP_FILE=$1
@@ -42,73 +41,50 @@ mkdirs() {
     mkdir $GUS_HOME/lib/gbrowse 2>/dev/null
 }
 
-unpack_gbrowse_src() {
-    echo "INSTALL: unpacking gbrowse source...."
-    
-    # tar-1.14 uses --strip-path, tar-1.14.90+ uses --strip-components
-    if $( tar --strip-path 2>&1 | grep -q 'unrecognized option' ); then
-        strip_opt='--strip-components'
-    else
-        strip_opt='--strip-path'
-    fi
-    
-    if ! (
-        mkdir -p $BUILD_DIR && 
-        tar zxf \
-        $GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE \
-        $strip_opt 1 \
-        -C $BUILD_DIR 2> /dev/null); then
-        echo "FATAL: Unable to un-tar Generic-Genome-Browser package '$GBROWSE_TAR_PATH/$GBROWSE_TAR_FILE'. Exiting..."
-        exit 1
-    fi
-}
-
 post_install_clean() {
-    if [ ! -d "$BUILD_DIR" ]; then
-        return
-    fi
-    if ! rm -rf  $BUILD_DIR; then
-    echo "WARNING: Unable to remove temporary Gbrowse build directory '$BUILD_DIR'"
-    fi
+
+    rm -rf $BUILD_DIR
+
+    tmpfiles=( _build Build blib INSTALL.SKIP htdocs/tmp lib/Bio/Graphics/Browser2/CAlign.c )
+
+    echo "Cleaning up temporary files..."
+    for tmp in ${tmpfiles[@]}; do
+      echo "Deleting $GBROWSE_SRC_PATH/$GBROWSE_SRC_DIR/$tmp"
+      rm -rf $GBROWSE_SRC_PATH/$GBROWSE_SRC_DIR/$tmp
+    done
 }
 
-# unpack and install pre-made BioPerl v1.6.1 into cgi-lib
+copy_without_svn() {
+    srcdir=$1
+    destdir=$2
+    cd $srcdir
+    for file in `find . | grep -v "\.svn" | sed 's/^\.\///' | sort`; do
+        if [[ -d $srcdir/$file && ( ! -d $destdir/$file ) ]]; then
+            #echo "Making dir: $destdir"
+            mkdir $destdir/$file
+        fi
+        if [[ -f $srcdir/$file ]]; then
+            #echo "Copying $file to $destdir/$file"
+            cp $srcdir/$file $destdir/$file
+        fi
+    done
+    cd -
+}
+
 install_local_bioperl() {
     echo "INSTALL: installing bioperl...."
-    echo "tar zxf $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE"
-    if ! tar zxf \
-        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
-        -C $cgilibTargetDir 2> /dev/null; then
-        echo "FATAL: Unable to un-tar BioPerl package '$GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE'. Exiting..."
-        echo "tar zxf \
-        $GBROWSE_TAR_PATH/$BIOPERL_TAR_FILE \
-        -C $cgilibTargetDir"
-        exit 1
-    fi
+    copy_without_svn $GBROWSE_SRC_PATH/$BIOPERL_SRC_DIR $cgilibTargetDir
 }
 
-# unpack and install pre-made BioGraphics v2.26 into cgi-lib
 install_local_biographics() {
     echo "INSTALL: installing bioperl...."
-    echo "tar zxf $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE"
-    if ! tar zxf \
-        $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
-        -C $cgilibTargetDir 2> /dev/null; then
-        echo "FATAL: Unable to un-tar BioGraphics package '$GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE'. Exiting..."
-        echo "tar zxf \
-        $GBROWSE_TAR_PATH/$BIOGRAPHICS_TAR_FILE \
-        -C $cgilibTargetDir"
-        exit 1
-    fi
+    copy_without_svn $GBROWSE_SRC_PATH/$BIOGRAPHICS_SRC_DIR $cgilibTargetDir
 }
 
 configure_gb() {
-
     
     mkdirs
-    
     install_local_bioperl
-
     install_local_biographics
 
     export PERL5LIB=$cgilibTargetDir:$PERL5LIB
@@ -117,20 +93,16 @@ configure_gb() {
         echo "(@INC contains:" `perl -e "print join ' ', @INC"` ")"
         exit 1
     fi
-        
-    unpack_gbrowse_src
-    
-    cd $BUILD_DIR
 
-    patch_installer
-
+    cd $GBROWSE_SRC_PATH/$GBROWSE_SRC_DIR
     echo "INSTALL: perl Build.PL..."
 
     # Build.PL have_c_compiler() uses ExtUtils::CBuilder::Base to test compile sample C code 
     # in File::Spec->tmpdir, which is /tmp unless $TMPDIR is set. 
-    # Using /tmp causes race conditions when several sites are built an once
+    # Using /tmp causes race conditions when several sites are built at once
     # and the /tmp/compilet.c objects get deleted from one build while still in use by another.
     # So we must ensure that each have_c_compiler() is isolated.
+    mkdir -p $BUILD_DIR
     export TMPDIR=$BUILD_DIR
 
     perl Build.PL  --htdocs=$htdocsTargetDir/gbrowse                          \
@@ -147,7 +119,6 @@ configure_gb() {
 
 }
 
-
 build_install() {
     echo "INSTALL: Build install..."
     perl Build install
@@ -157,46 +128,6 @@ build_install() {
         exit 1
     fi
 }
-
-patch_installer() {
-    # patch GBrowseInstall.pm to remove interactive and sudo bits
-    echo "INSTALL: patching for non-interactive install"
-    patch -d $BUILD_DIR/install_util -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/noninteractive_install.patch
-    echo "INSTALL: patching to change state cookie name"
-    patch -p1 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/cookie.patch
-    echo "INSTALL: patching MANIFEST"
-    patch -p0 -d $BUILD_DIR  -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/manifest.patch
-}
-
-patch_postinstall() {
-    echo "INSTALL: patching installed files"
-    arch=$(arch)
-    [ "$arch" == "i686" ] && arch=i386
-    patch -p1 -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/umask.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/RenderPanels.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/DataSource.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/Plugin.pm.patch
-    patch -d $GUS_HOME/lib/gbrowse -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/GBrowse.conf.patch
-    patch -d $GUS_HOME/lib/gbrowse/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/SequenceDumper.pm.patch
-    patch -d $GUS_HOME/lib/gbrowse/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/TrackDumper.pm.patch
-    patch -d $GUS_HOME/lib/gbrowse/plugins -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/PrimerDesigner.pm.patch
-    patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/balloon.config.js.patch
-    patch -d $htdocsTargetDir/gbrowse/css/dropdown -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/dropdown.css.patch
-    patch -d $cgibinTargetDir -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/gbrowse_img.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/RegionSearch.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/DataLoader.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/CachedTrack.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/Util.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/Render.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2 -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/SubtrackTable.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/Render -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/HTML.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/DataLoader -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/bam.pm.patch
-    patch -d $cgilibTargetDir/Bio/Graphics/Glyph -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/wiggle_xyplot.pm.patch
-    #patch -d $cgilibTargetDir/Bio/Graphics/Glyph -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.48/secondary_structure.pm.patch
-#    patch -d $htdocsTargetDir/gbrowse/js -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/js_popups.patch
-#    patch -d $cgilibTargetDir/Bio/Graphics/Browser2/UserTracks -b -N -i $GBROWSE_TAR_PATH/patches/gbrowse_v2.39/Database.pm.patch
-}
-
 
 usage() {
     echo $"Usage: $(basename $0) {webPropFile} {build|build_install|build_install_patch|patch_only}"
@@ -222,13 +153,10 @@ case "$2" in
         post_install_clean
         ;;
     build_install_patch)
+        # keep this command for backward compatibility
         configure_gb    
         build_install
-        patch_postinstall
         post_install_clean
-        ;;
-    patch_only)
-        patch_postinstall
         ;;
     *)
         usage

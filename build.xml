@@ -18,6 +18,14 @@
     </ant>
   </target>
 
+  <target name="GBrowse-Checkout" unless="GBrowse.present">
+    <ant target="defaultProjectCheckout" inheritAll="false">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/GBrowse"/>
+      <property name="project" value="GBrowse"/>
+      <property name="version" value="??"/>
+    </ant>
+  </target>
+
   <target name="EuPathSiteCommon-Checkout" unless="EuPathSiteCommon.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/EuPathSiteCommon"/>
@@ -34,6 +42,10 @@
     </ant>
   </target>  
 -->
+
+  <target name="GBrowse-Installation">
+    <ant antfile="../GBrowse/build.xml" target="GBrowse-Installation"/>
+  </target>
 
   <target name="ApiCommonShared-Installation">
     <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared-Installation">
@@ -116,12 +128,14 @@
   <target name="ApiCommonWebsite-ChildCheckout">
 <!--    <available file="../CBIL" type="dir" property="CBIL.present" />
     <available file="../WDK" type="dir" property="WDK.present" />  -->
+    <available file="../Gbrowse" type="dir" property="GBrowse.present" />
     <available file="../EuPathSiteCommon" type="dir"  property="EuPathSiteCommon.present" />
     <available file="../ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
     <available file="../ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
 <!--     <antcall target="CBIL-Checkout" />
     <antcall target="WDK-Checkout" /> -->
+    <antcall target="GBrowse-Checkout"/>
     <antcall target="EuPathSiteCommon-Checkout"/>
     <antcall target="ApiCommonWebService-Checkout" />
     <antcall target="ApiCommonData-Checkout"/>
@@ -167,7 +181,9 @@
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonData/Datasources-Installation">
 -->
- <target name="ApiCommonWebsite-Installation" depends="EuPathSiteCommon-Installation,
+<!--GBrowse-Installation,-->
+ <target name="ApiCommonWebsite-Installation" depends="
+                                                       EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Model-Installation,

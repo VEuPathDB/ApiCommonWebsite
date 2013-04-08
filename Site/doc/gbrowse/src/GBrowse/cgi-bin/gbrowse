@@ -8,7 +8,7 @@ use CGI;
 use Bio::Graphics::Browser2;
 use Bio::Graphics::Browser2::Render::HTML;
 
-umask 022;
+umask 0;
 
 my $fcgi    = Bio::Graphics::Browser2::Render->fcgi_request;
 my $init;
