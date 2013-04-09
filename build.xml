@@ -44,7 +44,10 @@
 -->
 
   <target name="GBrowse-Installation">
-    <ant antfile="../GBrowse/build.xml" target="GBrowse-Installation"/>
+    <ant antfile="../GBrowse/build.xml" target="GBrowse-Installation">
+      <property name="project" value="GBrowse"/>
+      <property name="version" value="??"/>
+    </ant>
   </target>
 
   <target name="ApiCommonShared-Installation">
@@ -128,7 +131,7 @@
   <target name="ApiCommonWebsite-ChildCheckout">
 <!--    <available file="../CBIL" type="dir" property="CBIL.present" />
     <available file="../WDK" type="dir" property="WDK.present" />  -->
-    <available file="../Gbrowse" type="dir" property="GBrowse.present" />
+    <available file="../GBrowse" type="dir" property="GBrowse.present" />
     <available file="../EuPathSiteCommon" type="dir"  property="EuPathSiteCommon.present" />
     <available file="../ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
     <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
@@ -181,8 +184,8 @@
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonData/Datasources-Installation">
 -->
-<!--GBrowse-Installation,-->
- <target name="ApiCommonWebsite-Installation" depends="
+
+ <target name="ApiCommonWebsite-Installation" depends="GBrowse-Installation,
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonWebsite/Site-Installation,
@@ -258,10 +261,11 @@
                                                            ApiCommonWebsite/Site-WebInstallation">
  </target>
 -->
-  <target name="ApiCommonWebsite-WebInstallation" depends="EuPathSiteCommon-WebInstallation,
+  <target name="ApiCommonWebsite-WebInstallation" depends="GBrowse-Installation,
+                                                           EuPathSiteCommon-WebInstallation,
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/Site-WebInstallation">
- </target>
+  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
 
