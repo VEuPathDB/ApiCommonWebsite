@@ -6,6 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleRNASeq );
 use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
 
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -16,11 +17,7 @@ sub init {
 
   my $dbh = $self->getQueryHandle();
 
-  my $sql = "select ps.name
-from apidb.profileset ps, sres.externaldatabase d, sres.externaldatabaserelease r
-where ps.external_database_release_id = r.external_database_release_id
-and r.external_database_id = d.external_database_id
-and d.name = ?";
+  my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetName);
