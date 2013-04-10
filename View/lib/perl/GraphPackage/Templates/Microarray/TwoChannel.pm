@@ -11,13 +11,36 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
 
-sub getColors {
-  return ['blue', 'grey'];
-}
+
+
+# Subclasses can adjust the RCode but we won't let the templates do this
+sub getPercentileRAdjust {}
+
+sub getRatioRAdjust {}
+
+sub isCustomGraph {}
+
+# Template subclasses need to implement this....should return 'bar' or 'line'
+sub getGraphType {}
+
+# Template subclasses need to implement this....should be semicolon list of colors
+sub getColorsString { }
+
+# Template subclasses need to implement this... should be true/false
+sub getForceXLabelsHorizontalString {}
+
+# Template subclasses should override if we have loaded extra profilesets which are not to be graphed
+sub excludedProfileSetsString { }
+
+# Template subclasses should override if we want to change the sample names
+sub getSampleLabelsString { [] }
+
 
 sub init {
   my $self = shift;
   $self->SUPER::init(@_);
+
+  return $self if($self->isCustomGraph());
 
   my $datasetName = $self->getDataset();
 
@@ -64,6 +87,7 @@ sub makeAndSetPlots {
 
   my $bottomMarginSize = $self->getBottomMarginSize();
   my $colors= $self->getColors();
+  my $sampleLabels = $self->getSampleLabels();
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($profileSetsArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($percentileSetsArray);
@@ -72,6 +96,8 @@ sub makeAndSetPlots {
   
   if(lc($self->getGraphType()) eq 'bar') {
     $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+    $ratio->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
+
   } elsif(lc($self->getGraphType()) eq 'line') {
     $ratio = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   } else {
@@ -80,10 +106,14 @@ sub makeAndSetPlots {
 
   $ratio->setProfileSets($profileSets);
   $ratio->setColors([$colors->[0]]);
+  $ratio->setAdjustProfile($self->getRatioRAdjust());
+  $ratio->setSpaceBetweenBars(0);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
+  $percentile->setAdjustProfile($self->getPercentileRAdjust());
+  $percentile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
 
 
   if($bottomMarginSize) {
@@ -91,16 +121,14 @@ sub makeAndSetPlots {
     $percentile->setElementNameMarginSize($bottomMarginSize);
   }
 
+  if(@$sampleLabels) {
+    $ratio->setSampleLabels($sampleLabels);
+    $percentile->setSampleLabels($sampleLabels);
+  }
+
   $self->setGraphObjects($ratio, $percentile);
 }
 
-# subclasses need to implement this....should return 'bar' or 'line'
-sub getGraphType {}
-
-
-
-# this should be overridden by the subclass if we have loaded extra profilesets which are not to be graphed
-sub excludedProfileSetsString { }
 
 # get the string and make an array
 sub excludedProfileSetsArray { 
@@ -121,9 +149,71 @@ sub isExcludedProfileSet {
   return 0;
 }
 
+sub getSampleLabels {
+  my ($self) = @_;
+
+  my $sampleLabelsString = $self->getSampleLabelsString();
+  my @rv = split(/;/, $sampleLabelsString);
+
+  return \@rv;
+}
+
+sub getColors {
+  my ($self) = @_;
+
+  my $colorsString = $self->getColorsString();
+
+  if($colorsString) {
+    my @rv = split(/;/, $colorsString);
+    return \@rv;
+  }
+
+  return ['blue', 'grey'];
+}
+
+
+sub forceXLabelsHorizontal {
+  my ($self) = @_;
+
+  if(lc($self->getForceXLabelsHorizontalString()) eq 'true') {
+    return 1;
+  }
+  return 0;
+}
+
+
 1;
 
 #--------------------------------------------------------------------------------
 
+
+# This is an example of customizing a graph.  The template will provide things like colors (ie. we still inject stuff for it below!!
+package ApiCommonWebsite::View::GraphPackage::Templates::Microarray::TwoChannel::tbruTREU927_microarrayExpression_EMEXP2026_DHH1_mutant_pLEW100_24H_RSRC;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Microarray::TwoChannel );
+use strict;
+
+sub isCustomGraph { 1 }
+
+sub init {
+  my ($self) = @_;
+  $self->SUPER::init(@_);
+
+  my @profileSetsArray = (['DHH1 induced vs. uninduced procyclics - wild type', 'standard error - DHH1 induced vs. uninduced procyclics - wild type', ],
+                          ['DHH1 induced vs. uninduced procyclics - DEAD:DQAD mutant', 'standard error - DHH1 induced vs. uninduced procyclics - DEAD:DQAD mutant', ],
+      );
+
+  my @percentileSetsArray = (['red percentile - DHH1 induced vs. uninduced procyclics - wild type', '', ['TEMP']],
+                             ['red percentile - DHH1 induced vs. uninduced procyclics - DEAD:DQAD mutant', '',, ['TEMP']],
+                             ['green percentile - DHH1 induced vs. uninduced procyclics - wild type', '',, ['TEMP']],
+                             ['green percentile - DHH1 induced vs. uninduced procyclics - DEAD:DQAD mutant', '',, ['TEMP']],
+      );
+
+  $self->makeAndSetPlots(\@profileSetsArray, \@percentileSetsArray);
+}
+
+sub getRatioRAdjust { return 'profile.df = t(as.matrix(colSums(profile.df, na.rm=T))); stderr.df = t(as.matrix(colSums(stderr.df, na.rm=T)))'}
+sub getPercentileRAdjust { return 'profile.df = rbind(profile.df[1:2,1], profile.df[3:4,1]);stderr.df = 0;' }
+
+1;
 
 # TEMPLATE_ANCHOR microarraySimpleTwoChannel
