@@ -71,6 +71,7 @@ sub run {
          my $template     = $Cgi->param('template');
          my $dataset     = $Cgi->param('dataset');
 
+
    my $thumbnail_b    = $Cgi->param('thumb');
    my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
@@ -110,6 +111,9 @@ sub run {
 	 $pkg = "Templates" if($template);
 
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
+
+         # dataset Need to strip the dashes from package name
+         $dataset =~ s/-//g;
 
          eval "require $class";
          eval "import $class";
