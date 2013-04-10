@@ -15,9 +15,6 @@ sub getColors {
   return ['blue', 'grey'];
 }
 
-sub getBottomMarginSize {}
-
-
 sub init {
   my $self = shift;
   $self->SUPER::init(@_);
@@ -35,11 +32,12 @@ sub init {
   my ($profile, $stderrProfile, $redPctProfile, $greenPctProfile, $count);
 
   while(my ($profileName) = $sh->fetchrow_array()) {
+    next if($self->isExcludedProfileSet($profileName));
     if($profileName =~ /^standard error - /) {
       $stderrProfile = $profileName;
     } elsif($profileName =~ /^red percentile - /) {
       $redPctProfile = $profileName;
-    } elsif($profileName =~ /^gree percentile - /) {
+    } elsif($profileName =~ /^green percentile - /) {
       $greenPctProfile = $profileName;
     } else {
       $profile = $profileName;
@@ -51,23 +49,24 @@ sub init {
   die "Expected 4 profile sets but got $count for $datasetName!!" if($count != 4);
 
 
-  my @profileSetsArray = (['$profile', '$stderrProfile', ]);
-  my @percentileSetsArray = (['$redPctProfile', '',],
-                             ['$greenPctProfile', '',]);
+  my @profileSetsArray = ([$profile, $stderrProfile, ]);
+  my @percentileSetsArray = ([$redPctProfile, '',],
+                             [$greenPctProfile, '',]);
 
   $self->makeAndSetPlots(\@profileSetsArray, \@percentileSetsArray);
 
   return $self;
 }
 
+
 sub makeAndSetPlots {
   my ($self, $profileSetsArray, $percentileSetsArray) = @_;
 
-  my $bottomMarginSize = $self->getBotomMarginSize();
+  my $bottomMarginSize = $self->getBottomMarginSize();
   my $colors= $self->getColors();
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($profileSetsArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($percentileSetsArray);
 
   my $ratio;
   
@@ -98,8 +97,20 @@ sub makeAndSetPlots {
 # subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
+
+
 # this should be overridden by the subclass if we have loaded extra profilesets which are not to be graphed
-sub excludedProfileSetsArray { [] }
+sub excludedProfileSetsString { }
+
+# get the string and make an array
+sub excludedProfileSetsArray { 
+  my ($self) = @_;
+
+  my $excludedProfileSetsString = $self->excludedProfileSetsString();
+  my @rv = split(/;/, $excludedProfileSetsString);
+
+  return \@rv;
+}
 
 sub isExcludedProfileSet {
   my ($self, $psName) = @_;
