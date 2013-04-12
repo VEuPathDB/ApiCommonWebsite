@@ -28,7 +28,7 @@ sub init {
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
-      pct => {profiles => ['Lmajor RNASeq Spliced Leader And Poly A Sites from Myler percentile'],
+      pct => {profiles => ['RNASeq Spliced Leader Sites from Myler percentile - lmajFriedlin'],
               y_axis_label => 'Percentile',
               x_axis_labels => $xAxisLabels,
               default_y_max => 50,
