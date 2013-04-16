@@ -50,12 +50,18 @@
         intraerythrocytic life cycle may be displayed by selecting the
         appropriate check box to the right of the graphs.</li>
     </ul>
+    <br>
+    <ul style="text-align: justify;">
+    </ul>
     <ul style="text-align: justify;">
       <li>High throughput sequencing (HTS) of 65 clinical isolates from Gambia (<a
           href="http://www.plosgenetics.org/article/info:doi/10.1371/journal.pgen.1002992"><strong>Amambua-Ngwa
             </strong><strong><em>et al.</em></strong></a>).<u><o:p></o:p></u>&nbsp;
         This data may be used to identify single nucleotide polymorphisms (SNPs)
         between the sequenced isolates:</li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
     </ul>
     <ul style="text-align: justify;">
       <ul>
@@ -64,6 +70,11 @@
           from other studies.&nbsp; This <a href="http://plasmodb.org/plasmo/im.do?s=01512139d0389c89"><strong>search
               strategy</strong></a> defines all SNPs present in strains from
           this study.&nbsp; </li>
+      </ul>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+      <ul>
       </ul>
     </ul>
     <ul style="text-align: justify;">
@@ -77,6 +88,9 @@
                   that are lo</strong><strong>cated downstream of a SNP (in this
                   example 200 nucleotides downstream)</strong></a></li>
           </ul>
+          <br>
+          <ul>
+          </ul>
         </li>
       </ul>
     </ul>
@@ -84,6 +98,11 @@
       <ul>
         <li>View and download SNP records generated from pairwise comparisons of
           isolate sequences.</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
       </ul>
     </ul>
     <ul>
@@ -94,10 +113,20 @@ based
           This dataset can be queried by clicking on "HTS SNP Characteristics".</li>
       </ul>
     </ul>
+    <br>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
     <ul>
       <ul>
         <li>Search for individual SNP records based on criteria such as SNP ID,
           strain, genomic location, etc. </li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
       </ul>
     </ul>
     <ul>
@@ -109,10 +138,21 @@ SNPs,
               pfal3D7_Conway_HTS_SNP</strong>.</a></li>
       </ul>
     </ul>
+    <br>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
     <ul>
       <ul>
         <li>View SNP information for individual genes on record pages.<span style="mso-spacerun:yes">&nbsp;
             </span></li>
+      </ul>
+    </ul>
+    <span style=" mso-spacerun:yes"><br>
+    </span>
+    <ul>
+      <ul>
       </ul>
     </ul>
     <span style=" mso-spacerun:yes"></span>
@@ -122,6 +162,11 @@ SNPs,
 SNPs
               aligned to the genome</a></strong><strong> </strong>with the
           GBrowse track: HTS SNPs by coding potential.</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
       </ul>
     </ul>
     <ul>
@@ -136,6 +181,9 @@ SNPs
             style="font-weight: bold;">metabolite
             levels</span></a> and viewed graphically on compound pages.</li>
     </ul>
+    <br>
+    <ul>
+    </ul>
     <ul style="text-align: justify;">
       <li>Two new data types with searches have been added in this release:
         compounds and metabolic pathways.&nbsp; This beta-release of Compound
@@ -143,8 +191,10 @@ SNPs
         of PubChem records. Future releases will include compounds for
         additional metabolites and small molecules, and pathways from other
         sources such as MPMP, MetaCyc, etc. Please explore the site and contact
-        us with your feedback. <u><o:p></o:p></u><b style="mso-bidi-font-weight:normal"><o:p>
-          </o:p></b></li>
+        us with your feedback. </li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
     </ul>
     <b style=" mso-bidi-font-weight:normal"></b>
     <ul style="text-align: justify;">
@@ -158,6 +208,12 @@ SNPs
             style=" mso-bidi-font-weight:normal">,
             or</span><b style=" mso-bidi-font-weight:normal"> <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByCompounds">compounds</a></b><span
             style=" mso-bidi-font-weight:normal">.</span></li>
+      </ul>
+    </ul>
+    <span style="  mso-bidi-font-weight:normal"><br>
+    </span>
+    <ul style="text-align: justify;">
+      <ul>
       </ul>
     </ul>
     <span style="  mso-bidi-font-weight:normal"></span>
@@ -198,11 +254,11 @@ SNPs
       this tool, <strong><a href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?name=Pf3D7_11_v3:1278856..1310724&amp;h_feat=pf3d7_1133400@yellow&amp;auth_tkt=MTM0YWNkZGRhODEwYjJkZjkwODIyOTdhOGYyZWIyOGY1MTZjOWQxOWFwaWRiIWFwaWRiITEzNjYwNzI2MDE6MC4wLjAuMA==">open
 the
           PlasmoDB Genome Browser</a></strong> at your genomic region of
-      interest, choose ‘Design PCR primers’ from the dropdown menu and click
-      ‘GO’.<span style="mso-spacerun:yes">&nbsp; </span>To design primers,
-      focus on a PCR product size range by highlighting the area on the scale,
-      then enter your preferred PCR parameters in the text boxes and click
-      Design Primers. <o:p></o:p></p>
+      interest, choose "Design PCR primers" from the dropdown menu
+      and click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
+      primers, focus on a PCR product size range by highlighting the area on the
+      scale, then enter your preferred PCR parameters in the text boxes and
+      click Design Primers. <o:p></o:p></p>
     <p style="text-align: justify;" class="MsoNormal"><o:p>&nbsp;</o:p></p>
   </body>
           ]]>
