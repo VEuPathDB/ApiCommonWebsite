@@ -131,7 +131,7 @@ based
     </ul>
     <ul>
       <ul>
-        <li>View sequencing read pileups, reads aligned to the P. falciparum 3D7
+        <li>View sequencing read pileups, reads aligned to the <i>P. falciparum 3D7</i>
           genome, and read density plots in GBrowse using the options under the
           Select Tracks heading: <a href="http://qa.plasmodb.org/cgi-bin/gbrowse/plasmodb/?name=Pf3D7_11_v3:1278856..1310724;h_feat=pf3d7_1133400@yellow"><strong>HTS
 SNPs,
@@ -461,7 +461,7 @@ details available here</a>).</li>
 <ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li><span style="font-style: italic;">P. vivax </span>isolates:
-Brazil I, Mauritaniza I, North Korea and India- VII generated at the
+Brazil I, Mauritania I, North Korea and India- VII generated at the
 the Broad Institute (<a style="font-weight: bold;"
 href="Single%20nucleotide%20polymorphism%20calls%20based%20on%20high%20throughput%20sequencing%20data%20of:">additional
 details available here</a>).</li>
@@ -518,7 +518,7 @@ and the nucleotide and amino acid changes.</font></li>
 <ul>
 <li><font face="Arial"><span style="font-weight: bold;"><a
 href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1294740;stop=1294839;ref=Pf3D7_11_v3;width=800;version=100;flip=0;grid=1;id=92cab3ccf37d8dcd44a48a8db9fa3bb5;l=Gene%1Epfal3D7_Sanger_HTS_Isolates_7G8_Alignment;h_feat=pf3d7_1133400%40yellow">Alignment
-of highthrough put sequence reads</a> </span>are also available via
+of high throughput sequence reads</a> </span>are also available via
 the Genome Browser.</font></li>
 </ul>
 </ul>
