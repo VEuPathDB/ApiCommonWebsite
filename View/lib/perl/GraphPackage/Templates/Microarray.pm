@@ -20,6 +20,9 @@ sub getProfileRAdjust {}
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
+# Template subclasses need to implement this....should return a valid PlotPart for the given Graph Type (LogRatio, RMA, ...)
+sub getExprPlotPartModuleString {}
+
 # Template subclasses need to implement this....should be semicolon list of colors
 sub getColorsString { }
 
@@ -131,7 +134,18 @@ sub makeAndSetPlots {
   my $profile;
   
   if(lc($self->getGraphType()) eq 'bar') {
-    $profile = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+    
+    my $plotPartModule = $self->getExprPlotPartModuleString();
+    my $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
+
+    $profile = eval {
+      $plotObj->new(@_);
+    };
+
+    if ($@) {
+      die "Unable to make plot $plotObj: $@";
+    }
+
     $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
 
   } elsif(lc($self->getGraphType()) eq 'line') {
@@ -161,10 +175,7 @@ sub makeAndSetPlots {
     $percentile->setSampleLabels($sampleLabels);
   }
 
-
-  print STDERR Dumper $profile;
-
-  $self->setGraphObjects($profile);
+  $self->setGraphObjects($profile, $percentile);
 }
 
 
