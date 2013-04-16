@@ -18,6 +18,253 @@
     </record>
 -->
 <record>
+       <attribute name="headline">PlasmoDB 9.3 Released
+         <![CDATA[
+         ]]>
+         </attribute>
+       <attribute name="date">10 March 2013 13:00</attribute>
+       <attribute name="tag">plasmo03_13_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+    <p style="text-align: justify;"><b style="mso-bidi-font-weight:normal">We
+        are pleased to announce the release of PlasmoDB 9.3<o:p></o:p></b> </p>
+    <p style="text-align: justify;" class="MsoNormal"><b style="mso-bidi-font-weight:normal">New
+        data in this release: </b></p>
+    <ul style="text-align: justify;">
+      <li>Transcriptional variation across subclonal strains derived from <em>P.
+          falciparum</em> strains 3D7, 7G8, D10 and HB3 <span style="font-weight: bold;">(<a
+            href="http://www.ncbi.nlm.nih.gov/pubmed/22415456">Rovira-Graells
+            <em>et al.</em></a>)</span>.&nbsp; This data may be used to search
+        for genes based on fold change, percentile expression and copy number
+        variation (<a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence"><span
+            style="font-weight: bold;">available
+            in the microarray query section under the heading "Transcriptional
+            variation of <em>P. falciprum</em> strains"</span></a>).&nbsp; In
+        addition, expression graphs are available on individual gene pages in
+        the transcript expression section under the heading "<a href="http://plasmodb.org/gene/PF3D7_0220800"><strong>Transcriptional
+            Variation of P. fal parasite lines</strong></a>".&nbsp; Note that
+        graphs representing lineage-specific expression over the
+        intraerythrocytic life cycle may be displayed by selecting the
+        appropriate check box to the right of the graphs.</li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+    </ul>
+    <ul style="text-align: justify;">
+      <li>High throughput sequencing (HTS) of 65 clinical isolates from Gambia (<a
+          href="http://www.plosgenetics.org/article/info:doi/10.1371/journal.pgen.1002992"><strong>Amambua-Ngwa
+            </strong><strong><em>et al.</em></strong></a>).<u><o:p></o:p></u>&nbsp;
+        This data may be used to identify single nucleotide polymorphisms (SNPs)
+        between the sequenced isolates:</li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+    </ul>
+    <ul style="text-align: justify;">
+      <ul>
+        <li><o:p></o:p> SNPs between all or a subset of strains from this study
+          can be defined based on a comparison with each other or with strains
+          from other studies.&nbsp; This <a href="http://plasmodb.org/plasmo/im.do?s=01512139d0389c89"><strong>search
+              strategy</strong></a> defines all SNPs present in strains from
+          this study.&nbsp; </li>
+      </ul>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+      <ul>
+      </ul>
+    </ul>
+    <ul style="text-align: justify;">
+      <ul>
+        <li>Genes may defined based on their relation to the above defined SNPs
+          using the genomic colocation query, for example:
+          <ul>
+            <li><a href="http://plasmodb.org/plasmo/im.do?s=e5ec7e2dde7949f8"><strong>Gene
+                  that contain any of the SNPs</strong></a></li>
+            <li><a href="http://plasmodb.org/plasmo/im.do?s=bb44a66099c67fc1"><strong>Genes
+                  that are lo</strong><strong>cated downstream of a SNP (in this
+                  example 200 nucleotides downstream)</strong></a></li>
+          </ul>
+          <br>
+          <ul>
+          </ul>
+        </li>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li>View and download SNP records generated from pairwise comparisons of
+          isolate sequences.</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li>Search for <strong><a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesBySnps">genes
+based
+              on the characteristics of SNPs contained within the gene</a></strong>.
+          This dataset can be queried by clicking on "HTS SNP Characteristics".</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li>Search for individual SNP records based on criteria such as SNP ID,
+          strain, genomic location, etc. </li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li>View sequencing read pileups, reads aligned to the <i>P. falciparum</i> 3D7
+          genome, and read density plots in GBrowse using the options under the
+          Select Tracks heading: <a href="http://qa.plasmodb.org/cgi-bin/gbrowse/plasmodb/?name=Pf3D7_11_v3:1278856..1310724;h_feat=pf3d7_1133400@yellow"><strong>HTS
+SNPs,
+              pfal3D7_Conway_HTS_SNP</strong>.</a></li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li>View SNP information for individual genes on record pages.<span style="mso-spacerun:yes">&nbsp;
+            </span></li>
+      </ul>
+    </ul>
+    <span style=" mso-spacerun:yes"><br>
+    </span>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <span style=" mso-spacerun:yes"></span>
+    <ul>
+      <ul>
+        <li>View individual <strong><a href="http://qa.plasmodb.org/cgi-bin/gbrowse/plasmodb/?name=Pf3D7_11_v3:1278856..1310724;h_feat=pf3d7_1133400@yellow">HTS
+SNPs
+              aligned to the genome</a></strong><strong> </strong>with the
+          GBrowse track: HTS SNPs by coding potential.</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <ul>
+      <li>Metabolite data generated from <em>P. falciparum</em> parasites and
+        infected and uninfected red blood cells.&nbsp; <a href="http://plasmodb.org/plasmo/getDataset.do?question=CompoundQuestions.CompoundsByFoldChange&amp;display=detail#30"><span
+            style="font-weight: bold;">Experimental
+            details</span></a> are available in the data set section of
+        PlasmoDB.&nbsp; This data was generated as part of the EuPathDB-funded
+        driving biological project and made available pre-publication (Llinas,
+        Baska and Lewis).&nbsp; Data from this experiment may be searched based
+        on <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByFoldChange"><span
+            style="font-weight: bold;">metabolite
+            levels</span></a> and viewed graphically on compound pages.</li>
+    </ul>
+    <br>
+    <ul>
+    </ul>
+    <ul style="text-align: justify;">
+      <li>Two new data types with searches have been added in this release:
+        compounds and metabolic pathways.&nbsp; This beta-release of Compound
+        and Metabolic Pathways data sets incorporates KEGG pathways and a subset
+        of PubChem records. Future releases will include compounds for
+        additional metabolites and small molecules, and pathways from other
+        sources such as MPMP, MetaCyc, etc. Please explore the site and contact
+        us with your feedback. </li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+    </ul>
+    <b style=" mso-bidi-font-weight:normal"></b>
+    <ul style="text-align: justify;">
+      <ul>
+        <li><span style=" mso-bidi-font-weight:normal">Metabolic Pathways may be
+            searched based on </span><b style=" mso-bidi-font-weight:normal"><a
+              href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByPathwayID">pathway
+              Name/ID</a></b><span style=" mso-bidi-font-weight:normal">, </span><b
+            style=" mso-bidi-font-weight:normal"><a
+              href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByGeneList">genes</a></b><span
+            style=" mso-bidi-font-weight:normal">,
+            or</span><b style=" mso-bidi-font-weight:normal"> <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByCompounds">compounds</a></b><span
+            style=" mso-bidi-font-weight:normal">.</span></li>
+      </ul>
+    </ul>
+    <span style="  mso-bidi-font-weight:normal"><br>
+    </span>
+    <ul style="text-align: justify;">
+      <ul>
+      </ul>
+    </ul>
+    <span style="  mso-bidi-font-weight:normal"></span>
+    <ul style="text-align: justify;">
+      <ul>
+        <li><span style="  mso-bidi-font-weight:normal">Compounds may be
+            searched based on </span><a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByCompoundID"><b
+              style="  mso-bidi-font-weight:normal">compound
+              ID</b></a><span style="  mso-bidi-font-weight:normal">, </span><a
+            href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByTextSearch"><b
+              style="  mso-bidi-font-weight:normal">text
+              (synonym, InChI, etc.)</b></a><span style="  mso-bidi-font-weight:normal">,</span><b
+            style="  mso-bidi-font-weight:normal">
+            <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByEcReaction">enzymes</a></b><span
+            style="  mso-bidi-font-weight:normal">,</span><b
+            style="  mso-bidi-font-weight:normal">
+            <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByPathway">metabolic
+              pathway</a></b><span style="  mso-bidi-font-weight:normal">,</span><b
+            style="  mso-bidi-font-weight:normal">
+            <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularFormula">molecular
+              formula</a></b><span style="  mso-bidi-font-weight:normal">,</span><b
+            style="  mso-bidi-font-weight:normal">
+            <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularWeight">molecular
+              weight</a> </b><span style="  mso-bidi-font-weight:normal">or</span><b
+            style="  mso-bidi-font-weight:normal">
+            <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByFoldChange">metabolite
+              levels</a></b><span style="  mso-bidi-font-weight:normal">.</span></li>
+      </ul>
+    </ul>
+    <p style="text-align: justify;" class="MsoNormal"><b style="mso-bidi-font-weight:normal"><br>
+      </b></p>
+    <p style="text-align: justify;" class="MsoNormal"><b style="mso-bidi-font-weight:normal">New
+        Functionality:<o:p></o:p></b></p>
+    <p style="text-align: justify;" class="MsoNoSpacing"><u>PCR Primer Design
+        tool added to GBrowse. <o:p></o:p></u></p>
+    <p style="text-align: justify;" class="MsoNormal">Design PCR primers to any
+      region of the genome using this interactive, graphic interface. To reach
+      this tool, <strong><a href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?name=Pf3D7_11_v3:1278856..1310724&amp;h_feat=pf3d7_1133400@yellow&amp;auth_tkt=MTM0YWNkZGRhODEwYjJkZjkwODIyOTdhOGYyZWIyOGY1MTZjOWQxOWFwaWRiIWFwaWRiITEzNjYwNzI2MDE6MC4wLjAuMA==">open
+the
+          PlasmoDB Genome Browser</a></strong> at your genomic region of
+      interest, choose "Design PCR primers" from the dropdown menu
+      and click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
+      primers, focus on a PCR product size range by highlighting the area on the
+      scale, then enter your preferred PCR parameters in the text boxes and
+      click Design Primers. <o:p></o:p></p>
+    <p style="text-align: justify;" class="MsoNormal"><o:p>&nbsp;</o:p></p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>
        <attribute name="tag">eupathworkshop</attribute>
@@ -214,7 +461,7 @@ details available here</a>).</li>
 <ul style="text-align: justify; font-family: Arial;">
 <ul>
 <li><span style="font-style: italic;">P. vivax </span>isolates:
-Brazil I, Mauritaniza I, North Korea and India- VII generated at the
+Brazil I, Mauritania I, North Korea and India- VII generated at the
 the Broad Institute (<a style="font-weight: bold;"
 href="Single%20nucleotide%20polymorphism%20calls%20based%20on%20high%20throughput%20sequencing%20data%20of:">additional
 details available here</a>).</li>
@@ -271,7 +518,7 @@ and the nucleotide and amino acid changes.</font></li>
 <ul>
 <li><font face="Arial"><span style="font-weight: bold;"><a
 href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1294740;stop=1294839;ref=Pf3D7_11_v3;width=800;version=100;flip=0;grid=1;id=92cab3ccf37d8dcd44a48a8db9fa3bb5;l=Gene%1Epfal3D7_Sanger_HTS_Isolates_7G8_Alignment;h_feat=pf3d7_1133400%40yellow">Alignment
-of highthrough put sequence reads</a> </span>are also available via
+of high throughput sequence reads</a> </span>are also available via
 the Genome Browser.</font></li>
 </ul>
 </ul>
