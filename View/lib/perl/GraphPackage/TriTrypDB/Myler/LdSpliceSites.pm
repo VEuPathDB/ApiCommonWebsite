@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Nilsson::TbSpliceSites;
+package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Myler::LdSpliceSites;
 
 use strict;
 use vars qw( @ISA );
@@ -11,30 +11,29 @@ sub init {
   my $self = shift;
 
   $self->SUPER::init(@_);
-  $self->setScreenSize(280);
-  $self->setBottomMarginSize(10);
 
-  my $colors =['#8B4513', '#DDDDDD'];
+  my $colors =['#8B4513'];
 
   my $legend = ["Uniquely Mapped", "Non-Uniquely Mapped"];
-  my $xAxisLabels = ["long slender","short stumpy","Lister 427","procyclic","Alba 1 - ","Alba 1 + ","Alba 3_4 - ","Alba 3_4 + "];
-#  my $xAxisLabels = ["bf long slender","bf short stumpy","bf Lister 427","procyclic form","pf Alba 1 N","pf Alba 1 I","pf Alba 3/4 N","pf Alba 3/4 I"];
+  my $xAxisLabels = ["L.d NSR"];
 
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({rpkm => {profiles => ['RNASeq Spliced Leader Sites from Nilsson uniqProfile - tbruTREU927','RNASeq Spliced Leader Sites from Nilsson nonUniqProfile - tbruTREU927'],
+    ({rpkm => {profiles => ['RNASeq Spliced Leader Sites from Myler uniqProfile - ldonBPK282A1','RNASeq Spliced Leader Sites from Myler nonUniqProfile - ldonBPK282A1'],
                    y_axis_label => 'log 2 (normalized tag count)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
+                   force_x_axis_label_horizontal => 1,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
-      pct => {profiles => ['RNASeq Spliced Leader Sites from Nilsson percentile - tbruTREU927'],
+      pct => {profiles => ['RNASeq Spliced Leader Sites from Myler percentile - ldonBPK282A1'],
               y_axis_label => 'Percentile',
               x_axis_labels => $xAxisLabels,
               default_y_max => 50,
               colors => [$colors->[0]],
+              force_x_axis_label_horizontal => 1,
              },
      });
 
