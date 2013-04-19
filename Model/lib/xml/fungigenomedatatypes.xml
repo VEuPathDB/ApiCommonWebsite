@@ -1,33 +1,5 @@
 <xmlAnswer>
   <record>
-    <attribute name="Website">Clade</attribute>
-    <attribute name="Genus">Genus</attribute>
-    <attribute name="Species">Species</attribute>
-    <attribute name="URLGenomeFasta">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-    <attribute name="URLgff">http://FungiDB.org/common/downloads/Current_Release/</attribute>
-    <attribute name="Taxon_ID">Strain NCBI Taxid</attribute>
-    <attribute name="Strain">Strain</attribute>
-    <attribute name="Genome_Version">Assembly Version</attribute>
-    <attribute name="Data_Source">Source</attribute>
-    <attribute name="Genome_Size">Genome Size (Mb)</attribute>
-    <attribute name="Gene_Count">Gene Count</attribute>
-    <attribute name="Multiple_Strains">Multiple Strains</attribute>
-    <attribute name="Additional_Strains" />
-    <attribute name="Organellar_Genomes" />
-    <attribute name="Isolates" />
-    <attribute name="SNPs">SNPs</attribute>
-    <attribute name="ESTs">ESTs</attribute>
-    <attribute name="Microarray">Microarray</attribute>
-    <attribute name="Proteomics" />
-    <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">RNAseq</attribute>
-    <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
-    <attribute name="SageTags" />
-    <attribute name="Pathways">Pathways</attribute>
-  </record>
-
-  <record>
     <attribute name="Website">Eurotiomycetes; Ascomycota</attribute>
     <attribute name="Genus">Aspergillus</attribute>
     <attribute name="Species">carbonarius</attribute>
