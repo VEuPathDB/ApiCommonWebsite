@@ -113,12 +113,13 @@ sub run {
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          # dataset Need to strip the dashes from package name
-         $dataset =~ s/-//g if ($dataset);
+         my $datasetClassName = $dataset;
+         $datasetClassName =~ s/-//g if ($datasetClassName);
 
          eval "require $class";
          eval "import $class";
 
-	 $class = $class . "::$dataset" if($template);
+	 $class = $class . "::$datasetClassName" if($template);
          my $_gp = eval {
            $class->new({dataPlotterArg => $typeArg,
                         QueryHandle => $_qh,
