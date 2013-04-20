@@ -45,7 +45,7 @@ sub getPercentileSetsArray {
   return \@percentileSetsArray;
 }
 
-sub getRatioRAdjust { return 'profile.df = t(as.matrix(colSums(profile.df, na.rm=T))); stderr.df = t(as.matrix(colSums(stderr.df, na.rm=T)))'}
+sub getProfileRAdjust { return 'profile.df = t(as.matrix(colSums(profile.df, na.rm=T))); stderr.df = t(as.matrix(colSums(stderr.df, na.rm=T)))'}
 sub getPercentileRAdjust { return 'profile.df = rbind(profile.df[1:2,1], profile.df[3:4,1]);stderr.df = 0;' }
 
 1;
