@@ -30,6 +30,10 @@ sub setSampleNames { $_[0]->{_sample_names} = $_[1] }
 sub getIsPairedEnd { $_[0]->{_is_paired_end} }
 sub setIsPairedEnd { $_[0]->{_is_paired_end} = $_[1] }
 
+sub setForceXLabelsHorizontalString {$_[0]->{_force_x_labels_horizontal} = $_[1]}
+sub getForceXLabelsHorizontalString {$_[0]->{_force_x_labels_horizontal}}
+
+
 sub setBottomMarginSize {
   my ($self, $ms) = @_;
 
@@ -53,6 +57,8 @@ sub makeGraphs {
   my $diffRpkmProfileSet = $self->getDiffRpkmProfileSet();
   my $pctProfileSet = $self->getPctProfileSet();
   my $additionalRCode = $self->getAdditionalRCode();
+  my $forceXLabelsHorizontal = $self->getForceXLabelsHorizontalString ? 1 : 0;
+
   my $color = $self->getColor() ? $self->getColor() : 'blue';
   my $isPairedEnd = $self->getIsPairedEnd();
 
@@ -82,11 +88,14 @@ sub makeGraphs {
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
   $stacked->addAdjustProfile($additionalRCode);
+  $stacked->setForceHorizontalXAxis($forceXLabelsHorizontal);
+
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
   $percentile->addAdjustProfile($additionalRCode);
+  $percentile->setForceHorizontalXAxis($forceXLabelsHorizontal);
 
   if(my $bottomMargin = $self->getBottomMarginSize()) {
     $stacked->setElementNameMarginSize($bottomMargin);
