@@ -14,7 +14,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -66,7 +66,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -91,7 +91,7 @@
     <attribute name="Gene_Count">9781</attribute>
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
-    <attribute name="SNPs">Yes</attribute>
+    <attribute name="SNPs">yes</attribute>
     <attribute name="ESTs" />
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
@@ -144,7 +144,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -196,11 +196,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -222,11 +222,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -248,11 +248,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -274,7 +274,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -300,7 +300,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -404,7 +404,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -430,7 +430,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -456,11 +456,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
-    <attribute name="Microarray">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
+    <attribute name="Microarray">yes</attribute>
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -482,15 +482,15 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
-    <attribute name="Microarray">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
+    <attribute name="Microarray">yes</attribute>
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
-    <attribute name="Pathways">Yes</attribute>
+    <attribute name="Pathways">yes</attribute>
   </record>
 
   <record>
@@ -560,11 +560,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -586,7 +586,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -612,7 +612,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -638,7 +638,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -664,7 +664,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -690,11 +690,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -820,11 +820,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -846,7 +846,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -872,7 +872,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -950,11 +950,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -976,11 +976,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -1002,11 +1002,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -1028,7 +1028,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -1106,7 +1106,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -1158,7 +1158,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -1184,11 +1184,11 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -1214,7 +1214,7 @@
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
-    <attribute name="RNA_Seq">Yes</attribute>
+    <attribute name="RNA_Seq">yes</attribute>
     <attribute name="RT_PCR" />
     <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
@@ -1236,7 +1236,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -1262,7 +1262,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
@@ -1314,7 +1314,7 @@
     <attribute name="Organellar_Genomes" />
     <attribute name="Isolates" />
     <attribute name="SNPs" />
-    <attribute name="ESTs">Yes</attribute>
+    <attribute name="ESTs">yes</attribute>
     <attribute name="Microarray" />
     <attribute name="Proteomics" />
     <attribute name="ChIP_chip" />
