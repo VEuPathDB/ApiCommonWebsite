@@ -20,7 +20,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -46,7 +46,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -72,7 +72,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -98,7 +98,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -124,7 +124,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -150,7 +150,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -176,7 +176,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -202,7 +202,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -228,7 +228,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -254,7 +254,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -280,7 +280,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -306,7 +306,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -332,7 +332,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -358,7 +358,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -384,7 +384,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -410,7 +410,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -436,7 +436,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -462,7 +462,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -488,7 +488,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways">Yes</attribute>
   </record>
@@ -514,7 +514,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -540,7 +540,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -566,7 +566,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -592,7 +592,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -618,7 +618,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -644,7 +644,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -670,7 +670,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -696,7 +696,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -722,7 +722,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -748,7 +748,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -774,7 +774,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -800,7 +800,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -826,7 +826,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -852,7 +852,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -878,7 +878,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -904,7 +904,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -930,7 +930,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -956,7 +956,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -982,7 +982,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1008,7 +1008,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1034,7 +1034,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1060,7 +1060,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1086,7 +1086,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1112,7 +1112,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1138,7 +1138,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1164,7 +1164,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1190,7 +1190,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1216,7 +1216,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq">Yes</attribute>
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1242,7 +1242,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1268,7 +1268,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1294,7 +1294,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1320,7 +1320,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
@@ -1346,7 +1346,7 @@
     <attribute name="ChIP_chip" />
     <attribute name="RNA_Seq" />
     <attribute name="RT_PCR" />
-    <attribute name="Chip-seq" />
+    <attribute name="Chip_Seq" />
     <attribute name="SageTags" />
     <attribute name="Pathways" />
   </record>
