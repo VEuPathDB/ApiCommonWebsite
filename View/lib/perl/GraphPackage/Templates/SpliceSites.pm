@@ -49,6 +49,19 @@ sub init {
   return $self;
 }
 
+
+sub getSampleNames {
+  my ($self) = @_;
+  my $sampleLabelsString = $self->getSampleLabelsString();
+
+  if ($sampleLabelsString) {
+    my @rv = split(/;/, $sampleLabelsString);
+    return \@rv;
+  } else {
+    return  $_[0]->{_sample_names};
+  }
+}
+
 1;
 
 #--------------------------------------------------------------------------------
