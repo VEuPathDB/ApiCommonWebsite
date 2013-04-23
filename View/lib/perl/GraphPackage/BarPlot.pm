@@ -535,6 +535,30 @@ sub new {
    return $self;
 }
 
+package ApiCommonWebsite::View::GraphPackage::BarPlot::QuantMassSpec;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(10);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Relative Abundance (fold difference');
+   $self->setYaxisLabel('');
+
+   $self->setPartName('quant_mass_spec');
+   $self->setPlotTitle("Quant Mass Spec Profile - $id");
+
+   $self->setMakeYAxisFoldInduction(0);
+   $self->setIsLogged(0);
+
+   return $self;
+}
+
 package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
