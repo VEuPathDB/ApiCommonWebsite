@@ -20,12 +20,16 @@
 
 
 <c:forEach var="row" items="${tbl}">
-  <c:if test="${(species eq row['graph_species'].value && species eq row['species'].value) || (type eq 'compound')}">
+  <c:if test="${(species eq row['species'].value) || (type eq 'compound')}">
 
     <c:set var="name" 		value="${fn:replace(row['module'].value, '::', '')}"/>
     <c:set var="secName" 	value="${row['module'].value}"/>
 
-          <c:set var="baseUrlWithArgs" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}"/>
+    <c:set var="baseUrlWithArgs" value="${plotBaseUrl}?type=${secName}&project_id=${row['project_id'].value}&dataset=${row['dataset_name']}"/>
+
+    <c:if test="${row['is_graph_custom'].value eq 'false'}">
+       <c:set var="baseUrlWithArgs" value="${baseUrlWithArgs}&template=1"/>
+    </c:if>
     
     <c:set var="imgId" value="img${secName}_${i}"/>    
     <c:set var="preImgSrc" value="${baseUrlWithArgs}&fmt=png"/>
@@ -178,11 +182,6 @@
         <td class="centered">
         	<c:set var="noProfileDataTable">false</c:set>
 
-        	<c:choose>
-         	<c:when test="${not empty row['dataTable'].value}">
-            		<imp:wdkTable tblName="${row['dataTable'].value}" isOpen="false"/>
-         	</c:when>
-         	<c:otherwise>
          		<c:set var="profileDataTable">
            			<c:set var="prefix" 		value="<%= request.getRequestURL() %>" />
 
@@ -200,8 +199,7 @@
     noData="${noProfileDataTable}"
     attribution=""/>   
 
-         	</c:otherwise>
-         	</c:choose>
+
        		<br /><br />
        		<div class="small">
         		<b>Description</b><br />
@@ -232,17 +230,13 @@
     	</c:if>
     </c:if>
  
-    <c:set var="dataAttribution" value="${row['attribution'].value}"/>
-
-<%-- This variable is for backward compatibility for attributions, and will become null as all components fal under workflow --%> 
-
 <imp:toggle
     name="${secName}_${i}"
     isOpen="${row['mainOpen'].value}"
     noData="${noData}"
     displayName="${row['display_name'].value}"
     content="${profileContent}"
-    attribution="${dataAttribution}"
+    attribution=""
     imageId="${imgId}"
     imageSource="${imgSrc}" />				
 

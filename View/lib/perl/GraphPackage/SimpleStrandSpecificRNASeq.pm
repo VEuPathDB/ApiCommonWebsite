@@ -44,6 +44,9 @@ sub setIsPairedEnd { $_[0]->{_is_paired_end} = $_[1] }
 sub setBottomMarginSize { $_[0]->{_bottom_margin_size} = $_[1] }
 sub getBottomMarginSize { $_[0]->{_bottom_margin_size} }
 
+sub setForceXLabelsHorizontalString {$_[0]->{_force_x_labels_horizontal} = $_[1]}
+sub getForceXLabelsHorizontalString {$_[0]->{_force_x_labels_horizontal}}
+
 
 sub init {
   my $self = shift;
@@ -76,6 +79,8 @@ sub makeGraphs {
   $sense->setBottomMarginSize($bottomMarginSize);
   $sense->setAdditionalRCode($self->getAdditionalRCode());
   $sense->setSampleNames($self->getSampleNames);
+  $sense->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
+
 
   my ($senseStacked, $sensePct) = @{$sense->getGraphObjects()};
   $senseStacked->setPartName($senseStacked->getPartName . "_sense");
@@ -93,6 +98,7 @@ sub makeGraphs {
   $antisense->setBottomMarginSize($bottomMarginSize);
   $antisense->setAdditionalRCode($self->getAdditionalRCode());
   $antisense->setSampleNames($self->getSampleNames);
+  $antisense->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
 
   my ($antisenseStacked, $antisensePct) = @{$antisense->getGraphObjects()};
   $antisenseStacked->setPartName($antisenseStacked->getPartName . "_antisense");

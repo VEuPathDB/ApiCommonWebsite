@@ -132,10 +132,9 @@ sub makeAndSetPlots {
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($percentileSetsArray);
 
   my $profile;
-  
+
+  my $plotPartModule = $self->getExprPlotPartModuleString();  
   if(lc($self->getGraphType()) eq 'bar') {
-    
-    my $plotPartModule = $self->getExprPlotPartModuleString();
     my $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
 
     $profile = eval {
@@ -149,7 +148,17 @@ sub makeAndSetPlots {
     $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
 
   } elsif(lc($self->getGraphType()) eq 'line') {
-    $profile = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+    my $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
+
+    $profile = eval {
+      $plotObj->new(@_);
+    };
+
+    if ($@) {
+      die "Unable to make plot $plotObj: $@";
+    }
+
+
   } else {
     die "Graph must define a graph type of bar or line";
   }
