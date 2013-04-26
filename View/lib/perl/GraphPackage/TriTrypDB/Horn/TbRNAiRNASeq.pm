@@ -3,9 +3,11 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Horn::TbRNAiRNASeq;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 
+use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
+use ApiCommonWebsite::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -26,30 +28,48 @@ sub init {
 
   $self->setMainLegend({colors => $legendColors, short_names => $legend});
 
-#this is a pairedEnd experiment, call method setIsPairedEnd(1);
-  $self->setProfileSetsHash
-    ({     cds_fpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles using CDS coordinates', 'T.brucei Horn RNAi Sequence diffProfiles using CDS coordinates'],
-                   y_axis_label => 'log 2 (FPKM)',
-                   x_axis_labels => $xAxisLabels,
-                   colors => $colors0,
-                   force_x_axis_label_horizontal => 1,
-                   r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
-                   stack_bars => 1,
-                  },
 
-transcript_fpkm => {profiles => ['T.brucei Horn RNAi Sequence minProfiles', 'T.brucei Horn RNAi Sequence diffProfiles'],
-                          y_axis_label => 'log 2 (FPKM)',
-                          x_axis_labels => $xAxisLabels,
-                          colors => $colors1,
-                          force_x_axis_label_horizontal => 1,
-                          r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
-                          stack_bars => 1,
-                         },
-     }); 
+  my $transcript = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
 
-  return $self;
+
+
+  $transcript->setMinRpkmProfileSet('T.brucei paired end RNA Seq data from Horn');
+  $transcript->setDiffRpkmProfileSet('T.brucei paired end RNA Seq data from Horn - diff');
+  $transcript->setPctProfileSet('percentile - T.brucei paired end RNA Seq data from Horn');
+  $transcript->setColor($colors0->[0]);
+  $transcript->setIsPairedEnd(1);
+  $transcript->makeGraphs(@_);
+  $transcript->setForceXLabelsHorizontalString(1);
+  $transcript->setBottomMarginSize(6);
+  $transcript->setAdditionalRCode('profile=profile + 1; profile = log2(profile);');
+#  $transcript->setSampleNames($self->getSampleNames);
+
+  my ($transcriptStacked, $transcriptPct) = @{$transcript->getGraphObjects()};
+  $transcriptStacked->setPartName("transcript_" . $transcriptStacked->getPartName);
+  $transcriptPct->setPartName("transcript_" . $transcriptPct->getPartName);
+  $transcriptStacked->setPlotTitle($transcriptStacked->getPlotTitle() . " - full gene model");
+  $transcriptPct->setPlotTitle($transcriptPct->getPlotTitle() . " - full gene model");
+
+  my $cds = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
+
+  $cds->setMinRpkmProfileSet('T.brucei paired end RNA Seq data from Horn aligned with cds coordinates');
+  $cds->setDiffRpkmProfileSet('T.brucei paired end RNA Seq data from Horn aligned with cds coordinates - diff');
+  $cds->setPctProfileSet('percentile - T.brucei paired end RNA Seq data from Horn aligned with cds coordinates');
+  $cds->setColor($colors1->[0]);
+  $cds->setIsPairedEnd(1);
+  $cds->makeGraphs(@_);
+  $cds->setBottomMarginSize(6);
+  $cds->setAdditionalRCode('profile=profile + 1; profile = log2(profile);');
+#  $cds->setSampleNames($self->getSampleNames);
+  $cds->setForceXLabelsHorizontalString(1);
+
+  my ($cdsStacked, $cdsPct) = @{$cds->getGraphObjects()};
+  $cdsStacked->setPartName("cds_" . $cdsStacked->getPartName);
+  $cdsPct->setPartName("cds_" . $cdsPct->getPartName);
+  $cdsStacked->setPlotTitle($cdsStacked->getPlotTitle() . " - cds");
+  $cdsPct->setPlotTitle($cdsPct->getPlotTitle() . " - cds");
+
+  $self->setGraphObjects($transcriptStacked, $cdsStacked);
+
 }
-
-
-
 1;
