@@ -189,8 +189,8 @@
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonWebsite/Site-Installation,
-                                                        ApiCommonWebsite/Model-Installation,
                                                         ApiCommonWebsite/View-Installation,
+                                                        ApiCommonWebsite/Model-Installation,
                                                         ApiCommonData/Datasources-Installation">
 
     <ant target="defaultProjectInstall"/>
@@ -226,6 +226,12 @@
 
     <available file="${targetDir}/config/projects.xml" type="file" property="projects.xml.present" />
     <antcall target="install-projects.xml"/>
+
+
+    <echo message="Injecting Templates"/>
+    <exec failonerror="true" executable="${targetDir}/bin/presenterInjectTemplates">
+      <arg line="-presentersDir ${projectsDir}/ApiCommonShared/Model/lib/xml/datasetPresenters -templatesDir ${projectsDir}/ApiCommonShared/Model/lib/dst"/>
+    </exec>
 
   </target>
 
