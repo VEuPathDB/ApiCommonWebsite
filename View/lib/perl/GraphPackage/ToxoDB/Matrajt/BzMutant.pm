@@ -15,31 +15,80 @@ sub init {
   $self->setPlotWidth(450);
   $self->setBottomMarginSize(7);
 
-  my $colors = ['#996600', '#996600', '#996600', '#FF0000', '#FF0000', '#FF6600', '#FF6600','#FFFF00', '#FFFF00','#33FF66', '#33FF66', '#009900', '#009900', '#0000CC', '#0000CC', '#660033', '#660033',];
+#BZ-Mutant Graphs
+  my $mutant_colors = ['#996600', '#996600', '#996600', '#FF0000', '#FF0000', '#FF6600', '#FF6600','#FFFF00', '#FFFF00','#33FF66', '#33FF66', '#009900', '#009900', '#0000CC', '#0000CC', '#660033', '#660033',];
 
-  my $legend = ['Wild Type', '12K Mutant', '13P Mutant', 'B7 Mutant', '11P Mutant', '11K Mutant', '7K Mutant', 'P11 Mutant',];
+  my @mutantProfileSetsArray = (['TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', 'standard error - TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', '']);
+  my @mutantPercentileSetsArray = (['percentile - TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', '',''],);
 
-  $self->setMainLegend({colors => ['#996600', '#FF0000', '#FF6600','#FFFF00','#33FF66', '#009900', '#0000CC', '#660033',], short_names => $legend, cols=> 5});
+  my $mutantProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@mutantProfileSetsArray);
+  my $mutantPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@mutantPercentileSetsArray);
 
-  my @profileSetsArray = (['TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', 'standard error - TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', '']);
-  my @percentileSetsArray = (['percentile - TgRH_Matrajt_GSE23174_Bz_WildType_V_Mutant', '',''],);
+  my $mutant_rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $mutant_rma->setProfileSets($mutantProfileSets);
+  $mutant_rma->setColors($mutant_colors);
+  $mutant_rma->setElementNameMarginSize (10);
+  $mutant_rma->setScreenSize(300);
+  $mutant_rma->setPartName('bz_mutant_rma');
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $mutant_percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $mutant_percentile->setProfileSets($mutantPercentileSets);
+  $mutant_percentile->setColors($mutant_colors);
+  $mutant_percentile->setElementNameMarginSize (10);
+  $mutant_percentile->setScreenSize(300);
+  $mutant_percentile->setPartName('bz_mutant_percentile');
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
-  $rma->setProfileSets($profileSets);
-  $rma->setColors($colors);
-  $rma->setElementNameMarginSize (10);
-  $rma->setScreenSize(300);
+#BZ-Egress Graphs
+  my $egress_colors = ['#FF0000', '#FF6600', '#009900', '#0000CC',];
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
-  $percentile->setProfileSets($percentileSets);
-  $percentile->setColors($colors);
-  $percentile->setElementNameMarginSize (10);
-  $percentile->setScreenSize(300);
+  my @egressProfileSetsArray = (['TgRH_Matrajt_GSE23174_Bz_11hr_Egress', 'standard error - TgRH_Matrajt_GSE23174_Bz_11hr_Egress', '']);
+  my @egressPercentileSetsArray = (['percentile - TgRH_Matrajt_GSE23174_Bz_11hr_Egress', '',''],);
 
-  $self->setGraphObjects($rma, $percentile);
+  my $egressProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@egressProfileSetsArray);
+  my $egressPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@egressPercentileSetsArray);
+
+  my $egress_rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $egress_rma->setProfileSets($egressProfileSets);
+  $egress_rma->setColors($egress_colors);
+  $egress_rma->setElementNameMarginSize (10);
+  $egress_rma->setScreenSize(300);
+  $egress_rma->setPartName('bz_egress_rma');
+
+  my $egress_percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $egress_percentile->setProfileSets($egressPercentileSets);
+  $egress_percentile->setColors($egress_colors);
+  $egress_percentile->setElementNameMarginSize (10);
+  $egress_percentile->setScreenSize(300);
+  $egress_percentile->setPartName('bz_egress_percentile');
+
+#BZ-Time Series Graphs
+
+
+  my $ts_colors = [ '#E9967A', '#87CEFA', '#00BFFF', '#4169E1', '#0000FF', ];
+
+  my $ts_shortNames = ['Tachy 0HR', 'Brady 24HR', 'Brady 36HR', 'Brady 48HR', 'Brady 72HR'];
+
+  my @tsProfileSetsArray = (['TgRH_Matrajt_GSE23174_Bz_Time_Series', 'standard error - TgRH_Matrajt_GSE23174_Bz_Time_Series', '']);
+  my @tsPercentileSetsArray = (['percentile - TgRH_Matrajt_GSE23174_Bz_Time_Series', '',''],);
+
+  my $tsProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@tsProfileSetsArray);
+  my $tsPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@tsPercentileSetsArray);
+  my $ts_rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $ts_rma->setProfileSets($tsProfileSets);
+  $ts_rma->setColors($ts_colors);
+  $ts_rma->setSampleLabels($ts_shortNames);
+  $ts_rma->setElementNameMarginSize (6);
+  $ts_rma->setPartName('bz_time_series_rma');
+
+  my $ts_percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $ts_percentile->setProfileSets($tsPercentileSets);
+  $ts_percentile->setColors($ts_colors);
+  $ts_percentile->setSampleLabels($ts_shortNames);
+  $ts_percentile->setElementNameMarginSize (6);
+  $ts_percentile->setPartName('bz_time_series_percentile');
+
+
+  $self->setGraphObjects( $mutant_rma, $mutant_percentile,$egress_rma, $egress_percentile,$ts_rma, $ts_percentile);
 
   return $self;
 }
