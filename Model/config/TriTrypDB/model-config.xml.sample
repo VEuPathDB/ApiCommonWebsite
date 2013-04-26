@@ -13,6 +13,8 @@
              slow="5"
              />
              
+    <!-- the maxPkColumnWidth the max side of the string type primary key columns. Those columns in 
+                  the cache tables will be resized to the specified value. optional, default is 150 -->    
     <appDb  login=""
             password=""
             connectionUrl="jdbc:oracle:oci:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbc2.pcbi.upenn.edu)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=tryp100n.db.cbil.upenn.edu)))"
@@ -25,6 +27,7 @@
             showConnectionsInterval="10"
             showConnectionsDuration="600"
             userDbLink="@apidb.LOGIN_COMMENT" 
+            maxPkColumnWidth="150"
             />
              
     <userDb login=""
