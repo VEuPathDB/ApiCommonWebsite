@@ -68,6 +68,10 @@ sub run {
 	 my $quiet_b        = $Cgi->param('quiet');
 	 my $save_b         = $Cgi->param('save');
 	 my $typeArg        = $Cgi->param('typeArg');
+         my $template     = $Cgi->param('template');
+         my $dataset     = $Cgi->param('dataset');
+
+
    my $thumbnail_b    = $Cgi->param('thumb');
    my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
@@ -104,30 +108,24 @@ sub run {
 
 	 my @filesToDelete = ( $fmt_f );
 
-	 # graph package mode
-         
-         #-------Redundant--------#
-	 #my $pkg;
-	 #if ($model eq 'plasmo') {
-	 #  $pkg = "PlasmoDB";
-	 #} elsif ($model eq 'toxo') {
-	 #  $pkg = "ToxoDB";
-	 #} elsif ($model eq 'giardia') {
-	 #  $pkg = "GiardiaDB";
-	 #} elsif ($model eq 'tritryp') {
-	 #  $pkg = "TriTrypDB";
-	 #} elsif ($model eq 'amoeba') {
-	 #  $pkg = "AmoebaDB";
-	 #}
-	 
+	 $pkg = "Templates" if($template);
+
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
+         # dataset Need to strip the dashes from package name
+         my $datasetClassName = $dataset;
+         $datasetClassName =~ s/-//g if ($datasetClassName);
+
          eval "require $class";
+         eval "import $class";
+
+	 $class = $class . "::$datasetClassName" if($template);
          my $_gp = eval {
            $class->new({dataPlotterArg => $typeArg,
                         QueryHandle => $_qh,
                         Id => $id,
                         SecondaryId => $sid,
+                        Dataset => $dataset,
                         WantLogged => $wantLogged,
                         Format => $gddFormat,
                         OutputFile => $fmt_f,
@@ -137,7 +135,7 @@ sub run {
          };
 
 	 if ($@) {
-           die "Unable to load driver for '$type' with arg $typeArg : $@";
+           die "Unable to load driver for '$type': $@";
 	 }
 
 	 my @files = $_gp->run();

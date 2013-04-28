@@ -23,14 +23,14 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({rpkm => {profiles => ['T.brucei RNASeq Spliced Leader And Poly A Sites from Nilsson uniqProfile','T.brucei RNASeq Spliced Leader And Poly A Sites from Nilsson nonUniqProfile'],
+    ({rpkm => {profiles => ['RNASeq Spliced Leader Sites from Nilsson uniqProfile - tbruTREU927','RNASeq Spliced Leader Sites from Nilsson nonUniqProfile - tbruTREU927'],
                    y_axis_label => 'log 2 (normalized tag count)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
-      pct => {profiles => ['T.brucei RNASeq Spliced Leader And Poly A Sites from Nilsson percentile'],
+      pct => {profiles => ['RNASeq Spliced Leader Sites from Nilsson percentile - tbruTREU927'],
               y_axis_label => 'Percentile',
               x_axis_labels => $xAxisLabels,
               default_y_max => 50,

@@ -120,7 +120,10 @@ sub makeRPlotString {
 
   $smoothLines = $smoothLines ? 'TRUE' : 'FALSE'; 
 
-  my $dfString = ", df=$df";
+  my $dfString;
+  if($df) {
+    $dfString = ", df=$df";
+  }
   $df = defined($df) ? $dfString : "";
 
   $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
@@ -147,7 +150,7 @@ sub makeRPlotString {
   print STDERR "the scale is $scale";
 
   my $legendLabels = $self->getLegendLabels;
-  my $legendLabelsString; 
+  my $legendLabelsString = ""; 
   if ($self->getHasExtraLegend ) {
       $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
     }

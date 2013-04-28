@@ -15,6 +15,109 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 8.1 Released</attribute>
+       <attribute name="date">10 March 2013 15:00</attribute>
+       <attribute name="tag">toxo03_13_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body><strong>We are pleased to announce the release of ToxoDB 8.</strong><strong>1</strong><br>
+    <br>
+    <br>
+    <strong>New data in this release</strong>:<br>
+    <br>
+    Proteomics of the lysine-acetylome of intra- and extracellular <em>T.
+      gondii </em>(RH) tachyzoites (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22544907"><strong>Jeffers
+        <em>e</em><em>t al.</em></strong></a> and <a href="http://www.ncbi.nlm.nih.gov/pubmed/23403842"><strong>Xue
+        <em>et al.</em></strong></a>). <br><br>
+    <ul>
+      <li>Genes with mass spec evidence from intracellular and/or extracellular
+        samples may be interrogated in ToxoDB.&nbsp; For example, <a href="http://toxodb.org/toxo/im.do?s=00d80d8594a80091"><span
+            style="font-weight: bold;">this
+            two-step search strategy</span></a> identifies genes that have mass
+        spec evidence from intracellular parasites but no evidence from
+        extracellular parasites. <br></li>
+    </ul>
+    <ul>
+      <li>Visit the Protein section of individual gene record pages to view
+        proteomics data in tabulated and graphic form.<br></li>
+    </ul>
+    <ul>
+      <li>View peptides in a genomic context using the <a href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=1654900;stop=1659599;ref=TGME49_chrX;width=800;version=100;flip=0;grid=1;id=db092309f5f25d4f6d904efd8f837565;l=SullivanMassSpecPeptides%1EGene;h_feat=tgme49_235920%40yellow"><strong>Genome
+            Browser</strong></a>. <br><br></li>
+    </ul>
+    High throughput sequencing (HTS) of over 60&nbsp; <em>T. gondii</em>
+    strains (unpublished).&nbsp; Paired end Illumina sequencing was performed on
+    more than 60 strains spanning the 16 haplogroups identified in the <em>T.
+      gondii</em> sequencing <a href="http://toxodb.org/toxo/communityDownload.do?fname=Toxo_Sequencing_WhitePaper.pdf"><strong>white
+        paper</strong></a>. HTS SNP data may be searched in two ways:<br><br><br>
+    <ol>
+      <ol>
+        <li>1. Genes with specified SNP characteristics may be identified using the
+          "<a style="font-weight: bold;" href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesBySnps">HTS
+            SNP Characteristics</a>" query located under the "Population
+          Biology" search category.&nbsp; All SNPs are mapped onto the ME49
+          reference genome sequence.&nbsp; Information regarding strain origin
+          and haplogroups is available in this <a href="http://toxodb.org/toxo/communityDownload.do?fname=Haplogroup_List_Feb_2013.pdf"><strong>table</strong></a>.&nbsp;&nbsp;
+          </li> <br>
+        <ul>
+          Here is an <a href="http://toxodb.org/toxo/im.do?s=1b05f201e44c241f"><strong>example
+              search strateg</strong><strong>y</strong></a> that identifies all
+          genes that contain at least 10 nonsynonymous SNPs between TgMAS
+          (congenital toxoplasmosis, Europe) and TgRAY (congenital
+          toxoplasmosis, USA) that are supported by at least 50 sequencing
+          reads.<br>
+          <br>
+        </ul>
+        <li>2. SNPs may be identified using any of the queries located under the
+          heading "SNPs" in the "Identify other data types" section.&nbsp; SNPs
+          may be identified based on their <strong><a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=SnpQuestions.SnpBySourceId">IDs</a></strong>,
+          <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalSnpQuestions.SnpsByGeneId"><span
+              style="font-weight: bold;">Gene
+              IDs</span></a>,&nbsp; <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalSnpQuestions.SnpsByLocation"><span
+              style="font-weight: bold;">Genomic
+              location</span></a> and <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalSnpQuestions.SnpsByStrain"><strong>strain</strong></a>.&nbsp;
+          </li>
+      </ol>
+    </ol>
+    <br>
+    <span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+        Functionality:<o:p></o:p></b></span><br>
+    <span style="font-family: Arial;"><u><br>
+        PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span style="font-family: Arial;"><br>
+      <br>
+    </span>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
+        primers to any region of the genome using this interactive, graphic
+        interface. To reach this tool, <strong><a href="http://toxodb.org/cgi-bin/gbrowse/toxodb/">open
+the
+            ToxoDB Genome Browser</a></strong> at your genomic region of
+        interest, choose "Design PCR primers" from the dropdown menu and click
+        "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design primers,
+        focus on a PCR product size range by highlighting the area on the scale,
+        then enter your preferred PCR parameters in the text boxes and click
+        Design Primer.<o:p></o:p></span></div>
+    <span style="font-family: Arial;"> </span> <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or
+        decreasing the number of hits. When search parameters change
+        with a new release, we invalidate (<span style="color: red;">Ø</span>)
+        the search and ask you to rerun it. When IDs are updated or removed, we
+        map the old IDs to the new ones, remove the old IDs from your Basket,
+        and leave your Favorites page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">
+      and <a href="http://twitter.com/eupathdb">Twitter</a></span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">12th International Congress on Toxoplasmosis </attribute>
        <attribute name="date">30 January 2013 15:00</attribute>
        <attribute name="tag">toxocongress2013</attribute>

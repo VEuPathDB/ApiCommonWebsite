@@ -72,11 +72,47 @@ sub site_version {
   return->getSiteVersionByProjectId($projectId);
 }
 
+sub lookupOrganismDirectory {
+  my ($self, $orgAbbrev) = @_;
+
+  if($self->{_organism_directory_map}->{$orgAbbrev}) {
+    return $self->{_organism_directory_map}->{$orgAbbrev};
+  }
+
+  my $dbh = $self->dbh();
+  my $sh = $dbh->prepare("select abbrev, name_for_filenames from apidb.organism");
+  $sh->execute();
+
+  my $rv = "ORGANISM_WEBSERVICE_DIR";
+  while(my ($abbrev, $name) = $sh->fetchrow_array()) {
+    $self->{_organism_directory_map}->{$abbrev} = $name;
+    $rv = $name if($abbrev eq $orgAbbrev);
+  }
+
+  $sh->finish();
+  return $rv;
+}
+
+
 sub bam_file_path {
+  my ($self, $orgAbbrev) = @_;
+
+  if($orgAbbrev) {
+    my $orgDirName = $self->lookupOrganismDirectory($orgAbbrev);
+    return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. "/$orgDirName/bam";
+  }
+
   return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. '/bam';
 }
 
 sub bigwig_file_path {
+  my ($self, $orgAbbrev) = @_;
+
+  if($orgAbbrev) {
+    my $orgDirName = $self->lookupOrganismDirectory($orgAbbrev);
+    return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. "/$orgDirName/bigwig";
+  }
+
   return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. '/bigwig';
 }
 
@@ -222,6 +258,22 @@ sub wdkReference {
   while (my ($name, $value)  = $sth->fetchrow_array) {
     return "$value";
   }
+}
+
+sub citationFromExtDatabaseNamePattern {
+  my ($self,$extdb) = @_;
+
+  my $sql =<<EOL;
+WITH pubs as (select name, id, listagg(publication,',') WITHIN GROUP (order by publication) PMIDS, contact_email from ( SELECT nvl(ds.dataset_name_pattern, ds.name) as name, ds.dataset_presenter_id as id, c.email as contact_email, p.pmid as publication from ApidbTuning.DatasetPresenter ds, APIDBTUNING.datasetcontact c,APIDBTUNING.datasetpublication p where ds.dataset_presenter_id = c.dataset_presenter_id and ds.dataset_presenter_id = p.dataset_presenter_id and ((ds.name = '$extdb' and ds.dataset_name_pattern is null) or ds.dataset_name_pattern = '$extdb') and c.is_primary_contact =1 )group by name, id, contact_email)
+SELECT name, dbms_lob.substr(description,4000,1) ||' Primary Contact Email: '||nvl(email,'unavailable')||' PMID: ' || publications as citation 
+FROM (SELECT nvl(ds.dataset_name_pattern, ds.name) as name, ds.summary as description, pubs.contact_email as email, pubs.PMIDS as publications FROM ApidbTuning.DatasetPresenter ds, pubs where ds.dataset_presenter_id = pubs.id )
+EOL
+  my $sth = $self->{dbh}->prepare($sql);
+  $sth->execute() or $self->throw($sth->errstr);
+  while (my ($name,$value)  = $sth->fetchrow_array) {
+    return "$value";
+  }
+
 }
 
 1;

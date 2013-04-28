@@ -169,7 +169,7 @@ sub getTaxonToDirMap {
 
   my $project = $cgi->param('project_id');
 
-  if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb|amoebadb|giardiadb/) {
+  if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb|amoebadb|giardiadb|tritrypdb/) {
 
      my $sql = <<EOSQL;
 SELECT distinct ga.organism, taxon.grp, org.abbrev 
@@ -190,19 +190,7 @@ EOSQL
      }
   } else {  
      $taxonToDirMap = 
-     {'Leishmania infantum'                              => { name => 'Linfantum',              group => 1 },
-      'Leishmania major strain Friedlin'                 => { name => 'LmajorFriedlin',         group => 1 },
-      'Leishmania braziliensis'                          => { name => 'Lbraziliensis',          group => 1 },
-      'Leishmania mexicana'                              => { name => 'Lmexicana',              group => 1 },
-      'Leishmania tarentolae Parrot-TarII'               => { name => 'ltarParrotTarII',        group => 1 },
-      'Trypanosoma cruzi CL Brener Non-Esmeraldo-like'   => { name => 'TcruziNonEsmeraldoLike', group => 2 },
-      'Trypanosoma cruzi CL Brener Esmeraldo-like'       => { name => 'TcruziEsmeraldoLike',    group => 2 },
-      'Trypanosoma brucei gambiense'                     => { name => 'Tbruceigambiense',       group => 3 },
-      'Trypanosoma brucei Lister strain 427'             => { name => 'Tbrucei427',             group => 3 },
-      'Trypanosoma brucei TREU927'                       => { name => 'Tbrucei927',             group => 3 },
-      'Trypanosoma vivax'                                => { name => 'Tvivax',                 group => 4 },
-      'Trypanosoma congolense'                           => { name => 'Tcongolense',            group => 4 },
-
+     {
       'Toxoplasma gondii ME49'                           => { name => 'tgonME49',               group => 1 },
       'Toxoplasma gondii GT1'                            => { name => 'tgonGT1',                group => 3 },
       'Toxoplasma gondii VEG'                            => { name => 'tgonVEG',                group => 4 },
