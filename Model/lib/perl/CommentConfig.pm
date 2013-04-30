@@ -70,11 +70,6 @@ Provides Perl access to properties in a WDK comment-config.xml file.
 
 =head1 BUGS
 
-The conversion of the JDBC connectionUrl to Perl DBI only works for Oracle
-thin driver syntax, and even then not for all allowed syntax.
-Assumes connection strings of the format
-  jdbc:oracle:thin:@hostname.uga.edu:1521:trichsite
-
 =head1 AUTHOR 
 
 Mark Heiges, mheiges@uga.edu
