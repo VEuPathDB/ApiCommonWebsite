@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/gdata-core-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/java/jsp-api-2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
