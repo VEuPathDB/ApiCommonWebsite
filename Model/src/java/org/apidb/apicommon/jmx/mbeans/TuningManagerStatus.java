@@ -28,10 +28,6 @@ public class TuningManagerStatus extends BeanBase implements TuningManagerStatus
     super();
   }
 
-  protected void init() {
-    
-  }
-
   public ArrayList<Map<String, String>> gettable_statuses() {
     populateTuningTableStat();
     return tuningTableStatuses;
@@ -40,12 +36,12 @@ public class TuningManagerStatus extends BeanBase implements TuningManagerStatus
   private String tuningTableStatusSql() {
     StringBuffer sql = new StringBuffer();
     sql.append(" select                                                            ");
-    sql.append(" to_char(timestamp, 'DD-Mon-YYYY HH24:MI:SS') as created,       ");
+    sql.append(" to_char(timestamp, 'DD-Mon-YYYY HH24:MI:SS') as created,          ");
     sql.append(" status,                                                           ");
-    sql.append(" to_char(last_check, 'DD-Mon-YYYY HH24:MI:SS') as last_check,   ");
+    sql.append(" to_char(last_check, 'DD-Mon-YYYY HH24:MI:SS') as last_check,      ");
     sql.append(" name                                                              ");
     sql.append(" from apidb.TuningTable                                            ");
-    sql.append(" order by timestamp desc                                           ");
+    sql.append(" order by last_check DESC NULLS LAST, created DESC, status         ");
     return sql.toString();
   }
 
