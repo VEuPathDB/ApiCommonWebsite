@@ -132,6 +132,7 @@ sub makeAndSetPlots {
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($percentileSetsArray);
 
   my $profile;
+  my $xAxisLabel;
 
   my $plotPartModule = $self->getExprPlotPartModuleString();  
   if(lc($self->getGraphType()) eq 'bar') {
@@ -149,6 +150,7 @@ sub makeAndSetPlots {
 
   } elsif(lc($self->getGraphType()) eq 'line') {
     my $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
+    $xAxisLabel= $self->getXAxisLabel();
 
     $profile = eval {
       $plotObj->new(@_);
@@ -177,6 +179,10 @@ sub makeAndSetPlots {
   if($bottomMarginSize) {
     $profile->setElementNameMarginSize($bottomMarginSize);
     $percentile->setElementNameMarginSize($bottomMarginSize);
+  }
+  
+  if($xAxisLabel) {
+    $profile->setXaxisLabel($xAxisLabel);
   }
 
   if(@$sampleLabels) {
