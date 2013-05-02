@@ -13,98 +13,99 @@ import org.apidb.apicommon.controller.DownloadAction;
 import org.apidb.apicommon.controller.MimeTypes;
 import org.apidb.apicommon.model.CommentConfig;
 import org.apidb.apicommon.model.CommentFactory;
+import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.Utilities;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class UserFileDownloadAction extends DownloadAction {
-    
-    File file;
-    String gusHome;
-    String projectId;
- 
 
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception   {
+  public ActionForward execute(ActionMapping mapping, ActionForm form,
+      HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
 
-        ServletContext application = getServlet().getServletContext();
-        gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
-        projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
- 
-        String fname = (String) request.getParameter("fname");
+    ServletContext application = getServlet().getServletContext();
+    String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
 
-        file = getFile(fname);
+    String fname = (String) request.getParameter("fname");
 
-        if (!file.exists()) {
-            return mapping.findForward("fileNotFound");
-        } else if (file.isDirectory()) {
-            ActionForward forwardBase = mapping.findForward("isDir");
-            String dirPath = "../" + forwardBase.getPath() + "/" + projectId + "/" + file.getName();
-            System.out.println("dirPath " + dirPath);
-            return new ActionForward(dirPath, true);
-        } else {
-            StreamInfo info = getStreamInfo(mapping, form, request, response);
-            sendStreamResponse(response, info);
-        }
-    
-        return null;        
+    File file = getFile(fname, projectId);
+
+    if (!file.exists()) {
+      return mapping.findForward("fileNotFound");
+    } else if (file.isDirectory()) {
+      ActionForward forwardBase = mapping.findForward("isDir");
+      String dirPath = "../" + forwardBase.getPath() + "/" + projectId + "/"
+          + file.getName();
+      System.out.println("dirPath " + dirPath);
+      return new ActionForward(dirPath, true);
+    } else {
+      StreamInfo info = getStreamInfo(mapping, form, request, response);
+      sendStreamResponse(response, info);
     }
 
-    protected void sendStreamResponse(HttpServletResponse response, 
-              StreamInfo info) throws Exception {
-        
-        String   contentType = info.getContentType();
-        InputStream   stream = info.getInputStream();
+    return null;
+  }
 
-        try {
-            response.setContentType(contentType);
-            copy(stream, response.getOutputStream());
-        } finally {
-            if (stream != null) {
-                stream.close();
-            }
-        }
+  protected void sendStreamResponse(HttpServletResponse response,
+      StreamInfo info) throws Exception {
 
+    String contentType = info.getContentType();
+    InputStream stream = info.getInputStream();
+
+    try {
+      response.setContentType(contentType);
+      copy(stream, response.getOutputStream());
+    } finally {
+      if (stream != null) {
+        stream.close();
+      }
     }
 
-    protected File getFile(String fname) throws Exception {
-        ServletContext context = servlet.getServletContext();
-        CommentFactory factory = CommentActionUtility.getCommentFactory(context);
-        CommentConfig commentConfig = factory.getCommentConfig();
-        
-        String uploadPath = commentConfig.getUserFileUploadDir();
-        
-        String filePath = uploadPath + "/" + projectId + "/" + fname;
-        
-        return new File(filePath);
-        
-    }
-    
-    protected StreamInfo getStreamInfo(
-       ActionMapping mapping, 
-       ActionForm form,
-       HttpServletRequest request, 
-       HttpServletResponse response) throws Exception {
+  }
 
-       String ext = getFileNameExtension(file.getName());
-       String contentType = MimeTypes.lookupMimeType(ext);
-       
-       if (contentType == null) {
-          contentType = "application/octet-stream";
-        }
+  protected File getFile(String fname, String projectId) throws Exception {
+    ServletContext context = servlet.getServletContext();
+    CommentFactory factory = CommentActionUtility.getCommentFactory(context);
+    CommentConfig commentConfig = factory.getCommentConfig();
 
-        /** Note: content-disposition is broken in Internet Explorer 5.5 
-            Service Pack 1 (SP1). See
-            http://support.microsoft.com/kb/q279667/
-        **/
-        response.setHeader("Content-disposition", 
-                           "inline; filename=\"" + file.getName() + "\"");
+    String uploadPath = commentConfig.getUserFileUploadDir();
 
-        return new FileStreamInfo(contentType, file);
+    String filePath = uploadPath + "/" + projectId + "/" + fname;
+
+    return new File(filePath);
+
+  }
+
+  protected StreamInfo getStreamInfo(ActionMapping mapping, ActionForm form,
+      HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+    WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+    String projectId = wdkModel.getProjectId();
+
+    String fname = (String) request.getParameter("fname");
+
+    File file = getFile(fname, projectId);
+
+    String ext = getFileNameExtension(file.getName());
+    String contentType = MimeTypes.lookupMimeType(ext);
+
+    if (contentType == null) {
+      contentType = "application/octet-stream";
     }
 
-    protected String getFileNameExtension(String fname) throws Exception {
-        int sep = fname.lastIndexOf(".");
-        return fname.substring(sep + 1);
-    }
-  
+    /**
+     * Note: content-disposition is broken in Internet Explorer 5.5 Service Pack
+     * 1 (SP1). See http://support.microsoft.com/kb/q279667/
+     **/
+    response.setHeader("Content-disposition",
+        "inline; filename=\"" + file.getName() + "\"");
+
+    return new FileStreamInfo(contentType, file);
+  }
+
+  protected String getFileNameExtension(String fname) throws Exception {
+    int sep = fname.lastIndexOf(".");
+    return fname.substring(sep + 1);
+  }
+
 }
