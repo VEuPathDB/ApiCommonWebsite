@@ -7,6 +7,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
@@ -60,7 +61,30 @@ sub init {
   my @hb3Graphs = $self->defineGraphs('HB3_derived',$hb3strains, \@hb3Colors, $profileBase, 'red percentile', \@hb3Pch);
   my @d10Graphs = $self->defineGraphs('D10_derived',$d10strains, \@d10Colors, $profileBase, 'red percentile', \@d10Pch);
 
-  $self->setGraphObjects( @_3d7Graphs,  @_7g8Graphs, @hb3Graphs, @d10Graphs, @parentalGraphs );
+  my $cgh_shortNames = ['3D7 derived strains', '7G8 derived strains', 'D10 derived strains', 'HB3 derived strains'];
+
+  my $cgh_strainNames=['P.f. 10G','P.f. 1,2B','P.f. 3D7-B','P.f. 7G8','P.f. AB10','P.f. AB6',
+                    'P.f. BB8','P.f. BC4','P.f. D10','P.f. E3','P.f. F1','P.f. G2',
+                    'P.f. G4','P.f. HB3A','P.f. HB3B','P.f. KG7','P.f. LD10','P.f. W41',
+                    'P.f. WE5','P.f. ZF8',];
+
+  my $cgh_colorSet = [ '#FF0000', '#FF0000', '#FF0000','#FFFF00', '#009900','#009900','#009900','#009900', '#0000CC','#0000CC','#0000CC','#0000CC','#0000CC', '#009900','#009900','#FFFF00','#FFFF00', '#FF0000', '#FFFF00','#FFFF00',];
+  my @cgh_colors = @$cgh_colorSet;
+
+  my @cgh_profileSetNames = (['Cortes CGH Profiles', '' ,$cgh_strainNames]);
+
+  my $cgh_profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@cgh_profileSetNames);
+
+
+  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  $ratio->setProfileSets($cgh_profileSets);
+  $ratio->setColors(\@cgh_colors);
+  $ratio->setElementNameMarginSize (6);
+  $ratio->setYaxisLabel('Copy Number Variations (log 2)');
+  $ratio->setMakeYAxisFoldInduction(0);
+  $ratio->setPartName("exprn_val_cgh");
+
+  $self->setGraphObjects( @_3d7Graphs,  @_7g8Graphs, @hb3Graphs, @d10Graphs, @parentalGraphs , $ratio );
 
   return $self;
 }
@@ -119,7 +143,10 @@ sub defineGraphs {
    $percentile->setPlotTitle("$tag - $pctTitle");
    $percentile->setXaxisLabel("Hours");
 
-   return( $line, $percentile );
+
+
+  return( $line, $percentile, );
+
 
 
 }

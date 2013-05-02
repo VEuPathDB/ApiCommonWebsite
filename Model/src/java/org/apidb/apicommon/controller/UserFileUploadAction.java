@@ -32,7 +32,6 @@ import org.xml.sax.SAXException;
 public class UserFileUploadAction extends Action {
     
   private Logger logger = Logger.getLogger(UserFileFactory.class);
-  private UserFileUploadForm cuForm;
   
   public ActionForward execute(ActionMapping mapping,
                                ActionForm form,
@@ -46,7 +45,7 @@ public class UserFileUploadAction extends Action {
     referer = referer.substring(index);
     ActionForward forward = new ActionForward(referer, false);
 
-    cuForm = (UserFileUploadForm)form;
+    UserFileUploadForm cuForm = (UserFileUploadForm)form;
     HashMap<Integer, FormFile> formSet = cuForm.getFormFiles();
     HashMap<Integer, String> noteSet = cuForm.getFormNotes();
 
@@ -119,10 +118,6 @@ public class UserFileUploadAction extends Action {
           factory = UserFileFactory.getInstance();
       }
       return factory;
-  }
-
-  public void reset(ActionMapping mapping, HttpServletRequest request) {
-      cuForm = null;        
   }
 }
 

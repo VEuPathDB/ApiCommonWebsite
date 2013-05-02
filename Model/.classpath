@@ -12,10 +12,11 @@
 	<classpathentry kind="lib" path="/WSF Service/lib/java/xml-apis-2.9.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WSF Plugin"/>
 	<classpathentry kind="lib" path="/WDK Controller/lib/java/struts-1.2.4.jar"/>
-	<classpathentry kind="lib" path="/WSF Service/lib/java/not-deployed/servlet-api-2.4.jar"/>
+	<classpathentry kind="lib" path="/WSF Service/lib/java/not-deployed/servlet-api-2.5.jar"/>
 	<classpathentry kind="var" path="GUS_HOME/lib/java/db_driver/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/gdata-core-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/java/jsp-api-2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

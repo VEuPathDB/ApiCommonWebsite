@@ -1143,7 +1143,7 @@ these are visible on the Genome Sequence Browser. Queries to find genes, or ORFs
 New features in CryptoDB 3.5:
 <ul>
 <li>We have added <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorial movies</a> to help you learn about the functionality of our site. 
-If there are additional tutorials you would like to see added please submit a request via our <a href="http://cryptodb.org/cryptodb/help.jsp">support page</a>.</li>
+If there are additional tutorials you would like to see added please submit a request via our <a href="http://cryptodb.org/cryptodb/contact.do" class="open-window-contact-us">support page</a>.</li>
 <li>Most of the queries have been reorganized to make them more intuitive. Some include a new "Advanced Parameters" section. See for example "Identify Genes based on EST evidence."
 <li>The columns displayed in query result pages are improved.  The result pages also offer options for sorting, adding new columns, and moving columns around.
 <li>Downloading results is improved. A choice of formats is provided including tab-delimited, text, GFF, and FASTA to meet different needs.
