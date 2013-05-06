@@ -32,8 +32,6 @@ import org.xml.sax.SAXException;
 
 public class NewCommentAction extends CommentAction {
 
-    private NewCommentForm cuForm;
-
     public ActionForward execute(ActionMapping mapping, 
                                  ActionForm form, 
                                  HttpServletRequest request, 
@@ -80,7 +78,7 @@ public class NewCommentAction extends CommentAction {
         //else headline = BBCode.getInstance().convertBBCodeToHtml(headline);
 
         // test haiming
-        cuForm = (NewCommentForm)form;
+        NewCommentForm cuForm = (NewCommentForm)form;
 
         String headline = cuForm.getHeadline().trim();
         //headline = BBCode.getInstance().convertBBCodeToHtml(headline);
