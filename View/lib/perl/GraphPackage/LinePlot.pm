@@ -383,7 +383,8 @@ for(i in 1:nrow(lines.df)) {
   y.coords = y.coords[!is.na(colSums(y.coords))];
   x.coords.line = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
-  if($smoothLines) {
+  uniqueElements = length(unique(unlist(x.coords.line, use.names = FALSE)))
+  if( ( $smoothLines ) ) {
     points(x.coords.line,
          y.coords,
          col  = 'grey75',
@@ -392,7 +393,7 @@ for(i in 1:nrow(lines.df)) {
          pch  = my.pch,
          cex  = 0.5
          );
-
+    if ( ( uniqueElements > 3) ) {
     lines(x.coords.line,
          y.coords,
          col  = 'grey75',
@@ -408,7 +409,16 @@ for(i in 1:nrow(lines.df)) {
          bg   = the.colors[i],
          cex  = 1
          );
-
+    } else {
+          lines(x.coords.line,
+         y.coords,
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         type = \"o\",
+         pch  = my.pch,
+         cex  = 1
+         );
+    }
   } else {
 
 
@@ -556,7 +566,7 @@ sub new {
    $self->setDefaultYMin(-2);
 
    $self->setPartName('exprn_val');
-   $self->setYaxisLabel("Expression Values");
+   $self->setYaxisLabel("Expression Value (log2 ratio)");
 
    $self->setPlotTitle("Log(ratio) - $id");
 

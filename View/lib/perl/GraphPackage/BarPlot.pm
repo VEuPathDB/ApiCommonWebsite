@@ -476,7 +476,7 @@ sub new {
 
    $self->setDefaultYMax(2);
    $self->setDefaultYMin(-2);
-   $self->setYaxisLabel('Expression Value');
+   $self->setYaxisLabel('Expression Value (log2 ratio)');
 
    $self->setPartName('exprn_val');
    $self->setPlotTitle("Log(ratio) - $id");
