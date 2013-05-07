@@ -2,18 +2,22 @@
 -- and to create the necessary tables and sequence for allowing session
 -- and account management for WDK users in Oracle.
 
-CREATE USER GBROWSE_USERS
-  IDENTIFIED BY gbUsersDummyPassword;
+-- Note creation of user and granting of privleges are commented out so
+-- this SQL can be used in the "createGbrowseUserSchema" script.
+-- They are to be used for reference only!!!
 
-GRANT create session TO GBROWSE_USERS;
-GRANT create table TO GBROWSE_USERS;
-GRANT create view TO GBROWSE_USERS;
-GRANT create any trigger TO GBROWSE_USERS;
-GRANT create any procedure TO GBROWSE_USERS;
-GRANT create sequence TO GBROWSE_USERS;
-GRANT create synonym TO GBROWSE_USERS;
+-- CREATE USER GBROWSE_USERS
+--   IDENTIFIED BY gbUsersDummyPassword;
 
-ALTER USER GBROWSE_USERS QUOTA UNLIMITED ON "USERS";
+-- GRANT create session TO GBROWSE_USERS;
+-- GRANT create table TO GBROWSE_USERS;
+-- GRANT create view TO GBROWSE_USERS;
+-- GRANT create any trigger TO GBROWSE_USERS;
+-- GRANT create any procedure TO GBROWSE_USERS;
+-- GRANT create sequence TO GBROWSE_USERS;
+-- GRANT create synonym TO GBROWSE_USERS;
+
+-- ALTER USER GBROWSE_USERS QUOTA UNLIMITED ON "USERS";
 
 CREATE TABLE GBROWSE_USERS.DBINFO (
     "SCHEMA_VERSION" NUMBER
