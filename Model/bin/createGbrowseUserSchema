@@ -1,0 +1,49 @@
+#!/usr/bin/perl
+#################################################################################
+##
+##  This script will create the GBrowse user accounts and sessions schema as
+##  needed to support the WDK/GBrowse cross-login capability.
+##
+#################################################################################
+
+use lib "$ENV{GUS_HOME}/lib/perl";
+use lib "$ENV{PROJECT_HOME}/GBrowse/src/GBrowse/lib";
+
+use FgpUtil::Util::CommandHelper;
+use Bio::Graphics::Browser2::UserDBConfig;
+
+my $CLASSPATH = &FgpUtil::Util::CommandHelper::getJavaClasspath($ENV{GUS_HOME});
+my $SYSPROPS = &FgpUtil::Util::CommandHelper::getSystemProps($ENV{GUS_HOME}, 'createGbrowseUserSchema');
+my $JAVA_CLASS = "org.apidb.apicommon.model.gbrowse.GBrowseSchemaCreator";
+
+sub main {
+    my @args = @_;
+    $ENV{PROJECT_ID} = $args[0];
+    
+    my $dbConfig = Bio::Graphics::Browser2::UserDBConfig->new;
+    
+    my $connectionString = $dbConfig->getConnectionString;
+    my $username = $dbConfig->getUsername;
+    my $password = $dbConfig->getPassword;
+    my $dbType = $dbConfig->getDbType;
+    my $dbSchema = $dbConfig->getSchema;
+    
+    $cmd = "java $SYSPROPS -classpath $CLASSPATH $JAVA_CLASS $connectionString $username $password $dbSchema $dbType $args[1]";
+    my $err = system($cmd);
+    return $err >> 8;
+}
+
+sub printUsageAndDie { # no arguments
+    printf(STDERR "\nUSAGE: createGbrowseUserSchema <project_id> [-drop]\n\n");
+    printf(STDERR "   project_id: project in which DB config lives (e.g. PlasmoDb -> gus_home/config/PlasmoDB)\n");
+    printf(STDERR "   Use '-drop' to drop the tables in the schema\n\n");
+    exit 1;
+}
+
+################### Parse args and call main sub ###################
+
+if ( $#ARGV == 0 || ( $#ARGV == 1 && $ARGV[1] eq '-drop') ) {
+    exit(main(@ARGV));
+} else {
+    printUsageAndDie();
+}
