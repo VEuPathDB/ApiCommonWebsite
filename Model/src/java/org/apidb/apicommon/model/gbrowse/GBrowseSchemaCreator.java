@@ -43,12 +43,13 @@ public class GBrowseSchemaCreator {
       Op operation = determineOp(args);
       GBrowseConnectionConfig config = new GBrowseConnectionConfig(args);
       
-      out.println("Doing operation: " + operation + NL + "Will connect with: " + NL + config);
-      //worker = new GBrowseSchemaCreator(config);
-      //worker.runOp(operation);
+      out.print("Will perform operation '" + operation + "' using the " +
+      		"following connection information: " + NL + config);
+
+      worker = new GBrowseSchemaCreator(config);
+      worker.runOp(operation);
     }
     catch (Exception e) {
-      err.println(e);
       e.printStackTrace(err);
     }
     finally {
@@ -70,7 +71,6 @@ public class GBrowseSchemaCreator {
       _db.close();
     }
     catch (Exception e) {
-      err.println(e);
       e.printStackTrace(err);
     }
   }
@@ -99,11 +99,13 @@ public class GBrowseSchemaCreator {
     Connection conn = null;
     try {
       conn = _db.getDataSource().getConnection();
-      SqlScriptRunner runner = new SqlScriptRunner(conn, true, false);
+      out.println("Opened connection. Running SQL in: " + scriptPath.getAbsolutePath());
+      SqlScriptRunner runner = new SqlScriptRunner(conn, true, true);
       PrintWriter errWriter = new PrintWriter(err);
       runner.setLogWriter(errWriter);
       runner.setErrorLogWriter(errWriter);
       runner.runScript(new InputStreamReader(IoUtil.getStreamFromString(scriptContents)));
+      out.println("Ran script successfully.");
     }
     finally {
       SqlUtils.closeQuietly(conn);
@@ -116,7 +118,7 @@ public class GBrowseSchemaCreator {
       br = new BufferedReader(new FileReader(scriptPath));
       StringBuilder alteredFile = new StringBuilder();
       while (br.ready()) {
-        alteredFile.append(br.readLine().replace(USER_SCHEMA_KEY, schemaName));
+        alteredFile.append(br.readLine().replace(USER_SCHEMA_KEY, schemaName)).append(NL);
       }
       return alteredFile.toString();
     }

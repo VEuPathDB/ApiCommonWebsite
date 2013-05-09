@@ -22,13 +22,13 @@ sub main {
     
     my $dbConfig = Bio::Graphics::Browser2::UserDBConfig->new;
     
-    my $connectionString = $dbConfig->getConnectionString;
+    my $connectionString = $dbConfig->getJdbcString;
     my $username = $dbConfig->getUsername;
     my $password = $dbConfig->getPassword;
     my $dbType = $dbConfig->getDbType;
     my $dbSchema = $dbConfig->getSchema;
     
-    $cmd = "java $SYSPROPS -classpath $CLASSPATH $JAVA_CLASS $connectionString $username $password $dbSchema $dbType $args[1]";
+    $cmd = "java $SYSPROPS -classpath $CLASSPATH $JAVA_CLASS \"$connectionString\" $username $password $dbSchema $dbType $args[1]";
     my $err = system($cmd);
     return $err >> 8;
 }
