@@ -56,7 +56,6 @@ sub new {
    my $self = $class->SUPER::new(@_);
 
    $self->setXaxisLabel("Whoops! Object forgot to call setXaxisLabel");
-   $self->setPointsPch([15]);
    $self->setDefaultYMax(2);
    $self->setDefaultYMin(-2);
    return $self;
@@ -139,8 +138,6 @@ sub makeRPlotString {
   $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
 
   my $bottomMargin = $self->getElementNameMarginSize();
-
-  my $defaultPch = $self->getPointsPch()->[0];
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
@@ -330,12 +327,15 @@ title.line = $titleLine;
 
 par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.induction.margin + extra.legend.size), xpd=NA);
 
-my.pch = $defaultPch;
+default.pch = c(15, 16, 17, 18, 7:10, 0:6);
 
 for(i in 1:nrow(lines.df)) {
 
   if(!is.null(points.pch)) {
     my.pch = points.pch[i];
+  } 
+  else {
+    my.pch = default.pch[i];
   }
 
   if(i == 1) {
