@@ -1,4 +1,4 @@
-package Bio::Graphics::Browser2::DbUtils;
+package ApiCommonWebsite::Model::DbUtils;
 require Exporter;
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(
