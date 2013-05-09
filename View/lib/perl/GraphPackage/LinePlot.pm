@@ -133,6 +133,7 @@ sub makeRPlotString {
   my $isFilled = $self->getIsFilled() ? 'TRUE' : 'FALSE';
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
+
   $rPostscript = $rPostscript ? $rPostscript : "";
 
   $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
@@ -147,7 +148,6 @@ sub makeRPlotString {
   my $titleLine = $self->getTitleLine();
 
   my $scale = $self->getScalingFactor;
-  print STDERR "the scale is $scale";
 
   my $legendLabels = $self->getLegendLabels;
   my $legendLabelsString = ""; 
