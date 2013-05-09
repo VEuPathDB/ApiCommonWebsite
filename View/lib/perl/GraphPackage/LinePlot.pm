@@ -256,6 +256,11 @@ for(i in 1:length(profile.files)) {
 # allow minor adjustments to profile
 $rAdjustProfile
 
+fold.induction.margin = 1;
+if($yAxisFoldInductionFromM) {
+  fold.induction.margin = 3.5;
+}
+
 isTimeSeries = FALSE;
 
 x.coords = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(lines.df), perl=T));
@@ -322,7 +327,8 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, 1 + extra.legend.size), xpd=NA);
+
+par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.induction.margin + extra.legend.size), xpd=NA);
 
 my.pch = $defaultPch;
 

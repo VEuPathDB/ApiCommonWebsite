@@ -22,8 +22,10 @@ sub getProfileRAdjust { return 'points.df = points.df - lines.df[[2]]; lines.df 
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
-   $profile->setDefaultYMax(1);
-   $profile->setDefaultYMin(-1);
+  $profile->setDefaultYMax(1);
+  $profile->setDefaultYMin(-1);
+
+  $profile->setMakeYAxisFoldInduction(1);
 
   return $profile;
 }
