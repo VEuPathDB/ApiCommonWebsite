@@ -545,8 +545,9 @@ sub new {
 
    my $id = $self->getId();
 
-   $self->setDefaultYMax(10);
-   $self->setDefaultYMin(0);
+   $self->setAdjustProfile('profile.df = log2(profile.df);');
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(-1);
    $self->setYaxisLabel('Relative Abundance (fold difference');
    $self->setYaxisLabel('');
 
