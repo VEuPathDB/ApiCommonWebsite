@@ -474,8 +474,8 @@ sub new {
 
    my $id = $self->getId();
 
-   $self->setDefaultYMax(2);
-   $self->setDefaultYMin(-2);
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(-1);
    $self->setYaxisLabel('Expression Value (log2 ratio)');
 
    $self->setPartName('exprn_val');
@@ -548,8 +548,7 @@ sub new {
    $self->setAdjustProfile('profile.df = log2(profile.df);');
    $self->setDefaultYMax(1);
    $self->setDefaultYMin(-1);
-   $self->setYaxisLabel('Relative Abundance (fold difference');
-   $self->setYaxisLabel('');
+   $self->setYaxisLabel('Relative Abundance (log2 ratio)');
 
    $self->setPartName('quant_mass_spec');
    $self->setPlotTitle("Quant Mass Spec Profile - $id");
