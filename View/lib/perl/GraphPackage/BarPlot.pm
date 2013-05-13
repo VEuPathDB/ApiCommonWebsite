@@ -510,6 +510,28 @@ sub new {
    return $self;
 }
 
+package ApiCommonWebsite::View::GraphPackage::BarPlot::Standardized;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Median Expr (standardized)');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Median Expr (standardized) - $id");
+
+   $self->setMakeYAxisFoldInduction(0);
+   $self->setIsLogged(1);
+
+   return $self;
+}
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::MassSpec;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
