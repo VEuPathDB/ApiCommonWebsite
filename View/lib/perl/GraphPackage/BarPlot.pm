@@ -474,9 +474,9 @@ sub new {
 
    my $id = $self->getId();
 
-   $self->setDefaultYMax(2);
-   $self->setDefaultYMin(-2);
-   $self->setYaxisLabel('Expression Value');
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(-1);
+   $self->setYaxisLabel('Expression Value (log2 ratio)');
 
    $self->setPartName('exprn_val');
    $self->setPlotTitle("Log(ratio) - $id");
@@ -510,6 +510,28 @@ sub new {
    return $self;
 }
 
+package ApiCommonWebsite::View::GraphPackage::BarPlot::Standardized;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Median Expr (standardized)');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Median Expr (standardized) - $id");
+
+   $self->setMakeYAxisFoldInduction(0);
+   $self->setIsLogged(1);
+
+   return $self;
+}
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::MassSpec;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
@@ -545,10 +567,10 @@ sub new {
 
    my $id = $self->getId();
 
-   $self->setDefaultYMax(10);
-   $self->setDefaultYMin(0);
-   $self->setYaxisLabel('Relative Abundance (fold difference');
-   $self->setYaxisLabel('');
+   $self->setAdjustProfile('profile.df = log2(profile.df);');
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(-1);
+   $self->setYaxisLabel('Relative Abundance (log2 ratio)');
 
    $self->setPartName('quant_mass_spec');
    $self->setPlotTitle("Quant Mass Spec Profile - $id");
