@@ -19,7 +19,7 @@ sub init {
 
   my $roos_colors = ['#4682B4', '#6B8E23', '#00FF00', '#2E8B57'];
 
-  my @roos_profileSetsArray = (['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'standard error - expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', ''],
+   my @roos_profileSetsArray = (['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'standard error - expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', ''],
                              ['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)','', ''],
                              ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', '', ''],
                              ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions','standard error - expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', ''],
@@ -34,6 +34,7 @@ sub init {
   my $roos_percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@roos_percentileSetsArray);
 
   my $roos_rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+  my $id = $roos_rma->getId();  
   $roos_rma->setProfileSets($roos_profileSets);
   $roos_rma->setColors($roos_colors);
   $roos_rma->setPointsPch($roos_pch);
@@ -42,6 +43,7 @@ sub init {
   $roos_rma->setPlotTitle("0 - 72 hours : RMA Expression Value - $id");
 
   my $roos_percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  $id = $roos_percentile->getId(); 
   $roos_percentile->setProfileSets($roos_percentileSets);
   $roos_percentile->setColors($roos_colors);
   $roos_percentile->setPointsPch($roos_pch);
@@ -65,6 +67,7 @@ sub init {
    my $dzierszinski_percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@dzierszinski_percentileSetsArray);
 
    my $dzierszinski_rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+   $id = $dzierszinski_rma->getId(); 
    $dzierszinski_rma->setProfileSets($dzierszinski_profileSets);
    $dzierszinski_rma->setColors($dzierszinski_colors);
    $dzierszinski_rma->setPointsPch($dzierszinski_pch);
@@ -72,6 +75,7 @@ sub init {
    $dzierszinski_rma->setPlotTitle("2 - 14 days : RMA Expression Value - $id");
 
    my $dzierszinski_percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+   $id = $dzierszinski_percentile->getId(); 		 
    $dzierszinski_percentile->setProfileSets($dzierszinski_percentileSets);
    $dzierszinski_percentile->setColors($dzierszinski_colors);
    $dzierszinski_percentile->setPointsPch($dzierszinski_pch);
