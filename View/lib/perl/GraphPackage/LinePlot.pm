@@ -546,7 +546,7 @@ sub new {
   my $id = $self->getId();
 
    $self->setPartName('percentile');
-   $self->setDefaultYMax(50);
+   $self->setDefaultYMax(100);
    $self->setDefaultYMin(0);
    $self->setYaxisLabel('Percentile');
    $self->setPlotTitle("Percentile - $id");
