@@ -62,6 +62,9 @@ sub getSampleNames {
   }
 }
 
+sub setForceXLabelsHorizontalString {$_[0]->{_force_x_labels_horizontal} = $_[1]}
+sub getForceXLabelsHorizontalString {$_[0]->{_force_x_labels_horizontal}}
+
 1;
 
 #--------------------------------------------------------------------------------
