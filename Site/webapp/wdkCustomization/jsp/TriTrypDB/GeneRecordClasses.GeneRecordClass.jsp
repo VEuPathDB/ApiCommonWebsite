@@ -386,33 +386,14 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/tritrypdbaa/?name=$
             </c:otherwise>
         </c:choose>
 
+<c:if test="${attrs['hasProteomics'].value eq '1'}">
+ <imp:wdkTable tblName="MassSpec" isOpen="true"   attribution=""/>
+</c:if>
 
-<c:choose>
-  <c:when test='${organismFull eq "Leishmania infantum"}'>
-     <imp:wdkTable tblName="MassSpec" isOpen="true" 
-          attribution=""/>
-  </c:when>
-
-  <c:when test='${organismFull eq "Leishmania major strain Friedlin"}'>
-     <imp:wdkTable tblName="MassSpec" isOpen="true" attribution=""/>
-  </c:when>
-
-  <c:when test='${organismFull eq "Leishmania braziliensis"}'>
-     <imp:wdkTable tblName="MassSpec" isOpen="true" attribution=""/>
-  </c:when>
-
-  <c:when test='${organismFull eq "Trypanosoma brucei TREU927"}'>
-     <imp:wdkTable tblName="MassSpec" isOpen="true" attribution=""/>
-
-     <imp:wdkTable tblName="MassSpecMod" isOpen="true" attribution=""/> 
-  </c:when>
-
-  <c:when test='${binomial eq "Trypanosoma cruzi"}'>
-     <imp:wdkTable tblName="MassSpec" isOpen="true" 
-          attribution=""/>
-  </c:when>
-</c:choose>
-
+<c:if test="${attrs['hasPostTransMod'].value eq '1'}">
+ <imp:wdkTable tblName="MassSpecMod" isOpen="true"   attribution=""/>
+</c:if>
+     
 <imp:wdkTable tblName="PdbSimilarities" postscript="${attrs['pdb_blast_form'].value}" attribution=""/>
 
 <imp:wdkTable tblName="Ssgcid" isOpen="true" attribution="" />

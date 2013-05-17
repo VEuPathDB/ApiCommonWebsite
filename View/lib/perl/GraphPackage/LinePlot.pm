@@ -56,7 +56,6 @@ sub new {
    my $self = $class->SUPER::new(@_);
 
    $self->setXaxisLabel("Whoops! Object forgot to call setXaxisLabel");
-   $self->setPointsPch([15]);
    $self->setDefaultYMax(2);
    $self->setDefaultYMin(-2);
    return $self;
@@ -133,13 +132,12 @@ sub makeRPlotString {
   my $isFilled = $self->getIsFilled() ? 'TRUE' : 'FALSE';
 
   $rAdjustProfile = $rAdjustProfile ? $rAdjustProfile : "";
+
   $rPostscript = $rPostscript ? $rPostscript : "";
 
   $splineApproxN = defined($splineApproxN) ? $splineApproxN : 60;
 
   my $bottomMargin = $self->getElementNameMarginSize();
-
-  my $defaultPch = $self->getPointsPch()->[0];
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
@@ -147,7 +145,6 @@ sub makeRPlotString {
   my $titleLine = $self->getTitleLine();
 
   my $scale = $self->getScalingFactor;
-  print STDERR "the scale is $scale";
 
   my $legendLabels = $self->getLegendLabels;
   my $legendLabelsString = ""; 
@@ -256,6 +253,11 @@ for(i in 1:length(profile.files)) {
 # allow minor adjustments to profile
 $rAdjustProfile
 
+fold.induction.margin = 1;
+if($yAxisFoldInductionFromM) {
+  fold.induction.margin = 3.5;
+}
+
 isTimeSeries = FALSE;
 
 x.coords = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(lines.df), perl=T));
@@ -322,14 +324,18 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
-par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, 1 + extra.legend.size), xpd=NA);
 
-my.pch = $defaultPch;
+par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.induction.margin + extra.legend.size), xpd=NA);
+
+default.pch = c(15, 16, 17, 18, 7:10, 0:6);
 
 for(i in 1:nrow(lines.df)) {
 
   if(!is.null(points.pch)) {
     my.pch = points.pch[i];
+  } 
+  else {
+    my.pch = default.pch[i];
   }
 
   if(i == 1) {
@@ -383,7 +389,8 @@ for(i in 1:nrow(lines.df)) {
   y.coords = y.coords[!is.na(colSums(y.coords))];
   x.coords.line = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
-  if($smoothLines) {
+  uniqueElements = length(unique(unlist(x.coords.line, use.names = FALSE)))
+  if( ( $smoothLines ) ) {
     points(x.coords.line,
          y.coords,
          col  = 'grey75',
@@ -392,7 +399,7 @@ for(i in 1:nrow(lines.df)) {
          pch  = my.pch,
          cex  = 0.5
          );
-
+    if ( ( uniqueElements > 3) ) {
     lines(x.coords.line,
          y.coords,
          col  = 'grey75',
@@ -408,7 +415,16 @@ for(i in 1:nrow(lines.df)) {
          bg   = the.colors[i],
          cex  = 1
          );
-
+    } else {
+          lines(x.coords.line,
+         y.coords,
+         col  = the.colors[i],
+         bg   = the.colors[i],
+         type = \"o\",
+         pch  = my.pch,
+         cex  = 1
+         );
+    }
   } else {
 
 
@@ -530,7 +546,7 @@ sub new {
   my $id = $self->getId();
 
    $self->setPartName('percentile');
-   $self->setDefaultYMax(50);
+   $self->setDefaultYMax(100);
    $self->setDefaultYMin(0);
    $self->setYaxisLabel('Percentile');
    $self->setPlotTitle("Percentile - $id");
@@ -556,7 +572,7 @@ sub new {
    $self->setDefaultYMin(-2);
 
    $self->setPartName('exprn_val');
-   $self->setYaxisLabel("Expression Values");
+   $self->setYaxisLabel("Expression Value (log2 ratio)");
 
    $self->setPlotTitle("Log(ratio) - $id");
 

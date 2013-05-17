@@ -17,6 +17,9 @@ use Data::Dumper;
 sub getPercentileRAdjust {}
 sub getProfileRAdjust {}
 
+sub finalProfileAdjustments {}
+sub finalPercentileAdjustments {}
+
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
@@ -189,6 +192,10 @@ sub makeAndSetPlots {
     $profile->setSampleLabels($sampleLabels);
     $percentile->setSampleLabels($sampleLabels);
   }
+
+  # These can be implemented by the subclass if needed
+  $self->finalProfileAdjustments($profile);
+  $self->finalPercentileAdjustments($percentile);
 
   $self->setGraphObjects($profile, $percentile);
 }
