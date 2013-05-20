@@ -397,7 +397,7 @@ sub new {
    my $id = $self->getId();
    $self->setPartName('percentile');
    $self->setYaxisLabel('Percentile');
-   $self->setDefaultYMax(50);
+   $self->setDefaultYMax(100);
    $self->setDefaultYMin(0);
    $self->setIsLogged(0);
 
