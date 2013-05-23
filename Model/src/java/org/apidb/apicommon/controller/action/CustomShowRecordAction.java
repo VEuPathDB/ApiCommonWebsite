@@ -62,9 +62,6 @@ public class CustomShowRecordAction extends ShowRecordAction {
             throws Exception {
         logger.info("Entering CustomShowRecordAction...");
 
-        // need to use same charset as db connect -- ISO-8859-1 is default
-        response.setContentType("text/html; charset=ISO-8859-1");
-
         // need to check if the old record is mapped to more than one records
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         String rcName = request.getParameter(PARAM_NAME);
