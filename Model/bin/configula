@@ -66,7 +66,7 @@ my $cc_maxWait = "50";
 my $cc_userFileSchema = "uploads";
 my $cc_userFileUploadDir = "/var/www/Common/communityFilesMirror";
 
-my $site_admin_email = 'mheiges@uga.edu, aurreco@uga.edu';
+my $site_admin_email = '';
 
 # profileSimilarity-config
 my %numTimePoints = ('PlasmoDB' => '48', 'ToxoDB' => '12');
@@ -165,17 +165,6 @@ my %config_files = (
         },
 );
 
-# Install all configuration files from source sample files.
-# Note that later we may reopen the source file and parse it into the dest file,
-# so this blanket copy step may include some unnecessary copying.
-for my $cf (keys %config_files) {
-    make_path(dirname($config_files{$cf}{'dest'}), {verbose => 1});
-    copy( 
-        $config_files{$cf}{'source'},
-        $config_files{$cf}{'dest'} 
-    ) or die "copy $config_files{$cf}{'source'} failed : $!";
-}
-
 
 my %site_versions = site_versions();
 my $site_version = $site_versions{$product};
@@ -254,6 +243,23 @@ if (! -d $webservice_files_mirror) {
      "  '$wdk_model_xml'\n" .
      "  matches build-N directory.\n\n";
 }
+
+####################################################################
+# sample file copies
+####################################################################
+
+# Install all configuration files from source sample files.
+# Note that later we may reopen the source file and parse it into the dest file,
+# so this blanket copy step may include some unnecessary copying.
+for my $cf (keys %config_files) {
+    make_path(dirname($config_files{$cf}{'dest'}), {verbose => 1});
+    copy( 
+        $config_files{$cf}{'source'},
+        $config_files{$cf}{'dest'} 
+    ) or die "copy $config_files{$cf}{'source'} failed : $!";
+}
+
+
     
 ####################################################################
 # Config File Parsing
