@@ -79,6 +79,10 @@
           <attribute name="title">TrypanoFAN</attribute>
           <attribute name="url">http://trypanofan.path.cam.ac.uk/trypanofan/main/</attribute>
         </row>
+<row>
+          <attribute name="title">The U-insertion/deletion Edited Sequence Database</attribute>
+          <attribute name="url">http://dna.kdna.ucla.edu/trypanosome/database.html</attribute>
+        </row>
  
       </table>
 
