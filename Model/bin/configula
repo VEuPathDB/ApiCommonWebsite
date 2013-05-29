@@ -66,7 +66,7 @@ my $cc_maxWait = "50";
 my $cc_userFileSchema = "uploads";
 my $cc_userFileUploadDir = "/var/www/Common/communityFilesMirror";
 
-my $site_admin_email = 'sfischer@pcbi.upenn.edu, jerric@pcbi.upenn.edu, rdoherty@pcbi.upenn.edu, aurreco@uga.edu, mheiges@uga.edu';
+my $site_admin_email = 'sfischer@pcbi.upenn.edu, jerric@pcbi.upenn.edu, aurreco@uga.edu, mheiges@uga.edu';
 
 # profileSimilarity-config
 my %numTimePoints = ('PlasmoDB' => '48', 'ToxoDB' => '12');
