@@ -31,7 +31,7 @@ href="http://qa.giardiadb.org/giardiadb.b18/getDataset.do?question=GeneQuestions
 <i>G. Assemblage</i>
 A isolate WB (WB) transcriptome profiling</a>
 <class="data-source"><br>
-<li class="data-source">
+<class="data-source">
 <div class="detail">
 <div class="summary">Transcriptome profiling of <i>Giardia
 intestinalis</i> assemblages A (WB), B (GS) and E (P15)
