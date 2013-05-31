@@ -25,13 +25,12 @@
 the release of Giardia</strong><strong>DB 3</strong><strong>.1</strong><br>
 <br>
 New data in this release:<br>
-<br><ul>
-<li class="data-source"><a class="title"
+<br>
+<class="data-source"><a class="title"
 href="http://qa.giardiadb.org/giardiadb.b18/getDataset.do?question=GeneQuestions.GenesByRNASeqgassAWB_Svard_rnaSeq_RSRCPercentile&amp;display=detail#Transcript%20Expression">
 <i>G. Assemblage</i>
-A isolate WB (WB) transcriptome profiling</a></li>
-<li class="data-source"><br>
-</li>
+A isolate WB (WB) transcriptome profiling</a>
+<class="data-source"><br>
 <li class="data-source">
 <div class="detail">
 <div class="summary">Transcriptome profiling of <i>Giardia
