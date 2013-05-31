@@ -19,6 +19,194 @@
     </record>
 -->
 <record>
+       <attribute name="headline">TriTrypDB 5.0 Released</attribute>
+       <attribute name="date">31 May 2013 15:00</attribute>
+       <attribute name="tag">tryp05_13_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;"><span style="font-weight: bold;">We
+are pleased to announce the release
+of TriTrypDB 5.0</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+Detailed information, descriptions, citations and links to specific
+searches are available in the <a
+href="http://tritrypdb.org/tritrypdb/getDataset.do?display=detail"><span
+style="font-weight: bold; text-decoration: underline;">Dataset section</span></a>.<br>
+<br>
+<ul>
+<li>Updated genome sequences and annotation:</li>
+<ul>
+<li><span style="font-style: italic;">Trypanosoma brucei</span> 927
+has been updated to version 5.</li>
+<li><span style="font-style: italic;">Trypanosoma cruzi </span>Sylvio
+X10 assembly has been updated.</li>
+<li><span style="font-style: italic;">Leishmania braziliensis</span>
+MHOM/BR/75/M2903 assembly updated.</li>
+<li><span style="font-style: italic;">Leishmania major </span>strain
+SD 75.1 assembly updated.</li>
+<li><span style="font-style: italic;">Trypanosoma cruzi</span> JR
+cl. 4 assembly updated.</li>
+</ul>
+</ul>
+<br>
+<ul>
+<li>New genomes:</li>
+<ul>
+<li><span style="font-style: italic;">Leishmania donovanii </span>BPK282A1
+sequence and annotation.</li>
+<li><span style="font-style: italic;">Trypanosoma cruzi </span>marinkellei
+sequence and annotation.</li>
+</ul>
+</ul>
+<br>
+<ul>
+<li>Single nucleotide polymorphyism data from High throughput
+sequencing:</li>
+<ul>
+<li><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#44"><i>L.
+braziliensis</i>
+MHOM/BR/75/M2904 Aligned SNP calls for strain M2903 </a></li>
+<li> <a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#43"><i>L.
+braziliensis</i>
+MHOM/BR/75/M2904 Aligned SNP calls for strain M2904 </a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#45"><i>L.
+donovani</i>
+BPK282A1 Aligned SNP calls for 16 clinical isolates</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#46"><i>L.
+infantum</i>
+JPCM5 Aligned SNP calls for strain LV9 <br>
+<span style="font-style: italic;"></span></a></li>
+<li class="data-source"><span style="font-style: italic;"></span><a
+class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#41"><i>L.
+major</i>
+strain Friedlin Aligned SNP calls for strain LV39</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#42"><i>L.
+major</i>
+strain Friedlin Aligned SNP calls for strains LV39cl5 and Seidman751 </a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#47"
+&gt;&nbsp;=""><i>L. mexicana</i>
+MHOM/GT/2001/U1103 Aligned SNP calls for strain U1103</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#110"><i>T.
+brucei</i>
+TREU927 Aligned HTS SNP calls for Lister strain 427</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#49"><i>T.
+brucei</i>
+TREU927 Aligned SNP calls for strain STIB247 </a> </li>
+<li><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#50"><i>T.
+brucei</i>
+TREU927 Aligned SNP calls for strain TREU927</a><i><span
+style="text-decoration: underline;"></span></i></li>
+<li><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#51"><i>T.
+brucei</i>
+TREU927 Aligned SNP calls for strain gambiense<br>
+</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#48"><i>T.
+brucei</i>
+gambiense DAL972 Aligned SNP calls for strain DAL972</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#53"><i>T.
+cruzi</i>
+CL Brener Esmeraldo-like Aligned SNP calls for strains Cl3 and JRc14</a><i><span
+style="text-decoration: underline;"></span></i></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#54"><i>T.
+cruzi</i> CL Brener Non-Esmeraldo-like Aligned SNP calls for strains
+Cl3 and JRc14</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByHtsSnps&amp;display=detail#52"><i>T.
+cruzi</i> strain CL Brener Aligned SNP calls for strains Cl3 and JRc14</a></li>
+</ul>
+</ul>
+<br>
+<ul>
+<li class="data-source"> Proteomics data:</li>
+<ul>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByMassSpec&amp;display=detail#37"><i>T.
+brucei</i>
+TREU927 Bloodstream form Flagellum Surface and Matrix Proteomes</a></li>
+</ul>
+<ul>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByMassSpec&amp;display=detail#32"><i>T.
+brucei</i>
+TREU927 Total Flagellar Proteome from bloodstream form</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByMassSpec&amp;display=detail#34"><i>T.
+brucei</i>
+TREU927 [Bloodstream form enriched kinome]</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByMassSpec&amp;display=detail#36"><i>T.
+brucei</i>
+TREU927 Comparative proteomics of bloodstream and procyclic forms (T.b.
+427)</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByMassSpec&amp;display=detail#33"><span
+style="font-style: italic;"> T. cruzi</span> (Dm28c) Phosphoproteome
+during Metocyclogenesis</a></li>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByMassSpec&amp;display=detail#35">SUMOylated
+proteome of <span style="font-style: italic;">T. cruzi</span>
+CL Brenner epimastigotes</a></li>
+</ul>
+</ul>
+<br>
+<ul>
+<li class="data-source">RNA sequence data:<span
+style="text-decoration: underline;"></span><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByRNASeqlinfJPCM5_Mottram_Jeremy_rnaSeq_RSRCPercentile&amp;display=detail#38">&nbsp;</a></li>
+<ul>
+<li class="data-source"><a class="title"
+href="/tritrypdb.b18/getDataset.do?question=GeneQuestions.GenesByRNASeqlinfJPCM5_Mottram_Jeremy_rnaSeq_RSRCPercentile&amp;display=detail#38">Promastigote
+transcriptome of <i>L. infantum</i>
+JPCM5 by mRNA-Seq</a></li>
+</ul>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<br>
+<span style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span> Our bimonthly
+database releases incorporate new data and correct old data when
+necessary.&nbsp; Changes in annotation and new experimental data may
+slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on </span></span><a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span></div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>
        <attribute name="tag">eupathworkshop</attribute>
