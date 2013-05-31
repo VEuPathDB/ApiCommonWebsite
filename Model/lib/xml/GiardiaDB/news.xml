@@ -25,7 +25,7 @@
 the release of Giardia</strong><strong>DB 3</strong><strong>.1</strong><br>
 <br>
 New data in this release:<br>
-<br>
+<br><ul>
 <li class="data-source"><a class="title"
 href="http://qa.giardiadb.org/giardiadb.b18/getDataset.do?question=GeneQuestions.GenesByRNASeqgassAWB_Svard_rnaSeq_RSRCPercentile&amp;display=detail#Transcript%20Expression">
 <i>G. Assemblage</i>
@@ -38,7 +38,7 @@ A isolate WB (WB) transcriptome profiling</a></li>
 intestinalis</i> assemblages A (WB), B (GS) and E (P15)
 Using strand-specific RNA-Seq (Note that this data was graciously
 provided prepublication by Staffan Svärd's group, Uppsala University,
-Sweden)
+Sweden).</ul>
 <ul>
 <li>Genes may be identified based on their <a
 href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence"><span
