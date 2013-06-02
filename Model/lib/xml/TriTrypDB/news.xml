@@ -1107,7 +1107,7 @@ style="font-style: italic; font-weight: bold;"><a
 href="http://www.ncbi.nlm.nih.gov/pubmed/19346560"> et. al.</a></span>).&nbsp;
 Genes with evidence of protein expression based on this experiment can
 be searched via the <a
-href="http://qa.tritrypdb.org/tritrypdb3.0/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
+href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec"><span
 style="font-weight: bold;">Mass Spec</span>.</a> As usual, results
 from this experiment can be combined with results from other searches
 -- for example, find all genes with evidence of phosphorylated peptides
@@ -1143,7 +1143,7 @@ with an N50 scaffold length of over 52kb (N50 contig length for the
 31,945 contigs was 3.3kb). The assembly spans 35.5Mb. This assembly is
 subject to change due to ongoing assembly improvement efforts. Complete
 data source information is available <a style="font-weight: bold;"
-href="http://qa.tritrypdb.org/tritrypdb3.0/getDataset.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
+href="http://tritrypdb.org/tritrypdb/getDataset.do?display=detail&amp;datasets=L.braziliensis_Annotation,L.infantum_Annotation,L.major_Annotation,Lmajor_SD_75.1,L.mexicana_chromosomes,Ltarentolae_contigs,Crithidia_fasciculata_9.1,Tbrucei427_chromosomes_RSRC,T.brucei927_Annotation_chromosomes,T.bruceigambiense_Annotation,T.congolense_Annotation_chromosomes,T.cruziEsmeraldo_Annotation_Chromosomes,TcruziEsmeraldo_scaffold_RSRC,T.cruziNonEsmeraldo_chromosomes,T.cruziNonEsmeraldo_Annotation_Chromosomes,T.vivax_chromosomes,T.vivax_Annotation_chromosomes&amp;title=Query#TcruziEsmeraldo_scaffold_RSRC">here</a>.</li>
 </ul>
 <ul>
 <ul>
