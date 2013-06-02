@@ -2253,7 +2253,6 @@
        <attribute name = "Species">cruzi</attribute>
        <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/TcruziSylvioX10-1/fasta/data/TriTrypDB-&relTryp;_TcruziSylvioX10-1_Genome.fasta</attribute>
        <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/TcruziSylvioX10-1/gff/data/TriTrypDB-&relTryp;_TcruziSylvioX10-1.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">Sylvio X10/1</attribute>
        <attribute name = "Genome_Version">10-02-2012</attribute>
@@ -2280,7 +2279,6 @@
        <attribute name = "Species">cruzi</attribute>
        <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/TcruzimarinkelleiB7/fasta/data/TriTrypDB-&relTryp;_TcruzimarinkelleiB7_Genome.fasta</attribute>
        <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/TcruzimarinkelleiB7/gff/data/TriTrypDB-&relTryp;_TcruzimarinkelleiB7.gff</attribute>
-       <attribute name = "URLgff"></attribute>
        <attribute name = "Taxon_ID"></attribute>
        <attribute name = "Strain">marinkellei strain B7</attribute>
        <attribute name = "Genome_Version">1.0</attribute>
