@@ -289,7 +289,7 @@
                 <tr class="subheaderrow2"><td colspan="4">Population Biology
                 </td></tr>
 <c:choose>
-<c:when test="${fn:containsIgnoreCase(modelName,'eupath')||fn:containsIgnoreCase(modelName,'toxo') }">
+<c:when test="${fn:containsIgnoreCase(modelName,'toxo') }">
                 <tr>
                     <imp:queryGridMakeUrl qset="InternalQuestions" qname="GenesBySnps" linktext="SNPs" existsOn="A Am C P T Tt"/>
                 </tr>
