@@ -64,7 +64,15 @@
       <property name="version" value="api-build-9"/>
     </ant>
   </target>
+
+  <target name="ApiCommonShared/Datasources-Installation">
+    <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared/Datasources-Installation">
+      <property name="project" value="ApiCommonShared"/>
+      <property name="version" value="api-aug-08"/>
+    </ant>
+  </target>
  
+
   <target name="ApiCommonWebService-Checkout" unless="ApiCommonWebService.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonWebService" />
@@ -123,6 +131,7 @@
  <target name="ApiCommonWebsite-Installation" depends="GBrowse-Installation,
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
+                                                        ApiCommonShared/Datasources-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonWebsite/Model-Installation">
