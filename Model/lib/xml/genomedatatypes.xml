@@ -2050,7 +2050,7 @@
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">brucei</attribute>
        <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/TbruceiTREU927/fasta/data/TriTrypDB-&relTryp;_TbruceiTREU927_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/TbruceiTREU927/gff/TriTrypDB-&relTryp;_TbruceiTREU927.gff</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/TbruceiTREU927/gff/data/TriTrypDB-&relTryp;_TbruceiTREU927.gff</attribute>
        <attribute name = "Taxon_ID">185431</attribute>
        <attribute name = "Strain">TREU927</attribute>
        <attribute name = "Genome_Version">01-16-2013</attribute>
@@ -2074,8 +2074,8 @@
        <attribute name = "Website">TriTrypDB</attribute>
        <attribute name = "Genus">Trypanosoma</attribute>
        <attribute name = "Species">brucei</attribute>
-       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/TbruceigambienseDAL972/fasta/data/TriTrypDB-&relTryp;_TbruceiGambienseDAL972_Genome.fasta</attribute>
-       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/TbruceigambienseDAL972/gff/data/TriTrypDB-&relTryp;_TbruceiGambienseDAL972.gff</attribute>
+       <attribute name = "URLGenomeFasta">http://TriTrypDB.org/common/downloads/Current_Release/TbruceigambienseDAL972/fasta/data/TriTrypDB-&relTryp;_TbruceigambienseDAL972_Genome.fasta</attribute>
+       <attribute name = "URLgff">http://TriTrypDB.org/common/downloads/Current_Release/TbruceigambienseDAL972/gff/data/TriTrypDB-&relTryp;_TbruceigambienseDAL972.gff</attribute>
        <attribute name = "Taxon_ID">679716</attribute>
        <attribute name = "Strain">gambiense DAL972</attribute>
        <attribute name = "Genome_Version">01-16-2013</attribute>
