@@ -131,7 +131,7 @@ sub init {
   $ratio->setElementNameMarginSize (6);
   $ratio->setYaxisLabel('Copy Number Variations (log 2)');
   $ratio->setMakeYAxisFoldInduction(0);
-  $ratio->setPartName("exprn_val_cgh");
+  $ratio->setPartName("CGH");
 
   $self->setGraphObjects( @_3d7Graphs,  @_7g8Graphs, @hb3Graphs, @d10Graphs, @parentalGraphs, $ratio, );
 

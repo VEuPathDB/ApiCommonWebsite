@@ -15,6 +15,63 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 8.2 Released</attribute>
+       <attribute name="date">31 May 2013 15:00</attribute>
+       <attribute name="tag">toxo05_13_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<strong>We are pleased to announce the release of ToxoDB 8.</strong><strong>2</strong><br>
+<br>
+<br>
+<strong>New data in this release</strong>:<br>
+<br>
+<ul>
+<li><a
+href="http://toxodb.org/toxo/getDataset.do?display=detail#Miscellaneous"><span
+style="font-style: italic;">Toxoplasma gondii </span>ME49 Aligned
+End-Sequenced Fosmids&nbsp;</a></li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <br>
+<ul>
+The <i>Toxoplasma gondii</i> RH fosmid library was constructed by
+Sumiti Vinayak in the copy control vector pCC2FOS. Fosmid ends were
+sequenced commercially (Sanger method) using vector specific primers.
+Resulting sequences were aligned to the <i>T. gondii</i> ME49 genome
+using BLAST.<br>
+<br>
+Funds for sequencing were provided by Boris Striepen (University of
+Georgia, Athens, GA, USA), Markus Meissner (University of Glasgow,
+Scotland) and Michael White (University of South Florida, Tampa, FL,
+USA).<br>
+<span style="font-family: Arial;"><b style=""><br>
+</b></span>
+</ul>
+<div style="margin-left: 40px;"><span style="font-family: Arial;"><o:p></o:p></span></div>
+<span style="font-family: Arial;"> </span> <br>
+<span style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span> Our bimonthly
+database releases incorporate new data and correct old data when
+necessary.&nbsp; Changes in annotation and new experimental data may
+slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">ToxoDB 8.1 Released</attribute>
        <attribute name="date">10 March 2013 15:00</attribute>
        <attribute name="tag">toxo03_13_news</attribute>
