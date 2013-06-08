@@ -13,6 +13,66 @@
        </attribute>
     </record>
 --> 
+<record>
+       <attribute name="headline">GiardiaDB 3.1 released</attribute>
+       <attribute name="date">31 may 2013 15:00</attribute>
+       <attribute name="tag">giardia05_13_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">         
+         <![CDATA[
+<body>
+<span style="font-family: Arial;"><strong>We are pleased to announce
+the release of Giardia</strong><strong>DB 3</strong><strong>.1</strong><br>
+<br>
+New data in this release:<br>
+<br>
+<class="data-source"><a class="title"
+href="http://giardiadb.org/giardiadb/getDataset.do?question=GeneQuestions.GenesByRNASeqgassAWB_Svard_rnaSeq_RSRCPercentile&amp;display=detail#Transcript%20Expression">
+<i>G. Assemblage</i>
+A isolate WB (WB) transcriptome profiling</a>
+<class="data-source"><br>
+<class="data-source">
+<div class="detail">
+<div class="summary">Transcriptome profiling of <i>Giardia
+intestinalis</i> assemblages A (WB), B (GS) and E (P15)
+Using strand-specific RNA-Seq (Note that this data was graciously
+provided prepublication by Staffan Svärd's group, Uppsala University,
+Sweden).</ul>
+<ul>
+<li>Genes may be identified based on their <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence"><span
+style="font-weight: bold;">percentile expression</span></a> and RNA
+sequence reads can be visualized for each assemblage in the <a
+href="http://giardiadb.org/cgi-bin/gbrowse/giardiadb/"><span
+style="font-weight: bold;">genome browser.</span></a></li>
+</ul>
+</div>
+</div>
+</li>
+</span><br>
+<span style="font-family: Arial;"><br>
+<br>
+</span><span style="font-family: Arial;"><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span> Our bimonthly
+database releases incorporate new data and correct old data when
+necessary.&nbsp; Changes in annotation and new experimental data may
+slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span> </span>
+</body>
+          ]]>
+       </attribute>
+    </record>
   <record>
        <attribute name="headline">GiardiaDB 3.0 released</attribute>
        <attribute name="date">11 march 2013 15:00</attribute>
