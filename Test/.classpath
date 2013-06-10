@@ -3,11 +3,11 @@
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WDK Model"/>
-	<classpathentry kind="lib" path="/WSF Test/lib/java/junit-4.4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WSF Plugin"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Web Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WDK Test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>
+	<classpathentry kind="lib" path="/WSF Plugin/lib/java/junit-4.10.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
