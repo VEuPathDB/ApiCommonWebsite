@@ -11,6 +11,12 @@ sub init {
 
   $self->SUPER::init(@_);
 
+  $self->setMinSenseRpkmProfileSet("T. gondii ME49 bradyzoite mRNA Illumina sequences aligned to the ME49 Genome. - sense strand");
+  $self->setMinAntisenseRpkmProfileSet("T. gondii ME49 bradyzoite mRNA Illumina sequences aligned to the ME49 Genome. - antisense strand");
+
+  $self->setDiffSenseRpkmProfileSet("T. gondii ME49 bradyzoite mRNA Illumina sequences aligned to the ME49 Genome. - sense strand - diff");
+  $self->setDiffAntisenseRpkmProfileSet("T. gondii ME49 bradyzoite mRNA Illumina sequences aligned to the ME49 Genome. - antisense strand - diff");
+
   $self->setPctSenseProfileSet("percentile - T. gondii ME49 bradyzoite mRNA Illumina sequences aligned to the ME49 Genome. - sense strand");
   $self->setPctAntisenseProfileSet("percentile - T. gondii ME49 bradyzoite mRNA Illumina sequences aligned to the ME49 Genome. - antisense strand");
 
