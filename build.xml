@@ -188,7 +188,7 @@
     </ant>
   </target>
 
-  <target name="ApiCommonWebsite/View-Installation">
+  <target name="ApiCommonWebsite/View-Installation" depends="ApiCommonWebsite/Model-Installation">
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="View"/>
