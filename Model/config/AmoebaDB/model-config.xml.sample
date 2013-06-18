@@ -6,6 +6,9 @@
              supportEmail="help@amoebadb.org"
              defaultRole="wdk_user"
              secretKeyFile="/usr/local/tomcat_instances/shared/.apidb_wdk_key"
+             adminEmail="admin@amoebadb.org"
+             monitorBlockedThreads="true"
+             blockedThreshold="20"
              >
              
     <queryMonitor
