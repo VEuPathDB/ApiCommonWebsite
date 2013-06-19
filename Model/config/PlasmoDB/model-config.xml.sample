@@ -6,7 +6,6 @@
              supportEmail="help@plasmodb.org"
              defaultRole="wdk_user"
              secretKeyFile="/usr/local/tomcat_instances/shared/.apidb_wdk_key"
-             adminEmail="admin@plasmodb.org"
              monitorBlockedThreads="true"
              blockedThreshold="20"
              >
