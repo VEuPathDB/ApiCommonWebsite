@@ -210,10 +210,17 @@
                                                            ApiCommonWebsite/Site-WebInstallation">
  </target>
 -->
-  <target name="ApiCommonWebsite-WebInstallation" depends="GBrowse-Installation,
+  <target name="ApiCommonWebsite-WebInstallation" depends="GBrowse-WebInstallation,
                                                            EuPathSiteCommon-WebInstallation,
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/Site-WebInstallation">
+  </target>
+
+  <target name="GBrowse-WebInstallation">
+    <ant antfile="../GBrowse/build.xml" target="GBrowse-WebInstallation">
+      <property name="project" value="GBrowse"/>
+      <property name="version" value="??"/>
+    </ant>
   </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
