@@ -128,13 +128,14 @@
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
- <target name="ApiCommonWebsite-Installation" depends="GBrowse-Installation,
+ <target name="ApiCommonWebsite-Installation" depends="
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonShared/Datasources-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/View-Installation,
-                                                        ApiCommonWebsite/Model-Installation">
+                                                        ApiCommonWebsite/Model-Installation,
+                                                        GBrowse-Installation">
 
     <ant target="defaultProjectInstall"/>
     
@@ -170,12 +171,6 @@
     <available file="${targetDir}/config/projects.xml" type="file" property="projects.xml.present" />
     <antcall target="install-projects.xml"/>
 
-<!--
-    <echo message="Injecting Templates"/>
-    <exec failonerror="true" executable="${targetDir}/bin/presenterInjectTemplates">
-      <arg line="-presentersDir ${projectsDir}/ApiCommonShared/Model/lib/xml/datasetPresenters -templatesDir ${projectsDir}/ApiCommonShared/Model/lib/dst -contactsXmlFile ${projectsDir}/ApiCommonShared/Model/lib/xml/datasetPresenters/contacts/contacts.xml"/>
-    </exec>
--->
   </target>
 
 
@@ -210,10 +205,11 @@
                                                            ApiCommonWebsite/Site-WebInstallation">
  </target>
 -->
-  <target name="ApiCommonWebsite-WebInstallation" depends="GBrowse-WebInstallation,
+  <target name="ApiCommonWebsite-WebInstallation" depends="
                                                            EuPathSiteCommon-WebInstallation,
                                                            ApiCommonWebsite-Installation,
-                                                           ApiCommonWebsite/Site-WebInstallation">
+                                                           ApiCommonWebsite/Site-WebInstallation,
+                                                           GBrowse-WebInstallation">
   </target>
 
   <target name="GBrowse-WebInstallation">
