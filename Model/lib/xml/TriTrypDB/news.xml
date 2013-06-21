@@ -19,6 +19,45 @@
     </record>
 -->
 <record>
+       <attribute name="headline">
+         <![CDATA[Genome sequence release notes
+         ]]>
+       </attribute>
+       <attribute name="date">19 June 2013 15:00</attribute>
+       <attribute name="tag">tryp06_13_news</attribute>
+       <attribute name="category">releasenotes</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+    <p>The latest release of TriTrypDB includes new versions of many of
+      the underlying genomes.&nbsp; To view a summary of the changes in genes
+      and genomes please examine <strong><a href="http://tritrypdb.org/tritrypdb/communityDownload.do?fname=GenomeMetricsJune2013.pdf">these
+          comparison tables</a></strong>.</p>
+    <p>Please note that following release of the latest genome versions some
+      issues were discovered primarily with chromosomes <em>T. brucei </em>9
+      and 11.&nbsp; These include incorrect gene models for an estimated 50
+      genes and inappropriately dropped annotation (gene names).&nbsp; These
+      issues are being addressed by the annotators at GeneDB and will be made
+      available in TriTrypDB once ready.&nbsp; In the meantime, the<a href="http://v4-2.tritrypdb.org/tritrypdb.b16/"><strong>
+          previous version of TriTrypDB</strong></a> is available for reference.</p>
+    <p>Current work is focusing on continued updates to gene annotation based on
+      user comments and literature.&nbsp; In addition, contigs not assigned to
+      chromosomes (known as bin chromosomes) will be made available for <em>T.</em>
+      <em>brucei</em> (this includes a chromosome 11 bin -- contigs that can be
+      assigned to this chromosome but order and orientation is unknown) and <em>T.
+        brucei </em><em>gambiense</em>.&nbsp; Telomeric sequences obtained
+      through TAR cloning targeting the <em>T. brucei</em>&nbsp; 927 and 427
+      telomeres are also now available for <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/maa/tritryp/TbruceiLister427_gff.tar"><strong>download</strong></a>
+      and will be included in a future release of TriTrypDB.&nbsp;&nbsp;</p>
+    <p>Please let&nbsp; us know if you have any questions or comments.</p>
+    <p><br>
+    </p>
+  </body>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">TriTrypDB 5.0 Released</attribute>
        <attribute name="date">31 May 2013 15:00</attribute>
        <attribute name="tag">tryp05_13_news</attribute>
