@@ -6,6 +6,9 @@
              supportEmail="help@giardiadb.org"
              defaultRole="wdk_user"
              secretKeyFile="/usr/local/tomcat_instances/shared/.apidb_wdk_key"
+             monitorBlockedThreads="true"
+             blockedThreshold="20"
+
              >
              
     <queryMonitor
