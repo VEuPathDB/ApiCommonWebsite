@@ -108,19 +108,14 @@
 
   <target name="ApiCommonWebsite-ChildUpdate" >
     <ant target="defaultProjectUpdate">
+      <property name="project" value="GBrowse"/>
+    </ant>
+    <ant target="defaultProjectUpdate">
       <property name="project" value="EuPathSiteCommon"/>
     </ant>
      <ant target="defaultProjectUpdate">
       <property name="project" value="ApiCommonShared"/>
     </ant>
-<!--
-   <ant target="defaultProjectUpdate">
-      <property name="project" value="WDK"/>
-    </ant>
-    <ant target="defaultProjectUpdate">
-      <property name="project" value="CBIL"/>
-    </ant>
--->
   </target>
 
 
