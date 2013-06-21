@@ -28,7 +28,7 @@
             showConnectionsDuration="600"
             userDbLink="@apidb.LOGIN_COMMENT" 
             maxPkColumnWidth="150"
-            />
+            driverInitClass="org.eupathdb.common.db.EuPathDbDriverInitializer"/>
              
     <userDb login=""
             password=""
@@ -43,7 +43,7 @@
             showConnectionsDuration="600"
             userSchema="userlogins3."
             wdkEngineSchema="wdkengine." 
-            />
+            driverInitClass="org.eupathdb.common.db.EuPathDbDriverInitializer"/>
            
     <emailSubject>
          <![CDATA[
