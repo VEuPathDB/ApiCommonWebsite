@@ -8,6 +8,8 @@ LOGIN_DBLINK=@apidb.LOGIN_COMMENT
 
 COMMENT_DBLINK=@apidb.LOGIN_COMMENT
 
+SITE_ADMIN_EMAIL = mheiges@uga.edu,aurreco@uga.edu,sfischer@pcbi.upenn.edu,jerric@pcbi.upenn.edu
+
 PROJECT_ID=ToxoDB
 
 MERCATOR_OUTPUT_DIR=

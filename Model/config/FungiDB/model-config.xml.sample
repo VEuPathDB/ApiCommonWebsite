@@ -6,7 +6,7 @@
              supportEmail="help@fungidb.org"
              defaultRole="wdk_user"
              secretKeyFile="/usr/local/tomcat_instances/shared/.apidb_wdk_key"
-             monitorBlockedThreads="true"
+             monitorBlockedThreads="false"
              blockedThreshold="20"
              >
              
