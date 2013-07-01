@@ -221,17 +221,6 @@ sub mapGeneFeatureSourceIds {
       $best = $sourceId;
     }
 
-    unless($best) {
-      my $sql = "select source_id from ApidbTuning.GeneAttributes where lower(source_id) = lower(?)";
-      my $sh = $dbh->prepare($sql);
-
-      $sh->execute($in);
-
-      while(my ($sourceId) = $sh->fetchrow_array()) {
-        $best = $sourceId;
-      }
-      $sh->finish();
-    }
     push @ids, $best if($best);
   }
 
