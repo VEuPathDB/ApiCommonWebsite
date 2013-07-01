@@ -361,6 +361,24 @@
        </table>
    </record>
 
+<record>
+       <attribute name="title">Pathogen Portal's RNA Sequence Analysis Pipeline Part 1</attribute>
+       <attribute name="description">How to use Pathogen Portal's RNA Sequence Analysis Pipeline to align your Illumina fastQ reads against supported genomes and estimate gene expression values. Generate BAM files that can be uploaded (Part 2) into EuPathDB's GBrowse to view your RNA-Seq data in context with other data at EuPathDB.</attribute>
+       <attribute name="uid">1July2013</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=PHm7SF4-12U</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">"Pathogen Portal's RNA Sequence Analysis Pipeline Part 1/pathogen_portals_rna_sequence_analysis_pipeline_part_1_viewlet_swf.html"</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">4.75 min</attribute>
+           <attribute name="size">6.8 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
  <record>
        <attribute name="title">PlasmoDB Introduction</attribute>
        <attribute name="description">Highlights of the PlasmoDB website.</attribute>
