@@ -27,17 +27,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
-import java.util.ArrayList; 
+import java.util.ArrayList;
 
 import javax.servlet.jsp.JspException;
-
 import javax.sql.DataSource;
 
-import org.apidb.apicommon.taglib.wdk.WdkTagBase;
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.dbms.DBPlatform;
-import org.gusdb.wdk.model.dbms.SqlUtils;
 
 public class SiteXmlMessagesTag extends WdkTagBase {
 
@@ -125,8 +121,7 @@ public class SiteXmlMessagesTag extends WdkTagBase {
             String projectName, String messageCategory, String range) throws SQLException, WdkModelException {
 
         PreparedStatement ps;
-        DBPlatform loginPlatform = wdkModel.getUserPlatform();
-        DataSource dataSource = loginPlatform.getDataSource();
+        DataSource dataSource = wdkModel.getUserDb().getDataSource();
        
         StringBuffer sql = new StringBuffer();
         sql.append(" SELECT m.message_text, m.message_id,                 ");
@@ -155,8 +150,7 @@ public class SiteXmlMessagesTag extends WdkTagBase {
             String messageCategory, String range) throws SQLException, WdkModelException {
 
         PreparedStatement ps;
-        DBPlatform loginPlatform = wdkModel.getUserPlatform();
-        DataSource dataSource = loginPlatform.getDataSource();
+        DataSource dataSource = wdkModel.getUserDb().getDataSource();
        
         StringBuffer sql = new StringBuffer();
         sql.append(" SELECT m.message_text, m.message_id,                 ");
