@@ -12,13 +12,13 @@ import java.sql.SQLException;
 
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.db.SqlScriptRunner;
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.wdk.model.dbms.SqlUtils;
 
 public class GBrowseSchemaCreator {
 
-  private static enum Op { CREATE, DROP };
+  private static enum Op { CREATE, DROP }
 
   private static final String SCRIPT_HOME = "/data/ApiCommonWebsite/Model/";
   
@@ -78,7 +78,7 @@ public class GBrowseSchemaCreator {
   public void runOp(Op operation) throws IOException, SQLException {
     switch (operation) {
       case CREATE:
-        switch (_db.getConfig().getPlatform()) {
+        switch (_db.getConfig().getPlatformEnum()) {
           case ORACLE:
             runScript(ORACLE_SCRIPT);
             break;

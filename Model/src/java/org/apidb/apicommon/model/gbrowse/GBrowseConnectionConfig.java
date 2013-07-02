@@ -32,7 +32,7 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
   @Override public String getLogin() { return _username; }
   @Override public String getPassword() { return _password; }
   @Override public String getConnectionUrl() { return _connectionString; }
-  @Override public SupportedPlatform getPlatform() { return _dbType; }
+  @Override public SupportedPlatform getPlatformEnum() { return _dbType; }
   @Override public short getMaxActive() { return 1; }
   @Override public short getMaxIdle() { return 5; }
   @Override public short getMinIdle() { return 0; }
@@ -40,6 +40,7 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
   @Override public boolean isShowConnections() { return false; }
   @Override public long getShowConnectionsInterval() { return 0; }
   @Override public long getShowConnectionsDuration() { return 0; }
+  @Override public String getDriverInitClass() { return null; }
   
   @Override
   public String toString() {
@@ -51,4 +52,5 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
         .append("  schemaName:       ").append(_schemaName).append(NL)
         .append("}").append(NL).toString();
   }
+
 }
