@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javax.sql.DataSource;
-import org.apache.log4j.Logger;
 
+import javax.sql.DataSource;
+
+import org.apache.log4j.Logger;
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.jmx.mbeans.BeanBase;
-import org.gusdb.wdk.model.dbms.DBPlatform;
-import org.gusdb.wdk.model.dbms.SqlUtils;
 
 
 /**
@@ -47,9 +47,7 @@ public class TuningManagerStatus extends BeanBase implements TuningManagerStatus
 
   private void populateTuningTableStat() {
     logger.debug("Getting tuningTable stats");
-    DBPlatform platform = getWdkModel().getQueryPlatform();
-    String platformName = platform.getClass().getSimpleName();
-    DataSource datasource = platform.getDataSource();
+    DataSource datasource = getWdkModel().getAppDb().getDataSource();
     tuningTableStatuses = new ArrayList<Map<String, String>>();
 
     String sql = tuningTableStatusSql();

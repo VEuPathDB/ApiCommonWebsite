@@ -14,12 +14,12 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.fgputil.db.platform.DBPlatform;
+import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.ConnectionContainer;
-import org.gusdb.wdk.model.dbms.DBPlatform;
-import org.gusdb.wdk.model.dbms.SqlUtils;
 
 /**
  * @author xingao
@@ -30,8 +30,9 @@ public class CommentFactory implements ConnectionContainer {
     private static CommentFactory factory;
 
     private Logger logger = Logger.getLogger(CommentFactory.class);
-    private WdkModel wdkModel;
-    private DBPlatform platform;
+    private DatabaseInstance commentDb;
+    private DBPlatform dbPlatform;
+    private DataSource commentDs;
     private CommentConfig config;
 
     public static CommentFactory getInstance(String gusHome, String projectId) {
@@ -41,32 +42,26 @@ public class CommentFactory implements ConnectionContainer {
 
     private static void initialize(String gusHome, String projectId) {
         try {
-            WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
-
             // parse and load the configuration
             CommentConfigParser parser = new CommentConfigParser(gusHome);
             CommentConfig config = parser.parseConfig(projectId);
 
             // create a platform object
-            DBPlatform platform = (DBPlatform) Class.forName(
-                    config.getPlatformClass()).newInstance();
-            platform.initialize(wdkModel, "Comment", config);
+            DatabaseInstance db = new DatabaseInstance("Comment", config);
+            db.initialize();
 
             // create a factory instance
-            factory = new CommentFactory(platform, config);
+            factory = new CommentFactory(db, config);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    private CommentFactory(DBPlatform platform, CommentConfig config) {
-        this.wdkModel = platform.getWdkModel();
-        this.platform = platform;
+    private CommentFactory(DatabaseInstance commentDb, CommentConfig config) {
+        this.commentDb = commentDb;
+        this.dbPlatform = commentDb.getPlatform();
+        this.commentDs = commentDb.getDataSource();
         this.config = config;
-    }
-
-    public DBPlatform getCommentPlatform() {
-        return platform;
     }
 
     public CommentTarget getCommentTarget(String internalValue)
@@ -81,7 +76,7 @@ public class CommentFactory implements ConnectionContainer {
             query = "SELECT * FROM " + config.getCommentSchema()
                     + "comment_target WHERE comment_target_id=?";
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), query);
+                    commentDs, query);
             ps.setString(1, internalValue);
             rs = ps.executeQuery();
             if (!rs.next())
@@ -109,12 +104,10 @@ public class CommentFactory implements ConnectionContainer {
     public void addComment(Comment comment, String previousCommentId)
             throws WdkModelException, WdkUserException {
         String commentSchema = config.getCommentSchema();
-
         PreparedStatement ps = null;
         // get a new comment id
         try {
-            // DataSource dataSource = platform.getDataSource();
-            int commentId = platform.getNextId(commentSchema, "comments");
+            int commentId = dbPlatform.getNextId(commentDs, commentSchema, "comments");
             int[] targetCategoryIds = comment.getTargetCategoryIds();
             String[] pmIds = comment.getPmIds();
             String[] dois = comment.getDois();
@@ -127,7 +120,7 @@ public class CommentFactory implements ConnectionContainer {
 						String sequence = comment.getSequence();
 
             ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(),
+                    commentDs,
                     "INSERT INTO "
                             + commentSchema
                             + "comments (comment_id, "
@@ -148,7 +141,7 @@ public class CommentFactory implements ConnectionContainer {
             ps.setString(7, comment.getProjectName());
             ps.setString(8, comment.getProjectVersion());
             ps.setString(9, comment.getHeadline());
-            platform.setClobData(ps, 10, comment.getContent(), false);
+            dbPlatform.setClobData(ps, 10, comment.getContent(), false);
             ps.setString(11, comment.getLocationString());
             String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0)
                     ? comment.getReviewStatus()
@@ -247,7 +240,6 @@ public class CommentFactory implements ConnectionContainer {
             throws SQLException, org.gusdb.wdk.model.WdkModelException,
             WdkUserException {
         String commentSchema = config.getCommentSchema();
-
         // construct sql
         StringBuffer sql = new StringBuffer();
         sql.append("INSERT INTO " + commentSchema + "locations (comment_id, ");
@@ -255,12 +247,12 @@ public class CommentFactory implements ConnectionContainer {
         sql.append("coordinate_type) VALUES (?, ?, ?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             Location[] locations = comment.getLocations();
             for (Location location : locations) {
-                int locationId = platform.getNextId(commentSchema, "locations");
+                int locationId = dbPlatform.getNextId(commentDs, commentSchema, "locations");
                 statement.setInt(1, commentId);
                 statement.setInt(2, locationId);
                 statement.setLong(3, location.getLocationStart());
@@ -291,10 +283,10 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
-            statement.setInt(1, platform.getNextId(commentSchema, "phenotype"));
+            statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema, "phenotype"));
             statement.setInt(2, commentId);
             statement.setString(3, background);
             statement.setInt(4, mutantStatus);
@@ -320,12 +312,12 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (int mutantMarker : mutantMarkers) {
-                statement.setInt(1, platform.getNextId(commentSchema,
-                        "commentMutantMarker"));
+                statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema,
+                    "commentMutantMarker"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, mutantMarker);
                 statement.execute();
@@ -346,11 +338,11 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (int mutantReporter : mutantReporters) {
-                statement.setInt(1, platform.getNextId(commentSchema,
+                statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema,
                         "commentMutantReporter"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, mutantReporter);
@@ -372,11 +364,11 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (int cat : phenotypeCategory) {
-                statement.setInt(1, platform.getNextId(commentSchema,
+                statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema,
                         "phenotypeMutantCategory"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, cat);
@@ -400,11 +392,11 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (int targetCategoryId : targetCategoryIds) {
-                statement.setInt(1, platform.getNextId(commentSchema,
+                statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema,
                         "commentTargetCategory"));
                 statement.setInt(2, commentId);
                 statement.setInt(3, targetCategoryId);
@@ -427,12 +419,12 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (String pmId : pmIds) {
                 if ((pmId != null) && (pmId.trim().length() != 0)) {
-                    int commentPmId = platform.getNextId(commentSchema,
+                    int commentPmId = dbPlatform.getNextId(commentDs, commentSchema,
                             "commentReference");
                     statement.setInt(1, commentPmId);
                     statement.setString(2, pmId);
@@ -458,12 +450,12 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (String doi : dois) {
                 if ((doi != null) && (doi.trim().length() != 0)) {
-                    int commentPmId = platform.getNextId(commentSchema,
+                    int commentPmId = dbPlatform.getNextId(commentDs, commentSchema,
                             "commentReference");
                     statement.setInt(1, commentPmId);
                     statement.setString(2, doi);
@@ -491,9 +483,9 @@ public class CommentFactory implements ConnectionContainer {
 				System.out.println(">>>>>>>> " + sql.toString());
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
-            int commentSeqId = platform.getNextId(commentSchema, "commentSequence");
+            int commentSeqId = dbPlatform.getNextId(commentDs, commentSchema, "commentSequence");
 
             statement.setInt(1, commentSeqId);
             statement.setString(2, sequence);
@@ -517,12 +509,12 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (String accession : accessions) {
                 if ((accession != null) && (accession.trim().length() != 0)) {
-                    int commentPmId = platform.getNextId(commentSchema,
+                    int commentPmId = dbPlatform.getNextId(commentDs, commentSchema,
                             "commentReference");
                     statement.setInt(1, commentPmId);
                     statement.setString(2, accession);
@@ -548,7 +540,7 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (String file : files) {
@@ -568,7 +560,6 @@ public class CommentFactory implements ConnectionContainer {
     private void updateFiles(int newCommentId, String[] files)
             throws SQLException, WdkModelException, WdkUserException {
         String commentSchema = config.getCommentSchema();
-        DataSource dataSource = platform.getDataSource();
         ResultSet rs = null;
 
         try {
@@ -579,7 +570,7 @@ public class CommentFactory implements ConnectionContainer {
                         + " SET comment_id = " + newCommentId
                         + " WHERE file_id = " + Integer.parseInt(str[0]);
 
-                SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-update-comment-id");
+                SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-comment-id");
             }
         } finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -589,7 +580,6 @@ public class CommentFactory implements ConnectionContainer {
     private void setInvisibleComment(String previousCommentId)
             throws SQLException, WdkModelException, WdkUserException {
         String commentSchema = config.getCommentSchema();
-        DataSource dataSource = platform.getDataSource();
         ResultSet rs = null;
 
         try {
@@ -597,7 +587,7 @@ public class CommentFactory implements ConnectionContainer {
                     + " SET is_visible = 0" + " WHERE comment_id = '"
                     + previousCommentId + "'";
 
-            SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-update-visible");
+            SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-visible");
         } finally {
             SqlUtils.closeResultSetAndStatement(rs);
         }
@@ -606,7 +596,6 @@ public class CommentFactory implements ConnectionContainer {
     private void updatePrevCommentId(String previousCommentId, int commentId)
             throws SQLException, WdkModelException, WdkUserException {
         String commentSchema = config.getCommentSchema();
-        DataSource dataSource = platform.getDataSource();
         ResultSet rs = null;
 
         try {
@@ -614,7 +603,7 @@ public class CommentFactory implements ConnectionContainer {
                     + " SET prev_comment_id = '" + previousCommentId + "'"
                     + " WHERE comment_id = " + commentId;
 
-            SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-update-previous-comment-id");
+            SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-previous-comment-id");
         } finally {
             SqlUtils.closeResultSetAndStatement(rs);
         }
@@ -633,13 +622,13 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (String associatedStableId : associatedStableIds) {
                 if ((associatedStableId != null)
                         && (associatedStableId.trim().length() != 0)) {
-                    int stableId = platform.getNextId(commentSchema,
+                    int stableId = dbPlatform.getNextId(commentDs, commentSchema,
                             "commentStableId");
                     statement.setInt(1, stableId);
                     statement.setString(2, associatedStableId);
@@ -663,12 +652,12 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(") VALUES (?, ?, ?, ?)");
         PreparedStatement statement = null;
         try {
-            statement = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            statement = SqlUtils.getPreparedStatement(commentDs,
                     sql.toString());
 
             for (String author : authors) {
                 if ((author != null) && (author.trim().length() != 0)) {
-                    int commentPmId = platform.getNextId(commentSchema,
+                    int commentPmId = dbPlatform.getNextId(commentDs, commentSchema,
                             "commentReference");
                     statement.setInt(1, commentPmId);
                     statement.setString(2, author);
@@ -703,7 +692,6 @@ public class CommentFactory implements ConnectionContainer {
         String commentSchema = config.getCommentSchema();
         // String dblink = config.getProjectDbLink();
         // String stableId = comment.getStableId();
-        DataSource dataSource = platform.getDataSource();
 
         // construct sqls
         StringBuffer sqlQueryDb = new StringBuffer();
@@ -727,13 +715,13 @@ public class CommentFactory implements ConnectionContainer {
         PreparedStatement psQUeryDb = null, psInsertDb = null, psInsertLink = null;
         try {
             // construct prepared statements
-            psQUeryDb = SqlUtils.getPreparedStatement(dataSource,
+            psQUeryDb = SqlUtils.getPreparedStatement(commentDs,
                     sqlQueryDb.toString());
 
-            psInsertDb = SqlUtils.getPreparedStatement(dataSource,
+            psInsertDb = SqlUtils.getPreparedStatement(commentDs,
                     sqlInsertDb.toString());
 
-            psInsertLink = SqlUtils.getPreparedStatement(dataSource,
+            psInsertLink = SqlUtils.getPreparedStatement(commentDs,
                     sqlInsertLink.toString());
 
             // add every external database record into the database
@@ -746,7 +734,7 @@ public class CommentFactory implements ConnectionContainer {
                     rsQueryDb = psQUeryDb.executeQuery();
                     if (!rsQueryDb.next()) {
                         // external database entry doesn't exist
-                        externalDbId = platform.getNextId(commentSchema,
+                        externalDbId = dbPlatform.getNextId(commentDs, commentSchema,
                                 "external_databases");
                         psInsertDb.setInt(1, externalDbId);
                         psInsertDb.setString(2, externalDb.getExternalDbName());
@@ -794,7 +782,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -819,7 +807,7 @@ public class CommentFactory implements ConnectionContainer {
             comment.setOrganization(rs.getString("organization"));
 
             // get clob content
-            comment.setContent(platform.getClobData(rs, "content"));
+            comment.setContent(dbPlatform.getClobData(rs, "content"));
 
             // load locations
             loadLocations(commentId, comment);
@@ -878,7 +866,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             ps.setString(2, databaseName);
             rs = ps.executeQuery();
@@ -912,7 +900,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             ps.setString(2, databaseName);
             rs = ps.executeQuery();
@@ -947,7 +935,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -989,7 +977,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -1022,7 +1010,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -1078,7 +1066,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -1113,7 +1101,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -1147,7 +1135,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -1179,7 +1167,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -1213,7 +1201,7 @@ public class CommentFactory implements ConnectionContainer {
         ResultSet rs = null;
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             ps.setInt(1, commentId);
             rs = ps.executeQuery();
 
@@ -1234,7 +1222,6 @@ public class CommentFactory implements ConnectionContainer {
     public Comment[] queryComments(String email, String projectName,
             String stableId, String conceptual, String reviewStatus,
             String keyword, String commentTargetId) throws WdkModelException {
-        DataSource dataSource = platform.getDataSource();
 
         StringBuffer where = new StringBuffer();
         if (email != null) {
@@ -1294,7 +1281,7 @@ public class CommentFactory implements ConnectionContainer {
         List<Comment> comments = new ArrayList<Comment>();
         ResultSet rs = null;
         try {
-            rs = SqlUtils.executeQuery(wdkModel, dataSource, sql.toString(), "api-comment-select-comment");
+            rs = SqlUtils.executeQuery(commentDs, sql.toString(), "api-comment-select-comment");
             while (rs.next()) {
                 int commentId = rs.getInt("comment_id");
                 Comment comment = getComment(commentId);
@@ -1317,7 +1304,6 @@ public class CommentFactory implements ConnectionContainer {
     public void deleteComment(String email, String commentId)
             throws WdkModelException {
         String commentSchema = config.getCommentSchema();
-        DataSource dataSource = platform.getDataSource();
 
         ResultSet rs = null;
         try {
@@ -1325,8 +1311,11 @@ public class CommentFactory implements ConnectionContainer {
             String sql = "UPDATE " + commentSchema + "comments "
                     + "SET is_visible = 0 " + "WHERE comment_id = '"
                     + commentId + "'" + "  AND email = '" + email + "'";
-            SqlUtils.executeUpdate(wdkModel, dataSource, sql, "wdk-comment-hide-comment");
+            SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-hide-comment");
 
+        }
+        catch (SQLException e) {
+          throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -1353,7 +1342,7 @@ public class CommentFactory implements ConnectionContainer {
 
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    commentDs, sql.toString());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -1377,8 +1366,8 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void printStatus() {
-        int active = platform.getActiveCount();
-        int idle = platform.getIdleCount();
+        int active = commentDb.getActiveCount();
+        int idle = commentDb.getIdleCount();
         logger.info("Comment connections: active=" + active + ", idle=" + idle);
     }
 
@@ -1390,6 +1379,6 @@ public class CommentFactory implements ConnectionContainer {
     @Override
     public Connection getConnection(String key) throws WdkModelException,
         SQLException {
-      return platform.getDataSource().getConnection();
+      return commentDs.getConnection();
     }
 }

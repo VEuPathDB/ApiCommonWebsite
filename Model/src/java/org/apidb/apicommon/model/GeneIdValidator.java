@@ -3,18 +3,19 @@ package org.apidb.apicommon.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.gusdb.wdk.model.dbms.DBPlatform;
-import org.gusdb.wdk.model.dbms.SqlUtils;
+import javax.sql.DataSource;
+
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class GeneIdValidator {
 
-    private DBPlatform platform;
+    private DataSource dataSource;
 
     public GeneIdValidator(WdkModelBean wdkModelBean) {
         try {
             // WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
-            platform = wdkModelBean.getModel().getQueryPlatform();
+            dataSource = wdkModelBean.getModel().getAppDb().getDataSource();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,7 +36,7 @@ public class GeneIdValidator {
 
         try {
             PreparedStatement ps = SqlUtils.getPreparedStatement(
-                    platform.getDataSource(), sql.toString());
+                    dataSource, sql.toString());
             ps.setString(1, sourceId);
             ps.setString(2, sourceId);
             ps.setString(3, sourceId);
