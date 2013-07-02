@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.apidb.apicomment.model;
+package org.apidb.apicommon.model;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class CommentConfigTest {
         assertTrue("connectionUrl", config.getConnectionUrl().length() > 0);
         assertTrue("login", config.getLogin().length() > 0);
         assertTrue("password", config.getPassword().length() > 0);
-        assertTrue("platformClass", config.getPlatformClass().length() > 0);
+        assertTrue("platformClass", config.getPlatform() != null);
         assertTrue("minIdle", config.getMinIdle() >= 0);
         assertTrue("maxIdle", config.getMaxIdle() >= config.getMinIdle());
         assertTrue("maxActive", config.getMaxActive() > 0);
