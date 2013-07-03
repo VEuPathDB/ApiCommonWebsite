@@ -108,19 +108,14 @@
 
   <target name="ApiCommonWebsite-ChildUpdate" >
     <ant target="defaultProjectUpdate">
+      <property name="project" value="GBrowse"/>
+    </ant>
+    <ant target="defaultProjectUpdate">
       <property name="project" value="EuPathSiteCommon"/>
     </ant>
      <ant target="defaultProjectUpdate">
       <property name="project" value="ApiCommonShared"/>
     </ant>
-<!--
-   <ant target="defaultProjectUpdate">
-      <property name="project" value="WDK"/>
-    </ant>
-    <ant target="defaultProjectUpdate">
-      <property name="project" value="CBIL"/>
-    </ant>
--->
   </target>
 
 
@@ -128,13 +123,14 @@
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
- <target name="ApiCommonWebsite-Installation" depends="GBrowse-Installation,
+ <target name="ApiCommonWebsite-Installation" depends="
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonShared/Datasources-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/View-Installation,
-                                                        ApiCommonWebsite/Model-Installation">
+                                                        ApiCommonWebsite/Model-Installation,
+                                                        GBrowse-Installation">
 
     <ant target="defaultProjectInstall"/>
     
@@ -170,12 +166,6 @@
     <available file="${targetDir}/config/projects.xml" type="file" property="projects.xml.present" />
     <antcall target="install-projects.xml"/>
 
-<!--
-    <echo message="Injecting Templates"/>
-    <exec failonerror="true" executable="${targetDir}/bin/presenterInjectTemplates">
-      <arg line="-presentersDir ${projectsDir}/ApiCommonShared/Model/lib/xml/datasetPresenters -templatesDir ${projectsDir}/ApiCommonShared/Model/lib/dst -contactsXmlFile ${projectsDir}/ApiCommonShared/Model/lib/xml/datasetPresenters/contacts/contacts.xml"/>
-    </exec>
--->
   </target>
 
 
@@ -210,10 +200,18 @@
                                                            ApiCommonWebsite/Site-WebInstallation">
  </target>
 -->
-  <target name="ApiCommonWebsite-WebInstallation" depends="GBrowse-Installation,
+  <target name="ApiCommonWebsite-WebInstallation" depends="
                                                            EuPathSiteCommon-WebInstallation,
                                                            ApiCommonWebsite-Installation,
-                                                           ApiCommonWebsite/Site-WebInstallation">
+                                                           ApiCommonWebsite/Site-WebInstallation,
+                                                           GBrowse-WebInstallation">
+  </target>
+
+  <target name="GBrowse-WebInstallation">
+    <ant antfile="../GBrowse/build.xml" target="GBrowse-WebInstallation">
+      <property name="project" value="GBrowse"/>
+      <property name="version" value="??"/>
+    </ant>
   </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
@@ -243,7 +241,20 @@
     <replace file="${cgibinTargetDir}/dataPlotter.pl" 
       token="@cgilibTargetDir@" 
       value="${cgilibTargetDir}"/>
-    
+
+    <antcall target="installGDD"/>
+
+  </target>
+
+  <target name="installGDD">
+    <exec dir="${projectsDir}/ApiCommonWebsite/Model/bin"
+          executable="/bin/bash"
+          failonerror="true"
+          failifexecutionfails="true">
+      <arg line="install_GDD"/>
+      <arg line="${webPropFile}"/>
+      <arg line="install"/>
+    </exec>
   </target>
 
   <target name="ApiCommonWebsite/View-WebInstallation" depends="ApiCommonWebsite/Model-Installation">

@@ -14,47 +14,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.fgputil.db.platform.DBPlatform;
+import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.dbms.DBPlatform;
-import org.gusdb.wdk.model.dbms.SqlUtils;
-import org.json.JSONException;
 import org.xml.sax.SAXException;
 
 public class UserFileFactory {
 
     private static UserFileFactory factory;
     private Logger logger = Logger.getLogger(UserFileFactory.class);
+    private DataSource dataSource;
     private DBPlatform platform;
     private CommentConfig config;
     private String projectId;
 
     public static void initialize(String gusHome, String projectId)
-            throws NoSuchAlgorithmException, WdkModelException,
-            ParserConfigurationException, TransformerFactoryConfigurationError,
-            TransformerException, IOException, SAXException, SQLException,
-            JSONException, WdkUserException, InstantiationException,
-            IllegalAccessException, ClassNotFoundException {
-
-        WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
+            throws IOException, WdkModelException, SAXException {
 
         // parse and load the configuration
         CommentConfigParser parser = new CommentConfigParser(gusHome);
         CommentConfig config = parser.parseConfig(projectId);
 
         // create a platform object
-        DBPlatform platform = (DBPlatform) Class.forName(
-                config.getPlatformClass()).newInstance();
-        platform.initialize(wdkModel, "Comment", config);
+        DatabaseInstance database = new DatabaseInstance("Comment", config);
+        database.initialize();
 
         // create a factory instance
-        factory = new UserFileFactory(platform, config, projectId);
+        factory = new UserFileFactory(database, config, projectId);
     }
 
     public static UserFileFactory getInstance() throws WdkModelException {
@@ -64,9 +55,10 @@ public class UserFileFactory {
         return factory;
     }
 
-    private UserFileFactory(DBPlatform platform, CommentConfig config,
+    private UserFileFactory(DatabaseInstance database, CommentConfig config,
             String projectId) {
-        this.platform = platform;
+        this.dataSource = database.getDataSource();
+        this.platform = database.getPlatform();
         this.config = config;
         this.projectId = projectId;
     }
@@ -142,9 +134,9 @@ public class UserFileFactory {
 
         PreparedStatement ps = null;
         try {
-            int userFileId = platform.getNextId(userFileSchema, "UserFile");
+            int userFileId = platform.getNextId(dataSource, userFileSchema, "UserFile");
 
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(),
+            ps = SqlUtils.getPreparedStatement(dataSource,
                     "INSERT INTO " + userFileSchema + "userfile ("
                             + "userFileId, filename, "
                             + "checksum, uploadTime, "
@@ -250,7 +242,7 @@ public class UserFileFactory {
 
         try {
             PreparedStatement ps = null;
-            ps = SqlUtils.getPreparedStatement(platform.getDataSource(), query);
+            ps = SqlUtils.getPreparedStatement(dataSource, query);
 
             ps.setString(1, filename);
 

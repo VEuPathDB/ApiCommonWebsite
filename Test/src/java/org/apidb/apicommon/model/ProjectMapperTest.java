@@ -1,4 +1,4 @@
-package org.apidb.apicomment.model;
+package org.apidb.apicommon.model;
 
 import java.io.IOException;
 import java.sql.SQLException;
