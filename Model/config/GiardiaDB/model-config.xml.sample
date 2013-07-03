@@ -6,6 +6,9 @@
              supportEmail="help@giardiadb.org"
              defaultRole="wdk_user"
              secretKeyFile="/usr/local/tomcat_instances/shared/.apidb_wdk_key"
+             monitorBlockedThreads="true"
+             blockedThreshold="20"
+
              >
              
     <queryMonitor
@@ -28,7 +31,7 @@
             showConnectionsDuration="600"
             userDbLink="@devS.login_comment" 
             maxPkColumnWidth="150"
-            />
+            driverInitClass="org.eupathdb.common.db.EuPathDbDriverInitializer"/>
              
     <userDb login="XXXXXXXX"
             password="XXXXXXXX"
@@ -43,7 +46,7 @@
             showConnectionsDuration="600"
             userSchema="userlogins3."
             wdkEngineSchema="wdkengine." 
-            />
+            driverInitClass="org.eupathdb.common.db.EuPathDbDriverInitializer"/>
            
     <emailSubject>
          <![CDATA[
