@@ -18,7 +18,6 @@ import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.dbms.ConnectionContainer;
 
 /**
@@ -96,13 +95,12 @@ public class CommentFactory implements ConnectionContainer {
         return target;
     }
 
-    public void addComment(Comment comment) throws WdkModelException,
-            WdkUserException {
+    public void addComment(Comment comment) throws WdkModelException {
         addComment(comment, null);
     }
 
     public void addComment(Comment comment, String previousCommentId)
-            throws WdkModelException, WdkUserException {
+            throws WdkModelException {
         String commentSchema = config.getCommentSchema();
         PreparedStatement ps = null;
         // get a new comment id
@@ -237,8 +235,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void saveLocations(int commentId, Comment comment)
-            throws SQLException, org.gusdb.wdk.model.WdkModelException,
-            WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
         // construct sql
         StringBuffer sql = new StringBuffer();
@@ -269,7 +266,7 @@ public class CommentFactory implements ConnectionContainer {
     private void savePhenotype(int commentId, String background,
             int mutantStatus, int mutationType, int mutationMethod,
             int mutantExpression, int phenotypeLoc, String phenotypeDescription)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
 
         String commentSchema = config.getCommentSchema();
 
@@ -302,7 +299,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void saveMutantMarkers(int commentId, int[] mutantMarkers)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -328,7 +325,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void saveMutantReporters(int commentId, int[] mutantReporters)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -354,7 +351,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void savePhenotypeCategory(int commentId, int[] phenotypeCategory)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -380,8 +377,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void saveCommentTargetCategory(int commentId,
-            int[] targetCategoryIds) throws SQLException, WdkModelException,
-            WdkUserException {
+            int[] targetCategoryIds) throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -407,8 +403,7 @@ public class CommentFactory implements ConnectionContainer {
         }
     }
 
-    private void savePmIds(int commentId, String[] pmIds) throws SQLException,
-            WdkModelException, WdkUserException {
+    private void savePmIds(int commentId, String[] pmIds) throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -438,8 +433,7 @@ public class CommentFactory implements ConnectionContainer {
         }
     }
 
-    private void saveDois(int commentId, String[] dois) throws SQLException,
-            WdkModelException, WdkUserException {
+    private void saveDois(int commentId, String[] dois) throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -469,8 +463,7 @@ public class CommentFactory implements ConnectionContainer {
         }
     }
 
-    private void saveSequence(int commentId, String sequence) throws SQLException,
-            WdkModelException, WdkUserException {
+    private void saveSequence(int commentId, String sequence) throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -498,7 +491,7 @@ public class CommentFactory implements ConnectionContainer {
 
 
     private void saveAccessions(int commentId, String[] accessions)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -528,8 +521,7 @@ public class CommentFactory implements ConnectionContainer {
         }
     }
 
-    private void saveFiles(int commentId, String[] files) throws SQLException,
-            WdkModelException {
+    private void saveFiles(int commentId, String[] files) throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -558,7 +550,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void updateFiles(int newCommentId, String[] files)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
         ResultSet rs = null;
 
@@ -578,7 +570,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void setInvisibleComment(String previousCommentId)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
         ResultSet rs = null;
 
@@ -594,7 +586,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void updatePrevCommentId(String previousCommentId, int commentId)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
         ResultSet rs = null;
 
@@ -610,8 +602,7 @@ public class CommentFactory implements ConnectionContainer {
     }
 
     private void saveAssociatedStableIds(int commentId,
-            String[] associatedStableIds) throws SQLException,
-            WdkModelException, WdkUserException {
+            String[] associatedStableIds) throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         // construct sql
@@ -641,8 +632,7 @@ public class CommentFactory implements ConnectionContainer {
         }
     }
 
-    private void saveAuthors(int commentId, String[] authors) throws SQLException,
-            WdkModelException, WdkUserException {
+    private void saveAuthors(int commentId, String[] authors) throws SQLException {
         String commentSchema = config.getCommentSchema();
 
         StringBuffer sql = new StringBuffer();
@@ -683,12 +673,9 @@ public class CommentFactory implements ConnectionContainer {
      * 
      * @param commentId
      * @param comment
-     * @throws SQLException
-     * @throws WdkModelException
-     * @throws WdkUserException
      */
     private void saveExternalDbs(int commentId, Comment comment)
-            throws SQLException, WdkModelException, WdkUserException {
+            throws SQLException {
         String commentSchema = config.getCommentSchema();
         // String dblink = config.getProjectDbLink();
         // String stableId = comment.getStableId();

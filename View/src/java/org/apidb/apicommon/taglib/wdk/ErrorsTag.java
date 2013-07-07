@@ -95,7 +95,7 @@ public class ErrorsTag extends WdkTagBase {
         varScope = PageContext.PAGE_SCOPE;
     }
     
-    
+    @Override
     public void doTag() throws JspException { 
         super.doTag();        
         pageContext = (PageContext) getJspContext();
@@ -546,7 +546,7 @@ public class ErrorsTag extends WdkTagBase {
     }
     
     private void appendUserAgent(StringBuffer sb) {
-        String userAgent = (String)request.getHeader("user-agent");
+        String userAgent = request.getHeader("user-agent");
         sb.append("UserAgent: " + "\n  " + userAgent + "\n");
     }
     

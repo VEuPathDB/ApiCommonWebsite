@@ -61,6 +61,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
    * @see org.gusdb.wdk.view.SummaryViewHandler#process(org.gusdb.wdk.model.user
    * .Step)
    */
+  @Override
   public Map<String, Object> process(Step step) throws WdkModelException,
       WdkUserException {
     logger.debug("Entering SpanGenomeViewHandler...");

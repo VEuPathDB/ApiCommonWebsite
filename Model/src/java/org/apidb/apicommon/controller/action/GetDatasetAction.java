@@ -15,6 +15,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
+import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
@@ -124,11 +125,9 @@ public class GetDatasetAction extends Action {
      * 
      * @param request
      * @param answerValue
-     * @throws Exception
      */
     private Map<String, List<RecordBean>> formatAnswer(
-            AnswerValueBean answerValue)
-            throws Exception {
+            AnswerValueBean answerValue) throws WdkModelException {
         Map<String, List<RecordBean>> categories = new LinkedHashMap<String, List<RecordBean>>();
         Iterator<RecordBean> records = answerValue.getRecords();
         while (records.hasNext()) {

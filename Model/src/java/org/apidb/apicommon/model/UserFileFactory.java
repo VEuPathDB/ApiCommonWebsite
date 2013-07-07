@@ -21,7 +21,6 @@ import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.xml.sax.SAXException;
 
 public class UserFileFactory {
@@ -63,8 +62,7 @@ public class UserFileFactory {
         this.projectId = projectId;
     }
 
-    public void addUserFile(UserFile userFile) throws WdkModelException,
-            UserFileUploadException {
+    public void addUserFile(UserFile userFile) throws UserFileUploadException {
         File filePath = new File(config.getUserFileUploadDir() + "/"
                 + projectId);
         String fileName = userFile.getFileName();
@@ -129,7 +127,7 @@ public class UserFileFactory {
     }
 
     public void insertUserFileMetaData(UserFile userFile)
-            throws WdkModelException, WdkUserException {
+            throws WdkModelException {
         String userFileSchema = config.getUserFileSchema();
 
         PreparedStatement ps = null;
@@ -171,7 +169,7 @@ public class UserFileFactory {
         }
     }
 
-    public UserFile getUserFile(int commentId) throws WdkModelException {
+    public UserFile getUserFile(int commentId) {
         return null;
     }
 
