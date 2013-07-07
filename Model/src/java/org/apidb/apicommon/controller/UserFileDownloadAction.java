@@ -19,6 +19,7 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class UserFileDownloadAction extends DownloadAction {
 
+  @Override
   public ActionForward execute(ActionMapping mapping, ActionForm form,
       HttpServletRequest request, HttpServletResponse response)
       throws Exception {
@@ -26,7 +27,7 @@ public class UserFileDownloadAction extends DownloadAction {
     ServletContext application = getServlet().getServletContext();
     String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
 
-    String fname = (String) request.getParameter("fname");
+    String fname = request.getParameter("fname");
 
     File file = getFile(fname, projectId);
 
@@ -76,13 +77,14 @@ public class UserFileDownloadAction extends DownloadAction {
 
   }
 
+  @Override
   protected StreamInfo getStreamInfo(ActionMapping mapping, ActionForm form,
       HttpServletRequest request, HttpServletResponse response)
       throws Exception {
     WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
     String projectId = wdkModel.getProjectId();
 
-    String fname = (String) request.getParameter("fname");
+    String fname = request.getParameter("fname");
 
     File file = getFile(fname, projectId);
 

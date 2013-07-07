@@ -26,6 +26,7 @@ public class Region {
     return sequenceId + "-" + start + "-" + end;
   }
 
+  @Override
   public String toString() {
     return getSourceId();
   }

@@ -103,8 +103,7 @@ public class SiteSearchAction extends Action {
     }
 
     private String getQuestionUrl(WdkModelBean wdkModel, String questionName,
-            String keyword) throws UnsupportedEncodingException,
-            WdkUserException, WdkModelException {
+            String keyword) throws UnsupportedEncodingException, WdkModelException {
         QuestionBean question = wdkModel.getQuestion(questionName);
         StringBuilder builder = new StringBuilder();
         builder.append("questionFullName=").append(question.getFullName());
