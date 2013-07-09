@@ -21,13 +21,14 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
  */
 public class ProcessAddCommentAction extends CommentAction {
 
+    @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         // get comment factory, and initialize it if necessary
 
-        // get the referer link
-        String referer = (String) request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
+        // get the referrer link
+        String referer = request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
         if (referer == null) referer = request.getHeader("referer");
 
         int index = referer.lastIndexOf("/");
@@ -67,7 +68,7 @@ public class ProcessAddCommentAction extends CommentAction {
         }
 
         String commentTarget = request.getParameter("commentTargetId");
-        String[] targetCategoryIds = (String[]) request.getParameterValues("targetCategory");
+        String[] targetCategoryIds = request.getParameterValues("targetCategory");
         String pmIdStr = request.getParameter("pmids");
         String doiStr = request.getParameter("dois");
         String reviewStatus = request.getParameter("reviewStatus");
