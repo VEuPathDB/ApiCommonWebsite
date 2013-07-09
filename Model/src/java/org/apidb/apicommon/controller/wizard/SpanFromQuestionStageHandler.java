@@ -25,6 +25,7 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
+    @Override
     public StepBean getChildStep(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {

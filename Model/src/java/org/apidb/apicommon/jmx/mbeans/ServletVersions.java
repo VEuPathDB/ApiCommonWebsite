@@ -8,6 +8,7 @@ public class ServletVersions extends BeanBase implements ServletVersionsMBean   
    * Version of the Tomcat server.
    * e.g. Apache Tomcat/5.5.30
    */
+  @Override
   public String getServerInfo() {
     return getContext().getServerInfo();
   }
@@ -15,6 +16,7 @@ public class ServletVersions extends BeanBase implements ServletVersionsMBean   
   /**
    *  version number of the JSP specification that is supported by the JSP engine
    */
+  @Override
   public String getJspSpecVersion()  {
     javax.servlet.jsp.JspFactory f = javax.servlet.jsp.JspFactory.getDefaultFactory();
     if ( f != null) {
@@ -26,6 +28,7 @@ public class ServletVersions extends BeanBase implements ServletVersionsMBean   
   /**
    * Servlet API version that the servlet container supports.
    */
+  @Override
   public String getServletApiVersion() {
     return getContext().getMajorVersion() + "." + getContext().getMinorVersion();
   }

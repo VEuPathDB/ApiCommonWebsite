@@ -9,6 +9,7 @@ public class SiteXmlMessagesTEI extends TagExtraInfo {
 
     private ValidationMessage[] vmsg = null;
 
+    @Override
     public ValidationMessage[] validate(TagData data) {
 
         ArrayList<ValidationMessage> errors = new ArrayList<ValidationMessage>();
