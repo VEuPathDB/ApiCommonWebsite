@@ -82,7 +82,7 @@ public class GBrowseSchemaCreator {
           case ORACLE:
             runScript(ORACLE_SCRIPT);
             break;
-          case POSTGRES:
+          case POSTGRESQL:
             runScript(POSTGRES_SCRIPT);
             break;
         }
