@@ -72,7 +72,8 @@ public class UserFileUploadForm extends ActionForm {
         return formNotes;
 	}
 
-    /** the mapped.properties strings should go into a properties file?? **/    
+    /** the mapped.properties strings should go into a properties file?? **/
+    @Override
     public ActionErrors validate(ActionMapping mapping, 
         HttpServletRequest request) { 
         ActionErrors errors = new ActionErrors();
@@ -147,6 +148,7 @@ public class UserFileUploadForm extends ActionForm {
         return errors; 
     }
 
+    @Override
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		file = null;
 	}

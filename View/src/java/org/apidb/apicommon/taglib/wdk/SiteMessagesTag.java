@@ -31,6 +31,7 @@ public class SiteMessagesTag extends WdkTagBase {
     private String messageCategory;
     public ArrayList<String> messages;
 
+    @Override
     public void doTag() throws JspException {
         super.doTag();
 

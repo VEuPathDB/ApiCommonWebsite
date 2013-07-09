@@ -14,6 +14,7 @@ public class RowTag extends SimpleTagSupport {
     private String var;
     private Map<String, AttributeValue> row;
 
+    @Override
     public void doTag() throws JspException, IOException {
         TableTag wdkTable = (TableTag)findAncestorWithClass(
             this, TableTag.class);

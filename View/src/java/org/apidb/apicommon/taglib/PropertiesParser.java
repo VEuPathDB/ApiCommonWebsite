@@ -30,14 +30,14 @@ public class PropertiesParser extends SimpleTagSupport {
         varScope = PageContext.PAGE_SCOPE;
     }
     
-    public void setVar(String name) throws JspException {
+    public void setVar(String name) {
         var = name;
     }
-    public void setPropfile(String file) throws JspException {
+    public void setPropfile(String file) {
         propFile = file;
     }
 
-    @SuppressWarnings( "unchecked" )
+    @Override
     public void doTag() throws JspException { 
 
         if (var == null || propFile == null) return;
@@ -66,7 +66,8 @@ public class PropertiesParser extends SimpleTagSupport {
             throw new JspException(e);
         }
         
-        Enumeration<String> enumeration = (Enumeration<String>) props.propertyNames();
+        @SuppressWarnings("unchecked")
+		Enumeration<String> enumeration = (Enumeration<String>) props.propertyNames();
         List<String> keyList = Collections.list(enumeration);
         Collections.sort(keyList);
 

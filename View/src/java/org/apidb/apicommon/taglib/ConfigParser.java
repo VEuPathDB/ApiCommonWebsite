@@ -32,13 +32,14 @@ public class ConfigParser extends SimpleTagSupport {
         varScope = PageContext.PAGE_SCOPE;
     }
     
-    public void setVar(String name) throws JspException {
+    public void setVar(String name) {
         var = name;
     }
-    public void setConfigfile(String file) throws JspException {
+    public void setConfigfile(String file) {
         configfile = file;
     }
 
+    @Override
     public void doTag() throws JspException { 
 
         if (var == null || configfile == null) return;
@@ -84,6 +85,6 @@ public class ConfigParser extends SimpleTagSupport {
 	    url = namedNodeMap.getNamedItem("url").getNodeValue();
 	    map.put(projectId,url);
 	}
-	jspContext.setAttribute(var,(Object)map,varScope);
+	jspContext.setAttribute(var, map, varScope);
     }
 }
