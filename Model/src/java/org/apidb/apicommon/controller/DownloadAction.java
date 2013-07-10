@@ -70,15 +70,12 @@ public abstract class DownloadAction extends Action {
      * @param form The optional ActionForm bean for this request (if any).
      * @param request The HTTP request we are processing.
      * @param response The HTTP response we are creating.
-     *
      * @return The information for the file to be downloaded.
-     *
-     * @throws Exception if an exception occurs.
      */
     protected abstract StreamInfo getStreamInfo(ActionMapping mapping,
             ActionForm form, HttpServletRequest   request,
             HttpServletResponse   response)
-            throws Exception  ;
+            throws Exception;
 
     /**
      * Returns the size of the buffer to be used in transferring the data to
@@ -105,9 +102,10 @@ public abstract class DownloadAction extends Action {
      *
      * @throws Exception if an exception occurs.
      */
+    @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
-            HttpServletRequest   request, HttpServletResponse   response)
-            throws Exception   {
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
         StreamInfo info = getStreamInfo(mapping, form, request, response);
         String   contentType = info.getContentType();
@@ -137,8 +135,8 @@ public abstract class DownloadAction extends Action {
      *
      * @throws IOException In case of an I/O problem
      */
-    public int copy(InputStream   input, OutputStream   output)
-            throws IOException   {
+    public int copy(InputStream input, OutputStream output)
+            throws IOException {
         byte[] buffer = new byte[getBufferSize()];
         int count = 0;
         int n = 0;
@@ -204,7 +202,8 @@ public abstract class DownloadAction extends Action {
          *
          * @return The content type of the stream.
          */
-        public String   getContentType() {
+        @Override
+        public String getContentType() {
             return this.contentType;
         }
 
@@ -214,9 +213,10 @@ public abstract class DownloadAction extends Action {
          *
          * @return The input stream for the file to be downloaded.
          */
-        public InputStream   getInputStream() throws IOException   {
-            FileInputStream   fis = new FileInputStream  (file);
-            BufferedInputStream   bis = new BufferedInputStream  (fis);
+        @Override
+        public InputStream getInputStream() throws IOException   {
+            FileInputStream fis = new FileInputStream  (file);
+            BufferedInputStream bis = new BufferedInputStream  (fis);
             return bis;
         }
     }
@@ -262,7 +262,8 @@ public abstract class DownloadAction extends Action {
          *
          * @return The content type of the stream.
          */
-        public String   getContentType() {
+        @Override
+        public String getContentType() {
             return this.contentType;
         }
 
@@ -272,7 +273,8 @@ public abstract class DownloadAction extends Action {
          *
          * @return The input stream for the resource to be downloaded.
          */
-        public InputStream   getInputStream() throws IOException   {
+        @Override
+        public InputStream getInputStream() throws IOException   {
             return context.getResourceAsStream(path);
         }
     }

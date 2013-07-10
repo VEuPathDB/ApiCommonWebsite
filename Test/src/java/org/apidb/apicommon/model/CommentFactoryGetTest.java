@@ -6,27 +6,12 @@ package org.apidb.apicommon.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-
-import org.apidb.apicommon.model.Comment;
-import org.apidb.apicommon.model.CommentFactory;
-import org.apidb.apicommon.model.ExternalDatabase;
-import org.apidb.apicommon.model.Location;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-import org.json.JSONException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 /**
  * @author xingao
@@ -52,12 +37,7 @@ public class CommentFactoryGetTest {
     private int commentId;
 
     @BeforeClass
-    public static void loadFactory() throws WdkModelException,
-            NoSuchAlgorithmException, ParserConfigurationException,
-            TransformerFactoryConfigurationError, TransformerException,
-            IOException, SAXException, SQLException, JSONException,
-            WdkUserException, InstantiationException, IllegalAccessException,
-            ClassNotFoundException {
+    public static void loadFactory() throws WdkModelException {
         // get the projectId
         String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
         projectId = System.getProperty(Utilities.ARGUMENT_PROJECT_ID);
@@ -72,7 +52,7 @@ public class CommentFactoryGetTest {
     }
 
     @Before
-    public void addComment() throws WdkModelException, WdkUserException {
+    public void addComment() throws WdkModelException {
         Comment comment = new Comment(SAMPLE_EMAIL);
         comment.setStableId(SAMPLE_STABLE_ID);
         comment.setCommentTarget(SAMPLE_COMMENT_TARGET);
@@ -92,7 +72,7 @@ public class CommentFactoryGetTest {
     }
 
     @After
-    public void removeComment() throws WdkModelException, WdkUserException {
+    public void removeComment() throws WdkModelException {
         factory.deleteComment(SAMPLE_EMAIL, Integer.toString(commentId));
     }
 
@@ -129,8 +109,7 @@ public class CommentFactoryGetTest {
     }
 
     @Test
-    public void testQueryCommentByStableId() throws WdkModelException,
-            WdkUserException {
+    public void testQueryCommentByStableId() throws WdkModelException {
         Comment[] array = factory.queryComments(null, null, SAMPLE_STABLE_ID,
                 null, null, null, null);
         // TEST
@@ -144,8 +123,7 @@ public class CommentFactoryGetTest {
     }
 
     @Test
-    public void testQUeryCOmmentByProjectId() throws WdkModelException,
-            WdkUserException {
+    public void testQUeryCOmmentByProjectId() throws WdkModelException {
         Comment[] array = factory.queryComments(null, projectId, null, null,
                 null, null, null);
         // TEST

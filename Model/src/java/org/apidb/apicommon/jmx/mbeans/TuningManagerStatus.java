@@ -28,6 +28,7 @@ public class TuningManagerStatus extends BeanBase implements TuningManagerStatus
     super();
   }
 
+  @Override
   public ArrayList<Map<String, String>> gettable_statuses() {
     populateTuningTableStat();
     return tuningTableStatuses;
