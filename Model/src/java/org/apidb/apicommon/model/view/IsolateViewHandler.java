@@ -27,6 +27,7 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
     public abstract String prepareSql(String idSql) throws WdkModelException,
             WdkUserException;
 
+    @Override
     public Map<String, Object> process(Step step) throws WdkModelException,
             WdkUserException {
         logger.debug("Entering IsolateViewHandler...");

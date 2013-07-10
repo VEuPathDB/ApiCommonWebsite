@@ -74,8 +74,7 @@ public class ExportBasketAction extends Action {
     }
 
     private int exportBasket(WdkModel wdkModel, User user,
-            String targetProject, String rcName) throws SQLException,
-            WdkUserException, WdkModelException {
+            String targetProject, String rcName) throws SQLException {
         String schema = wdkModel.getModelConfig().getUserDB().getUserSchema();
         String table = schema + BasketFactory.TABLE_BASKET;
         String userColumn = BasketFactory.COLUMN_USER_ID;

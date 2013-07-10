@@ -38,6 +38,7 @@ public class CommentConfigParser extends XmlParser {
         return (CommentConfig) digester.parse(configURL.openStream());
     }
 
+    @Override
     protected Digester configureDigester() {
         Digester digester = new Digester();
         digester.setValidating(false);

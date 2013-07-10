@@ -1,17 +1,12 @@
 package org.apidb.apicommon.controller;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -23,19 +18,18 @@ import org.apidb.apicommon.model.UserFileFactory;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.json.JSONException;
 import org.xml.sax.SAXException;
 
 public class PhenotypeAction extends CommentAction {
 
+    @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        String referer = (String) request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
+        String referer = request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
         if (referer == null) referer = request.getHeader("referer");
 
         int index = referer.lastIndexOf("/");
@@ -82,9 +76,9 @@ public class PhenotypeAction extends CommentAction {
         String mutationMethodDesc = cuForm.getMutationMethodDescription();
         String phenotypeLoc = cuForm.getPhenotypeLoc();
         String mutantExpression = cuForm.getExpression();
-        String[] markers = (String[]) cuForm.getMarker();
-        String[] reporters = (String[]) cuForm.getReporter();
-        String[] phenotypeCategory = (String[]) cuForm.getPhenotypeCategory(); 
+        String[] markers = cuForm.getMarker();
+        String[] reporters = cuForm.getReporter();
+        String[] phenotypeCategory = cuForm.getPhenotypeCategory(); 
 
         // create a comment instance
         Comment comment = new Comment(email);
@@ -94,7 +88,7 @@ public class PhenotypeAction extends CommentAction {
         comment.setProjectVersion(projectVersion);
         comment.setHeadline(headline);
         comment.setOrganism(organism);
-        comment.setContent(content); // phenoteyp description
+        comment.setContent(content); // phenotype description
         comment.setBackground(background);
         comment.setMutantStatus(Integer.parseInt(mutantStatus));
         comment.setMutationType(Integer.parseInt(mutationType));
@@ -221,11 +215,7 @@ public class PhenotypeAction extends CommentAction {
     }
 
     protected UserFileFactory getUserFileFactory() throws WdkModelException,
-            NoSuchAlgorithmException, ParserConfigurationException,
-            TransformerFactoryConfigurationError, TransformerException,
-            IOException, SAXException, SQLException, JSONException,
-            WdkUserException, InstantiationException, IllegalAccessException,
-            ClassNotFoundException {
+            IOException, SAXException {
         UserFileFactory factory = null;
         try {
             factory = UserFileFactory.getInstance();
