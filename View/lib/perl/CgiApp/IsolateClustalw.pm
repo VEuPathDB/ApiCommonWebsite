@@ -64,11 +64,10 @@ sub handleIsolates {
     #$ids =~ s/'(\w)/'$sid\.$1/g;
     $ids .= ",'$sid'";   # always compare with reference isolate
     $sql = <<EOSQL;
-select CASE WHEN source_id='$sid' THEN source_id
-            ELSE replace(source_id, '$sid.', '')
-            END as source_id, 
-            substr(nas.sequence, $start,$end-$start+1) as sequence from dots.nasequence nas
-where nas.source_id in ($ids) 
+SELECT source_id, 
+       substr(nas.sequence, $start,$end-$start+1) as sequence 
+FROM   dots.nasequence nas
+WHERE  nas.source_id in ($ids) 
 EOSQL
   } else {  # regular isolates
     $sql = <<EOSQL;
@@ -82,7 +81,7 @@ EOSQL
   my $sth = $dbh->prepare($sql);
   $sth->execute();
   while(my ($id, $seq) = $sth->fetchrow_array()) {
-    $id =~ s/^[^\.]+\.//g unless ($project_id =~ /ToxoDB/i);
+    $id =~ s/^[^\.]+\.// unless ($project_id =~ /ToxoDB/i);
     $sequence .= ">$id\n$seq\n";
   }
 
@@ -162,7 +161,7 @@ EOSQL
              $id =~ s/$sid\.//; 
           } 
         }  else {
-          $id =~ s/^[^\.]+\.//g;
+          $id =~ s/^[^\.]+\.//;
         }
         $origins{$id} = $start;
      }
