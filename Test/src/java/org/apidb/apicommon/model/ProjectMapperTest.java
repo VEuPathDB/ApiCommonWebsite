@@ -7,11 +7,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.Assert;
 
-import org.apidb.apicommon.model.ProjectMapper;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
@@ -39,8 +37,7 @@ public class ProjectMapperTest {
 
   @Test
   public void testGetProjectByOrganism() throws WdkModelException,
-      SAXException, IOException, ParserConfigurationException,
-      WdkUserException, SQLException {
+      SAXException, IOException, ParserConfigurationException, SQLException {
     ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
     Assert.assertEquals("PlasmoDB",
         mapper.getProjectByOrganism("Plasmodium falciparum"));

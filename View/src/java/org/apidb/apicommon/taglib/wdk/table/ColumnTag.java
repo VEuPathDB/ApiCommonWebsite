@@ -11,6 +11,7 @@ public class ColumnTag extends SimpleTagSupport {
     private Iterator<?> iterator;
     private String var;
 
+    @Override
     public void doTag() throws JspException, IOException {
         RowTag row = (RowTag)findAncestorWithClass(
             this, RowTag.class);

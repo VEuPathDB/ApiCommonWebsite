@@ -62,7 +62,7 @@ public class OrclSvcAliases {
 
             NamingEnumeration<SearchResult> results = dctx.search(base, filter, sc);
             while (results.hasMore()) {
-              SearchResult sr = (SearchResult) results.next();
+              SearchResult sr = results.next();
               Attributes attrs = sr.getAttributes();
         
               Attribute attr = attrs.get("cn");

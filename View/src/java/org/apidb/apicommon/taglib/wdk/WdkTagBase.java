@@ -24,6 +24,7 @@ public abstract class WdkTagBase extends SimpleTagSupport {
         varScope = PageContext.PAGE_SCOPE;
     }
 
+    @Override
     public void doTag() throws JspException {
         setWdkModelBean();
         setWdkModel();

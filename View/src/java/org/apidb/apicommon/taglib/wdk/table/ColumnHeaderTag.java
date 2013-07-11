@@ -11,6 +11,7 @@ public class ColumnHeaderTag extends SimpleTagSupport {
 	
     private String var;
 
+    @Override
     public void doTag() throws JspException, IOException {
         TableTag wdkTable = (TableTag)findAncestorWithClass(
             this, TableTag.class);

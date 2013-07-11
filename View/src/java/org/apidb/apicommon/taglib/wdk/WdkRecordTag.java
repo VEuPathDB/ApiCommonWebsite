@@ -30,7 +30,6 @@ import javax.servlet.jsp.tagext.DynamicAttributes;
 
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.RecordClassBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
@@ -48,6 +47,7 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
         dynamicAttrs = new LinkedHashMap<String, String>();
     }
 
+    @Override
     public void doTag() throws JspException {
         super.doTag();
 
@@ -83,8 +83,6 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
 
             return wdkRecord;
 
-        } catch (WdkUserException wue) {
-            throw new JspException(wue);
         } catch (WdkModelException wme) {
             throw new JspException(wme);
         } catch (Exception e) {
@@ -109,6 +107,7 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
         this.recordKey = recordKey;
     }
 
+    @Override
     public void setDynamicAttribute(String uri, String localName, Object value)
             throws JspException {
         dynamicAttrs.put(localName, (String) value);

@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="/WDK Model/lib/java/commons-digester-1.8.1.jar"/>
 	<classpathentry kind="lib" path="/WSF Plugin/lib/java/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="/WSF Service/lib/java/xercesImpl-2.9.1.jar"/>
+	<classpathentry kind="lib" path="/WSF Plugin/lib/java/org.json-chargebee-1.0.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
