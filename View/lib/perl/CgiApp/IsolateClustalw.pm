@@ -81,7 +81,7 @@ EOSQL
   my $sth = $dbh->prepare($sql);
   $sth->execute();
   while(my ($id, $seq) = $sth->fetchrow_array()) {
-    $id =~ s/^[^\.]+\.// unless ($project_id =~ /ToxoDB/i);
+    $id =~ s/^$sid\.// unless ($id eq $sid);
     $sequence .= ">$id\n$seq\n";
   }
 
@@ -156,13 +156,7 @@ EOSQL
   if ($type =~ /htsSNP/i){
      foreach my $id (split /,/, $ids) {
         $id =~ s/'//g;
-        if($project_id =~ /ToxoDB/i) {
-          if ($id ne $sid) {
-             $id =~ s/$sid\.//; 
-          } 
-        }  else {
-          $id =~ s/^[^\.]+\.//;
-        }
+        $id =~ s/^$sid\.// unless ($id eq $sid);
         $origins{$id} = $start;
      }
   }
