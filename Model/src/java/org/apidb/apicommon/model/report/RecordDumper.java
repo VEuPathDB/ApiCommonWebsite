@@ -13,10 +13,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
@@ -30,7 +26,6 @@ import org.gusdb.wdk.model.report.FullRecordReporter;
 import org.gusdb.wdk.model.report.Reporter;
 import org.gusdb.wdk.model.user.User;
 import org.json.JSONException;
-import org.xml.sax.SAXException;
 
 /**
  * @author xingao
@@ -43,26 +38,10 @@ public class RecordDumper {
 
     /**
      * @param args
-     * @throws WdkModelException
-     * @throws WdkUserException
-     * @throws IOException
-     * @throws ClassNotFoundException
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     * @throws JSONException
-     * @throws SQLException
-     * @throws SAXException
-     * @throws TransformerException
-     * @throws TransformerFactoryConfigurationError
-     * @throws ParserConfigurationException
-     * @throws NoSuchAlgorithmException
      */
     public static void main(String[] args) throws WdkModelException,
             WdkUserException, IOException, NoSuchAlgorithmException,
-            ParserConfigurationException, TransformerFactoryConfigurationError,
-            TransformerException, SAXException, SQLException, JSONException,
-            InstantiationException, IllegalAccessException,
-            ClassNotFoundException {
+            SQLException, JSONException {
         if (args.length != 6 && args.length != 8) {
             System.err.println("Invalid parameters.");
             printUsage();

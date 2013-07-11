@@ -29,26 +29,27 @@ public class HttpStatus extends SimpleTagSupport {
         varScope = PageContext.PAGE_SCOPE;
     }
     
-    public void setUrl(String url) throws JspException {
+    public void setUrl(String url) {
         this.url = url;
     }
     
-    public void setVar(String var) throws JspException {
+    public void setVar(String var) {
         this.var = var;
     }
 
-    public void setFollowRedirect(boolean followRedirect) throws JspException {
+    public void setFollowRedirect(boolean followRedirect) {
         this.followRedirect = followRedirect;
     }
     
-    public void setReadTimeout(int readTimeout) throws JspException {
+    public void setReadTimeout(int readTimeout) {
         this.readTimeout = readTimeout;
     }
     
-    public void setConnectTimeout(int connectTimeout) throws JspException {
+    public void setConnectTimeout(int connectTimeout) {
         this.connectTimeout = connectTimeout;
     }
-    
+
+    @Override
     public void doTag() throws JspException { 
 
         try {
