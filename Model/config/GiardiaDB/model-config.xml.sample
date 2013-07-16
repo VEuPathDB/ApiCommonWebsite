@@ -44,7 +44,7 @@
             showConnections="false"
             showConnectionsInterval="10"
             showConnectionsDuration="600"
-            userSchema="userlogins3."
+            userSchema="userlogins4."
             wdkEngineSchema="wdkengine." 
             driverInitClass="org.eupathdb.common.db.EuPathDbDriverInitializer"/>
            
