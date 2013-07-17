@@ -30,7 +30,7 @@ my %dblinkMap;
 ####################################################################
 # shared
 my $g_platform = "Oracle";
-my $g_userLoginSchema = "userlogins3";
+my $g_userLoginSchema = "userlogins4";
 my $g_commentSchema = "comments2";
 my $g_showConnections = "false";
 my $g_showConnectionsInterval = "10";
@@ -57,7 +57,7 @@ my $userDb_connectionUrl = "";
 my $userDb_maxIdle = "1";
 my $userDb_minIdle = "0";
 my $userDb_wdkEngineSchema = "wdkengine." ;
-my $userDb_userSchema = "userlogins3.";
+my $userDb_userSchema = "userlogins4.";
 
 # comments-config
 my $cc_maxIdle = "3";
