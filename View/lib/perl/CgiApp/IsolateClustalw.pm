@@ -61,7 +61,7 @@ sub handleIsolates {
   my $sql = "";
 
   if($type =~ /htsSNP/i) {
-    #$ids =~ s/'(\w)/'$sid\.$1/g;
+    $ids =~ s/'(\w)/'$sid\.$1/g;
     $ids .= ",'$sid'";   # always compare with reference isolate
     $sql = <<EOSQL;
 SELECT source_id, 
