@@ -5,6 +5,7 @@ require Exporter;
     resolveOracleDSN
     resolveOracleAlias
     jdbc2oracleDbi
+    jdbc2postgresDbi
     dbi2connectString
     );
 
@@ -103,6 +104,38 @@ sub jdbc2oracleDbi {
         $jdbc =~ m/thin:[^@]*@(.+)/;
         return "dbi:Oracle:$1";
     }
+}
+
+=head2 jdbc2postgresDbi
+
+ Usage : my $name = DbUtils->jdbc2postgresDbi($jdbcConnectUrl);
+ Returns : dbi syntax converted from Postgres jdbc driver syntax
+
+ my $name = DbUtils->jdbc2postgresDbi('jdbc:postgresql://myhost:5432/mydatabase');
+ print $name;
+ dbi:Pg:dbname=mydatabase;host=myhost;port=5432;
+
+=cut
+sub jdbc2postgresDbi {
+    my ($jdbc) = @_;
+   
+    # check for jdbc:postgresql://host:port/database
+    if ($jdbc =~ m/postgresql:\/\/([^:\/]+):([0-9]+)\/(.+)/) {
+    	my ($host, $port, $db) = $jdbc =~ m/postgresql:\/\/([^:\/]+):([0-9]+)\/(.+)/;
+        return "dbi:Pg:dbname=$db;host=$host;port=$port";
+    }
+    # check for jdbc:postgresql://host/database
+    elsif ($jdbc =~ m/postgresql:\/\/([^\/]+)\/(.+)/) {
+    	my ($host, $db) = $jdbc =~ m/postgresql:\/\/([^\/]+)\/(.+)/;
+    	return "dbi:Pg:dbname=$db;host=$host";
+    }
+    # check for jdbc:postgresql:database
+    elsif ($jdbc =~ m/postgresql:\/\/(.+)/) {
+    	my ($db) = $jdbc =~ m/postgresql:\/\/(.+)/;
+    	return "dbi:Pg:dbname=$db";
+    }
+    # return empty string if no match
+    return "";
 }
 
 1;
