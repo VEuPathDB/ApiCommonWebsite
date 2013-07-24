@@ -37,6 +37,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     private static final String ATTR_QUESTIONS_BY_DATASET = "questions_by_dataset_map";
     private static final String ATTR_DISPLAY_CATEGORIES = "display_categories";
 
+    private static final Logger logger = Logger.getLogger(CustomShowQuestionAction.class);
+
     public static void loadDatasets(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
@@ -137,7 +139,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             for (Map<String, AttributeValue> row : tableValue) {
                 String targetType = row.get("target_type").toString();
                 String targetName = row.get("target_name").toString();
+
                 if (targetType.equals(TYPE_QUESTION)) {
+                    logger.debug("Getting question bean for " + targetName + 
+                        " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
+
                     QuestionBean internalQuestion = wdkModel.getQuestion(
                             targetName);
                     String[] displayCategories =
