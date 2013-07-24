@@ -25,6 +25,7 @@ var GB = {
             // retrieve project name (where gbrowse resides), and redirect url from this page's URL
             var project = GB.getParameterByName('project');
             var redirectUrl = GB.getParameterByName('redirectUrl');
+            var cookieMaxAge = GB.getParameterByName('cookieMaxAge');
           
             // append login form to the bottom of the page (is display:none)
             var html = GB.getLoginFormHtml(project, creds);
@@ -32,7 +33,7 @@ var GB = {
           
             // run authentication
             Controller.plugin_authenticate($('plugin_configure_form'),
-            $('login_message'),'/cgi-bin/gbrowse/'+project,redirectUrl);
+                $('login_message'),'/cgi-bin/gbrowse/'+project,redirectUrl,cookieMaxAge);
         }
     },
   

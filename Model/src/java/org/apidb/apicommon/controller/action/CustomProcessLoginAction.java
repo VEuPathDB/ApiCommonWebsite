@@ -7,13 +7,14 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 public class CustomProcessLoginAction extends ProcessLoginAction {
 
   @Override
-  protected ActionResult getSuccessfulLoginResult(String redirectUrl) {
-    return CustomProcessLoginAction.getGbrowseLoginUrl(getWdkModel(), redirectUrl);
+  protected ActionResult getSuccessfulLoginResult(String redirectUrl, int wdkCookieMaxAge) {
+    return CustomProcessLoginAction.getGbrowseLoginUrl(getWdkModel(), redirectUrl, wdkCookieMaxAge);
   }
 
-  static ActionResult getGbrowseLoginUrl(WdkModelBean model, String redirectUrl) {
-    String loginPageUrl = new StringBuffer("/gbrowse/gbrowseSetup.html?project=")
-        .append(model.getName().toLowerCase()).append("&redirectUrl=").append(redirectUrl).toString();
+  static ActionResult getGbrowseLoginUrl(WdkModelBean model, String redirectUrl, int wdkCookieMaxAge) {
+    String loginPageUrl = new StringBuffer("/gbrowse/gbrowseSetup.html?redirectUrl=")
+    	.append(redirectUrl).append("&project=").append(model.getName().toLowerCase())
+    	.append("&cookieMaxAge=").append(wdkCookieMaxAge).toString();
     return new ActionResult().setExternalPath(loginPageUrl);
   }
 }

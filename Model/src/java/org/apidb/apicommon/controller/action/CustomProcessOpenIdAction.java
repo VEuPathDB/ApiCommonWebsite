@@ -6,7 +6,7 @@ import org.gusdb.wdk.controller.actionutil.ActionResult;
 public class CustomProcessOpenIdAction extends ProcessOpenIdAction {
 
   @Override
-  protected ActionResult getSuccessfulLoginResult(String redirectUrl) {
-    return CustomProcessLoginAction.getGbrowseLoginUrl(getWdkModel(), redirectUrl);
+  protected ActionResult getSuccessfulLoginResult(String redirectUrl, int wdkCookieMaxAge) {
+    return CustomProcessLoginAction.getGbrowseLoginUrl(getWdkModel(), redirectUrl, wdkCookieMaxAge);
   }
 }
