@@ -1,16 +1,11 @@
 package org.apidb.apicommon.controller;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.Action;
@@ -23,30 +18,28 @@ import org.apidb.apicommon.model.UserFileFactory;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.json.JSONException;
 import org.xml.sax.SAXException;
 
 public class UserFileUploadAction extends Action {
     
   private Logger logger = Logger.getLogger(UserFileFactory.class);
-  private UserFileUploadForm cuForm;
   
+  @Override
   public ActionForward execute(ActionMapping mapping,
                                ActionForm form,
                                HttpServletRequest request,
                                HttpServletResponse response) throws Exception {
 
-    String referer = (String) request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
+    String referer = request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
     if (referer == null) referer = request.getHeader("referer");
 
     int index = referer.lastIndexOf("/");
     referer = referer.substring(index);
     ActionForward forward = new ActionForward(referer, false);
 
-    cuForm = (UserFileUploadForm)form;
+    UserFileUploadForm cuForm = (UserFileUploadForm)form;
     HashMap<Integer, FormFile> formSet = cuForm.getFormFiles();
     HashMap<Integer, String> noteSet = cuForm.getFormNotes();
 
@@ -101,11 +94,7 @@ public class UserFileUploadAction extends Action {
   }
 
   protected UserFileFactory getUserFileFactory() throws WdkModelException,
-          NoSuchAlgorithmException, ParserConfigurationException,
-          TransformerFactoryConfigurationError, TransformerException,
-          IOException, SAXException, SQLException, JSONException,
-          WdkUserException, InstantiationException, IllegalAccessException,
-          ClassNotFoundException {
+          IOException, SAXException {
       UserFileFactory factory = null;
       try {
           factory = UserFileFactory.getInstance();
@@ -119,10 +108,6 @@ public class UserFileUploadAction extends Action {
           factory = UserFileFactory.getInstance();
       }
       return factory;
-  }
-
-  public void reset(ActionMapping mapping, HttpServletRequest request) {
-      cuForm = null;        
   }
 }
 

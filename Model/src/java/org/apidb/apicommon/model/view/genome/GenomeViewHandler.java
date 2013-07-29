@@ -13,12 +13,12 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.SummaryViewHandler;
-import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.user.Step;
 
 /**
@@ -61,6 +61,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
    * @see org.gusdb.wdk.view.SummaryViewHandler#process(org.gusdb.wdk.model.user
    * .Step)
    */
+  @Override
   public Map<String, Object> process(Step step) throws WdkModelException,
       WdkUserException {
     logger.debug("Entering SpanGenomeViewHandler...");
@@ -77,12 +78,12 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     ResultSet resultSet = null;
     try {
       WdkModel wdkModel = step.getQuestion().getWdkModel();
-      DataSource dataSource = wdkModel.getQueryPlatform().getDataSource();
+      DataSource dataSource = wdkModel.getAppDb().getDataSource();
 
       // compose an sql to get all sequences from the feature id query.
       AnswerValue answerValue = step.getAnswerValue();
       String sql = prepareSql(answerValue.getIdSql());
-      resultSet = SqlUtils.executeQuery(wdkModel, dataSource, sql,
+      resultSet = SqlUtils.executeQuery(dataSource, sql,
           "genome-view", 2000);
 
       sequences = loadSequences(resultSet);

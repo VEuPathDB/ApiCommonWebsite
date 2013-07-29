@@ -17,6 +17,9 @@ use Data::Dumper;
 sub getPercentileRAdjust {}
 sub getProfileRAdjust {}
 
+sub finalProfileAdjustments {}
+sub finalPercentileAdjustments {}
+
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
@@ -132,6 +135,7 @@ sub makeAndSetPlots {
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($percentileSetsArray);
 
   my $profile;
+  my $xAxisLabel;
 
   my $plotPartModule = $self->getExprPlotPartModuleString();  
   if(lc($self->getGraphType()) eq 'bar') {
@@ -149,6 +153,7 @@ sub makeAndSetPlots {
 
   } elsif(lc($self->getGraphType()) eq 'line') {
     my $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
+    $xAxisLabel= $self->getXAxisLabel();
 
     $profile = eval {
       $plotObj->new(@_);
@@ -178,11 +183,19 @@ sub makeAndSetPlots {
     $profile->setElementNameMarginSize($bottomMarginSize);
     $percentile->setElementNameMarginSize($bottomMarginSize);
   }
+  
+  if($xAxisLabel) {
+    $profile->setXaxisLabel($xAxisLabel);
+  }
 
   if(@$sampleLabels) {
     $profile->setSampleLabels($sampleLabels);
     $percentile->setSampleLabels($sampleLabels);
   }
+
+  # These can be implemented by the subclass if needed
+  $self->finalProfileAdjustments($profile);
+  $self->finalPercentileAdjustments($percentile);
 
   $self->setGraphObjects($profile, $percentile);
 }

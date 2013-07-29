@@ -13,12 +13,13 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.gusdb.fgputil.db.QueryLogger;
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.record.RecordClass;
@@ -73,8 +74,7 @@ public class ExportBasketAction extends Action {
     }
 
     private int exportBasket(WdkModel wdkModel, User user,
-            String targetProject, String rcName) throws SQLException,
-            WdkUserException, WdkModelException {
+            String targetProject, String rcName) throws SQLException {
         String schema = wdkModel.getModelConfig().getUserDB().getUserSchema();
         String table = schema + BasketFactory.TABLE_BASKET;
         String userColumn = BasketFactory.COLUMN_USER_ID;
@@ -104,7 +104,7 @@ public class ExportBasketAction extends Action {
 
         logger.debug(sql);
 
-        DataSource dataSource = wdkModel.getUserPlatform().getDataSource();
+        DataSource dataSource = wdkModel.getUserDb().getDataSource();
         PreparedStatement psInsert = null;
         int count = 0;
         try {
@@ -122,7 +122,7 @@ public class ExportBasketAction extends Action {
 
             long start = System.currentTimeMillis();
             count = psInsert.executeUpdate();
-            SqlUtils.verifyTime(wdkModel, sql, "wdk-export-basket", start);
+            QueryLogger.logEndStatementExecution(sql, "wdk-export-basket", start);
         } finally {
             SqlUtils.closeStatement(psInsert);
         }

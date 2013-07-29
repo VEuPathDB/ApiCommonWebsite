@@ -57,46 +57,6 @@
     </ant>
   </target>  
 
-  <target name="ApiCommonData/Datasources-Installation">
-    <ant antfile="../ApiCommonData/build.xml" target="ApiCommonData/Datasources-Installation">
-      <property name="project" value="ApiCommonData"/>
-      <property name="version" value="api-aug-08"/>
-    </ant>
-  </target>  
-
-<!-- in eupathcommon now
-  <target name="WDK-Installation">
-    <ant antfile="../WDK/build.xml" target="WDK-Installation">
-      <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-18"/>
-    </ant>
-  </target>  
-
-  <target name="WDK-WebInstallation">
-    <ant antfile="../WDK/build.xml" target="WDK-WebInstallation">
-      <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-18"/>
-    </ant>
-  </target>  
-
-  <target name="CBIL-Checkout" unless="CBIL.present"> 
-    <ant target="defaultProjectCheckout" inheritAll="false"> 
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/CBIL" />
-      <property name="project" value="CBIL"/>
-      <property name="version" value="internal/api-build-9"/>
-    </ant>
-  </target>     
--->
-
-  <target name="ApiCommonData-Checkout" unless="ApiCommonData.present"> 
-    <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonData"/>
-      <property name="project" value="ApiCommonData"/>
-      <property name="version" value="api-build-9"/>
-      <property name="excludeChildren" value="true"/>
-    </ant>
-  </target>
- 
   <target name="ApiCommonShared-Checkout" unless="ApiCommonShared.present"> 
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonShared"/>
@@ -104,17 +64,15 @@
       <property name="version" value="api-build-9"/>
     </ant>
   </target>
- 
-<!-- in eupathcommon now
-  <target name="WDK-Checkout" unless="WDK.present"> 
-    <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/gus/WDK" />
-      <property name="project" value="WDK"/>
-      <property name="version" value="WDK_version_1-28"/>
+
+  <target name="ApiCommonShared/Datasources-Installation">
+    <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared/Datasources-Installation">
+      <property name="project" value="ApiCommonShared"/>
+      <property name="version" value="api-aug-08"/>
     </ant>
-  </target>  
--->
+  </target>
  
+
   <target name="ApiCommonWebService-Checkout" unless="ApiCommonWebService.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonWebService" />
@@ -134,14 +92,12 @@
     <available file="../GBrowse" type="dir" property="GBrowse.present" />
     <available file="../EuPathSiteCommon" type="dir"  property="EuPathSiteCommon.present" />
     <available file="../ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
-    <available file="../ApiCommonData" type="dir"  property="ApiCommonData.present" />
     <available file="../ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
 <!--     <antcall target="CBIL-Checkout" />
     <antcall target="WDK-Checkout" /> -->
     <antcall target="GBrowse-Checkout"/>
     <antcall target="EuPathSiteCommon-Checkout"/>
     <antcall target="ApiCommonWebService-Checkout" />
-    <antcall target="ApiCommonData-Checkout"/>
     <antcall target="ApiCommonShared-Checkout"/>
   </target>
   
@@ -152,8 +108,7 @@
 
   <target name="ApiCommonWebsite-ChildUpdate" >
     <ant target="defaultProjectUpdate">
-      <property name="project" value="ApiCommonData"/>
-      <property name="excludeChildren" value="true"/>
+      <property name="project" value="GBrowse"/>
     </ant>
     <ant target="defaultProjectUpdate">
       <property name="project" value="EuPathSiteCommon"/>
@@ -161,37 +116,21 @@
      <ant target="defaultProjectUpdate">
       <property name="project" value="ApiCommonShared"/>
     </ant>
-<!--
-   <ant target="defaultProjectUpdate">
-      <property name="project" value="WDK"/>
-    </ant>
-    <ant target="defaultProjectUpdate">
-      <property name="project" value="CBIL"/>
-    </ant>
--->
   </target>
 
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-<!--
-  <target name="ApiCommonWebsite-Installation" depends="CBIL-Installation,
-                                                        WDK-Installation,
-                                                        ApiCommonShared-Installation,
-                                                        ApiCommonWebsite/Site-Installation,
-                                                        ApiCommonWebsite/Model-Installation,
-                                                        ApiCommonWebsite/View-Installation,
-                                                        ApiCommonData/Datasources-Installation">
--->
 
- <target name="ApiCommonWebsite-Installation" depends="GBrowse-Installation,
+ <target name="ApiCommonWebsite-Installation" depends="
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
+                                                        ApiCommonShared/Datasources-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonWebsite/Model-Installation,
-                                                        ApiCommonData/Datasources-Installation">
+                                                        GBrowse-Installation">
 
     <ant target="defaultProjectInstall"/>
     
@@ -227,12 +166,6 @@
     <available file="${targetDir}/config/projects.xml" type="file" property="projects.xml.present" />
     <antcall target="install-projects.xml"/>
 
-
-    <echo message="Injecting Templates"/>
-    <exec failonerror="true" executable="${targetDir}/bin/presenterInjectTemplates">
-      <arg line="-presentersDir ${projectsDir}/ApiCommonShared/Model/lib/xml/datasetPresenters -templatesDir ${projectsDir}/ApiCommonShared/Model/lib/dst"/>
-    </exec>
-
   </target>
 
 
@@ -245,7 +178,7 @@
     </ant>
   </target>
 
-  <target name="ApiCommonWebsite/View-Installation">
+  <target name="ApiCommonWebsite/View-Installation" depends="ApiCommonWebsite/Model-Installation">
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="View"/>
@@ -267,10 +200,18 @@
                                                            ApiCommonWebsite/Site-WebInstallation">
  </target>
 -->
-  <target name="ApiCommonWebsite-WebInstallation" depends="GBrowse-Installation,
+  <target name="ApiCommonWebsite-WebInstallation" depends="
                                                            EuPathSiteCommon-WebInstallation,
                                                            ApiCommonWebsite-Installation,
-                                                           ApiCommonWebsite/Site-WebInstallation">
+                                                           ApiCommonWebsite/Site-WebInstallation,
+                                                           GBrowse-WebInstallation">
+  </target>
+
+  <target name="GBrowse-WebInstallation">
+    <ant antfile="../GBrowse/build.xml" target="GBrowse-WebInstallation">
+      <property name="project" value="GBrowse"/>
+      <property name="version" value="??"/>
+    </ant>
   </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
@@ -300,7 +241,20 @@
     <replace file="${cgibinTargetDir}/dataPlotter.pl" 
       token="@cgilibTargetDir@" 
       value="${cgilibTargetDir}"/>
-    
+
+    <antcall target="installGDD"/>
+
+  </target>
+
+  <target name="installGDD">
+    <exec dir="${projectsDir}/ApiCommonWebsite/Model/bin"
+          executable="/bin/bash"
+          failonerror="true"
+          failifexecutionfails="true">
+      <arg line="install_GDD"/>
+      <arg line="${webPropFile}"/>
+      <arg line="install"/>
+    </exec>
   </target>
 
   <target name="ApiCommonWebsite/View-WebInstallation" depends="ApiCommonWebsite/Model-Installation">

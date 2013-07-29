@@ -32,7 +32,7 @@ sub init {
   my $percents = ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag->new(@_);
   $percents->setProfileSets($profileSets);
   $percents->setColors(\@legendColors);
-  $percents->setElementNameMarginSize(6);
+  $percents->setElementNameMarginSize(8.5);
 
   $self->setGraphObjects($percents);
 

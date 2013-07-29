@@ -1,8 +1,6 @@
 package org.apidb.apicommon.controller.action;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
-
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -20,7 +17,6 @@ import org.apidb.apicommon.model.ProjectMapper;
 import org.gusdb.wdk.controller.action.ShowRecordAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
@@ -29,7 +25,6 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
-import org.json.JSONException;
 import org.xml.sax.SAXException;
 
 public class CustomShowRecordAction extends ShowRecordAction {
@@ -110,8 +105,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
     private boolean hasMultipleRecords(HttpServletRequest request,
             WdkModelBean wdkModel, String rcName, String sourceId)
-            throws WdkModelException, NoSuchAlgorithmException,
-            WdkUserException, SQLException, JSONException {
+            throws WdkModelException {
         UserBean user = ActionUtility.getUser(servlet, request);
         RecordClassBean recordClass = wdkModel.getRecordClass(rcName);
         Map<String, Object> pkValues = new LinkedHashMap<String, Object>();

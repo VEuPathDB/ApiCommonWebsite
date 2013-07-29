@@ -22,9 +22,7 @@ import java.util.ArrayList;
 import javax.servlet.jsp.JspException;
 import javax.sql.DataSource;
 
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.dbms.DBPlatform;
-import org.gusdb.wdk.model.dbms.SqlUtils;
+import org.gusdb.fgputil.db.SqlUtils;
 
 public class SiteMessagesTag extends WdkTagBase {
 
@@ -33,6 +31,7 @@ public class SiteMessagesTag extends WdkTagBase {
     private String messageCategory;
     public ArrayList<String> messages;
 
+    @Override
     public void doTag() throws JspException {
         super.doTag();
 
@@ -44,7 +43,6 @@ public class SiteMessagesTag extends WdkTagBase {
         messages = new ArrayList<String>();
         ResultSet rs = null;
         PreparedStatement ps = null;
-        DBPlatform loginPlatform = wdkModel.getUserPlatform();
         StringBuffer sql = new StringBuffer();
        
         sql.append(" SELECT m.message_text                                       ");
@@ -59,7 +57,7 @@ public class SiteMessagesTag extends WdkTagBase {
         sql.append(" ORDER BY m.message_id DESC                                  ");
         
         try {
-            DataSource dataSource = loginPlatform.getDataSource();
+            DataSource dataSource = wdkModel.getUserDb().getDataSource();
             ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
             ps.setString(1, projectName);
             ps.setString(2, messageCategory.toLowerCase());
@@ -68,8 +66,6 @@ public class SiteMessagesTag extends WdkTagBase {
                 messages.add(rs.getString(1) );
             }
         } catch (SQLException sqle) {
-            throw new JspException(sqle);
-        } catch (WdkModelException sqle) {
             throw new JspException(sqle);
         } finally {
             SqlUtils.closeResultSetAndStatement(rs);

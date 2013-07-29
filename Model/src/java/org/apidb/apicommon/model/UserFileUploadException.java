@@ -2,9 +2,6 @@ package org.apidb.apicommon.model;
 
 public class UserFileUploadException extends Exception {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 4296968079019764478L;
 
     public UserFileUploadException() {
@@ -24,6 +21,7 @@ public class UserFileUploadException extends Exception {
         return "UserFileUploadException: " + message;
     }
 
+    @Override
     public String getMessage() {
         return formatErrors();
     }

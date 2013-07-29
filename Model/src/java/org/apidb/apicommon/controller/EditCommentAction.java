@@ -48,7 +48,7 @@ public class EditCommentAction extends CommentAction {
         }
 
         ExternalDatabase[] edbs =  comment.getExternalDbs();
-        ExternalDatabase edb = (ExternalDatabase)edbs[0];
+        ExternalDatabase edb = edbs[0];
 
         int[] categoryIds = comment.getTargetCategoryIds();
         String categoryString = "";
