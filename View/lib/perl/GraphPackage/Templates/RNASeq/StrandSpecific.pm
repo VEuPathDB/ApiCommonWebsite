@@ -34,9 +34,9 @@ sub init {
     } elsif($profileName =~ /^percentile\s?-.*-\s?antisense strand$/) {
       $percentileAntisenseProfile = $profileName;
     } elsif($profileName =~ /antisense strand$/) {
-      $minSenseProfile = $profileName;
-    } elsif($profileName =~ /sense strand$/) {
       $minAntisenseProfile = $profileName;
+    } elsif($profileName =~ /sense strand$/) {
+      $minSenseProfile = $profileName;
     } else {
       next; # so we do not add to count
     }

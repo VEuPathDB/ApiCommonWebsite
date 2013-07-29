@@ -1,7 +1,5 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +22,6 @@ import org.gusdb.wdk.model.jspwrap.ParamBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.json.JSONException;
 
 public abstract class ShowSpanStageHandler implements StageHandler {
 
@@ -40,6 +37,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception;
 
+    @Override
     public Map<String, Object> execute(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
@@ -85,8 +83,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
     private void prepareInsert(ActionServlet servlet,
             HttpServletRequest request, WizardForm wizardForm,
             StepBean childStep, Map<String, Object> attributes)
-            throws NumberFormatException, NoSuchAlgorithmException,
-            WdkModelException, WdkUserException, JSONException, SQLException {
+            throws NumberFormatException, WdkModelException, WdkUserException {
         StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
         StepBean previousStep, nextStep;
         String nextParam = null;
@@ -119,8 +116,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
     private void prepareRevise(ActionServlet servlet,
             HttpServletRequest request, WizardForm wizardForm,
             StepBean childStep, Map<String, Object> attributes)
-            throws WdkUserException, WdkModelException, SQLException,
-            JSONException {
+            throws WdkModelException {
         StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
         StepBean previousStep = currentStep.getPreviousStep();
         StepBean nextStep = currentStep.getNextStep();
@@ -145,8 +141,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
     private void prepareAdd(ActionServlet servlet, HttpServletRequest request,
             WizardForm wizardForm, StepBean childStep,
             Map<String, Object> attributes) throws NumberFormatException,
-            WdkUserException, WdkModelException, NoSuchAlgorithmException,
-            JSONException, SQLException {
+            WdkUserException, WdkModelException {
         StepBean rootStep = StageHandlerUtility.getRootStep(servlet, request,
                 wizardForm);
         StepBean previousStep = rootStep;

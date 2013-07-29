@@ -9,12 +9,12 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.SummaryViewHandler;
-import org.gusdb.wdk.model.dbms.SqlUtils;
 import org.gusdb.wdk.model.user.Step;
 
 public abstract class IsolateViewHandler implements SummaryViewHandler {
@@ -27,6 +27,7 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
     public abstract String prepareSql(String idSql) throws WdkModelException,
             WdkUserException;
 
+    @Override
     public Map<String, Object> process(Step step) throws WdkModelException,
             WdkUserException {
         logger.debug("Entering IsolateViewHandler...");
@@ -36,8 +37,8 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
             WdkModel wdkModel = step.getQuestion().getWdkModel();
             AnswerValue answerValue = step.getAnswerValue();
             String sql = prepareSql(answerValue.getIdSql());
-            DataSource dataSource = wdkModel.getQueryPlatform().getDataSource();
-            resultSet = SqlUtils.executeQuery(wdkModel, dataSource, sql,
+            DataSource dataSource = wdkModel.getAppDb().getDataSource();
+            resultSet = SqlUtils.executeQuery(dataSource, sql,
                     step.getQuestion().getQuery().getFullName() + "__isolate-view", 2000);
 
             int maxLength = 0;

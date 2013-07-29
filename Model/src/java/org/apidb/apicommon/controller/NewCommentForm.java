@@ -398,6 +398,7 @@ public class NewCommentForm extends ActionForm {
     }
 
     /** the mapped.properties strings should go into a properties file?? **/
+    @Override
     public ActionErrors validate(ActionMapping mapping,
             HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
@@ -514,6 +515,7 @@ public class NewCommentForm extends ActionForm {
         return errors;
     }
 
+    @Override
     public void reset(ActionMapping mapping, HttpServletRequest request) {
         file = null;
         formFiles.clear();

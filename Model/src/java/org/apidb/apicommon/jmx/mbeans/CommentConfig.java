@@ -24,7 +24,8 @@ public class CommentConfig extends AbstractConfig {
     super();
     init();
   }
-  
+
+  @Override
   protected void init() {
     CommentFactory factory = null;
     try {
