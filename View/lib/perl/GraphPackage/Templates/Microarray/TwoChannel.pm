@@ -11,7 +11,7 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 
 # use standard colors for all percentile graphs
 sub getPercentileColors {
-  return ['blue', 'grey'];
+  return ['LightSlateGray', 'DarkSlateGray'];
 }
 
 1;
