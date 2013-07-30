@@ -44,7 +44,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5772</attribute>
        <attribute name = "Plasmodium falciparum IT">5698</attribute>
        <attribute name = "Plasmodium knowlesi strain H">5307</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">5507</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">5507</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">7774</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">5811</attribute>
        <attribute name = "Theileria annulata strain Ankara">3845</attribute>
@@ -112,7 +112,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5538</attribute>
        <attribute name = "Plasmodium falciparum IT">5485</attribute>
        <attribute name = "Plasmodium knowlesi strain H">5226</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">5435</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">5435</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">7724</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">5710</attribute>
        <attribute name = "Theileria annulata strain Ankara">3796</attribute>
@@ -180,7 +180,7 @@
        <attribute name = "Plasmodium falciparum 3D7">234</attribute>
        <attribute name = "Plasmodium falciparum IT">213</attribute>
        <attribute name = "Plasmodium knowlesi strain H">81</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">72</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">72</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">50</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">101</attribute>
        <attribute name = "Theileria annulata strain Ankara">49</attribute>
@@ -248,7 +248,7 @@
        <attribute name = "Plasmodium falciparum 3D7">137</attribute>
        <attribute name = "Plasmodium falciparum IT">79</attribute>
        <attribute name = "Plasmodium knowlesi strain H">4</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">42</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">42</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">44</attribute>
        <attribute name = "Theileria annulata strain Ankara">1</attribute>
@@ -316,7 +316,7 @@
        <attribute name = "Plasmodium falciparum 3D7">845</attribute>
        <attribute name = "Plasmodium falciparum IT">2</attribute>
        <attribute name = "Plasmodium knowlesi strain H">97</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">212</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">212</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">418</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">23</attribute>
@@ -384,7 +384,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5537</attribute>
        <attribute name = "Plasmodium falciparum IT">5479</attribute>
        <attribute name = "Plasmodium knowlesi strain H">5226</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">5393</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">5393</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">7508</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">5707</attribute>
        <attribute name = "Theileria annulata strain Ankara">3796</attribute>
@@ -452,7 +452,7 @@
        <attribute name = "Plasmodium falciparum 3D7">4510</attribute>
        <attribute name = "Plasmodium falciparum IT">2649</attribute>
        <attribute name = "Plasmodium knowlesi strain H">2069</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">2310</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">2310</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">2163</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">2383</attribute>
        <attribute name = "Theileria annulata strain Ankara">1670</attribute>
@@ -520,7 +520,7 @@
        <attribute name = "Plasmodium falciparum 3D7">1146</attribute>
        <attribute name = "Plasmodium falciparum IT">1</attribute>
        <attribute name = "Plasmodium knowlesi strain H">274</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">378</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">378</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">94</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">49</attribute>
        <attribute name = "Theileria annulata strain Ankara">371</attribute>
@@ -588,7 +588,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5595</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">5082</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">5082</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
@@ -656,7 +656,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5772</attribute>
        <attribute name = "Plasmodium falciparum IT">5661</attribute>
        <attribute name = "Plasmodium knowlesi strain H">5284</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">5505</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">5505</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">7767</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">3408</attribute>
        <attribute name = "Theileria annulata strain Ankara">2084</attribute>
@@ -724,7 +724,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5772</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">5435</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">5435</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">6773</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
@@ -792,7 +792,7 @@
        <attribute name = "Plasmodium falciparum 3D7">3695</attribute>
        <attribute name = "Plasmodium falciparum IT">3852</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">3540</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">3540</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">3597</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">3408</attribute>
        <attribute name = "Theileria annulata strain Ankara">2084</attribute>
@@ -860,7 +860,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5060</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">0</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
@@ -928,7 +928,7 @@
        <attribute name = "Plasmodium falciparum 3D7">3975</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">311</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">311</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">674</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
@@ -996,7 +996,7 @@
        <attribute name = "Plasmodium falciparum 3D7">4214</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">0</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
@@ -1064,7 +1064,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5772</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">0</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
@@ -1132,7 +1132,7 @@
        <attribute name = "Plasmodium falciparum 3D7">0</attribute>
        <attribute name = "Plasmodium falciparum IT">0</attribute>
        <attribute name = "Plasmodium knowlesi strain H">0</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">0</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">0</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
@@ -1200,7 +1200,7 @@
        <attribute name = "Plasmodium falciparum 3D7">5702</attribute>
        <attribute name = "Plasmodium falciparum IT">5655</attribute>
        <attribute name = "Plasmodium knowlesi strain H">5284</attribute>
-       <attribute name = "Plasmodium vivax SaI-1">5439</attribute>
+       <attribute name = "Plasmodium vivax Sal-1">5439</attribute>
        <attribute name = "Plasmodium yoelii yoelii 17XNL">7513</attribute>
        <attribute name = "Plasmodium yoelii yoelii YM">0</attribute>
        <attribute name = "Theileria annulata strain Ankara">0</attribute>
