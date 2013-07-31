@@ -142,11 +142,18 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 String targetName = row.get("target_name").toString();
 
                 if (targetType.equals(TYPE_QUESTION)) {
-                    logger.debug("Getting question bean for " + targetName + 
-                        " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
-
                     QuestionBean internalQuestion = wdkModel.getQuestion(
                             targetName);
+
+                    if (!internalQuestion.getRecordClass().getFullName().equals(
+                            question.getRecordClass().getFullName())) {
+                        // filter questions to match recordType
+                        continue;
+                    }
+
+                    logger.debug("Adding question bean for " + targetName + 
+                        " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
+
                     String[] displayCategories =
                             internalQuestion.getPropertyList("displayCategory");
                     if (displayCategories.length == 1) {
