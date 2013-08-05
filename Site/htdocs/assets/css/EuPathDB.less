@@ -1,0 +1,51 @@
+//@import (less) "wdkCommon.css";
+@import "site";
+@import "site.reference.less";
+// Variables used by AllSites
+
+@model:                        EuPathDB;
+
+// general
+@text-color:                   #000;
+@muted-color:                  #c8c8c8;
+
+@link-color:                   #2c5986;
+@link-color-hover:             #610b0b;
+
+@header-color:                 #610b0b;
+@border-color:                 #255f95;
+
+@table-head-color:             #505453;
+@table-head-color-other:       #33587a;
+@table-head-border-color:      #51575b;
+
+
+// menu
+@menu-parent-color-hover:      #013260;
+@menu-child-color-hover:       #013260;
+
+//navtop
+@navtop-link-color:            @border-color;
+@navtop-link-color-active:     #717775;
+
+// queryGrid
+@querygrid-color-active:       #08549c;
+
+// workspace
+@workspace-border:             @link-color;
+
+// marker?
+@marker-link:                  #7D0101;
+
+
+h1, h2 {
+	color: #626262;
+}
+
+a.opposite:link, a.opposite:visited {
+    color: @link-color-hover;
+}
+
+a.opposite:hover, a.opposite:active {
+    color: @link-color;
+}

@@ -14,8 +14,12 @@
 <link rel="stylesheet" href="<c:url value='/wdkCustomization/css/superfish/css/superfish.css'/>" type="text/css"/>
 
 <%-- When definitions are in conflict, the next one overrides the previous one  --%>
+<%--
 <link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" /> 
 <link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
+--%>
+
+<link rel="stylesheet/less" type="text/css" href="/assets/css/${project}.less"/>
 
 <!-- JQuery library is included by WDK -->
 
