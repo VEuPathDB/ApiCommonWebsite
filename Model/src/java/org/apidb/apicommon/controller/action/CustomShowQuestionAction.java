@@ -170,19 +170,23 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         request.setAttribute(ATTR_DISPLAY_CATEGORIES, displayCategorySet);
     }
 
-    @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    public static void loadReferences(ActionServlet servlet,
+            HttpServletRequest request) throws Exception {
         String questionName = request.getParameter(PARAM_QUESTION_FULL);
-        ActionForward forward = super.execute(mapping, form, request, response);
-
         if (questionName != null &&
                 questionName.split("\\.")[0].equals(INTERNAL_QUESTION_PREFIX)) {
             loadInternalQuestions(servlet, request);
         } else {
             loadDatasets(servlet, request);
         }
+    }
+
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        ActionForward forward = super.execute(mapping, form, request, response);
+        loadReferences(servlet, request);
 
         // run execute from parent
         return forward;

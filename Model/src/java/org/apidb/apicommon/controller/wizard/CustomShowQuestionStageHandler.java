@@ -25,7 +25,7 @@ public class CustomShowQuestionStageHandler extends ShowQuestionStageHandler {
         logger.debug("Entering CustomShowQuestionStageHandler...");
 
         // load data sources
-        CustomShowQuestionAction.loadDatasets(servlet, request);
+        CustomShowQuestionAction.loadReferences(servlet, request);
         
         // call execute() from parent;
         return super.execute(servlet, request, response, wizardForm);
