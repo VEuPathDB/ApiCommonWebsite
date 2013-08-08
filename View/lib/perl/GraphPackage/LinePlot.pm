@@ -47,6 +47,10 @@ sub setSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     } = 
 sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
 sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
 
+sub getHasMetaData              { $_[0]->{'_has_meta_data'                 }}
+sub setHasMetaData              { $_[0]->{'_has_meta_data'                 } = $_[1]}
+
+
 
 #--------------------------------------------------------------------------------
 
@@ -88,7 +92,8 @@ sub makeRPlotString {
         } @$profileSets;
     return $self->blankPlotPart();
   }
-
+  
+  
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
   my $xAxisLabel = $self->getXaxisLabel();
@@ -139,7 +144,10 @@ sub makeRPlotString {
 
   my $bottomMargin = $self->getElementNameMarginSize();
 
-  my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
+  my $hasExtraLegend = $self->getHasExtraLegend() || $self->getHasMetaData() ? 'TRUE' : 'FALSE';
+
+  my $hasMetaData = $self->getHasMetaData() ? 'TRUE' : 'FALSE';
+
   my $extraLegendSize = $self->getExtraLegendSize();
 
   my $titleLine = $self->getTitleLine();
@@ -151,8 +159,8 @@ sub makeRPlotString {
   if ($self->getHasExtraLegend ) {
       $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
     }
+#  my $hasStdErr = $stderrFiles=~/stderr\.files = c\(""\)/ ? 'FALSE' : 'TRUE';
   my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
-
   my $rcode = "
 # ---------------------------- LINE PLOT ----------------------------
 
@@ -163,7 +171,6 @@ $pointsPchString
 $sampleLabelsString
 $stderrFiles
 $legendLabelsString
-
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -177,7 +184,7 @@ x.min = $xMin;
 x.max = $xMax;
 
 y.min = $yMin;
-y.max = $yMax;
+y.max = $yMax;  
 
 # Create Data Frames to collect values to be plotted
 lines.df = as.data.frame(matrix(nrow=length(profile.files)));
@@ -200,13 +207,39 @@ for(i in 1:length(profile.files)) {
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
+ element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
+  is.numeric.element.names = !is.na(element.names.numeric);
+
+  if ($hasMetaData) {
+
+    element.names.set = as.matrix(as.data.frame(strsplit(element.names, ':')));
+    element.names = as.character(element.names.set[1,]);
+
   element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
-   is.numeric.element.names = !is.na(element.names.numeric);
+  is.numeric.element.names = !is.na(element.names.numeric);
+    legend.colors = the.colors;
+    values = as.vector(element.names.set[2,]);
+    unique_values = unique(values);
+    legend.labels = unique_values;
+
+    colfunc <- colorRampPalette(the.colors);
+    uniqueColors = colfunc(length(unique_values)+1)[1:length(unique_values)];
+    legend.colors = as.vector(uniqueColors);
+    colorset = values;
+    for (i in 1:length(unique_values)) {
+       colorset = gsub(unique_values[i],uniqueColors[i],colorset);
+    }
+    the.colors = colorset
+  } else if ($hasLegendLabels) {
+    legend.colors = the.colors;
+
+  }
 
   if($forceNoLines) {
     element.names.numeric = NA;
     is.numeric.element.names = is.numeric.element.names == 'BANANAS';
   }
+
    if(!stderr.files[i] == '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
@@ -241,7 +274,7 @@ for(i in 1:length(profile.files)) {
     } else {
       points.df[[this.name]][i] = profile[j];
     }
-
+     
     if(is.null(.subset2(stderr.df, this.name, exact=TRUE))) {
      stderr.df[[this.name]] = NA;
 
@@ -509,8 +542,8 @@ if($hasExtraLegend) {
          my.labels,
          cex   = my.cex,
          ncol  = 1,
-         col   = the.colors,
-         pt.bg = the.colors,
+         col   = legend.colors
+         pt.bg = legend.colors,
          pch   = points.pch,
          lty   = 'solid',
          bty='n',
