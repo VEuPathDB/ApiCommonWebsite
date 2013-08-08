@@ -2,6 +2,8 @@ package ApiCommonWebsite::View::GraphPackage::Util;
 
 use strict;
 
+use Math::Round;
+
 use ApiCommonWebsite::View::GraphPackage::ProfileSet;
 
 sub makeProfileSets {
@@ -15,11 +17,12 @@ sub makeProfileSets {
     my $elementNames = $row->[2];
     my $alternateSourceId = $row->[3];
     my $scale = $row->[4];
+    my $metaDataCategory = $row->[5];
 
-    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $elementNames, $alternateSourceId, $scale);
+    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $elementNames, $alternateSourceId, $scale, $metaDataCategory);
 
     if($relatedProfileSet) {
-      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $elementNames, $alternateSourceId, $scale);
+      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $elementNames, $alternateSourceId, $scale, $metaDataCategory);
       $profileSet->setRelatedProfileSet($relatedSet);
     }
     push @rv, $profileSet;

@@ -8,9 +8,13 @@ use Data::Dumper;
 @ISA = qw( ApiCommonWebsite::View::GraphPackage );
 use ApiCommonWebsite::View::GraphPackage;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
+use ApiCommonWebsite::Model::CannedQuery::ElementNamesWithMetaData;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileFixedValue;
 use ApiCommonWebsite::View::GraphPackage::Util;
+
+use File::Copy;
+use Data::Dumper;
 
 #----------------------------------------------------------------------------------------------
 
@@ -141,7 +145,9 @@ sub profileFilesAsRVectors {
   my $profileFilesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@profileFiles, 'profile.files');
   my $elementNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@elementNamesFiles, 'element.names.files');
   my $stderrString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@stderrFiles, 'stderr.files');
+  my $backUp = $elementNamesFiles[0];
 
+  copy($backUp, '/home/jcade/blame');
 #  print STDERR Dumper \@profileFiles;
 #  print STDERR Dumper \@elementNamesFiles;
 #  print STDERR Dumper \@stderrFiles;
