@@ -33,7 +33,6 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     private static final String PARAM_QUESTION_FULL = "questionFullName";
     private static final String TABLE_REFERENCE = "References";
     private static final String TYPE_QUESTION = "question";
-    private static final String INTERNAL_QUESTION_PREFIX = "InternalQuestions";
     private static final String ATTR_REFERENCE_QUESTIONS = "ds_ref_questions";
     private static final String ATTR_QUESTIONS_BY_DATASET = "questions_by_dataset_map";
     private static final String ATTR_DISPLAY_CATEGORIES = "display_categories";
@@ -88,14 +87,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         request.setAttribute(ATTR_REFERENCE_QUESTIONS, questionRefs);
     }
 
-    public static void loadInternalQuestions(ActionServlet servlet,
+    public static void loadQuestionsByDataset(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-
-        // { dataset => { type => question, ... }, ... }
-        Map<RecordBean, Map<String, QuestionBean>> questionsByDataset =
-                new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
-        Set<String> displayCategorySet = new TreeSet<String>();
 
         UserBean user = ActionUtility.getUser(servlet, request);
         String questionName = request.getParameter(PARAM_QUESTION_FULL);
@@ -113,6 +107,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         // get dataset records
         // skip if no datasetType defined
         if (datasetTypes.length == 0) return;
+
+        // { dataset => { type => question, ... }, ... }
+        Map<RecordBean, Map<String, QuestionBean>> questionsByDataset =
+                new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
+        Set<String> displayCategorySet = new TreeSet<String>();
 
         String dsQuestionName;
         Map<String, String> params = new LinkedHashMap<String, String>();
@@ -173,12 +172,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     public static void loadReferences(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         String questionName = request.getParameter(PARAM_QUESTION_FULL);
-        if (questionName != null &&
-                questionName.split("\\.")[0].equals(INTERNAL_QUESTION_PREFIX)) {
-            loadInternalQuestions(servlet, request);
-        } else {
-            loadDatasets(servlet, request);
-        }
+
+        loadQuestionsByDataset(servlet, request);
+        loadDatasets(servlet, request);
     }
 
     @Override
