@@ -144,11 +144,10 @@ sub makeRPlotString {
 
   my $bottomMargin = $self->getElementNameMarginSize();
 
-  my $hasExtraLegend = $self->getHasExtraLegend() || $self->getHasMetaData() ? 'TRUE' : 'FALSE';
+  my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
+  my $extraLegendSize = $self->getExtraLegendSize();
 
   my $hasMetaData = $self->getHasMetaData() ? 'TRUE' : 'FALSE';
-
-  my $extraLegendSize = $self->getExtraLegendSize();
 
   my $titleLine = $self->getTitleLine();
 
@@ -207,40 +206,18 @@ for(i in 1:length(profile.files)) {
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
- element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
-  is.numeric.element.names = !is.na(element.names.numeric);
-
-  if ($hasMetaData) {
-
-    element.names.set = as.matrix(as.data.frame(strsplit(element.names, ':')));
-    element.names = as.character(element.names.set[1,]);
 
   element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
   is.numeric.element.names = !is.na(element.names.numeric);
-    legend.colors = the.colors;
-    values = as.vector(element.names.set[2,]);
-    unique_values = unique(values);
-    legend.labels = unique_values;
 
-    colfunc <- colorRampPalette(the.colors);
-    uniqueColors = colfunc(length(unique_values)+1)[1:length(unique_values)];
-    legend.colors = as.vector(uniqueColors);
-    colorset = values;
-    for (i in 1:length(unique_values)) {
-       colorset = gsub(unique_values[i],uniqueColors[i],colorset);
-    }
-    the.colors = colorset
-  } else if ($hasLegendLabels) {
-    legend.colors = the.colors;
 
-  }
 
   if($forceNoLines) {
     element.names.numeric = NA;
     is.numeric.element.names = is.numeric.element.names == 'BANANAS';
   }
 
-   if(!stderr.files[i] == '') {
+   if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
      if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
@@ -362,6 +339,39 @@ par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.inductio
 
 default.pch = c(15, 16, 17, 18, 7:10, 0:6);
 
+
+#----------- META DATA --------
+
+if ($hasMetaData) {
+
+    sampleNamesFull = as.matrix(as.data.frame(strsplit(colnames(points.df), ':')));
+    sampleNamesMeta = as.vector(sampleNamesFull[2,]);
+
+    uniqueMeta = unique(sampleNamesMeta);
+
+    numeric.unique.meta = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", uniqueMeta, perl=T))
+
+    if(sum(!is.na(numeric.unique.meta)) == length(numeric.unique.meta)) {
+        colfunc = colorRampPalette(the.colors);
+
+        sorted.unique.meta = sort(numeric.unique.meta);
+        uniqueColors = colfunc(length(sorted.unique.meta)+1)[1:length(sorted.unique.meta)];
+    } else {
+        uniqueColors = rainbow(length(uniqueMeta));
+        sorted.unique.meta = sort(uniqueMeta);
+    }
+
+    the.colors = sampleNamesMeta;
+
+    for(i in 1:length(sorted.unique.meta)) {
+     the.colors =  replace(the.colors, the.colors==sorted.unique.meta[i], uniqueColors[i]);
+    }
+
+     meta.legend.colors = uniqueColors;
+     meta.legend.labels = sorted.unique.meta;
+}
+
+
 for(i in 1:nrow(lines.df)) {
 
   if(!is.null(points.pch)) {
@@ -411,8 +421,10 @@ for(i in 1:nrow(lines.df)) {
      }
    }
 
-   axis(1, at=my.at, labels=my.labels, las=my.las);
 
+if (!$hasMetaData) {
+   axis(1, at=my.at, labels=my.labels, las=my.las);
+}
 
  }
   # To have connected lines... you can't have NA's
@@ -481,6 +493,7 @@ for(i in 1:nrow(lines.df)) {
 
 
   my.color = the.colors[i];
+
   if($varyGlyphByXAxis) {
     my.pch = points.pch;
     my.color = the.colors;
@@ -537,18 +550,23 @@ if($hasExtraLegend) {
       my.cex = 0.8 * $scale;
       }
 
+if ($hasMetaData) {
+   my.color = meta.legend.colors;
+   my.labels = meta.legend.labels;
+}
+
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(centerPoint, from='ndc', to='user'),
          my.labels,
          cex   = my.cex,
          ncol  = 1,
-         col   = legend.colors
-         pt.bg = legend.colors,
+         col   = my.color,
+         pt.bg = my.color,
          pch   = points.pch,
          lty   = 'solid',
          bty='n',
          xjust=1,
-         yjust=0
+         yjust=0.5
         );
 }
 

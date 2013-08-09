@@ -138,7 +138,7 @@ for(i in 1:length(profile.files)) {
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
-   if(!stderr.files[i] == '') {
+   if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
      if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
