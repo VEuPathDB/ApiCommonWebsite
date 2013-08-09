@@ -147,7 +147,6 @@ sub profileFilesAsRVectors {
   my $stderrString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray(\@stderrFiles, 'stderr.files');
   my $backUp = $elementNamesFiles[0];
 
-  copy($backUp, '/home/jcade/blame');
 #  print STDERR Dumper \@profileFiles;
 #  print STDERR Dumper \@elementNamesFiles;
 #  print STDERR Dumper \@stderrFiles;
