@@ -567,19 +567,46 @@ sub new {
 
    my $id = $self->getId();
 
+   $self->setIsLogged(0);
    $self->setAdjustProfile('profile.df = log2(profile.df);');
    $self->setDefaultYMax(1);
    $self->setDefaultYMin(-1);
    $self->setYaxisLabel('Relative Abundance (log2 ratio)');
 
-   $self->setPartName('quant_mass_spec');
+   $self->setPartName('expr_val');
    $self->setPlotTitle("Quant Mass Spec Profile - $id");
 
-   $self->setMakeYAxisFoldInduction(0);
-   $self->setIsLogged(0);
+   $self->setMakeYAxisFoldInduction(1);
+
 
    return $self;
 }
+
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::QuantMassSpecLogged;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+  my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setIsLogged(1);
+
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(-1);
+   $self->setYaxisLabel('Relative Abundance (log2 ratio)');
+
+   $self->setPartName('expr_val');
+   $self->setPlotTitle("Quant Mass Spec Profile - $id");
+
+   $self->setMakeYAxisFoldInduction(1);
+
+   return $self;
+}
+
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
