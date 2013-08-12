@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::Templates::Microarray;
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 
 use strict;
 use vars qw( @ISA );
