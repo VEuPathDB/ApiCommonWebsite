@@ -171,8 +171,6 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
     public static void loadReferences(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
-        String questionName = request.getParameter(PARAM_QUESTION_FULL);
-
         loadQuestionsByDataset(servlet, request);
         loadDatasets(servlet, request);
     }
