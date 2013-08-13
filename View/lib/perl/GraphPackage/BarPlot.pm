@@ -582,6 +582,28 @@ sub new {
    return $self;
 }
 
+package ApiCommonWebsite::View::GraphPackage::BarPlot::QuantMassSpecNonRatio;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(10);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Relative Abundance');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Quant Mass Spec Profile - $id");
+
+   return $self;
+}
+
+
+
 package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
