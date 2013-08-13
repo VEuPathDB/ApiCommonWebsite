@@ -573,7 +573,7 @@ sub new {
    $self->setDefaultYMin(-1);
    $self->setYaxisLabel('Relative Abundance (log2 ratio)');
 
-   $self->setPartName('expr_val');
+   $self->setPartName('exprn_val');
    $self->setPlotTitle("Quant Mass Spec Profile - $id");
 
    $self->setMakeYAxisFoldInduction(1);
@@ -599,7 +599,7 @@ sub new {
    $self->setDefaultYMin(-1);
    $self->setYaxisLabel('Relative Abundance (log2 ratio)');
 
-   $self->setPartName('expr_val');
+   $self->setPartName('exprn_val');
    $self->setPlotTitle("Quant Mass Spec Profile - $id");
 
    $self->setMakeYAxisFoldInduction(1);
