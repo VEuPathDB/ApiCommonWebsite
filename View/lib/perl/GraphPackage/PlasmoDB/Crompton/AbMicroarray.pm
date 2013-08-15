@@ -15,21 +15,14 @@ sub init {
   $self->setPlotWidth(500);
 
   my $metaDataCategory = $self->getTypeArg();
-  my $colors = ['blue', 'white'];
+  my $colors = ['blue','white'];
 
   my @profileSetArray = (['Crompton Ab Microarray Profiles','','','','',$metaDataCategory]);
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot->new(@_);
+  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
-  $scatter->setPlotTitle("Expression Values");
-  $scatter->setDefaultYMax(4);
-  $scatter->setDefaultYMin(-4);
-  $scatter->setElementNameMarginSize(4);
   $scatter->setColors($colors);
-  $scatter->setHasExtraLegend(1);
-  $scatter->setExtraLegendSize(7);
-  $scatter->setHasMetaData(1);
 
   $self->setGraphObjects($scatter);
 
