@@ -346,22 +346,24 @@ if ($hasMetaData) {
 
     sampleNamesFull = as.matrix(as.data.frame(strsplit(colnames(points.df), ':')));
     sampleNamesMeta = as.vector(sampleNamesFull[2,]);
+    numeric.sample.names = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", sampleNamesMeta, perl=T));
 
     uniqueMeta = unique(sampleNamesMeta);
 
-    numeric.unique.meta = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", uniqueMeta, perl=T))
+    numeric.unique.meta = unique(numeric.sample.names);
 
     if(sum(!is.na(numeric.unique.meta)) == length(numeric.unique.meta)) {
         colfunc = colorRampPalette(the.colors);
 
         sorted.unique.meta = sort(numeric.unique.meta);
+        write(sorted.unique.meta, stderr());
         uniqueColors = colfunc(length(sorted.unique.meta)+1)[1:length(sorted.unique.meta)];
+        the.colors = numeric.sample.names;
     } else {
         uniqueColors = rainbow(length(uniqueMeta));
         sorted.unique.meta = sort(uniqueMeta);
+        the.colors = sampleNamesMeta;
     }
-
-    the.colors = sampleNamesMeta;
 
     for(i in 1:length(sorted.unique.meta)) {
      the.colors =  replace(the.colors, the.colors==sorted.unique.meta[i], uniqueColors[i]);
