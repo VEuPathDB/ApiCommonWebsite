@@ -1,6 +1,7 @@
 package org.apidb.apicommon.controller.action;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
+import org.gusdb.wdk.model.jspwrap.CategoryBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
@@ -111,7 +113,12 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         // { dataset => { type => question, ... }, ... }
         Map<RecordBean, Map<String, QuestionBean>> questionsByDataset =
                 new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
-        Set<String> displayCategorySet = new TreeSet<String>();
+        Set<CategoryBean> displayCategorySet = new TreeSet<CategoryBean>(
+                new Comparator<CategoryBean>() {
+                    public int compare(CategoryBean c1, CategoryBean c2) {
+                        return c1.getName().compareTo(c2.getName());
+                    }
+                });
 
         String dsQuestionName;
         Map<String, String> params = new LinkedHashMap<String, String>();
@@ -153,11 +160,14 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                     logger.debug("Adding question bean for " + targetName + 
                         " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
 
-                    String[] displayCategories =
-                            internalQuestion.getPropertyList("displayCategory");
-                    if (displayCategories.length == 1) {
-                        displayCategorySet.add(displayCategories[0]);
-                        internalQuestions.put(displayCategories[0],
+                    // String[] displayCategories =
+                    //         internalQuestion.getPropertyList("displayCategory");
+                    List<CategoryBean> displayCategories =
+                            internalQuestion.getDatasetCategories();
+                    logger.debug("Dataset categories: " + displayCategories.size());
+                    if (displayCategories.size() == 1) {
+                        displayCategorySet.add(displayCategories.get(0));
+                        internalQuestions.put(displayCategories.get(0).getName(),
                                 internalQuestion);
                     }
                 }
