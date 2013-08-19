@@ -1873,7 +1873,7 @@ typically in the form of answering specific questions, using the feature(s) and 
        <attribute name="item">
            
          <![CDATA[
-PlasmoDB 4.4 has been discontinued.  If there are tools or other functionality that you used on PlasmoDB 4.4 that you need, please <b><a href="http://plasmodb.org/plasmo/contact.do" class="open-window-contact-us">contact us</a></b> to let us know and we will help you regain access to the missing functionality.
+PlasmoDB 4.4 has been discontinued.  If there are tools or other functionality that you used on PlasmoDB 4.4 that you need, please <b><a href="http://plasmodb.org/plasmo/contact.do" class="new-window" data-name="contact_us">contact us</a></b> to let us know and we will help you regain access to the missing functionality.
           ]]>
        </attribute>
 </record>
