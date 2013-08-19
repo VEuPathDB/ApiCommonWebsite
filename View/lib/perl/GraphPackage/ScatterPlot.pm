@@ -54,10 +54,10 @@ sub new {
   $self->setMakeYAxisFoldInduction(0);
   $self->setIsLogged(0);
   $self->setHasExtraLegend(1);
-  $self->setExtraLegendSize(7);
+  $self->setExtraLegendSize(4.5);
   $self->setHasMetaData(1);
-  $self->setDefaultYMax(4);
-  $self->setDefaultYMin(-4);
+  $self->setDefaultYMax(1);
+  $self->setDefaultYMin(-1);
   $self->setElementNameMarginSize(4);
   $self->setXaxisLabel("Samples colored based on $metaDataCategory");
    return $self;

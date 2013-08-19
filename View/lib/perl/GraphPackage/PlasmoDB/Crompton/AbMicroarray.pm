@@ -12,7 +12,8 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(500);
+  $self->setPlotWidth(600);
+  $self->setScreenSize(300);
 
   my $metaDataCategory = $self->getTypeArg();
   my $colors = ['blue','white'];
