@@ -115,6 +115,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
         Set<CategoryBean> displayCategorySet = new TreeSet<CategoryBean>(
                 new Comparator<CategoryBean>() {
+                    @Override
                     public int compare(CategoryBean c1, CategoryBean c2) {
                         return c1.getName().compareTo(c2.getName());
                     }
