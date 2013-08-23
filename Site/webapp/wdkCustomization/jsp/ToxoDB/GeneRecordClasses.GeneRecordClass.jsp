@@ -239,16 +239,10 @@ ${id}<br><span style="font-size:70%">${prd}</span><br/>
    <c:set var="revCompOn" value="1"/>
   </c:if>
 
-<c:set var="mercatorAlign">
-  <imp:mercatorMAVID cgiUrl="/cgi-bin" projectId="${projectId}" revCompOn="${revCompOn}"
-                      contigId="${sequence_id}" start="${start}" end="${end}" bkgClass="secondary2" cellPadding="0"/>
-</c:set>
-
-<imp:toggle isOpen="false"
-  name="mercatorAlignment"
-  displayName="Multiple Sequence Alignment of ${sequence_id} across available genomes"
-  content="${mercatorAlign}"
-  attribution=""/>
+<imp:mercatorTable tblName="MercatorTable" isOpen="false" 
+     cgiUrl="/cgi-bin" projectId="${projectId}" 
+     revCompOn="${revCompOn}" contigId="${sequence_id}" 
+     start="${start}" end="${end}" /> 
 
 </c:if>
 
@@ -425,14 +419,15 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/toxodbaa/?name=${wd
 
 </c:if>
 
-<imp:wdkTable tblName="MassSpec" isOpen="true"
-               attribution=""/>
 
 
+<c:if test="${attrs['hasProteomics'].value eq '1'}">
+ <imp:wdkTable tblName="MassSpec" isOpen="true"   attribution=""/>
+</c:if>
 
- <imp:wdkTable tblName="MassSpecMod" isOpen="true"
-      attribution=""/> 
-
+<c:if test="${attrs['hasPostTransMod'].value eq '1'}">
+ <imp:wdkTable tblName="MassSpecMod" isOpen="true"   attribution=""/>
+</c:if>
 
 <imp:wdkTable tblName="PdbSimilarities" postscript="${attrs['pdb_blast_form'].value}" attribution=""/>
 

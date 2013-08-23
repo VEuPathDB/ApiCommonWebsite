@@ -47,6 +47,10 @@ sub setSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     } = 
 sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
 sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
 
+sub getHasMetaData              { $_[0]->{'_has_meta_data'                 }}
+sub setHasMetaData              { $_[0]->{'_has_meta_data'                 } = $_[1]}
+
+
 
 #--------------------------------------------------------------------------------
 
@@ -88,7 +92,8 @@ sub makeRPlotString {
         } @$profileSets;
     return $self->blankPlotPart();
   }
-
+  
+  
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
   my $xAxisLabel = $self->getXaxisLabel();
@@ -142,6 +147,8 @@ sub makeRPlotString {
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
 
+  my $hasMetaData = $self->getHasMetaData() ? 'TRUE' : 'FALSE';
+
   my $titleLine = $self->getTitleLine();
 
   my $scale = $self->getScalingFactor;
@@ -151,8 +158,8 @@ sub makeRPlotString {
   if ($self->getHasExtraLegend ) {
       $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
     }
+#  my $hasStdErr = $stderrFiles=~/stderr\.files = c\(""\)/ ? 'FALSE' : 'TRUE';
   my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
-
   my $rcode = "
 # ---------------------------- LINE PLOT ----------------------------
 
@@ -163,7 +170,6 @@ $pointsPchString
 $sampleLabelsString
 $stderrFiles
 $legendLabelsString
-
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -177,7 +183,7 @@ x.min = $xMin;
 x.max = $xMax;
 
 y.min = $yMin;
-y.max = $yMax;
+y.max = $yMax;  
 
 # Create Data Frames to collect values to be plotted
 lines.df = as.data.frame(matrix(nrow=length(profile.files)));
@@ -200,14 +206,18 @@ for(i in 1:length(profile.files)) {
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
+
   element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
-   is.numeric.element.names = !is.na(element.names.numeric);
+  is.numeric.element.names = !is.na(element.names.numeric);
+
+
 
   if($forceNoLines) {
     element.names.numeric = NA;
     is.numeric.element.names = is.numeric.element.names == 'BANANAS';
   }
-   if(!stderr.files[i] == '') {
+
+   if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
      if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
@@ -241,7 +251,7 @@ for(i in 1:length(profile.files)) {
     } else {
       points.df[[this.name]][i] = profile[j];
     }
-
+     
     if(is.null(.subset2(stderr.df, this.name, exact=TRUE))) {
      stderr.df[[this.name]] = NA;
 
@@ -329,6 +339,41 @@ par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.inductio
 
 default.pch = c(15, 16, 17, 18, 7:10, 0:6);
 
+
+#----------- META DATA --------
+
+if ($hasMetaData) {
+
+    sampleNamesFull = as.matrix(as.data.frame(strsplit(colnames(points.df), ':')));
+    sampleNamesMeta = as.vector(sampleNamesFull[2,]);
+    numeric.sample.names = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", sampleNamesMeta, perl=T));
+
+    uniqueMeta = unique(sampleNamesMeta);
+
+    numeric.unique.meta = unique(numeric.sample.names);
+
+    if(sum(!is.na(numeric.unique.meta)) == length(numeric.unique.meta)) {
+        colfunc = colorRampPalette(the.colors);
+
+        sorted.unique.meta = sort(numeric.unique.meta);
+        write(sorted.unique.meta, stderr());
+        uniqueColors = colfunc(length(sorted.unique.meta)+1)[1:length(sorted.unique.meta)];
+        the.colors = numeric.sample.names;
+    } else {
+        uniqueColors = rainbow(length(uniqueMeta));
+        sorted.unique.meta = sort(uniqueMeta);
+        the.colors = sampleNamesMeta;
+    }
+
+    for(i in 1:length(sorted.unique.meta)) {
+     the.colors =  replace(the.colors, the.colors==sorted.unique.meta[i], uniqueColors[i]);
+    }
+
+     meta.legend.colors = uniqueColors;
+     meta.legend.labels = sorted.unique.meta;
+}
+
+
 for(i in 1:nrow(lines.df)) {
 
   if(!is.null(points.pch)) {
@@ -378,8 +423,10 @@ for(i in 1:nrow(lines.df)) {
      }
    }
 
-   axis(1, at=my.at, labels=my.labels, las=my.las);
 
+if (!$hasMetaData) {
+   axis(1, at=my.at, labels=my.labels, las=my.las);
+}
 
  }
   # To have connected lines... you can't have NA's
@@ -448,6 +495,7 @@ for(i in 1:nrow(lines.df)) {
 
 
   my.color = the.colors[i];
+
   if($varyGlyphByXAxis) {
     my.pch = points.pch;
     my.color = the.colors;
@@ -504,18 +552,23 @@ if($hasExtraLegend) {
       my.cex = 0.8 * $scale;
       }
 
+if ($hasMetaData) {
+   my.color = meta.legend.colors;
+   my.labels = meta.legend.labels;
+}
+
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(centerPoint, from='ndc', to='user'),
          my.labels,
          cex   = my.cex,
          ncol  = 1,
-         col   = the.colors,
-         pt.bg = the.colors,
+         col   = my.color,
+         pt.bg = my.color,
          pch   = points.pch,
          lty   = 'solid',
          bty='n',
          xjust=1,
-         yjust=0
+         yjust=0.5
         );
 }
 

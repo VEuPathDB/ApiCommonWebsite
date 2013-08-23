@@ -14,19 +14,15 @@
 
     <div class="legend ui-helper-clearfix">
       <div>Legend:</div>
-      <c:forEach items="${display_categories}" var="displayCategory">
-        <div>
-          <span class="search-mechanism btn btn-active">
-            <c:choose>
-              <c:when test="${displayCategory eq 'fold_change_with_pvalue'}">FCpV</c:when>
-              <c:otherwise>
-                <c:forEach items="${fn:split(displayCategory, '_')}" var="part">${fn:toUpperCase(fn:substring(part, 0, 1))}</c:forEach>
-              </c:otherwise>
-            </c:choose>
-          </span>
-          <span>${fn:replace(displayCategory, '_', ' ')}</span>
-        </div>
-      </c:forEach>
+      <ul>
+        <c:forEach items="${display_categories}" var="displayCategory">
+          <li class="wdk-tooltip" title="${displayCategory['description']}">
+            <span class="search-mechanism btn btn-blue btn-active">${displayCategory['shortDisplayName']}
+            </span>
+            <span>${displayCategory['displayName']}</span>
+          </li>
+        </c:forEach>
+      </ul>
     </div>
 
     <table id="dataset-records" width="100%">
@@ -40,7 +36,7 @@
           </c:forEach>
         </tr>
         <tr>
-          <th colspan="${fn:length(display_categories)}">Choose a search</th>
+          <th colspan="${fn:length(display_categories)}" class="searches">Choose a search</th>
         </tr>
       </thead>
       <tbody>
@@ -85,20 +81,14 @@
           </td>
           <td>${dataset_summary} <br/> ${dataset_description}</td>
           <c:forEach items="${display_categories}" var="displayCategory">
-            <c:set var="question" value="${internalQuestions[displayCategory]}"/>
+            <c:set var="question" value="${internalQuestions[displayCategory['name']]}"/>
             <td class="search-mechanism">
               <c:if test="${question ne null}">
-                <a class="wdk-tooltip question-link btn"
-                  data-category="${displayCategory}"
-                  title="Search this data set by ${fn:replace(displayCategory, '_', ' ')}"
+                <a class="wdk-tooltip question-link btn btn-blue"
+                  data-category="${displayCategory['displayName']}"
+                  title="Search this data set by ${displayCategory['displayName']}"
                   href="showQuestion.do?questionFullName=${question.fullName}">
-                  <c:choose>
-                    <c:when test="${displayCategory eq 'fold_change_with_pvalue'}">FCpV</c:when>
-                    <c:otherwise>
-                      <c:forEach items="${fn:split(displayCategory, '_')}" var="part">${fn:toUpperCase(fn:substring(part, 0, 1))}</c:forEach>
-                    </c:otherwise>
-                  </c:choose>
-                </a>
+                  ${displayCategory['shortDisplayName']}</a>
               </c:if>
             </td>
           </c:forEach>

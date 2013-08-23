@@ -2,6 +2,9 @@ package ApiCommonWebsite::View::GraphPackage::ProfileSet;
 
 use strict;
 
+use Data::Dumper;
+
+use ApiCommonWebsite::Model::CannedQuery::ElementNamesWithMetaData;
 # Main Profile Set Name
 sub getName                      { $_[0]->{'_name'             }}
 sub setName                      { $_[0]->{'_name'             } = $_[1]}
@@ -33,12 +36,15 @@ sub setAlternateSourceId              { $_[0]->{'_alternate_source_id'          
 sub getScale              { $_[0]->{'_scale'               }}
 sub setScale              { $_[0]->{'_scale'               } = $_[1]}
 
+sub getMetaDataCategory         { $_[0]->{'_meta_data_category'               }}
+sub setMetaDataCategory         { $_[0]->{'_meta_data_category'               }  = $_[1]}
+
 
 sub logError              { push @{$_[0]->{'_errors'}}, $_[1] }
 sub errors                { $_[0]->{'_errors'               }}
 
 sub new {
-  my ($class, $name, $elementNames, $alternateSourceId, $scale) = @_;
+  my ($class, $name, $elementNames, $alternateSourceId, $scale, $metaDataCategory) = @_;
 
   unless($name) {
     die "ProfileSet Name missing: $!";
@@ -54,6 +60,9 @@ sub new {
   $self->setElementNames($elementNames);
   $self->setAlternateSourceId($alternateSourceId);
   $self->setScale($scale);
+  if (defined $metaDataCategory) {
+    $self->setMetaDataCategory($metaDataCategory);
+  }
 
   # initialize errors array;
   $self->{_errors} = [];
@@ -98,7 +107,6 @@ sub writeProfileFile{
       ProfileSet   => $profileSetName,
       Scale        => $scale,
     );
-
   $profile->prepareDictionary($_dict);
   $profile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
 
@@ -112,21 +120,39 @@ sub writeElementNamesFile {
   my ($self, $id, $qh, $suffix) = @_;
 
   my $_dict = {};
-
+ 
   my $elementNames = $self->getElementNames();
   my $profileSetName = $self->getName();
+  
+  my $metaDataCategory = $self->getMetaDataCategory();
 
-  my $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNames->new
+   if($metaDataCategory) {
+     my $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNamesWithMetaData->new
+       ( Name         => "_names_$suffix",
+         Id           => $id,
+         ProfileSet   => $profileSetName,
+         MetaDataCategory => $metaDataCategory,
+       );
+    
+     $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
+
+     my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
+
+     $self->setElementNamesFile($elementNames_fn);
+
+   }
+   else {
+    my $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNames->new
       ( Name         => "_names_$suffix",
         Id           => $id,
         ProfileSet   => $profileSetName,
       );
-
-  $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
-
-  my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
-
-  $self->setElementNamesFile($elementNames_fn);
+    $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
+    
+    my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
+    
+    $self->setElementNamesFile($elementNames_fn);
+  }
 }
 
 

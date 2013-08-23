@@ -138,7 +138,7 @@ for(i in 1:length(profile.files)) {
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
-   if(!stderr.files[i] == '') {
+   if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
      if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
@@ -567,19 +567,42 @@ sub new {
 
    my $id = $self->getId();
 
-   $self->setAdjustProfile('profile.df = log2(profile.df);');
+   $self->setIsLogged(1);
+
    $self->setDefaultYMax(1);
    $self->setDefaultYMin(-1);
    $self->setYaxisLabel('Relative Abundance (log2 ratio)');
 
-   $self->setPartName('quant_mass_spec');
+   $self->setPartName('exprn_val');
    $self->setPlotTitle("Quant Mass Spec Profile - $id");
 
-   $self->setMakeYAxisFoldInduction(0);
-   $self->setIsLogged(0);
+   $self->setMakeYAxisFoldInduction(1);
+
 
    return $self;
 }
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::QuantMassSpecNonRatio;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(10);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Relative Abundance');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Quant Mass Spec Profile - $id");
+
+   return $self;
+}
+
+
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );

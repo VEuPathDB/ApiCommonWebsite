@@ -24,7 +24,7 @@
 </c:catch>
 
 
-<imp:pageFrame  title="${recordName} : ${source_id}"
+<imp:pageFrame  title="${recordName} : ${source_id} - ${attrs['name']}"
              divisionName="PubChem Compound Record"
              refer="recordPage"
              division="queries_tools">
@@ -61,6 +61,8 @@
 </table>
 
 <imp:wdkTable tblName="Properties" isOpen="true" attribution=""/>
+
+<imp:wdkTable tblName="Synonyms" isOpen="false" attribution=""/>
 
 <imp:wdkTable tblName="SubstanceProps" isOpen="true" attribution=""/>
 

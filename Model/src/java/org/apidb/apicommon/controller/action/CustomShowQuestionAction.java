@@ -1,6 +1,7 @@
 package org.apidb.apicommon.controller.action;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
+import org.gusdb.wdk.model.jspwrap.CategoryBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
@@ -33,7 +35,6 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     private static final String PARAM_QUESTION_FULL = "questionFullName";
     private static final String TABLE_REFERENCE = "References";
     private static final String TYPE_QUESTION = "question";
-    private static final String INTERNAL_QUESTION_PREFIX = "InternalQuestions";
     private static final String ATTR_REFERENCE_QUESTIONS = "ds_ref_questions";
     private static final String ATTR_QUESTIONS_BY_DATASET = "questions_by_dataset_map";
     private static final String ATTR_DISPLAY_CATEGORIES = "display_categories";
@@ -88,14 +89,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         request.setAttribute(ATTR_REFERENCE_QUESTIONS, questionRefs);
     }
 
-    public static void loadInternalQuestions(ActionServlet servlet,
+    public static void loadQuestionsByDataset(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-
-        // { dataset => { type => question, ... }, ... }
-        Map<RecordBean, Map<String, QuestionBean>> questionsByDataset =
-                new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
-        Set<String> displayCategorySet = new TreeSet<String>();
 
         UserBean user = ActionUtility.getUser(servlet, request);
         String questionName = request.getParameter(PARAM_QUESTION_FULL);
@@ -113,6 +109,17 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         // get dataset records
         // skip if no datasetType defined
         if (datasetTypes.length == 0) return;
+
+        // { dataset => { type => question, ... }, ... }
+        Map<RecordBean, Map<String, QuestionBean>> questionsByDataset =
+                new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
+        Set<CategoryBean> displayCategorySet = new TreeSet<CategoryBean>(
+                new Comparator<CategoryBean>() {
+                    @Override
+                    public int compare(CategoryBean c1, CategoryBean c2) {
+                        return c1.getName().compareTo(c2.getName());
+                    }
+                });
 
         String dsQuestionName;
         Map<String, String> params = new LinkedHashMap<String, String>();
@@ -154,11 +161,14 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                     logger.debug("Adding question bean for " + targetName + 
                         " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
 
-                    String[] displayCategories =
-                            internalQuestion.getPropertyList("displayCategory");
-                    if (displayCategories.length == 1) {
-                        displayCategorySet.add(displayCategories[0]);
-                        internalQuestions.put(displayCategories[0],
+                    // String[] displayCategories =
+                    //         internalQuestion.getPropertyList("displayCategory");
+                    List<CategoryBean> displayCategories =
+                            internalQuestion.getDatasetCategories();
+                    logger.debug("Dataset categories: " + displayCategories.size());
+                    if (displayCategories.size() == 1) {
+                        displayCategorySet.add(displayCategories.get(0));
+                        internalQuestions.put(displayCategories.get(0).getName(),
                                 internalQuestion);
                     }
                 }
@@ -170,19 +180,18 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         request.setAttribute(ATTR_DISPLAY_CATEGORIES, displayCategorySet);
     }
 
+    public static void loadReferences(ActionServlet servlet,
+            HttpServletRequest request) throws Exception {
+        loadQuestionsByDataset(servlet, request);
+        loadDatasets(servlet, request);
+    }
+
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        String questionName = request.getParameter(PARAM_QUESTION_FULL);
         ActionForward forward = super.execute(mapping, form, request, response);
-
-        if (questionName != null &&
-                questionName.split("\\.")[0].equals(INTERNAL_QUESTION_PREFIX)) {
-            loadInternalQuestions(servlet, request);
-        } else {
-            loadDatasets(servlet, request);
-        }
+        loadReferences(servlet, request);
 
         // run execute from parent
         return forward;

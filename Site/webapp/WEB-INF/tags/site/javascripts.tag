@@ -30,7 +30,6 @@
 
   <script type="text/javascript" src="${base}/wdkCustomization/js/lib/hoverIntent.js"><jsp:text/></script>
   <script type="text/javascript" src="${base}/wdkCustomization/js/lib/superfish.js"><jsp:text/></script>
-  <script type="text/javascript" src="${base}/wdkCustomization/js/lib/supersubs.js"><jsp:text/></script>
   <script type="text/javascript" src="${base}/wdkCustomization/js/common.js"><jsp:text/></script>
 
   <!-- Contact Us window -->
@@ -72,6 +71,7 @@
     <script type="text/javascript" src="${base}/wdkCustomization/js/span-location.js"><jsp:text/></script>
     <script type="text/javascript" src="${base}/wdkCustomization/js/mutuallyExclusiveParams.js"><jsp:text/></script>
     <script type="text/javascript" src="${base}/wdkCustomization/js/dataset-searches.js"><jsp:text/></script>
+    <script type="text/javascript" src="${base}/wdkCustomization/js/questions/fold-change.js"><jsp:text/></script>
   </c:if>
 
   <!-- Quick seach box -->

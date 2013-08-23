@@ -14,7 +14,7 @@
         Your basket is not working because some IDs have changed or been retired
         since your last visit. Please <a href="javascript:void();"
         onclick="emptyBasket();">empty your basket</a> to restore its functionality.
-        Feel free to <a href="contact.do" class="open-window-contact-us">contact us</a> with any
+        Feel free to <a href="contact.do" class="new-window" data-name="contact_us">contact us</a> with any
         feedback.
         ]]></attribute>
     </record>
@@ -23,7 +23,7 @@
       <attribute name="title">There is an error with your results</attribute>
       <attribute name="content"><![CDATA[
         It appears something has gone wrong when retreiving your results.
-        Please <a href="contact.do" class="open-window-contact-us">contact us</a> so that
+        Please <a href="contact.do" class="new-window" data-name="contact_us">contact us</a> so that
         we can investigate what may be causing this.
         ]]></attribute>
     </record>

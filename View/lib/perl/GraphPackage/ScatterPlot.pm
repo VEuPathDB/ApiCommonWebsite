@@ -39,6 +39,32 @@ sub new {
 
 1;
 
+package ApiCommonWebsite::View::GraphPackage::ScatterPlot::ClinicalMetaData;
+use base qw( ApiCommonWebsite::View::GraphPackage::ScatterPlot );
+use strict;
+
+sub new {
+  my $class = shift;
+  my $self = $class->SUPER::new(@_);
+  my $id = $self->getId();
+  my $metaDataCategory = $self->getTypeArg;
+
+  $self->setPlotTitle("Expression Values - arcsinh(1+50*value) - $id");
+
+  $self->setMakeYAxisFoldInduction(0);
+  $self->setIsLogged(0);
+  $self->setHasExtraLegend(1);
+  $self->setExtraLegendSize(4.5);
+  $self->setHasMetaData(1);
+  $self->setDefaultYMax(1);
+  $self->setDefaultYMin(-1);
+  $self->setElementNameMarginSize(4);
+  $self->setXaxisLabel("Samples colored based on $metaDataCategory");
+   return $self;
+}
+
+1;
+
 
 
 1;

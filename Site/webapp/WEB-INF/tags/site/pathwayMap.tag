@@ -34,13 +34,13 @@
           content: $(this).attr('alt'), // Use the ALT attribute of the area map
           position: {   
             my: 'top left',  // Position my top left...
-            at: 'center', // at the bottom right of...
+            at: 'center' // at the bottom right of...
           },
           hide:  {
             fixed: true // Make it fixed so it can be hovered over
           },
           style: {
-            classes: 'ui-tooltip-green ui-tooltip-rounded'
+            classes: 'qtip-green qtip-rounded'
           }
         });
       });

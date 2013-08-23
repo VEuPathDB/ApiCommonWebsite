@@ -81,7 +81,7 @@ wdk.util.namespace("eupathdb.foldChange", function(ns, $) {
     twoDirectionTmpl = Handlebars.compile($("#two-direction-template").html());
 
     $img = $(".fold-change-img");
-    $form = $("form#form_question").last();
+    $form = $(".fold-change").closest("form");
 
     // connect to form change event
     $form.on("change", update).on("submit", function() {
@@ -90,6 +90,17 @@ wdk.util.namespace("eupathdb.foldChange", function(ns, $) {
 
     $form.find("#fold_change").on("keyup", function(e) {
       update();
+    });
+
+    // make samples boxes resizable
+    $(".reference > div, .comparison > div").each(function(idx, div) {
+      var $div = $(div);
+      $div.resizable({
+        alsoResize: $div.find(".param-multiPick.dependentParam ul, .checkbox-tree"),
+        minWidth: $div.width(),
+        maxWidth: $div.width(),
+        minHeight: 120
+      });
     });
 
     update();
@@ -115,22 +126,22 @@ wdk.util.namespace("eupathdb.foldChange", function(ns, $) {
     if (refCount <= 1) {
       refOp.attr("disabled", true);
       refOp.find(":selected").text("none");
-      refOp.parent().hide(); //.next().hide();
+      refOp.parent().hide();
     } else {
       refOp.attr("disabled", false);
       refOp.find(":selected").text(refOp.val().slice(0, -1));
-      refOp.parent().css("display", ""); //.next().show();
+      refOp.parent().css("display", "");
     }
 
     // if compCount <= 1, make ops disabled
     if (compCount <=1) {
       compOp.attr("disabled", true);
       compOp.find(":selected").text("none");
-      compOp.parent().hide(); //.next().hide();
+      compOp.parent().hide();
     } else {
       compOp.attr("disabled", false);
       compOp.find(":selected").text(compOp.val().slice(0, -1));
-      compOp.parent().css("display", ""); //.next().show();
+      compOp.parent().css("display", "");
     }
 
     // if "up or down regulated" selected, disable ops
@@ -345,7 +356,10 @@ wdk.util.namespace("eupathdb.foldChange", function(ns, $) {
         foldChange: ($scope.refCount && $scope.compCount) ? $scope.foldChange : 0
       });
     }
-    $img.html(html);
+    // use setTimeout to prevent hard assert in IE8 rendering engine...
+    setTimeout(function() {
+      $img.html(html);
+    }, 10);
   };
 
   var setHelp = function() {
@@ -361,8 +375,6 @@ wdk.util.namespace("eupathdb.foldChange", function(ns, $) {
       .css("visibility", $scope.refCount > 4 || $scope.compCount > 4 ?
           "visible" : "hidden");
   };
-
-  $(init);
 
   ns.init = init;
 });

@@ -117,10 +117,10 @@
                     <imp:queryGridMakeUrl qset="InternalQuestions" qname="GenesByRTPCREvidence" linktext="RT PCR Evidence" existsOn="A C"/>
                 </tr>
  		<tr>
-                    <imp:queryGridMakeUrl qset="InternalQuestions" qname="GenesByMicroarrayEvidence" linktext="Microarray Evidence" existsOn="A Am G P T Tt"/>
+                    <imp:queryGridMakeUrl qset="InternalGeneDatasetQuestions" qname="GenesByMicroarrayEvidence" linktext="Microarray Evidence" existsOn="A Am G P T Tt"/>
                 </tr>
                 <tr>
-                    <imp:queryGridMakeUrl qset="InternalQuestions" qname="GenesByRNASeqEvidence" linktext="RNA Seq Evidence" existsOn="A P T Tt"/>
+                    <imp:queryGridMakeUrl qset="InternalGeneDatasetQuestions" qname="GenesByRNASeqEvidence" linktext="RNA Seq Evidence" existsOn="A P T Tt"/>
                 </tr>
 		   <tr>
                     <imp:queryGridMakeUrl qset="InternalQuestions" qname="GenesByChIPchip" linktext="ChIP chip Evidence" existsOn="A P T"/> 
@@ -223,6 +223,9 @@
                 </tr>
                 <tr>
                     <imp:queryGridMakeUrl qset="GeneQuestions" qname="GenesByFunctionalInteraction" linktext="Predicted Interaction" existsOn="A P"/>
+                </tr>
+								 <tr>
+                    <imp:queryGridMakeUrl qset="GeneQuestions" qname="GenesByCromptonAbFoldChange" linktext="Immune Response in Clinical Isolates" existsOn="P"/>
                 </tr>
                 <tr>
                     <imp:queryGridMakeUrl qset="GeneQuestions" qname="GenesByPhenotype" linktext="Phenotype" existsOn="A Tt"/>

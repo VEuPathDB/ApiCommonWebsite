@@ -353,17 +353,11 @@ ${id}
 
 
 <!-- Mercator / Mavid alignments -->
-<c:set var="mercatorAlign">
-<imp:mercatorMAVID cgiUrl="/cgi-bin" projectId="${projectId}" revCompOn="${revCompOn}"
-                    contigId="${sequence_id}" start="${start}" end="${end}" bkgClass="rowMedium" cellPadding="0"
-                    availableGenomes=""/>
-</c:set>
 
-<imp:toggle isOpen="false"
-  name="mercatorAlignment"
-  displayName="Multiple Sequence Alignment"
-  content="${mercatorAlign}"
-  attribution=""/>
+<imp:mercatorTable tblName="MercatorTable" isOpen="false" 
+     cgiUrl="/cgi-bin" projectId="${projectId}" 
+     revCompOn="${revCompOn}" contigId="${sequence_id}" 
+     start="${start}" end="${end}" /> 
 
 
 <imp:pageDivider name="Annotation"/>
@@ -612,45 +606,16 @@ ${id}
             </c:otherwise>
         </c:choose>
 
-  <c:if test="${species eq 'falciparum3D7'}">
-      <imp:wdkTable tblName="MassSpec" isOpen="true"
-                    attribution=""/>
-  </c:if>
 
-  <c:if test="${species eq 'falciparum3D7'}">
-      <imp:wdkTable tblName="MassSpecMod" isOpen="true"
-          attribution=""/>
-  </c:if> 
 
-   <c:if test="${species eq 'vivax'}">
-      <imp:wdkTable tblName="MassSpec" isOpen="true"
-                    attribution=""/>
-  </c:if>
 
-  <c:if test="${species eq 'vivax'}">
-      <imp:wdkTable tblName="MassSpecMod" isOpen="true"
-          attribution=""/>
-  </c:if> 
+<c:if test="${attrs['hasProteomics'].value eq '1'}">
+ <imp:wdkTable tblName="MassSpec" isOpen="true"   attribution=""/>
+</c:if>
 
-   <c:if test="${species eq 'berghei'}">
-      <imp:wdkTable tblName="MassSpec" isOpen="true"
-                    attribution=""/>
-  </c:if>
-
-  <c:if test="${species eq 'berghei'}">
-      <imp:wdkTable tblName="MassSpecMod" isOpen="true"
-          attribution=""/>
-  </c:if> 
-
-   <c:if test="${species eq 'yoelii'}">
-      <imp:wdkTable tblName="MassSpec" isOpen="true"
-                    attribution=""/>
-  </c:if>
-
-  <c:if test="${species eq 'yoelii'}">
-      <imp:wdkTable tblName="MassSpecMod" isOpen="true"
-          attribution=""/>
-  </c:if> 
+<c:if test="${attrs['hasPostTransMod'].value eq '1'}">
+ <imp:wdkTable tblName="MassSpecMod" isOpen="true"   attribution=""/>
+</c:if>
 
   <c:if test="${binomial eq 'Plasmodium berghei'}">
     <imp:wdkTable tblName="ProteinExpression" attribution=""/>
@@ -687,7 +652,19 @@ ${id}
 </c:if>
 </c:if>
 
+
+<c:if test="${species eq 'falciparum3D7'}">
+
+<imp:pageDivider name="Putative Function"/>
+
+
+   <imp:profileGraphs species="${binomial}" tableName="PutativeFunctionGraphs"/>
+
+</c:if> 
  <%-- ------------------------------------------------------------------ --%>
+
+
+
 
 
 <imp:pageDivider name="Sequence"/>

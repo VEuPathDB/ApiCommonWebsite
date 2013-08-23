@@ -9,7 +9,7 @@
 <%@ attribute name="type"  description="Type"  %>
 
 <%@ attribute name="tableName"
-              description="PhenotypeGraphs or ExpressionGraphs"
+              description="PhenotypeGraphs or ExpressionGraphs or PutativeFunctionGraphs"
 %>
 
 
@@ -18,8 +18,8 @@
 <c:set var="plotBaseUrl" value="/cgi-bin/dataPlotter.pl"/>
 <c:set var="i" value="0"/>
 
-
 <c:forEach var="row" items="${tbl}">
+
   <c:if test="${(species eq row['species'].value) || (type eq 'compound')}">
 
     <c:set var="secName" 	value="${row['module'].value}"/>
@@ -92,7 +92,7 @@
                          
             </c:when>
             <c:otherwise>
-            <a href="/gene/${graph_id}#Expression">${graph_id}</a> <input type="radio" onclick="updateText('${textId}','${row['source_id']}','${graph_id}',this.form);wdk.api.updateImage('${imgId}', formatResourceUrl('${preImgSrc}', this.form)); wdk.api.updateDiv('${tableId}', formatResourceUrl('${preTableSrc}', this.form), '${tblErrMsg}');" value="${graph_id}"name="geneOptions" /> &nbsp;
+            <a href="/gene/${graph_id}#Expression">${graph_id}</a> <input type="radio" onclick="updateText('${textId}','${row['source_id']}','${graph_id}',this.form);wdk.api.updateImage('${imgId}', formatResourceUrl('${preImgSrc}', this.form)); wdk.api.updateDiv('${tableId}', formatResourceUrl('${preTableSrc}', this.form), '${tblErrMsg}');" value="${graph_id}" name="geneOptions" /> &nbsp;
             </c:otherwise>
           </c:choose>
 
@@ -110,6 +110,10 @@
             </c:choose>
 	    </c:if>
 <br /><br />
+
+
+
+
 
         		<b>Choose Graph(s) to Display</b><br />
         <c:set var="VisibleParts" value="${fn:split(row['visible_parts'].value,',')}"/>
@@ -153,10 +157,24 @@
                </c:if>
             </c:otherwise>
           </c:choose>
-           
-          
+
         </c:forEach>
-              <br /> <br />
+                 <br /> <br />  
+
+<c:if test="${fn:toLowerCase(row['has_meta_data'].value) eq 'true'}">
+<b>Color Samples by: </b><br /> 
+              <c:set var="isFirstItem" value="1"/>
+              <c:set var="categories" value="${fn:split(row['meta_data_categories'].value,',')}"/>
+              <c:set var="defaultCategory" value="${categories[0]}"/>
+              <select name="meta_data_categories" onchange="wdk.api.updateImage('${imgId}', formatResourceUrl('${preImgSrc}', this.form)); wdk.api.updateDiv('${tableId}', formatResourceUrl('${preTableSrc}', this.form), '${tblErrMsg}');" />
+                  <c:set var="isFirstItem" value="1"/>
+                  <c:forEach var="category" items="${categories}">
+                             <option value="${category}">${category}</option>
+                  </c:forEach>
+                  <c:set var="imgSrc" 		value="${imgSrc}&typeArg=${defaultCategory}"/>
+        </c:if> 
+<br /> <br />
+
 
               
         <c:if test="${row['project_id'].value eq 'PlasmoDB' || row['project_id'].value eq 'FungiDB' || row['project_id'].value eq 'MicrosporidiaDB' || row['project_id'].value eq 'PiroplasmaDB' || row['project_id'].value eq 'CryptoDB' || row['project_id'].value eq 'ToxoDB'}">
@@ -167,7 +185,7 @@
           </c:if>
 
         </c:if>
-
+          
       </form>
 
     </c:set>
@@ -251,6 +269,7 @@ function formatResourceUrl(url, myForm) {
   var wl = 0;
   var vp = '&vp=_LEGEND';
   var id = '&id=';
+  var typeArg = "";
 
   for (var i=0; i < myForm.length; i++){
     var e = myForm.elements[i];
@@ -266,11 +285,13 @@ function formatResourceUrl(url, myForm) {
     if (e.type == 'radio' && e.checked) {
       id = id + e.value;
     }
-  }
-  url = url + id + vp + '&wl=' + wl;
+    if (e.selectedIndex > -1) {
+        typeArg = '&typeArg=' + e.options[e.selectedIndex].text;
+    }
+  }    
+  url = url + id + vp + '&wl=' + wl + typeArg;
   return url;
 }
-
 function updateText(id,sourceId,geneId,myForm) {
    var myText = 'The Data and Graphs you are viewing are for an alternative gene in the gene group.   This may or may NOT accurately represent the gene you are interested in.';
    document.getElementById(id).innerHTML = myText;

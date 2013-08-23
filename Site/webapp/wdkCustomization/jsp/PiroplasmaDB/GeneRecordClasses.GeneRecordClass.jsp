@@ -171,20 +171,10 @@ ${attrs['organism'].value}<br>
 <imp:wdkTable tblName="Alias" isOpen="FALSE" attribution=""/>
 
 <!-- Mercator / Mavid alignments -->
-<c:set var="mercatorAlign">
-<imp:mercatorMAVID cgiUrl="/cgi-bin" projectId="${projectId}" revCompOn="${revCompOn}"
-                    contigId="${sequence_id}" start="${start}" end="${end}" bkgClass="rowMedium" cellPadding="0"
-                    availableGenomes=""/>
-</c:set>
-
-<imp:toggle isOpen="true"
-  name="mercatorAlignment"
-  displayName="Multiple Sequence Alignment"
-  content="${mercatorAlign}"
-  attribution=""/>
-
-
-
+<imp:mercatorTable tblName="MercatorTable" isOpen="false" 
+     cgiUrl="/cgi-bin" projectId="${projectId}" 
+     revCompOn="${revCompOn}" contigId="${sequence_id}" 
+     start="${start}" end="${end}" /> 
 
 
 <imp:pageDivider name="Annotation"/>
@@ -336,6 +326,13 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/piroplasmadbaa/?nam
                  content="N/A" />
             </c:otherwise>
         </c:choose>
+
+
+
+<c:if test="${attrs['hasProteomics'].value eq '1'}">
+ <imp:wdkTable tblName="MassSpec" isOpen="true"   attribution=""/>
+</c:if>
+
 
 <%-- EPITOPES ------------------------------------------------------%>
 <imp:wdkTable tblName="Epitopes" isOpen="true"

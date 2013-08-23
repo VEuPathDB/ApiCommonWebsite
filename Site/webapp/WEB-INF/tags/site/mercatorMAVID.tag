@@ -136,10 +136,10 @@ return true;
             <td>
               <input type="checkbox" name="genomes" value="tconIL3000" checked>T.congolense
             </td>
-            <td colspan="2">
+            <td>
               <input type="checkbox" name="genomes" value="tevaSTIB805" checked>T.evansi
             </td>
-            <td colspan="2">
+            <td>
               <input type="checkbox" name="genomes" value="tvivY486" checked>T.vivax
             </td>
           </tr>
@@ -156,7 +156,7 @@ return true;
             <td>
               <input type="checkbox" name="genomes" value="tcrumarinkelleiB7" checked>T.cruzi marinkellei
             </td>
-            <td colspan="2">
+            <td>
               <input type="checkbox" name="genomes" value="tcruSylvioX10-1" checked>T.cruzi Sylvio
             </td>
            </tr>
@@ -178,10 +178,10 @@ return true;
               <input type="checkbox" name="genomes" value="pfalIT" checked>P.falciparum IT
             </td>
             <td>
-              <input type="checkbox" name="genomes" value="pvivSaI1" checked>P.vivax
+              <input type="checkbox" name="genomes" value="pvivSal1" checked>P.vivax
             </td>
             <td>
-              <input type="checkbox" name="genomes" value="pyoe17XNL" checked>P.yoelii 17XNL
+              <input type="checkbox" name="genomes" value="pyoeyoelii17XNL" checked>P.yoelii 17XNL
             </td>
             <td>
               <input type="checkbox" name="genomes" value="pberANKA" checked>P.berghei
@@ -297,18 +297,6 @@ return true;
               <input type="checkbox" name="genomes" value="ecunGBM1" checked>E.cuniculi GBM1
             </td>
             <td>
-              <input type="checkbox" name="genomes" value="nemaSp1ERTm2" checked>Nematocida Sp1 ERTm2
-            </td>
-            <td>
-              <input type="checkbox" name="genomes" value="nsp1ERTm6" checked>Nematocida Sp1 ERTm6
-            </td>
-            <td>
-              <input type="checkbox" name="genomes" value="nparERTm1" checked>N.parisii ERTm1
-            </td>
-            <td>
-              <input type="checkbox" name="genomes" value="nparERTm3" checked>N.parisii ERTm3
-            </td>
-            <td>
               <input type="checkbox" name="genomes" value="eintATCC50506" checked>E.intestinalis
             </td>
             <td>
@@ -320,8 +308,22 @@ return true;
             <td>
               <input type="checkbox" name="genomes" value="eromSJ2008" checked>E.romaleae
             </td>
+         </tr>
+         <tr>
             <td>
               <input type="checkbox" name="genomes" value="ehelATCC50504" checked>E.hellem ATCC 50504
+            </td>
+            <td>
+              <input type="checkbox" name="genomes" value="nemaSp1ERTm2" checked>Nematocida Sp1 ERTm2
+            </td>
+            <td>
+              <input type="checkbox" name="genomes" value="nsp1ERTm6" checked>Nematocida Sp1 ERTm6
+            </td>
+            <td>
+              <input type="checkbox" name="genomes" value="nparERTm1" checked>N.parisii ERTm1
+            </td>
+            <td>
+              <input type="checkbox" name="genomes" value="nparERTm3" checked>N.parisii ERTm3
             </td>
             <td>
               <input type="checkbox" name="genomes" value="ncerBRL01" checked>N.cerenae

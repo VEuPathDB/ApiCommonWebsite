@@ -60,18 +60,19 @@ function datasetSearches($element, $attrs) {
     "brown"
   ];
 
-  $datasetRecords.find("tbody tr").each(function() {
-    $(this).find(".search-mechanism").each(function(idx, td) {
-      var $btn = $(td).find(".btn");
-      var color = colors[idx % colors.length];
-      $btn.addClass("btn-" + color);
-    });
-  });
+  // using site-based colors now (btn-site)
+  // $datasetRecords.find("tbody tr").each(function() {
+  //   $(this).find(".search-mechanism").each(function(idx, td) {
+  //     var $btn = $(td).find(".btn");
+  //     var color = colors[idx % colors.length];
+  //     $btn.addClass("btn-" + color);
+  //   });
+  // });
 
-  $element.find(".legend .search-mechanism").each(function(idx, span) {
-    var color = colors[idx % colors.length];
-    $(span).addClass("btn btn-active btn-" + color);
-  });
+  // $element.find(".legend .search-mechanism").each(function(idx, span) {
+  //   var color = colors[idx % colors.length];
+  //   $(span).addClass("btn btn-active btn-" + color);
+  // });
 
   var dataTable = $datasetRecords.dataTable(dataTableOpts);
   //new FixedHeader(dataTable);
@@ -163,5 +164,7 @@ function datasetSearches($element, $attrs) {
   $tableToggle.on("click", function() { toggleTable() });
 
   // show the page
-  $element.css("visibility", "visible");
+  setTimeout(function() {
+    $element.css("visibility", "visible");
+  }, 100);
 }

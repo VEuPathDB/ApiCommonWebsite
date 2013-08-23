@@ -19,7 +19,8 @@
 
   <c:set var="protein_coding_onlyParam" value="${paramGroup['protein_coding_only']}"/>
 
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/wdkCustomization/css/fold-change.css"/>
+  <span class="onload-function" data-function="eupathdb.foldChange.init">
+    <jsp:text/></span>
   <div class="fold-change ui-help-clearfix">
 
     <div class="fold-change-params">
@@ -196,7 +197,6 @@
     {{> formula}}
     {{/each}}
     <p>and returns genes when {{{criteria}}}.
-      <!--<b>fold change</b> &gt;= <b>{{foldChange}}</b>.-->
       {{#if narrowest}}
         This calculation creates the <b>narrowest</b> window of expression values in
         which to look for genes that meet your fold change cutoff.
@@ -277,7 +277,5 @@
       </div>
     </div>
   </script>
-
-  <script type="text/javascript" src="${pageContext.request.contextPath}/wdkCustomization/js/questions/fold-change.js"><jsp:text/></script>
 
 </jsp:root>
