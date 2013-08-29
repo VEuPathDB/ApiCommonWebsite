@@ -162,16 +162,11 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Model"/>
     </ant>
-
     <available file="${targetDir}/config/projects.xml" type="file" property="projects.xml.present" />
     <antcall target="install-projects.xml"/>
-
   </target>
 
-
   <target name="ApiCommonWebsite/Site-Installation">
-    <delete file="${htdocsTargetDir}/gbrowse/images/buttons/ficon.png" />
-    <delete file="${htdocsTargetDir}/gbrowse/images/buttons/ficon_2.png" />
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
