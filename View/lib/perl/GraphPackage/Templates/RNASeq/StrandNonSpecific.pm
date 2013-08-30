@@ -49,6 +49,20 @@ sub init {
 
 1;
 
+
+#--------------------------------------------------------------------------------
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::StrandNonSpecific::tgonME49_Knoll_Laura_Pittman_rnaSeq_RSRC;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::StrandNonSpecific );
+use strict;
+
+
+sub getSampleNames {
+  return ['acute', 'chronic'];
+}
+
+1;
 #--------------------------------------------------------------------------------
 
 
