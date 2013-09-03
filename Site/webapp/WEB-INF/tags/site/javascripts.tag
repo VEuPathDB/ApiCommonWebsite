@@ -28,6 +28,7 @@
   </c:if>
   -->
 
+  <!-- less.js is currently included in wdk. this should probaly move here. -->
   <script type="text/javascript" src="${base}/wdkCustomization/js/lib/hoverIntent.js"><jsp:text/></script>
   <script type="text/javascript" src="${base}/wdkCustomization/js/lib/superfish.js"><jsp:text/></script>
   <script type="text/javascript" src="${base}/wdkCustomization/js/common.js"><jsp:text/></script>
