@@ -397,6 +397,24 @@
    </record>
 
 
+<record>
+       <attribute name="title">Pathogen Portal's RNA Sequence Analysis Pipeline Part 2</attribute>
+       <attribute name="description">How to upload BAM files into EuPathDB's GBrowse to view your RNA-Seq data in context with other data at EuPathDB.</attribute>
+       <attribute name="uid">15July2013</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=mKnp31jBWRA</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">"Pathogen Portal's RNA Sequence Analysis Pipeline Part 2/pathogen_portals_rna_sequence_analysis_pipeline_part_2_viewlet_swf.html"</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">5 min</attribute>
+           <attribute name="size">6.5 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
  <record>
        <attribute name="title">PlasmoDB Introduction</attribute>
        <attribute name="description">Highlights of the PlasmoDB website.</attribute>
