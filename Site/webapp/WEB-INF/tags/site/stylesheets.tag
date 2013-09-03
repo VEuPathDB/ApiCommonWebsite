@@ -16,10 +16,10 @@
 <%-- When definitions are in conflict, the next one overrides the previous one  --%>
 <%--
 <link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" /> 
-<link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/${project}.css"/>
 --%>
 
-<link rel="stylesheet/less" type="text/css" href="/assets/css/${project}.less"/>
+<link rel="stylesheet/less" type="text/css" href="/assets/less/${project}.less"/>
 
 <!-- JQuery library is included by WDK -->
 
