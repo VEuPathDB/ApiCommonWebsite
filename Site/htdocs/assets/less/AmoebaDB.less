@@ -1,7 +1,6 @@
-/* built by less */
 //@import "wdkCommon.css";
-@import "site";
-@import "site.reference.less";
+//@import "site";
+@import "branding";
 // Variables used by AllSites
 
 @model:                        AmoebaDB;
@@ -11,26 +10,29 @@
 @muted-color:                  #c8c8c8;
 
 @link-color:                   #02935c;
+@link-color-visited:           #02935c;
 @link-color-hover:             #6A5329;
 
-@header-color:                 #58441F;
-@border-color:                 @header-color;
+@heading-color:                #58441F;
+@border-color:                 @heading-color;
 
-@table-head-color:             @header-color;
-@table-head-color-other:       @header-color;
+@siteheader-color:             @heading-color;
+@siteheader-link-color:        @heading-color;
+
+@table-head-color:             @heading-color;
 @table-head-border-color:      @link-color-hover;
 
 
 // menu
-@menu-parent-color-hover:      @header-color;
+@menu-parent-color-hover:      @heading-color;
 @menu-child-color-hover:       #4f7f6d;
 
 //navtop
-@navtop-link-color:            @border-color;
+@navtop-link-color:            @heading-color;
 @navtop-link-color-active:     #4f7f6d;
 
 // queryGrid
-@querygrid-color-active:       @header-color;
+@querygrid-color-active:       @heading-color;
 
 // workspace
 @workspace-border:             @link-color;

@@ -1,7 +1,6 @@
-/* built by less */
 //@import (less) "wdkCommon.css";
-@import "site";
-@import "site.reference.less";
+//@import "site";
+@import "branding";
 // Variables used by AllSites
 
 @model:                        FungiDB;
@@ -11,14 +10,17 @@
 @muted-color:                  #c8c8c8;
 
 @link-color:                   #067387;
+@link-color-visited:           @link-color;
 @link-color-hover:             #672a87;
 
-@header-color:                 @link-color-hover;
+@heading-color:                #414141;
 @border-color:                 @link-color;
 
+@siteheader-color:             @link-color;
+@siteheader-link-color:        @link-color;
+
 @table-head-color:             @link-color-hover;
-@table-head-color-other:       @link-color;
-@table-head-border-color:      @link-color-hover;
+@table-head-border-color:      @link-color;
 
 
 // menu
@@ -38,3 +40,7 @@
 // marker?
 @marker-link:                  #7D0101;
 
+
+.blockMsg, .menu_lefttop_drop {
+  border-color: #634697;
+}

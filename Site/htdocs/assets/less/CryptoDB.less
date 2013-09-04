@@ -1,7 +1,6 @@
-/* built by less */
 //@import "wdkCommon.css";
-@import "site";
-@import "site.reference.less";
+//@import "site";
+@import "branding";
 // Variables used by AllSites
 
 @model:                        CryptoDB;
@@ -11,13 +10,16 @@
 @muted-color:                  #c8c8c8;
 
 @link-color:                   #0b4796;
+@link-color-visited:           #0b4796;
 @link-color-hover:             #610b0b;
 
-@header-color:                 #610b0b;
+@heading-color:                @link-color-hover;
 @border-color:                 #395b8e;
 
+@siteheader-color:             @border-color;
+@siteheader-link-color:        @border-color;
+
 @table-head-color:             #5f140e;
-@table-head-color-other:       #395b8e;
 @table-head-border-color:      @table-head-color;
 
 
@@ -38,3 +40,4 @@
 // marker?
 @marker-link:                  #7D0101;
 
+@bubble-height:                351px;
