@@ -21,8 +21,8 @@ sub init {
   $self->setPlotWidth(450);
 
   # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
-  my @profileArray = (['M.White Cell Cycle Microarray profiles'],
-                      ['M.White Cell Cycle Microarray profiles'],
+  my @profileArray = (['M.White Cell Cycle Microarray'],
+                      ['M.White Cell Cycle Microarray'],
                      );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -31,6 +31,8 @@ sub init {
   $similarity->setProfileSets($profileSets);
   $similarity->setColors(\@colors);
   $similarity->setPointsPch([15,15]);
+  $similarity->setElementNameMarginSize(6.5);
+  $similarity->setXaxisLabel("Time Point (hours)");
 
   $self->setGraphObjects($similarity);
 

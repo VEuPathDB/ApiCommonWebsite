@@ -69,7 +69,7 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $percentile->setTitleLine(2.25);
   $percentile->setRPostscript($cellCycleTopMargin);
   $percentile->setElementNameMarginSize(6.3);
-  $percentile->setXaxisLabel("Time Point");
+  $percentile->setXaxisLabel("Time Point (hours)");
 
   $self->setGraphObjects($rma, $percentile);
 
