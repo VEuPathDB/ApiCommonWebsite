@@ -44,7 +44,7 @@ sub logError              { push @{$_[0]->{'_errors'}}, $_[1] }
 sub errors                { $_[0]->{'_errors'               }}
 
 sub new {
-  my ($class, $name, $elementNames, $alternateSourceId, $scale, $metaDataCategory) = @_;
+  my ($class, $name, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $displayName) = @_;
 
   unless($name) {
     die "ProfileSet Name missing: $!";
@@ -53,6 +53,7 @@ sub new {
   my $self = bless {}, $class;
 
   $self->setName($name);
+  $self->setDisplayName($displayName);
 
   unless(ref($elementNames) eq 'ARRAY') {
     $elementNames = [];
