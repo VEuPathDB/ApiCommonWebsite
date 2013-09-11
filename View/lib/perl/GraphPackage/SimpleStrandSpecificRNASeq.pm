@@ -70,6 +70,8 @@ sub makeGraphs {
   $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
 
   my $sense = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
+  $sense->setMinRpkmProfileSetDisplayName("Sense Unique");
+  $sense->setDiffRpkmProfileSetDisplayName("Sense Non-Unique");
   $sense->setMinRpkmProfileSet($self->getMinSenseRpkmProfileSet());
   $sense->setDiffRpkmProfileSet($self->getDiffSenseRpkmProfileSet());
   $sense->setPctProfileSet($self->getPctSenseProfileSet());
@@ -89,6 +91,8 @@ sub makeGraphs {
   $sensePct->setPlotTitle($sensePct->getPlotTitle() . " - sense");
 
   my $antisense = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
+  $antisense->setMinRpkmProfileSetDisplayName("Antisense Unique");
+  $antisense->setDiffRpkmProfileSetDisplayName("Antisense Non-Unique");
   $antisense->setMinRpkmProfileSet($self->getMinAntisenseRpkmProfileSet());
   $antisense->setDiffRpkmProfileSet($self->getDiffAntisenseRpkmProfileSet());
   $antisense->setPctProfileSet($self->getPctAntisenseProfileSet());

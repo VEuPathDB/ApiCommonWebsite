@@ -18,8 +18,9 @@ sub makeProfileSets {
     my $alternateSourceId = $row->[3];
     my $scale = $row->[4];
     my $metaDataCategory = $row->[5];
+    my $mainProfileSetDisplayName = $row->[6];
 
-    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $elementNames, $alternateSourceId, $scale, $metaDataCategory);
+    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $mainProfileSetDisplayName);
 
     if($relatedProfileSet) {
       my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $elementNames, $alternateSourceId, $scale, $metaDataCategory);

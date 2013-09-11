@@ -86,7 +86,9 @@ sub makeRPlotStrings {
     my $profileSets = $plotPart->getProfileSets();
 
     my @profileFiles = map { $_->getProfileFile() } @$profileSets;
-    my @profileSetNames = map { $_->getName() } @$profileSets;
+
+
+    my @profileSetNames = map { $_->getDisplayName() } @$profileSets;
 
     my @elementNamesFiles = map { $_->getElementNamesFile() } @$profileSets;
 

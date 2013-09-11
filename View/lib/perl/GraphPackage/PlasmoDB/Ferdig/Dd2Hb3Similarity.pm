@@ -9,6 +9,8 @@ use ApiCommonWebsite::View::GraphPackage::SimilarityPlot;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
+
+use Data::Dumper;
 sub init {
   my $self = shift;
 
@@ -31,6 +33,8 @@ sub init {
   $similarity->setProfileSets($profileSets);
   $similarity->setColors(\@colors);
   $similarity->setPointsPch([15,15]);
+  $similarity->setElementNameMarginSize(5);
+  $similarity->setXaxisLabel("");
 
   $self->setGraphObjects($similarity);
 

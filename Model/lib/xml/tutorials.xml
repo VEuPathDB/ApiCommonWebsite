@@ -99,6 +99,24 @@
        </table>
    </record>
 
+
+<record>
+       <attribute name="title">Finding differentially expressed genes based on fold change</attribute>
+       <attribute name="description">This tutorial describes our 'fold change' searches which allow you to search for genes that are differentially expressed between the samples of an RNA sequencing or microarray experiment.</attribute>
+       <attribute name="uid">3Sept2013</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=jMuVB-ZIdH0</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">Finding differentially expressed genes based on fold change/finding_differentially_expressed_genes_based_on_fold_change_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">8.3 min</attribute>
+           <attribute name="size">6.7 mb</attribute>
+         </row>
+       </table>
+   </record>
+
 <record>
        <attribute name="title">GBrowse Overview</attribute>
        <attribute name="description">How to display genomic sequence and functional genomics data in The Genome Browser.</attribute>
@@ -374,6 +392,24 @@
            <attribute name="fileName.pdf">unavailable</attribute>
            <attribute name="duration">4.75 min</attribute>
            <attribute name="size">6.8 mb</attribute>
+         </row>
+       </table>
+   </record>
+
+
+<record>
+       <attribute name="title">Pathogen Portal's RNA Sequence Analysis Pipeline Part 2</attribute>
+       <attribute name="description">How to upload BAM files into EuPathDB's GBrowse to view your RNA-Seq data in context with other data at EuPathDB.</attribute>
+       <attribute name="uid">15July2013</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=mKnp31jBWRA</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">"Pathogen Portal's RNA Sequence Analysis Pipeline Part 2/pathogen_portals_rna_sequence_analysis_pipeline_part_2_viewlet_swf.html"</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">5 min</attribute>
+           <attribute name="size">6.5 mb</attribute>
          </row>
        </table>
    </record>

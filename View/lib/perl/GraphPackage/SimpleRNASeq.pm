@@ -1,6 +1,8 @@
 package ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
 
 use strict;
+
+use Data::Dumper;
 use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
@@ -14,6 +16,12 @@ sub setMinRpkmProfileSet { $_[0]->{_min_rpkm_profile_set} = $_[1] }
 
 sub getDiffRpkmProfileSet { $_[0]->{_diff_rpkm_profile_set} }
 sub setDiffRpkmProfileSet { $_[0]->{_diff_rpkm_profile_set} = $_[1] }
+
+sub getMinRpkmProfileSetDisplayName { $_[0]->{_min_rpkm_profile_set_display} }
+sub setMinRpkmProfileSetDisplayName { $_[0]->{_min_rpkm_profile_set_display} = $_[1] }
+
+sub getDiffRpkmProfileSetDisplayName { $_[0]->{_diff_rpkm_profile_set_display} }
+sub setDiffRpkmProfileSetDisplayName { $_[0]->{_diff_rpkm_profile_set_display} = $_[1] }
 
 sub getPctProfileSet { $_[0]->{_pct_profile_set} }
 sub setPctProfileSet { $_[0]->{_pct_profile_set} = $_[1] }
@@ -55,6 +63,10 @@ sub makeGraphs {
 
   my $minRpkmProfileSet = $self->getMinRpkmProfileSet();
   my $diffRpkmProfileSet = $self->getDiffRpkmProfileSet();
+
+  my $minRpkmProfileSetDisplay = $self->getMinRpkmProfileSetDisplayName() ? $self->getMinRpkmProfileSetDisplayName() : "Unique";
+  my $diffRpkmProfileSetDisplay = $self->getDiffRpkmProfileSetDisplayName() ? $self->getDiffRpkmProfileSetDisplayName() : "Non Unique";
+
   my $pctProfileSet = $self->getPctProfileSet();
   my $additionalRCode = $self->getAdditionalRCode();
   my $forceXLabelsHorizontal = $self->getForceXLabelsHorizontalString ? 1 : 0;
@@ -69,11 +81,13 @@ sub makeGraphs {
 
   $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
 
-  my @profileArray = ([$minRpkmProfileSet, '', $sampleNames],
-                      [$diffRpkmProfileSet, '', $sampleNames],
+  my @profileArray = ([$minRpkmProfileSet, '', $sampleNames, '', '', '', $minRpkmProfileSetDisplay],
+                      [$diffRpkmProfileSet, '', $sampleNames, '', '', '', $diffRpkmProfileSetDisplay],
                      );
 
+
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$pctProfileSet, '', $sampleNames]]);
 
   my $stacked;
