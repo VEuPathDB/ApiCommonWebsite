@@ -27,11 +27,9 @@
     <br>
     <strong>New data in this release</strong>:<br>
     <br>
-    <!--StartFragment-->
     <ul>
-      <li><!--[if !supportLists]--><span class="tracktitle">The following
-          annotated
-          genomes were integrated into the PiroplasmaDB. </span><span class="tracktitle"><span
+      <li><span class="tracktitle">The following annotated genomes were
+          integrated into the PiroplasmaDB. </span><span class="tracktitle"><span
             class="tracktitle">The
             <a href="http://piroplasmadb.org/piro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
                 set section</strong></a> includes detailed information about the
@@ -40,9 +38,9 @@
     <span class="tracktitle"><span class="tracktitle"></span></span>&nbsp;<o:p></o:p><br>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
-&quot;Courier New&quot;"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;">
-                </span></span></span></span><!--[endif]--><span class="tracktitle"><a
+        <li><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
+&quot;Courier New&quot;"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
+            class="tracktitle"><a
               href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#24"><strong>Theileria
 orentalis
                 Shintoku</strong></a> (GenBank version 9-6-2013) (</span><span class="tracktitle"><strong><a
@@ -54,52 +52,42 @@ orentalis
     <span class="tracktitle"></span><br>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><span class="tracktitle"><strong><a href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#25">Theileria
-                equi WA</a></strong>
-            (GenBank version 12-11-2013) (</span><strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/23137308">Kappmeyer
+        <li><span class="tracktitle"><strong><a href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#25">Theileria
+                equi WA</a></strong> (GenBank version 12-11-2013) (</span><strong><a
+              href="http://www.ncbi.nlm.nih.gov/pubmed/23137308">Kappmeyer
               <em>et al.</em></a></strong>)<pubmedarticleset><pubmedarticle></pubmedarticle></pubmedarticleset></li>
       </ul>
     </ul>
     <span class="tracktitle"></span><br>
     <ul>
-      <li><!--[if !supportLists]--><span class="tracktitle"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
-          class="tracktitle"><span
-            style="mso-bidi-font-style:normal">Proteomics
+      <li><span class="tracktitle"><span style="mso-bidi-font-style:normal">Proteomics
             mass spec data from</span><i style="mso-bidi-font-style:normal">
-            Theileria annulata</i>
-          schizonts (</span><span class="tracktitle"><strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/23178997"><span
+            Theileria annulata</i> schizonts (</span><span class="tracktitle"><strong><a
+              href="http://www.ncbi.nlm.nih.gov/pubmed/23178997"><span
                 class="tracktitle">Witschi
                 <em>et al.</em></span></a></strong>). Search for genes whose
-          protein products were present in extracts
-          of whole cell lysates <i style="mso-bidi-font-style:normal">T.
-            annulata</i>
-          schizonts from the </span><strong><a href="http://qa.piroplasmadb.org/piro.b19/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
+          protein products were present in extracts of whole cell lysates <i style="mso-bidi-font-style:normal">T.
+            annulata</i> schizonts from the </span><strong><a href="http://qa.piroplasmadb.org/piro.b19/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
 Mass
             spec evidence search page</a></strong><span class="tracktitle">. In
-          addition, peptide
-          evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TA12105&amp;project_id=PiroplasmaDB">gene
+          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TA12105&amp;project_id=PiroplasmaDB">gene
 pages
             in the Protein Section</a></strong><span class="tracktitle"> and in
-          the genome
-          browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.
-              MS/MS Peptides Schizont Proteome
-              (Witschi et al.)</a></strong>.</span></li>
+          the genome browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.
+              MS/MS Peptides Schizont Proteome (Witschi et al.)</a></strong>.</span></li>
     </ul>
     <span class="tracktitle"></span><br>
     <br>
     <strong>New features:</strong><br>
     <br>
-    <!--StartFragment-->
     <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->EuPathDB now stores GBrowse track
-        configurations between sessions for registered users who log into any
-        EuPathDB site. The EuPathDB login is now integrated with the GBrowse
-        login so that your previous session’s GBrowse tracks are displayed each
-        time you return to a EuPathDB site. </li>
+      <li>EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
@@ -107,28 +95,25 @@ pages
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->A new interactive table for choosing
-        expression data sets lists datasets, searches for each dataset and the
-        organism that the data is aligned to. Use the table’s filter function to
-        limit the data set list based on author name, parasite life stages, etc.
-        Click on an icon under "Choose a search" to collapse the table and
-        display the data set’s search page with its parameter list below the
-        collapsed table. </li>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table’s filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set’s
+        search page with its parameter list below the collapsed table. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->Search parameters appear on the left and are
-        arranged in a sentence that helps you choose parameter values. </li>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
     </ul>
     <br>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->A
-        help graphic and text appear on the right. To help you interpret your
-        parameters choices, the graphic changes to reflect your parameter
+      <li>A help graphic and text appear on the right. To help you interpret
+        your parameters choices, the graphic changes to reflect your parameter
         settings.</li>
     </ul>
     <br>
@@ -145,15 +130,13 @@ Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Ro
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->The
-        graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
+      <li>The graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
           </span>View the results of a strategy step by clicking anywhere inside
         the box representing that step. To edit the parameter values for that
         step, click on the EDIT icon that appears in the corner of each strategy
         step box when hovering over the strategy panel.<o:p></o:p></li>
     </ul>
-    <!--EndFragment--><br>
+    <br>
     <br>
     <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
         Our bimonthly database releases incorporate new data and correct old

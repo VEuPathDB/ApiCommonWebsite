@@ -27,22 +27,19 @@
     <br>
     <strong>New data in this release</strong>:<br>
     <br>
-    <!--StartFragment--><!--EndFragment-->
-    <!--StartFragment-->
     <ul>
-      <li><!--[if !supportLists]--><span class="tracktitle"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><!--[endif]--><span
+      <li><span class="tracktitle"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
           class="tracktitle">The
           following annotated genomes were integrated into
           MicrosporidiaDB.&nbsp; The <a href="http://microsporidiadb.org/micro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
               set section</strong></a> includes detailed information about the
-          genomes and available searches: <br>
-        </span></li>
+          genomes and available searches: </span></li>
     </ul>
     <span class="tracktitle"></span><br>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><a href="http://microsporidiadb.org/micro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#45"><strong><span
+        <li><a href="http://microsporidiadb.org/micro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#45"><strong><span
                 class="tracktitle"><i
                   style="mso-bidi-font-style:normal"><span
                     style="mso-ansi-language:ES-AR"
@@ -51,15 +48,13 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
               style="mso-ansi-language:ES-AR"
               lang="ES-AR"><a
                 href="http://microsporidiadb.org/micro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#45"><strong>
-                  1 ERTm6</strong></a> (Broad
-              version 0.1). <br>
-            </span></span></li>
+                  1 ERTm6</strong></a> (Broad version 0.1). </span></span></li>
       </ul>
     </ul>
     <span class="tracktitle"><span style=" mso-ansi-language:ES-AR" lang="ES-AR"></span></span><br>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><a href="http://microsporidiadb.org/micro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#29"><strong><span
+        <li><a href="http://microsporidiadb.org/micro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#29"><strong><span
                 class="tracktitle"><i
                   style="mso-bidi-font-style:normal"><span
                     style="mso-ansi-language:ES-AR"
@@ -68,15 +63,13 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
               style="mso-ansi-language:ES-AR"
               lang="ES-AR"><a
                 href="http://microsporidiadb.org/micro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#29"><strong>
-                  USNM 41457
-                </strong></a>(GenBank version 8-27-2013)</span></span></li>
+                  USNM 41457 </strong></a>(GenBank version 8-27-2013)</span></span></li>
       </ul>
     </ul>
     <span class="tracktitle"><span style=" mso-ansi-language:ES-AR" lang="ES-AR"></span></span><br>
     <ul>
-      <li><!--[if !supportLists]--><span class="tracktitle">The following
-          unannotated genomes were integrated into </span><span class="tracktitle"><span
-            class="tracktitle">MicrosporidiaDB</span>.
+      <li><span class="tracktitle">The following unannotated genomes were
+          integrated into </span><span class="tracktitle"><span class="tracktitle">MicrosporidiaDB</span>.
         </span><span class="tracktitle">The <strong></strong></span><span class="tracktitle"><strong><span
               class="tracktitle"><a
                 href="http://microsporidiadb.org/micro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
@@ -86,10 +79,7 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
     <span class="tracktitle"></span><br>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
-&quot;Courier New&quot;;mso-ansi-language:ES-AR" lang="ES-AR"><span style="mso-list:Ignore"><span
-                  style="font:7.0pt &quot;Times New Roman&quot;">
-                </span></span></span></span><!--[endif]--><a href="http://microsporidiadb.org/micro/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#44"><strong><span
+        <li><a href="http://microsporidiadb.org/micro/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#44"><strong><span
                 class="tracktitle"><i
                   style="mso-bidi-font-style:normal"><span
                     style="mso-ansi-language:ES-AR"
@@ -98,17 +88,16 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
               style="mso-ansi-language:ES-AR"
               lang="ES-AR"><a
                 href="http://microsporidiadb.org/micro/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#44"><strong>
-                  PRA109
-                </strong></a>(GenBank version 6-26-2013)</span></span></li>
+                  PRA109 </strong></a>(GenBank version 6-26-2013)</span></span></li>
       </ul>
     </ul>
     <span class="tracktitle"><span style=" mso-ansi-language:ES-AR" lang="ES-AR"></span></span><br>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
+        <li><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
 &quot;Courier New&quot;;mso-ansi-language:ES-AR" lang="ES-AR"><span style="mso-list:Ignore"><span
                   style="font:7.0pt &quot;Times New Roman&quot;">
-                </span></span></span></span><!--[endif]--><a href="http://microsporidiadb.org/micro/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#43"><strong><span
+                </span></span></span></span><a href="http://microsporidiadb.org/micro/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#43"><strong><span
                 class="tracktitle"><i
                   style="mso-bidi-font-style:normal"><span
                     style="mso-ansi-language:ES-AR"
@@ -117,24 +106,21 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
               style="mso-ansi-language:ES-AR"
               lang="ES-AR"><a
                 href="http://microsporidiadb.org/micro/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#43"><strong>
-                  PRA339</strong></a> (GenBank
-              version 5-1-2013)</span></span></li>
+                  PRA339</strong></a> (GenBank version 5-1-2013)</span></span></li>
       </ul>
     </ul>
     <span class="tracktitle"><span style=" mso-ansi-language:ES-AR" lang="ES-AR"></span></span><br>
-    <!--EndFragment--><br>
+    <br>
     <strong>New features:</strong><br>
     <br>
-    <!--StartFragment-->
     <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->EuPathDB now stores GBrowse track
-        configurations between sessions for registered users who log into any
-        EuPathDB site. The EuPathDB login is now integrated with the GBrowse
-        login so that your previous session’s GBrowse tracks are displayed each
-        time you return to a EuPathDB site. </li>
+      <li> EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
@@ -142,26 +128,25 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->A new interactive table for choosing
-        expression data sets lists datasets, searches for each dataset and the
-        organism that the data is aligned to. Use the table’s filter function to
-        limit the data set list based on author name, parasite life stages, etc.
-        Click on an icon under "Choose a search" to collapse the table and
-        display the data set’s search page with its parameter list below the
-        collapsed table. </li>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table’s filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set’s
+        search page with its parameter list below the collapsed table. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->Search parameters appear on the left and are
-        arranged in a sentence that helps you choose parameter values. </li>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
     </ul>
     <br>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->A
+      <li><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span>A
         help graphic and text appear on the right. To help you interpret your
         parameters choices, the graphic changes to reflect your parameter
         settings.</li>
@@ -180,15 +165,15 @@ Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Ro
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->The
+      <li><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span>The
         graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
           </span>View the results of a strategy step by clicking anywhere inside
         the box representing that step. To edit the parameter values for that
         step, click on the EDIT icon that appears in the corner of each strategy
         step box when hovering over the strategy panel.<o:p></o:p></li>
     </ul>
-    <!--EndFragment--><br>
+    <br>
     <br>
     <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
         Our bimonthly database releases incorporate new data and correct old
@@ -204,6 +189,7 @@ Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Ro
         is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
       style="font-weight: bold; font-style: italic;">,
       <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="www.youtube.com/user/EuPathDB/">YouTube</a></span>
+    
   </body>
           ]]>
        </attribute>

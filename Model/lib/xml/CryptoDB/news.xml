@@ -29,16 +29,14 @@
 <body> <strong>We are pleased to announce new features in CryptoDB:</strong><strong></strong><br>
     <br>
     <br>
-    <!--StartFragment-->
     <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->EuPathDB now stores GBrowse track
-        configurations between sessions for registered users who log into any
-        EuPathDB site. The EuPathDB login is now integrated with the GBrowse
-        login so that your previous session’s GBrowse tracks are displayed each
-        time you return to a EuPathDB site. </li>
+      <li>EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
@@ -46,28 +44,25 @@
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->A new interactive table for choosing
-        expression data sets lists datasets, searches for each dataset and the
-        organism that the data is aligned to. Use the table’s filter function to
-        limit the data set list based on author name, parasite life stages, etc.
-        Click on an icon under "Choose a search" to collapse the table and
-        display the data set’s search page with its parameter list below the
-        collapsed table. </li>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table’s filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set’s
+        search page with its parameter list below the collapsed table. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->Search parameters appear on the left and are
-        arranged in a sentence that helps you choose parameter values. </li>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
     </ul>
     <br>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->A
-        help graphic and text appear on the right. To help you interpret your
-        parameters choices, the graphic changes to reflect your parameter
+      <li>A help graphic and text appear on the right. To help you interpret
+        your parameters choices, the graphic changes to reflect your parameter
         settings.</li>
     </ul>
     <br>
@@ -84,15 +79,13 @@ Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Ro
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->The
-        graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
+      <li>The graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
           </span>View the results of a strategy step by clicking anywhere inside
         the box representing that step. To edit the parameter values for that
         step, click on the EDIT icon that appears in the corner of each strategy
         step box when hovering over the strategy panel.<o:p></o:p></li>
     </ul>
-    <!--EndFragment--><br>
+    <br>
     <br>
     <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
         Our bimonthly database releases incorporate new data and correct old
