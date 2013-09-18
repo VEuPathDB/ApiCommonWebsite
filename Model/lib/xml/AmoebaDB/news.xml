@@ -28,20 +28,18 @@
     <br>
     <strong>New data in this release</strong>:<br>
     <br>
-    <!--StartFragment-->
+    <br>
     <ul>
-      <li><!--[if !supportLists]-->The following annotated genomes from the were
-        integrated into the database.&nbsp; These sequences were generated and
-        annotated at <strong><a href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">JCVI</a></strong>
-        as part of the <a name="amoeba3_11_release"><span style="font-family: Arial;"><strong></strong></span></a><strong><a
-            href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf"><em>Entamoeba</em>
+      <li>The following annotated genomes from the were integrated into the
+        database.&nbsp; These sequences were generated and annotated at <strong><a
+            href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">JCVI</a></strong>
+        as part of the <strong><a href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf"><em>Entamoeba</em>
             strain sequencing white paper</a></strong>: </li>
     </ul>
     <br>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><i style="mso-bidi-font-style:normal"><span
-              style="mso-ansi-language:ES-AR"
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
               lang="ES-AR">Entamoeba
               histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
             HM-1:IMSS-A (GenBank version 4-18-2013)</span><o:p></o:p></li>
@@ -49,11 +47,7 @@
     </ul>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;"><span
-              style="mso-list:Ignore"><span
-                style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]--><i
-            style="mso-bidi-font-style:normal"><span
-              style="mso-ansi-language:ES-AR"
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
               lang="ES-AR">Entamoeba
               histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
             HM-1:IMSS-B (GenBank version 3-08-2013)</span><o:p></o:p></li>
@@ -61,11 +55,7 @@
     </ul>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;"><span
-              style="mso-list:Ignore"><span
-                style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><i
-            style="mso-bidi-font-style:normal"><span
-              style="mso-ansi-language:ES-AR"
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
               lang="ES-AR">Entamoeba
               histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
             KU27 (GenBank version 2-12-2013)</span><o:p></o:p></li>
@@ -73,8 +63,7 @@
     </ul>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><i style="mso-bidi-font-style:normal"><span
-              style="mso-ansi-language:ES-AR"
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
               lang="ES-AR">Entamoeba
               invadens</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
             IP1 (GenBank version 1-03-2013)</span><o:p></o:p></li>
@@ -82,17 +71,15 @@
     </ul>
     <ul>
       <ul>
-        <li><!--[if !supportLists]--><i style="mso-bidi-font-style:normal"><span
-              style="mso-ansi-language:ES-AR"
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
               lang="ES-AR">Entamoeba
               histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
             HM-3:IMSS (GenBank version 4-01-2013)</span></li>
       </ul>
     </ul>
-    <span style=" mso-ansi-language:ES-AR" lang="ES-AR"><br>
-    </span><br>
+    <span style=" mso-ansi-language:ES-AR" lang="ES-AR"></span><br>
     <ul>
-      <li><!--[if !supportLists]-->Genome sequence of <i style="mso-bidi-font-style:
+      <li>Genome sequence of <i style="mso-bidi-font-style:
 normal">Naegleria fowleri</i> ATCC 30863 (Mueller version 6-27-2013) was added
         to the database.&nbsp; This data was graciously provided prepublication
         (Wittwer <em>et al.</em>)&nbsp; For full attribution and available
@@ -101,18 +88,18 @@ normal">Naegleria fowleri</i> ATCC 30863 (Mueller version 6-27-2013) was added
     </ul>
     <br>
     <ul>
-      <li><!--[if !supportLists]-->Genome annotation of <i style="mso-bidi-font-style:normal">Acanthamoeba
+      <li>Genome annotation of <i style="mso-bidi-font-style:normal">Acanthamoeba
           castellanii</i> str Neff was updated (GenBank version 3-18-2013).</li>
     </ul>
     <br>
     <ul>
-      <li><!--[if !supportLists]--><span class="tracktitle"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
-          style="mso-bidi-font-style:italic">RNA
-          sequencing of <i>E. histolytica</i></span> HM-1:IMSS and Rahman
-        strain trophozoites <span class="tracktitle">(Hon <em>et al</em>.)</span>.
-        <a href="http://qa.amoebadb.org/amoeba.b19/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong><br>
-          </strong></a></li>
+      <li><span style="mso-bidi-font-style:italic">RNA sequencing of <i>E.
+            histolytica</i></span> HM-1:IMSS and Rahman strain trophozoites <span
+          class="tracktitle">(Hon
+          <em>et al</em>.)</span>.&nbsp;<a href="http://qa.amoebadb.org/amoeba.b19/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong></strong></a></li>
+    </ul>
+    <br>
+    <ul>
     </ul>
     <ul>
       <ul>
@@ -137,19 +124,17 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
             and a region of likely missing gene model annotation.<o:p></o:p></span></li>
       </ul>
     </ul>
-    <!--EndFragment--><br>
+    <br>
     <strong>New features:</strong><br>
     <br>
-    <!--StartFragment-->
     <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->EuPathDB now stores GBrowse track
-        configurations between sessions for registered users who log into any
-        EuPathDB site. The EuPathDB login is now integrated with the GBrowse
-        login so that your previous session’s GBrowse tracks are displayed each
-        time you return to a EuPathDB site. </li>
+      <li>EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
@@ -157,37 +142,26 @@ mso-bidi-font-family:Symbol"><span style="mso-list:Ignore"><span style="font:7.0
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->A new interactive table for choosing
-        expression data sets lists datasets, searches for each dataset and the
-        organism that the data is aligned to. Use the table’s filter function to
-        limit the data set list based on author name, parasite life stages, etc.
-        Click on an icon under "Choose a search" to collapse the table and
-        display the data set’s search page with its parameter list below the
-        collapsed table. </li>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table’s filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set’s
+        search page with its parameter list below the collapsed table. </li>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]-->Search parameters appear on the left and are
-        arranged in a sentence that helps you choose parameter values. </li>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
     </ul>
     <br>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->A
-        help graphic and text appear on the right. To help you interpret your
-        parameters choices, the graphic changes to reflect your parameter
+      <li>A help graphic and text appear on the right. To help you interpret
+        your parameters choices, the graphic changes to reflect your parameter
         settings.</li>
-    </ul>
-    <br>
-    <ul>
-      <li>A <a href="http://www.youtube.com/watch?v=jMuVB-ZIdH0"><strong>YouTube
-            tutorial</strong></a> that describes this new feature is also
-        available.</li>
-    </ul>
-    <ul>
     </ul>
     <br>
     <p class="MsoNoSpacing"><u>Improved Strategy Panel for viewing and editing
@@ -195,15 +169,12 @@ Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Ro
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
-      <li><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><!--[endif]-->The
-        graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
+      <li>The graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
           </span>View the results of a strategy step by clicking anywhere inside
         the box representing that step. To edit the parameter values for that
         step, click on the EDIT icon that appears in the corner of each strategy
         step box when hovering over the strategy panel.<o:p></o:p></li>
     </ul>
-    <!--EndFragment--><br>
     <br>
     <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
         Our bimonthly database releases incorporate new data and correct old
@@ -218,7 +189,9 @@ Symbol"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Ro
     <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
         is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
       style="font-weight: bold; font-style: italic;">,
-      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="www.youtube.com/user/EuPathDB/">YouTube</a></span>
+      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/">YouTube</a></span><span
+      style="font-weight: bold; font-style: italic;"><a
+        href="http://twitter.com/eupathdb"></a></span>
   </body>
           ]]>
        </attribute>
