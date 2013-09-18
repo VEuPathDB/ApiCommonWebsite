@@ -97,9 +97,9 @@ pages
     <ul>
       <li>A new interactive table for choosing expression data sets lists
         datasets, searches for each dataset and the organism that the data is
-        aligned to. Use the table’s filter function to limit the data set list
+        aligned to. Use the table's filter function to limit the data set list
         based on author name, parasite life stages, etc. Click on an icon under
-        "Choose a search" to collapse the table and display the data set’s
+        "Choose a search" to collapse the table and display the data set's
         search page with its parameter list below the collapsed table. </li>
     </ul>
     <br>
