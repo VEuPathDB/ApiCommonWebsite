@@ -15,6 +15,148 @@
     </record>
 --> 
 <record>
+      <attribute name="headline">PiroplasmaDB 4.0 Released</attribute>
+       <attribute name="date">17 September 2013 15:00</attribute>
+       <attribute name="tag">piro913news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body> <strong>We are pleased to announce the release of PiroplasmaDB 4.0</strong><strong></strong><br>
+    <br>
+    <br>
+    <strong>New data in this release</strong>:<br>
+    <br>
+    <ul>
+      <li><span class="tracktitle">The following annotated genomes were
+          integrated into the PiroplasmaDB. </span><span class="tracktitle"><span
+            class="tracktitle">The
+            <a href="http://piroplasmadb.org/piro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
+                set section</strong></a> includes detailed information about the
+            genomes and available searches:</span></span></li>
+    </ul>
+    <span class="tracktitle"><span class="tracktitle"></span></span>&nbsp;<o:p></o:p><br>
+    <ul>
+      <ul>
+        <li><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
+&quot;Courier New&quot;"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
+            class="tracktitle"><a
+              href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#24"><strong>Theileria
+orentalis
+                Shintoku</strong></a> (GenBank version 9-6-2013) (</span><span class="tracktitle"><strong><a
+                href="http://www.ncbi.nlm.nih.gov/pubmed/22951932">Hayashida
+                <em>et al.</em></a></strong>)<br>
+          </span></li>
+      </ul>
+    </ul>
+    <span class="tracktitle"></span><br>
+    <ul>
+      <ul>
+        <li><span class="tracktitle"><strong><a href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#25">Theileria
+                equi WA</a></strong> (GenBank version 12-11-2013) (</span><strong><a
+              href="http://www.ncbi.nlm.nih.gov/pubmed/23137308">Kappmeyer
+              <em>et al.</em></a></strong>)<pubmedarticleset><pubmedarticle></pubmedarticle></pubmedarticleset></li>
+      </ul>
+    </ul>
+    <span class="tracktitle"></span><br>
+    <ul>
+      <li><span class="tracktitle"><span style="mso-bidi-font-style:normal">Proteomics
+            mass spec data from</span><i style="mso-bidi-font-style:normal">
+            Theileria annulata</i> schizonts (</span><span class="tracktitle"><strong><a
+              href="http://www.ncbi.nlm.nih.gov/pubmed/23178997"><span
+                class="tracktitle">Witschi
+                <em>et al.</em></span></a></strong>). Search for genes whose
+          protein products were present in extracts of whole cell lysates <i style="mso-bidi-font-style:normal">T.
+            annulata</i> schizonts from the </span><strong><a href="http://qa.piroplasmadb.org/piro.b19/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
+Mass
+            spec evidence search page</a></strong><span class="tracktitle">. In
+          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TA12105&amp;project_id=PiroplasmaDB">gene
+pages
+            in the Protein Section</a></strong><span class="tracktitle"> and in
+          the genome browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.
+              MS/MS Peptides Schizont Proteome (Witschi et al.)</a></strong>.</span></li>
+    </ul>
+    <span class="tracktitle"></span><br>
+    <br>
+    <strong>New features:</strong><br>
+    <br>
+    <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
+        sets (microarray, RNA-Seq):</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table's filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set's
+        search page with its parameter list below the collapsed table. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
+    </ul>
+    <br>
+    <ul>
+      <li>A help graphic and text appear on the right. To help you interpret
+        your parameters choices, the graphic changes to reflect your parameter
+        settings.</li>
+    </ul>
+    <br>
+    <ul>
+      <li>A <a href="http://www.youtube.com/watch?v=jMuVB-ZIdH0"><strong>YouTube
+            tutorial</strong></a> that describes this new feature is also
+        available.</li>
+    </ul>
+    <ul>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>Improved Strategy Panel for viewing and editing
+        steps:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>The graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
+          </span>View the results of a strategy step by clicking anywhere inside
+        the box representing that step. To edit the parameter values for that
+        step, click on the EDIT icon that appears in the corner of each strategy
+        step box when hovering over the strategy panel.<o:p></o:p></li>
+    </ul>
+    <br>
+    <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">,
+      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="www.youtube.com/user/EuPathDB/">YouTube</a></span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
       <attribute name="headline">PiroplasmaDB 3.0 Released</attribute>
        <attribute name="date">11 March 2013 15:00</attribute>
        <attribute name="tag">piro0313news</attribute>
