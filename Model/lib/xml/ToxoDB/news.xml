@@ -15,6 +15,264 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 9.0 Released</attribute>
+       <attribute name="date">17 September 2013 15:00</attribute>
+       <attribute name="tag">toxo09_13_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body> <strong>We are pleased to announce the release of ToxoDB 9.0</strong><strong></strong><br>
+    <br>
+    <br>
+    <strong>New data in this release</strong>:<br>
+    <br>
+    <ul>
+      <li>The following unannotated genomes of were integrated into the
+        database. Additional information about all genomes may be viewed in the
+        <strong><a href="http://toxodb.org/toxo/getDataset.do?display=detail#Genomes%20and%20Annotation">Dataset
+            section</a></strong> of ToxoDB.&nbsp; Note that many of these
+        genomes have been graciously provided prepublication to the scientific
+        community - please consult with the Principal Investigator before
+        undertaking large scale analyses of the annotation or underlying
+        sequence:</li>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li><em>Hammondia hammondi </em>H.H.34 (GenBank version 4-5-2012)</li>
+        <li><em>Toxoplasma gondii </em>ARI (GenBank version 3-1-2012)</li>
+        <li><em>Toxoplasma gondii </em>CAST (GenBank version 3-27-2012)</li>
+        <li><em>Toxoplasma gondii</em> COUG (GenBank version 2-7-2013)</li>
+        <li><em>Toxoplasma gondii</em> CtCo5 (GenBank version 7-17-2012)</li>
+        <li><em>Toxoplasma gondii</em> GAB2-2007-GAL-DOM2 (GenBank version
+          8-8-2012)</li>
+        <li><em>Toxoplasma gondii </em>TgCATBr5 (GenBank version 8-26-2011)</li>
+        <li><em>Toxoplasma gondii</em> TgCATPRC2 (GenBank version 3-27-2012)</li>
+        <li><em>Sarcocystis neurona</em> SN3 (Kissinger Lab 7-2-2013)</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <li>RNA sequencing of <em>Eimeria tenella</em> Houghton life cycle stages
+        (unsporulated oocyst, sporulated oocyst, sporozoite and 2nd generation
+        merozoite stages) graciously provided prepublication (Reid <em>et al.</em>).&nbsp;&nbsp;</li>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>Go to the <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong>ToxoDB
+              RNA Seq Evidence search page</strong></a> to search for genes that
+          are differentially expressed between the life cycle stages. View
+          sequencing read coverage using the GBrowse track - E.t. mRNAseq
+          Transcriptome of Life Cycle Stages Coverage (Reid). </li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <ul>
+          <li>This example search strategy consists of 4 steps: In the first
+            step <em>Eimeria</em> genes upregulated in merozoites compared to
+            the other stages were identified.&nbsp; In the second step a
+            percentile search identifies genes unlikely to be expressed in
+            unsporulated oocyst, sporulated oocyst and sporozoite stages. In the
+            third step a percentile search identifies genes likely to be highly
+            expressed in merozoites. The fourth step identifies the ortholog of
+            these genes in <em>Toxoplasma</em>.&nbsp;&nbsp;</li>
+        </ul>
+      </ul>
+    </ul>
+    <div style="margin-left: 120px;"><strong><a href="http://toxodb.org/toxo/im.do?s=053a8d4d3c166e0e">http://toxodb.org/toxo/im.do?s=053a8d4d3c166e0e</a></strong></div>
+    <br>
+    <ul>
+      <ul>
+        <li>Graphical representation of this data is available in the expression
+          section of <a href="http://toxodb.org/gene/ETH_00028765"><span style="font-weight: bold;">gene
+              pages</span></a>.&nbsp;&nbsp;</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>Data from this experiment is available as coverage plots in the
+          genome browser and evidence of intron spanning reads is indicated in
+          the "Splice Site Junctions" track.&nbsp; In <strong><a href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=68700;stop=78499;ref=Supercontig_1;width=800;version=100;flip=0;grid=1;id=02f441f15555a1071a15a989f399fb4a;l=Gene%1EetenHoughton_Reid_RNASeq_rnaSeq_RSRCJunctions%1EetenHoughton_Reid_RNASeq_rnaSeq_RSRCCoverage;h_feat=eth_00028765%40yellow">this
+              example</a></strong> a genome browser region shows two genes one
+          that is differentially expressed in merozoites and the other with
+          evidence of alternative gene models that differs from the official
+          annotation. </li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <li>RNA sequencing of <em>Toxoplasma gondii</em> ME49 during acute or
+        chronic infection in mouse brain. This data was graciously
+        provided&nbsp; prepublication (Pittman, Aliota and Knoll).&nbsp; </li>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>Search this data using the <strong><a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">ToxoDB
+              RNA Seq Evidence</a></strong> search page to compare the gene
+          expression for parasites in 10 and 28 day old infections in
+          mice.&nbsp; This example search strategy identifies genes that are
+          upregulated by at least 30-fold in chronically infected mice:</li>
+      </ul>
+    </ul>
+    <br>
+    <div style="margin-left: 200px;">http://beta.toxodb.org/toxo.b19/im.do?s=58db716dd436580b</div>
+    <ul>
+      <ul>
+        <li>View sequencing read coverage in the genome browser by turning on
+          the track called "T.g. mRNAseq Transcriptome during acute or chronic
+          infection in mouse brain Coverage (Knoll)".&nbsp; <strong><a href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=6245400;stop=6255399;ref=TGME49_chrVIII;width=800;version=100;flip=0;grid=1;id=02f441f15555a1071a15a989f399fb4a;l=Gene%1EtgonME49_Knoll_Laura_Pittman_rnaSeq_RSRCCoverage;h_feat=tgme49_268860%40yellow">This
+              example genome browser region shows the gene encoding enolase 1
+              and 2</a></strong>. &nbsp; &nbsp; </li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>View the data from this experiment represented graphically in the
+          expression section of individual genes on gene pages. </li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <li>RNA sequencing of 25 <em>Toxoplasma gondii </em>strains during mouse
+        macrophage infection (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot
+            <em>et al.</em></a></strong>).&nbsp; </li>
+    </ul>
+    &nbsp;<br>
+    <ul>
+      <ul>
+        <li>Search for genes that are differentially expressed between strains
+          using the <strong><a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA
+              Seq Evidence search page</a></strong>.&nbsp;</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>View sequencing read coverage in the genome browser by turning on
+          the track called "T.g. mRNAseq Transcriptomes of 25 strains during
+          murine macrophage infection Coverage".&nbsp;</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>View percentile and expression data graphically in the expression
+          section on individual gene pages. </li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+    </ul>
+    <ul>
+      <li><em>Toxoplasma gondii</em> quantitative proteomics data from Type II
+        M4 oocyst and from VEG parasites during an infection of human
+        macrophages – This data was graciously provided prepublication by
+        Jonathan Wastling.&nbsp;</li>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>Genes may be identified based on their differential expression using
+          the <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByQuantitativeProteomics"><strong>Quantitative
+              Mass Spec. Evidence search page</strong></a>.&nbsp;&nbsp;</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li>Expression levels are also represented graphically in the protein
+          section of gene pages (Example: <a href="http://toxodb.org/gene/TGME49_203310"><strong>GRA7</strong></a>).&nbsp;</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+    </ul>
+    <span class="tracktitle"> </span>
+    <ul>
+      <o:p></o:p>
+    </ul>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <strong>New features:</strong><br>
+    <br>
+    <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
+        sets (microarray, RNA-Seq):</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table's filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set's
+        search page with its parameter list below the collapsed table. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
+    </ul>
+    <br>
+    <ul>
+      <li>A help graphic and text appear on the right. To help you interpret
+        your parameters choices, the graphic changes to reflect your parameter
+        settings.</li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>Improved Strategy Panel for viewing and editing
+        steps:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>The graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
+          </span>View the results of a strategy step by clicking anywhere inside
+        the box representing that step. To edit the parameter values for that
+        step, click on the EDIT icon that appears in the corner of each strategy
+        step box when hovering over the strategy panel.<o:p></o:p></li>
+    </ul>
+    <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">,
+      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/">YouTube</a></span><span
+      style="font-weight: bold; font-style: italic;"></span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">ToxoDB 8.2 Released</attribute>
        <attribute name="date">31 May 2013 15:00</attribute>
        <attribute name="tag">toxo05_13_news</attribute>
