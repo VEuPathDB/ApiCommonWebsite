@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE xmlAnswer [
- <!ENTITY relAmoeba "2.0">
- <!ENTITY relCrypto "5.0">
+ <!ENTITY relAmoeba "3.0">
+ <!ENTITY relCrypto "5.1">
  <!ENTITY relGiar "3.1">
- <!ENTITY relMicro "4.0">
- <!ENTITY relPiro "3.0">
- <!ENTITY relPlasmo "9.3">
- <!ENTITY relToxo "8.2">
- <!ENTITY relTryp "5.0">
+ <!ENTITY relMicro "5.0">
+ <!ENTITY relPiro "4.0">
+ <!ENTITY relPlasmo "10.0">
+ <!ENTITY relToxo "9.0">
+ <!ENTITY relTryp "6.0">
 ]>
 
 <xmlAnswer>
