@@ -162,8 +162,6 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Model"/>
     </ant>
-    <available file="${targetDir}/config/projects.xml" type="file" property="projects.xml.present" />
-    <antcall target="install-projects.xml"/>
   </target>
 
   <target name="ApiCommonWebsite/Site-Installation">
@@ -180,10 +178,6 @@
     </ant>
   </target>
 
-
-  <target name="install-projects.xml" unless="projects.xml.present">
-    <copy file="${projectsDir}/ApiCommonWebsite/Model/config/projects.sample.xml" tofile="${targetDir}/config/projects.xml"/>
-  </target>
 
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
