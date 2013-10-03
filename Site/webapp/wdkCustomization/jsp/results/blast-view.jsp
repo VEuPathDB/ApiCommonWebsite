@@ -9,6 +9,11 @@
 
 <c:set var="wdkStep" value="${requestScope.wdkStep}"/>
 <c:set var="wdkAnswer" value="${wdkStep.answerValue}"/>
+
+<%-- force the blast result to be sorted by the default order --%>
+<c:set var="sortingString" value="${wdkAnswer.question.sortingString}" />
+<jsp:setProperty name="wdkAnswer" property="sortingString" value="${sortingString}" />
+
 <c:set var="qName" value="${wdkAnswer.question.fullName}" />
 <c:set var="modelName" value="${applicationScope.wdkModel.name}" />
 <c:set var="recordName" value="${wdkAnswer.question.recordClass.fullName}" />
