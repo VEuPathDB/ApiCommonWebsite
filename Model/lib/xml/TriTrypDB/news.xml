@@ -20,13 +20,12 @@
 -->
 <record>
        <attribute name="headline">TriTrypDB 6.0 Released</attribute>
-       <attribute name="date">17 September 2013 15:00</attribute>
+       <attribute name="date">25 September 2013 15:00</attribute>
        <attribute name="tag">tryp09_13_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">          
          <![CDATA[
- <body> <strong>We are pleased to announce the release of
-      TriTrypDB 6.0</strong><strong></strong><br>
+ <body> <strong>We are pleased to announce the release of TriTrypDB 6.0</strong><strong></strong><br>
     <br>
     <br>
     <strong>New data in this release</strong>:<br>
@@ -69,8 +68,9 @@ Mass
       </ul>
     </ul>
     <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <strong><a href="http://tritrypdb.org/tritrypdb/im.do?s=cbf73539dc31c613">http://tritrypdb.org/tritrypdb/im.do?s=cbf73539dc31c613</a></strong></p>
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <strong><a
+          href="http://tritrypdb.org/tritrypdb/im.do?s=5213aaa84e2957f4">http://tritrypdb.org/tritrypdb/im.do?s=5213aaa84e2957f4</a><br>
+      </strong></p>
     <span class="tracktitle"></span>
     <ul>
       <ul>
