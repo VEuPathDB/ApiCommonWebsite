@@ -16,7 +16,7 @@
 --> 
 <record>
        <attribute name="headline">ToxoDB 9.0 Released</attribute>
-       <attribute name="date">17 September 2013 15:00</attribute>
+       <attribute name="date">25 September 2013 15:00</attribute>
        <attribute name="tag">toxo09_13_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
@@ -79,11 +79,21 @@
             unsporulated oocyst, sporulated oocyst and sporozoite stages. In the
             third step a percentile search identifies genes likely to be highly
             expressed in merozoites. The fourth step identifies the ortholog of
-            these genes in <em>Toxoplasma</em>.&nbsp;&nbsp;</li>
+            these genes in <em>Toxoplasma</em>.&nbsp; </li>
         </ul>
       </ul>
     </ul>
-    <div style="margin-left: 120px;"><strong><a href="http://toxodb.org/toxo/im.do?s=053a8d4d3c166e0e">http://toxodb.org/toxo/im.do?s=053a8d4d3c166e0e</a></strong></div>
+    <br>
+    <ul>
+      <ul>
+        <ul>
+        </ul>
+      </ul>
+    </ul>
+    <div style="margin-left: 120px;"><strong><a href="http://toxodb.org/toxo/im.do?s=b76b14af75930e6c"><span
+            style="color: #0000ee;"><span
+              style="text-decoration: underline;">http://toxodb.org/toxo/im.do?s=b76b14af75930e6c</span></span></a><br>
+      </strong></div>
     <br>
     <ul>
       <ul>
@@ -121,7 +131,11 @@
       </ul>
     </ul>
     <br>
-    <div style="margin-left: 200px;">http://beta.toxodb.org/toxo.b19/im.do?s=58db716dd436580b</div>
+    <div style="margin-left: 120px;"><strong><a href="http://toxodb.org/toxo/im.do?s=b675ff1a72873ed4">http://toxodb.org/toxo/im.do?s=b675ff1a72873ed4</a></strong><br>
+    </div>
+    <div style="margin-left: 200px;"><br>
+      <br>
+    </div>
     <ul>
       <ul>
         <li>View sequencing read coverage in the genome browser by turning on
@@ -210,7 +224,7 @@
     <ul>
       <li>EuPathDB now stores GBrowse track configurations between sessions for
         registered users who log into any EuPathDB site. The EuPathDB login is
-        now integrated with the GBrowse login so that your previous session's
+        now integrated with the GBrowse login so that your previous session’s
         GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
     </ul>
     <br>
@@ -221,9 +235,9 @@
     <ul>
       <li>A new interactive table for choosing expression data sets lists
         datasets, searches for each dataset and the organism that the data is
-        aligned to. Use the table's filter function to limit the data set list
+        aligned to. Use the table’s filter function to limit the data set list
         based on author name, parasite life stages, etc. Click on an icon under
-        "Choose a search" to collapse the table and display the data set's
+        "Choose a search" to collapse the table and display the data set’s
         search page with its parameter list below the collapsed table. </li>
     </ul>
     <br>

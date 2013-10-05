@@ -17,7 +17,7 @@
 --> 
 <record>
        <attribute name="headline">AmoebaDB 3.0 Released</attribute>
-       <attribute name="date">17 September 2013 15:00</attribute>
+       <attribute name="date">25 September 2013 15:00</attribute>
        <attribute name="tag">amoeba9_13_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
@@ -96,14 +96,14 @@ normal">Naegleria fowleri</i> ATCC 30863 (Mueller version 6-27-2013) was added
       <li><span style="mso-bidi-font-style:italic">RNA sequencing of <i>E.
             histolytica</i></span> HM-1:IMSS and Rahman strain trophozoites <span
           class="tracktitle">(Hon
-          <em>et al</em>.)</span>.&nbsp;<a href="http://qa.amoebadb.org/amoeba.b19/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong></strong></a></li>
+          <em>et al</em>.)</span>.&nbsp;<a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong></strong></a></li>
     </ul>
     <br>
     <ul>
     </ul>
     <ul>
       <ul>
-        <li><a href="http://qa.amoebadb.org/amoeba.b19/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong>Search
+        <li><a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong>Search
               for genes that are differentially expressed between the
               transcriptomes of virulent (HM1:IMSS) and non-virulent (Rahman)</strong>.</a><span
             style="mso-spacerun:yes">&nbsp;
