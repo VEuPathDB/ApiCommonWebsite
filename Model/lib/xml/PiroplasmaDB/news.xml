@@ -16,7 +16,7 @@
 --> 
 <record>
       <attribute name="headline">PiroplasmaDB 4.0 Released</attribute>
-       <attribute name="date">17 September 2013 15:00</attribute>
+       <attribute name="date">25 September 2013 15:00</attribute>
        <attribute name="tag">piro913news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
@@ -67,7 +67,7 @@ orentalis
                 class="tracktitle">Witschi
                 <em>et al.</em></span></a></strong>). Search for genes whose
           protein products were present in extracts of whole cell lysates <i style="mso-bidi-font-style:normal">T.
-            annulata</i> schizonts from the </span><strong><a href="http://qa.piroplasmadb.org/piro.b19/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
+            annulata</i> schizonts from the </span><strong><a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
 Mass
             spec evidence search page</a></strong><span class="tracktitle">. In
           addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TA12105&amp;project_id=PiroplasmaDB">gene
