@@ -11,5 +11,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/WSF Plugin"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry kind="lib" path="/WSF Plugin/lib/java/org.json-chargebee-1.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EuPath Common Model"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
