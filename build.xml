@@ -212,6 +212,12 @@
 
     <ant target="webComponentPartCopy">
       <property name="componentDir" value="${projectsDir}/ApiCommonWebsite/Site"/>
+      <property name="part" value="assets"/>
+      <property name="to" value="${htdocsTargetDir}/../assets"/>
+    </ant>
+
+    <ant target="webComponentPartCopy">
+      <property name="componentDir" value="${projectsDir}/ApiCommonWebsite/Site"/>
       <property name="part" value="dashboard"/>
       <property name="to" value="${htdocsTargetDir}/../dashboard"/>
     </ant>

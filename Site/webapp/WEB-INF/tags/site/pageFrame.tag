@@ -40,9 +40,20 @@
 
   <html xmlns="http://www.w3.org/1999/xhtml">
   -->
-  <!-- jsp:output tag for doctype no longer supports simple HTML5 declaration -->
-  <jsp:text>&lt;!DOCTYPE html&gt;</jsp:text>
-  <html lang="en">
+  <!--
+     - jsp:output tag for doctype no longer supports simple HTML5 declaration
+     - Add support for class-oriented IE conditionals. This means we can
+       simply add a .ie{version} selector for IE specific rules.
+   -->
+  <![CDATA[
+    <!doctype html>
+    <!--[if lt IE 7]>  <html lang="en" class="ie ie6 lte9 lte8 lte7"> <![endif]-->
+    <!--[if IE 7]>     <html lang="en" class="ie ie7 lte9 lte8 lte7"> <![endif]-->
+    <!--[if IE 8]>     <html lang="en" class="ie ie8 lte9 lte8"> <![endif]-->
+    <!--[if IE 9]>     <html lang="en" class="ie ie9 lte9"> <![endif]-->
+    <!--[if gt IE 9]>  <html lang="en"> <![endif]-->
+    <!--[if !IE]><!--> <html lang="en">             <!--<![endif]-->
+  ]]>
   
 	  <!-- flag incoming galaxy.psu.edu users -->
 	  <c:if test="${not empty param.GALAXY_URL}">
@@ -76,5 +87,5 @@
       <imp:IEWarning version="7"/>
 
     </body>
-  </html>
+  <![CDATA[</html>]]>
 </jsp:root>

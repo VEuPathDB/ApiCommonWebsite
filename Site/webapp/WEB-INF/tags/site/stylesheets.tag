@@ -14,8 +14,11 @@
 <link rel="stylesheet" href="${base}/wdkCustomization/css/superfish/css/superfish.css" type="text/css"/>
 
 <%-- When definitions are in conflict, the next one overrides the previous one  --%>
+<%--
 <link rel="stylesheet" href="/assets/css/AllSites.css"           type="text/css" /> 
 <link rel="stylesheet" href="/assets/css/${project}.css"         type="text/css" />
+--%>
+<link rel="stylesheet" href="/assets/css/${project}.css" type="text/css"/>
 
 <!-- JQuery library is included by WDK -->
 
