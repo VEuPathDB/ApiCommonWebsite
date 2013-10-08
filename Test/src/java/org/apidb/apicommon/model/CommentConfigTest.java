@@ -3,16 +3,14 @@
  */
 package org.apidb.apicommon.model;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 
-import org.apidb.apicommon.model.CommentConfig;
-import org.apidb.apicommon.model.CommentConfigParser;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.junit.Test;
 import org.xml.sax.SAXException;
-
-import static org.junit.Assert.*;
 
 /**
  * @author xingao
