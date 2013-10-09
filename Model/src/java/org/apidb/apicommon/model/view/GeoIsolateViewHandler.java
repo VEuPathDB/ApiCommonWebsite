@@ -13,11 +13,11 @@ public class GeoIsolateViewHandler extends IsolateViewHandler {
         sql.append("    i.data_type ,");
         sql.append("    g.lat ,");
         sql.append("    g.lng ,");
-        sql.append("    i.geographic_location as country    ");
+        sql.append("    g.country    ");
         sql.append(" FROM ApidbTuning.IsolateAttributes i, ");
         sql.append("       apidb.IsolateGPS g, ");
         sql.append("      (" + idSql + ") idq ");
-        sql.append(" WHERE REGEXP_LIKE ( i.geographic_location, g.country ) ");
+        sql.append(" WHERE REGEXP_LIKE ( i.ANNOTATED_geographic_location, g.country, 'i' ) ");
         sql.append("  AND i.source_id = idq.source_id ");
         sql.append(" ) group by country, data_type, lat, lng ");
 
