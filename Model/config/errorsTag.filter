@@ -64,3 +64,5 @@ invalidQuestionSet.referer =
 obsoleteShowXmlDataContent = showXmlDataContent.do$
 obsoleteShowXmlDataContent.referer =
 
+# filter out WdkUserExceptions (assume user error or spam)
+userException = WdkUserException
