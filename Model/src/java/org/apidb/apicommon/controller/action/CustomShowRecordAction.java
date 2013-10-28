@@ -59,7 +59,10 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
         // need to check if the old record is mapped to more than one records
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        
         String rcName = request.getParameter(PARAM_NAME);
+        wdkModel.validateRecordClassName(rcName);
+        
         String sourceId = request.getParameter(PARAM_SOURCE_ID);
         if (sourceId == null) sourceId = request.getParameter(PARAM_PRIMARY_KEY);
         
