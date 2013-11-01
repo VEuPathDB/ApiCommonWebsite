@@ -119,7 +119,7 @@ public class SiteXmlMessagesTag extends WdkTagBase {
             String projectName, String messageCategory, String range) throws SQLException {
 
         PreparedStatement ps;
-        DataSource dataSource = wdkModel.getUserDb().getDataSource();
+        DataSource dataSource = getWdkModel().getUserDb().getDataSource();
        
         StringBuffer sql = new StringBuffer();
         sql.append(" SELECT m.message_text, m.message_id,                 ");
@@ -148,7 +148,7 @@ public class SiteXmlMessagesTag extends WdkTagBase {
             String messageCategory, String range) throws SQLException {
 
         PreparedStatement ps;
-        DataSource dataSource = wdkModel.getUserDb().getDataSource();
+        DataSource dataSource = getWdkModel().getUserDb().getDataSource();
        
         StringBuffer sql = new StringBuffer();
         sql.append(" SELECT m.message_text, m.message_id,                 ");

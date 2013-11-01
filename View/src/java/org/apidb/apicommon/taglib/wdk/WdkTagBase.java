@@ -16,12 +16,24 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public abstract class WdkTagBase extends SimpleTagSupport {
 
-    protected WdkModelBean wdkModelBean;
-    protected WdkModel wdkModel;
-    protected int varScope;
+    private WdkModelBean wdkModelBean;
+    private WdkModel wdkModel;
+    private int varScope;
 
+    /**
+     * Initializes base class with Page scope (see constants in PageContext)
+     */
     public WdkTagBase() {
         varScope = PageContext.PAGE_SCOPE;
+    }
+    
+    /**
+     * Initializes base class with given scope
+     * 
+     * @param varScope scope of this tag (see constants in PageContext)
+     */
+    public WdkTagBase(int varScope) {
+        this.varScope = varScope;
     }
 
     @Override
@@ -33,12 +45,20 @@ public abstract class WdkTagBase extends SimpleTagSupport {
     public void setWdkModel() {
         wdkModel = wdkModelBean.getModel();
     }
+
+    protected WdkModel getWdkModel() {
+        return wdkModel;
+    }
     
     public void setWdkModelBean() {
         wdkModelBean = (WdkModelBean) this.getContext().
         getAttribute(CConstants.WDK_MODEL_KEY);
     }
 
+    protected WdkModelBean getWdkModelBean() {
+        return wdkModelBean;
+    }
+    
     protected boolean export(String var, Object value) {
         return export(var, value, this.varScope);
     }
