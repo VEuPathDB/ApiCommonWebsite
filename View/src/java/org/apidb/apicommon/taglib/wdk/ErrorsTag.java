@@ -86,13 +86,12 @@ public class ErrorsTag extends WdkTagBase {
     
     private PageContext pageContext;
     private HttpServletRequest request;
-    protected int varScope;
     private String showStacktrace;
     private String logMarker;
     private Logger logger = Logger.getLogger(getClass().getName());
 
     public ErrorsTag() {
-        varScope = PageContext.PAGE_SCOPE;
+    	super(PageContext.PAGE_SCOPE);
     }
     
     @Override
@@ -474,7 +473,7 @@ public class ErrorsTag extends WdkTagBase {
     
     private void constructAndSendMail() {
                 
-        Map<String, String> modelProps = wdkModel.getProperties();
+        Map<String, String> modelProps = getWdkModel().getProperties();
         String adminProp = modelProps.get("SITE_ADMIN_EMAIL");
 
         if (adminProp == null) {
