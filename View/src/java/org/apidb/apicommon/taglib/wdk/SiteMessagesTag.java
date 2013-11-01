@@ -57,7 +57,7 @@ public class SiteMessagesTag extends WdkTagBase {
         sql.append(" ORDER BY m.message_id DESC                                  ");
         
         try {
-            DataSource dataSource = wdkModel.getUserDb().getDataSource();
+            DataSource dataSource = getWdkModel().getUserDb().getDataSource();
             ps = SqlUtils.getPreparedStatement(dataSource, sql.toString());
             ps.setString(1, projectName);
             ps.setString(2, messageCategory.toLowerCase());

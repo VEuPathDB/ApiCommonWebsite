@@ -61,7 +61,7 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
         setMinimumRecordKeys();
 
         try {
-            RecordClassBean wdkRecordClass = wdkModelBean.findRecordClass(name);
+            RecordClassBean wdkRecordClass = getWdkModelBean().findRecordClass(name);
 
             String[] pkColumns = wdkRecordClass.getPrimaryKeyColumns();
             Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
@@ -77,7 +77,7 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
 
             // use the system user
             // not sure how these tags are used.
-            UserBean user = wdkModelBean.getSystemUser();
+            UserBean user = getWdkModelBean().getSystemUser();
             RecordBean wdkRecord = new RecordBean(user, wdkRecordClass,
                     pkValues);
 
@@ -125,7 +125,7 @@ public class WdkRecordTag extends WdkTagBase implements DynamicAttributes {
      * compatibility when possible.
      **/
     private void setMinimumRecordKeys() {
-        if (projectID == null) projectID = wdkModelBean.getProjectId();
+        if (projectID == null) projectID = getWdkModelBean().getProjectId();
         if (primaryKey == null) primaryKey = " ";
 
         if (dynamicAttrs.get("source_id") == null)
