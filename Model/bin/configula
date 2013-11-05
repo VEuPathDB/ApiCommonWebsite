@@ -4,9 +4,14 @@
 
 # ./configula  --alogin=cryptodbwww --adb=cryp120n --udb=apicomm q1.cryptodb.org
 
-# writes model-config.xml, model.prop 
-# and comment-config.xml from
-# coresponding *.sample files
+# Wrapper on eupathSiteConfigure
+# see eupathSiteConfigure details at
+# https://docs.google.com/a/apidb.org/document/d/1zy_HMf7BFf2L2ZhHHIr1K2GuTbQXJx1JdnoDOl_4OHE/
+# This script
+#   - autogenerates the metaConfig file for eupathSiteConfigure.
+#   - validates the required properties in metaConfig file against sample
+#     - fails if either missing or extraneous properties are found
+#   - bootstraps many values from EuPathDB's file and directory naming conventions
 
 # This script is rated 'chmod +x'
 
@@ -15,19 +20,22 @@ use File::Basename;
 use File::Path qw(make_path);
 use Cwd qw(realpath);
 use Fcntl ':mode';
+use POSIX qw(strftime);
 use DBI;
 use XML::Twig;
 use XML::Simple;
 use Getopt::Long;
 use File::Copy;
+use YAML qw(LoadFile);
 
-my ($this_script) = basename $0;
-print $this_script . ' $Revision$' . "\n";
+my ($this) = basename $0;
+print "<$this>" . ' $Revision$' . "\n";
 
 my %dblinkMap;
 ####################################################################
 # project defaults
 ####################################################################
+
 # shared
 my $g_platform = "Oracle";
 my $g_userLoginSchema = "userlogins4";
@@ -80,22 +88,20 @@ my (
     $appDb_login,
     $appDb_database,
     $userDb_database,
-    $recreate_wdkCache
 );
 
 {
   local $SIG{__WARN__} = sub { 
     my $message = shift;
-    die "FATAL: " . $message;
+    die "<$this> FATAL: " . $message;
   };
   
   my $optRslt = GetOptions(
       "alogin=s"   => \$appDb_login,
       "adb=s"      => \$appDb_database,
       "udb=s"      => \$userDb_database,
-      "newcache"   => \$recreate_wdkCache,
       "usemap"     => \$g_use_map,  # get config data from a master file from gus_home/config
-      "skipdbtest" => \$g_skip_db_test, # for when you know this will fail
+      "skipdbtest" => \$g_skip_db_test, # for when you know this will fail, or know it will succeed!
       );
 }
 
@@ -118,47 +124,12 @@ my $blast_tmp_dir = "/var/www/Common/tmp/blast";
 my $map_file = "$wdk_config_dir/master_configuration_set";
 my $webapp = basename(readlink $site_symlink);
 my ($webapp_nover) = $webapp =~ m/(^[a-zA-Z_]+)/;
+my $meta_config_file = "${wdk_config_dir}/metaConfig_${this}";
 
 my %config_files = (
     'wdk_model_xml' => {
         'source' => "$project_home/ApiCommonShared/Model/lib/wdk/apiCommonModel.xml",
         'dest' => "$gus_home/lib/wdk/apiCommonModel.xml"
-        },
-    'comment_config' => {
-        'source' => "$project_home/ApiCommonWebsite/Model/config/$product/comment-config.xml.sample",
-        'dest' => "$wdk_product_config_dir/comment-config.xml"
-        },
-    'model_config' => {
-        'source' => "$project_home/ApiCommonWebsite/Model/config/$product/model-config.xml.sample",
-        'dest' => "$wdk_product_config_dir/model-config.xml"
-        },
-    'model_prop' => {
-        'source' => "$project_home/ApiCommonWebsite/Model/config/$product/model.prop.sample",
-        'dest' => "$wdk_product_config_dir/model.prop"
-        },
-    'wdkquery_config' => {
-        'source' => "$project_home/ApiCommonWebService/WSFPlugin/config/wdkquery-config.xml.sample",
-        'dest' => "$wdk_config_dir/wdkquery-config.xml"
-        },
-    'blast_config' => {
-        'source' => "$project_home/ApiCommonWebService/WSFPlugin/config/blast-config.xml.sample",
-        'dest' => "$wdk_config_dir/blast-config.xml"
-        },
-    'projects_config' => {
-        'source' => "$project_home/ApiCommonWebsite/Model/config/projects.sample.xml",
-        'dest' => "$wdk_config_dir/projects.xml"
-        },
-    'motifSearch_config' => {
-        'source' => "$project_home/ApiCommonWebService/WSFPlugin/config/motifSearch-config.xml.sample",
-        'dest' => "$wdk_config_dir/motifSearch-config.xml"
-        },
-    'profileSimilarity_config' => {
-        'source' => "$project_home/ApiCommonWebService/WSFPlugin/config/profileSimilarity-config.xml.sample",
-        'dest' => "$wdk_config_dir/profileSimilarity-config.xml"
-        },
-    'apifed_config' => {
-        'source' => "$project_home/ApiCommonWebService/WSFPlugin/config/apifed-config.xml.sample",
-        'dest' => "$wdk_config_dir/apifed-config.xml"
         },
 );
 
@@ -179,6 +150,8 @@ my $rls_webservice_data_dir = "$webservice_files_mirror/$product/build-$build_nu
 my $server_hostname = qx(/bin/hostname);
 
 my $host_class = host_class();
+my $host_class_prefix = $host_class ? "${host_class}." : '';
+
 ####################################################################
 # pre-flight sanity checks
 ####################################################################
@@ -198,7 +171,7 @@ if ($g_use_map) {
     open(my $fh, $map_file) or die $!;
     my @hits = grep /^$target_site/, <$fh>;
     (my $site, $appDb_database,  $userDb_database, $appDb_login,  $userDb_login) = split(/\s+/, @hits[0]);
-    print "$appDb_login\@$appDb_database,  $userDb_login\@$userDb_database\n";
+    print "<$this> using $appDb_login\@$appDb_database,  $userDb_login\@$userDb_database\n";
     if ( ! ($appDb_login && $appDb_database && $userDb_database) ) {
         die "$map_file does not have sufficient data for $target_site. Quitting with no changes made.\n";
     }
@@ -244,241 +217,80 @@ if (! -d $webservice_files_mirror) {
      "  matches build-N directory.\n\n";
 }
 
-####################################################################
-# sample file copies
-####################################################################
-
-# Install all configuration files from source sample files.
-# Note that later we may reopen the source file and parse it into the dest file,
-# so this blanket copy step may include some unnecessary copying.
-for my $cf (keys %config_files) {
-    make_path(dirname($config_files{$cf}{'dest'}), {verbose => 1});
-    copy( 
-        $config_files{$cf}{'source'},
-        $config_files{$cf}{'dest'} 
-    ) or die "copy $config_files{$cf}{'source'} failed : $!";
-}
-
-
-    
-####################################################################
-# Config File Parsing
-####################################################################
-
-# model-config.xml ##############################################
-my $m_c= new XML::Twig( 
-    keep_spaces => 1, 
-    PrettyPrint => 'nice',
-    keep_atts_order => 1,
-    TwigHandlers => {
-      'modelConfig'        => \&modelConfig,
-      'appDb'              => \&appDb,
-      'userDb'             => \&userDb,
-      'emailContent'       => \&emailContent,
-      'emailSubject'       => \&emailSubject,
-    }
-);
-
-$m_c->parsefile($config_files{'model_config'}{'source'});
-
-open(MC, ">$config_files{'model_config'}{'dest'}") || die "can not open $config_files{'model_config'}{'dest'}\n";
-print "writing $config_files{'model_config'}{'dest'}\n";
-$m_c->print(\*MC); 
-
-recreate_wdkCache() if $recreate_wdkCache;
-
-# comment-config.xml ###############################################
-my $c_c= new XML::Twig( 
-    keep_spaces => 1, 
-    PrettyPrint => 'nice',
-    keep_atts_order => 1,
-    TwigHandlers => {
-      'commentConfig' => \&commentConfig,
-    }
-);
-
-$c_c->parsefile($config_files{'comment_config'}{'source'});
-
-open(CC, ">$config_files{'comment_config'}{'dest'}") || die "can not open $config_files{'comment_config'}{'dest'}\n";
-print "writing $config_files{'comment_config'}{'dest'}\n";
-$c_c->print(\*CC); 
-
-
-# model.prop #######################################################
-print "writing $config_files{'model_prop'}{'dest'}\n";
-parseprop();
-
-
-# wdkquery-config.xml ##############################################
-my $w_q = new XML::Twig( 
-    keep_spaces => 1, 
-    PrettyPrint => 'nice',
-    keep_atts_order => 1,
-    TwigHandlers => {
-      'entry[@key="ModelName"]' => sub { $_[1]->set_text($product) },
-      'entry[@key="Gus_Home"]'  => sub { $_[1]->set_text($gus_home) },
-      'entry[@key="SiteModel"]' => sub { $_[1]->set_text($product) },
-    }
-);
-
-$w_q->parsefile($config_files{'wdkquery_config'}{'source'});
-
-open(WQC, ">$config_files{'wdkquery_config'}{'dest'}") || die "can not open $config_files{'wdkquery_config'}{'dest'}\n";
-print "writing $config_files{'wdkquery_config'}{'dest'}\n";
-$w_q->print(\*WQC);
-
-# projects.xml ###############################################
-
-# blast-config.xml ###############################################
-# do nothing
-
-# motifSearch-config.xml ###############################################
-# already copied from source, do nothing else
-
-
-# profileSimilarity-config.xml ###############################################
-my $ps_c= new XML::Twig( 
-    keep_spaces => 1, 
-    PrettyPrint => 'nice',
-    keep_atts_order => 1,
-    TwigHandlers => {
-      'entry[@key="perlExecutable"]'  => 
-                sub { $_[1]->set_text("/usr/bin/perl") },
-      'entry[@key="perlScript"]'  => 
-                sub { $_[1]->set_text("$gus_home/lib/perl/ApiCommonWebService/WSFPlugin/expressionSimilarity.pl") },
-      'entry[@key="numTimePoints"]'  => 
-                sub { $_[1]->set_text($numTimePoints{$product}) },
-      'entry[@key="skipTimes"]'  => 
-                sub { $_[1]->set_text($skipTimes{$product}) },
-      'entry[@key="dbConnection"]'  => 
-                sub { $_[1]->set_text("dbi:Oracle:$appDb_database") },
-      'entry[@key="dbLogin"]'  => 
-                sub { $_[1]->set_text("$appDb_login") },
-      'entry[@key="dbPassword"]'  => 
-                sub { $_[1]->set_text("$appDb_password") },
-      'entry[@key="projectId"]'  => 
-                sub { $_[1]->set_text("$product") },
-    }
-);
-
-$ps_c->parsefile($config_files{'profileSimilarity_config'}{'source'});
-
-open(PSC, ">$config_files{'profileSimilarity_config'}{'dest'}") || die "can not open $config_files{'profileSimilarity_config'}{'dest'}\n";
-print "writing $config_files{'profileSimilarity_config'}{'dest'}\n";
-$ps_c->print(\*PSC); 
-
-
-# apifed-config.xml ###############################################
-if ($product eq 'EuPathDB') {
-    my $af_c= new XML::Twig( 
-        keep_spaces => 1, 
-        PrettyPrint => 'nice',
-        keep_atts_order => 1,
-        TwigHandlers => {
-          'model'  => 
-           sub {
-             my $model = $_[1]->att('name');
-             my $domain = lc "$model.org";
-             my $comp_webapp = webapp_from_domain("$domain");
-             my $ws_url = $webServiceUrl;
-             $ws_url =~ s/$prod_site/$domain/;
-             $ws_url =~ s/$webapp_nover/$comp_webapp/;
-             # fixup proxied q1/b1/w1 urls
-             $ws_url =~ s/a\d/alpha/;
-             $ws_url =~ s/q\d/qa/;
-             $ws_url =~ s/b\d/qa/;
-             $ws_url =~ s/w\d\.//;
-             $_[1]->set_att("url" => "$ws_url"); 
-           },
-        }
-    );
-    
-    $af_c->parsefile($config_files{'apifed_config'}{'source'});
-    
-    open(AFC, ">$config_files{'apifed_config'}{'dest'}") || die "can not open $config_files{'apifed_config'}{'dest'}\n";
-    print "writing $config_files{'apifed_config'}{'dest'}\n";
-    $af_c->print(\*AFC); 
-}
-
 
 ####################################################################
-# Subroutines
+# Generate meta config file
 ####################################################################
 
-sub modelConfig {
-    my ($twig, $node) = @_;
-    $node->set_att('login'         => $appDb_login)          if (defined $node->att('login'));
-    $node->set_att('password'      => $appDb_password)       if (defined $node->att('password'));
-    $node->set_att('connectionUrl' => $appDb_connectionUrl)  if (defined $node->att('connectionUrl'));
-    $node->set_att('supportEmail'  => 'help@' . $prod_site)  if (defined $node->att('supportEmail'));
-    $node->set_att('webServiceUrl' => $webServiceUrl)        if (defined $node->att('webServiceUrl'));
-    $node->set_att('secretKeyFile' => $secretKeyFile)        if (defined $node->att('secretKeyFile'));
-    $node->set_att('modelName'     => $modelName)            if (defined $node->att('modelName'));
-    $node->set_att('smtpServer'    => $smtpServer)           if (defined $node->att('smtpServer'));
-    $node->set_att('defaultRole'   => $defaultRole)          if (defined $node->att('defaultRole'));
-}
+open(MC, ">$meta_config_file") or die "could not open $meta_config_file for writing.\n";
 
-sub appDb {
-    my ($twig, $node) = @_;
-    $node->set_att('login'                    => $appDb_login)                if (defined $node->att('login'));
-    $node->set_att('password'                 => $appDb_password)             if (defined $node->att('password'));
-    $node->set_att('connectionUrl'            => $appDb_connectionUrl)        if (defined $node->att('connectionUrl'));
-    $node->set_att('platform'                 => $g_platform)                 if (defined $node->att('platform'));
-    $node->set_att('maxActive'                => $g_maxActive)                if (defined $node->att('maxActive'));
-    $node->set_att('maxIdle'                  => $appDb_maxIdle)              if (defined $node->att('maxIdle'));
-    $node->set_att('minIdle'                  => $appDb_minIdle)              if (defined $node->att('minIdle'));
-    $node->set_att('maxWait'                  => $g_maxWait)                  if (defined $node->att('maxWait'));
-    $node->set_att('showConnections'          => $g_showConnections)          if (defined $node->att('showConnections'));
-    $node->set_att('showConnectionsInterval'  => $g_showConnectionsInterval)  if (defined $node->att('showConnectionsInterval'));
-    $node->set_att('showConnectionsDuration'  => $g_showConnectionsDuration)  if (defined $node->att('showConnectionsDuration'));
-    $node->set_att('userDbLink'               => dblink($userDb_database))    if (defined $node->att('userDbLink'));
-}
+print MC  <<"EOF";
+# Generated by $this on @{[ strftime("%m/%d/%Y at %H:%M", localtime) ]}
 
-sub userDb {
-    my ($twig, $node) = @_;
-    $node->set_att('login'            => $userDb_login)               if (defined $node->att('login'));
-    $node->set_att('password'         => $userDb_password)            if (defined $node->att('password'));
-    $node->set_att('connectionUrl'    => $userDb_connectionUrl)       if (defined $node->att('connectionUrl'));
-    $node->set_att('wdkEngineSchema'  => $userDb_wdkEngineSchema)     if (defined $node->att('wdkEngineSchema'));
-    $node->set_att('userSchema'       => $userDb_userSchema)          if (defined $node->att('userSchema'));
-}
+required:
+ project: $product
 
-sub emailContent {
-    my ($twig, $node) = @_;
+ appDb.instance: $appDb_database
+ appDb.login: $appDb_login
+ appDb.password: $appDb_password
+ appDB.userDbLink:  @{[ dblink($userDb_database) ]}
 
-    my $content = <<"EOF";
+ userDb.instance: $userDb_database
+ userDb.login: $userDb_login
+ userDb.password: $userDb_password
 
-           <p>Thank you for registering at $product.</p>
-           <p>Your temporary password is: \$\$PASSWORD\$\$</p>
-           <p>You may now login to <a href="http://$prod_site/">$product</a>.</p>
-           <p>Thank you,</p>
-           <p>$product</p>
+ commentDb.instance: $userDb_database
+ commentDb.login: $userDb_login
+ commentDb.password: $userDb_password
+ webServiceUrl: $webServiceUrl
+ gushome: $gus_home
+
+ plasmoPubsURL: 'http://v4-4.plasmodb.org/publications/publications-v5.php?uid=28&gid='
+ 
+ eupaURL: http://${host_class_prefix}eupathdb.org/eupathdb/
+ orthURL: http://${host_class_prefix}orthomcl.org/orthomcl/
+ amebURL: http://${host_class_prefix}amoebadb.org/amoeba/
+ crypURL: http://${host_class_prefix}cryptodb.org/cryptodb/
+ fungURL: http://${host_class_prefix}fungidb.org/fungidb/
+ giarURL: http://${host_class_prefix}giardiadb.org/giardiadb/
+ micrURL: http://${host_class_prefix}microsporidiadb.org/micro/
+ piroURL: http://${host_class_prefix}piroplasmadb.org/piro/
+ plasURL: http://${host_class_prefix}plasmodb.org/plasmo/
+ toxoURL: http://${host_class_prefix}toxodb.org/toxo/
+ tricURL: http://${host_class_prefix}trichdb.org/trichdb/
+ trypURL: http://${host_class_prefix}tritrypdb.org/tritrypdb/
+
+sections:
+ - apiSite
 EOF
-    $node->set_content(XML::Twig::Elt->new( '#CDATA' => $content));
-}
 
-sub emailSubject {
-    my ($twig, $node) = @_;
-    $node->set_text("Your $product Password");
-}
+close MC;
+####################################################################
+# Do It!
+####################################################################
 
-sub commentConfig {
-    my ($twig, $node) = @_;
-    $node->set_att('login' => $userDb_login);
-    $node->set_att('password' => $userDb_password);
-    $node->set_att('connectionUrl' => $userDb_connectionUrl);
-    $node->set_att('userLoginDbLink' => undef);
-    $node->set_att('login' => $userDb_login);
-    $node->set_att('platform' => $g_platform);
-    $node->set_att('maxActive' => $g_maxActive);
-    $node->set_att('maxIdle' => $cc_maxIdle);
-    $node->set_att('minIdle' => $cc_minIdle);
-    $node->set_att('maxWait' => $cc_maxWait);
-    $node->set_att('userLoginSchema' => $g_userLoginSchema);
-    $node->set_att('commentSchema' => $g_commentSchema);
-    $node->set_att('userFileSchema' => $cc_userFileSchema);
-    $node->set_att('userFileUploadDir' => $cc_userFileUploadDir);
-}
+$ENV{'GUS_HOME'} = $gus_home;
+$ENV{'PATH'} = "$gus_home/bin";
+my $sample = $ENV{'GUS_HOME'} . '/lib/yaml/metaConfig.yaml.sample';
+
+validate_meta_config($sample, $meta_config_file);
+my $short_cmd = 'eupathSiteConfigure';
+my $cmd = "$gus_home/bin/$short_cmd -model $product -filename $meta_config_file";
+print "<$this> Attempting: '$cmd' ...";
+system("$cmd");
+if ($? == 0) {
+  print "<$this> OK\n";
+} elsif ($? == -1) {
+  print "\n<$this> FATAL: $!\n";
+  exit -1;
+} else {
+  print "\n<$this> FATAL: $short_cmd exited with status " . ($? >> 8) . "\n";
+  exit ($? >> 8);
+};
+####################################################################
+# Misc. Subroutines
+####################################################################
+
 
 sub dblink {
     my ($apicomm) = @_;
@@ -489,7 +301,7 @@ sub dblink {
         'apicommdevn' => 'devn.login_comment',
     );
     
-    return '@' . $dblinkMap{lc($apicomm)};
+    return  $dblinkMap{lc($apicomm)};
 }
 
 # retreive password from users ~/.euparc
@@ -507,84 +319,8 @@ sub std_password {
         $rc->{database}->{user}->{$login}->{password};
 }
 
-sub parseprop {
-    my $cndsrc_bin;
-    
-    for my $path (
-        (
-         '/files/local/software/software64/bin',
-         '/usr/local/cndsrc-2006.09.19/bin',
-         '/usr/local/cndsrc/bin',
-         '/opt/cndsrc/bin',
-        )
-    ) {
-
-        if ( -d $path ) {
-            $cndsrc_bin = $path;
-            last;
-        }
-    }
-    
-    if ( ! $cndsrc_bin) {
-        warn "*** could not find valid value for CNDSRC_BIN for  *****\n";
-        warn "*** $config_files{'model_prop'}{'dest'} *****\n";
-    }
-    
-    if ($cndsrc_bin && ! -d $cndsrc_bin) {
-        warn "******* $config_files{'model_prop'}{'dest'} has invalid value for CNDSRC_BIN *********\n"
-    }
-    
-    
-    open(IN, $config_files{'model_prop'}{'source'});
-    open(OUT, ">$config_files{'model_prop'}{'dest'}") || die "can not open $config_files{'model_prop'}{'dest'}\n";
-    my $revision;
-    while (<IN>) {
-        (m/\$Revision:\s+(\d+)/) && ($revision = $1);
-        s/PROJECT_ID\s*=.*/PROJECT_ID=$product/;
-        s/LOGIN_DBLINK\s*=.*/LOGIN_DBLINK=@{[dblink($userDb_database)]}/;
-        s/COMMENT_DBLINK\s*=.*/COMMENT_DBLINK=@{[dblink($userDb_database)]}/;
-        s/LOGIN_SCHEMA\s*=.*/LOGIN_SCHEMA=$g_userLoginSchema/;
-        s/SITE_ADMIN_EMAIL\s*=.*/SITE_ADMIN_EMAIL=$site_admin_email/;
-        s/CNDSRC_BIN\s*=.*/CNDSRC_BIN=$cndsrc_bin/;
-        if ($revision >= 35977) {
-            my $mercator_output_dir_all = "$rls_webservice_data_dir/mercator";
-            my $mercator_output_dir_pairwise = "$rls_webservice_data_dir/mercator_pairwise";
-            s/MERCATOR_OUTPUT_DIR\s*=.*/MERCATOR_OUTPUT_DIR=$mercator_output_dir_all/;
-            s/MERCATOR_OUTPUT_DIR_PAIRWISE\s*=.*/MERCATOR_OUTPUT_DIR_PAIRWISE=$mercator_output_dir_pairwise/;
-        } else {
-            my $mercator_output_dir = "$rls_webservice_data_dir/mercator\n";
-            s/MERCATOR_OUTPUT_DIR\s*=.*/MERCATOR_OUTPUT_DIR=$mercator_output_dir/;
-        }
-        if ($product eq 'EuPathDB') {
-            s;AMOEBA_BLAST_PATH\s*=.*;AMOEBA_BLAST_PATH=$webservice_files_mirror/AmoebaDB/release-$site_versions{AmoebaDB}/blast;;
-            s;API_BLAST_PATH\s*=.*;API_BLAST_PATH=$webservice_files_mirror/EuPathDB/release-$site_versions{EuPathDB}/blast;;
-            s;CRYPTO_BLAST_PATH\s*=.*;CRYPTO_BLAST_PATH=$webservice_files_mirror/CryptoDB/release-$site_versions{CryptoDB}/blast;;
-            s;FUNGI_BLAST_PATH\s*=.*;FUNGI_BLAST_PATH=$webservice_files_mirror/FungiDB/release-$site_versions{FungiDB}/blast;;
-            s;GIARDIA_BLAST_PATH\s*=.*;GIARDIA_BLAST_PATH=$webservice_files_mirror/GiardiaDB/release-$site_versions{GiardiaDB}/blast;;
-            s;MICRO_BLAST_PATH\s*=.*;MICRO_BLAST_PATH=$webservice_files_mirror/MicrosporidiaDB/release-$site_versions{MicrosporidiaDB}/blast;;
-            s;PIRO_BLAST_PATH\s*=.*;PIRO_BLAST_PATH=$webservice_files_mirror/PiroplasmaDB/release-$site_versions{PiroplasmaDB}/blast;;
-            s;PLASMO_BLAST_PATH\s*=.*;PLASMO_BLAST_PATH=$webservice_files_mirror/PlasmoDB/release-$site_versions{PlasmoDB}/blast;;
-            s;TOXO_BLAST_PATH\s*=.*;TOXO_BLAST_PATH=$webservice_files_mirror/ToxoDB/release-$site_versions{ToxoDB}/blast;;
-            s;TRICH_BLAST_PATH\s*=.*;TRICH_BLAST_PATH=$webservice_files_mirror/TrichDB/release-$site_versions{TrichDB}/blast;;
-            s;TRYP_BLAST_PATH\s*=.*;TRYP_BLAST_PATH=$webservice_files_mirror/TriTrypDB/release-$site_versions{TriTrypDB}/blast;;
-        } else {
-            s;AMOEBA_BLAST_PATH\s*=.*;AMOEBA_BLAST_PATH=;;
-            s;API_BLAST_PATH\s*=.*;API_BLAST_PATH=;;
-            s;CRYPTO_BLAST_PATH\s*=.*;CRYPTO_BLAST_PATH=;;
-            s;FUNGI_BLAST_PATH\s*=.*;FUNGI_BLAST_PATH=;;
-            s;GIARDIA_BLAST_PATH\s*=.*;GIARDIA_BLAST_PATH=;;
-            s;MICRO_BLAST_PATH\s*=.*;MICRO_BLAST_PATH=;;
-            s;PIRO_BLAST_PATH\s*=.*;PIRO_BLAST_PATH=;;
-            s;PLASMO_BLAST_PATH\s*=.*;PLASMO_BLAST_PATH=;;
-            s;TOXO_BLAST_PATH\s*=.*;TOXO_BLAST_PATH=;;
-            s;TRICH_BLAST_PATH\s*=.*;TRICH_BLAST_PATH=;;
-            s;TRYP_BLAST_PATH\s*=.*;TRYP_BLAST_PATH=;;
-        }
-        
-        print OUT;
-    }
-}
-
+# return 'class' of host, e.g. qa, beta, integrate or hostname.
+# This is not always the hostname. A site with 'q1' hostname is a 'qa' class.
 sub host_class {
     my ($host_class) = $target_site =~ m/^([^\.]+)\./;
     $host_class = 'qa' if $host_class =~ m/^q/;
@@ -696,12 +432,49 @@ sub find_euparc  {
     die "Required .euparc file not found\n";
 }
 
-sub recreate_wdkCache {
-    print "creating new wdk cache\n";
-    $ENV{PATH} = "$gus_home/bin:" . $ENV{PATH};
-    $ENV{PERL5LIB} = "$gus_home/lib/perl:" . $ENV{PERL5LIB};
-    $ENV{GUS_HOME} = "$gus_home";
-    system("wdkCache -model $product -recreate");
-}
+# Compare metaConfig.yaml.sample with given metaconfig file,
+# checking for missing or extra properties, indicating that
+# either the sample or this script needs to be updated.
+sub validate_meta_config {
+  my ($sample, $meta_config) = @_;
+  my @required_not_found;
+  my @extra_found;
 
+  print "\n<$this>  Validating the required properties in\n $meta_config\nagainst\n $sample\n\n";
+  
+  my ($sample_settings) = LoadFile($sample);
+  my $meta_settings = LoadFile($meta_config);
+
+  for my $property (keys %{$sample_settings->{'required'}}) {
+    if ( ! defined $meta_settings->{'required'}->{$property} ) {
+      push @required_not_found, $property;
+    }
+  }
+
+  for my $property (keys %{$meta_settings->{'required'}}) {
+    if ( ! defined $sample_settings->{'required'}->{$property} ) {
+      push @extra_found, $property;
+    }
+  }
+
+  if (scalar(@required_not_found) > 0 || scalar(@extra_found) > 0) {
+    if (scalar(@required_not_found) > 0) {
+      print "\n";
+      print "<$this> Fatal: Required properties not found:\n";
+      print join("\n", @required_not_found);
+    }
+    print "\n";
+    if (scalar(@extra_found) > 0) {
+      print "\n";
+      print "<$this> Fatal: Found properties not required:\n";
+      print join("\n", @extra_found);
+    }
+    print "\n";
+    print "Resolve this in either\n";
+    print " $sample\n";
+    print "or the meta config file generation in the '$this' script.\n";
+    exit 1;
+  }
+
+}
 
