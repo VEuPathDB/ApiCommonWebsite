@@ -18,7 +18,7 @@
 use strict;
 use File::Basename;
 use POSIX qw(strftime);
-#use lib "$ENV{'GUS_HOME'}/lib/perl";
+use lib "$ENV{'GUS_HOME'}/lib/perl";
 use EuPathSiteCommon::Model::Configula;
 
 my ($this) = basename $0;
