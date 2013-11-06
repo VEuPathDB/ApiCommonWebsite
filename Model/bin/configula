@@ -65,6 +65,7 @@ required:
 
 sections:
  - apiSite
+ - @{[ lc $emc->{'product'} ]}
 EOF
 
 $emc->write_meta_config($content);
