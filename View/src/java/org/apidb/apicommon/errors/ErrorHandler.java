@@ -120,6 +120,7 @@ public class ErrorHandler {
         StringBuilder allErrors = new StringBuilder();
         allErrors.append(getStackTraceAsText(errors));
         allErrors.append(getActionErrorsAsHtml(errors.getActionErrors()));
+        LOG.debug("Will use the following text as filter input:\n" + allErrors.toString());
 
         Set<String> propertyNames = filters.stringPropertyNames();
         for (String key : propertyNames) {
@@ -132,7 +133,9 @@ public class ErrorHandler {
             Pattern p = Pattern.compile(regex);
             Matcher m = p.matcher(allErrors);
 
+            LOG.debug("Checking against filter: " + regex);
             if (m.find()) {
+                LOG.debug("Match!");
                 /**
                  * Found match for primary filter. Now check for additional
                  * matches from any subkey filters. Return on first match.
@@ -160,14 +163,18 @@ public class ErrorHandler {
 
                 // subkeys were checked and no matches in subkeys,
                 // so match is not sufficient to filter
-                if (checkedSubkeys)
-                    return null;
+                if (checkedSubkeys) {
+                    LOG.debug("Matched primary filter but not any subkeys; moving to next filter.");
+                    continue;
+                }
 
                 // Otherwise no subkeys were checked (so primary
                 // filter match is sufficient)
                 return key + " = " + regex;
             }
         }
+        
+        // did not match any filter
         return null;
     }
 
@@ -336,14 +343,14 @@ public class ErrorHandler {
     
     private static String getActionErrorsAsHtml(List<String> actionErrors) {
         StringBuilder sb = new StringBuilder();
-        if (!actionErrors.isEmpty()) {
-            sb.append("<ul>\n");
-            for (String error : actionErrors) {
+        for (String error : actionErrors) {
+            // filter non-sensical errors
+            if (!error.equals("???en_US.global.error.user???")) {
                 sb.append("<li>" + error + "</li>\n");
             }
-            sb.append("</ul>\n");
         }
-        return sb.toString();
+        String errorList = sb.toString();
+        return (errorList.isEmpty() ? "" : "<ul>\n" + errorList + "</ul>\n");
     }
     
     private static String getStackTraceAsText(ErrorBundle errors) {
