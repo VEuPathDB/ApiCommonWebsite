@@ -134,10 +134,6 @@
 
     <ant target="defaultProjectInstall"/>
     
-    <!-- remove conflicting jar file -->
-    <delete file="${targetDir}/lib/java/servlet-api-2.4.jar" />
-    <delete file="${targetDir}/lib/java/jsp-api-2.0.jar" />
-    
     <antcall target="ApiCommonWebsite-Glossary"/>
 
   </target>
@@ -162,7 +158,11 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Model"/>
     </ant>
-  </target>
+
+    <!-- remove conflicting jar file -->
+    <delete file="${targetDir}/lib/java/servlet-api-2.4.jar" />
+    <delete file="${targetDir}/lib/java/jsp-api-2.0.jar" />
+  </target>  
 
   <target name="ApiCommonWebsite/Site-Installation">
     <ant target="defaultComponentInstall">
