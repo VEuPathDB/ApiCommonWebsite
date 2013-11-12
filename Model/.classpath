@@ -12,7 +12,6 @@
 	<classpathentry kind="lib" path="/WSF Service/lib/java/not-deployed/servlet-api-2.5.jar"/>
 	<classpathentry kind="var" path="GUS_HOME/lib/java/db_driver/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/gdata-core-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/java/jsp-api-2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>
 	<classpathentry kind="lib" path="/WDK Model/lib/java/commons-digester-1.8.1.jar"/>
@@ -20,5 +19,6 @@
 	<classpathentry kind="lib" path="/WSF Service/lib/java/xercesImpl-2.9.1.jar"/>
 	<classpathentry kind="lib" path="/WSF Plugin/lib/java/org.json-chargebee-1.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EuPath Common Model"/>
+	<classpathentry kind="lib" path="lib/java/not-deployed/jsp-api-2.0.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
