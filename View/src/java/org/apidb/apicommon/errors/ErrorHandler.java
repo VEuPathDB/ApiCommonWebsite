@@ -82,6 +82,10 @@ public class ErrorHandler {
                 filterMatchWarning = "\nError matches filter '" + matchedFilterKey + "'. No error report emailed.";
             }
         }
+        else {
+            // site is not monitored; simply log the exception
+            LOG.error(getStackTraceAsText(_errors));
+        }
 
         // write log marker to log so we can see what was going on around this error
         LOG.error(_logMarker + filterMatchWarning);
