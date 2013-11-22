@@ -349,7 +349,8 @@ public class ErrorHandler {
         StringBuilder sb = new StringBuilder();
         for (String error : actionErrors) {
             // filter non-sensical errors
-            if (!error.equals("???en_US.global.error.user???")) {
+            if (!error.equals("???en_US.global.error.user???") &&
+                !error.equals("???en_US.global.error.model???")) {
                 sb.append("<li>" + error + "</li>\n");
             }
         }
