@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apidb.apicommon.model;
 
 import java.sql.Connection;
@@ -21,11 +18,14 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.dbms.ConnectionContainer;
 
 /**
- * @author xingao
+ * Manages user comments on WDK records
  * 
+ * @author xingao
  */
 public class CommentFactory implements ConnectionContainer {
 
+	private static final Logger LOG = Logger.getLogger(CommentFactory.class);
+	
     private static CommentFactory factory;
 
     private Logger logger = Logger.getLogger(CommentFactory.class);
@@ -39,8 +39,11 @@ public class CommentFactory implements ConnectionContainer {
         return factory;
     }
 
-    private static void initialize(String gusHome, String projectId) {
+    private static synchronized void initialize(String gusHome, String projectId) {
         try {
+            // check for concurrent initialization
+            if (factory != null) return;
+        
             // parse and load the configuration
             CommentConfigParser parser = new CommentConfigParser(gusHome);
             CommentConfig config = parser.parseConfig(projectId);
@@ -115,38 +118,37 @@ public class CommentFactory implements ConnectionContainer {
             String[] associatedStableIds = comment.getAssociatedStableIds();
             String[] authors = comment.getAuthors();
 
-						String sequence = comment.getSequence();
+                        String sequence = comment.getSequence();
 
             ps = SqlUtils.getPreparedStatement(
                     commentDs,
                     "INSERT INTO "
                             + commentSchema
                             + "comments (comment_id, "
-                            + "email, comment_date, comment_target_id, "
+                            + "comment_date, comment_target_id, "
                             + "stable_id, conceptual, project_name, "
                             + "project_version, headline, content, "
                             + "location_string, review_status_id, organism, user_id) "
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             long currentMillis = System.currentTimeMillis();
 
             ps.setInt(1, commentId);
-            ps.setString(2, comment.getEmail());
-            ps.setTimestamp(3, new Timestamp(currentMillis));
-            ps.setString(4, comment.getCommentTarget());
-            ps.setString(5, comment.getStableId());
-            ps.setBoolean(6, comment.isConceptual());
-            ps.setString(7, comment.getProjectName());
-            ps.setString(8, comment.getProjectVersion());
-            ps.setString(9, comment.getHeadline());
-            dbPlatform.setClobData(ps, 10, comment.getContent(), false);
-            ps.setString(11, comment.getLocationString());
+            ps.setTimestamp(2, new Timestamp(currentMillis));
+            ps.setString(3, comment.getCommentTarget());
+            ps.setString(4, comment.getStableId());
+            ps.setBoolean(5, comment.isConceptual());
+            ps.setString(6, comment.getProjectName());
+            ps.setString(7, comment.getProjectVersion());
+            ps.setString(8, comment.getHeadline());
+            dbPlatform.setClobData(ps, 9, comment.getContent(), false);
+            ps.setString(10, comment.getLocationString());
             String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0)
                     ? comment.getReviewStatus()
                     : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
-            ps.setString(12, reviewStatus);
-            ps.setString(13, comment.getOrganism());
-            ps.setInt(14, comment.getUserId());
+            ps.setString(11, reviewStatus);
+            ps.setString(12, comment.getOrganism());
+            ps.setInt(13, comment.getUserId());
 
             int result = ps.executeUpdate();
             logger.debug("Inserted comment row: " + result);
@@ -177,7 +179,7 @@ public class CommentFactory implements ConnectionContainer {
                 saveAccessions(commentId, accessions);
             }
 
-						System.out.println( ">>>>> sequene: is " + sequence);
+            LOG.debug( ">>>>> sequene: is " + sequence);
 
             if ((sequence != null) && (sequence.trim().equals(""))) {
                 saveSequence(commentId, sequence);
@@ -473,7 +475,7 @@ public class CommentFactory implements ConnectionContainer {
         sql.append(" comment_id ");
         sql.append(") VALUES (?, ?, ?)");
 
-				System.out.println(">>>>>>>> " + sql.toString());
+        LOG.debug(">>>>>>>> " + sql.toString());
         PreparedStatement statement = null;
         try {
             statement = SqlUtils.getPreparedStatement(commentDs,
@@ -488,7 +490,6 @@ public class CommentFactory implements ConnectionContainer {
             SqlUtils.closeStatement(statement);
         }
     }
-
 
     private void saveAccessions(int commentId, String[] accessions)
             throws SQLException {
@@ -753,7 +754,7 @@ public class CommentFactory implements ConnectionContainer {
 
     public Comment getComment(int commentId) throws WdkModelException {
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT c.email, c.comment_date, c.comment_target_id, ");
+        sql.append("SELECT c.user_id, c.comment_date, c.comment_target_id, ");
         sql.append("c.conceptual, c.headline, c.project_name, ");
         sql.append("c.project_version, c.review_status_id, c.stable_id, ");
         sql.append("c.content, ");
@@ -778,7 +779,7 @@ public class CommentFactory implements ConnectionContainer {
                         + commentId + "' cannot be found.");
 
             // construct a comment object
-            Comment comment = new Comment(rs.getString("email"));
+            Comment comment = new Comment(rs.getInt("user_id"));
             comment.setCommentId(commentId);
             comment.setCommentDate(rs.getTimestamp("comment_date"));
             comment.setCommentTarget(rs.getString("comment_target_id"));
@@ -869,7 +870,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -903,7 +904,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -945,7 +946,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -978,7 +979,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -1011,7 +1012,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -1071,7 +1072,7 @@ public class CommentFactory implements ConnectionContainer {
 
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -1104,7 +1105,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -1136,7 +1137,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -1167,7 +1168,7 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
@@ -1199,22 +1200,20 @@ public class CommentFactory implements ConnectionContainer {
             }
         }
         catch (SQLException e) {
-        	throw new WdkModelException(e);
+            throw new WdkModelException(e);
         }
         finally {
             SqlUtils.closeResultSetAndStatement(rs);
         }
     }
 
-    public Comment[] queryComments(String email, String projectName,
+    public Comment[] queryComments(Integer userId, String projectName,
             String stableId, String conceptual, String reviewStatus,
             String keyword, String commentTargetId) throws WdkModelException {
 
         StringBuffer where = new StringBuffer();
-        if (email != null) {
-            email = email.replace('*', '%');
-            email = email.replaceAll("'", "");
-            where.append(" lower(c.email) like lower('" + email + "')");
+        if (userId != null) {
+            where.append(" c.user_id = '" + userId + "'");
         }
         if (projectName != null) {
             projectName = projectName.replace('*', '%');
@@ -1288,7 +1287,7 @@ public class CommentFactory implements ConnectionContainer {
         return array;
     }
 
-    public void deleteComment(String email, String commentId)
+    public void deleteComment(String commentId)
             throws WdkModelException {
         String commentSchema = config.getCommentSchema();
 
@@ -1297,7 +1296,7 @@ public class CommentFactory implements ConnectionContainer {
             // update comments table set is_visible = 0
             String sql = "UPDATE " + commentSchema + "comments "
                     + "SET is_visible = 0 " + "WHERE comment_id = '"
-                    + commentId + "'" + "  AND email = '" + email + "'";
+                    + commentId + "'";
             SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-hide-comment");
 
         }

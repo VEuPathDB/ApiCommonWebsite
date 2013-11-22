@@ -121,7 +121,7 @@ public class NewCommentAction extends CommentAction {
         String projectVersion = wdkModel.getVersion(); 
 
         // create a comment instance
-        Comment comment = new Comment(email);
+        Comment comment = new Comment(userId);
         comment.setCommentTarget(commentTarget);
         comment.setStableId(stableId);
         comment.setProjectName(projectName);
@@ -130,7 +130,6 @@ public class NewCommentAction extends CommentAction {
         comment.setOrganism(organism);
         comment.setReviewStatus(reviewStatus);
         comment.setContent(content);
-        comment.setUserId(userId);
 
         if((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
           int[] targetCategoryIdArray = new int[targetCategoryIds.length];
