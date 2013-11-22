@@ -8,7 +8,6 @@ import org.gusdb.wdk.model.WdkModelException;
 
 /**
  * @author xingao
- * 
  */
 public class Comment {
 
@@ -17,7 +16,6 @@ public class Comment {
 
     private int commentId;
     private int userId;
-    private String email;
     private String sequence;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
@@ -92,8 +90,8 @@ public class Comment {
     private String mutantCategoryName;
     private String phenotypeLocName;
 
-    public Comment(String email) {
-        this.email = email;
+    public Comment(int userId) {
+    	this.userId = userId;
         locations = new ArrayList<Location>();
         externalDbs = new ArrayList<ExternalDatabase>();
 
@@ -221,10 +219,6 @@ public class Comment {
 
     public int getUserId() {
         return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     /**
@@ -409,13 +403,6 @@ public class Comment {
         this.stableId = qualify(stableId);
     }
 
-    /**
-     * @return Returns the email.
-     */
-    public String getEmail() {
-        return email;
-    }
-
     public String getSequence() {
         return this.sequence;
     }
@@ -529,7 +516,7 @@ public class Comment {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        sb.append("Email:\t" + email + "\n");
+        sb.append("UserId:\t" + userId + "\n");
         sb.append("CommentTarget:\t" + commentTarget + "\n");
         sb.append("CommentDate:\t" + commentDate + "\n");
         sb.append("StableId:\t" + stableId + "\n");

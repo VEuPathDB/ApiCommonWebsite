@@ -91,12 +91,11 @@ public class ProcessAddCommentAction extends CommentAction {
 
         String locations = request.getParameter("locations");
 
-        String email = user.getEmail().trim().toLowerCase();
         String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion();
 
         // create a comment instance
-        Comment comment = new Comment(email);
+        Comment comment = new Comment(user.getUserId());
         comment.setCommentTarget(commentTarget);
         comment.setStableId(stableId);
         comment.setProjectName(projectName);

@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class CommentFactoryGetTest {
 
-    private static final String SAMPLE_EMAIL = "WDK_GUEST_1";
+	private static final int SAMPLE_USER_ID = 1;
     private static final String SAMPLE_STABLE_ID = "SAMPLE_0344";
     private static final String SAMPLE_PROJECT_VERSION = "1.1";
     private static final String SAMPLE_COMMENT_TARGET = "gene";
@@ -53,7 +53,7 @@ public class CommentFactoryGetTest {
 
     @Before
     public void addComment() throws WdkModelException {
-        Comment comment = new Comment(SAMPLE_EMAIL);
+        Comment comment = new Comment(SAMPLE_USER_ID);
         comment.setStableId(SAMPLE_STABLE_ID);
         comment.setCommentTarget(SAMPLE_COMMENT_TARGET);
         comment.setProjectName(projectId);
@@ -73,7 +73,7 @@ public class CommentFactoryGetTest {
 
     @After
     public void removeComment() throws WdkModelException {
-        factory.deleteComment(SAMPLE_EMAIL, Integer.toString(commentId));
+        factory.deleteComment(Integer.toString(commentId));
     }
 
     @Test

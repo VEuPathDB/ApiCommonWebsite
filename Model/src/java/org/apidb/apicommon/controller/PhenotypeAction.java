@@ -81,7 +81,7 @@ public class PhenotypeAction extends CommentAction {
         String[] phenotypeCategory = cuForm.getPhenotypeCategory(); 
 
         // create a comment instance
-        Comment comment = new Comment(email);
+        Comment comment = new Comment(userId);
         comment.setCommentTarget(commentTarget);
         comment.setStableId(stableId);
         comment.setProjectName(projectName);
@@ -95,7 +95,6 @@ public class PhenotypeAction extends CommentAction {
         comment.setMutationMethod(Integer.parseInt(mutationMethod));
         comment.setMutantExpression(Integer.parseInt(mutantExpression));
         comment.setPhenotypeLoc(Integer.parseInt(phenotypeLoc));
-        comment.setUserId(userId);
 
         comment.addExternalDatabase(extDbName, extDbVersion);
 
