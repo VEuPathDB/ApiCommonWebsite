@@ -493,8 +493,8 @@ if (!$hasMetaData) {
 
   }
 
-
-  my.color = the.colors[i];
+  
+  my.color = the.colors;
 
   if($varyGlyphByXAxis) {
     my.pch = points.pch;
