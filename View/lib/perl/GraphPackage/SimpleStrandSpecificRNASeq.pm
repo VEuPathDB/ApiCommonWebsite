@@ -35,8 +35,25 @@ sub setAdditionalRCode { $_[0]->{_additional_r_code} = $_[1] }
 sub getColor { $_[0]->{_color} }
 sub setColor { $_[0]->{_color} = $_[1] }
 
-sub getSampleNames { $_[0]->{_sample_names} }
+#sub getSampleNames { $_[0]->{_sample_names} }
 sub setSampleNames { $_[0]->{_sample_names} = $_[1] }
+
+# Template subclasses should override if we want to change the sample names
+sub getSampleLabelsString { [] }
+
+sub getSampleNames {
+  my ($self) = @_;
+
+  if($self->{_sample_names}) {
+    return $self->{_sample_names};
+  } 
+  if($self->getSampleLabelsString()) {
+    my $sampleLabelsString = $self->getSampleLabelsString();
+    my @rv = split(/;/, $sampleLabelsString);
+    return \@rv;
+  } 
+  return undef;
+}
 
 sub getIsPairedEnd { $_[0]->{_is_paired_end} }
 sub setIsPairedEnd { $_[0]->{_is_paired_end} = $_[1] }
