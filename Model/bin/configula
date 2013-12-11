@@ -45,7 +45,6 @@ required:
  commentDb.instance: $emc->{'userDb_database'}
  commentDb.login: $emc->{'userDb_login'}
  commentDb.password: $emc->{'userDb_password'}
- webServiceUrl: $emc->{'webServiceUrl'}
  gushome: $emc->{'gus_home'}
 
  plasmoPubsURL: 'http://v4-4.plasmodb.org/publications/publications-v5.php?uid=28&gid='
@@ -79,3 +78,4 @@ my $sample = "$emc->{'gus_home'}/lib/yaml/metaConfig.yaml.sample";
 $emc->validate_meta_config($sample, $emc->{'meta_config_file'});
 
 $emc->do_configure($emc->{'product'}, $emc->{'meta_config_file'});
+
