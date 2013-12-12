@@ -66,6 +66,7 @@ AND bs.bio_material_id = bmc.bio_material_id
 AND bmc.ontology_entry_id = oe.ontology_entry_id
 AND ps.name = '<<ProfileSet>>'
 AND lower(oe.value) = lower('<<MetaDataCategory>>')
+ORDER BY pen.element_order
 Sql
 
   return $Self;
