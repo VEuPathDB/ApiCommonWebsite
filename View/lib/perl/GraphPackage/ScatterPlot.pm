@@ -49,10 +49,11 @@ sub new {
   my $id = $self->getId();
   my $metaDataCategory = $self->getTypeArg;
 
-  $self->setPlotTitle("Expression Values - arcsinh(1+50*value) - $id");
+  $self->setPlotTitle("Signal Intensity Values - arcsinh(1+50*value) - $id");
 
   $self->setMakeYAxisFoldInduction(0);
   $self->setIsLogged(0);
+  $self->setYaxisLabel('Signal Intensity');
   $self->setHasExtraLegend(1);
   $self->setExtraLegendSize(4.5);
   $self->setHasMetaData(1);
