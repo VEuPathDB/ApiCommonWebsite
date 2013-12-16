@@ -49,8 +49,6 @@ required:
 
  plasmoPubsURL: 'http://v4-4.plasmodb.org/publications/publications-v5.php?uid=28&gid='
  
- eupaURL: http://$emc->{'host_class_prefix'}eupathdb.org/eupathdb/
- orthURL: http://$emc->{'host_class_prefix'}orthomcl.org/orthomcl/
  amebURL: http://$emc->{'host_class_prefix'}amoebadb.org/amoeba/
  crypURL: http://$emc->{'host_class_prefix'}cryptodb.org/cryptodb/
  fungURL: http://$emc->{'host_class_prefix'}fungidb.org/fungidb/
