@@ -76,7 +76,7 @@ group by dsp.display_name, dsp.display_category, dsp.type, dsp.subtype, dsp.buil
 
        print STDOUT $cgi->h3("Message Body:");
 
-    print STDOUT $cgi->p("Your Data set named \"$displayName\" has been successfully integrated into EuPathDB and is scheduled for immediate release.  Please log in to our password protected qa site to verify the accuracy of the data and related descriptions.  We will not make this data publically available until you have given us the \"ok\" but please review this as soon as possible so we can make any needed changes in our current release cycle.  If we don\'t hear back or if substantial changes are needed we may choose to move this data set to our next scheduled release (> 6weeks away).");
+    print STDOUT $cgi->p("Your Data set named \"$displayName\" has been successfully integrated into EuPathDB and is scheduled for immediate release.  Please log in to our password protected qa site to verify the accuracy of the data and related descriptions.  We will not make this data publicly available until you have given us the \"ok\" but please review this as soon as possible so we can make any needed changes in our current release cycle.  If we don\'t hear back or if substantial changes are needed we may choose to move this data set to our next scheduled release (> 6weeks away).");
 
 
     print STDOUT $cgi->p("Your Data set(s) can be accessed here:");
