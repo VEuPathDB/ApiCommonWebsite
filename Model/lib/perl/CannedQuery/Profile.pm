@@ -59,14 +59,6 @@ FROM   apidb.Profile    p
 WHERE  p.source_id      = '<<Id>>'
 AND    p.profile_set_id = ps.profile_set_id
 AND    ps.name          = '<<ProfileSet>>'
-AND p.source_id in (
-  SELECT source_id from (
-    SELECT count(*) as ct, p.source_id 
-    FROM   apidb.Profile    p,   apidb.ProfileSet ps
-    WHERE p.profile_set_id = ps.profile_set_id
-    AND   ps.name          = '<<ProfileSet>>'
-    GROUP BY p.source_id having count(*) = 1 )
-)
 Sql
 
   return $Self;
