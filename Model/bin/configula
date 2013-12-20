@@ -36,7 +36,7 @@ required:
  appDb.instance: $emc->{'appDb_database'}
  appDb.login: $emc->{'appDb_login'}
  appDb.password: $emc->{'appDb_password'}
- appDB.userDbLink:  @{[ $emc->dblink($emc->{'userDb_database'}) ]}
+ appDb.userDbLink:  @{[ $emc->dblink($emc->{'userDb_database'}) ]}
 
  userDb.instance: $emc->{'userDb_database'}
  userDb.login: $emc->{'userDb_login'}
