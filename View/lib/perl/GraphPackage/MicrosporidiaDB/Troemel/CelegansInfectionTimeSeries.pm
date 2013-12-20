@@ -25,7 +25,7 @@ sub init {
 
   # Draw the diff first in light grey ... then the min rpkm will go on top
   my @profileArray = (['Nematocida parisii ERTm1 Spores', '', ''],
-                      ['C. elegans Time Series - Infected-diff', '', ''],
+                      ['C. elegans Time Series - Infected - diff', '', ''],
                       ['C. elegans Time Series - Infected', '', ''],
 
                      );
