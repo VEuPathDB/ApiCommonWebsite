@@ -4,20 +4,28 @@
   <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
- <target name="EuPathSiteCommon-Installation">
-    <ant antfile="../EuPathSiteCommon/build.xml" target="EuPathSiteCommon-Installation">
-      <property name="project" value="EuPathSiteCommon"/>
-      <property name="version" value="??"/>
-    </ant>
-  </target>
+  <import file="${projectsDir}/EuPathSiteCommon/build.xml" />
+  <import file="${projectsDir}/GBrowse/build.xml" />
+  <import file="${projectsDir}/ApiCommonShared/build.xml" />
+  <import file="${projectsDir}/ApiCommonWebService/build.xml" />
 
-  <target name="EuPathSiteCommon-WebInstallation">
-    <ant antfile="../EuPathSiteCommon/build.xml" target="EuPathSiteCommon-WebInstallation">
-      <property name="project" value="EuPathSiteCommon"/>
-      <property name="version" value="??"/>
-    </ant>
-  </target>
 
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ApiCommonWebsite-ChildCheckout">
+    <available file="${projectsDir}/GBrowse" type="dir" property="GBrowse.present" />
+    <available file="${projectsDir}/EuPathSiteCommon" type="dir"  property="EuPathSiteCommon.present" />
+    <available file="${projectsDir}/ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
+    <available file="${projectsDir}/ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
+    <antcall target="GBrowse-Checkout"/>
+    <antcall target="EuPathSiteCommon-Checkout"/>
+    <antcall target="ApiCommonWebService-Checkout" />
+    <antcall target="ApiCommonShared-Checkout"/>
+  </target>
+  
+  
   <target name="GBrowse-Checkout" unless="GBrowse.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/GBrowse"/>
@@ -34,30 +42,8 @@
     </ant>
   </target>
 
-<!-- already in apicommonshare build 
-  <target name="CBIL-Installation">
-    <ant antfile="../CBIL/build.xml" target="CBIL-Installation">
-      <property name="project" value="CBIL"/>
-      <property name="version" value="internal/api-aug-08"/>
-    </ant>
-  </target>  
--->
 
-  <target name="GBrowse-Installation">
-    <ant antfile="../GBrowse/build.xml" target="GBrowse-Installation">
-      <property name="project" value="GBrowse"/>
-      <property name="version" value="??"/>
-    </ant>
-  </target>
-
-  <target name="ApiCommonShared-Installation">
-    <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared-Installation">
-      <property name="project" value="ApiCommonShared"/>
-      <property name="version" value="api-aug-08"/>
-    </ant>
-  </target>  
-
-  <target name="ApiCommonShared-Checkout" unless="ApiCommonShared.present"> 
+  <target name="ApiCommonShared-Checkout" unless="ApiCommonShared.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonShared"/>
       <property name="project" value="ApiCommonShared"/>
@@ -65,13 +51,6 @@
     </ant>
   </target>
 
-  <target name="ApiCommonShared/Datasources-Installation">
-    <ant antfile="../ApiCommonShared/build.xml" target="ApiCommonShared/Datasources-Installation">
-      <property name="project" value="ApiCommonShared"/>
-      <property name="version" value="api-aug-08"/>
-    </ant>
-  </target>
- 
 
   <target name="ApiCommonWebService-Checkout" unless="ApiCommonWebService.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
@@ -82,26 +61,6 @@
   </target>
 
 
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="ApiCommonWebsite-ChildCheckout">
-<!--    <available file="../CBIL" type="dir" property="CBIL.present" />
-    <available file="../WDK" type="dir" property="WDK.present" />  -->
-    <available file="../GBrowse" type="dir" property="GBrowse.present" />
-    <available file="../EuPathSiteCommon" type="dir"  property="EuPathSiteCommon.present" />
-    <available file="../ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
-    <available file="../ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
-<!--     <antcall target="CBIL-Checkout" />
-    <antcall target="WDK-Checkout" /> -->
-    <antcall target="GBrowse-Checkout"/>
-    <antcall target="EuPathSiteCommon-Checkout"/>
-    <antcall target="ApiCommonWebService-Checkout" />
-    <antcall target="ApiCommonShared-Checkout"/>
-  </target>
-  
-  
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo    Update    oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
@@ -132,7 +91,9 @@
                                                         ApiCommonWebsite/Model-Installation,
                                                         GBrowse-Installation">
 
-    <ant target="defaultProjectInstall"/>
+    <ant target="defaultProjectInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+    </ant>
     
     <antcall target="ApiCommonWebsite-Glossary"/>
 
@@ -199,12 +160,6 @@
                                                            GBrowse-WebInstallation">
   </target>
 
-  <target name="GBrowse-WebInstallation">
-    <ant antfile="../GBrowse/build.xml" target="GBrowse-WebInstallation">
-      <property name="project" value="GBrowse"/>
-      <property name="version" value="??"/>
-    </ant>
-  </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
 
