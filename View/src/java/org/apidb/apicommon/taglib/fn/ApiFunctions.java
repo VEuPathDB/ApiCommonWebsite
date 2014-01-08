@@ -27,6 +27,8 @@ public class ApiFunctions {
         return "AmoebaDB : The Amoeba genome resource";
       case "MicrosporidiaDB":
         return "MicrosporidiaDB : The Microsporidia genome resource";
+      case "HostDB":
+        return "HostDB";
       default:
         return null;
     }
