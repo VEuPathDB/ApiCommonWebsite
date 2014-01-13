@@ -51,6 +51,11 @@ sub init {
    $Self->setDataset              ( $Args->{Dataset             } );
    $Self->setWantLogged           ( $Args->{WantLogged          } );
 
+   $Self->setWidthOverride           ( $Args->{WidthOverride          } );
+   $Self->setHeightOverride           ( $Args->{HeightOverride          } );
+   $Self->setCompact           ( $Args->{Compact          } );
+   $Self->setIdType           ( $Args->{IdType          } );
+
    my $Thumb = $Self->getThumbnail();
 
    my $thumbSF = 0.62;
@@ -99,6 +104,21 @@ sub setWantLogged              { $_[0]->{'WantLogged'                  } = $_[1]
 sub getDataPlotterArg          { $_[0]->{'dataPlotterArg'              } }
 sub getTypeArg                 { $_[0]->{'dataPlotterArg'              } }
 sub setDataPlotterArg          { $_[0]->{'dataPlotterArg'              } = $_[1]; $_[0] }
+
+
+sub getWidthOverride              { $_[0]->{'WidthOverride'                  } }
+sub setWidthOverride              { $_[0]->{'WidthOverride'                  } = $_[1]; $_[0] }
+
+sub getHeightOverride              { $_[0]->{'HeightOverride'                  } }
+sub setHeightOverride              { $_[0]->{'HeightOverride'                  } = $_[1]; $_[0] }
+
+sub getCompact              { $_[0]->{'Compact'                  } }
+sub setCompact              { $_[0]->{'Compact'                  } = $_[1]; $_[0] }
+
+sub getIdType              { $_[0]->{'IdType'                  } }
+sub setIdType              { $_[0]->{'IdType'                  } = $_[1]; $_[0] }
+
+
 
 # ========================================================================
 # ---------------------------- Object Methods ----------------------------
@@ -239,17 +259,19 @@ plasmodb.title <- function ( title.string, line=0.5 ) {
 # ----------------------------- plot margins -----------------------------
 
 plasmodb.par   <- function ( ... ) {
-  par(mar      = c(3,5,1,1),
-      cex      = $scale,
-      cex.main = 1.00,
-      cex.lab  = 1.14,
-      cex.axis = 1.00,
-      las      = 1,
+
+
+  par(mar      = c(0,0,0,0),
+#      cex      = $scale,
+#      cex.main = 1.00,
+#      cex.lab  = 1.14,
+#      cex.axis = 1.00,
+#      las      = 1,
       ...
      );
 }
 plasmodb.par.last <- function () {
-   par(mar     = c(4,5,1,1)
+   par(mar     = c(0,0,0,0)
       );
 }
 

@@ -220,7 +220,19 @@ sub makeR {
   my $screens     = $mS->rScreenVectors();
   my $parts_n     = $mS->numberOfVisibleParts();
 
-  my $open_R      = $self->rOpenFile($width, $totalHeight);
+  my $open_R;
+
+  my $widthOverride = $self->getWidthOverride();
+  my $heightOverride = $self->getHeightOverride();
+
+
+  if($widthOverride && $heightOverride) {
+    $open_R = $self->rOpenFile($widthOverride, $heightOverride);
+  }
+  else {
+    $open_R = $self->rOpenFile($width, $totalHeight);
+  }
+
   my $preamble_R  = $self->_rStandardComponents($thumb_b);
 
   my     $legend = "";
@@ -277,11 +289,13 @@ RCODE
   print $r_fh $rcode;
 #  print STDERR $rcode;
 
+
   $r_fh->close();
 
   my $tempFiles = $self->getTempFiles();
 
   push @rv, @$tempFiles;
+
 
   return @rv;
 }
