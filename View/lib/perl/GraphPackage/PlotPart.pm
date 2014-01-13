@@ -124,10 +124,13 @@ sub makeFilesForR {
   for(my $i = 0; $i < scalar @$profileSets; $i++) {
     my $profileSet = $profileSets->[$i];
     my $suffix = $part . $i;
-
     $profileSet->writeFiles($id, $qh, $suffix);
     my $errors = $profileSet->errors();
-    die "No profile values returned" if (scalar @$errors > 0);
+    if (scalar @$errors > 0) {
+      unless ($errors->[0] =~ /no rows returned for query/) {
+        die "Unable to query values from the database: \n $errors";
+      }
+    }
   }
 
   return $self->profileFilesAsRVectors($profileSets);

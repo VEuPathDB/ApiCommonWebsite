@@ -66,6 +66,7 @@ sub new {
 }
 
 #--------------------------------------------------------------------------------
+
 sub makeRPlotString {
   my ($self) = @_;
 
@@ -74,25 +75,83 @@ sub makeRPlotString {
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
   my $colors = $self->getColors();
-  my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
+
+  my $defaultPch = [ '15', '16', '17', '18', '7:10', '0:6'];
 
   my $pointsPch = $self->getPointsPch();
-  my $pointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pointsPch, 'points.pch');
+  $pointsPch = $defaultPch unless $pointsPch;
 
-   my ($profileFiles, $elementNamesFiles, $stderrFiles);
+  my $doBlankGraph = 0;
+  my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
   };
 
+  my $profileSets = $self->getProfileSets();
+
   if($@) {
-    my $profileSets = $self->getProfileSets();
+    $doBlankGraph = 1;
+  }
+
+  my $goodProfileSets = [];
+  my $goodColors = [];
+  my $goodPointsPch = [];
+  my $keepElements = [];
+  my $count = 0;
+
+  foreach my $profileSet (@$profileSets) {
+    my $errors = $profileSet->errors();
+    unless (scalar @$errors > 0) {
+      push(@$goodProfileSets, $profileSet);
+      push(@$goodColors,$colors->[$count]);
+      if ($pointsPch->[$count]) {
+        push(@$goodPointsPch,$pointsPch->[$count]);
+      }
+      push(@$keepElements,$count);
+    }
+    $count = $count + 1;
+  }
+
+  $doBlankGraph = 1 if (scalar @$goodProfileSets == 0);
+
+  if($doBlankGraph) {
     map { $_->setProfileFile(undef);
           $_->setElementNamesFile(undef);
         } @$profileSets;
     return $self->blankPlotPart();
   }
-  
+  else {
+    my $profileFileList = $profileFiles;
+    my $elementNameFileList = $elementNamesFiles;
+    my $stderrFileList = $stderrFiles;
+    $profileFileList =~s/(profile\.files = c\(|\);)//g;
+    $elementNameFileList =~s/(element\.names\.files = c\(|\);)//g;
+    $stderrFileList =~s/(stderr\.files = c\(|\);)//g;
+      my @files = split(',',$profileFileList);
+      my @elementNameFiles = split(',',$elementNameFileList);
+      my @stderrFiles = split(',',$stderrFileList);
+      my @keepFiles;
+      my @keepElementNameFiles;
+      my @keepStderrFiles;
+      for my $element (@$keepElements) {
+        push (@keepFiles, $files[$element]);
+        push (@keepElementNameFiles, $elementNameFiles[$element]);
+        push (@keepStderrFiles, $stderrFiles[$element]);
+      }
+    $profileFileList = join(',',@keepFiles);
+    $elementNameFileList = join(',',@keepElementNameFiles);
+    $stderrFileList = join(',',@keepStderrFiles);
+    $profileFiles = "profile.files = c($profileFileList);\n";
+    $elementNamesFiles = "element.names.files = c($elementNameFileList);\n";
+    $stderrFiles = "stderr.files = c( $stderrFileList);\n";
+
+    
+  }
+
+  my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($goodColors, 'the.colors');
+  my $pointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($goodPointsPch, 'points.pch');
+
   
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
@@ -158,7 +217,6 @@ sub makeRPlotString {
   if ($self->getHasExtraLegend ) {
       $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
     }
-#  my $hasStdErr = $stderrFiles=~/stderr\.files = c\(""\)/ ? 'FALSE' : 'TRUE';
   my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
   my $rcode = "
 # ---------------------------- LINE PLOT ----------------------------
@@ -581,7 +639,6 @@ lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 plasmodb.title(\"$plotTitle\", line=title.line);
 
 ";
-
   return $rcode;
 }
 
@@ -753,6 +810,56 @@ sub new {
 
    $self->setMakeYAxisFoldInduction(0);
    $self->setIsLogged(1);
+
+   return $self;
+}
+
+
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::LinePlot::QuantMassSpec;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setIsLogged(1);
+
+   $self->setDefaultYMax(1);
+   $self->setDefaultYMin(-1);
+   $self->setYaxisLabel('Relative Abundance (log2 ratio)');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Quant Mass Spec Profile - $id");
+
+   $self->setMakeYAxisFoldInduction(1);
+
+
+   return $self;
+}
+
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::LinePlot::QuantMassSpecNonRatio;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(10);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Relative Abundance');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Quant Mass Spec Profile - $id");
 
    return $self;
 }
