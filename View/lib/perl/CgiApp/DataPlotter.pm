@@ -71,9 +71,14 @@ sub run {
          my $template     = $Cgi->param('template');
          my $dataset     = $Cgi->param('dataset');
 
+         my $widthOverride     = $Cgi->param('w');
+         my $heightOverride     = $Cgi->param('h');
+         my $compact     = $Cgi->param('compact');
+         my $idType     = $Cgi->param('idType');
 
-   my $thumbnail_b    = $Cgi->param('thumb');
-   my @visibleParts   = split(',', $Cgi->param('vp') || '');
+
+         my $thumbnail_b    = $Cgi->param('thumb');
+         my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
 	 my @errors;
 
@@ -131,6 +136,10 @@ sub run {
                         OutputFile => $fmt_f,
                         Thumbnail => $thumbnail_b,
                         VisibleParts => \@visibleParts,
+                        Compact => $compact,
+                        IdType => $idType,
+                        WidthOverride => $widthOverride,
+                        HeightOverride => $heightOverride,
                        });
          };
 
