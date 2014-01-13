@@ -81,7 +81,14 @@ sub makeRPlotStrings {
   foreach my $plotPart (@$graphObjects) {
     my $partName = $plotPart->getPartName();
     next unless ($isVis_b{$partName});
-    push @rv, $plotPart->makeRPlotString();
+
+    my $idType = $self->getIdType();
+
+    if($self->getCompact()) {
+      $plotPart->setIsCompact(1);
+    }
+
+    push @rv, $plotPart->makeRPlotString($idType);
 
     my $profileSets = $plotPart->getProfileSets();
 

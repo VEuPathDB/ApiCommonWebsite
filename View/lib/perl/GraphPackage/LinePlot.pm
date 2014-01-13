@@ -68,7 +68,7 @@ sub new {
 #--------------------------------------------------------------------------------
 
 sub makeRPlotString {
-  my ($self) = @_;
+  my ($self, $idType) = @_;
 
   my $sampleLabels = $self->getSampleLabels();
   my $sampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'x.axis.label');
@@ -85,7 +85,7 @@ sub makeRPlotString {
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
   eval{
-   ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
+   ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
   };
 
   my $profileSets = $self->getProfileSets();
@@ -176,6 +176,15 @@ sub makeRPlotString {
   $yMax = $yMax ? $yMax : "-Inf";
   $yMin = defined($yMin) ? $yMin : "Inf";
 
+  my $isCompactString = "FALSE";
+
+  if($self->isCompact()) {
+    $yMax= "-Inf";
+    $yMin = "Inf";
+
+    $isCompactString = "TRUE";
+  }
+
   $xMax = $xMax ? $xMax : "-Inf";
   $xMin = defined($xMin) ? $xMin : "Inf";
 
@@ -228,6 +237,8 @@ $pointsPchString
 $sampleLabelsString
 $stderrFiles
 $legendLabelsString
+
+is.compact=$isCompactString;
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -393,7 +404,9 @@ if($hasExtraLegend) {
 title.line = $titleLine;
 
 
-par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.induction.margin + extra.legend.size), xpd=NA);
+if(!is.compact) {
+  par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.induction.margin + extra.legend.size), xpd=NA);
+}
 
 default.pch = c(15, 16, 17, 18, 7:10, 0:6);
 
@@ -500,7 +513,7 @@ if (!$hasMetaData) {
          y.coords,
          col  = 'grey75',
          bg   = 'grey75',
-         type = \"p\",
+         type = ifelse(is.compact, \"n\", \"p\"),
          pch  = my.pch,
          cex  = 0.5
          );
@@ -525,7 +538,7 @@ if (!$hasMetaData) {
          y.coords,
          col  = the.colors[i],
          bg   = the.colors[i],
-         type = \"o\",
+         type = ifelse(is.compact, \"l\", \"o\"),
          pch  = my.pch,
          cex  = 1
          );
@@ -544,7 +557,7 @@ if (!$hasMetaData) {
          y.coords,
          col  = the.colors[i],
          bg   = the.colors[i],
-         type = \"o\",
+         type = ifelse(is.compact, \"l\", \"o\"),
          pch  = my.pch,
          cex  = 1
          );
@@ -563,7 +576,7 @@ if (!$hasMetaData) {
        new.points[i,],
        col  = my.color,
        bg   = my.color,
-       type = \"p\",
+       type = ifelse(is.compact, \"c\", \"p\"),
        pch  = my.pch,
        cex  = 1
        );
@@ -596,8 +609,7 @@ if($yAxisFoldInductionFromM) {
 box();
 
 
-
-if($hasExtraLegend) {
+if($hasExtraLegend && !is.compact) {
   # To add a legend into the margin... you need to convert ndc coordinates into user coordinates
   figureRegionXMax = par()\$fig[2];
   figureRegionYMax = par()\$fig[4];
@@ -630,10 +642,16 @@ if ($hasMetaData) {
         );
 }
 
-$rPostscript
+if(!is.compact) {
+  $rPostscript
+}
 
 par(xpd=FALSE);
-grid(nx=NA,ny=NULL,col=\"gray75\");
+
+if(!is.compact) {
+  grid(nx=NA,ny=NULL,col=\"gray75\");
+}
+
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
 plasmodb.title(\"$plotTitle\", line=title.line);

@@ -72,17 +72,17 @@ sub new {
 }
 
 sub writeFiles {
-  my ($self, $id, $qh, $suffix) = @_;
+  my ($self, $id, $qh, $suffix, $idType) = @_;
 
   $id = $self->getAlternateSourceId() ? $self->getAlternateSourceId() : $id;
 
-  $self->writeProfileFile($id, $qh, $suffix);
+  $self->writeProfileFile($id, $qh, $suffix, $idType);
   $self->writeElementNamesFile($id, $qh, $suffix);
 
   # don't need to write the element names file for the related set
   if(my $relatedProfileSet = $self->getRelatedProfileSet()) {
     $suffix = "related" . $suffix;
-    $relatedProfileSet->writeProfileFile($id, $qh, $suffix);
+    $relatedProfileSet->writeProfileFile($id, $qh, $suffix, $idType);
 
     # track the error for a related profile set (can assume only 1)
     if(my $relatedError = $relatedProfileSet->errors()->[0]) {
@@ -93,7 +93,7 @@ sub writeFiles {
 }
 
 sub writeProfileFile{
-  my ($self, $id, $qh, $suffix) = @_;
+  my ($self, $id, $qh, $suffix, $idType) = @_;
 
   my $_dict = {};
 
@@ -102,12 +102,21 @@ sub writeProfileFile{
 
   my $scale = $self->getScale();
 
-  my $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
-    ( Name         => "_data_$suffix",
-      Id           => $id,
-      ProfileSet   => $profileSetName,
-      Scale        => $scale,
-    );
+
+  my $profile;
+  if(lc($idType) eq 'ec') {
+    # TODO: Add CannedQUery here
+  }
+
+  else {
+    $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
+        ( Name         => "_data_$suffix",
+          Id           => $id,
+          ProfileSet   => $profileSetName,
+          Scale        => $scale,
+        );
+  }
+
   $profile->prepareDictionary($_dict);
   $profile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
 

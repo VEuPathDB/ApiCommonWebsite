@@ -82,6 +82,9 @@ sub setExtraLegendSize           { $_[0]->{'_extra_legend_size'             } = 
 sub getTitleLine                 { $_[0]->{'_title_line'                    }}
 sub setTitleLine                 { $_[0]->{'_title_line'                    } = $_[1]}
 
+sub isCompact                    { $_[0]->{'_is_compact'                    }}
+sub setIsCompact                 { $_[0]->{'_is_compact'                    } = $_[1]}
+
 #----------------------------------------------------------------------------------------------
 
 sub new {
@@ -112,7 +115,7 @@ sub new {
 #----------------------------------------------------------------------------------------------
 
 sub makeFilesForR {
-  my ($self) = @_;
+  my ($self, $idType) = @_;
 
   my $part = $self->getPartName();
   my $profileSampleLabels = $self->getSampleLabels();
@@ -124,7 +127,7 @@ sub makeFilesForR {
   for(my $i = 0; $i < scalar @$profileSets; $i++) {
     my $profileSet = $profileSets->[$i];
     my $suffix = $part . $i;
-    $profileSet->writeFiles($id, $qh, $suffix);
+    $profileSet->writeFiles($id, $qh, $suffix, $idType);
     my $errors = $profileSet->errors();
     if (scalar @$errors > 0) {
       unless ($errors->[0] =~ /no rows returned for query/) {
