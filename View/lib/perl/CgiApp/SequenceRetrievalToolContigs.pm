@@ -72,8 +72,8 @@ sub validateParams {
   my $end         = $cgi->param('end');
   my $revComp     = $cgi->param('revComp');
 
-  $start =~ s/[,.+\s]//g;
-  $end =~ s/[,.+\s]//g;
+  $start =~ s/[,.+\s]//g if ($start);
+  $end =~ s/[,.+\s]//g if ($end);
 
   $start = 1 if (!$start || $start !~/\S/);
   $end = 100000000 if (!$end || $end !~ /\S/);
