@@ -53,6 +53,10 @@ sub rNumericVectorFromArray {
   return "$name = c(" . join(',', map {"$_"} @$array) . ");";
 }
 
+sub rBooleanVectorFromArray {
+  &rNumericVectorFromArray(@_);
+}
+
 sub isSeen {
   my ($x, $ar) = @_;
 

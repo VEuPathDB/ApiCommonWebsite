@@ -81,76 +81,39 @@ sub makeRPlotString {
   my $pointsPch = $self->getPointsPch();
   $pointsPch = $defaultPch unless $pointsPch;
 
-  my $doBlankGraph = 0;
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
   };
 
-  my $profileSets = $self->getProfileSets();
-
   if($@) {
-    $doBlankGraph = 1;
-  }
-
-  my $goodProfileSets = [];
-  my $goodColors = [];
-  my $goodPointsPch = [];
-  my $keepElements = [];
-  my $count = 0;
-
-  foreach my $profileSet (@$profileSets) {
-    my $errors = $profileSet->errors();
-    unless (scalar @$errors > 0) {
-      push(@$goodProfileSets, $profileSet);
-      push(@$goodColors,$colors->[$count]);
-      if ($pointsPch->[$count]) {
-        push(@$goodPointsPch,$pointsPch->[$count]);
-      }
-      push(@$keepElements,$count);
-    }
-    $count = $count + 1;
-  }
-
-  $doBlankGraph = 1 if (scalar @$goodProfileSets == 0);
-
-  if($doBlankGraph) {
-    map { $_->setProfileFile(undef);
-          $_->setElementNamesFile(undef);
-        } @$profileSets;
     return $self->blankPlotPart();
   }
-  else {
-    my $profileFileList = $profileFiles;
-    my $elementNameFileList = $elementNamesFiles;
-    my $stderrFileList = $stderrFiles;
-    $profileFileList =~s/(profile\.files = c\(|\);)//g;
-    $elementNameFileList =~s/(element\.names\.files = c\(|\);)//g;
-    $stderrFileList =~s/(stderr\.files = c\(|\);)//g;
-      my @files = split(',',$profileFileList);
-      my @elementNameFiles = split(',',$elementNameFileList);
-      my @stderrFiles = split(',',$stderrFileList);
-      my @keepFiles;
-      my @keepElementNameFiles;
-      my @keepStderrFiles;
-      for my $element (@$keepElements) {
-        push (@keepFiles, $files[$element]);
-        push (@keepElementNameFiles, $elementNameFiles[$element]);
-        push (@keepStderrFiles, $stderrFiles[$element]);
-      }
-    $profileFileList = join(',',@keepFiles);
-    $elementNameFileList = join(',',@keepElementNameFiles);
-    $stderrFileList = join(',',@keepStderrFiles);
-    $profileFiles = "profile.files = c($profileFileList);\n";
-    $elementNamesFiles = "element.names.files = c($elementNameFileList);\n";
-    $stderrFiles = "stderr.files = c( $stderrFileList);\n";
 
-    
+  my $profileSets = $self->getProfileSets();
+  my @skipProfileSets;
+  my $skipped = 0;
+
+  for(my $i = 0; $i < scalar @$profileSets; $i++) {
+    my $profileSet = $profileSets->[$i];
+
+    if(scalar @{$profileSet->errors()} > 0) {
+      $skipProfileSets[$i] = "TRUE";
+      $skipped++;
+      next;
+    }
+
+    $skipProfileSets[$i] = "FALSE";
   }
 
-  my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($goodColors, 'the.colors');
-  my $pointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($goodPointsPch, 'points.pch');
+  if(scalar @$profileSets == $skipped) {
+    return $self->blankPlotPart();
+  }
+
+  my $skipProfilesString = ApiCommonWebsite::View::GraphPackage::Util::rBooleanVectorFromArray(\@skipProfileSets, 'skip.profiles');
+  my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
+  my $pointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pointsPch, 'points.pch');
 
   
   my $rAdjustProfile = $self->getAdjustProfile();
@@ -237,6 +200,7 @@ $pointsPchString
 $sampleLabelsString
 $stderrFiles
 $legendLabelsString
+$skipProfilesString
 
 is.compact=$isCompactString;
 
@@ -265,6 +229,12 @@ stderr.df = as.data.frame(matrix(nrow=length(profile.files)));
 stderr.df\$V1 = NULL;
 
 for(i in 1:length(profile.files)) {
+  if(skip.profiles[i]) {
+    next;
+  };
+
+  
+
   profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
 
   if(!is.null(profile.df\$ELEMENT_ORDER)) {
