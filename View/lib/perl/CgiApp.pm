@@ -28,9 +28,12 @@ use ApiCommonWebsite::Model::ModelConfig;
 use DBI;
 use DBD::Oracle;
 
+use sigtrap 'handler' => \&sigtrapXcpu, 'XCPU';
+
 # ========================================================================
 # ----------------------------- BEGIN Block ------------------------------
 # ========================================================================
+
 BEGIN {
     # Carp callback for sending fatal messages to browser
     sub handle_errors {
@@ -140,6 +143,12 @@ sub getQueryHandle {
    $Rv->{LongReadLen} = 10000000;
 
    return $Rv;
+}
+
+# ---------------------------- sigtrapXcpu ----------------------------
+
+sub sigtrapXcpu(){
+ die "Exceeded CPU limit (RLimitCPU).\n";
 }
 
 # ========================================================================
