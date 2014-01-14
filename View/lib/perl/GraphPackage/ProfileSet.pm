@@ -5,6 +5,11 @@ use strict;
 use Data::Dumper;
 
 use ApiCommonWebsite::Model::CannedQuery::ElementNamesWithMetaData;
+
+use ApiCommonWebsite::Model::CannedQuery::Profile;
+use ApiCommonWebsite::Model::CannedQuery::ProfileByEC;
+
+
 # Main Profile Set Name
 sub getName                      { $_[0]->{'_name'             }}
 sub setName                      { $_[0]->{'_name'             } = $_[1]}
@@ -105,7 +110,12 @@ sub writeProfileFile{
 
   my $profile;
   if(lc($idType) eq 'ec') {
-    # TODO: Add CannedQUery here
+    $profile = ApiCommonWebsite::Model::CannedQuery::ProfileByEC->new
+        ( Name         => "_data_$suffix",
+          Id           => $id,
+          ProfileSet   => $profileSetName,
+          Scale        => $scale,
+        );
   }
 
   else {
