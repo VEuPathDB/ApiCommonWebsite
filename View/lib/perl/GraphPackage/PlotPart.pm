@@ -162,9 +162,16 @@ sub profileFilesAsRVectors {
 }
 
 sub blankPlotPart {
-
 my ($self)= @_;
 my $plotTitle = $self->getPlotTitle();
+
+my $text = "None";
+my $cex = 5;
+
+if($self->isCompact()) {
+  $text = $self->getId();
+  $cex = 0.9;
+}
 
 return <<DummyR
 
@@ -172,10 +179,10 @@ return <<DummyR
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
 
-par(yaxs="i", xaxs="i", xaxt="n", yaxt="n", bty="n", mar=c(0.1,2,3,0.1));
+par(yaxs="i", xaxs="i", xaxt="n", yaxt="n", bty="n");
 
 plot(c(0),c(0), xlab='', ylab='',type="l",col="orange", xlim=c(0,1),ylim=c(0,1));
-text(0.5, 0.5, "none",col="black",cex=4.0);
+text(0.5, 0.5, "$text",col="black",cex=$cex);
 
 plasmodb.title(\"$plotTitle\");
 

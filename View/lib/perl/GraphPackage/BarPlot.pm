@@ -39,7 +39,7 @@ sub new {
 
 #--------------------------------------------------------------------------------
 sub makeRPlotString {
-  my ($self) = @_;
+  my ($self, $idType) = @_;
 
   my $sampleLabels = $self->getSampleLabels();
   my $sampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'x.axis.label');
@@ -49,15 +49,17 @@ sub makeRPlotString {
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
   eval{
-    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR();
+    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
   };
 
   if($@) {
-    my $profileSets = $self->getProfileSets();
-    map { $_->setProfileFile(undef);
-          $_->setElementNamesFile(undef);
-        } @$profileSets;
     return $self->blankPlotPart();
+  }
+
+  foreach(@{$self->getProfileSets()}) {
+    if(scalar @{$_->errors()} > 0) {
+      return $self->blankPlotPart();
+    }
   }
 
   my $colors = $self->getColors();
@@ -69,6 +71,13 @@ sub makeRPlotString {
 
   my $yMax = $self->getDefaultYMax();
   my $yMin = $self->getDefaultYMin();
+
+
+  my $isCompactString = "FALSE";
+
+  if($self->isCompact()) {
+    $isCompactString = "TRUE";
+  }
 
   my $isStack = $self->getIsStacked();
   my $isHorizontal = $self->getIsHorizontal();
@@ -86,7 +95,7 @@ sub makeRPlotString {
   $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
   my $beside = $isStack ? 'FALSE' : 'TRUE';
-  my $horiz = $isHorizontal ? 'TRUE' : 'FALSE';
+  my $horiz = $isHorizontal && !$self->isCompact() ? 'TRUE' : 'FALSE';
 
   my $titleLine = $self->getTitleLine();
 
@@ -106,6 +115,8 @@ $elementNamesFiles
 $stderrFiles
 $colorsString
 $sampleLabelsString
+
+is.compact=$isCompactString;
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
@@ -219,6 +230,9 @@ if($hasExtraLegend) {
 
 title.line = $titleLine;
 
+if(is.compact) {
+  par(mar       = c(0,0,0,0),xaxt=\"n\", bty=\"n\", xpd=TRUE);
+}
 
 if($horiz) {
   par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
@@ -231,7 +245,10 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
-  par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
+
+  if(!is.compact) {
+    par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
+  } 
   y.lim = c(d.min, d.max);
   x.lim = NULL;
 
@@ -263,16 +280,15 @@ if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
              las = my.las,
              axes = FALSE,
              cex.axis=$scale,
-             axis.lty  = \"solid\",
-             horiz=$horiz
+             axis.lty  =  \"solid\",
+             horiz=$horiz,
             );
-
 
 mtext('$yAxisLabel', side=yaxis.side, line=yaxis.line, cex=$scale, las=0)
 yAxis = axis(foldchange.side, tick=F, labels=F);
 
 
-if($yAxisFoldInductionFromM) {
+if($yAxisFoldInductionFromM && !is.compact) {
   foldchange.labels = vector();
 
   for(i in 1:length(yAxis)) {
@@ -295,13 +311,14 @@ if($yAxisFoldInductionFromM) {
   axis(yaxis.side);
 }
 
-
 lowerBound = as.matrix(profile.df - stderr.df);
 upperBound = as.matrix(profile.df + stderr.df);
 
 
 plotLength = max(plotXPos) + min(plotXPos);
 
+
+if(!is.compact) {
 if($horiz) {
 #  lines (c(0,0), c(0,length(profile.df) * 2), col=\"gray25\");
   lines (c(0,0), c(0,plotLength), col=\"gray25\");
@@ -310,6 +327,7 @@ if($horiz) {
 } else {
 #  lines (c(0,length(profile.df) * 2), c(0,0), col=\"gray25\");
   lines (c(0,plotLength), c(0,0), col=\"gray25\");
+
 
 
   if($highlightMissingValues) {
@@ -324,12 +342,14 @@ if($horiz) {
     }
   }
   suppressWarnings(arrows(plotXPos, lowerBound,  plotXPos, upperBound, angle=90, code=3, length=0.05, lw=2));
+
+}
 }
 
 box();
 
 
-if($hasExtraLegend) {
+if($hasExtraLegend && !is.compact) {
   # To add a legend into the margin... you need to convert ndc coordinates into user coordinates
   figureRegionXMax = par()\$fig[2];
   figureRegionYMax = par()\$fig[4];
@@ -346,8 +366,7 @@ if($hasExtraLegend) {
         );
 }
 
-plasmodb.title(\"$plotTitle\", line=title.line);
-
+  plasmodb.title(\"$plotTitle\", line=title.line);
 ";
 
   return $rv;
