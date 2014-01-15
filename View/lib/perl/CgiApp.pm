@@ -58,27 +58,27 @@ BEGIN {
 # --------------------------------- new ----------------------------------
 
 sub new {
-	 my $Class = shift;
+     my $Class = shift;
 
-	 my $Self = bless {}, $Class;
+     my $Self = bless {}, $Class;
 
-	 $Self->init(@_);
+     $Self->init(@_);
 
-	 return $Self;
+     return $Self;
 }
 
 # --------------------------------- init ---------------------------------
 
 sub init {
-	 my $Self = shift;
-	 my $Args = ref $_[0] ? shift : {@_};
+     my $Self = shift;
+     my $Args = ref $_[0] ? shift : {@_};
      
      my $projectId = $Self->cla()->param('project_id') 
             or die "project_id parameter not defined\n";
      
-	 $Self->setProjectId( $projectId );
+     $Self->setProjectId( $projectId );
 
-	 return $Self;
+     return $Self;
 }
 
 
@@ -91,36 +91,36 @@ sub setProjectId           { $_[0]->{'Model'} = $_[1]; $_[0] }
 # ---------------------------------- go ----------------------------------
 
 sub go {
-	 my $Self = shift;
+     my $Self = shift;
 
-	 my $_cgi = $Self->cla();
+     my $_cgi = $Self->cla();
 
-	 $Self->run($_cgi);
+     $Self->run($_cgi);
 }
 
 # --------------------------------- cla ----------------------------------
 
 sub cla {
-	 my $Self = shift;
+     my $Self = shift;
 
-	 my $Rv   = CGI->new();
+     my $Rv   = CGI->new();
 
-	 if (defined $Rv->param('help')) {
-			usage();
-			exit(0);
-	 }
+     if (defined $Rv->param('help')) {
+            usage();
+            exit(0);
+     }
 
-	 return $Rv;
+     return $Rv;
 }
 
 # -------------------------------- usage ---------------------------------
 
 sub usage {
-	 my $Self = shift;
+     my $Self = shift;
 
-	 my $class_f = $INC{ref($Self). '.pm'};
+     my $class_f = $INC{ref($Self). '.pm'};
 
-	 system "pod2text $0 $class_f";
+     system "pod2text $0 $class_f";
 }
 
 # ---------------------------- getQueryHandle ----------------------------
