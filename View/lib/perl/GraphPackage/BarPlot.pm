@@ -613,7 +613,27 @@ sub new {
 
    $self->setDefaultYMax(10);
    $self->setDefaultYMin(0);
-   $self->setYaxisLabel('Relative Abundance');
+   $self->setYaxisLabel('Abundance (log2)');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Quant Mass Spec Profile - $id");
+
+   return $self;
+}
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::QuantMassSpecNonRatioUnlogged;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(10);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Abundance');
 
    $self->setPartName('exprn_val');
    $self->setPlotTitle("Quant Mass Spec Profile - $id");
