@@ -262,11 +262,11 @@ plasmodb.par   <- function ( ... ) {
 
 
   par(mar      = c(0,0,0,0),
-#      cex      = $scale,
-#      cex.main = 1.00,
-#      cex.lab  = 1.14,
-#      cex.axis = 1.00,
-#      las      = 1,
+      cex      = $scale,
+      cex.main = 1.00,
+      cex.lab  = 1.14,
+      cex.axis = 1.00,
+      las      = 1,
       ...
      );
 }
