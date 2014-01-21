@@ -80,6 +80,16 @@
   <c:when test="${fn:contains(organism,'vivax')}">
     <c:set var="species" value="vivax"/>
   </c:when>
+
+  <c:when test="${fn:contains(organism,'gallinaceum')}">
+    <c:set var="species" value="gallinaceum"/>
+  </c:when>
+  <c:when test="${fn:contains(organism,'reichenowi')}">
+    <c:set var="species" value="reichenowi"/>
+  </c:when>
+
+
+
   <c:when test="${fn:contains(organism,'yoelii 17X')}">
     <c:set var="species" value="yoelii"/>
   </c:when>
