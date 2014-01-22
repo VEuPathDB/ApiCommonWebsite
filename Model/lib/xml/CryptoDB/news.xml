@@ -20,6 +20,89 @@
     </record>
 -->
 <record>
+       <attribute name="headline">CryptoDB 6.0 News</attribute>
+       <attribute name="date">24 January 2014 13:00</attribute>
+       <attribute name="tag">crypto01_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<body>
+    <div style="text-align: justify;"><strong>We are pleased to
+        announce the release of CryptoDB 6.0</strong><br>
+      <br>
+      <br>
+      <strong>New data in this release</strong>:</div>
+    <ul style="text-align: justify;">
+      <li><em>Cryptosporidium parvum </em>Iowa II Oocyst Transcriptome: Control
+        vs. UV treatment (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23171372"><span
+            style="color: #0000ee;"><span
+              style="text-decoration: underline;"><span
+                style="font-weight: bold;">Zhang
+                <em>et al.</em></span></span></span></a>).&nbsp; For full
+        attribution and available searches against this data please see the <strong><a
+            href="http://CryptoDB.org/cryptodb/getDataset.do?datasets=cparIowaII_microarrayExpression_Zhu_GSE34307_RSRC,cparIowaII_microarrayExpression_Zhu_GSE34307_RSRC">dataset
+            section</a></strong>.</li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+      <li>For this release the CryptoDB database was rebuilt allowing rerunning
+        and updating of all analyses.</li>
+    </ul>
+    <br>
+    <br>
+    <strong>New features:</strong><br>
+    <br>
+    <br>
+    <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+    Share your search strategies with the community by making them public.&nbsp;
+    Making one of your strategies public is simple; go to the "All" tab in your
+    "My Strategies" section and click on a strategy's public checkbox.&nbsp; <br>
+    <br>
+    <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+    The gene results now include a column for score and percent identity
+    enabling sorting of results.<br>
+    <br>
+    <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+      Domain searches</span>:&nbsp; Now this search includes an advanced
+    type-ahead function that allows searching for multiple GO Terms or domains
+    simultaneously.&nbsp; <br>
+    <br>
+    <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+    Registered users can now update their email addresses from their profiles.<br>
+    <br>
+    <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+    The organism filter table has been unified across EuPathDB sites.<br>
+    <br>
+    <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+    Numerical columns in a result can now be analyzed with a dynamic histogram
+    that enables binning and plotting values in normal or log scales.<br>
+    <br>
+    <span style="text-decoration: underline;">Fixed</span>: The orthology
+    phyletic pattern search now remembers your selected parameters making it
+    easier to revise searches.
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+          is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/">YouTube</a></span><span
+        style="font-weight: bold; font-style: italic;"></span></div>
+    <span style="font-weight: bold; font-style: italic;"><a href="www.youtube.com/user/EuPathDB/"></a></span>
+  </body>
+          ]]>
+       </attribute>
+</record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">14 January 2014 15:00</attribute>
        <attribute name="tag">eupathworkshop</attribute>
