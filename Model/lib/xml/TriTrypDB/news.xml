@@ -19,9 +19,192 @@
     </record>
 -->
 <record>
+       <attribute name="headline">TriTrypDB 7.0 Released</attribute>
+       <attribute name="date">24 January 2014 15:00</attribute>
+       <attribute name="tag">tryp01_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">          
+         <![CDATA[
+ <body> <strong>We are pleased to announce the release of TriTrypDB 7.0</strong><strong></strong><br>
+    <br>
+    <br>
+    <strong>New data in this release</strong>:<br>
+    <br>
+    <ul>
+      <li><em>Trypanosoma brucei</em> TREU927 quantitative comparative
+        proteomics of bloodstream and procyclic forms (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22574199"><strong>Urbaniak
+            <em>et al.</em></strong></a>).&nbsp; For full attribution and
+        available searches against this data please see the <strong><a href="http://tritrypdb.org/tritrypdb/getDataset.do?datasets=tbruTREU927_quantitativeMassSpec_Urbaniak_BSF_PCF_PhosphoProteomics_RSRC">dataset
+            section</a></strong>.</li>
+    </ul>
+    <br>
+    <ul>
+      <li><em>Trypanosoma congolense</em> IL3000 insect and bloodstream form
+        quantitative proteomes (<a href="http://www.ncbi.nlm.nih.gov/pubmed/21354217"><strong>Eyford
+            <em>et al.</em></strong></a>). For full attribution and available
+        searches against this data please see the <strong><a href="http://tritrypdb.org/tritrypdb/getDataset.do?datasets=tconIL3000_quantitativeMassSpec_Eyford_iTRAQ_RSRC,tconIL3000_quantitativeMassSpec_Eyford_iTRAQ_RSRC">dataset
+            section</a></strong>.</li>
+    </ul>
+    <br>
+    <ul>
+      <li><em>Trypanosoma brucei</em> TREU927 proteome of procyclic vs
+        bloodstream forms by SILAC (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/23090971">Butter
+            <em>et al.</em></a></strong>). For full attribution and available
+        searches against this data please see the <strong><a href="http://tritrypdb.org/tritrypdb/getDataset.do?datasets=tbruTREU927_quantitativeMassSpec_Butter_Two_Stages_RSRC,tbruTREU927_quantitativeMassSpec_Butter_Two_Stages_RSRC">dataset
+            section</a></strong>.</li>
+    </ul>
+    <br>
+    <ul>
+      <li>Draft assemblies of genome sequences from the Trypanosomatid
+        sequencing white paper.&nbsp; This data is graciously provided
+        prepublication and full credit and data usage information is available
+        by clicking on the sequence name:</li>
+    </ul>
+    <br>
+    <ul>
+      <ul>
+        <li><a href="http://tritrypdb.org/tritrypdb/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#39"><strong><em>Leishmania
+                aethiopica</em> L147</strong></a></li>
+        <li><strong><a href="http://tritrypdb.org/tritrypdb/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#37"><em>Leishmania
+                arabica</em> LEM1108</a></strong></li>
+        <li><a href="http://tritrypdb.org/tritrypdb/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#33"><strong><em>Leishmania
+                enriettii</em> LEM3045</strong></a></li>
+        <li><a href="http://tritrypdb.org/tritrypdb/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#38"><strong><em>Leishmania
+                gerbilli</em> LEM452&nbsp;</strong></a></li>
+        <li><a href="http://tritrypdb.org/tritrypdb/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#40"><strong><em>Leishmania
+                tropica</em> L590</strong></a></li>
+        <li><a href="http://tritrypdb.org/tritrypdb/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#35"><strong><em>Leishmania
+                turanica</em> LEM423</strong></a></li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <li><span class="tracktitle">The genome sequence and annotation of <em>Trypanosoma
+            brucei</em> TREU927 has been updated to
+          GeneDB_v5.1_20130801.&nbsp;&nbsp;</span></li>
+    </ul>
+    <span class="tracktitle"><br>
+    </span>
+    <ul>
+      <ul>
+        <li><span class="tracktitle"><strong>Genome/Assembly changes</strong>:&nbsp;
+            All genome sequences are the same as in GeneDB_v5.0 (TriTryDB
+            releases 5.0 and 6.0) except for Tb927_11_bin_v5.1, where some
+            additional contigs have been added.</span></li>
+      </ul>
+    </ul>
+    <span class="tracktitle"><br>
+    </span>
+    <ul>
+      <ul>
+        <li><span class="tracktitle"><strong>Annotation changes</strong>:</span></li>
+      </ul>
+    </ul>
+    <span class="tracktitle"><br>
+    </span>
+    <ul>
+      <ul>
+        <ul>
+          <li><span class="tracktitle">Main changes:</span></li>
+          <ul>
+            <li><span class="tracktitle">Tb927_09: 5'UTRs were incorrectly
+                mapped in version 5.0, resulting in some gene models with
+                inconsistencies. All 5'UTRs have been remapped and models
+                corrected.</span></li>
+            <li><span class="tracktitle">Tb927_11_bin has been completely
+                re-annotated. Most gene models were incorrectly mapped in
+                version 5.0.</span></li>
+            <li><span class="tracktitle">Some gene models were not transferred
+                from version 4. These genes have been reinstated and the
+                annotation from v4 has been recovered. The genes recovered in
+                the main chromosomes are: Tb927.11.6740, Tb11.02.5105,
+                Tb11.02.5360, Tb11.02.5370, Tb11.02.5380, Tb11.02.5390,
+                Tb11.02.5400, Tb11.02.5410, Tb11.02.5420, Tb11.02.5430,
+                Tb11.02.5440, Tb927.11.10810, Tb927.11.14620, Tb11.01.2730,
+                Tb11.01.6240, Tb11.01.6250, Tb11.1480.</span><span class="tracktitle"></span></li>
+            <li><span class="tracktitle">~200 gene models have been modified
+                based on Splice Site data (PMID:20385579 and PMID:20700444).</span><span
+                class="tracktitle"></span></li>
+            <li><span class="tracktitle">Coding genes with modifications in CDS
+                coordinates are summarized in:<br>
+ftp://ftp.sanger.ac.uk/pub/pathogens/Trypanosoma/brucei/Archive/Archived_Whole_Genome_Sequence/Tb927_WGS_2013_08_01/Tb927_v5.1_summary_of_CDS_changes.tsv</span></li>
+            <li><span class="tracktitle">Summary of non-coding genes with
+                changes in gene coordinates:<br>
+ftp://ftp.sanger.ac.uk/pub/pathogens/Trypanosoma/brucei/Archive/Archived_Whole_Genome_Sequence/Tb927_WGS_2013_08_01/Tb927_v5.1_summary_of_noncoding_genemodels_changes.tsv</span></li>
+            <li><span class="tracktitle">Specific changes in annotation since
+                previous versions can be browsed at:<br>
+                http://www.genedb.org/Homepage/Tbruceibrucei927 ("Annotation
+                statistics"&nbsp; -&gt; "More details" link).<br>
+                or in the RSS:<br>
+                http://www.genedb.org/rss/Tbruceibrucei927/since/12/months<br>
+              </span></li>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+    <span class="tracktitle"></span><br>
+    <span class="tracktitle"> </span>
+    <ul>
+      <o:p></o:p>
+    </ul>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <strong>New features:</strong><br>
+    <br>
+    <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+    Share your search strategies with the community by making them public.&nbsp;
+    Making one of your strategies public is simple; go to the "All" tab in your
+    "My Strategies" section and click on a strategy's public checkbox.&nbsp; <br>
+    <br>
+    <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+    The gene results now include a column for score and percent identity
+    enabling sorting of results.<br>
+    <br>
+    <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+      Domain searches</span>:&nbsp; Now this search includes an advanced
+    type-ahead function that allows searching for multiple GO Terms or domains
+    simultaneously.&nbsp; <br>
+    <br>
+    <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+    Registered users can now update their email addresses from their profiles.<br>
+    <br>
+    <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+    The organism filter table has been unified across EuPathDB sites.<br>
+    <br>
+    <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+    Numerical columns in a result can now be analyzed with a dynamic histogram
+    that enables binning and plotting values in normal or log scales.<br>
+    <br>
+    <span style="text-decoration: underline;">Fixed</span>: The orthology
+    phyletic pattern search now remembers your selected parameters making it
+    easier to revise searches. <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">,
+      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/">YouTube</a></span><span
+      style="font-weight: bold; font-style: italic;"><a
+        href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/"></a></span><span
+      style="font-weight: bold; font-style: italic;"></span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">14 January 2014 15:00</attribute>
-       <attribute name="tag">eupathworkshop</attribute>
+       <attribute name="tag">eupathworkshop2014</attribute>
        <attribute name="category">workshop</attribute>
        <attribute name="item">
            
