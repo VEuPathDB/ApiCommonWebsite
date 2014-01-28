@@ -31,7 +31,7 @@
       <br>
       <br>
       <br>
-      <strong>New data in this release</strong>:</div>
+      <strong>New data in this release</strong>:</div><br>
     <ul style="text-align: justify;">
       <li><em>Trypanosoma brucei</em> TREU927 quantitative comparative
         proteomics of bloodstream and procyclic forms (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22574199"><strong>Urbaniak
@@ -112,7 +112,7 @@
     <ul style="text-align: justify;">
       <ul>
         <ul>
-          <li><span class="tracktitle">Main changes:</span></li>
+          <li><span class="tracktitle">Main changes:</span></li><br>
           <ul>
             <li><span class="tracktitle">Tb927_09: 5'UTRs were incorrectly
                 mapped in version 5.0, resulting in some gene models with
@@ -192,7 +192,7 @@ ftp://ftp.sanger.ac.uk/pub/pathogens/Trypanosoma/brucei/Archive/Archived_Whole_G
       <br>
       <br>
       <br>
-      <strong>New database:&nbsp; </strong></div>
+      <strong>New database:&nbsp; </strong></div><br>
     <ul style="text-align: justify;">
       <li>EuPathDB is pleased to announce the release of a beta version of <a href="http://hostdb.org"><strong>HostDB</strong></a>;
         a resource dedicated to integrating functional host response data.&nbsp;
