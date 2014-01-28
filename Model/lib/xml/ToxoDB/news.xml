@@ -15,9 +15,129 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">ToxoDB 10.0 Released</attribute>
+       <attribute name="date">30 January 2014 15:00</attribute>
+       <attribute name="tag">toxo01_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+    <div style="text-align: justify;"><strong>We are pleased to announce the
+        release of ToxoDB 10.0</strong><strong></strong><br>
+      <br>
+      <br>
+      <strong>New database:&nbsp; </strong></div>
+    <ul style="text-align: justify;">
+      <li>EuPathDB is pleased to announce the release of a beta version of <a href="http://hostdb.org"><strong>HostDB</strong></a>;
+        a resource dedicated to integrating functional host response data.&nbsp;
+        The beta release includes the human and mouse genomes and two example
+        host response to <em>Toxoplasma </em>infection<em> </em>datasets
+        (RNA-seq and quantitative proteomics).&nbsp; We look forward to
+        expanding this database in data content and functionality.&nbsp; As with
+        all of out community driven databases we encourage you to explore <strong><a
+            href="http://hostdb.org">HostDB</a></strong>
+        and provide us with you <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
+        </li>
+    </ul>
+    <div style="text-align: justify;"><br>
+      <strong>New data in this release</strong>:</div>
+    <ul style="text-align: justify;">
+      <li>Updated<em> Toxoplasma gondii</em> GT1 genome sequence and
+        annotation.&nbsp; The following unannotated genomes of were integrated
+        into the database. Additional information about this genome may be
+        viewed in the <strong><a href="http://toxodb.org/toxo/getDataset.do?datasets=tgonGT1_primary_genome_RSRC">Dataset
+            section</a></strong> of ToxoDB.&nbsp; </li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <ul style="text-align: justify;">
+      <li>Quantitative proteomic analysis of 4 <em>Toxoplasma gondii </em>(GT1,
+        ME49, RH and VEG) strains during time course infections of human
+        foreskin fibroblast cells. Additional information about this genome may
+        be viewed in the <strong><a href="http://toxodb.org/toxo/getDataset.do?question=GeneQuestions.GenesByProteomicstgonME49_quantitativeMassSpec_Wastling_strain_timecourses_RSRC&amp;display=detail#39">Dataset
+            section</a></strong> of ToxoDB. Human host proteins from this same
+        experiment may be searched on a new site (HostDB) dedicated to
+        functional host response data: <strong><a href="http://beta.hostdb.org">http://beta.hostdb.org</a></strong></li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <ul style="text-align: justify;">
+      <li>The transcriptomes of 25 <em>Toxoplasma gondii</em> strains during
+        infection of primary murine macrophages (already available in ToxoDB)
+        now has the matched murine RNAseq data available for searches in HostDB:
+        <strong><a href="http://beta.hostdb.org">http://beta.hostdb.org</a></strong></li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <ul style="text-align: justify;">
+    </ul>
+    <ul style="text-align: justify;">
+    </ul>
+    <div style="text-align: justify;"><span class="tracktitle"> </span></div>
+    <ul style="text-align: justify;">
+      <o:p></o:p>
+    </ul>
+    <ul style="text-align: justify;">
+      <ul>
+      </ul>
+    </ul>
+    <div style="text-align: justify;"><strong>New features:</strong><br>
+      <br>
+      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+      Share your search strategies with the community by making them
+      public.&nbsp; Making one of your strategies public is simple; go to the
+      "All" tab in your "My Strategies" section and click on a strategy's public
+      checkbox.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+      The gene results now include a column for score and percent identity
+      enabling sorting of results.<br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+        Domain searches</span>:&nbsp; Now this search includes an advanced
+      type-ahead function that allows searching for multiple GO Terms or domains
+      simultaneously.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+      Registered users can now update their email addresses from their profiles.<br>
+      <br>
+      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+      The organism filter table has been unified across EuPathDB sites.<br>
+      <br>
+      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+      Numerical columns in a result can now be analyzed with a dynamic histogram
+      that enables binning and plotting values in normal or log scales.<br>
+      <br>
+      <span style="text-decoration: underline;">Fixed</span>: The orthology
+      phyletic pattern search now remembers your selected parameters making it
+      easier to revise searches. <br>
+      <br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span><span
+        style="font-weight: bold; font-style: italic;"><a
+          href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/"></a></span><span
+        style="font-weight: bold; font-style: italic;"></span></div>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">14 January 2014 15:00</attribute>
-       <attribute name="tag">eupathworkshop</attribute>
+       <attribute name="tag">eupathworkshop2014</attribute>
        <attribute name="category">workshop</attribute>
        <attribute name="item">
            
