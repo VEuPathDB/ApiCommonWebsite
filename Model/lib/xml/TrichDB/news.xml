@@ -21,43 +21,66 @@
 -->
 <record>
        <attribute name="headline">New Features in TrichDB</attribute>
-       <attribute name="date">24 January 2014 15:00</attribute>
+       <attribute name="date">30 January 2014 15:00</attribute>
        <attribute name="tag">trich01_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
-<body> <strong>We are pleased to announce new features in
-      TrichDB:</strong><strong></strong><br>
-    <br>
-    <br>
-    <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
-    Share your search strategies with the community by making them public.&nbsp;
-    Making one of your strategies public is simple; go to the "All" tab in your
-    "My Strategies" section and click on a strategy's public checkbox.&nbsp; <br>
-    <br>
-    <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
-    The gene results now include a column for score and percent identity
-    enabling sorting of results.<br>
-    <br>
-    <span style="text-decoration: underline;">Enhanced GO Term and InterPro
-      Domain searches</span>:&nbsp; Now this search includes an advanced
-    type-ahead function that allows searching for multiple GO Terms or domains
-    simultaneously.&nbsp; <br>
-    <br>
-    <span style="text-decoration: underline;">Email address update</span>:&nbsp;
-    Registered users can now update their email addresses from their profiles.<br>
-    <br>
-    <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
-    The organism filter table has been unified across EuPathDB sites.<br>
-    <br>
-    <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
-    Numerical columns in a result can now be analyzed with a dynamic histogram
-    that enables binning and plotting values in normal or log scales.<br>
-    <br>
-    <span style="text-decoration: underline;">Fixed</span>: The orthology
-    phyletic pattern search now remembers your selected parameters making it
-    easier to revise searches.
+ <body>
+    <div style="text-align: justify;"><strong>We are pleased to announce new
+        features in TrichDB:</strong><strong></strong><br>
+      <br>
+      <br>
+      <strong>New features:</strong><br>
+      <strong></strong><br>
+      <strong></strong><br>
+      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+      Share your search strategies with the community by making them
+      public.&nbsp; Making one of your strategies public is simple; go to the
+      "All" tab in your "My Strategies" section and click on a strategy's public
+      checkbox.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+      The gene results now include a column for score and percent identity
+      enabling sorting of results.<br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+        Domain searches</span>:&nbsp; Now this search includes an advanced
+      type-ahead function that allows searching for multiple GO Terms or domains
+      simultaneously.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+      Registered users can now update their email addresses from their profiles.<br>
+      <br>
+      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+      The organism filter table has been unified across EuPathDB sites.<br>
+      <br>
+      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+      Numerical columns in a result can now be analyzed with a dynamic histogram
+      that enables binning and plotting values in normal or log scales.<br>
+      <br>
+      <span style="text-decoration: underline;">Fixed</span>: The orthology
+      phyletic pattern search now remembers your selected parameters making it
+      easier to revise searches.<br>
+      <br>
+      <br>
+      <br>
+      <strong>New database:&nbsp; </strong></div>
+    <ul style="text-align: justify;">
+      <li>EuPathDB is pleased to announce the release of a beta version of <a href="http://hostdb.org"><strong>HostDB</strong></a>;
+        a resource dedicated to integrating functional host response data.&nbsp;
+        The beta release includes the human and mouse genomes and two example
+        host response to <em>Toxoplasma </em>infection<em> </em>datasets
+        (RNA-seq and quantitative proteomics).&nbsp; We look forward to
+        expanding this database in data content and functionality.&nbsp; As with
+        all of out community driven databases we encourage you to explore <strong><a
+            href="http://hostdb.org">HostDB</a></strong>
+        and provide us with you <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
+        </li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
     <div style="text-align: justify;"><br>
       <span style="font-style: italic;"><span style="font-style: italic;"><span
             style="text-decoration: underline;">Note:</span>
@@ -70,12 +93,11 @@
           map the old IDs to the new ones, remove the old IDs from your Basket,
           and leave your Favorites page alone.</span></span><br>
       <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-          is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
         style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/">YouTube</a></span><span
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span><span
         style="font-weight: bold; font-style: italic;"></span></div>
-    <span style="font-weight: bold; font-style: italic;"></span>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
   </body>
           ]]>
        </attribute>

@@ -23,32 +23,51 @@
 
 
 <record>
-       <attribute name="headline">HostDB1.0 Soon to be Released</attribute>
-       <attribute name="date">1 March 2013 13:00</attribute>
-       <attribute name="tag">host1_13_news</attribute>
+       <attribute name="headline">HostDB in Beta Released</attribute>
+       <attribute name="date">30 September 2013 13:00</attribute>
+       <attribute name="tag">host1_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
          <![CDATA[
-<html>
-<head>
-<meta content="text/html; charset=ISO-8859-1"
-http-equiv="content-type">
-<title>crypto_0812_news</title>
-</head>
-<body>
-<div style="text-align: justify; font-family: Arial;"><font face="Arial"><span
-style="font-weight: bold;">We are pleased to announce the release of
-HostDB 1.0</span><br>
-<span style="font-weight: bold;"> </span><br>
-This release of HostDB constitutes a complete rebuild of the
-database.&nbsp; This means that all genomes and data were reloaded and
-reanalyzed.
-
-
-
- </div>
-</body>
-</html>
+ <body>
+    <p><strong>We are pleased to announce a beta release of HostDB</strong></p>
+    <p><br>
+      <strong></strong></p>
+    <p>HostDB is the newest addition to the Eukaryotic Pathogen databases (<strong><a
+          href="http://eupathdb.org">EuPathDB</a></strong>).&nbsp;
+      This resource will provide researchers with the powerful search strategy
+      system to search functional data from host organisms during infection with
+      parasites supported by EuPathDB.&nbsp; The beta release includes the
+      following datasets:</p>
+    <p><br>
+    </p>
+    <ul>
+      <li>The transcriptomes of primary murine macrophages (<em>M. musculus</em>
+        C57BL6J) during infection with 25 strains of <em>Toxoplasma gondii</em>.&nbsp;
+        Additional information about this genome may be viewed in the <strong><a
+            href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByRNASeqmmusC57BL6J_Saeij_Jeroen_25_strains_rnaSeq_RSRC&amp;display=detail#3">Dataset
+            section</a></strong> of HostDB.&nbsp; </li>
+    </ul>
+    <br>
+    <ul>
+      <li>Proteomic analysis of Homo Sapiens during infection with 4 <em>Toxoplasma
+          gondii </em>(GT1, ME49, RH and VEG) strains.&nbsp; Additional
+        information about this genome may be viewed in the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByProteomicshsapREF_quantitativeMassSpec_Wastling_Tgondii_Infection_timecourse_RSRC&amp;display=detail#5">Dataset
+            section</a></strong> of HostDB.&nbsp; </li>
+    </ul>
+    <p>We look forward to expanding this database in data content and
+      functionality.&nbsp; As with all of out community driven databases we
+      encourage you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
+      and provide us with you <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
+      </p>
+    <p><br>
+    </p>
+    <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
+          style="font-style: italic;">EuPathDB
+          on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+  </body>
           ]]>
        </attribute>
 </record>
