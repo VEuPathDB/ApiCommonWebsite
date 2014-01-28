@@ -72,9 +72,74 @@
        </attribute>
 </record>
 
-
-
-
+<record>
+       <attribute name="headline">EuPathDB Annual Workshop</attribute>
+       <attribute name="date">14 January 2014 15:00</attribute>
+       <attribute name="tag">eupathworkshop2014</attribute>
+       <attribute name="category">workshop</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+ <body>
+    <p>We are pleased to announce the 9th annual EuPathDB workshop to be held in
+      Athens, Georgia, USA from June 15 to Wednesday, June 18, 2014.&nbsp;&nbsp;
+      <br>
+      <br>
+      Please note that the workshop expenses, in addition to room and board
+      costs are covered by EuPathDB (see cost and fees section below).&nbsp; <br>
+      <br>
+      Come learn how to effectively use EuPathDB resources and mine available
+      data to help guide your research.<br>
+      <br>
+      For more information and to apply, please visit:
+      http://workshop.eupathdb.org/current/<br>
+      <br>
+      The workshop will cover all of our component databases (EuPathDB,
+      AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB, PiroplasmaDB,
+      ToxoDB, TrichDB, TriTrypDB and OrthoMCL), and will run from 6:00PM (18:00)
+      on Sunday, June 15 to 5:00PM (17:00) on Wednesday, June 18, 2014.<br>
+      <br>
+      The application deadline is February 28, 2014 and the course is limited to
+      30 participants.<br>
+      <br>
+      <em><strong>Who should apply:</strong></em>&nbsp; This workshop is
+      intended to be a 3 day thorough and intensive introduction to database
+      resources that are part of the EuPathDB.org Bioinformatics Resource Center
+      (EuPathDB, AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB,
+      PiroplasmaDB, ToxoDB, TrichDB, TriTrypDB and OrthoMCL). The ideal
+      candidate would have a need to become an expert user of one or more of
+      these database resources and presumably has a bioinformatics research
+      problem that they might work on as part of their training while attending
+      the course. Preference will be given to applicants that are in a position
+      to benefit most from intensive training and that are in a position to
+      return to their home institution and transfer their newly acquired
+      knowledge to others. Evaluation of the applications will focus heavily on
+      your responses to the questions asked on the application page and on
+      letters of recommendation.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <strong><em>Costs and Fees:</em> </strong>The course is free. Housing
+      (double occupancy), all training materials and lunches are covered.
+      Attendees are expected to provide their own transportation to the course
+      and pay for a few of their meals. Letters of acceptance will be mailed
+      early to facilitate the solicitation of outside travel funds.<br>
+      <br>
+      Hotel room charges for a shared room will be paid by EuPathDB for the
+      nights of June 15 through June 18. Attendees who would like to have a
+      private room will need to pay the difference of $47 per night plus
+      tax.&nbsp;&nbsp;&nbsp; <br>
+      <br>
+      For more information and to apply, please visit:
+      http://workshop.eupathdb.org/current/<br>
+      <br>
+      If you have any questions or concerns please email help@eupathdb.org<br>
+      <br>
+      &nbsp;&nbsp;&nbsp; <br>
+      <br>
+      &nbsp; </p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
 
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
