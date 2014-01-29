@@ -43,23 +43,26 @@
     </p>
     <ul>
       <li>The transcriptomes of primary murine macrophages (<em>M. musculus</em>
-        C57BL6J) during infection with 25 strains of <em>Toxoplasma gondii</em>.&nbsp;
-        Additional information about this genome may be viewed in the <strong><a
-            href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByRNASeqmmusC57BL6J_Saeij_Jeroen_25_strains_rnaSeq_RSRC&amp;display=detail#3">Dataset
-            section</a></strong> of HostDB.&nbsp; </li>
+        C57BL6J) during infection with 25 strains of <em>Toxoplasma gondii</em>
+        (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot <em>et
+              al.</em></a></strong>).&nbsp; For full attribution and available
+        searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByRNASeqmmusC57BL6J_Saeij_Jeroen_25_strains_rnaSeq_RSRC&amp;display=detail#3">Dataset
+            details</a></strong>.&nbsp; </li>
     </ul>
     <br>
     <ul>
       <li>Proteomic analysis of Homo Sapiens during infection with 4 <em>Toxoplasma
-          gondii </em>(GT1, ME49, RH and VEG) strains.&nbsp; Additional
-        information about this genome may be viewed in the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByProteomicshsapREF_quantitativeMassSpec_Wastling_Tgondii_Infection_timecourse_RSRC&amp;display=detail#5">Dataset
-            section</a></strong> of HostDB.&nbsp; </li>
+          gondii </em>(GT1, ME49, RH and VEG) strains graciously provided prepublication by
+        the Johnathan Wastling group (University of Liverpool).&nbsp; For full
+        attribution and available searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByProteomicshsapREF_quantitativeMassSpec_Wastling_Tgondii_Infection_timecourse_RSRC&amp;display=detail#5">Dataset
+            details</a></strong>. This data was generated as part of one of the
+        EuPathDB-funded driving biological projects.</li>
     </ul>
+    <br>
     <p>We look forward to expanding this database in data content and
-      functionality.&nbsp; As with all of out community driven databases we
+      functionality.&nbsp; As with all of our community driven databases we
       encourage you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
-      and provide us with you <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
-      </p>
+      and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</p>
     <p><br>
     </p>
     <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
