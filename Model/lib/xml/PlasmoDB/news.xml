@@ -35,14 +35,17 @@
       <br>
       <strong>New data in this release</strong>:</div><br>
     <ul style="text-align: justify;">
-      <li>A new search category called "Host response" has been added to
-        PlasmoDB (Under the heading "Identify genes By" on the home page).&nbsp;
-        This section includes a serum antibody level dataset (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/20351286">Crompton
-            <em>et al.</em></a></strong>). Samples from this study may be
-        grouped based on metadata (ie. age, sex, disease state, etc...) and
-        compared to identify genes (antigens) detected on antibody arrays by
-        serum samples.&nbsp; For full attribution and available searches please see the <strong><a href="http://plasmodb.org/plasmo/getDataset.do?datasets=pfal3D7_microarrayAntibody_Crompton_Mali_RSRC,pfal3D7_microarrayAntibody_Crompton_Mali_RSRC,pfal3D7_microarrayAntibody_Crompton_Mali_RSRC">dataset
-            details</a></strong>.</li>
+      <li>Serum antibody levels determined by protein microarray (<strong><a
+            href="http://www.ncbi.nlm.nih.gov/pubmed/20351286">Crompton
+            <em>et al.</em></a></strong>).&nbsp; For full attribution and
+        available searches please see the <strong><a href="http://plasmodb.org/plasmo/getDataset.do?datasets=pfal3D7_microarrayAntibody_Crompton_Mali_RSRC,pfal3D7_microarrayAntibody_Crompton_Mali_RSRC,pfal3D7_microarrayAntibody_Crompton_Mali_RSRC">dataset
+            details</a></strong>.&nbsp; This data can be found under a new
+        search category called "Host Response" that has been added to PlasmoDB under
+        the heading "Identify genes By" on the home page.&nbsp; The search
+        against this dataset offers versatile sample grouping based on metadata
+        (ie. age, sex, disease state, etc...) and returns genes whose protein
+        products were the target of antibodies found in the serum of malaria
+        patients.</li>
     </ul>
     <div style="text-align: justify;"><br>
     </div>
@@ -53,9 +56,9 @@
         (a non-lethal 17X clone).&nbsp; Additional information about all genomes
         may be viewed in the <strong><a href="http://plasmodb.org/plasmodb/getDataset.do?datasets=pyoeyoelii17XNL_primary_genome_RSRC">dataset
             section</a></strong> of PlasmoDB.&nbsp; Note that this genome was
-        graciously provided by GeneDB pre-publication - please consult with the
-        Principal Investigator before undertaking large scale analyses of the
-        annotation or underlying sequence.&nbsp; This genome sequence and
+        graciously provided by GeneDB pre-publication.&nbsp; Please consult with
+        the Principal Investigator before undertaking large scale analyses of
+        the annotation or underlying sequence.&nbsp; This genome sequence and
         annotation will replace the previous 17XNL sequence and annotation as
         the reference 17X genome. The genome sequence and annotation of the
         previous 17XNL has been temporarily removed but access is still
@@ -100,16 +103,15 @@
       <br>
       <strong>New database:&nbsp; </strong></div><br>
     <ul style="text-align: justify;">
-      <li>EuPathDB is pleased to announce the release of a beta version of <a href="http://hostdb.org"><strong>HostDB</strong></a>;
-        a resource dedicated to integrating functional host response data.&nbsp;
-        The beta release includes the human and mouse genomes and two example
-        host response to <em>Toxoplasma </em>infection<em> </em>datasets
-        (RNA-seq and quantitative proteomics).&nbsp; We look forward to
-        expanding this database in data content and functionality.&nbsp; As with
-        all of our community driven databases we encourage you to explore <strong><a
+      <li>EuPathDB is pleased to announce the release of a beta version of
+        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
+        dedicated to integrating functional host response data.&nbsp; The beta
+        release includes the human and mouse genomes and two datasets (RNA-Seq
+        and quantitative proteomics) examining the host response to Toxoplasma
+        infection.&nbsp; We look forward to expanding this database in data
+        content and functionality.&nbsp; We encourage you to explore <strong><a
             href="http://hostdb.org">HostDB</a></strong>
-        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
-        </li>
+        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
     </ul>
     <div style="text-align: justify;"><br>
     </div>
