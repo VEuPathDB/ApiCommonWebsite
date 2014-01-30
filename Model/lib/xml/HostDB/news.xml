@@ -23,39 +23,124 @@
 
 
 <record>
-       <attribute name="headline">HostDB1.0 Soon to be Released</attribute>
-       <attribute name="date">1 March 2013 13:00</attribute>
-       <attribute name="tag">host1_13_news</attribute>
+       <attribute name="headline">HostDB in Beta Released</attribute>
+       <attribute name="date">30 September 2013 13:00</attribute>
+       <attribute name="tag">host1_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
          <![CDATA[
-<html>
-<head>
-<meta content="text/html; charset=ISO-8859-1"
-http-equiv="content-type">
-<title>crypto_0812_news</title>
-</head>
-<body>
-<div style="text-align: justify; font-family: Arial;"><font face="Arial"><span
-style="font-weight: bold;">We are pleased to announce the release of
-HostDB 1.0</span><br>
-<span style="font-weight: bold;"> </span><br>
-This release of HostDB constitutes a complete rebuild of the
-database.&nbsp; This means that all genomes and data were reloaded and
-reanalyzed.
-
-
-
- </div>
-</body>
-</html>
+ <body>
+    <p><strong>We are pleased to announce a beta release of HostDB</strong></p>
+    <p><br>
+      <strong></strong></p>
+    <p>HostDB is the newest addition to the Eukaryotic Pathogen databases (<strong><a
+          href="http://eupathdb.org">EuPathDB</a></strong>).&nbsp;
+      Apply the powerful search strategy system to query functional data from host organisms during infection with parasites.&nbsp; The beta release includes the
+      following datasets:</p>
+    <p><br>
+    </p>
+    <ul>
+      <li>The transcriptomes of primary murine macrophages (<em>M. musculus</em>
+        C57BL6J) during infection with 25 strains of <em>Toxoplasma gondii</em>
+        (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot <em>et
+              al.</em></a></strong>).&nbsp; For full attribution and available
+        searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByRNASeqmmusC57BL6J_Saeij_Jeroen_25_strains_rnaSeq_RSRC&amp;display=detail#3">Dataset
+            details</a></strong>.&nbsp; </li>
+    </ul>
+    <br>
+    <ul>
+      <li>Proteomic analysis of Homo Sapiens during infection with 4 <em>Toxoplasma
+          gondii </em>(GT1, ME49, RH and VEG) strains graciously provided prepublication by
+        the Johnathan Wastling group (University of Liverpool).&nbsp; For full
+        attribution and available searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByProteomicshsapREF_quantitativeMassSpec_Wastling_Tgondii_Infection_timecourse_RSRC&amp;display=detail#5">Dataset
+            details</a></strong>. This data was generated as part of one of the
+        EuPathDB-funded driving biological projects.</li>
+    </ul>
+    <br>
+    <p>We look forward to expanding this database in data content and
+      functionality.&nbsp; We encourage you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
+      and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
+      </p>
+    <p><br>
+    </p>
+    <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
+          style="font-style: italic;">EuPathDB
+          on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+  </body>
           ]]>
        </attribute>
 </record>
 
-
-
-
+<record>
+       <attribute name="headline">EuPathDB Annual Workshop</attribute>
+       <attribute name="date">14 January 2014 15:00</attribute>
+       <attribute name="tag">eupathworkshop2014</attribute>
+       <attribute name="category">workshop</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+ <body>
+    <p>We are pleased to announce the 9th annual EuPathDB workshop to be held in
+      Athens, Georgia, USA from June 15 to Wednesday, June 18, 2014.&nbsp;&nbsp;
+      <br>
+      <br>
+      Please note that the workshop expenses, in addition to room and board
+      costs are covered by EuPathDB (see cost and fees section below).&nbsp; <br>
+      <br>
+      Come learn how to effectively use EuPathDB resources and mine available
+      data to help guide your research.<br>
+      <br>
+      For more information and to apply, please visit:
+      http://workshop.eupathdb.org/current/<br>
+      <br>
+      The workshop will cover all of our component databases (EuPathDB,
+      AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB, PiroplasmaDB,
+      ToxoDB, TrichDB, TriTrypDB and OrthoMCL), and will run from 6:00PM (18:00)
+      on Sunday, June 15 to 5:00PM (17:00) on Wednesday, June 18, 2014.<br>
+      <br>
+      The application deadline is February 28, 2014 and the course is limited to
+      30 participants.<br>
+      <br>
+      <em><strong>Who should apply:</strong></em>&nbsp; This workshop is
+      intended to be a 3 day thorough and intensive introduction to database
+      resources that are part of the EuPathDB.org Bioinformatics Resource Center
+      (EuPathDB, AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB,
+      PiroplasmaDB, ToxoDB, TrichDB, TriTrypDB and OrthoMCL). The ideal
+      candidate would have a need to become an expert user of one or more of
+      these database resources and presumably has a bioinformatics research
+      problem that they might work on as part of their training while attending
+      the course. Preference will be given to applicants that are in a position
+      to benefit most from intensive training and that are in a position to
+      return to their home institution and transfer their newly acquired
+      knowledge to others. Evaluation of the applications will focus heavily on
+      your responses to the questions asked on the application page and on
+      letters of recommendation.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <strong><em>Costs and Fees:</em> </strong>The course is free. Housing
+      (double occupancy), all training materials and lunches are covered.
+      Attendees are expected to provide their own transportation to the course
+      and pay for a few of their meals. Letters of acceptance will be mailed
+      early to facilitate the solicitation of outside travel funds.<br>
+      <br>
+      Hotel room charges for a shared room will be paid by EuPathDB for the
+      nights of June 15 through June 18. Attendees who would like to have a
+      private room will need to pay the difference of $47 per night plus
+      tax.&nbsp;&nbsp;&nbsp; <br>
+      <br>
+      For more information and to apply, please visit:
+      http://workshop.eupathdb.org/current/<br>
+      <br>
+      If you have any questions or concerns please email help@eupathdb.org<br>
+      <br>
+      &nbsp;&nbsp;&nbsp; <br>
+      <br>
+      &nbsp; </p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
 
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>

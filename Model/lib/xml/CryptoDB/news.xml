@@ -20,6 +20,108 @@
     </record>
 -->
 <record>
+       <attribute name="headline">CryptoDB 6.0 News</attribute>
+       <attribute name="date">30 January 2014 13:00</attribute>
+       <attribute name="tag">crypto01_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<body>
+    <div style="text-align: justify;"><strong>We are pleased to announce the
+        release of CryptoDB 6.0</strong><br>
+      <br>
+      <br>
+      <strong>New data in this release</strong>:</div><br><br>
+    <ul style="text-align: justify;">
+      <li><em>Cryptosporidium parvum </em>Iowa II Oocyst Transcriptome: Control
+        vs. UV treatment (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23171372"><span
+            style="color: #0000ee;"><span
+              style="text-decoration: underline;"><span
+                style="font-weight: bold;">Zhang
+                <em>et al.</em></span></span></span></a>).&nbsp; For full
+        attribution and available searches please see the <strong><a
+            href="http://CryptoDB.org/cryptodb/getDataset.do?datasets=cparIowaII_microarrayExpression_Zhu_GSE34307_RSRC,cparIowaII_microarrayExpression_Zhu_GSE34307_RSRC">dataset
+            details</a></strong>.</li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+      <li><span class="tracktitle">This release of CryptoDB constitutes a
+          complete rebuild of the database and includes a number of new features
+          (see below). The latest versions of genome sequence and annotation
+          were loaded and all analyses were rerun and updated (InterProSCan,
+          SignalP, functional data mapping, etc.).</span></li>
+    </ul>
+    <div style="text-align: justify;"><br>
+      <br>
+      <strong>New features:</strong><br>
+      <br>
+      <br>
+      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+      Share your search strategies with the community by making them
+      public.&nbsp; Making one of your strategies public is simple; go to the
+      "All" tab in your "My Strategies" section and click on a strategy's public
+      checkbox.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+      The gene results now include a column for score and percent identity
+      enabling sorting of results.<br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+        Domain searches</span>:&nbsp; Now this search includes an advanced
+      type-ahead function that allows searching for multiple GO Terms or domains
+      simultaneously.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+      Registered users can now update their email addresses from their profiles.<br>
+      <br>
+      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+      The organism filter table has been unified across EuPathDB sites.<br>
+      <br>
+      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+      Numerical columns in a result can now be analyzed with a dynamic histogram
+      that enables binning and plotting values in normal or log scales.<br>
+      <br>
+      <span style="text-decoration: underline;">Fixed</span>: The orthology
+      phyletic pattern search now remembers your selected parameters making it
+      easier to revise searches.<br>
+      <br>
+      <br>
+      <strong>New database:&nbsp; </strong></div><br>
+    <ul style="text-align: justify;">
+      <li>EuPathDB is pleased to announce the release of a beta version of <a
+            href="http://hostdb.org"><strong>HostDB</strong></a>
+          - a resource dedicated to integrating functional host response
+          data.&nbsp; The beta release includes the human and mouse genomes and
+          two datasets (RNA-Seq and quantitative proteomics) examining the host
+          response to Toxoplasma infection.&nbsp; We look forward to expanding
+          this database in data content and functionality.&nbsp; We encourage
+          you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
+          and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span><span
+        style="font-weight: bold; font-style: italic;"></span></div>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+  </body>
+          ]]>
+       </attribute>
+</record>
+<record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">14 January 2014 15:00</attribute>
        <attribute name="tag">eupathworkshop2014</attribute>
@@ -46,7 +148,7 @@
       ToxoDB, TrichDB, TriTrypDB and OrthoMCL), and will run from 6:00PM (18:00)
       on Sunday, June 15 to 5:00PM (17:00) on Wednesday, June 18, 2014.<br>
       <br>
-      The application deadline is February 7, 2014 and the course is limited to
+      The application deadline is February 28, 2014 and the course is limited to
       30 participants.<br>
       <br>
       <em><strong>Who should apply:</strong></em>&nbsp; This workshop is
