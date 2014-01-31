@@ -30,7 +30,7 @@ sub run {
   my $sql = <<EOSQL;
 SELECT s.source_id, s.sequence, ' | ' || sa.sequence_description as description
 FROM ApidbTuning.NaSequence s, ApidbTuning.SequenceId si, ApidbTuning.SequenceAttributes sa
-WHERE  si.id = lower(?)
+WHERE  lower(si.id) = lower(?)
 AND s.source_id = si.sequence
 AND sa.source_id = s.source_id
 EOSQL
