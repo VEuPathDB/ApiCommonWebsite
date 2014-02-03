@@ -762,8 +762,7 @@ public class CommentFactory implements ConnectionContainer {
         sql.append("u.first_name || ' ' || u.last_name || ', ' || u.title  as user_name, ");
         sql.append("u.organization, c.content, c.review_status_id FROM ");
         sql.append(config.getCommentSchema() + "comments c, ");
-        sql.append(config.getUserLoginSchema() + "users"
-                + config.getUserLoginDbLink() + " u ");
+        sql.append(config.getUserLoginSchema() + "users u ");
         sql.append("WHERE c.user_id = u.user_id ");
         sql.append("AND c.comment_id = ? ");
 
@@ -1256,8 +1255,7 @@ public class CommentFactory implements ConnectionContainer {
         sql.append("SELECT c.comment_id FROM ");
         sql.append(config.getCommentSchema() + "comments c, ");
         sql.append(config.getCommentSchema() + "commentStableId d, ");
-        sql.append(config.getUserLoginSchema() + "users"
-                + config.getUserLoginDbLink() + " u ");
+        sql.append(config.getUserLoginSchema() + "users u ");
         sql.append("WHERE c.user_id = u.user_id ");
         sql.append("AND c.is_visible = 1 ");
         sql.append("AND c.comment_id = d.comment_id(+) ");
