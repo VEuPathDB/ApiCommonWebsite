@@ -238,6 +238,16 @@
 
 <!-- ~~~~~~~~~~~~~ IN wdkAttribute.tag for data types using wdk default view ~~~~~~~~~~~~~~~~~ -->
 
+    <c:set var="align" value="align='${recAttr.attributeField.align}'" />
+    <c:set var="nowrap">
+        <c:if test="${j == 0 || recAttr.attributeField.nowrap}">white-space:nowrap;</c:if>
+    </c:set>
+    <c:set var="pkValues" value="${primaryKey.values}" />
+    <c:set var="projectId" value="${pkValues['project_id']}" />
+    <c:set var="id" value="${pkValues['source_id']}" />
+    <c:set var="recNam" value="${record.recordClass.fullName}"/>
+    <c:set var="fieldVal" value="${recAttr.briefDisplay}"/>
+
     <td ${align} style="${nowrap}padding:3px 2px">
     <div class="attribute-summary">
 
