@@ -86,7 +86,7 @@ sub run {
       &validateMapCoordinates($genome, $alignDir, $assembly, $assemblyStart, $assemblyStop, $agpDir);
     };
     if($@) {
-      print STDOUT $@ . "<br/>";
+      print STDOUT $@; 
       next;
     }
 
