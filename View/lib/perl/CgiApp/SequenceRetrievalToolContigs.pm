@@ -119,7 +119,7 @@ sub validateIds {
   my $sql = <<EOSQL;
 SELECT s.sequence
 FROM ApidbTuning.SequenceId s
-WHERE s.id = lower(?)
+WHERE lower(s.id) = lower(?)
 EOSQL
 
   my @badIds;
