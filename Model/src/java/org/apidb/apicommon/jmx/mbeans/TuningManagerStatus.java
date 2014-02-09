@@ -1,7 +1,5 @@
 package org.apidb.apicommon.jmx.mbeans;
 
-import foo
-
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
