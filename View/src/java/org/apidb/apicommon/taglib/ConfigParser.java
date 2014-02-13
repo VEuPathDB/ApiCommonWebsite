@@ -70,7 +70,7 @@ public class ConfigParser extends SimpleTagSupport {
         } catch (Exception e) {
             throw new JspException(e);
         }
-	NodeList site_nodes = config.getElementsByTagName("model");
+	NodeList site_nodes = config.getElementsByTagName("project");
         export(site_nodes);
     } 
 
@@ -81,8 +81,9 @@ public class ConfigParser extends SimpleTagSupport {
 	for(int i=0;i<nodeList.getLength();i++){
 	    Node node = nodeList.item(i);
 	    NamedNodeMap namedNodeMap = node.getAttributes();
-	    projectId = namedNodeMap.getNamedItem("projectId").getNodeValue();
-	    url = namedNodeMap.getNamedItem("url").getNodeValue();
+	    projectId = namedNodeMap.getNamedItem("name").getNodeValue();
+	    url = namedNodeMap.getNamedItem("site").getNodeValue();
+			url = url + "services/WsfService";
 	    map.put(projectId,url);
 	}
 	jspContext.setAttribute(var, map, varScope);
