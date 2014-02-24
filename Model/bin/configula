@@ -59,8 +59,6 @@ required:
  commentDb.login: $wmc->{'userDb_login'}
  commentDb.password: $wmc->{'userDb_password'}
  gushome: $wmc->{'gus_home'}
-
- plasmoPubsURL: 'http://v4-4.plasmodb.org/publications/publications-v5.php?uid=28&gid='
  
  amebURL: http://$wmc->{'host_class_prefix'}amoebadb.org/amoeba/
  crypURL: http://$wmc->{'host_class_prefix'}cryptodb.org/cryptodb/
