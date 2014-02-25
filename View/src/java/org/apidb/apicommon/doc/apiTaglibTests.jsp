@@ -132,8 +132,8 @@ LOGIN_SCHEMA from model.prop: <b>${props['LOGIN_SCHEMA']}</b>
 <hr>
 <h3>api:properties</h3>
 <c:catch var="e">
-<api:properties var="build" propfile="WEB-INF/wdk-model/config/.build.info" />
-Parse Java property file into page scope. Example reading WEB-INF/wdk-model/config/.build.info
+<api:properties var="build" propfile="WEB-INF/wdk-model/.buildlog/gus-build-state.log" />
+Parse Java property file into page scope. Example reading WEB-INF/wdk-model/.buildlog/gus-build-state.log
 <blockquote>
 Last.build.timestamp: <b>${build['!Last.build.timestamp']}</b>
 </blockquote>
