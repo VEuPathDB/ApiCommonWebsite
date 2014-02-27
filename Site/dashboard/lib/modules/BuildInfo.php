@@ -17,7 +17,7 @@ class BuildInfo {
   function __construct() {
 
     try {
-      $this->data_map = parse_properties($_SERVER['GUS_HOME'] . '/.buildlog/gus-build-state.log');
+      $this->data_map = parse_properties($_SERVER['GUS_HOME'] . '/config/.build.info');
     } catch (Exception $e) {
       echo 'Exception: ', $e->getMessage(), "\n";
       return;
