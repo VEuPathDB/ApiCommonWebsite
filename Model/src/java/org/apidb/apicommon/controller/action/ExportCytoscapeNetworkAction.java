@@ -1,10 +1,10 @@
 package org.apidb.apicommon.controller.action;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
-import org.apache.struts.action.Action;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
