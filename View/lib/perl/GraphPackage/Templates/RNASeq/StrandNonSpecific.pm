@@ -22,7 +22,7 @@ sub init {
   my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
 
   my $sh = $dbh->prepare($sql);
-  $sh->execute($datasetName,$id);
+  $sh->execute($datasetName);
 
 
   my ($minProfile, $diffProfile, $percentileProfile, $count);
