@@ -64,7 +64,9 @@ wdkRecord projectId: <b>${wdkRecord.primaryKey.values['project_id']}</b>
 <br>
 generec projectId: <b>${wdkRecord.primaryKey.values['project_id']}</b>
 <br>
-wdkRecord db EST library: <b>${fn:toLowerCase(wdkRecord.attributes['overview'])}</b>
+generec Gene overview: <b>${generec.attributes['overview']}</b>
+<br>
+wdkRecord EST overview: <b>${wdkRecord.attributes['overview']}</b>
 </blockquote>
 
 <p>applicationScope.wdkModel, provided by the webapp, is accessible in this page scope, 
