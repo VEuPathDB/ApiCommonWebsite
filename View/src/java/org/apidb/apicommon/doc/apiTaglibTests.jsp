@@ -39,7 +39,9 @@ UtilityRecordClasses.SiteInfo (wdkRecord) co-mingled in same page.
 <%-- 
 Record 1, with defaults recordKey=wdkRecord, source_id=' ', project_id=' '
 --%>
+<%-- as fo March 2014 the utility record does not exist in model anymore
 <api:wdkRecord name="UtilityRecordClasses.SiteInfo"/>
+--%>
 <%-- 
 Record 2, with explicit param settings. use of <rtexprvalue> in source_id
 --%>
@@ -69,13 +71,14 @@ allowing access to properties from model.prop<br>
 LOGIN_SCHEMA from model.prop: <b>${props['LOGIN_SCHEMA']}</b>
 </blockquote>
 
+<%-- api:table broken March 2014
 <hr>
 <h3>api:table</h3>
 <p>
 <blockquote>
 <table border="1" cellspacing="3" cellpadding="2" align="${align}">
 
-<%-- table header --%>
+
 <api:table var="tbl" tableName="AllDbLinks">
 
   <tr class="secondary3">
@@ -128,12 +131,13 @@ LOGIN_SCHEMA from model.prop: <b>${props['LOGIN_SCHEMA']}</b>
 </api:table>
 </table>
 </blockquote>
+--%>
 
 <hr>
 <h3>api:properties</h3>
 <c:catch var="e">
-<api:properties var="build" propfile="WEB-INF/wdk-model/.buildlog/gus-build-state.log" />
-Parse Java property file into page scope. Example reading WEB-INF/wdk-model/.buildlog/gus-build-state.log
+<api:properties var="build" propfile="WEB-INF/wdk-model/config/.build.info" />
+Parse Java property file into page scope. Example reading WEB-INF/wdk-model/config/.build.info
 <blockquote>
 Last.build.timestamp: <b>${build['!Last.build.timestamp']}</b>
 </blockquote>
