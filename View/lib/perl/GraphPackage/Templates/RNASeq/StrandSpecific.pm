@@ -21,7 +21,7 @@ sub init {
   my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
 
   my $sh = $dbh->prepare($sql);
-  $sh->execute($datasetName,$id);
+  $sh->execute($datasetName);
 
 
   my ($minSenseProfile, $minAntisenseProfile, $diffSenseProfile, $diffAntisenseProfile, $percentileSenseProfile, $percentileAntisenseProfile, $count);

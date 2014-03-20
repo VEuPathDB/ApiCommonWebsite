@@ -17,6 +17,7 @@ import org.eupathdb.common.model.ProjectMapper;
 import org.gusdb.wdk.controller.action.ShowRecordAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
@@ -108,7 +109,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
     private boolean hasMultipleRecords(HttpServletRequest request,
             WdkModelBean wdkModel, String rcName, String sourceId)
-            throws WdkModelException {
+            throws WdkModelException, WdkUserException {
         UserBean user = ActionUtility.getUser(servlet, request);
         RecordClassBean recordClass = wdkModel.getRecordClass(rcName);
         Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
