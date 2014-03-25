@@ -7,21 +7,14 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.ExecutionStatus;
 import org.gusdb.wdk.model.user.analysis.StatusLogger;
 
-public class GoEnrichmentPlugin extends AbstractStepAnalyzer {
+public class LongRunningTestPlugin extends AbstractStepAnalyzer {
 
   @SuppressWarnings("unused")
-  private static final Logger LOG = Logger.getLogger(GoEnrichmentPlugin.class);
-  
-  private static final int VERSION = 1;
-  
-  @Override
-  public int getAnalyzerVersion() {
-    return VERSION;
-  }
+  private static final Logger LOG = Logger.getLogger(LongRunningTestPlugin.class);
 
   @Override
   public ExecutionStatus runAnalysis(AnswerValue answerValue, StatusLogger logger) throws WdkModelException {
-    logger.appendLine("Starting GO Enrichment of result set");
+    logger.appendLine("Starting Processing of Result Set");
     for (int i=0; i<30; i++) {
       try {
         Thread.sleep(1000);
@@ -35,7 +28,7 @@ public class GoEnrichmentPlugin extends AbstractStepAnalyzer {
     }
     logger.appendLine("Finished.");
     
-    setResults("GO Enrichment has run successfully!!");
+    setResults("Long-running process has run successfully!!");
     return ExecutionStatus.COMPLETE;
   }
 }
