@@ -86,10 +86,11 @@
                                                        EuPathSiteCommon-Installation,
                                                         ApiCommonShared-Installation,
                                                         ApiCommonShared/Datasources-Installation,
+                                                        ApiCommonWebService-Installation,
+                                                        GBrowse-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/View-Installation,
-                                                        ApiCommonWebsite/Model-Installation,
-                                                        GBrowse-Installation">
+                                                        ApiCommonWebsite/Model-Installation">
 
     <ant target="defaultProjectInstall">
       <property name="project" value="ApiCommonWebsite"/>
