@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+use lib "$ENV{GUS_HOME}/lib/perl";
+
 use strict;
 use DBI;
 use File::Basename;
@@ -7,19 +9,21 @@ use ApiCommonWebsite::Model::ModelConfig;
 
 usage() unless scalar(@ARGV) >= 4;
 
-my ($geneResultSql, $pValueCutoff, $jobDir, @goAssociationSources) = @ARGV;
+my ($geneResultSql, $pValueCutoff, $jobDir, $modelName, @goAssociationSources) = @ARGV;
 
 die "First argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/^select/i;
 die "Second argument must be an e-value exponent (negative number)\n" unless $pValueCutoff =~ /-\d+/;
 die "Third argument must be the job dir, and must exist\n" unless -d $jobDir;
 
-my $c = new ApiCommonWebsite::Model::ModelConfig($model);
+my $c = new ApiCommonWebsite::Model::ModelConfig($modelName);
 
-$dbh = DBI->connect($c->getAppDb->getConnectString, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
+my $dbh = DBI->connect($c->getAppDb->getConnectString, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
 
+# convert list of sources to oracle-compatible string
 my @s = map { "'$_'"} @goAssociationSources;
-
 my $sources = join(",", @s);
+
+my $taxonId = getTaxonId();
 
 getEnrichment($dbh, $taxonId, $sources, $geneResultSql);
 
@@ -31,7 +35,7 @@ sub getEnrichment {
 
   # get query to get back table to feed to python.
   # the columns are:  goId, bgdGeneCount, resultSetGeneCount
-  my $dataSql = getDataSql($taxonId, $source, $geneResultSql);
+  my $dataSql = getDataSql($taxonId, $sources, $geneResultSql);
 
   open(E, "| enrichmentAnalysis $pValueCutoff $annotatedGenesBgd $annotatedGenesResult >> $jobDir/result ") || die "Can't open call to enrichmentAnalysis program: $!\n";
 
@@ -40,6 +44,21 @@ sub getEnrichment {
     print E "$goId\t$geneCountBgd\t$geneCountResult\n";
   }
   close E;
+}
+
+sub getTaxonId {
+  my $sql = "
+SELECT distinct ga.taxon_id)
+FROM  ApidbTuning.GeneAttributes ga,
+     ($geneResultSql) r
+where ga.source_id = r.source_id
+";
+
+  my $stmt = runSql($dbh, $sql);
+  my $count = 0;
+  while (my ($taxonId) = $stmt->fetchrow_array()) { $count++; }
+  die "Result has genes from more than one taxon\n" if $count != 1;
+  return $taxonId;
 }
 
 sub getAnnotatedGenesCountBgd {
@@ -56,7 +75,7 @@ where ga.taxon_id = $taxonId
   my %bgdCntPerTax;
   my $stmt = runSql($dbh, $sql);
   while(my ($taxonId, $geneCount) = $stmt->fetchrow_array()) {
-    $%bgdCntPerTax{$taxonId} = $geneCount;
+    $bgdCntPerTax{$taxonId} = $geneCount;
   }
   return %bgdCntPerTax;
 }
@@ -66,11 +85,9 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 SELECT count(distinct ga.source_id)
-FROM ApidbTuning.GoTermSummary gts, ApidbTuning.GeneAttributes ga,
+FROM ApidbTuning.GoTermSummary gts,
      ($geneResultSql) r
-where ga.taxon_id = $taxonId
-  and ga.source_id = r.source_id
-  and gts.source_id = ga.source_id
+where gts.source_id = r.source_id
   and gts.source in ($sources)
 ";
 
