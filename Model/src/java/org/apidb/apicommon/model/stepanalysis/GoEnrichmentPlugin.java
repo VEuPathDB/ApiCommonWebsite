@@ -22,20 +22,20 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final Logger LOG = Logger.getLogger(LongRunningTestPlugin.class);
 
   @Override
-  public List<String> validateFormParams(Map<String, String[]> formParams) {
-    List<String> errors = new ArrayList<String>();
+  public Map<String,String> validateFormParams(Map<String, String[]> formParams) {
+    Map<String,String> errors = new HashMap<String,String>();
 
     // validate pValueCutoff
-    if (!formParams.containsKey("pValueCutoff")) errors.add("Missing required parameter 'pValueCutoff'");
+    if (!formParams.containsKey("pValueCutoff")) errors.put("pValueCutoff", "Missing required parameter");
     try {
       float pValueCutoff = Float.parseFloat(formParams.get("pValueCutoff")[0]);
       if (pValueCutoff <= 0 || pValueCutoff > 1) throw new NumberFormatException();
     } catch (NumberFormatException e) {
-      errors.add("Parameter 'pValueCutoff' must be a number between greater than 0 and less than or equal to 1");
+      errors.put("pValueCutoff", "Must be a number between greater than 0 and less than or equal to 1");
     }
     
     // validate annotation sources
-    if (!formParams.containsKey("goAssociationsSources")) errors.add("Missing required param 'goAssociationsSources'");
+    if (!formParams.containsKey("goAssociationsSources")) errors.put("goAssociationsSources","Missing required param");
     return errors;
   }
 
