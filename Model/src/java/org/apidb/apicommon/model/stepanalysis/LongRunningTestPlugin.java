@@ -22,13 +22,18 @@ public class LongRunningTestPlugin extends AbstractStepAnalyzer {
         logger.appendLine(msg);
       }
       catch (InterruptedException e) {
-        setResults("Interrupted before completion.");
+        setPersistentCharData("Interrupted before completion.");
         return ExecutionStatus.INTERRUPTED;
       }
     }
     logger.appendLine("Finished.");
     
-    setResults("Long-running process has run successfully!!");
+    setPersistentCharData("Long-running process has run successfully!!");
     return ExecutionStatus.COMPLETE;
+  }
+
+  @Override
+  public Object getResultViewModel() {
+    return getPersistentCharData();
   }
 }

@@ -24,15 +24,20 @@ public class FormTestPlugin extends AbstractStepAnalyzer {
   
   @Override
   public ExecutionStatus runAnalysis(AnswerValue answerValue, StatusLogger log) throws WdkModelException {
-    Map<String,String[]> params = getParamMap();
+    Map<String,String[]> params = getFormParams();
     Map<String,String> prettyParams = new HashMap<>();
     for (String key : params.keySet()) {
       prettyParams.put(key, FormatUtil.arrayToString(params.get(key)));
     }
     String result = FormatUtil.prettyPrint(prettyParams, Style.MULTI_LINE);
     LOG.info("Form test plugin setting following result:\n" + result);
-    setResults(result);
+    setPersistentCharData(result);
     return ExecutionStatus.COMPLETE;
+  }
+
+  @Override
+  public Object getResultViewModel() {
+    return getPersistentCharData();
   }
 
 }
