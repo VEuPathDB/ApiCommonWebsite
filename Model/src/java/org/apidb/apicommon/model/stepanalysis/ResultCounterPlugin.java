@@ -10,8 +10,14 @@ public class ResultCounterPlugin extends AbstractStepAnalyzer {
 
   @Override
   public ExecutionStatus runAnalysis(AnswerValue answerValue, StatusLogger log) throws WdkModelException {
-    setResults(String.valueOf(answerValue.getResultSize()));
+    Integer result = answerValue.getResultSize();
+    setPersistentObject(result);
     return ExecutionStatus.COMPLETE;
+  }
+
+  @Override
+  public Object getResultViewModel() throws WdkModelException {
+    return getPersistentObject();
   }
   
 }
