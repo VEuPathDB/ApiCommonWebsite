@@ -14,31 +14,38 @@ sub run {
   print STDOUT $cgi->start_html(-title => "Data Set Email",
       );
 
+  
+
+  my $datasetsString = join(',', map { "'" . $_ . "'"} split(/,|;/, $dataset));
+#  print STDOUT "STRING $datasetsString <br/><br/><br/>";
+
 #  print STDOUT $cgi->header('text/plain');
 
   my $dbh = $self->getQueryHandle($cgi);
 
-  my $sql = "select dsp.display_name,
-       dsp.display_category,
-       dsp.type,
-       dsp.subtype,
-       listagg(dsc.email, ',') WITHIN GROUP (ORDER BY dataset_contact_id) as email,
-       listagg(dsc.name, ',') WITHIN GROUP (ORDER BY dataset_contact_id) as contact_name,
-       dsp.build_number_introduced,
-      listagg(dsnt.name, ',') WITHIN GROUP (ORDER BY dsnt.name) as dataset_name
-from apidbtuning.datasetpresenter dsp, apidbtuning.datasetcontact dsc, apidbtuning.datasetnametaxon dsnt
-where dsp.dataset_presenter_id = dsc.dataset_presenter_id 
+  my $sql = "select distinct dsp.display_name,
+                dsp.display_category,
+                dsp.type,
+                dsp.build_number_introduced,
+                dsc.name,
+                dsc.email,
+                dsnt.name as dataset
+from apidbtuning.datasetpresenter dsp, apidbtuning.datasetnametaxon dsnt, apidbtuning.datasetcontact dsc
+where dsp.dataset_presenter_id = dsc.dataset_presenter_id
 and dsp.dataset_presenter_id = dsnt.dataset_presenter_id 
-and (dsp.dataset_name_pattern = ? or dsp.name = ?)
-and dsc.email is not null
-group by dsp.display_name, dsp.display_category, dsp.type, dsp.subtype, dsp.build_number_introduced";
-  
-  my $sth = $dbh->prepare($sql);
-  $sth->execute($dataset,$dataset);
+and dsp.name in ($datasetsString)
+";
 
-  while (my ($displayName, $displayCategory, $type, $subtype, $email, $contactName, $buildNumberIntroduced, $datasetNames) = $sth->fetchrow_array) {
+  my $sth = $dbh->prepare($sql);
+  $sth->execute();
+
+  my $data = {};
+
+  while (my ($displayName, $displayCategory, $type, $buildNumberIntroduced, $contact, $email, $dataset) = $sth->fetchrow_array) {
 
     my $dataType ;
+
+    $email = 'Missing Email' unless($email);
 
     if($displayCategory) {
       $dataType = $displayCategory;
@@ -50,25 +57,47 @@ group by dsp.display_name, dsp.display_category, dsp.type, dsp.subtype, dsp.buil
     }
 
 
-    print STDOUT $cgi->h2("Auto Generated Email Message for Contacting Data Providers");
+    $data->{"$displayName $dataType $buildNumberIntroduced"}->{"display_name"} = $displayName;
+    $data->{"$displayName $dataType $buildNumberIntroduced"}->{"data_type"} = $dataType;
+    $data->{"$displayName $dataType $buildNumberIntroduced"}->{"bld_num"} = $buildNumberIntroduced;
+    push @{$data->{"$displayName $dataType $buildNumberIntroduced"}->{"contacts"}}, "$contact - $email";
+    push @{$data->{"$displayName $dataType $buildNumberIntroduced"}->{"datasets"}}, $dataset;
 
-   print STDOUT $cgi->h3("Names and Email");
+  }
 
-    print STDOUT $cgi->start_ul();
-    my @names = split(',', $contactName);
-    my @emails = split(',', $email);
-
-    for(my $i = 0; $i < scalar @names; $i++) {
-      my $nameString = $names[$i] . " - " . $emails[$i];
-      print STDOUT $cgi->li($nameString);
-    }
+  $sth->finish();
 
 
+
+foreach my $key (keys %$data) {
+    my $displayName = $data->{$key}->{"display_name"};
+    my $dataType = $data->{$key}->{"data_type"};
+    my $buildNumberIntroduced = $data->{$key}->{"bld_num"};
+
+  my %contacts;
+  foreach(@{$data->{$key}->{contacts}}) {
+    $contacts{$_} = 1;
+  }
+
+  my %datasets;
+  foreach(@{$data->{$key}->{datasets}}) {
+    $datasets{$_} = 1;
+  }
+
+  my $datasetNames = join(',',  keys(%datasets));
+  
+  print STDOUT $cgi->h2("Auto Generated Email Message for Contacting Data Providers");
+
+  print STDOUT $cgi->h3("Names and Email");
+  print STDOUT $cgi->start_ul();
+  
+  foreach(keys %contacts) {
+    print STDOUT $cgi->li($_);
+  }
     print STDOUT $cgi->end_ul();
 
 
        print STDOUT $cgi->h3("Subject Line");
-
     print STDOUT $cgi->start_ul();
     print STDOUT $cgi->li("[EuPathDB bld${buildNumberIntroduced}] ${projectId} ${dataType} Experiment Ready for Review");
     print STDOUT $cgi->end_ul();
@@ -83,7 +112,7 @@ group by dsp.display_name, dsp.display_category, dsp.type, dsp.subtype, dsp.buil
 
     my $link = "http://qa.${projectId}.org/a/getDataset.do?datasets=$datasetNames";
 
-    print STDOUT $cgi->a( {href =>"http://qa.${projectId}.org/a/getDataset.do?datasets=$datasetNames"}, "http://qa.${projectId}.org/a/getDataset.do?datasets=$datasetNames");
+    print STDOUT $cgi->a( {href => $link}, $link);
 
     print STDOUT $cgi->p("username:  TODO <br /> password:  TODO");
 
@@ -98,13 +127,13 @@ group by dsp.display_name, dsp.display_category, dsp.type, dsp.subtype, dsp.buil
 
     print STDOUT $cgi->p("------------------------------------------------------------------------------------------------");
 
-  }
+
 
     print STDOUT $cgi->end_html();
   
-  $sth->finish();
 
 
+}
 
 
 
