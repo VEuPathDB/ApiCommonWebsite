@@ -29,11 +29,6 @@ public class FormTestPlugin extends AbstractStepAnalyzer {
   }
   
   @Override
-  public List<String> validateFormParams(Map<String, String[]> formParams) {
-    return null;
-  }
-  
-  @Override
   public ExecutionStatus runAnalysis(AnswerValue answerValue, StatusLogger log) throws WdkModelException {
     Map<String,String[]> params = getFormParams();
     Map<String,String> prettyParams = new HashMap<>();

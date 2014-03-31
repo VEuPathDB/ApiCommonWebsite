@@ -3,12 +3,12 @@ package org.apidb.apicommon.model.stepanalysis;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
+import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
 
@@ -21,17 +21,17 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String LOCATION_PARAM = "location";
   
   @Override
-  public List<String> validateFormParams(Map<String,String[]> params) {
-    List<String> errors = new ArrayList<>();
+  public Map<String,String> validateFormParams(Map<String,String[]> params) {
+    Map<String,String> errors = new HashMap<>();
     String[] vals = params.get(LOCATION_PARAM);
     if ( vals == null || vals.length != 1 || vals[0].isEmpty()) {
-      errors.add("Location value cannot be empty.");
+      errors.put(LOCATION_PARAM, "Location value cannot be empty.");
     }
     return errors;
   }
   
   @Override
-  protected String[] getCommand(AnswerValue answerValue) {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException {
     return new String[]{ LIST_EXECUTABLE, LIST_OPTIONS, getFormParams().get(LOCATION_PARAM)[0] };
   }
   

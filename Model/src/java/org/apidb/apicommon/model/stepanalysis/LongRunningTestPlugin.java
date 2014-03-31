@@ -9,27 +9,30 @@ import org.gusdb.wdk.model.user.analysis.StatusLogger;
 
 public class LongRunningTestPlugin extends AbstractStepAnalyzer {
 
-  @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(LongRunningTestPlugin.class);
 
   @Override
   public ExecutionStatus runAnalysis(AnswerValue answerValue, StatusLogger logger) throws WdkModelException {
-    logger.appendLine("Starting Processing of Result Set");
-    for (int i=0; i<30; i++) {
+    logBoth(logger, "Starting Processing of Result Set");
+    for (int i = 0; i < 30; i++) {
       try {
         Thread.sleep(1000);
-        String msg = "Processed " + (i+1) + "/30 of job.";
-        logger.appendLine(msg);
+        logBoth(logger, "Processed " + (i+1) + "/30 of job.");
       }
       catch (InterruptedException e) {
+        logBoth(logger, "Interrupted!");
         setPersistentCharData("Interrupted before completion.");
         return ExecutionStatus.INTERRUPTED;
       }
     }
-    logger.appendLine("Finished.");
-    
     setPersistentCharData("Long-running process has run successfully!!");
+    logBoth(logger, "Finished.");    
     return ExecutionStatus.COMPLETE;
+  }
+
+  private void logBoth(StatusLogger logger, String message) throws WdkModelException {
+    LOG.info(message);
+    logger.appendLine(message);
   }
 
   @Override
