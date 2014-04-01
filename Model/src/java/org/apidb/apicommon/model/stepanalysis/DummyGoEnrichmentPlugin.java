@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.GoEnrichmentPlugin.FormViewModel;
+import org.apidb.apicommon.model.stepanalysis.GoEnrichmentPlugin.ResultRow;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.xml.NamedValue;
@@ -56,7 +57,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       }
     }
 
-    public ResultRow getHeaderRow { return HEADER_ROW; }
+    public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
     public List<NamedValue> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return _formParams.get(GoEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
