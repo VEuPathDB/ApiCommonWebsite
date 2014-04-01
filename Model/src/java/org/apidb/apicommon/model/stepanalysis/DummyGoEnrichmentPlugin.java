@@ -67,7 +67,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   protected String getStdoutFileName() {
-    return "enrichmentResults.xls";
+    return "enrichmentResults.tab";
   }
 
   @Override
