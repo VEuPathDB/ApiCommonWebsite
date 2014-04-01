@@ -46,7 +46,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       _goTerm = goTerm;
     }
 
-    public String getpValue() { return _pValue; }
+    public String getPvalue() { return _pValue; }
     public String getGoId() { return _goId; }
     public String getBgdGenes() { return _bgdGenes; }
     public String getResultGenes() { return _resultGenes; }
