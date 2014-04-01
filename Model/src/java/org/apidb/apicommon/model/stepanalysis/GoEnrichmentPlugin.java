@@ -16,6 +16,8 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.analysis.IllegalStepException;
 
 public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -118,6 +120,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     return new String[]{ "apiGoEnrichment", idSql, pValueCutoff, getStorageDirectory() + "/result", wdkModel.getProjectId(), sourcesStr };
   }
 
+  @Override
+  public void preApproveStep(Step step) throws IllegalStepException {
+    // TODO: fill me in to only accept steps with a single org
+  }
+  
   @Override
   public Object getFormViewModel() throws WdkModelException {
     return new FormViewModel();
