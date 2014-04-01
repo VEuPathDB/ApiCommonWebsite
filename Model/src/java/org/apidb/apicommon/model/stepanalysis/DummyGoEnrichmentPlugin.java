@@ -16,6 +16,8 @@ import org.gusdb.fgputil.IoUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.analysis.IllegalStepException;
 
 public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -82,6 +84,13 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected String getStdoutFileName() {
     return "enrichmentResults.xls";
+  }
+
+  @Override
+  public void preApproveStep(Step step) throws IllegalStepException {
+    if (!step.isBoolean()) {
+      throw new IllegalStepException("We're sorry.  This analysis is only available on boolean steps.");
+    }
   }
   
   @Override
