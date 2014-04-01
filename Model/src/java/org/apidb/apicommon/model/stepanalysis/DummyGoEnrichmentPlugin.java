@@ -1,5 +1,8 @@
 package org.apidb.apicommon.model.stepanalysis;
 
+import static org.gusdb.fgputil.FormatUtil.NL;
+import static org.gusdb.fgputil.FormatUtil.TAB;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +13,6 @@ import org.apidb.apicommon.model.stepanalysis.GoEnrichmentPlugin.FormViewModel;
 import org.apidb.apicommon.model.stepanalysis.GoEnrichmentPlugin.ResultRow;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.IoUtil;
-import org.gusdb.fgputil.xml.NamedValue;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -30,21 +32,9 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     { ".41", "GO:0016773", "142", "126", "phosphotransferase activity, alcohol group as acceptor" }
   };
   
-  private static final String[][] DUMMY_RESULT_ORIG = {
-    { "GO-7", "98" },
-    { "GO-3", "87" },
-    { "GO-5", "55" },
-    { "GO-1", "34" },
-    { "GO-2", "17" },
-    { "GO-6", "12" },
-    { "GO-8", "3" },
-    { "GO-9", "2" },
-    { "GO-4", "0" }
-  };
-  
   public static class ResultViewModel {
 
-    private List<NamedValue> _resultData;
+    private List<ResultRow> _resultData;
     private String _downloadPath;
     private Map<String, String[]> _formParams;
     
@@ -52,13 +42,13 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       _downloadPath = downloadPath;
       _formParams = formParams;
       _resultData = new ArrayList<>();
-      for (String[] row : DUMMY_RESULT_ORIG) {
-        _resultData.add(new NamedValue(row[0], row[1]));
+      for (String[] row : DUMMY_RESULT) {
+        _resultData.add(new ResultRow(row[0], row[1], row[2], row[3], row[4]));
       }
     }
 
     public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
-    public List<NamedValue> getResultData() { return _resultData; }
+    public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return _formParams.get(GoEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
     public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
@@ -77,8 +67,14 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected InputStream getProvidedInput() {
     StringBuilder tabbedData = new StringBuilder();
-    for (String[] row : DUMMY_RESULT_ORIG) {
-      tabbedData.append(row[0] + "\t" + row[1] + FormatUtil.NL);
+    for (String[] row : DUMMY_RESULT) {
+      tabbedData
+        .append(row[0]).append(TAB)
+        .append(row[1]).append(TAB)
+        .append(row[2]).append(TAB)
+        .append(row[3]).append(TAB)
+        .append(row[4]).append(TAB)
+        .append(NL);
     }
     return IoUtil.getStreamFromString(tabbedData.toString());
   }
