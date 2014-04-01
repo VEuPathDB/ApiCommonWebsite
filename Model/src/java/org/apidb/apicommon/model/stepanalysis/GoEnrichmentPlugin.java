@@ -20,7 +20,7 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @SuppressWarnings("unused")
-  private static final Logger LOG = Logger.getLogger(LongRunningTestPlugin.class);
+  private static final Logger LOG = Logger.getLogger(GoEnrichmentPlugin.class);
 
   public static final String PVALUE_PARAM_KEY = "pValueCutoff";
   public static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
@@ -29,6 +29,32 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       .add(new NamedValue("GeneDB","GeneDB"))
       .add(new NamedValue("InterproScan","InterproScan"))
       .toList();
+
+  public static class ResultRow {
+    
+    private String _pValue;
+    private String _goId;
+    private String _bgdGenes;
+    private String _resultGenes;
+    private String _goTerm;
+
+    public ResultRow(String pValue, String goId, String bgdGenes, String resultGenes, String goTerm) {
+      _pValue = pValue;
+      _goId = goId;
+      _bgdGenes = bgdGenes;
+      _resultGenes = resultGenes;
+      _goTerm = goTerm;
+    }
+
+    public String getpValue() { return _pValue; }
+    public String getGoId() { return _goId; }
+    public String getBgdGenes() { return _bgdGenes; }
+    public String getResultGenes() { return _resultGenes; }
+    public String getGoTerm() { return _goTerm; }
+  }
+
+  public static final ResultRow HEADER_ROW = new ResultRow(
+      "P-Value", "GO ID", "Genes in Bgd", "Genes in Result", "GO Term");
   
   public static class FormViewModel {
     public List<NamedValue> getSourceOptions() {
