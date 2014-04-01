@@ -1,5 +1,14 @@
 package org.apidb.apicommon.model.stepanalysis;
 
+import static org.gusdb.fgputil.FormatUtil.NL;
+import static org.gusdb.fgputil.FormatUtil.TAB;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +17,6 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
-import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.xml.NamedValue;
@@ -16,8 +24,7 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.model.user.analysis.IllegalStepException;
+import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
 public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -26,44 +33,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static final String PVALUE_PARAM_KEY = "pValueCutoff";
   public static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
-
-  public static final List<NamedValue> ASSOC_SRC_OPTIONS = new ListBuilder<NamedValue>()
-      .add(new NamedValue("GeneDB","GeneDB"))
-      .add(new NamedValue("InterproScan","InterproScan"))
-      .toList();
-
-  public static class ResultRow {
-    
-    private String _pValue;
-    private String _goId;
-    private String _bgdGenes;
-    private String _resultGenes;
-    private String _goTerm;
-
-    public ResultRow(String pValue, String goId, String bgdGenes, String resultGenes, String goTerm) {
-      _pValue = pValue;
-      _goId = goId;
-      _bgdGenes = bgdGenes;
-      _resultGenes = resultGenes;
-      _goTerm = goTerm;
-    }
-
-    public String getPvalue() { return _pValue; }
-    public String getGoId() { return _goId; }
-    public String getBgdGenes() { return _bgdGenes; }
-    public String getResultGenes() { return _resultGenes; }
-    public String getGoTerm() { return _goTerm; }
-  }
-
+  
+  public static final String TABBED_RESULT_FILE_PATH = "result/result.tab";
+  
   public static final ResultRow HEADER_ROW = new ResultRow(
       "P-Value", "GO ID", "Genes in Bgd", "Genes in Result", "GO Term");
-  
-  public static class FormViewModel {
-    public List<NamedValue> getSourceOptions() {
-      return ASSOC_SRC_OPTIONS;
-    }
-  }
-  
+
   @Override
   public Map<String,String> validateFormParams(Map<String, String[]> formParams) {
     return validateParams(formParams);
@@ -106,33 +81,137 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String pValueCutoff = params.get(PVALUE_PARAM_KEY)[0];
     String sourcesStr = FormatUtil.join(params.get(GO_ASSOC_SRC_PARAM_KEY), ",");
 
-    String sql = "SELECT count(distinct ga.taxon_id) as cnt" + System.lineSeparator() +
-      "FROM ApidbTuning.GeneAttributes ga,"  + System.lineSeparator() +
-      "(" + idSql + ") r"  + System.lineSeparator() +
-      "where ga.source_id = r.source_id";
+    return new String[]{ "apiGoEnrichment", idSql, pValueCutoff, getStorageDirectory() + "/result", wdkModel.getProjectId(), sourcesStr };
+  }
+
+  /**
+   * Make sure only one organism is represented in the results of this step
+   * 
+   * @param answerValue answerValue that will be passed to this step
+   * @throws IllegalAnswerException if more than one organism is represented in this answer
+   */
+  @Override
+  public void preApproveAnswer(AnswerValue answerValue)
+      throws IllegalAnswerValueException, WdkModelException {
+    
+    String countColumn = "cnt";
+    String idSql = answerValue.getIdSql();
+    String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
+        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
+        "(" + idSql + ") r"  + NL +
+        "where ga.source_id = r.source_id";
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
     new SQLRunner(ds, sql).executeQuery(handler);
-    List<Map<String, Object>> result = handler.getResults();
-    Integer count = (Integer)(result.get(0).get("cnt"));
 
-    return new String[]{ "apiGoEnrichment", idSql, pValueCutoff, getStorageDirectory() + "/result", wdkModel.getProjectId(), sourcesStr };
-  }
+    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
-  @Override
-  public void preApproveStep(Step step) throws IllegalStepException {
-    // TODO: fill me in to only accept steps with a single org
+    Map<String, Object> result = handler.getResults().get(0);
+    Integer count = (Integer)result.get(countColumn);
+
+    if (count > 1) {
+      throw new IllegalAnswerValueException("Your result has genes from more than " +
+      		"one organism.  The GO Enrichment analysis only accepts gene " +
+      		"lists from one organism.  Please use filters to limit your " +
+      		"result to a single organism and try again.");
+    }
   }
   
   @Override
   public Object getFormViewModel() throws WdkModelException {
-    return new FormViewModel();
+    
+    String sourceIdCol = "srcId";
+    String sourceNameCol = "srcName";
+    
+    String sql = "select go_source_id as " + sourceIdCol +
+        ", go_source_name as " + sourceNameCol + " from sources";
+    
+    DataSource ds = getWdkModel().getAppDb().getDataSource();
+    BasicResultSetHandler handler = new BasicResultSetHandler();
+    new SQLRunner(ds, sql).executeQuery(handler);
+    
+    List<NamedValue> sources = new ArrayList<>();
+    for (Map<String,Object> cols : handler.getResults()) {
+      sources.add(new NamedValue(
+          cols.get(sourceIdCol).toString(),
+          cols.get(sourceNameCol).toString()));
+    }
+    
+    return new FormViewModel(sources);
   }
   
   @Override
   public Object getResultViewModel() throws WdkModelException {
-    return null;
+    Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+    List<ResultRow> results = new ArrayList<>();
+    try (FileReader fileIn = new FileReader(inputPath.toFile());
+         BufferedReader buffer = new BufferedReader(fileIn)) {
+      while (buffer.ready()) {
+        String line = buffer.readLine();
+        String[] tokens = line.split(TAB);
+        results.add(new ResultRow(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]));
+      }
+      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
+    }
+    catch (IOException ioe) {
+      throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
+    }
   }
 
+  public static class FormViewModel {
+    
+    private List<NamedValue> _sourceOptions;
+    
+    public FormViewModel(List<NamedValue> sourceOptions) {
+      _sourceOptions = sourceOptions;
+    }
+
+    public List<NamedValue> getSourceOptions() {
+      return _sourceOptions;
+    }
+  }
+
+  public static class ResultViewModel {
+
+    private List<ResultRow> _resultData;
+    private String _downloadPath;
+    private Map<String, String[]> _formParams;
+    
+    public ResultViewModel(String downloadPath, List<ResultRow> resultData,
+        Map<String, String[]> formParams) {
+      _downloadPath = downloadPath;
+      _formParams = formParams;
+      _resultData = resultData;
+    }
+
+    public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
+    public List<ResultRow> getResultData() { return _resultData; }
+    public String getDownloadPath() { return _downloadPath; }
+    public String getPvalueCutoff() { return _formParams.get(GoEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
+    public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
+  }
+  
+  public static class ResultRow {
+    
+    private String _pValue;
+    private String _goId;
+    private String _bgdGenes;
+    private String _resultGenes;
+    private String _goTerm;
+
+    public ResultRow(String pValue, String goId, String bgdGenes, String resultGenes, String goTerm) {
+      _pValue = pValue;
+      _goId = goId;
+      _bgdGenes = bgdGenes;
+      _resultGenes = resultGenes;
+      _goTerm = goTerm;
+    }
+
+    public String getPvalue() { return _pValue; }
+    public String getGoId() { return _goId; }
+    public String getBgdGenes() { return _bgdGenes; }
+    public String getResultGenes() { return _resultGenes; }
+    public String getGoTerm() { return _goTerm; }
+  }
 }
