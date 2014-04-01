@@ -34,7 +34,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String PVALUE_PARAM_KEY = "pValueCutoff";
   public static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
   
-  public static final String TABBED_RESULT_FILE_PATH = "result/result.tab";
+  public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
       "P-Value", "GO ID", "Genes in Bgd", "Genes in Result", "GO Term");
@@ -81,7 +81,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String pValueCutoff = params.get(PVALUE_PARAM_KEY)[0];
     String sourcesStr = FormatUtil.join(params.get(GO_ASSOC_SRC_PARAM_KEY), ",");
 
-    return new String[]{ "apiGoEnrichment", idSql, pValueCutoff, getStorageDirectory() + "/result", wdkModel.getProjectId(), sourcesStr };
+    Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+    return new String[]{ "apiGoEnrichment", idSql, pValueCutoff,
+        resultFilePath.toString(), wdkModel.getProjectId(), sourcesStr };
   }
 
   /**
