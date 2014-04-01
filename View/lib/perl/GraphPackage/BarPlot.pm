@@ -440,7 +440,7 @@ sub new {
   $self->setYaxisLabel('RPKM');
   $self->setIsStacked(1);
   $self->setDefaultYMin(0);
-  $self->setDefaultYMax(20);
+  $self->setDefaultYMax(50);
   $self->setPlotTitle("RPKM - $id");
 
   # RUM RPKM Are Not logged in the db
