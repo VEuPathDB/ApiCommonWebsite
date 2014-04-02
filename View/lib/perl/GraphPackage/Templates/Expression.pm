@@ -67,25 +67,20 @@ sub getAllProfileSetNames {
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetName);
 
-  my $filterSql =  ApiCommonWebsite::View::GraphPackage::Util::getFilteredProfileSetsSql();
-  my $fsh = $dbh->prepare($filterSql);
+  my @rv = ();
 
-  my @filtered;
-  my @rv;
+  if (! $sh->rows() ){
+    my $filterSql =  ApiCommonWebsite::View::GraphPackage::Util::getFilteredProfileSetsSql();
+    $sh = $dbh->prepare($filterSql);
+    $sh->execute($datasetName,$id);
+  }
+      
   while(my ($profileName) = $sh->fetchrow_array()) {
     next if($self->isExcludedProfileSet($profileName));
-    $fsh->execute($id,$profileName);
-    my $includeProfileName = $fsh->fetchrow_array();
-    push (@filtered,  $profileName) if $includeProfileName ;
     push @rv, $profileName;
   }
   $sh->finish();
-  $fsh->finish();
-  print STDERR Dumper(@filtered);
-  if (scalar(@filtered) > 0) {
-    return \@filtered;
-  }
-
+  
   return \@rv;
 }
 

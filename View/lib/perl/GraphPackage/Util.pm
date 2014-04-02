@@ -34,8 +34,20 @@ sub makeProfileSets {
 
 
 sub getProfileSetsSql {
-  return "select ps.name
+  return "select ps.name,d.name
 from apidb.profileset ps,
+sres.externaldatabase d, 
+sres.externaldatabaserelease r
+where ps.external_database_release_id = r.external_database_release_id
+and r.external_database_id = d.external_database_id
+and d.name = ?"
+
+}
+
+sub getFilteredProfileSetsSql {
+   return "select ps.name
+from apidb.profileset ps,
+apidb.profile p,
 sres.externaldatabase d, 
 sres.externaldatabaserelease r,
 (select dsnt.name 
@@ -45,17 +57,9 @@ sres.externaldatabaserelease r,
    and dp.name = ?) dp
 where ps.external_database_release_id = r.external_database_release_id
 and r.external_database_id = d.external_database_id
-and dp.name = d.name"
-
-}
-
-sub getFilteredProfileSetsSql {
-   return "select sum(case when p.source_id = ?
-            then 1
-            else 0 end) as include
-from   apidb.profileset ps, apidb.profile p
-where  ps.name = ?
-and    ps.profile_set_id = p.profile_set_id"
+and dp.name = d.name
+and p.profile_set_id = ps.profile_set_id
+and p.source_id = ?"
 }
 
 sub rStringVectorFromArray {
