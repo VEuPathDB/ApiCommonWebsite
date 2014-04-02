@@ -7,9 +7,9 @@ use DBI;
 use File::Basename;
 use ApiCommonWebsite::Model::ModelConfig;
 
-usage() unless scalar(@ARGV) >= 4;
+usage() unless scalar(@ARGV) >= 5;
 
-my ($geneResultSql, $pValueCutoff, $jobDir, $modelName, @goAssociationSources) = @ARGV;
+my ($geneResultSql, $pValueCutoff, $subOntology, $jobDir, $modelName, @goAssociationSources) = @ARGV;
 
 die "First argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/^select/i;
 die "Second argument must be an e-value exponent (negative number)\n" unless $pValueCutoff =~ /-\d+/;
@@ -69,6 +69,7 @@ SELECT count(distinct ga.source_id)
 FROM ApidbTuning.GoTermSummary gts, ApidbTuning.GeneAttributes ga
 where ga.taxon_id = $taxonId
   and gts.source_id = ga.source_id
+  and gts.is_not is null
   and gts.source in ($sources)
 ";
 
@@ -88,6 +89,7 @@ SELECT count(distinct ga.source_id)
 FROM ApidbTuning.GoTermSummary gts,
      ($geneResultSql) r
 where gts.source_id = r.source_id
+  and gts.is_not is null
   and gts.source in ($sources)
 ";
 
@@ -100,31 +102,36 @@ sub getDataSql {
   my ($taxonId, $source, $geneResultSql) = @_;
 
 return "
-select distinct bgd.go_id, bgdcnt, resultcnt
+select distinct bgd.go_id, bgdcnt, resultcnt, round(resultcnt * 100 / bgdcnt, 1) bgd.name
 from
- (SELECT gp.go_id, count(distinct gf.source_id) as bgdcnt
+ (SELECT gt.go_id, count(distinct gf.source_id) as bgdcnt, gt.name
             FROM ApidbTuning.GeneAttributes gf,
-                 dots.GoAssociation ga, sres.GoTerm gp,
+                 ApidbTuning.GoTermSummary gts,
+                 dots.GoAssociation ga, sres.GoTerm gt,
                  sres.GoRelationship gr, core.TableInfo ti,
                  dots.GoAssociationInstance gai,
                  dots.GoAssociationInstanceLoe gail,
                  sres.GoRelationshipType grt
             WHERE gf.aa_sequence_id = ga.row_id
               AND gf.taxon_id = $taxonId
+              AND gts.ontology = '$subOntology'
+              AND ga.go_term_id = gts.go_term_id
               AND ga.table_id = ti.table_id
               AND ti.name = 'TranslatedAASequence'
+              AND ga.is_not = 0
               AND ga.go_term_id = gr.child_term_id
-              AND gr.parent_term_id = gp.go_term_id
+              AND gr.parent_term_id = gt.go_term_id
               AND gr.go_relationship_type_id = grt.go_relationship_type_id
               AND grt.name = 'closure'
               AND ga.go_association_id = gai.go_association_id
               AND gai.go_assoc_inst_loe_id = gail.go_assoc_inst_loe_id
               AND gail.name in ($sources)
-            group BY gp.go_id
+            group BY gt.go_id
    ) bgd,
-   (SELECT gp.go_id, count(distinct gf.source_id) as resultcnt
+   (SELECT gt.go_id, count(distinct gf.source_id) as resultcnt
             FROM ApidbTuning.GeneAttributes gf,
-                 dots.GoAssociation ga, sres.GoTerm gp,
+                 ApidbTuning.GoTermSummary gts,
+                 dots.GoAssociation ga, sres.GoTerm gt,
                  sres.GoRelationship gr, core.TableInfo ti,
                  sres.GoRelationshipType grt,
                  dots.GoAssociationInstance gai,
@@ -132,17 +139,20 @@ from
                  ($geneResultSql) r
             WHERE gf.aa_sequence_id = ga.row_id
               AND gf.taxon_id = $taxonId
+              AND gf.taxon_id = $taxonId
+              AND gts.ontology = '$subOntology'
               AND ga.table_id = ti.table_id
               and gf.source_id = r.source_id
               AND ti.name = 'TranslatedAASequence'
+              AND ga.is_not = 0
               AND ga.go_term_id = gr.child_term_id
-              AND gr.parent_term_id = gp.go_term_id
+              AND gr.parent_term_id = gt.go_term_id
               AND gr.go_relationship_type_id = grt.go_relationship_type_id
               AND grt.name = 'closure'
               AND ga.go_association_id = gai.go_association_id
               AND gai.go_assoc_inst_loe_id = gail.go_assoc_inst_loe_id
               AND gail.name in ($sources);
-            group BY gp.go_id
+            group BY gt.go_id
       ) rslt
 where bgd.go_id = rslt.go_id
 and bgd.taxon_id = rslt.taxon_id
