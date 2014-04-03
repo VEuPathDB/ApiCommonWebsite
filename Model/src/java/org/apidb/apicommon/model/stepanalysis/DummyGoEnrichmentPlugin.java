@@ -71,7 +71,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  public void preApproveAnswer(AnswerValue answerValue)
+  public void validateAnswerValue(AnswerValue answerValue)
       throws IllegalAnswerValueException, WdkModelException {
     if (answerValue.getResultSize() == 0) {
       throw new IllegalAnswerValueException("We're sorry. This analysis cannot be run on empty results.");

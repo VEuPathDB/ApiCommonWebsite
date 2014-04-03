@@ -93,7 +93,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
    * @throws IllegalAnswerException if more than one organism is represented in this answer
    */
   @Override
-  public void preApproveAnswer(AnswerValue answerValue)
+  public void validateAnswerValue(AnswerValue answerValue)
       throws IllegalAnswerValueException, WdkModelException {
     
     String countColumn = "cnt";
