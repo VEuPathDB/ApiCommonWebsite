@@ -25,13 +25,13 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final Logger LOG = Logger.getLogger(DummyGoEnrichmentPlugin.class);
 
   private static final String[][] DUMMY_RESULT = {
-    { ".8", "GO:0016310", "120", "103", "phosphorylation" },
-    { ".71", "GO:0016772", "254", "139", "transferase activity, transferring phosphorus-containing groups" },
-    { ".53", "GO:0016301", "154", "135", "kinase activity" },
-    { ".50", "GO:0006796", "152", "104", "phosphate-containing compound metabolic process" },
-    { ".49", "GO:0006793", "152", "104", "phosphorus metabolic process" },
-    { ".47", "GO:0000166", "980", "117", "nucleotide binding" },
-    { ".41", "GO:0016773", "142", "126", "phosphotransferase activity, alcohol group as acceptor" }
+    { ".80", "GO:0016310", "120", "103", "phosphorylation", "85.8" },
+    { ".71", "GO:0016772", "254", "139", "transferase activity, transferring phosphorus-containing groups", "54.7" },
+    { ".53", "GO:0016301", "154", "135", "kinase activity", "87.7" },
+    { ".50", "GO:0006796", "152", "104", "phosphate-containing compound metabolic process", "68.4" },
+    { ".49", "GO:0006793", "152", "104", "phosphorus metabolic process", "68.4" },
+    { ".47", "GO:0000166", "980", "117", "nucleotide binding", "11.9" },
+    { ".41", "GO:0016773", "142", "126", "phosphotransferase activity, alcohol group as acceptor", "88.7" }
   };
   
   public static final List<String> DUMMY_ASSOC_SRC_OPTIONS = new ListBuilder<String>()
@@ -59,6 +59,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         .append(row[2]).append(TAB)
         .append(row[3]).append(TAB)
         .append(row[4]).append(TAB)
+        .append(row[5]).append(TAB)
         .append(NL);
     }
     return IoUtil.getStreamFromString(tabbedData.toString());
