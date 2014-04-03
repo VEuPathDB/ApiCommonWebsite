@@ -37,7 +37,15 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-      "P-Value", "GO ID", "Genes in Bgd", "Genes in Result", "GO Term");
+      "P-Value", "GO ID", "Genes in<br/>Background", "Genes in<br/>Result", "GO Term");
+
+  public static final ResultRow COLUMN_HELP = new ResultRow(
+      "Significance of the enrichment",
+      "Gene Ontology Term ID",
+      "Number of records with this term in the background population",
+      "Number of records with this term in the result of this step",
+      "Gene Ontology Term Description"
+  );
 
   @Override
   public Map<String,String> validateFormParams(Map<String, String[]> formParams) {
@@ -188,6 +196,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
     public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
+    public ResultRow getHeaderDescription() { return GoEnrichmentPlugin.COLUMN_HELP; }
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return _formParams.get(GoEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
