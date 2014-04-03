@@ -14,7 +14,6 @@ import org.apidb.apicommon.model.stepanalysis.GoEnrichmentPlugin.ResultRow;
 import org.apidb.apicommon.model.stepanalysis.GoEnrichmentPlugin.ResultViewModel;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.ListBuilder;
-import org.gusdb.fgputil.xml.NamedValue;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -35,10 +34,10 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     { ".41", "GO:0016773", "142", "126", "phosphotransferase activity, alcohol group as acceptor" }
   };
   
-  public static final List<NamedValue> DUMMY_ASSOC_SRC_OPTIONS = new ListBuilder<NamedValue>()
-      .add(new NamedValue("GeneDB","GeneDB"))
-      .add(new NamedValue("InterproScan","InterproScan"))
-      .toList();
+  public static final List<String> DUMMY_ASSOC_SRC_OPTIONS = new ListBuilder<String>()
+    .add("GeneDB")
+    .add("InterproScan")
+    .toList();
   
   @Override
   public Map<String,String> validateFormParams(Map<String, String[]> formParams) {
@@ -80,14 +79,14 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   public Object getFormViewModel() throws WdkModelException {
-    return new FormViewModel(DUMMY_ASSOC_SRC_OPTIONS);
+    return new FormViewModel(DUMMY_ASSOC_SRC_OPTIONS, DUMMY_ASSOC_SRC_OPTIONS);
   }
 
   @Override
   public Object getResultViewModel() throws WdkModelException {
     List<ResultRow> results = new ArrayList<>();
     for (String[] row : DUMMY_RESULT) {
-      results.add(new ResultRow(row[0], row[1], row[2], row[3], row[4]));
+      results.add(new ResultRow(row[0], row[1], row[2], row[3], row[4], row[5]));
     }
     return new ResultViewModel(getStdoutFileName(), results, getFormParams());
   }
