@@ -148,7 +148,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       sources.add(cols.get("source").toString());
     }
 
-    String sql = "select distinct gts.ontology" + NL +
+    sql = "select distinct gts.ontology" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.source_id = r.source_id";
 
