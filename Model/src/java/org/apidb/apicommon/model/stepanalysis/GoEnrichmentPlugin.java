@@ -33,18 +33,20 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static final String PVALUE_PARAM_KEY = "pValueCutoff";
   public static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
+  public static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
   
   public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-      "P-Value", "GO ID", "Genes in<br/>Background", "Genes in<br/>Result", "GO Term");
+							   "GO ID", "GO Term", "P-Value", "All Genes With This Term", "Result Genes With This Term", "Percent of All in This Result");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
-      "Significance of the enrichment",
-      "Gene Ontology Term ID",
-      "Number of records with this term in the background population",
-      "Number of records with this term in the result of this step",
-      "Gene Ontology Term Description"
+      "Gene Ontology ID",
+      "Gene Ontology Term",
+      "P-Value Significance of the enrichment",
+      "Number of genes with this term in this organism",
+      "Number of genes with this term in your result",
+      "Percent of genes in the organism that have this term that are present in your result"
   );
 
   @Override
@@ -131,24 +133,33 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public Object getFormViewModel() throws WdkModelException {
     
-    String sourceIdCol = "srcId";
-    String sourceNameCol = "srcName";
+    String idSql = getAnswerValue().getIdSql();
     
-    String sql = "select go_source_id as " + sourceIdCol +
-        ", go_source_name as " + sourceNameCol + " from sources";
-    
+    String sql = "select distinct gts.source" + NL +
+      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
+      "where gts.source_id = r.source_id";
+
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
     new SQLRunner(ds, sql).executeQuery(handler);
     
-    List<NamedValue> sources = new ArrayList<>();
+    List<String> sources = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(new NamedValue(
-          cols.get(sourceIdCol).toString(),
-          cols.get(sourceNameCol).toString()));
+      sources.add(cols.get("source").toString());
+    }
+
+    String sql = "select distinct gts.ontology" + NL +
+      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
+      "where gts.source_id = r.source_id";
+
+    new SQLRunner(ds, sql).executeQuery(handler);
+    
+    List<String> ontologies = new ArrayList<>();
+    for (Map<String,Object> cols : handler.getResults()) {
+      ontologies.add(cols.get("ontology").toString());
     }
     
-    return new FormViewModel(sources);
+    return new FormViewModel(sources, ontologies);
   }
   
   @Override
@@ -159,8 +170,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
          BufferedReader buffer = new BufferedReader(fileIn)) {
       while (buffer.ready()) {
         String line = buffer.readLine();
-        String[] tokens = line.split(TAB);
-        results.add(new ResultRow(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]));
+        String[] columns = line.split(TAB);
+        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5]));
       }
       return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
     }
@@ -171,14 +182,20 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class FormViewModel {
     
-    private List<NamedValue> _sourceOptions;
+    private List<String> _sourceOptions;
+    private List<String> _ontologyOptions;
     
-    public FormViewModel(List<NamedValue> sourceOptions) {
+    public FormViewModel(List<String> sourceOptions, List<String> ontologyOptions) {
       _sourceOptions = sourceOptions;
+      _ontologyOptions = ontologyOptions;
     }
 
-    public List<NamedValue> getSourceOptions() {
+    public List<String> getSourceOptions() {
       return _sourceOptions;
+    }
+
+    public List<String> getOntologyOptions() {
+      return _ontologyOptions;
     }
   }
 
@@ -210,13 +227,15 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private String _bgdGenes;
     private String _resultGenes;
     private String _goTerm;
+    private String _percentInResult;
 
-    public ResultRow(String pValue, String goId, String bgdGenes, String resultGenes, String goTerm) {
+    public ResultRow(String goId, String goTerm, String pValue, String bgdGenes, String resultGenes, String percentInResult) {
       _pValue = pValue;
       _goId = goId;
       _bgdGenes = bgdGenes;
       _resultGenes = resultGenes;
       _goTerm = goTerm;
+      _percentInResult = percentInResult;
     }
 
     public String getPvalue() { return _pValue; }
