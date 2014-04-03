@@ -19,7 +19,6 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.xml.NamedValue;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
@@ -38,7 +37,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-							   "GO ID", "GO Term", "P-Value", "All Genes With This Term", "Result Genes With This Term", "Percent of All in This Result");
+      "GO ID", "GO Term", "P-Value", "All Genes With This Term", "Result Genes With This Term", "Percent of All in This Result");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Gene Ontology ID",
@@ -75,6 +74,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String [] sources = formParams.get(GO_ASSOC_SRC_PARAM_KEY);
     if (sources == null || sources.length == 0) {
       errors.put(GO_ASSOC_SRC_PARAM_KEY, "Missing required parameter.");
+    }
+    
+    // validate annotation sources
+    String [] ontologies = formParams.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
+    if (ontologies == null || ontologies.length == 0) {
+      errors.put(GO_ASSOC_ONTOLOGY_PARAM_KEY, "Missing required parameter.");
     }
   
     return errors;
@@ -243,5 +248,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getBgdGenes() { return _bgdGenes; }
     public String getResultGenes() { return _resultGenes; }
     public String getGoTerm() { return _goTerm; }
+    public String getPercentInResult() { return _percentInResult; }
   }
 }
