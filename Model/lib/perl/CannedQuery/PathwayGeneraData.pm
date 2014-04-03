@@ -78,8 +78,6 @@ sub getValues {
 
      while (my $_row = $_sh->fetchrow_hashref()) {
        push(@Rv, $_row);
-
-       print STDERR Dumper $_row;
      }
    $_sh->finish();
 
