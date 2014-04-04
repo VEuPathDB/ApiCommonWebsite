@@ -52,10 +52,9 @@ sub makeRPlotString {
 
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
-    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
-#  eval{
- #   ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
- # };
+  eval{
+   ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
+ };
 
   if($@) {
     return $self->blankPlotPart();
