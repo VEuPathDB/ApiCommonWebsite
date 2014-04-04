@@ -75,10 +75,17 @@ sub getValues {
    my $_sh  = $Qh->prepare($_sql);
    $_sh->execute();
 
+   my $countNonZero;
      while (my $_row = $_sh->fetchrow_hashref()) {
        push(@Rv, $_row);
+
+       $countNonZero++ if($_row->{VALUE});
      }
    $_sh->finish();
+
+   unless($countNonZero) {
+     die "No genera w/ matching EC";
+   }
 
    return wantarray ? @Rv : \@Rv;
 }
