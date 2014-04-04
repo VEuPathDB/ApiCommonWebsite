@@ -39,6 +39,10 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     .add("InterproScan")
     .toList();
   
+  private ResultRow dummyArrayToResultRow(String[] row) {
+    return new ResultRow(row[1], row[4], row[0], row[2], row[3], row[5]);
+  }
+  
   @Override
   public Map<String,String> validateFormParams(Map<String, String[]> formParams) {
     return GoEnrichmentPlugin.validateParams(formParams);
@@ -53,13 +57,14 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   protected InputStream getProvidedInput() {
     StringBuilder tabbedData = new StringBuilder();
     for (String[] row : DUMMY_RESULT) {
+      ResultRow rd = dummyArrayToResultRow(row);
       tabbedData
-        .append(row[0]).append(TAB)
-        .append(row[1]).append(TAB)
-        .append(row[2]).append(TAB)
-        .append(row[3]).append(TAB)
-        .append(row[4]).append(TAB)
-        .append(row[5]).append(TAB)
+        .append(rd.getGoId()).append(TAB)
+        .append(rd.getGoTerm()).append(TAB)
+        .append(rd.getPvalue()).append(TAB)
+        .append(rd.getBgdGenes()).append(TAB)
+        .append(rd.getResultGenes()).append(TAB)
+        .append(rd.getPercentInResult()).append(TAB)
         .append(NL);
     }
     return IoUtil.getStreamFromString(tabbedData.toString());
@@ -87,7 +92,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public Object getResultViewModel() throws WdkModelException {
     List<ResultRow> results = new ArrayList<>();
     for (String[] row : DUMMY_RESULT) {
-      results.add(new ResultRow(row[0], row[1], row[2], row[3], row[4], row[5]));
+      results.add(dummyArrayToResultRow(row));
     }
     return new ResultViewModel(getStdoutFileName(), results, getFormParams());
   }

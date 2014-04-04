@@ -37,7 +37,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-      "GO ID", "GO Term", "P-Value", "All Genes With This Term", "Result Genes With This Term", "Percent of All in This Result");
+      "GO ID", "GO Term", "P-Value", "All Genes<br/>With This Term", "Result Genes<br/>With This Term", "Percent of All in This Result");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Gene Ontology ID",
@@ -223,6 +223,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return _formParams.get(GoEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
     public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
+    public String getGoOntologies() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY), ", "); }
   }
   
   public static class ResultRow {
