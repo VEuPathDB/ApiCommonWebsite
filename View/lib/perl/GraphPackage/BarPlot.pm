@@ -617,7 +617,7 @@ sub new {
 
    my $id = $self->getId();
 
-   $self->setDefaultYMax(10);
+   $self->setDefaultYMax(4);
    $self->setDefaultYMin(0);
    $self->setYaxisLabel('Abundance (log2)');
 
@@ -637,7 +637,7 @@ sub new {
 
    my $id = $self->getId();
 
-   $self->setDefaultYMax(10);
+   $self->setDefaultYMax(20);
    $self->setDefaultYMin(0);
    $self->setYaxisLabel('Abundance');
 
