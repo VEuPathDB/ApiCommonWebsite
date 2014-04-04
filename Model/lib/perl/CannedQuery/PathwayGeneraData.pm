@@ -22,9 +22,9 @@ sub init {
 
   $Self->setSql(<<Sql);
 select case when ec.genus is null then 0 else 1 end as value
-from (select * 
+from (select distinct genus
       from apidb.ecnumbergenus
-      where ec_number = '<<Id>>'
+      where ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('<<Id>>'),' ',''),'-', '%'),'*','%'),'any','%')
         ) ec,
   (
    <<Genera>>
@@ -55,7 +55,6 @@ sub prepareDictionary {
          my $i = 1;
 
          $Dict->{Genera} = join ("\nunion\n", map { "select '$_' as genus, " . $i++ . " as o from dual"  } @{$Self->getGenera()});
-
 	 return $Rv;
 }
 
