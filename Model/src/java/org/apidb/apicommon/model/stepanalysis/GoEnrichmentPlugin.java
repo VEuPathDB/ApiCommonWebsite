@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.math.BigDecimal;
 
 import javax.sql.DataSource;
 
@@ -111,7 +112,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public void validateAnswerValue(AnswerValue answerValue)
       throws IllegalAnswerValueException, WdkModelException {
     
-    String countColumn = "cnt";
+    String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
     String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
         "FROM ApidbTuning.GeneAttributes ga,"  + NL +
@@ -125,9 +126,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
     Map<String, Object> result = handler.getResults().get(0);
-    Integer count = (Integer)result.get(countColumn);
+    BigDecimal count = (BigDecimal)result.get(countColumn);
 
-    if (count > 1) {
+    if (count.intValue() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
       		"one organism.  The GO Enrichment analysis only accepts gene " +
       		"lists from one organism.  Please use filters to limit your " +
