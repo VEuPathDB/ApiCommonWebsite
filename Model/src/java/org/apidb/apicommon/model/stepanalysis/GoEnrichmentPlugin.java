@@ -158,10 +158,10 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     sql = "select distinct gts.ontology" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.source_id = r.source_id";
+      "where gts.source_id = r.source_id and gts.ontology is not null";
 
     new SQLRunner(ds, sql).executeQuery(handler);
-    
+
     List<String> ontologies = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
       ontologies.add(cols.get("ONTOLOGY").toString());
