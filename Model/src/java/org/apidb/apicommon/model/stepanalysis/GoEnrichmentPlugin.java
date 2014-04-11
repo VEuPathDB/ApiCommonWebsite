@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
@@ -98,7 +99,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String sourcesStr = FormatUtil.join(params.get(GO_ASSOC_SRC_PARAM_KEY), ",");
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
-    return new String[]{ "apiGoEnrichment", idSql, pValueCutoff,
+    String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
+    return new String[]{ qualifiedExe, idSql, pValueCutoff,
         resultFilePath.toString(), wdkModel.getProjectId(), sourcesStr };
   }
 
@@ -151,7 +153,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     
     List<String> sources = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(cols.get("source").toString());
+      sources.add(cols.get("SOURCE").toString());
     }
 
     sql = "select distinct gts.ontology" + NL +
@@ -162,7 +164,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     
     List<String> ontologies = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      ontologies.add(cols.get("ontology").toString());
+      ontologies.add(cols.get("ONTOLOGY").toString());
     }
     
     return new FormViewModel(sources, ontologies);
