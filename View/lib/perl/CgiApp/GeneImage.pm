@@ -52,7 +52,7 @@ EOSQL
      print <<EOL
      <tr>
        <td colspan=2>
-         <font color="red">Warning: some Web browsers do not support viewing TIFF images. Try to use Safari</font>
+         <font color="red">Warning: several Web browsers do not support displaying TIFF images, please try Safari instead or click the following links to download.</font>
        </td>
       </tr>
       <tr>
@@ -61,7 +61,7 @@ EOSQL
        </td>
      </tr>
      <tr>
-       
+
        <td>
        <embed 
        src="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$gfp_img_uri"
@@ -77,6 +77,24 @@ EOSQL
        negative=yes>
 
       </td>
+
+      <tr>
+       <td colspan=2>
+         If you can not view above TIFF images, click the following links to downlaad them to your local machine, then open it with applicable image/photo processing software..
+       </td>
+     </tr>
+
+     <tr>
+
+       <td>
+       <a href="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$gfp_img_uri">Download GFP image</a>
+      </td>
+
+       <td>
+       <a href="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$dic_img_uri">Download DIC image</a>
+
+      </td>
+
      </tr>
 EOL
   }
