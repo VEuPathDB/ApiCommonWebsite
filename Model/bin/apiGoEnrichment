@@ -6,49 +6,52 @@ use strict;
 use DBI;
 use File::Basename;
 use ApiCommonWebsite::Model::ModelConfig;
+use IPC::Open2;
 
-usage() unless scalar(@ARGV) >= 6;
+usage() unless scalar(@ARGV) == 7;
 
-my ($geneResultSql, $pValueCutoff, $outputFile, $subOntology, $modelName, @goAssociationSources) = @ARGV;
+my ($outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $sources, $evidCodes) = @ARGV;
 
-die "First argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/^select/i;
-die "Second argument must be an e-value exponent (negative number)\n" unless $pValueCutoff =~ /-\d+/;
+die "First argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
+die "Second argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
 my $c = new ApiCommonWebsite::Model::ModelConfig($modelName);
 
 my $dbh = DBI->connect($c->getAppDb->getDbiDsn, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
 
-# convert list of sources to oracle-compatible string
-my @s = map { "'$_'"} @goAssociationSources;
-my $sources = join(",", @s);
-
 my $taxonId = getTaxonId();
 
-getEnrichment($dbh, $taxonId, $sources, $geneResultSql);
+getEnrichment($dbh, $taxonId, $sources, $evidCodes, $geneResultSql);
 
 ##############################################################################
 
 sub getEnrichment {
-  my ($dbh, $taxonId, $sources, $geneResultSql) = @_;
+  my ($dbh, $taxonId, $sources, $evidCodes, $geneResultSql) = @_;
 
-  my $annotatedGenesBgd = getAnnotatedGenesCountBgd($dbh, $taxonId, $sources);
-  my $annotatedGenesResult = getAnnotatedGenesCountResult($dbh, $sources, $geneResultSql);
+  my $annotatedGenesBgd = getAnnotatedGenesCountBgd($dbh, $taxonId, $sources, $evidCodes);
+  my $annotatedGenesResult = getAnnotatedGenesCountResult($dbh, $sources, $evidCodes, $geneResultSql);
 
   # get query to get back table to feed to python.
   # the columns are:  goId, bgdGeneCount, resultSetGeneCount
-  my $dataSql = getDataSql($taxonId, $sources, $geneResultSql);
+  my $dataSql = getDataSql($taxonId, $sources, $evidCodes, $geneResultSql);
 
   my $cmd = "enrichmentAnalysis $pValueCutoff $annotatedGenesBgd $annotatedGenesResult > $outputFile";
 
-  #print STDERR "\n$cmd\n";
-
-  open(E, "| $cmd ") || die "Can't open call to enrichmentAnalysis program: $!\n";
+  local (*Reader, *Writer);
+  my $pid = open2(\*Reader, \*Writer, $cmd);
 
   my $stmt = runSql($dbh, $dataSql);
+
   while ( my($goId, $geneCountBgd, $geneCountResult, $pctOfBgd, $goName) = $stmt->fetchrow_array()) {
-    print E "$goId\t$geneCountBgd\t$geneCountResult\t$pctOfBgd\t$goName\n";
+#    print STDERR "$goId\t$geneCountBgd\t$geneCountResult\t$pctOfBgd\t$goName\n";
+    print Writer "$goId\t$geneCountBgd\t$geneCountResult\t$pctOfBgd\t$goName\n";
   }
-  close E;
+
+  close Writer;
+  close Reader;
+  waitpid($pid, 0);
+  my $s = $? >> 8;
+  die "Failed running command '$cmd'" if $s;
 }
 
 sub getTaxonId {
@@ -68,7 +71,7 @@ where ga.source_id = r.source_id
 }
 
 sub getAnnotatedGenesCountBgd {
-  my ($dbh, $taxonId, $sources) = @_;
+  my ($dbh, $taxonId, $sources, $evidCodes) = @_;
 
   my $sql = "
 SELECT count(distinct ga.source_id)
@@ -77,6 +80,7 @@ where ga.taxon_id = $taxonId
   and gts.source_id = ga.source_id
   and gts.is_not is null
   and gts.source in ($sources)
+  and gts.evidence_code in ($evidCodes)
 ";
 
   my $stmt = runSql($dbh, $sql);
@@ -86,7 +90,7 @@ where ga.taxon_id = $taxonId
 }
 
 sub getAnnotatedGenesCountResult {
-  my ($dbh, $sources, $geneResultSql) = @_;
+  my ($dbh, $sources, $evidCodes, $geneResultSql) = @_;
 
   my $sql = "
 SELECT count(distinct gts.source_id)
@@ -95,6 +99,7 @@ FROM ApidbTuning.GoTermSummary gts,
 where gts.source_id = r.source_id
   and gts.is_not is null
   and gts.source in ($sources)
+  and gts.evidence_code in ($evidCodes)
 ";
 
   my $stmt = runSql($dbh, $sql);
@@ -104,7 +109,7 @@ where gts.source_id = r.source_id
 }
 
 sub getDataSql {
-  my ($taxonId, $source, $geneResultSql) = @_;
+  my ($taxonId, $source, $evidCodes, $geneResultSql) = @_;
 
 return "
 select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
@@ -114,11 +119,11 @@ from
                  ApidbTuning.GoTermSummary gts,
                  dots.GoAssociation ga, sres.GoTerm gt,
                  sres.GoRelationship gr, core.TableInfo ti,
-                 dots.GoAssociationInstance gai,
-                 dots.GoAssociationInstanceLoe gail,
                  sres.GoRelationshipType grt
             WHERE gf.taxon_id = $taxonId
               AND gts.ontology = '$subOntology'
+              AND gts.source in ($sources)
+              AND gts.evidence_code in ($evidCodes)
               AND ga.go_term_id = gts.go_term_id
               AND ga.row_id = gf.aa_sequence_id
               AND ti.table_id = ga.table_id
@@ -128,9 +133,6 @@ from
               AND gt.go_term_id = gr.parent_term_id
               AND grt.go_relationship_type_id = gr.go_relationship_type_id
               AND grt.name = 'closure'
-              AND gai.go_association_id = ga.go_association_id
-              AND gail.go_assoc_inst_loe_id = gai.go_assoc_inst_loe_id
-              AND gail.name in ($sources)
             group BY gt.go_id, gt.name
    ) bgd,
    (SELECT gt.go_id, count(distinct gf.source_id) as resultcnt
@@ -139,11 +141,11 @@ from
                  dots.GoAssociation ga, sres.GoTerm gt,
                  sres.GoRelationship gr, core.TableInfo ti,
                  sres.GoRelationshipType grt,
-                 dots.GoAssociationInstance gai,
-                 dots.GoAssociationInstanceLoe gail,
                  ($geneResultSql) r
             WHERE gf.aa_sequence_id = ga.row_id
               AND gts.ontology = '$subOntology'
+              AND gts.source in ($sources)
+              AND gts.evidence_code in ($evidCodes)
               AND ga.go_term_id = gts.go_term_id
               AND ga.table_id = ti.table_id
               and gf.source_id = r.source_id
@@ -153,9 +155,6 @@ from
               AND gr.parent_term_id = gt.go_term_id
               AND gr.go_relationship_type_id = grt.go_relationship_type_id
               AND grt.name = 'closure'
-              AND ga.go_association_id = gai.go_association_id
-              AND gai.go_assoc_inst_loe_id = gail.go_assoc_inst_loe_id
-              AND gail.name in ($sources)
             group BY gt.go_id
       ) rslt
 where bgd.go_id = rslt.go_id
@@ -176,7 +175,7 @@ sub usage {
   die "
 Find GO terms that are enriched in the provided set of Genes.
 
-Usage: $this sqlToFindGeneList pValueCutoff  outputFile subOntologyName modelName annotationSources
+Usage: $this sqlToFindGeneList pValueCutoff  outputFile subOntologyName modelName annotationSources evidenceCodes
 
 Where:
   sqlToFindGeneList:    a select statement that will return all the rows in the db containing the genes result. Must have a source_id column.
@@ -184,7 +183,8 @@ Where:
   outputFile:           the file in which to write results
   subOntologyName:      'Molecular Function' etc
   modelName:            eg, PlasmoDB.  Used to find the database connection.
-  annotationSources:    only include annotation that comes from these one or more sources.  (Eg, GeneDB, InterproScan).
+  annotationSources:    a list of annotation sources in format compatible with an sql in clause. only include annotation that comes from these one or more sources.  (Eg, GeneDB, InterproScan).
+  evidenceCodes:        a list of evidence codes in format compatible with an sql in clause. only include annotation that has one of these evidence codes.
 
 The gene result must only include genes from a single taxon.  It is an error otherwise.
 

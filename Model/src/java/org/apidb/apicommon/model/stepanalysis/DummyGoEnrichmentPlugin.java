@@ -85,7 +85,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   public Object getFormViewModel() throws WdkModelException {
-    return new FormViewModel(DUMMY_ASSOC_SRC_OPTIONS, DUMMY_ASSOC_SRC_OPTIONS);
+    return new FormViewModel(DUMMY_ASSOC_SRC_OPTIONS, DUMMY_ASSOC_SRC_OPTIONS, DUMMY_ASSOC_SRC_OPTIONS);
   }
 
   @Override
