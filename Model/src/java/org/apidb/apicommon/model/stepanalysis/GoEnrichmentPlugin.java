@@ -81,7 +81,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     
     // validate evidence codes
     String [] evidCodes = formParams.get(GO_EVID_CODE_PARAM_KEY);
-    if (sources == null || sources.length == 0) {
+    if (evidCodes == null || evidCodes.length == 0) {
       errors.put(GO_EVID_CODE_PARAM_KEY, "Missing required parameter.");
     }
     
