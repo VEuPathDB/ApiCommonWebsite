@@ -6,13 +6,12 @@ import static org.gusdb.fgputil.FormatUtil.TAB;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.math.BigDecimal;
 
 import javax.sql.DataSource;
 
@@ -24,6 +23,7 @@ import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
@@ -52,16 +52,16 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public Map<String,String> validateFormParams(Map<String, String[]> formParams) {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) {
     return validateParams(formParams);
   }
   
-  public static Map<String,String> validateParams(Map<String, String[]> formParams) {
-    Map<String,String> errors = new HashMap<String,String>();
+  public static ValidationErrors validateParams(Map<String, String[]> formParams) {
+    ValidationErrors errors = new ValidationErrors();
 
     // validate pValueCutoff
     if (!formParams.containsKey(PVALUE_PARAM_KEY)) {
-      errors.put(PVALUE_PARAM_KEY, "Missing required parameter.");
+      errors.addParamMessage(PVALUE_PARAM_KEY, "Missing required parameter.");
     }
     else {
       try {
@@ -69,26 +69,26 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         if (pValueCutoff <= 0 || pValueCutoff > 1) throw new NumberFormatException();
       }
       catch (NumberFormatException e) {
-        errors.put(PVALUE_PARAM_KEY, "Must be a number between greater than 0 and less than or equal to 1.");
+        errors.addParamMessage(PVALUE_PARAM_KEY, "Must be a number between greater than 0 and less than or equal to 1.");
       }
     }
     
     // validate annotation sources
     String [] sources = formParams.get(GO_ASSOC_SRC_PARAM_KEY);
     if (sources == null || sources.length == 0) {
-      errors.put(GO_ASSOC_SRC_PARAM_KEY, "Missing required parameter.");
+      errors.addParamMessage(GO_ASSOC_SRC_PARAM_KEY, "Missing required parameter.");
     }
     
     // validate evidence codes
     String [] evidCodes = formParams.get(GO_EVID_CODE_PARAM_KEY);
     if (evidCodes == null || evidCodes.length == 0) {
-      errors.put(GO_EVID_CODE_PARAM_KEY, "Missing required parameter.");
+      errors.addParamMessage(GO_EVID_CODE_PARAM_KEY, "Missing required parameter.");
     }
     
     // validate ontology
     String [] ontologies = formParams.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
     if (ontologies == null || ontologies.length != 1) {
-      errors.put(GO_ASSOC_ONTOLOGY_PARAM_KEY, "Missing required parameter, or more than one provided.");
+      errors.addParamMessage(GO_ASSOC_ONTOLOGY_PARAM_KEY, "Missing required parameter, or more than one provided.");
     }
   
     return errors;

@@ -16,6 +16,7 @@ import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
@@ -44,7 +45,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
   
   @Override
-  public Map<String,String> validateFormParams(Map<String, String[]> formParams) {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) {
     return GoEnrichmentPlugin.validateParams(formParams);
   }
 

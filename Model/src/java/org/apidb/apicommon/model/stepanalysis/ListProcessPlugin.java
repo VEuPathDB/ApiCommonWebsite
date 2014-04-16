@@ -3,13 +3,13 @@ package org.apidb.apicommon.model.stepanalysis;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
@@ -21,11 +21,11 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String LOCATION_PARAM = "location";
   
   @Override
-  public Map<String,String> validateFormParams(Map<String,String[]> params) {
-    Map<String,String> errors = new HashMap<>();
+  public ValidationErrors validateFormParams(Map<String,String[]> params) {
+    ValidationErrors errors = new ValidationErrors();
     String[] vals = params.get(LOCATION_PARAM);
     if ( vals == null || vals.length != 1 || vals[0].isEmpty()) {
-      errors.put(LOCATION_PARAM, "Location value cannot be empty.");
+      errors.addParamMessage(LOCATION_PARAM, "Location value cannot be empty.");
     }
     return errors;
   }
