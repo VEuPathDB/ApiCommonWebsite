@@ -52,11 +52,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) {
-    return validateParams(formParams);
-  }
-  
-  public static ValidationErrors validateParams(Map<String, String[]> formParams) {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+
     ValidationErrors errors = new ValidationErrors();
 
     // validate pValueCutoff
@@ -73,25 +70,74 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       }
     }
     
-    // validate annotation sources
+    // validate annotation sources 
+    String sourcesStr = getSourcesParamValueAsString(formParams, errors);
+    
+    // validate evidence codes
+    String evidCodesStr = getEvidCodesParamValueAsString(formParams, errors);
+    
+    // validate ontology
+    String ontology = getOntologyParamValue(formParams, errors);
+
+    validateFilteredGoTerms(sourcesStr, evidCodesStr, ontology, errors);
+
+    return errors;
+  }
+
+  // return GO Annotation Sources param value as an SQL compatible list string
+  // @param errors may be null if the sources have been previously validated.
+  private String getSourcesParamValueAsString(Map<String, String[]> formParams, ValidationErrors errors) {
     String [] sources = formParams.get(GO_ASSOC_SRC_PARAM_KEY);
     if (sources == null || sources.length == 0) {
       errors.addParamMessage(GO_ASSOC_SRC_PARAM_KEY, "Missing required parameter.");
     }
-    
-    // validate evidence codes
-    String [] evidCodes = formParams.get(GO_EVID_CODE_PARAM_KEY);
+    return "'" + FormatUtil.join(sources, "','") + "'";
+  }
+
+  // return GO Evidence Codes param value as an SQL compatible list string
+  // @param errors may be null if the sources have been previously validated.
+  private String getEvidCodesParamValueAsString(Map<String, String[]> formParams, ValidationErrors errors) {
+    String[] evidCodes = formParams.get(GO_EVID_CODE_PARAM_KEY);
     if (evidCodes == null || evidCodes.length == 0) {
       errors.addParamMessage(GO_EVID_CODE_PARAM_KEY, "Missing required parameter.");
     }
-    
-    // validate ontology
+    return "'" + FormatUtil.join(evidCodes, "','") + "'";
+  }
+
+  // return Ontology param value
+  // @param errors may be null if the sources have been previously validated.
+  private String getOntologyParamValue(Map<String, String[]> formParams, ValidationErrors errors) {
     String [] ontologies = formParams.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
-    if (ontologies == null || ontologies.length != 1) {
+    if (ontologies == null || ontologies.length != 1) 
       errors.addParamMessage(GO_ASSOC_ONTOLOGY_PARAM_KEY, "Missing required parameter, or more than one provided.");
+    return ontologies[0];
+  }
+
+  private void validateFilteredGoTerms(String sourcesStr, String evidCodesStr, String ontology, ValidationErrors errors) throws WdkModelException {
+
+    String countColumn = "CNT";
+    String idSql = getAnswerValue().getIdSql();
+    String sql = "SELECT count(distinct gts.go_term_id) as " + NL +
+      "FROM ApidbTuning.GoTermSummary gts,"  + NL +
+      "(" + idSql + ") r"  + NL +
+      "where gts.source_id = r.source_id" + NL +
+      "and gts.ontlogoy = '" + ontology + "'" + NL +
+      "and gts.source in (" + sourcesStr + ")" + NL +
+      "and gts.evidence_code in (" + evidCodesStr + ")" + NL
+      ;
+
+    DataSource ds = getWdkModel().getAppDb().getDataSource();
+    BasicResultSetHandler handler = new BasicResultSetHandler();
+    new SQLRunner(ds, sql).executeQuery(handler);
+
+    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+
+    Map<String, Object> result = handler.getResults().get(0);
+    BigDecimal count = (BigDecimal)result.get(countColumn);
+
+    if (count.intValue() < 1) {
+      errors.addMessage("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
-  
-    return errors;
   }
 
   @Override
@@ -103,8 +149,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Map<String,String[]> params = getFormParams();
 
     String pValueCutoff = params.get(PVALUE_PARAM_KEY)[0];
-    String sourcesStr = "'" + FormatUtil.join(params.get(GO_ASSOC_SRC_PARAM_KEY), "','") + "'";  // in sql format
-    String evidCodesStr = "'" + FormatUtil.join(params.get(GO_EVID_CODE_PARAM_KEY), "','") + "'";  // in sql format
+    String sourcesStr = getSourcesParamValueAsString(params, null); // in sql format
+    String evidCodesStr = getEvidCodesParamValueAsString(params, null); // in sql format
     String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY)[0];
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);

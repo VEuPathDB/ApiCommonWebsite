@@ -46,7 +46,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   public ValidationErrors validateFormParams(Map<String, String[]> formParams) {
-    return GoEnrichmentPlugin.validateParams(formParams);
+    return null;
   }
 
   @Override
