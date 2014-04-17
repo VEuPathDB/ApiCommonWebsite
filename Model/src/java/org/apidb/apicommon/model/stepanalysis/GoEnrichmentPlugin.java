@@ -117,11 +117,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     String countColumn = "CNT";
     String idSql = getAnswerValue().getIdSql();
-    String sql = "SELECT count(distinct gts.go_term_id) as " + NL +
+    String sql = "SELECT count(distinct gts.go_term_id) as " + countColumn + NL +
       "FROM ApidbTuning.GoTermSummary gts,"  + NL +
       "(" + idSql + ") r"  + NL +
       "where gts.source_id = r.source_id" + NL +
-      "and gts.ontlogoy = '" + ontology + "'" + NL +
+      "and gts.ontology = '" + ontology + "'" + NL +
       "and gts.source in (" + sourcesStr + ")" + NL +
       "and gts.evidence_code in (" + evidCodesStr + ")" + NL
       ;
@@ -133,6 +133,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
     Map<String, Object> result = handler.getResults().get(0);
+
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
     if (count.intValue() < 1) {
