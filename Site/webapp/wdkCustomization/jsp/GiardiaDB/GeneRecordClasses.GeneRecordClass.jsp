@@ -336,6 +336,10 @@ http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/giardiadbaa/?name=$
                attribution=""/>
 
 
+<c:if test="${attrs['has_image'].value eq '1'}">
+  <imp:wdkTable tblName="CellularLocalization" isOpen="true" attribution=""/>
+</c:if> 
+
 <!-- Molecular weight -->
 
 <c:set var="mw" value="${attrs['molecular_weight'].value}"/>

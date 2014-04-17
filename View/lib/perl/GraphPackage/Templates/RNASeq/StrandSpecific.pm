@@ -14,6 +14,8 @@ sub init {
 
   my $datasetName = $self->getDataset();
 
+  my $id = $self->getId();
+
   my $dbh = $self->getQueryHandle();
 
   my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();

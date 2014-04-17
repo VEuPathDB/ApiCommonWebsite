@@ -30,13 +30,13 @@
 
  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
  <style>
-#draggable {z-index:1000;margin-left:18px;position:absolute;margin-top: 400px; background-color:white;border:1px solid black; border-radius:5px; width: 300px; padding: 0.5em; }
+#draggable {z-index:10000;margin-left:18px;position:absolute;margin-top: 400px; background-color:white;border:1px solid black; border-radius:5px; width: 300px; padding: 0.5em; }
 #cytoscapeweb { border:1px solid black; border-radius:5px;  }
 </style>
 
 <script>
 $(function() {
-$( "#draggable" ).draggable();
+$( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
 });
 </script>
 
@@ -61,11 +61,15 @@ calling functions at the right time.
   Cytoscape Web will replace the contents of this div with your graph.
  </div>
 
+ <div>
+<BR><a href="/common/downloads/pathwayFiles/${pathwayId}.xgmml">XGMML data file</a>
+</div>
+ <div align="right">
 <a href="http://cytoscapeweb.cytoscape.org/">
     <img src="http://cytoscapeweb.cytoscape.org/img/logos/cw_s.png" alt="Cytosca
 pe Web"/></a>
-
-<br />
+</div>
+<br>
 <br />
 <!-- CYTOSCAPE end-->
 
@@ -82,6 +86,8 @@ pe Web"/></a>
 <!-- CYTOSCAPE start-->
 <script type="text/javascript">
   // get xgmml and draw the visualization
-  drawVisualization("${pathwayId}");
+  $(function() {
+    drawVisualization("${pathwayId}");
+  });
 </script>        
 

@@ -29,6 +29,74 @@ function drawVisualization(pathwayId) {
 }
 
 
+function exportVisualization (type) {
+    var link = wdk.webappUrl('exportCytoscapeNetwork.do?type=' + type);
+
+    vis.exportNetwork(type, link);
+}
+
+// Transform a JSON request from webservices to
+// a more usable data structure. This is used
+// by `getEcToOrganismMap`
+function transformToEcNumberList(data) {
+  if (!(data.response && data.response.recordset && data.response.recordset.records)) {
+    throw new Error("Received an unexpected response object");
+  }
+
+  var ecNumberList = {};
+  var records = data.response.recordset.records;
+
+  records.forEach(function(record) {
+    var organism = _(record.fields).findWhere({ name: 'organism' });
+    var ecTable = _(record.tables).findWhere({ name: 'EC Number' });
+
+    ecTable.rows.forEach(function(row) {
+      var ecItem;
+      var ecNumber = _(row.fields).findWhere({ name: 'ec_number' });
+      var source = _(row.fields).findWhere({ name: 'source' });
+
+      if (!_(ecNumberList).has(ecNumber.value)) {
+        // create new entry in ecNumberList
+        ecItem = ecNumberList[ecNumber.value] = {};
+      } else {
+        // return existing entry
+        ecItem = ecNumberList[ecNumber.value]
+      }
+
+      if (!_(ecItem).has(source.value)) {
+        ecItem[source.value] = [];
+      }
+
+      if (ecItem[source.value].indexOf(organism.value) === -1) {
+        ecItem[source.value].push(organism.value);
+      }
+
+    });
+  });
+
+  return ecNumberList;
+}
+
+
+// Requests JSON from webservice and tranforms the JSON to
+// a map of ecNumbers -> sources -> organisms
+//
+// Example:
+//   getEcToOrganismMap(id).done(function(ecNumberMap) {
+//     vis.nodes().forEach(function(node) {
+//       // get ecNumber from node somehow ...
+//       var ecMapItem = ecNumberMap[ecNumber];
+//       for (var source in ecMapItem) {
+//         var genes = ecMapItem[source]; // returns an array
+//         // do something with ecNumber, source, and genes ...
+//       }
+//     });
+//   });
+function getEcToOrganismMap(id) {
+  var url = wdk.webappUrl('/webservices/GeneQuestions/GenesByMetabolicPathwayIDKegg.json?metabolic_pathway_id_with_genes=' +
+      encodeURIComponent(id) + '&o-fields=organism,EcNumber');
+  return $.getJSON(url).then(transformToEcNumberList);
+}
 
 // callback when Cytoscape Web has finished drawing
 vis.ready(function() {
@@ -47,7 +115,7 @@ vis.ready(function() {
 	    if(type == "enzyme") {
 		print ("<b>EC Number:  </b> " + target.data["label"]);
 		print("");
-		print("<b>Enzyme Name:  </b>" + target.data["Description"]);
+		print("<b>Enzyme Name or Description:  </b>" + target.data["Description"]);
 		print("");
 		
 		if(target.data["Organisms"]) {
@@ -56,15 +124,24 @@ vis.ready(function() {
 		    for(var i in orgs.sort()) {
 			print("&nbsp;&nbsp;" + orgs[i]);        
 		    }
+		}
+		print("");
+		if(target.data["OrganismsInferredByOthoMCL"]) {
+		    var orgs =  target.data["OrganismsInferredByOthoMCL"].split(",");
+		    print("<b>Organism(s) inferred from OrthoMCL: </b>");
+		    for(var i in orgs.sort()) {
+			print("&nbsp;&nbsp;" + orgs[i]);        
+		    }
 		    print("");
-		    print("<a href='/a/processQuestion.do?questionFullName=GeneQuestions.InternalGenesByEcNumber&array%28organism%29=all&questionSubmit=Get+Answer&array%28ec_number_pattern%29=" + target.data["label"] + "'>Search for Gene(s) By EC Number</a>");
+		    print("<a href='/a/processQuestion.do?questionFullName=GeneQuestions.InternalGenesByEcNumber&organism=all&array%28ec_source%29=all&questionSubmit=Get+Answer&ec_number_pattern=N/A&ec_wildcard=" + target.data["label"] + "'>Search for Gene(s) By EC Number</a>");
 		    print("");
 
-		    if(target.data.image) {
-			var link =  target.data.image + '&fmt=png&h=250&w=300' ;
-			print("<img src='" + link + "'>");
-		    }
-                              }
+		}
+		if(target.data.image) {
+		    var link =  target.data.image + '&fmt=png&h=250&w=350' ;
+		    print("<img src='" + link + "'>");
+		}
+
 	    } 
 	    
 	    if(type == "compound") {
@@ -108,20 +185,17 @@ vis.ready(function() {
 	    if (data["Description"]) {
 		value  = value +  ": " + data["Description"] ;
 	    }
-	    //if (data["Organisms"]) {
-	    //value  = value + "\nOrganisms: " + data["Organisms"];
-	    //}
 	    return (value);
 	};
 
 	// customBorder function : if node has Organisms, then border should be a different color
 	vis["customBorder"] = function (data) {
 	    var value = data["label"];
-	    if (data["Organisms"]) {
+	    if (data["OrganismsInferredByOthoMCL"] || data["Organisms"] ) {
 		value  = "#FF0000";
 	    } else {
 		value = "#000000";
-	    }		       	     
+	    }	       	     
 	    return (value);
 	};
 
@@ -200,8 +274,8 @@ vis.ready(function() {
 	vis.nodeTooltipsEnabled(true);
 	vis.visualStyle(style);
 
-	changeExperiment = function(val) {
-	    // use bypass to hide labelling of EC num that have heatmap graphs
+	changeExperiment = function(val, doAllNodes) {
+	    // use bypass to hide labelling of EC num that have expression graphs
 	    var nodes = vis.nodes();  
 
 	    for (var i in nodes) {
@@ -209,10 +283,10 @@ vis.ready(function() {
 
 		var type =  n.data.Type;
 
-		if(type == ("enzyme") && n.data.Organisms) {
+		if(type == ("enzyme") ) {
 		    var ecNum = n.data.label;
 
-		    if(val) {
+		    if(val && (doAllNodes || n.data.OrganismsInferredByOthoMCL || n.data.Organisms)) {
 			var linkPrefix = '/cgi-bin/dataPlotter.pl?idType=ec&' + val + '&id=' + ecNum;
 			var link =  linkPrefix + '&fmt=png&h=20&w=50&compact=1' ;
 
@@ -295,4 +369,20 @@ jQuery(function($) {
 
   $(window).on('resize', resizeMap);
   resizeMap();
+
+  if ($.fn.superfish) {
+    var menu = $('#vis-menu')
+      .superfish()
+      .on('click', 'a', function(e) {
+        var a = $(this);
+        if (a.is('.sf-with-ul')) {
+          // prevent page jumps
+          e.preventDefault();
+        } else {
+          // hide menu when an action is clicked
+          menu.hideSuperfishUl();
+        }
+      });
+  }
+
 });

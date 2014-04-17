@@ -34,18 +34,24 @@ JSP page, avoiding the need to have the JSP file be named after the record class
 one record can be instantiated in a single JSP page.
 <p>
 Two records, GeneRecordClasses.GeneRecordClass (generec) and 
-UtilityRecordClasses.SiteInfo (wdkRecord) co-mingled in same page.
+EstRecordClasses.EstRecordClass (wdkRecord) co-mingled in same page.
+
 <p>
-<%-- 
-Record 1, with defaults recordKey=wdkRecord, source_id=' ', project_id=' '
+<%--
+Default properties are <code>recordKey=wdkRecord, source_id=' ', project_id=' '</code>
 --%>
-<api:wdkRecord name="UtilityRecordClasses.SiteInfo"/>
+<%-- 
+Record 1, using default recordKey=wdkRecord
+--%>
+<api:wdkRecord name="EstRecordClasses.EstRecordClass"
+  source_id="AA420947" project_id='CryptoDB' 
+/>
 <%-- 
 Record 2, with explicit param settings. use of <rtexprvalue> in source_id
 --%>
-<c:set var='source_id' value='TGME49_039250'/>
+<c:set var='source_id' value='cgd7_230'/>
 <api:wdkRecord name="GeneRecordClasses.GeneRecordClass" 
-    recordKey="generec" source_id="${source_id}" project_id='ToxoDB' />
+    recordKey="generec" source_id="${source_id}" project_id='CryptoDB' />
 <c:set var="geneattrs" value="${generec.attributes}"/>
 <c:set var="attrs"     value="${wdkRecord.attributes}"/>
 
@@ -58,7 +64,9 @@ wdkRecord projectId: <b>${wdkRecord.primaryKey.values['project_id']}</b>
 <br>
 generec projectId: <b>${wdkRecord.primaryKey.values['project_id']}</b>
 <br>
-wdkRecord db global_name: <b>${fn:toLowerCase(wdkRecord.attributes['global_name'].value)}</b>
+generec Gene overview: <b>${generec.attributes['overview']}</b>
+<br>
+wdkRecord EST overview: <b>${wdkRecord.attributes['overview']}</b>
 </blockquote>
 
 <p>applicationScope.wdkModel, provided by the webapp, is accessible in this page scope, 
@@ -66,17 +74,18 @@ allowing access to properties from model.prop<br>
 <%-- applicationScope.wdkModel is accessible in this page scope --%>
 <c:set var="props" value="${applicationScope.wdkModel.properties}" />
 <blockquote>
-LOGIN_SCHEMA from model.prop: <b>${props['LOGIN_SCHEMA']}</b>
+WEBSERVICEMIRROR from model.prop: <b>${props['WEBSERVICEMIRROR']}</b>
 </blockquote>
 
 <hr>
 <h3>api:table</h3>
+(BUG: includes source_id column)
 <p>
 <blockquote>
 <table border="1" cellspacing="3" cellpadding="2" align="${align}">
 
 <%-- table header --%>
-<api:table var="tbl" tableName="AllDbLinks">
+<api:table var="tbl" tableName="ReferenceInfo">
 
   <tr class="secondary3">
   <api:whileColumnHeader var="hCol">
@@ -132,10 +141,11 @@ LOGIN_SCHEMA from model.prop: <b>${props['LOGIN_SCHEMA']}</b>
 <hr>
 <h3>api:properties</h3>
 <c:catch var="e">
-<api:properties var="build" propfile="WEB-INF/wdk-model/config/.build.info" />
-Parse Java property file into page scope. Example reading WEB-INF/wdk-model/config/.build.info
+<api:properties var="prop" propfile="/WEB-INF/wdk-model/config/CryptoDB/model.prop" />
+Parse Java property file into page scope. Example reading WEB-INF/wdk-model/config/CryptoDB/model.prop
+<small>(model.prop is technically not a java property file, but it's the closest I could find)</small>
 <blockquote>
-Last.build.timestamp: <b>${build['!Last.build.timestamp']}</b>
+SITE_ADMIN_EMAIL: <b>${prop['SITE_ADMIN_EMAIL']}</b>
 </blockquote>
 </c:catch>
 <c:if test="${ e != null }">
@@ -147,10 +157,10 @@ Last.build.timestamp: <b>${build['!Last.build.timestamp']}</b>
 <hr>
 
 <h3>api:configurations</h3>
-parse projectId and url from apifed-config.xml
+parse projectId and url from $GUS_HOME/config/projects.xml
 
 <c:catch var="e">
-<api:configurations var="config" configfile="WEB-INF/wdk-model/config/apifed-config.xml.sample" />
+<api:configurations var="config" configfile="WEB-INF/wdk-model/config/projects.xml" />
 <blockquote>
 <pre>
 <c:forEach 

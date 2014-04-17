@@ -58,6 +58,8 @@ sub getAllProfileSetNames {
 
   my $datasetName = $self->getDataset();
 
+  my $id = $self->getId();
+
   my $dbh = $self->getQueryHandle();
 
   my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
@@ -65,13 +67,20 @@ sub getAllProfileSetNames {
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetName);
 
-  my @rv;
+  my @rv = ();
+
+  if (! $sh->rows() ){
+    my $filterSql =  ApiCommonWebsite::View::GraphPackage::Util::getFilteredProfileSetsSql();
+    $sh = $dbh->prepare($filterSql);
+    $sh->execute($datasetName,$id);
+  }
+      
   while(my ($profileName) = $sh->fetchrow_array()) {
     next if($self->isExcludedProfileSet($profileName));
     push @rv, $profileName;
   }
   $sh->finish();
-
+  
   return \@rv;
 }
 
