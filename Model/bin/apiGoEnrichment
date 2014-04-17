@@ -114,7 +114,7 @@ sub getDataSql {
 return "
 select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from
- (SELECT gt.go_id, count(distinct gf.source_id) as bgdcnt, gt.name
+ (SELECT gt.go_id, count(distinct gts.source_id) as bgdcnt, gt.name
             FROM apidbtuning.geneattributes gf,
                  apidbtuning.gotermsummary gts,
                  sres.GoTerm gt,
@@ -132,7 +132,7 @@ from
               AND grt.name = 'closure'
             group BY gt.go_id, gt.name
    ) bgd,
-   (SELECT gt.go_id, count(distinct gf.source_id) as resultcnt
+   (SELECT gt.go_id, count(distinct gts.source_id) as resultcnt
             FROM ApidbTuning.GoTermSummary gts,
                  sres.GoTerm gt,
                  sres.GoRelationship gr,
