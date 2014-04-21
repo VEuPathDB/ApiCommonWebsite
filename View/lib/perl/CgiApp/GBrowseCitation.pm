@@ -21,7 +21,7 @@ sub run {
   my $parser = _CitationParser->new();
 
   foreach my $track (@tracks) {
-    next if($track =~ /Synteny/);
+    $track =~ s/\/.+$//;
 
     my $wgetCommand = "wget -qO- " . $cgi->url(-base => 1) . "/cgi-bin/gbrowse/" . lc($projectId) . "/?display_citation=$track";
 
