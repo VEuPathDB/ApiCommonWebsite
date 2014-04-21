@@ -10,7 +10,8 @@ sub run {
 
   my $projectId = $cgi->param('project_id');
   my $tracks = $cgi->param('tracks');
-  my @tracks = split(",", $tracks);
+
+  my @tracks = split(/\x1e/, $tracks);
 
   print $cgi->header('text/html');
   print $cgi->start_html("$projectId:  GBrowse Citation(s)");
@@ -20,6 +21,8 @@ sub run {
   my $parser = _CitationParser->new();
 
   foreach my $track (@tracks) {
+    next if($track =~ /Synteny/);
+
     my $wgetCommand = "wget -qO- " . $cgi->url(-base => 1) . "/cgi-bin/gbrowse/" . lc($projectId) . "/?display_citation=$track";
 
     my $text = `$wgetCommand`;
