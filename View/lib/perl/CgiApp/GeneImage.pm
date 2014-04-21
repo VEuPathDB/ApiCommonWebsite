@@ -50,11 +50,6 @@ EOSQL
   print "<table align=center width=800>";
   while(my ($dic_img_uri, $gfp_img_uri, $note, $source_id) = $sth->fetchrow_array()) {
      print <<EOL
-     <tr>
-       <td colspan=2>
-         <font color="red">Warning: several Web browsers do not support displaying TIFF images, please try Safari instead or click the following links to download.</font>
-       </td>
-      </tr>
       <tr>
        <td colspan=2>
          $source_id - $note
@@ -63,35 +58,23 @@ EOSQL
      <tr>
 
        <td>
-       <embed 
-       src="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$gfp_img_uri"
-       type="image/tiff"
-       negative=yes>
+       <img src="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$gfp_img_uri.jpg">
 
       </td>
 
        <td>
-       <embed 
-       src="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$dic_img_uri"
-       type="image/tiff"
-       negative=yes>
+       <img src="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$dic_img_uri.jpg">
 
       </td>
-
-      <tr>
-       <td colspan=2>
-         If you can not view above TIFF images, click the following links to downlaad them to your local machine, then open it with applicable image/photo processing software..
-       </td>
-     </tr>
 
      <tr>
 
        <td>
-       <a href="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$gfp_img_uri">Download GFP image</a>
+       <a href="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$gfp_img_uri">Download GFP image in TIFF format</a>
       </td>
 
        <td>
-       <a href="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$dic_img_uri">Download DIC image</a>
+       <a href="/common/GintestinalisAssemblageA/image/gassAWB_DBP_GeneImage_RSRC/$dic_img_uri">Download DIC image in TIFF format</a>
 
       </td>
 
