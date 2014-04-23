@@ -209,7 +209,7 @@ sub handleNonGenomic {
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sh = $dbh->prepare("select gene from (select gene, case when id = lower(gene) then 1 else 0 end as matchiness from ApidbTuning.GeneId where lower(id) = lower(?) order by matchiness desc) where rownum=1");
+  my $sh = $dbh->prepare("select gene from (select gene, case when id = gene then 2 when id = lower(gene) then 1 else 0 end as matchiness from ApidbTuning.GeneId where lower(id) = lower(?) order by matchiness desc) where rownum=1");
 
   my @ids;
 
