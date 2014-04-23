@@ -278,11 +278,14 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.GeneId gi,
-     ApidbTuning.NaSequence s
-WHERE lower(gi.id) = lower(?)
-AND bfmv.source_id = gi.gene
-AND s.source_id = bfmv.sequence_id
+FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.NaSequence s
+WHERE s.source_id = bfmv.sequence_id
+AND bfmv.source_id IN (
+    SELECT gene FROM (
+        SELECT gene, CASE WHEN id = gene THEN 2 WHEN id = LOWER(gene) THEN 1 ELSE 0 END AS matchiness
+        FROM ApidbTuning.GeneId WHERE LOWER(id) = LOWER( ?)
+        ORDER BY matchiness desc )
+    WHERE rownum=1 )
 EOSQL
 
 $sqlQueries->{orfGenomicSql} = <<EOSQL;
