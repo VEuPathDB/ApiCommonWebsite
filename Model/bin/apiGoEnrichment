@@ -48,6 +48,14 @@ sub getEnrichment {
   }
 
   close Writer;
+
+  open(OUT, ">$outputFile") || die "Can't open '$outputFile' for writing\n";
+
+  while(<Reader>) {
+    chomp;
+    my ($foldEnrichment, $oddsRatio, $percentOfResult, $pValue, $benjamini, $bonferroni, $termId, $bgdCount, $resultCount, $pctOfBgd, $goName) = split(/\t/);
+    print OUT join("\t", $termId, $goName, $bgdCount, $resultCount, $pctOfBgd, $foldEnrichment, $oddsRatio, $pValue, $benjamini, $bonferroni) . "\n";
+  }
   close Reader;
   waitpid($pid, 0);
   my $s = $? >> 8;

@@ -40,15 +40,19 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-      "GO ID", "GO Term", "P-Value", "All Genes<br/>With This Term", "Result Genes<br/>With This Term", "Percent of All in This Result");
+							   "GO ID", "GO Term", "All Genes with this term", "Result Genes w/ this term", "% of all", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Gene Ontology ID",
       "Gene Ontology Term",
-      "P-Value Significance of the enrichment",
       "Number of genes with this term in this organism",
       "Number of genes with this term in your result",
-      "Percent of genes in the organism that have this term that are present in your result"
+      "Percentage of genes in the organism with this term that are present in your result",
+      "Ratio of the fraction of genes annotated by the term in result set to fraction of annotated genes in the organism",
+      "Odds ratio statistic from the Fisher's exact test",
+      "P-value from Fisher's exact test",
+      "Benjamini-Hochberg FDR",
+      "Bonferroni adjusted p-value"
   );
 
   @Override
@@ -244,7 +248,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
-        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5]));
+        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7], columns[8], columns[9]));
       }
       return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
     }
@@ -303,27 +307,39 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   
   public static class ResultRow {
     
-    private String _pValue;
     private String _goId;
+    private String _goTerm;
     private String _bgdGenes;
     private String _resultGenes;
-    private String _goTerm;
     private String _percentInResult;
+    private String _foldEnrich;
+    private String _oddsRatio;
+    private String _pValue;
+    private String _benjamini;
+    private String _bonferroni;
 
-    public ResultRow(String goId, String goTerm, String pValue, String bgdGenes, String resultGenes, String percentInResult) {
-      _pValue = pValue;
+    public ResultRow(String goId, String goTerm, String bgdGenes, String resultGenes, String percentInResult, String foldEnrich, String oddsRatio, String pValue, String benjamini, String bonferroni) {
       _goId = goId;
+      _goTerm = goTerm;
       _bgdGenes = bgdGenes;
       _resultGenes = resultGenes;
-      _goTerm = goTerm;
       _percentInResult = percentInResult;
+      _foldEnrich = foldEnrich;
+      _oddsRatio = oddsRatio;
+      _pValue = pValue;
+      _benjamini = benjamini;
+      _bonferroni = bonferroni;
     }
 
-    public String getPvalue() { return _pValue; }
     public String getGoId() { return _goId; }
+    public String getGoTerm() { return _goTerm; }
     public String getBgdGenes() { return _bgdGenes; }
     public String getResultGenes() { return _resultGenes; }
-    public String getGoTerm() { return _goTerm; }
     public String getPercentInResult() { return _percentInResult; }
+    public String getFoldEnrich() { return _foldEnrich; }
+    public String getOddsRatio() { return _oddsRatio; }
+    public String getPValue() { return _pValue; }
+    public String getBenjamini() { return _benjamini; }
+    public String getBonferroni() { return _bonferroni; }
   }
 }
