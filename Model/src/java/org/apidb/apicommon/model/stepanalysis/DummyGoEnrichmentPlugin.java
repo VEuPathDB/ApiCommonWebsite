@@ -41,7 +41,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     .toList();
   
   private ResultRow dummyArrayToResultRow(String[] row) {
-    return new ResultRow(row[1], row[4], row[0], row[2], row[3], row[5]);
+    return new ResultRow(row[1], row[4], row[0], row[2], row[3], row[5], "", "", "", "");
   }
   
   @Override
@@ -62,7 +62,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       tabbedData
         .append(rd.getGoId()).append(TAB)
         .append(rd.getGoTerm()).append(TAB)
-        .append(rd.getPvalue()).append(TAB)
+        .append(rd.getPValue()).append(TAB)
         .append(rd.getBgdGenes()).append(TAB)
         .append(rd.getResultGenes()).append(TAB)
         .append(rd.getPercentInResult()).append(TAB)
