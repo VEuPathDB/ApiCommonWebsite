@@ -14,6 +14,7 @@ import org.gusdb.wdk.model.WdkUserException;
 public class ExportCytoscapeNetworkAction extends Action {
 
   private static final String PARAM_TYPE = "type";
+  private static final String PARAM_NAME = "name";
 
   @Override
   public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -21,6 +22,7 @@ public class ExportCytoscapeNetworkAction extends Action {
       throws Exception {
 
     String type = request.getParameter(PARAM_TYPE);
+    String name = request.getParameter(PARAM_NAME);
 
     if (type == null) {
       throw new WdkUserException("A type must be specified.");
@@ -35,7 +37,7 @@ public class ExportCytoscapeNetworkAction extends Action {
     }
 
     response.setHeader("Content-disposition",
-        "attachment; filename=\"network." + type + "\"");
+        "attachment; filename=\"" + name + "." + type + "\"");
 
     ServletInputStream in = request.getInputStream();
     ServletOutputStream out = response.getOutputStream();
