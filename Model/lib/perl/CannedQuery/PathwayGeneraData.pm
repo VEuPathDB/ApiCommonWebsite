@@ -25,6 +25,11 @@ select case when ec.genus is null then 0 else 1 end as value
 from (select distinct genus
       from apidb.ecnumbergenus
       where ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('<<Id>>'),' ',''),'-', '%'),'*','%'),'any','%')
+ UNION
+ select distinct 'Plasmodium' as genus
+ from dots.AaSequenceEnzymeClass asec, sres.EnzymeClass ec
+ where ec.enzyme_class_id = asec.enzyme_class_id
+ and ec.ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('<<Id>>'),' ',''),'-', '%'),'*','%'),'any','%')
         ) ec,
   (
    <<Genera>>
