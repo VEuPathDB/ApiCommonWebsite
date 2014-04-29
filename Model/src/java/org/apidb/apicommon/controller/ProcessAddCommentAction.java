@@ -120,6 +120,7 @@ public class ProcessAddCommentAction extends CommentAction {
 
         if ((doiStr != null) && (doiStr.trim().length() != 0)) {
             String[] dois = doiStr.replaceAll(",", " ").split(" ");
+            dois = NewCommentAction.parseDois(dois);
             comment.setDois(dois);
         }
 

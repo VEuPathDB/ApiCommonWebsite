@@ -25,6 +25,10 @@ import org.xml.sax.SAXException;
 
 public class NewCommentAction extends CommentAction {
 
+    private static final String[] DOI_PREFIXES = {
+      "http://dx.doi.org/", "dx.doi.org/", "doi:"
+    };
+  
     @Override
     public ActionForward execute(ActionMapping mapping, 
                                  ActionForm form, 
@@ -146,6 +150,9 @@ public class NewCommentAction extends CommentAction {
 
         if((doiStr != null) && (doiStr.trim().length() != 0)) {
           String[] dois = handleDelimiter(doiStr).split(" ");
+          // User may specify URLs or DOI codes, and sometimes appends a '.' to values
+          // Try to be 'understanding' and parse out the DOIs.
+          dois = parseDois(dois);
           comment.setDois(dois);
         }
 
@@ -279,6 +286,25 @@ public class NewCommentAction extends CommentAction {
         request.setAttribute("body", body.toString());
 
         return forward;
+    }
+
+    public static String[] parseDois(String[] userDois) {
+      String[] parsedDois = new String[userDois.length];
+      for (int i = 0; i < userDois.length; i++) {
+        String rawDoi = userDois[i];
+        // trim off a leading prefix if present
+        for (String doiPrefix : DOI_PREFIXES) {
+          if (rawDoi.toLowerCase().startsWith(doiPrefix)) {
+            rawDoi = rawDoi.substring(doiPrefix.length());
+          }
+        }
+        // trim off a trailing period if present
+        if (rawDoi.endsWith(".")) {
+          rawDoi = rawDoi.substring(0, rawDoi.length() - 1);
+        }
+        parsedDois[i] = rawDoi;
+      }
+      return parsedDois;
     }
 
     private String handleDelimiter(String str) {
