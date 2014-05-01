@@ -52,6 +52,7 @@ organismFull:   Plasmodium falciparum 3D7
 <c:set var="overview" value="${attrs['overview']}"/>
 <c:set var="length" value="${attrs['transcript_length']}"/>
 <c:set var="isCodingGene" value="${so_term_name eq 'protein_coding'}"/>
+<c:set var="hasPhenotype" value="${attrs['hasPhenotype'].value eq '1'}"/>
 <c:set var="async" value="${param.sync != '1'}"/>
 <c:set var="start" value="${attrs['start_min_text'].value}"/>
 <c:set var="end" value="${attrs['end_max_text'].value}"/>
@@ -121,6 +122,12 @@ organismFull:   Plasmodium falciparum 3D7
   </td>
   </c:if>
 
+<c:if test="${hasPhenotype}">
+  <td align="center"><a href="#Phenotype">Phenotype</a>
+     <img src="<c:url value='/images/arrow.gif'/>">
+  </td>
+  </c:if>
+
   <c:if test="${attrs['hasExpression'].value eq '1'}">
   <td align="center"><a href="#Expression">Expression</a>
      <img src="<c:url value='/images/arrow.gif'/>">
@@ -153,7 +160,6 @@ organismFull:   Plasmodium falciparum 3D7
 </c:url>
 
 
-<%------TODO ----- TriTryp --------%>
  <c:choose>
   <c:when test="${attrs['is_unassigned_tcruzi'].value  == 1}">	
       <c:set var="append" value=" - (this contig could not be assigned to Esmeraldo or Non-Esmeraldo)" />
@@ -206,21 +212,22 @@ organismFull:   Plasmodium falciparum 3D7
 
 <!-------------- Updated Product Name from GeneDB ---------------------------->
 
-<%--  TODO:  add attribute is_genedb_organism (remove genedb_organism?)
-<c:set var="genedb_organism" value="${attrs['genedb_organism'].value}"/> 
-<c:if test="${not empty genedb_organism}">
---%>
-<c:if test="${projectId eq 'PlasmoDB' || projectId eq 'TriTrypDB'  }">
+<c:set var="is_genedb_organism" value="${attrs['is_genedb_organism'].value}"/> 
+
+<c:if test="${is_genedb_organism == 1}">
   <div style="margin:12px;padding:5px">
+
     <c:if test="${attrs['updated_annotation'].value != null}">
       ${attrs['GeneDB_updated'].value}
     </c:if>
+
     <c:if test="${attrs['new_product_name'].value != null}">
       <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
     </c:if>
-  </div>
-</c:if>
 
+  </div>
+
+</c:if>
 </div>
 
 <!--------------  NOTE on Unpublished data as it was in Plasmo page ----------------------->
@@ -246,13 +253,11 @@ organismFull:   Plasmodium falciparum 3D7
 <%-- OVERVIEW ------------%>
 <c:set var="attr" value="${attrs['overview']}" />
 
-<%-- TODO:   ADD to all sites
 <c:if test="${attrs['is_deprecated'].value eq 'Yes'}">
    <c:set var="isdeprecated">
      **<b>Deprecated</b>**
    </c:set>
 </c:if>
---%>
 
 <imp:panel attribute="${attr.name}"
     displayName="${attr.displayName} ${has_namefun_comment}"
@@ -267,7 +272,7 @@ organismFull:   Plasmodium falciparum 3D7
 <c:if test="${dna_gtracks ne ''}">
 
   <c:set var="lowerProjectId" value="${fn:toLowerCase(projectId)}"/>
-  <c:set var="gnCtxUrl"> /cgi-bin/gbrowse_img/${lowerProjectId}/?name=${sequence_id}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;l=${dna_gtracks};width=640;embed=1;h_feat=${fn:toLowerCase(id)}@yellow;genepage=1
+  <c:set var="gnCtxUrl"> /cgi-bin/gbrowse_img/${lowerProjectId}/?name=${sequence_id}:${context_start_range}..${context_end_range};hmap=gbrowseSyn;l=${dna_gtracks};width=800;embed=1;h_feat=${fn:toLowerCase(id)}@yellow;genepage=1
   </c:set>
 
   <c:set var="gnCtxDivId" value="gnCtx"/>
@@ -294,6 +299,7 @@ organismFull:   Plasmodium falciparum 3D7
     imageMapDivId="${gnCtxDivId}" imageMapSource="${gnCtxUrl}"
     postLoadJS="/gbrowse/apiGBrowsePopups.js,/gbrowse/wz_tooltip.js"
     attribution=""
+    dsLink="/cgi-bin/gbrowse_citation.pl?project_id=${projectId}&tracks=${dna_gtracks}"
   />
 
 </c:if> 
@@ -361,8 +367,9 @@ organismFull:   Plasmodium falciparum 3D7
 
 
 <%-------COMMENT OUT FOR DEBUGGING: MetaTable --%> 
+<%--
 <imp:wdkTable2 tblName="MetaTable" isOpen="FALSE" attribution=""/>
-
+--%>
 
 
 <%--##########################   ANNOTATION      ################################--%>
@@ -396,22 +403,6 @@ organismFull:   Plasmodium falciparum 3D7
 
 <!-- External Links --> 
 <imp:wdkTable2 tblName="GeneLinkouts" isOpen="true" attribution=""/>
-
-
-<%-- in giardia TODO   add new attribute
-<c:set var="tree_source_id" value="${attrs['phyTreeId'].value}"/>
-<c:set var="tree_applet" value="${attrs['tree_applet_link'].value}"/>
-
-<c:if test="${tree_source_id ne null}">
-  <c:set var='treeLink'>
-    ${tree_applet} against RefEuks database
-  </c:set>
-  <imp:panel 
-      displayName="Phylogenetic Tree"
-      content="${treeLink}" />
-</c:if>
-<br>
---%>
 
 <!-- Orthologs and Paralogs -->
 <c:if test="${isCodingGene}">
@@ -491,7 +482,7 @@ organismFull:   Plasmodium falciparum 3D7
 <%-- Protein Features------------%>
 <c:set var="proteinLength" value="${attrs['protein_length'].value}"/>
 <c:set var="proteinFeaturesUrl">
-   http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/${lowerProjectId}aa/?name=${id}:1..${proteinLength};l=${protein_gtracks};hmap=pbrowse;width=640;embed=1;genepage=1
+   http://${pageContext.request.serverName}/cgi-bin/gbrowse_img/${lowerProjectId}aa/?name=${id}:1..${proteinLength};l=${protein_gtracks};hmap=pbrowse;width=800;embed=1;genepage=1
 </c:set>
 
 <c:if test="${protein_gtracks ne ''}">
@@ -510,7 +501,9 @@ organismFull:   Plasmodium falciparum 3D7
 
   <imp:toggle name="proteinContext"  displayName="Protein Features" 
                 content="${proteinFeaturesImg}" 
-                attribution=""/>
+                attribution=""
+    dsLink="/cgi-bin/gbrowse_citation.pl?project_id=${projectId}aa&tracks=${protein_gtracks}"
+/>
 </c:if> 
 
 
@@ -568,6 +561,9 @@ organismFull:   Plasmodium falciparum 3D7
 <%-- Pberghei Prot Expression  --%>
 <imp:wdkTable2 tblName="ProteinExpression" attribution=""/>
 
+<c:if test="${attrs['hasQuantitativeProteomics'].value eq '1'}">
+   <imp:profileGraphs species="${binomial}" tableName="ProteinExpressionGraphs"/>
+</c:if>
 
 <%--  Protein Linkouts     --%>
 <imp:wdkTable2 tblName="ProteinDatabase"/>
@@ -603,7 +599,10 @@ organismFull:   Plasmodium falciparum 3D7
 </c:if> <%-- end if isCodingGene --%>
 
 
-<%--######################   PHENOTYPE (only in TriTryp)      ################################--%>
+<%--######################   PHENOTYPE    ################################--%>
+<c:if test="${hasPhenotype}">
+
+<imp:pageDivider name="Phenotype"/>
 
 <c:set var="geneDbLink">
   <div align="left">
@@ -616,7 +615,7 @@ organismFull:   Plasmodium falciparum 3D7
 
 <imp:profileGraphs species="${binomial}" tableName="PhenotypeGraphs"/>
 
-
+</c:if>
 <%--##########################   EXPRESSION      ################################--%>
 
 

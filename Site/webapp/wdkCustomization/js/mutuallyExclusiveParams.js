@@ -168,6 +168,7 @@
 
     var form = $("form#form_question").has("div#questionName").last(),
         questionName = form.find("div#questionName").attr("name"),
+        $chromosomeOptional = form.find('[id^="chromosomeOptional"]:input'),
         sequenceR = /(\(Example: .*\)|No match)/i,
         inlineSubmit,
         chromosomeFakeNull,
@@ -221,42 +222,25 @@
           $("input[name='xor-group']")[1].checked = true;
         }
         // change default chromosome
-        chromosomeFakeNull = element.find("#chromosomeOptional > :first").remove();
+        chromosomeFakeNull = $chromosomeOptional.find(":first").remove();
         //element.find("#chromosomeOptional option:nth-child(2)").attr("selected", true);
       }
 
-    }).on("submit", function() {
-      // If chromosome is disabled, enable it and select the first option,
-      // which should be the "blank" option
-      var chromosomeOptional = this.chromosomeOptional;
+    });
 
-      if (chromosomeOptional.disabled && sequenceR.test(this.sequenceId.value)) {
+    form.on("submit", function validateAndFormfix() {
+      if ($chromosomeOptional.prop('disabled') &&
+          sequenceR.test(this.sequenceId.value) &&
+          questionName !== 'DynSpansBySourceId') {
         alert("Please enter a valid Sequence ID");
         event.preventDefault();
         return false;
       }
 
-      /* IT APPEARS ALL SEARCHES ARE USING SELECT
-
-      if (chromosomeOptional instanceof Node) {
-        // it will either be a SELECT or INPUT element
-        if (chromosomeOptional.nodeName === "SELECT" && chromosomeOptional.disabled) {
-          chromosomeOptional.disabled = false;
-          chromosomeOptional[0].selected = true;
-        } else if (chromosomeOptional.nodeName === "INPUT" && chromosomeOptional.disabled) {
-          chromosomeOptional.disabled = false;
-          chromosomeOptional.checked = true;
-        }
-      } else if (chromosomeOptional instanceof NodeList) {
-        // it will be a list of INPUT elements
-        if (chromosomeOptional[0].disabled) {
-          chromosomeOptional[0].disabled = false;
-          chromosomeOptional[0].checked = true;
-        }
-      }
-      */
-      if (chromosomeOptional.disabled) {
-        chromosomeOptional.disabled = false;
+      // If chromosome is disabled, enable it and select the first option,
+      // which should be the "blank" option
+      if ($chromosomeOptional.prop('disabled')) {
+        $chromosomeOptional.prop('disabled', false);
         chromosomeFakeNull.appendTo(chromosomeOptional).attr("selected", true);
       }
 

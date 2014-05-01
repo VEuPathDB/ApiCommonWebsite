@@ -40,15 +40,18 @@ Related Links
     <li><a href="https://www.cbil.upenn.edu/dba/">Penn databases</a></li>
   </ul>
 </div>
-<p>
-<b>Service Name</b>:
-<?php print ($adb{'service_name'}) ? $adb{'service_name'} : "<span class='warn'>service name not available</span>"; ?>
-</p>
 
 <p>
-<b>Other Identifiers</b>:
+<b>Identifiers</b>:
 <table border="0" cellspacing="3" cellpadding="2" align="">
 <tr class="secondary3"><th><font size="-2">Identifier</font></th><th><font size="-2">Value</font></th><th></th></tr>
+<tr class="rowLight"><td>Service Name</td><td><?php print strtolower($adb{'service_name'}) ?></td>
+    <td><a href='javascript:void()' style="text-decoration:none"
+        onmouseover="return overlib(
+         'result of <br><i>select&nbsp;sys_context(\'userenv\',&nbsp;\'service_name\')&nbsp;from&nbsp;dual</i>'
+        )"
+        onmouseout = "return nd();"><sup>[?]</sup></a></td>
+</tr>
 <tr class="rowMedium"><td>Instance Name</td><td><?php print strtolower($adb{'instance_name'}) ?></td>
     <td><a href='javascript:void()' style="text-decoration:none"
         onmouseover="return overlib(
@@ -94,6 +97,7 @@ Related Links
 <th align="left"><font size="-2">username</font></th>
 <th align="left"><font size="-2">host</font></th>
 <th align="left"><font size="-2">created</font></th>
+<th align="left"><font size="-2">valid</font></th>
 </tr>
 <?php
 $dblink_map = $adb{'DblinkList'};
@@ -107,6 +111,7 @@ foreach ($dblink_map as $dblink) {
   <td><?php print strtolower($dblink{'username'})?></td>
   <td><?php print strtolower($dblink{'host'})?></td>
   <td><?php print strtolower($dblink{'created'})?></td>
+  <td align='center'><?php print ($dblink{'isValid'} == '1') ? "<span style='color:green''>&#10004;</span>" : "<span style='color:red'>&#10008;</span>"  ?></td>
 </tr>
 <?php
   $row++;
@@ -239,6 +244,7 @@ foreach ($tm_status_map as $table) {
 <th align="left"><font size="-2">username</font></th>
 <th align="left"><font size="-2">host</font></th>
 <th align="left"><font size="-2">created</font></th>
+<th align="left"><font size="-2">valid</font></th>
 </tr>
 <?php
 $dblink_map = $udb{'DblinkList'};
@@ -252,6 +258,7 @@ foreach ($dblink_map as $dblink) {
   <td><?php print strtolower($dblink{'username'})?></td>
   <td><?php print strtolower($dblink{'host'})?></td>
   <td><?php print strtolower($dblink{'created'})?></td>
+  <td align='center'><?php print ($dblink{'isValid'} == '1') ? "<span style='color:green''>&#10004;</span>" : "<span style='color:red'>&#10008;</span>"  ?></td>
 </tr>
 <?php
   $row++;
