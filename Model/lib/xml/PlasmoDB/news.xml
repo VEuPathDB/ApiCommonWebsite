@@ -29,732 +29,141 @@
        <attribute name="item">
            
          <![CDATA[
-    <style type="text/css">
-			/**
-			* @tab Page
-			* @section email border
-			* @tip Set the border for your email.
-			*/
-			#plasmo05_14_news #templateContainer{
-				/*@editable*/ border: 1px solid #DDDDDD;
-			}
-			
-			/**
-			* @tab Page
-			* @section heading 1
-			* @tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
-			* @style heading 1
-			*/
-			#plasmo05_14_news h1, #plasmo05_14_news .h1{
-				/*@editable*/ color:#202020;
-				display:block;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:34px;
-				/*@editable*/ font-weight:bold;
-				/*@editable*/ line-height:100%;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				/*@editable*/ text-align:left;
-			}
-
-			/**
-			* @tab Page
-			* @section heading 2
-			* @tip Set the styling for all second-level headings in your emails.
-			* @style heading 2
-			*/
-			#plasmo05_14_news h2, #plasmo05_14_news .h2{
-				/*@editable*/ color:#202020;
-				display:block;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:30px;
-				/*@editable*/ font-weight:bold;
-				/*@editable*/ line-height:100%;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				/*@editable*/ text-align:left;
-			}
-
-			/**
-			* @tab Page
-			* @section heading 3
-			* @tip Set the styling for all third-level headings in your emails.
-			* @style heading 3
-			*/
-			#plasmo05_14_news h3, #plasmo05_14_news .h3{
-				/*@editable*/ color:#202020;
-				display:block;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:26px;
-				/*@editable*/ font-weight:bold;
-				/*@editable*/ line-height:100%;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				/*@editable*/ text-align:left;
-			}
-
-			/**
-			* @tab Page
-			* @section heading 4
-			* @tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
-			* @style heading 4
-			*/
-			#plasmo05_14_news h4, #plasmo05_14_news .h4{
-				/*@editable*/ color:#202020;
-				display:block;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:22px;
-				/*@editable*/ font-weight:bold;
-				/*@editable*/ line-height:100%;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				/*@editable*/ text-align:left;
-			}
-			
-			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: PREHEADER /\/\/\/\/\/\/\/\/\/\ */
-			
-			/**
-			* @tab Header
-			* @section preheader style
-			* @tip Set the background color for your email's preheader area.
-			* @theme page
-			*/
-			#plasmo05_14_news #templatePreheader{
-				/*@editable*/ background-color:#FAFAFA;
-			}
-			
-			/**
-			* @tab Header
-			* @section preheader text
-			* @tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .preheaderContent div{
-				/*@editable*/ color:#505050;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:10px;
-				/*@editable*/ line-height:100%;
-				/*@editable*/ text-align:left;
-			}
-			
-			/**
-			* @tab Header
-			* @section preheader link
-			* @tip Set the styling for your email's preheader links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .preheaderContent div a:link, #plasmo05_14_news .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-
-			
-			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: HEADER /\/\/\/\/\/\/\/\/\/\ */
-			
-			/**
-			* @tab Header
-			* @section header style
-			* @tip Set the background color and border for your email's header area.
-			* @theme header
-			*/
-			#plasmo05_14_news #templateHeader{
-				/*@editable*/ background-color:#FFFFFF;
-				/*@editable*/ border-bottom:0;
-			}
-			
-			/**
-			* @tab Header
-			* @section header text
-			* @tip Set the styling for your email's header text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .headerContent{
-				/*@editable*/ color:#202020;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:34px;
-				/*@editable*/ font-weight:bold;
-				/*@editable*/ line-height:100%;
-				/*@editable*/ padding:0;
-				/*@editable*/ text-align:center;
-				/*@editable*/ vertical-align:middle;
-			}
-			
-			/**
-			* @tab Header
-			* @section header link
-			* @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .headerContent a:link, #plasmo05_14_news .headerContent a:visited, /* Yahoo! Mail Override */ #plasmo05_14_news .headerContent a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-			#plasmo05_14_news #headerImage{
-				height:auto;
-				max-width:600px;
-			}
-			
-			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: MAIN BODY & FULL-WIDTH BAND /\/\/\/\/\/\/\/\/\/\ */
-			
-			/**
-			* @tab Body
-			* @section body style
-			* @tip Set the background color for your email's body area.
-			*/
-			#plasmo05_14_news #templateContainer, #plasmo05_14_news .bodyContent, #plasmo05_14_news .fullWidthBandContent{
-				/*@editable*/ background-color:#FFFFFF;
-			}
-			
-			/**
-			* @tab Body
-			* @section body text
-			* @tip Set the styling for your email's main content text. Choose a size and color that is easy to read.
-			* @theme main
-			*/
-			#plasmo05_14_news .bodyContent div, #plasmo05_14_news .fullWidthBandContent div{
-				/*@editable*/ color:#505050;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:14px;
-				/*@editable*/ line-height:150%;
-				/*@editable*/ text-align:left;
-			}
-			
-			/**
-			* @tab Body
-			* @section body link
-			* @tip Set the styling for your email's main content links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .bodyContent div a:link, #plasmo05_14_news .bodyContent div a:visited, /* Yahoo! Mail Override */ #plasmo05_14_news .bodyContent div a .yshortcuts /* Yahoo! Mail Override */, #plasmo05_14_news .fullWidthBandContent div a:link, #plasmo05_14_news .fullWidthBandContent div a:visited, /* Yahoo! Mail Override */ #plasmo05_14_news .fullWidthBandContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-			#plasmo05_14_news .bodyContent img, #plasmo05_14_news .fullWidthBandContent img{
-				display:inline;
-				height:auto;
-			}
-
-			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: COLUMNS; ONE, TWO, THREE, FOUR /\/\/\/\/\/\/\/\/\/\ */
-			
-			/**
-			* @tab Columns
-			* @section column one text
-			* @tip Set the styling for your email's first column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnOneContent{
-				/*@editable*/ background-color:#FFFFFF;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column one text
-			* @tip Set the styling for your email's first column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnOneContent div{
-				/*@editable*/ color:#505050;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:12px;
-				/*@editable*/ line-height:150%;
-				/*@editable*/ text-align:left;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column one link
-			* @tip Set the styling for your email's first column links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .columnOneContent div a:link, #plasmo05_14_news .columnOneContent div a:visited, /* Yahoo! Mail Override */ #plasmo05_14_news .columnOneContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-			#plasmo05_14_news .columnOneContent img{
-				display:inline;
-				height:auto;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column two text
-			* @tip Set the styling for your email's second column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnTwoContent{
-				/*@editable*/ background-color:#FFFFFF;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column two text
-			* @tip Set the styling for your email's second column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnTwoContent div{
-				/*@editable*/ color:#505050;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:12px;
-				/*@editable*/ line-height:150%;
-				/*@editable*/ text-align:left;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column two link
-			* @tip Set the styling for your email's second column links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .columnTwoContent div a:link, #plasmo05_14_news .columnTwoContent div a:visited, /* Yahoo! Mail Override */ #plasmo05_14_news .columnTwoContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-			#plasmo05_14_news .columnTwoContent img{
-				display:inline;
-				height:auto;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column three text
-			* @tip Set the styling for your email's third column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnThreeContent{
-				/*@editable*/ background-color:#FFFFFF;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column three text
-			* @tip Set the styling for your email's third column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnThreeContent div{
-				/*@editable*/ color:#505050;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:12px;
-				/*@editable*/ line-height:150%;
-				/*@editable*/ text-align:left;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column three link
-			* @tip Set the styling for your email's third column links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .columnThreeContent div a:link, #plasmo05_14_news .columnThreeContent div a:visited, /* Yahoo! Mail Override */ #plasmo05_14_news .columnThreeContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-			#plasmo05_14_news .columnThreeContent img{
-				display:inline;
-				height:auto;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column four text
-			* @tip Set the styling for your email's fourth column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnFourContent{
-				/*@editable*/ background-color:#FFFFFF;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column four text
-			* @tip Set the styling for your email's fourth column text. Choose a size and color that is easy to read.
-			*/
-			#plasmo05_14_news .columnFourContent div{
-				/*@editable*/ color:#505050;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:12px;
-				/*@editable*/ line-height:150%;
-				/*@editable*/ text-align:left;
-			}
-			
-			/**
-			* @tab Columns
-			* @section column four link
-			* @tip Set the styling for your email's fourth column links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .columnFourContent div a:link, #plasmo05_14_news .columnFourContent div a:visited, /* Yahoo! Mail Override */ #plasmo05_14_news .columnFourContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-			#plasmo05_14_news .columnFourContent img{
-				display:inline;
-				height:auto;
-			}
-			
-			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: FOOTER /\/\/\/\/\/\/\/\/\/\ */
-			
-			/**
-			* @tab Footer
-			* @section footer style
-			* @tip Set the background color and top border for your email's footer area.
-			* @theme footer
-			*/
-			#plasmo05_14_news #templateFooter{
-				/*@editable*/ background-color:#FFFFFF;
-				/*@editable*/ border-top:0;
-			}
-			
-			/**
-			* @tab Footer
-			* @section footer text
-			* @tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
-			* @theme footer
-			*/
-			#plasmo05_14_news .footerContent div{
-				/*@editable*/ color:#707070;
-				/*@editable*/ font-family:Arial;
-				/*@editable*/ font-size:12px;
-				/*@editable*/ line-height:125%;
-				/*@editable*/ text-align:left;
-			}
-			
-			/**
-			* @tab Footer
-			* @section footer link
-			* @tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
-			*/
-			#plasmo05_14_news .footerContent div a:link, .footerContent div a:visited, /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@editable*/ color:#336699;
-				/*@editable*/ font-weight:normal;
-				/*@editable*/ text-decoration:underline;
-			}
-			
-			#plasmo05_14_news .footerContent img{
-				display:inline;
-			}
-			
-			/**
-			* @tab Footer
-			* @section social bar style
-			* @tip Set the background color and border for your email's footer social bar.
-			* @theme footer
-			*/
-			#plasmo05_14_news #social{
-				/*@editable*/ background-color:#FAFAFA;
-				/*@editable*/ border:0;
-			}
-			
-			/**
-			* @tab Footer
-			* @section social bar style
-			* @tip Set the background color and border for your email's footer social bar.
-			*/
-			#plasmo05_14_news #social div{
-				/*@editable*/ text-align:center;
-			}
-			
-			/**
-			* @tab Footer
-			* @section utility bar style
-			* @tip Set the background color and border for your email's footer utility bar.
-			* @theme footer
-			*/
-			#plasmo05_14_news #utility{
-				/*@editable*/ background-color:#FFFFFF;
-				/*@editable*/ border:0;
-			}
-
-			/**
-			* @tab Footer
-			* @section utility bar style
-			* @tip Set the background color and border for your email's footer utility bar.
-			*/
-			#plasmo05_14_news #utility div{
-				/*@editable*/ text-align:center;
-			}
-			
-			#plasmo05_14_news #monkeyRewards img{
-				max-width:190px;
-			}
-
-      div#plasmo05_14_news td {
-        border: none;
-        vertical-align: middle;
-      }
-		</style>
-  <div id="plasmo05_14_news" leftmargin="0" topmargin="0" offset="0" marginheight="0" marginwidth="0">
-    <center>
-      <table id="backgroundTable" border="0" cellpadding="0" cellspacing="0" height="100%"
-        width="100%">
-        <tbody>
-          <tr>
-            <td align="center" valign="top">
-              <!-- // Begin Template Preheader \\ --><!-- // End Template Preheader \\ -->
-              <table id="templateContainer" border="0" cellpadding="4"
-                cellspacing="0">
-                <tbody>
-                  <tr>
-                    <td align="center" valign="top">
-                      <!-- // Begin Template Header \\ -->
-                      <table style="width: 80%; height: 37px;" id="templateHeader"
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0">
-                        <tbody>
-                          <tr>
-                            <td style="height: 29px;" class="headerContent">
-                              <!-- // Begin Module: Standard Header Image \\ --><br>
-                              <h4 style="margin-top: 7px;"><em>New Data in
-                                  PlasmoDB 11.1</em></h4>
-                              <!-- // End Module: Standard Header Image \\ --> </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- // End Template Header \\ --> </td>
-                  </tr>
-                  <tr>
-                    <td align="center" valign="top">
-                      <!-- // Begin Template Body \\ -->
-                      <table style="width: 80%; height: 362px;" border="0" cellpadding="3">
-                        <tbody>
-                          <tr>
-                            <td style="text-align: left;">
-                              <div style="width: 212px; text-align: center;"><a
-                                  href="http://tinyurl.com/kea7z8l"><img
-                                    style="width: 128px; height: 110px;"
-                                    src="https://www.cbil.upenn.edu/svn/apidb/EuPathSiteCommon/trunk/Site/htdocs/assets/images/news/1.png"></a></div>
-                            </td>
-                            <td style="width: 166px; text-align: left; vertical-align: middle;">
-                              <blockquote>
-                                <h3 style=" height: 72.0909px;" class="h4"><span
-                                    style="font-style: italic;"><span
-                                      style="font-family: Helvetica,Arial,sans-serif;">Nucleosome
-                                      positioning ChIP-Seq</span></span></h3>
-                              </blockquote>
-                            </td>
-                            <td style="text-align: justify;">
-                              <blockquote>
-                                <h5><span style="font-family: Helvetica,Arial,sans-serif;"><span
-                                      style="color: #666666;">ChIP-seq
-                                      data from a EuPathDB-funded project:</span>
-                                    <span style="font-weight: normal;">Genomic
-                                      position of nucleosome binding in</span> <span
-                                      style="font-weight: normal;"><em>P.
-                                        falciparum</em> 3D7 (was assayed over
-                                      the intraerythrocytic cycle using
-                                      ChIP-seq.&nbsp; This data is represented
-                                      as coverage plots in the genome
-                                      browser.&nbsp; View experimental details
-                                      in the <a href="http://qa.plasmodb.org/a/getDataset.do?datasets=pfal3D7_Stunnenberg_DBP_chipSeq_RSRC">dataset
-                                        section</a>.&nbsp; </span></span></h5>
-                              </blockquote>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="text-align: center;">
-                                <div style="text-align: center;"><img style="width: 127px; height: 110px;"
-                                    src="https://www.cbil.upenn.edu/svn/apidb/EuPathSiteCommon/trunk/Site/htdocs/assets/images/news/2.png"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <blockquote>
-                                <h3 style="text-align: left; height: 72.0909px;"
-                                  class="h4"><span
-                                    style="font-style: italic;"><span
-                                      style="font-family: Helvetica,Arial,sans-serif;">Quantitative
-                                      proteomics</span></span></h3>
-                              </blockquote>
-                            </td>
-                            <td style="text-align: justify;">
-                              <blockquote>
-                                <h5><span style="font-family: Helvetica,Arial,sans-serif;"><strong
-                                      style="color: #666666;"><em>P.
-                                        falciparum</em> quantitative proteomic
-                                      data:</strong> </span><span style="font-weight: normal;"><span
-                                      style="font-family: Helvetica,Arial,sans-serif;">Data
-                                      was generated from tightly synchronized
-                                      ring, trophozoites, and schizonts (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23914800">Pease
-                                        et al.</a>). </span><span style="font-family: Helvetica,Arial,sans-serif;">View
-                                      experimental details and links to searches
-                                      in the <a href="http://qa.plasmodb.org/a/getDataset.do?datasets=pfal3D7_quantitativeMassSpec_Chakrabarti_Phosphoproteome_RSRC">dataset
-                                        section</a>.&nbsp; </span></span><span
-                                    style="font-family: Helvetica,Arial,sans-serif;"></span></h5>
-                              </blockquote>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="height: 19.2px;">
-                              <div style="text-align: center;">
-                                <div style="text-align: center;">
-                                  <div style="text-align: center;"><img style="width: 149px; height: 110px;"
-                                      src="https://www.cbil.upenn.edu/svn/apidb/EuPathSiteCommon/trunk/Site/htdocs/assets/images/news/3.png"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <blockquote>
-                                <h3 style=" text-align: left; height: 72.0909px;"
-                                  class="h4"><span
-                                    style="font-style: italic;"><span
-                                      style="font-family: Helvetica,Arial,sans-serif;">Updated
-                                      SNP Searches</span></span></h3>
-                              </blockquote>
-                            </td>
-                            <td style="text-align: justify;">
-                              <blockquote>
-                                <h5><span style="font-family: Helvetica,Arial,sans-serif;"><strong
-                                      style="color: #666666;">Search
-                                      genes based on polymorphism data:</strong>
-                                  </span><span style="font-weight: normal;"><span
-                                      style="font-family: Helvetica,Arial,sans-serif;">The
-                                      high throughput sequencing SNP searches
-                                      have been upgraded to increase their speed
-                                      and provide additional search
-                                      functionality. Meta data associated with
-                                      samples is now&nbsp; more intuitively
-                                      organized. Search for genes based on <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
-                                        characteristics</a> or identify SNPs
-                                      based on multiple criteria including
-                                      within <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
-                                        group of isolates</a> or between <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
-                                        groups of isolates</a>.</span></span> </h5>
-                              </blockquote>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="text-align: center;">
-                                <div style="text-align: center;">
-                                  <div style="text-align: center; height: 115.091px;"><img
-                                      style="width: 184px; height: 109px;"
-                                      src="https://www.cbil.upenn.edu/svn/apidb/EuPathSiteCommon/trunk/Site/htdocs/assets/images/news/4.png"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <blockquote>
-                                <h3 style=" text-align: left; height: 72.0909px;"
-                                  class="h4"><span
-                                    style="font-style: italic;"><span
-                                      style="font-family: Helvetica,Arial,sans-serif;">Dynamic
-                                      metabolic pathways</span></span></h3>
-                              </blockquote>
-                            </td>
-                            <td style="text-align: justify;">
-                              <blockquote>
-                                <h5><span style="font-family: Helvetica,Arial,sans-serif;"><strong
-                                      style="color: #666666;">Customizable
-                                      metabolic pathways:</strong> </span><span
-                                    style="font-weight: normal;"><span
-                                      style="font-family: Helvetica,Arial,sans-serif;">This
-                                      new feature in PlasmoDB remains in beta as
-                                      we continue to hear from you about what is
-                                      needed and how to improve it.&nbsp; In
-                                      this version the pathways have been
-                                      integrated using Cytoscape making it
-                                      possible to layer functional data such as
-                                      transcriptomic data or orthology on
-                                      metabolic pathways....</span></span> </h5>
-                              </blockquote>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="margin-left: 81px;"><br>
-                            </td>
-                            <td style="margin-left: -458px;"><br>
-                            </td>
-                            <td><br>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td><br>
-                            </td>
-                            <td><br>
-                            </td>
-                            <td><br>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- // End Template Body \\ --> </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="margin-left: 40px;"><span style="color: #999999;"><span
-                            style="font-style: italic;"><span
-                              style="font-style: italic;"><span
-                                style="text-decoration: underline;"></span></span></span></span></div>
-                      <table style="width: 697px; height: 125px; text-align: left; margin-right: auto; margin-left: auto;"
-                        border="0">
-                        <tbody>
-                          <tr>
-                            <td style="margin-left: 43px;"><span style="color: #999999;"><span
-                                  style="font-style: italic;"><span
-                                    style="font-style: italic;"><span
-                                      style="text-decoration: underline;">Note:</span>
-                                    Our bimonthly database releases incorporate
-                                    new data and correct old data when
-                                    necessary.&nbsp; Changes in annotation and
-                                    new experimental data may slightly alter
-                                    your search results by increasing or
-                                    decreasing the number of hits. When search
-                                    parameters change with a new release, we
-                                    invalidate (<span style="color: red;">∅</span>)
-                                    the search and ask you to rerun it. When IDs
-                                    are updated or removed, we map the old IDs
-                                    to the new ones, remove the old IDs from
-                                    your Basket, and leave your Favorites page
-                                    alone.</span></span></span></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="center" valign="top">
-                      <!-- // Begin Template Footer \\ -->
-                      <table id="templateFooter" border="0" cellpadding="10" cellspacing="0"
-                        width="600">
-                        <tbody>
-                          <tr>
-                            <td class="footerContent" valign="top">
-                              <div style="text-align: center;"><!-- // Begin Module: Standard Footer \\ --></div>
-                              <table border="0" cellpadding="10" cellspacing="0"
-                                width="100%">
-                                <tbody>
-                                  <tr>
-                                    <td colspan="2" id="social" valign="middle">
-                                      <div style="text-align: center;" mc:edit="std_social">
-                                        &nbsp;<a href="https://twitter.com/eupathdb">follow
-                                          on Twitter</a> | <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">friend
-                                          on Facebook</a></div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <!-- // End Module: Standard Footer \\ --> </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- // End Template Footer \\ --> </td>
-                  </tr>
-                </tbody>
-              </table>
-              <br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </center>
+    <body>
+    <div style="text-align: justify;"><strong>We are pleased to announce the
+        release of PlasmoDB 11.1</strong><strong></strong><br>
+      <br>
+      <br>
+      <strong>New data in this release</strong>:</div>
+    <br>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="color: #666666;">ChIP-seq
+            data from a EuPathDB-funded project:</span> <span style="font-weight: normal;">Genomic
+            position of nucleosome binding in</span> <span style="font-weight: normal;"><em>P.
+              falciparum</em> 3D7 was assayed over the intraerythrocytic cycle
+            using ChIP-seq.&nbsp; This data is represented as coverage plots in
+            the genome browser.&nbsp; View experimental details in the <a href="http://qa.plasmodb.org/a/getDataset.do?datasets=pfal3D7_Stunnenberg_DBP_chipSeq_RSRC">dataset
+              section</a>.&nbsp; </span></span> </li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <ul style="text-align: justify;">
+    </ul>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;"><em>P.
+              falciparum</em> quantitative proteomic data:</strong> </span><span
+          style="font-weight: normal;"><span
+            style="font-family: Helvetica,Arial,sans-serif;">Data
+            was generated from tightly synchronized ring, trophozoites, and
+            schizonts (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23914800">Pease
+              et al.</a>). </span><span style="font-family: Helvetica,Arial,sans-serif;">View
+            experimental details and links to searches in the <a href="http://qa.plasmodb.org/a/getDataset.do?datasets=pfal3D7_quantitativeMassSpec_Chakrabarti_Phosphoproteome_RSRC">dataset
+              section</a>.&nbsp; </span></span><br>
+      </li>
+    </ul>
+    <ul style="text-align: justify;">
+    </ul>
+    <div style="text-align: justify;"><br>
+      <strong>New features:</strong><br>
+      <br>
+      <blockquote> </blockquote>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Customizable
+              metabolic pathways:</strong> </span><span style="font-weight: normal;"><span
+              style="font-family: Helvetica,Arial,sans-serif;">This
+              new feature in PlasmoDB remains in beta as we continue to hear
+              from you about what is needed and how to improve it.&nbsp; In this
+              version the pathways have been integrated using Cytoscape making
+              it possible to layer functional data such as transcriptomic data
+              or orthology on metabolic pathways.</span></span></li>
+      </ul>
+      <span style=" font-weight: normal;"><span style=" font-family: Helvetica,Arial,sans-serif;"><br>
+        </span></span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Search
+              genes based on polymorphism data:</strong> </span><span style="font-weight: normal;"><span
+              style="font-family: Helvetica,Arial,sans-serif;">The
+              high throughput sequencing SNP searches have been upgraded to
+              increase their speed and provide additional search functionality.
+              Meta data associated with samples is now&nbsp; more intuitively
+              organized. Search for genes based on <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
+                characteristics</a> or identify SNPs based on multiple criteria
+              including within <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
+                group of isolates</a> or between <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
+                groups of isolates</a>.</span></span></li>
+      </ul>
+      <span style=" font-weight: normal;"><span style=" font-family: Helvetica,Arial,sans-serif;"><br>
+        </span></span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Filter
+              samples based on metadata:</strong> <span style="font-weight: normal;">It
+              is</span> <span style="font-weight: normal;">easier now to tailor
+              your searches (such as SNP searches) by defining samples based on
+              their metadata characteristics</span>.</span></li>
+      </ul>
+      <blockquote> </blockquote>
+      <br>
+      <span style="font-weight: bold;">New Tutorials:</span><br>
+      <br>
+      <br>
+      <div style="margin-left: 40px;"><a href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+          how to upload custom tracks in the genome browser</a>.&nbsp; </div>
+      <div style="margin-left: 40px;"> <br>
+        <em>Our YouTube channel is updated regularly with new tutorials.&nbsp;
+          The latest tutorials include:</em></div>
+      <em> </em><br>
+      <ul style="margin-left: 40px;">
+        <li><a href="http://youtu.be/SzRu9XBe_VM">Transform by Orthology Across
+            Taxon Groups</a>&nbsp;</li>
+      </ul>
+      <div style="margin-left: 40px;"> <br>
+      </div>
+      <ul style="margin-left: 40px;">
+        <li><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform by
+            Orthology within a Taxon Group</a></li>
+      </ul>
+      <div style="margin-left: 40px;"> <br>
+      </div>
+      <ul style="margin-left: 40px;">
+        <li><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+            information on gene pages</a></li>
+      </ul>
+      <div style="margin-left: 40px;"> <br>
+      </div>
+      <ul style="margin-left: 40px;">
+        <li><a href="http://youtu.be/yKIKD8LEU-M">Inferring UTR length using RNA
+            sequencing data</a></li>
+      </ul>
+      <div style="margin-left: 40px;"><br>
+      </div>
+      <ul style="margin-left: 40px;">
+        <li><a href="https://www.youtube.com/watch?v=dKhRaYINX9M"><span style="text-decoration: underline;"><span
+                style="color: #0000ee;">Decreasing
+                Gene Page Load Time</span></span></a></li>
+      </ul>
+      <br>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span>
+      <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
+            style="font-style: italic;">EuPathDB
+            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+          style="font-weight: bold; font-style: italic;">,
+          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+      <span style="font-weight: bold; font-style: italic;"></span></div>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span><span
+        style="font-weight: bold; font-style: italic;"></span></div>
   </body>
-</html>
 
 ]]>
        </attribute>

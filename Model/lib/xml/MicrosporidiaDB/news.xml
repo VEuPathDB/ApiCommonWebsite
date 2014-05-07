@@ -52,27 +52,45 @@
       <br>
       <span style="font-weight: bold;">New Tutorials:</span><br>
       <br>
-      Our YouTube channel is updated regularly with new tutorials.&nbsp; The
-      latest tutorials include:<br>
       <br>
-      <ul>
+      <div style="margin-left: 40px;"><a href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+          how to upload custom tracks in the genome browser</a>.&nbsp; <br>
+        <br>
+      </div>
+      <div style="margin-left: 40px;"> <br>
+        <em>Our YouTube channel is updated regularly with new tutorials.&nbsp;
+          The latest tutorials include:</em></div>
+      <em> </em><br>
+      <ul style="margin-left: 40px;">
         <li><a href="http://youtu.be/SzRu9XBe_VM">Transform by Orthology Across
             Taxon Groups</a>&nbsp;</li>
       </ul>
-      <br>
-      <ul>
+      <div style="margin-left: 40px;"> <br>
+      </div>
+      <ul style="margin-left: 40px;">
         <li><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform by
             Orthology within a Taxon Group</a></li>
       </ul>
-      <br>
-      <ul>
+      <div style="margin-left: 40px;"> <br>
+      </div>
+      <ul style="margin-left: 40px;">
         <li><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
             information on gene pages</a></li>
       </ul>
-      <br>
-      <ul>
+      <div style="margin-left: 40px;"> <br>
+      </div>
+      <ul style="margin-left: 40px;">
         <li><a href="http://youtu.be/yKIKD8LEU-M">Inferring UTR length using RNA
             sequencing data</a></li>
+      </ul>
+      <div style="margin-left: 40px;"><br>
+      </div>
+      <ul style="margin-left: 40px;">
+        <li><a href="https://www.youtube.com/watch?v=dKhRaYINX9M"><span style="text-decoration: underline;"><span
+                style="color: #0000ee;">Decreasing
+                Gene Page Load Time</span></span></a></li>
+      </ul>
+      <ul>
       </ul>
     </div>
     <div style="text-align: justify;"><br>
