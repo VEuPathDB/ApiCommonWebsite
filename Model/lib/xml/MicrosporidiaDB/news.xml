@@ -16,6 +16,89 @@
    </record>
 --> 
 <record>
+       <attribute name="headline">MicrosporidiaDB 7.0 released</attribute>
+       <attribute name="date">08 May 2014 12:00</attribute>
+       <attribute name="tag">micro5_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+    <div style="text-align: justify;"><strong>We are pleased to announce the
+        release of MicrosporidiaDB 7.0</strong><strong></strong><br>
+      <br>
+      <br>
+      <strong>New Data:</strong><br>
+      <br>
+    </div>
+    <div style="text-align: justify;"><em>Spraguea lophii</em> genome sequence
+      and annotation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23990793">Campbell
+        <em>et al.</em></a>).&nbsp; View experimental details and available
+      searches in the in the <a href="http://microsporidiadb.org/micro/getDataset.do?datasets=slop42_110_primary_genome_RSRC">dataset
+        section</a>. <br>
+      <br>
+      <br>
+      <em>Nosema bombycis</em> CQ1genome sequence and annotation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23496955">Pan
+        <em>et al.</em></a>). &nbsp; View experimental details and available
+      searches in the in the <a href="http://microsporidiadb.org/micro/getDataset.do?datasets=nbomCQ1_primary_genome_RSRC">dataset
+        section</a>.<br>
+      <br>
+      <br>
+      Transcriptomic data based on RNA sequence is now available from <em>Spraguea
+        lophii </em>spores (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23990793">Campbell
+        <em>et al.</em></a>).&nbsp; View experimental details and available
+      searches in the in the <a href="http://microsporidiaDB.org/micro/getDataset.do?datasets=slop42_110_Campbell_Transcriptome_rnaSeq_RSRC">dataset
+        section</a>.<br>
+      <br>
+      <br>
+      <span style="font-weight: bold;">New Tutorials:</span><br>
+      <br>
+      Our YouTube channel is updated regularly with new tutorials.&nbsp; The
+      latest tutorials include:<br>
+      <br>
+      <ul>
+        <li><a href="http://youtu.be/SzRu9XBe_VM">Transform by Orthology Across
+            Taxon Groups</a>&nbsp;</li>
+      </ul>
+      <br>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform by
+            Orthology within a Taxon Group</a></li>
+      </ul>
+      <br>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+            information on gene pages</a></li>
+      </ul>
+      <br>
+      <ul>
+        <li><a href="http://youtu.be/yKIKD8LEU-M">Inferring UTR length using RNA
+            sequencing data</a></li>
+      </ul>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
+            style="font-style: italic;">EuPathDB
+            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+          style="font-weight: bold; font-style: italic;">,
+          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+      <span style="font-weight: bold; font-style: italic;"></span><span style="font-weight: bold; font-style: italic;"></span></div>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+  </body>
+          ]]>
+       </attribute>
+   </record>
+<record>
        <attribute name="headline">MicrosporidiaDB 6.0 released</attribute>
        <attribute name="date">30 January 2014 15:00</attribute>
        <attribute name="tag">micro1_14_news</attribute>
