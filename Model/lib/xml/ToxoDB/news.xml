@@ -24,7 +24,7 @@
          <![CDATA[
 <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of ToxoDB 11</strong><br>
+          are pleased to announce the release of ToxoDB 11</strong>.0<br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
@@ -204,10 +204,8 @@
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
         </span> </div>
       <ul style="margin-left: 40px;">
-        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M"><span
-                style="text-decoration: underline;"><span
-                  style="color: #0000ee;">Decreasing
-                  Gene Page Load Time</span></span></a></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M">Decreasing
+              Gene Page Load Time</a></span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> </div>
@@ -237,6 +235,7 @@
           style="font-weight: bold; font-style: italic;"></span><span
           style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    
   </body>
           ]]>
        </attribute>
