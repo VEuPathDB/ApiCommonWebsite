@@ -22,9 +22,9 @@
        <attribute name="item">
            
          <![CDATA[
-<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+ <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of ToxoDB 11</strong>.0<br>
+          are pleased to announce the release of ToxoDB 11.0</strong><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
@@ -112,7 +112,7 @@
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;"><em>Eimeria
               genomes and annotation</em>:</strong> A number of Eimeria genomes
           and annotations are now available in ToxoDB.&nbsp; These genomes were
-          provided prepublication by Dsr. Arnab Pain and Adam Reid.&nbsp; The
+          provided prepublication by Drs. Arnab Pain and Adam Reid.&nbsp; The
           genomes include <em>E. acervulina</em> Houghton, <em>E. brunetti </em>Houghton,
           <em>E. maxima</em> Weybridge, <em>E. mitis</em> Houghton, <em>E.
             necatrix</em> Houghton, <em>E. praecox</em> Houghton and&nbsp; <em>E.
@@ -148,10 +148,10 @@
               high throughput sequencing SNP searches have been upgraded to
               increase their speed and provide additional search functionality.
               Meta data associated with samples is now&nbsp; more intuitively
-              organized. Search for genes based on <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
+              organized. Search for genes based on <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
                 characteristics</a> or identify SNPs based on multiple criteria
-              including within <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
-                group of isolates</a> or between <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
+              including within <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
+                group of isolates</a> or between <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
                 groups of isolates</a>.</span></span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
@@ -235,7 +235,6 @@
           style="font-weight: bold; font-style: italic;"></span><span
           style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    
   </body>
           ]]>
        </attribute>
