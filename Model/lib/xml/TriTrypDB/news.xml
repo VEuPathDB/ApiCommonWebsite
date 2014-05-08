@@ -111,8 +111,8 @@
     <ul style="text-align: justify;">
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><span
               style="font-weight: bold;"><span
-                style="color: #666666;">Trypanosoma
-                grayi ANR4 genome sequence and annotation:</span> </span></span><span
+                style="color: #666666;"><em>Trypanosoma
+                grayi </em>ANR4 genome sequence and annotation:</span> </span></span><span
             style=" font-weight: normal;"><span
               style="font-weight: normal;">This
               data is graciously provided prepublication by Dr. Mark Field
@@ -146,8 +146,8 @@
     <ul style="text-align: justify;">
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><span
               style="color: #666666;"><strong><em>Trypanosoma
-                  cruzi CL Brener Esmeraldo-like Comparative Genomic
-                  Hybridizations of 33 strains</em> (<a href="http://www.ncbi.nlm.nih.gov/pubmed/21385342">Minning
+                  cruzi </em>CL Brener Esmeraldo-like comparative genomic
+                  hybridizations of 33 strains (<a href="http://www.ncbi.nlm.nih.gov/pubmed/21385342">Minning
                   <em>et al.</em></a>):</strong></span> Genomic regions of copy
             number variation can be viewed in the genome browser. </span><span
             style="font-weight: normal;">View
@@ -167,7 +167,7 @@
               <em>brucei</em> TREU927 procyclic form methylarginine proteome (<a
                 href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Lott
                 <em>et al.</em></a>):</strong>&nbsp; The methylarginine proteome
-            of mitochondrially enriched procyclic form T. brucei 29-13 cells was
+            of mitochondrially enriched procyclic form <em>T. brucei</em> 29-13 cells was
             determined by LC-MS/MS.&nbsp; </span><span style="font-weight: normal;">View
             experimental details and available searches in the <a href="http://tritrypdb.org/tritrypdb/getDataset.do?datasets=tbruTREU927_massSpec_Lott_MethylArgenine_Proteome_RSRC">dataset
               section</a>.&nbsp; </span></span></li>
@@ -191,7 +191,7 @@
                   style="color: #666666;"><span
                     style=" font-weight: normal;"><span
                       style="color: #666666;"><strong><em>Trypanosoma</em></strong></span></span></strong></span>
-              brucei TREU927 fractionated mitochondrial membrane and ER proteomes</em>
+              brucei </em>TREU927 fractionated mitochondrial membrane and ER proteomes
             (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23221899">Niemann <em>et
                 al.</em></a>):</strong> Protein composition of Trypanosoma
           brucei mitochondrial membrane and endoplasmic reticulum fractions,

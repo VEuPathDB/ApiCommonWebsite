@@ -36,8 +36,8 @@
               gondii</em> ME49 transcriptomes of cat enteroepithelial stages:</span>
           This data was funded by the EuPathDB driving biological project
           mechanism and constitutes the first whole genome transcriptomic data
-          from cat stages.&nbsp; This data Data has been provided prepublication
-          by Dr. Adrian Hehl and collaborators.&nbsp; <span style="font-weight: normal;">View
+          from cat stages.&nbsp; This data has been provided prepublication by
+          Dr. Adrian Hehl and collaborators.&nbsp; <span style="font-weight: normal;">View
             experimental details and available searches in the <a href="http://toxodb.org/toxo/getDataset.do?datasets=tgonME49_DBP_Hehl-Grigg_rnaSeq_RSRC">dataset
               section</a>.&nbsp;&nbsp;</span></span></li>
     </ul>
@@ -71,8 +71,8 @@
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><strong
               style="color: #666666;">Updated
               <em>Toxoplasma</em> isolate data based on RFLP typing:</strong>
-            This isolate data updated the already available data from Dr.
-            Chunlei Su. </span><span style="font-weight: normal;">View
+            This isolate data is an updates the previously available data from
+            Dr. Chunlei Su. </span><span style="font-weight: normal;">View
             experimental details and available searches in the <a href="http://toxodb.org/toxo/getDataset.do?datasets=tgonME49_isolates_ChunleiSu_RFLP_RSRC">dataset
               section</a>.&nbsp; </span></span></li>
     </ul>
@@ -96,8 +96,8 @@
               style="color: #666666;">Updated
               transcriptome data from <em>Toxoplasma</em> strains during murine
               macrophage infection (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot
-                <em>et al.</em></a>):</strong>&nbsp; This update adds data from
-            strains that were originally not loaded. </span><span style="font-weight: normal;">View
+                <em>et al.</em></a>):</strong>&nbsp; Additional strains were
+            integrated into this dataset. </span><span style="font-weight: normal;">View
             experimental details and available searches in the <a href="http://toxodb.org/toxo/getDataset.do?datasets=tgonME49_Saeij_Jeroen_strains_rnaSeq_RSRC">dataset
               section</a>.&nbsp; </span></span></li>
     </ul>
@@ -113,19 +113,44 @@
               genomes and annotation</em>:</strong> A number of Eimeria genomes
           and annotations are now available in ToxoDB.&nbsp; These genomes were
           provided prepublication by Drs. Arnab Pain and Adam Reid.&nbsp; The
-          genomes include <em>E. acervulina</em> Houghton, <em>E. brunetti </em>Houghton,
-          <em>E. maxima</em> Weybridge, <em>E. mitis</em> Houghton, <em>E.
-            necatrix</em> Houghton, <em>E. praecox</em> Houghton and&nbsp; <em>E.
-            tenella</em>&nbsp; Houghton<span style="font-weight: normal;">.&nbsp;
-            View experimental details and links to searches in the <a href="http://toxodb.org/toxo/getDataset.do?datasets=eaceHoughton_primary_genome_RSRC,emaxWeybridge_primary_genome_RSRC,epraHoughton_primary_genome_RSRC,enecHoughton_primary_genome_RSRC,ebruHoughton_primary_genome_RSRC,emitHoughton_primary_genome_RSRC,etenHoughton_primary_genome_RSRC">dataset
-              section</a>.&nbsp; <br>
-          </span></span></li>
+          genomes include:</span></li>
+    </ul>
+    <span style=" font-family: Helvetica,Arial,sans-serif;"><br>
+    </span>
+    <ul style="text-align: justify;">
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>E.
+              acervulina</em> Houghton</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>E.
+              brunetti </em>Houghton</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>E. maxima</em>
+            Weybridge</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>E. mitis</em>
+            Houghton</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>E.
+              necatrix</em> Houghton</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>E.
+              praecox</em> Houghton</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>E.
+              tenella</em>&nbsp; Houghton<span style="font-weight: normal;">.&nbsp;
+              <br></span></span></li>
+      </ul>
+    </ul>
+    <br>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: normal;"></span></span>
+    <ul style="text-align: justify;">
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: normal;">View
+              experimental details and links to searches in the <a href="http://toxodb.org/toxo/getDataset.do?datasets=eaceHoughton_primary_genome_RSRC,emaxWeybridge_primary_genome_RSRC,epraHoughton_primary_genome_RSRC,enecHoughton_primary_genome_RSRC,ebruHoughton_primary_genome_RSRC,emitHoughton_primary_genome_RSRC,etenHoughton_primary_genome_RSRC">dataset
+                section</a>.&nbsp; <br>
+            </span></span></li>
+      </ul>
     </ul>
     <span style="font-family: Helvetica,Arial,sans-serif;"> <span style=" font-weight: normal;"><br>
       </span> </span>
     <ul style="text-align: justify;">
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;"><em>Eimeria
-              falciformis </em>Bayer Haberkorn 1970<em> </em>genomes and
+              falciformis </em>Bayer Haberkorn 1970<em> </em>genome and
             annotation:</strong> This genome sequence and annotation has been
           provided prepublication by Dr. Christoph Dieterich.&nbsp; <span style="font-weight: normal;">View
             experimental details and links to searches in the <a href="http://toxodb.org/toxo/getDataset.do?datasets=efalBayerHaberkorn1970_primary_genome_RSRC">dataset
