@@ -22,96 +22,130 @@
        <attribute name="category">release</attribute>
        <attribute name="item">           
          <![CDATA[
-<body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of MicrosporidiaDB 7.0</strong><strong></strong><br>
-      <br>
-      <br>
-      <strong>New Data:</strong><br>
-      <br>
-    </div>
-    <div style="text-align: justify;"><em>Spraguea lophii</em> genome sequence
-      and annotation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23990793">Campbell
-        <em>et al.</em></a>).&nbsp; View experimental details and available
-      searches in the in the <a href="http://microsporidiadb.org/micro/getDataset.do?datasets=slop42_110_primary_genome_RSRC">dataset
-        section</a>. <br>
-      <br>
-      <br>
-      <em>Nosema bombycis</em> CQ1genome sequence and annotation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23496955">Pan
-        <em>et al.</em></a>). &nbsp; View experimental details and available
-      searches in the in the <a href="http://microsporidiadb.org/micro/getDataset.do?datasets=nbomCQ1_primary_genome_RSRC">dataset
-        section</a>.<br>
-      <br>
-      <br>
-      Transcriptomic data based on RNA sequence is now available from <em>Spraguea
-        lophii </em>spores (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23990793">Campbell
-        <em>et al.</em></a>).&nbsp; View experimental details and available
-      searches in the in the <a href="http://microsporidiaDB.org/micro/getDataset.do?datasets=slop42_110_Campbell_Transcriptome_rnaSeq_RSRC">dataset
-        section</a>.<br>
-      <br>
-      <br>
-      <span style="font-weight: bold;">New Tutorials:</span><br>
-      <br>
-      <br>
-      <div style="margin-left: 40px;"><a href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
-          how to upload custom tracks in the genome browser</a>.&nbsp; <br>
-        <br>
-      </div>
-      <div style="margin-left: 40px;"> <br>
-        <em>Our YouTube channel is updated regularly with new tutorials.&nbsp;
-          The latest tutorials include:</em></div>
-      <em> </em><br>
-      <ul style="margin-left: 40px;">
-        <li><a href="http://youtu.be/SzRu9XBe_VM">Transform by Orthology Across
-            Taxon Groups</a>&nbsp;</li>
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of MicrosporidiaDB 7.0</strong><strong></strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          Data:</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span></div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;">
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;"><em>Spraguea
+                lophii</em> genome sequence and annotation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23990793">Campbell
+                <em>et al.</em></a>).&nbsp;</span> View experimental details and
+            available searches in the in the <a href="http://microsporidiadb.org/micro/getDataset.do?datasets=slop42_110_primary_genome_RSRC">dataset
+              section</a>.</span></li>
       </ul>
-      <div style="margin-left: 40px;"> <br>
-      </div>
-      <ul style="margin-left: 40px;">
-        <li><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform by
-            Orthology within a Taxon Group</a></li>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;"><em>Nosema
+                bombycis</em> CQ1genome sequence and annotation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23496955">Pan
+                <em>et al.</em></a>).</span> &nbsp; View experimental details
+            and available searches in the in the <a href="http://microsporidiadb.org/micro/getDataset.do?datasets=nbomCQ1_primary_genome_RSRC">dataset
+              section</a>.</span></li>
       </ul>
-      <div style="margin-left: 40px;"> <br>
-      </div>
-      <ul style="margin-left: 40px;">
-        <li><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
-            information on gene pages</a></li>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;">Transcriptomic
+              data based on RNA sequence is now available from <em>Spraguea
+                lophii </em>spores (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23990793">Campbell
+                <em>et al.</em></a>).</span>&nbsp; View experimental details and
+            available searches in the in the <a href="http://microsporidiaDB.org/micro/getDataset.do?datasets=slop42_110_Campbell_Transcriptome_rnaSeq_RSRC">dataset
+              section</a>.</span></li>
       </ul>
-      <div style="margin-left: 40px;"> <br>
-      </div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"></span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
+          Tutorials:</span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
+            href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+            how to upload custom tracks in the genome browser</a>.&nbsp; <br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em>Our
+            YouTube channel is updated regularly with new tutorials.&nbsp; The
+            latest tutorials include:</em></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><em> </em><br>
+      </span>
       <ul style="margin-left: 40px;">
-        <li><a href="http://youtu.be/yKIKD8LEU-M">Inferring UTR length using RNA
-            sequencing data</a></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/SzRu9XBe_VM">Transform
+              by Orthology Across Taxon Groups</a>&nbsp;</span></li>
       </ul>
-      <div style="margin-left: 40px;"><br>
-      </div>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
       <ul style="margin-left: 40px;">
-        <li><a href="https://www.youtube.com/watch?v=dKhRaYINX9M"><span style="text-decoration: underline;"><span
-                style="color: #0000ee;">Decreasing
-                Gene Page Load Time</span></span></a></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform
+              by Orthology within a Taxon Group</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+              information on gene pages</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
+              UTR length using RNA sequencing data</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M">Decreasing
+              Gene Page Load Time</a></span></li>
       </ul>
       <ul>
       </ul>
     </div>
-    <div style="text-align: justify;"><br>
-      <span style="font-style: italic;"><span style="font-style: italic;"><span
-            style="text-decoration: underline;">Note:</span>
-          Our bimonthly database releases incorporate new data and correct old
-          data when necessary.&nbsp; Changes in annotation and new experimental
-          data may slightly alter your search results by increasing or
-          decreasing the number of hits. When search parameters change with a
-          new release, we invalidate (<span style="color: red;">Ø</span>) the
-          search and ask you to rerun it. When IDs are updated or removed, we
-          map the old IDs to the new ones, remove the old IDs from your Basket,
-          and leave your Favorites page alone.</span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
-            style="font-style: italic;">EuPathDB
-            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-          style="font-weight: bold; font-style: italic;">,
-          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
-      <span style="font-weight: bold; font-style: italic;"></span><span style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span><br>
+      </span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    
   </body>
           ]]>
        </attribute>
