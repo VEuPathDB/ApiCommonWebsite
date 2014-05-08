@@ -15,6 +15,178 @@
     </record>
 --> 
 <record>
+      <attribute name="headline">New Tutorials</attribute>
+       <attribute name="date">08 May 2014 12:00</attribute>
+       <attribute name="tag">piro5_14news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+ <body><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"></span>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
+            href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+            how to upload custom tracks in the genome browser</a>.&nbsp; </span></div>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em>Our
+            YouTube channel is updated regularly with new tutorials.&nbsp; The
+            latest tutorials include:</em></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><em> </em><br>
+      </span>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/SzRu9XBe_VM">Transform
+              by Orthology Across Taxon Groups</a>&nbsp;</span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform
+              by Orthology within a Taxon Group</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+              information on gene pages</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
+              UTR length using RNA sequencing data</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M">Decreasing
+              Gene Page Load Time</a></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+      <attribute name="headline">PiroplasmaDB 5.0 Released</attribute>
+       <attribute name="date">30 January 2014 15:00</attribute>
+       <attribute name="tag">piro114news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+ <body>
+    <div style="text-align: justify;"><strong>We are pleased to announce the
+        release of PiroplasmaDB 5.0</strong><strong></strong><br>
+      <br>
+      <br>
+      <span class="tracktitle">This release of PiroplasmaDB constitutes a
+        complete rebuild of the database and includes a number of new features
+        (see below). The latest versions of genome sequence and annotation were
+        loaded and all analyses were rerun and updated (InterProSCan, SignalP,
+        functional data mapping, etc.).<br>
+      <br>
+      <br>
+      <strong>New features:</strong><br>
+      <br>
+      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+      Share your search strategies with the community by making them
+      public.&nbsp; Making one of your strategies public is simple; go to the
+      "All" tab in your "My Strategies" section and click on a strategy's public
+      checkbox.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+      The gene results now include a column for score and percent identity
+      enabling sorting of results.<br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+        Domain searches</span>:&nbsp; Now this search includes an advanced
+      type-ahead function that allows searching for multiple GO Terms or domains
+      simultaneously.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+      Registered users can now update their email addresses from their profiles.<br>
+      <br>
+      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+      The organism filter table has been unified across EuPathDB sites.<br>
+      <br>
+      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+      Numerical columns in a result can now be analyzed with a dynamic histogram
+      that enables binning and plotting values in normal or log scales.<br>
+      <br>
+      <span style="text-decoration: underline;">Fixed</span>: The orthology
+      phyletic pattern search now remembers your selected parameters making it
+      easier to revise searches.<br>
+      <br>
+      <strong></strong><br>
+      <strong></strong><br>
+      <strong>New database:&nbsp; </strong></div><br>
+    <ul style="text-align: justify;">
+     <li>EuPathDB is pleased to announce the release of a beta version of
+        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
+        dedicated to integrating functional host response data.&nbsp; The beta
+        release includes the human and mouse genomes and two datasets (RNA-Seq
+        and quantitative proteomics) examining the host response to Toxoplasma
+        infection.&nbsp; We look forward to expanding this database in data
+        content and functionality.&nbsp; We encourage you to explore <strong><a
+            href="http://hostdb.org">HostDB</a></strong>
+        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></div>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
       <attribute name="headline">PiroplasmaDB 5.0 Released</attribute>
        <attribute name="date">30 January 2014 15:00</attribute>
        <attribute name="tag">piro114news</attribute>
