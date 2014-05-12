@@ -45,7 +45,7 @@
             position of nucleosome binding in</span> <span style="font-weight: normal;"><em>P.
               falciparum</em> 3D7 was assayed over the intraerythrocytic cycle
             using ChIP-seq.&nbsp; This data is represented as coverage plots in
-            the genome browser.&nbsp; View experimental details in the <a href="http://qa.plasmodb.org/a/getDataset.do?datasets=pfal3D7_Stunnenberg_DBP_chipSeq_RSRC">dataset
+            the genome browser.&nbsp; View experimental details in the <a href="http://plasmodb.org/plasmodb/getDataset.do?datasets=pfal3D7_Stunnenberg_DBP_chipSeq_RSRC">dataset
               section</a>.&nbsp; </span></span> </li>
     </ul>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
@@ -64,7 +64,7 @@
             was generated from tightly synchronized ring, trophozoites, and
             schizonts (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23914800">Pease
               et al.</a>). View experimental details and links to searches in
-            the <a href="http://qa.plasmodb.org/a/getDataset.do?datasets=pfal3D7_quantitativeMassSpec_Chakrabarti_Phosphoproteome_RSRC">dataset
+            the <a href="http://plasmodb.org/plasmodb/getDataset.do?datasets=pfal3D7_quantitativeMassSpec_Chakrabarti_Phosphoproteome_RSRC">dataset
               section</a>.&nbsp; </span><br>
         </span> </li>
     </ul>
@@ -97,10 +97,10 @@
               high throughput sequencing SNP searches have been upgraded to
               increase their speed and provide additional search functionality.
               Meta data associated with samples is now&nbsp; more intuitively
-              organized. Search for genes based on <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
+              organized. Search for genes based on <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
                 characteristics</a> or identify SNPs based on multiple criteria
-              including within <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
-                group of isolates</a> or between <a href="http://qa.plasmodb.org/plasmo.b21/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
+              including within <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
+                group of isolates</a> or between <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
                 groups of isolates</a>.</span></span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
@@ -228,7 +228,7 @@
     <ul style="text-align: justify;">
       <li>The genome sequence and annotation of <em>Plasmodium yoelii yoelii </em>17X
         (a non-lethal 17X clone).&nbsp; Additional information about all genomes
-        may be viewed in the <strong><a href="http://plasmodb.org/plasmodb/getDataset.do?datasets=pyoeyoelii17XNL_primary_genome_RSRC">dataset
+        may be viewed in the <strong><a href="/a/getDataset.do?datasets=pyoeyoelii17X_primary_genome_RSRC">dataset
             section</a></strong> of PlasmoDB.&nbsp; Note that this genome was
         graciously provided by GeneDB pre-publication.&nbsp; Please consult with
         the Principal Investigator before undertaking large scale analyses of
