@@ -35,7 +35,7 @@ sub getEnrichment {
   # the columns are:  goId, bgdGeneCount, resultSetGeneCount
   my $dataSql = getDataSql($taxonId, $sources, $evidCodes, $geneResultSql);
 
-  my $cmd = "enrichmentAnalysis $pValueCutoff $annotatedGenesBgd $annotatedGenesResult > $outputFile";
+  my $cmd = "enrichmentAnalysis $pValueCutoff $annotatedGenesBgd $annotatedGenesResult";
 
   local (*Reader, *Writer);
   my $pid = open2(\*Reader, \*Writer, $cmd);
