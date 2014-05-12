@@ -35,18 +35,22 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     { ".41", "GO:0016773", "142", "126", "phosphotransferase activity, alcohol group as acceptor", "88.7" }
   };
   
-  public static final List<String> DUMMY_ASSOC_SRC_OPTIONS = new ListBuilder<String>()
-    .add("GeneDB")
-    .add("InterproScan")
-    .toList();
+  public static final List<String> DUMMY_ARRAY_OPTIONS =
+      new ListBuilder<String>().add("GeneDB").add("InterproScan").toList();
   
   private ResultRow dummyArrayToResultRow(String[] row) {
-    return new ResultRow(row[1], row[4], row[0], row[2], row[3], row[5], "", "", "", "");
+    return new ResultRow(row[1], row[4], row[2], row[3], row[5], row[0], row[0], row[0], row[0], row[0]);
   }
   
   @Override
   public ValidationErrors validateFormParams(Map<String, String[]> formParams) {
-    return null;
+    ValidationErrors errors = new ValidationErrors();
+    GoEnrichmentPlugin.validatePValue(formParams, errors);
+    // check for >1 selected value for each of the array input types
+    GoEnrichmentPlugin.getArrayParamValueAsString(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY, formParams, errors);
+    GoEnrichmentPlugin.getArrayParamValueAsString(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY, formParams, errors);
+    GoEnrichmentPlugin.getArrayParamValueAsString(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY, formParams, errors);
+    return errors;
   }
 
   @Override
@@ -62,7 +66,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       tabbedData
         .append(rd.getGoId()).append(TAB)
         .append(rd.getGoTerm()).append(TAB)
-        .append(rd.getPValue()).append(TAB)
+        .append(rd.getPvalue()).append(TAB)
         .append(rd.getBgdGenes()).append(TAB)
         .append(rd.getResultGenes()).append(TAB)
         .append(rd.getPercentInResult()).append(TAB)
@@ -86,7 +90,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   public Object getFormViewModel() throws WdkModelException {
-    return new FormViewModel(DUMMY_ASSOC_SRC_OPTIONS, DUMMY_ASSOC_SRC_OPTIONS, DUMMY_ASSOC_SRC_OPTIONS);
+    return new FormViewModel(DUMMY_ARRAY_OPTIONS, DUMMY_ARRAY_OPTIONS, DUMMY_ARRAY_OPTIONS);
   }
 
   @Override

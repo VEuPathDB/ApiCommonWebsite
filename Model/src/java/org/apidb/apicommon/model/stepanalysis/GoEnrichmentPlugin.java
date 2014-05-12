@@ -61,6 +61,23 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     ValidationErrors errors = new ValidationErrors();
 
     // validate pValueCutoff
+    validatePValue(formParams, errors);
+
+    // validate annotation sources 
+    String sourcesStr = getArrayParamValueAsString(GO_ASSOC_SRC_PARAM_KEY, formParams, errors);
+
+    // validate evidence codes
+    String evidCodesStr = getArrayParamValueAsString(GO_EVID_CODE_PARAM_KEY, formParams, errors);
+
+    // validate ontology
+    String ontology = getOntologyParamValue(formParams, errors);
+
+    validateFilteredGoTerms(sourcesStr, evidCodesStr, ontology, errors);
+
+    return errors;
+  }
+
+  static void validatePValue(Map<String, String[]> formParams, ValidationErrors errors) {
     if (!formParams.containsKey(PVALUE_PARAM_KEY)) {
       errors.addParamMessage(PVALUE_PARAM_KEY, "Missing required parameter.");
     }
@@ -73,47 +90,35 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         errors.addParamMessage(PVALUE_PARAM_KEY, "Must be a number between greater than 0 and less than or equal to 1.");
       }
     }
-    
-    // validate annotation sources 
-    String sourcesStr = getSourcesParamValueAsString(formParams, errors);
-    
-    // validate evidence codes
-    String evidCodesStr = getEvidCodesParamValueAsString(formParams, errors);
-    
-    // validate ontology
-    String ontology = getOntologyParamValue(formParams, errors);
-
-    validateFilteredGoTerms(sourcesStr, evidCodesStr, ontology, errors);
-
-    return errors;
   }
 
-  // return GO Annotation Sources param value as an SQL compatible list string
-  // @param errors may be null if the sources have been previously validated.
-  private String getSourcesParamValueAsString(Map<String, String[]> formParams, ValidationErrors errors) {
-    String [] sources = formParams.get(GO_ASSOC_SRC_PARAM_KEY);
-    if (sources == null || sources.length == 0) {
-      errors.addParamMessage(GO_ASSOC_SRC_PARAM_KEY, "Missing required parameter.");
+  /**
+   * Returns multiple param values for the given key as an SQL compatible list
+   * string (i.e. to be placed in an 'in' clause).  Values are assumed to be
+   * Strings, and so are single-quoted.
+   * 
+   * @param paramKey name of parameter
+   * @param formParams form params passed to this plugin
+   * @param errors validation errors object to append additional errors to; note
+   * this value may be null; if so, no errors will be appended
+   * @return SQL compatible list string
+   */
+  static String getArrayParamValueAsString(String paramKey,
+      Map<String, String[]> formParams, ValidationErrors errors) {
+    String[] values = formParams.get(paramKey);
+    if ((values == null || values.length == 0) && errors != null) {
+      errors.addParamMessage(paramKey, "Missing required parameter.");
     }
-    return "'" + FormatUtil.join(sources, "','") + "'";
-  }
-
-  // return GO Evidence Codes param value as an SQL compatible list string
-  // @param errors may be null if the sources have been previously validated.
-  private String getEvidCodesParamValueAsString(Map<String, String[]> formParams, ValidationErrors errors) {
-    String[] evidCodes = formParams.get(GO_EVID_CODE_PARAM_KEY);
-    if (evidCodes == null || evidCodes.length == 0) {
-      errors.addParamMessage(GO_EVID_CODE_PARAM_KEY, "Missing required parameter.");
-    }
-    return "'" + FormatUtil.join(evidCodes, "','") + "'";
+    return "'" + FormatUtil.join(values, "','") + "'";
   }
 
   // return Ontology param value
   // @param errors may be null if the sources have been previously validated.
   private String getOntologyParamValue(Map<String, String[]> formParams, ValidationErrors errors) {
     String [] ontologies = formParams.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
-    if (ontologies == null || ontologies.length != 1) 
+    if ((ontologies == null || ontologies.length != 1) && errors != null) {
       errors.addParamMessage(GO_ASSOC_ONTOLOGY_PARAM_KEY, "Missing required parameter, or more than one provided.");
+    }
     return ontologies[0];
   }
 
@@ -154,8 +159,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Map<String,String[]> params = getFormParams();
 
     String pValueCutoff = params.get(PVALUE_PARAM_KEY)[0];
-    String sourcesStr = getSourcesParamValueAsString(params, null); // in sql format
-    String evidCodesStr = getEvidCodesParamValueAsString(params, null); // in sql format
+    String sourcesStr = getArrayParamValueAsString(GO_ASSOC_SRC_PARAM_KEY, params, null); // in sql format
+    String evidCodesStr = getArrayParamValueAsString(GO_EVID_CODE_PARAM_KEY, params, null); // in sql format
     String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY)[0];
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
@@ -338,7 +343,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPercentInResult() { return _percentInResult; }
     public String getFoldEnrich() { return _foldEnrich; }
     public String getOddsRatio() { return _oddsRatio; }
-    public String getPValue() { return _pValue; }
+    public String getPvalue() { return _pValue; }
     public String getBenjamini() { return _benjamini; }
     public String getBonferroni() { return _bonferroni; }
   }
