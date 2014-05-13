@@ -45,7 +45,7 @@
             position of nucleosome binding in</span> <span style="font-weight: normal;"><em>P.
               falciparum</em> 3D7 was assayed over the intraerythrocytic cycle
             using ChIP-seq.&nbsp; This data is represented as coverage plots in
-            the genome browser.&nbsp; View experimental details in the <a href="http://plasmodb.org/plasmodb/getDataset.do?datasets=pfal3D7_Stunnenberg_DBP_chipSeq_RSRC">dataset
+            the genome browser.&nbsp; View experimental details in the <a href="http://plasmodb.org/plasmo/getDataset.do?datasets=pfal3D7_Stunnenberg_DBP_chipSeq_RSRC">dataset
               section</a>.&nbsp; </span></span> </li>
     </ul>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
@@ -64,7 +64,7 @@
             was generated from tightly synchronized ring, trophozoites, and
             schizonts (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23914800">Pease
               et al.</a>). View experimental details and links to searches in
-            the <a href="http://plasmodb.org/plasmodb/getDataset.do?datasets=pfal3D7_quantitativeMassSpec_Chakrabarti_Phosphoproteome_RSRC">dataset
+            the <a href="http://plasmodb.org/plasmo/getDataset.do?datasets=pfal3D7_quantitativeMassSpec_Chakrabarti_Phosphoproteome_RSRC">dataset
               section</a>.&nbsp; </span><br>
         </span> </li>
     </ul>
