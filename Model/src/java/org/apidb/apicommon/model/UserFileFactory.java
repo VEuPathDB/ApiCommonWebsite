@@ -213,7 +213,7 @@ public class UserFileFactory {
         InputStream is = p.getInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String fmt = br.readLine();
-        return fmt;
+        return fmt.substring(0, Math.min(fmt.length(), 255));
 
     }
 
