@@ -80,6 +80,14 @@ sub getDblApicomm {
 }
 
 # return to appDb value, for backward compatibility
+sub getUserSchema {
+    my ($self) = @_;
+    ($self->{appDb})
+        ? $self->{appDb}->{userSchema}
+		: $self->{userSchema}
+}
+
+# return to appDb value, for backward compatibility
 sub getDbiDsn {
     my ($self) = @_;
     ($self->{appDb})
