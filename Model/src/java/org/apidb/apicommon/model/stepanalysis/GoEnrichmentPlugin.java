@@ -40,7 +40,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-							   "GO ID", "GO Term", "All Genes with this term", "Result Genes w/ this term", "% of all", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+      "GO ID", "GO Term", "All Genes with this term", "Result Genes w/ this term", "% of all", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Gene Ontology ID",
@@ -165,8 +165,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
-    return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
-			 ontology, sourcesStr, evidCodesStr };
+    return new String[]{ qualifiedExe, resultFilePath.toString(), idSql,
+        wdkModel.getProjectId(), pValueCutoff, ontology, sourcesStr, evidCodesStr };
   }
 
   /**
@@ -197,9 +197,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     if (count.intValue() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
-      		"one organism.  The GO Enrichment analysis only accepts gene " +
-      		"lists from one organism.  Please use filters to limit your " +
-      		"result to a single organism and try again.");
+          "one organism.  The GO Enrichment analysis only accepts gene " +
+          "lists from one organism.  Please use filters to limit your " +
+          "result to a single organism and try again.");
     }
   }
   
