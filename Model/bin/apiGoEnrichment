@@ -23,6 +23,8 @@ my $taxonId = getTaxonId();
 
 getEnrichment($dbh, $taxonId, $sources, $evidCodes, $geneResultSql);
 
+$dbh->disconnect or warn "Disconnection failed: $DBI::errstr\n";
+
 ##############################################################################
 
 sub getEnrichment {
