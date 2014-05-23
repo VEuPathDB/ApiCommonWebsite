@@ -69,7 +69,7 @@ CREATE TABLE comments2.comments
   LOCATION_STRING VARCHAR2(1000),
   organism VARCHAR(50),
   content clob,
-  is_visible number(1),
+  is_visible number(1) default 1 not null,
   user_id number(12),
   CONSTRAINT comments_pkey PRIMARY KEY (comment_id),
   CONSTRAINT comments_ct_id_fkey FOREIGN KEY (comment_target_id)
