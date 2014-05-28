@@ -13,16 +13,16 @@ sub run {
 
   my $dbh = DBI->connect($c->getAppDb->getDbiDsn, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
 
-  my $taxonId = getTaxonId();
+  my $taxonId = getTaxonId($geneResultSql);
 
   my $annotatedGenesBgd = getAnnotatedGenesCountBgd($dbh, $taxonId);
-  my $annotatedGenesResult = getAnnotatedGenesCountResult($dbh$geneResultSql);
+  my $annotatedGenesResult = getAnnotatedGenesCountResult($dbh, $geneResultSql);
 
   # get query to get back table to feed to python.
   # the columns are:  goId, bgdGeneCount, resultSetGeneCount
-  my $dataSql = getDataSql($taxonId, $sources, $geneResultSql);
+  my $dataSql = getDataSql($taxonId, $geneResultSql);
 
-  getEnrichment($dbh, $annotatedGenesBgd, $annotatedGenesResult, $dataSql);
+  getEnrichment($dbh, $outputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataSql, $pValueCutoff);
 
   $dbh->disconnect or warn "Disconnection failed: $DBI::errstr\n";
 }
@@ -51,7 +51,7 @@ sub runSql {
 }
 
 sub getEnrichment {
-  my ($dbh, $annotatedGenesBgd, $annotatedGenesResult, $dataSql) = @_;
+  my ($dbh, $outputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataSql, $pValueCutoff) = @_;
 
   my $cmd = "enrichmentAnalysis $pValueCutoff $annotatedGenesBgd $annotatedGenesResult";
 
@@ -81,6 +81,8 @@ sub getEnrichment {
 }
 
 sub getTaxonId {
+  my ($dbh, $geneResultSql) = @_;
+
   my $sql = "
 SELECT distinct ga.taxon_id
 FROM  ApidbTuning.GeneAttributes ga,
