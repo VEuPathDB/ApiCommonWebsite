@@ -1,4 +1,4 @@
-package ApiCommmonWebsite::Model::GoEnrichment;
+package ApiCommonWebsite::Model::GoEnrichment;
 
 use ApiCommonWebsite::Model::AbstractEnrichment;
 @ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
@@ -22,7 +22,7 @@ sub run {
   $self->{sources} = $sources;
   $self->{evidCodes} = $evidCodes;
   $self->{subOntology} = $subOntology;
-  super::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
+  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
 }
 
 sub getAnnotatedGenesCountBgd {
@@ -38,7 +38,7 @@ where ga.taxon_id = $taxonId
   and gts.evidence_code in ($self->{evidCodes})
 ";
 
-  my $stmt = runSql($dbh, $sql);
+  my $stmt = $self->runSql($dbh, $sql);
   my ($geneCount) = $stmt->fetchrow_array();
   die "Got null gene count for bgd annotated genes count\n" unless $geneCount;
   return $geneCount;
@@ -57,7 +57,7 @@ where gts.source_id = r.source_id
   and gts.evidence_code in ($self->{evidCodes})
 ";
 
-  my $stmt = runSql($dbh, $sql);
+  my $stmt = $self->runSql($dbh, $sql);
   my ($geneCount) = $stmt->fetchrow_array();
   die "Got null gene count for result annotated genes count\n" unless $geneCount;
   return $geneCount;
@@ -114,26 +114,32 @@ sub usage {
   die "
 Find pathways that are enriched in the provided set of Genes.
 
-Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff pathwaySources
+Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff subOntologyName annotationSources evidenceCodes
 
 Where:
   sqlToFindGeneList:    a select statement that will return all the rows in the db containing the genes result. Must have a source_id column.
   pValueCutoff:         the p-value exponent to use as a cutoff.  terms with a larger exponent are not returned
   outputFile:           the file in which to write results
   modelName:            eg, PlasmoDB.  Used to find the database connection.
-  pathwaySources:       a list of pathway sources in format compatible with an sql in clause. only include pathways that comes from these one or more sources.  (Eg, KEGG).
+  subOntologyName:      'Molecular Function' etc
+  annotationSources:    a list of annotation sources in format compatible with an sql in clause. only include annotation that comes from these one or more sources.  (Eg, GeneDB, InterproScan).
+  evidenceCodes:        a list of evidence codes in format compatible with an sql in clause. only include annotation that has one of these evidence codes.
 
 The gene result must only include genes from a single taxon.  It is an error otherwise.
 
 The output file is tab-delimited, with these columns (sorted by e-value)
-  - e-value
-  - GO ID
-  - number of genes in organism with this term
-  - number of genes in result with this term
-  - GO TERM
+      - Gene Ontology ID,
+      - Gene Ontology Term,
+      - Number of genes with this term in this organism,
+      - Number of genes with this term in your result,
+      - Percentage of genes in the organism with this term that are present in your result,
+      - Ratio of the fraction of genes annotated by the term in result set to fraction of annotated genes in the organism,
+      - Odds ratio statistic from the Fisher's exact test,
+      - P-value from Fisher's exact test,
+      - Benjamini-Hochberg FDR,
+      - Bonferroni adjusted p-value
 
 ";
-
 }
 
 1;

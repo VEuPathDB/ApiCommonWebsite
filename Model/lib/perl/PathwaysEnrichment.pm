@@ -1,4 +1,4 @@
-package ApiCommmonWebsite::Model::PathwaysEnrichment;
+package ApiCommonWebsite::Model::PathwaysEnrichment;
 
 use ApiCommonWebsite::Model::AbstractEnrichment;
 @ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
@@ -35,7 +35,7 @@ where ga.taxon_id = $taxonId
   and gts.source in ($self->{sources})
 ";
 
-  my $stmt = runSql($dbh, $sql);
+  my $stmt = $self->runSql($dbh, $sql);
   my ($geneCount) = $stmt->fetchrow_array();
   die "Got null gene count for bgd annotated genes count\n" unless $geneCount;
   return $geneCount;
@@ -53,7 +53,7 @@ where gts.source_id = r.source_id
   and gts.source in ($self->{sources})
 ";
 
-  my $stmt = runSql($dbh, $sql);
+  my $stmt = $self->runSql($dbh, $sql);
   my ($geneCount) = $stmt->fetchrow_array();
   die "Got null gene count for result annotated genes count\n" unless $geneCount;
   return $geneCount;
@@ -118,11 +118,16 @@ Where:
 The gene result must only include genes from a single taxon.  It is an error otherwise.
 
 The output file is tab-delimited, with these columns (sorted by e-value)
-  - e-value
-  - GO ID
-  - number of genes in organism with this term
-  - number of genes in result with this term
-  - GO TERM
+      - Pathway ID,
+      - Pathway name,
+      - Number of genes with this term in this organism,
+      - Number of genes with this term in your result,
+      - Percentage of genes in the organism with this term that are present in your result,
+      - Ratio of the fraction of genes annotated by the term in result set to fraction of annotated genes in the organism,
+      - Odds ratio statistic from the Fisher's exact test,
+      - P-value from Fisher's exact test,
+      - Benjamini-Hochberg FDR,
+      - Bonferroni adjusted p-value
 
 ";
 
