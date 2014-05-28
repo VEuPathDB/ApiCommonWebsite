@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+use lib "$ENV{GUS_HOME}/lib/perl";
+
+use strict;
+use ApiCommonWebsite::Model::PathwaysEnrichment;
+
+my $pathwaysEnrich = ApiCommonWebsite::Model::PathwaysEnrichment->new();
+
+$pathwaysEnrich->usage() unless scalar(@ARGV) == 7;
+
+$pathwaysEnrich->run(@ARGV);
