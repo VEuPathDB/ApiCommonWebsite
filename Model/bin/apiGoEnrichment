@@ -12,8 +12,8 @@ usage() unless scalar(@ARGV) == 7;
 
 my ($outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $sources, $evidCodes) = @ARGV;
 
-die "First argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
-die "Second argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
+die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
+die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
 my $c = new ApiCommonWebsite::Model::ModelConfig($modelName);
 
@@ -177,7 +177,7 @@ sub usage {
   die "
 Find GO terms that are enriched in the provided set of Genes.
 
-Usage: $this sqlToFindGeneList pValueCutoff  outputFile subOntologyName modelName annotationSources evidenceCodes
+Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff subOntologyName annotationSources evidenceCodes
 
 Where:
   sqlToFindGeneList:    a select statement that will return all the rows in the db containing the genes result. Must have a source_id column.
