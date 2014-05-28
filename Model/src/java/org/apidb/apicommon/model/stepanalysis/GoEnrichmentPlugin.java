@@ -40,18 +40,18 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-      "GO ID", "GO Term", "All Genes with this term", "Result Genes w/ this term", "% of all", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+      "GO ID", "GO Term", "Genes in the bgd with this term", "Genes in your result with this term", "Percent of bgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Gene Ontology ID",
       "Gene Ontology Term",
-      "Number of genes with this term in this organism",
+      "Number of genes with this term in the background",
       "Number of genes with this term in your result",
-      "Percentage of genes in the organism with this term that are present in your result",
-      "Ratio of the fraction of genes annotated by the term in result set to fraction of annotated genes in the organism",
+      "Of the genes in the background with this term, the percent that are present in your result",
+      "The percent of genes with this term in your result divided by the percent of genes with this term in the background",
       "Odds ratio statistic from the Fisher's exact test",
       "P-value from Fisher's exact test",
-      "Benjamini-Hochberg FDR",
+      "Benjamini-Hochberg false discovery rate (FDR)",
       "Bonferroni adjusted p-value"
   );
 
@@ -87,7 +87,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         if (pValueCutoff <= 0 || pValueCutoff > 1) throw new NumberFormatException();
       }
       catch (NumberFormatException e) {
-        errors.addParamMessage(PVALUE_PARAM_KEY, "Must be a number between greater than 0 and less than or equal to 1.");
+        errors.addParamMessage(PVALUE_PARAM_KEY, "Must be a number greater than 0 and less than or equal to 1.");
       }
     }
   }
