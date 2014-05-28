@@ -92,26 +92,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
   }
 
-  /**
-   * Returns multiple param values for the given key as an SQL compatible list
-   * string (i.e. to be placed in an 'in' clause).  Values are assumed to be
-   * Strings, and so are single-quoted.
-   * 
-   * @param paramKey name of parameter
-   * @param formParams form params passed to this plugin
-   * @param errors validation errors object to append additional errors to; note
-   * this value may be null; if so, no errors will be appended
-   * @return SQL compatible list string
-   */
-  static String getArrayParamValueAsString(String paramKey,
-      Map<String, String[]> formParams, ValidationErrors errors) {
-    String[] values = formParams.get(paramKey);
-    if ((values == null || values.length == 0) && errors != null) {
-      errors.addParamMessage(paramKey, "Missing required parameter.");
-    }
-    return "'" + FormatUtil.join(values, "','") + "'";
-  }
-
   // return Ontology param value
   // @param errors may be null if the sources have been previously validated.
   private String getOntologyParamValue(Map<String, String[]> formParams, ValidationErrors errors) {
