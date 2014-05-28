@@ -1,7 +1,7 @@
 package ApiCommmonWebsite::Model::PathwaysEnrichment;
 
-use ApiCommmonWebsite::Model::AbstractEnrichment;
-@ISA = (ApiCommmonWebsite::Model::AbstractEnrichment);
+use ApiCommonWebsite::Model::AbstractEnrichment;
+@ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
 
 use strict;
 
@@ -14,7 +14,7 @@ sub new {
 }
 
 sub run {
-  my ($outputFile, $geneResultSql, $modelName, $pValueCutoff, $sources) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $sources) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
@@ -24,7 +24,7 @@ sub run {
 }
 
 sub getAnnotatedGenesCountBgd {
-  my ($dbh, $taxonId) = @_;
+  my ($self, $dbh, $taxonId) = @_;
 
   my $sql = "
 SELECT count(distinct ga.source_id)
@@ -42,7 +42,7 @@ where ga.taxon_id = $taxonId
 }
 
 sub getAnnotatedGenesCountResult {
-  my ($dbh, $geneResultSql) = @_;
+  my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
 SELECT count(distinct gts.source_id)
@@ -60,7 +60,7 @@ where gts.source_id = r.source_id
 }
 
 sub getDataSql {
-  my ($taxonId, $geneResultSql) = @_;
+  my ($self, $taxonId, $geneResultSql) = @_;
 
 return "
 select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
@@ -73,7 +73,6 @@ from
                  sres.GoRelationshipType grt
             WHERE gf.taxon_id = $taxonId
               AND gts.source_id = gf.source_id
-              AND gts.ontology = '$subOntology'
               AND gts.source in ($self->{sources})
               AND gts.is_not is null
               AND gr.child_term_id = gts.go_term_id
@@ -89,9 +88,7 @@ from
                  sres.GoRelationshipType grt,
                  ($geneResultSql) r
             WHERE gts.source_id = r.source_id
-              AND gts.ontology = '$subOntology'
-              AND gts.source in ($sources)
-              AND gts.evidence_code in ($evidCodes)
+              AND gts.source in ($self->{sources})
               AND gts.is_not is null
               AND gr.child_term_id = gts.go_term_id
               AND gt.go_term_id = gr.parent_term_id
