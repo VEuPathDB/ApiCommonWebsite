@@ -70,6 +70,7 @@ sub getEnrichment {
 
   open(OUT, ">$outputFile") || die "Can't open '$outputFile' for writing\n";
 
+  print OUT join("\t", "ID", "Name", "Bgd count", "Result count", "Pct of bgd", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni") . "\n";
   while(<Reader>) {
     chomp;
     my ($foldEnrichment, $oddsRatio, $percentOfResult, $pValue, $benjamini, $bonferroni, $termId, $bgdCount, $resultCount, $pctOfBgd, $annotationName) = split(/\t/);

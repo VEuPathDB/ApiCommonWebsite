@@ -188,6 +188,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
          BufferedReader buffer = new BufferedReader(fileIn)) {
+      if (buffer.ready()) buffer.readLine();  // throw away header line	
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
