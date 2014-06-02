@@ -13,6 +13,12 @@ public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
 
   @Override
   public Object getFormViewModel() throws WdkModelException {
+    TreeNode root = buildTreeParam();
+    root.setDefaultLeaves("value2", "value3", "value6");
+    return root;
+  }
+
+  private TreeNode buildTreeParam() {
     TreeNode root = new TreeNode("root", "Root", "This is the root value.");
     TreeNode branch1 = new TreeNode("branch1", "Branch 1");
     TreeNode val1 = new TreeNode("value1", "Value 1");
@@ -30,9 +36,6 @@ public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
     TreeNode val6 = new TreeNode("value6", "Value 6");
     root.addChildNode(val5);
     root.addChildNode(val6);
-
-    root.setDefaultLeaves("value2", "value3", "value6");
-
     return root;
   }
 
