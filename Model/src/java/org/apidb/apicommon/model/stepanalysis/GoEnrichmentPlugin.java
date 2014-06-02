@@ -72,8 +72,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // validate ontology
     String ontology = getOntologyParamValue(formParams, errors);
 
-    validateFilteredGoTerms(sourcesStr, evidCodesStr, ontology, errors);
-
+    // only validate further if the above pass
+    if (errors.isEmpty()) {
+      validateFilteredGoTerms(sourcesStr, evidCodesStr, ontology, errors);
+    }
+    
     return errors;
   }
 
@@ -95,9 +98,10 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   // return Ontology param value
   // @param errors may be null if the sources have been previously validated.
   private String getOntologyParamValue(Map<String, String[]> formParams, ValidationErrors errors) {
-    String [] ontologies = formParams.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
+    String[] ontologies = formParams.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
     if ((ontologies == null || ontologies.length != 1) && errors != null) {
       errors.addParamMessage(GO_ASSOC_ONTOLOGY_PARAM_KEY, "Missing required parameter, or more than one provided.");
+      return null;
     }
     return ontologies[0];
   }
