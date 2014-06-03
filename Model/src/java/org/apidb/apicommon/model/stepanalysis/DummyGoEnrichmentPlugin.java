@@ -99,7 +99,8 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     for (String[] row : DUMMY_RESULT) {
       results.add(dummyArrayToResultRow(row));
     }
-    return new ResultViewModel(getStdoutFileName(), results, getFormParams());
+    return new ResultViewModel(getStdoutFileName(), results, getFormParams(),
+        getProperty(GoEnrichmentPlugin.GO_TERM_BASE_URL_PROP_KEY));
   }
 
 }
