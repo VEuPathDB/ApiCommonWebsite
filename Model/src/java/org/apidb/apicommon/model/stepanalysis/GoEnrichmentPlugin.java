@@ -32,6 +32,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(GoEnrichmentPlugin.class);
 
+  static final String GO_TERM_BASE_URL_PROP_KEY = "goTermPageUrl";
+  
   public static final String PVALUE_PARAM_KEY = "pValueCutoff";
   public static final String GO_EVID_CODE_PARAM_KEY = "goEvidenceCodes";
   public static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
@@ -240,7 +242,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         String[] columns = line.split(TAB);
         results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7], columns[8], columns[9]));
       }
-      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
+      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(GO_TERM_BASE_URL_PROP_KEY));
     }
     catch (IOException ioe) {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
@@ -277,12 +279,14 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private List<ResultRow> _resultData;
     private String _downloadPath;
     private Map<String, String[]> _formParams;
+    private String _goTermBaseUrl;
     
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-        Map<String, String[]> formParams) {
+        Map<String, String[]> formParams, String goTermBaseUrl) {
       _downloadPath = downloadPath;
       _formParams = formParams;
       _resultData = resultData;
+      _goTermBaseUrl = goTermBaseUrl;
     }
 
     public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
@@ -293,6 +297,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
     public String getEvidCodes() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY), ", "); }
     public String getGoOntologies() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY), ", "); }
+    public String getGoTermBaseUrl() { return _goTermBaseUrl; }
   }
   
   public static class ResultRow {
