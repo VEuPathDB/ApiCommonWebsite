@@ -75,6 +75,7 @@ required:
 sections:
  - apiSite
  - @{[ lc $wmc->{'product'} ]}
+ - production
 EOF
 
 $wmc->write_meta_config($content);
