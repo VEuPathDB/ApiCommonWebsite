@@ -32,6 +32,8 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(PathwaysEnrichmentPlugin.class);
 
+  static final String PATHWAY_BASE_URL_PROP_KEY = "pathwayPageUrl";
+
   public static final String PVALUE_PARAM_KEY = "pValueCutoff";
   public static final String PATHWAYS_SRC_PARAM_KEY = "pathwaysSources";
   
@@ -88,13 +90,20 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     String countColumn = "CNT";
     String idSql = getAnswerValue().getIdSql();
-    String sql = "SELECT count(distinct gts.go_term_id) as " + countColumn + NL +
-      "FROM ApidbTuning.GoTermSummary gts,"  + NL +
-      "(" + idSql + ") r"  + NL +
-      "where gts.source_id = r.source_id" + NL +
-      "and gts.source in (" + sourcesStr + ")" + NL
-      ;
+    String sql = 
+"SELECT count (distinct pn.display_label) as " + countColumn + NL +
+      "from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec, " + NL +
+      "dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga, " + NL +
+      "apidb.pathwaynode pn," + NL +
+      "(" + idSql + ") r" + NL +
+      "where  ga.na_feature_id = t.parent_id" + NL +
+      "AND    t.na_feature_id = taf.na_feature_id" + NL +
+      "AND    taf.aa_sequence_id = asec.aa_sequence_id" + NL +
+      "AND    asec.enzyme_class_id = ec.enzyme_class_id" + NL +
+      "and    pn.display_label = ec.ec_number" + NL +
+      "and    ga.source_id = r.source_id";
 
+    LOG.info(sql);
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
     new SQLRunner(ds, sql).executeQuery(handler);
@@ -106,7 +115,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
     if (count.intValue() < 1) {
-      errors.addMessage("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      errors.addMessage("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }
 
@@ -123,6 +132,8 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiPathwaysEnrichment").toString();
+    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
+			 wdkModel.getProjectId() + " " + pValueCutoff);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
 			 sourcesStr};
   }
@@ -155,8 +166,8 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     if (count.intValue() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
-      		"one organism.  The GO Enrichment analysis only accepts gene " +
-      		"lists from one organism.  Please use filters to limit your " +
+      		"one organism.  The Pathways Enrichment analysis only accepts gene " +
+      		"lists from one organism.  Please use filter boxes to limit your " +
       		"result to a single organism and try again.");
     }
   }
@@ -170,9 +181,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql = getAnswerValue().getIdSql();
     
     // find annotation sources used in the result set
-    String sql = "select distinct gts.source" + NL +
-      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.source_id = r.source_id";
+    String sql = "select 'KEGG' as source from dual";
     new SQLRunner(ds, sql).executeQuery(handler);
     List<String> sources = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
@@ -194,7 +203,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         String[] columns = line.split(TAB);
         results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7], columns[8], columns[9]));
       }
-      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
+      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(PATHWAY_BASE_URL_PROP_KEY));
     }
     catch (IOException ioe) {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
@@ -219,12 +228,14 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private List<ResultRow> _resultData;
     private String _downloadPath;
     private Map<String, String[]> _formParams;
+    private String _pathwayBaseUrl;
     
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-        Map<String, String[]> formParams) {
+        Map<String, String[]> formParams, String pathwayBaseUrl) {
       _downloadPath = downloadPath;
       _formParams = formParams;
       _resultData = resultData;
+      _pathwayBaseUrl = pathwayBaseUrl;
     }
 
     public ResultRow getHeaderRow() { return PathwaysEnrichmentPlugin.HEADER_ROW; }
@@ -233,6 +244,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return _formParams.get(PathwaysEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
     public String getPathwaysSources() { return FormatUtil.join(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY), ", "); }
+    public String getPathwayBaseUrl() { return _pathwayBaseUrl; }
   }
   
   public static class ResultRow {
