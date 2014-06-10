@@ -113,6 +113,6 @@ public class Feature implements Comparable<Feature> {
       return (diff == 0) ? (int) (this.end - feature.end) : diff;
     }
     else
-      return 1;
+      return -1;
   }
 }

@@ -48,8 +48,8 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
   private static final String PROP_IS_TRUNCATE = "isTruncate";
 
-  private static final double MAX_REGION_PERCENT_LENGTH = 0.05;
-  private static final double MIN_FEATURE_PERCENT_GAP = 0.001;
+  // private static final double MAX_REGION_PERCENT_LENGTH = 0.1;
+  private static final double MIN_FEATURE_PERCENT_GAP = 0.004;
 
   private static final long MAX_FEATURES = 10000;
 
@@ -86,10 +86,11 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
       // compose an sql to get all sequences from the feature id query.
       AnswerValue answerValue = step.getAnswerValue();
-      String sql = prepareSql(answerValue.getIdSql());
+      String idSql = answerValue.getIdSql();
+      String sql = prepareSql(idSql);
       resultSet = SqlUtils.executeQuery(dataSource, sql, "genome-view", 2000);
 
-      sequences = loadSequences(resultSet);
+      sequences = loadSequences(dataSource, sql, resultSet);
     }
     catch (SQLException ex) {
       logger.error(ex);
@@ -109,6 +110,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     }
 
     // get the max length, then format sequences
+    int regionCount = 0;
     long maxLength = getMaxLength(sequences);
     for (Sequence sequence : sequences) {
       // compute the percent length of a sequence.
@@ -116,7 +118,9 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       sequence.setPercentLength(pctLength);
 
       createRegions(sequence, maxLength);
+      regionCount += sequence.getRegionCount();
     }
+    logger.debug("# regions: " + regionCount);
 
     // only use detail view for now
     results.put(PROP_IS_DETAIL, "true");
@@ -127,8 +131,11 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     return results;
   }
 
-  private Sequence[] loadSequences(ResultSet resultSet) throws SQLException {
-    Map<String, Sequence> sequences = new HashMap<String, Sequence>();
+  private Sequence[] loadSequences(DataSource dataSource, String sql, ResultSet resultSet) throws SQLException {
+    // first load all chromosomes
+    Map<String, Sequence> sequences = loadChromosomes(dataSource, sql);
+
+    // then load sequences
     while (resultSet.next()) {
       String sequenceId = resultSet.getString(COLUMN_SEQUENCE_ID);
       Sequence sequence = sequences.get(sequenceId);
@@ -178,7 +185,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     return maxLength;
   }
 
-  public void createRegions(Sequence sequence, long maxLength) throws GenomeViewException {
+  private void createRegions(Sequence sequence, long maxLength) throws GenomeViewException {
     // sort features by location
     List<Feature> features = sequence.getFeatures();
     Collections.sort(features);
@@ -187,9 +194,10 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     Region forwardRegion = null, reversedRegion = null;
     for (Feature feature : sequence.getFeatures()) {
       Region region = feature.isForward() ? forwardRegion : reversedRegion;
+
       // check if we need to create new region;
-      if (region == null || ((feature.getStart() - region.getEnd()) / maxLength > MIN_FEATURE_PERCENT_GAP) ||
-          (region.getLength() / maxLength > MAX_REGION_PERCENT_LENGTH)) {
+      if (region == null || ((feature.getStart() - region.getEnd()) / (double)maxLength > MIN_FEATURE_PERCENT_GAP) 
+          /* || (region.getLength() / (double)maxLength > MAX_REGION_PERCENT_LENGTH) */) {
         // region is null, which is the first feature; or region is too far from the next feature; or region
         // is too long already.
         region = new Region(feature.isForward());
@@ -208,5 +216,26 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     for (Region region : sequence.getRegions()) {
       region.computePercentSize(maxLength);
     }
+  }
+
+  private Map<String, Sequence> loadChromosomes(DataSource dataSource, String sql) throws SQLException {
+    Map<String, Sequence> chromosomes = new HashMap<>();
+    sql = "SELECT source_id AS " + COLUMN_SEQUENCE_ID + ", length AS " + COLUMN_SEQUENCE_LENGTH 
+        + ", chromosome AS " + COLUMN_CHROMOSOME + ", organism AS " + COLUMN_ORGANISM 
+        + " FROM ApiDBTuning.SequenceAttributes "
+        + " WHERE chromosome IS NOT NULL "
+        + "   AND organism IN (SELECT organism FROM (" + sql + "))";
+    ResultSet resultSet = null;
+    try {
+      resultSet = SqlUtils.executeQuery(dataSource, sql, "genome-view-chromosome");
+      while(resultSet.next()) {
+        String sequenceId = resultSet.getString(COLUMN_SEQUENCE_ID);
+        Sequence chromosome = createSequence(sequenceId, resultSet);
+        chromosomes.put(sequenceId, chromosome);
+      }
+    } finally {
+      SqlUtils.closeResultSetOnly(resultSet);
+    }
+    return chromosomes;
   }
 }
