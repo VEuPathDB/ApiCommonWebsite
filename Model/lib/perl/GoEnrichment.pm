@@ -4,6 +4,7 @@ use ApiCommonWebsite::Model::AbstractEnrichment;
 @ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
 
 use strict;
+use File::Basename;
 
 sub new {
   my ($class)  = @_;
@@ -35,7 +36,7 @@ where ga.taxon_id = $taxonId
   and gts.source_id = ga.source_id
   and gts.is_not is null
   and gts.source in ($self->{sources})
-  and gts.evidence_code in ($self->{evidCodes})
+--  and gts.evidence_code in ($self->{evidCodes})
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -54,7 +55,7 @@ FROM ApidbTuning.GoTermSummary gts,
 where gts.source_id = r.source_id
   and gts.is_not is null
   and gts.source in ($self->{sources})
-  and gts.evidence_code in ($self->{evidCodes})
+--  and gts.evidence_code in ($self->{evidCodes})
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -79,7 +80,7 @@ from
               AND gts.source_id = gf.source_id
               AND gts.ontology = '$self->{subOntology}'
               AND gts.source in ($self->{sources})
-              AND gts.evidence_code in ($self->{evidCodes})
+--              AND gts.evidence_code in ($self->{evidCodes})
               AND gts.is_not is null
               AND gr.child_term_id = gts.go_term_id
               AND gt.go_term_id = gr.parent_term_id
@@ -96,7 +97,7 @@ from
             WHERE gts.source_id = r.source_id
               AND gts.ontology = '$self->{subOntology}'
               AND gts.source in ($self->{sources})
-              AND gts.evidence_code in ($self->{evidCodes})
+--              AND gts.evidence_code in ($self->{evidCodes})
               AND gts.is_not is null
               AND gr.child_term_id = gts.go_term_id
               AND gt.go_term_id = gr.parent_term_id
@@ -114,7 +115,7 @@ sub usage {
   die "
 Find pathways that are enriched in the provided set of Genes.
 
-Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff subOntologyName annotationSources evidenceCodes
+Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff subOntologyName annotationSources
 
 Where:
   sqlToFindGeneList:    a select statement that will return all the rows in the db containing the genes result. Must have a source_id column.
@@ -123,7 +124,6 @@ Where:
   modelName:            eg, PlasmoDB.  Used to find the database connection.
   subOntologyName:      'Molecular Function' etc
   annotationSources:    a list of annotation sources in format compatible with an sql in clause. only include annotation that comes from these one or more sources.  (Eg, GeneDB, InterproScan).
-  evidenceCodes:        a list of evidence codes in format compatible with an sql in clause. only include annotation that has one of these evidence codes.
 
 The gene result must only include genes from a single taxon.  It is an error otherwise.
 

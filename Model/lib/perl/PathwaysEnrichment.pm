@@ -4,6 +4,7 @@ use ApiCommonWebsite::Model::AbstractEnrichment;
 @ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
 
 use strict;
+use File::Basename;
 
 sub new {
   my ($class)  = @_;
@@ -14,25 +15,27 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $sources) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $source) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
-  $self->{sources} = $sources;
-  super::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
+  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $source);
 }
 
 sub getAnnotatedGenesCountBgd {
   my ($self, $dbh, $taxonId) = @_;
 
   my $sql = "
-SELECT count(distinct ga.source_id)
-FROM ApidbTuning.GoTermSummary gts, ApidbTuning.GeneAttributes ga
-where ga.taxon_id = $taxonId
-  and gts.source_id = ga.source_id
-  and gts.is_not is null
-  and gts.source in ($self->{sources})
+SELECT count (distinct ga.source_id)
+         from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
+               apidb.pathwaynode pn
+        where  ga.na_feature_id = t.parent_id
+        AND    t.na_feature_id = taf.na_feature_id
+        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        AND    asec.enzyme_class_id = ec.enzyme_class_id
+        and    pn.display_label = ec.ec_number
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -45,12 +48,17 @@ sub getAnnotatedGenesCountResult {
   my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
-SELECT count(distinct gts.source_id)
-FROM ApidbTuning.GoTermSummary gts,
-     ($geneResultSql) r
-where gts.source_id = r.source_id
-  and gts.is_not is null
-  and gts.source in ($self->{sources})
+SELECT count (distinct ga.source_id)
+         from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
+               apidb.pathwaynode pn,
+               ($geneResultSql) r
+        where  ga.na_feature_id = t.parent_id
+        AND    t.na_feature_id = taf.na_feature_id
+        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        AND    asec.enzyme_class_id = ec.enzyme_class_id
+        and    pn.display_label = ec.ec_number
+        and    ga.source_id = r.source_id
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -63,40 +71,36 @@ sub getDataSql {
   my ($self, $taxonId, $geneResultSql) = @_;
 
 return "
-select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
+select distinct bgd.source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from
- (SELECT gt.go_id, count(distinct gts.source_id) as bgdcnt, gt.name
-            FROM apidbtuning.geneattributes gf,
-                 apidbtuning.gotermsummary gts,
-                 sres.GoTerm gt,
-                 sres.GoRelationship gr,
-                 sres.GoRelationshipType grt
-            WHERE gf.taxon_id = $taxonId
-              AND gts.source_id = gf.source_id
-              AND gts.source in ($self->{sources})
-              AND gts.is_not is null
-              AND gr.child_term_id = gts.go_term_id
-              AND gt.go_term_id = gr.parent_term_id
-              AND grt.go_relationship_type_id = gr.go_relationship_type_id
-              AND grt.name = 'closure'
-            group BY gt.go_id, gt.name
+ (SELECT  p.source_id,  count (distinct ga.source_id) as bgdcnt, p.name
+        from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
+               apidb.pathwaynode pn, apidb.pathway p
+        where  ga.na_feature_id = t.parent_id
+        and    ga.taxon_id = $taxonId
+        AND    t.na_feature_id = taf.na_feature_id
+        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        AND    asec.enzyme_class_id = ec.enzyme_class_id
+        and    pn.display_label = ec.ec_number
+        and    pn.parent_id = p.pathway_id
+        group by p.source_id, p.name
    ) bgd,
-   (SELECT gt.go_id, count(distinct gts.source_id) as resultcnt
-            FROM ApidbTuning.GoTermSummary gts,
-                 sres.GoTerm gt,
-                 sres.GoRelationship gr,
-                 sres.GoRelationshipType grt,
-                 ($geneResultSql) r
-            WHERE gts.source_id = r.source_id
-              AND gts.source in ($self->{sources})
-              AND gts.is_not is null
-              AND gr.child_term_id = gts.go_term_id
-              AND gt.go_term_id = gr.parent_term_id
-              AND gr.go_relationship_type_id = grt.go_relationship_type_id
-              AND grt.name = 'closure'
-            group BY gt.go_id
-      ) rslt
-where bgd.go_id = rslt.go_id
+   (SELECT  p.source_id,  count (distinct ga.source_id) as resultcnt
+        from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
+               apidb.pathwaynode pn, apidb.pathway p,
+               ($geneResultSql) r
+        where  ga.na_feature_id = t.parent_id
+        AND    t.na_feature_id = taf.na_feature_id
+        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        AND    asec.enzyme_class_id = ec.enzyme_class_id
+        and    pn.display_label = ec.ec_number
+        and    pn.parent_id = p.pathway_id
+        and    ga.source_id = r.source_id
+        group by p.source_id
+ ) rslt
+where bgd.source_id = rslt.source_id
 ";
 }
 
@@ -106,14 +110,13 @@ sub usage {
   die "
 Find pathways that are enriched in the provided set of Genes.
 
-Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff pathwaySources
+Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff 
 
 Where:
   sqlToFindGeneList:    a select statement that will return all the rows in the db containing the genes result. Must have a source_id column.
   pValueCutoff:         the p-value exponent to use as a cutoff.  terms with a larger exponent are not returned
   outputFile:           the file in which to write results
   modelName:            eg, PlasmoDB.  Used to find the database connection.
-  pathwaySources:       a list of pathway sources in format compatible with an sql in clause. only include pathways that comes from these one or more sources.  (Eg, KEGG).
 
 The gene result must only include genes from a single taxon.  It is an error otherwise.
 
