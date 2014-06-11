@@ -32,6 +32,7 @@ SELECT count (distinct ga.source_id)
                dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
                apidb.pathwaynode pn
         where  ga.na_feature_id = t.parent_id
+        AND    ga.taxon_id = $taxonId
         AND    t.na_feature_id = taf.na_feature_id
         AND    taf.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
