@@ -40,18 +40,18 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-							   "Pathway ID", "Pathway Name", "All Genes with this term", "Result Genes w/ this term", "% of all", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+							   "Pathway ID", "Pathway Name", "All Genes in this pathway", "Result Genes in this pathway", "% of all", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Pathway ID",
       "Pathway Name",
-      "Number of genes with this term in this organism",
-      "Number of genes with this term in your result",
-      "Percentage of genes in the organism with this term that are present in your result",
-      "Ratio of the fraction of genes annotated by the term in result set to fraction of annotated genes in the organism",
+      "Number of genes in this pathway in the background",
+      "Number of genes in this pathway in your result",
+      "Percentage of genes in the background in this pathway that are present in your result",
+      "The percent of genes in this pathway in your result divided by the percent of genes in this pathway in the background",
       "Odds ratio statistic from the Fisher's exact test",
       "P-value from Fisher's exact test",
-      "Benjamini-Hochberg FDR",
+      "Benjamini-Hochberg false discovery rate (FDR)",
       "Bonferroni adjusted p-value"
   );
 
