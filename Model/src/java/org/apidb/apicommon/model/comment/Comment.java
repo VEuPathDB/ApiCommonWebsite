@@ -1,4 +1,4 @@
-package org.apidb.apicommon.model;
+package org.apidb.apicommon.model.comment;
 
 import java.util.ArrayList;
 import java.util.Date;

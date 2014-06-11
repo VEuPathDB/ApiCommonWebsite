@@ -6,6 +6,11 @@ package org.apidb.apicommon.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.apidb.apicommon.model.comment.Comment;
+import org.apidb.apicommon.model.comment.CommentFactory;
+import org.apidb.apicommon.model.comment.CommentModelException;
+import org.apidb.apicommon.model.comment.ExternalDatabase;
+import org.apidb.apicommon.model.comment.Location;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.junit.After;
@@ -37,7 +42,7 @@ public class CommentFactoryGetTest {
     private int commentId;
 
     @BeforeClass
-    public static void loadFactory() throws WdkModelException {
+    public static void loadFactory() throws WdkModelException, CommentModelException {
         // get the projectId
         String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
         projectId = System.getProperty(Utilities.ARGUMENT_PROJECT_ID);
