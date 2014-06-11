@@ -15,6 +15,7 @@ import org.apidb.apicommon.model.stepanalysis.GoEnrichmentPlugin.ResultViewModel
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -82,7 +83,7 @@ public class DummyGoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException {
+      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
     if (answerValue.getResultSize() == 0) {
       throw new IllegalAnswerValueException("We're sorry. This analysis cannot be run on empty results.");
     }
