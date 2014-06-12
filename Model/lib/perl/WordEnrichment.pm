@@ -28,7 +28,7 @@ sub getAnnotatedGenesCountBgd {
 
   my $sql = "
 SELECT count (distinct gw.source_id)
-         from  sfischer.GeneWord gw
+         from  apidbtuning.GeneWord gw
         where  gw.taxon_id = $taxonId
 ";
 
@@ -43,7 +43,7 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 SELECT count (distinct gw.source_id)
-         from  sfischer.GeneWord gw,
+         from  apidbtuning.GeneWord gw,
                ($geneResultSql) r
         where  gw.source_id = r.source_id
 ";
@@ -61,12 +61,12 @@ return "
 select distinct bgd.word, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.descrip
 from
  (SELECT  gw.word ,  count (distinct gw.source_id) as bgdcnt, '' as descrip
-        from  sfischer.GeneWord gw
+        from  apidbtuning.GeneWord gw
         where  gw.taxon_id = $taxonId
         group by gw.word
    ) bgd,
    (SELECT  gw.word,  count (distinct gw.source_id) as resultcnt
-        from  sfischer.GeneWord gw,
+        from  apidbtuning.GeneWord gw,
                ($geneResultSql) r
         where  gw.source_id = r.source_id
         group by gw.word
