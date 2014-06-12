@@ -16,7 +16,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
@@ -29,7 +28,6 @@ import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
 public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
-  @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(WordEnrichmentPlugin.class);
 
   public static final String PVALUE_PARAM_KEY = "pValueCutoff";
@@ -132,10 +130,9 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public Object getFormViewModel() throws WdkModelException {
     
-    DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
-
-    String idSql = getAnswerValue().getIdSql();
+    //DataSource ds = getWdkModel().getAppDb().getDataSource();
+    //BasicResultSetHandler handler = new BasicResultSetHandler();
+    //String idSql = getAnswerValue().getIdSql();
     
     return new FormViewModel();
   }
