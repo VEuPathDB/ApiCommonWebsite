@@ -8,6 +8,6 @@ use strict;
 
 my $goEnrich = ApiCommonWebsite::Model::GoEnrichment->new();
 
-$goEnrich->usage() unless scalar(@ARGV) == 7;
+$goEnrich->usage() unless scalar(@ARGV) == 6;
 
 $goEnrich->run(@ARGV);

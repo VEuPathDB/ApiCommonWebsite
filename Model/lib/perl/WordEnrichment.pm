@@ -1,4 +1,4 @@
-package ApiCommonWebsite::Model::PathwaysEnrichment;
+package ApiCommonWebsite::Model::WordEnrichment;
 
 use ApiCommonWebsite::Model::AbstractEnrichment;
 @ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
@@ -15,26 +15,21 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $source) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
-  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $source);
+  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
 }
 
 sub getAnnotatedGenesCountBgd {
   my ($self, $dbh, $taxonId) = @_;
 
   my $sql = "
-SELECT count (distinct ga.source_id)
-         from    sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn
-        where  ga.taxon_id = $taxonId
-        AND    ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
+SELECT count (distinct gw.source_id)
+         from  apidbtuning.GeneWord gw
+        where  gw.taxon_id = $taxonId
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -47,15 +42,10 @@ sub getAnnotatedGenesCountResult {
   my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
-SELECT count (distinct ga.source_id)
-         from  sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn,
+SELECT count (distinct gw.source_id)
+         from  apidbtuning.GeneWord gw,
                ($geneResultSql) r
-        where  ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
-        and    ga.source_id = r.source_id
+        where  gw.source_id = r.source_id
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -68,32 +58,20 @@ sub getDataSql {
   my ($self, $taxonId, $geneResultSql) = @_;
 
 return "
-select distinct bgd.source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
+select distinct bgd.word, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.descrip
 from
- (SELECT  p.source_id,  count (distinct ga.source_id) as bgdcnt, p.name
-        from   sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn, apidb.pathway p
-        where  ga.taxon_id = $taxonId
-        AND    ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
-        and    pn.parent_id = p.pathway_id
-        group by p.source_id, p.name
+ (SELECT  gw.word ,  count (distinct gw.source_id) as bgdcnt, '' as descrip
+        from  apidbtuning.GeneWord gw
+        where  gw.taxon_id = $taxonId
+        group by gw.word
    ) bgd,
-   (SELECT  p.source_id,  count (distinct ga.source_id) as resultcnt
-        from   sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn, apidb.pathway p,
+   (SELECT  gw.word,  count (distinct gw.source_id) as resultcnt
+        from  apidbtuning.GeneWord gw,
                ($geneResultSql) r
-        where  ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
-        and    pn.parent_id = p.pathway_id
-        and    ga.source_id = r.source_id
-        group by p.source_id
+        where  gw.source_id = r.source_id
+        group by gw.word
  ) rslt
-where bgd.source_id = rslt.source_id
+where bgd.word = rslt.word
 ";
 }
 
@@ -101,7 +79,7 @@ sub usage {
   my $this = basename($0);
 
   die "
-Find pathways that are enriched in the provided set of Genes.
+Find words from the product field that are enriched in the provided set of Genes.
 
 Usage: $this outputFile sqlToFindGeneList modelName pValueCutoff 
 
@@ -114,8 +92,8 @@ Where:
 The gene result must only include genes from a single taxon.  It is an error otherwise.
 
 The output file is tab-delimited, with these columns (sorted by e-value)
-      - Pathway ID,
-      - Pathway name,
+      - word,
+      - null,
       - Number of genes with this term in this organism,
       - Number of genes with this term in your result,
       - Percentage of genes in the organism with this term that are present in your result,
