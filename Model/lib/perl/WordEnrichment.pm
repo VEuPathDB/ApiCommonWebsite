@@ -1,4 +1,4 @@
-package ApiCommonWebsite::Model::PathwaysEnrichment;
+package ApiCommonWebsite::Model::WordEnrichment;
 
 use ApiCommonWebsite::Model::AbstractEnrichment;
 @ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
@@ -15,20 +15,21 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $source) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
-  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $source);
+  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
 }
 
 sub getAnnotatedGenesCountBgd {
   my ($self, $dbh, $taxonId) = @_;
 
   my $sql = "
-SELECT count (distinct ga.source_id)
-         from  apidbtuning.GeneWord gw
+SELECT count (distinct gw.source_id)
+       --  from  apidbtuning.GeneWord gw
+         from  GeneWord gw
         where  gw.taxon_id = $taxonId
 ";
 
@@ -42,8 +43,9 @@ sub getAnnotatedGenesCountResult {
   my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
-SELECT count (distinct ga.source_id)
-         from  apidbtuning.GeneWord gw,
+SELECT count (distinct gw.source_id)
+   --      from  apidbtuning.GeneWord gw,
+         from  GeneWord gw,
                ($geneResultSql) r
         where  gw.source_id = r.source_id
 ";
@@ -61,15 +63,17 @@ return "
 select distinct bgd.word, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.descrip
 from
  (SELECT  gw.word ,  count (distinct gw.source_id) as bgdcnt, '' as descrip
-        from   apidbtuning.GeneWord gw
+      --   from  apidbtuning.GeneWord gw,
+        from   GeneWord gw
         where  gw.taxon_id = $taxonId
         group by gw.word
    ) bgd,
    (SELECT  gw.word,  count (distinct gw.source_id) as resultcnt
-        from   apidbtuning.GeneWord gw,
+    --     from  apidbtuning.GeneWord gw,
+        from  GeneWord gw,
                ($geneResultSql) r
         where  gw.source_id = r.source_id
-        group by gw.source_id
+        group by gw.word
  ) rslt
 where bgd.word = rslt.word
 ";
