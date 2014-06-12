@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
+import org.gusdb.wdk.model.Manageable;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.dbms.ConnectionContainer;
 
@@ -22,7 +23,7 @@ import org.gusdb.wdk.model.dbms.ConnectionContainer;
  * 
  * @author xingao
  */
-public class CommentFactory implements ConnectionContainer {
+public class CommentFactory implements ConnectionContainer, Manageable<CommentFactory> {
 
   private static final Logger LOG = Logger.getLogger(CommentFactory.class);
 
@@ -32,18 +33,25 @@ public class CommentFactory implements ConnectionContainer {
   private DataSource commentDs;
   private CommentConfig config;
 
-  public static CommentFactory getInstance(String gusHome, String projectId) throws WdkModelException, CommentModelException {
+  @Override
+  public CommentFactory getInstance(String gusHome, String projectId) throws WdkModelException {
     // parse and load the configuration
     CommentConfigParser parser = new CommentConfigParser(gusHome);
-    CommentConfig config = parser.parseConfig(projectId);
+    CommentConfig config;
+    try {
+      config = parser.parseConfig(projectId);
 
-    // create a platform object
-    DatabaseInstance db = new DatabaseInstance("Comment", config);
-    db.initialize();
+      // create a platform object
+      DatabaseInstance db = new DatabaseInstance("Comment", config);
+      db.initialize();
 
-    // create a factory instance
-    CommentFactory factory = new CommentFactory(db, config);
-    return factory;
+      // create a factory instance
+      CommentFactory factory = new CommentFactory(db, config);
+      return factory;
+    }
+    catch (CommentModelException ex) {
+      throw new WdkModelException();
+    }
   }
 
   private CommentFactory(DatabaseInstance commentDb, CommentConfig config) {

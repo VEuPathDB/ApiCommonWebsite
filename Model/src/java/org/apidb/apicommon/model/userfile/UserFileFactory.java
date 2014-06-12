@@ -23,9 +23,10 @@ import org.apidb.apicommon.model.comment.CommentModelException;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
+import org.gusdb.wdk.model.Manageable;
 import org.gusdb.wdk.model.WdkModelException;
 
-public class UserFileFactory {
+public class UserFileFactory implements Manageable<UserFileFactory> {
 
   private Logger logger = Logger.getLogger(UserFileFactory.class);
   private DataSource dataSource;
@@ -33,19 +34,23 @@ public class UserFileFactory {
   private CommentConfig config;
   private String projectId;
 
-  public static UserFileFactory getInstance(String gusHome, String projectId) throws WdkModelException,
-      CommentModelException {
-
+  @Override
+  public UserFileFactory getInstance(String gusHome, String projectId) throws WdkModelException {
     // parse and load the configuration
     CommentConfigParser parser = new CommentConfigParser(gusHome);
-    CommentConfig config = parser.parseConfig(projectId);
+    try {
+      CommentConfig config = parser.parseConfig(projectId);
 
-    // create a platform object
-    DatabaseInstance database = new DatabaseInstance("Comment", config);
-    database.initialize();
+      // create a platform object
+      DatabaseInstance database = new DatabaseInstance("Comment", config);
+      database.initialize();
 
-    // create a factory instance
-    return new UserFileFactory(database, config, projectId);
+      // create a factory instance
+      return new UserFileFactory(database, config, projectId);
+    }
+    catch (CommentModelException ex) {
+      throw new WdkModelException(ex);
+    }
   }
 
   private UserFileFactory(DatabaseInstance database, CommentConfig config, String projectId) {

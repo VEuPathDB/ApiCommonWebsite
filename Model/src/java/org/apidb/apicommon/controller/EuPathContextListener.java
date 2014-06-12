@@ -1,6 +1,6 @@
 package org.apidb.apicommon.controller;
 
-import org.apidb.apicommon.model.InstanceManager;
+import org.eupathdb.common.model.InstanceManager;
 import org.gusdb.wdk.controller.ApplicationInitListener;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -14,7 +14,7 @@ public class EuPathContextListener extends ApplicationInitListener {
    */
   @Override
   protected WdkModel createWdkModel(String project, String gusHome) throws WdkModelException {
-    return InstanceManager.getWdkModel(project);
+    return InstanceManager.getInstance(WdkModel.class, project);
   }
 
 }
