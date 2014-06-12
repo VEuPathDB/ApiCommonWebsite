@@ -29,18 +29,41 @@ import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
 public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
-  @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(GoEnrichmentPlugin.class);
 
-  static final String GO_TERM_BASE_URL_PROP_KEY = "goTermPageUrl";
+  private static final String GO_TERM_BASE_URL_PROP_KEY = "goTermPageUrl";
   
-  public static final String PVALUE_PARAM_KEY = "pValueCutoff";
+  private static final String PVALUE_PARAM_KEY = "pValueCutoff";
   //  public static final String GO_EVID_CODE_PARAM_KEY = "goEvidenceCodes";
-  public static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
-  public static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
+  private static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
+  private static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
   
-  public static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
+  private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   
+  private static final String ONTOLOGY_PARAM_HELP =
+      "<p>Choose the Ontology that you are interested in analyzing. Only terms " +
+      "from this ontology will be considered during the enrichment analysis.</p>" +
+      "<p>The ontologies are three structured, controlled vocabularies that describe " +
+      "gene products in terms of their related biological processes, cellular " +
+      "components and molecular functions. For statistical reasons, only one " +
+      "ontology may be analyzed at once. If you are interested in more than one, " +
+      "run separate GO enrichment analyses.</p>";
+
+  private static final String PROJECT_ID_KEY = "@PROJECT_ID@";
+  private static final String SOURCES_PARAM_HELP =
+      "<p>Choose the GO Association Source(s) that you wish to include in the analysis.</p>" +
+      "<p>GO terms in " + PROJECT_ID_KEY + " are associated with genes by either:" +
+      "<p><ul><li>mapping gene products to the InterPro domain database</li>" +
+      "<li>downloading associations from GeneDB.</li></ul></p>" +
+      "<p>Not all sources are available for every genome.</p>";
+
+  private static final String PVALUE_PARAM_HELP =
+      "<p>Choose the P-Value Cutoff that a GO term must meet before it is " +
+      "considered enriched in your gene result. The P-value is a statistical " +
+      "measure of the likelihood that a certain GO term appears among the " +
+      "genes in your results more often than it appears in the set of all " +
+      "genes for that organism (background).</p>";
+
   public static final ResultRow HEADER_ROW = new ResultRow(
       "GO ID", "GO Term", "Genes in the bgd with this term", "Genes in your result with this term", "Percent of bgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
@@ -232,7 +255,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       evidCodes.add(cols.get("EVIDENCE_CODE").toString());
     }
     */
-    return new FormViewModel(sources, ontologies /*, evidCodes*/);
+    return new FormViewModel(sources, ontologies /*, evidCodes*/, getWdkModel().getProjectId());
   }
   
   @Override
@@ -259,11 +282,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private List<String> _sourceOptions;
     private List<String> _ontologyOptions;
     // private List<String> _evidCodeOptions;
+    private String _projectId;
     
-    public FormViewModel(List<String> sourceOptions, List<String> ontologyOptions /*, List<String> evidCodeOptions*/) {
+    public FormViewModel(List<String> sourceOptions, List<String> ontologyOptions /*, List<String> evidCodeOptions*/, String projectId) {
       _sourceOptions = sourceOptions;
       _ontologyOptions = ontologyOptions;
       // _evidCodeOptions = evidCodeOptions;
+      _projectId = projectId;
     }
 
     public List<String> getSourceOptions() {
@@ -279,6 +304,10 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public List<String> getOntologyOptions() {
       return _ontologyOptions;
     }
+    
+    public String getOntologyParamHelp() { return ONTOLOGY_PARAM_HELP; }
+    public String getSourcesParamHelp() { return SOURCES_PARAM_HELP.replace(PROJECT_ID_KEY, _projectId); }
+    public String getPvalueParamHelp() { return PVALUE_PARAM_HELP; }
   }
 
   public static class ResultViewModel {

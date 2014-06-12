@@ -29,7 +29,6 @@ import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
 public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
-  @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(PathwaysEnrichmentPlugin.class);
 
   static final String PATHWAY_BASE_URL_PROP_KEY = "pathwayPageUrl";
@@ -178,7 +177,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
 
-    String idSql = getAnswerValue().getIdSql();
+    //String idSql = getAnswerValue().getIdSql();
     
     // find annotation sources used in the result set
     String sql = "select 'KEGG' as source from dual";
