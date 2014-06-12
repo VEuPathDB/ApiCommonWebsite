@@ -65,7 +65,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "genes for that organism (background).</p>";
 
   public static final ResultRow HEADER_ROW = new ResultRow(
-      "GO ID", "GO Term", "Genes in the bgd with this term", "Genes in your result with this term", "Percent of bgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+      "GO ID", "GO Term", "Genes in the bkgd with this term", "Genes in your result with this term", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Gene Ontology ID",
