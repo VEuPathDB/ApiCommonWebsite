@@ -28,13 +28,11 @@ sub getAnnotatedGenesCountBgd {
 
   my $sql = "
 SELECT count (distinct ga.source_id)
-         from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+         from    sres.enzymeClass ec,
                dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
                apidb.pathwaynode pn
-        where  ga.na_feature_id = t.parent_id
-        AND    ga.taxon_id = $taxonId
-        AND    t.na_feature_id = taf.na_feature_id
-        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        where  ga.taxon_id = $taxonId
+        AND    ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
         and    pn.display_label = ec.ec_number
 ";
@@ -50,13 +48,11 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 SELECT count (distinct ga.source_id)
-         from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+         from  sres.enzymeClass ec,
                dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
                apidb.pathwaynode pn,
                ($geneResultSql) r
-        where  ga.na_feature_id = t.parent_id
-        AND    t.na_feature_id = taf.na_feature_id
-        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        where  ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
         and    pn.display_label = ec.ec_number
         and    ga.source_id = r.source_id
@@ -75,26 +71,22 @@ return "
 select distinct bgd.source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from
  (SELECT  p.source_id,  count (distinct ga.source_id) as bgdcnt, p.name
-        from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+        from   sres.enzymeClass ec,
                dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
                apidb.pathwaynode pn, apidb.pathway p
-        where  ga.na_feature_id = t.parent_id
-        and    ga.taxon_id = $taxonId
-        AND    t.na_feature_id = taf.na_feature_id
-        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        where  ga.taxon_id = $taxonId
+        AND    ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
         and    pn.display_label = ec.ec_number
         and    pn.parent_id = p.pathway_id
         group by p.source_id, p.name
    ) bgd,
    (SELECT  p.source_id,  count (distinct ga.source_id) as resultcnt
-        from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec,
+        from   sres.enzymeClass ec,
                dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
                apidb.pathwaynode pn, apidb.pathway p,
                ($geneResultSql) r
-        where  ga.na_feature_id = t.parent_id
-        AND    t.na_feature_id = taf.na_feature_id
-        AND    taf.aa_sequence_id = asec.aa_sequence_id
+        where  ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
         and    pn.display_label = ec.ec_number
         and    pn.parent_id = p.pathway_id
