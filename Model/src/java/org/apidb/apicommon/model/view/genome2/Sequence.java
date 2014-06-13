@@ -39,6 +39,10 @@ public class Sequence implements Comparable<Sequence> {
     regions.add(region);
   }
 
+  public int getRegionCount() {
+    return regions.size();
+  }
+
   public List<Region> getRegions() {
     return regions;
   }

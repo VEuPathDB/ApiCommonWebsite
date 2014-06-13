@@ -23,6 +23,10 @@ public class Region {
     return forward ? "forward" : "reversed";
   }
 
+  public String getSourceId() {
+    return features.get(0).getSequenceId() + "-" + getStart() ;
+  }
+
   public void addFeature(Feature feature) throws GenomeViewException {
     // make sure the feature is on the same strand as the region
     if (feature.isForward() != forward)
@@ -106,5 +110,12 @@ public class Region {
       feature.setPercentStart(GenomeViewHandler.round((feature.getStart() - location[0]) * 100D / length));
       feature.setPercentLength(GenomeViewHandler.round(feature.getLength() * 100D / length));
     }
+  }
+
+  @Override
+  public String toString() {
+    return "Region on " + features.get(0).getSequenceId() 
+           + " (" + getStartFormatted() + " - " + getEndFormatted() + ") " 
+           + getStrand() + " strand";
   }
 }

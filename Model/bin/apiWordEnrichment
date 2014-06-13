@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+
+use lib "$ENV{GUS_HOME}/lib/perl";
+
+use strict;
+use ApiCommonWebsite::Model::WordEnrichment;
+
+my $enrich = ApiCommonWebsite::Model::WordEnrichment->new();
+print STDERR join("| ", @ARGV);
+
+$enrich->usage() unless scalar(@ARGV) == 4;
+
+
+$enrich->run(@ARGV);
