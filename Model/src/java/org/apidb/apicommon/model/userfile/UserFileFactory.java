@@ -46,14 +46,16 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
       database.initialize();
 
       // create a factory instance
-      return new UserFileFactory(database, config, projectId);
+      UserFileFactory factory = new UserFileFactory();
+      factory.initialize(database, config, projectId);
+      return factory;
     }
     catch (CommentModelException ex) {
       throw new WdkModelException(ex);
     }
   }
 
-  private UserFileFactory(DatabaseInstance database, CommentConfig config, String projectId) {
+  private void initialize(DatabaseInstance database, CommentConfig config, String projectId) {
     this.dataSource = database.getDataSource();
     this.platform = database.getPlatform();
     this.config = config;

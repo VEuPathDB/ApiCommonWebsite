@@ -46,7 +46,8 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
       db.initialize();
 
       // create a factory instance
-      CommentFactory factory = new CommentFactory(db, config);
+      CommentFactory factory = new CommentFactory();
+      factory.initialize(db, config);
       return factory;
     }
     catch (CommentModelException ex) {
@@ -54,7 +55,7 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
     }
   }
 
-  private CommentFactory(DatabaseInstance commentDb, CommentConfig config) {
+  private void initialize(DatabaseInstance commentDb, CommentConfig config) {
     this.commentDb = commentDb;
     this.dbPlatform = commentDb.getPlatform();
     this.commentDs = commentDb.getDataSource();
