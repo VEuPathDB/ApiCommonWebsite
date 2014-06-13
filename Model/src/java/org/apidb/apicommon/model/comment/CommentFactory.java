@@ -34,7 +34,7 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
   private CommentConfig config;
 
   @Override
-  public CommentFactory getInstance(String gusHome, String projectId) throws WdkModelException {
+  public CommentFactory getInstance(String projectId, String gusHome) throws WdkModelException {
     // parse and load the configuration
     CommentConfigParser parser = new CommentConfigParser(gusHome);
     CommentConfig config;
