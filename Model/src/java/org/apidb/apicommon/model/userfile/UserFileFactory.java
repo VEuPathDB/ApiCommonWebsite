@@ -35,7 +35,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
   private String projectId;
 
   @Override
-  public UserFileFactory getInstance(String gusHome, String projectId) throws WdkModelException {
+  public UserFileFactory getInstance(String projectId, String gusHome) throws WdkModelException {
     // parse and load the configuration
     CommentConfigParser parser = new CommentConfigParser(gusHome);
     try {
