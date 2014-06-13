@@ -79,3 +79,6 @@ obsoleteShowXmlDataContent.referer =
 
 # filter out WdkUserExceptions (assume user error or spam)
 userException = WdkUserException
+
+# filter out WdkIllegalArgumentException (assume user error or spam)
+wdkIllegalArgumentException = WdkIllegalArgumentException

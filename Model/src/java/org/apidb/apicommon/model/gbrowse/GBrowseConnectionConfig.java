@@ -36,7 +36,7 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
   @Override public short getMaxActive() { return 1; }
   @Override public short getMaxIdle() { return 5; }
   @Override public short getMinIdle() { return 0; }
-  @Override public short getMaxWait() { return 100; }
+  @Override public long getMaxWait() { return 100; }
   @Override public boolean isShowConnections() { return false; }
   @Override public long getShowConnectionsInterval() { return 0; }
   @Override public long getShowConnectionsDuration() { return 0; }
