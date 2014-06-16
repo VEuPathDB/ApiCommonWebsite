@@ -52,9 +52,15 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final String PROJECT_ID_KEY = "@PROJECT_ID@";
   private static final String SOURCES_PARAM_HELP =
-		"<p>" + PROJECT_ID_KEY +  " associates GO terms with genes either by mapping " + 
-		"gene products to the InterPro domain database or by downloading associations " + 
-		"from GeneDB. Not all sources are available for every genome.</p>";
+		"<p>Choose the GO Association Source(s) that you wish to include in the analysis.</p>" + 
+		"<ol style='list-style:inside'>GO terms in " + 
+		PROJECT_ID_KEY +  " are associated with genes by either:" + 
+		"<li>mapping gene products to the InterPro domain database resulting in 100% " + 
+		"electronically transferred GO associations.</li>" + 
+		"<li>downloading associations from the sequencing centers (e.g. GeneDB or JCVI)" + 
+		" which may include a combination of electronically transferred or manually curated associations.</li>" + 
+		"</ul>" +
+		"<p>Not all sources are available for every genome.</p>";
 
   private static final String PVALUE_PARAM_HELP =
       "<p>Choose the P-Value Cutoff that a GO term must meet before it is " +
