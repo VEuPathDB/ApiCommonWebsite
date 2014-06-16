@@ -11,6 +11,7 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage::SimpleRNASeqLinePlot;
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
+use Data::Dumper;
 
 sub getColor { $_[0]->{_color} }
 sub setColor { $_[0]->{_color} = $_[1] }
@@ -61,6 +62,9 @@ sub init {
 
   my @rnaseqs;
 
+  my $visibleParts = $self->getVisibleParts();
+  my @newVisibleParts;
+
   foreach my $key (keys %hash) {
     my $count = scalar keys %{$hash{$key}};
 
@@ -81,6 +85,10 @@ sub init {
     my ($rnaseqStacked, $rnaseqPct) = @{$rnaseq->getGraphObjects()};
 
     if($key ne 'DEFAULT') {
+      foreach my $part (@$visibleParts) {
+        push @newVisibleParts,  "${key}_" . $rnaseqStacked->getPartName if($rnaseqStacked->getPartName eq $part);
+        push @newVisibleParts,  "${key}_" . $rnaseqPct->getPartName if($rnaseqPct->getPartName eq $part);
+      }
       $rnaseqStacked->setPartName("${key}_" . $rnaseqStacked->getPartName);
       $rnaseqPct->setPartName("${key}_" . $rnaseqPct->getPartName);
       $rnaseqStacked->setPlotTitle($rnaseqStacked->getPlotTitle() . " - $key");
@@ -89,6 +97,9 @@ sub init {
 
     push @rnaseqs, $rnaseqStacked, $rnaseqPct;
   }
+
+  push @$visibleParts, @newVisibleParts;
+  $self->setVisibleParts($visibleParts);
 
   $self->setGraphObjects(@rnaseqs);
 
