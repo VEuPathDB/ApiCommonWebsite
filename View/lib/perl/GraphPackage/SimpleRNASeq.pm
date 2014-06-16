@@ -61,6 +61,8 @@ sub getForceXLabelsHorizontalString {$_[0]->{_force_x_labels_horizontal}}
 sub setBottomMarginSize {
   my ($self, $ms) = @_;
 
+  return unless $ms;
+
   # set the margin size for the mixed plot
   $self->SUPER::setBottomMarginSize($ms);
 
