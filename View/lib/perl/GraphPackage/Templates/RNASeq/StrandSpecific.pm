@@ -3,6 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::StrandSpecific;
 use strict;
 use vars qw( @ISA );
 
+# TODO: Update so we can create multiple rnaseq profile sets (See StransNonSpecific module)
+
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq );
 use ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq;
 
