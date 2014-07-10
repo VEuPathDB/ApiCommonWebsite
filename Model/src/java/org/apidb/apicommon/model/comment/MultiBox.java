@@ -1,4 +1,4 @@
-package org.apidb.apicommon.model;
+package org.apidb.apicommon.model.comment;
 
 public class MultiBox {
 

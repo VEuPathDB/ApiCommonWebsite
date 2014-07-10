@@ -22,6 +22,7 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -85,7 +86,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
     ValidationErrors errors = new ValidationErrors();
 
@@ -137,7 +138,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     return ontologies[0];
   }
 
-  private void validateFilteredGoTerms(String sourcesStr,/* String evidCodesStr,*/ String ontology, ValidationErrors errors) throws WdkModelException {
+  private void validateFilteredGoTerms(String sourcesStr,/* String evidCodesStr,*/ String ontology, ValidationErrors errors) throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
     String idSql = getAnswerValue().getIdSql();
@@ -166,7 +167,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
     String idSql = answerValue.getIdSql();
@@ -190,11 +191,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
    * Make sure only one organism is represented in the results of this step
    * 
    * @param answerValue answerValue that will be passed to this step
+   * @throws WdkUserException 
    * @throws IllegalAnswerException if more than one organism is represented in this answer
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException {
+      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
     
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
@@ -221,7 +223,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
   
   @Override
-  public Object getFormViewModel() throws WdkModelException {
+  public Object getFormViewModel() throws WdkModelException, WdkUserException {
     
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
