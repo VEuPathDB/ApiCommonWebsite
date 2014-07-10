@@ -1,5 +1,10 @@
 package org.apidb.apicommon.model.comment;
 
+
+import java.util.Set;
+import java.util.Arrays;
+import java.util.HashSet;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -574,6 +579,10 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
   private void saveAssociatedStableIds(int commentId, String[] associatedStableIds) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
+		// removing duplicates 
+		Set<String> stringSet = new HashSet<>(Arrays.asList(associatedStableIds));
+		String[] associatedStableIds_noDup = stringSet.toArray(new String[0]);
+
     // construct sql
     StringBuffer sql = new StringBuffer();
     sql.append("INSERT INTO " + commentSchema + "CommentStableId ");
@@ -581,10 +590,11 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
     sql.append(" comment_id ");
     sql.append(") VALUES (?, ?, ?)");
     PreparedStatement statement = null;
+
     try {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
 
-      for (String associatedStableId : associatedStableIds) {
+      for (String associatedStableId : associatedStableIds_noDup) {
         if ((associatedStableId != null) && (associatedStableId.trim().length() != 0)) {
           int stableId = dbPlatform.getNextId(commentDs, commentSchema, "commentStableId");
           statement.setInt(1, stableId);
