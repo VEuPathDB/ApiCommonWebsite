@@ -21,6 +21,7 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -77,7 +78,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
     String idSql = answerValue.getIdSql();
@@ -97,11 +98,12 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
    * Make sure only one organism is represented in the results of this step
    * 
    * @param answerValue answerValue that will be passed to this step
+   * @throws WdkUserException 
    * @throws IllegalAnswerException if more than one organism is represented in this answer
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException {
+      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
     
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();

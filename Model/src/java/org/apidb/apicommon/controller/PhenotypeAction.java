@@ -1,6 +1,5 @@
 package org.apidb.apicommon.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -12,15 +11,12 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
-import org.apidb.apicommon.model.Comment;
-import org.apidb.apicommon.model.UserFile;
-import org.apidb.apicommon.model.UserFileFactory;
+import org.apidb.apicommon.model.comment.Comment;
+import org.apidb.apicommon.model.userfile.UserFile;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.Utilities;
-import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.xml.sax.SAXException;
 
 public class PhenotypeAction extends CommentAction {
 
@@ -159,7 +155,7 @@ public class PhenotypeAction extends CommentAction {
             userFile.setProjectName(projectName);
             userFile.setProjectVersion(projectVersion);
 
-            getUserFileFactory().addUserFile(userFile);
+            CommentActionUtility.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
 
             int fileId = userFile.getUserFileId();
             String fileStr = fileId + "|" + fileName + "|" + notes;
@@ -211,20 +207,5 @@ public class PhenotypeAction extends CommentAction {
 
         forward = new ActionForward("/addPhenotype.jsp", false);
         return forward;
-    }
-
-    protected UserFileFactory getUserFileFactory() throws WdkModelException,
-            IOException, SAXException {
-        UserFileFactory factory = null;
-        try {
-            factory = UserFileFactory.getInstance();
-        } catch (WdkModelException ex) {
-            ServletContext application = getServlet().getServletContext();
-            String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
-            String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
-            UserFileFactory.initialize(gusHome, projectId);
-            factory = UserFileFactory.getInstance();
-        }
-        return factory;
     }
 }
