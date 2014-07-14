@@ -78,8 +78,10 @@
 
 <%-- most CSS selector characters (., >, +, ~, #, :, etc) are not valid in id attributes or tag names --%>
 <%-- but some of the names used in gene page contain . or : .......  remove or escape them \\ --%>
+<%--
 <c:set var="name" value="${fn:replace(name, '.', '')}"/>
 <c:set var="name" value="${fn:replace(name, ':', '')}"/>
+--%>
 
 <!-- allow user's previous setting (in cookie: section open or closed) to override default in database -->
 <c:set var="cookieKey" value="show${name}"/>
@@ -112,159 +114,38 @@
 <c:set var="ds_ref_profile_graph" value="${requestScope.ds_ref_profile_graphs[name]}" />
 <c:set var="hasDBDataset" value="${(ds_ref_table != null && ds_ref_table != '') || (ds_ref_attribute != null && ds_ref_attribute != '') || (ds_ref_profile_graph != null && ds_ref_profile_graph != '')}" />
 
-<table width="100%" class="paneltoggle"
-       cellpadding="3"        
-       bgcolor="#DDDDDD">
-  <tr>
-    <c:choose>
-      <c:when test="${noData}">
-        <td><font size="-1" face="Arial,Helvetica"><b>${displayName}</b></font>  <i>none</i></td>
-      </c:when>
-      <c:otherwise>
-        <td>
-        <c:set var="showOnClick" value=""/>
-        <c:if test="${imageId != null}">
-            <c:set var="showOnClick" value="wdk.api.updateImage('${imageId}', '${imageSource}')"/>
-        </c:if>
-        <c:if test="${imageMapDivId != null}">
-            <c:set var="showOnClick" value="wdk.api.updateImageMapDiv('${imageMapDivId}', '${imageMapSource}', '${postLoadJS}')"/>
-        </c:if>
-        <c:if test="${showOnClick != ''}">
-            <c:set var="showOnClick" value="${showOnClick}&amp;&amp;"/>
-        </c:if>
-
-        <c:if test="${ anchorName == null}">
-            <c:set var="anchorName" value="${name}ShowHide"/>
-            <a name="${anchorName}"></a>   
-        </c:if>
-
-        <%--  Safari/IE cannot handle this way of doing it  --%>
-        <c:choose>
-        <c:when test="${fn:contains(userAgent, 'Firefox') || fn:contains(userAgent, 'Red Hat') }">
-           <div id="toggle${name}" class="toggle-handle" name="${name}" align="left">
-             <b><font size="-1" face="Arial,Helvetica">${displayName}</font></b>
-             <a href="javascript:void(0)" onclick="javascript:${showOnClick}wdk.api.toggleLayer('${name}', 'toggle${name}')" title="Show ${displayName}" onmouseover="status='Show ${displayName}';return true" onmouseout="status='';return true">Show</a>
-           </div>
-        </c:when>
-
-        <%--  Netscape/Firefox cannot handle this way of doing it  --%>
-        <c:otherwise>
-           <div id="showToggle${name}" class="toggle" name="${name}" align="left"><b><font size="-1" face="Arial,Helvetica">${displayName}</font></b>
-             <a href="javascript:void(0)" onclick="javascript:${showOnClick}wdk.api.showLayer('${name}')&amp;&amp;wdk.api.showLayer('hideToggle${name}')&amp;&amp;wdk.api.hideLayer('showToggle${name}')&amp;&amp;wdk.api.storeIntelligentCookie('show${name}',1,365)" title="Show ${displayName}" onmouseover="status='Show ${displayName}';return true" onmouseout="status='';return true">Show</a>
-           </div>
-
-           <div id="hideToggle${name}" class="toggle" name="${name}" align="left"><b><font size="-1" face="Arial,Helvetica">${displayName}</font></b>
-              <a href="javascript:void(0)" onclick="javascript:wdk.api.hideLayer('${name}')&amp;&amp;wdk.api.showLayer('showToggle${name}')&amp;&amp;wdk.api.hideLayer('hideToggle${name}')&amp;&amp;wdk.api.storeIntelligentCookie('show${name}',0,365);" title="Hide ${displayName}" onmouseover="status='Hide ${displayName}';return true" onmouseout="status='';return true">Hide</a>
-            </div>
-        </c:otherwise>
-        </c:choose>
-
-      </c:otherwise>
-    </c:choose>
-
-    </td>
-    <c:if test='${displayLink != null && displayLink != ""}'>
-      <td align="left">
-         <font size="-1" face="Arial,Helvetica">
-				 ${displayLink}
-         </font>
-      </td>
-    </c:if>
- <c:if test='${downloadLink != null && downloadLink != ""}'>
-      <td align="right">
-         <font size="-1" face="Arial,Helvetica">
-				 ${downloadLink}
-         </font>
-      </td>
-    </c:if>
-
-    <c:choose>
-	 <c:when  test='${dsLink != null && dsLink != ""}'>
-	 <td align="right">
-           <font size="-1" face="Arial,Helvetica">
-           [<a href="${dsLink}">Data Sets</a>]
-           </font>
-        </td>	
-	</c:when>
-      <c:when test="${name != null && name !='' && hasDBDataset}">
-        <td align="right">
-          <c:set var="wdkRecord" value="${requestScope.wdkRecord}" />
-          <c:set var="rcName" value="${wdkRecord.recordClass.fullName}" />
-          <font size="-2" face="Arial,Helvetica">
-          [<a href="<c:url value='/getDataset.do?reference=${name}&recordClass=${rcName}&display=detail' />">Data Sets</a>]
-          </font>
-        </td>
-      </c:when>
-      <c:when test='${attribution != null && attribution != ""}'>
-        <td align="right">
-           <font size="-1" face="Arial,Helvetica">
-           [<a href="getDataset.do?display=detail&datasets=${attribution}&title=${displayNameParam}">Data Sets</a>]
-           </font>
-        </td>
-      </c:when>
-    </c:choose>
-
-  </tr>
-</table>
-
-<c:if test="${!noData}">
-
-  <div id="${name}" class="boggle">
-    <table width="100%" cellpadding="3">
-      <tr><td>${content}</td></tr>
-    </table>
-  </div>
-
-     
-     <%--  IE/Safari can't handle this way of doing it  --%>
-     <c:choose>
-      <c:when test="${fn:contains(userAgent, 'Firefox') || fn:contains(userAgent, 'Red Hat') }">
-        <c:if test="${isOpen}"> 
-           <script type="text/javascript">
-              wdk.api.toggleLayer('${name}', 'toggle${name}');
-            </script>
-        </c:if>
-     </c:when> 
-
-     <%--  Netscape/Firefox can't handle this way of doing it  --%>
-     <c:otherwise>
-        <c:choose>
-          <c:when test="${isOpen}">
-          <script type="text/javascript">
-          <!-- //
-            wdk.api.showLayer("${name}");
-            wdk.api.showLayer("hideToggle${name}");
-            wdk.api.hideLayer("showToggle${name}");
-          // -->
-          </script>
-         </c:when>
-         <c:otherwise>
-          <script type="text/javascript">
-          <!-- //
-            wdk.api.hideLayer("${name}");
-            wdk.api.hideLayer("hideToggle${name}");
-            wdk.api.showLayer("showToggle${name}");
-          // -->
-          </script>
-         </c:otherwise>
-        </c:choose>
-     </c:otherwise>
-     </c:choose>
-
-        <c:if test="${imageId != null && isOpen}">
-          <script type="text/javascript">
-            <!-- //
-              wdk.api.updateImage('${imageId}', '${imageSource}')
-            // -->
-          </script>
-        </c:if>
-
-        <c:if test="${imageMapDivId != null && isOpen}">
-          <script type="text/javascript">
-            <!-- //
-              wdk.api.updateImageMapDiv('${imageMapDivId}', '${imageMapSource}', '${postLoadJS}')
-            // -->
-          </script>
-        </c:if>
+<c:set var="showOnClick" value=""/>
+<c:if test="${imageId != null}">
+  <c:set var="showOnClick" value="wdk.api.updateImage('${imageId}', '${imageSource}')"/>
+</c:if>
+<c:if test="${imageMapDivId != null}">
+  <c:set var="showOnClick" value="wdk.api.updateImageMapDiv('${imageMapDivId}', '${imageMapSource}', '${postLoadJS}')"/>
 </c:if>
 
+<c:if test="${not dsLink}">
+  <c:choose>
+    <c:when test="${name != null && name !='' && hasDBDataset}">
+      <c:set var="wdkRecord" value="${requestScope.wdkRecord}" />
+      <c:set var="rcName" value="${wdkRecord.recordClass.fullName}" />
+      <c:set var="dsLink" value="getDataset.do?reference=${name}&amp;recordClass=${rcName}&amp;display=detail"/>
+    </c:when>
+    <c:when test='${attribution != null && attribution != ""}'>
+      <c:set var="dsLink" value="getDataset.do?display=detail&amp;datasets=${attribution}&amp;title=${displayNameParam}"/>
+    </c:when>
+  </c:choose>
+</c:if>
+
+<c:if test="${ anchorName == null}">
+  <c:set var="anchorName" value="${name}"/>
+  <a name="${anchorName}"></a>
+</c:if>
+
+<div class="toggle-section" wdk-active="${isOpen}" wdk-onactivate="${showOnClick}" wdk-id="${name}">
+  <h3> ${displayName} </h3>
+  <div>
+    <c:if test="${not empty dsLink}">
+      <div style="margin-bottom: 1em;">[ <a href="${dsLink}">Data Sets</a> ]</div>
+    </c:if>
+    ${content}
+  </div>
+</div>

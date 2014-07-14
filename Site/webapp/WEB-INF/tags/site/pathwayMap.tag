@@ -20,7 +20,8 @@
 
 <map name=pathwayMap>
 
-<c:import url="http://${pageContext.request.serverName}/cgi-bin/getImageMap.pl?model=${projectId}&pathway=${pathway}&geneList=${geneList}&compoundList=${compoundList}" />
+  <%-- <c:import url="http://${pageContext.request.serverName}/cgi-bin/getImageMap.pl?model=${projectId}&pathway=${pathway}&geneList=${geneList}&compoundList=${compoundList}" /> --%>
+  <wdk-ajax url="http://${pageContext.request.serverName}/cgi-bin/getImageMap.pl?model=${projectId}&pathway=${pathway}&geneList=${geneList}&compoundList=${compoundList}" ></wdk-ajax>
 
 </map>
 

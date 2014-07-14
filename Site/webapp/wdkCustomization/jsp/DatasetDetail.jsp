@@ -12,53 +12,75 @@
 
 <imp:pageFrame banner="Data Sets" refer="data-set" >
 
-<%--
-<script>
-  // capture ctrl-f/cmd-f key combo
-  (function() {
-    var lastKeys = [];
-    $(document).on("keydown", function(e) {
-      var lastKey;
-      if (lastKeys.length === 0 || lastKeys.length > 1) {
-        lastKeys.push(e.which);
-      } else if (lastKeys.length === 1) {
-        lastKey = lastKeys[0];
-        if ((lastKey === 91 || lastKey === 17) && // CMD or CTRL
-            (e.which === 70 || e.which === 71))  { // F or G
-          $("#data-sets").find(".wdk-toggle").simpleToggle("show");
-        }
-      }
-      return;
-    }).on("keyup", function(e) {
-      // clear keys 
-      lastKeys = [];
-    })
-  })(jQuery);
-</script>
---%>
+  <script>
+    !function($) {
+      // prevent FOUC
+      $('.innertube').css('opacity', 0);
+      $('html').css('overflow', 'hidden');
+      $(function() {
+        $('.innertube') .css('opacity', 1);
+        $('html').css('overflow', '');
+      });
+    }(jQuery);
+  </script>
 
-  <%-- show all simpleToggles if page is filtered --%>
-  <c:set var="show" value="${fn:length(param.reference) gt 0 or
-      fn:length(param.question) gt 0 or
-      fn:length(param.recordClass) gt 0 or
-      fn:length(param.datasets) gt 0}"/>
+  <style>
+    h1 {
+      text-align: left;
+    }
+    h3 {
+      margin: .4em 0;
+      font-size: 1em;
+    }
+    h3 + div {
+      margin-bottom: 1em;
+    }
+    .innertube {
+      padding: 6px;
+      /*padding-left: 20em;*/
+    }
+    .toggle-section.ui-accordion .ui-accordion-header {
+      font-size: 1.2em;
+    }
+    .toggle-section.ui-accordion .ui-accordion-icons {
+      padding-left: 1.8em;
+    }
+    .toggle-section.ui-accordion .ui-accordion-header.ui-state-active {
+      background-color: white;
+      border-bottom: none;
+    }
+    .innertube > .toggle-section.ui-accordion {
+      margin: 6px 0;
+    }
+    .innertube > .toggle-section.ui-accordion > .ui-accordion-header {
+      font-size: 150%;
+      background-color: #dfdfdf;
+      padding-left: 1.6em;
+    }
+    .innertube .ui-accordion-content {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .innertube > .toggle-section.ui-accordion > .ui-accordion-content {
+      padding: 0 2px;
+    }
+    .innertube > .toggle-section.ui-accordion > .ui-accordion-content h3 {
+      text-transform: capitalize;
+    }
+    .toggle-section ul {
+      font-size: 1em;
+      margin-left: 1em;
+    }
+    .toggle-section-link {
+      display: none;
+    }
+  </style>
+
 
 <%-- show all xml question sets --%>
 <div id="data-sets">
   <a name="_top"></a>
   <h1>Data Sets</h1>
-   
-  <div class="ui-helper-clearfix">
-    <div class="toggle-all">
-      <p><a class="wdk-toggle-group"
-        href="#"
-        data-container="#data-sets"
-        data-show="true">Expand all</a><p>
-      <p><a class="wdk-toggle-group"
-        href="#"
-        data-container="#data-sets"
-        data-show="false">Collapse all</a></p>
-    </div>
 
     <div class="smallitalics">
       (Click on a category to jump to the corresponding section in the page.
@@ -74,15 +96,18 @@
     </ul>
   </div>
 
-  <br/><br/><br/>
+  <div class="record-toolbar ui-widget ui-helper-clearfix">
+    <a href="#show-all">
+      Expand all<span class="ui-icon ui-icon-arrowthickstop-1-s"></span>
+    </a>
+    <a href="#hide-all">
+      Collapse all<span class="ui-icon ui-icon-arrowthickstop-1-n"></span>
+    </a>
+  </div>
 
   <c:forEach items="${datasets}" var="category">
-  <div class="category">
-      <div class="anchor">[ <a href="#_top">Top</a> ]</div>
-      <a name="${category.key}"></a>
-      <div class="h3center ctitle">${category.key}</div>
-
-      <div class="category-content">
+  <imp:toggle name="${category.key}" displayName="${category.key}" isOpen="true">
+    <jsp:attribute name="content">
         <c:forEach items="${category.value}" var="record">
           <c:set var="wdkRecord" value="${record}" scope="request" />
           <c:set var="primaryKey" value="${record.primaryKey}"/>
@@ -104,170 +129,139 @@
           <c:set var="references" value="${tables['References']}" />
           <c:set var="genHistory" value="${tables['GenomeHistory']}" />
 
-          <div class="data-set">
+          <imp:toggle name="${datasetId.value}" displayName="${displayName.value}" isOpen="false">
+            <jsp:attribute name="content">
 
-<%-------    DATASET NAME ----------------%>
-            <div class="dstitle">
-              <a name="${datasetId.value}"></a>
-              ${displayName.value}
-            </div>
-
-            <div class="small" style="padding:6px;">
-              <a href="#" class="wdk-toggle-group"
-                data-container=".data-set"
-                data-show="true">
-                expand all
-              </a> |
-              <a href="#" class="wdk-toggle-group"
-                 data-container=".data-set"
-                 data-show="false">
-                collapse all
-              </a>
-            </div>
-
-
-<%-------    DATASET CONTENT ----------------%>
-            <div class="detail">
-              <table>
-                <c:if test='${not empty organism.value}'>    <tr><td><span class="caption"><b>${organism.displayName}</b> </span></td><td> ${organism.value}</td></tr>  </c:if>
-                <tr><td><span class="caption"><b>${contact.displayName}</b></span></td>
-                  <td> <c:if test='${not empty contact.value}'>${contact.value}</c:if>
-                  <c:if test='${not empty institution.value}'> - ${institution.value}</c:if>
-                </td></tr>
-       <!--         <tr><td><span class="caption">Description </span></td><td> ${description.value}</td></tr> -->
-              </table>
-            </div>
-            
-            <c:if test='${not empty description.value}'>
-            <imp:simpleToggle name="Description" content="${description.value}" show="${show}" />
-            </c:if>
-
-
-            <%-- avoiding table.tag to unify style with searches --%>
-            <c:if test="${fn:length(isolates) > 0}">
-               <c:set var="isolatesContent">
-                <ul>
-                  <c:forEach items="${isolates}" var="isolate">
-                        <li><a href="${isolate['isolate_link'].url}">${isolate['isolate_link'].displayText}</a> </li>
-                  </c:forEach>
-                </ul>
-              </c:set>
-
-              <imp:simpleToggle name="${isolates.displayName}" content="${isolatesContent}" show="true" />
-            </c:if>
-
-
-
-            <%-- avoiding table.tag to unify style with searches --%>
-            <c:if test="${fn:length(publications) > 0}">
-               <c:set var="publicationContent">
-              <!--      <imp:table table="${publications}" sortable="false" showHeader="false" /> -->
-                <ul>
-                  <c:forEach items="${publications}" var="publication">
-                        <li><a href="${publication['pubmed_link'].url}">${publication['pubmed_link'].displayText}</a></li>
-                  </c:forEach>
-                </ul>
-              </c:set>
-
-              <imp:simpleToggle name="${publications.displayName}" content="${publicationContent}" show="${show}" />
-            </c:if>
-
-
-
-            <%-- avoiding table.tag to unify style with searches --%>
-            <c:if test="${fn:length(contacts) > 0}">
-               <c:set var="contactsContent">
-                <ul>
-                  <c:forEach items="${contacts}" var="contact">
-                        <li><c:if test="${contact['contact_name'] != null}">${contact['contact_name']}</c:if> <c:if test="${contact['affiliation'] != null}">(${contact['affiliation']})</c:if></li>
-                  </c:forEach>
-                </ul>
-              </c:set>
-
-              <imp:simpleToggle name="${contacts.displayName}" content="${contactsContent}" show="${show}" />
-            </c:if>
-
-
-            <c:if test="${fn:length(externallinks) > 0}">
-              <c:set var="extLinkContent">
-               <!--   <imp:table table="${externallinks}" sortable="false" showHeader="false" />  -->
-                 <ul>
-                  <c:forEach items="${externallinks}" var="externallink">
-                        <li><a title="${externallink['description'].value}" href="${externallink['hyper_link'].url}">${externallink['hyper_link'].displayText}</a></li>
-                  </c:forEach>
-                </ul>
-              </c:set>
-              <imp:simpleToggle name ="${externallinks.displayName}" content="${extLinkContent}" show="${show}" />
-            </c:if>
-
-            <c:if test="${fn:length(genHistory) > 0}">
-              <c:set var="genHistoryContent">
-                 <table>
-                  <c:forEach items="${genHistory}" var="genHistoryRow">
-                        <tr><td>${genHistoryRow['build'].displayName}--${genHistoryRow['build']}----${genHistoryRow['release_date']}<br>
-                                ${genHistoryRow['note']}<br>
-                                Genome source: ${genHistoryRow['genome_source']}--${genHistoryRow['genome_version']}<br>
-                                Annotation source: ${genHistoryRow['annotation_source']}--${genHistoryRow['annotation_version']}
-                        </td></tr>
-                  </c:forEach>
-                 </table>
-              </c:set>
-              <imp:simpleToggle name ="${genHistory.displayName}" content="${genHistoryContent}" show="${show}" /> 
-            </c:if>
-
-           <c:if test="${fn:length(versions) > 0}">
-              <c:set var="versionContent">
-                <!-- <imp:table table="${versions}" sortable="false" showHeader="false" /> -->
-                 <table>
-                  <c:forEach items="${versions}" var="version">
-                        <tr><td>${version['version']}(${version['organism']})</td></tr>
-                  </c:forEach>
-                 </table>
-              </c:set>
-              <imp:simpleToggle name ="${versions.displayName}" content="${versionContent}" show="${show}" /> 
-            </c:if>
-
-            <c:if test="${fn:length(references) > 0}">
-              <c:set var="hasQuestion" value="${false}" />
-              <c:set var="referenceContent">
-                <ul>
-                  <c:forEach items="${references}" var="reference">
-                    <c:if test="${reference['target_type'] eq 'question'}">
-                      <jsp:setProperty name="wdkModel" property="questionName" value="${reference['target_name']}" />
-
-                      <c:set var="question" value="${wdkModel.question}" />
-                      <c:if test="${question != null}">
-                        <c:set var="hasQuestion" value="${true}" />
-                        <c:set var="display" value="Identify ${question.recordClass.displayNamePlural} based on ${question.displayName}" />
-                        <c:url var="questionUrl" value="/showQuestion.do?questionFullName=${question.fullName}" />
-                        <c:choose>
-                          <c:when test="${question.isTransform}">
-                            <li>${display}</li>
-                          </c:when>
-                          <c:otherwise>
-                            <li><a title="${question.summary}" href="${questionUrl}">${display}</a></li>
-                          </c:otherwise>
-                        </c:choose>
-                      </c:if> 
-                    </c:if>
-                  </c:forEach>
-                </ul>
-              </c:set>
-              <c:if test="${hasQuestion}">
-              <imp:simpleToggle name="${references.displayName}" content="${referenceContent}" show="${show}" />
+            <%-------    DATASET CONTENT ----------------%>
+              <c:if test='${not empty organism.value}'>
+                <h3>${organism.displayName}</h3>
+                <div>${organism.value}</div>
               </c:if>
-            </c:if>
 
+              <h3>${contact.displayName}</h3>
+              <div>
+                <c:if test='${not empty contact.value}'>${contact.value}</c:if>
+                <c:if test='${not empty institution.value}'> - ${institution.value}</c:if>
+              </div>
 
-<imp:profileGraphs type='dataset' tableName="ExampleGraphs"/>
+              <c:if test='${not empty description.value}'>
+                <h3>${description.displayName}</h3>
+                <div>${description.value}</div>
+              </c:if>
 
+              <%-- avoiding table.tag to unify style with searches --%>
+              <c:if test="${fn:length(isolates) > 0}">
+                <h3>${isolates.displayName}</h3>
+                <div>
+                  <ul>
+                    <c:forEach items="${isolates}" var="isolate">
+                      <li><a href="${isolate['isolate_link'].url}">${isolate['isolate_link'].displayText}</a> </li>
+                    </c:forEach>
+                  </ul>
+                </div>
+              </c:if>
 
+              <%-- avoiding table.tag to unify style with searches --%>
+              <c:if test="${fn:length(publications) > 0}">
+                <h3>${publications.displayName}</h3>
+                <div>
+                  <ul>
+                    <c:forEach items="${publications}" var="publication">
+                      <li><a href="${publication['pubmed_link'].url}">${publication['pubmed_link'].displayText}</a></li>
+                    </c:forEach>
+                  </ul>
+                </div>
+              </c:if>
 
-          </div><hr>       <!-- .data-set -->
+              <%-- avoiding table.tag to unify style with searches --%>
+              <c:if test="${fn:length(contacts) > 0}">
+                <h3>${contacts.displayName}</h3>
+                <div>
+                  <ul>
+                    <c:forEach items="${contacts}" var="contact">
+                      <li><c:if test="${contact['contact_name'] != null}">${contact['contact_name']}</c:if> <c:if test="${contact['affiliation'] != null}">(${contact['affiliation']})</c:if></li>
+                    </c:forEach>
+                  </ul>
+                </div>
+              </c:if>
+
+              <c:if test="${fn:length(externallinks) > 0}">
+                <h3>${externallinks.displayName}</h3>
+                <div>
+                   <ul>
+                    <c:forEach items="${externallinks}" var="externallink">
+                      <li><a title="${externallink['description'].value}" href="${externallink['hyper_link'].url}">${externallink['hyper_link'].displayText}</a></li>
+                    </c:forEach>
+                  </ul>
+                </div>
+              </c:if>
+
+              <c:if test="${fn:length(genHistory) > 0}">
+                <h3>${genHistory.displayName}</h3>
+                <div>
+                   <table>
+                    <c:forEach items="${genHistory}" var="genHistoryRow">
+                      <tr><td>${genHistoryRow['build'].displayName}--${genHistoryRow['build']}----${genHistoryRow['release_date']}<br>
+                              ${genHistoryRow['note']}<br>
+                              Genome source: ${genHistoryRow['genome_source']}--${genHistoryRow['genome_version']}<br>
+                              Annotation source: ${genHistoryRow['annotation_source']}--${genHistoryRow['annotation_version']}
+                      </td></tr>
+                    </c:forEach>
+                   </table>
+                 </div>
+              </c:if>
+
+              <c:if test="${fn:length(versions) > 0}">
+                <h3>${versions.displayName}</h3>
+                <div>
+                  <table>
+                    <c:forEach items="${versions}" var="version">
+                      <tr><td>${version['version']}(${version['organism']})</td></tr>
+                    </c:forEach>
+                  </table>
+                </div>
+              </c:if>
+
+              <c:if test="${fn:length(references) > 0}">
+                <c:set var="hasQuestion" value="${false}" />
+                <c:set var="referenceContent">
+                  <ul>
+                    <c:forEach items="${references}" var="reference">
+                      <c:if test="${reference['target_type'] eq 'question'}">
+                        <jsp:setProperty name="wdkModel" property="questionName" value="${reference['target_name']}" />
+
+                        <c:set var="question" value="${wdkModel.question}" />
+                        <c:if test="${question != null}">
+                          <c:set var="hasQuestion" value="${true}" />
+                          <c:set var="display" value="Identify ${question.recordClass.displayNamePlural} based on ${question.displayName}" />
+                          <c:url var="questionUrl" value="/showQuestion.do?questionFullName=${question.fullName}" />
+                          <c:choose>
+                            <c:when test="${question.isTransform}">
+                              <li>${display}</li>
+                            </c:when>
+                            <c:otherwise>
+                              <li><a title="${question.summary}" href="${questionUrl}">${display}</a></li>
+                            </c:otherwise>
+                          </c:choose>
+                        </c:if> 
+                      </c:if>
+                    </c:forEach>
+                  </ul>
+                </c:set>
+                <c:if test="${hasQuestion}">
+                <h3>${references.displayName}</h3>
+                <div>${referenceContent}</div>
+                </c:if>
+              </c:if>
+
+              <imp:profileGraphs type="dataset" tableName="ExampleGraphs"/>
+
+            </jsp:attribute>
+          </imp:toggle>
         </c:forEach>       <!-- all datasets in one category  -->
 
-      </div>   <!-- .category-content -->
-  </div>       <!-- .category   -->
+      </jsp:attribute>
+    </imp:toggle>
   </c:forEach> <!-- all categories  -->
   
 
@@ -278,5 +272,46 @@
 
 </div>      <!-- #data-sets   -->
 
+<script>
+  !function($) {
+    $('.toggle-section')
+      .each(function(i, e) {
+        var isActive = (e.getAttribute('wdk-active') || '').toLowerCase();
+        $(e).accordion({
+          collapsible: true,
+          active: isActive === 'true' ? 0 : false,
+          heightStyle: 'content',
+          animate: false,
+          create: function(event, ui) {
+            var activateOnce = _.once(new Function(e.getAttribute('wdk-onactivate')));
+            // panel is not collapsed
+            if (ui.panel.length && ui.header.length) {
+              $(activateOnce);
+            } else {
+              $(e).on('accordionactivate', activateOnce);
+            }
+          },
+          activate: function(event, ui) {
+            var cookieName = "show" + e.getAttribute('wdk-id');
+            var cookieValue = ui.newHeader.length && ui.newPanel.length ? 1 : 0;
+            wdk.api.storeIntelligentCookie(cookieName, cookieValue,365);
+          }
+        })
+      })
+
+    $('.record-toolbar a[href="#show-all"]')
+      .click(function(e) {
+        e.preventDefault();
+        $('.toggle-section').accordion('option', 'active', 0);
+      })
+
+    $('.record-toolbar a[href="#hide-all"]')
+      .click(function(e) {
+        e.preventDefault();
+        $('.toggle-section').accordion('option', 'active', false);
+      })
+
+  }(jQuery);
+</script>
 
 </imp:pageFrame>

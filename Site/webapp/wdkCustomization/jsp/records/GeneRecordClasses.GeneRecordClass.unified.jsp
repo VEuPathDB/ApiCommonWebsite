@@ -108,10 +108,67 @@ organismFull:   Plasmodium falciparum 3D7
              division="queries_tools"
              summary="${overview.value} (${length.value} bp)">
 
+  <script>
+    !function($) {
+      // prevent FOUC
+      $('.innertube').css('opacity', 0);
+      $('html').css('overflow', 'hidden');
+      $(function() {
+        $('.innertube') .css('opacity', 1);
+        $('html').css('overflow', '');
+      });
+    }(jQuery);
+  </script>
+  <style>
+    h1 {
+      text-align: left;
+      float: left;
+    }
+    .overview {
+      background-color: #f7f7f7;
+      border: 1px solid #e6e6e6;
+    }
+    .overview p {
+      max-width: 1000px;
+    }
+    .overview p, .overview table {
+      font-size: 1.2em;
+    }
+    .overview table{
+      margin: .2em 0;
+    }
+    .overview th {
+      white-space: nowrap;
+    }
+    .overview td {
+    }
+    .overview th, .overview td {
+      border: none;
+      vertical-align: top;
+      padding: 4px 8px;
+    }
+    .innertube {
+      padding: 6px;
+      /*padding-left: 20em;*/
+    }
+    .innertube > .toggle-section.ui-accordion {
+      margin: 6px 0;
+    }
+    .innertube > .toggle-section.ui-accordion > .ui-accordion-header {
+      font-size: 150%;
+      background-color: #dfdfdf;
+      padding-left: 1.6em;
+    }
+    .innertube > .toggle-section.ui-accordion > .ui-accordion-content {
+      padding: 0 2px;
+    }
+  </style>
+
 <a name="top"></a>
 
 
 <!-- =========================  TOP MENU 4 OPTIONS, some genes ONLY 2  ========================= -->
+<%--
 <table width="100%">
 <tr>
   <td align="center" style="padding:6px"><a href="#Annotation">Annotation</a>
@@ -143,6 +200,7 @@ organismFull:   Plasmodium falciparum 3D7
 </table>
 
 <hr>
+--%>
 <!-- =========================  PAGE BEGINNING: title and stuff under title  ========================= -->
 
 <!-- this block is to set a link to add a comment  -->
@@ -171,81 +229,73 @@ organismFull:   Plasmodium falciparum 3D7
     </c:otherwise>
  </c:choose>
 
-<!------------ small div with: Download, show and hide all  ------------->
-<imp:recordToolbox />
-
 <!------------ BIG ID title  ------------->
-<div class="h2center" style="font-size:150%">
-  ${id} 
-  <br><span style="font-size:70%">Product: ${prd} </span>
+<div class="ui-helper-clearfix">
+  <h1>${recordName} ${id}</h1>
 
-<!----------- Previous IDS  --- ONLY PLASMO according to Omar -------------->
-<c:if test="${projectId eq 'PlasmoDB'}">
-<c:if test="${attrs['old_ids'].value != null && attrs['old_ids'].value ne id }">
-  <br><span style="font-size:70%">${attrs['OldIds'].value}</span><br>
-</c:if>
-</c:if>
-
-<br>
-<div>
-
-<!----------- User Comments    ----------------->
-<c:set var="count" value="0"/>
-<c:forEach var="row" items="${wdkRecord.tables['UserComments']}">
-  <c:set var="count" value="${count +  1}"/>
-</c:forEach>
-
-<c:choose>
-<c:when test="${count == 0}">
-	<a style="font-size:70%;font-weight:normal;cursor:hand" href="${commentsUrl}">Add the first user comment
-</c:when>
-<c:otherwise>
-	<a style="font-size:70%;font-weight:normal;cursor:hand" href="#Annotation" onclick="wdk.api.showLayer('UserComments')">This gene has <span style='color:red'>${count}</span> user comments
-</c:otherwise>
-</c:choose>
-<img style="position:relative;top:2px" width="28" src="/assets/images/commentIcon12.png">
-</a>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<!----------- Basket and Favorites  ----------------->
-<imp:recordPageBasketIcon />
-</div>
-
-<!-------------- Updated Product Name from GeneDB ---------------------------->
-
-<c:set var="is_genedb_organism" value="${attrs['is_genedb_organism'].value}"/> 
-
-<c:if test="${is_genedb_organism == 1}">
-  <div style="margin:12px;padding:5px">
-
-    <c:if test="${attrs['updated_annotation'].value != null}">
-      ${attrs['GeneDB_updated'].value}
-    </c:if>
-
-    <c:if test="${attrs['new_product_name'].value != null}">
-      <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
-    </c:if>
-
+  <div class="record-toolbar ui-widget" style="float: left; margin: 0 0 0 1em;">
+    <a href="${commentsUrl}">
+      Add a Comment<span class="ui-icon ui-icon-comment"></span>
+      <!-- <img src="/assets/images/commentIcon12.png"/> -->
+    </a>
+    <imp:recordPageBasketIcon />
+    <a href="#download">
+      Download ${recordName}<span class="ui-icon ui-icon-disk"></span>
+    </a>
   </div>
-
-</c:if>
 </div>
 
-<!--------------  NOTE on Unpublished data as it was in Plasmo page ----------------------->
+<div class="overview">
+  <table>
+    <tr><th>Product</th><td>${prd}</td></tr>
+    <c:if test="${attrs['is_genedb_organism'].value == 1 and attrs['new_product_name'].value != null}">
+      <tr><th>Updated product from GeneDB</th><td>${attrs['new_product_name']}</td></tr>
+    </c:if>
+    <tr><th>Organism</th><td>${attrs['organism']}</td></tr>
+    <tr><th>Type</th><td>${attrs['gene_type']}</td></tr>
+    <tr><th>Location</th><td>${attrs['location_text']}</td></tr>
+    <c:if test="${attrs['old_ids'].value != null && attrs['old_ids'].value ne id }">
+      <tr><th>Previous IDs</th><td>${attrs['old_ids']}</td></tr>
+    </c:if>
+    <c:set var="commentsLength" value="${fn:length(wdkRecord.tables['UserComments'])}"/>
+    <c:if test="${commentsLength gt 0}">
+      <tr><th>User comments</th><td><a href="${commentsUrl}">Read ${commentsLength} user comments</a></td></tr>
+    </c:if>
+    <c:if test="${attrs['is_genedb_organism'].value == 1 and attrs['updated_annotation'].value != null}">
+      <tr><th>Updated annotation</th><td><a href="${attrs['updated_annotation']}">View at GeneDB</a></td>
+    </c:if>
+    <c:if test="${projectId ne 'TrichDB' && attrs['is_annotated'].value == 0}">
+      <tr>
+        <th>Genome status</th>
+        <c:choose>
+          <c:when test="${attrs['release_policy'].value  != null}">
+            <td>${attrs['release_policy'].value }</td>
+          </c:when>
+          <c:otherwise>
+            <td>The data for this genome is unpublished. You should consult with the Principal Investigators before undertaking large scale analyses of the annotation or underlying sequence.</td>
+          </c:otherwise>
+        </c:choose>
+      </tr>
+    </c:if>
+  </table>
 
-<c:if test="${projectId ne 'TrichDB' && attrs['is_annotated'].value == 0}">
-  <c:choose>
-  <c:when test="${attrs['release_policy'].value  != null}">
-    <b>NOTE: ${attrs['release_policy'].value }</b>
-  </c:when>
-  <c:otherwise>
-    <b>NOTE: The data for this genome is unpublished. You should consult with the Principal Investigators before undertaking large scale analyses of the annotation or underlying sequence.</b>
-  </c:otherwise>
-  </c:choose>
-</c:if>
+
+  <!--------------  NOTE on Unpublished data as it was in Plasmo page ----------------------->
+
+</div>
 
 
+<div class="record-toolbar ui-widget ui-helper-clearfix">
+  <a href="#show-all">
+    Expand all<span class="ui-icon ui-icon-arrowthickstop-1-s"></span>
+  </a>
+  <a href="#hide-all">
+    Collapse all<span class="ui-icon ui-icon-arrowthickstop-1-n"></span>
+  </a>
+</div>
+
+<imp:toggle name="General" displayName="General" isOpen="true">
+  <jsp:attribute name="content">
 
 <%--##########################  SECTION  BEFORE ANNOTATION   ################################--%>
 
@@ -253,6 +303,7 @@ organismFull:   Plasmodium falciparum 3D7
 <imp:wdkTable2 tblName="CommunityExpComments" isOpen="true" attribution="" />
 
 <%-- OVERVIEW ------------%>
+<%--
 <c:set var="attr" value="${attrs['overview']}" />
 
 <c:if test="${attrs['is_deprecated'].value eq 'Yes'}">
@@ -261,10 +312,11 @@ organismFull:   Plasmodium falciparum 3D7
    </c:set>
 </c:if>
 
-<imp:panel attribute="${attr.name}"
+<imp:toggle name="${attr.name}"
     displayName="${attr.displayName} ${has_namefun_comment}"
+    isOpen="true"
     content="${attr.value}${append}" />
-<br>
+--%>
 
 <c:set var="dna_gtracks" value="${attrs['dna_gtracks'].value}"/>
 <c:set var="protein_gtracks" value="${attrs['protein_gtracks'].value}"/>
@@ -322,10 +374,10 @@ organismFull:   Plasmodium falciparum 3D7
 <%---------- HTS SNP OVERVIEW --------- BASED ON ATTRIBUTE  ------%>
 <c:if test="${attrs['hasHtsSnps'].value eq '1'}">
 <c:set var="htsSNPs" value="${attrs['snpoverview']}" />
-<imp:panel attribute="${htsSNPs.name}"
+<imp:toggle name="${htsSNPs.name}"
     displayName="${htsSNPs.displayName}"
+    isOpen="true"
     content="${htsSNPs.value}${append}" />
-<br>
 <imp:wdkTable2 tblName="SNPsAlignment" isOpen="false" /> 
 </c:if>
 
@@ -373,19 +425,24 @@ organismFull:   Plasmodium falciparum 3D7
 <imp:wdkTable2 tblName="MetaTable" isOpen="FALSE" attribution=""/>
 --%>
 
+  </jsp:attribute>
+</imp:toggle>
+
 
 <%--##########################   ANNOTATION      ################################--%>
-<imp:pageDivider name="Annotation"/>
+<imp:toggle name="Annotation" displayName="Annotation" isOpen="true">
+  <jsp:attribute name="content">
 
-
-<!-- User comments -->
-<a name="user-comment"/>
-<b><a title="Click to go to the comments page" style="font-size:120%" href="${commentsUrl}">Add a comment on ${id}
-  <img style="position:relative;top:2px" width="28" src="/assets/images/commentIcon12.png">
-</a></b>
-<br><br>
-
-<imp:wdkTable2 tblName="UserComments" isOpen="true" attribution="" />
+<imp:wdkTable2 tblName="UserComments" isOpen="true" attribution="">
+  <jsp:attribute name="preamble">
+    <!-- User comments -->
+    <a name="user-comment"/>
+    <b><a title="Click to go to the comments page" style="font-size:120%" href="${commentsUrl}">Add a comment on ${id}
+      <img style="position:relative;top:2px" width="28" src="/assets/images/commentIcon12.png">
+    </a></b>
+    <br><br>
+  </jsp:attribute>
+</imp:wdkTable2>
 
 
 <!-- EC number -->
@@ -459,9 +516,11 @@ organismFull:   Plasmodium falciparum 3D7
 <c:if test="${projectId eq 'PlasmoDB'}">
   <c:set var="plasmocyc" value="${attrs['PlasmoCyc']}"/>  
   <c:set var="plasmocycurl" value="${plasmocyc.url}"/>  
-  <imp:panel 
-    displayName="PlasmoCyc <a href='${plasmocycurl}'>View</a>"
-    content="" />
+  <imp:toggle 
+    name="PlasmoCyc"
+    displayName="PlasmoCyc"
+    isOpen="true"
+    content="Query Pathway/Genome Databases at <a target='_blank' href='${plasmocycurl}'>PlasmoCyc</a>"/>
 </c:if>
 
 
@@ -473,12 +532,16 @@ organismFull:   Plasmodium falciparum 3D7
 <imp:wdkTable2 tblName="AnnotationChanges"/>
 --%>
 
+  </jsp:attribute>
+</imp:toggle>
+
 
 <%--##########################   PROTEIN      ################################--%>
 
 <c:if test="${isCodingGene}">
   
-<imp:pageDivider name="Protein"/>
+<imp:toggle name="Protein" displayName="Protein" isOpen="true">
+  <jsp:attribute name="content">
 
 
 <%-- Protein Features------------%>
@@ -508,6 +571,7 @@ organismFull:   Plasmodium falciparum 3D7
 
   <imp:toggle name="proteinContext"  displayName="Protein Features" 
                 content="${proteinFeaturesImg}" 
+                isOpen="true"
                 attribution=""
     dsLink="/cgi-bin/gbrowse_citation.pl?project_id=${projectId}aa&tracks=${protein_gtracks}"
 />
@@ -525,13 +589,17 @@ organismFull:   Plasmodium falciparum 3D7
 
 <c:choose>
   <c:when test="${min_mw != null && max_mw != null && min_mw != max_mw}">
-    <imp:panel 
+    <imp:toggle 
+      name="Molecular Weight"
       displayName="Molecular Weight"
+      isOpen="true"
       content="${min_mw} to ${max_mw} Da" />
   </c:when>
   <c:otherwise>
-    <imp:panel 
+    <imp:toggle 
       displayName="Molecular Weight"
+      name="Molecular Weight"
+      isOpen="true"
       content="${mw} Da" />
   </c:otherwise>
 </c:choose>
@@ -541,13 +609,17 @@ organismFull:   Plasmodium falciparum 3D7
 
         <c:choose>
             <c:when test="${ip.value != null}">
-             <imp:panel 
+             <imp:toggle
+                name="${ip.displayName}"
                 displayName="${ip.displayName}"
+                isOpen="true"
                  content="${ip.value}" />
             </c:when>
             <c:otherwise>
-             <imp:panel 
+             <imp:toggle
+                name="${ip.displayName}"
                 displayName="${ip.displayName}"
+                isOpen="true"
                  content="N/A" />
             </c:otherwise>
         </c:choose>
@@ -603,13 +675,17 @@ organismFull:   Plasmodium falciparum 3D7
 <imp:wdkTable2 tblName="Epitopes"/>
 
 
+  </jsp:attribute>
+</imp:toggle>
+
 </c:if> <%-- end if isCodingGene --%>
 
 
 <%--######################   PHENOTYPE    ################################--%>
 <c:if test="${hasPhenotype}">
 
-<imp:pageDivider name="Phenotype"/>
+<imp:toggle name="Phenotype" displayName="Phenotype" isOpen="true">
+  <jsp:attribute name="content">
 
 <c:set var="geneDbLink">
   <div align="left">
@@ -622,32 +698,44 @@ organismFull:   Plasmodium falciparum 3D7
 
 <imp:profileGraphs species="${binomial}" tableName="PhenotypeGraphs"/>
 
+  </jsp:attribute>
+</imp:toggle>
+
 </c:if>
 <%--##########################   EXPRESSION      ################################--%>
 
 
 <c:if test="${attrs['hasExpression'].value eq '1'}">
-  <imp:pageDivider name="Expression"/>
+  <imp:toggle name="Expression" displayName="Expression" isOpen="true">
+    <jsp:attribute name="content">
 
   <imp:expressionGraphs organism="${organismFull}" species="${binomial}"/>
   <imp:wdkTable2 tblName="SpliceSites" isOpen="false" attribution=""/>
   <imp:wdkTable2 tblName="PolyASites" isOpen="false" attribution=""/>
   <imp:wdkTable2 tblName="SageTags" attribution=""/>
+
+    </jsp:attribute>
+  </imp:toggle>
 </c:if>
 
 
 <%--##########################  HOST RESPONSE      ################################--%>
 <c:if test="${attrs['hasHostResponse'].value eq '1'}">
-  <imp:pageDivider name="Host Response"/>
+  <imp:toggle name="HostResponse" displayName="Host Response" isOpen="true">
+    <jsp:attribute name="content">
 
   <imp:profileGraphs species="${binomial}" tableName="HostResponseGraphs"/>
+
+    </jsp:attribute>
+    </imp:toggle>
 </c:if>
 
  
 
 <%--##########################   SEQUENCE     ################################--%>
 
-<imp:pageDivider name="Sequence"/>
+<imp:toggle name="Sequence" displayName="Sequence" isOpen="true">
+  <jsp:attribute name="content">
 <i>Please note that UTRs are not available for all gene models and may result in the RNA sequence (with introns removed) being identical to the CDS in those cases.</i>
 
 <c:if test="${isCodingGene}">
@@ -708,7 +796,6 @@ organismFull:   Plasmodium falciparum 3D7
 
 
 <!-- attribution -->
-<hr>
 <c:set value="${wdkRecord.tables['GenomeSequencingAndAnnotationAttribution']}" var="referenceTable"/>
 
 <c:set value="Error:  No Attribution Available for This Genome!!" var="reference"/>
@@ -716,17 +803,66 @@ organismFull:   Plasmodium falciparum 3D7
     <c:set var="reference" value="${row['description'].value}"/>
 </c:forEach>
 
-<imp:panel 
+<imp:toggle 
+    name="Genome Sequencing and Annotation by:"
     displayName="Genome Sequencing and Annotation by:"
+    isOpen="true"
     content="${reference}" />
-<br>
+
+    </jsp:attribute>
+  </imp:toggle>
 
 <%------------------------------------------------------------------%>
 
 <%-- jsp:include page="/include/footer.html" --%>
 
-<script type='text/javascript' src='/gbrowse/apiGBrowsePopups.js'></script>
-<script type='text/javascript' src='/gbrowse/wz_tooltip.js'></script>
+<script>
+  !function($) {
+    // register collapsible regions
+    $('.toggle-section')
+      .each(function(i, e) {
+        var isActive = (e.getAttribute('wdk-active') || '').toLowerCase();
+        $(e).accordion({
+          collapsible: true,
+          active: isActive === 'true' ? 0 : false,
+          heightStyle: 'content',
+          animate: false,
+          create: function(event, ui) {
+            var activateOnce = _.once(new Function(e.getAttribute('wdk-onactivate')));
+            // panel is not collapsed
+            if (ui.panel.length && ui.header.length) {
+              $(activateOnce);
+            } else {
+              $(e).on('accordionactivate', activateOnce);
+            }
+          },
+          activate: function(event, ui) {
+            var cookieName = "show" + e.getAttribute('wdk-id');
+            var cookieValue = ui.newHeader.length && ui.newPanel.length ? 1 : 0;
+            wdk.api.storeIntelligentCookie(cookieName, cookieValue,365);
+          }
+        })
+      })
+      // .sortable({
+      //   axis: 'y',
+      //   handle: 'h3',
+      //   containment: 'parent',
+      //   stop: function(event, ui) {
+      //     ui.item.children( "h3" ).triggerHandler( "focusout" );
+      //   }
+      // });
+
+    $('.record-toolbar a[href="#show-all"]').click(function(e) {
+      e.preventDefault();
+      $('.toggle-section').accordion('option', 'active', 0);
+    });
+    $('.record-toolbar a[href="#hide-all"]').click(function(e) {
+      e.preventDefault();
+      $('.toggle-section').accordion('option', 'active', false);
+    });
+
+  }(jQuery);
+</script>
 
 </imp:pageFrame>
 </c:otherwise>

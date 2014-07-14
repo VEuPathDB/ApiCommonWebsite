@@ -288,10 +288,17 @@
 
 <c:choose>
   <c:when test="${type eq 'dataset'}">
+    <h3>Examples Graphs</h3>
+    <div>
+      <p><em>All applicable record pages will contain this graphical representation for this dataset.</em></p>
+      ${graphToggle}
+    </div>
+    <%--
     <imp:simpleToggle
        name="Example Graph(s) (All applicable record pages will contain this graphical representation for this dataset)"
        content="${graphToggle}"
        show="false"/>
+     --%>
   </c:when>
   <c:otherwise>
     ${graphToggle}
