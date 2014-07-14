@@ -3,8 +3,6 @@ package org.apidb.apicommon.model;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import junit.framework.Assert;
 
 import org.eupathdb.common.model.ProjectMapper;
@@ -12,7 +10,6 @@ import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 public class ProjectMapperTest {
 
@@ -24,8 +21,7 @@ public class ProjectMapperTest {
   }
 
   @Test
-  public void testGetRecordUrl() throws WdkModelException, SAXException,
-      IOException, ParserConfigurationException {
+  public void testGetRecordUrl() throws WdkModelException, IOException {
     ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
     String recordClass = "GeneRecordClasses.GeneRecordClass";
     String projectId = "PlasmoDB";
@@ -37,8 +33,7 @@ public class ProjectMapperTest {
   }
 
   @Test
-  public void testGetProjectByOrganism() throws WdkModelException,
-      SAXException, IOException, ParserConfigurationException, SQLException {
+  public void testGetProjectByOrganism() throws WdkModelException, SQLException {
     ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
     Assert.assertEquals("PlasmoDB",
         mapper.getProjectByOrganism("Plasmodium falciparum"));
