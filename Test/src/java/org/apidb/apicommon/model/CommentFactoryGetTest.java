@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.apidb.apicommon.model.comment.Comment;
 import org.apidb.apicommon.model.comment.CommentFactory;
-import org.apidb.apicommon.model.comment.CommentModelException;
 import org.apidb.apicommon.model.comment.ExternalDatabase;
 import org.apidb.apicommon.model.comment.Location;
 import org.eupathdb.common.model.InstanceManager;
@@ -43,7 +42,7 @@ public class CommentFactoryGetTest {
     private int commentId;
 
     @BeforeClass
-    public static void loadFactory() throws WdkModelException, CommentModelException {
+    public static void loadFactory() throws WdkModelException {
         // get the projectId
         String gusHome = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME);
         projectId = System.getProperty(Utilities.ARGUMENT_PROJECT_ID);

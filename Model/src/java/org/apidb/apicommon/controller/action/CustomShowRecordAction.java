@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
@@ -26,7 +25,6 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
-import org.xml.sax.SAXException;
 
 public class CustomShowRecordAction extends ShowRecordAction {
 
@@ -99,8 +97,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
     
     private ActionForward redirectByProject(WdkModelBean wdkModel,
         String recordClass, String projectId, String sourceId) 
-            throws WdkModelException, SAXException, IOException, 
-            ParserConfigurationException {
+            throws WdkModelException, IOException {
       // get project mapper
       ProjectMapper mapper = ProjectMapper.getMapper(wdkModel.getModel());
       String url = mapper.getRecordUrl(recordClass, projectId, sourceId);
