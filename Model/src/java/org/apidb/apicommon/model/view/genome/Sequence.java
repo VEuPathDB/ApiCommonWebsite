@@ -1,12 +1,9 @@
 package org.apidb.apicommon.model.view.genome;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Sequence implements Comparable<Sequence> {
-
-  private static final DecimalFormat FORMAT = new DecimalFormat("#,###");
 
   private final String sourceId;
   private final List<Region> regions;
@@ -27,7 +24,7 @@ public class Sequence implements Comparable<Sequence> {
   }
 
   public String getLengthFormatted() {
-    return FORMAT.format(length);
+    return GenomeViewHandler.FORMAT.format(length);
   }
 
   public void setLength(long length) {
@@ -40,6 +37,10 @@ public class Sequence implements Comparable<Sequence> {
 
   public void addRegion(Region region) {
     regions.add(region);
+  }
+
+  public int getRegionCount() {
+    return regions.size();
   }
 
   public List<Region> getRegions() {
@@ -68,7 +69,7 @@ public class Sequence implements Comparable<Sequence> {
   }
 
   public String getFeatureCountFormatted() {
-    return FORMAT.format(getFeatureCount());
+    return GenomeViewHandler.FORMAT.format(getFeatureCount());
   }
 
   public double getPercentLength() {

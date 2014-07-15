@@ -212,6 +212,20 @@
     </td>
 </tr>
 
+    <%--  All ORF Queries TABLE --%>
+    <td >   
+<div class="innertube2">   
+	<table width="100%" border="0" cellspacing="0" cellpadding="0"> 
+		<tr class="headerrow2">
+			<td   align="center"><b>Identify People by:</b></td>
+		</tr>
+		<tr><td align="center">
+			<imp:queryGridSubjects/>
+		</td></tr>
+   	</table> 
+</div>
+    </td>
+</tr>
 
 </table>
 

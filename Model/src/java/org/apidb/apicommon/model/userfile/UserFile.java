@@ -1,4 +1,4 @@
-package org.apidb.apicommon.model;
+package org.apidb.apicommon.model.userfile;
 
 import java.util.Date;
 

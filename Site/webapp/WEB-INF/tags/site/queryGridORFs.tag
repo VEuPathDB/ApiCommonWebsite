@@ -14,33 +14,13 @@
 <div class="innertube2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-<tr>
-                    <imp:queryGridMakeUrl qset="OrfQuestions" qname="OrfByOrfId" linktext="ORF ID(s)" existsOn="A Am G C M Pi P T Tr Tt"/>
-                </tr>
  <tr>
-                    <imp:queryGridMakeUrl qset="OrfQuestions" qname="OrfsByLocation" linktext="Genomic Location" existsOn="A Am G C M Pi P T Tr Tt"/>
+                    <imp:queryGridMakeUrl qset="PersonQuestions" qname="SubjectsByMetadata" linktext="Characteristics" existsOn="A Am G C M Pi P T Tr Tt"/>
                 </tr>
 
             </table>
 </div>
         </td>
-
-<%--	<td width="1" class="blueVcalLine"></td> --%>
-	<td width="1"></td>
-
-        <td  width="50%" >
-<div class="innertube2">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-
-<tr>
-                    <imp:queryGridMakeUrl qset="OrfQuestions" qname="OrfsBySimilarity" linktext="BLAST Similarity" type="ORF" existsOn="A Am G C M Pi P T Tr Tt"/>
-                </tr>  
- <tr>
-                    <imp:queryGridMakeUrl qset="OrfQuestions" qname="OrfsByMotifSearch" linktext="Protein Motif" existsOn="A Am G C M Pi P T Tr Tt"/>
-                </tr>
-            </table>
-</div>
-    	</td>
 
 
 </tr>

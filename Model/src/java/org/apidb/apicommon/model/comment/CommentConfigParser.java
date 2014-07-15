@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.apidb.apicommon.model;
+package org.apidb.apicommon.model.comment;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +17,7 @@ import org.xml.sax.SAXException;
  */
 public class CommentConfigParser extends XmlParser {
 
-    public CommentConfigParser(String gusHome) throws SAXException, IOException {
+    public CommentConfigParser(String gusHome) throws WdkModelException {
         super(gusHome, "lib/rng/comment-config.rng");
     }
 
@@ -29,13 +29,16 @@ public class CommentConfigParser extends XmlParser {
         return "config/" + projectId + "/comment-config.xml";
     }
 
-    public CommentConfig parseConfig(String projectId) throws SAXException,
-            IOException, WdkModelException {
-        // validate the configuration file
-        URL configURL = makeURL(gusHome, getConfigFile(projectId));
-        validate(configURL);
-
-        return (CommentConfig) digester.parse(configURL.openStream());
+    public CommentConfig parseConfig(String projectId) throws WdkModelException, CommentModelException {
+        try {
+          // validate the configuration file
+          URL configURL = makeURL(gusHome, getConfigFile(projectId));
+          validate(configURL);
+          return (CommentConfig) digester.parse(configURL.openStream());
+        }
+        catch (IOException | SAXException ex) {
+          throw new CommentModelException(ex);
+        }
     }
 
     @Override

@@ -1,9 +1,8 @@
 package org.apidb.apicommon.jmx.mbeans;
 
 import org.gusdb.wdk.jmx.mbeans.AbstractConfig;
-import org.apidb.apicommon.model.CommentFactory;
+import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.controller.CommentActionUtility;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -14,7 +13,7 @@ import org.apache.log4j.Logger;
  * relative to the state on the filesystem.
  *
  * @see org.gusdb.wdk.jmx.mbeans.AbstractConfig#setValuesFromGetters
- * @see org.apidb.apicommon.model.CommentConfig
+ * @see org.apidb.apicommon.model.comment.CommentConfig
  */
 public class CommentConfig extends AbstractConfig {
 
@@ -30,7 +29,7 @@ public class CommentConfig extends AbstractConfig {
     CommentFactory factory = null;
     try {
       factory = getCommentFactory();
-      org.apidb.apicommon.model.CommentConfig commentConfig = factory.getCommentConfig();  
+      org.apidb.apicommon.model.comment.CommentConfig commentConfig = factory.getCommentConfig();  
       setValuesFromGetters(null, commentConfig);
     } catch (Exception e) {
       logger.error("MBean Load Error ", e);
