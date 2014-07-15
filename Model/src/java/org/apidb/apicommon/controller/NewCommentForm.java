@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -469,7 +473,7 @@ public class NewCommentForm extends ActionForm {
                                         + related_id
                                         + "\" is not valid related gene id! Please correct it and try again."));
             }
-        }
+				 	}
         }
 
         List<Integer> toBeRemoved = new ArrayList<Integer>();
