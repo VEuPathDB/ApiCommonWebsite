@@ -1,9 +1,12 @@
 package org.apidb.apicommon.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
@@ -19,7 +22,6 @@ import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.util.LabelValueBean;
 import org.apidb.apicommon.model.GeneIdValidator;
-import org.apidb.apicommon.model.comment.CommentModelException;
 import org.apidb.apicommon.model.comment.MultiBox;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.WdkModelException;
@@ -445,14 +447,14 @@ public class NewCommentForm extends ActionForm {
 
         GeneIdValidator validator = getGeneIdValidator();
         if(associatedStableIds != null) {
-					String[] related_ids_dup = Pattern.compile("[\\s,;]").matcher(
+          String[] related_ids_dup = Pattern.compile("[\\s,;]").matcher(
                 associatedStableIds).replaceAll(" ").split(" ");
 
-					// removing duplicates
-					Set<String> stringSet = new HashSet<>(Arrays.asList(related_ids_dup));
-					String[] related_ids = stringSet.toArray(new String[0]);
-
-					for (String related_id : related_ids) {
+          // removing duplicates
+          Set<String> stringSet = new HashSet<>(Arrays.asList(related_ids_dup));
+          String[] related_ids = stringSet.toArray(new String[0]);
+            
+          for (String related_id : related_ids) {
             if (related_id.trim().equals("")) {
                 continue;
             }
@@ -543,7 +545,7 @@ public class NewCommentForm extends ActionForm {
         try {
           list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" );
         }
-        catch (WdkModelException | CommentModelException ex) {
+        catch (WdkModelException ex) {
           throw new WdkRuntimeException(ex);
         }
    

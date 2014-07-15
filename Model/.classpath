@@ -2,22 +2,22 @@
 <classpath>
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WDK Controller"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WDK Model"/>
-	<classpathentry kind="lib" path="/WDK Controller/lib/java/jstl.jar"/>
-	<classpathentry kind="lib" path="/WDK Model/lib/java/db_driver/postgresql-8.3-603.jdbc3.jar"/>
-	<classpathentry kind="lib" path="/WSF Service/lib/java/xml-apis-2.9.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WSF Plugin"/>
-	<classpathentry kind="lib" path="/WDK Controller/lib/java/struts-1.2.4.jar"/>
-	<classpathentry kind="lib" path="/WSF Service/lib/java/not-deployed/servlet-api-2.5.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wdk-controller"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wdk-model"/>
+	<classpathentry kind="lib" path="/wdk-controller/lib/java/jstl.jar"/>
+	<classpathentry kind="lib" path="/wdk-model/lib/java/db_driver/postgresql-8.3-603.jdbc3.jar"/>
+	<classpathentry kind="lib" path="/wsf-core/lib/java/xml-apis-2.9.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wsf-plugin-api"/>
+	<classpathentry kind="lib" path="/wdk-controller/lib/java/struts-1.2.4.jar"/>
+	<classpathentry kind="lib" path="/wsf-core/lib/java/not-deployed/servlet-api-2.5.jar"/>
 	<classpathentry kind="var" path="GUS_HOME/lib/java/db_driver/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/gdata-core-1.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>
-	<classpathentry kind="lib" path="/WDK Model/lib/java/commons-digester-1.8.1.jar"/>
-	<classpathentry kind="lib" path="/WSF Plugin/lib/java/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="/WSF Service/lib/java/xercesImpl-2.9.1.jar"/>
-	<classpathentry kind="lib" path="/WSF Plugin/lib/java/org.json-chargebee-1.0.jar"/>
+	<classpathentry kind="lib" path="/wdk-model/lib/java/commons-digester-1.8.1.jar"/>
+	<classpathentry kind="lib" path="/wsf-plugin-api/lib/java/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/wsf-core/lib/java/xercesImpl-2.9.1.jar"/>
+	<classpathentry kind="lib" path="/wsf-plugin-api/lib/java/org.json-chargebee-1.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EuPath Common Model"/>
 	<classpathentry kind="lib" path="lib/java/not-deployed/jsp-api-2.0.jar"/>
 	<classpathentry kind="output" path="classes"/>
