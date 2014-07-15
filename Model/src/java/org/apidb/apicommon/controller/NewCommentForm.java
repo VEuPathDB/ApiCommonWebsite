@@ -1,9 +1,12 @@
 package org.apidb.apicommon.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
@@ -444,10 +447,14 @@ public class NewCommentForm extends ActionForm {
 
         GeneIdValidator validator = getGeneIdValidator();
         if(associatedStableIds != null) {
-        String[] related_ids = Pattern.compile("[\\s,;]").matcher(
+          String[] related_ids_dup = Pattern.compile("[\\s,;]").matcher(
                 associatedStableIds).replaceAll(" ").split(" ");
 
-        for (String related_id : related_ids) {
+          // removing duplicates
+          Set<String> stringSet = new HashSet<>(Arrays.asList(related_ids_dup));
+          String[] related_ids = stringSet.toArray(new String[0]);
+            
+          for (String related_id : related_ids) {
             if (related_id.trim().equals("")) {
                 continue;
             }
