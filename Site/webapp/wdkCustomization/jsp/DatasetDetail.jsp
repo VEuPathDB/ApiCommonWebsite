@@ -15,10 +15,10 @@
   <script>
     !function($) {
       // prevent FOUC
-      $('.innertube').css('opacity', 0);
+      $('#data-sets').css('opacity', 0);
       $('html').css('overflow', 'hidden');
       $(function() {
-        $('.innertube') .css('opacity', 1);
+        $('#data-sets') .css('opacity', 1);
         $('html').css('overflow', '');
       });
     }(jQuery);
@@ -35,7 +35,7 @@
     h3 + div {
       margin-bottom: 1em;
     }
-    .innertube {
+    #data-sets {
       padding: 6px;
       /*padding-left: 20em;*/
     }
@@ -49,23 +49,32 @@
       background-color: white;
       border-bottom: none;
     }
-    .innertube > .toggle-section.ui-accordion {
+    #data-sets > .toggle-section.ui-accordion {
       margin: 6px 0;
     }
-    .innertube > .toggle-section.ui-accordion > .ui-accordion-header {
+    #data-sets > .toggle-section.ui-accordion > .ui-accordion-header {
       font-size: 150%;
       background-color: #dfdfdf;
       padding-left: 1.6em;
     }
-    .innertube .ui-accordion-content {
-      padding-top: 0;
+    #data-sets .ui-accordion-content {
+      padding-top: 2px;
       padding-bottom: 0;
     }
-    .innertube > .toggle-section.ui-accordion > .ui-accordion-content {
+    #data-sets > .toggle-section.ui-accordion > .ui-accordion-content {
       padding: 0 2px;
     }
-    .innertube > .toggle-section.ui-accordion > .ui-accordion-content h3 {
+    #data-sets > .toggle-section.ui-accordion > .ui-accordion-content h3 {
       text-transform: capitalize;
+    }
+    .toggle-section.ui-accordion .ui-accordion-header {
+      padding-left: 2em;
+    }
+    .toggle-section.ui-accordion .ui-accordion-content {
+      padding-left: 3em;
+    }
+    .toggle-section.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+      top: 45%;
     }
     .toggle-section ul {
       font-size: 1em;
@@ -94,7 +103,6 @@
         <li><a href="#${category.key}"><i>${category.key}</i></a></li>
       </c:forEach>
     </ul>
-  </div>
 
   <div class="record-toolbar ui-widget ui-helper-clearfix">
     <a href="#show-all">
