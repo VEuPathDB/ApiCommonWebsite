@@ -6,7 +6,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EuPath Common Model"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WDK Model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wdk-model"/>
 	<classpathentry kind="var" path="M2_REPO/junit/junit/4.11/junit-4.11.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
