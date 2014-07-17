@@ -235,9 +235,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.source_id = r.source_id";
     new SQLRunner(ds, sql).executeQuery(handler);
-    List<String> sources = new ArrayList<>();
+    List<Option> sources = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(cols.get("SOURCE").toString());
+      sources.add(new Option(cols.get("SOURCE").toString()));
     }
 
     // find ontologies used in the result set
@@ -245,9 +245,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.source_id = r.source_id and gts.ontology is not null";
     new SQLRunner(ds, sql).executeQuery(handler);
-    List<String> ontologies = new ArrayList<>();
+    List<Option> ontologies = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      ontologies.add(cols.get("ONTOLOGY").toString());
+      ontologies.add(new Option(cols.get("ONTOLOGY").toString()));
     }
 
     /*
@@ -283,21 +283,32 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
   }
 
+  public static class Option {
+    private String _term;
+    private String _display;
+    public Option(String term) { this(term, term); }
+    public Option(String term, String display) {
+      _term = term; _display = display;
+    }
+    public String getTerm() { return _term; }
+    public String getDisplay() { return _display; }
+  }
+  
   public static class FormViewModel {
     
-    private List<String> _sourceOptions;
-    private List<String> _ontologyOptions;
+    private List<Option> _sourceOptions;
+    private List<Option> _ontologyOptions;
     // private List<String> _evidCodeOptions;
     private String _projectId;
     
-    public FormViewModel(List<String> sourceOptions, List<String> ontologyOptions /*, List<String> evidCodeOptions*/, String projectId) {
+    public FormViewModel(List<Option> sourceOptions, List<Option> ontologyOptions /*, List<String> evidCodeOptions*/, String projectId) {
       _sourceOptions = sourceOptions;
       _ontologyOptions = ontologyOptions;
       // _evidCodeOptions = evidCodeOptions;
       _projectId = projectId;
     }
 
-    public List<String> getSourceOptions() {
+    public List<Option> getSourceOptions() {
       return _sourceOptions;
     }
 
@@ -307,7 +318,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
     */
 
-    public List<String> getOntologyOptions() {
+    public List<Option> getOntologyOptions() {
       return _ontologyOptions;
     }
     
