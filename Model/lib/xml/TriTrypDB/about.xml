@@ -31,7 +31,7 @@ Institute (<a href="http://www.sbri.org">SBRI</a>).
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in TriTrypDB is provided by ifndependent researchers.  For a list of the data integrated into TriTrypDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in TriTrypDB is provided by independent researchers.  For a list of the data integrated into TriTrypDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>

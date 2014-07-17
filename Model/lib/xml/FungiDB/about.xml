@@ -86,8 +86,7 @@ Much of the data in FungiDB is provided by independent researchers.  For a list 
 
 <div id="cirbulletlist"><ul>
 <li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the o
-rganisms currently available in EuPathDB, by various datatypes.
+<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
 </ul></div>
 
        ]]>
@@ -119,10 +118,10 @@ There are several kinds of downloads available in a EuPathDB site:
        <attribute name="text">
        <![CDATA[
 
-FungiDB is an initial developement mode with a beta release scheduled
+FungiDB is an initial development mode with a beta release scheduled
 for mid-March 2011. A scientific advisory board will be formed during
 the second year of the project to solicit input from the community of
-advivors on fungal genomics data for inclusion in the project.
+advisors on fungal genomics data for inclusion in the project.
 
        ]]>
        </attribute>

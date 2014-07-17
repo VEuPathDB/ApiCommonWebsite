@@ -35,7 +35,7 @@
 
    <record>
        <attribute name="title">you can customize a tab-delimited report</attribute>
-       <attribute name="text">From "My Query History" click "download" to custmoize a tab delimited report of your results.</attribute>
+       <attribute name="text">From "My Query History" click "download" to customize a tab delimited report of your results.</attribute>
        <attribute name="image"></attribute>
    </record>
 
