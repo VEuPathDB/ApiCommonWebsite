@@ -2825,7 +2825,7 @@ OrthoMCL is an algorithm developed to identify orthologs and recent paralogs bas
        <attribute name="item">
 
          <![CDATA[
-ToxoDB 4.0 Beta has been upgraded to  use the latest Genomics Unified Schema (GUS) database system and the new Web Development Kit (WDK). GUS is an open source project (<a href="http://www.gusdb.org">www.gusdb.org</a>) providing a functional genomics database schema covering sequence annotation, expression data, regulatory interactions, and proteomics using controlled vocabularies and ontologies. GUS also provides software to load data (pugins) and set up a web site (WDK). GUS has been adopted by several groups covering organism ranging from bacteria, protozoa, plants, and mammals.  
+ToxoDB 4.0 Beta has been upgraded to  use the latest Genomics Unified Schema (GUS) database system and the new Web Development Kit (WDK). GUS is an open source project (<a href="http://www.gusdb.org">www.gusdb.org</a>) providing a functional genomics database schema covering sequence annotation, expression data, regulatory interactions, and proteomics using controlled vocabularies and ontologies. GUS also provides software to load data (plugins) and set up a web site (WDK). GUS has been adopted by several groups covering organism ranging from bacteria, protozoa, plants, and mammals.  
          ]]>
        </attribute>
     </record>

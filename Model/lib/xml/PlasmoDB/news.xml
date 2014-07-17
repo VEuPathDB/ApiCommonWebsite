@@ -580,7 +580,7 @@
         variation (<a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence"><span
             style="font-weight: bold;">available
             in the microarray query section under the heading "Transcriptional
-            variation of <em>P. falciprum</em> strains"</span></a>).&nbsp; In
+            variation of <em>P. falciparum</em> strains"</span></a>).&nbsp; In
         addition, expression graphs are available on individual gene pages in
         the transcript expression section under the heading "<a href="http://plasmodb.org/gene/PF3D7_0220800"><strong>Transcriptional
             Variation of P. fal parasite lines</strong></a>".&nbsp; Note that
@@ -1483,7 +1483,7 @@ href="http://plasmodb.org/gene/PF11_0344">old ID/new ID</a>). &nbsp;
 </span>
 <ul>
 <li>The genome browser has been updated.&nbsp; This newer version
-includes several improvements and functionalities.&nbsp; <a
+includes several improvements and new functionality.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
@@ -2512,7 +2512,7 @@ in the Plasmodium falciparum crt gene. PLoS One 2008 Jun 25;3(6):e2484.</a></li>
 </ul>
 <ul>
   <li><span style="font-style: italic;">P.
-falicparum </span>HP1 chromatin immunoprecipitation data.
+falciparum </span>HP1 chromatin immunoprecipitation data.
 &nbsp;You can search for genes based on this data by going to the "<a
  href="http://plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=GeneQuestions.GenesByChIPchipPlasmo&amp;target=GENE"><span
  style="text-decoration: underline;">P.f ChIP on chip</span>
@@ -2961,7 +2961,7 @@ Fourth updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 geno
        <attribute name="item">
            
          <![CDATA[
-PlasmoDB has released the fourth snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidently reverted back to the original name. This new snapshot has the correct re-annotated product names.
+PlasmoDB has released the fourth snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidentally reverted back to the original name. This new snapshot has the correct re-annotated product names.
           ]]>
        </attribute>
     </record>
@@ -2997,7 +2997,7 @@ Third updated snapshot of the reannotation of the <i>P. falciparum</i> 3D7 genom
        <attribute name="item">
            
          <![CDATA[
-PlasmoDB has released the third snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidently reverted back to the original name. This new snapshot has the correct re-annotated product names.
+PlasmoDB has released the third snapshot of the reannotation of the<i> P. falciparum</i> 3D7 genome. The reannotation presented in PlasmoDB is a work in progress and intended to inform you about the new annotation and elicit any feedback that you may have.  Please add user comments to any genes for which you have evidence that supports or refutes the new annotation.  In the previous snapshot, many product names for re-annotated genes were accidentally reverted back to the original name. This new snapshot has the correct re-annotated product names.
           ]]>
        </attribute>
     </record>
@@ -3228,7 +3228,7 @@ New data and queries in PlasmoDB 5.3:
 <li>Microarray studies have been incorporated from a series of 3 papers on gene silencing (Duraisingh et al. Cell 2005) and invasion pathways (Baum et al. PLoS Pathogens 2005; Stubbs et al. Science 2005) in <i>P. falciparum</i>.
 <li>A microarray study in <i>P. berghei</i> from a paper on translational repression in gametocytes (Mair et al. Science 2006).
 <li>A refined mapping of epitopes to <i>Plasmodium</i> provided by the <a href="http://www.immuneepitope.org/home.do">Immune Epitope Database and Analysis Resource</a>. A query is now provided to identify genes whose encoding protein has an epitope at different levels of confidence.
-<li>Updated E.C. number and metabolic pathway assignments, Interpro protein domains and associated GO predictions, MR4 reagent links, homologies to entries in the NRDB protein database and links to stuctures in PDB.
+<li>Updated E.C. number and metabolic pathway assignments, Interpro protein domains and associated GO predictions, MR4 reagent links, homologies to entries in the NRDB protein database and links to structures in PDB.
 <li>A new build of ortholog groups from Orthomcl for use in PlasmoDB. The list of genomes represented has increased from 55 to 87  and includes all the organisms covered by the different NIH/NIAID funded Bioinformatics Resource Centers.
 </ul>
 <p>
@@ -3500,7 +3500,7 @@ PlasmoDB 5.0 Beta features:
 <li>Protein-protein interaction data for <i>P. falciparum</i>, based on a genome-wide yeast 2-hybrid analysis (LaCount et al. Nature 438:103; 2005).
 <li>New ortholog analyses, using the OrthoMCL algorithm to group genes from several <i>Plasmodium</i> species with other complete eukaryotic and prokaryotic genomes (Chen et al. Nucl Acids Res, in press).
 </ul><p>
-Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome Database.  PlasmoCD provides users lacking reliable high-speed internet connections with full access to the complete genomes of <i>P. falciparum, P. vivax</i>, and <i>P. yoelii</i>, along with gene models, annotation, BLAST hits, ortholog results, expression data, and search functions for querying and integrating these results across species. PlasmoCD 4.1 can be downladed from the PlasmoDB web site, or requested by sending e-mail to &lt;help@PlasmoDB.org&gt;. 
+Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome Database.  PlasmoCD provides users lacking reliable high-speed internet connections with full access to the complete genomes of <i>P. falciparum, P. vivax</i>, and <i>P. yoelii</i>, along with gene models, annotation, BLAST hits, ortholog results, expression data, and search functions for querying and integrating these results across species. PlasmoCD 4.1 can be downloaded from the PlasmoDB web site, or requested by sending e-mail to &lt;help@PlasmoDB.org&gt;. 
           ]]>
        </attribute>
     </record>
@@ -3514,7 +3514,7 @@ Finally, we are pleased to report a new CD-ROM version of the Plasmodium Genome 
        <attribute name="item">
 
          <![CDATA[
-GBrowse is an interactive generic genome browser developed as part of the GMOD project (<a href="http://www.gmod.org">www.gmod.org</a>). GBrowse is used in PlasmoDB to display gene models, EST alignments, and synteny relatonships between Plasmodium species. With GBrowse, we now provide:
+GBrowse is an interactive generic genome browser developed as part of the GMOD project (<a href="http://www.gmod.org">www.gmod.org</a>). GBrowse is used in PlasmoDB to display gene models, EST alignments, and synteny relationships between Plasmodium species. With GBrowse, we now provide:
 <ul><li>Custom restriction site identification
 <li>Open reading frame identification
 <li>Custom downloads in various formats:
@@ -3541,7 +3541,7 @@ GBrowse is an interactive generic genome browser developed as part of the GMOD p
        <attribute name="item">
 
          <![CDATA[
-PlamoDB 5.0 Beta has been upgraded to  use the latest Genomics Unified Schema (GUS) database system and the new Web Development Kit (WDK). GUS is an open source project (<a href="http://www.gusdb.org">www.gusdb.org</a>) providing a functional genomics database schema covering sequence annotation, expression data, regulatory interactions, and proteomics using controlled vocabularies and ontologies. GUS also provides software to load data (pugins) and set up a web site (WDK). GUS has been adopted by several groups covering organism ranging from bacteria, protozoa, plants, and mammals.  
+PlamoDB 5.0 Beta has been upgraded to  use the latest Genomics Unified Schema (GUS) database system and the new Web Development Kit (WDK). GUS is an open source project (<a href="http://www.gusdb.org">www.gusdb.org</a>) providing a functional genomics database schema covering sequence annotation, expression data, regulatory interactions, and proteomics using controlled vocabularies and ontologies. GUS also provides software to load data (plugins) and set up a web site (WDK). GUS has been adopted by several groups covering organism ranging from bacteria, protozoa, plants, and mammals.  
          ]]>
        </attribute>
     </record>
@@ -3573,7 +3573,7 @@ OrthoMCL is an algorithm developed to identify orthologs and recent paralogs bas
        <attribute name="item">
 
          <![CDATA[
-Yeast two-hybrid data for <i>P. falciparum</i> described in LaCount et al. Nature 438:103; 2005 has been provided by Doug LaCount (Purdue University) for inclusion into PlasmoDB. Interaction data can be seen on individual gene pages and used to search for interactors of a specificed <i>P. falciparum</i> Gene ID.
+Yeast two-hybrid data for <i>P. falciparum</i> described in LaCount et al. Nature 438:103; 2005 has been provided by Doug LaCount (Purdue University) for inclusion into PlasmoDB. Interaction data can be seen on individual gene pages and used to search for interactors of a specified <i>P. falciparum</i> Gene ID.
          ]]>
        </attribute>
     </record>
@@ -3587,7 +3587,7 @@ Yeast two-hybrid data for <i>P. falciparum</i> described in LaCount et al. Natur
        <attribute name="item">
 
          <![CDATA[
-The expression profiles obtained from Joe DeRisi's group (UCSF) are processed by the PlasmoDB team for generating the images on the expression pages and for use in the expression profile queries. The orginal HB3 data were processed without background subtraction while the more recent 3D7 and DD2 data were processed with background subtraction. These have now all been processed consistently in the following manner.<p>
+The expression profiles obtained from Joe DeRisi's group (UCSF) are processed by the PlasmoDB team for generating the images on the expression pages and for use in the expression profile queries. The original HB3 data were processed without background subtraction while the more recent 3D7 and DD2 data were processed with background subtraction. These have now all been processed consistently in the following manner.<p>
 Raw data were loess normalized using the default loess implementation in the R package for microarray analysis (marray).  The non-background corrected foreground mean was used as input to the loess algorithm. Replicate arrays for the same time point were then averaged to give one value for each timepoint/gene. Data was then smoothed using a least squares fit to each data point and its two neighbors on each side.<p>
 The profiles seen in PlasmoDB 4.4 have also been corrected. The correlation table that gives correlations between the different studies (the three DeRisi and the two Winzeler) has been recalculated based on the new profiles.  This new data is not yet displayed on 4.4 but will be on 5.0 Beta.
          ]]>

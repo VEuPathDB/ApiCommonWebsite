@@ -24,7 +24,7 @@
 
    <record>
        <attribute name="title">you can customize a tab-delimited report</attribute>
-       <attribute name="text">From "My Query History" click "download" to custmoize a tab delimited report of your results.</attribute>
+       <attribute name="text">From "My Query History" click "download" to customize a tab delimited report of your results.</attribute>
        <attribute name="image"></attribute>
    </record>
 
@@ -36,7 +36,7 @@
 
    <record>
        <attribute name="title">cookies improve this site</attribute>
-       <attribute name="text">This site performs best when your browser allows cookis.  In particular, the Gene page configuration uses cookies.  Select show/hide for any section on the gene page.  With cookies enabled, that selection will apply to all gene pages.  With cookies disabled, moving to a new page will reset that selection</attribute>
+       <attribute name="text">This site performs best when your browser allows cookies.  In particular, the Gene page configuration uses cookies.  Select show/hide for any section on the gene page.  With cookies enabled, that selection will apply to all gene pages.  With cookies disabled, moving to a new page will reset that selection</attribute>
        <attribute name="image"></attribute>
    </record>
 
