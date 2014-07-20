@@ -151,13 +151,17 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
-    String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
-        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
-        "(" + idSql + ") r"  + NL +
-        "where ga.source_id = r.source_id";
-
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
+
+    // check for non-zero count of genes with Pathways
+    String sql = "SELECT count (distinct ga.source_id) as " + countColumn + NL +
+      "from  sres.enzymeClass ec, dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga, apidb.pathwaynode pn, (" + idSql + ") r" + NL +
+      "where  ga.aa_sequence_id = asec.aa_sequence_id" + NL +
+      "AND    asec.enzyme_class_id = ec.enzyme_class_id" + NL +
+      "and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))" + NL +
+      "and    ga.source_id = r.source_id";
+
     new SQLRunner(ds, sql).executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
@@ -165,11 +169,29 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Map<String, Object> result = handler.getResults().get(0);
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
+    if (count.intValue() == 0 ) {
+      throw new IllegalAnswerValueException("Your result has no genes that are in pathways, so you can't use this tool on this result. " +
+          "Please revise your search and try again.");
+    }
+
+    // check for single organism
+    sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
+        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
+        "(" + idSql + ") r"  + NL +
+        "where ga.source_id = r.source_id";
+
+    new SQLRunner(ds, sql).executeQuery(handler);
+
+    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+
+    result = handler.getResults().get(0);
+    count = (BigDecimal)result.get(countColumn);
+
     if (count.intValue() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
-      		"one organism.  The Pathways Enrichment analysis only accepts gene " +
-      		"lists from one organism.  Please use filter boxes to limit your " +
-      		"result to a single organism and try again.");
+          "one organism.  The Pathways Enrichment analysis only accepts gene " +
+          "lists from one organism.  Please use the Filter boxes to limit your " +
+          "result to a single organism and try again.");
     }
   }
   
