@@ -200,19 +200,38 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
-    String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
-        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
-        "(" + idSql + ") r"  + NL +
-        "where ga.source_id = r.source_id";
-
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
+
+    // check for non-zero count of genes with GO associations
+    String sql = "select count(distinct gts.source_id) as " + countColumn + NL +
+      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
+      "where gts.source_id = r.source_id";
+
     new SQLRunner(ds, sql).executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
     Map<String, Object> result = handler.getResults().get(0);
     BigDecimal count = (BigDecimal)result.get(countColumn);
+
+    if (count.intValue() == 0 ) {
+      throw new IllegalAnswerValueException("Your result has no genes with GO terms, so you can't use this tool on this result. " +
+          "Please revise your search and try again.");
+    }
+
+    // check for single organism
+    sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
+        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
+        "(" + idSql + ") r"  + NL +
+        "where ga.source_id = r.source_id";
+
+    new SQLRunner(ds, sql).executeQuery(handler);
+
+    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+
+    result = handler.getResults().get(0);
+    count = (BigDecimal)result.get(countColumn);
 
     if (count.intValue() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
@@ -236,9 +255,20 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "where gts.source_id = r.source_id";
     new SQLRunner(ds, sql).executeQuery(handler);
     List<Option> sources = new ArrayList<>();
+    int rowCnt = 0;
+    String sourcesStr = "";
+
+    // HACK: For now, allow only two sources, interpro and the annotation center.  We do this so we can hard-code
+    // reasonable display names for each (which are not available in the database).  If we ever have more than just
+    // these two sources this hack will not work and we'll need to find a way to do it in the database
+    // DO NOT change this hack without making a parallel change in the perl code
     for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(new Option(cols.get("SOURCE").toString()));
+      String src = cols.get("SOURCE").toString();
+      String srcDisplay = src.toLowerCase().equals("interpro")? "InterPro predictions" : "Annotation Center";
+      rowCnt++;
+      sources.add(new Option(src, srcDisplay));
     }
+    if (rowCnt > 2) throw new WdkModelException("Found more than two sources for GO Annotation: " + sourcesStr);
 
     // find ontologies used in the result set
     sql = "select distinct gts.ontology" + NL +
