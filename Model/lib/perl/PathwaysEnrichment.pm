@@ -34,7 +34,7 @@ SELECT count (distinct ga.source_id)
         where  ga.taxon_id = $taxonId
         AND    ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
+        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -54,7 +54,7 @@ SELECT count (distinct ga.source_id)
                ($geneResultSql) r
         where  ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
+        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
         and    ga.source_id = r.source_id
 ";
 
@@ -77,7 +77,7 @@ from
         where  ga.taxon_id = $taxonId
         AND    ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
+        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
         and    pn.parent_id = p.pathway_id
         group by p.source_id, p.name
    ) bgd,
@@ -88,7 +88,7 @@ from
                ($geneResultSql) r
         where  ga.aa_sequence_id = asec.aa_sequence_id
         AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    pn.display_label = ec.ec_number
+        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
         and    pn.parent_id = p.pathway_id
         and    ga.source_id = r.source_id
         group by p.source_id
