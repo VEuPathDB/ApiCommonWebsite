@@ -52,7 +52,7 @@ release is now 52.
 <p>
 New genomics data available in this release include additional RNA-Seq
 experiments for <span style="font-style: italic;">Coprinopsis
-cinerea</span>. High Throughput SNP (HTS) discovery module have been addded for
+cinerea</span>. High Throughput SNP (HTS) discovery module have been added for
 <span style="font-style: italic;">Aspergillus fumigatus</span>
 and a population of 23 strains from <a href="http://gsc.jcvi.org/projects/gsc/a_fumigatus/">JCVI</a>.
 </p>

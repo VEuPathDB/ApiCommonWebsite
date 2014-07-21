@@ -2274,7 +2274,7 @@ sequence IDs</a> and <a
 href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
 style="font-style: italic;">. <br>
 </span></li>
-<li>Aditionally, genomic sequence data may be downloaded from the <a
+<li>Additionally, genomic sequence data may be downloaded from the <a
 href="http://tritrypdb.org/common/downloads/release-2.4/">TriTrypDB
 download directory</a>.<span style="font-style: italic;"><br>
 </span></li>
@@ -2557,7 +2557,7 @@ This release contains the following new datasets and features:<br>
 <br>
 <span style="font-weight: bold;">New Data:</span><br><br>
 <ul>
- <li>Microarray data from of Minning et. al. of <span
+ <li>Microarray data from Minning et. al. of <span
 style="font-style: italic;">T. cruzi</span> life cycle
 stages (trypomastigotes, amastigotes, epimastigotes, and metacyclic
 trypomastigotes). For additional details please see the publication

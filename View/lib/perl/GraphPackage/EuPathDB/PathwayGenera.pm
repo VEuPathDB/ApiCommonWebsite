@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::PathwayGenera;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::PathwayGenera;
 
 use strict;
 use vars qw( @ISA );

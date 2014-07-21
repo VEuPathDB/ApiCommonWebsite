@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.apidb.apicommon.model;
+package org.apidb.apicommon.model.comment;
 
 import org.gusdb.wdk.model.config.ModelConfigDB;
 

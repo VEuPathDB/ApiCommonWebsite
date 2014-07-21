@@ -22,6 +22,7 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -51,11 +52,15 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final String PROJECT_ID_KEY = "@PROJECT_ID@";
   private static final String SOURCES_PARAM_HELP =
-      "<p>Choose the GO Association Source(s) that you wish to include in the analysis.</p>" +
-      "<p>GO terms in " + PROJECT_ID_KEY + " are associated with genes by either:" +
-      "<p><ul><li>mapping gene products to the InterPro domain database</li>" +
-      "<li>downloading associations from GeneDB.</li></ul></p>" +
-      "<p>Not all sources are available for every genome.</p>";
+		"<p>Choose the GO Association Source(s) that you wish to include in the analysis.</p>" + 
+		"<ol style='list-style:inside'>GO terms in " + 
+		PROJECT_ID_KEY +  " are associated with genes by either:" + 
+		"<li>mapping gene products to the InterPro domain database resulting in 100% " + 
+		"electronically transferred GO associations.</li>" + 
+		"<li>downloading associations from the sequencing centers (e.g. GeneDB or JCVI)" + 
+		" which may include a combination of electronically transferred or manually curated associations.</li>" + 
+		"</ul>" +
+		"<p>Not all sources are available for every genome.</p>";
 
   private static final String PVALUE_PARAM_HELP =
       "<p>Choose the P-Value Cutoff that a GO term must meet before it is " +
@@ -65,7 +70,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "genes for that organism (background).</p>";
 
   public static final ResultRow HEADER_ROW = new ResultRow(
-      "GO ID", "GO Term", "Genes in the bgd with this term", "Genes in your result with this term", "Percent of bgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+      "GO ID", "GO Term", "Genes in the bkgd with this term", "Genes in your result with this term", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Gene Ontology ID",
@@ -81,7 +86,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
     ValidationErrors errors = new ValidationErrors();
 
@@ -133,7 +138,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     return ontologies[0];
   }
 
-  private void validateFilteredGoTerms(String sourcesStr,/* String evidCodesStr,*/ String ontology, ValidationErrors errors) throws WdkModelException {
+  private void validateFilteredGoTerms(String sourcesStr,/* String evidCodesStr,*/ String ontology, ValidationErrors errors) throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
     String idSql = getAnswerValue().getIdSql();
@@ -162,7 +167,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
     String idSql = answerValue.getIdSql();
@@ -186,27 +191,47 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
    * Make sure only one organism is represented in the results of this step
    * 
    * @param answerValue answerValue that will be passed to this step
+   * @throws WdkUserException 
    * @throws IllegalAnswerException if more than one organism is represented in this answer
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException {
+      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
     
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
-    String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
-        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
-        "(" + idSql + ") r"  + NL +
-        "where ga.source_id = r.source_id";
-
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
+
+    // check for non-zero count of genes with GO associations
+    String sql = "select count(distinct gts.source_id) as " + countColumn + NL +
+      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
+      "where gts.source_id = r.source_id";
+
     new SQLRunner(ds, sql).executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
     Map<String, Object> result = handler.getResults().get(0);
     BigDecimal count = (BigDecimal)result.get(countColumn);
+
+    if (count.intValue() == 0 ) {
+      throw new IllegalAnswerValueException("Your result has no genes with GO terms, so you can't use this tool on this result. " +
+          "Please revise your search and try again.");
+    }
+
+    // check for single organism
+    sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
+        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
+        "(" + idSql + ") r"  + NL +
+        "where ga.source_id = r.source_id";
+
+    new SQLRunner(ds, sql).executeQuery(handler);
+
+    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+
+    result = handler.getResults().get(0);
+    count = (BigDecimal)result.get(countColumn);
 
     if (count.intValue() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
@@ -217,7 +242,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
   
   @Override
-  public Object getFormViewModel() throws WdkModelException {
+  public Object getFormViewModel() throws WdkModelException, WdkUserException {
     
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
@@ -229,19 +254,30 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.source_id = r.source_id";
     new SQLRunner(ds, sql).executeQuery(handler);
-    List<String> sources = new ArrayList<>();
+    List<Option> sources = new ArrayList<>();
+    int rowCnt = 0;
+    String sourcesStr = "";
+
+    // HACK: For now, allow only two sources, interpro and the annotation center.  We do this so we can hard-code
+    // reasonable display names for each (which are not available in the database).  If we ever have more than just
+    // these two sources this hack will not work and we'll need to find a way to do it in the database
+    // DO NOT change this hack without making a parallel change in the perl code
     for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(cols.get("SOURCE").toString());
+      String src = cols.get("SOURCE").toString();
+      String srcDisplay = src.toLowerCase().equals("interpro")? "InterPro predictions" : "Annotation Center";
+      rowCnt++;
+      sources.add(new Option(src, srcDisplay));
     }
+    if (rowCnt > 2) throw new WdkModelException("Found more than two sources for GO Annotation: " + sourcesStr);
 
     // find ontologies used in the result set
     sql = "select distinct gts.ontology" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.source_id = r.source_id and gts.ontology is not null";
     new SQLRunner(ds, sql).executeQuery(handler);
-    List<String> ontologies = new ArrayList<>();
+    List<Option> ontologies = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      ontologies.add(cols.get("ONTOLOGY").toString());
+      ontologies.add(new Option(cols.get("ONTOLOGY").toString()));
     }
 
     /*
@@ -277,21 +313,32 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
   }
 
+  public static class Option {
+    private String _term;
+    private String _display;
+    public Option(String term) { this(term, term); }
+    public Option(String term, String display) {
+      _term = term; _display = display;
+    }
+    public String getTerm() { return _term; }
+    public String getDisplay() { return _display; }
+  }
+  
   public static class FormViewModel {
     
-    private List<String> _sourceOptions;
-    private List<String> _ontologyOptions;
+    private List<Option> _sourceOptions;
+    private List<Option> _ontologyOptions;
     // private List<String> _evidCodeOptions;
     private String _projectId;
     
-    public FormViewModel(List<String> sourceOptions, List<String> ontologyOptions /*, List<String> evidCodeOptions*/, String projectId) {
+    public FormViewModel(List<Option> sourceOptions, List<Option> ontologyOptions /*, List<String> evidCodeOptions*/, String projectId) {
       _sourceOptions = sourceOptions;
       _ontologyOptions = ontologyOptions;
       // _evidCodeOptions = evidCodeOptions;
       _projectId = projectId;
     }
 
-    public List<String> getSourceOptions() {
+    public List<Option> getSourceOptions() {
       return _sourceOptions;
     }
 
@@ -301,7 +348,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
     */
 
-    public List<String> getOntologyOptions() {
+    public List<Option> getOntologyOptions() {
       return _ontologyOptions;
     }
     

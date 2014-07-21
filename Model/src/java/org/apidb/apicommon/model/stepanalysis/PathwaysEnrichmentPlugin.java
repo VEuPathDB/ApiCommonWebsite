@@ -22,6 +22,7 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -39,7 +40,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tab";
   
   public static final ResultRow HEADER_ROW = new ResultRow(
-							   "Pathway ID", "Pathway Name", "All Genes in this pathway", "Result Genes in this pathway", "% of all", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+							   "Pathway ID", "Pathway Name", "Genes in the bkgd with this pathway","Genes in your result with this pathway", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Pathway ID",
@@ -55,7 +56,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
     ValidationErrors errors = new ValidationErrors();
 
@@ -85,7 +86,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
   }
 
-  private void validateFilteredPathways(String sourcesStr, ValidationErrors errors) throws WdkModelException {
+  private void validateFilteredPathways(String sourcesStr, ValidationErrors errors) throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
     String idSql = getAnswerValue().getIdSql();
@@ -119,7 +120,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
     String idSql = answerValue.getIdSql();
@@ -141,21 +142,26 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
    * Make sure only one organism is represented in the results of this step
    * 
    * @param answerValue answerValue that will be passed to this step
+   * @throws WdkUserException 
    * @throws IllegalAnswerException if more than one organism is represented in this answer
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException {
+      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
     
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
-    String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
-        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
-        "(" + idSql + ") r"  + NL +
-        "where ga.source_id = r.source_id";
-
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
+
+    // check for non-zero count of genes with Pathways
+    String sql = "SELECT count (distinct ga.source_id) as " + countColumn + NL +
+      "from  sres.enzymeClass ec, dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga, apidb.pathwaynode pn, (" + idSql + ") r" + NL +
+      "where  ga.aa_sequence_id = asec.aa_sequence_id" + NL +
+      "AND    asec.enzyme_class_id = ec.enzyme_class_id" + NL +
+      "and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))" + NL +
+      "and    ga.source_id = r.source_id";
+
     new SQLRunner(ds, sql).executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
@@ -163,11 +169,29 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Map<String, Object> result = handler.getResults().get(0);
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
+    if (count.intValue() == 0 ) {
+      throw new IllegalAnswerValueException("Your result has no genes that are in pathways, so you can't use this tool on this result. " +
+          "Please revise your search and try again.");
+    }
+
+    // check for single organism
+    sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
+        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
+        "(" + idSql + ") r"  + NL +
+        "where ga.source_id = r.source_id";
+
+    new SQLRunner(ds, sql).executeQuery(handler);
+
+    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+
+    result = handler.getResults().get(0);
+    count = (BigDecimal)result.get(countColumn);
+
     if (count.intValue() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
-      		"one organism.  The Pathways Enrichment analysis only accepts gene " +
-      		"lists from one organism.  Please use filter boxes to limit your " +
-      		"result to a single organism and try again.");
+          "one organism.  The Pathways Enrichment analysis only accepts gene " +
+          "lists from one organism.  Please use the Filter boxes to limit your " +
+          "result to a single organism and try again.");
     }
   }
   

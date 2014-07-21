@@ -18,7 +18,11 @@
 
     'analysis:formload:pathway-enrichment': formload,
     'analysis:resultsload:pathway-enrichment': resultsload,
-    'analysis:remove:pathway-enrichment': removeEvents
+    'analysis:remove:pathway-enrichment': removeEvents,
+
+    'analysis:formload:word-enrichment': formload,
+    'analysis:resultsload:word-enrichment': resultsload,
+    'analysis:remove:word-enrichment': removeEvents
   });
 
   // handle select all and clear all links on form
@@ -46,19 +50,13 @@
 
     $table.wdkDataTable({
       // sort by p-value
-      aaSorting: [[ 7, 'asc' ]],
+      order: [ 7, 'asc' ],
       // order p-value cols numerically
-      aoColumnDefs: [{
-        sType: 'numeric',
-        aTargets: [7, 8, 9]
+      columnDefs: [{
+        type: 'scientific',
+        targets: [7, 8, 9]
       }]
     });
-
-    $(window)
-      .off('resize.enrichment' + analysis.id)
-      .on('resize.enrichment' + analysis.id, _.debounce(function() {
-        $table.dataTable().fnDraw();
-      }, 300));
   }
 
   function removeEvents(analysis) {

@@ -60,7 +60,7 @@
             -->
           </p>
           <c:if test="${empty viewModel.resultData}">
-            <div class="go-empty-results">No analysis results found that met your parameter choices.</div>
+            <div class="go-empty-results">No enrichment was found with significance at the P-value threshold you specified.</div>
           </c:if>
           <c:if test="${not empty viewModel.resultData}">
             <table class="go-table">
@@ -83,7 +83,7 @@
               <tbody>
                 <c:forEach var="row" items="${viewModel.resultData}">
                   <tr>
-                    <td><a href="${viewModel.goTermBaseUrl}${row.goId}" target="_blank">${row.goId}</a></td>
+                    <td><a title="Check this term in the GO hierarchy (Amigo website)" href="${viewModel.goTermBaseUrl}${row.goId}#display-lineage-tab" target="_blank">${row.goId}</a></td>
                     <td>${row.goTerm}</td>
                     <td class="go-centered">${row.bgdGenes}</td>
                     <td class="go-centered">${row.resultGenes}</td>
