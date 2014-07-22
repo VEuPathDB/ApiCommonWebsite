@@ -22,7 +22,7 @@
     <record id="answer-value-records-error-msg.default">
       <attribute name="title">There is an error with your results</attribute>
       <attribute name="content"><![CDATA[
-        It appears something has gone wrong when retreiving your results.
+        It appears something has gone wrong when retrieving your results.
         Please <a href="contact.do" class="new-window" data-name="contact_us">contact us</a> so that
         we can investigate what may be causing this.
         ]]></attribute>
