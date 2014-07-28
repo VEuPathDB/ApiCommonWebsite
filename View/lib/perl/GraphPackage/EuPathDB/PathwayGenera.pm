@@ -70,9 +70,9 @@ sub makeListOfLists {
                   ['Neospora', 'ToxoDB', '#59E817',],
                   ['Toxoplasma', 'ToxoDB', '#59E817',],
 
-                  ['Chromera', 'PlasmoDB', '#A74AC7'], #
                   ['Plasmodium', 'PlasmoDB', '#A74AC7'], #
-                  ['Vitrella', 'PlasmoDB', '#A74AC7'], #
+                  ['Chromera', 'PlasmoDB', '#777777'], #
+                  ['Vitrella', 'PlasmoDB', '#777777'], #
 
                   ['Babesia','PiroplasmaDB', '#3BB9FF', ],  #
                   ['Theileria', 'PiroplasmaDB', '#3BB9FF',], #
@@ -80,6 +80,7 @@ sub makeListOfLists {
                   ['Giardia', 'GiardiaDB', '#667C26'], #
                   ['Spironucleus', 'GiardiaDB', '#667C26'], #
 
+                  ['Crithidia', 'TriTrypDB', '#F87217', ], #
                   ['Leishmania', 'TriTrypDB', '#F87217', ], #
                   ['Trypanosoma', 'TriTrypDB','#F87217', ], #
 
