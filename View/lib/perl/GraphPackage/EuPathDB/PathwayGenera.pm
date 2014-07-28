@@ -65,25 +65,34 @@ sub makeListOfLists {
 
                   ['Cryptosporidium', 'CryptoDB', '#2554C7', ],
 
-                  ['Toxoplasma', 'ToxoDB', '#59E817',],
                   ['Eimeria', 'ToxoDB', '#59E817',],
+                  ['Gregarina', 'ToxoDB', '#59E817',],
                   ['Neospora', 'ToxoDB', '#59E817',],
+                  ['Toxoplasma', 'ToxoDB', '#59E817',],
 
+                  ['Chromera', 'PlasmoDB', '#A74AC7'], #
                   ['Plasmodium', 'PlasmoDB', '#A74AC7'], #
+                  ['Vitrella', 'PlasmoDB', '#A74AC7'], #
 
                   ['Babesia','PiroplasmaDB', '#3BB9FF', ],  #
                   ['Theileria', 'PiroplasmaDB', '#3BB9FF',], #
 
                   ['Giardia', 'GiardiaDB', '#667C26'], #
+                  ['Spironucleus', 'GiardiaDB', '#667C26'], #
+
                   ['Leishmania', 'TriTrypDB', '#F87217', ], #
                   ['Trypanosoma', 'TriTrypDB','#F87217', ], #
+
+                  ['Anncaliia', 'MicrosporidiaDB', '#461B7E'],
                   ['Edhazardia', 'MicrosporidiaDB', '#461B7E'],
                   ['Encephalitozoon', 'MicrosporidiaDB', '#461B7E'],
                   ['Enterocytozoon', 'MicrosporidiaDB', '#461B7E'],
                   ['Nematocida', 'MicrosporidiaDB', '#461B7E'],
                   ['Nosema', 'MicrosporidiaDB', '#461B7E'],
+                  ['Spraguea', 'MicrosporidiaDB', '#461B7E'],
                   ['Vavraia', 'MicrosporidiaDB', '#461B7E'],
                   ['Vittaforma', 'MicrosporidiaDB', '#461B7E'],
+
                   ['Homo', 'HostDB', '#00FFFF'],
                   ['Mus', 'HostDB', '#00FFFF'],
                   ['Trichomonas', 'TrichDB', '#78866B'],
