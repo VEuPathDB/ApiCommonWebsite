@@ -227,6 +227,21 @@
     </td>
 </tr>
 
+    <%--  All ORF Queries TABLE --%>
+    <td >   
+<div class="innertube2">   
+	<table width="100%" border="0" cellspacing="0" cellpadding="0"> 
+		<tr class="headerrow2">
+			<td   align="center"><b>Identify Dwellings by:</b></td>
+		</tr>
+		<tr><td align="center">
+			<imp:queryGridDwellings/>
+		</td></tr>
+   	</table> 
+</div>
+    </td>
+</tr>
+
 </table>
 
 <%-- these divs need to be closed because they do NOT come from header.... problem associated with having a sidebar --%>

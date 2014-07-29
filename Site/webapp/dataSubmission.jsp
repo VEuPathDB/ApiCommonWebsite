@@ -44,12 +44,10 @@ suggest a new data type, please <a
 href="${baseUrl}/contact.do" class="new-window" data-name="contact_us"><span style='color:#2E74B5;
 mso-themecolor:accent1;mso-themeshade:191'>Contact Us</span></a><span
 style='color:#2E74B5;mso-themecolor:accent1;mso-themeshade:191'> </span>to
-discuss your data. </p>
+discuss your data. We look forward to working with you!</p>
 
 <p class=MsoNoSpacing style='text-align:justify'><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNoSpacing style='text-align:justify'>We look forward to working
-with you!</p>
 
 <p class=MsoNoSpacing><o:p>&nbsp;</o:p></p>
 
@@ -99,15 +97,17 @@ style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp
 </span></span></span></b><![endif]><b style='mso-bidi-font-weight:normal'>Submit 
 your Data. </b><span style="mso-spacerun:yes">&nbsp;&nbsp;</span></p>
 
+<p class=MsoNoSpacing style='margin-left:.25in;text-align:justify'>Find your data type below and 
+expand the section to see specific instructions. </p>
+
 <p class=MsoNoSpacing style='margin-left:.25in'><o:p>&nbsp;</o:p></p>
 
 
 <!-- =========== High Throughput =========== -->
 
 <div class="wdk-toggle" data-show="false">
-<h3 class="wdk-toggle-name"><a href="#">High Throughput / Next Generation Sequencing</a>
-   &#8211; RNA, DNA or ChIP Sequencing Data in FASTQ or FASTA format
-</h3>
+<h3 class="wdk-toggle-name"><a href="#">High Throughput or Next Generation Sequencing</a>
+   &#8211; RNA, DNA or ChIP Sequencing</h3>
 <div class="wdk-toggle-content">
 
 <!--
@@ -119,7 +119,7 @@ Sequencing Data in FASTQ or FASTA format</p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>&#8226;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>We prefer to receive the raw read data in FASTQ
 or FASTA file format.<span style="mso-spacerun:yes">&nbsp; </span>Using the raw
 reads we remap the data when a genome is updated and update analyses as needed.</p>
@@ -127,7 +127,7 @@ reads we remap the data when a genome is updated and update analyses as needed.<
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Transfer a copy of your data to EuPathDB using
 one of these three options:</p>
 
@@ -136,7 +136,7 @@ l0 level2 lfo3'><![if !supportLists]><span style='font-family:"Courier New";
 mso-fareast-font-family:"Courier New"'><span style='mso-list:Ignore'>o<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]>Upload
 your data to a sequence read archive such as DNA Data Bank of Japan, the
-European Nucleotide Archive or NCBI’s Sequence Read Archive. If your data is
+European Nucleotide Archive or NCBI's Sequence Read Archive. If your data is
 already submitted to a data repository, there is no need to re-transfer the
 data to EuPathDB.<span style="mso-spacerun:yes">&nbsp; </span>In either case, we
 will retrieve the data directly from the repository.<span
@@ -161,9 +161,9 @@ instructions for retrieving your data.</p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Complete the appropriate data description form
-making sure to enter your data’s archive accession numbers (if any) when
+making sure to enter your data archive accession numbers (if any) when
 prompted.</p>
 
 <p class=MsoNoSpacing style='margin-left:1.75in;text-indent:-.25in;mso-list:
@@ -196,9 +196,7 @@ Data Description Form</p>
 <!-- =========== Microarray =========== -->
 
 <div class="wdk-toggle" data-show="false">
-<h3 class="wdk-toggle-name"><a href="#">Microarray</a> 
-  &#8211; CEL, CSV
-</h3>
+<h3 class="wdk-toggle-name"><a href="#">Microarray</a> </h3>
 <div class="wdk-toggle-content">
 
 <!--
@@ -210,13 +208,13 @@ normal'>Microarray</b> &#8211; CEL, CSV </p>
 l13 level1 lfo13'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
 style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Files should include expression levels and probe
+</span></span></span><![endif]>Files (CEL, CSV) should include expression levels and probe
 set information.</p>
 
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l13 level1 lfo13'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Transfer a copy of your data to EuPathDB using
 one of these four options:</p>
 
@@ -256,11 +254,11 @@ Us</span></a><span style='color:#0563C1'> </span>form to send us an email.</p>
 <p class=MsoListParagraph style='margin-left:49.5pt;mso-add-space:auto;
 text-indent:-.25in;mso-list:l1 level1 lfo4'><![if !supportLists]><span
 style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol;color:black;mso-themecolor:text1'><span style='mso-list:Ignore'>.<span
+Symbol;color:black;mso-themecolor:text1'><span style='mso-list:Ignore'>2.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Complete
 our <a
 href="https://docs.google.com/a/apidb.org/forms/d/1pzD53hCY0rH7JYomUH8cjwJXJlOSrtZRc_mFowfFfU4/edit?usp=sharing">Microarray
-Data Description Form</a> making sure to enter your data’s archive accession
+Data Description Form</a> making sure to enter your data archive accession
 numbers (if any) when prompted. Pay special attention to clearly indicate the
 identity of columns in the data files you transferred to EuPathDB.<span
 style='color:#538135;mso-themecolor:accent6;mso-themeshade:191'><o:p></o:p></span></p>
@@ -273,9 +271,7 @@ style='color:#538135;mso-themecolor:accent6;mso-themeshade:191'><o:p></o:p></spa
 <!-- =========== Proteomics =========== -->
 
 <div class="wdk-toggle" data-show="false">
-<h3 class="wdk-toggle-name"><a href="#">Proteomics</a> 
-  &#8211; Excel or tab delimited text files are preferred.
-</h3>
+<h3 class="wdk-toggle-name"><a href="#">Proteomics</a> </h3>
 <div class="wdk-toggle-content">
 
 <!--
@@ -288,7 +284,7 @@ normal'>Proteomics</b> &#8211; Excel or tab delimited text files are preferred.
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
 style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>We can accommodate xml file format. </p>
+</span></span></span><![endif]>Excel or tab delimited text files are preferred. We can accommodate xml file format. </p>
 
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
@@ -300,7 +296,7 @@ sequences, peptide counts and scores. </p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Transfer a copy of your data to EuPathDB using
 one of these three options: </p>
 
@@ -331,7 +327,7 @@ Us</span></a> form to send us an email.</p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l3 level1 lfo5'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Complete the <a
 href="https://docs.google.com/a/apidb.org/forms/d/1Yx9qGKDyCf2Wm5lnf1-dFHArdQAQ9tVbR8gvxdY7n5A/edit?usp=sharing">Proteomics
 Data Description Form</a> making sure to clearly indicate the content of each
@@ -346,9 +342,7 @@ column in your file. </p>
 <!-- =========== Quantitative Proteomics =========== -->
 
 <div class="wdk-toggle" data-show="false">
-<h3 class="wdk-toggle-name"><a href="#">Quantitative Proteomics</a> 
-  &#8211; Excel or tab delimited files are preferred.
-</h3>
+<h3 class="wdk-toggle-name"><a href="#">Quantitative Proteomics</a> </h3>
 <div class="wdk-toggle-content">
 
 <!--
@@ -361,7 +355,7 @@ preferred.</p>
 l3 level1 lfo5'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
 style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>We can accommodate xml file format. </p>
+</span></span></span><![endif]>Excel or tab delimited files are preferred. We can accommodate xml file format. </p>
 
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l3 level1 lfo5'><![if !supportLists]><span style='font-family:Symbol;
@@ -372,7 +366,7 @@ style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Transfer a copy of your data to EuPathDB using
 one of these three options: </p>
 
@@ -403,7 +397,7 @@ an email.</p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l1 level1 lfo4'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;color:black;
-mso-themecolor:text1'><span style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mso-themecolor:text1'><span style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Complete the Quantitative Proteomics Description
 <span style='color:#C00000'>(Susanne needs to modify Proteomics form)</span> form
 making sure to include a description of data columns, for example, time course
@@ -421,9 +415,7 @@ mso-themecolor:accent2'><o:p>&nbsp;</o:p></span></p>
 <!-- =========== ChIP-chip =========== -->
 
 <div class="wdk-toggle" data-show="false">
-<h3 class="wdk-toggle-name"><a href="#">ChIP-chip</a> 
-  &#8211; 
-</h3>
+<h3 class="wdk-toggle-name"><a href="#">ChIP-chip</a>  </h3>
 <div class="wdk-toggle-content">
 
 <!--
@@ -441,7 +433,7 @@ and probe set information.</p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l1 level1 lfo4'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;color:black;
-mso-themecolor:text1'><span style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mso-themecolor:text1'><span style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Transfer a copy of your data to EuPathDB using
 one of these four options:</p>
 
@@ -485,7 +477,7 @@ style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
 <p class=MsoListParagraph style='margin-left:49.5pt;mso-add-space:auto;
 text-indent:-.25in;mso-list:l1 level1 lfo4'><![if !supportLists]><span
 style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
-Symbol;color:black;mso-themecolor:text1'><span style='mso-list:Ignore'>.<span
+Symbol;color:black;mso-themecolor:text1'><span style='mso-list:Ignore'>2.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Complete
 the <a
 href="https://docs.google.com/forms/d/1E1QN9dKGc9rK_Bd3t-4ugIeVAyNXZoX1Z3bcSKEIMJc/viewform">ChIP-chip
@@ -501,9 +493,7 @@ read archive. </p>
 <!-- =========== Isolates typed by =========== -->
 
 <div class="wdk-toggle" data-show="false">
-<h3 class="wdk-toggle-name"><a href="#">Isolates typed by sequencing limited genetic loci</a> 
-  &#8211; 
-</h3>
+<h3 class="wdk-toggle-name"><a href="#">Isolates typed by sequencing limited genetic loci</a> </h3>
 <div class="wdk-toggle-content">
 
 <!--
@@ -546,9 +536,7 @@ instructions for retrieving your data.</p>
 <!-- =========== Isolates or Strains =========== -->
 
 <div class="wdk-toggle" data-show="false">
-<h3 class="wdk-toggle-name"><a href="#">Isolates or Strains typed by High Throughput Sequencing</a> 
-  &#8211;FastQ file format preferred
-</h3>
+<h3 class="wdk-toggle-name"><a href="#">Isolates or Strains typed by High Throughput Sequencing</a> </h3>
 <div class="wdk-toggle-content">
 
 <!--
@@ -557,10 +545,14 @@ normal'>Isolates or Strains typed by High Throughput Sequencing</b> &#8211;
 FastQ file format preferred</p>
 -->
 
+
+  &#8211;FastQ file format preferred
+
+
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l0 level1 lfo3'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Transfer a copy of your data to EuPathDB using
 one of these three options:</p>
 
@@ -630,7 +622,7 @@ mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
 style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>We prefer to download annotated genome sequence
 from a repository which assigns gene IDs, for example, the DNA Data Bank of
-Japan, the European Nucleotide Archive or NCBI’s GenBank. </p>
+Japan, the European Nucleotide Archive or NCBI's GenBank. </p>
 
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l2 level1 lfo6'><![if !supportLists]><span style='font-family:Symbol;
@@ -710,7 +702,7 @@ use for data that does not fit any of the above categories </p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l6 level1 lfo14'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;color:black;
-mso-themecolor:text1'><span style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mso-themecolor:text1'><span style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Transfer a copy of your data to EuPathDB using
 one of these four options:</p>
 
@@ -748,7 +740,7 @@ style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
 <p class=MsoNoSpacing style='margin-left:49.5pt;text-indent:-.25in;mso-list:
 l1 level1 lfo4'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;color:black;
-mso-themecolor:text1'><span style='mso-list:Ignore'>.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mso-themecolor:text1'><span style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]><span style='color:black;mso-themecolor:text1'>Complete
 the General Data Description Form </span><span style='color:#C00000'>(Susanne
 needs to create) </span><span style='color:black;mso-themecolor:text1'>making
