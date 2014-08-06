@@ -23,7 +23,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
 
   my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series'],
-                      ['pfal3D7_Stunnenberg_pi_time_series-diff'],
+                      ['pfal3D7_Stunnenberg_pi_time_series - diff'],
                       ['pfal3D7_Stunnenberg_pi_time_series_scaled'],
                       ['pfal3D7_Stunnenberg_pi_time_series_scaled-diff'],
                      );
