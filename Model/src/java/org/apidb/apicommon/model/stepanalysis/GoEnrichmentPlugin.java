@@ -280,7 +280,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String sql = "SELECT distinct ga.taxon_id, ga.organism " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + getAnswerValue().getIdSql() + ") r " +
-        "where ga.source_id = r.source_id";
+        "where ga.source_id = r.source_id " +
+        "order by ga.organism asc";
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     new SQLRunner(ds, sql).executeQuery(new ResultSetHandler() {
       public void handleResult(ResultSet rs) throws SQLException {
