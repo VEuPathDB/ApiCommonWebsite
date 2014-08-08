@@ -77,11 +77,11 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     return errors;
   }
 
-  // TODO: what affect does adding organism param have on this validation???
-  private void validateFilteredPathways(String sourcesStr, ValidationErrors errors) throws WdkModelException, WdkUserException {
+  private void validateFilteredPathways(String sourcesStr, ValidationErrors errors)
+        throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
-    String idSql = getAnswerValue().getIdSql();
+    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql = 
         "SELECT count (distinct pn.display_label) as " + countColumn + NL +
         "FROM   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec, " + NL +

@@ -115,11 +115,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     return errors;
   }
 
-  // TODO: what affect does adding organism param have on this validation???
-  private void validateFilteredGoTerms(String sourcesStr,/* String evidCodesStr,*/ String ontology, ValidationErrors errors) throws WdkModelException, WdkUserException {
+  private void validateFilteredGoTerms(String sourcesStr,/* String evidCodesStr,*/ String ontology, ValidationErrors errors)
+      throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
-    String idSql = getAnswerValue().getIdSql();
+    String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql = "SELECT count(distinct gts.go_term_id) as " + countColumn + NL +
       "FROM ApidbTuning.GoTermSummary gts,"  + NL +
       "(" + idSql + ") r"  + NL +
