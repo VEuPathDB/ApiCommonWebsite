@@ -1,23 +1,18 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import static org.gusdb.fgputil.FormatUtil.NL;
 import static org.gusdb.fgputil.FormatUtil.TAB;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
-import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -25,18 +20,15 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
 public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final Logger LOG = Logger.getLogger(WordEnrichmentPlugin.class);
 
-  public static final String PVALUE_PARAM_KEY = "pValueCutoff";
-  
   public static final String TABBED_RESULT_FILE_PATH = "wordEnrichmentResult.tab";
-  
+
   public static final ResultRow HEADER_ROW = new ResultRow(
-							   "Word", "Description", "Genes in the bkgd with this word", "Genes in your result with this word", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+      "Word", "Description", "Genes in the bkgd with this word", "Genes in your result with this word", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Word",
@@ -52,91 +44,41 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
     ValidationErrors errors = new ValidationErrors();
 
     // validate pValueCutoff
-    validatePValue(formParams, errors);
+    EnrichmentPluginUtil.validatePValue(formParams, errors);
+
+    // validate organism
+    EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
     return errors;
-  }
-
-  static void validatePValue(Map<String, String[]> formParams, ValidationErrors errors) {
-    if (!formParams.containsKey(PVALUE_PARAM_KEY)) {
-      errors.addParamMessage(PVALUE_PARAM_KEY, "Missing required parameter.");
-    }
-    else {
-      try {
-        float pValueCutoff = Float.parseFloat(formParams.get(PVALUE_PARAM_KEY)[0]);
-        if (pValueCutoff <= 0 || pValueCutoff > 1) throw new NumberFormatException();
-      }
-      catch (NumberFormatException e) {
-        errors.addParamMessage(PVALUE_PARAM_KEY, "Must be a number between greater than 0 and less than or equal to 1.");
-      }
-    }
   }
 
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
-    String idSql = answerValue.getIdSql();
-
     Map<String,String[]> params = getFormParams();
 
-    String pValueCutoff = params.get(PVALUE_PARAM_KEY)[0];
+    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
+    String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiWordEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
-			 wdkModel.getProjectId() + " " + pValueCutoff);
+        wdkModel.getProjectId() + " " + pValueCutoff);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff};
   }
 
-  /**
-   * Make sure only one organism is represented in the results of this step
-   * 
-   * @param answerValue answerValue that will be passed to this step
-   * @throws WdkUserException 
-   * @throws IllegalAnswerException if more than one organism is represented in this answer
-   */
   @Override
-  public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
-    
-    String countColumn = "CNT";
-    String idSql = answerValue.getIdSql();
-    String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
-        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
-        "(" + idSql + ") r"  + NL +
-        "where ga.source_id = r.source_id";
-
-    DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
-    new SQLRunner(ds, sql).executeQuery(handler);
-
-    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
-
-    Map<String, Object> result = handler.getResults().get(0);
-    BigDecimal count = (BigDecimal)result.get(countColumn);
-
-    if (count.intValue() > 1) {
-      throw new IllegalAnswerValueException("Your result has genes from more than " +
-      		"one organism.  The Word Enrichment analysis only accepts gene " +
-      		"lists from one organism.  Please use filter boxes to limit your " +
-      		"result to a single organism and try again.");
-    }
-  }
-  
-  @Override
-  public Object getFormViewModel() throws WdkModelException {
-    
-    //DataSource ds = getWdkModel().getAppDb().getDataSource();
-    //BasicResultSetHandler handler = new BasicResultSetHandler();
-    //String idSql = getAnswerValue().getIdSql();
-    
-    return new FormViewModel();
+  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+    // get orgs to display in select
+    List<Option> orgOptionList = EnrichmentPluginUtil
+        .getOrgOptionList(getAnswerValue(), getWdkModel());
+    return new FormViewModel(orgOptionList);
   }
   
   @Override
@@ -159,7 +101,18 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   public static class FormViewModel {
+
+    private List<Option> _orgOptions;
+
+    public FormViewModel(List<Option> orgOptions) {
+      _orgOptions = orgOptions;
+    }
+
+    public List<Option> getOrganismOptions() {
+      return _orgOptions;
+    }
     
+    public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
   }
 
   public static class ResultViewModel {
@@ -167,7 +120,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private List<ResultRow> _resultData;
     private String _downloadPath;
     private Map<String, String[]> _formParams;
-    
+
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
         Map<String, String[]> formParams) {
       _downloadPath = downloadPath;
@@ -179,11 +132,11 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public ResultRow getHeaderDescription() { return WordEnrichmentPlugin.COLUMN_HELP; }
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
-    public String getPvalueCutoff() { return _formParams.get(WordEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
+    public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
   }
-  
+
   public static class ResultRow {
-    
+
     private String _word;
     private String _descrip;
     private String _bgdGenes;
