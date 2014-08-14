@@ -48,9 +48,10 @@
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;"><em>Anncaliia
                 algerae </em>PRA339<em> </em>(insect isolate)<em> </em>and
               PRA109 (human isolate) genome sequence and annotation
-              (Unpublished).</span> &nbsp; View experimental details and
-            available searches in the in the <a href="http://microsporidiadb.org/micro/getDataset.do?datasets=nbomCQ1_primary_genome_RSRC">dataset
-              section</a>.</span></li>
+              (Unpublished).</span> &nbsp; These data were generated as part of
+            the Microsporidia white paper sequencing project. View experimental
+            details and available searches in the in the <strong><a href="/a/getDataset.do?datasets=aalgPRA109_primary_genome_RSRC,aalgPRA339_primary_genome_RSRC">dataset
+                section</a></strong>.</span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"></span> <br>
       <ul style="text-align: justify;">
