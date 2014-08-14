@@ -78,9 +78,10 @@ sub init {
 
     $rnaseq->setColor($self->getColor());
     $rnaseq->setIsPairedEnd($self->getIsPairedEnd());
-    $rnaseq->makeGraphs(@_);
     $rnaseq->setBottomMarginSize($self->getBottomMarginSize());
     $rnaseq->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
+
+    $rnaseq->makeGraphs(@_);
 
     my ($rnaseqStacked, $rnaseqPct) = @{$rnaseq->getGraphObjects()};
 
