@@ -9,6 +9,8 @@
               required="true"
               description="Strategy Id we are looking at"
 %>
+
+<!--
       <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize"><jsp:text/></script>
       <script type="text/javascript">
         function initialize() {
@@ -18,7 +20,7 @@
           document.body.appendChild(script);
         }
       </script>
-
+-->
 
 <c:set var="wdkStep" value="${requestScope.wdkStep}"/>
 <c:set var="wdkAnswer" value="${wdkStep.answerValue}"/>
