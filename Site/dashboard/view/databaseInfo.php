@@ -89,8 +89,9 @@ Related Links
         onmouseout = "return nd();"><sup>[?]</sup></a></td>
 </tr>
 </table>
+</p>
 
-<br>
+<p>
 
 <b>Aliases</b> (from LDAP): <?php print implode(", ", $adb_aliases_ar) ?>
 
@@ -100,8 +101,14 @@ Related Links
 <p>
 <b>Client login name</b>: <?php print strtolower($adb{'login'})?><br>
 <b>Client connecting from</b>: <?php print strtolower($adb{'client_host'})?><br>
-<b>Client OS user</b>: <?php print strtolower($adb{'os_user'})?><br>
+<b>Client OS user</b>: <?php print strtolower($adb{'os_user'})?>
+
 <p>
+<b><a href="?p=Database%20Connection%20Pool">Connection pool activity</a></b>
+</p>
+
+<p>
+
 <b>Available DBLinks</b>:
 
 <table border="0" cellspacing="3" cellpadding="2" align="">
@@ -133,7 +140,7 @@ foreach ($dblink_map as $dblink) {
 }
 ?>
 </table>
-
+</p>
 
 <hr>
 <b>Information on this page was last updated</b>: <?php print $adb{'system_date'}?><br>
@@ -238,7 +245,10 @@ foreach ($tm_status_map as $table) {
         onmouseout = "return nd();"><sup>[?]</sup></a></td>
 </tr>
 </table>
-<br>
+
+</p>
+
+<p>
 
 <b>Aliases</b> (from LDAP): <?php print implode(", ", $udb_aliases_ar) ?>
 
@@ -248,7 +258,11 @@ foreach ($tm_status_map as $table) {
 <p>
 <b>Client login name</b>: <?php print strtolower($udb{'login'}) ?></b><br>
 <b>Client connecting from</b>: <?php print strtolower($udb{'client_host'})?><br>
-<b>Client OS user</b>: <?php print strtolower($udb{'os_user'})?><br>
+<b>Client OS user</b>: <?php print strtolower($udb{'os_user'})?>
+
+<p>
+<b><a href="?p=Database%20Connection%20Pool">Connection pool activity</a></b>
+</p>
 
 <p>
 <b>Available DBLinks</b>:
@@ -282,6 +296,7 @@ foreach ($dblink_map as $dblink) {
 }
 ?>
 </table>
+</p>
 
 <hr>
 <b>Information on this page was last updated</b>: <?php print $udb{'system_date'}?><br>
