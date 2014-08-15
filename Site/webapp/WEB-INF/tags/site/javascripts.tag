@@ -45,10 +45,12 @@
       <script type="text/javascript" src="${base}/wdkCustomization/js/genome-view.js"><jsp:text/></script>
 
       <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=${gkey}&sensor=false"><jsp:text/></script> -->
-      <!-- moved to isolateResults.tag
+
+      <!-- moved to isolateResults.tag - the following two lines are un-commented by Haiming Wang 08-15-2014 -->
+      <!-- google api scripts are used by isolates / prism dwelling / prism participant result page -->
       <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"><jsp:text/></script>
       <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/styledmarker/src/StyledMarker.js"><jsp:text/></script>
-      -->
+      <!-- end of uncomment by Haiming Wang -->
 
       <script type="text/javascript" src="/assets/js/isolateResults.js"><jsp:text/></script>
   </c:if>
