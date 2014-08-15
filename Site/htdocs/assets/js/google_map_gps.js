@@ -18,7 +18,6 @@ function initialize() {
 
 jQuery(document).ready(function(){
 
-  setTimeout(2000);
   initialize();
 
   //$('#isolate-view tbody tr').map(function() {
@@ -81,6 +80,7 @@ function setMarkers(map, locations) {
         tooltip: content,
         zIndx: i
       });
+
 
       google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent(this.tooltip);
