@@ -65,7 +65,7 @@
             transcriptomes:</strong>&nbsp;<span style="font-weight: normal;"> </span>Analysis
           of the levels of steady-state mRNA and polysome-associated mRNA at the
           ring, trophozoite, and schizont stages of the intra-erythrocytic cycle
-          of P. falciparum 3D7 using Illumina sequencing (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/24267660">Bunnik
+          of <i>P. falciparum</i> 3D7 using Illumina sequencing (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/24267660">Bunnik
               et al.</a></strong>). </span><span style="font-family: Helvetica,Arial,sans-serif;"><span
             style="font-weight: normal;">View
             experimental details and links to searches in the <strong><a href="http://plasmodb.org/plasmo/getDataset.do?datasets=pfal3D7_Bunnik_Asexual_Cell_Cycle_rnaSeq_RSRC">dataset
@@ -101,7 +101,7 @@
               metabolic pathways:</strong> </span><span style="font-family: Helvetica,Arial,sans-serif;"><span
               style="font-weight: normal;">This
               new feature in PlasmoDB remains in beta as we continue to hear
-              from you about what is needed and how to improve it.&nbsp; In this
+              from you about what needs to be improved.&nbsp; In this
               version the pathways have been integrated using Cytoscape making
               it possible to layer functional data such as transcriptomic data
               or orthology on metabolic pathways.</span></span></li>
@@ -111,7 +111,7 @@
       <ul>
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
               analysis tools:&nbsp; </strong><span style="color: #020302;">results
-              of any searches can now be analyzed for statistical enrichment or
+              of any gene search can now be analyzed for statistical enrichment or
               Gene Ontology (GO) terms, metabolic pathways or gene product text
               terms. <strong><a href="/a/analysisTools.jsp">A detailed
                   description of this new functionality and a video tutorial are
