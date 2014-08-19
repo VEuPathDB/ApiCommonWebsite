@@ -28,7 +28,7 @@
       <ul style="text-align: justify;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Two
               new data types with searches have been added in this release:</strong>
-            compounds and metabolic pathways.&nbsp; This beta-release of
+            Compounds and Metabolic Pathways.&nbsp; This beta-release of
             Compound and Metabolic Pathways data sets incorporates
             KEGG pathways and a subset of PubChem records. Future
             releases will include compounds for additional metabolites and small
@@ -89,9 +89,9 @@
       <ul>
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Customizable
               metabolic pathways:</strong> <span style="font-weight: normal;">This
-              new feature in PlasmoDB remains in beta as we continue to hear
+              new feature in PiroplasmaDB remains in beta as we continue to hear
               from you about what is needed and how to improve it.&nbsp; In this
-              version the pathways have been integrated using Cytoscape making
+              version the pathways have been integrated using Cytoscape, making
               it possible to layer functional data such as transcriptomic data
               or orthology on metabolic pathways.</span></span></li>
       </ul>
