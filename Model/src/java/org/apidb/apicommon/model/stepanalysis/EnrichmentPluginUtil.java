@@ -138,6 +138,7 @@ public class EnrichmentPluginUtil {
         "order by ga.organism asc";
     DataSource ds = wdkModel.getAppDb().getDataSource();
     new SQLRunner(ds, sql).executeQuery(new ResultSetHandler() {
+      @Override
       public void handleResult(ResultSet rs) throws SQLException {
         while (rs.next()) {
           taxonIds.add(rs.getString(1));
