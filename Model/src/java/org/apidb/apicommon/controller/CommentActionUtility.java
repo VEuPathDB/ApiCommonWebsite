@@ -4,9 +4,8 @@ import javax.servlet.ServletContext;
 
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.model.userfile.UserFileFactory;
-import org.eupathdb.common.model.InstanceManager;
+import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.wdk.model.Utilities;
-import org.gusdb.wdk.model.WdkModelException;
 
 /**
  * @author xingao
@@ -16,7 +15,7 @@ public class CommentActionUtility {
 
   public static final String COMMENT_FACTORY_KEY = "comment-factory";
 
-  public static CommentFactory getCommentFactory(ServletContext context) throws WdkModelException {
+  public static CommentFactory getCommentFactory(ServletContext context) {
     CommentFactory factory = (CommentFactory) context.getAttribute(COMMENT_FACTORY_KEY);
     if (factory == null) {
       String projectId = context.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
@@ -26,7 +25,7 @@ public class CommentActionUtility {
     return factory;
   }
 
-  public static UserFileFactory getUserFileFactory(ServletContext context) throws WdkModelException {
+  public static UserFileFactory getUserFileFactory(ServletContext context) {
     String projectId = context.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
     return InstanceManager.getInstance(UserFileFactory.class, projectId);
   }
