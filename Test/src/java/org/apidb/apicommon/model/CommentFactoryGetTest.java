@@ -10,7 +10,7 @@ import org.apidb.apicommon.model.comment.Comment;
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.model.comment.ExternalDatabase;
 import org.apidb.apicommon.model.comment.Location;
-import org.eupathdb.common.model.InstanceManager;
+import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.junit.After;

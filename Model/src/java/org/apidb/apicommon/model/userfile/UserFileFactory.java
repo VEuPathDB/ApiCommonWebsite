@@ -23,7 +23,7 @@ import org.apidb.apicommon.model.comment.CommentModelException;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
-import org.gusdb.wdk.model.Manageable;
+import org.gusdb.fgputil.runtime.Manageable;
 import org.gusdb.wdk.model.WdkModelException;
 
 public class UserFileFactory implements Manageable<UserFileFactory> {

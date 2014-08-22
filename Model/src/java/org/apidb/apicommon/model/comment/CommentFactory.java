@@ -1,17 +1,15 @@
 package org.apidb.apicommon.model.comment;
 
 
-import java.util.Set;
-import java.util.Arrays;
-import java.util.HashSet;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -19,16 +17,17 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
-import org.gusdb.wdk.model.Manageable;
+import org.gusdb.fgputil.runtime.Manageable;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.dbms.ConnectionContainer;
+import org.gusdb.wdk.model.config.ModelConfigUserDB;
 
 /**
  * Manages user comments on WDK records
  * 
  * @author xingao
  */
-public class CommentFactory implements ConnectionContainer, Manageable<CommentFactory> {
+public class CommentFactory implements Manageable<CommentFactory> {
 
   private static final Logger LOG = Logger.getLogger(CommentFactory.class);
 
@@ -39,7 +38,7 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
   private CommentConfig config;
 
   @Override
-  public CommentFactory getInstance(String projectId, String gusHome) throws WdkModelException {
+  public CommentFactory getInstance(String projectId, String gusHome) throws Exception {
     // parse and load the configuration
     CommentConfigParser parser = new CommentConfigParser(gusHome);
     CommentConfig config;
@@ -47,8 +46,17 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
       config = parser.parseConfig(projectId);
 
       // create a platform object
-      DatabaseInstance db = new DatabaseInstance("Comment", config);
-      db.initialize();
+      ModelConfigUserDB userDbConfig = WdkModel.getModelConfig(projectId, gusHome).getUserDB();
+      DatabaseInstance db;
+      if (userDbConfig.isSameConnectionInfoAs(config)) {
+        // if connections are the same, then ignore comment config connection info and use UserDB database instance
+        LOG.info("Will reuse USER_DB connection pool since connection information is the same.");
+        db = DatabaseInstance.getAllInstances().get(WdkModel.DB_INSTANCE_USER);
+      }
+      else {
+        db = new DatabaseInstance("Comment", config);
+        db.initialize();
+      }
 
       // create a factory instance
       CommentFactory factory = new CommentFactory();
@@ -1309,15 +1317,7 @@ public class CommentFactory implements ConnectionContainer, Manageable<CommentFa
     logger.info("Comment connections: active=" + active + ", idle=" + idle);
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.gusdb.wdk.model.dbms.ConnectionContainer#getConnection(java.lang.String)
-   * 
-   * The key is ignored, and will always return the connection comment db.
-   */
-  @Override
-  public Connection getConnection(String key) throws WdkModelException, SQLException {
-    return commentDs.getConnection();
+  public DataSource getCommentDataSource() {
+    return commentDs;
   }
 }
