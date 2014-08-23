@@ -16,7 +16,9 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.util.LabelValueBean;
-import org.apidb.apicommon.model.MultiBox;
+import org.apidb.apicommon.model.comment.MultiBox;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 
 public class PhenotypeForm extends ActionForm {
 
@@ -350,7 +352,13 @@ public class PhenotypeForm extends ActionForm {
         reporter = null;
 
         ServletContext context = servlet.getServletContext(); 
-        ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("mutant_reporter", "mutant_reporter_id", "MutantReporter", null);
+        ArrayList<MultiBox> list;
+        try {
+          list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("mutant_reporter", "mutant_reporter_id", "MutantReporter", null);
+        }
+        catch (WdkModelException ex) {
+          throw new WdkRuntimeException(ex);
+        }
 
         reporterList = new ArrayList<LabelValueBean>();
         for(MultiBox c : list) { 

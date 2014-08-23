@@ -4,6 +4,10 @@ $(function() {
 });
 
 function setUpBlastPage() {
+	
+	// alert user if their sequence input will cause an error
+	validateInputsOnSubmit();
+	
 	// add warning span to sequence field
 	var sequenceValue = $('#BlastQuerySequence').val();
     var sequenceHtml = $('#BlastQuerySequence').parent().html();
@@ -26,8 +30,50 @@ function setUpBlastPage() {
 	changeAlgorithms();
 }
 
+// error messages for sequence validation
+var emptyValueMessage = "Sequence value cannot be empty.  Please enter an Input Sequence and try again.";
+var onlyDefLineMessage = "Current sequence value contains only a def line.  Please add a sequence and try again.";
+var onlyOneSequenceMessage = "Only one sequence is allowed.  Please remove secondary sequences and try again.";
+
+function validateInputsOnSubmit() {
+    // only input to check for now is sequence; ensure no whitespace
+    $('#BlastQuerySequence').parents('form').submit(function(event) {
+        var sequence = $('#BlastQuerySequence').val().trim();
+        $('#BlastQuerySequence').val(sequence);
+        if (sequence == "") {
+            return handleValidationFailure(emptyValueMessage, event);
+        }
+        // handle newline variations
+        sequence = sequence.replace(/\r\n/g, "\n"); // convert any \r\n to just \n
+        sequence = sequence.replace(/\r/g, "\n"); // convert any remaining \r to \n
+        if (sequence.slice(0,1) == ">") {
+            // sequence has a def line; remove it before checking sequence
+            var firstNewlineIndex = sequence.indexOf("\n");
+            if (firstNewlineIndex == -1 || sequence.length == firstNewlineIndex + 1) {
+                return handleValidationFailure(onlyDefLineMessage, event);
+            }
+            sequence = sequence.substring(firstNewlineIndex).trim();
+            if (sequence == "") {
+                return handleValidationFailure(onlyDefLineMessage, event);
+            }
+        }
+        // check for other def lines
+        if (sequence.indexOf(">") != -1) {
+            return handleValidationFailure(onlyOneSequenceMessage, event);
+        }
+        // passed all our tests; appears to be a single valid BLAST sequence
+        return true;
+    });
+}
+
+function handleValidationFailure(message, event) {
+	event.stopImmediatePropagation();
+	alert(message);
+	return false;
+}
+
 function changeQuestion() {
-        var recordClass = $("input[name='value(BlastRecordClass)']");
+    var recordClass = $("input[name='value(BlastRecordClass)']");
 	// stores mapping from blast databases to questions	
 	var blastDb = getSelectedDatabaseName().toLowerCase();
 	var questionName;

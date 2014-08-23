@@ -17,6 +17,180 @@
        </attribute>
     </record>
 -->
+
+<record>
+       <attribute name="headline">PlasmoDB 11.1 Released
+         <![CDATA[
+         ]]>
+         </attribute>
+       <attribute name="date">06 May 2014 13:00</attribute>
+       <attribute name="tag">plasmo05_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+    <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of PlasmoDB 11.1</strong><strong></strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span><br>
+      <span style="font-family: Helvetica,Arial,sans-serif;"> </span></div>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong><span style="color: #666666;">ChIP-seq
+              data from a EuPathDB-funded project:</span></strong> <span style="font-weight: normal;">Genomic
+            position of nucleosome binding in</span> <span style="font-weight: normal;"><em>P.
+              falciparum</em> 3D7 was assayed over the intraerythrocytic cycle
+            using ChIP-seq.&nbsp; This data is represented as coverage plots in
+            the genome browser.&nbsp; View experimental details in the <a href="http://plasmodb.org/plasmo/getDataset.do?datasets=pfal3D7_Stunnenberg_DBP_chipSeq_RSRC">dataset
+              section</a>.&nbsp; </span></span> </li>
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <ul style="text-align: justify;">
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;"><em>P.
+              falciparum</em> quantitative proteomic data:</strong> <span style="font-weight: normal;">Data
+            was generated from tightly synchronized ring, trophozoites, and
+            schizonts (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23914800">Pease
+              et al.</a>). View experimental details and links to searches in
+            the <a href="http://plasmodb.org/plasmo/getDataset.do?datasets=pfal3D7_quantitativeMassSpec_Chakrabarti_Phosphoproteome_RSRC">dataset
+              section</a>.&nbsp; </span><br>
+        </span> </li>
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <ul style="text-align: justify;">
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          features:</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <blockquote> </blockquote>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Customizable
+              metabolic pathways:</strong> <span style="font-weight: normal;">This
+              new feature in PlasmoDB remains in beta as we continue to hear
+              from you about what is needed and how to improve it.&nbsp; In this
+              version the pathways have been integrated using Cytoscape making
+              it possible to layer functional data such as transcriptomic data
+              or orthology on metabolic pathways.</span></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+        </span></span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Search
+              genes based on polymorphism data:</strong> <span style="font-weight: normal;">The
+              high throughput sequencing SNP searches have been upgraded to
+              increase their speed and provide additional search functionality.
+              Meta data associated with samples is now&nbsp; more intuitively
+              organized. Search for genes based on <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
+                characteristics</a> or identify SNPs based on multiple criteria
+              including within <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
+                group of isolates</a> or between <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
+                groups of isolates</a>.</span></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+        </span></span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Filter
+              samples based on metadata:</strong> <span style="font-weight: normal;">It
+              is</span> <span style="font-weight: normal;">easier now to tailor
+              your searches (such as SNP searches) by defining samples based on
+              their metadata characteristics</span>.</span></li>
+      </ul>
+      <blockquote> </blockquote>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
+          Tutorials:</span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
+            href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+            how to upload custom tracks in the genome browser</a>.&nbsp; <br>
+        </span> </div>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em>Our
+            YouTube channel is updated regularly with new tutorials.&nbsp; The
+            latest tutorials include:</em></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><em> </em><br>
+      </span>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/SzRu9XBe_VM">Transform
+              by Orthology Across Taxon Groups</a>&nbsp;</span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform
+              by Orthology within a Taxon Group</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+              information on gene pages</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
+              UTR length using RNA sequencing data</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M">Decreasing
+              Gene Page Load Time</a></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+      </span></div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">PlasmoDB 11.0 Released
          <![CDATA[
@@ -54,7 +228,7 @@
     <ul style="text-align: justify;">
       <li>The genome sequence and annotation of <em>Plasmodium yoelii yoelii </em>17X
         (a non-lethal 17X clone).&nbsp; Additional information about all genomes
-        may be viewed in the <strong><a href="http://plasmodb.org/plasmodb/getDataset.do?datasets=pyoeyoelii17XNL_primary_genome_RSRC">dataset
+        may be viewed in the <strong><a href="/a/getDataset.do?datasets=pyoeyoelii17X_primary_genome_RSRC">dataset
             section</a></strong> of PlasmoDB.&nbsp; Note that this genome was
         graciously provided by GeneDB pre-publication.&nbsp; Please consult with
         the Principal Investigator before undertaking large scale analyses of

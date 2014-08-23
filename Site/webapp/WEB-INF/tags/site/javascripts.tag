@@ -42,7 +42,7 @@
 
       <script type="text/javascript" src="${base}/wdkCustomization/js/spanlogic.js"><jsp:text/></script>
 
-      <script type="text/javascript" src="${base}/wdkCustomization/js/span-genome-view.js"><jsp:text/></script>
+      <script type="text/javascript" src="${base}/wdkCustomization/js/genome-view.js"><jsp:text/></script>
 
       <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=${gkey}&sensor=false"><jsp:text/></script> -->
       <!-- moved to isolateResults.tag
@@ -67,12 +67,16 @@
 
   <c:if test="${refer == 'question' || refer == 'summary'}">
     <!-- <imp:parameterScript /> -->
-    <script type="text/javascript" src="/assets/js/orthologpattern.js"><jsp:text/></script>
-    <script type="text/javascript" src="${base}/wdkCustomization/js/span-location.js"><jsp:text/></script>
-    <script type="text/javascript" src="${base}/wdkCustomization/js/mutuallyExclusiveParams.js"><jsp:text/></script>
-    <script type="text/javascript" src="${base}/wdkCustomization/js/dataset-searches.js"><jsp:text/></script>
-    <script type="text/javascript" src="${base}/wdkCustomization/js/questions/fold-change.js"><jsp:text/></script>
-    <script type="text/javascript" src="${base}/wdkCustomization/js/questions/radio-params.js"><jsp:text/></script>
+    <![CDATA[
+    <script src="/assets/js/orthologpattern.js"></script>
+    <script src="${base}/wdkCustomization/js/span-location.js"></script>
+    <script src="${base}/wdkCustomization/js/mutuallyExclusiveParams.js"></script>
+    <script src="${base}/wdkCustomization/js/dataset-searches.js"></script>
+    <script src="${base}/wdkCustomization/js/questions/fold-change.js"></script>
+    <script src="${base}/wdkCustomization/js/questions/radio-params.js"></script>
+    <script src="${base}/wdkCustomization/js/questions/isolatesByTaxon.js"></script>
+    <script src="${base}/wdkCustomization/js/analysis/enrichment.js"></script>
+    ]]>
   </c:if>
 
   <!-- Quick seach box -->

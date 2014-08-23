@@ -14,148 +14,126 @@
     </record>
 --> 
 <record>
-       <attribute name="headline">New Features in GiardiaDB</attribute>
-       <attribute name="date">30 January 2014 15:00</attribute>
-       <attribute name="tag">giardia01_14_news</attribute>
+       <attribute name="headline">GiardiaDB 4.0 released</attribute>
+       <attribute name="date">08 May 2014 12:00</attribute>
+       <attribute name="tag">giardia05_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">         
          <![CDATA[
-<body>
-    <div style="text-align: justify;"><strong>We are pleased to announce new
-        features in GiardiaDB:</strong><strong></strong><br>
-      <strong></strong><br>
-      <br>
-      <strong>New features:</strong><br>
-      <br>
-      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
-      Share your search strategies with the community by making them
-      public.&nbsp; Making one of your strategies public is simple; go to the
-      "All" tab in your "My Strategies" section and click on a strategy's public
-      checkbox.&nbsp; <br>
-      <br>
-      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
-      The gene results now include a column for score and percent identity
-      enabling sorting of results.<br>
-      <br>
-      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
-        Domain searches</span>:&nbsp; Now this search includes an advanced
-      type-ahead function that allows searching for multiple GO Terms or domains
-      simultaneously.&nbsp; <br>
-      <br>
-      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
-      Registered users can now update their email addresses from their profiles.<br>
-      <br>
-      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
-      The organism filter table has been unified across EuPathDB sites.<br>
-      <br>
-      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
-      Numerical columns in a result can now be analyzed with a dynamic histogram
-      that enables binning and plotting values in normal or log scales.<br>
-      <br>
-      <span style="text-decoration: underline;">Fixed</span>: The orthology
-      phyletic pattern search now remembers your selected parameters making it
-      easier to revise searches.<br>
-      <br>
-      <strong></strong><br>
-      <strong>New database:&nbsp; </strong></div><br>
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of GiardiaDB 4.0</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> <br>
+    </span>
     <ul style="text-align: justify;">
-      <li>EuPathDB is pleased to announce the release of a beta version of
-        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
-        dedicated to integrating functional host response data.&nbsp; The beta
-        release includes the human and mouse genomes and two datasets (RNA-Seq
-        and quantitative proteomics) examining the host response to Toxoplasma
-        infection.&nbsp; We look forward to expanding this database in data
-        content and functionality.&nbsp; We encourage you to explore <strong><a
-            href="http://hostdb.org">HostDB</a></strong>
-        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;"><em>Giardia</em>
+            subcellular localization data:</span> This data was funded by the
+          EuPathDB driving biological project mechanism and constitutes the
+          first batch of subcellular localization data.&nbsp; This data has
+          been provided prepublication by Dr. Scott Dawson.&nbsp; <span style="font-weight: normal;">View
+            experimental details and available searches in the <a href="http://giardiadb.org/giardiadb/getDataset.do?datasets=gassAWB_DBP_GeneImage_RSRC">dataset
+              section</a>.&nbsp;&nbsp;</span></span></li>
     </ul>
-    <div style="text-align: justify;"><br>
-    </div>
-    <div style="text-align: justify;"><br>
-      <span style="font-style: italic;"><span style="font-style: italic;"><span
-            style="text-decoration: underline;">Note:</span>
-          Our bimonthly database releases incorporate new data and correct old
-          data when necessary.&nbsp; Changes in annotation and new experimental
-          data may slightly alter your search results by increasing or
-          decreasing the number of hits. When search parameters change with a
-          new release, we invalidate (<span style="color: red;">Ø</span>) the
-          search and ask you to rerun it. When IDs are updated or removed, we
-          map the old IDs to the new ones, remove the old IDs from your Basket,
-          and leave your Favorites page alone.</span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span><span
-        style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
-  </body>
-          ]]>
-       </attribute>
-    </record>
-<record>
-       <attribute name="headline">EuPathDB Annual Workshop</attribute>
-       <attribute name="date">14 January 2014 15:00</attribute>
-       <attribute name="tag">eupathworkshop2014</attribute>
-       <attribute name="category">workshop</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
- <body>
-    <p>We are pleased to announce the 9th annual EuPathDB workshop to be held in
-      Athens, Georgia, USA from June 15 to Wednesday, June 18, 2014.&nbsp;&nbsp;
-      <br>
-      <br>
-      Please note that the workshop expenses, in addition to room and board
-      costs are covered by EuPathDB (see cost and fees section below).&nbsp; <br>
-      <br>
-      Come learn how to effectively use EuPathDB resources and mine available
-      data to help guide your research.<br>
-      <br>
-      For more information and to apply, please visit:
-      http://workshop.eupathdb.org/current/<br>
-      <br>
-      The workshop will cover all of our component databases (EuPathDB,
-      AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB, PiroplasmaDB,
-      ToxoDB, TrichDB, TriTrypDB and OrthoMCL), and will run from 6:00PM (18:00)
-      on Sunday, June 15 to 5:00PM (17:00) on Wednesday, June 18, 2014.<br>
-      <br>
-      The application deadline is February 28, 2014 and the course is limited to
-      30 participants.<br>
-      <br>
-      <em><strong>Who should apply:</strong></em>&nbsp; This workshop is
-      intended to be a 3 day thorough and intensive introduction to database
-      resources that are part of the EuPathDB.org Bioinformatics Resource Center
-      (EuPathDB, AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB,
-      PiroplasmaDB, ToxoDB, TrichDB, TriTrypDB and OrthoMCL). The ideal
-      candidate would have a need to become an expert user of one or more of
-      these database resources and presumably has a bioinformatics research
-      problem that they might work on as part of their training while attending
-      the course. Preference will be given to applicants that are in a position
-      to benefit most from intensive training and that are in a position to
-      return to their home institution and transfer their newly acquired
-      knowledge to others. Evaluation of the applications will focus heavily on
-      your responses to the questions asked on the application page and on
-      letters of recommendation.<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-      <strong><em>Costs and Fees:</em> </strong>The course is free. Housing
-      (double occupancy), all training materials and lunches are covered.
-      Attendees are expected to provide their own transportation to the course
-      and pay for a few of their meals. Letters of acceptance will be mailed
-      early to facilitate the solicitation of outside travel funds.<br>
-      <br>
-      Hotel room charges for a shared room will be paid by EuPathDB for the
-      nights of June 15 through June 18. Attendees who would like to have a
-      private room will need to pay the difference of $47 per night plus
-      tax.&nbsp;&nbsp;&nbsp; <br>
-      <br>
-      For more information and to apply, please visit:
-      http://workshop.eupathdb.org/current/<br>
-      <br>
-      If you have any questions or concerns please email help@eupathdb.org<br>
-      <br>
-      &nbsp;&nbsp;&nbsp; <br>
-      <br>
-      &nbsp; </p>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+      </span></span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong><span style="color: #666666;">Genome
+              sequence and annotation from <em>Giardia</em> Assemblages A2
+              isolate DH and B isolate GS (<a href="http://www.ncbi.nlm.nih.gov/pubmed/24307482">Adam
+                <em>et al.</em></a>):</span></strong><span style="font-weight: normal;"></span><span
+            style="font-weight: normal;">
+            View experimental details and available searches in the <a href="http://giardiadb.org/giardiadb/getDataset.do?datasets=gassBGS_B_primary_genome_RSRC,gassA2DH_primary_genome_RSRC">dataset
+              section</a>.&nbsp; </span></span></li>
+    </ul>
+    <span style=" font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+      </span></span>
+    <ul style="text-align: justify;">
+      <li><span style=" font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><span
+              style="font-weight: bold; color: #666666;">This
+              release of GiardiaDB constitutes a complete rebuild of the
+              database.</span> The latest versions of genome sequence and
+            annotation were loaded and all analyses were rerun and updated
+            (InterProSCan, SignalP, functional data mapping, etc.).<br>
+          </span></span></li>
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="color: #666666;"></span></span>
+    <div style="text-align: justify;">
+      <blockquote> </blockquote>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
+          Tutorials:</span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
+            href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+            how to upload custom tracks in the genome browser</a>.&nbsp; </span></div>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em>Our
+            YouTube channel is updated regularly with new tutorials.&nbsp; The
+            latest tutorials include:</em></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><em> </em><br>
+      </span>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/SzRu9XBe_VM">Transform
+              by Orthology Across Taxon Groups</a>&nbsp;</span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform
+              by Orthology within a Taxon Group</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+              information on gene pages</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
+              UTR length using RNA sequencing data</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M">Decreasing
+              Gene Page Load Time</a></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
           ]]>
        </attribute>

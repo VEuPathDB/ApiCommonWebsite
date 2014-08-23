@@ -23,17 +23,27 @@ sub run {
       print $cgi->header('text/plain');
   }
 
-  my ($sourceIds, $starts, $ends, $revComps) = validateParams($cgi, $dbh);
+  my ($sourceIds, $starts, $ends, $revComps) = $self->validateParams($cgi, $dbh);
 
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 
-  my $sql = <<EOSQL;
+  my $sql;
+  if ($self->{type} eq 'contig') {
+    $sql = <<EOSQL;
 SELECT s.source_id, s.sequence, ' | ' || sa.sequence_description as description
 FROM ApidbTuning.NaSequence s, ApidbTuning.SequenceId si, ApidbTuning.SequenceAttributes sa
 WHERE  lower(si.id) = lower(?)
 AND s.source_id = si.sequence
 AND sa.source_id = s.source_id
 EOSQL
+  } elsif ($self->{type} eq 'EST') {
+    $sql = <<EOSQL;
+SELECT ea.source_id, s.sequence, ' | ' || ea.dbest_name as description
+FROM ApidbTuning.estAttributes ea,  ApidbTuning.estSequence s
+WHERE ea.source_id = s.source_id
+and lower(ea.source_id) = lower (?)
+EOSQL
+}
 
   my $sth = $dbh->prepare($sql);
 
@@ -65,7 +75,7 @@ EOSQL
 }
 
 sub validateParams {
-  my ($cgi, $dbh) = @_;
+  my ($self, $cgi, $dbh) = @_;
 
   my $ids         = $cgi->param('ids');
   my $start       = $cgi->param('start');
@@ -82,15 +92,15 @@ sub validateParams {
   if ($start < 1 || $end < 1 || $end <= $start) {
       &error("Start and End must be positive, and Start must be less than End (in global parameters)");
   }
-  
-  my ($sourceIds, $starts, $ends, $revComps) = &validateIds($ids, $start, $end, $revComp, $dbh);
+  my $type = $self->{type};
+  my ($sourceIds, $starts, $ends, $revComps, $type) =  &validateIds($ids, $start, $end, $revComp, $dbh, $type);
+
   
   return ($sourceIds, $starts, $ends, $revComps);
 }
 
 sub validateIds {
-  my ($inputIdsString, $start, $end, $revComp, $dbh) = @_;
-  
+  my ($inputIdsString, $start, $end, $revComp, $dbh, $type) = @_;
   # if the input contains commas, assume it comes from WDK:
   #   split on newlines, then split on commas to get rid of site names
   # else if the input contains per-sequence "reverse" or "(start..end)":
@@ -116,12 +126,20 @@ sub validateIds {
   my @ends;
   my @revComps;
 
-  my $sql = <<EOSQL;
+  my $sql;
+  if ($type eq 'contig') {
+  $sql = <<EOSQL;
 SELECT s.sequence
 FROM ApidbTuning.SequenceId s
 WHERE lower(s.id) = lower(?)
 EOSQL
-
+} elsif ($type eq 'EST') {
+  $sql = <<EOSQL;
+SELECT s.sequence
+FROM ApidbTuning.estSequence s
+WHERE lower(source_id) = lower(?)
+EOSQL
+}
   my @badIds;
   my $sth = $dbh->prepare($sql);
   foreach my $input (@inputInfo) {

@@ -102,6 +102,7 @@
     <li><a>Tools</a>
       <ul>
         <li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
+        <li><a href="<c:url value="/analysisTools.jsp"/>"> Analysis Tools</a></li>
         <li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
         <li><a href="http://pathogenportal.org"> Pathogen Portal</a></li>
 
@@ -181,7 +182,7 @@
           </c:otherwise>
         </c:choose>
 
-        <li><a href="<c:url value="/srt.jsp"/>">Download sequences</a>
+        <li><a href="<c:url value="/srt.jsp"/>">Sequence Retrieval</a>
 
         <%--  <li><a href="<c:url value="/showXmlDataContent.do?name=XmlQuestions.About#protocols_methods"/>">Protocols and Methods</a></li> --%>
 
