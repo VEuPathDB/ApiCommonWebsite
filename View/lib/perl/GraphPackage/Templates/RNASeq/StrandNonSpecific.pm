@@ -78,9 +78,10 @@ sub init {
 
     $rnaseq->setColor($self->getColor());
     $rnaseq->setIsPairedEnd($self->getIsPairedEnd());
-    $rnaseq->makeGraphs(@_);
     $rnaseq->setBottomMarginSize($self->getBottomMarginSize());
     $rnaseq->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
+
+    $rnaseq->makeGraphs(@_);
 
     my ($rnaseqStacked, $rnaseqPct) = @{$rnaseq->getGraphObjects()};
 
@@ -111,17 +112,33 @@ sub init {
 
 #--------------------------------------------------------------------------------
 
-
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::StrandNonSpecific::tgonME49_Knoll_Laura_Pittman_rnaSeq_RSRC;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::StrandNonSpecific::pberANKA_Waters_Stunnenberg_five_stages_rnaSeq_RSRC;
 use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::StrandNonSpecific );
 use strict;
 
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
 
-sub getSampleNames {
-  return ['acute', 'chronic'];
+  foreach my $plotPart (@{$self->{_graph_objects}}) {
+    my $profileSets = $plotPart->getProfileSets();
+    foreach my $profileSet (@$profileSets) {
+      if($profileSet->getName() =~ /cl15cy1/) {
+        $profileSet->setElementNames(["4H R", "16H T", "22H S", "G", "O"]);
+      }
+      if($profileSet->getName() =~ /1037cl1/) {
+        $profileSet->setElementNames(["4H R", "16H T", "22H S", "G"]);
+      }
+
+    }
+
+    
+  }
+
+
+  return $self;
 }
 
-1;
 #--------------------------------------------------------------------------------
 
 

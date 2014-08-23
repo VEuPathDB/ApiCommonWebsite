@@ -17,7 +17,7 @@ public class GeoIsolateViewHandler extends IsolateViewHandler {
         sql.append(" FROM ApidbTuning.IsolateAttributes i, ");
         sql.append("       apidb.IsolateGPS g, ");
         sql.append("      (" + idSql + ") idq ");
-        sql.append(" WHERE REGEXP_LIKE ( i.ANNOTATED_geographic_location, g.country, 'i' ) ");
+        sql.append(" WHERE REGEXP_LIKE ( i.ANNOTATED_geographic_location, g.country ) ");
         sql.append("  AND i.source_id = idq.source_id ");
         sql.append(" ) group by country, data_type, lat, lng ");
 

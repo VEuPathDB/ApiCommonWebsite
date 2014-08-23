@@ -1,5 +1,7 @@
 #data-sets { padding: 5px; }
 
+
+/* h4 was used in genome history
 #data-sets h4 {
   margin-top: 1em;
   margin-bottom: .2em;
@@ -12,13 +14,18 @@
   border-collapse: separate;
   border-spacing: 2px;
 }
+#data-sets h4 + div td {
+  padding-bottom: 0;
+}
 #data-sets h4 + div th {
   border: none;
   font-weight: normal;
-}
-#data-sets h4 + div th {
+  padding-bottom: 0;
   background-color: #f6f6f6;
 }
+*/
+
+
 #data-sets ul { 
 	list-style: disc inside none; 
 	font-size:120%;
@@ -90,7 +97,8 @@
 	text-decoration:underline;
 	padding:0;
   font-size: 1em;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
   font-weight: normal;
 }
 
@@ -103,3 +111,6 @@
 	font-size: 85%;
 }
 
+#data-sets .wdk-toggle-content th {
+	color: #555;
+}

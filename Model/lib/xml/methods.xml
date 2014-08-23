@@ -116,7 +116,7 @@
     <attribute name="name">WU-BLASTN (Oligo sequences vs. Genomic or transcript sequences)</attribute>
     <attribute name="input">Oligo sequences and Genomic or transcript sequences</attribute>
     <attribute name="output">BLASTN alignments</attribute>
-    <attribute name="descrip">WU-BLASTN is used to identify statistically signficant DNA sequence similarities found between DNA sequence queries and DNA sequence libraries</attribute>
+    <attribute name="descrip">WU-BLASTN is used to identify statistically significant DNA sequence similarities found between DNA sequence queries and DNA sequence libraries</attribute>
     <table name="tools">
       <row>
         <attribute name="name">BLASTN</attribute>
@@ -293,7 +293,7 @@
     <attribute name="name">BLAT EST Alignments</attribute>
     <attribute name="input">Fasta file of EST sequences blocked using repeatMasker with RepBase and genome sequences in nib format</attribute>
     <attribute name="output">Text file of alignments in .psl format</attribute>
-    <attribute name="descrip">ESTs are clustered based on BLAT alignmnets. BLAT is a tool to rapidly find mRNA/DNA alignments that can be run using the GfClient program to query an indexed DNA database on a GfServer</attribute>
+    <attribute name="descrip">ESTs are clustered based on BLAT alignments. BLAT is a tool to rapidly find mRNA/DNA alignments that can be run using the GfClient program to query an indexed DNA database on a GfServer</attribute>
     <table name="tools">
       <row>
         <attribute name="name">BLAT</attribute>
@@ -310,9 +310,9 @@
 
   <record>
     <attribute name="name">MercatorAndMavid</attribute>
-    <attribute name="input">genomes, exon coordinates, and a phylogentic newick tree</attribute>
+    <attribute name="input">genomes, exon coordinates, and a phylogenetic newick tree</attribute>
     <attribute name="output">file of pairwise synteny alignments with defined spans</attribute>
-    <attribute name="descrip">Mercator and Mavid are used for comparative genome analysis. Mercator uses genomes and exon coordinates to create exon translations for protein BLAT alignments and outputs orthology maps. The orthology maps are used as a guide for Mavid which also uses a phylogentic newick tree to generate gene alignments</attribute>
+    <attribute name="descrip">Mercator and Mavid are used for comparative genome analysis. Mercator uses genomes and exon coordinates to create exon translations for protein BLAT alignments and outputs orthology maps. The orthology maps are used as a guide for Mavid which also uses a phylogenetic newick tree to generate gene alignments</attribute>
     <table name="tools">
       <row>
         <attribute name="name">MercatorAndMavid</attribute>

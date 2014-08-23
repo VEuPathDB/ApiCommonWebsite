@@ -285,10 +285,10 @@ organismFull:   Plasmodium falciparum 3D7
     </c:set>
 
     <center>
-		    <a id="gbView" href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
+		    <a id="gbView" href="${gbrowseUrl}">View in Genome Browser</a>
 				<div>(<i>use right click or ctrl-click to open in a new window</i>)</div>
 				<div id="${gnCtxDivId}"></div>
-		    <a id="gbView" href="${gbrowseUrl}"><font size='-2'>View in Genome Browser</font></a>
+		    <a id="gbView" href="${gbrowseUrl}">View in Genome Browser</a>
 				<div>(<i>use right click or ctrl-click to open in a new window</i>)</div>
 		</center>
 
@@ -341,7 +341,7 @@ organismFull:   Plasmodium falciparum 3D7
   showQuestion.do?questionFullName=GeneQuestions.GenesByEQTL_HaploGrpSimilarity&value%28lod_score%29=1.5&value%28percentage_sim_haploblck%29=25&value%28pf_gene_id%29=${id}&weight=10
 </c:set>
 <c:set var="extraInfo">
-  <a id="assocQueryLink" href="${queryURL}"><font size='-2'>Other genes that have similar associations based on eQTL experiments</font></a><br><font size="-1">(<i>use right click or ctrl-click to open in a new window</i>)</font>
+  <a id="assocQueryLink" href="${queryURL}">Other genes that have similar associations based on eQTL experiments</a><br>(<i>use right click or ctrl-click to open in a new window</i>)
 </c:set>
 <imp:wdkTable2 tblName="Plasmo_eQTL_Table" isOpen="true" attribution="" postscript="${extraInfo}" />
 
@@ -431,7 +431,12 @@ organismFull:   Plasmodium falciparum 3D7
 <!-- GO TERMS -->
 <c:if test="${isCodingGene}">
   <a name="goTerm"></a>
-  <imp:wdkTable2 tblName="GoTerms" attribution=""/>
+  <c:set var="goEvidenceLink">
+    <div>
+    <br> <a target="_blank" href="http://www.geneontology.org/page/introduction">View documentation on GO Evidence Codes</a>
+    </div>
+  </c:set>
+  <imp:wdkTable2 tblName="GoTerms" attribution="" postscript="${goEvidenceLink}"/>
 </c:if>
 
 <%-- from giardia new in build21--%>
@@ -455,13 +460,11 @@ organismFull:   Plasmodium falciparum 3D7
 </c:if>
 
 
-<!-- TODO  plasmocyc -->
-<c:if test="${projectId eq 'PlasmoDB'}">
-  <c:set var="plasmocyc" value="${attrs['PlasmoCyc']}"/>  
-  <c:set var="plasmocycurl" value="${plasmocyc.url}"/>  
+<%-- PlasmoGem --%>
+<c:if test="${attrs['has_plasmogem_info'] eq '1'}">
   <imp:panel 
-    displayName="PlasmoCyc <a href='${plasmocycurl}'>View</a>"
-    content="" />
+    displayName="PlasmoGem"
+    content="${attrs['plasmogem_link']}" />
 </c:if>
 
 
@@ -655,7 +658,7 @@ organismFull:   Plasmodium falciparum 3D7
   <c:set var="proteinSequence" value="${attrs['protein_sequence']}"/>
   <c:set var="proteinSequenceContent">
     <pre><w:wrap size="60">${attrs['protein_sequence'].value}</w:wrap></pre>
-    <font size="-1">Sequence Length: ${fn:length(proteinSequence.value)} aa</font><br/>
+    Sequence Length: ${fn:length(proteinSequence.value)} aa<br/>
   </c:set>
   <imp:toggle name="proteinSequence" displayName="${proteinSequence.displayName}"
              content="${proteinSequenceContent}" isOpen="false"/>
@@ -665,7 +668,7 @@ organismFull:   Plasmodium falciparum 3D7
 <c:set var="transcriptSequence" value="${attrs['transcript_sequence']}"/>
 <c:set var="transcriptSequenceContent">
   <pre><w:wrap size="60">${transcriptSequence.value}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(transcriptSequence.value)} bp</font><br/>
+  Sequence Length: ${fn:length(transcriptSequence.value)} bp<br/>
 </c:set>
 <imp:toggle name="transcriptSequence"
              displayName="${transcriptSequence.displayName}"
@@ -683,7 +686,7 @@ organismFull:   Plasmodium falciparum 3D7
 
 <c:set var="seq">
  <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
-  <font size="-1">Sequence Length: ${fn:length(totSeq)} bp</font><br/>
+  Sequence Length: ${fn:length(totSeq)} bp<br/>
 </c:set>
 
 <c:set var="downloadLink">
@@ -700,7 +703,7 @@ organismFull:   Plasmodium falciparum 3D7
   <c:set var="cds" value="${attrs['cds']}"/>
   <c:set var="cdsContent">
     <pre><w:wrap size="60">${cds.value}</w:wrap></pre>
-    <font size="-1">Sequence Length: ${fn:length(cds.value)} bp</font><br/>
+    Sequence Length: ${fn:length(cds.value)} bp<br/>
   </c:set>
   <imp:toggle name="cds" displayName="${cds.displayName}"
              content="${cdsContent}" isOpen="false"/>
