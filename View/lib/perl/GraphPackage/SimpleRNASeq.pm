@@ -94,6 +94,8 @@ sub makeGraphs {
 
   my $sampleNames = $self->getSampleNames();
 
+  print STDERR Dumper ($sampleNames);
+
   my @colors = ($color, '#DDDDDD');
   my @legend = ("Uniquely Mapped", "Non-Uniquely Mapped");
 
