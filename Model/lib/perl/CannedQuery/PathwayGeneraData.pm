@@ -35,8 +35,6 @@ from (select distinct genus
    <<Genera>>
    ) orgs
 where orgs.genus = ec.genus (+)
-and not ec.genus = 'Chromera'
-and not ec.genus = 'Vitrella'
 order by orgs.o asc
 Sql
 
