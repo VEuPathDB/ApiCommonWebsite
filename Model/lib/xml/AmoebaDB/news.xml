@@ -17,7 +17,7 @@
 --> 
 <record>
        <attribute name="headline">AmoebaDB 4.1 Released</attribute>
-       <attribute name="date">20 August 2014 12:00</attribute>
+       <attribute name="date">10 September 2014 12:00</attribute>
        <attribute name="tag">amoeba8_14_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
@@ -111,18 +111,7 @@
           features:</strong><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
-      <blockquote> </blockquote>
-      <ul>
-        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Customizable
-              metabolic pathways:</strong> <span style="font-weight: normal;">This
-              new feature in AmoebaDB remains in beta as we continue to hear
-              from you about what is needs to be improved.  In this
-              version the pathways have been integrated using Cytoscape, making
-              it possible to layer functional data such as transcriptomic data
-              or orthology on metabolic pathways.</span></span></li>
-      </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span>
+      
       <ul>
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
               analysis tools:&nbsp; </strong><span style="color: #020302;">the results
@@ -142,7 +131,7 @@
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtube.com/eupathdb"><br>
         </a></span>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong><a
-              href="http://youtube.com/eupathdb">Learn
+              href="http://youtu.be/npgkkychkrI">Learn
               <span style="color: #0000ee;"><span style="text-decoration: underline;">how
                   to use the Results Analysis tool</span></span></a>.&nbsp; </strong><br>
         </span> </div>
