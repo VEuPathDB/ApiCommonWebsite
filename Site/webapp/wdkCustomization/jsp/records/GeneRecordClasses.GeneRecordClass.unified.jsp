@@ -232,20 +232,19 @@ organismFull:   Plasmodium falciparum 3D7
 </c:if>
 </div>
 
-<!--------------  NOTE on Unpublished data as it was in Plasmo page ----------------------->
-
-<c:if test="${projectId ne 'TrichDB' && attrs['is_annotated'].value == 0}">
+<!--------------  NOTE on data with ReleasePolicy, or default text for Unpublished data ---------------->
+<c:if test="${projectId ne 'TrichDB' }">
   <c:choose>
   <c:when test="${attrs['release_policy'].value  != null}">
     <b>NOTE: ${attrs['release_policy'].value }</b>
   </c:when>
   <c:otherwise>
+    <c:if test="${attrs['is_annotated'].value == 0}">
     <b>NOTE: The data for this genome is unpublished. You should consult with the Principal Investigators before undertaking large scale analyses of the annotation or underlying sequence.</b>
+    </c:if>
   </c:otherwise>
   </c:choose>
 </c:if>
-
-
 
 <%--##########################  SECTION  BEFORE ANNOTATION   ################################--%>
 
@@ -387,25 +386,6 @@ organismFull:   Plasmodium falciparum 3D7
 
 <imp:wdkTable2 tblName="UserComments" isOpen="true" attribution="" />
 
-
-<!-- EC number -->
-<a name="ecNumber"></a>
-<c:if test="${isCodingGene}">
-  <imp:wdkTable2 tblName="EcNumber" isOpen="false" attribution=""/>
-</c:if>
-
-
-<!-- metabolic pathways -->
-<imp:wdkTable2 tblName="CompoundsMetabolicPathways" isOpen="true" attribution=""/>
-
-
-<!-- Giardia: Gene Deprecation:  TODO.  Temporarily remove because not loaded in rebuild --> 
-<%-- imp:wdkTable tblName="GeneDeprecation" isOpen="true"/ --%>
-
-
-<!-- External Links --> 
-<imp:wdkTable2 tblName="GeneLinkouts" isOpen="true" attribution=""/>
-
 <!-- Orthologs and Paralogs -->
 <c:if test="${isCodingGene}">
   <c:set var="orthomclLink">
@@ -417,7 +397,9 @@ organismFull:   Plasmodium falciparum 3D7
     </c:when>
     <c:otherwise>
     <div>
-    <br> <a target="_blank" href="<imp:orthomcl orthomcl_name='${orthomcl_name}'/>">View the group (${orthomcl_name}) containing this gene (${id}) in the OrthoMCL database</a>
+    <br> <a title="We map our genes to ortholog groups in the OrthoMC.org website. If a gene maps to an existing OrthoMCL group, we report it here with a link so that you can get information about the group, for example descriptions of the other gene members. But OrthoMCL.org website contains version 5 of OrthoMCL which was built a few years ago, so many of the current genes in the EuPathDB websites are not included in this old OrthoMCL 5 build. Therefore this gene might not be listed as a member in the group at OrthoMCL.org.
+
+We are currently in the process of creating an updated version 6 of OrthoMCL which should be available in the next few months." target="_blank" href="<imp:orthomcl orthomcl_name='${orthomcl_name}'/>">View the group (${orthomcl_name}) containing this gene (${id}) in the OrthoMCL database</a>
     </div>
     </c:otherwise>
   </c:choose>
@@ -427,6 +409,28 @@ organismFull:   Plasmodium falciparum 3D7
                  postscript="${orthomclLink}"/>
 </c:if>
 
+
+<!-- gene alias table -->
+<imp:wdkTable2 tblName="Alias" isOpen="FALSE" attribution=""/>
+
+
+<!-- External Links --> 
+<imp:wdkTable2 tblName="GeneLinkouts" isOpen="true" attribution=""/>
+
+
+<!-- Hagai -->
+<c:if test="${isCodingGene}">
+  <imp:wdkTable2 tblName="MetabolicPathways" attribution=""/>
+</c:if>
+
+<!-- metabolic pathways -->
+<imp:wdkTable2 tblName="CompoundsMetabolicPathways" isOpen="true" attribution=""/>
+
+<!-- EC number -->
+<a name="ecNumber"></a>
+<c:if test="${isCodingGene}">
+  <imp:wdkTable2 tblName="EcNumber" isOpen="false" attribution=""/>
+</c:if>
 
 <!-- GO TERMS -->
 <c:if test="${isCodingGene}">
@@ -439,13 +443,6 @@ organismFull:   Plasmodium falciparum 3D7
   <imp:wdkTable2 tblName="GoTerms" attribution="" postscript="${goEvidenceLink}"/>
 </c:if>
 
-<%-- from giardia new in build21--%>
-<imp:wdkTable2 tblName="CellularLocalization" isOpen="true" attribution=""/>
-
-
-<!-- gene alias table -->
-<imp:wdkTable2 tblName="Alias" isOpen="FALSE" attribution=""/>
-
 <!-- Notes from annotator == in toxo only shown if externalDbName.value eq 'Roos Lab T. gondii apicoplast-->
 <imp:wdkTable2 tblName="Notes" attribution="" />
 
@@ -453,11 +450,8 @@ organismFull:   Plasmodium falciparum 3D7
 <!-- phenotype -->
 <imp:wdkTable2 tblName="RodMalPhenotype" isOpen="false"  attribution=""/>
 
-
-<!-- Hagai -->
-<c:if test="${isCodingGene}">
-  <imp:wdkTable2 tblName="MetabolicPathways" attribution=""/>
-</c:if>
+<%-- mr4reagents  --%>
+<imp:wdkTable2 tblName="Mr4Reagents" attribution=""/>
 
 
 <%-- PlasmoGem --%>
@@ -467,14 +461,22 @@ organismFull:   Plasmodium falciparum 3D7
     content="${attrs['plasmogem_link']}" />
 </c:if>
 
+<%-- from giardia new in build21--%>
+<c:if test="${projectId eq 'GiardiaDB' && attrs['has_image'].value eq '1'}">
+  <imp:wdkTable tblName="CellularLocalization" isOpen="true" attribution=""/>
+</c:if> 
 
-<%-- mr4reagents  --%>
-<imp:wdkTable2 tblName="Mr4Reagents" attribution=""/>
 
+<!-- Giardia: Gene Deprecation:  TODO.  Temporarily remove because not loaded in rebuild --> 
+<%-- imp:wdkTable tblName="GeneDeprecation" isOpen="true"/ --%>
 
 <%-- was already commented out
 <imp:wdkTable2 tblName="AnnotationChanges"/>
 --%>
+
+
+
+
 
 
 <%--##########################   PROTEIN      ################################--%>

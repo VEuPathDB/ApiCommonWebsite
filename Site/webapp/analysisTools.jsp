@@ -13,7 +13,9 @@
                banner="Analyze Results"
                parentUrl="/home.jsp">
 
-  <h1>Analyze Your Strategy Results</h1>
+  <h1>Analyze Your Strategy Results <a href=https://www.youtube.com/watch?v=npgkkychkrI class="new-window"><img src="/assets/images/camera.png" width="25px"/></a></h1>
+  
+  
 
   <p>Our sites offer tools for analyzing the results of gene searches or strategies. 
   After running a search or strategy that returns genes, you can analyze the results to find 
@@ -26,25 +28,17 @@
   <img src="/assets/images/Overall.jpg" width="400px"/></div>
 <br><br>
 
-  <h3>4 Steps to Analyzing a Search or Strategy Result:</h3>
+  <h3> 4 Steps to Analyzing a Search or Strategy Result:</h3>
   <div>
     <ol>
       <li>Start a new search, or open an existing strategy.</li>
-      <li>When the strategy is loaded, 
-      choose the result and organism that you wish to analyze. 
-      <ol type=a>
-         <li>To choose the result that you wish to analyze, click the strategy box that represents the result. 
+      <li>When the search or strategy is loaded, 
+      choose the result that you wish to analyze by clicking the 
+      strategy box that represents the result. 
          The active result is highlighted in yellow. 
-         
          <div><img src="/assets/images/choose_result.jpg" width="350px"/></div></li>
-         <!--  
-         <li>If the result contains genes from more than one organism, use the 
-         filter table to limit the result to genes from a single organism.
-         
-         <div><img src="/assets/images/choose_organism.jpg" width="500px"/></div></li>
-      </ol>
-       </li>
-       -->
+      
+       
       <li>Click on the blue "Analyze Results" button. The button appears next to the tabbed results pages.
       
       <div><img src="/assets/images/click_button.jpg" width="400px"/></div></li>
@@ -59,7 +53,7 @@
 <!-- 
   <h3>Video Tutorial</h3>
   <div>
-    <em>Embedded YouTube video here</em>
+    <em><iframe width="420" height="315" src="//www.youtube.com/embed/npgkkychkrI" frameborder="0" allowfullscreen></iframe></em>
   </div>
    -->
 </imp:pageFrame>

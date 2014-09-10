@@ -80,50 +80,6 @@
           </tr>
         </table>
 
-        <table id="offsetOptions3" cellpadding="2">
-          <tr>
-            <td colspan="3">
-              <b>Choose the region of the protein sequence(s):</b>
-            </td>
-          </tr>
-          <tr>
-            <td>begin at</td>
-            <td align="left">
-              <select name="upstreamAnchor3">
-                <option value="Start" selected>Start</option>
-                <option value="End">Stop</option>
-              </select>
-            </td>
-            <td align="left">
-              <select name="upstreamSign3">
-                <option value="plus" selected>+</option>
-                <option value="minus">-</option>
-              </select>
-	    </td>
-            <td align="left">
-              <input id="upstreamOffset3" name="upstreamOffset3" value="0" size="6"/> aminoacids
-            </td>
-          </tr>
-          <tr>
-            <td>end at</td>
-            <td align="left">
-              <select name="downstreamAnchor3">
-                <option value="Start">Start</option>
-                <option value="End" selected>Stop</option>
-              </select>
-            </td>
-            <td align="left">
-              <select name="downstreamSign3">
-                <option value="plus" selected>+</option>
-                <option value="minus">-</option>
-              </select>
-            </td>
-            <td align="left">
-              <input id="downstreamOffset3" name="downstreamOffset3" value="0" size="6"> aminoacids
-            </td>
-          </tr>
-        </table>
-
 
       </td>
     </tr>
