@@ -42,8 +42,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
       CommentConfig config = parser.parseConfig(projectId);
 
       // create a platform object
-      DatabaseInstance database = new DatabaseInstance("Comment", config);
-      database.initialize();
+      DatabaseInstance database = new DatabaseInstance(config).initialize("Comment");
 
       // create a factory instance
       UserFileFactory factory = new UserFileFactory();

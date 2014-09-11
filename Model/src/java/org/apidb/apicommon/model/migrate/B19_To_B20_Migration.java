@@ -43,7 +43,7 @@ public class B19_To_B20_Migration {
     public static void main(final String[] args) {
     	DatabaseInstance userDb = parseArgs(args);
         try {
-            userDb.initialize();
+            userDb.initialize("UserDb");
             migrateGBrowseIds(userDb.getDataSource());
         } finally {
             try { userDb.close(); } catch (Exception e) { LOG.error(e); }
@@ -54,7 +54,7 @@ public class B19_To_B20_Migration {
         if (args.length == 3 || args.length == 4 && args[0].equals("-test")) {
         	final int argOffset = (args.length == 4 ? 1 : 0);
         	TEST = (args.length == 4);
-            return new DatabaseInstance("UserDb", new SimpleDbConfig() {
+            return new DatabaseInstance(new SimpleDbConfig() {
                 @Override public String getConnectionUrl() { return args[0+argOffset]; }
                 @Override public String getLogin() { return args[1+argOffset]; }
                 @Override public String getPassword() { return args[2+argOffset]; }
