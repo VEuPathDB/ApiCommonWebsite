@@ -23,21 +23,28 @@
          <![CDATA[
 FungiDB 3.1 is released this month.
 
-<p>14 RNA-Seq datasets are added for a total of 22 datasets and 2 Microarray datasets are now available.
-</p>
-<p>Errors were fixed in the following genomes:
+<h3>Updates</h3>
+<p>14 RNA-Seq datasets are added for a total of 22 datasets.</p>
+<p>2 Microarray datasets are now available.</p>
+
+<h3>Corrections</h3>
+<p>SC25 of <span style="font-style: italic;">Cryptococcus gattii</span> R265 - SC25 changed to mitochondrial</p>
+
+<p>Corrected the exon phase interpretation of several JGI genomes:
   <ul>
-    <li><span style="font-style: italic;">Cryptococcus gattii</span> R265 - SC25 changed to mitochondrial</li>
-    <li><span style="font-style: italic;">Aspergillus aculeatus</span> ATCC 16872 - exon phase correction</li>
-    <li><span style="font-style: italic;">Mucor circinelloides f. lusitanicus</span> - exon phase correction</li>
-    <li><span style="font-style: italic;">Phycomyces blakesleeanus</span> NRRL 1555(-) - exon phase correction</li>
-    <li><span style="font-style: italic;">Phytophthora capsici</span> - exon phase correction</li>
-    <li><span style="font-style: italic;">Phanerochaete chrysosporium</span> - exon phase correction</li>
-    <li><span style="font-style: italic;">Phytophthora ramorum</span> Pr-102 - exon phase correction</li>
-    <li><span style="font-style: italic;">Pythium ultimum</span> DAOM BR144 - exon phase correction</li>
-    <li><span style="font-style: italic;">Tremella mesenterica</span> DSM 1558 - exon phase correction</li>
+    <li><span style="font-style: italic;">Aspergillus aculeatus</span> ATCC 16872</li>
+    <li><span style="font-style: italic;">Mucor circinelloides f. lusitanicus</span></li>
+    <li><span style="font-style: italic;">Phycomyces blakesleeanus</span> NRRL 1555(-)</li>
+    <li><span style="font-style: italic;">Phytophthora capsici</span></li>
+    <li><span style="font-style: italic;">Phanerochaete chrysosporium</span></li>
+    <li><span style="font-style: italic;">Phytophthora ramorum</span> Pr-102</li>
+    <li><span style="font-style: italic;">Pythium ultimum</span> DAOM BR144</li>
+    <li><span style="font-style: italic;">Tremella mesenterica</span> DSM 1558</li>
   </ul>
 </p>
+
+<h3>Known issues</h3>
+<p>HTS SNPs remain unavailable until the next point release.</p>
           ]]>
        </attribute>
     </record>
