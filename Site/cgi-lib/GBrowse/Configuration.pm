@@ -331,7 +331,7 @@ SELECT name,
        ' PMID: ' || publications ||
        '<p style="color:black">Samples:</p>' || sample_table || chr(10) ||
        ' Please note that subtrack labels will disappear if the selected subtracks number is over 15!' as citation 
-  FROM (SELECT nvl(ds.dataset_name_pattern, ds.name) as name, 
+  FROM (SELECT ds.name as name, 
                ds.summary as description, 
                pubs.contact_email as email, 
                pubs.PMIDS as publications,
