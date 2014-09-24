@@ -163,6 +163,8 @@
     <available file="${htdocsTargetDir}/../dashboard" type="dir" property="dashboard.present"/>
     <antcall target="dashboardDoc"/>
 
+    <antcall target="EuPathSiteCommon-GenerateChecksumProp"/>
+
     <available file="${targetDir}/config/log4j.xml.custom-web" property="custom.weblog4j.present"/>
     <antcall target="installCustomWebLog4j"/>
     <available file="${webappTargetDir}/WEB-INF/classes/log4j.xml" property="weblog4j.present"/>
