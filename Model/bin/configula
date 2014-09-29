@@ -76,6 +76,10 @@ sections:
  - apiSite
  - @{[ lc $wmc->{'product'} ]}
  - production
+
+custom:
+  googleAnalyticsId: @{[ $wmc->{'google_analytics_id'} || "''" ]}
+
 EOF
 
 $wmc->write_meta_config($content);
