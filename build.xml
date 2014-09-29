@@ -155,6 +155,8 @@
       <property name="component" value="Site"/>
     </ant>
 
+    <antcall target="EuPathSiteCommon-post-webinstall"/>
+
     <ant target="webComponentPartCopy">
       <property name="componentDir" value="${projectsDir}/ApiCommonWebsite/Site"/>
       <property name="part" value="dashboard"/>
@@ -162,8 +164,6 @@
     </ant>
     <available file="${htdocsTargetDir}/../dashboard" type="dir" property="dashboard.present"/>
     <antcall target="dashboardDoc"/>
-
-    <antcall target="EuPathSiteCommon-GenerateChecksumProp"/>
 
     <available file="${targetDir}/config/log4j.xml.custom-web" property="custom.weblog4j.present"/>
     <antcall target="installCustomWebLog4j"/>
