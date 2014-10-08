@@ -28,7 +28,7 @@ public class EnrichmentPluginUtil {
   private static final String ORGANISM_PARAM_KEY = "organism";
 
   public static final String ORGANISM_PARAM_HELP =
-      "<p>Choose an organism to run an enrichment on. To see all organisms have 'All results' filter selected</p>";
+      "<p>Choose an organism to run an enrichment on. To see all organisms, select 'All results' filter above.</p>";
   
   public static class Option {
     private String _term;
