@@ -78,8 +78,8 @@
 <!-- strains table: for HTS SNPs only -->
 
 <c:set var="start" value="${attrs['location_text']}"/>
-<c:set var="startm" value="${fn:replace(start,',','') - 39}" /> </h4>
-<c:set var="end" value="${fn:replace(start,',','') + 40}" /> </h4>
+<c:set var="alignment_start" value="${fn:replace(start,',','') - 39}" /> </h4>
+<c:set var="alignment_end" value="${fn:replace(start,',','') + 40}" /> </h4>
 
 <form name="checkHandleForm" method="post" action="/dosomething.jsp" onsubmit="return false;">
 
@@ -92,23 +92,8 @@
   <tr>
     <td align=center>
 
-  <c:choose>
-    <c:when test = "${projectId == 'ToxoDB'}">
-      <c:set var="snp" value="${fn:split(primaryKey, '.')}" />
-      <c:set var="part1" value="${snp[1]}" />
-      <c:set var="part2" value="${snp[2]}" />
-      <c:set var="ref_seq" value="${part1}.${part2}" />
-      <c:set var="snp_start" value="${snp[3] - 25}" />
-      <c:set var="snp_end" value="${snp[3] + 24}" />
-
       <input type="button" value="Run Clustalw on Checked Strains" 
-           onClick="goToIsolate(this,'htsSNP','${ref_seq}','${snp_start}', '${snp_end}')" />
-    </c:when>
-    <c:otherwise>
-      <input type="button" value="Run Clustalw on Checked Strains" 
-           onClick="goToIsolate(this,'htsSNP','${attrs['seq_source_id']}','${startm}', '${end}')" />
-    </c:otherwise>
-  </c:choose>
+           onClick="goToIsolate(this,'htsSNP','${sequence_id}','${alignment_start}', '${alignment_end}')" />
 
       <input type="button" name="CheckAll" value="Check All" 
            onClick="wdk.api.checkboxAll(jQuery('input:checkbox[name=selectedFields]'))">
