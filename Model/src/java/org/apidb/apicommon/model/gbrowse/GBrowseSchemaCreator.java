@@ -62,7 +62,7 @@ public class GBrowseSchemaCreator {
   
   public GBrowseSchemaCreator(GBrowseConnectionConfig config) {
     _schemaPrefix = config.getSchema();
-    _db = new DatabaseInstance(config).initialize("gbrowseUsers");
+    _db = new DatabaseInstance(config, "gbrowseUsers");
   }
 
   public void shutDownQuietly() {
