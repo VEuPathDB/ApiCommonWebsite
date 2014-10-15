@@ -473,7 +473,7 @@ sub makeHtmlStringFromMatrix {
 
   my @sortedNames = map { $_->{name} } sort{$a->{digit} <=> $b->{digit} || $a->{elementOrder} <=> $b->{elementOrder}} @$allNames;
 
-  print OUT "<table border=1 class='wdk-data-table'>\n  <thead><tr><th width=10>Experiment/Sample</th>\n";
+  print OUT "<table border=1>\n  <thead><tr><th>Experiment/Sample</th>\n";
 
   my @values;
 

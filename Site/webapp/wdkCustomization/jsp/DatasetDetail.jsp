@@ -9,6 +9,7 @@
 <c:set var="datasets" value="${requestScope.datasets}"/>
 <c:set var="question" value="${requestScope.question}" />
 <c:set var="recordClass" value="${requestScope.recordClass}" />
+<c:set var='project' value='${wdkModel.name}'/>
 
 <imp:pageFrame banner="Data Sets" refer="data-set" >
 
@@ -207,32 +208,37 @@
               <c:if test="${fn:length(genHistory) > 0}">
                 <h3>${genHistory.displayName}</h3>
                 <div>
-                  <c:forEach items="${genHistory}" var="genHistoryRow">
-                    <fmt:parseDate value="${genHistoryRow['release_date']}"
-                        var="releaseDate" pattern="yyyy-MM-dd"/>
-                    <fmt:formatDate value="${releaseDate}" var="releaseDateStr"
-                        pattern="MMM d, yyyy"/>
-                    <h4>
-                      ${genHistoryRow['build'].displayName} ${genHistoryRow['build']}
-                      (${releaseDateStr}):
-                    </h4>
-                    <div>
-                      <table>
-                        <tr>
-                          <th>${genHistoryRow['note'].displayName}</th>
-                          <td>${genHistoryRow['note']}</td>
-                        </tr>
-                        <tr>
-                          <th>${genHistoryRow['genome_source'].displayName}</th>
-                          <td>${genHistoryRow['genome_source']} (${genHistoryRow['genome_version']})</td>
-                        </tr>
-                        <tr>
-                          <th>${genHistoryRow['annotation_source'].displayName}</th>
-                          <td>${genHistoryRow['annotation_source']} (${genHistoryRow['annotation_version']})</td>
-                        </tr>
-                      </table>
-                    </div>
-                  </c:forEach>
+
+              <table class="headerRow">
+                <tr>
+                  <th>EuPathDB Build</th>
+                  <th>Genome Source</th>
+                  <th>Annotation Source</th>
+                  <th>Notes</th>
+                </tr>
+
+              <c:forEach items="${genHistory}" var="genHistoryRow">
+                <fmt:parseDate value="${genHistoryRow['release_date']}"
+                  var="releaseDate" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate value="${releaseDate}" var="releaseDateStr"
+                  pattern="MMM d, yyyy"/>
+                <tr><td>
+                <c:choose>
+                <c:when test="${genHistoryRow['build'] eq '0'}">
+                  Initial
+                </c:when>
+                <c:otherwise>
+                  ${genHistoryRow['build']} (${releaseDateStr}) (${project}&nbsp;${genHistoryRow['release_number']})
+                </c:otherwise>
+                </c:choose>
+                  </td>
+                  <td>${genHistoryRow['genome_source']} (${genHistoryRow['genome_version']})</td>
+                  <td>${genHistoryRow['annotation_source']} (${genHistoryRow['annotation_version']})</td>
+                  <td>${genHistoryRow['note']}</td>
+                </tr>
+
+              </c:forEach>
+              </table>
                  </div>
               </c:if>
 
@@ -290,12 +296,13 @@
   </c:forEach> <!-- all categories  -->
   
 
-   <%-- if we came to this page to show only a few datasets (would be specified in the url) --%>
+  <%-- if we came to this page to show only a few datasets (would be specified in the url) --%>
   <c:if test="${fn:length(param.reference) > 0}">
-    <p style="text-align:center;font-size:120%"><a href="<c:url value='/getDataset.do?display=detail' />">Click here to see the complete list of Data Sets</a></p>
+    <p style="text-align:center;font-size:120%"><a href="<c:url value='/getDataset.do?display=detail' />">
+      Click here to see the complete list of Data Sets</a></p>
   </c:if>
 
-</div>      <!-- #data-sets   -->
+</div>   
 
 <script>
   !function($) {

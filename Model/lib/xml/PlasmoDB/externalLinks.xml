@@ -225,10 +225,12 @@
       </table>
 
       <table name="malariaBio">
+      
         <row>
-          <attribute name="url">http://www.wehi.edu.au/MalDB-www/who.html</attribute>
-          <attribute name="title">Malaria Database at WEHI</attribute>
+          <attribute name="url">http://www.wehi.edu.au/faculty/disease_research/infectious_diseases_research/malaria/</attribute>
+          <attribute name="title">Malaria Research at WEHI</attribute>
         </row>
+        
         <!-- BAD LINK; http://www.lmcg.wisc.edu/ is the NEW site, but no related info yet
         <row>
           <attribute name="url">http://schwartzlab.biotech.wisc.edu/research/research.html#plasmodium</attribute>
@@ -268,7 +270,7 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="title">Malaria Foundation International</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.who.ch/ctd/html/malaria.html</attribute>
+          <attribute name="url">http://www.who.int/topics/malaria/en/</attribute>
           <attribute name="title">World Health Organization - Malaria</attribute>
         </row>
         <row>

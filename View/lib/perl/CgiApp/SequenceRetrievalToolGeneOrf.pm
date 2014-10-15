@@ -64,6 +64,11 @@ sub processParams {
   $self->{upstreamSign}     = $cgi->param('upstreamSign');
   $self->{downstreamSign}   = $cgi->param('downstreamSign');
 
+  $self->{startOffset3}   = $cgi->param('startOffset3');
+  $self->{endOffset3} = $cgi->param('endOffset3');
+  $self->{startAnchor3}   = $cgi->param('startAnchor3');
+  $self->{endAnchor3} = $cgi->param('endAnchor3');
+
   # to allow for NOT mapping an id to the latest one
   $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
 
@@ -85,10 +90,14 @@ sub processParams {
 
   $self->{upstreamOffset}   =~ s/[,.\s+]//g;
   $self->{downstreamOffset} =~ s/[,.\s+]//g;
-  
+
   $self->{upstreamOffset} = ($self->{upstreamSign} eq 'minus') ? -$self->{upstreamOffset} : $self->{upstreamOffset};
   $self->{downstreamOffset} = ($self->{downstreamSign} eq 'minus') ? -$self->{downstreamOffset} : $self->{downstreamOffset};
-  
+
+  $self->{startOffset3}   =~ s/[,.\s+]//g;
+  $self->{endOffset3} =~ s/[,.\s+]//g;
+
+
   # check type
   my @validTypes = ('protein', 'CDS', 'genomic', 'processed_transcript');
   &error("'$self->{type}' is an invalid type") 
@@ -105,6 +114,14 @@ sub processParams {
       if ((($self->{upstreamAnchor} eq $END || $self->{upstreamAnchor} eq $CODEEND) && ($self->{downstreamAnchor} eq $START || $self->{downstreamAnchor} eq $CODESTART)) || ($self->{upstreamAnchor} eq $CODESTART && $self->{downstreamAnchor} eq $START) || ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $CODEEND));
       #if ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $START);
 
+#  &error("'$self->{startAnchor3}' is an invalid anchor")
+#    unless grep {$self->{startAnchor3} eq $_} @validAnchors;
+#  &error("'$self->{endAnchor3}' is an invalid anchor")
+#    unless grep {$self->{endAnchor3} eq $_} @validAnchors;
+#  &error("Illegal anchor combination: stop before start")
+#      if ((($self->{startAnchor3} eq $END || $self->{startAnchor3} eq $CODEEND) && ($self->{endAnchor3} eq $START || $self->{endAnchor3} eq $CODESTART)) || ($self->{startAnchor3} eq $CODESTART && $self->{endAnchor3} eq $START) || ($self->{startAnchor3} eq $END && $self->{downstreamAnchor3} eq $CODEEND));
+
+
   # check offsets
   $self->{upstreamOffset} = 0
     if (!$self->{upstreamOffset} || $self->{upstreamOffset} !~/\S/);
@@ -114,6 +131,16 @@ sub processParams {
     unless $self->{upstreamOffset} =~ /^-?\d+$/;
   &error("DownstreamOffset '$self->{downstreamOffset}' must be a number")
     unless $self->{downstreamOffset} =~ /^-?\d+$/;
+
+  $self->{startOffset3} = 0
+    if (!$self->{startOffset3} || $self->{startOffset3} !~/\S/);
+  $self->{endOffset3} = 0
+    if (!$self->{endOffset3} || $self->{endOffset3} !~ /\S/);
+  &error("UpstreamOffset '$self->{startOffset3}' must be a number")
+    unless $self->{startOffset3} =~ /^-?\d+$/;
+  &error("DownstreamOffset '$self->{endOffset3}' must be a number")
+    unless $self->{endOffset3} =~ /^-?\d+$/;
+
 }
 
 my $sqlQueries;
@@ -170,8 +197,41 @@ sub handleNonGenomic {
   }
 
   if($type eq "protein" && $self->{geneOrOrf} eq 'gene') {
-    $sql = $site->{geneProteinSql}
 
+    my ($start_position, $end_position, $seq_length);
+    $start_position = $self->{startOffset3};
+    my $protLen = "bfmv.protein_length";
+    my $add = $self->{startOffset3} + $self->{endOffset3};
+
+    $start_position = 1 if ($self->{startOffset3} ==0);
+
+    if ($self->{endOffset3} == 0 && $self->{startOffset3} ==0) {
+      # default : full sequence
+      $seq_length= "$protLen";
+    } elsif ($self->{startAnchor3} eq $END && $self->{endAnchor3} eq $END) {
+      # when both Start and End are in terms of 'downstream from Stop'
+      $start_position = "$protLen - $self->{startOffset3}";
+      $seq_length = "$self->{startOffset3} - $self->{endOffset3}  + 1";
+    } elsif ($self->{startAnchor3} eq $END) {
+      # when Start is in terms of 'downstream from Stop'
+      $start_position = "$protLen - $self->{startOffset3}";
+      $seq_length = "$add - $protLen + 1";
+    } elsif ($self->{endAnchor3} eq $END) {
+      # when End is in terms of 'downstream from Stop'
+      $seq_length = "$protLen + 1 - $add ";
+    } else {
+      # when both Start and End are in terms of 'upstream from Start'
+      $seq_length = "$self->{endOffset3} - $self->{startOffset3} + 1";
+    }
+
+    $sqlQueries->{geneProteinSql} = <<EOSQL;
+SELECT bfmv.source_id, substr(seq.sequence,  $start_position, ($seq_length)),
+        bfmv.product, bfmv.organism as name
+FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.ProteinSequence seq
+WHERE  bfmv.source_id = seq.source_id
+AND    bfmv.source_id = ?
+EOSQL
+    $sql = $site->{geneProteinSql};
   }
   # use the input ids directly
   elsif($type eq "protein" && $self->{geneOrOrf} ne 'gene') {
@@ -191,6 +251,7 @@ sub handleNonGenomic {
 
   my @invalidIds;
   my $sth = $dbh->prepare($sql);
+
   for my $inputId (@$ids) {
     $sth->execute($inputId);
     my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array();

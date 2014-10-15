@@ -4,6 +4,7 @@
 <c:set var="modelName" value="${applicationScope.wdkModel.name}" />
 <c:set var="sName" value="${fn:substringBefore(modelName,'DB')}" />
 <c:set var="cycName" value="${sName}Cyc" />
+<c:set var="urlBase" value="${pageContext.request.contextPath}"/>
 
 <c:choose>
         <c:when test="${fn:containsIgnoreCase(modelName, 'EuPathDB')}">
@@ -31,10 +32,13 @@
 
 <div class="info">
     	<ul> 
-		<li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"><strong>BLAST</strong></a>
+		<li><a href="${urlBase}/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"><strong>BLAST</strong></a>
 			<ul><li style="border:0">Identify Sequence Similarities</li></ul>
 		</li>
-		<li><a href="<c:url value="/srt.jsp"/>"><strong>Sequence Retrieval</strong></a>
+		<li><a href="${urlBase}/analysisTools.jsp"><strong>Results Analysis</strong></a>
+			<ul><li  style="border:0">Analyze Your Strategy Results</li></ul>
+		</li>
+		<li><a href="${urlBase}/srt.jsp"><strong>Sequence Retrieval</strong></a>
 			<ul><li  style="border:0">Retrieve Specific Sequences using IDs and coordinates</li></ul>
 		</li>
 	<li><a href="http://pathogenportal.org"><strong>Pathogen Portal</strong></a>
@@ -49,7 +53,7 @@
 			<ul><li  style="border:0">View Sequences and Features in the genome browser</li></ul>
 		</li>
 </c:if>
-
+    
 
 
 <c:choose>   <%-- SITES WITH FEW TOOLS, SO THERE IS SPACE IN BUCKET FOR DESCRIPTIONS --%>
@@ -62,7 +66,7 @@
                         <ul><li  style="border:0">Explore Automatically Defined Metabolic Pathways</li></ul>
                 </li>
 
-		<li><a href="<c:url value="/serviceList.jsp"/>"><strong>Searches via Web Services</strong></a>
+		<li><a href="${urlBase}/serviceList.jsp"><strong>Searches via Web Services</strong></a>
 			<ul><li style="border:0">Learn about web service access to our data</li></ul>
 		</li>
 	</c:when>
@@ -71,7 +75,7 @@
                         <ul><li  style="border:0">Explore Automatically Defined Metabolic Pathways</li></ul>
                 </li>
 
-		<li><a href="<c:url value="/serviceList.jsp"/>"><strong>Searches via Web Services</strong></a>
+		<li><a href="${urlBase}/serviceList.jsp"><strong>Searches via Web Services</strong></a>
 			<ul><li style="border:0">Learn about web service access to our data</li></ul>
 		</li>
 	</c:when>
@@ -80,7 +84,7 @@
                         <ul><li  style="border:0">Access Probeset data and <i>Toxoplasma</i> Array info</li></ul>
                 </li>
 
-		<li><p class="coloredtext" style="padding-top:6px;line-height:1em;">
+		<li><p>
 			<i>For additional tools, use the </i><b>Tools</b><i> menu in the gray toolbar above.....</i></p>
 		</li>
 
@@ -92,7 +96,7 @@
 	</c:when>
 	<c:otherwise>   <%----- Giardia, Trich and TriTryp:  fill in 2 empty lines to keep buckets aligned -----%>
 
-		<li><a href="<c:url value="/serviceList.jsp"/>"><strong>Searches via Web Services</strong></a>
+		<li><a href="${urlBase}/serviceList.jsp"><strong>Searches via Web Services</strong></a>
 			<ul><li style="border:0">Learn about web service access to our data</li></ul>
 		</li>
                 <%-- <li>&nbsp;<ul><li  style="border:0">&nbsp;</li></ul></li> --%>
@@ -104,7 +108,7 @@
 </c:when>
 <c:otherwise>   <%-- PLASMO: LOTS OF TOOLS, add descriptions as mouseovers --%>
 
-  		<li><p class="coloredtext" style="padding-top:16px;"><i>For additional tools, use the </i><b>Tools</b><i> menu in the gray toolbar above.....</i></p>
+  		<li><p><i>For additional tools, use the </i><b>Tools</b><i> menu in the gray toolbar above.....</i></p>
 		</li>
 
 	</ul>

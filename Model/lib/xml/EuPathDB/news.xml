@@ -223,7 +223,7 @@ Nucleic Acid Research
 Nucleic Acid Research<br>
 </span><big><br>
 We are pleased to announce the publication of a paper providing an
-update on the EuPathDB genomic resourse. &nbsp;The paper entitled
+update on the EuPathDB genomic resource. &nbsp;The paper entitled
 "EuPathDB: a portal to eukaryotic pathogen databases" is
 available <a
  href="http://nar.oxfordjournals.org/cgi/content/abstract/gkp941">here</a>
@@ -383,7 +383,7 @@ ApiDB is a portal that allows you to query simultaneously different apicomplexan
        <attribute name="item">
 
          <![CDATA[
-Please check the ApiDB <a href="http://apidbdb.org/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsift Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
+Please check the ApiDB <a href="http://apidbdb.org/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
           ]]>
        </attribute>
     </record>
@@ -564,7 +564,7 @@ We are pleased to announce this new release of the ApiDB.org Website and Databas
 <b>New/updated Queries</b>
 <ul>
 <li> New Query&Tools page with the "Query Grid". It summarizes at once which queries are avilable in each site.
-<li> Consistent query and parameter names accross sites.
+<li> Consistent query and parameter names across sites.
 <li> Genes by Pfam Domain: easier selecting a pfam term with Ajax.
 <li> Ortholog relationships spanning all supported organisms.
 <li> ApiDB site is catching up with Crypto, Plasmo and Toxo sites; ten new gene queries are offered in this release.

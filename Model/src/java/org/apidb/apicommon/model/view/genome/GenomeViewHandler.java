@@ -234,7 +234,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
         chromosomes.put(sequenceId, chromosome);
       }
     } finally {
-      SqlUtils.closeResultSetOnly(resultSet);
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
     return chromosomes;
   }

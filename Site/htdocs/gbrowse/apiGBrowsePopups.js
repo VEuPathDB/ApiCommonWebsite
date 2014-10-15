@@ -35,8 +35,8 @@ function fiveColRow(one, two, three, four, five) {
 
 /****** Favorite link functions for GBrowse ******/
 
-var saveFavTextLink = 'As Favorite <img width="20" src="' + wdk.assetsUrl('/wdk/images/favorite_gray.gif') + '"/>';
-var removeFavTextLink = 'Remove From Favorites <img width="20" src="' + wdk.assetsUrl('/wdk/images/favorite_color.gif') + '"/>';
+var saveFavTextLink = 'As Favorite <img width="20" src="' + wdk.assetsUrl('wdk/images/favorite_gray.gif') + '"/>';
+var removeFavTextLink = 'Remove From Favorites <img width="20" src="' + wdk.assetsUrl('wdk/images/favorite_color.gif') + '"/>';
 
 function applyCorrectFavoriteLink(sourceId, projectId) {
 	wdk.favorite.performIfItemIsFavorite(projectId, sourceId, 'GeneRecordClasses.GeneRecordClass',
@@ -55,8 +55,8 @@ function removeGeneAsFavorite(projectId, sourceId) {
 
 /****** Basket link functions for GBrowse ******/
 
-var saveBasketTextLink = GbrowsePopupConfig.addBasketText + ' <img width="20" src="' + wdk.assetsUrl('/wdk/images/basket_gray.png') + '"/>';
-var removeBasketTextLink = GbrowsePopupConfig.removeBasketText + ' <img width="20" src="' + wdk.assetsUrl('/wdk/images/basket_color.png') + '"/>';
+var saveBasketTextLink = GbrowsePopupConfig.addBasketText + ' <img width="20" src="' + wdk.assetsUrl('wdk/images/basket_gray.png') + '"/>';
+var removeBasketTextLink = GbrowsePopupConfig.removeBasketText + ' <img width="20" src="' + wdk.assetsUrl('wdk/images/basket_color.png') + '"/>';
 
 function applyCorrectBasketLink(sourceId, projectId) {
 	wdk.basket.performIfItemInBasket(projectId, sourceId, 'GeneRecordClasses.GeneRecordClass',
@@ -85,7 +85,7 @@ function checkLogin() {
 
 function performSavedItemOp(funcToCall, projectId, sourceId, selectionSuffix, nextFunction, nextLinkText) {
 	checkLogin();
-	jQuery('#'+sourceId+'_'+selectionSuffix).html('<img width="20" src="' + wdk.assetsUrl('/wdk/images/loading.gif') + '"/>');
+	jQuery('#'+sourceId+'_'+selectionSuffix).html('<img width="20" src="' + wdk.assetsUrl('wdk/images/loading.gif') + '"/>');
 	funcToCall(projectId, sourceId, 'GeneRecordClasses.GeneRecordClass',
 		    function(result) {
 				setSavedItemLink(projectId, sourceId, selectionSuffix, nextFunction, nextLinkText);
@@ -126,7 +126,7 @@ function getSaveRowLinks(projectId, sourceId) {
 /****** Pop-up functions for various record types ******/
 
 // Gene title
-function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, utr, gbLinkParams) {
+function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, utr, gbLinkParams, orthomcl) {
 
   // In ToxoDB, sequences of alternative gene models have to be returned
   var ignore_gene_alias = 0;
@@ -168,6 +168,7 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
   if (soTerm =='Protein Coding') {
       rows.push(twoColRow('Download:', cdsLink + " | " + proteinLink));
+      rows.push(twoColRow('OrthoMCL', orthomcl));
   }
   rows.push(twoColRow('Links:', gbLink + " | " + recordLink));
   
@@ -178,7 +179,7 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
 
 
 // Syntetic Gene title
-function syn_gene_title (tip, projectId, sourceId, taxon, geneType, desc, location, gbLinkParams) {
+function syn_gene_title (tip, projectId, sourceId, taxon, geneType, desc, location, gbLinkParams, orthomcl) {
 
 	var gbLink = '<a href="../../../../cgi-bin/gbrowse/' + projectId.toLowerCase() + '/?' + gbLinkParams + '">GBrowse</a>';
 	var recordLink = '<a href="../../../gene/' + sourceId + '">Gene Page</a>';
@@ -192,6 +193,11 @@ function syn_gene_title (tip, projectId, sourceId, taxon, geneType, desc, locati
 	rows.push(twoColRow('Location:', location));
 	rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
 	rows.push(twoColRow('Links:', gbLink + ' | ' + recordLink));
+
+  if (geneType =='Protein Coding') {
+      rows.push(twoColRow('OrthoMCL', orthomcl));
+  }
+
 
 	tip.T_TITLE = 'Syntenic Gene: ' + sourceId;
 	return table(rows);

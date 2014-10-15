@@ -62,7 +62,7 @@ sub snpBgFromIsCodingAndNonSyn {
   my $f = shift;
   my ($isCoding) = $f->get_tag_values("IsCoding"); 
   my $color = 'white';
-  if ($isCoding =~ /yes/i) {
+  if ($isCoding == 1 || $isCoding =~ /yes/i) {
     my ($nonSyn) = $f->get_tag_values("NonSyn"); 
     $color = $nonSyn? 'blue' : 'lightblue'; 
   }
@@ -75,7 +75,7 @@ sub snpColor {
              my ($isCoding) = $f->get_tag_values("IsCoding");
              my $color = 'white';
              my ($nonSyn) = $f->get_tag_values("NonSyn");
-             if ($isCoding eq 'yes') {
+             if ($isCoding == 1 || $isCoding eq 'yes') {
                $color = $nonSyn? 'blue' : 'lightblue';
              }
              return $color;
@@ -1004,16 +1004,45 @@ sub changeType {
 
 sub synSpanRelativeCoords { 
   my $f = shift; 
-  my ($off) = $f->get_tag_values("SynStart"); 
+
+  my ($leftAnchSyntenicLoc) = $f->get_tag_values("LeftAnchSyntenicLoc"); 
+  my ($rightAnchSyntenicLoc) = $f->get_tag_values("RightAnchSyntenicLoc"); 
+  my ($leftAnchRefLoc) = $f->get_tag_values("LeftAnchRefLoc"); 
+  my ($rightAnchRefLoc) = $f->get_tag_values("RightAnchRefLoc"); 
+  my ($leftAnchPrevRefLoc) = $f->get_tag_values("LeftAnchPrevRefLoc"); 
+  my ($rightAnchNextRefLoc) = $f->get_tag_values("LeftAnchNextRefLoc"); 
+
   my ($scale) = $f->get_tag_values("Scale");
-  return int($off*$scale+0.5);
+
+  my $strand = $f->strand();
+  my $start = $f->start();
+  my $end = $f->end();
+
+  # Forward Span Starts w/in Window;  Left anchor syntenic loc is exact position
+  if($strand == 1 && $leftAnchPrevRefLoc == -9999999999) {
+    return $leftAnchSyntenicLoc;
+  }
+
+  # Reverse Span Starts w/in Window;  Right anchor syntenic loc is exact position
+  if($strand == -1 && $rightAnchNextRefLoc == 9999999999) {
+    return $rightAnchSyntenicLoc;
+  }
+
+  if($strand == 1) {
+    return ($leftAnchSyntenicLoc - ($leftAnchRefLoc - $start) / $scale) * $scale;
+  }
+
+  if($strand == -1) {
+    return ($rightAnchSyntenicLoc + ($end - $rightAnchRefLoc) / $scale) * $scale;
+  }
+
 }
 
 
 sub synSpanScale { 
   my $f = shift; 
   my ($scale) = $f->get_tag_values("Scale");
-  return int($scale+0.5);
+  return $scale;
 }
 
 sub synSpanOffset { 
@@ -1044,7 +1073,7 @@ sub warnNote {
 			"<br>1. Make sure you are viewing the correct species/strain to which the data was mapped." .
 			"<br>2.<a style='font-weight:bold' href='/cgi-bin/gbrowse/$project/?reset=1'> Reset your GBrowse</a> and try again." .
 			"</div></td>" .
-			"<td style='font-size:120%;font-weight:bold;text-align:center;vertical-align:middle'><a onclick='poptastic(this.href); return false;' target='_blank' href='http://www.youtube.com/watch?v=jxA6VMN97Y8'>EuPathDB GBrowse Tutorial <img border='0' src='/assets/images/smallYoutube-icon.png' alt='YouTube icon' style='vertical-align:middle' title='YouTube tutorial'></a></td></tr></table>";
+			"<td style='font-size:120%;font-weight:bold;text-align:center;vertical-align:middle'><a onclick='poptastic(this.href); return false;' target='_blank' href='http://www.youtube.com/watch?v=jxA6VMN97Y8'>EuPathDB GBrowse Tutorial <img border='0' src='/a/images/smallYoutube-icon.png' alt='YouTube icon' style='vertical-align:middle' title='YouTube tutorial'></a></td></tr></table>";
 
   return $txt;
 }

@@ -69,13 +69,13 @@
 
 
 <!-- CYTOSCAPE start-->
- <!-- Flash embedding utility (needed to embed Cytoscape Web) -->
- <script type="text/javascript" src="/js/AC_OETags.min.js"></script>
+<!-- Flash embedding utility (needed to embed Cytoscape Web) -->
+<imp:script type="text/javascript" src="js/AC_OETags.min.js"/>
         
 <!-- Cytoscape Web JS API (needed to reference org.cytoscapeweb.Visualization) -->
- <script type="text/javascript" src="/js/cytoscapeweb.min.js"></script> 
+<imp:script type="text/javascript" src="js/cytoscapeweb.min.js"/>
 
-<script src="${pageContext.request.contextPath}/wdkCustomization/js/records/PathwayRecordClasses.PathwayRecordClass.js"></script>
+<imp:script src="wdkCustomization/js/records/PathwayRecordClasses.PathwayRecordClass.js"/>
 
 <script type="text/javascript">
   // get xgmml and draw the visualization
@@ -125,7 +125,7 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
 
 <ul id="vis-menu" class="sf-menu">
     <li><a href="#">File
-    <img title="NOTE: Saving of some XGMML or image files is not working at present. We apologize, and will try to fix this issue soon."  src="/a/assets/wdk/images/question.png" ></img></a>
+    <imp:image title="NOTE: Saving of some XGMML or image files is not working at present. We apologize, and will try to fix this issue soon."  src="wdk/images/question.png" /></a>
         <ul>
           <li> <a href="javascript:exportVisualization('xgmml', '${id}')">Save XGMML (XML)</a></li>
           <li> <a href="javascript:exportVisualization('png', '${id}')">Save image (PNG)</a></li>
@@ -133,7 +133,7 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
         </ul>
     </li>
     <li><a href="javascript:void(0)">Layout
-    <img title="Choose a Layout for the Pathway Map"  src="/a/assets/wdk/images/question.png" ></img></a>
+    <imp:image title="Choose a Layout for the Pathway Map"  src="wdk/images/question.png" /></a>
         <ul>
             <li><a  href="javascript:void(0)" onclick="changeLayout('Preset')">Kegg</a></li>
             <li><a  href="javascript:void(0)" onclick="changeLayout('ForceDirected')">ForceDirected</a></li>
@@ -144,7 +144,7 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
     </li>
 
     <li><a href="#">Paint Experiment
-    <img title="Choose an Experiment, to display its (average) expression profile on enzymes in the Map"  src="/a/assets/wdk/images/question.png" ></img></a>
+    <imp:image title="Choose an Experiment, to display its (average) expression profile on enzymes in the Map"  src="wdk/images/question.png" /></a>
         <ul>
             <li><a href="javascript:void(0)" onclick="changeExperiment('')">None</a></li>
 <c:set value="${wdkRecord.tables['PathwayGraphs']}" var="pathwayGraphs"/>
@@ -155,24 +155,50 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
     </li>
 
     <li><a href="#">Paint Genera
-    <img title="Choose a Genera set, to display the presence or absence of these for all enzymes in the Map "  src="/a/assets/wdk/images/question.png" ></img></a>
+    <imp:image title="Choose a Genera set, to display the presence or absence of these for all enzymes in the Map "  src="wdk/images/question.png" /></a>
         <ul>
-            <li><a href="javascript:void(0)" onclick="changeExperiment('')">None</a></li>
-            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Babesia,Cryptosporidium,Eimeria,Neospora,Plasmodium,Theileria,Toxoplasma', 'genus', '1')">Apicomplexa</a></li>
-            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Cryptosporidium,Plasmodium,Toxoplasma,Trypanosoma,Homo', 'genus','1')">Cryp,Toxo,Plas,Tryp,Host</a></li>
+          <li><a href="javascript:void(0)" onclick="changeExperiment('')">None</a></li>
+
+
+	  <c:if test="${projectId eq 'AmoebaDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Acanthamoeba,Entamoeba,Homo,Mus', 'genus', '1')">Acanthamoeba,Entamoeba,Human,Mouse</a></li>
+	  </c:if>
+
+	  <%-- Apicomplexa ---%>
+	  <c:if test="${projectId eq 'CryptoDB' || projectId eq 'PiroplasmaDB' || projectId eq 'PlasmoDB' || projectId eq 'ToxoDB'}"> 
+	    <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Babesia,Cryptosporidium,Eimeria,Gregarina,Neospora,Plasmodium,Theileria,Toxoplasma', 'genus', '1')">Apicomplexa</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Cryptosporidium,Plasmodium,Toxoplasma,Homo,Mus', 'genus','1')">Cryp,Toxo,Plas,Human,Mouse</a></li>
+	  </c:if>
+
+
+	  <c:if test="${projectId eq 'GiardiaDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Giardia,Spironucleus,Homo,Mus', 'genus', '1')">Giardia,Spironucleus,Human,Mouse</a></li>
+	  </c:if>
+
+	  <c:if test="${projectId eq 'MicrosporidiaDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Anncaliia,Edhazardia,Encephalitozoon,Enterocytozoon,Nematocida,Nosema,Spraguea,Trachipleistophora,Vavraia,Vittaforma,,Homo,Mus', 'genus', '1')">Microsporidia,Human,Mouse</a></li>
+	  </c:if>
+
+	  <c:if test="${projectId eq 'TriTrypDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Crithidia,Leishmania,Trypanosoma,Homo,Mus', 'genus', '1')">Crithidia,Leishmania,Trypanosoma,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Cryptosporidium,Plasmodium,Toxoplasma,Trypanosoma,Homo,Mus', 'genus','1')">Cryp,Toxo,Plas,Tryp,Human,Mouse</a></li>
+	  </c:if>
+
         </ul>
     </li>
-
-
-
 </ul>
-
 
  <div align="right">
 <a href="http://cytoscapeweb.cytoscape.org/">
     <img src="http://cytoscapeweb.cytoscape.org/img/logos/cw_s.png" alt="Cytosca
 pe Web"/></a>
 </div>
+
+<div>
+  <p><B>NOTE</B> Click on nodes for more info.  Nodes highlighted in <font color="red">red</font> are EC numbers that we have mapped to at least one gene. The nodes, as well as the info box, can be repositioned by dragging.
+<br />
+</div>
+
 
  <div id="cytoscapeweb">
   Cytoscape Web will replace the contents of this div with your graph.

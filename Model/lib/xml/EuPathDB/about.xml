@@ -24,7 +24,7 @@ entry point to all of these resources, and the opportunity to leverage orthology
 The EuPathDB databases are funded by NIAID and they have strict guidelines as to which organisms we can support.  EuPathDB is one of four <a href="http://www.niaid.nih.gov/labsandresources/resources/dmid/brc/Pages/default.aspx">NIH funded bioinformatics resource centers</a>.  Mainly we are to incorporate any eukaryotic pathogen that is deemed emerging or re-emerging (see <a href="http://www3.niaid.nih.gov/topics/emerging/list.htm">list</a>).  We also have some organisms that are not on the list, those were either added in the past on the behest of the community and additional funding (such as TrichDB), organisms that are related to emerging or re-emerging pathogen (such as Plasmodium or Neospora) and the trypanosomatids (funded as a pilot project by the Bill and Melinda Gates foundation).
 <br><br>
 The EuPathDB family of databases is expected to expand further over the coming years, incorporating new species including the Amoebozoa 
-(Entamoeba, Acanthamoebs), Microsporidia, and additional Apicomplexans, Kinetoplastida and Diplomonads. Of course, we continue collecting data 
+(Entamoeba, Acanthamoeba), Microsporidia, and additional Apicomplexans, Kinetoplastida and Diplomonads. Of course, we continue collecting data 
 that are being deposited at an ever-increasing rate, including additional genome sequences, microarray data, 
 probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), proteomics data, isolate data, phenotype information and metabolomic data.
 

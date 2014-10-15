@@ -2,6 +2,7 @@
 
 <modelConfig modelName="${model_name}"
              webServiceUrl="${webserviceurl}"
+             webAppUrl="${myURL}"
              smtpServer="${smtp_server}"
              supportEmail="${support_email}"
              defaultRole="${default_role}"

@@ -2005,7 +2005,7 @@ $css
 \n
 <table align=\"center\" WIDTH='640' cellpadding='0' cellspacing='0'>
 <tr>
-<td align='center' width=\"20\"><a href='/'><img src=\"/assets/images/<!--#echo var=\"PROJECT_ID\" -->/title_s.png\"></a></td>
+<td align='center' width=\"20\"><a href='/'><img src=\"/a/images/<!--#echo var=\"PROJECT_ID\" -->/title_s.png\"></a></td>
 </tr></tr>
 <td ALIGN=\"center\" valign=\"middle\">
 <b><font face=\"Arial,Helvetica\" size=+2>&nbsp;<!--#echo var=\"PROJECT_ID\" --> PubMed and Entrez Updates&nbsp;</font></b>

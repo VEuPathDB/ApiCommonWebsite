@@ -102,7 +102,7 @@
     <li><a>Tools</a>
       <ul>
         <li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
-        <li><a href="<c:url value="/analysisTools.jsp"/>"> Analysis Tools</a></li>
+        <li><a href="<c:url value="/analysisTools.jsp"/>"> Results Analysis</a></li>
         <li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
         <li><a href="http://pathogenportal.org"> Pathogen Portal</a></li>
 
@@ -231,14 +231,14 @@
       <c:choose>
         <c:when test="${wdkUser == null || wdkUser.guest}">
           <li id="favorite-menu"><a id="mybasket" onclick="wdk.user.login('/showFavorite.do');" href="javascript:void(0)">
-            <imp:image style="vertical-align:middle" height="20" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time." src="/wdk/images/favorite_color.gif"/>&nbsp;
+            <imp:image style="vertical-align:middle" height="20" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time." src="wdk/images/favorite_color.gif"/>&nbsp;
             <span style="vertical-align:middle" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time.">My Favorites</span>
             </a>
           </li>
         </c:when>
         <c:otherwise>
           <li id="favorite-menu"><a href="<c:url value="/showFavorite.do"/>">
-            <imp:image style="vertical-align:middle" height="20" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time." src="/wdk/images/favorite_color.gif"/>&nbsp;
+            <imp:image style="vertical-align:middle" height="20" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time." src="wdk/images/favorite_color.gif"/>&nbsp;
             <span style="vertical-align:middle" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time.">My Favorites</span>
             </a>
           </li>

@@ -333,6 +333,10 @@
         parameter="org.gusdb.wdk.controller.action.analysis.RunStepAnalysisAction"
         type="org.gusdb.wdk.controller.actionutil.WdkActionWrapper">
     </action>
+    <action path="/rerunStepAnalysis"
+        parameter="org.gusdb.wdk.controller.action.analysis.RerunStepAnalysisAction"
+        type="org.gusdb.wdk.controller.actionutil.WdkActionWrapper">
+    </action>
     <action path="/renameStepAnalysis"
         parameter="org.gusdb.wdk.controller.action.analysis.RenameStepAnalysisAction"
         type="org.gusdb.wdk.controller.actionutil.WdkActionWrapper">
@@ -572,6 +576,13 @@
     <action
       path="/getVocab"
       type="org.gusdb.wdk.controller.action.GetVocabAction"
+      scope="request"
+      name="questionForm"
+      validate="false">
+    </action>
+    <action
+      path="/getMetadata"
+      type="org.gusdb.wdk.controller.action.GetMetadataAction"
       scope="request"
       name="questionForm"
       validate="false">

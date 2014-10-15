@@ -1,14 +1,12 @@
 package org.apidb.apicommon.model;
 
-import java.io.IOException;
 import java.sql.SQLException;
-
-import junit.framework.Assert;
 
 import org.eupathdb.common.model.ProjectMapper;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ProjectMapperTest {
@@ -21,7 +19,7 @@ public class ProjectMapperTest {
   }
 
   @Test
-  public void testGetRecordUrl() throws WdkModelException, IOException {
+  public void testGetRecordUrl() throws WdkModelException {
     ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
     String recordClass = "GeneRecordClasses.GeneRecordClass";
     String projectId = "PlasmoDB";

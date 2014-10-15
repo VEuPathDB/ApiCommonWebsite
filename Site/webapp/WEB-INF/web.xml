@@ -61,6 +61,19 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!-- UrlRewrite filter -->
+  <!-- This is used in conjuction with the asset fingerprinting utilities in EuPathSiteCommon.
+       We also set some cache-related headers here (see /WEB-INF/urlrewrite.xml). -->
+  <filter>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- End UrlRewrite filter -->
+
   <filter>
     <filter-name>CheckLoginFilter</filter-name>
     <filter-class>org.gusdb.wdk.controller.filter.CheckLoginFilter</filter-class>
@@ -115,6 +128,7 @@
   </filter-mapping>
   <!-- End JavaMelody monitoring plugin configuration -->
   
+  <!-- Struts servlet to serve out most of the site -->
   <servlet>
     <servlet-name>wdkEuPathDbBrc</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
@@ -132,6 +146,22 @@
     <servlet-name>wdkEuPathDbBrc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  <!-- End Struts servlet and mapping -->
+
+  <!-- WSF Restful service filter -->
+  <servlet>
+    <servlet-name>WSF</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>org.gusdb.wsf.service.WsfServiceApplication</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WSF</servlet-name>
+    <url-pattern>/services/WsfService/*</url-pattern>
+  </servlet-mapping>
+  <!-- End of WSF Restful service filter -->
 
   <!-- The Welcome File List -->
   <welcome-file-list>

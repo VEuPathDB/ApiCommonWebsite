@@ -19,7 +19,7 @@
     </c:otherwise>
   </c:choose>
 
-  <link rel="stylesheet" href="${urlBase}/wdkCustomization/css/dataset-searches.css"/>
+  <imp:stylesheet rel="stylesheet" href="wdkCustomization/css/dataset-searches.css"/>
   <div class="dataset-searches"
     data-controller="eupathdb.datasetSearches.init"
     data-table="#dataset-records"
@@ -81,7 +81,7 @@
               (${short_attribution})
               <c:if test="${build_number_introduced eq wdkModel_.buildNumber}">
                 <imp:image alt="New feature icon" title="This is a new data set!"
-                  src="/wdk/images/new-feature.png"/>
+                  src="wdk/images/new-feature.png"/>
               </c:if>
               <span class="info wdk-tooltip" data-content="+ .dataset-tooltip-content"><jsp:text/></span>
               <div class="dataset-tooltip-content">

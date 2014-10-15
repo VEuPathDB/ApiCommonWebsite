@@ -1,10 +1,19 @@
 package org.apidb.apicommon.jmx.util;
 
-import org.apache.log4j.Logger;
-import java.util.*;
-import javax.naming.*;
-import javax.naming.directory.*;
 import java.util.ArrayList;
+import java.util.Hashtable;
+
+import javax.naming.Context;
+import javax.naming.NamingEnumeration;
+import javax.naming.NamingException;
+import javax.naming.directory.Attribute;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
+import javax.naming.directory.SearchControls;
+import javax.naming.directory.SearchResult;
+
+import org.apache.log4j.Logger;
 
 public class OrclSvcAliases {
     
@@ -46,9 +55,8 @@ public class OrclSvcAliases {
             Hashtable<String, String> env = new Hashtable<String, String>();
     
             env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-            String ldapUrl = "ldap://ds1.apidb.org " +
-                             "ldap://ds2.apidb.org " +
-                             "ldap://ds3.apidb.org";
+            String ldapUrl = "ldap://ds2.apidb.org " +
+                             "ldap://ds4.apidb.org "; 
             env.put(Context.PROVIDER_URL, ldapUrl);
             DirContext dctx = new InitialDirContext(env);
             

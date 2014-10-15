@@ -69,10 +69,6 @@
               required="false"
               description="Dataset ID (from Data Sets) for attribution"
 %>
-<%@ attribute name="downloadLink"
-              required="false"
-              description="download link"
-%>
 
 <c:set var="userAgent" value="${header['User-Agent']}"/>
 

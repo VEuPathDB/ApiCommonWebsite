@@ -15,6 +15,106 @@
     </record>
 -->
    <record>
+       <attribute name="headline">FungiDB 3.1 released</attribute>
+       <attribute name="date">18 September 2014 9:00AM</attribute>
+       <attribute name="tag">fungidb_release3.1</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+FungiDB 3.1 is released this month.
+
+<h3>Updates</h3>
+<p>14 RNA-Seq datasets are added for a total of 22 datasets.</p>
+<p>2 Microarray datasets are now available.</p>
+
+<h3>Corrections</h3>
+<p>SC25 of <span style="font-style: italic;">Cryptococcus gattii</span> R265 - SC25 changed to mitochondrial</p>
+
+<p>Corrected the exon phase interpretation of several JGI genomes:
+  <ul>
+    <li><span style="font-style: italic;">Aspergillus aculeatus</span> ATCC 16872</li>
+    <li><span style="font-style: italic;">Mucor circinelloides f. lusitanicus</span></li>
+    <li><span style="font-style: italic;">Phycomyces blakesleeanus</span> NRRL 1555(-)</li>
+    <li><span style="font-style: italic;">Phytophthora capsici</span></li>
+    <li><span style="font-style: italic;">Phanerochaete chrysosporium</span></li>
+    <li><span style="font-style: italic;">Phytophthora ramorum</span> Pr-102</li>
+    <li><span style="font-style: italic;">Pythium ultimum</span> DAOM BR144</li>
+    <li><span style="font-style: italic;">Tremella mesenterica</span> DSM 1558</li>
+  </ul>
+</p>
+
+<h3>Known issues</h3>
+<p>HTS SNPs remain unavailable until the next point release.</p>
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">FungiDB 3.0 released</attribute>
+       <attribute name="date">13 May 2014 9:00AM</attribute>
+       <attribute name="tag">fungidb_release3.0</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+This release of FungiDB 3.0 adds 12 new genomes for a total of 64 in the database.
+
+<p>New species include:
+  <ul>
+    <li><span style="font-style: italic;">Aspergillus niger</span> CBS 513.88</li>
+    <li><span style="font-style: italic;">Aspergillus aculeatus</span> ATCC 16872</li>
+    <li><span style="font-style: italic;">Candida glabrata</span> CBS 138</li>
+    <li><span style="font-style: italic;">Melampsora larici-populina</span> 98AG31</li>
+    <li><span style="font-style: italic;">Yarrowia lipolytica</span> CLIB122</li>
+    <li><span style="font-style: italic;">Pneumocystis jirovecii</span> SE8</li>
+    <li><span style="font-style: italic;">Allomyces macrogynus</span> ATCC 38327</li>
+    <li><span style="font-style: italic;">Spizellomyces punctatus</span> DAOM BR117</li>
+    <li><span style="font-style: italic;">Phycomyces blakesleeanus</span> NRRL 1555(-)</li>
+    <li><span style="font-style: italic;">Phytophthora parasitica</span> INRA-310</li>
+    <li><span style="font-style: italic;">Phytophthora cinnamomi var. cinnamomi</span> CBS 144.22</li>
+    <li><span style="font-style: italic;">Saprolegnia parasitica</span> CBS 223.65</li>
+  </ul>
+</p>
+
+<p>Mitochondrial contigs were added for:
+  <ul>
+    <li><span style="font-style: italic;">Aspergillus clavatus</span> NRRL 1</li>
+    <li><span style="font-style: italic;">Cryptococcus neoformans var. grubii</span> H99</li>
+    <li><span style="font-style: italic;">Cryptococcus gattii</span> R265</li>
+    <li><span style="font-style: italic;">Rhizopus delemar</span> RA 99-880</li>
+    <li><span style="font-style: italic;">Allomyces macrogynus</span> ATCC 38327</li>
+  </ul>
+</p>
+
+<h3>Updates</h3>
+<p>17 genomes were updated:
+  <ul>
+    <li><span style="font-style: italic;">Aspergillus fumigatus</span> Af293 - AspGD s03-m04-r13</li>
+    <li><span style="font-style: italic;">Aspergillus nidulans</span> FGSC A4 - AspGD s10-m01-r07</li>
+    <li><span style="font-style: italic;">Talaromyces marneffei</span> ATCC 18224 - Genbank 2009-08-26</li>
+    <li><span style="font-style: italic;">Botryotinia fuckeliana</span> B05.10 - Genbank 2009-08-10</li>
+    <li><span style="font-style: italic;">Candida albicans</span> SC5314 - CGD A21-s02-m07-r06</li>
+    <li><span style="font-style: italic;">Saccharomyces cerevisiae</span> S288c - SGD 2013-07-12</li>
+    <li><span style="font-style: italic;">Schizosaccharomyces pombe</span> 972h- - Pombase 2.20</li>
+    <li><span style="font-style: italic;">Neurospora crassa</span> OR74A - Broad 12</li>
+    <li><span style="font-style: italic;">Tremella mesenterica</span> DSM 1558 - JGI 1</li>
+    <li><span style="font-style: italic;">Puccinia graminis f. sp. tritici</span> CRL75-36-700-3 - Broad 2</li>
+    <li><span style="font-style: italic;">Ustilago maydis</span> 521 - MIPS 2013-04-19</li>
+    <li><span style="font-style: italic;">Phytophthora infestans</span> T30-4 - Broad 1</li>
+    <li><span style="font-style: italic;">Phytophthora ramorum</span> Pr-102 - JGI 1.1</li>
+    <li><span style="font-style: italic;">Phytophthora sojae</span> P6497 - JGI 3</li>
+    <li><span style="font-style: italic;">Hyaloperonospora arabidopsidis</span> Emoy2 - Ensembl 2013-12-07</li>
+    <li><span style="font-style: italic;">Pythium ultimum</span> DAOM BR144 - JCVI 2013-07-16</li>
+  </ul>
+</p>
+
+<h3>Known issues</h3>
+<p>Several RNASeq and Microarray datasets from the previous release are not available, but will be reloaded in the next point release.
+</p>
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
        <attribute name="headline">FungiDB 2.3 released</attribute>
        <attribute name="date">31 May 2013 9:00AM</attribute>
        <attribute name="tag">fungidb_release2.3</attribute>
@@ -52,7 +152,7 @@ release is now 52.
 <p>
 New genomics data available in this release include additional RNA-Seq
 experiments for <span style="font-style: italic;">Coprinopsis
-cinerea</span>. High Throughput SNP (HTS) discovery module have been addded for
+cinerea</span>. High Throughput SNP (HTS) discovery module have been added for
 <span style="font-style: italic;">Aspergillus fumigatus</span>
 and a population of 23 strains from <a href="http://gsc.jcvi.org/projects/gsc/a_fumigatus/">JCVI</a>.
 </p>
@@ -103,6 +203,7 @@ reflect the current state of the database. <br></br>
   ]]>
          </attribute>
    </record>
+
    <record>
        <attribute name="headline">FungiDB 2.1 released</attribute>
        <attribute name="date">12 Nov 2012 9:00AM</attribute>
@@ -114,6 +215,7 @@ FungiDB 2.1 is released and includes 39 Fungal genomes from Ascomycota, Basidiom
   ]]>
          </attribute>
    </record>
+
    <record>
        <attribute name="headline">2.0 released</attribute>
        <attribute name="date">1 Aug 2012 9:00AM</attribute>

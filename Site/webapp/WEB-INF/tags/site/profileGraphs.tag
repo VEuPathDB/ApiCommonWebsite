@@ -206,7 +206,7 @@
         <table id="profileContent">
         <tr>
         <td>
-          <img  id="${imgId}" src="<c:url value='/images/spacer.gif'/>">
+          <imp:image  id="${imgId}" src="images/spacer.gif"/>
         </td>
 
         <td class="centered">
@@ -216,7 +216,7 @@
            			<c:set var="prefix" 		value="http://${pageContext.request.serverName}" />
 
                 <%-- <c:import url="${prefix}${tableSrc}"  /> --%>
-                <wdk-ajax url="${tableSrc}"> </wdk-ajax>
+                <wdk-ajax manual url="${tableSrc}"> </wdk-ajax>
          		</c:set>
 
 <%--   Data table by some graphs --%>

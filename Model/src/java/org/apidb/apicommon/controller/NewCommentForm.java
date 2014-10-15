@@ -24,8 +24,6 @@ import org.apache.struts.util.LabelValueBean;
 import org.apidb.apicommon.model.GeneIdValidator;
 import org.apidb.apicommon.model.comment.MultiBox;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class NewCommentForm extends ActionForm {
@@ -541,14 +539,10 @@ public class NewCommentForm extends ActionForm {
            targetId = request.getParameter("commentTargetId"); 
         }
 
-        ArrayList<MultiBox> list;
-        try {
-          list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" );
-        }
-        catch (WdkModelException ex) {
-          throw new WdkRuntimeException(ex);
-        }
-   
+        ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context)
+            .getMultiBoxData("category", "target_category_id", "TargetCategory",
+                "comment_target_id='" + targetId + "'" );
+
         categoryList = new ArrayList<LabelValueBean>();
         for(MultiBox c : list) { 
            categoryList.add(new LabelValueBean(c.getName(), c.getValue()));
