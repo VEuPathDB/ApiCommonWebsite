@@ -204,26 +204,21 @@ sub handleNonGenomic {
     my $add = $self->{startOffset3} + $self->{endOffset3};
 
     $start_position = 1 if ($self->{startOffset3} ==0);
-    $self->{endOffset3} = $protLen if ($self->{endOffset3} ==0);
 
     if ($self->{endOffset3} == 0 && $self->{startOffset3} ==0) {
       # default : full sequence
       $seq_length= "$protLen";
-
     } elsif ($self->{startAnchor3} eq $END && $self->{endAnchor3} eq $END) {
       # when both Start and End are in terms of 'downstream from Stop'
-      $start_position = "$protLen + 1 - $self->{startOffset3}";
+      $start_position = "$protLen - $self->{startOffset3}";
       $seq_length = "$self->{startOffset3} - $self->{endOffset3}  + 1";
-
     } elsif ($self->{startAnchor3} eq $END) {
       # when Start is in terms of 'downstream from Stop'
-      $start_position = "$protLen + 1 - $self->{startOffset3}";
-      $seq_length = "$add - $protLen";
-
+      $start_position = "$protLen - $self->{startOffset3}";
+      $seq_length = "$add - $protLen + 1";
     } elsif ($self->{endAnchor3} eq $END) {
       # when End is in terms of 'downstream from Stop'
-      $seq_length = "$protLen + 2 - $add ";
-
+      $seq_length = "$protLen + 1 - $add ";
     } else {
       # when both Start and End are in terms of 'upstream from Start'
       $seq_length = "$self->{endOffset3} - $self->{startOffset3} + 1";
