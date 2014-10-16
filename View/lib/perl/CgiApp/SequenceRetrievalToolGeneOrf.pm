@@ -118,8 +118,8 @@ sub processParams {
 #    unless grep {$self->{startAnchor3} eq $_} @validAnchors;
 #  &error("'$self->{endAnchor3}' is an invalid anchor")
 #    unless grep {$self->{endAnchor3} eq $_} @validAnchors;
-#  &error("Illegal anchor combination: stop before start")
-#      if ((($self->{startAnchor3} eq $END || $self->{startAnchor3} eq $CODEEND) && ($self->{endAnchor3} eq $START || $self->{endAnchor3} eq $CODESTART)) || ($self->{startAnchor3} eq $CODESTART && $self->{endAnchor3} eq $START) || ($self->{startAnchor3} eq $END && $self->{downstreamAnchor3} eq $CODEEND));
+  &error("Illegal anchor combination: stop before start codest andcodeend: $START AND $END ")
+      if ((($self->{startAnchor3} eq $END || $self->{startAnchor3} eq $CODEEND) && ($self->{endAnchor3} eq $START || $self->{endAnchor3} eq $CODESTART)) || ($self->{startAnchor3} eq $CODESTART && $self->{endAnchor3} eq $START) || ($self->{startAnchor3} eq $END && $self->{downstreamAnchor3} eq $CODEEND));
 
 
   # check offsets
@@ -205,10 +205,7 @@ sub handleNonGenomic {
 
     $start_position = 1 if ($self->{startOffset3} ==0);
 
-    if ($self->{endOffset3} == 0 && $self->{startOffset3} ==0) {
-      # default : full sequence
-      $seq_length= "$protLen";
-    } elsif ($self->{startAnchor3} eq $END && $self->{endAnchor3} eq $END) {
+    if ($self->{startAnchor3} eq $END && $self->{endAnchor3} eq $END) {
       # when both Start and End are in terms of 'downstream from Stop'
       $start_position = "$protLen - $self->{startOffset3}";
       $seq_length = "$self->{startOffset3} - $self->{endOffset3}  + 1";
