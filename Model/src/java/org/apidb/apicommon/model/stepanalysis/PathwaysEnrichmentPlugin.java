@@ -83,17 +83,10 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String countColumn = "CNT";
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql = 
-        "SELECT count (distinct pn.display_label) as " + countColumn + NL +
-        "FROM   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec, " + NL +
-        "dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga, " + NL +
-        "apidb.pathwaynode pn," + NL +
+        "SELECT count (distinct gp.pathway_source_id) as " + countColumn + NL +
+        "FROM   apidbtuning.genepathway gp, " + NL +
         "(" + idSql + ") r" + NL +
-        "WHERE  ga.na_feature_id = t.parent_id" + NL +
-        "AND    t.na_feature_id = taf.na_feature_id" + NL +
-        "AND    taf.aa_sequence_id = asec.aa_sequence_id" + NL +
-        "AND    asec.enzyme_class_id = ec.enzyme_class_id" + NL +
-        "AND    pn.display_label = ec.ec_number" + NL +
-        "AND    ga.source_id = r.source_id";
+        "WhERe  gp.gene_source_id = r.source_id";
 
     LOG.info(sql);
     DataSource ds = getWdkModel().getAppDb().getDataSource();
@@ -147,12 +140,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     BasicResultSetHandler handler = new BasicResultSetHandler();
 
     // check for non-zero count of genes with Pathways
-    String sql = "SELECT count (distinct ga.source_id) as " + countColumn + NL +
-      "from  sres.enzymeClass ec, dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga, apidb.pathwaynode pn, (" + idSql + ") r" + NL +
-      "where  ga.aa_sequence_id = asec.aa_sequence_id" + NL +
-      "AND    asec.enzyme_class_id = ec.enzyme_class_id" + NL +
-      "and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))" + NL +
-      "and    ga.source_id = r.source_id";
+    String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
+      "from  apidbtuning.genepathway gp, (" + idSql + ") r" + NL +
+      "WHERE  gp.gene_source_id = r.source_id";
 
     new SQLRunner(ds, sql).executeQuery(handler);
 
