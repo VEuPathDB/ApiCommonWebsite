@@ -25,6 +25,15 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.FormatUtil.Style;
 
+/**
+ * Utility program to analyze the use of tag libraries in .tag and .jsp files.
+ * The main() program can be used to analyze a single file, or to recursively
+ * search for .tag and .jsp files from a directory.  It will tell where taglibs
+ * are declared but not used, and also give counts of the most popular used
+ * taglibs, and those that are declared but not used.
+ * 
+ * @author ryan
+ */
 public class TagLibStatistics {
 
   private static final Logger LOG = Logger.getLogger(TagLibStatistics.class);
@@ -152,7 +161,7 @@ public class TagLibStatistics {
     stats.addUsedPrefixes(usedPrefixes);
     stats.addUnusedPrefixes(file, taglibPrefixes);
   }
-  
+
   private Set<String> getDeclaredTaglibs(Path file) throws IOException {
     Set<String> taglibPrefixes = new HashSet<>();
     try (FileReader fr = new FileReader(file.toFile());
@@ -218,5 +227,4 @@ public class TagLibStatistics {
     System.exit(1);
     return null;
   }
-  
 }
