@@ -40,8 +40,10 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
   @Override public boolean isShowConnections() { return false; }
   @Override public long getShowConnectionsInterval() { return 0; }
   @Override public long getShowConnectionsDuration() { return 0; }
+  @Override public boolean getDefaultAutoCommit() { return true; }
+  @Override public boolean getDefaultReadOnly() { return false; }
   @Override public String getDriverInitClass() { return null; }
-  
+
   @Override
   public String toString() {
     return new StringBuilder("Config {").append(NL)
@@ -52,5 +54,4 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
         .append("  schemaName:       ").append(_schemaName).append(NL)
         .append("}").append(NL).toString();
   }
-
 }
