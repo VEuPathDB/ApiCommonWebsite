@@ -43,7 +43,14 @@ FROM ApidbTuning.estAttributes ea,  ApidbTuning.estSequence s
 WHERE ea.source_id = s.source_id
 and lower(ea.source_id) = lower (?)
 EOSQL
-}
+} elsif ($self->{type} eq 'Isolate') {
+    $sql = <<EOSQL;
+SELECT ia.source_id, s.sequence, ' | ' || ia.organism as description
+FROM ApidbTuning.IsolateAttributes ia,  ApidbTuning.IsolateSequence s
+WHERE ia.source_id = s.source_id
+and lower(ia.source_id) = lower (?)
+EOSQL
+  }
 
   my $sth = $dbh->prepare($sql);
 
@@ -137,6 +144,12 @@ EOSQL
   $sql = <<EOSQL;
 SELECT s.sequence
 FROM ApidbTuning.estSequence s
+WHERE lower(source_id) = lower(?)
+EOSQL
+} elsif ($type eq 'Isolate') {
+  $sql = <<EOSQL;
+SELECT s.sequence
+FROM ApidbTuning.IsolateSequence s
 WHERE lower(source_id) = lower(?)
 EOSQL
 }
