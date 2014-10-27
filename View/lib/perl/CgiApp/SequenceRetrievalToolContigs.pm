@@ -99,10 +99,8 @@ sub validateParams {
   if ($start < 1 || $end < 1 || $end <= $start) {
       &error("Start and End must be positive, and Start must be less than End (in global parameters)");
   }
-  my $type = $self->{type};
-  my ($sourceIds, $starts, $ends, $revComps, $type) =  &validateIds($ids, $start, $end, $revComp, $dbh, $type);
+  my ($sourceIds, $starts, $ends, $revComps, $type) =  &validateIds($ids, $start, $end, $revComp, $dbh, $self->{type});
 
-  
   return ($sourceIds, $starts, $ends, $revComps);
 }
 
@@ -156,8 +154,7 @@ EOSQL
   my @badIds;
   my $sth = $dbh->prepare($sql);
   foreach my $input (@inputInfo) {
-   $input =~ s/^\s+//;
-   # $input =~s/[\,\s]//g;
+    $input =~ s/^\s+//;
     my $inputId;
     if ($input =~ /^(\S+):\d+.*/ || $input =~ /^(\S+)/) {
 	$inputId = $1;
