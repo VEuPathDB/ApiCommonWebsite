@@ -121,7 +121,7 @@ sub validateIds {
 	  $input = $idParts[0];
       }
   }
-  elsif ($inputIdsString =~ /reverse|\(\d+\.\.\d+\)/) {
+  elsif ($inputIdsString =~ /\d+\.\.\d+\:r/) {
       @inputInfo= split(/\n/, $inputIdsString);
   }
   else {
@@ -156,18 +156,20 @@ EOSQL
   my @badIds;
   my $sth = $dbh->prepare($sql);
   foreach my $input (@inputInfo) {
+   $input =~ s/^\s+//;
+   # $input =~s/[\,\s]//g;
     my $inputId;
-    if ($input =~ /^(\S+)/) {
+    if ($input =~ /^(\S+):\d+.*/ || $input =~ /^(\S+)/) {
 	$inputId = $1;
 	push(@inputIds, $inputId);
     }
-    if ($input =~ /reverse/) {
+    if ($input =~ /.*\:r$/) {
 	push(@revComps, 1);
     }
     else {
         push(@revComps, $revComp);
     }
-    if ($input =~ /\((\d+)\.\.(\d+)\)/) {
+    if ($input =~ /.*\:(\d+)\.\.(\d+)/) {
 	if ($1 < 1 || $2 < 1 || $2 <= $1) {
 	    &error("Start and End must be positive, and Start must be less than End for sequence:  $inputId");
 	}
@@ -177,7 +179,7 @@ EOSQL
     else {
         push(@starts, $start);
 	push(@ends, $end);
-    }
+      }
     $sth->execute(uc($inputId));
 
     my $ref = $sth->fetchall_arrayref;
