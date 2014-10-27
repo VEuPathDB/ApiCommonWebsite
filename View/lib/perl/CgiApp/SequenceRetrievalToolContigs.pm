@@ -160,7 +160,7 @@ EOSQL
 	$inputId = $1;
 	push(@inputIds, $inputId);
     }
-    if ($input =~ /.*\:r$/) {
+    if ($input =~ /.*\:r(\r?)$/) {
 	push(@revComps, 1);
     }
     else {
