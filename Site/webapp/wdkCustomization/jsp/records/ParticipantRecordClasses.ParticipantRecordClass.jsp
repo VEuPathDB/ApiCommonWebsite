@@ -49,6 +49,8 @@
 
 <imp:wdkTable tblName="Characteristics" isOpen="true"/>
 
+<imp:wdkTable tblName="UncategorizedCharacteristics" isOpen="false"/>
+
 <imp:wdkTable tblName="Visits" isOpen="true"/>
 
 </imp:pageFrame>
