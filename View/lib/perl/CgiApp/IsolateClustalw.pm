@@ -137,7 +137,6 @@ EOSQL
   print "<pre>";
   print "<hr>.dnd file\n\n";
   while(<D>) {
-    chomp;
     print $_;
   }
   close D;
