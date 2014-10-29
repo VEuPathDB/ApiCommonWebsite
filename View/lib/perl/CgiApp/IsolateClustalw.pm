@@ -88,10 +88,10 @@ EOSQL
   my $range = 10000000;
   my $random = int(rand($range));
 
-  my $infile  = "/tmp/isolate_seq_tmp$random.fas";
-  my $outfile = "/tmp/isolate_seq_tmp$random.aln";
-  my $dndfile = "/tmp/isolate_seq_tmp$random.dnd";
-  my $tmpfile = "/tmp/isolate_seq_tmp$random.tmp";
+  my $infile  = "/tmp/isolate_clustalw_tmp$random.fas";
+  my $outfile = "/tmp/isolate_clustalw_tmp$random.aln";
+  my $dndfile = "/tmp/isolate_clustalw_tmp$random.dnd";
+  my $tmpfile = "/tmp/isolate_clustalw_tmp$random.tmp";
   
   open(OUT, ">$infile");
   print OUT $sequence;
