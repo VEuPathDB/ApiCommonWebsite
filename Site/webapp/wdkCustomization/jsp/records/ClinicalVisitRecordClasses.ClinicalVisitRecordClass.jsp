@@ -37,7 +37,7 @@
 	<imp:recordPageBasketIcon />
 </div>
 
-<%-- <c:set var="attr" value="${attrs['overview']}"/> --%>
+<c:set var="attr" value="${attrs['overview']}"/>
 <imp:panel 
     displayName="${attr.displayName}"
     content="${attr.value}"
