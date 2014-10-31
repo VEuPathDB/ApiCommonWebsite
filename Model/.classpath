@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="var" path="GUS_HOME/lib/java/db_driver/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/gdata-core-1.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>

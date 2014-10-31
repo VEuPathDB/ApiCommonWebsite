@@ -1,6 +1,5 @@
 package org.apidb.apicommon.model;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import org.eupathdb.common.model.ProjectMapper;
@@ -20,7 +19,7 @@ public class ProjectMapperTest {
   }
 
   @Test
-  public void testGetRecordUrl() throws WdkModelException, IOException {
+  public void testGetRecordUrl() throws WdkModelException {
     ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
     String recordClass = "GeneRecordClasses.GeneRecordClass";
     String projectId = "PlasmoDB";

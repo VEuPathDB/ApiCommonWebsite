@@ -43,7 +43,14 @@ FROM ApidbTuning.estAttributes ea,  ApidbTuning.estSequence s
 WHERE ea.source_id = s.source_id
 and lower(ea.source_id) = lower (?)
 EOSQL
-}
+} elsif ($self->{type} eq 'Isolate') {
+    $sql = <<EOSQL;
+SELECT ia.source_id, s.sequence, ' | ' || ia.organism as description
+FROM ApidbTuning.IsolateAttributes ia,  ApidbTuning.IsolateSequence s
+WHERE ia.source_id = s.source_id
+and lower(ia.source_id) = lower (?)
+EOSQL
+  }
 
   my $sth = $dbh->prepare($sql);
 
@@ -92,10 +99,8 @@ sub validateParams {
   if ($start < 1 || $end < 1 || $end <= $start) {
       &error("Start and End must be positive, and Start must be less than End (in global parameters)");
   }
-  my $type = $self->{type};
-  my ($sourceIds, $starts, $ends, $revComps, $type) =  &validateIds($ids, $start, $end, $revComp, $dbh, $type);
+  my ($sourceIds, $starts, $ends, $revComps, $type) =  &validateIds($ids, $start, $end, $revComp, $dbh, $self->{type});
 
-  
   return ($sourceIds, $starts, $ends, $revComps);
 }
 
@@ -114,7 +119,7 @@ sub validateIds {
 	  $input = $idParts[0];
       }
   }
-  elsif ($inputIdsString =~ /reverse|\(\d+\.\.\d+\)/) {
+  elsif ($inputIdsString =~ /\d+\.\.\d+\:r/) {
       @inputInfo= split(/\n/, $inputIdsString);
   }
   else {
@@ -139,22 +144,29 @@ SELECT s.sequence
 FROM ApidbTuning.estSequence s
 WHERE lower(source_id) = lower(?)
 EOSQL
+} elsif ($type eq 'Isolate') {
+  $sql = <<EOSQL;
+SELECT s.sequence
+FROM ApidbTuning.IsolateSequence s
+WHERE lower(source_id) = lower(?)
+EOSQL
 }
   my @badIds;
   my $sth = $dbh->prepare($sql);
   foreach my $input (@inputInfo) {
+    $input =~ s/^\s+//;
     my $inputId;
-    if ($input =~ /^(\S+)/) {
+    if ($input =~ /^(\S+):\d+.*/ || $input =~ /^(\S+)/) {
 	$inputId = $1;
 	push(@inputIds, $inputId);
     }
-    if ($input =~ /reverse/) {
+    if ($input =~ /.*\:r(\r?)$/) {
 	push(@revComps, 1);
     }
     else {
         push(@revComps, $revComp);
     }
-    if ($input =~ /\((\d+)\.\.(\d+)\)/) {
+    if ($input =~ /.*\:(\d+)\.\.(\d+)/) {
 	if ($1 < 1 || $2 < 1 || $2 <= $1) {
 	    &error("Start and End must be positive, and Start must be less than End for sequence:  $inputId");
 	}
@@ -164,7 +176,7 @@ EOSQL
     else {
         push(@starts, $start);
 	push(@ends, $end);
-    }
+      }
     $sth->execute(uc($inputId));
 
     my $ref = $sth->fetchall_arrayref;

@@ -80,6 +80,38 @@
           </tr>
         </table>
 
+        <table id="offsetOptions3" cellpadding="2">
+          <tr>
+            <td colspan="3">
+              <b>Choose the region of the protein sequence(s):</b>
+            </td>
+          </tr>
+          <tr>
+            <td>begin at</td>
+            <td align="left">
+              <select name="startAnchor3">
+                <option value="Start" selected>upstream from Start</option>
+                <option value="End">downstream from End</option>
+              </select>
+            </td>
+            <td align="left">
+              <input id="startOffset3" name="startOffset3" value="0" size="6"/> aminoacids
+            </td>
+          </tr>
+          <tr>
+            <td>end at</td>
+            <td align="left">
+              <select name="endAnchor3">
+                <option value="Start">upstream from Start</option>
+                <option value="End"  selected>downstream from End</option>
+              </select>
+            </td>
+            <td align="left">
+              <input id="endOffset3" name="endOffset3" value="0" size="6"> aminoacids
+            </td>
+          </tr>
+        </table>
+
 
       </td>
     </tr>
@@ -93,7 +125,10 @@
     <tr><td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
   </table>
 
-<p><sup>***</sup> Note: If UTRs have not been annotated for a gene, then choosing "transcription start" may have the same effect as choosing "translation start".</p>
+<p><b> Note: </b><br>
+For "genomic" sequence: If UTRs have not been annotated for a gene, then choosing "transcription start" may have the same effect as choosing "translation start".<BR>
+For "protein" sequence: you can only retrieve sequence contained within the ID(s) listed. i.e. from upstream of amino acid sequence start (ie. Methionine = 0) to downstream of the amino acid end (last amino acid in the protein = 0).
+</p>
 <br><br>
 
 </form>

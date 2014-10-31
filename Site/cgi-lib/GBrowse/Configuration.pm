@@ -17,7 +17,7 @@ umask 0;
 
 # Export Static Methods
 @ISA = qw(Exporter);
-@EXPORT = qw(init hover myfooter myheader mypostgrid site_version);  
+@EXPORT = qw(init hover myfooter myheader mypostgrid);
 
 sub new {
   my $class = shift;
@@ -58,18 +58,31 @@ sub init {
   }
 }
 
-sub site_version {
+# sub site_version {
+# 
+#   my $versionType = shift || 'buildNumber' ; # version type is releaseVersion or buildNumber 
+# 
+#   my $model = EuPathSiteCommon::Model::ModelXML->new('apiCommonModel.xml');
+#   my $projectId = $ENV{PROJECT_ID};
+# 
+#   if($versionType eq 'buildNumber') {
+#     return $model->getBuildNumberByProjectId($projectId);
+#   }
+# 
+#   return->getSiteVersionByProjectId($projectId);
+# }
 
-  my $versionType = shift || 'buildNumber' ; # version type is releaseVersion or buildNumber 
+sub getBuildNumber {
 
-  my $model = EuPathSiteCommon::Model::ModelXML->new('apiCommonModel.xml');
-  my $projectId = $ENV{PROJECT_ID};
+  my ($self) = @_;
 
-  if($versionType eq 'buildNumber') {
-    return $model->getBuildNumberByProjectId($projectId);
+  unless ($self->{_site_version}) {
+    my $model = EuPathSiteCommon::Model::ModelXML->new('apiCommonModel.xml');
+    my $projectId = $ENV{PROJECT_ID};
+    $self->{_site_version} = $model->getBuildNumberByProjectId($projectId);
   }
 
-  return->getSiteVersionByProjectId($projectId);
+    return $self->{_site_version};
 }
 
 sub lookupOrganismDirectory {
@@ -99,10 +112,10 @@ sub bam_file_path {
 
   if($orgAbbrev) {
     my $orgDirName = $self->lookupOrganismDirectory($orgAbbrev);
-    return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. "/$orgDirName/bam";
+    return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". $self->getBuildNumber. "/$orgDirName/bam";
   }
 
-  return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. '/bam';
+  return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". $self->getBuildNumber. '/bam';
 }
 
 sub bigwig_file_path {
@@ -110,10 +123,10 @@ sub bigwig_file_path {
 
   if($orgAbbrev) {
     my $orgDirName = $self->lookupOrganismDirectory($orgAbbrev);
-    return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. "/$orgDirName/bigwig";
+    return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". $self->getBuildNumber. "/$orgDirName/bigwig";
   }
 
-  return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". site_version. '/bigwig';
+  return "/var/www/Common/apiSiteFilesMirror/webServices/$ENV{PROJECT_ID}/build-". $self->getBuildNumber. '/bigwig';
 }
 
 sub userDB {
@@ -295,52 +308,8 @@ sub proteomicsCitationFromExtDatabaseNamePattern {
   }
 
   my $sql =<<EOL;
- WITH pubs as (select name, 
-                     id, 
-                     listagg(publication,',') WITHIN GROUP (order by publication) PMIDS, 
-                     contact_email 
-                from ( SELECT ds.name as name, 
-                              ds.dataset_presenter_id as id, 
-                              c.email as contact_email,
-                              p.pmid as publication 
-                         from ApidbTuning.DatasetPresenter ds,
-                              APIDBTUNING.datasetcontact c,
-                              APIDBTUNING.datasetpublication p
-                        where ds.dataset_presenter_id = c.dataset_presenter_id 
-                          and ds.dataset_presenter_id = p.dataset_presenter_id
-                          and c.is_primary_contact =1 
-                          and ds.type = 'protein_expression'
-                          and ds.subtype is null)
-                     group by name, id, contact_email),
-                     samples as ( select name, 
-                                         id,
-                                         listagg(sample_i,chr(10)) WITHIN GROUP (order by sample) sample_table
-                                    from ( select distinct ds.name as name,
-                                                  ds.dataset_presenter_id as id,
-                                                  sample,
-                                                  '<p style="color:' || html_color || '">' || sample || '</p>' as sample_i
-                                             from APIDBTUNING.MSPeptideSummary mps, ApidbTuning.DatasetPresenter ds
-                                            where (ds.name = mps.external_database_name or mps.external_database_name like ds.dataset_name_pattern)
-                                          )
-                                           group by name,id
-                                           
-                                 )
-SELECT name, 
-       dbms_lob.substr(description,4000,1) ||
-       ' Primary Contact Email: '|| nvl(email,'unavailable')||
-       ' PMID: ' || publications ||
-       '<p style="color:black">Samples:</p>' || sample_table || chr(10) ||
-       ' Please note that subtrack labels will disappear if the selected subtracks number is over 15!' as citation 
-  FROM (SELECT ds.name as name, 
-               ds.summary as description, 
-               pubs.contact_email as email, 
-               pubs.PMIDS as publications,
-               samples.sample_table as sample_table
-          FROM ApidbTuning.DatasetPresenter ds, 
-               pubs,
-               samples
-         where ds.dataset_presenter_id = pubs.id
-           and ds.dataset_presenter_id = samples.id )
+    select name, citation
+    from ApidbTuning.ProteomicsCitation
 EOL
   my $sth = $self->{dbh}->prepare($sql);
   $sth->execute() or $self->throw($sth->errstr);

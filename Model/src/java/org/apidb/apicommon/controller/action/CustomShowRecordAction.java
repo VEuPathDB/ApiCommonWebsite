@@ -1,6 +1,5 @@
 package org.apidb.apicommon.controller.action;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -97,7 +96,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
     
     private ActionForward redirectByProject(WdkModelBean wdkModel,
         String recordClass, String projectId, String sourceId) 
-            throws WdkModelException, IOException {
+            throws WdkModelException {
       // get project mapper
       ProjectMapper mapper = ProjectMapper.getMapper(wdkModel.getModel());
       String url = mapper.getRecordUrl(recordClass, projectId, sourceId);

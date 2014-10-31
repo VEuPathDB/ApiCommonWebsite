@@ -54,7 +54,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
         db = DatabaseInstance.getAllInstances().get(WdkModel.DB_INSTANCE_USER);
       }
       else {
-        db = new DatabaseInstance(config).initialize("Comment");
+        db = new DatabaseInstance(config, "Comment");
       }
 
       // create a factory instance
