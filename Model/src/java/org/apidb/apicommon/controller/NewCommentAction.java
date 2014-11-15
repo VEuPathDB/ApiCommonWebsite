@@ -276,10 +276,19 @@ public class NewCommentAction extends CommentAction {
         body.append("Comment Link: " + link + "\n");
         body.append("-------------------------------------------------------\n");
 
+        // used for redmine issue tracker
+        StringBuffer bodyRedmine = body;
+        bodyRedmine.append("Project: uiresulvb\n");
+        bodyRedmine.append("Tracker: Communication\n");
+        bodyRedmine.append("Assignee: annotator\n");
+        bodyRedmine.append("EuPathDB Team: Outreach\n");
+        bodyRedmine.append("Component:" + projectId + "\n");
+
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");
         request.setAttribute("subject", headline);
         request.setAttribute("body", body.toString());
+        request.setAttribute("bodyRedmine", bodyRedmine.toString());
 
         return forward;
     }
