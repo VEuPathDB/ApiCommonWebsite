@@ -277,7 +277,7 @@ public class NewCommentAction extends CommentAction {
         body.append("-------------------------------------------------------\n");
 
         // used for redmine issue tracker
-        StringBuffer bodyRedmine = body;
+        StringBuffer bodyRedmine = new StringBuffer(body.toString());
         bodyRedmine.append("Project: uiresulvb\n");
         bodyRedmine.append("Tracker: Communication\n");
         bodyRedmine.append("Assignee: annotator\n");
