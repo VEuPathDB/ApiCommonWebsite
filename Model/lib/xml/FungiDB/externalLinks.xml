@@ -38,6 +38,14 @@
             <attribute name="title"><![CDATA[Comparative Fungal Genome Platform]]></attribute>
             <attribute name="url"><![CDATA[http://cfgp.snu.ac.kr/]]></attribute>
         </row>
+<row>
+            <attribute name="title"><![CDATA[Fungal Genetics Stock Center]]></attribute>
+            <attribute name="url"><![CDATA[http://www.fgsc.net]]></attribute>
+        </row>
+<row>
+            <attribute name="title"><![CDATA[<i>Aspergillus</i> resouce link page at AspGD]]></attribute>
+            <attribute name="url"><![CDATA[http://www.aspergillusgenome.org/ExternalResources.shtml]]></attribute>
+        </row>
   </table>
 
 </record>
