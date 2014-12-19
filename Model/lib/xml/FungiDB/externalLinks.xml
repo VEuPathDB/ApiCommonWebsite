@@ -46,6 +46,10 @@
             <attribute name="title"><![CDATA[<i>Aspergillus</i> resouce link page at AspGD]]></attribute>
             <attribute name="url"><![CDATA[http://www.aspergillusgenome.org/ExternalResources.shtml]]></attribute>
         </row>
+<row>
+            <attribute name="title"><![CDATA[Oomycete Molecular Genetics Research Collaboration Network]]></attribute>
+            <attribute name="url"><![CDATA[http://pmgn.vbi.vt.edu/index.php]]></attribute>
+        </row>
   </table>
 
 </record>
