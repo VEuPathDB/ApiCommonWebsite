@@ -43,12 +43,12 @@ normal">Genomes:<o:p></o:p></b></p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pcoaHackeri_primary_genome_RSRC"><i
           style="mso-bidi-font-style:normal">Plasmodium
           <span class="SpellE">coatneyi</span></i> <span class="SpellE">Hackeri</span></a>
-      – first release of this unannotated genome in PlasmoDB (AB Prasad Lab; <span
+      - first release of this unannotated genome in PlasmoDB (AB Prasad Lab; <span
         class="SpellE">Genbank</span>
       version Jul 21, 2014)</p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=preiCDC_primary_genome_RSRC"><i
           style="mso-bidi-font-style:normal">Plasmodium
-          <span class="SpellE">reichenowi</span></i> CDC</a> – Newly-annotated.
+          <span class="SpellE">reichenowi</span></i> CDC</a> - Newly-annotated.
       Strain name changed from Dennis to CDC (<a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25203297">Otto
         et al</a><span class="GramE">.;</span> <span class="SpellE">GeneDB</span>
       version Sept 3, 2014)</p>
@@ -56,7 +56,7 @@ normal">Genomes:<o:p></o:p></b></p>
     <p class="MsoNoSpacing" style="margin-left:.25in">Proteomics:</p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pfal3D7_massSpec_Lasonder_Schizont_Phosphoproteome_RSRC">Schizont
         <span class="SpellE">Phosphoproteome</span> (3D7)(2012)(Lasonder et al.)</a>
-      – <span class="SpellE">Phosphoproteomic</span> analysis of <i style="mso-bidi-font-style:normal">Plasmodium
+      - <span class="SpellE">Phosphoproteomic</span> analysis of <i style="mso-bidi-font-style:normal">Plasmodium
         falciparum</i> 3D7 schizont stage</p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><o:p>&nbsp;</o:p></p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><b style="mso-bidi-font-weight:normal">RNA
@@ -64,7 +64,7 @@ normal">Genomes:<o:p></o:p></b></p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pfal3D7_Bartfai_time_series_rnaSeq_RSRC"><span
           class="SpellE">Intraerythrocytic</span>
         cycle <span class="SpellE">transcriptome</span> (3D7)(<span class="SpellE">Hoeijmakers</span>
-        et al.)</a> – RNA sequencing analysis of 8 time points during the <i style="mso-bidi-font-style:normal">P.
+        et al.)</a> - RNA sequencing analysis of 8 time points during the <i style="mso-bidi-font-style:normal">P.
         falciparum</i> 3D7 <span class="SpellE">intraerythrocytic</span> cycle.
       This dataset forms a pair with the previously integrated dataset "<em>P.
         falciparum
@@ -79,7 +79,7 @@ normal">Genomes:<o:p></o:p></b></p>
           style="mso-bidi-font-style:normal">Plasmodium
           <span class="SpellE">vivax</span></i> aligned genomic sequence reads -
         Hybrid Selection Project (<span class="SpellE">Kidgell</span> et al.)</a>
-      – <span class="SpellE">Illumina</span> whole genome sequencing of
+      - <span class="SpellE">Illumina</span> whole genome sequencing of
       collections of clinical <i style="mso-bidi-font-style:normal">Plasmodium
         <span class="SpellE">vivax</span></i> samples (175 isolates) from
       diverse geographic regions represented by the NIAID-funded International
@@ -88,7 +88,7 @@ normal">Genomes:<o:p></o:p></b></p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pyoeyoelii17X_HTS_SNP_Broad_100_genomes_RSRC,pfal3D7_HTS_SNP_Broad_100_genomes_RSRC"><em>Plasmodium
           <span class="SpellE">yoelii</span></em> and Plasmodium falciparum
         aligned genomic sequence reads - 100 genomes project (<span class="SpellE">Neafsey</span>
-        et al.) </a><span style="mso-spacerun:yes">&nbsp;</span><span class="GramE">–<span
+        et al.) </a><span style="mso-spacerun:yes">&nbsp;</span><span class="GramE"> - <span
           style="mso-spacerun:yes">&nbsp;
           </span><span class="SpellE">Illumina</span></span> whole genome
       shotgun sequencing of genomic DNA paired-end libraries of 55 <i style="mso-bidi-font-style:normal">P.
@@ -97,7 +97,7 @@ normal">Genomes:<o:p></o:p></b></p>
       17X. </p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="http://plasmodb.org/a/getDataset.do?datasets=pfal3D7_HTS_SNP_Plowe_symptomatic_malaria_analysis_RSRC"><em>Plasmodium
           falciparum</em> aligned genomic sequence reads - symptomatic malaria
-        isolates (<span class="SpellE">Plowe</span> et el.)</a> – Whole genome
+        isolates (<span class="SpellE">Plowe</span> et el.)</a> - Whole genome
       sequencing of isolates collected from symptomatic malaria patients.</p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><br>
     </p>
