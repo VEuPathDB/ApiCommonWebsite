@@ -21,6 +21,119 @@
     </record>
 -->
 <record>
+       <attribute name="headline">CryptoDB 8.0 News</attribute>
+       <attribute name="date">22 December 2014 13:00</attribute>
+       <attribute name="tag">crypto012_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of CryptoDB 8.0</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:<br>
+        <br>
+      </span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"></span>
+    <p class="MsoNoSpacing">The data set title below links to a full description
+      and list of associated searches and GBrowse tracks.</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">Annotated Genomes:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=cvelCCMP2878_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Chromera</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE"><span class="GramE">velia</span></span></i>
+        CCMP2878</a><i style="mso-bidi-font-style:normal"> </i><span style="mso-spacerun:yes">&nbsp;</span>–
+      first release in <span class="SpellE">CryptoDB</span> (produced by a
+      consortium led by King Abdullah University of Science and Technology;
+      version May 15, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=gnipUnknown_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Gregarina</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">niphandrodes</span></i> Unknown strain</a> –
+      first release in <span class="SpellE">CryptoDB</span>.<span style="mso-spacerun:yes">&nbsp;
+        </span>This genome has been moved from <span class="SpellE">ToxoDB</span>
+      to <span class="SpellE">CryptoDB</span>. (<a href="https://sites.google.com/site/toxoplasmagondiigscidproject/home">Toxoplasma
+Genome
+        Project</a>; <span class="SpellE">Genbank</span> version Apr 9, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=vbraCCMP3155_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Vitrella</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">brassicaformis</span></i> CCMP3155</a> – first
+      release in <span class="SpellE">CryptoDB</span> (produced by a consortium
+      led by King Abdullah University of Science and Technology; version May 15,
+      2014)</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">RNA Sequencing:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=cvelCCMP2878_Otto_rnaSeq_RSRC"><em><span
+            class="SpellE">Chromera</span>
+          <span class="SpellE"><span class="GramE">velia</span></span></em>
+        CCMP2878 <span class="SpellE">transcriptome</span> in normal culture
+        conditions (Woo et al.)</a> – <span class="SpellE">Illumina</span>-based
+      RNA-<span class="SpellE">seq</span> to generate <span class="SpellE">transcriptome</span>
+      map of <i style="mso-bidi-font-style:normal">C. <span class="SpellE"><span
+            class="GramE">velia</span></span></i>
+      under a normal culturing condition.</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=vbraCCMP3155_Otto_rnaSeq_RSRC"><em><span
+            class="SpellE">Vitrella</span>
+          <span class="SpellE">brassicaformis</span></em> CCMP3155 <span
+          class="SpellE">transcriptome</span>
+        in normal culture conditions (Woo et al.)</a> – <span class="SpellE">Illumina</span>-<span
+        class="GramE">based
+        <span style="mso-spacerun:yes">&nbsp;</span>RNA</span>-<span class="SpellE">seq</span>
+      to generate <span class="SpellE">transcriptome</span> map of <i style="mso-bidi-font-style:
+normal">V. <span class="SpellE">brassicaformis</span></i> under a normal
+      culturing condition.</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">Improvements
+        and updates:<o:p></o:p></b></p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
+      was updated to the latest NCBI version 2.2.30. </p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
+      performance is improved following EuPathDB infrastructure changes.</p>
+    <div style="text-align: justify;">
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
+        </span> </div>
+      <div style="text-align: justify;"> </div>
+      <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+              style="font-style: italic;"><span
+                style="text-decoration: underline;">Note:</span>
+              Our bimonthly database releases incorporate new data and correct
+              old data when necessary.&nbsp; Changes in annotation and new
+              experimental data may slightly alter your search results by
+              increasing or decreasing the number of hits. When search
+              parameters change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+              the search and ask you to rerun it. When IDs are updated or
+              removed, we map the old IDs to the new ones, remove the old IDs
+              from your Basket, and leave your Favorites page alone.</span></span><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+              style="font-style: italic;"></span></span></span>
+        <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+            <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+                on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+              style="font-weight: bold; font-style: italic;">,
+              <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      </div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+          ]]>
+       </attribute>
+</record>
+<record>
        <attribute name="headline">CryptoDB 7.0 News</attribute>
        <attribute name="date">10 September 2014 13:00</attribute>
        <attribute name="tag">crypto08_14_news</attribute>

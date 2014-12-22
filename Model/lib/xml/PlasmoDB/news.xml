@@ -18,8 +18,122 @@
     </record>
 -->
 <record>
-       <attribute name="headline">PlasmoDB 12.0 Released
-         <![CDATA[
+       <attribute name="headline">
+         <![CDATA[PlasmoDB 13.0 Released
+         ]]>
+         </attribute>
+       <attribute name="date">22 December 2010 13:00</attribute>
+       <attribute name="tag">plasmo12_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[ <body>
+    <div style="text-align: justify;"><strong>We are pleased to announce the
+        release of PlasmoDB 13.0</strong><strong></strong><br>
+      <br>
+      <br>
+      <strong>New data in this release</strong>:</div>
+    <br>
+    
+    <p class="MsoNoSpacing">The data set title below links to a full description
+      and list of associated searches and GBrowse tracks.</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">Genomes:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pcoaHackeri_primary_genome_RSRC"><i
+          style="mso-bidi-font-style:normal">Plasmodium
+          <span class="SpellE">coatneyi</span></i> <span class="SpellE">Hackeri</span></a>
+      – first release of this unannotated genome in PlasmoDB (AB Prasad Lab; <span
+        class="SpellE">Genbank</span>
+      version Jul 21, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=preiCDC_primary_genome_RSRC"><i
+          style="mso-bidi-font-style:normal">Plasmodium
+          <span class="SpellE">reichenowi</span></i> CDC</a> – Newly-annotated.
+      Strain name changed from Dennis to CDC (<a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25203297">Otto
+        et al</a><span class="GramE">.;</span> <span class="SpellE">GeneDB</span>
+      version Sept 3, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in">Proteomics:</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pfal3D7_massSpec_Lasonder_Schizont_Phosphoproteome_RSRC">Schizont
+        <span class="SpellE">Phosphoproteome</span> (3D7)(2012)(Lasonder et al.)</a>
+      – <span class="SpellE">Phosphoproteomic</span> analysis of <i style="mso-bidi-font-style:normal">Plasmodium
+        falciparum</i> 3D7 schizont stage</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><b style="mso-bidi-font-weight:normal">RNA
+        Sequencing:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pfal3D7_Bartfai_time_series_rnaSeq_RSRC"><span
+          class="SpellE">Intraerythrocytic</span>
+        cycle <span class="SpellE">transcriptome</span> (3D7)(<span class="SpellE">Hoeijmakers</span>
+        et al.)</a> – RNA sequencing analysis of 8 time points during the <i style="mso-bidi-font-style:normal">P.
+        falciparum</i> 3D7 <span class="SpellE">intraerythrocytic</span> cycle.
+      This dataset forms a pair with the previously integrated dataset "<em>P.
+        falciparum
+      </em> 3D7 <span class="SpellE">MNase-Seq</span> Nucleosome Occupancy (<span
+        class="SpellE">Barfai</span>
+      et al)", which was collected from the exact same batch of synchronized
+      parasites.</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><b style="mso-bidi-font-weight:normal">Whole
+        genome sequencing of isolates for SNP analysis:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="http://plasmodb.org/a/getDataset.do?datasets=pvivSal1_HTS_SNP_Broad_whitePaper_hybridSelection_RSRC"><i
+          style="mso-bidi-font-style:normal">Plasmodium
+          <span class="SpellE">vivax</span></i> aligned genomic sequence reads -
+        Hybrid Selection Project (<span class="SpellE">Kidgell</span> et al.)</a>
+      – <span class="SpellE">Illumina</span> whole genome sequencing of
+      collections of clinical <i style="mso-bidi-font-style:normal">Plasmodium
+        <span class="SpellE">vivax</span></i> samples (175 isolates) from
+      diverse geographic regions represented by the NIAID-funded International
+      Centers of Excellence for Malaria Research (ICEMRs), as well as non-ICEMR
+      locations.</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pyoeyoelii17X_HTS_SNP_Broad_100_genomes_RSRC,pfal3D7_HTS_SNP_Broad_100_genomes_RSRC"><em>Plasmodium
+          <span class="SpellE">yoelii</span></em> and Plasmodium falciparum
+        aligned genomic sequence reads - 100 genomes project (<span class="SpellE">Neafsey</span>
+        et al.) </a><span style="mso-spacerun:yes">&nbsp;</span><span class="GramE">–<span
+          style="mso-spacerun:yes">&nbsp;
+          </span><span class="SpellE">Illumina</span></span> whole genome
+      shotgun sequencing of genomic DNA paired-end libraries of 55 <i style="mso-bidi-font-style:normal">P.
+        falciparum</i> isolates and <i style="mso-bidi-font-style:normal">P. <span
+          class="SpellE">yoelii</span></i>
+      17X. </p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="http://plasmodb.org/a/getDataset.do?datasets=pfal3D7_HTS_SNP_Plowe_symptomatic_malaria_analysis_RSRC"><em>Plasmodium
+          falciparum</em> aligned genomic sequence reads - symptomatic malaria
+        isolates (<span class="SpellE">Plowe</span> et el.)</a> – Whole genome
+      sequencing of isolates collected from symptomatic malaria patients.</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><br>
+    </p>
+    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">&nbsp;&nbsp;&nbsp;
+        Improvements and updates:<o:p></o:p></b></p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
+      was updated to the latest NCBI version 2.2.30. </p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
+      performance is improved following EuPathDB infrastructure changes.</p>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span>
+      <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
+            style="font-style: italic;">EuPathDB
+            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+          style="font-weight: bold; font-style: italic;">,
+          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+      <span style="font-weight: bold; font-style: italic;"></span></div>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span><span
+        style="font-weight: bold; font-style: italic;"></span></div>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[PlasmoDB 12.0 Released
          ]]>
          </attribute>
        <attribute name="date">10 September 2014 13:00</attribute>
