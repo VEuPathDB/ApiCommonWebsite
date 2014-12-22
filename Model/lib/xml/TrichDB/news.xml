@@ -20,6 +20,62 @@
     </record>
 -->
 <record>
+      <attribute name="headline">TrichDB 2.0 Released</attribute>
+       <attribute name="date">22 December 2014 12:00</attribute>
+       <attribute name="tag">trich12_14news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+ <![CDATA[
+ <body>
+    <div style="text-align: justify;"><b style="mso-bidi-font-weight:normal">We
+        are pleased to announce the release of <span class="SpellE">TrichDB</span>
+        2.0<o:p></o:p></b>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal"><o:p>&nbsp;</o:p></b></p>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">This is a
+          major release of <span class="SpellE">TrichDB</span> and constitutes
+          a complete rebuild of the database.<span style="mso-spacerun:yes">&nbsp;
+            </span>This means that the genome was reloaded (along with new
+          annotation, see below) and genome analyses were rerun and improved.<o:p></o:p></b></p>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal"><o:p>&nbsp;</o:p></b></p>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">New data in
+          this release:<o:p></o:p></b></p>
+      <p class="MsoNoSpacing">The data set title below links to a full
+        description and list of associated searches and GBrowse tracks.</p>
+      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+      <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">Genome:<o:p></o:p></b></p>
+      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=tvagG3_primary_genome_RSRC"><em><span
+              class="SpellE">Trichomonas</span>
+            <span class="SpellE">vaginalis</span> </em>G3</a> - <span class="SpellE">reannotated</span>
+        (Carlton Lab version Sept 12, 2014)</p>
+    </div>
+    <div style="text-align: justify;"><br>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span>
+      <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
+            style="font-style: italic;">EuPathDB
+            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+          style="font-weight: bold; font-style: italic;">,
+          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+      <span style="font-weight: bold; font-style: italic;"></span><span style="font-weight: bold; font-style: italic;"></span></div>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+    
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
       <attribute name="headline">New Tutorials</attribute>
        <attribute name="date">08 May 2014 12:00</attribute>
        <attribute name="tag">trich5_14news</attribute>
