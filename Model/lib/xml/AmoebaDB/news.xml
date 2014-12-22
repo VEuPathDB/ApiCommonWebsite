@@ -31,9 +31,7 @@
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
           data in this release</strong>:</span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;">
-      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">New data in
-          this release:<o:p></o:p></b></p>
+    <div style="text-align: justify;"> 
       <p class="MsoNoSpacing">The data set title below links to a full
         description and list of associated searches and GBrowse tracks.</p>
       <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
@@ -41,7 +39,7 @@
 normal">RNA Sequencing<o:p></o:p></b></p>
       <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=ehisHM1IMSS_smallNcRna_Singh_Small_RNA_RSRC"><span
             class="SpellE">Argonaute</span>
-          2-2 Associated small RNAs (Zhang et al.)</a> <span style="mso-spacerun:yes">&nbsp;</span>–RNA
+          2-2 Associated small RNAs (Zhang et al.)</a> <span style="mso-spacerun:yes">&nbsp;</span> - RNA
         sequencing of small RNAs that co-precipitate with the <span class="SpellE">Argonaute</span>
         2-2 protein in virulent <span class="SpellE"><i style="mso-bidi-font-style:normal">Entamoeba</i></span><i
           style="mso-bidi-font-style:normal">
