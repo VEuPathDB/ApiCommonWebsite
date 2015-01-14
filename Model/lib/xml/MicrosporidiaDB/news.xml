@@ -16,7 +16,7 @@
    </record>
 --> 
 <record>
-      <attribute name="headline">MicrosporidiaDB 5.2 Released</attribute>
+      <attribute name="headline">MicrosporidiaDB 8.1 Released</attribute>
        <attribute name="date">14 January 2015 12:00</attribute>
        <attribute name="tag">micro12_14news</attribute>
        <attribute name="category">release</attribute>
