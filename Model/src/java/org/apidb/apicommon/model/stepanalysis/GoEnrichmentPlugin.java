@@ -125,7 +125,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "(" + idSql + ") r"  + NL +
       "where gts.source_id = r.source_id" + NL +
       "and gts.ontology = '" + ontology + "'" + NL +
-      "and gts.source in (" + sourcesStr + ")" + NL
+      "and gts.displayable_source in (" + sourcesStr + ")" + NL
       // +  "and gts.evidence_code in (" + evidCodesStr + ")" + NL
       ;
 
@@ -211,25 +211,17 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql = getAnswerValue().getIdSql();
 
     // find annotation sources used in the result set
-    String sql = "select distinct gts.source" + NL +
+    String sql = "select distinct gts.displayable_source" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.source_id = r.source_id";
     new SQLRunner(ds, sql).executeQuery(handler);
     List<Option> sources = new ArrayList<>();
-    int rowCnt = 0;
     String sourcesStr = "";
 
-    // HACK: For now, allow only two sources, interpro and the annotation center.  We do this so we can hard-code
-    // reasonable display names for each (which are not available in the database).  If we ever have more than just
-    // these two sources this hack will not work and we'll need to find a way to do it in the database
-    // DO NOT change this hack without making a parallel change in the perl code
     for (Map<String,Object> cols : handler.getResults()) {
-      String src = cols.get("SOURCE").toString();
-      String srcDisplay = src.toLowerCase().equals("interpro")? "InterPro predictions" : "Annotation Center";
-      rowCnt++;
-      sources.add(new Option(src, srcDisplay));
+      String srcDisplay = cols.get("DISPLAYABLE_SOURCE").toString();
+      sources.add(new Option(srcDisplay, srcDisplay));
     }
-    if (rowCnt > 2) throw new WdkModelException("Found more than two sources for GO Annotation: " + sourcesStr);
 
     // find ontologies used in the result set
     sql = "select distinct gts.ontology" + NL +
