@@ -14,6 +14,63 @@
     </record>
 --> 
 <record>
+      <attribute name="headline">GiardiaDB 5.2 Released</attribute>
+       <attribute name="date">14 January 2015 12:00</attribute>
+       <attribute name="tag">giardia12_14news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+<![CDATA[
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of GiardiaDB 5.2</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+        style="font-family: Helvetica,Arial,sans-serif;"></span></div>
+    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal"><br>
+        Improvements and updates:<br>
+      </b></p>
+    <p class="MsoPlainText"><br>
+      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b></p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
+      was updated to the latest NCBI version 2.2.30. </p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
+      performance is improved following EuPathDB infrastructure changes.</p>
+    <div style="text-align: justify;">
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+          style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <div style="text-align: justify;"> </div>
+      <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+              style="font-style: italic;"><span
+                style="text-decoration: underline;">Note:</span>
+              Our bimonthly database releases incorporate new data and correct
+              old data when necessary.&nbsp; Changes in annotation and new
+              experimental data may slightly alter your search results by
+              increasing or decreasing the number of hits. When search
+              parameters change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+              the search and ask you to rerun it. When IDs are updated or
+              removed, we map the old IDs to the new ones, remove the old IDs
+              from your Basket, and leave your Favorites page alone.</span></span><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+              style="font-style: italic;"></span></span></span>
+        <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+            <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+                on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+              style="font-weight: bold; font-style: italic;">,
+              <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      </div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">GiardiaDB 5.0 released</attribute>
        <attribute name="date">10 September 2014 12:00</attribute>
        <attribute name="tag">giardia08_14_news</attribute>
