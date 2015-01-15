@@ -216,7 +216,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "where gts.source_id = r.source_id";
     new SQLRunner(ds, sql).executeQuery(handler);
     List<Option> sources = new ArrayList<>();
-    String sourcesStr = "";
 
     for (Map<String,Object> cols : handler.getResults()) {
       String srcDisplay = cols.get("DISPLAYABLE_SOURCE").toString();
