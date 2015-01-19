@@ -1,6 +1,6 @@
 package org.apidb.apicommon.jmx.mbeans;
 
-import org.gusdb.wdk.jmx.mbeans.BeanBase;
+import org.gusdb.wdk.jmx.BeanBase;
 
 public class ServletVersions extends BeanBase implements ServletVersionsMBean   {
 

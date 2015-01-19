@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
-import org.gusdb.wdk.jmx.mbeans.BeanBase;
+import org.gusdb.wdk.jmx.BeanBase;
 
 
 /**
