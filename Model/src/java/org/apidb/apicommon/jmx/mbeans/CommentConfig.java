@@ -1,6 +1,6 @@
 package org.apidb.apicommon.jmx.mbeans;
 
-import org.gusdb.wdk.jmx.mbeans.AbstractConfig;
+import org.gusdb.wdk.jmx.mbeans.AbstractAttributesBean;
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.controller.CommentActionUtility;
 import org.apache.log4j.Logger;
@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  * @see org.gusdb.wdk.jmx.mbeans.AbstractConfig#setValuesFromGetters
  * @see org.apidb.apicommon.model.comment.CommentConfig
  */
-public class CommentConfig extends AbstractConfig {
+public class CommentConfig extends AbstractAttributesBean {
 
   private static final Logger logger = Logger.getLogger(CommentConfig.class);
 
