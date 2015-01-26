@@ -21,16 +21,8 @@
  
 <br/><span class="smallTitle">------ Data in ${project}</span>
   
-<c:choose>
-<c:when test="${project == 'TrichDB'}">
-  <c:set var="linkToDataSummary" value="/eupathGenomeTable.jsp" />
-  <c:set var="linkToGeneMetrics" value="/showXmlDataContent.do?name=XmlQuestions.GeneMetrics" />
-</c:when>
-<c:otherwise>
   <c:set var="linkToDataSummary" value="/processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes" />
   <c:set var="linkToGeneMetrics" value="/processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics" />
-</c:otherwise>
-</c:choose>
 
   <li><a href="${baseUrl}${linkToDataSummary}">Organisms</a></li>
   <c:if test="${project eq 'CryptoDB'}">
@@ -77,6 +69,7 @@
 	
 <br/><span class="smallTitle">------ Technical</span>
 	
+	<li><a href="/documents/EuPathDB_Section_508.pdf">Accessibility VPAT</a></li>
 	<li><a href="${baseUrl}/showXmlDataContent.do?name=XmlQuestions.Infrastructure">EuPathDB Infrastructure</a></li>
 	<li><a href="/proxystats/awstats.pl?config=${fn:toLowerCase(project)}.org">Website Usage Statistics</a></li>
     

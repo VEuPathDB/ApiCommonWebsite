@@ -692,6 +692,25 @@ sub fosmidTitle {
 }
 
 
+
+
+sub transposableElementsTitle { 
+  my $f = shift;
+  my $bulkFeatureName = shift;
+  my $trackName = shift;
+
+  my $start = $f->start;
+  my $stop  = $f->stop;
+  my $length = $stop - $start + 1;
+  my $cname = $f->name;
+  my @data; 
+  push @data, [ "Transposable Element:"     => $cname ]; 
+  push @data, [ 'Size:'     => $length ]; 
+  push @data, [ 'Location:' => "$start..$stop"];
+  
+  hover($f, \@data);
+}
+
 sub genericEndFeatureTitle { 
   my $f = shift;
   my $bulkFeatureName = shift;

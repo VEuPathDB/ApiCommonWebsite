@@ -17,6 +17,7 @@
 <c:set var="projectIdLowerCase" value="${fn:toLowerCase(projectId)}"/>
 <c:set var="pathwayImageId" value="${attrs['image_id'].value}" />
 <c:set var="pathwayName" value="${attrs['description'].value}" />
+<c:set var="pathwaySource" value="${attrs['pathway_source'].value}" />
 
 <imp:pageFrame title="${wdkModel.displayName} : Met Pathway ${id}"
              refer="recordPage"
@@ -80,7 +81,7 @@
 <script type="text/javascript">
   // get xgmml and draw the visualization
   $(function() {
-    drawVisualization("${id}");
+    drawVisualization("${id}", "${pathwaySource}");
   });
 </script>        
 
@@ -135,7 +136,9 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
     <li><a href="javascript:void(0)">Layout
     <img title="Choose a Layout for the Pathway Map"  src="/a/assets/wdk/images/question.png" ></img></a>
         <ul>
-            <li><a  href="javascript:void(0)" onclick="changeLayout('Preset')">Kegg</a></li>
+  <c:if test="${pathwaySource eq 'KEGG'}"> 
+            <li><a  href="javascript:void(0)" onclick="changeLayout('Preset')">Kegg</a></li>  
+</c:if>
             <li><a  href="javascript:void(0)" onclick="changeLayout('ForceDirected')">ForceDirected</a></li>
             <li><a href="javascript:void(0)" onclick="changeLayout('Tree')">Tree</a></li>
             <li><a href="javascript:void(0)" onclick="changeLayout('Circle')">Circle</a></li>
@@ -217,10 +220,16 @@ pe Web"/></a>
 
 
   <c:set var="reference">
+  <c:if test="${pathwaySource eq 'KEGG'}"> 
 <br>Data for KEGG Metabolic Pathways were procured from the <a href="http://www.kegg.jp/">Kyoto Encyclopedia of Genes and Genomes (KEGG)</a>.
+ </c:if>
+  <c:if test="${pathwaySource eq 'TrypanoCyc'}"> 
+<br>Data for TrypanoCyc Metabolic Pathways were procured from the <a href="http://vm-trypanocyc.toulouse.inra.fr/">TrypanoCyc</a>, a community annotated Pathway/Genome Database of </i>Trypanosoma brucei</i>.
+ </c:if>
 <br> This data was mapped to EC Numbers obtained from the official genome annotations of organisms, and to Compounds from the NCBI repository.<br>
 <!-- The images and maps for KEGG pathways are copyright of <a href="http://www.kanehisa.jp/">Kanehisa Laboratories</a> (<a href="http://www.kegg.jp/kegg/legal.html">Copyright 1995-2012</a>).-->
 Coloring of the pathway maps was performed in house with custom scripts and annotation information.<br>
+
   </c:set>
 <br>
 <br>

@@ -19,6 +19,131 @@
     </record>
 -->
 <record>
+       <attribute name="headline">TriTrypDB 9.0 Released</attribute>
+       <attribute name="date">22 December 2014 12:00</attribute>
+       <attribute name="tag">tryp12_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item"> 
+ <![CDATA[
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of TriTrypDB 9.0</strong><span style="font-weight: bold;"></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"></span><b style="mso-bidi-font-weight:normal"><o:p></o:p></b>
+    <p class="MsoNoSpacing">The data set title below links to a full description
+      and list of associated searches and GBrowse tracks.</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">New Annotated Genomes: <o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><a href="/a/getDataset.do?datasets=tcruDm28c_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Trypanosoma</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">cruzi</span></i> Dm28c</a> - first
+      release in <span class="SpellE">TriTrypDB</span> (<a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24482508"><span
+          class="SpellE">Grisard</span>
+        et al.</a>; <span class="SpellE">Genbank</span> version Nov 13, 2013)</p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><a href="/a/getDataset.do?datasets=tranSC58_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Trypanosoma</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">rangeli</span></i> SC58</a> - first release in <span
+        class="SpellE">TriTrypDB</span>
+      (<a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25233456"><span class="SpellE">Stoco</span>
+        et al.</a>; <span class="SpellE">Genbank</span> version Oct 30, 2013)</p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">Updated Genomes:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><a href="/a/getDataset.do?datasets=tcruCLBrener_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Trypanosoma</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">cruzi</span></i> CL <span class="SpellE">Brener</span></a><span
+        class="MsoHyperlink">
+      </span> - re-annotated (<a href="http://www.genedb.org/Homepage/Tcruzi"><span
+          class="SpellE">GeneDB</span>
+        version</a> Sept 16, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><a href="/a/getDataset.do?datasets=tcruCLBrenerEsmeraldo-like_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Trypanosoma</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">cruzi</span></i> CL <span class="SpellE">Brener</span>
+        <span class="SpellE">Esmeraldo</span>-like</a> - re-annotated (<a href="http://www.genedb.org/Homepage/Tcruzi"><span
+          class="SpellE">GeneDB</span>
+        version</a> Sept 16, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><a href="/a/getDataset.do?datasets=tcruCLBrenerNon-Esmeraldo-like_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Trypanosoma</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">cruzi</span></i> CL <span class="SpellE">Brener</span>
+        Non-<span class="SpellE">Esmeraldo</span>-like</a> - re-annotated (<a href="http://www.genedb.org/Homepage/Tcruzi"><span
+          class="SpellE">GeneDB</span>
+        version</a> Sept 16, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><a href="/a/getDataset.do?datasets=tevaSTIB805_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Trypanosoma</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">evansi</span></i> STIB 805</a> - annotation
+      corrected (<a href="http://schnauferlab.bio.ed.ac.uk/index.html"><span class="SpellE">Schnaufer</span>
+        Lab</a>; version Jun 3, 2014)</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">RNA Sequencing:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=tbruTREU927_Gowthaman_mRNA_rnaSeq_RSRC"><span
+          class="SpellE">Procyclic</span>
+        and bloodstream form <span class="SpellE">transcriptomes</span> and
+        ribosome profiling (Jensen et al.)</a> - Ribosome profiling and mRNA
+      sequencing in animal-derived slender bloodstream forms (<i style="mso-bidi-font-style:
+normal">T. <span class="SpellE">brucei</span></i> 927) and insect <span class="SpellE">midgut</span>
+      cultured <span class="SpellE">procyclic</span> forms (<i style="mso-bidi-font-style:normal">T.
+        <span class="SpellE">brucei</span></i> Lister 427).</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">Improvements
+        and updates:<o:p></o:p></b></p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
+      was updated to the latest NCBI version 2.2.30. </p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
+      performance is improved following EuPathDB infrastructure changes.</p>
+    <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
+      </span> </div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+    </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">TriTrypDB 8.1 Released</attribute>
        <attribute name="date">10 September 2014 12:00</attribute>
        <attribute name="tag">tryp08_14_news</attribute>

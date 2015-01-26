@@ -3,20 +3,17 @@
 require_once dirname(__FILE__) . "/JolModule.php";
 
 /**
- * Superclass for OpenConections mbean access
+ * Superclass for DBInstances mbean access
  *
  * @author Mark Heiges <mheiges.edu>
  * @package Module
  * @subpackage Database
 
  */
-class ConnectionPool extends JolModule {
+class DBInstances extends JolModule {
 
-  protected $role;
-
-  public function __construct($dbName) {
+  public function __construct() {
     parent::__construct();
-    $this->role = $dbName;
   }
 
   /**
@@ -37,8 +34,7 @@ class ConnectionPool extends JolModule {
   }
 
   private function get_mbean() {
-    return 'org.gusdb.wdk:type=Database,role=' .
-           $this->role . ',data=ConnectionPool' .
+    return 'org.gusdb.wdk:type=Database,status=DBInstances' .
            ',path=' . $this->path_name;
   }
 

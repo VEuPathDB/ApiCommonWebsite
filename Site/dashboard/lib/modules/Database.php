@@ -10,17 +10,17 @@ require_once dirname(__FILE__) . "/JolModule.php";
  * @subpackage Database
 
  */
-abstract class Database extends JolModule {
+class Database extends JolModule {
 
-  private $mbean;
   protected $role;
 
-  public function __construct() {
+  public function __construct($dbName) {
     parent::__construct();
+    $this->role = $dbName;
   }
 
   /**
-   * @return array Application Database attributes
+   * @return array Database attributes
    */
   public function attributes() {
     $req = new JolRequest($this->jol_base_url);

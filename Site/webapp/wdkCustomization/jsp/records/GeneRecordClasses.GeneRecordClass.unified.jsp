@@ -233,7 +233,7 @@ organismFull:   Plasmodium falciparum 3D7
 </div>
 
 <!--------------  NOTE on data with ReleasePolicy, or default text for Unpublished data ---------------->
-<c:if test="${projectId ne 'TrichDB' }">
+
   <c:choose>
   <c:when test="${attrs['release_policy'].value  != null}">
     <b>NOTE: ${attrs['release_policy'].value }</b>
@@ -244,7 +244,7 @@ organismFull:   Plasmodium falciparum 3D7
     </c:if>
   </c:otherwise>
   </c:choose>
-</c:if>
+
 
 <%--##########################  SECTION  BEFORE ANNOTATION   ################################--%>
 
@@ -360,12 +360,12 @@ organismFull:   Plasmodium falciparum 3D7
    <c:set var="revCompOn" value="1"/>
 </c:if>
 
-
-<imp:mercatorTable tblName="MercatorTable" isOpen="false" 
-     cgiUrl="/cgi-bin" projectId="${projectId}" 
-     revCompOn="${revCompOn}" contigId="${sequence_id}" 
-     start="${start}" end="${end}" /> 
-
+<c:if test="${projectId ne 'TrichDB'}">
+      <imp:mercatorTable tblName="MercatorTable" isOpen="false" 
+           cgiUrl="/cgi-bin" projectId="${projectId}" 
+           revCompOn="${revCompOn}" contigId="${sequence_id}" 
+           start="${start}" end="${end}" /> 
+</c:if>
 
 <%-------COMMENT OUT FOR DEBUGGING: MetaTable --%> 
 <%--
@@ -455,10 +455,12 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
 
 
 <%-- PlasmoGem --%>
-<c:if test="${attrs['has_plasmogem_info'] eq '1'}">
-  <imp:panel 
-    displayName="PlasmoGem"
-    content="${attrs['plasmogem_link']}" />
+<c:if test="${project_id eq 'PlasmoDB'}">
+  <c:if test="${attrs['has_plasmogem_info'] eq '1'}">
+    <imp:panel 
+      displayName="PlasmoGem"
+      content="${attrs['plasmogem_link']}" />
+  </c:if>
 </c:if>
 
 <%-- from giardia new in build21--%>
@@ -467,7 +469,7 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
 </c:if> 
 
 
-<!-- Giardia: Gene Deprecation:  TODO.  Temporarily remove because not loaded in rebuild --> 
+<!-- Giardia: Gene Deprecation:  TODO.  Temporarily remove because not l?project_id=oaded in rebuild --> 
 <%-- imp:wdkTable tblName="GeneDeprecation" isOpen="true"/ --%>
 
 <%-- was already commented out
@@ -688,7 +690,7 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
 
 <c:set var="seq">
  <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
-  Sequence Length: ${fn:length(totSeq)} bp<br/>
+  Sequence Length: ${fn:length(totSeq)} b<pbr/>
 </c:set>
 
 <c:set var="downloadLink">
