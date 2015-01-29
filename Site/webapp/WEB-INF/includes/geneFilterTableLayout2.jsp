@@ -39,18 +39,27 @@
     <th rowspan=4>All<br>Results</th>
     <th rowspan=4>Ortholog<br>Groups</th>
 
-  <c:if test="${not empty layout.superFamilyCountMap}">
+  <c:choose>
+  <c:when test="${not empty layout.superFamilyCountMap}">
     <c:forEach items="${layout.superFamilyCountMap}" var="phylum" >
       <th colspan="${phylum.value}"><i>${phylum.key}</i></th>
 	  </c:forEach>
   </tr>
 
   <tr>
-  </c:if>
- 		<c:forEach items="${layout.sortedFamilyCountMap}" var="family" >
+    <c:forEach items="${layout.sortedFamilyCountMap}" var="family" >
     	<th colspan="${family.value}"><i>${fn:substringAfter(family.key,'-')}</i></th>
  		</c:forEach>
   </tr>
+  </c:when>
+
+  <c:otherwise>
+ 		<c:forEach items="${layout.sortedFamilyCountMap}" var="family" >
+    	<th colspan="${family.value}"><i>${family.key}</i></th>
+ 		</c:forEach>
+  </tr>
+  </c:otherwise>
+  </c:choose>
 
 	<!-- ========================= SPECIES TITLE  (if distinct true will generate a gene count) ================ -->
 	<!-- ================================================= -->
