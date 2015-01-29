@@ -32,32 +32,35 @@
 
 <table>
 
-	<!-- ======================== FAMILY TITLE (includes all and orthologs)  ================ -->
+	<!-- ========================PHYLUM (if provided) and  FAMILY TITLE (includes all and orthologs)  ================ -->
 	<!-- ================================================= -->
-
-  <tr>
-    <th rowspan=4>All<br>Results</th>
-    <th rowspan=4>Ortholog<br>Groups</th>
-
   <c:choose>
+
   <c:when test="${not empty layout.superFamilyCountMap}">
+    <tr>
+      <th rowspan=4>All<br>Results</th>
+      <th rowspan=4>Ortholog<br>Groups</th>
+
     <c:forEach items="${layout.superFamilyCountMap}" var="phylum" >
       <th colspan="${phylum.value}"><i>${phylum.key}</i></th>
 	  </c:forEach>
-  </tr>
+    </tr>
 
-  <tr>
+    <tr>
     <c:forEach items="${layout.sortedFamilyCountMap}" var="family" >
     	<th colspan="${family.value}"><i>${fn:substringAfter(family.key,'-')}</i></th>
  		</c:forEach>
-  </tr>
+    </tr>
   </c:when>
 
   <c:otherwise>
+    <tr>
+      <th rowspan=3>All<br>Results</th>
+      <th rowspan=3>Ortholog<br>Groups</th>
  		<c:forEach items="${layout.sortedFamilyCountMap}" var="family" >
     	<th colspan="${family.value}"><i>${family.key}</i></th>
  		</c:forEach>
-  </tr>
+    </tr>
   </c:otherwise>
   </c:choose>
 
