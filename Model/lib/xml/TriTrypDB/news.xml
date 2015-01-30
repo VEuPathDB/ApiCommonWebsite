@@ -25,7 +25,13 @@
        <attribute name="category">release</attribute>
        <attribute name="item"> 
  <![CDATA[
- <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>TriTrypDB_12_14_news</title>
+  </head>
+  <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
           are pleased to announce the release of TriTrypDB 9.0</strong><span style="font-weight: bold;"></span><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
@@ -95,165 +101,7 @@ normal">Updated Genomes:<o:p></o:p></b></p>
         <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
             style="font-size: 15px; color: black; background-color: transparent; font-weight: bold; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><br>
           </span></p>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
-            style="font-size: 15px; color: black; background-color: transparent; font-weight: bold; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Functional
-            Annotation Updated:</span><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-          </span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
-            style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Annotation
-            updated: products, GO terms, EC numbers, gene names and synonyms.</span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">L.
-              braziliensis</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              MHOM/BR/75/M2904</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-            325 genes with </span><a href="http://www.genedb.org/rss/Lbraziliensis/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=ldonBPK282A1_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">L.
-              donovani </span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">BPK282A1</span></a><span
-            style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-            295 genes with </span><a href="http://www.genedb.org/rss/Ldonovani_BPK282A1/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=linfJPCM5_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">L.
-              infantum</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              JPCM5</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-            247 genes with</span><a href="http://www.genedb.org/rss/Linfantum/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              updated annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=lmajFriedlin_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">L.
-              major</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              strain Friedlin</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-            326 genes with </span><a href="http://www.genedb.org/rss/Lmajor/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=lmexMHOMGT2001U1103_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">L.
-              mexicana</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              MHOM/GT/2001/U1103</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-            &nbsp;233 genes with </span><a href="http://www.genedb.org/rss/Lmexicana/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">Trypanosoma
-              brucei</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              927</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">):
-            1078 genes with </span><a href="http://www.genedb.org/rss/Tbruceibrucei927/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.
-          </span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=tbrugambienseDAL972_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">T.
-              brucei gambiense</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              DAL972</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-            262 genes with </span><a href="http://www.genedb.org/rss/Tbruceigambiense/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=tconIL3000_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">Trypanosoma
-              congolense</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-              IL3000</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">):
-            257 genes with </span><a href="http://www.genedb.org/rss/Tcongolense/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a></p>
-        <br>
-        <p dir="ltr" style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><a
-            href="http://tritrypdb.org/a/getDataset.do?datasets=tcruCLBrener_primary_genome_RSRC"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">Trypanosoma
-              cruzi </span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">CL
-              Brener</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-            - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-              version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-            1549 genes with </span><a href="http://www.genedb.org/rss/Tcruzi/since/4/months"
-            style="text-decoration:none;"><span
-              style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-              annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
-        <br>
-        <a href="http://tritrypdb.org/a/getDataset.do?datasets=tvivY486_primary_genome_RSRC"
-          style="text-decoration:none;"><span
-            style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: italic; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">Trypanosoma
-            vivax</span><span style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">
-            Y486</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-          - updated (</span><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2014-12/"
-          style="text-decoration:none;"><span
-            style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">GeneDB
-            version Nov 20, 2014</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">)
-          &nbsp;233 genes with </span><a href="http://www.genedb.org/rss/Tvivax/since/4/months"
-          style="text-decoration:none;"><span
-            style="font-size: 15px; color: #1155cc; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;">updated
-            annotations</span></a><span style="font-size: 15px; color: black; background-color: transparent; font-weight: normal; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></b></p>
-    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+      </b></p>
     <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
 normal">RNA Sequencing:<o:p></o:p></b></p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=tbruTREU927_Gowthaman_mRNA_rnaSeq_RSRC"><span
@@ -304,6 +152,8 @@ normal">T. <span class="SpellE">brucei</span></i> 927) and insect <span class="S
           style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
+</html>
+
           ]]>
        </attribute>
     </record>
