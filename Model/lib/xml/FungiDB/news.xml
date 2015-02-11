@@ -14,6 +14,37 @@
        </attribute>
     </record>
 -->
+<record>
+       <attribute name="headline">Open letter to the Aspergillus research community</attribute>
+       <attribute name="date">11 February 2015 13:30AM</attribute>
+       <attribute name="tag">open_letter</attribute>
+       <attribute name="category">news</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<h2>HTML Instant : Real-Time HTML Editor!</h2>
+
+<p>Start typing in the left frame, and it will update in real-time to the right frame.</p>
+<p>An open letter to the <em>Aspergillus</em> research community on genome database resources:</p>
+
+	<p style="text-align:justify">As many of you may already be aware, the NIH R01 research grant that has supported development of the <a href="http://aspgd.org">AspGD</a> database will not be renewed … not because the NIH doesn't appreciate the value and importance of this resource to the <em>Aspergillus</em> research community, but because the current funding climate makes it difficult to support curation-intensive databases serving individual pathogens and relatively small research communities.  However,  NIH has provided one year of funding to ensure that information from AspGD is integrated into <a href="http://fungidb.org">FungiDB</a>, a component of the <a href="http://eupathdb.org">EuPathDB</a> Bioinformatics Resource Center.  We do not anticipate that AspGD will disappear: you should still be able to access the existing web site, at least for the foreseeable future, but curatorial engagement will have to be significantly reduced over the coming months.</p>
+
+	<p style="text-align:justify">The EuPathDB family of databases supports a wide range of microbial eukaryotes, including protozoan parasites and many fungal and oomycete species, including non-pathogens.  This resource has been specifically designed to provide sustainable, cost-effective automated analysis of multiple genomes, integrating curated information where available, along with comments and supporting evidence from the user community (PubMedIDs, phenotypic information, images, datasets, etc).  In addition to gene records, browser views, and data downloads, FungiDB also provides a variety of sophisticated tools for integrating and mining diverse Omics datasets, which we expect that <em>Aspergillus</em> researchers and other fungal biologists will find quite useful.  See sidebar on the FungiDB web site for access to tutorials, videos, and exercises; more fungi-specific materials should become available over the coming months.</p>
+
+	<p style="text-align:justify">AspGD and FungiDB/EuPathDB will be working together to maximize value to the <em>Aspergillus</em> community, given the limited resources available.  The upcoming AsperFest12 and 28th Fungal Genetics meetings in Asilomar (March 16-22, 2015) will be attended by staff from both groups, with presentations and a ‘help-desk’ to introduce the <em>Aspergillus</em> community to FungiDB.  We look forward to productive discussions on how to ensure that <em>Aspergillus</em> researchers retain access to information from AspGD, learn to use FungiDB effectively and have a voice in its further development, and craft a strategy for meeting future informatics needs.</p>
+
+	<ul>
+	<li>Jessica Kissinger (Univ Georgia) — Joint-PI, EuPathDB</li>
+	<li>Michelle Momany (Univ Georgia) — Community Liaison, AspGD & FungiDB</li>
+	<li>David Roos (Univ Pennsylvania) — Joint-PI, EuPathDB; Co-PI, FungiDB</li>
+<li>Gavin Sherlock (Stanford Univ) — Principal Investigator, AspGD</li>
+<li>Jason Stajich (UC Riverside) — Principal Investigator, FungiDB</li>
+<li>Jennifer Wortman (Broad Inst) — Co-PI, AspGD</li>
+</ul>
+	
+ ]]>
+       </attribute>
+    </record>
+
    <record>
        <attribute name="headline">FungiDB 3.1 released</attribute>
        <attribute name="date">18 September 2014 9:00AM</attribute>
