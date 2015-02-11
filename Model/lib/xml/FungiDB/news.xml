@@ -21,9 +21,7 @@
        <attribute name="category">news</attribute>
        <attribute name="item">           
          <![CDATA[
-<h2>HTML Instant : Real-Time HTML Editor!</h2>
 
-<p>Start typing in the left frame, and it will update in real-time to the right frame.</p>
 <p>An open letter to the <em>Aspergillus</em> research community on genome database resources:</p>
 
 	<p style="text-align:justify">As many of you may already be aware, the NIH R01 research grant that has supported development of the <a href="http://aspgd.org">AspGD</a> database will not be renewed … not because the NIH doesn't appreciate the value and importance of this resource to the <em>Aspergillus</em> research community, but because the current funding climate makes it difficult to support curation-intensive databases serving individual pathogens and relatively small research communities.  However,  NIH has provided one year of funding to ensure that information from AspGD is integrated into <a href="http://fungidb.org">FungiDB</a>, a component of the <a href="http://eupathdb.org">EuPathDB</a> Bioinformatics Resource Center.  We do not anticipate that AspGD will disappear: you should still be able to access the existing web site, at least for the foreseeable future, but curatorial engagement will have to be significantly reduced over the coming months.</p>
