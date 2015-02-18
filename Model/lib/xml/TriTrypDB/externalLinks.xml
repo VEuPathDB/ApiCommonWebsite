@@ -57,7 +57,7 @@
         </row> 
         <row>
           <attribute name="title">Chagas Disease - American Trypanosomiasis</attribute>
-          <attribute name="url">http://www.who.int/neglected_diseases/diseases/chagas/en/</attribute>
+          <attribute name="url">http://www.who.int/topics/chagas_disease/en/</attribute>
         </row> 
         <row>
           <attribute name="title">Leishmaniasis</attribute>
@@ -74,10 +74,6 @@
         <row>
           <attribute name="title">VSG-DB</attribute>
           <attribute name="url">http://www.vsgdb.net/</attribute>
-        </row>
-        <row>
-          <attribute name="title">TrypanoFAN</attribute>
-          <attribute name="url">http://trypanofan.path.cam.ac.uk/trypanofan/main/</attribute>
         </row>
 <row>
           <attribute name="title">The U-insertion/deletion Edited Sequence Database</attribute>
