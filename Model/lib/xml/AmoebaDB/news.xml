@@ -16,7 +16,7 @@
     </record>
 --> 
  <record>
-       <attribute name="headline">Community Letter</attribute>
+       <attribute name="headline">Letter to the EuPathDB Community</attribute>
        <attribute name="date">19 February 2015 13:00</attribute>
        <attribute name="tag">comm_lett</attribute>
        <attribute name="category">letter</attribute>
@@ -24,7 +24,7 @@
            
          <![CDATA[
 <body>
-    <p>Dear colleagues —<br>
+    <p>Dear colleagues -<br>
       <br>
       We are writing to provide an update on the Eukaryotic Pathogen Genomics
       Resource (<a href="http://EuPathDB.org">EuPathDB.org</a>), which many
@@ -61,14 +61,14 @@
       species.<br>
       <br>
       The scale of the EuPathDB award from NIH does not provide adequate funding
-      for full support of the TriTrypDB or FungiDB projects (unfortunately) …
+      for full support of the TriTrypDB or FungiDB projects (unfortunately) ...
       but the Wellcome Trust has agreed to consider an application covering
       these initiatives, augmenting our existing award for kinetoplastid
       resources.&nbsp; We will be contacting users of these databases shortly
       for their support.<br>
       <br>
       As always, we look forward to feedback from database users, via the
-      ‘Contact Us’ link on all EuPathDB web sites, face-to-face discussions at
+      'Contact Us' link on all EuPathDB web sites, face-to-face discussions at
       major meetings, etc.<br>
       <br>
       Brian P. Brunk -- EuPathDB Senior Project Manager<br>
