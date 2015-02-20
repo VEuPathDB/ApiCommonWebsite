@@ -212,10 +212,12 @@
           <attribute name="url">http://www.ensembl.org/Anopheles_gambiae/</attribute>
           <attribute name="title"><![CDATA[<i>Ensembl</i> Mosquito]]></attribute>
         </row>
-        <row>
+        <!-- BAD (and old) link  - can't find any updated link
+<row>
           <attribute name="url">http://www2.ncid.cdc.gov/vector/vector.html</attribute>
           <attribute name="title"><![CDATA[<i>Anopheles</i> Genetic Resource Information Project (AGRIP)]]></attribute>
         </row>
+-->
 	<!-- BAD (and old) link  - can't find any updated link
         <row>
           <attribute name="url">http://mosquito.colostate.edu/tikiwiki/tiki-page.php?pageName=Mosquito_genomics</attribute>
@@ -255,10 +257,6 @@
 expression profiling of the malaria parasite life cycle</attribute>
         </row> 
         <row>
-          <attribute name="url">http://malaria.ucsf.edu/</attribute>
-          <attribute name="title">DeRisi Lab: Malaria Transcriptome Database</attribute>
-        </row>
-        <row>
           <attribute name="url">http://fullmal.hgc.jp/index_ajax.html</attribute>
           <attribute name="title">Malaria Full-Length cDNA Database</attribute>
         </row>
@@ -277,10 +275,11 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="url">http://www.who.int/tdr/</attribute>
           <attribute name="title">UNICEF-UNDP-World Bank-WHO Special Programme for Research and Training in Tropical Diseases</attribute>
         </row>
-        <row>
+        <!-- cannot find substitute link. <row>
           <attribute name="url">http://scope.educ.washington.edu/welcome/malaria/</attribute>
           <attribute name="title">SCOPE Malaria Research; Policy Web Forum</attribute>
         </row>
+-->
         <row>
           <attribute name="url">http://www.rph.wa.gov.au/labs/haem/malaria/index.html</attribute>
           <attribute name="title">Malaria OnLine Resource at Royal Perth Hospital, Australia</attribute>
@@ -310,10 +309,6 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="title">Walter and Eliza hall Institute of Medical Research</attribute>
         </row>
         <row>
-          <attribute name="url">http://www.wehi.edu.au/MalDB-www/who.html</attribute>
-          <attribute name="title">Who/TDR Malaria Database</attribute>
-        </row>
-        <row>
           <attribute name="url">http://www.wehi.edu.au/education/wehitv/</attribute>
           <attribute name="title">WEHI.TV</attribute>
         </row>
@@ -327,10 +322,11 @@ expression profiling of the malaria parasite life cycle</attribute>
           <attribute name="title">Navy Medical Department Pocket Guide to Malaria Prevention and Control</attribute>
         </row>
 	-->
-        <row>
+   <!-- cannot find substitute     <row>
           <attribute name="url">http://www.mara.org.za/</attribute>
           <attribute name="title">MARA/ARMA Home Page</attribute>
         </row>
+-->
       </table>
 
       <table name="funding">
