@@ -15,7 +15,7 @@
        </attribute>
     </record>
 --> 
- <record>
+<record>
        <attribute name="headline">Letter to the EuPathDB Community</attribute>
        <attribute name="date">19 February 2015 13:00</attribute>
        <attribute name="tag">comm_lett</attribute>
