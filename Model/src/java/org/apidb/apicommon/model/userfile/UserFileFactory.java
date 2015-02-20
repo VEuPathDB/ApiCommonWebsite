@@ -29,7 +29,8 @@ import org.gusdb.wdk.model.WdkModelException;
 public class UserFileFactory implements Manageable<UserFileFactory> {
 
   private Logger logger = Logger.getLogger(UserFileFactory.class);
-  private DataSource dataSource;
+  private DatabaseInstance database;
+  //private DataSource dataSource;
   private DBPlatform platform;
   private CommentConfig config;
   private String projectId;
@@ -55,7 +56,8 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
   }
 
   private void initialize(DatabaseInstance database, CommentConfig config, String projectId) {
-    this.dataSource = database.getDataSource();
+    // this.dataSource = database.getDataSource();
+    this.database = database;
     this.platform = database.getPlatform();
     this.config = config;
     this.projectId = projectId;
@@ -126,6 +128,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     PreparedStatement ps = null;
     try {
+      DataSource dataSource = database.getDataSource();
       int userFileId = platform.getNextId(dataSource, userFileSchema, "UserFile");
 
       ps = SqlUtils.getPreparedStatement(dataSource, "INSERT INTO " + userFileSchema + "userfile (" +
@@ -229,6 +232,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     try {
       PreparedStatement ps = null;
+      DataSource dataSource = database.getDataSource();
       ps = SqlUtils.getPreparedStatement(dataSource, query);
 
       ps.setString(1, filename);
