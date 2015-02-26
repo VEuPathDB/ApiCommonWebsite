@@ -219,13 +219,27 @@ organismFull:   Plasmodium falciparum 3D7
 <c:if test="${is_genedb_organism == 1}">
   <div style="margin:12px;padding:5px">
 
-    <c:if test="${attrs['updated_annotation'].value != null}">
-      ${attrs['GeneDB_updated'].value}
-    </c:if>
+    <c:choose>
+      <c:when test="${attrs['updated_annotation'].value != null && 
+                     (attrs['reviewed_comment_in_genedb'].value > 0 || attrs['reviewed_comment_in_eupathdb'].value > 0)}">
+        ${attrs['GeneDB_updated'].value} <br/>
+        <span style="font-size:75%;font-weight:normal">User comment has been incorporated into official annotation.</font>
+      </c:when>
+      <c:when test="${attrs['updated_annotation'].value != null}">
+        ${attrs['GeneDB_updated'].value}
+      </c:when> 
+    </c:choose>
 
-    <c:if test="${attrs['new_product_name'].value != null}">
-      <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
-    </c:if>
+    <c:choose>
+      <c:when test="${attrs['new_product_name'].value != null && 
+                     (attrs['reviewed_comment_in_genedb'].value > 0 || attrs['reviewed_comment_in_eupathdb'].value > 0)}">
+        <span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span><br/>
+        <span style="font-size:75%;font-weight:normal">User comment has been incorporated into official annotation.</font>
+      </c:when>
+      <c:when test="${attrs['new_product_name'].value != null}">
+        <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
+      </c:when>
+    </c:choose>
 
   </div>
 
@@ -360,7 +374,7 @@ organismFull:   Plasmodium falciparum 3D7
    <c:set var="revCompOn" value="1"/>
 </c:if>
 
-<c:if test="${projectId ne 'TrichDB'}">
+<c:if test="${projectId ne 'TrichDB'  && projectId ne 'FungiDB' }">
       <imp:mercatorTable tblName="MercatorTable" isOpen="false" 
            cgiUrl="/cgi-bin" projectId="${projectId}" 
            revCompOn="${revCompOn}" contigId="${sequence_id}" 

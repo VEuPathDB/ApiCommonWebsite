@@ -14,6 +14,75 @@
     </record>
 --> 
 <record>
+       <attribute name="headline">Letter to the EuPathDB Community</attribute>
+       <attribute name="date">19 February 2015 13:00</attribute>
+       <attribute name="tag">comm_lett</attribute>
+       <attribute name="category">letter</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+    <p>Dear colleagues -<br>
+      <br>
+      We are writing to provide an update on the Eukaryotic Pathogen Genomics
+      Resource (<a href="http://EuPathDB.org">EuPathDB.org</a>), which many
+      hundreds of laboratories wrote to support in connection with our
+      application for renewal as an NIH Bioinformatics Resource Center for
+      Infectious Diseases.&nbsp; We are pleased to report that the EuPathDB
+      contract has now been renewed.<br>
+      <br>
+      In addition to continuing to integrate the ever-increasing volume of
+      Omic-scale datasets available for microbial eukaryotes, new
+      functionalities anticipated over the coming months include:</p>
+    <ul>
+      <li>full integration of FungiDB into the EuPathDB family of databases</li>
+      <li>reorganization of EuPathDB record pages, so as to improve
+        navigability, better accommodate curated annotation (when available),
+        represent alternative transcripts, summarize functional genomic results,
+        etc</li>
+      <li>better representation of experimental metadata, including phenotyping
+        and clinical/field results</li>
+      <li>enhanced functionality of the host response database (<a href="http://HostDB.org">HostDB.org</a>)</li>
+      <li>improved handling of metabolic pathways, including incorporation of
+        metabolomic datasets</li>
+      <li>better support for orthology-based queries and cross-species inference</li>
+      <li>implementation of workspaces enabling users to upload and analyze
+        their own data (e.g. RNA-seq results)</li>
+    </ul>
+    <p><br>
+      The scope of this renewal extends beyond our previous mandate, which
+      officially covered only biosecurity threats (Cryptosporidium, Entamoeba,
+      Giardia, Toxoplasma, etc) and reemerging pathogens (e.g.
+      Plasmodium).&nbsp; This makes it easier for us to leverage EuPathDB
+      infrastructure in support of the kinetoplastida, oomycetes, fungi, and
+      other microbial eukaryotes, including both pathogenic and non-pathogenic
+      species.<br>
+      <br>
+      The scale of the EuPathDB award from NIH does not provide adequate funding
+      for full support of the TriTrypDB or FungiDB projects (unfortunately) ...
+      but the Wellcome Trust has agreed to consider an application covering
+      these initiatives, augmenting our existing award for kinetoplastid
+      resources.&nbsp; We will be contacting users of these databases shortly
+      for their support.<br>
+      <br>
+      As always, we look forward to feedback from database users, via the
+      'Contact Us' link on all EuPathDB web sites, face-to-face discussions at
+      major meetings, etc.<br>
+      <br>
+      Brian P. Brunk -- EuPathDB Senior Project Manager<br>
+      Christiane Hertz-Fowler -- Kinetoplastid Resources PI (on behalf of UK
+      co-PIs)<br>
+      Omar S. Harb -- EuPathDB Scientific Outreach Manager<br>
+      Jessica C. Kissinger -- EuPathDB joint-PI<br>
+      David S. Roos -- EuPathDB joint-PI, Kinetoplastid Resources co-PI, FungiDB
+      co-PI<br>
+      Jason E. Stajich -- FungiDB co-PI<br>
+      Christian J. Stoeckert -- EuPathDB co-PI</p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">GiardiaDB 5.0 released</attribute>
        <attribute name="date">10 September 2014 12:00</attribute>
        <attribute name="tag">giardia08_14_news</attribute>
