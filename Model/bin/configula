@@ -65,7 +65,6 @@ required:
  micrURL: http://$wmc->{'host_class_prefix'}microsporidiadb.org/micro/
  piroURL: http://$wmc->{'host_class_prefix'}piroplasmadb.org/piro/
  plasURL: http://$wmc->{'host_class_prefix'}plasmodb.org/plasmo/
- schiURL: http://$wmc->{'host_class_prefix'}schistodb.net/schisto/
  toxoURL: http://$wmc->{'host_class_prefix'}toxodb.org/toxo/
  tricURL: http://$wmc->{'host_class_prefix'}trichdb.org/trichdb/
  trypURL: http://$wmc->{'host_class_prefix'}tritrypdb.org/tritrypdb/
