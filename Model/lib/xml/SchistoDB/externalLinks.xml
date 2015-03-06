@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<xmlAnswer>
+
+   <record>
+      <table name="communityLinks">
+        <row>
+          <attribute name="title">EuPathDB</attribute>
+          <attribute name="url">http://www.EuPathDB.org/</attribute>
+        </row> 
+      </table>
+
+
+ 
+
+   </record>
+</xmlAnswer>
