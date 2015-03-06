@@ -15,6 +15,142 @@
     </record>
 -->
 <record>
+       <attribute name="headline">FungiDB 3.2 released</attribute>
+       <attribute name="date">6 March 2015 13:30PM</attribute>
+       <attribute name="tag">fungidb_release3.2</attribute>
+       <attribute name="category">news</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>FungiDB3.2News</title>
+  </head>
+  <body>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">We
+        are pleased to release FungiDB 3.2.&nbsp; This release
+        include the following new data and features. <br>
+        <br>
+        <strong>New Data:</strong><br>
+        <strong style="color: #666666;"></strong><br>
+      </span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"></span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="text-decoration: underline;">Genomes
+            and annotation</span> (full description and attribution is available
+          in the <strong><a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">dataset
+              section</a></strong>):</span></li>
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span></div>
+    <ul style="text-align: justify;">
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pneumocystis
+              carinii</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Zymoseptoria
+              tritici</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              ultimum</em> var. sporangiiferum</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              irregulare</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              iwayamai</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              arrhenomanes</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              aphanidermatum</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              vexans</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Saprolegnia
+              diclina</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Aphanomyces
+              astaci</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Aphanomyces
+              invadans</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Albugo
+              candida</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Albugo
+              laibachii</em></span></li>
+      </ul>
+    </ul>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span></p>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="text-decoration: underline;">High
+            throughput sequencing</span> data from drug-resistant and
+          susceptible clinical and environmental isolates of <em>Aspergillus
+            fumigatus</em>.&nbsp; Sequencing data was aligned to the reference
+          genome <em>A. fumigatus</em> Af293 and single nucleotide polyorphisms
+          were determined. To run searches against this data, <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByNgsSnps&amp;display=detail#124">visit
+              the data set section</a></strong> for a full description and links
+          to searches. &nbsp;&nbsp; </span></li>
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span></div>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif; text-decoration: underline;">RNA
+            sequencing data</span><span style="font-family: Helvetica,Arial,sans-serif;">
+          </span></span><span style="font-family: Helvetica,Arial,sans-serif;"><span
+            style="font-family: Helvetica,Arial,sans-serif;"><span
+              style="font-family: Helvetica,Arial,sans-serif;">from
+              3 </span></span><em>Phytophthora sojae</em> samples: media grown,
+          cysts, and from infected soybean hypocotyls.&nbsp; Additional
+          information and links to searches can be viewed in the <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByRNASeqPsojP6497_Tyler_Infection_rnaSeq_RSRC&amp;display=detail#116">dataset
+              section</a></strong>. &nbsp;</span></li>
+    </ul>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Helvetica,Arial,sans-serif;"><b
+          style="mso-bidi-font-weight:normal"><br>
+        </b></span></p>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          feature:</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <blockquote> </blockquote>
+    </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
+            analysis tools:&nbsp; </strong><span style="color: #020302;">results
+            of any searches can now be analyzed for statistical enrichment or
+            Gene Ontology (GO) terms, metabolic pathways or gene product text
+            terms. <strong><a href="/a/analysisTools.jsp">A detailed
+                description of this new functionality and a video tutorial are
+                also available</a></strong>.</span></span></li>
+    </ul>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;"><br>
+            </span></span></span></span></p>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+    </p>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+        <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+          style="font-weight: bold; font-style: italic;">,
+          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+  </body>
+</html>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">Open letter to the Aspergillus research community</attribute>
        <attribute name="date">11 February 2015 13:30PM</attribute>
        <attribute name="tag">open_letter</attribute>
