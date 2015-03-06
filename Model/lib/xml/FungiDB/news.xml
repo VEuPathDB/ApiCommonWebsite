@@ -150,6 +150,103 @@
           ]]>
        </attribute>
     </record>
+<record>
+       <attribute name="headline">Open letter to the Aspergillus research community</attribute>
+       <attribute name="date">11 February 2015 13:30PM</attribute>
+       <attribute name="tag">open_letter</attribute>
+       <attribute name="category">news</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+<p>An open letter to the <em>Aspergillus</em> research community on genome database resources:</p>
+
+	<p style="text-align:justify">&nbsp;&nbsp;&nbsp;&nbsp;As many of you may already be aware, the NIH R01 research grant that has supported development of the <a href="http://aspgd.org">AspGD</a> database will not be renewed ... not because the NIH doesn't appreciate the value and importance of this resource to the <em>Aspergillus</em> research community, but because the current funding climate makes it difficult to support curation-intensive databases serving individual pathogens and relatively small research communities.  However,  NIH has provided one year of funding to ensure that information from AspGD is integrated into <a href="http://fungidb.org">FungiDB</a>, a component of the <a href="http://eupathdb.org">EuPathDB</a> Bioinformatics Resource Center.  We do not anticipate that AspGD will disappear: you should still be able to access the existing web site, at least for the foreseeable future, but curatorial engagement will have to be significantly reduced over the coming months.</p>
+
+	<p style="text-align:justify">&nbsp;&nbsp;&nbsp;&nbsp;The EuPathDB family of databases supports a wide range of microbial eukaryotes, including protozoan parasites and many fungal and oomycete species, including non-pathogens.  This resource has been specifically designed to provide sustainable, cost-effective automated analysis of multiple genomes, integrating curated information where available, along with comments and supporting evidence from the user community (PubMedIDs, phenotypic information, images, datasets, etc).  In addition to gene records, browser views, and data downloads, FungiDB also provides a variety of sophisticated tools for integrating and mining diverse Omics datasets, which we expect that <em>Aspergillus</em> researchers and other fungal biologists will find quite useful.  See sidebar on the FungiDB web site for access to tutorials, videos, and exercises; more fungi-specific materials should become available over the coming months.</p>
+
+	<p style="text-align:justify">&nbsp;&nbsp;&nbsp;&nbsp;AspGD and FungiDB/EuPathDB will be working together to maximize value to the <em>Aspergillus</em> community, given the limited resources available.  The upcoming AsperFest12 and 28th Fungal Genetics meetings in Asilomar (March 16-22, 2015) will be attended by staff from both groups, with presentations and a 'help-desk' to introduce the <em>Aspergillus</em> community to FungiDB.  We look forward to productive discussions on how to ensure that <em>Aspergillus</em> researchers retain access to information from AspGD, learn to use FungiDB effectively and have a voice in its further development, and craft a strategy for meeting future informatics needs.</p>
+
+	<ul>
+	<li>Jessica Kissinger (Univ Georgia) -- Joint-PI, EuPathDB</li>
+	<li>Michelle Momany (Univ Georgia) -- Community Liaison, AspGD & FungiDB</li>
+	<li>David Roos (Univ Pennsylvania) -- Joint-PI, EuPathDB; Co-PI, FungiDB</li>
+<li>Gavin Sherlock (Stanford Univ) -- Principal Investigator, AspGD</li>
+<li>Jason Stajich (UC Riverside) -- Principal Investigator, FungiDB</li>
+<li>Jennifer Wortman (Broad Inst) -- Co-PI, AspGD</li>
+</ul>
+	
+ ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">Letter to the EuPathDB Community</attribute>
+       <attribute name="date">19 February 2015 13:00</attribute>
+       <attribute name="tag">comm_lett</attribute>
+       <attribute name="category">letter</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+    <p>Dear colleagues -<br>
+      <br>
+      We are writing to provide an update on the Eukaryotic Pathogen Genomics
+      Resource (<a href="http://EuPathDB.org">EuPathDB.org</a>), which many
+      hundreds of laboratories wrote to support in connection with our
+      application for renewal as an NIH Bioinformatics Resource Center for
+      Infectious Diseases.&nbsp; We are pleased to report that the EuPathDB
+      contract has now been renewed.<br>
+      <br>
+      In addition to continuing to integrate the ever-increasing volume of
+      Omic-scale datasets available for microbial eukaryotes, new
+      functionalities anticipated over the coming months include:</p>
+    <ul>
+      <li>full integration of FungiDB into the EuPathDB family of databases</li>
+      <li>reorganization of EuPathDB record pages, so as to improve
+        navigability, better accommodate curated annotation (when available),
+        represent alternative transcripts, summarize functional genomic results,
+        etc</li>
+      <li>better representation of experimental metadata, including phenotyping
+        and clinical/field results</li>
+      <li>enhanced functionality of the host response database (<a href="http://HostDB.org">HostDB.org</a>)</li>
+      <li>improved handling of metabolic pathways, including incorporation of
+        metabolomic datasets</li>
+      <li>better support for orthology-based queries and cross-species inference</li>
+      <li>implementation of workspaces enabling users to upload and analyze
+        their own data (e.g. RNA-seq results)</li>
+    </ul>
+    <p><br>
+      The scope of this renewal extends beyond our previous mandate, which
+      officially covered only biosecurity threats (Cryptosporidium, Entamoeba,
+      Giardia, Toxoplasma, etc) and reemerging pathogens (e.g.
+      Plasmodium).&nbsp; This makes it easier for us to leverage EuPathDB
+      infrastructure in support of the kinetoplastida, oomycetes, fungi, and
+      other microbial eukaryotes, including both pathogenic and non-pathogenic
+      species.<br>
+      <br>
+      The scale of the EuPathDB award from NIH does not provide adequate funding
+      for full support of the TriTrypDB or FungiDB projects (unfortunately) ...
+      but the Wellcome Trust has agreed to consider an application covering
+      these initiatives, augmenting our existing award for kinetoplastid
+      resources.&nbsp; We will be contacting users of these databases shortly
+      for their support.<br>
+      <br>
+      As always, we look forward to feedback from database users, via the
+      'Contact Us' link on all EuPathDB web sites, face-to-face discussions at
+      major meetings, etc.<br>
+      <br>
+      Brian P. Brunk -- EuPathDB Senior Project Manager<br>
+      Christiane Hertz-Fowler -- Kinetoplastid Resources PI (on behalf of UK
+      co-PIs)<br>
+      Omar S. Harb -- EuPathDB Scientific Outreach Manager<br>
+      Jessica C. Kissinger -- EuPathDB joint-PI<br>
+      David S. Roos -- EuPathDB joint-PI, Kinetoplastid Resources co-PI, FungiDB
+      co-PI<br>
+      Jason E. Stajich -- FungiDB co-PI<br>
+      Christian J. Stoeckert -- EuPathDB co-PI</p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
 
    <record>
        <attribute name="headline">FungiDB 3.1 released</attribute>
