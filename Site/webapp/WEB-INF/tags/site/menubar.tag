@@ -102,7 +102,9 @@
     <li><a>Tools</a>
       <ul>
         <li><a href="<c:url value="/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast"/>"> BLAST</a></li>
-        <li><a href="<c:url value="/analysisTools.jsp"/>"> Results Analysis</a></li>
+        <li><a style="padding-top:0"  href="<c:url value="/analysisTools.jsp"/>"> Results Analysis
+              <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
+        </li>
         <li><a href="<c:url value="/srt.jsp"/>"> Sequence Retrieval</a></li>
         <li><a href="http://pathogenportal.org"> Pathogen Portal</a></li>
 
@@ -128,6 +130,11 @@
     <li><a>Data Summary</a>
       <ul>
           <li><a href="<c:url value='/getDataset.do?display=detail'/>">Data Sets</a></li>
+          <li title="Please contact us with your feedback.">
+            <a style="padding-top:0" 
+              href="<c:url value='/app/answer/DatasetQuestions.AllDatasets'/>">New Data Sets page!
+                <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
+          </li>
         <c:if test="${project == 'EuPathDB'}">
           <li><a href="<c:url value='/showXmlDataContent.do?name=XmlQuestions.About#protocols_methods'/>">Analysis Methods</a></li>  
         </c:if>
