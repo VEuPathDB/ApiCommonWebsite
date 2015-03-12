@@ -97,6 +97,8 @@ sub makeListOfLists {
                   ['Homo', 'HostDB', '#00FFFF'],
                   ['Mus', 'HostDB', '#00FFFF'],
                   ['Trichomonas', 'TrichDB', '#78866B'],
+
+                  ['Schistosoma', 'SchistoDB', '#2554C7', ],
       );
 
   my @rv;
