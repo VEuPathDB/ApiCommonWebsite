@@ -62,8 +62,11 @@ sub makeListOfLists {
 
   my @superset = (['Acanthamoeba', 'AmoebaDB', '#6F4E37',],
                   ['Entamoeba', 'AmoebaDB','#6F4E37', ],
+                  ['Naegleria', 'AmoebaDB','#6F4E37', ],
 
                   ['Cryptosporidium', 'CryptoDB', '#2554C7', ],
+                  ['Chromera', 'CryptoDB', '#777777'], #
+                  ['Vitrella', 'CryptoDB', '#777777'], #
 
                   ['Eimeria', 'ToxoDB', '#59E817',],
                   ['Gregarina', 'ToxoDB', '#59E817',],
@@ -71,8 +74,6 @@ sub makeListOfLists {
                   ['Toxoplasma', 'ToxoDB', '#59E817',],
 
                   ['Plasmodium', 'PlasmoDB', '#A74AC7'], #
-                  ['Chromera', 'PlasmoDB', '#777777'], #
-                  ['Vitrella', 'PlasmoDB', '#777777'], #
 
                   ['Babesia','PiroplasmaDB', '#3BB9FF', ],  #
                   ['Theileria', 'PiroplasmaDB', '#3BB9FF',], #
