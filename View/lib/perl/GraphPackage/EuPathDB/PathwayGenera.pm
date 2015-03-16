@@ -95,11 +95,25 @@ sub makeListOfLists {
                   ['Vavraia', 'MicrosporidiaDB', '#461B7E'],
                   ['Vittaforma', 'MicrosporidiaDB', '#461B7E'],
 
-                  ['Homo', 'HostDB', '#00FFFF'],
-                  ['Mus', 'HostDB', '#00FFFF'],
+                  ['Schistosoma', 'SchistoDB', '#2554C7', ],
+
+		  ['Aspergillus','FungiDB', '#2554C7'],
+		  ['Phytophthora','FungiDB', '#2554C7'],
+		  ['Pythium','FungiDB', '#2554C7'],
+		  ['Aphanomyces','FungiDB', '#2554C7'],
+		  ['Saprolegnia','FungiDB', '#2554C7'],
+		  ['Neurospora','FungiDB', '#2554C7'],
+		  ['Albugo','FungiDB', '#2554C7'],
+		  ['Fusarium','FungiDB', '#2554C7'],
+		  ['Coccidioides','FungiDB', '#2554C7'],
+		  ['Talaromyces','FungiDB', '#2554C7'],
+
                   ['Trichomonas', 'TrichDB', '#78866B'],
 
-                  ['Schistosoma', 'SchistoDB', '#2554C7', ],
+                  ['Homo', 'HostDB', '#00FFFF'],
+                  ['Mus', 'HostDB', '#00FFFF']
+
+
       );
 
   my @rv;
