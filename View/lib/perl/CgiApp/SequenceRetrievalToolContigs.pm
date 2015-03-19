@@ -13,6 +13,7 @@ sub run {
   my ($self, $cgi) = @_;
 
   my $dbh = $self->getQueryHandle($cgi);
+  $dbh->{LongReadLen} = 25000000  if ($self->{type} eq 'contig');
 
   my $type = $cgi->param('downloadType');
 
