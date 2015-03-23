@@ -34,7 +34,163 @@
     </attribute>
 </record>
 -->
-
+<record>
+    <attribute name="record_date">23 March 2015 15:00</attribute>
+    <attribute name="tag">PubMed:25388105</attribute>
+    <attribute name="authors">
+Harb OS, Roos DS.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+The Eukaryotic Pathogen Databases: a functional genomic resource integrating data
+from human and veterinary parasites.
+         ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+          Methods Mol Biol. 2015;1201:1-18.
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://link.springer.com/protocol/10.1007%2F978-1-4939-1438-8_1">Full text</a>]
+        ]]>
+    </attribute>
+    <attribute name="pmid">25388105</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+Over the past 20 years, advances in high-throughput biological techniques and the
+availability of computational resources including fast Internet access have
+resulted in an explosion of large genome-scale data sets "big data." While such
+data are readily available for download and personal use and analysis from a
+variety of repositories, often such analysis requires access to seldom-available 
+computational skills. As a result a number of databases have emerged to provide
+scientists with online tools enabling the interrogation of data without the need 
+for sophisticated computational skills beyond basic knowledge of Internet browser
+utility. This chapter focuses on the Eukaryotic Pathogen Databases (EuPathDB:
+http://eupathdb.org) Bioinformatic Resource Center (BRC) and illustrates some of 
+the available tools and methods.
+ ]]>
+    </attribute>
+</record>
+<record>
+    <attribute name="record_date">23 March 2015 15:00</attribute>
+    <attribute name="tag">PubMed:24936976</attribute>
+    <attribute name="authors">
+Dugan VG, Emrich SJ, Giraldo-Calderón GI, Harb OS, Newman RM,
+Pickett BE, Schriml LM, Stockwell TB, Stoeckert CJ Jr, Sullivan
+DE, Singh I, Ward DV, Yao A, Zheng J, Barrett T, Birren B,
+Brinkac L, Bruno VM, Caler E, Chapman S, Collins FH, Cuomo CA, 
+Di Francesco V, Durkin S, Eppinger M, Feldgarden M, Fraser C,
+Fricke WF, Giovanni M, Henn MR, Hine E, Hotopp JD, Karsch-Mizrachi
+I, Kissinger JC, Lee EM, Mathur P, Mongodin EF, Murphy CI,
+Myers G, Neafsey DE, Nelson KE, Nierman WC, Puzak J, Rasko D, 
+Roos DS, Sadzewicz L, Silva JC, Sobral B, Squires RB, Stevens
+RL, Tallon L, Tettelin H, Wentworth D, White O, Will R,
+Wortman J, Zhang Y, Scheuermann RH.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+Standardized metadata for human pathogen/vector genomic sequences.
+         ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+          PLoS One. 2014 Jun 17;9(6):e99979.
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0099979">Full text</a> | <a href="http://www.plosone.org/article/fetchObject.action?uri=info:doi/10.1371/journal.pone.0099979&representation=PDF">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">24936976</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+High throughput sequencing has accelerated the determination of genome sequences 
+for thousands of human infectious disease pathogens and dozens of their vectors. 
+The scale and scope of these data are enabling genotype-phenotype association
+studies to identify genetic determinants of pathogen virulence and
+drug/insecticide resistance, and phylogenetic studies to track the origin and
+spread of disease outbreaks. To maximize the utility of genomic sequences for
+these purposes, it is essential that metadata about the pathogen/vector isolate
+characteristics be collected and made available in organized, clear, and
+consistent formats. Here we report the development of the GSCID/BRC Project and
+Sample Application Standard, developed by representatives of the Genome
+Sequencing Centers for Infectious Diseases (GSCIDs), the Bioinformatics Resource 
+Centers (BRCs) for Infectious Diseases, and the U.S. National Institute of
+Allergy and Infectious Diseases (NIAID), part of the National Institutes of
+Health (NIH), informed by interactions with numerous collaborating scientists. It
+includes mapping to terms from other data standards initiatives, including the
+Genomic Standards Consortium's minimal information (MIxS) and NCBI's
+BioSample/BioProjects checklists and the Ontology for Biomedical Investigations
+(OBI). The standard includes data fields about characteristics of the organism or
+environmental source of the specimen, spatial-temporal information about the
+specimen isolation event, phenotypic characteristics of the pathogen/vector
+isolated, and project leadership and support. By modeling metadata fields into an
+ontology-based semantic framework and reusing existing ontologies and minimum
+information checklists, the application standard can be extended to support
+additional project-specific data fields and integrated with other data
+represented with comparable standards. The use of this metadata standard by all
+ongoing and future GSCID sequencing projects will provide a consistent
+representation of these data in the BRC resources and other repositories that
+leverage these data, allowing investigators to identify relevant genomic
+sequences and perform comparative genomics analyses that are both statistically
+meaningful and biologically relevant.
+ ]]>
+    </attribute>
+</record>
+<record>
+    <attribute name="record_date">23 March 2015 15:00</attribute>
+    <attribute name="tag">PubMed:23175615</attribute>
+    <attribute name="authors">
+Aurrecoechea C, Barreto A, Brestelli J, Brunk BP, Cade S, Doherty R, Fischer
+S, Gajria B, Gao X, Gingle A, Grant G, Harb OS, Heiges M, Hu S, Iodice J,
+Kissinger JC, Kraemer ET, Li W, Pinney DF, Pitts B, Roos DS, Srinivasamoorthy G, 
+Stoeckert CJ Jr, Wang H, Warrenfeltz S.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+EuPathDB: the eukaryotic pathogen database.
+         ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+          Nucleic Acids Res. 2013 Jan;41(Database issue):D684-91.
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/content/41/D1/D684.long">Full text</a> | <a href="http://nar.oxfordjournals.org/content/41/D1/D684.full.pdf+html">PDF</a> ]
+        ]]>
+    </attribute>
+    <attribute name="pmid">23175615</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+EuPathDB (http://eupathdb.org) resources include 11 databases supporting
+eukaryotic pathogen genomic and functional genomic data, isolate data and
+phylogenomics. EuPathDB resources are built using the same infrastructure and
+provide a sophisticated search strategy system enabling complex interrogations of
+underlying data. Recent advances in EuPathDB resources include the design and
+implementation of a new data loading workflow, a new database supporting
+Piroplasmida (i.e. Babesia and Theileria), the addition of large amounts of new
+data and data types and the incorporation of new analysis tools. New data include
+genome sequences and annotation, strand-specific RNA-seq data, splice junction
+predictions (based on RNA-seq), phosphoproteomic data, high-throughput
+phenotyping data, single nucleotide polymorphism data based on high-throughput
+sequencing (HTS) and expression quantitative trait loci data. New analysis tools 
+enable users to search for DNA motifs and define genes based on their genomic
+colocation, view results from searches graphically (i.e. genes mapped to
+chromosomes or isolates displayed on a map) and analyze data from columns in
+result tables (word cloud and histogram summaries of column content). The
+manuscript herein describes updates to EuPathDB since the previous report
+published in NAR in 2010.
+ ]]>
+    </attribute>
+</record>
 
 <record>
     <attribute name="record_date">1 May 2012 15:00</attribute>
