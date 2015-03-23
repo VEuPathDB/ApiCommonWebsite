@@ -15,6 +15,8 @@ sub run {
 
   my $dbh = $self->getQueryHandle($cgi);
   my $type = $cgi->param('downloadType');
+  my $seqLengthLimit = 50000000;
+
 
   if ($type && $type eq "text") {
       print $cgi->header('application/x-download');
@@ -63,6 +65,11 @@ EOSQL
        ){
       $$ends[$i] =  $seqLen{uc($$sourceIds[$i])};
     }
+
+    if (($$ends[$i] - $$starts[$i] +1) > $seqLengthLimit)  {
+      &error("Maximum length of the Sequence can be $seqLengthLimit nucleotides.\nPlease specify the nucleotide positions again.");
+    }
+
     $dbh->{LongReadLen} = ( $$ends[$i] - $$starts[$i] +1 );
 
     $sth = $dbh->prepare($sql);
