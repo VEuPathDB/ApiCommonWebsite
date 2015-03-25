@@ -431,6 +431,31 @@ sub new {
 }
 1;
 
+
+
+package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStackedSpliced;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+  my $self = $class->SUPER::new(@_);
+
+  my $id = $self->getId();
+
+  $self->setPartName('rpm');
+  $self->setYaxisLabel('RPM');
+  $self->setIsStacked(1);
+  $self->setDefaultYMin(0);
+  $self->setDefaultYMax(50);
+  $self->setPlotTitle("RPM - $id");
+
+  return $self;
+}
+
+
+
+
 package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
