@@ -24,13 +24,20 @@ public class ApplicationInitListener implements ServletContextListener {
   @Override
   public void contextDestroyed(ServletContextEvent sce) {
     ServletContext context = sce.getServletContext();
-    try {
-      CommentActionUtility.getCommentFactory(context).close();
-    }
-    catch (Exception e) {
-      LOG.error("Error while closing CommentFactory (comments db)", e);
-    }
+    closeCommentFactory(context);
     WdkInitializer.terminateWdk(context);
+  }
+
+  private void closeCommentFactory(ServletContext context) {
+    // can only close comment factory if model successfully initialized
+    if (WdkInitializer.getWdkModel(context) != null) {
+      try {
+        CommentActionUtility.getCommentFactory(context).close();
+      }
+      catch (Exception e) {
+        LOG.error("Error while closing CommentFactory (comments db)", e);
+      }
+    }
   }
 }
 
