@@ -47,6 +47,7 @@ SELECT count (distinct gp.gene_source_id)
          from  apidbtuning.genepathway gp,
                ($geneResultSql) r
         where  gp.gene_source_id = r.source_id
+          and gp.exact_match = 1
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -65,12 +66,14 @@ from
         from   apidbtuning.genepathway gp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
          and   gp.gene_source_id = ga.source_id
+         and gp.exact_match = 1
         group by gp.pathway_source_id, gp.pathway_name
    ) bgd,
    (SELECT  gp.pathway_source_id,  count (distinct gp.gene_source_id) as resultcnt
         from   ApidbTuning.GenePathway gp,
                ($geneResultSql) r
         where  gp.gene_source_id = r.source_id
+          and gp.exact_match = 1
         group by gp.pathway_source_id
  ) rslt
 where bgd.pathway_source_id = rslt.pathway_source_id
