@@ -44,23 +44,30 @@
       <!--StartFragment-->
       <div style="text-align: center;">
       </div>
-      <table style="width: 438px; height: 61px; text-align: left; margin-left: auto; margin-right: auto;"
+      <table style="width: 365px; height: 72px; text-align: left; margin-left: auto; margin-right: auto;"
         border="0">
         <tbody>
           <tr>
             <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
                 style="font-size:11.0pt;line-height:107%;font-family:
-Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
                 Resource</span></td>
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
                 style="font-size:11.0pt;line-height:107%;font-family:
-Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Version
-                # Jan 2015</span></td>
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                  style="font-size:11.0pt;line-height:107%;font-family:
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Jan
+                  2015<br>
+                </span>Version #<br>
+              </span></td>
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
               <!--StartFragment--><span style="font-size:11.0pt;line-height:107%;font-family:
 Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Version
-                # April 2015</span>
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                  style="font-size:11.0pt;line-height:107%;font-family:
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
+                  2015<br>
+                </span>Version #</span>
               <!--EndFragment--></td>
           </tr>
           <tr>
@@ -70,10 +77,8 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
           </tr>
         </tbody>
       </table>
-      <div style="text-align: center;"><br>
-      </div>
-      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">New data in
-          this release:<o:p></o:p></b></p>
+      <div style="text-align: left;"><b style="mso-bidi-font-weight:normal">New
+          data in this release:<o:p></o:p></b></div>
       <p class="MsoNoSpacing"><em>The data set title below links to a full
           description and list of associated searches and genome browser tracks.</em><o:p></o:p></p>
       <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
