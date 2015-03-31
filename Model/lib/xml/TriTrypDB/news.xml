@@ -82,7 +82,7 @@
       <p class="MsoNoSpacing" style="font-weight: bold; margin-left: .25in; mso-bidi-font-weight: normal">
         Genome:</p>
       <p class="MsoNoSpacing" style="margin-left:.25in"><a href="http://qa.tritrypdb.org/a/getDataset.do?datasets=ldonBHU1220_primary_genome_RSRC">
-          <i>Leishmania donovani</i> BHU 1220</a> – first release in TriTrypDB
+          <i>Leishmania donovani</i> BHU 1220</a> - first release in TriTrypDB
         (Neeloo Singh unpublished; <a href="http://www.ncbi.nlm.nih.gov/bioproject/192928">Genbank
           version Nov 6, 2013)</a></p>
       <p class="MsoNoSpacing" style="margin-left:.25in">&nbsp;</p>
@@ -117,7 +117,7 @@
       <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"> <a href="http://tritrypdb.org/a/getDataset.do?datasets=ldonBPK282A1_massSpec_Pawar_Pro_Ama_Proteomes_RSRC">
           Promastigote and amastigote stage proteomes (MHOM/IN/80/Dd8)</a><span
           style="mso-spacerun:yes">&nbsp;</span>
-        <span style="mso-spacerun:yes">&nbsp;</span>– <i style="mso-bidi-font-style:normal">L.
+        <span style="mso-spacerun:yes">&nbsp;</span>- <i style="mso-bidi-font-style:normal">L.
           donovani</i> MHOM/IN/80/Dd8 promasatigote and amastigote stage
         proteomes determined by searching and mapping the <i style="mso-bidi-font-style:normal">L.
           donovani</i> MHOM/IN/80/Dd8 mass-spec peptides against the
@@ -128,7 +128,7 @@
         &nbsp;</p>
       <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"> <a href="http://tritrypdb.org/a/getDataset.do?datasets=lmajFriedlin_massSpec_Pawar_Pro_Proteomes_RSRC">
           Promastigote Proteome (MHOM/IL/67/JERICHO II (ATCC 50122))</a><span style="mso-spacerun:yes">&nbsp;</span>
-        – <i>L. major</i> ATCC 50122 promastigote proteome determined by
+        - <i>L. major</i> ATCC 50122 promastigote proteome determined by
         searching and mapping against <i>Leishmania major</i> strain Fredlin.<span
           style="mso-spacerun:yes">&nbsp;</span>
         <a href="http://www.ncbi.nlm.nih.gov/pubmed/24937402">Pawar <em>et al.</em></a></p>
@@ -138,7 +138,7 @@
         RNA Sequencing:</p>
       <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"> <a href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_PF_BF_Ribosome_Profiling_rnaSeq_RSRC">
           Procyclic and bloodstream form mRNA transcriptome and ribosome
-          profiling</a> – Ribosome profile and mRNA transcriptome of the <i>T
+          profiling</a> - Ribosome profile and mRNA transcriptome of the <i>T
           brucei</i> Lister 427 bloodstream and procyclic forms mapped to <i>T.
           brucei</i> TREU 927.<span style="mso-spacerun:yes">&nbsp;</span> <a href="http://www.ncbi.nlm.nih.gov/pubmed/24442674">Vasquez
           <em>et al.</em></a></p>
@@ -146,7 +146,7 @@
         &nbsp;</p>
       <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"> <a href="http://TriTrypDB.org/a/getDataset.do?datasets=tbruTREU927_Gowthaman_Spliced_Leaders_rnaSeqSplicedLeaderAndPolyASites_RSRC">
           Bloodstream and Procyclic for spliced leader transcriptomes (927,
-          427)(2014)</a> – Spliced leader sites determined by RNA sequencing of
+          427)(2014)</a> - Spliced leader sites determined by RNA sequencing of
         SL sequence-primed cDNA libraries from in vivo <em>T. brucei</em> 927
         procyclic and slender forms as well as a cultured <em>T. brucei</em>
         427 bloodstream form.<span style="mso-spacerun:yes">&nbsp;</span> <a href="http://www.ncbi.nlm.nih.gov/pubmed/25331479">Jensen
@@ -163,7 +163,7 @@
             <span style="mso-bidi-font-style:italic">infantum</span></i><span style="mso-bidi-font-style: italic">,</span>
           <i style="mso-bidi-font-style:normal">Leishmania major</i>, <i style="mso-bidi-font-style:normal">Leishmania
             <span style="mso-bidi-font-style:italic">Mexicana</span></i></a> <span
-          style="mso-bidi-font-style:italic"></span>–
+          style="mso-bidi-font-style:italic"></span>-
         <span style="mso-bidi-font-style:italic"></span>Coverage from short-read
         DNA-seq data was used to infer ploidy and gene copy numbers in
         resequenced strains.<span style="mso-spacerun:yes">&nbsp;</span> <a href="http://www.ncbi.nlm.nih.gov/pubmed/22038252">Rogers
