@@ -16,6 +16,131 @@
    </record>
 --> 
 <record>
+       <attribute name="headline">MicrosporidiaDB 24 Released</attribute>
+       <attribute name="date">6 April 2015 13:00</attribute>
+       <attribute name="tag">microdb4_15_release</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>MicroDB_4_15_news</title>
+  </head>
+  <body>
+    <p> </p>
+    <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
+    <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of MicrosporidiaDB 24</strong><span
+          style="font-weight: bold;"></span><br>
+      </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+          All EuPathDB release numbers have been synchronized to help us more
+          efficiently manage our expanding number of databases.&nbsp; As of this
+          release all EuPathDB resource release numbers have been set to release
+          24.&nbsp; Subsequent version numbers will increase by one with each
+          release.&nbsp; For information about individual dataset version
+          numbers see the Data Sets page. </span></span><br>
+      <!--StartFragment-->
+      <div style="text-align: center;">
+      </div>
+      <table style="width: 438px; height: 61px; text-align: left; margin-left: auto; margin-right: auto;"
+        border="0">
+        <tbody>
+          <tr>
+            <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
+                style="font-size:11.0pt;line-height:107%;font-family:
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB
+                Resource</span></td>
+            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
+                style="font-size:11.0pt;line-height:107%;font-family:
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Version
+                # Jan 2015</span></td>
+            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
+              <!--StartFragment--><span style="font-size:11.0pt;line-height:107%;font-family:
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Version
+                # April 2015</span>
+              <!--EndFragment--></td>
+          </tr>
+          <tr>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">MicrosporidiaDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">8.0</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="text-align: center;"><br>
+      </div>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">New data in
+          this release:<o:p></o:p></b></p>
+      <p class="MsoNoSpacing"><em>The data set title below links to a full
+          description and list of associated searches and genome browser tracks.</em><o:p></o:p></p>
+      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+      <!--StartFragment-->
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">Annotated
+          Genomes: <o:p></o:p></b></p>
+      <p class="MsoNoSpacing"><a href="http://microsporidiadb.org/a/getDataset.do?datasets=ocolOC4_primary_genome_RSRC"><i>Ordospora
+colligata
+            </i><span style="mso-bidi-font-style:italic">OC4</span></a><span style="mso-bidi-font-style:italic">
+        </span>– first release in MicrosporidiaDB (<a href="http://www.ncbi.nlm.nih.gov/bioproject/210314">GenBank
+          version 17 Dec 2014</a>) <a href="http://www.ncbi.nlm.nih.gov/pubmed/25587016">Pombert
+          <em>et al. </em></a><o:p></o:p></p>
+      <p class="MsoNoSpacing"><a href="http://microsporidiadb.org/a/getDataset.do?datasets=mdapUGP3_primary_genome_RSRC"><i>Mitosporidium
+            daphniae</i> UGP3</a> – first release in MicrosporidiaDB (<a href="http://www.ncbi.nlm.nih.gov/bioproject/243305">GenBank
+          version 30 Sept 2014</a>) <a href="http://www.ncbi.nlm.nih.gov/pubmed/25313038">Haag
+          <em>et al.</em></a><o:p></o:p></p>
+      <br>
+      <!--EndFragment--><o:p> <strong>New Features:</strong></o:p><strong> </strong><span
+        style="font-family: Helvetica,Arial,sans-serif;"></span><span
+        style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
+      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><span
+          style="font-family: Helvetica,Arial,sans-serif;">&nbsp;&nbsp;&nbsp;
+          <em style="text-decoration: underline;">Help us improve our Data Set
+            page</em>: The dataset page includes information about all datasets
+          loaded into our resources including, release and date loaded, name of
+          the provider, links to searches and data visualization, etc... Take a
+          look at the beta version of our dataset page (access it from the data
+          summary menu item at the top of our web pages) and let us know what
+          you think.<br>
+        </span> </p>
+    </div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+    </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+</html>
+<![CDATA[
+          ]]>
+       </attribute>
+    </record>
+<record>
        <attribute name="headline">Letter to the EuPathDB Community</attribute>
        <attribute name="date">19 February 2015 13:00</attribute>
        <attribute name="tag">comm_lett</attribute>
