@@ -23,6 +23,7 @@
        <attribute name="item">
            
          <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
@@ -42,8 +43,7 @@
           release.&nbsp; For information about individual dataset version
           numbers see the Data Sets page. </span></span><br>
       <!--StartFragment-->
-      <div style="text-align: center;">
-      </div>
+      <div style="text-align: center;"> </div>
       <table style="width: 365px; height: 72px; text-align: left; margin-left: auto; margin-right: auto;"
         border="0">
         <tbody>
@@ -62,8 +62,7 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
               </span></td>
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
               <!--StartFragment--><span style="font-size:11.0pt;line-height:107%;font-family:
-Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
                   style="font-size:11.0pt;line-height:107%;font-family:
 Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
                   2015<br>
@@ -96,11 +95,10 @@ colligata
           version 30 Sept 2014</a>) <a href="http://www.ncbi.nlm.nih.gov/pubmed/25313038">Haag
           <em>et al.</em></a><o:p></o:p></p>
       <br>
-      <!--EndFragment--><o:p> <strong>New Features:</strong></o:p><strong> </strong><span
-        style="font-family: Helvetica,Arial,sans-serif;"></span><span
+      <!--EndFragment--><o:p> <strong>New Features:</strong></o:p><strong>
+      </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
         style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
-      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><span
-          style="font-family: Helvetica,Arial,sans-serif;">&nbsp;&nbsp;&nbsp;
+      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;">
           <em style="text-decoration: underline;">Help us improve our Data Set
             page</em>: The dataset page includes information about all datasets
           loaded into our resources including, release and date loaded, name of
