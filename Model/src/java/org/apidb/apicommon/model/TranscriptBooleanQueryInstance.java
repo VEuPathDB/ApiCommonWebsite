@@ -29,7 +29,7 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
 		  String geneSql = super.getUncachedSql();
 		  String sql = 
 				  "WITH (" + geneSql + ") as genes" + NL +
-				  "select gene_source_id, transcript_source, weight, sum(left_match) as left_match, sum(right_match) as right_match" + NL +
+				  "select gene_source_id, transcript_source, weight, sum(left_match) as " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", sum(right_match) as " + TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + NL +
 				  "from (" + NL +
 				  "  select left.gene_source_id, left.transcript_source_id, genes.weight, 1 as left_match, 0 as right_match" + NL +
 				  "  from genes, " + NL +
