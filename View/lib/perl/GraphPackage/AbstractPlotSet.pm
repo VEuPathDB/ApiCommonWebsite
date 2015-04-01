@@ -473,14 +473,14 @@ sub makeHtmlStringFromMatrix {
 
   my @sortedNames = map { $_->{name} } sort{$a->{digit} <=> $b->{digit} || $a->{elementOrder} <=> $b->{elementOrder}} @$allNames;
 
-  print OUT "<table border=1>\n  <tr><th width=10>Experiment/Sample</th>\n";
+  print OUT "<table border=1>\n  <thead><tr><th>Experiment/Sample</th>\n";
 
   my @values;
 
   my @profileSets = sort keys %$allValues;
 
     print OUT join("\n", map{ "    <th>$_</th>"} @profileSets);
-    print OUT "  </tr>\n";
+    print OUT "  </tr></thead>\n";
 
   foreach my $elementName (@sortedNames) {
       print OUT "  <tr>\n";

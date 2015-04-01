@@ -43,7 +43,6 @@ public class B19_To_B20_Migration {
     public static void main(final String[] args) {
     	DatabaseInstance userDb = parseArgs(args);
         try {
-            userDb.initialize();
             migrateGBrowseIds(userDb.getDataSource());
         } finally {
             try { userDb.close(); } catch (Exception e) { LOG.error(e); }
@@ -54,13 +53,8 @@ public class B19_To_B20_Migration {
         if (args.length == 3 || args.length == 4 && args[0].equals("-test")) {
         	final int argOffset = (args.length == 4 ? 1 : 0);
         	TEST = (args.length == 4);
-            return new DatabaseInstance("UserDb", new SimpleDbConfig() {
-                @Override public String getConnectionUrl() { return args[0+argOffset]; }
-                @Override public String getLogin() { return args[1+argOffset]; }
-                @Override public String getPassword() { return args[2+argOffset]; }
-                @Override public SupportedPlatform getPlatformEnum() { return SupportedPlatform.ORACLE; }
-                @Override public short getConnectionPoolSize() { return 3; }
-            });
+            return new DatabaseInstance(SimpleDbConfig.create(SupportedPlatform.ORACLE,
+                args[0+argOffset], args[1+argOffset], args[2+argOffset], (short)3));
         }
         System.err.println("USAGE: Exactly 3 or 4 arguments: [-test] <userDbJdbcUrl> <username> <password>");
         System.exit(1);

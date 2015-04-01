@@ -1,6 +1,5 @@
 package org.apidb.apicommon.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -9,21 +8,21 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
-import org.apidb.apicommon.model.Comment;
-import org.apidb.apicommon.model.UserFile;
-import org.apidb.apicommon.model.UserFileFactory;
+import org.apidb.apicommon.model.comment.Comment;
+import org.apidb.apicommon.model.userfile.UserFile;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.model.Utilities;
-import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
-import org.xml.sax.SAXException;
 
 public class NewCommentAction extends CommentAction {
+
+    private static final Logger LOG = Logger.getLogger(NewCommentAction.class);
 
     private static final String[] DOI_PREFIXES = {
       "http://dx.doi.org/", "dx.doi.org/", "doi:"
@@ -39,19 +38,23 @@ public class NewCommentAction extends CommentAction {
 
         // get the referer link
         String referer = request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
+        LOG.debug("referrer after param get: " + referer);
         if (referer == null) referer = request.getHeader("referer"); 
+        LOG.debug("referrer after header get: " + referer);
 
         int index = referer.lastIndexOf("/");
         String host = referer.substring(0, index);
 
         referer = referer.substring(index);
+        LOG.debug("referrer after calculations: " + referer);
 
         if(referer.startsWith("/showComment")) {
            return new ActionForward("/addCommentsNew.jsp", true);
-          
         }
+
         ActionForward forward = new ActionForward(referer, false);
         // forward.setRedirect(true);
+        LOG.debug("actionforward generated: " + forward.getPath()); // /addComment.do
 
         WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
                 CConstants.WDK_MODEL_KEY);
@@ -218,7 +221,7 @@ public class NewCommentAction extends CommentAction {
             userFile.setProjectName(projectName);
             userFile.setProjectVersion(projectVersion);
 
-            getUserFileFactory().addUserFile(userFile);
+            CommentActionUtility.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
 
             int fileId = userFile.getUserFileId();
             String fileStr = fileId + "|" + fileName + "|" + notes;
@@ -280,12 +283,21 @@ public class NewCommentAction extends CommentAction {
         body.append("Comment Link: " + link + "\n");
         body.append("-------------------------------------------------------\n");
 
+        // used for redmine issue tracker
+        StringBuffer bodyRedmine = new StringBuffer(body.toString());
+        bodyRedmine.append("Project: uiresulvb\n");
+        bodyRedmine.append("Tracker: Communication\n");
+        bodyRedmine.append("Assignee: annotator\n");
+        bodyRedmine.append("EuPathDB Team: Outreach\n");
+        bodyRedmine.append("Component:" + projectId + "\n");
+
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");
         request.setAttribute("subject", headline);
         request.setAttribute("body", body.toString());
+        request.setAttribute("bodyRedmine", bodyRedmine.toString());
 
-        return forward;
+        return new ActionForward("/addCommentsNew.jsp");
     }
 
     public static String[] parseDois(String[] userDois) {
@@ -311,19 +323,5 @@ public class NewCommentAction extends CommentAction {
        return Pattern.compile("[\\s,;]").matcher(str).replaceAll(" ");
     }
 
-    protected UserFileFactory getUserFileFactory() throws WdkModelException,
-              IOException, SAXException {
-        UserFileFactory factory = null;
-        try {
-           factory = UserFileFactory.getInstance();
-        } catch (WdkModelException ex) {
-           ServletContext application = getServlet().getServletContext(); 
-           String gusHome = application.getRealPath(application.getInitParameter(Utilities.SYSTEM_PROPERTY_GUS_HOME));
-         String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
-         UserFileFactory.initialize(gusHome, projectId); 
-         factory = UserFileFactory.getInstance(); 
-       } 
-       return factory; 
-   }
 
 }

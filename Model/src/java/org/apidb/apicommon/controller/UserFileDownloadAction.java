@@ -2,17 +2,18 @@ package org.apidb.apicommon.controller;
 
 import java.io.File;
 import java.io.InputStream;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-
 import org.apidb.apicommon.controller.DownloadAction;
 import org.apidb.apicommon.controller.MimeTypes;
-import org.apidb.apicommon.model.CommentConfig;
-import org.apidb.apicommon.model.CommentFactory;
+import org.apidb.apicommon.model.comment.CommentConfig;
+import org.apidb.apicommon.model.comment.CommentFactory;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;

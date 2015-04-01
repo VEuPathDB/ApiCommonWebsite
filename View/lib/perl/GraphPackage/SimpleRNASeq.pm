@@ -76,6 +76,25 @@ sub setBottomMarginSize {
 }
 
 
+sub getPlotType {
+  my $self = shift;
+
+  my $isPairedEnd = $self->getIsPairedEnd();
+
+  my $stacked;
+
+  if($isPairedEnd){
+    $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::PairedEndRNASeqStacked->new(@_);
+  }
+  else {
+    $stacked  = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
+  }
+
+  return $stacked;
+}
+
+
+
 sub makeGraphs {
   my $self = shift;
 
@@ -94,6 +113,8 @@ sub makeGraphs {
 
   my $sampleNames = $self->getSampleNames();
 
+  print STDERR Dumper ($sampleNames);
+
   my @colors = ($color, '#DDDDDD');
   my @legend = ("Uniquely Mapped", "Non-Uniquely Mapped");
 
@@ -108,14 +129,7 @@ sub makeGraphs {
 
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$pctProfileSet, '', $sampleNames]]);
 
-  my $stacked;
-
-  if($isPairedEnd){
-    $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::PairedEndRNASeqStacked->new(@_);
-  }
-  else {
-    $stacked  = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_)
-  }
+  my $stacked = $self->getPlotType(@_);
  
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
