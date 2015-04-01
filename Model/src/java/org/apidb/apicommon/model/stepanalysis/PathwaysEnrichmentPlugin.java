@@ -16,12 +16,14 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -31,17 +33,15 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final Logger LOG = Logger.getLogger(PathwaysEnrichmentPlugin.class);
 
-  static final String PATHWAY_BASE_URL_PROP_KEY = "pathwayPageUrl";
+  private static final String PATHWAY_BASE_URL_PROP_KEY = "pathwayPageUrl";
+  private static final String PATHWAYS_SRC_PARAM_KEY = "pathwaysSources";
 
-  public static final String PVALUE_PARAM_KEY = "pValueCutoff";
-  public static final String PATHWAYS_SRC_PARAM_KEY = "pathwaysSources";
+  private static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tab";
   
-  public static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tab";
-  
-  public static final ResultRow HEADER_ROW = new ResultRow(
-							   "Pathway ID", "Pathway Name", "Genes in the bkgd with this pathway","Genes in your result with this pathway", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+  private static final ResultRow HEADER_ROW = new ResultRow(
+      "Pathway ID", "Pathway Name", "Genes in the bkgd with this pathway","Genes in your result with this pathway", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
-  public static final ResultRow COLUMN_HELP = new ResultRow(
+  private static final ResultRow COLUMN_HELP = new ResultRow(
       "Pathway ID",
       "Pathway Name",
       "Number of genes in this pathway in the background",
@@ -55,52 +55,38 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
     ValidationErrors errors = new ValidationErrors();
 
     // validate pValueCutoff
-    validatePValue(formParams, errors);
+    EnrichmentPluginUtil.validatePValue(formParams, errors);
+
+    // validate organism
+    EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
     // validate annotation sources 
-    String sourcesStr = getArrayParamValueAsString(PATHWAYS_SRC_PARAM_KEY, formParams, errors);
+    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
+        PATHWAYS_SRC_PARAM_KEY, formParams, errors);
 
-    validateFilteredPathways(sourcesStr, errors);
+    // only validate further if the above pass
+    if (errors.isEmpty()) {
+      validateFilteredPathways(sourcesStr, errors);
+    }
 
     return errors;
   }
 
-  static void validatePValue(Map<String, String[]> formParams, ValidationErrors errors) {
-    if (!formParams.containsKey(PVALUE_PARAM_KEY)) {
-      errors.addParamMessage(PVALUE_PARAM_KEY, "Missing required parameter.");
-    }
-    else {
-      try {
-        float pValueCutoff = Float.parseFloat(formParams.get(PVALUE_PARAM_KEY)[0]);
-        if (pValueCutoff <= 0 || pValueCutoff > 1) throw new NumberFormatException();
-      }
-      catch (NumberFormatException e) {
-        errors.addParamMessage(PVALUE_PARAM_KEY, "Must be a number between greater than 0 and less than or equal to 1.");
-      }
-    }
-  }
-
-  private void validateFilteredPathways(String sourcesStr, ValidationErrors errors) throws WdkModelException {
+  private void validateFilteredPathways(String sourcesStr, ValidationErrors errors)
+        throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
-    String idSql = getAnswerValue().getIdSql();
+    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql = 
-"SELECT count (distinct pn.display_label) as " + countColumn + NL +
-      "from   dots.Transcript t, dots.translatedAaFeature taf, sres.enzymeClass ec, " + NL +
-      "dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga, " + NL +
-      "apidb.pathwaynode pn," + NL +
-      "(" + idSql + ") r" + NL +
-      "where  ga.na_feature_id = t.parent_id" + NL +
-      "AND    t.na_feature_id = taf.na_feature_id" + NL +
-      "AND    taf.aa_sequence_id = asec.aa_sequence_id" + NL +
-      "AND    asec.enzyme_class_id = ec.enzyme_class_id" + NL +
-      "and    pn.display_label = ec.ec_number" + NL +
-      "and    ga.source_id = r.source_id";
+        "SELECT count (distinct gp.pathway_source_id) as " + countColumn + NL +
+        "FROM   apidbtuning.genepathway gp, " + NL +
+        "(" + idSql + ") r" + NL +
+        "WhERe  gp.gene_source_id = r.source_id";
 
     LOG.info(sql);
     DataSource ds = getWdkModel().getAppDb().getDataSource();
@@ -119,43 +105,45 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
-    String idSql = answerValue.getIdSql();
-
     Map<String,String[]> params = getFormParams();
 
-    String pValueCutoff = params.get(PVALUE_PARAM_KEY)[0];
-    String sourcesStr = getArrayParamValueAsString(PATHWAYS_SRC_PARAM_KEY, params, null); // in sql format
+    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
+    String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
+    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
+        PATHWAYS_SRC_PARAM_KEY, params, null); // in sql format
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiPathwaysEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
-			 wdkModel.getProjectId() + " " + pValueCutoff);
+        wdkModel.getProjectId() + " " + pValueCutoff);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
-			 sourcesStr};
+        sourcesStr};
   }
 
   /**
    * Make sure only one organism is represented in the results of this step
    * 
    * @param answerValue answerValue that will be passed to this step
+   * @throws WdkUserException 
    * @throws IllegalAnswerException if more than one organism is represented in this answer
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException {
-    
+      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
+
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
-    String sql = "SELECT count(distinct ga.taxon_id) as " + countColumn + NL +
-        "FROM ApidbTuning.GeneAttributes ga,"  + NL +
-        "(" + idSql + ") r"  + NL +
-        "where ga.source_id = r.source_id";
-
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
+
+    // check for non-zero count of genes with Pathways
+    String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
+      "from  apidbtuning.genepathway gp, (" + idSql + ") r" + NL +
+      "WHERE  gp.gene_source_id = r.source_id";
+
     new SQLRunner(ds, sql).executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
@@ -163,33 +151,33 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Map<String, Object> result = handler.getResults().get(0);
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
-    if (count.intValue() > 1) {
-      throw new IllegalAnswerValueException("Your result has genes from more than " +
-      		"one organism.  The Pathways Enrichment analysis only accepts gene " +
-      		"lists from one organism.  Please use filter boxes to limit your " +
-      		"result to a single organism and try again.");
+    if (count.intValue() == 0 ) {
+      throw new IllegalAnswerValueException("Your result has no genes that are in pathways, so you can't use this tool on this result. " +
+          "Please revise your search and try again.");
     }
   }
   
   @Override
-  public Object getFormViewModel() throws WdkModelException {
-    
+  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
 
-    //String idSql = getAnswerValue().getIdSql();
-    
     // find annotation sources used in the result set
     String sql = "select 'KEGG' as source from dual";
     new SQLRunner(ds, sql).executeQuery(handler);
-    List<String> sources = new ArrayList<>();
+    List<Option> sources = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(cols.get("SOURCE").toString());
+      sources.add(new Option(cols.get("SOURCE").toString()));
     }
 
-    return new FormViewModel(sources);
+    // get orgs to display in select
+    List<Option> orgOptionList = EnrichmentPluginUtil
+        .getOrgOptionList(getAnswerValue(), getWdkModel());
+    
+    return new FormViewModel(orgOptionList, sources);
   }
-  
+
   @Override
   public Object getResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
@@ -210,16 +198,24 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   public static class FormViewModel {
-    
-    private List<String> _sourceOptions;
-    
-    public FormViewModel(List<String> sourceOptions) {
+
+    private List<Option> _orgOptions;
+    private List<Option> _sourceOptions;
+
+    public FormViewModel(List<Option> orgOptions, List<Option> sourceOptions) {
+      _orgOptions = orgOptions;
       _sourceOptions = sourceOptions;
     }
 
-    public List<String> getSourceOptions() {
+    public List<Option> getOrganismOptions() {
+      return _orgOptions;
+    }
+
+    public List<Option> getSourceOptions() {
       return _sourceOptions;
     }
+
+    public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
   }
 
   public static class ResultViewModel {
@@ -228,7 +224,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private String _downloadPath;
     private Map<String, String[]> _formParams;
     private String _pathwayBaseUrl;
-    
+
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
         Map<String, String[]> formParams, String pathwayBaseUrl) {
       _downloadPath = downloadPath;
@@ -241,13 +237,13 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public ResultRow getHeaderDescription() { return PathwaysEnrichmentPlugin.COLUMN_HELP; }
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
-    public String getPvalueCutoff() { return _formParams.get(PathwaysEnrichmentPlugin.PVALUE_PARAM_KEY)[0]; }
+    public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
     public String getPathwaysSources() { return FormatUtil.join(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY), ", "); }
     public String getPathwayBaseUrl() { return _pathwayBaseUrl; }
   }
-  
+
   public static class ResultRow {
-    
+
     private String _pathwayId;
     private String _pathwayName;
     private String _bgdGenes;

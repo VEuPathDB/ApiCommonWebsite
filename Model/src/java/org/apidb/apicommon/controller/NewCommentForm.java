@@ -1,9 +1,12 @@
 package org.apidb.apicommon.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
@@ -19,7 +22,7 @@ import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.util.LabelValueBean;
 import org.apidb.apicommon.model.GeneIdValidator;
-import org.apidb.apicommon.model.MultiBox;
+import org.apidb.apicommon.model.comment.MultiBox;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
@@ -442,10 +445,14 @@ public class NewCommentForm extends ActionForm {
 
         GeneIdValidator validator = getGeneIdValidator();
         if(associatedStableIds != null) {
-        String[] related_ids = Pattern.compile("[\\s,;]").matcher(
+          String[] related_ids_dup = Pattern.compile("[\\s,;]").matcher(
                 associatedStableIds).replaceAll(" ").split(" ");
 
-        for (String related_id : related_ids) {
+          // removing duplicates
+          Set<String> stringSet = new HashSet<>(Arrays.asList(related_ids_dup));
+          String[] related_ids = stringSet.toArray(new String[0]);
+            
+          for (String related_id : related_ids) {
             if (related_id.trim().equals("")) {
                 continue;
             }
@@ -460,7 +467,7 @@ public class NewCommentForm extends ActionForm {
                                         + related_id
                                         + "\" is not valid related gene id! Please correct it and try again."));
             }
-        }
+				 	}
         }
 
         List<Integer> toBeRemoved = new ArrayList<Integer>();
@@ -532,8 +539,10 @@ public class NewCommentForm extends ActionForm {
            targetId = request.getParameter("commentTargetId"); 
         }
 
-        ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context).getMultiBoxData("category", "target_category_id", "TargetCategory", "comment_target_id='" + targetId + "'" );
-   
+        ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context)
+            .getMultiBoxData("category", "target_category_id", "TargetCategory",
+                "comment_target_id='" + targetId + "'" );
+
         categoryList = new ArrayList<LabelValueBean>();
         for(MultiBox c : list) { 
            categoryList.add(new LabelValueBean(c.getName(), c.getValue()));

@@ -5,7 +5,9 @@ package org.apidb.apicommon.model.view.genome;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,8 @@ import org.gusdb.wdk.model.user.Step;
  */
 public abstract class GenomeViewHandler implements SummaryViewHandler {
 
+  public static final DecimalFormat FORMAT = new DecimalFormat("#,###");
+
   protected static final String COLUMN_START = "start_min";
   protected static final String COLUMN_END = "end_max";
   protected static final String COLUMN_SOURCE_ID = "source_id";
@@ -40,37 +44,37 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
   private static final String PROP_SEQUENCES = "sequences";
   private static final String PROP_MAX_LENGTH = "maxLength";
-  private static final String PROP_SEGMENT_SIZE = "segmentSize";
   private static final String PROP_IS_DETAIL = "isDetail";
-  
+
   private static final String PROP_IS_TRUNCATE = "isTruncate";
 
-  private static final long MIN_SEGMENT_SIZE = 10000;
-  private static final double MAX_SEGMENTS = 100;
+  // private static final double MAX_REGION_PERCENT_LENGTH = 0.1;
+  private static final double MIN_FEATURE_PERCENT_GAP = 0.004;
 
-  private static final long MAX_FEATURES = 2000;
+  private static final long MAX_FEATURES = 10000;
 
   private static final Logger logger = Logger.getLogger(GenomeViewHandler.class);
 
-  public abstract String prepareSql(String idSql) throws WdkModelException,
-      WdkUserException;
+  public abstract String prepareSql(String idSql) throws WdkModelException, WdkUserException;
+
+  public static double round(double value) {
+    return Math.round(value * 1000) / 1000D;
+  }
 
   /*
    * (non-Javadoc)
    * 
-   * @see org.gusdb.wdk.view.SummaryViewHandler#process(org.gusdb.wdk.model.user
-   * .Step)
+   * @see org.gusdb.wdk.view.SummaryViewHandler#process(org.gusdb.wdk.model.user .Step)
    */
   @Override
-  public Map<String, Object> process(Step step) throws WdkModelException,
-      WdkUserException {
+  public Map<String, Object> process(Step step) throws WdkModelException, WdkUserException {
     logger.debug("Entering SpanGenomeViewHandler...");
     Map<String, Object> results = new HashMap<String, Object>();
 
-    // don't render 
+    // don't render
     if (step.getResultSize() > MAX_FEATURES) {
-        results.put(PROP_IS_TRUNCATE, "true");
-        return results;
+      results.put(PROP_IS_TRUNCATE, "true");
+      return results;
     }
 
     // load sequences
@@ -82,50 +86,56 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
 
       // compose an sql to get all sequences from the feature id query.
       AnswerValue answerValue = step.getAnswerValue();
-      String sql = prepareSql(answerValue.getIdSql());
-      resultSet = SqlUtils.executeQuery(dataSource, sql,
-          "genome-view", 2000);
+      String idSql = answerValue.getIdSql();
+      String sql = prepareSql(idSql);
+      resultSet = SqlUtils.executeQuery(dataSource, sql, "genome-view", 2000);
 
-      sequences = loadSequences(resultSet);
-    } catch (SQLException ex) {
+      sequences = loadSequences(dataSource, sql, resultSet);
+    }
+    catch (SQLException ex) {
       logger.error(ex);
       ex.printStackTrace();
       throw new WdkModelException(ex);
-    } finally {
+    }
+    finally {
       SqlUtils.closeResultSetAndStatement(resultSet);
     }
-    
+
     // check if want to display the detail view, or density view
     int maxFeatures = 0;
     for (Sequence sequence : sequences) {
       int featureCount = sequence.getFeatureCount();
-      if (maxFeatures < featureCount) maxFeatures = featureCount;
+      if (maxFeatures < featureCount)
+        maxFeatures = featureCount;
     }
-    
+
     // get the max length, then format sequences
+    int regionCount = 0;
     long maxLength = getMaxLength(sequences);
-    long segmentSize = getSegmentSize(maxLength);
-    logger.debug("Segment size: " + segmentSize + ", maxLength=" + maxLength);
     for (Sequence sequence : sequences) {
       // compute the percent length of a sequence.
       double pctLength = round(sequence.getLength() * 100D / maxLength);
       sequence.setPercentLength(pctLength);
 
-      formatRegions(sequence, maxLength, segmentSize);
+      createRegions(sequence, maxLength);
+      regionCount += sequence.getRegionCount();
     }
+    logger.debug("# regions: " + regionCount);
 
     // only use detail view for now
     results.put(PROP_IS_DETAIL, "true");
 
     results.put(PROP_SEQUENCES, sequences);
     results.put(PROP_MAX_LENGTH, maxLength);
-    results.put(PROP_SEGMENT_SIZE, segmentSize);
     logger.debug("Leaving SpanGenomeViewHandler...");
     return results;
   }
 
-  private Sequence[] loadSequences(ResultSet resultSet) throws SQLException {
-    Map<String, Sequence> sequences = new HashMap<String, Sequence>();
+  private Sequence[] loadSequences(DataSource dataSource, String sql, ResultSet resultSet) throws SQLException {
+    // first load all chromosomes
+    Map<String, Sequence> sequences = loadChromosomes(dataSource, sql);
+
+    // then load sequences
     while (resultSet.next()) {
       String sequenceId = resultSet.getString(COLUMN_SEQUENCE_ID);
       Sequence sequence = sequences.get(sequenceId);
@@ -143,8 +153,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     return array;
   }
 
-  private Sequence createSequence(String sequenceId, ResultSet resultSet)
-      throws SQLException {
+  private Sequence createSequence(String sequenceId, ResultSet resultSet) throws SQLException {
     Sequence sequence = new Sequence(sequenceId);
 
     sequence.setLength(resultSet.getInt(COLUMN_SEQUENCE_LENGTH));
@@ -154,15 +163,13 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     return sequence;
   }
 
-  private Feature createFeature(String sequenceId, ResultSet resultSet)
-      throws SQLException {
+  private Feature createFeature(String sequenceId, ResultSet resultSet) throws SQLException {
     String featureId = resultSet.getString(COLUMN_SOURCE_ID);
-    Feature feature = new Feature(featureId);
+    boolean forward = resultSet.getBoolean(COLUMN_STRAND);
+    Feature feature = new Feature(featureId, sequenceId, forward);
 
-    feature.setSequenceId(sequenceId);
     feature.setStart(resultSet.getInt(COLUMN_START));
     feature.setEnd(resultSet.getInt(COLUMN_END));
-    feature.setForward(resultSet.getBoolean(COLUMN_STRAND));
     feature.setContext(resultSet.getString(COLUMN_CONTEXT));
     feature.setDescription(resultSet.getString(COLUMN_DESCRIPTION));
 
@@ -178,71 +185,57 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     return maxLength;
   }
 
-  public void formatRegions(Sequence sequence, long maxLength, long segmentSize) {
-    long sequenceLength = sequence.getLength();
-    long start = 1;
-    while (start <= sequenceLength) {
-      // determine the start & stop of the current region.
-      long stop = start + segmentSize - 1;
-      if (stop > sequenceLength)
-        stop = sequenceLength;
+  private void createRegions(Sequence sequence, long maxLength) throws GenomeViewException {
+    // sort features by location
+    List<Feature> features = sequence.getFeatures();
+    Collections.sort(features);
 
-      // create two regions at the same section.
-      Region region = new Region(sequence.getSourceId(), start, stop);
-
-      double pctStart = round(start * 100D / maxLength);
-      double pctLength = round((stop - start + 1) * 100D / maxLength);
-      if (pctLength >= 1) pctLength -= 0.1;
-      region.setPercentStart(pctStart);
-      region.setPercentLength(pctLength);
-      sequence.addRegion(region);
-
-      start = stop + 1;
-    }
-
-    // assign features to regions
+    // create regions
+    Region forwardRegion = null, reversedRegion = null;
     for (Feature feature : sequence.getFeatures()) {
-      // compute the percent location of the feature on sequence
-      double pctStart = round(feature.getStart() * 100D / maxLength);
-      double pctLength = round((feature.getEnd() - feature.getStart() + 1) * 100D / maxLength);
-      feature.setPercentStart(pctStart);
-      feature.setPercentLength(pctLength);
+      Region region = feature.isForward() ? forwardRegion : reversedRegion;
 
-      List<Region> regions = sequence.getRegions(feature.getStart(),
-          feature.getEnd(), feature.isForward());
-      for (Region region : regions) {
-        // each region should have its own copy of feature
-        Feature clone = new Feature(feature);
+      // check if we need to create new region;
+      if (region == null || ((feature.getStart() - region.getEnd()) / (double)maxLength > MIN_FEATURE_PERCENT_GAP) 
+          /* || (region.getLength() / (double)maxLength > MAX_REGION_PERCENT_LENGTH) */) {
+        // region is null, which is the first feature; or region is too far from the next feature; or region
+        // is too long already.
+        region = new Region(feature.isForward());
+        sequence.addRegion(region);
 
-        // format feature within the region
-        long visualStart = Math.max(feature.getStart(), region.getStart());
-        long visualEnd = Math.min(feature.getEnd(), region.getEnd());
-        pctStart = round((visualStart - region.getStart()) * 100D / segmentSize);
-        pctLength = round((visualEnd - visualStart + 1) * 100D / segmentSize);
-        clone.setPercentStart(pctStart);
-        clone.setPercentLength(pctLength);
-
-        region.addFeature(clone);
+        // set the region back to the proper variable for future use.
+        if (feature.isForward())
+          forwardRegion = region;
+        else
+          reversedRegion = region;
       }
+      region.addFeature(feature);
+    }
+
+    // compute percent size for regions
+    for (Region region : sequence.getRegions()) {
+      region.computePercentSize(maxLength);
     }
   }
 
-  private double round(double value) {
-    return Math.round(value * 1000) / 1000D;
-  }
-
-  private long getSegmentSize(long maxLength) {
-    if (maxLength <= MIN_SEGMENT_SIZE)
-      return maxLength;
-
-    if (maxLength / MAX_SEGMENTS < MIN_SEGMENT_SIZE) {
-      // segments too small, each one will have min size
-      return MIN_SEGMENT_SIZE;
-    } else { // segments too big, will get the ceiling of the
-      String strSize = Long.toString(Math.round(1.0 * maxLength / MAX_SEGMENTS));
-      long lead = Math.round(Math.ceil(Long.valueOf(strSize.substring(0, 3)) / 50D) * 5);
-      long size = lead * Math.round(Math.pow(10, strSize.length() - 2));
-      return size;
+  private Map<String, Sequence> loadChromosomes(DataSource dataSource, String sql) throws SQLException {
+    Map<String, Sequence> chromosomes = new HashMap<>();
+    sql = "SELECT source_id AS " + COLUMN_SEQUENCE_ID + ", length AS " + COLUMN_SEQUENCE_LENGTH 
+        + ", chromosome AS " + COLUMN_CHROMOSOME + ", organism AS " + COLUMN_ORGANISM 
+        + " FROM ApiDBTuning.SequenceAttributes "
+        + " WHERE chromosome IS NOT NULL "
+        + "   AND organism IN (SELECT organism FROM (" + sql + "))";
+    ResultSet resultSet = null;
+    try {
+      resultSet = SqlUtils.executeQuery(dataSource, sql, "genome-view-chromosome");
+      while(resultSet.next()) {
+        String sequenceId = resultSet.getString(COLUMN_SEQUENCE_ID);
+        Sequence chromosome = createSequence(sequenceId, resultSet);
+        chromosomes.put(sequenceId, chromosome);
+      }
+    } finally {
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
+    return chromosomes;
   }
 }

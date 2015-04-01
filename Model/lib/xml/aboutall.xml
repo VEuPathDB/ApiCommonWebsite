@@ -113,8 +113,7 @@ Microbial Informatics Genome Sequencing & Analysis Program<br>
 
 <div id="cirbulletlist"><ul>
 <li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the o
-rganisms currently available in EuPathDB, by various datatypes.
+<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
 </ul></div>
 
        ]]>

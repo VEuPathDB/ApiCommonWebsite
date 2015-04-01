@@ -50,9 +50,11 @@ sub getSampleNames {
   if($self->getSampleLabelsString()) {
     my $sampleLabelsString = $self->getSampleLabelsString();
     my @rv = split(/;/, $sampleLabelsString);
+    print STDERR Dumper(\@rv);
     return \@rv;
   } 
-  return undef;
+  my $rv =[];
+  return $rv;
 }
 
 sub getIsPairedEnd { $_[0]->{_is_paired_end} }
@@ -94,11 +96,12 @@ sub makeGraphs {
   $sense->setPctProfileSet($self->getPctSenseProfileSet());
   $sense->setColor($color);
   $sense->setIsPairedEnd($isPairedEnd);
-  $sense->makeGraphs(@_);
   $sense->setBottomMarginSize($bottomMarginSize);
   $sense->setAdditionalRCode($self->getAdditionalRCode());
-  $sense->setSampleNames($self->getSampleNames);
+  $sense->setSampleNames(@{$self->getSampleNames});
   $sense->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
+
+  $sense->makeGraphs(@_);
 
 
   my ($senseStacked, $sensePct) = @{$sense->getGraphObjects()};
@@ -115,11 +118,12 @@ sub makeGraphs {
   $antisense->setPctProfileSet($self->getPctAntisenseProfileSet());
   $antisense->setColor($lighterColor);
   $antisense->setIsPairedEnd($isPairedEnd);
-  $antisense->makeGraphs(@_);
   $antisense->setBottomMarginSize($bottomMarginSize);
   $antisense->setAdditionalRCode($self->getAdditionalRCode());
-  $antisense->setSampleNames($self->getSampleNames);
+  $antisense->setSampleNames(@{$self->getSampleNames});
   $antisense->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
+
+  $antisense->makeGraphs(@_);
 
   my ($antisenseStacked, $antisensePct) = @{$antisense->getGraphObjects()};
   $antisenseStacked->setPartName($antisenseStacked->getPartName . "_antisense");

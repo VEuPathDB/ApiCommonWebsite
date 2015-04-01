@@ -125,9 +125,10 @@ public class GetDatasetAction extends Action {
      * 
      * @param request
      * @param answerValue
+     * @throws WdkUserException 
      */
     private Map<String, List<RecordBean>> formatAnswer(
-            AnswerValueBean answerValue) throws WdkModelException {
+            AnswerValueBean answerValue) throws WdkModelException, WdkUserException {
         Map<String, List<RecordBean>> categories = new LinkedHashMap<String, List<RecordBean>>();
         Iterator<RecordBean> records = answerValue.getRecords();
         while (records.hasNext()) {

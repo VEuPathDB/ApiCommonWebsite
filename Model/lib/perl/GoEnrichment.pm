@@ -35,7 +35,7 @@ FROM ApidbTuning.GoTermSummary gts, ApidbTuning.GeneAttributes ga
 where ga.taxon_id = $taxonId
   and gts.source_id = ga.source_id
   and gts.is_not is null
-  and gts.source in ($self->{sources})
+  and gts.displayable_source in ($self->{sources})
 --  and gts.evidence_code in ($self->{evidCodes})
 ";
 
@@ -54,7 +54,7 @@ FROM ApidbTuning.GoTermSummary gts,
      ($geneResultSql) r
 where gts.source_id = r.source_id
   and gts.is_not is null
-  and gts.source in ($self->{sources})
+  and gts.displayable_source in ($self->{sources})
 --  and gts.evidence_code in ($self->{evidCodes})
 ";
 
@@ -79,7 +79,7 @@ from
             WHERE gf.taxon_id = $taxonId
               AND gts.source_id = gf.source_id
               AND gts.ontology = '$self->{subOntology}'
-              AND gts.source in ($self->{sources})
+              AND gts.displayable_source in ($self->{sources})
 --              AND gts.evidence_code in ($self->{evidCodes})
               AND gts.is_not is null
               AND gr.child_term_id = gts.go_term_id
@@ -96,7 +96,7 @@ from
                  ($geneResultSql) r
             WHERE gts.source_id = r.source_id
               AND gts.ontology = '$self->{subOntology}'
-              AND gts.source in ($self->{sources})
+              AND gts.displayable_source in ($self->{sources})
 --              AND gts.evidence_code in ($self->{evidCodes})
               AND gts.is_not is null
               AND gr.child_term_id = gts.go_term_id

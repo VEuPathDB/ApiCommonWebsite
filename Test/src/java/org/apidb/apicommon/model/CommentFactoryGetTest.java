@@ -6,6 +6,11 @@ package org.apidb.apicommon.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.apidb.apicommon.model.comment.Comment;
+import org.apidb.apicommon.model.comment.CommentFactory;
+import org.apidb.apicommon.model.comment.ExternalDatabase;
+import org.apidb.apicommon.model.comment.Location;
+import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.junit.After;
@@ -48,7 +53,7 @@ public class CommentFactoryGetTest {
                     + Utilities.ARGUMENT_PROJECT_ID + " is missing.");
 
         // initialize comment factory
-        factory = CommentFactory.getInstance(gusHome, projectId);
+        factory = InstanceManager.getInstance(CommentFactory.class, projectId);
     }
 
     @Before
