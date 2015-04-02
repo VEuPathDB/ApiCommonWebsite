@@ -1,9 +1,13 @@
 <%@ page contentType="text/html; charset=utf8" %>
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
-<imp:pageFrame>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <imp:stylesheet rel="stylesheet" href="wdk/css/wdk3.css"/>
+<imp:pageFrame refer="betaApp">
   <style>
+    .eupathdb-DatasetRecord h2,
+    .eupathdb-DatasetRecord h3 {
+      margin: 22px 0 11px;
+      color: #333333;
+      font-family: Arial, Helvetica, sans-serif;
+    }
     .eupathdb-DatasetRecord-summary {
       font-size: 1.2em;
     }
@@ -23,8 +27,74 @@
       text-align: right;
       border: none;
     }
+
+    .eupathdb-DatasetRecord-GraphImg {
+      width: 450px;
+    }
+
+    /*
+    @media (min-width: 1175px) {
+      .eupathdb-DatasetRecord {
+        padding: 0 20px;
+        max-width: 1350px;
+        margin: auto;
+      }
+      .eupathdb-DatasetRecord-Main {
+        float: left;
+        max-width: 700px;
+      }
+      .eupathdb-DatasetRecord-Sidebar {
+        max-width: 375px;
+        float: right;
+        font-size: 95%;
+        color: #333333;
+      }
+      .eupathdb-DatasetRecord-Sidebar ul {
+        padding-left: 0;
+      }
+      .eupathdb-DatasetRecord-Sidebar table {
+        width: 100%;
+      }
+    }
+    */
+
+    @media (min-width: 1150px) {
+      .eupathdb-DatasetRecord-GraphMeta {
+        width: 58%;
+        float: right;
+      }
+      .eupathdb-DatasetRecord-GraphData {
+        width: 450px;
+      }
+    }
+    @media (min-width: 1300px) {
+      .eupathdb-DatasetRecord-GraphMeta {
+        width: 65%;
+      }
+    }
+    .eupathdb-Beta-Announcement {
+      position: absolute;
+      top: 136px;
+      right: 0;
+      z-index: 1;
+      padding: 0 2em;
+      display: inline-block;
+      font-style: italic;
+      font-size: 1.2em;
+    }
   </style>
+
+  <div class="eupathdb-Beta-Announcement">
+    <p>
+      <%-- <i class="fa fa-lg fa-exclamation-circle" style="color: rgb(25, 89, 200);"></i> --%>
+      You are viewing a <strong>BETA</strong> page.
+      <a data-name="contact_us" class="new-window" href="contact.do">Feedback and comments</a>
+      are welcome!
+    </p>
+  </div>
+
   <main></main>
+
   <imp:script src="wdk/js/wdk-3.0.js"/>
   <imp:script src="wdkCustomization/js/records/DatasetRecordClasses.DatasetRecordClass.js"/>
   <script>
@@ -33,13 +103,31 @@
         baseUrl: '${pageContext.request.contextPath}/app',
         serviceUrl: '${pageContext.request.contextPath}/service',
         rootElement: document.getElementsByTagName('main')[0],
-        recordComponentResolver: recordComponentResolver
+        recordComponentResolver: recordComponentResolver,
+        cellRendererResolver: cellRendererResolver
       });
 
+      // This is called when rendering the record page. `DefaultComponent` is
+      // passed as a child to the component returned by this function. This
+      // makes it possible to decorate the default component, or to replace it.
       function recordComponentResolver(recordClassName, DefaultComponent) {
         switch (recordClassName) {
-          case "DatasetRecordClasses.DatasetRecordClass": return eupathdb.records.DatasetRecord;
-          default: return DefaultComponent;
+          case "DatasetRecordClasses.DatasetRecordClass":
+            return eupathdb.records.DatasetRecord;
+          default:
+            return DefaultComponent;
+        }
+      }
+
+      // This is called when rendering a table cell. `defaultRenderer` is passed
+      // as an argument to the function returned by this function. This makes it
+      // possible to decorate the default renderer, or to replace it.
+      function cellRendererResolver(recordClassName, defaultRenderer) {
+        switch (recordClassName) {
+          case "DatasetRecordClasses.DatasetRecordClass":
+            return eupathdb.records.datasetCellRenderer;
+          default:
+            return defaultRenderer;
         }
       }
     }());

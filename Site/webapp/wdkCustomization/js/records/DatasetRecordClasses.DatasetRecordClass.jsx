@@ -1,4 +1,5 @@
 /* global _, Wdk, wdk */
+/* jshint esnext: true, eqnull: true, -W014 */
 
 /**
  * This file provides a custom Record Component which is used by the new Wdk
@@ -16,27 +17,41 @@ wdk.namespace('eupathdb.records', function(ns) {
 
   var React = Wdk.React;
 
+  // Use Element.innerText to strip XML
+  function stripXML(str) {
+    var div = document.createElement('div');
+    div.innerHTML = str;
+    return div.textContent;
+  }
+
   // format is {text}({link})
   var formatLink = function formatLink(link, opts) {
     opts = opts || {};
     var newWindow = !!opts.newWindow;
-    var match = /(.*)\((.*)\)/.exec(link.value);
-    return match ? ( <a target={newWindow ? '_blank' : '_self'} href={match[2]}>{match[1]}</a> ) : null;
+    var match = /(.*)\((.*)\)/.exec(link.replace(/\n/g, ' '));
+    if (match) {
+      var text = stripXML(match[1]);
+      var url = match[2];
+      return ( <a target={newWindow ? '_blank' : '_self'} href={url}>{text}</a> );
+    }
+    return null;
   };
 
   var renderPrimaryPublication = function renderPrimaryPublication(publication) {
-    var pubmedLink = _.find(publication, { name: 'pubmed_link' });
-    return formatLink(pubmedLink, { newWindow: true });
+    var pubmedLink = publication.find(function(pub) {
+      return pub.get('name') == 'pubmed_link';
+    });
+    return formatLink(pubmedLink.get('value'), { newWindow: true });
   };
 
   var renderPrimaryContact = function renderPrimaryContact(contact, institution) {
-    return contact.value + ', ' + institution.value;
+    return contact + ', ' + institution;
   };
 
   var renderSourceVersion = function(version) {
-    var v = _.find(version, { name: 'version' });
+    var name = version.find(v => v.get('name') === 'version');
     return (
-      v.value + ' (The data provider\'s version number or publication date, from' +
+      name.get('value') + ' (The data provider\'s version number or publication date, from' +
       ' the site the data was acquired. In the rare case neither is available,' +
       ' the download date.)'
     );
@@ -45,11 +60,11 @@ wdk.namespace('eupathdb.records', function(ns) {
   var Organisms = React.createClass({
     render() {
       var { organisms } = this.props;
-      if (!organisms.value) return null;
+      if (!organisms) return null;
       return (
         <div>
-          <h3>Organisms this data set is mapped to in PlasmoDB</h3>
-          <ul>{organisms.value.split(/,\s*/).map(this._renderOrganism)}</ul>
+          <h2>Organisms this data set is mapped to in PlasmoDB</h2>
+          <ul>{organisms.split(/,\s*/).map(this._renderOrganism).toArray()}</ul>
         </div>
       );
     },
@@ -63,42 +78,37 @@ wdk.namespace('eupathdb.records', function(ns) {
 
   var Searches = React.createClass({
     render() {
-      var links = this.props.links;
-      var searches = this.props.searches.rows.filter(this._rowIsQuestion);
+      var searches = this.props.searches.get('rows').filter(this._rowIsQuestion);
 
-      if (searches.length === 0 && links.rows.length === 0) return null;
+      if (searches.size === 0) return null;
 
       return (
         <div>
-          <h3>Search or view this data set in PlasmoDB</h3>
+          <h2>Search or view this data set in PlasmoDB</h2>
           <ul>
-            {searches.map(this._renderSearch)}
-            {links.rows.map(this._renderLink)}
+            {searches.map(this._renderSearch).toArray()}
           </ul>
         </div>
       );
     },
 
     _rowIsQuestion(row) {
-      var type = _.find(row, { name: 'target_type' });
-      return type && type.value == 'question';
+      var type = row.find(attr => attr.get('name') == 'target_type');
+      return type && type.get('value') == 'question';
     },
 
     _renderSearch(search, index) {
-      var name = _.find(search, { name: 'target_name' });
-      var names = [
-        'Identify Genes based on P berghei ANKA 5 asexual and sexual stage transcriptomes RNASeq (fold change)',
-        'Identify Genes based on P berghei ANKA 5 asexual and sexual stage transcriptomes RNASeq (fold change w/ pvalue)',
-        'Identify Genes based on P berghei ANKA 5 asexual and sexual stage transcriptomes RNASeq (percentile)'
-      ];
-      return (
-        <li key={index}><a href={'/a/showQuestion.do?questionFullName=' + name.value}>{names[index]}</a></li>
-      );
-    },
+      var name = search.find(attr => attr.get('name') == 'target_name').get('value');
+      var question = this.props.questions.find(q => q.get('name') === name);
 
-    _renderLink(link, index) {
+      if (question == null) return null;
+
+      var recordClass = this.props.recordClasses.find(r => r.get('fullName') === question.get('class'));
+      var searchName = `Identify ${recordClass.get('displayNamePlural')} by ${question.get('displayName')}`;
       return (
-        <li key={index}>{formatLink(_.find(link, { name: 'hyper_link'}))}</li>
+        <li key={index}>
+          <a href={'/a/showQuestion.do?questionFullName=' + name}>{searchName}</a>
+        </li>
       );
     }
   });
@@ -107,22 +117,20 @@ wdk.namespace('eupathdb.records', function(ns) {
     render() {
       var { links } = this.props;
 
-      if (links.rows.length === 0) return null;
+      if (links.get('rows').size === 0) return null;
 
       return (
         <div>
-          <h3>External Links</h3>
-          { /* <ul> {links.rows.map(this._renderLink)} </ul> */}
-          <ul>
-            <li><a href="http://www.ncbi.nlm.nih.gov/geo/tools/profileGraph.cgi?ID=GDS5092:10483626">GEO</a></li>
-          </ul>
+          <h2>Links</h2>
+          <ul> {links.get('rows').map(this._renderLink).toArray()} </ul>
         </div>
       );
     },
 
     _renderLink(link, index) {
+      var hyperLink = link.find(attr => attr.get('name') == 'hyper_link');
       return (
-        <li key={index}>{formatLink(_.find(link, { name: 'hyper_link'}))}</li>
+        <li key={index}>{formatLink(hyperLink.get('value'))}</li>
       );
     }
   });
@@ -130,21 +138,22 @@ wdk.namespace('eupathdb.records', function(ns) {
   var Contacts = React.createClass({
     render() {
       var { contacts } = this.props;
-      if (contacts.rows.length === 0) return null;
+      if (contacts.get('rows').size === 0) return null;
       return (
         <div>
           <h4>Contacts</h4>
           <ul>
-            {contacts.rows.map(this._renderContact)}
+            {contacts.get('rows').map(this._renderContact).toArray()}
           </ul>
         </div>
       );
     },
 
     _renderContact(contact, index) {
-      var c = _.indexBy(contact, 'name');
+      var contact_name = contact.find(c => c.get('name') == 'contact_name');
+      var affiliation = contact.find(c => c.get('name') == 'affiliation');
       return (
-        <li key={index}>{c.contact_name.value}, {c.affiliation.value}</li>
+        <li key={index}>{contact_name.get('value')}, {affiliation.get('value')}</li>
       );
     }
   });
@@ -152,19 +161,20 @@ wdk.namespace('eupathdb.records', function(ns) {
   var Publications = React.createClass({
     render() {
       var { publications } = this.props;
-      if (publications.rows.length === 0) return null;
+      var rows = publications.get('rows');
+      if (rows.size === 0) return null;
       return (
         <div>
           <h4>Publications</h4>
-          <ul>{publications.rows.map(this._renderPublication)}</ul>
+          <ul>{rows.map(this._renderPublication).toArray()}</ul>
         </div>
       );
     },
 
     _renderPublication(publication, index) {
-      var p = _.indexBy(publication, 'name');
+      var pubmed_link = publication.find(p => p.get('name') == 'pubmed_link');
       return (
-        <li key={index}>{formatLink(p.pubmed_link)}</li>
+        <li key={index}>{formatLink(pubmed_link.get('value'))}</li>
       );
     }
   });
@@ -173,11 +183,11 @@ wdk.namespace('eupathdb.records', function(ns) {
     render() {
       var { contacts, publications } = this.props;
 
-      if (contacts.rows.length === 0 && publications.rows.length === 0) return null;
+      if (contacts.get('rows').size === 0 && publications.get('rows').size === 0) return null;
 
       return (
         <div>
-          <h3>Additional Contacts and Publications</h3>
+          <h2>Additional Contacts and Publications</h2>
           <Contacts contacts={contacts}/>
           <Publications publications={publications}/>
         </div>
@@ -185,93 +195,307 @@ wdk.namespace('eupathdb.records', function(ns) {
     }
   });
 
+  var ReleaseHistory = React.createClass({
+    render() {
+      var { history } = this.props;
+      if (history.get('rows').size === 0) return null;
+      return (
+        <div>
+          <h2>Data Set Release History</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>EuPathDB Release</th>
+                <th>Genome Source</th>
+                <th>Annotation Source</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {history.get('rows').map(this._renderRow).toArray()}
+            </tbody>
+          </table>
+        </div>
+      );
+    },
+
+    _renderRow(attributes) {
+      var attrs = _.indexBy(attributes.toJS(), 'name');
+
+      var release = attrs.build.value ? 'Release ' + attrs.build.value
+        : 'Initial release';
+
+      var releaseDate = attrs.release_date.value.split(/\s+/)[0];
+
+      var genomeSource = attrs.genome_source.value
+        ? attrs.genome_source.value + ' (' + attrs.genome_version.value + ')'
+        : '';
+
+      var annotationSource = attrs.annotation_source.value
+        ? attrs.annotation_source.value + ' (' + attrs.annotation_version.value + ')'
+        : '';
+
+      return (
+        <tr>
+          <td>{release} ({releaseDate}, {attrs.project.value} {attrs.release_number.value})</td>
+          <td>{genomeSource}</td>
+          <td>{annotationSource}</td>
+          <td>{attrs.note.value}</td>
+        </tr>
+      );
+    }
+  });
+
+  var Versions = React.createClass({
+    render() {
+      var { versions } = this.props;
+      var rows = versions.get('rows');
+
+      if (rows.size === 0) return null;
+
+      return (
+        <div>
+          <h2>Provider's Version</h2>
+          <p>
+            The data set version shown here is the data provider's version
+            number or publication date indicated on the site from which we
+            downloaded the data. In the rare case that these are not available,
+            the version is the date that the data set was downloaded.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Organism</th>
+                <th>Provider's Version</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(this._renderRow).toArray()}
+            </tbody>
+          </table>
+        </div>
+      );
+    },
+
+    _renderRow(attributes) {
+      var attrs = _.indexBy(attributes.toJS(), 'name');
+      return (
+        <tr>
+          <td>{attrs.organism.value}</td>
+          <td>{attrs.version.value}</td>
+        </tr>
+      );
+    }
+  });
+
   var Graphs = React.createClass({
     render() {
       var { graphs } = this.props;
-      if (graphs.rows.length === 0) return null;
+      var rows = graphs.get('rows');
+      if (rows.size === 0) return null;
       return (
         <div>
-          <h3>Example Graphs</h3>
-          <ul>{graphs.rows.map(this._renderGraph)}</ul>
+          <h2>Example Graphs</h2>
+          <ul>{rows.map(this._renderGraph).toArray()}</ul>
         </div>
       );
     },
 
     _renderGraph(graph, index) {
-      var g = _.indexBy(graph, 'name');
-      var url = '/cgi-bin/dataPlotter.pl' +
-        '?type= ' + g.module.value +
+      var g = _.indexBy(graph.toJS(), 'name');
+
+      var displayName = g.display_name.value;
+
+      var baseUrl = '/cgi-bin/dataPlotter.pl' +
+        '?type=' + g.module.value +
         '&project_id=' + g.project_id.value +
         '&dataset=' + g.dataset_name.value +
-        '&template=1&fmt=png&id=' + g.graph_ids.value;
+        '&template=' + (g.is_graph_custom.value === 'false' ? 1 : '') +
+        '&id=' + g.graph_ids.value;
+
+      var imgUrl = baseUrl + '&fmt=png';
+      var tableUrl = baseUrl + '&fmt=table';
+
       return (
-        <li key={index}><img src={url}/></li>
+        <li key={index}>
+          <h3>{displayName}</h3>
+          <div className="eupathdb-DatasetRecord-GraphMeta">
+            <h3>Description</h3>
+            <p dangerouslySetInnerHTML={{__html: g.description.value}}/>
+            <h3>X-axis</h3>
+            <p>{g.x_axis.value}</p>
+            <h3>Y-axis</h3>
+            <p>{g.y_axis.value}</p>
+          </div>
+          <div className="eupathdb-DatasetRecord-GraphData">
+            <img className="eupathdb-DatasetRecord-GraphImg" src={imgUrl}/>
+          </div>
+        </li>
       );
     }
   });
 
   var DatasetRecord = React.createClass({
     render() {
-      var { record } = this.props;
-      var attributes = _.indexBy(record.attributes, 'name');
-      var tables = _.indexBy(record.tables, 'name');
+      var { record, questions, recordClasses } = this.props;
+      var attributes = record.get('attributes');
+      var tables = record.get('tables');
       var titleClass = 'eupathdb-DatasetRecord-title';
 
+      var id = record.get('id');
+      var summary = attributes.getIn(['summary', 'value']);
+      var releaseInfo = attributes.getIn(['eupath_release', 'value']);
+      var primaryPublication = tables.getIn(['Publications', 'rows', 0]);
+      var contact = attributes.getIn(['contact', 'value']);
+      var institution = attributes.getIn(['institution', 'value']);
+      var version = attributes.getIn(['Version', 'rows', 0]);
+      var organism = attributes.getIn(['organism_prefix', 'value']);
+      var organisms = attributes.getIn(['organisms', 'value']);
+      var References = tables.get('References');
+      var HyperLinks = tables.get('HyperLinks');
+      var Contacts = tables.get('Contacts');
+      var Publications = tables.get('Publications');
+      var description = attributes.getIn(['description', 'value']);
+      var GenomeHistory = tables.get('GenomeHistory');
+      var Version = tables.get('Version');
+      var ExampleGraphs = tables.get('ExampleGraphs');
+
       return (
-        <div className="eupathdb-DatasetRecord">
+        <div className="eupathdb-DatasetRecord ui-helper-clearfix">
           <h1 dangerouslySetInnerHTML={{
-            __html: 'Data set: <span class="' + titleClass + '">' + record.id + '</span>'
+            __html: 'Data Set: <span class="' + titleClass + '">' + id + '</span>'
           }}/>
 
-          <hr/>
+          <div className="eupathdb-DatasetRecord-Container ui-helper-clearfix">
 
-          <p
-            className="eupathdb-DatasetRecord-summary"
-            dangerouslySetInnerHTML={{__html: attributes.summary.value}}
-          />
+            <hr/>
 
-          <table className="eupathdb-DatasetRecord-headerTable">
-            <tbody>
-              {tables.Publications.rows[0] ? (
+            <table className="eupathdb-DatasetRecord-headerTable">
+              <tbody>
+
                 <tr>
-                  <th>Primary publication:</th>
-                  <td>{renderPrimaryPublication(tables.Publications.rows[0])}</td>
+                  <th>Summary:</th>
+                  <td dangerouslySetInnerHTML={{__html: summary}}/>
                 </tr>
-              ) : null}
 
-              {attributes.contact.value && attributes.institution.value ? (
-                <tr>
-                  <th>Primary contact:</th>
-                  <td>{renderPrimaryContact(attributes.contact, attributes.institution)}</td>
-                </tr>
-              ) : null}
+                {organism ? (
+                  <tr>
+                    <th>Organism (source or reference):</th>
+                    <td dangerouslySetInnerHTML={{__html: organism}}/>
+                  </tr>
+                ) : null}
 
-              {tables.Version.rows[0] ? (
-                <tr>
-                  <th>Source version:</th>
-                  <td>{renderSourceVersion(tables.Version.rows[0])}</td>
-                </tr>
-              ) : null}
+                {primaryPublication ? (
+                  <tr>
+                    <th>Primary publication:</th>
+                    <td>{renderPrimaryPublication(primaryPublication)}</td>
+                  </tr>
+                ) : null}
 
-            </tbody>
-          </table>
+                {contact && institution ? (
+                  <tr>
+                    <th>Primary contact:</th>
+                    <td>{renderPrimaryContact(contact, institution)}</td>
+                  </tr>
+                ) : null}
 
-          <hr/>
+                {version ? (
+                  <tr>
+                    <th>Source version:</th>
+                    <td>{renderSourceVersion(version)}</td>
+                  </tr>
+                ) : null}
 
-          <Organisms organisms={attributes.organisms}/>
-          <Searches searches={tables.References} links={tables.HyperLinks}/>
-          <Links links={tables.HyperLinks}/>
-          <ContactsAndPublications contacts={tables.Contacts} publications={tables.Publications}/>
+                {releaseInfo ? (
+                  <tr>
+                    <th>EuPathDB release # / date:</th>
+                    <td>{releaseInfo}</td>
+                  </tr>
+                ) : null}
 
+              </tbody>
+            </table>
 
-          <h3>Detailed Description</h3>
-          <div dangerouslySetInnerHTML={{__html: attributes.description.value}}/>
+            <hr/>
 
-          <Graphs graphs={tables.ExampleGraphs}/>
+            <div className="eupathdb-DatasetRecord-Main">
+              <h2>Detailed Description</h2>
+              <div dangerouslySetInnerHTML={{__html: description}}/>
+              <ContactsAndPublications contacts={Contacts} publications={Publications}/>
+            </div>
+
+            <div className="eupathdb-DatasetRecord-Sidebar">
+              <Organisms organisms={organisms}/>
+              <Searches searches={References} questions={questions} recordClasses={recordClasses}/>
+              <Links links={HyperLinks}/>
+              <ReleaseHistory history={GenomeHistory}/>
+              <Versions versions={Version}/>
+            </div>
+
+          </div>
+          <Graphs graphs={ExampleGraphs}/>
         </div>
       );
     }
   });
 
+  var Tooltip = React.createClass({
+    componentDidMount() {
+      this._setupTooltip();
+    },
+    componentDidUpdate() {
+      this._destroyTooltip();
+      this._setupTooltip();
+    },
+    componentWillUnmount() {
+      this._destroyTooltip();
+    },
+    _setupTooltip() {
+      if (this.props.text == null) return;
+
+      var text = `<div style="max-height: 200px; overflow-y: auto; padding: 2px;">${this.props.text}</div>`;
+      var width = this.props.width;
+
+      this.$target = $(this.getDOMNode()).find('.wdk-RecordTable-recordLink')
+        .wdkTooltip({
+          overwrite: true,
+          content: { text },
+          show: { delay: 1000 },
+          position: { my: 'top left', at: 'bottom left', adjust: { y: 12 } }
+        });
+    },
+    _destroyTooltip() {
+      // if _setupTooltip doesn't do anything, this is a noop
+      if (this.$target) {
+        this.$target.qtip('destroy', true);
+      }
+    },
+    render() {
+      // FIXME - Figure out why we lose the fixed-data-table className
+      // Losing the fixed-data-table className for some reason... adding it back.
+      var child = React.Children.only(this.props.children);
+      child.props.className += " public_fixedDataTableCell_cellContent";
+      return child;
+      //return this.props.children;
+    }
+  });
+
+  function datasetCellRenderer(attribute, attributeName, attributes, index, columnData, width, defaultRenderer) {
+    var reactElement = defaultRenderer(attribute, attributeName, attributes, index, columnData, width);
+
+    if (attribute.get('name') === 'primary_key') {
+      return (
+        <Tooltip
+          text={attributes.get('description').get('value')}
+          width={width}
+        >{reactElement}</Tooltip>
+      );
+    }
+    else {
+      return reactElement;
+    }
+  }
+
   ns.DatasetRecord = DatasetRecord;
+  ns.datasetCellRenderer = datasetCellRenderer;
 });

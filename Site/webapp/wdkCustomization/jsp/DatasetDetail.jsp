@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<fmt:setLocale value="en-US"/>
 
 <%-- get wdkXmlQuestionSets saved in request scope --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
@@ -48,8 +49,12 @@
 <%-- show all xml question sets --%>
 <div id="data-sets">
   <a name="_top"></a>
-  <h1>Data Sets</h1>
-   
+  <h1>Data Sets</h1>  
+  <div id="beta-page"><a title="Please contact us with your feedback." 
+                       href="<c:url value='/app/answer/DatasetQuestions.AllDatasets'/>">New Data Sets page!
+                       <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
+  </div>
+
   <div class="ui-helper-clearfix">
     <div class="toggle-all">
       <p><a class="wdk-toggle-group"
@@ -96,6 +101,7 @@
           <c:set var="description" value="${attributes['description']}" />
           <c:set var="contact" value="${attributes['contact']}" />
           <c:set var="institution" value="${attributes['institution']}" />        
+          <c:set var="org_prefix" value="${attributes['organism_prefix']}" />        
           <c:set var="tables" value="${record.tables}" />
           <c:set var="publications" value="${tables['Publications']}" />
           <c:set var="contacts" value="${tables['Contacts']}" />
@@ -135,9 +141,13 @@ ${datasetId.value}
 <%-------    Organisms and Contact  ----------------%>
             <div class="detail">
               <table>
-
+              <c:if test='${not empty org_prefix.value}'>
+                <tr><td><span title="In functional data sets this is not the source organism but the one the data set is mapped to, and is returned in search results." class="caption"><b>${org_prefix.displayName}:</b></span></td>
+                  <td  style="font-size:120%;font-weight:bold"> ${org_prefix.value}
+                  </td></tr>
+              </c:if>
                 <tr><td><span class="caption"><b>${contact.displayName}:</b></span></td>
-                    <td> <c:if test='${not empty contact.value}'>${contact.value}</c:if>
+                    <td>  <c:if test='${not empty contact.value}'>${contact.value}</c:if>
                          <c:if test='${not empty institution.value}'> - ${institution.value}</c:if>
                     </td></tr>
               </table>
@@ -210,7 +220,7 @@ ${datasetId.value}
 
               <table class="headerRow">
                 <tr>
-                  <th>EuPathDB Build</th>
+                  <th>EuPathDB Release</th>
                   <th>Genome Source</th>
                   <th>Annotation Source</th>
                   <th>Notes</th>
