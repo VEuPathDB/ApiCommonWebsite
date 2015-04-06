@@ -302,7 +302,7 @@ organismFull:   Plasmodium falciparum 3D7
 
 <!-- TODO Figure out if this should be kept - residue from sync merge -->
 <!--------------  NOTE on data with ReleasePolicy, or default text for Unpublished data ---------------->
-<c:if test="${projectId ne 'TrichDB' }">
+
   <c:choose>
   <c:when test="${attrs['release_policy'].value  != null}">
     <b>NOTE: ${attrs['release_policy'].value }</b>
@@ -313,7 +313,6 @@ organismFull:   Plasmodium falciparum 3D7
     </c:if>
   </c:otherwise>
   </c:choose>
-</c:if>
 <!-- ENDTODO -->
 
 <imp:toggle name="General" displayName="General" isOpen="true">
@@ -435,12 +434,12 @@ organismFull:   Plasmodium falciparum 3D7
    <c:set var="revCompOn" value="1"/>
 </c:if>
 
-
-<imp:mercatorTable tblName="MercatorTable" isOpen="false" 
-     cgiUrl="/cgi-bin" projectId="${projectId}" 
-     revCompOn="${revCompOn}" contigId="${sequence_id}" 
-     start="${start}" end="${end}" /> 
-
+<c:if test="${projectId ne 'TrichDB'  && projectId ne 'FungiDB' && projectId ne 'SchistoDB'}">
+      <imp:mercatorTable tblName="MercatorTable" isOpen="false" 
+           cgiUrl="/cgi-bin" projectId="${projectId}" 
+           revCompOn="${revCompOn}" contigId="${sequence_id}" 
+           start="${start}" end="${end}" /> 
+</c:if>
 
 <%-------COMMENT OUT FOR DEBUGGING: MetaTable --%> 
 <%--
@@ -525,7 +524,7 @@ We are currently in the process of creating an updated version 6 of OrthoMCL.org
   <a name="goTerm"></a>
   <c:set var="goEvidenceLink">
     <div>
-    <br> <a target="_blank" href="http://www.geneontology.org/page/introduction">View documentation on GO Evidence Codes</a>
+    <br> <a target="_blank" href="http://geneontology.org/page/guide-go-evidence-codes">View documentation on GO Evidence Codes</a>
     </div>
   </c:set>
   <imp:wdkTable2 tblName="GoTerms" attribution="" postscript="${goEvidenceLink}"/>
@@ -557,7 +556,7 @@ We are currently in the process of creating an updated version 6 of OrthoMCL.org
 </c:if> 
 
 
-<!-- Giardia: Gene Deprecation:  TODO.  Temporarily remove because not loaded in rebuild --> 
+<!-- Giardia: Gene Deprecation:  TODO.  Temporarily remove because not l?project_id=oaded in rebuild --> 
 <%-- imp:wdkTable tblName="GeneDeprecation" isOpen="true"/ --%>
 
 <%-- was already commented out
@@ -803,7 +802,7 @@ We are currently in the process of creating an updated version 6 of OrthoMCL.org
 
 <c:set var="seq">
  <pre><w:wrap size="60" break="<br>">${totSeq}</w:wrap></pre>
-  Sequence Length: ${fn:length(totSeq)} bp<br/>
+  Sequence Length: ${fn:length(totSeq)} b<pbr/>
 </c:set>
 
 <c:set var="downloadLink">

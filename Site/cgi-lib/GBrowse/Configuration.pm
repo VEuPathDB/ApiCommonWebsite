@@ -4,10 +4,10 @@ package GBrowse::Configuration;
 
 use ApiCommonWebsite::Model::ModelConfig;
 use EuPathSiteCommon::Model::ModelXML;
-
 use ApiCommonWebsite::Model::DbUtils;
+use Bio::Graphics::Browser2::ConnectionCache;
 
-use DAS::Util::SynView; 
+use DAS::Util::SynView;
 
 use HTML::Template;
 
@@ -28,8 +28,9 @@ sub new {
   my $dsn = ApiCommonWebsite::Model::DbUtils->resolveOracleDSN($c->appDb->dbiDsn);
   my $user = $c->appDb->login;
   my $pass = $c->appDb->password;
-  my $dbh = DBI->connect( $dsn, $user, $pass)
-        or $self->throw("unable to open db handle");
+  my $dbh = Bio::Graphics::Browser2::ConnectionCache->get_instance->connect($dsn, $user, $pass, "Configuration");
+  #         #17815: Use ConnectionCache to share connection with GUS.pm
+  #         DBI->connect( $dsn, $user, $pass) or $self->throw("unable to open db handle");
   bless ($self, $class);
   $self->dbh($dbh);
   $self->{dbh}{InactiveDestroy} = 1;
@@ -284,7 +285,7 @@ sub citationFromExtDatabaseNamePattern {
 
   my $sql =<<EOL;
 WITH pubs as (select name, id, listagg(publication,',') WITHIN GROUP (order by publication) PMIDS, contact_email from ( SELECT nvl(ds.dataset_name_pattern, ds.name) as name, ds.dataset_presenter_id as id, c.email as contact_email, p.pmid as publication from ApidbTuning.DatasetPresenter ds, APIDBTUNING.datasetcontact c,APIDBTUNING.datasetpublication p where ds.dataset_presenter_id = c.dataset_presenter_id and ds.dataset_presenter_id = p.dataset_presenter_id and c.is_primary_contact =1 )group by name, id, contact_email)
-SELECT name, dbms_lob.substr(description,4000,1) ||' Primary Contact Email: '||nvl(email,'unavailable')||' PMID: ' || publications as citation 
+SELECT name, dbms_lob.substr(description,4000,1) || '<br/>' || ' Primary Contact Email: '||nvl(email,'unavailable')|| '<br/>' || ' PMID: ' || publications as citation 
 FROM (SELECT nvl(ds.dataset_name_pattern, ds.name) as name, ds.summary as description, pubs.contact_email as email, pubs.PMIDS as publications FROM ApidbTuning.DatasetPresenter ds, pubs where ds.dataset_presenter_id = pubs.id )
 EOL
   my $sth = $self->{dbh}->prepare($sql);
@@ -308,52 +309,8 @@ sub proteomicsCitationFromExtDatabaseNamePattern {
   }
 
   my $sql =<<EOL;
- WITH pubs as (select name, 
-                     id, 
-                     listagg(publication,',') WITHIN GROUP (order by publication) PMIDS, 
-                     contact_email 
-                from ( SELECT ds.name as name, 
-                              ds.dataset_presenter_id as id, 
-                              c.email as contact_email,
-                              p.pmid as publication 
-                         from ApidbTuning.DatasetPresenter ds,
-                              APIDBTUNING.datasetcontact c,
-                              APIDBTUNING.datasetpublication p
-                        where ds.dataset_presenter_id = c.dataset_presenter_id 
-                          and ds.dataset_presenter_id = p.dataset_presenter_id
-                          and c.is_primary_contact =1 
-                          and ds.type = 'protein_expression'
-                          and ds.subtype is null)
-                     group by name, id, contact_email),
-                     samples as ( select name, 
-                                         id,
-                                         listagg(sample_i,chr(10)) WITHIN GROUP (order by sample) sample_table
-                                    from ( select distinct ds.name as name,
-                                                  ds.dataset_presenter_id as id,
-                                                  sample,
-                                                  '<p style="color:' || html_color || '">' || sample || '</p>' as sample_i
-                                             from APIDBTUNING.MSPeptideSummary mps, ApidbTuning.DatasetPresenter ds
-                                            where (ds.name = mps.external_database_name or mps.external_database_name like ds.dataset_name_pattern)
-                                          )
-                                           group by name,id
-                                           
-                                 )
-SELECT name, 
-       dbms_lob.substr(description,4000,1) ||
-       ' Primary Contact Email: '|| nvl(email,'unavailable')||
-       ' PMID: ' || publications ||
-       '<p style="color:black">Samples:</p>' || sample_table || chr(10) ||
-       ' Please note that subtrack labels will disappear if the selected subtracks number is over 15!' as citation 
-  FROM (SELECT ds.name as name, 
-               ds.summary as description, 
-               pubs.contact_email as email, 
-               pubs.PMIDS as publications,
-               samples.sample_table as sample_table
-          FROM ApidbTuning.DatasetPresenter ds, 
-               pubs,
-               samples
-         where ds.dataset_presenter_id = pubs.id
-           and ds.dataset_presenter_id = samples.id )
+    select name, citation
+    from ApidbTuning.ProteomicsCitation
 EOL
   my $sth = $self->{dbh}->prepare($sql);
   $sth->execute() or $self->throw($sth->errstr);

@@ -1,19 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
-<%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
-<%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
-<%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
-<%@ taglib prefix="logic" uri="http://jakarta.apache.org/struts/tags-logic" %>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
+<%@ taglib prefix="logic" uri="http://struts.apache.org/tags-logic" %>
 
 <c:set var="err" scope="request" value="${requestScope['org.apache.struts.action.ERROR']}"/>
 <c:set var="exp" scope="request" value="${requestScope['org.apache.struts.action.EXCEPTION']}"/>
 
 <c:set var="props" value="${applicationScope.wdkModel.properties}" /> 
-<c:set var="to" value="${wdkModel.projectId}_annotators@pcbi.upenn.edu" /> 
-<c:set var="from" value="${wdkModel.projectId}_annotators@pcbi.upenn.edu" />
-<c:set var="subject" value="${commentForm.commentTargetId} comment ${commentForm.stableId}" />
+<c:set var="to" value="EUPATHDB_ANNOTATORS@lists.upenn.edu" /> 
+<c:set var="toRedmine" value="redmine@apidb.org" /> 
+<c:set var="from" value="annotator@apidb.org" />
+<c:set var="subject" value="${wdkModel.projectId} ${commentForm.commentTargetId} comment ${commentForm.stableId}" />
 <c:set var="body" value="${body}" />
+<c:set var="bodyRedmine" value="${bodyRedmine}" />
 
 <c:set var="strand" value="${commentForm.strand}" /> 
 
@@ -162,20 +163,27 @@ function openPubmedWindow(searchBoxId) {
         <c:choose>
 
           <c:when test="${param.bulk ne 'yes'}">
-            <imp:email
-                  to="${wdkUser.email}, ${to}"
-                  from="${from}"
-                  subject="${subject}"
-                  body="${body}"
-            />
+
+            <imp:email to="${wdkUser.email}, ${to}"
+                       from="${from}"
+                       subject="${subject}"
+                       body="${body}" />
+
+            <imp:email to="${toRedmine}"
+                       from="${from}"
+                       subject="${subject}"
+                       body="${bodyRedmine}" />
           </c:when>
           <c:otherwise>
-            <imp:email
-                  to="${to}"
-                  from="${from}"
-                  subject="${subject}"
-                  body="${body}"
-            />
+            <imp:email to="${to}"
+                       from="${from}"
+                       subject="${subject}"
+                       body="${body}" />
+
+            <imp:email to="${toRedmine}"
+                       from="${from}"
+                       subject="${subject}"
+                       body="${bodyRedmine}" />
           </c:otherwise>
 
         </c:choose>
@@ -194,7 +202,7 @@ function openPubmedWindow(searchBoxId) {
     </c:if>
 
 
-      <html:form method="post" action="addComment.do" styleId="uploadForm" enctype="multipart/form-data">
+      <html:form method="post" action="addComment.do" enctype="multipart/form-data">
 
         <html:hidden property="commentTargetId" value="${commentForm.commentTargetId}"/>
         <html:hidden property="stableId" value="${commentForm.stableId}"/>

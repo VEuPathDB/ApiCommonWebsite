@@ -14,6 +14,346 @@
        </attribute>
     </record>
 -->
+<record>
+       <attribute name="headline">FungiDB 24 Released</attribute>
+       <attribute name="date">6 April 2015 13:00</attribute>
+       <attribute name="tag">fungidb4_15_release</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>fungidb_4_15_news</title>
+  </head>
+  <body>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
+    <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of FungiDB 24</strong><span style="font-weight: bold;"></span><br>
+      </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+          All EuPathDB release numbers have been synchronized to help us more
+          efficiently manage our expanding number of databases.&nbsp; As of this
+          release all EuPathDB resource release numbers have been set to release
+          24.&nbsp; Subsequent version numbers will increase by one with each
+          release.&nbsp; For information about individual dataset version
+          numbers see the Data Sets page. </span></span><br>
+      <div style="text-align: center;"> </div>
+      <table style="width: 365px; height: 72px; text-align: left; margin-left: auto; margin-right: auto;"
+        border="0">
+        <tbody>
+          <tr>
+            <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
+                Resource</span></td>
+            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Jan
+                  2015<br>
+                </span>Version #<br>
+              </span></td>
+            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
+              <span style="font-size:11.0pt;line-height:107%;font-family:
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
+                  2015<br>
+                </span>Version #</span> </td>
+          </tr>
+          <tr>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">TrichDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">3.2</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+        </tbody>
+      </table>
+      <o:p><strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+        style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
+      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;">
+          <em style="text-decoration: underline;">Help us improve our Data Set
+            page</em>: The dataset page includes information about all datasets
+          loaded into our resources including, release and date loaded, name of
+          the provider, links to searches and data visualization, etc... Take a
+          look at the beta version of our dataset page (access it from the data
+          summary menu item at the top of our web pages) and let us know what
+          you think.<br>
+        </span> </p>
+    </div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+    </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+</html>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">FungiDB 3.2 released</attribute>
+       <attribute name="date">6 March 2015 13:30PM</attribute>
+       <attribute name="tag">fungidb_release3.2</attribute>
+       <attribute name="category">news</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>FungiDB3.2News</title>
+  </head>
+  <body>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">We
+        are pleased to release FungiDB 3.2.&nbsp; This release
+        include the following new data and features. <br>
+        <br>
+        <strong>New Data:</strong><br>
+        <strong style="color: #666666;"></strong><br>
+      </span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"></span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="text-decoration: underline;">Genomes
+            and annotation</span> (full description and attribution is available
+          in the <strong><a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">dataset
+              section</a></strong>):</span></li>
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span></div>
+    <ul style="text-align: justify;">
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pneumocystis
+              carinii</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Zymoseptoria
+              tritici</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              ultimum</em> var. sporangiiferum</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              irregulare</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              iwayamai</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              arrhenomanes</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              aphanidermatum</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Pythium
+              vexans</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Saprolegnia
+              diclina</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Aphanomyces
+              astaci</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Aphanomyces
+              invadans</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Albugo
+              candida</em></span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Albugo
+              laibachii</em></span></li>
+      </ul>
+    </ul>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span></p>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="text-decoration: underline;">High
+            throughput sequencing</span> data from drug-resistant and
+          susceptible clinical and environmental isolates of <em>Aspergillus
+            fumigatus</em>.&nbsp; Sequencing data was aligned to the reference
+          genome <em>A. fumigatus</em> Af293 and single nucleotide polyorphisms
+          were determined. To run searches against this data, <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByNgsSnps&amp;display=detail#124">visit
+              the data set section</a></strong> for a full description and links
+          to searches. &nbsp;&nbsp; </span></li>
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span></div>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Helvetica,Arial,sans-serif; text-decoration: underline;">RNA
+            sequencing data</span><span style="font-family: Helvetica,Arial,sans-serif;">
+          </span></span><span style="font-family: Helvetica,Arial,sans-serif;"><span
+            style="font-family: Helvetica,Arial,sans-serif;"><span
+              style="font-family: Helvetica,Arial,sans-serif;">from
+              3 </span></span><em>Phytophthora sojae</em> samples: media grown,
+          cysts, and from infected soybean hypocotyls.&nbsp; Additional
+          information and links to searches can be viewed in the <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByRNASeqPsojP6497_Tyler_Infection_rnaSeq_RSRC&amp;display=detail#116">dataset
+              section</a></strong>. &nbsp;</span></li>
+    </ul>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Helvetica,Arial,sans-serif;"><b
+          style="mso-bidi-font-weight:normal"><br>
+        </b></span></p>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          feature:</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <blockquote> </blockquote>
+    </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
+            analysis tools:&nbsp; </strong><span style="color: #020302;">results
+            of any searches can now be analyzed for statistical enrichment or
+            Gene Ontology (GO) terms, metabolic pathways or gene product text
+            terms. <strong><a href="/a/analysisTools.jsp">A detailed
+                description of this new functionality and a video tutorial are
+                also available</a></strong>.</span></span></li>
+    </ul>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;"><br>
+            </span></span></span></span></p>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+    </p>
+    <p style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+        <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+          style="font-weight: bold; font-style: italic;">,
+          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+  </body>
+</html>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">Open letter to the Aspergillus research community</attribute>
+       <attribute name="date">11 February 2015 13:30PM</attribute>
+       <attribute name="tag">open_letter</attribute>
+       <attribute name="category">news</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+<p>An open letter to the <em>Aspergillus</em> research community on genome database resources:</p>
+
+	<p style="text-align:justify">&nbsp;&nbsp;&nbsp;&nbsp;As many of you may already be aware, the NIH R01 research grant that has supported development of the <a href="http://aspgd.org">AspGD</a> database will not be renewed ... not because the NIH doesn't appreciate the value and importance of this resource to the <em>Aspergillus</em> research community, but because the current funding climate makes it difficult to support curation-intensive databases serving individual pathogens and relatively small research communities.  However,  NIH has provided one year of funding to ensure that information from AspGD is integrated into <a href="http://fungidb.org">FungiDB</a>, a component of the <a href="http://eupathdb.org">EuPathDB</a> Bioinformatics Resource Center.  We do not anticipate that AspGD will disappear: you should still be able to access the existing web site, at least for the foreseeable future, but curatorial engagement will have to be significantly reduced over the coming months.</p>
+
+	<p style="text-align:justify">&nbsp;&nbsp;&nbsp;&nbsp;The EuPathDB family of databases supports a wide range of microbial eukaryotes, including protozoan parasites and many fungal and oomycete species, including non-pathogens.  This resource has been specifically designed to provide sustainable, cost-effective automated analysis of multiple genomes, integrating curated information where available, along with comments and supporting evidence from the user community (PubMedIDs, phenotypic information, images, datasets, etc).  In addition to gene records, browser views, and data downloads, FungiDB also provides a variety of sophisticated tools for integrating and mining diverse Omics datasets, which we expect that <em>Aspergillus</em> researchers and other fungal biologists will find quite useful.  See sidebar on the FungiDB web site for access to tutorials, videos, and exercises; more fungi-specific materials should become available over the coming months.</p>
+
+	<p style="text-align:justify">&nbsp;&nbsp;&nbsp;&nbsp;AspGD and FungiDB/EuPathDB will be working together to maximize value to the <em>Aspergillus</em> community, given the limited resources available.  The upcoming AsperFest12 and 28th Fungal Genetics meetings in Asilomar (March 16-22, 2015) will be attended by staff from both groups, with presentations and a 'help-desk' to introduce the <em>Aspergillus</em> community to FungiDB.  We look forward to productive discussions on how to ensure that <em>Aspergillus</em> researchers retain access to information from AspGD, learn to use FungiDB effectively and have a voice in its further development, and craft a strategy for meeting future informatics needs.</p>
+
+	<ul>
+	<li>Jessica Kissinger (Univ Georgia) -- Joint-PI, EuPathDB</li>
+	<li>Michelle Momany (Univ Georgia) -- Community Liaison, AspGD & FungiDB</li>
+	<li>David Roos (Univ Pennsylvania) -- Joint-PI, EuPathDB; Co-PI, FungiDB</li>
+<li>Gavin Sherlock (Stanford Univ) -- Principal Investigator, AspGD</li>
+<li>Jason Stajich (UC Riverside) -- Principal Investigator, FungiDB</li>
+<li>Jennifer Wortman (Broad Inst) -- Co-PI, AspGD</li>
+</ul>
+	
+ ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">Letter to the EuPathDB Community</attribute>
+       <attribute name="date">19 February 2015 13:00</attribute>
+       <attribute name="tag">comm_lett</attribute>
+       <attribute name="category">letter</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+    <p>Dear colleagues -<br>
+      <br>
+      We are writing to provide an update on the Eukaryotic Pathogen Genomics
+      Resource (<a href="http://EuPathDB.org">EuPathDB.org</a>), which many
+      hundreds of laboratories wrote to support in connection with our
+      application for renewal as an NIH Bioinformatics Resource Center for
+      Infectious Diseases.&nbsp; We are pleased to report that the EuPathDB
+      contract has now been renewed.<br>
+      <br>
+      In addition to continuing to integrate the ever-increasing volume of
+      Omic-scale datasets available for microbial eukaryotes, new
+      functionalities anticipated over the coming months include:</p>
+    <ul>
+      <li>full integration of FungiDB into the EuPathDB family of databases</li>
+      <li>reorganization of EuPathDB record pages, so as to improve
+        navigability, better accommodate curated annotation (when available),
+        represent alternative transcripts, summarize functional genomic results,
+        etc</li>
+      <li>better representation of experimental metadata, including phenotyping
+        and clinical/field results</li>
+      <li>enhanced functionality of the host response database (<a href="http://HostDB.org">HostDB.org</a>)</li>
+      <li>improved handling of metabolic pathways, including incorporation of
+        metabolomic datasets</li>
+      <li>better support for orthology-based queries and cross-species inference</li>
+      <li>implementation of workspaces enabling users to upload and analyze
+        their own data (e.g. RNA-seq results)</li>
+    </ul>
+    <p><br>
+      The scope of this renewal extends beyond our previous mandate, which
+      officially covered only biosecurity threats (Cryptosporidium, Entamoeba,
+      Giardia, Toxoplasma, etc) and reemerging pathogens (e.g.
+      Plasmodium).&nbsp; This makes it easier for us to leverage EuPathDB
+      infrastructure in support of the kinetoplastida, oomycetes, fungi, and
+      other microbial eukaryotes, including both pathogenic and non-pathogenic
+      species.<br>
+      <br>
+      The scale of the EuPathDB award from NIH does not provide adequate funding
+      for full support of the TriTrypDB or FungiDB projects (unfortunately) ...
+      but the Wellcome Trust has agreed to consider an application covering
+      these initiatives, augmenting our existing award for kinetoplastid
+      resources.&nbsp; We will be contacting users of these databases shortly
+      for their support.<br>
+      <br>
+      As always, we look forward to feedback from database users, via the
+      'Contact Us' link on all EuPathDB web sites, face-to-face discussions at
+      major meetings, etc.<br>
+      <br>
+      Brian P. Brunk -- EuPathDB Senior Project Manager<br>
+      Christiane Hertz-Fowler -- Kinetoplastid Resources PI (on behalf of UK
+      co-PIs)<br>
+      Omar S. Harb -- EuPathDB Scientific Outreach Manager<br>
+      Jessica C. Kissinger -- EuPathDB joint-PI<br>
+      David S. Roos -- EuPathDB joint-PI, Kinetoplastid Resources co-PI, FungiDB
+      co-PI<br>
+      Jason E. Stajich -- FungiDB co-PI<br>
+      Christian J. Stoeckert -- EuPathDB co-PI</p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+
    <record>
        <attribute name="headline">FungiDB 3.1 released</attribute>
        <attribute name="date">18 September 2014 9:00AM</attribute>

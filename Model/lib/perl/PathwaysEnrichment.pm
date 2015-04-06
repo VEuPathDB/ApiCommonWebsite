@@ -27,14 +27,10 @@ sub getAnnotatedGenesCountBgd {
   my ($self, $dbh, $taxonId) = @_;
 
   my $sql = "
-SELECT count (distinct ga.source_id)
-         from    sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn
+SELECT count (distinct gp.gene_source_id)
+         from    apidbtuning.genepathway gp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
-        AND    ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
+        AND    gp.gene_source_id = ga.source_id
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -47,15 +43,11 @@ sub getAnnotatedGenesCountResult {
   my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
-SELECT count (distinct ga.source_id)
-         from  sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn,
+SELECT count (distinct gp.gene_source_id)
+         from  apidbtuning.genepathway gp,
                ($geneResultSql) r
-        where  ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
-        and    ga.source_id = r.source_id
+        where  gp.gene_source_id = r.source_id
+          and gp.exact_match = 1
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -68,32 +60,23 @@ sub getDataSql {
   my ($self, $taxonId, $geneResultSql) = @_;
 
 return "
-select distinct bgd.source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
+select distinct bgd.pathway_source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.pathway_name
 from
- (SELECT  p.source_id,  count (distinct ga.source_id) as bgdcnt, p.name
-        from   sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn, apidb.pathway p
+ (SELECT  gp.pathway_source_id,  count (distinct gp.gene_source_id) as bgdcnt, gp.pathway_name
+        from   apidbtuning.genepathway gp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
-        AND    ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
-        and    pn.parent_id = p.pathway_id
-        group by p.source_id, p.name
+         and   gp.gene_source_id = ga.source_id
+         and gp.exact_match = 1
+        group by gp.pathway_source_id, gp.pathway_name
    ) bgd,
-   (SELECT  p.source_id,  count (distinct ga.source_id) as resultcnt
-        from   sres.enzymeClass ec,
-               dots.aaSequenceEnzymeClass asec, ApidbTuning.GeneAttributes ga,
-               apidb.pathwaynode pn, apidb.pathway p,
+   (SELECT  gp.pathway_source_id,  count (distinct gp.gene_source_id) as resultcnt
+        from   ApidbTuning.GenePathway gp,
                ($geneResultSql) r
-        where  ga.aa_sequence_id = asec.aa_sequence_id
-        AND    asec.enzyme_class_id = ec.enzyme_class_id
-        and    (ec.ec_number LIKE REPLACE(pn.display_label,'-', '%') OR pn.display_label LIKE REPLACE(ec.ec_number,'-', '%'))
-        and    pn.parent_id = p.pathway_id
-        and    ga.source_id = r.source_id
-        group by p.source_id
+        where  gp.gene_source_id = r.source_id
+          and gp.exact_match = 1
+        group by gp.pathway_source_id
  ) rslt
-where bgd.source_id = rslt.source_id
+where bgd.pathway_source_id = rslt.pathway_source_id
 ";
 }
 

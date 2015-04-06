@@ -1,8 +1,9 @@
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<fmt:setLocale value="en-US"/>
 
 <%-- get wdkXmlQuestionSets saved in request scope --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
@@ -91,6 +92,10 @@
 <div id="data-sets">
   <a name="_top"></a>
   <h1>Data Sets</h1>
+  <div id="beta-page"><a title="Please contact us with your feedback." 
+                       href="<c:url value='/app/answer/DatasetQuestions.AllDatasets'/>">New Data Sets page!
+                       <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
+  </div>
 
     <div class="smallitalics">
       (Click on a category to jump to the corresponding section in the page.
@@ -125,10 +130,10 @@
           <c:set var="name" value="${attributes['dataset_name']}" />
           <c:set var="displayName" value="${attributes['display_name']}" />
           <c:set var="categories" value="${attributes['category']}" />
-          <c:set var="organism" value="${attributes['organisms']}" />
           <c:set var="description" value="${attributes['description']}" />
           <c:set var="contact" value="${attributes['contact']}" />
           <c:set var="institution" value="${attributes['institution']}" />        
+          <c:set var="org_prefix" value="${attributes['organism_prefix']}" />        
           <c:set var="tables" value="${record.tables}" />
           <c:set var="publications" value="${tables['Publications']}" />
           <c:set var="contacts" value="${tables['Contacts']}" />
@@ -211,7 +216,7 @@
 
               <table class="headerRow">
                 <tr>
-                  <th>EuPathDB Build</th>
+                  <th>EuPathDB Release</th>
                   <th>Genome Source</th>
                   <th>Annotation Source</th>
                   <th>Notes</th>
@@ -346,4 +351,6 @@
   }(jQuery);
 </script>
 
+  <%-- This provides the deferred <wdk-ajax> loading facility --%>
+  <imp:script src="wdkCustomization/js/records/allRecords.js"/>
 </imp:pageFrame>

@@ -31,17 +31,18 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   private static final Logger LOG = Logger.getLogger(CommentFactory.class);
 
-  private Logger logger = Logger.getLogger(CommentFactory.class);
   private DatabaseInstance commentDb;
   private DBPlatform dbPlatform;
   private DataSource commentDs;
   private CommentConfig config;
+  private boolean isReusingUserDb;
 
   @Override
   public CommentFactory getInstance(String projectId, String gusHome) throws Exception {
     // parse and load the configuration
     CommentConfigParser parser = new CommentConfigParser(gusHome);
     CommentConfig config;
+    boolean isReusingUserDb;
     try {
       config = parser.parseConfig(projectId);
 
@@ -52,14 +53,16 @@ public class CommentFactory implements Manageable<CommentFactory> {
         // if connections are the same, then ignore comment config connection info and use UserDB database instance
         LOG.info("Will reuse USER_DB connection pool since connection information is the same.");
         db = DatabaseInstance.getAllInstances().get(WdkModel.DB_INSTANCE_USER);
+        isReusingUserDb = true;
       }
       else {
         db = new DatabaseInstance(config, "Comment");
+        isReusingUserDb = false;
       }
 
       // create a factory instance
       CommentFactory factory = new CommentFactory();
-      factory.initialize(db, config);
+      factory.initialize(db, config, isReusingUserDb);
       return factory;
     }
     catch (CommentModelException ex) {
@@ -67,11 +70,12 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void initialize(DatabaseInstance commentDb, CommentConfig config) {
+  private void initialize(DatabaseInstance commentDb, CommentConfig config, boolean isReusingUserDb) {
     this.commentDb = commentDb;
     this.dbPlatform = commentDb.getPlatform();
     this.commentDs = commentDb.getDataSource();
     this.config = config;
+    this.isReusingUserDb = isReusingUserDb;
   }
 
   public CommentTarget getCommentTarget(String internalValue) throws WdkModelException {
@@ -149,7 +153,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       ps.setInt(13, comment.getUserId());
 
       int result = ps.executeUpdate();
-      logger.debug("Inserted comment row: " + result);
+      LOG.debug("Inserted comment row: " + result);
 
       // update the fields of comment
       comment.setCommentDate(new java.util.Date(currentMillis));
@@ -1313,10 +1317,16 @@ public class CommentFactory implements Manageable<CommentFactory> {
   private void printStatus() {
     int active = commentDb.getActiveCount();
     int idle = commentDb.getIdleCount();
-    logger.info("Comment connections: active=" + active + ", idle=" + idle);
+    LOG.info("Comment connections: active=" + active + ", idle=" + idle);
   }
 
   public DataSource getCommentDataSource() {
     return commentDs;
+  }
+
+  public void close() throws Exception {
+    if (!isReusingUserDb) {
+      commentDb.close();
+    }
   }
 }

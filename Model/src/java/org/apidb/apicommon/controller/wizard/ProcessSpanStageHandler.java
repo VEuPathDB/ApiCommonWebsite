@@ -36,6 +36,8 @@ public class ProcessSpanStageHandler implements StageHandler {
             questionName = "SpanQuestions.IsolatesBySpanLogic";
         } else if (type.equals("SnpRecordClasses.SnpRecordClass")) {
             questionName = "SpanQuestions.SnpsBySpanLogic";
+        } else if (type.equals("SnpChipRecordClasses.SnpChipRecordClass")) {
+            questionName = "SpanQuestions.SnpsChipsBySpanLogic";
         } else if (type.equals("DynSpanRecordClasses.DynSpanRecordClass")) {
             questionName = "SpanQuestions.DynSpansBySpanLogic";
         } else if (type.equals("SageTagRecordClasses.SageTagRecordClass")) {

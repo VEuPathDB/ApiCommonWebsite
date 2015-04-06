@@ -76,9 +76,9 @@ function removeGeneFromBasket(projectId, sourceId) {
 /****** Utility link functions for GBrowse ******/
 
 function checkLogin() {
-	if (!wdk.isUserLoggedIn()) {
+	if (!wdk.user.isUserLoggedIn()) {
 		Balloon.prototype.hideTooltip(1);
-		popLogin();
+		jQuery("#wdk-dialog-login-form").dialog("open");
 		return; // if user logs in, will not get here
 	}
 }
@@ -99,7 +99,7 @@ function setSavedItemLink(projectId, sourceId, selectionSuffix, nextFunction, ne
 
 function getSaveRowLinks(projectId, sourceId) {
 	var saveRowLinks;
-	if (wdk.isUserLoggedIn()) {
+	if (wdk.user.isUserLoggedIn()) {
 		// enable saving as favorite or to basket
 		var favoriteLink = "<span id=\"" + sourceId + "_gbfavorite\"><a href=\"javascript:void(0);\" onclick=\"addGeneAsFavorite('" + projectId + "','" + sourceId + "');\">" + saveFavTextLink + "</a></span>";
 		var basketLink = "<span id=\"" + sourceId + "_gbbasket\"><a href=\"javascript:void(0);\" onclick=\"addGeneToBasket('" + projectId + "','" + sourceId + "');\">" + saveBasketTextLink + "</a></span>";
@@ -145,7 +145,8 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
         + "&type=protein&upstreamAnchor=Start&upstreamOffset=0&downstreamAnchor=End&downstreamOffset=0&go=Get+Sequences' target='_blank'>protein</a>"
   var recordLink = "<a href='../../../gene/" + sourceId + "'>Gene Page</a>";
   var gbLink = "<a href='../../../../cgi-bin/gbrowse/" + projectId.toLowerCase() + "/?" + gbLinkParams + "'>GBrowse</a>";
-  
+  var orthomclLink = "<a href='http://orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=" + orthomcl + "'>" + orthomcl + "</a>";
+
   // format into html table rows
   var rows = new Array();
   rows.push(twoColRow('Species:', taxon));
@@ -168,7 +169,11 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
   if (soTerm =='Protein Coding') {
       rows.push(twoColRow('Download:', cdsLink + " | " + proteinLink));
-      rows.push(twoColRow('OrthoMCL', orthomcl));
+      if ( orthomcl.substring(0,3) == 'OG2') {
+	  rows.push(twoColRow('OrthoMCL', orthomclLink));
+      } else {
+	  rows.push(twoColRow('OrthoMCL', orthomcl));
+      }
   }
   rows.push(twoColRow('Links:', gbLink + " | " + recordLink));
   

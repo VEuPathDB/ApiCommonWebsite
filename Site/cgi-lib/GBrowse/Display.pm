@@ -253,6 +253,9 @@ sub rumIntronBgColorFromScore {
 
   my ($lours) = $f->get_tag_values('LOURS');
   my ($sours) =  $f->get_tag_values('SOURS');
+  
+  ($lours) = $f->get_tag_values('LOUR') unless $lours;
+  ($sours) = $f->get_tag_values('SOUR') unless $sours;
 
   my $sum_lour = eval join '+', split /[,|\|]/, $lours;
   my $sum_sour = eval join '+', split /[,|\|]/, $sours;
@@ -268,6 +271,7 @@ sub rumIntronBgColorFromScore {
   return '#7E3517' if $sum <= 200; # Sienna4
   return '#7E2217';   # Indian Red4
 }
+
 
 sub rumIntronHeightFromScore {
   my $f = shift;
@@ -1113,6 +1117,9 @@ SHORT_OVERLAP_NU_READS:
   The number of reads mapping across the junction for which their alignment
   is not unique and they have less than 8 bases on one (or both) sides of
   the junction
+	<br/><br/>
+CANONICAL:
+	This refers to the splice junction.  If the splice junction is the standard splice signal GTAG then this is reported as "true", otherwise it is reported as "false".
 EOL
 
 } 

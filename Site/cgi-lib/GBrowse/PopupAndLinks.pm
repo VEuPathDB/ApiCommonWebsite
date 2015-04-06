@@ -216,7 +216,7 @@ sub snpTitleQuick {
   my $refAAString = ''; 
   if ($isCoding == 1 || $isCoding =~ /yes/i) {
      $type = "Coding (synonymous)";
-     $type = "Coding (non-synonymous)" if $nonSyn =~ /yes/;
+     $type = "Coding (non-synonymous)" if ($nonSyn == 1);
      $refAAString = "&nbsp;&nbsp;&nbsp;&nbsp;AA=$reference_aa";
   }
 
@@ -691,6 +691,25 @@ sub fosmidTitle {
   &genericEndFeatureTitle($f, 'generic_end', 'Fosmid');
 }
 
+
+
+
+sub transposableElementsTitle { 
+  my $f = shift;
+  my $bulkFeatureName = shift;
+  my $trackName = shift;
+
+  my $start = $f->start;
+  my $stop  = $f->stop;
+  my $length = $stop - $start + 1;
+  my $cname = $f->name;
+  my @data; 
+  push @data, [ "Transposable Element:"     => $cname ]; 
+  push @data, [ 'Size:'     => $length ]; 
+  push @data, [ 'Location:' => "$start..$stop"];
+  
+  hover($f, \@data);
+}
 
 sub genericEndFeatureTitle { 
   my $f = shift;

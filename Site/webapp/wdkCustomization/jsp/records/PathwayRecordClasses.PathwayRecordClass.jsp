@@ -17,6 +17,7 @@
 <c:set var="projectIdLowerCase" value="${fn:toLowerCase(projectId)}"/>
 <c:set var="pathwayImageId" value="${attrs['image_id'].value}" />
 <c:set var="pathwayName" value="${attrs['description'].value}" />
+<c:set var="pathwaySource" value="${attrs['pathway_source'].value}" />
 
 <imp:pageFrame title="${wdkModel.displayName} : Met Pathway ${id}"
              refer="recordPage"
@@ -80,7 +81,7 @@
 <script type="text/javascript">
   // get xgmml and draw the visualization
   $(function() {
-    drawVisualization("${id}");
+    drawVisualization("${id}", "${pathwaySource}");
   });
 </script>        
 
@@ -129,13 +130,15 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
         <ul>
           <li> <a href="javascript:exportVisualization('xgmml', '${id}')">Save XGMML (XML)</a></li>
           <li> <a href="javascript:exportVisualization('png', '${id}')">Save image (PNG)</a></li>
-          <li> <a href="/common/downloads/pathwayFiles/${id}.xgmml">Get Download XGMML (XML) file</a></li>
+          <li> <a href="/common/downloads/Current_Release/pathwayFiles/${id}.xgmml">Get Download XGMML (XML) file</a></li>
         </ul>
     </li>
     <li><a href="javascript:void(0)">Layout
     <imp:image title="Choose a Layout for the Pathway Map"  src="wdk/images/question.png" /></a>
         <ul>
-            <li><a  href="javascript:void(0)" onclick="changeLayout('Preset')">Kegg</a></li>
+  <c:if test="${pathwaySource eq 'KEGG'}"> 
+            <li><a  href="javascript:void(0)" onclick="changeLayout('Preset')">Kegg</a></li>  
+</c:if>
             <li><a  href="javascript:void(0)" onclick="changeLayout('ForceDirected')">ForceDirected</a></li>
             <li><a href="javascript:void(0)" onclick="changeLayout('Tree')">Tree</a></li>
             <li><a href="javascript:void(0)" onclick="changeLayout('Circle')">Circle</a></li>
@@ -161,7 +164,7 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
 
 
 	  <c:if test="${projectId eq 'AmoebaDB'}"> 
-            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Acanthamoeba,Entamoeba,Homo,Mus', 'genus', '1')">Acanthamoeba,Entamoeba,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Acanthamoeba,Entamoeba,Naegleria,Vitrella,Chromera,Homo,Mus', 'genus', '1')">Acanthamoeba,Entamoeba,Human,Mouse</a></li>
 	  </c:if>
 
 	  <%-- Apicomplexa ---%>
@@ -175,8 +178,20 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
             <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Giardia,Spironucleus,Homo,Mus', 'genus', '1')">Giardia,Spironucleus,Human,Mouse</a></li>
 	  </c:if>
 
+	  <c:if test="${projectId eq 'FungiDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Albugo,Aphanomyces,Aspergillus,Coccidioides,Fusarium,Neurospora,Phytophthora,Pythium,Saprolegnia,Talaromyces,Homo,Mus', 'genus', '1')">Albugo,Aphanomyces,Aspergillus,Coccidioides,Fusarium,Neurospora,Phytophthora,Pythium,Saprolegnia,Talaromyces,Human,Mouse</a></li>
+	  </c:if>
+
 	  <c:if test="${projectId eq 'MicrosporidiaDB'}"> 
-            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Anncaliia,Edhazardia,Encephalitozoon,Enterocytozoon,Nematocida,Nosema,Spraguea,Trachipleistophora,Vavraia,Vittaforma,,Homo,Mus', 'genus', '1')">Microsporidia,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Anncaliia,Edhazardia,Encephalitozoon,Enterocytozoon,Nematocida,Nosema,Spraguea,Trachipleistophora,Vavraia,Vittaforma,Homo,Mus', 'genus', '1')">Microsporidia,Human,Mouse</a></li>
+	  </c:if>
+
+	  <c:if test="${projectId eq 'SchistoDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Schistosoma,Homo,Mus', 'genus', '1')">Schistosoma,Human,Mouse</a></li>
+	  </c:if>
+
+	  <c:if test="${projectId eq 'TrichDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Trichomonas,Homo,Mus', 'genus', '1')">Trichomonas,Human,Mouse</a></li>
 	  </c:if>
 
 	  <c:if test="${projectId eq 'TriTrypDB'}"> 
@@ -184,6 +199,16 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
             <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Cryptosporidium,Plasmodium,Toxoplasma,Trypanosoma,Homo,Mus', 'genus','1')">Cryp,Toxo,Plas,Tryp,Human,Mouse</a></li>
 	  </c:if>
 
+	  <c:if test="${projectId eq 'HostDB'}"> 
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Acanthamoeba,Entamoeba,Naegleria,Vitrella,Chromera,Homo,Mus', 'genus', '1')">Acanthamoeba,Entamoeba,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Giardia,Spironucleus,Homo,Mus', 'genus', '1')">Giardia,Spironucleus,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Cryptosporidium,Plasmodium,Toxoplasma,Homo,Mus', 'genus','1')">Cryp,Toxo,Plas,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Albugo,Aphanomyces,Aspergillus,Coccidioides,Fusarium,Neurospora,Phytophthora,Pythium,Saprolegnia,Talaromyces,Homo,Mus', 'genus', '1')">Albugo,Aphanomyces,Aspergillus,Coccidioides,Fusarium,Neurospora,Phytophthora,Pythium,Saprolegnia,Talaromyces,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Anncaliia,Edhazardia,Encephalitozoon,Enterocytozoon,Nematocida,Nosema,Spraguea,Trachipleistophora,Vavraia,Vittaforma,Homo,Mus', 'genus', '1')">Microsporidia,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Schistosoma,Homo,Mus', 'genus', '1')">Schistosoma,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Trichomonas,Homo,Mus', 'genus', '1')">Trichomonas,Human,Mouse</a></li>
+            <li><a href="javascript:void(0)" onclick="changeExperiment('type=PathwayGenera&project_id=${projectId}&sid=Crithidia,Leishmania,Trypanosoma,Homo,Mus', 'genus', '1')">Crithidia,Leishmania,Trypanosoma,Human,Mouse</a></li>    </li>
+	  </c:if>
         </ul>
     </li>
 </ul>
@@ -217,10 +242,16 @@ pe Web"/></a>
 
 
   <c:set var="reference">
+  <c:if test="${pathwaySource eq 'KEGG'}"> 
 <br>Data for KEGG Metabolic Pathways were procured from the <a href="http://www.kegg.jp/">Kyoto Encyclopedia of Genes and Genomes (KEGG)</a>.
+ </c:if>
+  <c:if test="${pathwaySource eq 'TrypanoCyc'}"> 
+<br>Data for TrypanoCyc Metabolic Pathways were procured from the <a href="http://vm-trypanocyc.toulouse.inra.fr/">TrypanoCyc</a>, a community annotated Pathway/Genome Database of </i>Trypanosoma brucei</i>.
+ </c:if>
 <br> This data was mapped to EC Numbers obtained from the official genome annotations of organisms, and to Compounds from the NCBI repository.<br>
 <!-- The images and maps for KEGG pathways are copyright of <a href="http://www.kanehisa.jp/">Kanehisa Laboratories</a> (<a href="http://www.kegg.jp/kegg/legal.html">Copyright 1995-2012</a>).-->
 Coloring of the pathway maps was performed in house with custom scripts and annotation information.<br>
+
   </c:set>
 <br>
 <br>

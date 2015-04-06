@@ -1,9 +1,10 @@
 package org.apidb.apicommon.jmx.mbeans;
 
-import org.gusdb.wdk.jmx.mbeans.AbstractConfig;
-import org.apidb.apicommon.model.comment.CommentFactory;
-import org.apidb.apicommon.controller.CommentActionUtility;
 import org.apache.log4j.Logger;
+import org.apidb.apicommon.model.comment.CommentConfigParser;
+import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.wdk.jmx.mbeans.AbstractAttributesBean;
+import org.gusdb.wdk.model.Utilities;
 
 /**
  * A view of the WDK's representation of comment-config.xml.
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
  * @see org.gusdb.wdk.jmx.mbeans.AbstractConfig#setValuesFromGetters
  * @see org.apidb.apicommon.model.comment.CommentConfig
  */
-public class CommentConfig extends AbstractConfig {
+public class CommentConfig extends AbstractAttributesBean {
 
   private static final Logger logger = Logger.getLogger(CommentConfig.class);
 
@@ -26,21 +27,14 @@ public class CommentConfig extends AbstractConfig {
 
   @Override
   protected void init() {
-    CommentFactory factory = null;
     try {
-      factory = getCommentFactory();
-      org.apidb.apicommon.model.comment.CommentConfig commentConfig = factory.getCommentConfig();  
+      CommentConfigParser parser = new CommentConfigParser(GusHome.getGusHome());
+      String projectId = getContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+      org.apidb.apicommon.model.comment.CommentConfig commentConfig = parser.parseConfig(projectId);
       setValuesFromGetters(null, commentConfig);
-    } catch (Exception e) {
+    }
+    catch (Exception e) {
       logger.error("MBean Load Error ", e);
     }
   }
-
-  /**
-    Derived from org.apidb.apicommon.controller.CommentAction
-  */
-  private CommentFactory getCommentFactory() throws Exception {
-    return CommentActionUtility.getCommentFactory(getContext());
-  }
-
 }

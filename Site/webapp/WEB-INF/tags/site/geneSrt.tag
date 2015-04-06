@@ -90,8 +90,8 @@
             <td>begin at</td>
             <td align="left">
               <select name="startAnchor3">
-                <option value="Start" selected>upstream from Start</option>
-                <option value="End">downstream from End</option>
+                <option value="Start" selected>downstream from Start</option>
+                <option value="End">upstream from End</option>
               </select>
             </td>
             <td align="left">
@@ -102,8 +102,8 @@
             <td>end at</td>
             <td align="left">
               <select name="endAnchor3">
-                <option value="Start"  selected>upstream from Start</option>
-                <option value="End">downstream from End</option>
+                <option value="Start">downstream from Start</option>
+                <option value="End"  selected>upstream from End</option>
               </select>
             </td>
             <td align="left">
@@ -125,7 +125,10 @@
     <tr><td align="center"><input name="go" value="Get Sequences" type="submit"/></td></tr>
   </table>
 
-<p><sup>***</sup> Note: If UTRs have not been annotated for a gene, then choosing "transcription start" may have the same effect as choosing "translation start".</p>
+<p><b> Note: </b><br>
+For "genomic" sequence: If UTRs have not been annotated for a gene, then choosing "transcription start" may have the same effect as choosing "translation start".<BR>
+For "protein" sequence: you can only retrieve sequence contained within the ID(s) listed. i.e. from downstream of amino acid sequence start (ie. Methionine = 0) to upstream of the amino acid end (last amino acid in the protein = 0).
+</p>
 <br><br>
 
 </form>
