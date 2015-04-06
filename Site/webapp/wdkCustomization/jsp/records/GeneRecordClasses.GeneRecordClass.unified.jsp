@@ -162,6 +162,12 @@ organismFull:   Plasmodium falciparum 3D7
     .innertube > .toggle-section.ui-accordion > .ui-accordion-content {
       padding: 0 2px;
     }
+    span.wdk-record {
+      font-size: 100%;
+    }
+    span.wdk-record img {
+      width: 12px;
+    }
   </style>
 
 <a name="top"></a>
@@ -233,7 +239,7 @@ organismFull:   Plasmodium falciparum 3D7
 <div class="ui-helper-clearfix">
   <h1>${recordName} ${id}</h1>
 
-  <div class="record-toolbar ui-widget" style="float: left; margin: 0 0 0 1em;">
+  <div class="record-toolbar ui-widget" style="float: left; margin: 1.4em 2em 1em;">
     <a href="${commentsUrl}">
       Add a Comment<span class="ui-icon ui-icon-comment"></span>
       <!-- <img src="/assets/images/commentIcon12.png"/> -->
@@ -509,22 +515,9 @@ We are currently in the process of creating an updated version 6 of OrthoMCL.org
 <imp:wdkTable2 tblName="Alias" isOpen="FALSE" attribution=""/>
 
 
-<!-- External Links --> 
-<imp:wdkTable2 tblName="GeneLinkouts" isOpen="true" attribution=""/>
-
-
 <!-- Hagai -->
 <c:if test="${isCodingGene}">
   <imp:wdkTable2 tblName="MetabolicPathways" attribution=""/>
-</c:if>
-
-<!-- metabolic pathways -->
-<imp:wdkTable2 tblName="CompoundsMetabolicPathways" isOpen="true" attribution=""/>
-
-<!-- EC number -->
-<a name="ecNumber"></a>
-<c:if test="${isCodingGene}">
-  <imp:wdkTable2 tblName="EcNumber" isOpen="false" attribution=""/>
 </c:if>
 
 <!-- GO TERMS -->
