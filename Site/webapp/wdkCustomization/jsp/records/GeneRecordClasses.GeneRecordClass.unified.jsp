@@ -542,12 +542,14 @@ We are currently in the process of creating an updated version 6 of OrthoMCL.org
 
 
 <%-- PlasmoGem --%>
-<c:if test="${attrs['has_plasmogem_info'] eq '1'}">
-  <imp:toggle 
-    name="PlasmoCyc"
-    displayName="PlasmoCyc"
-    isOpen="true"
-    content="Query Pathway/Genome Databases at <a target='_blank' href='${plasmocycurl}'>PlasmoCyc</a>"/>
+<c:if test="${project_id eq 'PlasmoDB'}">
+  <c:if test="${attrs['has_plasmogem_info'] eq '1'}">
+    <imp:toggle 
+      name="PlasmoCyc"
+      displayName="PlasmoCyc"
+      isOpen="true"
+      content="Query Pathway/Genome Databases at <a target='_blank' href='${plasmocycurl}'>PlasmoCyc</a>"/>
+  </c:if>
 </c:if>
 
 <%-- from giardia new in build21--%>
