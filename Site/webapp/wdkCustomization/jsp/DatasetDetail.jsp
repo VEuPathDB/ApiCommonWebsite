@@ -50,7 +50,7 @@
 <div id="data-sets">
   <a name="_top"></a>
   <h1>Data Sets</h1>  
-  <div id="beta-page"><a title="Please contact us with your feedback." 
+  <div id="beta-page">Explore our <a title="Please contact us with your feedback." 
                        href="<c:url value='/app/answer/DatasetQuestions.AllDatasets'/>">New Data Sets page!
                        <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
   </div>
