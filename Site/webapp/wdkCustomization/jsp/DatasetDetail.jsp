@@ -237,7 +237,8 @@ ${datasetId.value}
                   Initial
                 </c:when>
                 <c:otherwise>
-                  ${genHistoryRow['build']} (${releaseDateStr}) (${project}&nbsp;${genHistoryRow['release_number']})
+             <%--      ${genHistoryRow['build']} (${releaseDateStr}) (${project}&nbsp;${genHistoryRow['release_number']}) --%>   
+                  ${project}&nbsp;${genHistoryRow['release_number']} ${releaseDateStr}
                 </c:otherwise>
                 </c:choose>
                   </td>
