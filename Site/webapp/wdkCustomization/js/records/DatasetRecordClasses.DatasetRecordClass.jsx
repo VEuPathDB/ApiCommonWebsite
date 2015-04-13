@@ -349,7 +349,7 @@ wdk.namespace('eupathdb.records', function(ns) {
       var primaryPublication = tables.getIn(['Publications', 'rows', 0]);
       var contact = attributes.getIn(['contact', 'value']);
       var institution = attributes.getIn(['institution', 'value']);
-      var version = attributes.getIn(['Version', 'rows', 0]);
+      var version = tables.getIn(['Version', 'rows', 0]);
       var organism = attributes.getIn(['organism_prefix', 'value']);
       var organisms = attributes.getIn(['organisms', 'value']);
       var References = tables.get('References');
