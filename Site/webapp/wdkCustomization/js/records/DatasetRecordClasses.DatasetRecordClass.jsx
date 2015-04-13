@@ -336,6 +336,32 @@ wdk.namespace('eupathdb.records', function(ns) {
     }
   });
 
+  var IsolatesList = React.createClass({
+
+    render() {
+      var { rows } = this.props.isolates.toJS();
+
+      if (rows.length === 0) return null;
+
+      return (
+        <div>
+          <h2>Isolates / Samples</h2>
+          <ul>
+            {rows.map(this._renderRow)}
+          </ul>
+        </div>
+      );
+    },
+
+    _renderRow(attributes, index) {
+      var isolate_link = attributes.find(attr => attr.name === 'isolate_link');
+      return (
+        <li key={index}>{formatLink(isolate_link.value)}</li>
+      );
+    }
+
+  });
+
   var DatasetRecord = React.createClass({
     render() {
       var { record, questions, recordClasses } = this.props;
@@ -360,6 +386,7 @@ wdk.namespace('eupathdb.records', function(ns) {
       var GenomeHistory = tables.get('GenomeHistory');
       var Version = tables.get('Version');
       var ExampleGraphs = tables.get('ExampleGraphs');
+      var Isolates = tables.get('Isolates');
 
       return (
         <div className="eupathdb-DatasetRecord ui-helper-clearfix">
@@ -428,6 +455,7 @@ wdk.namespace('eupathdb.records', function(ns) {
             <div className="eupathdb-DatasetRecord-Sidebar">
               <Organisms organisms={organisms}/>
               <Searches searches={References} questions={questions} recordClasses={recordClasses}/>
+              <IsolatesList isolates={Isolates}/>
               <Links links={HyperLinks}/>
               <ReleaseHistory history={GenomeHistory}/>
               <Versions versions={Version}/>
