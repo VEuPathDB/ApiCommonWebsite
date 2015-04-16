@@ -374,7 +374,7 @@ organismFull:   Plasmodium falciparum 3D7
    <c:set var="revCompOn" value="1"/>
 </c:if>
 
-<c:if test="${projectId ne 'TrichDB'  && projectId ne 'FungiDB' }">
+<c:if test="${projectId ne 'TrichDB'  && projectId ne 'FungiDB' && projectId ne 'SchistoDB'}">
       <imp:mercatorTable tblName="MercatorTable" isOpen="false" 
            cgiUrl="/cgi-bin" projectId="${projectId}" 
            revCompOn="${revCompOn}" contigId="${sequence_id}" 
@@ -451,7 +451,7 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
   <a name="goTerm"></a>
   <c:set var="goEvidenceLink">
     <div>
-    <br> <a target="_blank" href="http://www.geneontology.org/page/introduction">View documentation on GO Evidence Codes</a>
+    <br> <a target="_blank" href="http://geneontology.org/page/guide-go-evidence-codes">View documentation on GO Evidence Codes</a>
     </div>
   </c:set>
   <imp:wdkTable2 tblName="GoTerms" attribution="" postscript="${goEvidenceLink}"/>

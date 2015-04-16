@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+<!--
+   <record>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+-->
+<record>
+       <attribute name="headline">SchistoDB 24 Released</attribute>
+       <attribute name="date">13 April 2015 13:00</attribute>
+       <attribute name="tag">schistodb4_15_release</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+We are pleased to announce the release of SchistoDB in collaboration with the EuPathDB resources.  This first release includes the genome sequence and annotation 
+of <i>Schistosoma haematobium</i> Egypt and the assembled genome sequence of <i>Schistosoma japonicum</i> Anhui and <i>Schistosoma mansoni</i> Puerto Rico.  
+Additional information about these genomes is available in the <a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">dataset section</a> of SchistoDB.  
+We look forward to working with you as we integrate additional genomes and functional data over the coming years.
+          ]]>
+       </attribute>
+    </record>
+
+ <record>
+
+       <attribute name="headline">
+         <![CDATA[
+         Beta SchistoDB 3.0 is released with three species, Schistosoma mansoni, S. japonicum, S. haematobium
+         ]]>
+       </attribute>
+       <attribute name="date">01 July 2012 00:00</attribute>
+       <attribute name="tag">01July2012Release3.0</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce that the beta SchistoDB is now available at <a href="http://beta.schistodb.net/">beta.schistodb.net</a>.  SchistoDB is supported by ApiDB/EuPathDB (<a href="http://eupathdb.org">www.eupathdb.org</a>).
+<br><br>
+  Please send a message to the support team from the link at the bottom of the SchistoDB web page (<a href="http://beta.schistodb.net/schistodb/help.jsp"  target="_blank">Contact Us!</a>).
+<br><br>
+SchistoDB, like the other ApiDB/EuPathDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify these three schistosoma species' genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, SchistoDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The SchistoDB team
+
+
+          ]]>
+       </attribute>
+    </record>
+
+
+</xmlAnswer>
+

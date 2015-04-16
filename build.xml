@@ -178,20 +178,8 @@
       token="@cgilibTargetDir@" 
       value="${cgilibTargetDir}"/>
 
-    <antcall target="installGDD"/>
-
   </target>
 
-  <target name="installGDD">
-    <exec dir="${projectsDir}/ApiCommonWebsite/Model/bin"
-          executable="/bin/bash"
-          failonerror="true"
-          failifexecutionfails="true">
-      <arg line="install_GDD"/>
-      <arg line="${webPropFile}"/>
-      <arg line="install"/>
-    </exec>
-  </target>
 
   <target name="ApiCommonWebsite/View-WebInstallation">
 

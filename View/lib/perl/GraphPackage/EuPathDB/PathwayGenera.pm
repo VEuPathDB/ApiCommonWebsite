@@ -62,8 +62,11 @@ sub makeListOfLists {
 
   my @superset = (['Acanthamoeba', 'AmoebaDB', '#6F4E37',],
                   ['Entamoeba', 'AmoebaDB','#6F4E37', ],
+                  ['Naegleria', 'AmoebaDB','#6F4E37', ],
 
                   ['Cryptosporidium', 'CryptoDB', '#2554C7', ],
+                  ['Chromera', 'CryptoDB', '#777777'], #
+                  ['Vitrella', 'CryptoDB', '#777777'], #
 
                   ['Eimeria', 'ToxoDB', '#59E817',],
                   ['Gregarina', 'ToxoDB', '#59E817',],
@@ -71,8 +74,6 @@ sub makeListOfLists {
                   ['Toxoplasma', 'ToxoDB', '#59E817',],
 
                   ['Plasmodium', 'PlasmoDB', '#A74AC7'], #
-                  ['Chromera', 'PlasmoDB', '#777777'], #
-                  ['Vitrella', 'PlasmoDB', '#777777'], #
 
                   ['Babesia','PiroplasmaDB', '#3BB9FF', ],  #
                   ['Theileria', 'PiroplasmaDB', '#3BB9FF',], #
@@ -94,9 +95,25 @@ sub makeListOfLists {
                   ['Vavraia', 'MicrosporidiaDB', '#461B7E'],
                   ['Vittaforma', 'MicrosporidiaDB', '#461B7E'],
 
-                  ['Homo', 'HostDB', '#00FFFF'],
-                  ['Mus', 'HostDB', '#00FFFF'],
+                  ['Schistosoma', 'SchistoDB', '#2554C7', ],
+
+		  ['Aspergillus','FungiDB', '#2554C7'],
+		  ['Phytophthora','FungiDB', '#2554C7'],
+		  ['Pythium','FungiDB', '#2554C7'],
+		  ['Aphanomyces','FungiDB', '#2554C7'],
+		  ['Saprolegnia','FungiDB', '#2554C7'],
+		  ['Neurospora','FungiDB', '#2554C7'],
+		  ['Albugo','FungiDB', '#2554C7'],
+		  ['Fusarium','FungiDB', '#2554C7'],
+		  ['Coccidioides','FungiDB', '#2554C7'],
+		  ['Talaromyces','FungiDB', '#2554C7'],
+
                   ['Trichomonas', 'TrichDB', '#78866B'],
+
+                  ['Homo', 'HostDB', '#00FFFF'],
+                  ['Mus', 'HostDB', '#00FFFF']
+
+
       );
 
   my @rv;

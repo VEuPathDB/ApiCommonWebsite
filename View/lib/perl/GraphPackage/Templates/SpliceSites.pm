@@ -8,6 +8,14 @@ use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
+
+sub getPlotType {
+  my $self = shift;
+
+  return ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStackedSpliced->new(@_);
+}
+
 sub init {
   my $self = shift;
   $self->SUPER::init(@_);

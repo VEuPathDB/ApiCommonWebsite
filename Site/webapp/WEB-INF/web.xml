@@ -147,6 +147,17 @@
   </servlet-mapping>
   <!-- End Struts servlet and mapping -->
 
+  <!-- WDK Client-side render filter -->
+  <servlet>
+    <servlet-name>WDKClient</servlet-name>
+    <jsp-file>/wdkCustomization/app.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WDKClient</servlet-name>
+    <url-pattern>/app/*</url-pattern>
+  </servlet-mapping>
+  <!-- End of WDK Client-side render filter -->
+  
   <!-- WSF RESTful service filter -->
   <servlet>
     <servlet-name>WSF</servlet-name>
@@ -199,21 +210,5 @@
      <error-code>500</error-code>
      <location>/500.jsp</location>
   </error-page>
-
-  <!-- Declare tag libs for JSP and tags -->
-  <jsp-config>
-    <taglib>
-      <taglib-uri>/WEB-INF/tld-third-party/struts-html.tld</taglib-uri>
-      <taglib-location>/WEB-INF/tld-third-party/struts-html.tld</taglib-location>
-    </taglib>
-    <taglib>
-      <taglib-uri>/WEB-INF/tld-third-party/pager-taglib.tld</taglib-uri>
-      <taglib-location>/WEB-INF/tld-third-party/pager-taglib.tld</taglib-location>
-    </taglib>
-    <taglib>
-      <taglib-uri>http://jakarta.apache.org/taglibs/random-1.0</taglib-uri>
-      <taglib-location>/WEB-INF/tld-third-party/taglibs-random.tld</taglib-location>
-    </taglib>
-  </jsp-config>
 
 </web-app>

@@ -8,13 +8,15 @@ use ApiCommonWebsite::View::CgiApp;
 use Bio::SeqIO;
 use Bio::Seq;
 
+my %seqLen;  # to keep track of length of sequences
 
 sub run {
   my ($self, $cgi) = @_;
 
   my $dbh = $self->getQueryHandle($cgi);
-
   my $type = $cgi->param('downloadType');
+  my $seqLengthLimit = 50000000;
+
 
   if ($type && $type eq "text") {
       print $cgi->header('application/x-download');
@@ -30,7 +32,7 @@ sub run {
   my $sql;
   if ($self->{type} eq 'contig') {
     $sql = <<EOSQL;
-SELECT s.source_id, s.sequence, ' | ' || sa.sequence_description as description
+SELECT s.source_id, substr(s.sequence, ?, ?), ' | ' || sa.sequence_description as description
 FROM ApidbTuning.NaSequence s, ApidbTuning.SequenceId si, ApidbTuning.SequenceAttributes sa
 WHERE  lower(si.id) = lower(?)
 AND s.source_id = si.sequence
@@ -38,40 +40,56 @@ AND sa.source_id = s.source_id
 EOSQL
   } elsif ($self->{type} eq 'EST') {
     $sql = <<EOSQL;
-SELECT ea.source_id, s.sequence, ' | ' || ea.dbest_name as description
+SELECT ea.source_id, substr(s.sequence, ?, ?), ' | ' || ea.dbest_name as description
 FROM ApidbTuning.estAttributes ea,  ApidbTuning.estSequence s
 WHERE ea.source_id = s.source_id
 and lower(ea.source_id) = lower (?)
 EOSQL
 } elsif ($self->{type} eq 'Isolate') {
     $sql = <<EOSQL;
-SELECT ia.source_id, s.sequence, ' | ' || ia.organism as description
+SELECT ia.source_id, substr(s.sequence, ?, ?), ' | ' || ia.organism as description
 FROM ApidbTuning.IsolateAttributes ia,  ApidbTuning.IsolateSequence s
 WHERE ia.source_id = s.source_id
 and lower(ia.source_id) = lower (?)
 EOSQL
   }
 
-  my $sth = $dbh->prepare($sql);
 
+  my $sth;
   my $count = @$sourceIds;
 
   for (my $i=0; $i < $count; ++$i) {
-    $sth->execute(uc($$sourceIds[$i]));
+
+    if (!$$ends[$i]           # end_postion is set as 0
+	|| $$ends[$i] > $seqLen{uc($$sourceIds[$i])}  # end_position is greater than sequence length
+       ){
+      $$ends[$i] =  $seqLen{uc($$sourceIds[$i])};
+    }
+
+    if (($$ends[$i] - $$starts[$i] +1) > $seqLengthLimit)  {
+      &error("Maximum length of the Sequence can be $seqLengthLimit nucleotides.\nPlease specify the nucleotide positions again.");
+    }
+
+    $dbh->{LongReadLen} = ( $$ends[$i] - $$starts[$i] +1 );
+
+    $sth = $dbh->prepare($sql);
+    $sth->execute($$starts[$i],  ( $$ends[$i] - $$starts[$i] +1), uc($$sourceIds[$i]) );
+
+
     if (my ($id, $seq, $desc) = $sth->fetchrow_array()) {
 
       my $bioSeq = Bio::Seq->new(-display_id => $id, -seq => $seq,
 				  -alphabet => "dna");
-      my $maxEnd = $$ends[$i] > $bioSeq->length()? $bioSeq->length() : $$ends[$i];
+      my $maxEnd = $$ends[$i];
 
+      # NOT USED, as this error is caught on validation
       # catch error if start is larger $maxEnd
-      &error("Start is larger than the length of the Sequence ($maxEnd)") if ($$starts[$i] > $maxEnd);
+      # &error("Start is larger than the length of the Sequence ($maxEnd)") if ($$starts[$i] > $maxEnd);
 
       $desc .= " | $$starts[$i] to $maxEnd";
       $desc .= " (reverse-complement)" if ($$revComps[$i]);
       $bioSeq->desc($desc);
-      
-      $bioSeq = $bioSeq->trunc($$starts[$i], $maxEnd);
+
       $bioSeq = $bioSeq->revcom() if ($$revComps[$i]);
       $seqIO->write_seq($bioSeq);
     }
@@ -93,10 +111,10 @@ sub validateParams {
   $end =~ s/[,.+\s]//g if ($end);
 
   $start = 1 if (!$start || $start !~/\S/);
-  $end = 100000000 if (!$end || $end !~ /\S/);
+  $end = 0 if (!$end || $end !~ /\S/);
   &error("Start '$start' must be a number") unless $start =~ /^\d+$/;
   &error("End '$end' must be a number") unless $end =~ /^\d+$/;
-  if ($start < 1 || $end < 1 || $end <= $start) {
+  if ($start < 1 || (($end < 1 || $end <= $start) && ($end))) {
       &error("Start and End must be positive, and Start must be less than End (in global parameters)");
   }
   my ($sourceIds, $starts, $ends, $revComps, $type) =  &validateIds($ids, $start, $end, $revComp, $dbh, $self->{type});
@@ -111,6 +129,7 @@ sub validateIds {
   # else if the input contains per-sequence "reverse" or "(start..end)":
   #   split on newlines
   # else split on any whitespace
+
   my @inputInfo;
   if ($inputIdsString =~ /,/) {
       @inputInfo = split(/\n/, $inputIdsString);
@@ -134,21 +153,24 @@ sub validateIds {
   my $sql;
   if ($type eq 'contig') {
   $sql = <<EOSQL;
-SELECT s.sequence
-FROM ApidbTuning.SequenceId s
+SELECT s.sequence, sa.length
+FROM ApidbTuning.SequenceId s, ApidbTuning.SequenceAttributes sa
 WHERE lower(s.id) = lower(?)
+AND sa.source_id = s.sequence
 EOSQL
 } elsif ($type eq 'EST') {
   $sql = <<EOSQL;
-SELECT s.sequence
-FROM ApidbTuning.estSequence s
-WHERE lower(source_id) = lower(?)
+SELECT s.sequence, ea.length
+FROM ApidbTuning.estSequence s, ApidbTuning.EstAttributes ea
+WHERE lower(s.source_id) = lower(?)
+AND ea.source_id = s.source_id
 EOSQL
 } elsif ($type eq 'Isolate') {
   $sql = <<EOSQL;
-SELECT s.sequence
-FROM ApidbTuning.IsolateSequence s
-WHERE lower(source_id) = lower(?)
+SELECT s.sequence, ia.length
+FROM ApidbTuning.IsolateSequence s,  ApidbTuning.IsolateAttributes ia
+WHERE lower(s.source_id) = lower(?)
+AND ia.source_id = s.source_id
 EOSQL
 }
   my @badIds;
@@ -180,7 +202,13 @@ EOSQL
     $sth->execute(uc($inputId));
 
     my $ref = $sth->fetchall_arrayref;
-    next if ( $#$ref == 0 );
+
+    if ($ref->[0]->[0]) {
+     # $seqLen{uc($ref->[0]->[0])} = $ref->[0]->[1];
+      $seqLen{uc($inputId)} = $ref->[0]->[1]; # length of the asked sequence
+      next;
+    }
+
     push(@badIds, $inputId);
   }
   if (scalar(@badIds) != 0) {

@@ -1,8 +1,9 @@
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<fmt:setLocale value="en-US"/>
 
 <%-- get wdkXmlQuestionSets saved in request scope --%>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
@@ -10,6 +11,7 @@
 <c:set var="question" value="${requestScope.question}" />
 <c:set var="recordClass" value="${requestScope.recordClass}" />
 <c:set var='project' value='${wdkModel.name}'/>
+<c:set var="baseUrl" value="${pageContext.request.contextPath}"/>
 
 <imp:pageFrame banner="Data Sets" refer="data-set" >
 
@@ -48,8 +50,12 @@
 <%-- show all xml question sets --%>
 <div id="data-sets">
   <a name="_top"></a>
-  <h1>Data Sets</h1>
-   
+  <h1>Data Sets</h1>  
+  <div id="beta-page"><a title="Please contact us with your feedback." 
+                       href="${baseUrl}/app/answer/DatasetQuestions.AllDatasets">New Data Sets page!
+                       <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
+  </div>
+
   <div class="ui-helper-clearfix">
     <div class="toggle-all">
       <p><a class="wdk-toggle-group"
@@ -93,10 +99,10 @@
           <c:set var="name" value="${attributes['dataset_name']}" />
           <c:set var="displayName" value="${attributes['display_name']}" />
           <c:set var="categories" value="${attributes['category']}" />
-          <c:set var="organism" value="${attributes['organisms']}" />
           <c:set var="description" value="${attributes['description']}" />
           <c:set var="contact" value="${attributes['contact']}" />
           <c:set var="institution" value="${attributes['institution']}" />        
+          <c:set var="org_prefix" value="${attributes['organism_prefix']}" />        
           <c:set var="tables" value="${record.tables}" />
           <c:set var="publications" value="${tables['Publications']}" />
           <c:set var="contacts" value="${tables['Contacts']}" />
@@ -136,12 +142,13 @@ ${datasetId.value}
 <%-------    Organisms and Contact  ----------------%>
             <div class="detail">
               <table>
-                <c:if test='${not empty organism.value}'>    
-                  <tr><td><span class="caption"><b>${organism.displayName}:</b> </span></td>
-                      <td> ${organism.value}</td></tr>  
-                </c:if>
+              <c:if test='${not empty org_prefix.value}'>
+                <tr><td><span title="In functional data sets this is not the source organism but the one the data set is mapped to, and is returned in search results." class="caption"><b>${org_prefix.displayName}:</b></span></td>
+                  <td  style="font-size:120%;font-weight:bold"> ${org_prefix.value}
+                  </td></tr>
+              </c:if>
                 <tr><td><span class="caption"><b>${contact.displayName}:</b></span></td>
-                    <td> <c:if test='${not empty contact.value}'>${contact.value}</c:if>
+                    <td>  <c:if test='${not empty contact.value}'>${contact.value}</c:if>
                          <c:if test='${not empty institution.value}'> - ${institution.value}</c:if>
                     </td></tr>
               </table>
@@ -214,7 +221,7 @@ ${datasetId.value}
 
               <table class="headerRow">
                 <tr>
-                  <th>EuPathDB Build</th>
+                  <th>EuPathDB Release</th>
                   <th>Genome Source</th>
                   <th>Annotation Source</th>
                   <th>Notes</th>
@@ -280,7 +287,7 @@ ${datasetId.value}
                       <c:if test="${question != null}">
                         <c:set var="hasQuestion" value="${true}" />
                         <c:set var="display" value="Identify ${question.recordClass.displayNamePlural} based on ${question.displayName}" />
-                        <c:url var="questionUrl" value="/showQuestion.do?questionFullName=${question.fullName}" />
+                        <c:set var="questionUrl" value="${baseUrl}/showQuestion.do?questionFullName=${question.fullName}" />
                         <c:choose>
                           <c:when test="${question.isTransform}">
                             <li>${display}</li>
@@ -311,7 +318,7 @@ ${datasetId.value}
 
   <%-- if we came to this page to show only a few datasets (would be specified in the url) --%>
   <c:if test="${fn:length(param.reference) > 0}">
-    <p style="text-align:center;font-size:120%"><a href="<c:url value='/getDataset.do?display=detail' />">
+    <p style="text-align:center;font-size:120%"><a href="${baseUrl}/getDataset.do?display=detail">
       Click here to see the complete list of Data Sets</a></p>
   </c:if>
 

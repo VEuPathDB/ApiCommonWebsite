@@ -1,7 +1,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
-<%@ taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
 <jsp:useBean id="rMMap" class="java.util.HashMap" type="java.util.Map"/>
 <c:set var="answerValue" value="${requestScope.answer_value}"/>
@@ -36,7 +36,7 @@
             
             <div class="filter-instance">
               <c:if test="${current}"><div class="current"></c:if>
-              <c:url var="linkUrl" value="/processFilter.do?strategy=${strategyId}&revise=${stepId}&filter=${instance.name}" />
+              <c:url var="linkUrl" value="/processFilter.do?strategy=${strategyId}&step=${stepId}&filter=${instance.name}" />
               <c:url var="countUrl" value="/showResultSize.do?step=${stepId}&answer=${answerValue.checksum}&filter=${instance.name}" />
               <c:set var="filterCountLoaded" value="loaded" />
               <c:set var="filterCount" value="${rMMap[linstance.displayName]}" />
@@ -92,7 +92,7 @@
                 <c:when test="${current}"><div class="current"></c:when>
                 <c:otherwise><div></c:otherwise>
               </c:choose>
-              <c:url var="linkUrl" value="/processFilter.do?strategy=${strategyId}&revise=${stepId}&filter=${instance.name}" />
+              <c:url var="linkUrl" value="/processFilter.do?strategy=${strategyId}&step=${stepId}&filter=${instance.name}" />
               <c:url var="countUrl" value="/showResultSize.do?step=${stepId}&answer=${answerValue.checksum}&filter=${instance.name}" />
               
               <a id="link-${instance.name}" data-filter="${instance.name}" class="link-url" href="javascript:void(0)" countref="${countUrl}" 
@@ -107,7 +107,7 @@
               <%--
                  <div class="filter-instance">
                    <c:if test="${current}"><div class="current"></c:if>
-                   <c:url var="linkUrl" value="/processFilter.do?strategy=${strategyId}&revise=${stepId}&filter=${instance.name}" />
+                   <c:url var="linkUrl" value="/processFilter.do?strategy=${strategyId}&step=${stepId}&filter=${instance.name}" />
                    <c:url var="countUrl" value="/showResultSize.do?step=${stepId}&answer=${answerValue.checksum}&filter=${instance.name}" />
                    <c:set var="filterCountLoaded" value="loaded" />
                    <c:set var="filterCount" value="${rMMap[linstance.displayName]}" />

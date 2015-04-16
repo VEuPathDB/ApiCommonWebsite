@@ -4,15 +4,18 @@ var filesTable = '#fileSelTbl';
 $(document).ready(function(){
   addFileSelRow();
 
-  $('#uploadForm').validate({
+  var validationConfig = {
     rules: {
       title: {
-          required: true
+        required: true
       }
     }
-  });
-  
-  
+  };
+
+  $('form[name=commentForm]').validate(validationConfig);
+  $('form[name=userFileUploadForm]').validate(validationConfig);
+  //$('form[name=phenotypeForm]').validate(validationConfig);
+
   $('#newfile').click(function(){
     addFileSelRow();
   });

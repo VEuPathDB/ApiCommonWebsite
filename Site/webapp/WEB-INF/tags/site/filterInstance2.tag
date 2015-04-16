@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
-<%@ taglib prefix="nested" uri="http://jakarta.apache.org/struts/tags-nested" %>
+<%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>
 
 <%-- THIS FILE IS USED FOR GENE ORGANISM FILTER 3 bottom ROWS CONTAINING:
       SPECIES ROW (sometimes with distinct filter count), 
@@ -80,10 +80,12 @@
 </c:choose>
 
 
-<!--    the use of = (equal) in spaces inside the species name (eg: "sp. 1" becomes "sp.=1"), is set injector AnnotatedGenome.java -->
-<!--    this is done because the filter instance name cannot have spaces (it would break the javascript associated with filters).
-        Here we 'undo' that process. 
+<!--    = was used to escape forbidden chars like space, dash and underscore inside the species name 
+          (eg: "sp. 1" becomes "sp.=1") in the injector AnnotatedGenome.java    
 -->
+
+<c:set var="species" value="${fn:replace(species, '=-', '-')}" />
+<c:set var="species" value="${fn:replace(species, '=_', '_')}" />
 <c:set var="species" value="${fn:replace(species, '=', ' ')}" />
 
 <c:choose>
@@ -133,7 +135,7 @@
       <!-- reading strain name from filter instance displayName (popup title) -->
       <c:set var="dispNameOrg1" value="${fn:substringBefore(instance.displayName, 'Results')}" />
       <c:set var="dispNameOrg" value="${fn:trim(dispNameOrg1)}" /> 
-      <c:set var="strain" value="${fn:substringAfter(dispNameOrg, species)}" />
+      <c:set var="strain" value="${fn:substringAfter(dispNameOrg, species )}" />
       <c:set var="strain" value="${fn:trim(strain)}" /> 
       ${strain}
 
