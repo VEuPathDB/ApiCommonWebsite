@@ -25,25 +25,27 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
 	   */
 	  @Override
 	  public String getUncachedSql() throws WdkModelException, WdkUserException {
-		  String geneSql = super.getUncachedSql();
+		  String booleanTranscriptsSql = super.getUncachedSql();
+                  String booleanGenesSql = "select ta.gene_source_id from (" + booleanTranscriptSql + ") bt, apidbtuning.transcriptattributes ta where bt.source_id = ta.source_id ";
+		  String 
 		  String sql = 
-				  "WITH (" + geneSql + ") as genes" + NL +
-				  "select gene_source_id, transcript_source, weight, sum(left_match) as " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", sum(right_match) as " + TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + NL +
+				  "WITH genes as (" + geneSql + ")" + NL +
+				  "select gene_source_id, source_id, weight, sum(left_match) as " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", sum(right_match) as " + TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + NL +
 				  "from (" + NL +
-				  "  select left.gene_source_id, left.transcript_source_id, genes.weight, 1 as left_match, 0 as right_match" + NL +
+				  "  select left.gene_source_id, left.source_id, genes.weight, 1 as left_match, 0 as right_match" + NL +
 				  "  from genes, " + NL +
 				  "  (leftOperand) left" + NL +
 				  "  where left.gene_source_id = genes.gene_source_id" + NL +
 				  "  UNION" + NL +
-				  "  select left.gene_source_id, left.transcript_source_id, genes.weight, 1 as left_match, 0 as right_match" + NL +
+				  "  select right.gene_source_id, right.source_id, genes.weight, 1 as right_match, 0 as right_match" + NL +
 				  "  from genes, " + NL +
-				  "  (leftOperand) left" + NL +
-				  "  where left.gene_source_id = genes.gene_source_id" + NL +
+				  "  (rightOperand) right" + NL +
+				  "  where right.gene_source_id = genes.gene_source_id" + NL +
 				  "  UNION" + NL +
-				  "  select ta.gene_source_id, ta.transcript_source_id, genes.weight, 0 as left_match, 0 as right_match" + NL +
+				  "  select ta.gene_source_id, ta.source_id, genes.weight, 0 as left_match, 0 as right_match" + NL +
 				  "  from genes, apidbtuning.transcriptattributes ta" + NL +
 				  "  where genes.gene_source_id = ta.gene_source_id) big" + NL +
-				  "group by (gene_source_id, transcript_source, weight)";
+				  "group by (gene_source_id, source_id, weight)";
 		return sql;	
 		  
 	  }

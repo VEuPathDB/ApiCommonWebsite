@@ -16,9 +16,9 @@ public class TranscriptBooleanQuery extends BooleanQuery {
 	public static final String LEFT_MATCH_COLUMN = "left_match";
 	public static final String RIGHT_MATCH_COLUMN = "right_match";
 
-	public TranscriptBooleanQuery(RecordClass recordClass)
+    public TranscriptBooleanQuery()
 			throws WdkModelException {
-		super(recordClass);
+		super();
 	}
 
 	/*
@@ -49,5 +49,17 @@ public class TranscriptBooleanQuery extends BooleanQuery {
 		columnMap.put(RIGHT_MATCH_COLUMN, column);
 
 	}
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.gusdb.wdk.model.query.Query#clone()
+   */
+  @Override
+  public Query clone() {
+    return new TranscriptBooleanQuery(this);
+  }
+
+
 
 }
