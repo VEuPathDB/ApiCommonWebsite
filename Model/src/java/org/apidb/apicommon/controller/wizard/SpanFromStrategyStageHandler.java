@@ -14,32 +14,39 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 
 public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
 
-    private static final String PARAM_IMPORT_STRATEGY = "importStrategy";
+  private static final String PARAM_STRATEGY = "importStrategy";
 
-    private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
+  private static final String PARAM_IMPORT_STRATEGY = "importStrategy";
 
-    @Override
-    public StepBean getChildStep(ActionServlet servlet,
-            HttpServletRequest request, HttpServletResponse response,
-            WizardForm wizardForm) throws Exception {
-        logger.debug("Entering SpanFromQuestionStageHandler....");
+  private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-        // load strategy
-        String strStratId = request.getParameter(PARAM_IMPORT_STRATEGY);
-        if (strStratId == null || strStratId.length() == 0)
-            throw new WdkUserException("required " + PARAM_IMPORT_STRATEGY
-                    + " is missing.");
+  @Override
+  public StepBean getChildStep(ActionServlet servlet, HttpServletRequest request,
+      HttpServletResponse response, WizardForm wizardForm) throws Exception {
+    logger.debug("Entering SpanFromQuestionStageHandler....");
 
-        int strategyId = Integer.valueOf(strStratId);
-        UserBean user = ActionUtility.getUser(servlet, request);
-        StrategyBean strategy = user.getStrategy(strategyId);
-        StepBean step = strategy.getLatestStep();
-        StepBean childStep = step.deepClone();
-        childStep.setIsCollapsible(true);
-        childStep.setCollapsedName("Copy of " + strategy.getName());
-        childStep.update(false);
+    // load strategy
+    String strImportStrategyId = request.getParameter(PARAM_IMPORT_STRATEGY);
 
-        logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return childStep;
-    }
+    if (strImportStrategyId == null || strImportStrategyId.length() == 0)
+      throw new WdkUserException("required " + PARAM_IMPORT_STRATEGY + " is missing.");
+
+    String strStratId = request.getParameter(PARAM_STRATEGY);
+    Integer strategyId = null;
+    if (strStratId == null || strStratId.isEmpty())
+      throw new WdkUserException("required " + PARAM_STRATEGY + " is missing.");
+    strategyId = Integer.valueOf(strStratId.split("_", 2)[0]);
+
+    int importStrategyId = Integer.valueOf(strImportStrategyId);
+    UserBean user = ActionUtility.getUser(servlet, request);
+    StrategyBean importStrategy = user.getStrategy(importStrategyId);
+    StepBean step = importStrategy.getLatestStep();
+    StepBean childStep = step.deepClone(strategyId);
+    childStep.setIsCollapsible(true);
+    childStep.setCollapsedName("Copy of " + importStrategy.getName());
+    childStep.update(false);
+
+    logger.debug("Leaving SpanFromQuestionStageHandler....");
+    return childStep;
+  }
 }
