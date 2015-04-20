@@ -213,10 +213,22 @@ sub rOpenFile {
 	 my $w     = int($fmt eq 'pdf' ? $Width  / 72 : $Width);
 	 my $h     = int($fmt eq 'pdf' ? $Height / 72 : $Height);
 
-	 $Rv = $fmt eq 'pdf'
-	 ? qq{pdf(file="$out_f", width=$w, height=$h)}
-	 : qq{GDD(file="$out_f", type="$fmt", w=$w, h=$h)}
-	 ;
+	 if(lc($fmt) eq 'pdf') {
+           qq{pdf(file="$out_f", width=$w, height=$h)};
+         }
+         elsif(lc($fmt) eq 'png') {
+           $Rv = qq{png(file="$out_f", width=$w, height=$h)};
+         }
+
+         elsif(lc($fmt) eq 'jpeg') {
+           $Rv = qq{jpeg(file="$out_f", width=$w, height=$h)};
+         }
+         elsif(lc($fmt) eq 'table') {
+           # do nothing 
+         }
+         else {
+           die "Unsupported Format $fmt";
+         }
 
 	 return $Rv;
 }
@@ -235,10 +247,6 @@ sub _rPreamble {
    my $scale = $Self->getScalingFactor;
 
    my $Rv = <<StandardComponents;
-
-# ------------------------------ libraries -------------------------------
-
-library(GDD);
 
 # -------------------------------- colors --------------------------------
 
