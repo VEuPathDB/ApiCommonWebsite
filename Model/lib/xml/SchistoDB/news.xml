@@ -13,7 +13,21 @@
        </attribute>
     </record>
 -->
-
+<record>
+       <attribute name="headline">SchistoDB 24 Released</attribute>
+       <attribute name="date">13 April 2015 13:00</attribute>
+       <attribute name="tag">schistodb4_15_release</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+We are pleased to announce the release of SchistoDB in collaboration with the EuPathDB resources.  This first release includes the genome sequence and annotation 
+of <i>Schistosoma haematobium</i> Egypt and the assembled genome sequence of <i>Schistosoma japonicum</i> Anhui and <i>Schistosoma mansoni</i> Puerto Rico.  
+Additional information about these genomes is available in the <a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">dataset section</a> of SchistoDB.  
+We look forward to working with you as we integrate additional genomes and functional data over the coming years.
+          ]]>
+       </attribute>
+    </record>
 
  <record>
 
