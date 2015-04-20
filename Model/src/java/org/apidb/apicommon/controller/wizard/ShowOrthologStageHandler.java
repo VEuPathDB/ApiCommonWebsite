@@ -42,11 +42,10 @@ public class ShowOrthologStageHandler implements StageHandler {
         //
         // The above 2 use cases can be simplified into the following:
         // 1) create a ortholog transform using the current step as input
-        // 2) revise the current step by replacing the current step with the new
-        // ortholog step.
+        // 2) insert the new ortholog step after the current step.
         StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
 
-        // get a span logic question
+        // get the ortholog question
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         String questionName = request.getParameter(PARAM_QUESTION_NAME);
         QuestionBean question = wdkModel.getQuestion(questionName);
