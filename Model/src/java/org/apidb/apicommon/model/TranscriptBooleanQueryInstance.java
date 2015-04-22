@@ -54,8 +54,6 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
 	    "  from genes, apidbtuning.transcriptattributes ta" + NL +
 	    "  where genes.gene_source_id = ta.gene_source_id) big" + NL +
 	    "group by (gene_source_id, source_id, project_id, wdk_weight)";
-	logger.info("TranscriptBooleanQueryInstance sql: " + NL + sql);
-
 	return sql;	
 		  
     }
