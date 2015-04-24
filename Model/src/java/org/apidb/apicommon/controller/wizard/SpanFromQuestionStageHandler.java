@@ -16,6 +16,7 @@ import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
+import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
@@ -73,7 +74,11 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
         String strStratId = request.getParameter(PARAM_STRATEGY);
         Integer strategyId = null;
         if (strStratId != null & !strStratId.isEmpty()) {
+        // before changing step, need to check if strategy is saved, if yes, make a copy.
           strategyId = Integer.valueOf(strStratId.split("_", 2)[0]);
+          StrategyBean strategy = user.getStrategy(strategyId);
+          if (strategy.getIsSaved())
+            strategy.update(false);
         }
 
         StepBean childStep = user.createStep(strategyId, question, params, filterName,

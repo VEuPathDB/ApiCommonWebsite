@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
+import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.model.WdkUserException;
@@ -31,14 +32,20 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
     if (strImportStrategyId == null || strImportStrategyId.length() == 0)
       throw new WdkUserException("required " + PARAM_IMPORT_STRATEGY + " is missing.");
 
+    UserBean user = ActionUtility.getUser(servlet, request);
+
     String strStratId = request.getParameter(PARAM_STRATEGY);
     Integer strategyId = null;
     if (strStratId == null || strStratId.isEmpty())
       throw new WdkUserException("required " + PARAM_STRATEGY + " is missing.");
     strategyId = Integer.valueOf(strStratId.split("_", 2)[0]);
 
+    // before changing step, need to check if strategy is saved, if yes, make a copy.
+      StrategyBean strategy = user.getStrategy(strategyId);
+      if (strategy.getIsSaved())
+        strategy.update(false);
+
     int importStrategyId = Integer.valueOf(strImportStrategyId);
-    UserBean user = ActionUtility.getUser(servlet, request);
     StrategyBean importStrategy = user.getStrategy(importStrategyId);
     StepBean step = importStrategy.getLatestStep();
     StepBean childStep = step.deepClone(strategyId);
