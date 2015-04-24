@@ -30,6 +30,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private static final String PARAM_NAME = "name";
     private static final String PARAM_PRIMARY_KEY = "primary_key";
     private static final String PARAM_SOURCE_ID = "source_id";
+    private static final String PARAM_GENE_SOURCE_ID = "gene_source_id";
     private static final String PARAM_PROJECT_ID = "project_id";
 
     private static final String PARAM_RECORD_CLASS = "record_class";
@@ -64,15 +65,17 @@ public class CustomShowRecordAction extends ShowRecordAction {
         String sourceId = request.getParameter(PARAM_SOURCE_ID);
         if (sourceId == null) sourceId = request.getParameter(PARAM_PRIMARY_KEY);
         
+        String geneSourceId = request.getParameter(PARAM_GENE_SOURCE_ID);
+
         // if the action is used EuPathDB, we will redirect record page to component project.
         if (wdkModel.getProjectId().equals("EuPathDB")) {
           String projectId = request.getParameter(PARAM_PROJECT_ID);
           if (projectId != null) 
-            return redirectByProject(wdkModel, rcName, projectId, sourceId);
+	      return redirectByProject(wdkModel, rcName, projectId, sourceId, geneSourceId);
         }
 
         ActionForward forward;
-        if (hasMultipleRecords(request, wdkModel, rcName, sourceId)) {
+        if (hasMultipleRecords(request, wdkModel, rcName, sourceId, geneSourceId)) {
             // the old id is mapped to multiple ids, run a id question to get
             // the result.
             forward = mapping.findForward(FORWARD_ID_QUESTION);
@@ -95,21 +98,24 @@ public class CustomShowRecordAction extends ShowRecordAction {
     }
     
     private ActionForward redirectByProject(WdkModelBean wdkModel,
-        String recordClass, String projectId, String sourceId) 
+					    String recordClass, String projectId, String sourceId, String geneSourceId) 
             throws WdkModelException {
       // get project mapper
       ProjectMapper mapper = ProjectMapper.getMapper(wdkModel.getModel());
-      String url = mapper.getRecordUrl(recordClass, projectId, sourceId);
+      String url = (geneSourceId == null)?
+	  mapper.getRecordUrl(recordClass, projectId, sourceId) :
+	  mapper.getRecordUrl(recordClass, projectId, sourceId, geneSourceId);
       return new ActionForward(url, true);
     }
 
     private boolean hasMultipleRecords(HttpServletRequest request,
-            WdkModelBean wdkModel, String rcName, String sourceId)
+				       WdkModelBean wdkModel, String rcName, String sourceId, String geneSourceId)
             throws WdkModelException, WdkUserException {
         UserBean user = ActionUtility.getUser(servlet, request);
         RecordClassBean recordClass = wdkModel.getRecordClass(rcName);
         Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
         pkValues.put("source_id", sourceId);
+        if (geneSourceId != null) pkValues.put("gene_source_id", geneSourceId);
         pkValues.put("project_id", wdkModel.getProjectId());
         return recordClass.hasMultipleRecords(user, pkValues);
     }
