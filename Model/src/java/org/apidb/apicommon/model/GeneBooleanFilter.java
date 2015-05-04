@@ -11,14 +11,14 @@ import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.filter.AbstractFilter;
+import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class GeneBooleanFilter extends AbstractFilter {
+public class GeneBooleanFilter extends StepFilter {
 	
 	protected static final String COLUMN_COUNT = "count";
 	  private static final String GENE_BOOLEAN_FILTER_ARRAY_KEY = "gene_boolean_filter_array";
