@@ -26,6 +26,9 @@ public class GeneBooleanFilter extends StepFilter {
 	public GeneBooleanFilter() {
 		super("geneBooleanFilter");
 	}
+       
+        @Override
+	    public String getKey() { return GENE_BOOLEAN_FILTER_ARRAY_KEY; }
 
 	@Override
 	public FilterSummary getSummary(AnswerValue answer, String idSql)
