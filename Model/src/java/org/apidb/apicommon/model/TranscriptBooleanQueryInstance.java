@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 
 public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
     private static final String NL = System.lineSeparator();
-  private static final Logger logger = Logger.getLogger(BooleanQueryInstance.class);
+  // private static final Logger logger = Logger.getLogger(BooleanQueryInstance.class);
 
     GeneBooleanQueryInstance genebqi;
 	  

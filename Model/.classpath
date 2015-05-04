@@ -13,5 +13,6 @@
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/wdk-controller"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/struts/struts-core/1.3.10/struts-core-1.3.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Steve/.m2/repository/org/json/json/20140107/json-20140107.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
