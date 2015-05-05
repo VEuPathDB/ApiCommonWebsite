@@ -36,8 +36,11 @@ public class GeneBooleanFilter extends StepFilter {
 
 		Map<String, Integer> counts = new LinkedHashMap<>();
 		// group by the query and get a count
+				
+		// the input idSql has filters applied, and they might strip off dyn columns.  join those back in using the original id sql
+		String fullIdSql = getFullSql(answer, idSql);
 
-		String sql = getSummarySql(idSql);
+		String sql = getSummarySql(fullIdSql);
 
 		ResultSet resultSet = null;
 		DataSource dataSource = answer.getQuestion().getWdkModel().getAppDb().getDataSource();
@@ -84,7 +87,10 @@ public class GeneBooleanFilter extends StepFilter {
 	public String getSql(AnswerValue answer, String idSql, JSONObject jsValue)
 			throws WdkModelException, WdkUserException {
 		
-		   StringBuilder sql = new StringBuilder("select * from (" + idSql + ") WHERE 1 = 0 ");// a fake where to make the concatenation easier
+		// the input idSql has filters applied, and they might strip off dyn columns.  join those back in using the original id sql
+		String fullIdSql = getFullSql(answer, idSql);
+		
+		StringBuilder sql = new StringBuilder("select * from (" + fullIdSql + ") WHERE 1 = 0 "); // add a fake where to make the concatenation easier
 
 		  try {
 			  JSONArray jsArray = jsValue.getJSONArray(GENE_BOOLEAN_FILTER_ARRAY_KEY);
@@ -97,5 +103,20 @@ public class GeneBooleanFilter extends StepFilter {
 		  }
 		  return sql.toString();
 	  }
+	
+	/**
+	 *  the input idSql has filters applied, and they might strip off dyn columns.  join those back in using the original id sql
+	 * @param answer
+	 * @param idSql
+	 * @return
+	 * @throws WdkUserException 
+	 * @throws WdkModelException 
+	 */
+	private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+		String originalIdSql = answer.getIdSql();
+		
+		return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIsSql" +
+		"where idSql.transcript_id = filteredIdSql.transcript_id and idSql.project_id = filteredIdSql.projectId";
+	}
 
 }
