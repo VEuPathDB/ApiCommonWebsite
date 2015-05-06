@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
-import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.model.WdkUserException;
