@@ -141,6 +141,16 @@ public class GeneBooleanFilter extends StepFilter {
 	  }
   }
   
+  public JSONObject getDefaultValue() {
+	  JSONObject jsValue = new JSONObject();
+	  JSONArray jsArray = new JSONArray();
+	  jsArray.put("11");
+	  jsArray.put("10");
+	  jsArray.put("01");
+	  jsValue.put("values", jsArray);
+	  return jsValue;
+  }
+  
   private Set<String> getStringSetFromJSONArray(JSONArray jsArray) throws JSONException{
 	  Set<String> set = new HashSet<String>();
 	  
