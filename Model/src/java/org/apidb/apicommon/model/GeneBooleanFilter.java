@@ -2,9 +2,10 @@ package org.apidb.apicommon.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -15,7 +16,6 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
-import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,5 +121,34 @@ public class GeneBooleanFilter extends StepFilter {
     return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql" +
       " where idSql.source_id = filteredIdSql.source_id and idSql.project_id = filteredIdSql.project_id";
   }
-
+  
+  @Override
+  public void setDefaultValue(JSONObject defaultValue) {
+	  _defaultValue = defaultValue;
+  }
+  
+  @Override
+  public boolean defaultValueEquals(JSONObject jsValue) throws WdkModelException {
+	  if (getDefaultValue() == null) return false;
+	  try {
+		  JSONArray jsArray = jsValue.getJSONArray("values");
+		  Set<String> set1 = getStringSetFromJSONArray(jsArray);
+		  jsArray = getDefaultValue().getJSONArray("values");
+		  Set<String> set2 = getStringSetFromJSONArray(jsArray);
+		  return set1.equals(set2);
+	  } catch (JSONException ex) {
+		  throw new WdkModelException(ex);
+	  }
+  }
+  
+  private Set<String> getStringSetFromJSONArray(JSONArray jsArray) throws JSONException{
+	  Set<String> set = new HashSet<String>();
+	  
+		    for (int i = 0; i < jsArray.length(); i++) {
+		      String value = jsArray.getString(i);
+		      set.add(value);
+		    }
+	  return set;
+  }
+ 
 }
