@@ -65,6 +65,7 @@ public class TranscriptBooleanQuery extends BooleanQuery {
 	public void setContextQuestion(Question contextQuestion) throws WdkModelException {
 	super.setContextQuestion(contextQuestion);
 	addDynamicAttributeSetToQuestion(wdkModel);
+	contextQuestion.addFilter(new GeneBooleanFilter());
     }
     
     protected void prepareColumns(RecordClass recordClass) {
