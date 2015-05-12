@@ -36,7 +36,7 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
     int importStrategyId = Integer.valueOf(strImportStrategyId);
     StrategyBean importStrategy = user.getStrategy(importStrategyId);
     StepBean step = importStrategy.getLatestStep();
-    StepBean childStep = step.deepClone(null, new HashMap<>());
+    StepBean childStep = step.deepClone(null, new HashMap<Integer, Integer>());
     childStep.setIsCollapsible(true);
     childStep.setCollapsedName("Copy of " + importStrategy.getName());
     childStep.update(false);
