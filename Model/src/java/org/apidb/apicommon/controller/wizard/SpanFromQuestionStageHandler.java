@@ -16,7 +16,6 @@ import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
-import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
@@ -70,18 +69,8 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
         // create a step from the input
         String filterName = request.getParameter(PARAM_FILTER);
-        
-        String strStratId = request.getParameter(PARAM_STRATEGY);
-        Integer strategyId = null;
-        if (strStratId != null & !strStratId.isEmpty()) {
-        // before changing step, need to check if strategy is saved, if yes, make a copy.
-          strategyId = Integer.valueOf(strStratId.split("_", 2)[0]);
-          StrategyBean strategy = user.getStrategy(strategyId);
-          if (strategy.getIsSaved())
-            strategy.update(false);
-        }
 
-        StepBean childStep = user.createStep(strategyId, question, params, filterName,
+        StepBean childStep = user.createStep(null, question, params, filterName,
                 false, true, weight);
         
         String customName = request.getParameter(PARAM_CUSTOM_NAME);
