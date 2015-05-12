@@ -1,5 +1,7 @@
 package org.apidb.apicommon.controller.wizard;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,21 +35,10 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
 
     UserBean user = ActionUtility.getUser(servlet, request);
 
-    String strStratId = request.getParameter(PARAM_STRATEGY);
-    Integer strategyId = null;
-    if (strStratId == null || strStratId.isEmpty())
-      throw new WdkUserException("required " + PARAM_STRATEGY + " is missing.");
-    strategyId = Integer.valueOf(strStratId.split("_", 2)[0]);
-
-    // before changing step, need to check if strategy is saved, if yes, make a copy.
-      StrategyBean strategy = user.getStrategy(strategyId);
-      if (strategy.getIsSaved())
-        strategy.update(false);
-
     int importStrategyId = Integer.valueOf(strImportStrategyId);
     StrategyBean importStrategy = user.getStrategy(importStrategyId);
     StepBean step = importStrategy.getLatestStep();
-    StepBean childStep = step.deepClone(strategyId);
+    StepBean childStep = step.deepClone(null, new HashMap<Integer, Integer>());
     childStep.setIsCollapsible(true);
     childStep.setCollapsedName("Copy of " + importStrategy.getName());
     childStep.update(false);
