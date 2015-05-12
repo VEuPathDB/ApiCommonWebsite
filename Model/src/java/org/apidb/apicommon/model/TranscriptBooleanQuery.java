@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -12,6 +13,7 @@ import org.gusdb.wdk.model.query.Query;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.model.question.DynamicAttributeSet;
+import org.gusdb.wdk.model.question.AttributeList;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.attribute.ColumnAttributeField;
 // import org.apache.log4j.Logger;
@@ -64,8 +66,18 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     @Override
 	public void setContextQuestion(Question contextQuestion) throws WdkModelException {
 	super.setContextQuestion(contextQuestion);
+
 	addDynamicAttributeSetToQuestion(wdkModel);
-	contextQuestion.addFilter(new GeneBooleanFilter());
+
+	Set<String> summaryAttrsSet = contextQuestion.getRecordClass().getSummaryAttributeFieldMap().keySet();
+	String[] summaryAttrNames = summaryAttrsSet.toArray(new String[summaryAttrsSet.size()+2]);
+	summaryAttrNames[summaryAttrsSet.size()] = LEFT_MATCH_COLUMN;
+	summaryAttrNames[summaryAttrsSet.size()+1] = RIGHT_MATCH_COLUMN;
+	contextQuestion.setDefaultSummaryAttributeNames(summaryAttrNames);
+
+	GeneBooleanFilter gbf = new GeneBooleanFilter();
+	gbf.setView("/wdkCustomization/jsp/filters/gene-boolean-filter.jsp");
+	contextQuestion.addFilter(gbf);
     }
     
     protected void prepareColumns(RecordClass recordClass) {
