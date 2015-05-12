@@ -16,8 +16,6 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 
 public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
 
-  private static final String PARAM_STRATEGY = "importStrategy";
-
   private static final String PARAM_IMPORT_STRATEGY = "importStrategy";
 
   private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
@@ -38,7 +36,7 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
     int importStrategyId = Integer.valueOf(strImportStrategyId);
     StrategyBean importStrategy = user.getStrategy(importStrategyId);
     StepBean step = importStrategy.getLatestStep();
-    StepBean childStep = step.deepClone(strategyId, new HashMap<>());
+    StepBean childStep = step.deepClone(null, new HashMap<>());
     childStep.setIsCollapsible(true);
     childStep.setCollapsedName("Copy of " + importStrategy.getName());
     childStep.update(false);
