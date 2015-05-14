@@ -29,7 +29,7 @@ public class GeneBooleanQueryInstance extends BooleanQueryInstance {
 	   */
 	  @Override
 	  protected String[] getPkColumns() {
-		  String[] cols = {"gene_source_id, project_id"};
+		  String[] cols = {"gene_source_id", "project_id"};
 		  return cols;
 	  }
 	  
