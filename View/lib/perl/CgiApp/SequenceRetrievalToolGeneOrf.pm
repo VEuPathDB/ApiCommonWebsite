@@ -336,7 +336,7 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.NaSequence s
+FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE s.source_id = bfmv.sequence_id
 AND bfmv.source_id IN (
     SELECT gene FROM (
@@ -372,7 +372,7 @@ select bfmv.source_id, s.source_id, bfmv.organism,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.OrfAttributes bfmv, ApidbTuning.NaSequence s
+FROM ApidbTuning.OrfAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 EOSQL
