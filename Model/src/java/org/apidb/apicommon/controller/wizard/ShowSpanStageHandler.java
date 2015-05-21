@@ -24,7 +24,7 @@ import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public abstract class ShowSpanStageHandler implements StageHandler {
-
+  
     private static final String ATTR_PREVIOUS_STEP = "previousStep";
     private static final String ATTR_IMPORT_STEP = "importStep";
     private static final String ATTR_ENABLE_OUTPUT = "enableOuput";
