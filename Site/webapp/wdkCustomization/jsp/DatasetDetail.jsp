@@ -6,6 +6,7 @@
 <fmt:setLocale value="en-US"/>
 
 <%-- get wdkXmlQuestionSets saved in request scope --%>
+<c:set var="baseUrl" value="${pageContext.request.contextPath}"/>
 <c:set var="wdkModel" value="${applicationScope.wdkModel}" />
 <c:set var="datasets" value="${requestScope.datasets}"/>
 <c:set var="question" value="${requestScope.question}" />
@@ -51,7 +52,7 @@
   <a name="_top"></a>
   <h1>Data Sets</h1>  
   <div id="beta-page">Explore our <a title="Please contact us with your feedback." 
-                       href="<c:url value='/app/answer/DatasetQuestions.AllDatasets'/>">New Data Sets page!
+      href="${baseUrl}/app/answer/DatasetQuestions.AllDatasets">New Data Sets page!
                        <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
   </div>
 

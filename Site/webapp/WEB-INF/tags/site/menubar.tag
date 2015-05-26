@@ -11,6 +11,7 @@
         description="Page calling this tag"
 %>
 
+<c:set var="baseUrl" value="${pageContext.request.contextPath}"/>
 <c:set var="project" value="${applicationScope.wdkModel.name}" />
 <c:set var="modelName" value="${applicationScope.wdkModel.name}" />
 <c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
@@ -132,7 +133,7 @@
           <li><a href="<c:url value='/getDataset.do?display=detail'/>">Data Sets</a></li>
           <li title="Please contact us with your feedback.">
             <a style="padding-top:0" 
-              href="<c:url value='/app/answer/DatasetQuestions.AllDatasets'/>">New Data Sets page!
+              href="${baseUrl}/app/answer/DatasetQuestions.AllDatasets">New Data Sets page!
                 <imp:image alt="Beta feature icon" src="wdk/images/beta2-30.png" /></a>
           </li>
         <c:if test="${project == 'EuPathDB'}">
