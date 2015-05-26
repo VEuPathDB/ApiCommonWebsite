@@ -21,7 +21,9 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
-    public static final String PARAM_CUSTOM_NAME = "customName";
+  public static final String PARAM_CUSTOM_NAME = "customName";
+  public static final String PARAM_STRATEGY = "strategy";
+  public static final String PARAM_FILTER = "customName";
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
@@ -66,9 +68,9 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
         }
 
         // create a step from the input
-        String filterName = request.getParameter("filter");
+        String filterName = request.getParameter(PARAM_FILTER);
 
-        StepBean childStep = user.createStep(question, params, filterName,
+        StepBean childStep = user.createStep(null, question, params, filterName,
                 false, true, weight);
         
         String customName = request.getParameter(PARAM_CUSTOM_NAME);

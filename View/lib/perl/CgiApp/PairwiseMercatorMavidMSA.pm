@@ -668,7 +668,7 @@ sub getOrganismFromContig {
 
   my $sql = <<EOSQL;
 SELECT s.source_id, s.organism
-FROM ApidbTuning.SequenceAttributes s
+FROM ApidbTuning.GenomicSequenceAttributes s
 WHERE  upper(s.source_id) = ?
 EOSQL
 
