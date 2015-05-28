@@ -8,8 +8,12 @@ import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.user.User;
 
+/**
+ * Do boolean operations on gene_source_id.  This is a helper class for TranscriptBooleanQueryInstance
+ * @author Steve
+ *
+ */
 public class GeneBooleanQueryInstance extends BooleanQueryInstance {
-	private static final String NL = System.lineSeparator();
 	  
 	public GeneBooleanQueryInstance(User user, BooleanQuery query,
 			Map<String, String> values, boolean validate, int assignedWeight,
@@ -25,7 +29,7 @@ public class GeneBooleanQueryInstance extends BooleanQueryInstance {
 	   */
 	  @Override
 	  protected String[] getPkColumns() {
-		  String[] cols = {"gene_source_id, project_id"};
+		  String[] cols = {"gene_source_id", "project_id"};
 		  return cols;
 	  }
 	  
