@@ -38,7 +38,7 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
 	    " -- boolean of genes " + NL +
 	    "WITH genes as (" + booleanGenesSql + ")" + NL +
 	    " -- major select " + NL +
-	    "select gene_source_id, source_id, project_id, wdk_weight, sum(left_match) as " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", sum(right_match) as " + TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + NL +
+	    "select gene_source_id, source_id, project_id, wdk_weight, decode(sum(left_match), 1, 'Y', 0, 'N') as " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", decode(sum(right_match), 1, 'Y', 0, 'N') as " + TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + NL +
 	    "from (" + NL +
 	    "  select left.gene_source_id, left.source_id, left.project_id, genes.wdk_weight, 1 as left_match, 0 as right_match" + NL +
 	    "  from genes, " + NL +

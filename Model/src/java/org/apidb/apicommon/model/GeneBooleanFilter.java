@@ -99,7 +99,7 @@ public class GeneBooleanFilter extends StepFilter {
     JSONArray jsArray = jsValue.getJSONArray("values");
     for (int i = 0; i < jsArray.length(); i++) {
       String value = jsArray.getString(i);
-      sql.append("OR (" +  TranscriptBooleanQuery.LEFT_MATCH_COLUMN + "= " + value.charAt(0) + " AND " + TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + "= " + value.charAt(1) + ")");
+      sql.append("OR (" +  TranscriptBooleanQuery.LEFT_MATCH_COLUMN + "= '" + value.charAt(0) + "' AND " + TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + "= '" + value.charAt(1) + "')");
     }
   } catch (JSONException ex) {
     throw new WdkModelException(ex);
@@ -144,9 +144,9 @@ public class GeneBooleanFilter extends StepFilter {
   public JSONObject getDefaultValue() {
 	  JSONObject jsValue = new JSONObject();
 	  JSONArray jsArray = new JSONArray();
-	  jsArray.put("11");
-	  jsArray.put("10");
-	  jsArray.put("01");
+	  jsArray.put("YY");
+	  jsArray.put("YN");
+	  jsArray.put("NY");
 	  jsValue.put("values", jsArray);
 	  return jsValue;
   }
