@@ -138,9 +138,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 params, true, 0);
 
         Iterator<RecordBean> dsRecords = answerValue.getRecords();
-				int i=0;
         while (dsRecords.hasNext()) {
-					//i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
             RecordBean dsRecord = dsRecords.next();
             TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
             Map<String, QuestionBean> internalQuestions =
@@ -165,7 +163,6 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
                     // String[] displayCategories =
                     //         internalQuestion.getPropertyList("displayCategory");
-										
                     List<CategoryBean> displayCategories =
                             internalQuestion.getDatasetCategories();
                     logger.debug("Dataset categories: " + displayCategories.size());
@@ -176,15 +173,15 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                     }
                 }
             }
-						/*
+            /*
             if (internalQuestions.size() > 0) {
-							questionsByDataset.put(dsRecord, internalQuestions);
-						}
-						*/ //add question regardless if it exists in the categories file, this will invite DD to add the question in teh right category
-							questionsByDataset.put(dsRecord, internalQuestions);
+              questionsByDataset.put(dsRecord, internalQuestions);
+            }
+            */ //add question regardless if it exists in the categories file, this will invite DD to add the question in the right category
+            questionsByDataset.put(dsRecord, internalQuestions);
         }
 
-				//		logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
+        // logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
         request.setAttribute(ATTR_QUESTIONS_BY_DATASET, questionsByDataset);
         request.setAttribute(ATTR_DISPLAY_CATEGORIES, displayCategorySet);
     }
