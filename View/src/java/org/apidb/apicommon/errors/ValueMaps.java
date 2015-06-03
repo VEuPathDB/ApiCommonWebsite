@@ -28,7 +28,6 @@ public class ValueMaps {
     public static class ServletContextValueMap extends ValueMap<String, Object> {
         private ServletContext _context;
         public ServletContextValueMap(ServletContext context) { _context = context; }
-        @SuppressWarnings("unchecked")
         @Override public Enumeration<String> getKeys() { return _context.getAttributeNames(); }
         @Override public Object getValue(String key) { return _context.getAttribute(key); }
     }
@@ -36,7 +35,6 @@ public class ValueMaps {
     public static class RequestAttributeValueMap extends ValueMap<String, Object> {
         private HttpServletRequest _request;
         public RequestAttributeValueMap(HttpServletRequest request) { _request = request; }
-        @SuppressWarnings("unchecked")
         @Override public Enumeration<String> getKeys() { return _request.getAttributeNames(); }
         @Override public Object getValue(String key) { return _request.getAttribute(key); }
     }
@@ -44,7 +42,6 @@ public class ValueMaps {
     public static class SessionAttributeValueMap extends ValueMap<String, Object> {
         private HttpSession _session;
         public SessionAttributeValueMap(HttpSession session) { _session = session; }
-        @SuppressWarnings("unchecked")
         @Override public Enumeration<String> getKeys() { return _session.getAttributeNames(); }
         @Override public Object getValue(String key) { return _session.getAttribute(key); }
     }

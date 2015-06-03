@@ -65,7 +65,7 @@ public class UserFileDownloadAction extends DownloadAction {
 
   }
 
-  protected File getFile(String fname, String projectId) throws Exception {
+  protected File getFile(String fname, String projectId) {
     ServletContext context = servlet.getServletContext();
     CommentFactory factory = CommentActionUtility.getCommentFactory(context);
     CommentConfig commentConfig = factory.getCommentConfig();
@@ -106,7 +106,7 @@ public class UserFileDownloadAction extends DownloadAction {
     return new FileStreamInfo(contentType, file);
   }
 
-  protected String getFileNameExtension(String fname) throws Exception {
+  protected String getFileNameExtension(String fname) {
     int sep = fname.lastIndexOf(".");
     return fname.substring(sep + 1);
   }
