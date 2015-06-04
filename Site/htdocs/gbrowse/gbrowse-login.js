@@ -34,7 +34,7 @@ var GB = {
         else {
             // add user's display name to progress bar
             if (userDisplayName != '') {
-                jQuery('#personalize-name').text(userDisplayName);
+                jQuery('#personalize-name').text(" as " + userDisplayName);
             }
 
             // make main div visible
