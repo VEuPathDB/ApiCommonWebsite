@@ -8,7 +8,8 @@ public class CustomProcessOpenIdAction extends ProcessOpenIdAction {
 
   @Override
   protected ActionResult getSuccessfulLoginResult(String redirectUrl, int wdkCookieMaxAge) {
-    return CustomProcessLoginAction.getGbrowseLoginUrl(getWdkModel(), redirectUrl, wdkCookieMaxAge);
+    return CustomProcessLoginAction.getGbrowseLoginUrl(getWdkModel(), redirectUrl,
+        wdkCookieMaxAge, getCurrentUserOrNull().getFirstName());
   }
   
   @Override
