@@ -138,9 +138,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 params, true, 0);
 
         Iterator<RecordBean> dsRecords = answerValue.getRecords();
-				int i=0;
+        //int i=0;
         while (dsRecords.hasNext()) {
-					//i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
+            //i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
             RecordBean dsRecord = dsRecords.next();
             TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
             Map<String, QuestionBean> internalQuestions =
