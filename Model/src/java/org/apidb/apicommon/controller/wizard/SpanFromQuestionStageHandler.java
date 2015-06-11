@@ -77,7 +77,6 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
         
         StrategyBean strategy = user.getStrategy(strategyId);
 
-        logger.info("Creating new step in SpanFromQuestionStageHandler for question " + question.getFullName());
         StepBean childStep = null;
         String importStrategyId = request.getParameter("importStrategy");
         if (questionName != null && questionName.length() > 0) {
