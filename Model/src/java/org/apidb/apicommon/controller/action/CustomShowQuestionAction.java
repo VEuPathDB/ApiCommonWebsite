@@ -38,6 +38,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     private static final String ATTR_REFERENCE_QUESTIONS = "ds_ref_questions";
     private static final String ATTR_QUESTIONS_BY_DATASET = "questions_by_dataset_map";
     private static final String ATTR_DISPLAY_CATEGORIES = "display_categories";
+    private static final String ATTR_UNCATEGORIZED_QUESTIONS = "uncategorized_questions_by_dataset_map";
 
     private static final Logger logger = Logger.getLogger(CustomShowQuestionAction.class);
 
@@ -121,6 +122,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                     }
                 });
 
+        Map<RecordBean, List<QuestionBean>> uncatQuestionsMap =
+          new LinkedHashMap<RecordBean, List<QuestionBean>>();
+
         String dsQuestionName;
         Map<String, String> params = new LinkedHashMap<String, String>();
         params.put("record_class", question.getRecordClass().getFullName());
@@ -145,6 +149,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
             Map<String, QuestionBean> internalQuestions =
                     new LinkedHashMap<String, QuestionBean>();
+            List<QuestionBean> uncatQuestions = new ArrayList<QuestionBean>();
 
             for (Map<String, AttributeValue> row : tableValue) {
                 String targetType = row.get("target_type").toString();
@@ -165,27 +170,34 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
                     // String[] displayCategories =
                     //         internalQuestion.getPropertyList("displayCategory");
-										
+
                     List<CategoryBean> displayCategories =
                             internalQuestion.getDatasetCategories();
                     logger.debug("Dataset categories: " + displayCategories.size());
+
                     if (displayCategories.size() == 1) {
                         displayCategorySet.add(displayCategories.get(0));
                         internalQuestions.put(displayCategories.get(0).getName(),
                                 internalQuestion);
                     }
+                    else {
+                      // Track uncategorized questions
+                      uncatQuestions.add(internalQuestion);
+                      logger.debug("Found an uncategorized question: " + internalQuestion.getFullName());
+                    }
                 }
             }
-						/*
             if (internalQuestions.size() > 0) {
-							questionsByDataset.put(dsRecord, internalQuestions);
-						}
-						*/ //add question regardless if it exists in the categories file, this will invite DD to add the question in teh right category
-							questionsByDataset.put(dsRecord, internalQuestions);
+              questionsByDataset.put(dsRecord, internalQuestions);
+            }
+            if (uncatQuestions.size() > 0) {
+              uncatQuestionsMap.put(dsRecord, uncatQuestions);
+            }
         }
 
-				//		logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
+        // logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
         request.setAttribute(ATTR_QUESTIONS_BY_DATASET, questionsByDataset);
+        request.setAttribute(ATTR_UNCATEGORIZED_QUESTIONS, uncatQuestionsMap);
         request.setAttribute(ATTR_DISPLAY_CATEGORIES, displayCategorySet);
     }
 
