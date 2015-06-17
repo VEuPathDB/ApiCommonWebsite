@@ -704,6 +704,30 @@ sub new {
    return $self;
 }
 
+sub makeFilesForR {
+  my ($self, $idType) = @_;
+
+  my $_dict = {};
+  my $qh = $self->getQueryHandle();
+
+  my $data = $self->getDataObject();
+  my $names = $self->getNamesObject();
+
+  $data->prepareDictionary($_dict);
+
+  my $profileSets = $self->getProfileSets();
+
+  my $data_fn = $data->makeTabFile($qh, $_dict); 
+  my $names_fn = $names->makeTabFile($qh, $_dict);
+
+  $profileSets->[0]->setProfileFile($data_fn);
+  $profileSets->[0]->setElementNamesFile($names_fn);
+
+  return $self->profileFilesAsRVectors($profileSets);
+}
+
+
+1;
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
