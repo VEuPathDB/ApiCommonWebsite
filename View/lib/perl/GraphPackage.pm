@@ -17,10 +17,9 @@ use Time::HiRes qw ( time );
 # --------------------------------- new ----------------------------------
 
 sub new {
-   my ($class, $argsRef) = @_;
-
-   $argsRef = ref $argsRef ? $argsRef : {};
-
+    my ($class, $argsRef) = @_;
+    $argsRef = ref $argsRef ? $argsRef : {};
+   
    my %args;
 
    foreach(keys %$argsRef) {
@@ -50,6 +49,8 @@ sub init {
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
    $Self->setDataset              ( $Args->{Dataset             } );
    $Self->setWantLogged           ( $Args->{WantLogged          } );
+   $Self->setStartDate            ( $Args->{StartDate             } );
+   $Self->setEndDate              ( $Args->{EndDate          } );
 
    $Self->setWidthOverride           ( $Args->{WidthOverride          } );
    $Self->setHeightOverride           ( $Args->{HeightOverride          } );
@@ -118,6 +119,11 @@ sub setCompact              { $_[0]->{'Compact'                  } = $_[1]; $_[0
 sub getIdType              { $_[0]->{'IdType'                  } }
 sub setIdType              { $_[0]->{'IdType'                  } = $_[1]; $_[0] }
 
+sub setStartDate { $_[0]->{'StartDate'} = $_[1]; $_[0]  }
+sub getStartDate { $_[0]->{'StartDate'} }
+
+sub setEndDate { $_[0]->{'EndDate'} = $_[1]; $_[0]  }
+sub getEndDate { $_[0]->{'EndDate'} }
 
 
 # ========================================================================
@@ -214,7 +220,7 @@ sub rOpenFile {
 	 my $h     = int($fmt eq 'pdf' ? $Height / 72 : $Height);
 
 	 if(lc($fmt) eq 'pdf') {
-           qq{pdf(file="$out_f", width=$w, height=$h)};
+	    $Rv = qq{pdf(file="$out_f", width=$w, height=$h)};
          }
          elsif(lc($fmt) eq 'png') {
            $Rv = qq{png(file="$out_f", width=$w, height=$h)};

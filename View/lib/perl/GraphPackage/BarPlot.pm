@@ -673,6 +673,37 @@ sub new {
 }
 
 
+package ApiCommonWebsite::View::GraphPackage::BarPlot::LightTrap;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
+use strict;
+
+sub getDataObject { $_[0]->{_data_object} }
+sub setDataObject { $_[0]->{_data_object} = $_[1] }
+
+sub getNamesObject { $_[0]->{_names_object} }
+sub setNamesObject { $_[0]->{_names_object} = $_[1] }
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   #no need to set, already set in your class
+   #At this point query has run, no need for all the variables, just category and Id to make the name graph
+   my $Id = $self->getId();
+   #my $Category = $self->getCategory();
+  
+   
+
+   $self->setDefaultYMax(20);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Counts');
+
+   $self->setPartName('Metadata Graph');
+   $self->setPlotTitle("Title - $Id");
+
+   return $self;
+}
+
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
