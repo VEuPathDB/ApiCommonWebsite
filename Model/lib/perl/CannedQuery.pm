@@ -315,9 +315,8 @@ sub makeTabFile {
                          );
       }
    }
-
-
-	 my @_rows = $Self->getValues($Qh, $Dict);
+		
+	 my @_rows = $Self->getValues($Qh, $Dict);         
          die sprintf("No rows in query result '%s' for id  with sql as follows:\n%s",
                $Self->getName(),# $Self->getId(),
                $Self->getExpandedSql($Dict)
