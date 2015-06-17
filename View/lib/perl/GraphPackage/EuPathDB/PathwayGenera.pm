@@ -41,8 +41,6 @@ sub init {
 
   my $genera = ApiCommonWebsite::View::GraphPackage::BarPlot::Genera->new(@_);
   $genera->setProfileSets($profileSets);
-  $genera->setDataObject($data);
-  $genera->setNamesObject($names);
   $genera->setElementNameMarginSize(7.5);
 
   $genera->setColors(\@colorList);
