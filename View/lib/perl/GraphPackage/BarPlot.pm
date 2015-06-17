@@ -677,11 +677,6 @@ package ApiCommonWebsite::View::GraphPackage::BarPlot::LightTrap;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
-sub getDataObject { $_[0]->{_data_object} }
-sub setDataObject { $_[0]->{_data_object} = $_[1] }
-
-sub getNamesObject { $_[0]->{_names_object} }
-sub setNamesObject { $_[0]->{_names_object} = $_[1] }
 
 sub new {
   my $class = shift; 
@@ -691,41 +686,16 @@ sub new {
    #At this point query has run, no need for all the variables, just category and Id to make the name graph
    my $Id = $self->getId();
    #my $Category = $self->getCategory();
-  
-   
 
    $self->setDefaultYMax(20);
    $self->setDefaultYMin(0);
    $self->setYaxisLabel('Counts');
 
    $self->setPartName('Metadata Graph');
-   $self->setPlotTitle("Title - $Id");
+#   $self->setPlotTitle("Title - $Id");
 
    return $self;
 }
-
-sub makeFilesForR {
-  my ($self, $idType) = @_;
-
-  my $_dict = {};
-  my $qh = $self->getQueryHandle();
-
-  my $data = $self->getDataObject();
-  my $names = $self->getNamesObject();
-
-  $data->prepareDictionary($_dict);
-
-  my $profileSets = $self->getProfileSets();
-
-  my $data_fn = $data->makeTabFile($qh, $_dict); 
-  my $names_fn = $names->makeTabFile($qh, $_dict);
-
-  $profileSets->[0]->setProfileFile($data_fn);
-  $profileSets->[0]->setElementNamesFile($names_fn);
-
-  return $self->profileFilesAsRVectors($profileSets);
-}
-
 
 1;
 

@@ -11,19 +11,19 @@ use ApiCommonWebsite::Model::CannedQuery::DwellingLightTrapNames;
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet; #Generic super class, does not change
 use ApiCommonWebsite::View::GraphPackage::BarPlot; #BarPlot
 
+use Data::Dumper;
+
 sub init {
   my $self = shift;
-  my $args = ref $_[0] ? shift : {@_}; #These two lines before init
+#  my $args = ref $_[0] ? shift : {@_}; #These two lines before init
    
   $self->SUPER::init(@_); #Run init method of super class, then set varialbes local to your class
   
   #Variables local to your class
-  $self->setId    ( $args->{Id                  } );
-  $self->setStartDate($args->{StartDate});
-  $self->setEndDate($args->{EndDate});
+  $self->setStartDate($_[1]->{StartDate});
+  $self->setEndDate($_[1]->{EndDate});
 
-
-  
+  print STDERR Dumper $self;
 
   my $data = ApiCommonWebsite::Model::CannedQuery::DwellingLightTrapData->new
         ( Name         => "_lighttrapdata",
@@ -46,26 +46,24 @@ sub init {
   # $graphColors[$i] = "#000FFF";
   #      } 
 
-  my @internalProfileSetNames = (["_INTERNAL"]);
-  my $internalProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@internalProfileSetNames);
+  my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new("INTERNAL", [], undef, undef, undef, "Display Name");
+  $profileSet->setProfileCannedQuery($data);
+  $profileSet->setProfileNamesCannedQuery($names);
+  
+my $profileSets = [$profileSet];
 
   my $lt = ApiCommonWebsite::View::GraphPackage::BarPlot::LightTrap->new(@_);
-  $lt->setProfileSets($internalProfileSets);
-  $lt->setDataObject($data);
-  $lt->setNamesObject($names);
+
+  print STDERR Dumper $lt;
+  $lt->setProfileSets($profileSets);
   $lt->setElementNameMarginSize(7.5);
-
   #$lt->setColors(\@graphColors);
-
   $self->setGraphObjects($lt);
 
   return $self;
 }
 
 #declare outside of the init as these are now methods
-sub getId                   { $_[0]->{'Id'                } }
-sub setId                   { $_[0]->{'Id'                } = $_[1]; $_[0] }
-
 sub setStartDate { $_[0]->{_startdate} = $_[1] }
 sub getStartDate { $_[0]->{_startdate} }
 
