@@ -19,12 +19,12 @@ sub init {
 
   $Self->setSql(<<Sql);
 SELECT   
-listagg(lta.monthyear, ',') within group (order by lta.monthyear) as names_
+lta.monthyear as names
 FROM APIDBTUNING.DWELLINGATTRIBUTES da, APIDBTUNING.LIGHTTRAPATTRIBUTES lta
 where da.source_id=lta.PARENT_ID
 and da.source_id='<<Id>>'
 and TO_DATE(lta.COLLECTION_DATE) between TO_DATE('<<StartDate>>', 'DD-MM-YYYY') and TO_DATE('<<EndDate>>', 'DD-MM-YYYY')
-Group by da.source_id
+order by lta.monthyear
 Sql
 
   return $Self;
@@ -69,6 +69,7 @@ sub getValues {
 
    # execute SQL and get result
    my $_sql = $Self->getExpandedSql($Dict);
+
    my $_sh  = $Qh->prepare($_sql);
    $_sh->execute();
 
@@ -76,7 +77,7 @@ sub getValues {
      while (my $_row = $_sh->fetchrow_hashref()) {
        push(@Rv, $_row);
 
-       $countNonZero++ if($_row->{VALUE});
+       $countNonZero++ if($_row->{NAMES});
      }
    $_sh->finish();
 
