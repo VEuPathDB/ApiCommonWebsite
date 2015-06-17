@@ -33,11 +33,14 @@ sub init {
           Id => $self->getId(),
         );
 
-  my @internalProfileSetNames = (["_INTERNAL"]);
-  my $internalProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@internalProfileSetNames);
+  my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new("INTERNAL", [], undef, undef, undef, "Display Name");
+  $profileSet->setProfileCannedQuery($data);
+  $profileSet->setProfileNamesCannedQuery($names);
+
+  my $profileSets = [$profileSet];
 
   my $genera = ApiCommonWebsite::View::GraphPackage::BarPlot::Genera->new(@_);
-  $genera->setProfileSets($internalProfileSets);
+  $genera->setProfileSets($profileSets);
   $genera->setDataObject($data);
   $genera->setNamesObject($names);
   $genera->setElementNameMarginSize(7.5);
