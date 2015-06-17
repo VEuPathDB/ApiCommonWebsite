@@ -102,11 +102,53 @@ sub writeProfileFile{
 
   my $_dict = {};
 
-  my $profileSetName = $self->getName();
   my $elementNames = $self->getElementNames();
 
-  my $scale = $self->getScale();
+  my $profile = $self->getProfileCannedQuery($suffix, $idType, $id);
 
+  $profile->prepareDictionary($_dict);
+  $profile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
+
+  my $profile_fn = eval { $profile->makeTabFile($qh, $_dict) }; $@ && $self->logError($@);
+
+  $self->setProfileFile($profile_fn);
+
+}
+
+sub writeElementNamesFile {
+  my ($self, $id, $qh, $suffix) = @_;
+
+  my $_dict = {};
+ 
+  my $elementNames = $self->getElementNames();
+
+  my $elementNamesProfile = $self->getProfileNamesCannedQuery($suffix, $id);
+
+  $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
+  my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
+  $self->setElementNamesFile($elementNames_fn);
+}
+
+
+
+sub setProfileCannedQuery {
+  my ($self, $cannedQuery) = @_;
+  $self->{_profile_canned_query} = $cannedQuery;
+}
+
+sub getProfileCannedQuery {
+  my ($self, $suffix, $idType, $id) = @_;
+  return $self->{_profile_canned_query} if($self->{_profile_canned_query});
+
+  return $self->makeProfileCannedQuery($suffix, $idType, $id);
+}
+
+
+sub makeProfileCannedQuery {
+  my ($self, $suffix, $idType, $id) = @_;
+
+  my $profileSetName = $self->getName();
+  my $scale = $self->getScale();
 
   my $profile;
   if(lc($idType) eq 'ec') {
@@ -127,57 +169,47 @@ sub writeProfileFile{
         );
   }
 
-  $profile->prepareDictionary($_dict);
-  $profile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
+  $self->setProfileCannedQuery($profile);
 
-  my $profile_fn = eval { $profile->makeTabFile($qh, $_dict) }; $@ && $self->logError($@);
-
-  $self->setProfileFile($profile_fn);
-
+  return $profile;
 }
 
-sub writeElementNamesFile {
-  my ($self, $id, $qh, $suffix) = @_;
 
-  my $_dict = {};
- 
-  my $elementNames = $self->getElementNames();
+sub setProfileNamesCannedQuery {
+  my ($self, $cannedQuery) = @_;
+  $self->{_profile_names_canned_query} = $cannedQuery;
+}
+
+sub getProfileNamesCannedQuery {
+  my ($self, $suffix, $id) = @_;
+  return $self->{_profile_names_canned_query} if($self->{_profile_names_canned_query});
+
+  return $self->makeProfileNamesCannedQuery($suffix, $id);
+}
+
+
+sub makeProfileNamesCannedQuery {
+  my ($self, $suffix, $id) = @_;
+
   my $profileSetName = $self->getName();
-  
   my $metaDataCategory = $self->getMetaDataCategory();
 
+  my $elementNamesProfile;
    if($metaDataCategory) {
-     my $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNamesWithMetaData->new
+     $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNamesWithMetaData->new
        ( Name         => "_names_$suffix",
          Id           => $id,
          ProfileSet   => $profileSetName,
          MetaDataCategory => $metaDataCategory,
        );
-    
-     $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
-
-     my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
-
-     $self->setElementNamesFile($elementNames_fn);
-
    }
    else {
-    my $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNames->new
+     $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNames->new
       ( Name         => "_names_$suffix",
         Id           => $id,
         ProfileSet   => $profileSetName,
       );
-    $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
-    
-    my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
-    
-    $self->setElementNamesFile($elementNames_fn);
-  }
+   }
+
 }
-
-
-
-
-
-
 1;
