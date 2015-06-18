@@ -112,8 +112,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         if (datasetTypes.length == 0) return;
 
         // { dataset => { type => question, ... }, ... }
-        Map<RecordBean, Map<String, QuestionBean>> questionsByDataset =
-                new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
+        Map<RecordBean, Map<String, List<QuestionBean>>> questionsByDataset =
+                new LinkedHashMap<RecordBean, Map<String, List<QuestionBean>>>();
         Set<CategoryBean> displayCategorySet = new TreeSet<CategoryBean>(
                 new Comparator<CategoryBean>() {
                     @Override
@@ -147,8 +147,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             //i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
             RecordBean dsRecord = dsRecords.next();
             TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
-            Map<String, QuestionBean> internalQuestions =
-                    new LinkedHashMap<String, QuestionBean>();
+            Map<String, List<QuestionBean>> internalQuestionsMap =
+                    new LinkedHashMap<String, List<QuestionBean>>();
             List<QuestionBean> uncatQuestions = new ArrayList<QuestionBean>();
 
             for (Map<String, AttributeValue> row : tableValue) {
@@ -165,7 +165,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                         continue;
                     }
 
-                    logger.debug("Adding question bean for " + targetName + 
+                    logger.debug("Adding question bean for " + targetName +
                         " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
 
                     // String[] displayCategories =
@@ -177,8 +177,13 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
                     if (displayCategories.size() == 1) {
                         displayCategorySet.add(displayCategories.get(0));
-                        internalQuestions.put(displayCategories.get(0).getName(),
-                                internalQuestion);
+                        String catName = displayCategories.get(0).getName();
+                        List<QuestionBean> internalQuestions = internalQuestionsMap.get(catName);
+                        if (internalQuestions == null) {
+                          internalQuestions = new ArrayList<QuestionBean>();
+                          internalQuestionsMap.put(catName, internalQuestions);
+                        }
+                        internalQuestions.add(internalQuestion);
                     }
                     else {
                       // Track uncategorized questions
@@ -187,8 +192,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                     }
                 }
             }
-            if (internalQuestions.size() > 0) {
-              questionsByDataset.put(dsRecord, internalQuestions);
+            if (internalQuestionsMap.size() > 0) {
+              questionsByDataset.put(dsRecord, internalQuestionsMap);
             }
             if (uncatQuestions.size() > 0) {
               uncatQuestionsMap.put(dsRecord, uncatQuestions);
