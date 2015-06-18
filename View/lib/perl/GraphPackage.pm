@@ -49,8 +49,6 @@ sub init {
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
    $Self->setDataset              ( $Args->{Dataset             } );
    $Self->setWantLogged           ( $Args->{WantLogged          } );
-   $Self->setStartDate            ( $Args->{StartDate             } );
-   $Self->setEndDate              ( $Args->{EndDate          } );
 
    $Self->setWidthOverride           ( $Args->{WidthOverride          } );
    $Self->setHeightOverride           ( $Args->{HeightOverride          } );
@@ -118,12 +116,6 @@ sub setCompact              { $_[0]->{'Compact'                  } = $_[1]; $_[0
 
 sub getIdType              { $_[0]->{'IdType'                  } }
 sub setIdType              { $_[0]->{'IdType'                  } = $_[1]; $_[0] }
-
-sub setStartDate { $_[0]->{'StartDate'} = $_[1]; $_[0]  }
-sub getStartDate { $_[0]->{'StartDate'} }
-
-sub setEndDate { $_[0]->{'EndDate'} = $_[1]; $_[0]  }
-sub getEndDate { $_[0]->{'EndDate'} }
 
 
 # ========================================================================
