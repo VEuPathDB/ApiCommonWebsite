@@ -28,7 +28,7 @@ FROM APIDBTUNING.DWELLINGATTRIBUTES da, APIDBTUNING.LIGHTTRAPATTRIBUTES lta
 where da.source_id=lta.PARENT_ID
 and da.source_id='<<Id>>'
 and TO_DATE(lta.COLLECTION_DATE) between TO_DATE('<<StartDate>>', 'DD-MM-YYYY') and TO_DATE('<<EndDate>>', 'DD-MM-YYYY')
-order by lta.monthyear
+order by lta.collection_date
 Sql
 
   return $Self;

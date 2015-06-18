@@ -13,14 +13,14 @@ use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use Data::Dumper;
 
 sub init {
-  my $self = shift;
+  my($self,$args) = @_;
    
   $self->SUPER::init(@_); #Run init method of super class, then set varialbes local to your class
 
   
   #Variables local to your class
-  $self->setStartDate($_[0]->{StartDate});
-  $self->setEndDate($_[0]->{EndDate});
+  $self->setStartDate($args->{StartDate});
+  $self->setEndDate($args->{EndDate});
 
   my $data = ApiCommonWebsite::Model::CannedQuery::DwellingLightTrapData->new
         ({ Name         => "_lighttrapdata",
@@ -63,11 +63,11 @@ sub init {
 }
 
 #declare outside of the init as these are now methods
-sub setStartDate { $_[0]->{_startdate} = $_[1] }
-sub getStartDate { $_[0]->{_startdate} }
+sub setStartDate { my($self,$val) = @_; $self->{_startdate} = $val; }
+sub getStartDate { my $self = shift; return $self->{_startdate}; }
 
-sub setEndDate { $_[0]->{_enddate} = $_[1] }
-sub getEndDate { $_[0]->{_enddate} }
+sub setEndDate { my($self,$val) = @_; $self->{_enddate} = $val; }
+sub getEndDate { my $self = shift; return $self->{_enddate}; }
 
 
 
