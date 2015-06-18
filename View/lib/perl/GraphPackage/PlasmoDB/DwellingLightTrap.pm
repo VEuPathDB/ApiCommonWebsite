@@ -2,42 +2,39 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DwellingLightTrap;
 
 use strict;
 use vars qw( @ISA );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
+use ApiCommonWebsite::View::GraphPackage::MixedPlotSet; #Generic super class, does not change
 
 use ApiCommonWebsite::Model::CannedQuery::DwellingLightTrapData;
 use ApiCommonWebsite::Model::CannedQuery::DwellingLightTrapNames; 
 
-
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet; #Generic super class, does not change
-use ApiCommonWebsite::View::GraphPackage::BarPlot; #BarPlot
+use ApiCommonWebsite::View::GraphPackage::BarPlot;
 
 use Data::Dumper;
 
 sub init {
   my $self = shift;
-#  my $args = ref $_[0] ? shift : {@_}; #These two lines before init
    
   $self->SUPER::init(@_); #Run init method of super class, then set varialbes local to your class
+
   
   #Variables local to your class
-  $self->setStartDate($_[1]->{StartDate});
-  $self->setEndDate($_[1]->{EndDate});
-
-  print STDERR Dumper $self;
+  $self->setStartDate($_[0]->{StartDate});
+  $self->setEndDate($_[0]->{EndDate});
 
   my $data = ApiCommonWebsite::Model::CannedQuery::DwellingLightTrapData->new
-        ( Name         => "_lighttrapdata",
+        ({ Name         => "_lighttrapdata",
           Id => $self->getId,
           StartDate => $self->getStartDate(),
           EndDate => $self->getEndDate()
-        );
+        });
 
   my $names = ApiCommonWebsite::Model::CannedQuery::DwellingLightTrapNames->new
-      ( Name         => "_names",
+      ({ Name         => "_names",
         Id => $self->getId(),
         StartDate => $self->getStartDate(),
         EndDate => $self->getEndDate()
-      );
+      });
 
   #my $size = scalar($names->getValues());
   #my $i=0;
@@ -50,14 +47,16 @@ sub init {
   $profileSet->setProfileCannedQuery($data);
   $profileSet->setProfileNamesCannedQuery($names);
   
-my $profileSets = [$profileSet];
+  my $profileSets = [$profileSet];
 
   my $lt = ApiCommonWebsite::View::GraphPackage::BarPlot::LightTrap->new(@_);
 
-  print STDERR Dumper $lt;
+
   $lt->setProfileSets($profileSets);
   $lt->setElementNameMarginSize(7.5);
+  #TODO
   #$lt->setColors(\@graphColors);
+
   $self->setGraphObjects($lt);
 
   return $self;

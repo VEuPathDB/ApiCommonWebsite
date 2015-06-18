@@ -8,6 +8,8 @@ use ApiCommonWebsite::View::GraphPackage::PlotPart;
 use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage;
 
+use Data::Dumper;
+
 #--------------------------------------------------------------------------------
 
 sub getIsStacked                 { $_[0]->{'_stack_bars'                     }}
@@ -54,11 +56,15 @@ sub makeRPlotString {
 
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
+
  };
 
   if($@) {
     return $self->blankPlotPart();
   }
+
+
+
 
   foreach(@{$self->getProfileSets()}) {
     if(scalar @{$_->errors()} > 0) {

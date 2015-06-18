@@ -23,7 +23,7 @@ sub init {
 
   $Self->setSql(<<Sql);
 SELECT   
-lta.total_anopheles as data_
+lta.total_anopheles as value
 FROM APIDBTUNING.DWELLINGATTRIBUTES da, APIDBTUNING.LIGHTTRAPATTRIBUTES lta
 where da.source_id=lta.PARENT_ID
 and da.source_id='<<Id>>'
@@ -81,7 +81,7 @@ sub getValues {
      while (my $_row = $_sh->fetchrow_hashref()) {
        push(@Rv, $_row);
 
-       $countNonZero++ if($_row->{DATA});
+       $countNonZero++ if($_row->{VALUE});
      }
    $_sh->finish();
 

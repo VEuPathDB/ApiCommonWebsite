@@ -13,13 +13,15 @@ sub init {
 
   $Self->SUPER::init($Args);
 
+
+
   $Self->setId                   ( $Args->{Id                  } );
   $Self->setStartDate($Args->{StartDate});
   $Self->setEndDate($Args->{EndDate});
 
   $Self->setSql(<<Sql);
 SELECT   
-lta.monthyear as names
+lta.monthyear as name, rownum as element_order
 FROM APIDBTUNING.DWELLINGATTRIBUTES da, APIDBTUNING.LIGHTTRAPATTRIBUTES lta
 where da.source_id=lta.PARENT_ID
 and da.source_id='<<Id>>'
@@ -73,11 +75,8 @@ sub getValues {
    my $_sh  = $Qh->prepare($_sql);
    $_sh->execute();
 
-   my $countNonZero;
      while (my $_row = $_sh->fetchrow_hashref()) {
        push(@Rv, $_row);
-
-       $countNonZero++ if($_row->{NAMES});
      }
    $_sh->finish();
 
