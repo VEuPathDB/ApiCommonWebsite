@@ -169,8 +169,6 @@ sub getTaxonToDirMap {
 
   my $project = $cgi->param('project_id');
 
-  if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb|amoebadb|giardiadb|tritrypdb/) {
-
      my $sql = <<EOSQL;
 SELECT distinct ga.organism, taxon.grp, org.abbrev 
 FROM   ApiDBTuning.GeneAttributes ga, ApiDB.Organism org,
@@ -188,16 +186,7 @@ EOSQL
      while (my $hashref = $sth->fetchrow_hashref()) {
        $taxonToDirMap->{$hashref->{ORGANISM}} = {name => $hashref->{ABBREV}, group => $hashref->{GRP} };
      }
-  } else {  
-     $taxonToDirMap = 
-     {
-      'Toxoplasma gondii ME49'                           => { name => 'tgonME49',               group => 1 },
-      'Toxoplasma gondii GT1'                            => { name => 'tgonGT1',                group => 3 },
-      'Toxoplasma gondii VEG'                            => { name => 'tgonVEG',                group => 4 },
-      'Neospora caninum'                                 => { name => 'ncanLIV',                group => 5 },
-      'Eimeria tenella str. Houghton'                    => { name => 'etenHoughton',           group => 6 },
-     };
-  }
+
 return $taxonToDirMap;
 }
 
