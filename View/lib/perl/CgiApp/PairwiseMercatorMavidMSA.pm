@@ -416,7 +416,7 @@ sub translateCoordinates {
   my ($genome, $assembly);
 
   while (defined (my $fn = readdir DIR) ) {
-    next unless($fn =~ /([\w\d_]+)\.agp$/);
+    next unless($fn =~ /(\S+)\.agp$/);
 
     my $thisGenome = $1;
 
@@ -754,7 +754,7 @@ sub makeAlignment {
   for(my $i = 0; $i < scalar (@lines); $i++) {
     my $line = $lines[$i];
 
-    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />([a-zA-Z0-9_]+) (\S*?):(\d+)-(\d+)([-+])/;
+    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />(\S+) (\S+):(\d+)-(\d+)([-+])/;
     next unless($genome);
 
     my $replaced = &replaceAssembled($agpDir, $genome, $assembled, $start, $stop, $strand);

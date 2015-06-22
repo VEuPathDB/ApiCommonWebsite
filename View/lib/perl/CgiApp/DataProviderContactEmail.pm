@@ -10,11 +10,11 @@ sub run {
   my $projectId = $cgi->param('project_id');
   my $dataset = $cgi->param('ds');
 
-   print STDOUT $cgi->header();
-  print STDOUT $cgi->start_html(-title => "Data Set Email",
-      );
+#   print STDOUT $cgi->header();
+#  print STDOUT $cgi->start_html(-title => "Data Set Email",
+ #     );
+print STDOUT $cgi->header('text/plain');
 
-  
 
   my $datasetsString = join(',', map { "'" . $_ . "'"} split(/,|;/, $dataset));
 #  print STDOUT "STRING $datasetsString <br/><br/><br/>";
@@ -66,6 +66,10 @@ and dsp.name in ($datasetsString)
   }
 
   $sth->finish();
+
+
+
+
 
 
 
