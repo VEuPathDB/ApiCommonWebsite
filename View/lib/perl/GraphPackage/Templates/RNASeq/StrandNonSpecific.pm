@@ -80,6 +80,7 @@ sub init {
     $rnaseq->setIsPairedEnd($self->getIsPairedEnd());
     $rnaseq->setBottomMarginSize($self->getBottomMarginSize());
     $rnaseq->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
+    $rnaseq->setSampleLabelsString($self->getSampleLabelsString());
 
     $rnaseq->makeGraphs(@_);
 

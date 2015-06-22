@@ -36,7 +36,8 @@ sub setColor { $_[0]->{_color} = $_[1] }
 sub setSampleNames { $_[0]->{_sample_names} = $_[1] }
 
 # Template subclasses should override if we want to change the sample names
-sub getSampleLabelsString { undef }
+sub getSampleLabelsString { $_[0]->{sample_labels_string} }
+sub setSampleLabelsString { $_[0]->{sample_labels_string} = $_[1] }
 
 sub getSampleNames {
   my ($self) = @_;
