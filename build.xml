@@ -155,6 +155,17 @@
       <property name="component" value="Site"/>
     </ant>
 
+    <echo message="Building ApiCommonWebsite/Site assets"/>
+    <exec dir="${projectsDir}/ApiCommonWebsite/Site"
+      executable="make"
+      failonerror="true"
+      failifexecutionfails="true"/>
+
+    <echo message="Copying ApiCommonWebsite/Site assets to webapp"/>
+    <copy todir="${webappTargetDir}">
+      <fileset dir="${projectsDir}/ApiCommonWebsite/Site/dist"/>
+    </copy>
+
     <antcall target="EuPathSiteCommon-post-webinstall"/>
 
     <ant target="webComponentPartCopy">

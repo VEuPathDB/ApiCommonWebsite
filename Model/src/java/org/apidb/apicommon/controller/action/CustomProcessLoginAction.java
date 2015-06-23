@@ -16,7 +16,7 @@ public class CustomProcessLoginAction extends ProcessLoginAction {
   
   @Override
   protected ActionResult getSuccessfulLoginResult(String redirectUrl, int wdkCookieMaxAge) {
-    return getGbrowseLoginUrl(getWdkModel(), redirectUrl, wdkCookieMaxAge);
+    return getGbrowseLoginUrl(getWdkModel(), redirectUrl, wdkCookieMaxAge, getCurrentUserOrNull().getFirstName());
   }
   
   @Override
@@ -24,8 +24,10 @@ public class CustomProcessLoginAction extends ProcessLoginAction {
     return getFailedLoginUrl(getRequestData(), getOriginalReferrer(getParams(), getRequestData()), e);
   }
 
-  static ActionResult getGbrowseLoginUrl(WdkModelBean model, String redirectUrl, int wdkCookieMaxAge) {
-    return new ActionResult().setExternalPath(getGbrowsePathWithParams(redirectUrl, model.getName().toLowerCase(), wdkCookieMaxAge));
+  static ActionResult getGbrowseLoginUrl(WdkModelBean model, String redirectUrl, int wdkCookieMaxAge, String displayName) {
+    return new ActionResult().setExternalPath(
+        getGbrowsePathWithParams(redirectUrl, model.getName().toLowerCase(),
+            wdkCookieMaxAge, displayName));
   }
 
   static ActionResult getFailedLoginUrl(RequestData reqData, String originalReferrer, Exception e) {
@@ -47,14 +49,15 @@ public class CustomProcessLoginAction extends ProcessLoginAction {
             .append(CConstants.WDK_ERROR_TEXT_KEY).append("=").append(errorText);
       }
     }
-    return new ActionResult().setExternalPath(getGbrowsePathWithParams(loginPageUrl.toString(), "", -1));
+    return new ActionResult().setExternalPath(getGbrowsePathWithParams(loginPageUrl.toString(), "", -1, ""));
   }
 
-  private static String getGbrowsePathWithParams(String redirectUrl, String project, int wdkCookieMaxAge) {
+  private static String getGbrowsePathWithParams(String redirectUrl, String project, int wdkCookieMaxAge, String displayName) {
     return new StringBuffer(GBROWSE_SETUP_PAGE)
         .append("?redirectUrl=").append(urlEncodeUtf8(redirectUrl))
         .append("&project=").append(project)
         .append("&cookieMaxAge=").append(wdkCookieMaxAge)
+        .append("&userDisplayName=").append(urlEncodeUtf8(displayName))
         .toString();
   }
   

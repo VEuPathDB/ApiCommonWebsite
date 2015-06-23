@@ -219,27 +219,15 @@ organismFull:   Plasmodium falciparum 3D7
 <c:if test="${is_genedb_organism == 1}">
   <div style="margin:12px;padding:5px">
 
-    <c:choose>
-      <c:when test="${attrs['updated_annotation'].value != null && 
-                     (attrs['reviewed_comment_in_genedb'].value > 0 || attrs['reviewed_comment_in_eupathdb'].value > 0)}">
-        ${attrs['GeneDB_updated'].value} <br/>
-        <span style="font-size:75%;font-weight:normal">User comment has been incorporated into official annotation.</font>
-      </c:when>
-      <c:when test="${attrs['updated_annotation'].value != null}">
-        ${attrs['GeneDB_updated'].value}
-      </c:when> 
-    </c:choose>
 
-    <c:choose>
-      <c:when test="${attrs['new_product_name'].value != null && 
-                     (attrs['reviewed_comment_in_genedb'].value > 0 || attrs['reviewed_comment_in_eupathdb'].value > 0)}">
-        <span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span><br/>
-        <span style="font-size:75%;font-weight:normal">User comment has been incorporated into official annotation.</font>
-      </c:when>
-      <c:when test="${attrs['new_product_name'].value != null}">
-        <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
-      </c:when>
-    </c:choose>
+    <c:if test="${attrs['updated_annotation'].value != null}">
+      ${attrs['GeneDB_updated'].value}
+    </c:if>
+
+
+    <c:if test="${attrs['new_product_name'].value != null}">
+      <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
+    </c:if>
 
   </div>
 
@@ -431,6 +419,8 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
 <!-- External Links --> 
 <imp:wdkTable2 tblName="GeneLinkouts" isOpen="true" attribution=""/>
 
+<!-- PubMed --> 
+<imp:wdkTable2 tblName="PubMed" isOpen="true" attribution=""/>
 
 <!-- Hagai -->
 <c:if test="${isCodingGene}">
@@ -460,7 +450,6 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
 <!-- Notes from annotator == in toxo only shown if externalDbName.value eq 'Roos Lab T. gondii apicoplast-->
 <imp:wdkTable2 tblName="Notes" attribution="" />
 
-
 <!-- phenotype -->
 <imp:wdkTable2 tblName="RodMalPhenotype" isOpen="false"  attribution=""/>
 
@@ -468,11 +457,11 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
 <imp:wdkTable2 tblName="Mr4Reagents" attribution=""/>
 
 
-<%-- PlasmoGem --%>
-<c:if test="${project_id eq 'PlasmoDB'}">
+<%-- PlasmoGEM --%>
+<c:if test="${projectId eq 'PlasmoDB'}">
   <c:if test="${attrs['has_plasmogem_info'] eq '1'}">
     <imp:panel 
-      displayName="PlasmoGem"
+      displayName="PlasmoGEM"
       content="${attrs['plasmogem_link']}" />
   </c:if>
 </c:if>
@@ -634,7 +623,13 @@ We are currently in the process of creating an updated version 6 of OrthoMCL whi
 
 <c:set var="geneDbLink">
   <div align="left">
-    <br><small>Phenotypes curated from the literature by <a href="http://www.genedb.org/">Gene<b>DB</b></a>
+   
+    <c:if test="${projectId eq 'TriTrypDB'}">
+    <br><small>Phenotypes curated from the literature by <a href="http://www.genedb.org/">Gene<b>DB</b></a></small>
+    </c:if>
+    <c:if test="${projectId eq 'FungiDB'}">
+    <br><small>Phenotypes curated from the literature by Diane Inglis.</small>
+    </c:if>
 </small></div>
 </c:set>
 

@@ -86,7 +86,7 @@
 
     <c:choose>
       <c:when test="${wdkUser == null || wdkUser.guest}">
-        <li><a id="mybasket" onclick="wdk.stratTabCookie.setCurrentTabCookie('application', 'basket');wdk.user.login('/showApplication.do');" href="javascript:void(0)"  title="Group IDs together to work with them. You can add IDs from a result, or from a details page.">My Basket <span class="subscriptCount" style="vertical-align:top">(0)</span></a></li>
+        <li><a id="mybasket" onclick="wdk.stratTabCookie.setCurrentTabCookie('application', 'basket');wdk.user.login(wdk.webappUrl('/showApplication.do'));" href="javascript:void(0)"  title="Group IDs together to work with them. You can add IDs from a result, or from a details page.">My Basket <span class="subscriptCount" style="vertical-align:top">(0)</span></a></li>
       </c:when>
       <c:otherwise>
         <c:choose>
@@ -209,7 +209,7 @@
         <li><a href="${baseUrl}/communityUpload.jsp">Upload Community Files</a></li>
 
         <li><a onclick="wdk.stratTabCookie.setCurrentTabCookie('application','strategy_results');" 
-               href="${baseUrl}/processQuestion.do?questionFullName=UserFileQuestions.UserFileUploads"/>">Download Community Files</a></li>
+               href="${baseUrl}/processQuestion.do?questionFullName=UserFileQuestions.UserFileUploads">Download Community Files</a></li>
       </c:if>
 
       <li><a href="${baseUrl}/communityEvents.jsp">Upcoming Events</a></li>
@@ -231,7 +231,7 @@
 
       <c:choose>
         <c:when test="${wdkUser == null || wdkUser.guest}">
-          <li id="favorite-menu"><a id="mybasket" onclick="wdk.user.login('/showFavorite.do');" href="javascript:void(0)">
+          <li id="favorite-menu"><a id="mybasket" onclick="wdk.user.login(wdk.webappUrl('/showFavorite.do'));" href="javascript:void(0)">
             <imp:image style="vertical-align:middle" height="20" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time." src="wdk/images/favorite_color.gif"/>&nbsp;
             <span style="vertical-align:middle" title="Store IDs for easy access to their details page. You can add IDs *only* from the details page, one at a time.">My Favorites</span>
             </a>

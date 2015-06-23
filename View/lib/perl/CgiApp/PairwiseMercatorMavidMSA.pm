@@ -169,8 +169,6 @@ sub getTaxonToDirMap {
 
   my $project = $cgi->param('project_id');
 
-  if (lc($project) =~ /plasmodb|cryptodb|piroplasmadb|microsporidiadb|amoebadb|giardiadb|tritrypdb/) {
-
      my $sql = <<EOSQL;
 SELECT distinct ga.organism, taxon.grp, org.abbrev 
 FROM   ApiDBTuning.GeneAttributes ga, ApiDB.Organism org,
@@ -188,16 +186,7 @@ EOSQL
      while (my $hashref = $sth->fetchrow_hashref()) {
        $taxonToDirMap->{$hashref->{ORGANISM}} = {name => $hashref->{ABBREV}, group => $hashref->{GRP} };
      }
-  } else {  
-     $taxonToDirMap = 
-     {
-      'Toxoplasma gondii ME49'                           => { name => 'tgonME49',               group => 1 },
-      'Toxoplasma gondii GT1'                            => { name => 'tgonGT1',                group => 3 },
-      'Toxoplasma gondii VEG'                            => { name => 'tgonVEG',                group => 4 },
-      'Neospora caninum'                                 => { name => 'ncanLIV',                group => 5 },
-      'Eimeria tenella str. Houghton'                    => { name => 'etenHoughton',           group => 6 },
-     };
-  }
+
 return $taxonToDirMap;
 }
 
@@ -427,7 +416,7 @@ sub translateCoordinates {
   my ($genome, $assembly);
 
   while (defined (my $fn = readdir DIR) ) {
-    next unless($fn =~ /([\w\d_]+)\.agp$/);
+    next unless($fn =~ /(\S+)\.agp$/);
 
     my $thisGenome = $1;
 
@@ -765,7 +754,7 @@ sub makeAlignment {
   for(my $i = 0; $i < scalar (@lines); $i++) {
     my $line = $lines[$i];
 
-    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />([a-zA-Z0-9_]+) (\S*?):(\d+)-(\d+)([-+])/;
+    my ($genome, $assembled, $start, $stop, $strand) = $line =~ />(\S+) (\S+):(\d+)-(\d+)([-+])/;
     next unless($genome);
 
     my $replaced = &replaceAssembled($agpDir, $genome, $assembled, $start, $stop, $strand);

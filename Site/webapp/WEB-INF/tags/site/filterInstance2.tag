@@ -4,8 +4,8 @@
 <%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>
 
 <%-- THIS FILE IS USED FOR GENE ORGANISM FILTER 3 bottom ROWS CONTAINING:
-      SPECIES ROW (sometimes with distinct filter count), 
-      STRAINS ROW
+      SPECIES ROW (sometimes with distinct filter count), (GENUS row in Fungi)
+      STRAINS ROW                                         (SPECIES STRAIN in Fungi)
       COUNTS ROW --%>
 
 <%@ attribute name="strategyId"
@@ -67,17 +67,43 @@
 <c:set var="familySpecies" value="${instanceNameParts[0]}" />
 <c:set var="speciesNameParts" value="${fn:split(familySpecies, '-')}" />
 
+<%-- DEBUG
+<br>
+${familySpecies}        <!--   Fungi filters       rest -->
+<br><br>
+${speciesNameParts[0]}  <!--    KINGDOM           PHYLUM  -->
+<br><br>
+${speciesNameParts[1]}  <!--   PHYLUM              GENUS   -->
+<br><br>
+${speciesNameParts[2]}  <!--    GENUS             SPECIES   -->
+<br><br>
+${speciesNameParts[3]}  <!--    SPECIES             empty   -->
+<br><br><br>
+--%>
+
 <c:choose>
 <c:when test="${fn:length(speciesNameParts[2]) > 0}" >
   <c:set var="phylum" value="${speciesNameParts[0]}" />
   <c:set var="family" value="${speciesNameParts[1]}" />
   <c:set var="species" value="${speciesNameParts[2]}" />
+  <c:set var="realspecies" value="${speciesNameParts[3]}" />
+
 </c:when>
-<c:otherwise>
+<c:otherwise>  <%-- when we introduce a new Genus and forget to add it in the Phylum map in the injector --%>
   <c:set var="family" value="${speciesNameParts[0]}" />
   <c:set var="species" value="${speciesNameParts[1]}" />
 </c:otherwise>
 </c:choose>
+
+<%--
+<br>_____<br>
+${phylum}   <!--  Fungi            Apicomplexa  -->
+<br>
+${family}   <!--  Eurotiomycetes   Plasmodium   -->
+<br>
+${species}  <!--  Aspergillus      knowlesi     -->
+<br>_____<br>
+--%>
 
 
 <!--    = was used to escape forbidden chars like space, dash and underscore inside the species name 
@@ -87,6 +113,9 @@
 <c:set var="species" value="${fn:replace(species, '=-', '-')}" />
 <c:set var="species" value="${fn:replace(species, '=_', '_')}" />
 <c:set var="species" value="${fn:replace(species, '=', ' ')}" />
+<c:set var="realspecies" value="${fn:replace(realspecies, '=-', '-')}" />
+<c:set var="realspecies" value="${fn:replace(realspecies, '=_', '_')}" />
+<c:set var="realspecies" value="${fn:replace(realspecies, '=', ' ')}" />
 
 <c:choose>
 
@@ -97,8 +126,10 @@
         <c:when test="${current}"><div class="current"></c:when>
         <c:otherwise><div></c:otherwise>
       </c:choose>
-
-      <i>${fn:substring(family,0,1)}.${species}</i>
+      <c:choose>
+        <c:when test="${phylum eq 'Fungi'}"> <i>${species} ${realspecies}</i></c:when>
+        <c:otherwise> <i>${fn:substring(family,0,1)}.${species}</i></c:otherwise>
+      </c:choose>
   </c:when>
 
   <%-- ================================== SPECIES TITLE WITH GENE COUNT=============== --%>
@@ -109,7 +140,12 @@
         <c:otherwise><div></c:otherwise>
       </c:choose>
 
-      <i>${fn:substring(family,0,1)}.${species}</i>&nbsp;&nbsp; ( nr Genes:
+      <c:choose>
+        <c:when test="${phylum eq 'Fungi'}"> <i>${species} ${realspecies}</i></c:when>
+        <c:otherwise> <i>${fn:substring(family,0,1)}.${species}</i></c:otherwise>
+      </c:choose>
+
+      &nbsp;&nbsp; ( nr Genes:
 
       <c:url var="linkUrl" value="/processFilter.do?strategy=${strategyId}&step=${stepId}&filter=${instance.name}" />
       <c:url var="countUrl" value="/showResultSize.do?step=${stepId}&answer=${answerValue.checksum}&filter=${instance.name}" />
@@ -135,7 +171,14 @@
       <!-- reading strain name from filter instance displayName (popup title) -->
       <c:set var="dispNameOrg1" value="${fn:substringBefore(instance.displayName, 'Results')}" />
       <c:set var="dispNameOrg" value="${fn:trim(dispNameOrg1)}" /> 
-      <c:set var="strain" value="${fn:substringAfter(dispNameOrg, species )}" />
+      <c:choose>
+        <c:when test="${phylum eq 'Fungi'}">
+          <c:set var="strain" value="${fn:substringAfter(dispNameOrg, realspecies )}" />
+        </c:when>
+        <c:otherwise>
+           <c:set var="strain" value="${fn:substringAfter(dispNameOrg, species )}" />
+        </c:otherwise>
+      </c:choose>
       <c:set var="strain" value="${fn:trim(strain)}" /> 
       ${strain}
 
