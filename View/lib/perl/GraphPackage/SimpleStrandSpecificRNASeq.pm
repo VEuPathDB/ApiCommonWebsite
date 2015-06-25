@@ -50,7 +50,7 @@ sub getSampleNames {
   if($self->getSampleLabelsString()) {
     my $sampleLabelsString = $self->getSampleLabelsString();
     my @rv = split(/;/, $sampleLabelsString);
-    print STDERR Dumper(\@rv);
+#    print STDERR Dumper(\@rv);
     return \@rv;
   } 
   my $rv =[];
@@ -98,7 +98,7 @@ sub makeGraphs {
   $sense->setIsPairedEnd($isPairedEnd);
   $sense->setBottomMarginSize($bottomMarginSize);
   $sense->setAdditionalRCode($self->getAdditionalRCode());
-  $sense->setSampleNames(@{$self->getSampleNames});
+  $sense->setSampleNames($self->getSampleNames);
   $sense->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
 
   $sense->makeGraphs(@_);
@@ -120,7 +120,7 @@ sub makeGraphs {
   $antisense->setIsPairedEnd($isPairedEnd);
   $antisense->setBottomMarginSize($bottomMarginSize);
   $antisense->setAdditionalRCode($self->getAdditionalRCode());
-  $antisense->setSampleNames(@{$self->getSampleNames});
+  $antisense->setSampleNames($self->getSampleNames);
   $antisense->setForceXLabelsHorizontalString($self->getForceXLabelsHorizontalString());
 
   $antisense->makeGraphs(@_);
