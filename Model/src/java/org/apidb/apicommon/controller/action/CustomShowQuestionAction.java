@@ -38,6 +38,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     private static final String ATTR_REFERENCE_QUESTIONS = "ds_ref_questions";
     private static final String ATTR_QUESTIONS_BY_DATASET = "questions_by_dataset_map";
     private static final String ATTR_DISPLAY_CATEGORIES = "display_categories";
+    private static final String ATTR_UNCATEGORIZED_QUESTIONS = "uncategorized_questions_by_dataset_map";
 
     private static final Logger logger = Logger.getLogger(CustomShowQuestionAction.class);
 
@@ -111,8 +112,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         if (datasetTypes.length == 0) return;
 
         // { dataset => { type => question, ... }, ... }
-        Map<RecordBean, Map<String, QuestionBean>> questionsByDataset =
-                new LinkedHashMap<RecordBean, Map<String, QuestionBean>>();
+        Map<RecordBean, Map<String, List<QuestionBean>>> questionsByDataset =
+                new LinkedHashMap<RecordBean, Map<String, List<QuestionBean>>>();
         Set<CategoryBean> displayCategorySet = new TreeSet<CategoryBean>(
                 new Comparator<CategoryBean>() {
                     @Override
@@ -120,6 +121,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                         return c1.getName().compareTo(c2.getName());
                     }
                 });
+
+        Map<RecordBean, List<QuestionBean>> uncatQuestionsMap =
+          new LinkedHashMap<RecordBean, List<QuestionBean>>();
 
         String dsQuestionName;
         Map<String, String> params = new LinkedHashMap<String, String>();
@@ -138,13 +142,14 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 params, true, 0);
 
         Iterator<RecordBean> dsRecords = answerValue.getRecords();
-				int i=0;
+        //int i=0;
         while (dsRecords.hasNext()) {
-					//i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
+            //i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
             RecordBean dsRecord = dsRecords.next();
             TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
-            Map<String, QuestionBean> internalQuestions =
-                    new LinkedHashMap<String, QuestionBean>();
+            Map<String, List<QuestionBean>> internalQuestionsMap =
+                    new LinkedHashMap<String, List<QuestionBean>>();
+            List<QuestionBean> uncatQuestions = new ArrayList<QuestionBean>();
 
             for (Map<String, AttributeValue> row : tableValue) {
                 String targetType = row.get("target_type").toString();
@@ -160,32 +165,44 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                         continue;
                     }
 
-                    logger.debug("Adding question bean for " + targetName + 
+                    logger.debug("Adding question bean for " + targetName +
                         " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
 
                     // String[] displayCategories =
                     //         internalQuestion.getPropertyList("displayCategory");
-										
+
                     List<CategoryBean> displayCategories =
                             internalQuestion.getDatasetCategories();
                     logger.debug("Dataset categories: " + displayCategories.size());
+
                     if (displayCategories.size() == 1) {
                         displayCategorySet.add(displayCategories.get(0));
-                        internalQuestions.put(displayCategories.get(0).getName(),
-                                internalQuestion);
+                        String catName = displayCategories.get(0).getName();
+                        List<QuestionBean> internalQuestions = internalQuestionsMap.get(catName);
+                        if (internalQuestions == null) {
+                          internalQuestions = new ArrayList<QuestionBean>();
+                          internalQuestionsMap.put(catName, internalQuestions);
+                        }
+                        internalQuestions.add(internalQuestion);
+                    }
+                    else {
+                      // Track uncategorized questions
+                      uncatQuestions.add(internalQuestion);
+                      logger.debug("Found an uncategorized question: " + internalQuestion.getFullName());
                     }
                 }
             }
-						/*
-            if (internalQuestions.size() > 0) {
-							questionsByDataset.put(dsRecord, internalQuestions);
-						}
-						*/ //add question regardless if it exists in the categories file, this will invite DD to add the question in teh right category
-							questionsByDataset.put(dsRecord, internalQuestions);
+            if (internalQuestionsMap.size() > 0) {
+              questionsByDataset.put(dsRecord, internalQuestionsMap);
+            }
+            if (uncatQuestions.size() > 0) {
+              uncatQuestionsMap.put(dsRecord, uncatQuestions);
+            }
         }
 
-				//		logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
+        // logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
         request.setAttribute(ATTR_QUESTIONS_BY_DATASET, questionsByDataset);
+        request.setAttribute(ATTR_UNCATEGORIZED_QUESTIONS, uncatQuestionsMap);
         request.setAttribute(ATTR_DISPLAY_CATEGORIES, displayCategorySet);
     }
 

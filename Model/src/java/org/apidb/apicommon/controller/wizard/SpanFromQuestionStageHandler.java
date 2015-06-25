@@ -8,14 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.controller.action.ProcessBooleanAction;
 import org.gusdb.wdk.controller.action.ProcessQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.QuestionForm;
 import org.gusdb.wdk.controller.form.WizardForm;
+import org.gusdb.wdk.controller.wizard.ProcessBooleanStageHandler;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
+import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
@@ -69,10 +72,32 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
         // create a step from the input
         String filterName = request.getParameter(PARAM_FILTER);
-
-        StepBean childStep = user.createStep(null, question, params, filterName,
-                false, true, weight);
+        int stepId = Integer.valueOf(request.getParameter(CConstants.WDK_STEP_ID_KEY));
+        int strategyId = Integer.valueOf(request.getParameter(CConstants.WDK_STRATEGY_ID_KEY));
         
+        StrategyBean strategy = user.getStrategy(strategyId);
+
+        StepBean childStep = null;
+        String importStrategyId = request.getParameter("importStrategy");
+        if (questionName != null && questionName.length() > 0) {
+          // a question name specified, either create a step from it, or revise a current step
+          String action = request.getParameter(ProcessBooleanAction.PARAM_ACTION);
+          if (action.equals(WizardForm.ACTION_REVISE)) {
+            childStep = ProcessBooleanStageHandler.updateStepWithQuestion(
+                servlet, request, wizardForm, strategy, questionName, user, wdkModel, stepId);
+          }
+          else {
+            childStep = user.createStep(null, question, params, filterName,
+                false, true, weight);
+          }
+        }
+        else if (importStrategyId != null && importStrategyId.length() > 0) {
+          // a step specified, it must come from an insert strategy. make a
+          // copy of it, and mark it as collapsable.
+          childStep = ProcessBooleanStageHandler.createStepFromStrategy(
+              user, strategy, Integer.valueOf(importStrategyId));
+        }
+
         String customName = request.getParameter(PARAM_CUSTOM_NAME);
         if (customName != null && customName.trim().length() > 0) {
             childStep.setCustomName(customName);
