@@ -22,7 +22,7 @@
 <record>
   <attribute name="headline">TriTrypDB 24 Released</attribute>
   <attribute name="date">20 July 2015 13:00</attribute>
-  <attribute name="tag">news_template</attribute>
+  <attribute name="tag">tritrypdb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
