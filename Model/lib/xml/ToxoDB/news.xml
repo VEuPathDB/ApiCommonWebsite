@@ -17,18 +17,18 @@
 
 <record>
   <attribute name="headline">ToxoDB 25 Released</attribute>
-  <attribute name="date">15 July 2015 13:00</attribute>
+  <attribute name="date">20 July 2015 13:00</attribute>
   <attribute name="tag">toxo7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of {Project} {Version}</strong></p>
+    <p><strong>We are pleased to announce the release of ToxoDB 25</strong></p>
 
     <section>
       <h3>New data in this release</h3>
 
       <aside>
-        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+        The data set title below links to a full description as well as a list of associated searches and GBrowse tracks.
       </aside>
 
       <section>
@@ -36,7 +36,7 @@
         <ul>
           <li>
             <a href="http://ToxoDB.org/a/getDataset.do?datasets=ccayCHN_HEN01_primary_genome_RSRC"><i>Cyclospora cayetanensis</i> strain CHN_HEN01</a> &mdash; 
-            First release in ToxoDB. This annotated genome is provided per-publication by Lihua Xiao, Center for Disease Control USA 
+            First release in ToxoDB. This annotated genome is provided pre-publication by Lihua Xiao, Center for Disease Control, USA 
           </li>
         </ul>
       </section>
