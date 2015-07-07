@@ -14,6 +14,71 @@
        </attribute>
     </record>
 --> 
+
+<record>
+  <attribute name="headline">ToxoDB 25 Released</attribute>
+  <attribute name="date">15 July 2015 13:00</attribute>
+  <attribute name="tag">toxo7_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of {Project} {Version}</strong></p>
+
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Genome Sequence</h4>
+        <ul>
+          <li>
+            <a href="http://ToxoDB.org/a/getDataset.do?datasets=ccayCHN_HEN01_primary_genome_RSRC"><i>Cyclospora cayetanensis</i> strain CHN_HEN01</a> &mdash; 
+            First release in ToxoDB. This annotated genome is provided per-publication by Lihua Xiao, Center for Disease Control USA 
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Annotation</h4>
+        <ul>
+          <li>
+            <a href="http://ToxoDB.org/a/getDataset.do?datasets=sneuSN3_primary_genome_RSRC"><i>Sarcocystis neurona</i> SN3</a> &mdash; 
+            Annotation for this genome is now available and is provided pre-publication by Daniel K. Howe, University of 
+            Kentucky and Jessica Kissinger, University of Georgia. 
+          </li>
+        </ul>
+      </section>
+      
+       <section>
+        <h4>Whole genome sequencing of isolate for SNP analysis</h4>
+        <ul>
+          <li>
+            <a href="http://ToxoDB.org/a/getDataset.do?datasets=ccayCHN_HEN01_primary_genome_RSRC">Aligned genomic sequence reads - HhCatGer041 strain</a> &mdash; 
+            Illumina genome sequencing of <i>Hammondia hammondi</i> isolate HhCatGer041 from Germany. 
+            Sequencing reads were aligned to <i>Hammondia hammondi</i> strain H.H.34 and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23589877">Walzer et al.</a> - John Boyle, University of Pittsburg 
+            
+          </li>
+        </ul>
+      </section>
+
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
 <record>
        <attribute name="headline">ToxoDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
