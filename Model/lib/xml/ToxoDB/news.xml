@@ -36,13 +36,13 @@
         <ul>
           <li>
             <a href="http://ToxoDB.org/a/getDataset.do?datasets=ccayCHN_HEN01_primary_genome_RSRC"><i>Cyclospora cayetanensis</i> strain CHN_HEN01</a> &mdash; 
-            First release in ToxoDB. This annotated genome is provided pre-publication by Lihua Xiao, Center for Disease Control, USA 
+            First release in ToxoDB. This genome sequence is provided pre-publication by Lihua Xiao, Centers for Disease Control, USA 
           </li>
         </ul>
       </section>
       
       <section>
-        <h4>Annotation</h4>
+        <h4>Genome Annotation</h4>
         <ul>
           <li>
             <a href="http://ToxoDB.org/a/getDataset.do?datasets=sneuSN3_primary_genome_RSRC"><i>Sarcocystis neurona</i> SN3</a> &mdash; 
