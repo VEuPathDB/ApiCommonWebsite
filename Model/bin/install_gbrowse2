@@ -44,7 +44,7 @@ post_install_clean() {
 
     rm -rf $BUILD_DIR
 
-    tmpfiles=( _build Build blib INSTALL.SKIP htdocs/tmp lib/Bio/Graphics/Browser2/CAlign.c )
+    tmpfiles=( _build Build blib INSTALL.SKIP htdocs/tmp lib/Bio/Graphics/Browser2/CAlign.c MYMETA.json MYMETA.yml )
 
     echo "Cleaning up temporary files..."
     for tmp in ${tmpfiles[@]}; do
