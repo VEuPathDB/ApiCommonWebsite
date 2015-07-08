@@ -40,13 +40,13 @@
         <ul>
           <li>
             <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lpyrH10_primary_genome_RSRC"><i>Leptomonas pyrrhocoris</i> H10</a> &mdash;
-            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000258005.1/">LukesLab version 5 May 2014</a>. Genome sequence and annotation 
+            LukesLab version 5 May 2014. This genome sequence and annotation 
             are available for the first time in TriTrypDB and are provided pre-publication by Julius Lukes, Czech Academy of Sciences.
           </li>
           <li>
             <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lseyATCC30220_primary_genome_RSRC"><i>Leptomonas seymouri </i> ATCC 30220 </a> &mdash;
-            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000258005.1/">YurchenkoLab version 6 May 2014</a>.
-            Genome sequence and annotation are available for the first time in TriTrypDB and 
+            YurchenkoLab version 6 May 2014.
+            This genome sequence and annotation are available for the first time in TriTrypDB and 
             are provided pre-publication by Vyacheslav Yurchenko, University of Ostrava.
           </li>
         </ul>
@@ -83,13 +83,14 @@
           <li>
             <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lpyrH10_Flegontov_Transcriptome_rnaSeq_RSRC">
             Transcriptome of total- and polyA RNA fraction (LpyrH10)</a> &mdash; 
-            Illumina RNA sequencing of total and polyA fractions from <i>Leptomonas pyrrhocoris</i> H10.  Julius Lukes, Czech Academy of Sciences. 
+            Illumina RNA sequencing of total- and polyA-RNA fractions from <i>Leptomonas pyrrhocoris</i> H10.  Provided 
+            pre-publication by Julius Lukes, Czech Academy of Sciences. 
           </li>
           <li>
             <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lseyATCC30220_Flegontov_PolyA_Transcriptome_rnaSeq_RSRC">
             Transcriptome at 23C and 35C growth conditions </a> &mdash; 
             Transcriptome of <i>L. seymouri</i> ATCC 30220 at 23 and 35C growth conditions determined by 
-            Illumina sequencing. Vyacheslav Yurchenko, University of Ostrava. 
+            Illumina sequencing. Provided pre-publication by Vyacheslav Yurchenko, University of Ostrava. 
           </li>
         </ul>
       </section>
@@ -101,13 +102,15 @@
             <a href="http://tritrypdb.org/tritrypdb.integrate/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=29">
             Contractile Vacuole Proteome, epimatigote (CL Brener)</a> &mdash; 
             Proteomic analysis of a <i>T. cruzi</i> CL Brener fraction enriched for contractile vacuoles 
-            and analyzed by one-dimensional gel electrophoresis and LC-MS/MS <i>T. cruzi</i> CL Brener.  Roberto Docampo, University of Georgia;  
+            and analyzed by one-dimensional gel electrophoresis and LC-MS/MS <i>T. cruzi</i> CL Brener.  Provided by 
+            Roberto Docampo, University of Georgia;  
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/21437209"> Ulrich et al.</a>. 
           </li>
           <li>
             <a href="http://tritrypdb.org/tritrypdb.integrate/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=30">
             Acidocalcisome proteome, procyclic form (Tb927) </a> &mdash; 
-            Proteome of acidocalcisome fractions from <i>Trypanosoma brucei</i> TREU927 procyclic form parasites. Roberto Docampo, University of Georgia; 
+            Proteome of acidocalcisome fractions from <i>Trypanosoma brucei</i> TREU927 procyclic form parasites. Provided 
+            by Roberto Docampo, University of Georgia; 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25503798">Huang et al.</a>.
           </li>
         </ul>
