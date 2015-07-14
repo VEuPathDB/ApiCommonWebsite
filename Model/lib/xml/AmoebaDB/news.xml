@@ -19,7 +19,7 @@
 
 <record>
   <attribute name="headline">AmoebaDB 25 Released</attribute>
-  <attribute name="date">15 July 2015 13:00</attribute>
+  <attribute name="date">20 July 2015 13:00</attribute>
   <attribute name="tag">amoebadb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -102,7 +102,7 @@
           <li>
             <a href="http://toxodb.org/a/getDataset.do?datasets=hhamHH34_primary_genome_RSRC">Trophozoite Transcriptome (Nfow)</a> &mdash;
             Transcriptome of <i> Naegleria fowleri</i> ATCC 30863 trophozoites. 
-            <a href="www.ncbi.nlm.nih.gov/pubmed/24950717">Zysset-Burri et al.</a>.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/24950717">Zysset-Burri et al.</a>.
           </li>
         </ul>
       </section>
