@@ -99,7 +99,7 @@
         <h4>Proteomics</h4>
         <ul>
           <li>
-            <a href="http://tritrypdb.org/tritrypdb.integrate/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=29">
+            <a href="http://qa.TriTrypDB.org/a/getDataset.do?datasets=tcruCLBrener_massSpec_Docampo_Contractile_Vacuole_Proteome_RSRC,tcruCLBrenerNon-Esmeraldo-like_massSpec_Docampo_Contractile_Vacuole_Proteome_RSRC,tcruCLBrenerEsmeraldo-like_massSpec_Docampo_Contractile_Vacuole_Proteome_RSRC">
             Contractile Vacuole Proteome, epimatigote (CL Brener)</a> &mdash; 
             Proteomic analysis of a <i>T. cruzi</i> CL Brener fraction enriched for contractile vacuoles 
             and analyzed by one-dimensional gel electrophoresis and LC-MS/MS <i>T. cruzi</i> CL Brener.  Provided by 
@@ -107,7 +107,7 @@
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/21437209"> Ulrich et al.</a>. 
           </li>
           <li>
-            <a href="http://tritrypdb.org/tritrypdb.integrate/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=30">
+            <a href="http://qa.TriTrypDB.org/a/getDataset.do?datasets=tbruTREU927_massSpec_Docampo_Acidocalcisome_Proteomics_RSRC">
             Acidocalcisome proteome, procyclic form (Tb927) </a> &mdash; 
             Proteome of acidocalcisome fractions from <i>Trypanosoma brucei</i> TREU927 procyclic form parasites. Provided 
             by Roberto Docampo, University of Georgia; 
