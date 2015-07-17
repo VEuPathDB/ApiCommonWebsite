@@ -185,11 +185,28 @@
         <h4>Whole genome sequencing of isolates for SNP analysis</h4>
         <ul>
           <li>
-            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=XXX">Aligned genomic sequence reads - <i>Leishmania major</i> Friedlin isolate V1</a> &mdash; 
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lmajFriedlin_HTS_SNP_BeverlyIsolateV1_RSRC">Aligned genomic sequence reads - <i>L. major</i> isolate V1</a> &mdash; 
             Illumina genome sequencing of <i>Leishmania major</i> Friedlin isolate V1. 
-            Sequencing reads were aligned to <i>Leishmania major</i> Friedlin and used to determine SNPs. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23589877">Walzer et al.</a> - Jon Boyle, University of Pittsburg 
-            
+            Sequencing reads were aligned to <i>Leishmania major</i> Friedlin and used to determine SNPs. Stephen M. Beverley, Washington University in St. Louis. 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=ldonBPK282A1_HTS_SNP_Indian_SOLiD_Isolates_RSRC">Aligned genomic sequence reads - 3 <i>L. donovani</i> Indian Isolates</a> &mdash; 
+            Illumina genome sequencing of <i>Leishmania donovani</i> BHU-1095, 39, and 2001. 
+            Sequencing reads were aligned to <i>Leishmania donovani</i> BPK282A1 and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=23418454">Singh et al.</a> 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=linfJPCM5_HTS_SNP_Sequencing_12_Strains_Of_Putative_Hybrids_RSRC">Aligned genomic sequence reads - 12 <i>L. infantum</i> hybrids </a> &mdash; 
+            Illumina genome sequencing of 11 <i>Leishmania infantum</i> isolates from sand flies 
+            and 1 patient isolate in a focus of cutaneous leishmaniasis in the Cukurova province of southeast Turkey. 
+            Sequencing reads were aligned to <i>Leishmania infantum</i> JPCM5 and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24453988">Rogers et al.</a> 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=ldonBPK282A1_HTS_SNP_Zhang_Visceral_Leishmaniasis_RSRC">Aligned genomic sequence reads - <i>L. donovani</i> Sri Lanka Isolates</a> &mdash; 
+            Illumina genome sequencing of Sri Lankan isolates MON-37CL, and MON-37VL.  
+            Sequencing reads were aligned to <i>Leishmania donovani</i> BPK282A1 and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=23265615">Ranasinghe et al.</a> 
           </li>
         </ul>
       </section>
