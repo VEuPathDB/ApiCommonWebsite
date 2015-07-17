@@ -78,6 +78,22 @@
       </section>
       
       <section>
+        <h4>Updated Functional Annotation</h4>
+        <ul>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 355 genes with 
+            <a href="http://www.genedb.org/rss/Lbraziliensis/since/4/months>updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=ldonBPK282A1_primary_genome_RSRC"><i>L. donovani</i> BPK282A1 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 469 genes with 
+            <a href="http://www.genedb.org/rss/Ldonovani_BPK282A1/since/4/months>updated annotations</a>.
+          </li>
+        </ul>
+      </section>
+      
+      <section>
         <h4>RNA Sequencing</h4>
         <ul>
           <li>
