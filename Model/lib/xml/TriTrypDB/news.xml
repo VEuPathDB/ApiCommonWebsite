@@ -115,7 +115,7 @@
           </li>
           <li>
             <a href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_primary_genome_RSRC"><i>Trypanosoma brucei</i> 927 </a> &mdash;
-            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 238 genes with 
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 2381 genes with 
             <a href="http://www.genedb.org/rss/Tbruceibrucei927/since/4/months">updated annotations</a>. Products based on Pfam domain hits were added 
             to ~1200 hypothetical proteins
           </li>
@@ -177,6 +177,19 @@
             Proteome of acidocalcisome fractions from <i>Trypanosoma brucei</i> TREU927 procyclic form parasites. Provided 
             by Roberto Docampo, University of Georgia; 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25503798">Huang et al.</a>.
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Whole genome sequencing of isolates for SNP analysis</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=XXX">Aligned genomic sequence reads - <i>Leishmania major</i> Friedlin isolate V1</a> &mdash; 
+            Illumina genome sequencing of <i>Leishmania major</i> Friedlin isolate V1. 
+            Sequencing reads were aligned to <i>Leishmania major</i> Friedlin and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23589877">Walzer et al.</a> - Jon Boyle, University of Pittsburg 
+            
           </li>
         </ul>
       </section>
