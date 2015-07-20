@@ -1,40 +1,35 @@
 package org.apidb.apicommon.service.services;
 
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
-import org.apache.log4j.Logger;
-import org.apidb.apicommon.model.view.TranscriptViewHandler;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.service.service.WdkService;
-import org.json.JSONException;
-import org.json.JSONObject;
+//import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 
-@Path("/step/{stepId}/transcriptview")
+@Path("/step/{stepId}/transcript-view/config")
 public class TranscriptToggleService extends WdkService {
-
+/*
   private static final Logger LOG = Logger.getLogger(TranscriptToggleService.class);
 
   @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.TEXT_PLAIN)
   public Response setTranscriptFlag(@PathParam("stepId") Integer stepId, String body) {
     try {
+      LOG.info("Recieved transcript toggle POST request for step ID " + stepId + " and body " + body);
       JSONObject input = new JSONObject(body);
-      boolean filterTurnedOn = input.getBoolean(TranscriptViewHandler.REPRESENTATIVE_TRANSCRIPT_FILTER);
+      boolean filterTurnedOn = input.getBoolean(RepresentativeTranscriptFilter.FILTER_NAME);
+      LOG.info("Action is to turn filter: " + filterTurnedOn);
       Step step = getWdkModel().getStepFactory().getStepById(stepId);
       if (getCurrentUser().getUserId() != step.getUser().getUserId()) {
         return Response.status(Status.FORBIDDEN).entity("Permission Denied").build();
       }
       if (filterTurnedOn) {
-        step.addViewFilterOption(TranscriptViewHandler.REPRESENTATIVE_TRANSCRIPT_FILTER, new JSONObject());
+        step.addViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
       }
       else {
-        step.removeViewFilterOption(TranscriptViewHandler.REPRESENTATIVE_TRANSCRIPT_FILTER);
+        step.removeViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
       }
-      step.update(false);
+      step.saveParamFilters();
       return Response.ok().build();
     }
     catch (WdkModelException e) {
@@ -42,8 +37,10 @@ public class TranscriptToggleService extends WdkService {
       return Response.serverError().build();
     }
     catch (JSONException e) {
+      LOG.error("Unable to parse input JSON", e);
       return getBadRequestBodyResponse("JSON object required with property " +
-          TranscriptViewHandler.REPRESENTATIVE_TRANSCRIPT_FILTER + " (boolean).");
+          RepresentativeTranscriptFilter.FILTER_NAME + " (boolean).");
     }
   }
+  */
 }
