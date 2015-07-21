@@ -95,9 +95,9 @@ Please see Citing MicrosporidiaDB below.
        <attribute name="text">
        <![CDATA[
 When citing MicrosporidiaDB itself, please use:
-<br><br>
-<b>EuPathDB: a portal to eukaryotic pathogen databases.</b> <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D415">Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. Epub 2009 Nov 13.</a>
 
+<br><br>
+<b><a href="http://www.ncbi.nlm.nih.gov/pubmed/20974635">AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a>
 
 <br><br>Much of the data in MicrosporidiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into MicrosporidiaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
 
