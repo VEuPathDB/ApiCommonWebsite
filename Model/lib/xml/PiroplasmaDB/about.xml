@@ -14,8 +14,9 @@
        <attribute name="tag">generalinfo</attribute>
        <attribute name="text">
        <![CDATA[
-PiroplasmaDB is a genome database for the genus <i>Piroplasma</i>........
-
+For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 
        ]]>
        </attribute>
@@ -27,7 +28,7 @@ PiroplasmaDB is a genome database for the genus <i>Piroplasma</i>........
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in PiroplamaDB is provided by independent researchers.  For a list of the data integrated into PiroplasmaDB and the related publications see <a href="/a/getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in PiroplamaDB is provided by independent researchers.  For a list of the data integrated into PiroplasmaDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -39,15 +40,11 @@ Much of the data in PiroplamaDB is provided by independent researchers.  For a l
        <attribute name="text">
        <![CDATA[
 
-Each project in EuPathDB benefits from the advice and mentoring of people from each specific community.
-<br><br>
-
-<b>PiroplasmaDB</b><br><br>
-<div id="cirbulletlist">
-<ul>
-<li>..........
-</ul></div>
-
+EuPathDB databases rely heavily on community input.  Each project in EuPathDB benefits from the advice and mentoring of members from each specific community. 
+We hold monthly organism calls for each of our databases with members of the scientific advisory teams and others from the community.  
+Anyone interested in joining one of these conference calls is encouraged to contact us.  
+<!-- While monthly conference calls for PiroplasmaDB are already underway, 
+a specific scientific advisory team as not yet been assembled.-->
 
        ]]>
        </attribute>
@@ -84,9 +81,9 @@ Georgia.
        <![CDATA[
 When citing PiroplasmaDB itself, please use:
 <br><br>
-............
+<b><a href="http://www.ncbi.nlm.nih.gov/pubmed/20974635">AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a>
 
-<br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="/a/getDataset.do?display=detail" class="blue"> Data Sources</a>.
+<br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sources</a>.
        ]]>
        </attribute>
    </record>
