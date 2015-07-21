@@ -30,7 +30,7 @@ Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in FungiDB is provided by independent researchers.  For a list of the data integrated into FungiDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in FungiDB is provided by independent researchers.  For a list of the data integrated into FungiDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
