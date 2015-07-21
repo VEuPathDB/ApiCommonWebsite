@@ -121,8 +121,8 @@ Number of Bases Used in Assembly
 </table>
 <br>
 <div id="cirbulletlist"><ul>
-<li>The <a href = "processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-<li>The <a href="processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
+<li>The <a href = "processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> provides an overview of the content in GiardiaDB, all organisms and data types covered.
+<li>The <a href="processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in GiardiaDB, by various datatypes.
 </ul></div>
 
        ]]>
