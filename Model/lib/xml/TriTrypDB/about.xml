@@ -21,6 +21,11 @@ development are possible through the collaborative efforts between <a
 href="http://www.eupathdb.org">EuPathDB</a>, <a href="http://www.genedb.org 
 "> GeneDB </a> and colleagues at the Seattle Biomedical Research 
 Institute (<a href="http://www.sbri.org">SBRI</a>).
+
+<br><br>
+For a list of the data integrated into TriTrypDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 ]]>
 
 </attribute>
@@ -31,7 +36,9 @@ Institute (<a href="http://www.sbri.org">SBRI</a>).
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in TriTrypDB is provided by independent researchers.  For a list of the data integrated into TriTrypDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in TriTrypDB is provided by independent researchers.  For a list of the data integrated into TriTrypDB and the related publications see 
+<a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
+
        ]]>
        </attribute>
    </record>
@@ -146,13 +153,9 @@ Aslett et al.<br>
  Nucleic Acids Research 2010 38(Database issue):D457-D462; doi:10.1093/nar/gkp851<br>
 [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkp851">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D457">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D457">PDF</a> ]
 
-<br><br>Much of the data in TriTrypDB is provided by independent
-researchers.  Please cite them if you use their data.  For a list
-of the data integrated into TriTrypDB and the related
-publications please see <a
-href="getDataset.do?display=detail"
-class="blue"> Data Sources</a>.
-       ]]>
+<br><br>Much of the data in TriTrypDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into TriTrypDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+     
+  ]]>
        </attribute>
    </record>
 

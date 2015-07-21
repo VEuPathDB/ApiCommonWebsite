@@ -15,7 +15,10 @@
        <attribute name="text">
        <![CDATA[
 ToxoDB is a genome database for the genus <i>Toxoplasma</i>, a set of single-celled eukaryotic pathogens that cause human and animal diseases, including toxoplasmosis.  
-
+<br><br>
+For a list of the data integrated into ToxoDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 
        ]]>
        </attribute>
@@ -27,7 +30,7 @@ ToxoDB is a genome database for the genus <i>Toxoplasma</i>, a set of single-cel
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in ToxoDB is provided by independent researchers.  For a list of the data integrated into ToxoDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in ToxoDB is provided by independent researchers.  For a list of the data integrated into ToxoDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -106,7 +109,7 @@ B. Gajria, A. Bahl, J. Brestelli, J. Dommer, S. Fischer, X. Gao, M. Heiges, J. I
  Nucleic Acids Res., November 14, 2007; (2007) gkm981v1. <br>
 [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkm981v1">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkm981v1">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkm981v1">PDF</a> ]
 
-<br><br>Much of the data in ToxoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into ToxoDB and the related publications please see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.
+<br><br>Much of the data in ToxoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into ToxoDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
        ]]>
        </attribute>
    </record>

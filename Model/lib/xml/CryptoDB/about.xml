@@ -15,7 +15,11 @@
        <attribute name="text">
 <![CDATA[
 CryptoDB is an integrated genomic and functional genomic database for 
-the parasite Cryptosporidium. CryptoDB integrates whole genome sequence and annotation along with experimental data and environmental isolate sequences provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
+the parasite Cryptosporidium and other related genera. CryptoDB integrates whole genome sequence and annotation along with experimental data and environmental isolate sequences provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
+<br><br>
+For a list of the data integrated into CryptoDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 ]]>
 
 </attribute>
@@ -27,7 +31,7 @@ the parasite Cryptosporidium. CryptoDB integrates whole genome sequence and anno
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
      <![CDATA[
-Much of the data in CryptoDB is provided by independent researchers.  For a list of the data integrated into CryptoDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in CryptoDB is provided by independent researchers.  For a list of the data integrated into CryptoDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
     ]]>
        </attribute>
    </record>
@@ -108,7 +112,7 @@ When citing CryptoDB itself, please use:
 <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=16381902">
 CryptoDB: a Cryptosporidium bioinformatics resource update.</a> 2006 Jan 1;34:D419-22. Heiges M, et al.
 
-<br><br>Much of the data in CryptoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into CryptoDB and the related publications please see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.
+<br><br>Much of the data in CryptoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into CryptoDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
 
 
        ]]>

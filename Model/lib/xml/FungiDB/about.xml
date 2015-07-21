@@ -15,102 +15,25 @@
        <attribute name="text">
 <![CDATA[
 FungiDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
-database for the kingdom Fungi.  In its first iteration (released in early 2011), FungiDB contains the genomes of 18 Fungi covering 17 species.
-(see below).  
+database for the kingdom Fungi.  In its first iteration (released in early 2011), FungiDB containeds the genomes of 18 Fungi covering 17 species.  For a list of the data integrated into FungiDB today and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
 FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
+
 ]]>
 </attribute>
    </record>
-
-   <record>
-       <attribute name="title">Organisms included in FungiDB</attribute>
-       <attribute name="tag">organisms</attribute>
-       <attribute name="text">
-       <![CDATA[
-<ul>
-<li> Eurotiomycetes; Ascomycota</li>
-<ul>
-<li><span style="font-style: italic;">Aspergillus clavatus</span></li>
-<li><span style="font-style: italic;">Aspergillus flavus</span></li>
-<li><span style="font-style: italic;">Aspergillus fumigatus</span></li>
-<li><span style="font-style: italic;">Aspergillus niger</span></li>
-<li><span style="font-style: italic;">Aspergillus nidulans (Emericella nidulans)</span></li>
-<li><span style="font-style: italic;">Aspergillus terreus</span></li>
-<li><span style="font-style: italic;">Coccidoidies immitis</span> strain RS</li>
-<li><span style="font-style: italic;">Coccidoidies immitis</span> strain H538.4</li>
-</ul>
-<ul>
-<li> Sordariomycetes; Ascomyocta</li>
-<ul>
-<li><span style="font-style: italic;">Fusarium oxysporum f. sp. lycopersici</span></li>
-<li><span style="font-style: italic;">Gibberella zeae (Fusarium graminearum)</span></li>
-<li><span style="font-style: italic;">Gibberella moniliformis (Fusarium verticillioides)</span></li>
-<li><span style="font-style: italic;">Magnaporthea oryzae</span> formerly <span style="font-style: italic;">(Magnaporthe grisea)</span></li>
-<li><span style="font-style: italic;">Neurospora crassa</span> strain OR74A</li>
-</ul>
-<li> Saccharomycotina; Ascomyocta</li>
-<ul>
-<li><span style="font-style: italic;">Candida albicans</span></li>
-<li><span style="font-style: italic;">Saccharomyces cerevisiae</span></li>
-</ul>
-<li> Basidiomycota</li>
-<ul>
-<li><span style="font-style: italic;">Filobasidiella neoformans (Cryptococcus neoformans var grubii)</span></li>
-<li><span style="font-style: italic;">Puccinia graminis</span></li>
-</ul>
-<li> Mucormycotina ("Zygomycota")</li>
-<ul>
-<li><span style="font-style: italic;">Rhizopus oryzae</span></li>
-</ul>
-</ul>
-       ]]>
-       </attribute>
-   </record>
-
 
 <record>
        <attribute name="title">Citing Data Providers</attribute>
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in FungiDB is provided by independent researchers.  For a list of the data integrated into FungiDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in FungiDB is provided by independent researchers.  For a list of the data integrated into FungiDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
-
- <record>
-       <attribute name="title">Data Statistics</attribute>
-       <attribute name="tag">stats</attribute>
-       <attribute name="text">
-       <![CDATA[
-
-<div id="cirbulletlist"><ul>
-<li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
-</ul></div>
-
-       ]]>
-       </attribute>
-   </record>
-
-<record>
-       <attribute name="title">Understanding Downloads</attribute>
-       <attribute name="tag">downloads</attribute>
-       <attribute name="text">
-       <![CDATA[
-There are several kinds of downloads available in a EuPathDB site:
-<div id="cirbulletlist">
-<ul>
-<li> Download files that we create at release time. The link to access these files is under the menu item "Downloads":"Data Files". These include fasta files for all available sequences, gff files with complete gene information, and other formats.
-<li> Download files with results generated by running searches. From a result page (after running a search) a user can access the "Download Results" link, to a new page where a few different download formats are offered. The file for download includes all IDs in the result. The user selects a format and, in some formats, the user may request additional information about each ID in the result: single valued attributes (e.g., exon count for a geneID) and multi-valued tables (e.g., set of EC numbers for a geneID).
-<li> Download files that have been uploaded by the community in our websites, available under "Downloads" or "Community".
-<li> Download EuPathDB publications, under the menu item "Downloads".
-</ul>
-</div>
-       ]]>
-       </attribute>
-   </record>
-
 
  <record>
        <attribute name="title">Scientific Advisory Team</attribute>
@@ -264,13 +187,18 @@ Charles Treatman<SUP>2,7</SUP>, Haiming Wang<SUP>1</SUP>
        <attribute name="tag">funding</attribute>
        <attribute name="text">
        <![CDATA[
-FungiDB is funded through a grant from the <a
+FungiDB is a member of pathogen-databases that are housed under 
+the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
+Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is 
+mainly distributed between the University of Pennsylvania in 
+Philadelphia, Pennsylvania and the University of Georgia in Athens, 
+Georgia.
+
+FungiDB was initially funded through a grant from the <a
 href="http://bwfund.org/">Burroughs Wellcome Fund</a> to Jason Stajich
 (UC Riverside) and David Roos (University of Pennsylvania and
 EuPathDB). <br>
-The EuPathDB team is primarily distributed between the University of
-Pennsylvania in Philadelphia, Pennsylvania and the University of
-Georgia in Athens, Georgia.  
+
        ]]>
        </attribute>
    </record>
@@ -308,7 +236,7 @@ When citing FungiDB itself, please use:
 <b><a href="http://www.ncbi.nlm.nih.gov/pubmed/22064857">FungiDB: an integrated functional genomics database for fungi</a></b>.
 Stajich JE, Harris T, Brunk BP, Brestelli J, Fischer S, Harb OS, Kissinger JC, Li W, Nayak V, Pinney DF, Stoeckert CJ Jr, Roos DS. Nucleic Acids Res. 2012 Jan 1;40(D1):D675-D681.
 
-<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.
+<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
 
        ]]>
        </attribute>
