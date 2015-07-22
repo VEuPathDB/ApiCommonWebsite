@@ -16,6 +16,109 @@
        </attribute>
     </record>
 --> 
+
+<record>
+  <attribute name="headline">AmoebaDB 25 Released</attribute>
+  <attribute name="date">20 July 2015 13:00</attribute>
+  <attribute name="tag">amoebadb7_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of {Project} {Version}</strong></p>
+
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Genome Sequence</h4>
+        
+        <aside>
+        Genome sequence for the following <i>Acanthamoeba</i> strains is available for the first time in AmoebaDB. The data 
+        is provided pre-publication by Andrew Jackson, University of Liverpool.
+        </aside>
+        
+        <ul>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aastUnknown_primary_genome_RSRC"><i>Acanthamoeba astronyxis</i></a> Unknown &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826245.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acasMa_primary_genome_RSRC">Acanthamoeba castellanii</a> Ma &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826485.1">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aculA1_primary_genome_RSRC">Acanthamoeba culbertsoni</a> A1 &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826265.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alenPD2S_primary_genome_RSRC">Acanthamoeba lenticulata</a> PD2S &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826285.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alugL3a_primary_genome_RSRC">Acanthamoeba lugdunensis</a> L3a &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826425.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=amau1652_primary_genome_RSRC">Acanthamoeba mauritaniensis</a> Reich &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826425.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=apalReich_primary_genome_RSRC">Acanthamoeba palestinensis</a> 1652 &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826325.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aquiVil3_primary_genome_RSRC">Acanthamoeba quina</a> vil3 &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826445.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=arhySingh_primary_genome_RSRC">Acanthamoeba rhydoses</a> Singh &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826445.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspGalka_primary_genome_RSRC">Acanthamoeba sp</a> Galka &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826505.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. pearcei</i>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspIncertae_sedis_primary_genome_RSRC">Acanthamoeba sp</a> Incertae sedis &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826365.1//">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. royreba</i>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspT4B-type_primary_genome_RSRC">Acanthamoeba sp</a> T4b-type &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826345.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. polyphaga</i>
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=atriSH621_primary_genome_RSRC">Acanthamoeba triangularis</a> SH621 &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826325.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. palestinensis</i>.
+          </li>
+        </ul>
+      </section>
+       <section>
+        <h4>RNA Sequencing</h4>
+        <ul>
+          <li>
+            <a href="http://toxodb.org/a/getDataset.do?datasets=hhamHH34_primary_genome_RSRC">Trophozoite Transcriptome (Nfow)</a> &mdash;
+            Transcriptome of <i> Naegleria fowleri</i> ATCC 30863 trophozoites. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/24950717">Zysset-Burri et al.</a>.
+          </li>
+        </ul>
+      </section>
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
 <record>
        <attribute name="headline">AmoebaDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>

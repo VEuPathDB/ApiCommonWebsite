@@ -16,17 +16,20 @@
        <![CDATA[
 
 EuPathDB (formerly ApiDB) is an integrated database 
-covering the eukaryotic pathogens in the genera <i>Acanthamoeba</i>, <i>Annacaliia</i>, <i>Babesia</i>, <i>Crithidia</i>, <i>Cryptosporidium</i>, <i>Edhazardia</i>, <i>Eimeria</i>, <i>Encephalitozoon</i>, <i>Endotrypanum</i>, <i>Entamoeba</i>, <i>Enterocytozoon</i>, <i>Giardia</i>, <i>Gregarina</i>, <i>Hamiltosporidium</i>, <i>Leishmania</i>, <i>Nematocida</i>, <i>Neospora</i>, <i>Nosema</i>, <i>Plasmodium</i>, <i>Theileria</i>, <i>Toxoplasma</i>, <i>Trichomonas</i>, <i>Trypanosoma</i> and <i>Vavraia</i>, <i>Vittaforma</i>).
-  
-While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an 
+covering the eukaryotic pathogens in the genera listed in our <a href="processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> page.
+<br>
+While these organisms are supported by a taxon-specific database/website built upon the same infrastructure, the EuPathDB portal offers an 
 entry point to all of these resources, and the opportunity to leverage orthology for searches across genera.
 <br><br>
 The EuPathDB databases are funded by NIAID and they have strict guidelines as to which organisms we can support.  EuPathDB is one of four <a href="http://www.niaid.nih.gov/labsandresources/resources/dmid/brc/Pages/default.aspx">NIH funded bioinformatics resource centers</a>.  Mainly we are to incorporate any eukaryotic pathogen that is deemed emerging or re-emerging (see <a href="http://www3.niaid.nih.gov/topics/emerging/list.htm">list</a>).  We also have some organisms that are not on the list, those were either added in the past on the behest of the community and additional funding (such as TrichDB), organisms that are related to emerging or re-emerging pathogen (such as Plasmodium or Neospora) and the trypanosomatids (funded as a pilot project by the Bill and Melinda Gates foundation).
 <br><br>
 The EuPathDB family of databases is expected to expand further over the coming years, incorporating new species including the Amoebozoa 
-(Entamoeba, Acanthamoeba), Microsporidia, and additional Apicomplexans, Kinetoplastida and Diplomonads. Of course, we continue collecting data 
-that are being deposited at an ever-increasing rate, including additional genome sequences, microarray data, 
-probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), proteomics data, isolate data, phenotype information and metabolomic data.
+(Entamoeba, Acanthamoeba), Microsporidia, and additional Apicomplexans, Kinetoplastida and Diplomonads. 
+Of course, we continue collecting data that are being deposited at an ever-increasing rate, including additional genome sequences, microarray data, probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), proteomics data, isolate data, phenotype information and metabolomic data.
+<br><br>
+For a list of the data integrated into EuPathDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 
 
        ]]>
@@ -40,8 +43,8 @@ probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), prot
        <![CDATA[
 
 <div id="cirbulletlist"><ul>
-<li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
+<li>The <a href = "processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
+<li>The <a href="processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
 </ul></div>
 
        ]]>
@@ -50,69 +53,13 @@ probe-based hybridization and sequencing data (e.g. ChIP-chip and RNA-Seq), prot
 
 
  <record>
-       <attribute name="title">Understanding Data: Protocols and Methods</attribute>
+       <attribute name="title">Understanding Data</attribute>
        <attribute name="tag">protocols_methods</attribute>
        <attribute name="text">
        <![CDATA[
 
-For detail on Data Sources and Methods please access specific component sites information:
-<center>
-<table width="50%" border="0" cellpadding="2" cellspacing="2">
+For a list of the data integrated into EuPathDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
 
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org" style="color:#003366"><b>AmoebaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://amoebadb.org/amoeba/getDataset.do?display=detail" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://amoebadb.org/amoeba/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>
-</tr>
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org" style="color:#003366"><b>CryptoDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://cryptodb.org/cryptodb/getDataset.do?display=detail" >Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.Methods"> Methods</a>,&nbsp;&nbsp;&nbsp; <a href="http://cryptodb.org/static/SOP/">SOPs for annotation.</a></font></td>
-</tr>
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org" style="color:#003366"><b>GiardiaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://giardiadb.org/giardiadb/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://giardiadb.org/giardiadb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
-</td>
-</tr>
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org" style="color:#003366"><b>MicrosporidiaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://microsporidiadb.org/micro/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://microsporidiadb.org/micro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
-</td>
-</tr>
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://piroplasmadb.org" style="color:#003366"><b>PiroplasmaDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://piroplasmadb.org/piro/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://piroplasmadb.org/piro/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
-</td>
-</tr>
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://plasmodb.org" style="color:#003366"><b>PlasmoDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://plasmodb.org/plasmo/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
-</td>
-</tr
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://toxodb.org" style="color:#003366"><b>ToxoDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://toxodb.org/toxo/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
-</td>
-</tr>
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://trichdb.org" style="color:#003366"><b>TrichDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://trichdb.org/trichdb/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://trichdb.org/trichdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
-</td>
-</tr>
-
-<tr valign="top">
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://tritrypdb.org" style="color:#003366"><b>TriTrypDB.org:</b></a></font></td>
-    <td align="left" ><font face="Arial,Helvetica"><a href="http://tritrypdb.org/tritrypdb/getDataset.do?display=detail">Data Sources</a>,&nbsp;&nbsp;&nbsp; <a href="http://tritrypdb.org/tritrypdb/showXmlDataContent.do?name=XmlQuestions.Methods">Methods</a>
-</td>
-</tr>
-
-</table>
-</center>
 <br><br>
 <h4>EST Assemblies</h4>
 EST assemblies are transcript predictions based on genome alignments. 
@@ -129,7 +76,6 @@ are used for clustering. Clusters of ESTs are then assembled and
 consensus sequences produced using the CAP4 assembly program (X. Huang 
 and Madan, A., 1999. Genome Res. 9:868-877). Finally, the predicted 
 consensus transcripts are themselves aligned to the genome.
-
 
 
        ]]>
@@ -180,9 +126,9 @@ EuPathDB. Please see Citing EuPathDB below.
        <![CDATA[
 
 Much of the data in EuPathDB is provided by independent
-researchers.  Please cite them if you use their data.  For a list
-of the data integrated into EuPathDB and the related
-publications please access the "Data Sources" link located in the "Data Summary" option on the grey menubar located at the top of any page.
+researchers.  Please cite them if you use their data. 
+For a list of the data integrated into EuPathDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+
 
 <br><br>
 When citing EuPathDB itself, please use:

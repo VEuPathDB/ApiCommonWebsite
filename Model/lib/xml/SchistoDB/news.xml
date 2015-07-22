@@ -13,6 +13,32 @@
        </attribute>
     </record>
 -->
+
+
+<record>
+  <attribute name="headline">SchistoDB 25 Released</attribute>
+  <attribute name="date">20 July 2015 13:00</attribute>
+  <attribute name="tag">schistodb7_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of SchistoDB 25</strong></p>
+
+    <section>
+      <h3>No new data or functionalities in this release</h3>
+
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
 <record>
        <attribute name="headline">SchistoDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
