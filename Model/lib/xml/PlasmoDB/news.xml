@@ -17,6 +17,64 @@
        </attribute>
     </record>
 -->
+
+<record>
+  <attribute name="headline">PlasmoDB 25 Released</attribute>
+  <attribute name="date">20 July 2015 13:00</attribute>
+  <attribute name="tag">plasmodb7_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 25</strong></p>
+
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Proteomics</h4>
+        <ul>
+          <li>
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pvivSal1_massSpec_Patarroyo_Intraerythrocytic_Proteome_RSRC">
+            Intraerythrocytic life cycle of <i>Plasmodium vivax</i> (VCG-1)</a> &mdash; 
+            Proteome during the <i>Plasmodium vivax</i> VCG-1 intraerythrocytic life cycle. Manuel Alfonso Patarroyo, Fundación Instituto de Inmunología de Colombia (FIDIC) 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25316051">Moreno-Perez et al.</a>
+          </li>
+        </ul>
+      </section>
+      
+   <!--
+      <section>
+        <h4>Proteomics</h4>
+        <ul>
+          <li>
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pfal3D7_SNPChip_SNP_Chip_Artesunate_Resistance_RSRC">
+            Isolate genotypes of artemisinin resistance.</a> &mdash; 
+            Genotype calls for ~8,000 SNPs generated from Affymetric SNP array analysis on 
+            samples collected during clinical trials of artesunate and ACTs in Southeast Asia. Christopher V. Plowe, University of Maryland
+            <a href="www.ncbi.nlm.nih.gov/pubmed/23248304">Takala-Harrison et al.</a>.
+          </li>
+        </ul>
+      </section>
+    -->
+    
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
 <record>
        <attribute name="headline">PlasmoDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
