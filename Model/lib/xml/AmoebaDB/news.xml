@@ -43,55 +43,55 @@
         
         <ul>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aastUnknown_primary_genome_RSRC"><i>Acanthamoeba astronyxis</i></a> Unknown &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aastUnknown_primary_genome_RSRC"><i>Acanthamoeba astronyxis</i> Unknown </a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826245.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acasMa_primary_genome_RSRC">Acanthamoeba castellanii</a> Ma &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acasMa_primary_genome_RSRC"><i>Acanthamoeba castellanii</i> Ma </a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826485.1">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aculA1_primary_genome_RSRC">Acanthamoeba culbertsoni</a> A1 &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aculA1_primary_genome_RSRC"><i>Acanthamoeba culbertsoni</i> A1</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826265.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alenPD2S_primary_genome_RSRC">Acanthamoeba lenticulata</a> PD2S &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alenPD2S_primary_genome_RSRC"><i>Acanthamoeba lenticulata</i> PD2S</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826285.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alugL3a_primary_genome_RSRC">Acanthamoeba lugdunensis</a> L3a &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alugL3a_primary_genome_RSRC"><i>Acanthamoeba lugdunensis</i> L3a</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826425.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=amau1652_primary_genome_RSRC">Acanthamoeba mauritaniensis</a> Reich &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=amau1652_primary_genome_RSRC"><i>Acanthamoeba mauritaniensis</i> Reich</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826425.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=apalReich_primary_genome_RSRC">Acanthamoeba palestinensis</a> 1652 &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=apalReich_primary_genome_RSRC"><i>Acanthamoeba palestinensis</i> 1652</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826325.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aquiVil3_primary_genome_RSRC">Acanthamoeba quina</a> vil3 &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aquiVil3_primary_genome_RSRC"><i>Acanthamoeba quina</i> vil3</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826445.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=arhySingh_primary_genome_RSRC">Acanthamoeba rhydoses</a> Singh &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=arhySingh_primary_genome_RSRC"><i>Acanthamoeba rhydoses</i> Singh</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826445.1/">Genbank version 2 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspGalka_primary_genome_RSRC">Acanthamoeba sp</a> Galka &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspGalka_primary_genome_RSRC"><i>Acanthamoeba sp</i> Galka</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826505.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. pearcei</i>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspIncertae_sedis_primary_genome_RSRC">Acanthamoeba sp</a> Incertae sedis &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspIncertae_sedis_primary_genome_RSRC"><i>Acanthamoeba sp</i> Incertae sedis</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826365.1//">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. royreba</i>.
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspT4B-type_primary_genome_RSRC">Acanthamoeba sp</a> T4b-type &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspT4B-type_primary_genome_RSRC"><i>Acanthamoeba sp</i> T4b-type</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826345.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. polyphaga</i>
           </li>
           <li>
-            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=atriSH621_primary_genome_RSRC">Acanthamoeba triangularis</a> SH621 &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=atriSH621_primary_genome_RSRC"><i>Acanthamoeba triangularis</i> SH621</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826325.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. palestinensis</i>.
           </li>
         </ul>
@@ -100,7 +100,7 @@
         <h4>RNA Sequencing</h4>
         <ul>
           <li>
-            <a href="http://toxodb.org/a/getDataset.do?datasets=hhamHH34_primary_genome_RSRC">Trophozoite Transcriptome (Nfow)</a> &mdash;
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=nfowATCC30863_Pathogenic_Trophozoite_Trascriptome_rnaSeq_RSRC">Trophozoite Transcriptome (Nfow)</a> &mdash;
             Transcriptome of <i> Naegleria fowleri</i> ATCC 30863 trophozoites. 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24950717">Zysset-Burri et al.</a>.
           </li>
