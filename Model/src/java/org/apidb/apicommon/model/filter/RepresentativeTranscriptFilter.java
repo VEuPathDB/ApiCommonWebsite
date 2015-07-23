@@ -31,4 +31,10 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return "select * from ( " + idSql + " ) where rownum = 1"; 
   }
 
+  @Override
+  public boolean defaultValueEquals(JSONObject value) throws WdkModelException {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 }
