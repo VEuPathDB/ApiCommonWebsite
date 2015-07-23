@@ -19,12 +19,12 @@
 
 <record>
   <attribute name="headline">AmoebaDB 25 Released</attribute>
-  <attribute name="date">20 July 2015 13:00</attribute>
+  <attribute name="date">23 July 2015 13:00</attribute>
   <attribute name="tag">amoebadb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of {Project} {Version}</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB Release 25</strong></p>
 
     <section>
       <h3>New data in this release</h3>
