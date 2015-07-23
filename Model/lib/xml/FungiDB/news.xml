@@ -46,11 +46,13 @@
         <h4>Curated Phenotypes </h4>
         <ul>
           <li>
-            Phenotypes curated from the literature by Diane Inglis are available intabulated form on the 
+            <a href="http://fungidb.org/fungidb/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=137">
+            Curated Cryptococcus Phenotypes</a> &mdash; 
+            Phenotypes curated from the literature by Diane Inglis are available in tabulated form on the 
             gene pages of
             <a href="http://fungidb.org/fungidb/im.do?s=f5f5fee2563a7db1"> 446 genes </a> from 
-            <i>Cryptococcus gattii</i> WM276, <i>Cryptpcoccus neoformans</i> var. neoformans JEC21, and 
-            <i>Cryptococcus neoformans</i> var. grubii H99. 
+            <i>Cryptococcus gattii</i> strains WM276 and R265, <i>Cryptpcoccus neoformans</i> var. neoformans JEC21, var. grubii H99, 
+            and var. neoformans B-3501A.
           </li>
         </ul>
       </section>
