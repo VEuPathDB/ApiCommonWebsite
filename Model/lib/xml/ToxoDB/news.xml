@@ -56,7 +56,7 @@
         <h4>Whole genome sequencing of isolate for SNP analysis</h4>
         <ul>
           <li>
-            <a href="http://qa.ToxoDB.org/a/getDataset.do?datasets=hhamHH34_HTS_SNP_Boyle_HTS_SNP_RSRC">
+            <a href="http://ToxoDB.org/a/getDataset.do?datasets=hhamHH34_HTS_SNP_Boyle_HTS_SNP_RSRC">
              Aligned genomic sequence reads - HhCatGer041 strain</a> &mdash; 
             Illumina genome sequencing of <i>Hammondia hammondi</i> isolate HhCatGer041 from Germany. 
             Sequencing reads were aligned to <i>Hammondia hammondi</i> strain H.H.34 and used to determine SNPs. 
