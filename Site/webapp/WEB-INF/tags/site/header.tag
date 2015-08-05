@@ -64,7 +64,7 @@
     <span style="position:relative;top:-20px;left:-20px">${releaseDate_formatted}</span>
   </c:when>
   <c:when test="${project == 'PlasmoDB'}">
-		<a href="/" style="font-style:italic;font-family:verdana;color:#8f0165;font-size:500%;font-weight:bold;position:relative;left:30px;top:5px">PRISM</a>
+		<a href="/" style="font-style:italic;font-family:verdana;color:#8f0165;font-size:350%;font-weight:bold;position:relative;left:20px;top:5px">Data Integration</a>
 		<span style="position:relative;top:-30px;left:33px">Version ${build}</span>
 		<span style="position:relative;top:-20px;left:-5px">${releaseDate_formatted}</span>
 	</c:when>
