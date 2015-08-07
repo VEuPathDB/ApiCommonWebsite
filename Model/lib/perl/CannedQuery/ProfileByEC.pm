@@ -16,7 +16,7 @@ sub init {
             from
             apidb.profileset ps, apidb.profile p,
             (SELECT DISTINCT gf.source_id gene_source_id, ec.ec_number
-            FROM dots.GeneFeature gf, ApidbTuning.GenomicSequenceAttributes gs,
+            FROM dots.GeneFeature gf, ApidbTuning.Genomicttributes gs,
                  dots.Transcript t, dots.translatedAaFeature taf,
                  dots.aaSequenceEnzymeClass asec, sres.enzymeClass ec,ApidbTuning.GeneAttributes ga
             WHERE gs.na_sequence_id = gf.na_sequence_id

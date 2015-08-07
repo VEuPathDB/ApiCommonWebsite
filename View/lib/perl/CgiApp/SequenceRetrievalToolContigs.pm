@@ -33,7 +33,7 @@ sub run {
   if ($self->{type} eq 'contig') {
     $sql = <<EOSQL;
 SELECT s.source_id, substr(s.sequence, ?, ?), ' | ' || sa.sequence_description as description
-FROM ApidbTuning.GenomicSequenceSequence s, ApidbTuning.GenomicSequenceId si, ApidbTuning.GenomicSequenceAttributes sa
+FROM ApidbTuning.GenomicSequenceSequence s, ApidbTuning.GenomicSequenceId si, ApidbTuning.GenomicSeqAttributes sa
 WHERE  lower(si.id) = lower(?)
 AND s.source_id = si.sequence
 AND sa.source_id = s.source_id
@@ -154,7 +154,7 @@ sub validateIds {
   if ($type eq 'contig') {
   $sql = <<EOSQL;
 SELECT s.sequence, sa.length
-FROM ApidbTuning.GenomicSequenceId s, ApidbTuning.GenomicSequenceAttributes sa
+FROM ApidbTuning.GenomicSequenceId s, ApidbTuning.GenomicSeqAttributes sa
 WHERE lower(s.id) = lower(?)
 AND sa.source_id = s.sequence
 EOSQL
