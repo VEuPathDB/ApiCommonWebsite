@@ -146,10 +146,10 @@ sub processParams {
 my $sqlQueries;
 
 $sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.ProteinSequence seq
+SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+AND    bfmv.gene_source_id = ?
 EOSQL
 
 $sqlQueries->{orfProteinSql} = <<EOSQL;
@@ -165,17 +165,17 @@ AND    bfmv.source_id = ?
 EOSQL
 
 $sqlQueries->{transcriptSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.TranscriptSequence seq
-WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.TranscriptSequence seq
+WHERE  bfmv.transcript_source_id = seq.source_id
+AND    bfmv.gene_source_id = ?
 EOSQL
 
 $sqlQueries->{cdsSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.CodingSequence seq
-WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.CodingSequence seq
+WHERE  bfmv.transcript_source_id = seq.source_id
+AND    bfmv.gene_source_id = ?
 EOSQL
 
 
@@ -222,11 +222,12 @@ sub handleNonGenomic {
     }
 
     $sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.source_id, substr(seq.sequence,  $start_position, ($seq_length)),
-        bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.ProteinSequence seq
+SELECT bfmv.gene_source_id, substr(seq.sequence,  $start_position, ($seq_length)),
+        bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+AND    bfmv.gene_source_id = ?
+
 EOSQL
     $sql = $site->{geneProteinSql};
   }
