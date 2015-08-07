@@ -297,10 +297,17 @@ sub handleGenomic {
   my $beginAnchRev = 0;
   my $endAnchRev = 0;
 
-  $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
-  $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
-  $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
-  $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
+  if ($self->{geneOrOrf} eq "gene") {
+    $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
+    $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
+    $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
+    $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
+  } else {
+    $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+    $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+    $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+    $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+  }
 
   my $beginOffset = $self->{upstreamOffset};
   my $endOffset = $self->{downstreamOffset};
