@@ -297,10 +297,10 @@ sub handleGenomic {
   my $beginAnchRev = 0;
   my $endAnchRev = 0;
 
-  $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
-  $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
-  $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
-  $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+  $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
+  $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
+  $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
+  $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
 
   my $beginOffset = $self->{upstreamOffset};
   my $endOffset = $self->{downstreamOffset};
@@ -316,8 +316,8 @@ sub handleGenomic {
   $endRev = "($beginAnchRev - $beginOffset)";
 
 $sqlQueries->{geneGenomicSql} = <<EOSQL;
-select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
-     bfmv.start_min, bfmv.end_max,
+select bfmv.source_id, s.source_id, bfmv.organism, bfmv.gene_product AS product,
+     bfmv.gene_start_min, bfmv.gene_end_max,
      DECODE(bfmv.strand,'reverse',1,'forward',0) as is_reversed,
      CASE WHEN bfmv.is_reversed = 1
      THEN $beginAnchRev
@@ -337,9 +337,9 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
+FROM ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE s.source_id = bfmv.sequence_id
-AND bfmv.source_id IN (
+AND bfmv.gene_source_id IN (
     SELECT gene FROM (
         SELECT gene, CASE WHEN id = gene THEN 2 WHEN id = LOWER(gene) THEN 1 ELSE 0 END AS matchiness
         FROM ApidbTuning.GeneId WHERE LOWER(id) = LOWER( ?)
