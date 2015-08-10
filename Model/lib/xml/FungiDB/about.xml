@@ -15,9 +15,10 @@
        <attribute name="text">
 <![CDATA[
 FungiDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
-database for the kingdom Fungi.  In its first iteration (released in early 2011), FungiDB containeds the genomes of 18 Fungi covering 17 species.  For a list of the data integrated into FungiDB today and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+database for the kingdom Fungi.  FungiDB was first released in early 2011 as a collaborative project between EuPathDB and the group of Jason Stajich (University of California, Riverside). At the end of 2015, 
+FungiDB was integrated into the EuPathDB bioinformatic resource center - see this <a href="http://fungidb.org/fungidb/showXmlDataContent.do?name=XmlQuestions.News#comm_lett">news item</a> for additional information.  For a list of the data integrated into FungiDB today and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
 <br><br>
-FungiDB integrates whole genome sequence and annotation and will expand to include experimental data and environmental isolate sequences provided by the community of researchers. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
+FungiDB integrates whole genome sequence and annotation and also includes experimental and environmental isolate sequence data. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 <br><br>
 Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 
@@ -41,10 +42,16 @@ Much of the data in FungiDB is provided by independent researchers.  For a list 
        <attribute name="text">
        <![CDATA[
 
-FungiDB is an initial development mode with a beta release scheduled
-for mid-March 2011. A scientific advisory board will be formed during
-the second year of the project to solicit input from the community of
-advisors on fungal genomics data for inclusion in the project.
+FungiDB scientific advisory groups (list will be updated as additional groups are formed and advisors added):<br>
+EuPathDB has been working closely with AspGD to ensure a smooth transition of data to FungiDB - see this <a href="http://fungidb.org/fungidb/showXmlDataContent.do?name=XmlQuestions.News#open_letter">letter to the Aspergillus community</a> for additional details.<br> 
+The Aspregillus scientific advisory group was formed in May and includes:<br><br>
+<ul>
+<li>Mikael R&#248;rdam Andersen (Technical University of Denmark)</li>
+<li>Elaine Bignell (The University of Manchester)</li>
+<li>Michelle Momany (University of Georgia)</li>
+<li>Antonis Rokas (Vanderbilt University)</li>
+</ul>
+
 
        ]]>
        </attribute>
