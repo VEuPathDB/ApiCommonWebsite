@@ -156,7 +156,7 @@ sub getSimpleValues {
         if ($eo) {
           my $pseudo_row = { %$_row,
                              VALUE         => $Self->_treatValue($profile[$i]),
-#                             ELEMENT_ORDER => $eo,
+                             ELEMENT_ORDER => $eo,
                            };
           push(@Rv, $pseudo_row);
         }

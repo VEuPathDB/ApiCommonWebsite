@@ -53,7 +53,7 @@ public class GBrowseSchemaCreator {
       e.printStackTrace(err);
     }
     finally {
-      worker.shutDownQuietly();
+      if (worker != null) worker.shutDownQuietly();
     }
   }
 
