@@ -24,7 +24,7 @@
 -->
 <record>
   <attribute name="headline">CryptoDB 25 Released</attribute>
-  <attribute name="date">20 July 2015 13:00</attribute>
+  <attribute name="date">23 July 2015 13:00</attribute>
   <attribute name="tag">cryptodb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -42,7 +42,7 @@
         <h4>Genome Sequence</h4>
         <ul>
           <li>
-            <a href="http://qa.CryptoDB.org/a/getDataset.do?datasets=chom37999_primary_genome_RSRC"><i>Cryptosporidium hominis</i> 37999</a> &mdash;
+            <a href="http://CryptoDB.org/a/getDataset.do?datasets=chom37999_primary_genome_RSRC"><i>Cryptosporidium hominis</i> 37999</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000804495.1">Genbank version 18 Dec 2014</a>. This genome sequence is provided pre-publication by 
             Lihua Xiao, Centers for Disease Control USA.
           </li>
