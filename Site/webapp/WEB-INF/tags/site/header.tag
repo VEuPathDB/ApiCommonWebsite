@@ -64,9 +64,9 @@
     <span style="position:relative;top:-20px;left:-20px">${releaseDate_formatted}</span>
   </c:when>
   <c:when test="${project == 'PlasmoDB'}">
-		<a href="/" style="font-style:italic;font-family:verdana;color:#8f0165;font-size:435%;font-weight:bold;position:relative;left:20px;bottom:5px">ICEMR<br/><span style="color:grey;font-weight:normal;font-size:33%;position:relative;bottom:38px">Clinical data integration</span></a>
-		<span style="position:relative;bottom:82px;left:61px">Release ${build}</span>
-		<span style="position:relative;bottom:70px;left:14px">${releaseDate_formatted}</span>
+		<a href="/" style="font-style:italic;font-family:verdana;color:#8f0165;font-size:500%;font-weight:bold;position:relative;left:30px;top:5px">PRISM</a>
+		<span style="position:relative;top:-30px;left:33px">Version ${build}</span>
+		<span style="position:relative;top:-20px;left:-5px">${releaseDate_formatted}</span>
 	</c:when>
   <c:otherwise>
     <a title="Check the news for an explanation why we are skipping EuPathDB Version numbers." 

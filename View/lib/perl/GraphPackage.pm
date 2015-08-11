@@ -17,9 +17,10 @@ use Time::HiRes qw ( time );
 # --------------------------------- new ----------------------------------
 
 sub new {
-    my ($class, $argsRef) = @_;
-    $argsRef = ref $argsRef ? $argsRef : {};
-   
+   my ($class, $argsRef) = @_;
+
+   $argsRef = ref $argsRef ? $argsRef : {};
+
    my %args;
 
    foreach(keys %$argsRef) {
@@ -118,6 +119,7 @@ sub getIdType              { $_[0]->{'IdType'                  } }
 sub setIdType              { $_[0]->{'IdType'                  } = $_[1]; $_[0] }
 
 
+
 # ========================================================================
 # ---------------------------- Object Methods ----------------------------
 # ========================================================================
@@ -212,7 +214,7 @@ sub rOpenFile {
 	 my $h     = int($fmt eq 'pdf' ? $Height / 72 : $Height);
 
 	 if(lc($fmt) eq 'pdf') {
-	    $Rv = qq{pdf(file="$out_f", width=$w, height=$h)};
+           qq{pdf(file="$out_f", width=$w, height=$h)};
          }
          elsif(lc($fmt) eq 'png') {
            $Rv = qq{png(file="$out_f", width=$w, height=$h)};

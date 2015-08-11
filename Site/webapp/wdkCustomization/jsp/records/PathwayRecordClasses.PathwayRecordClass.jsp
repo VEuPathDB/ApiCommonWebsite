@@ -70,13 +70,13 @@
 
 
 <!-- CYTOSCAPE start-->
- <!-- Flash embedding utility (needed to embed Cytoscape Web) -->
- <script type="text/javascript" src="/js/AC_OETags.min.js"></script>
+<!-- Flash embedding utility (needed to embed Cytoscape Web) -->
+<imp:script type="text/javascript" src="js/AC_OETags.min.js"/>
         
 <!-- Cytoscape Web JS API (needed to reference org.cytoscapeweb.Visualization) -->
- <script type="text/javascript" src="/js/cytoscapeweb.min.js"></script> 
+<imp:script type="text/javascript" src="js/cytoscapeweb.min.js"/>
 
-<script src="${pageContext.request.contextPath}/wdkCustomization/js/records/PathwayRecordClasses.PathwayRecordClass.js"></script>
+<imp:script src="wdkCustomization/js/records/PathwayRecordClasses.PathwayRecordClass.js"/>
 
 <script type="text/javascript">
   // get xgmml and draw the visualization
@@ -135,7 +135,7 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
         </ul>
     </li>
     <li><a href="javascript:void(0)">Layout
-    <img title="Choose a Layout for the Pathway Map"  src="/a/assets/wdk/images/question.png" ></img></a>
+    <imp:image title="Choose a Layout for the Pathway Map"  src="wdk/images/question.png" /></a>
         <ul>
   <c:if test="${pathwaySource eq 'KEGG'}"> 
             <li><a  href="javascript:void(0)" onclick="changeLayout('Preset')">Kegg</a></li>  
@@ -148,7 +148,7 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
     </li>
 
     <li><a href="#">Paint Experiment
-    <img title="Choose an Experiment, to display its (average) expression profile on enzymes in the Map"  src="/a/assets/wdk/images/question.png" ></img></a>
+    <imp:image title="Choose an Experiment, to display its (average) expression profile on enzymes in the Map"  src="wdk/images/question.png" /></a>
         <ul>
             <li><a href="javascript:void(0)" onclick="changeExperiment('')">None</a></li>
 <c:set value="${wdkRecord.tables['PathwayGraphs']}" var="pathwayGraphs"/>
@@ -159,7 +159,7 @@ $( "#draggable" ).draggable({ iframeFix: '#cytoscapeweb embed' });
     </li>
 
     <li><a href="#">Paint Genera
-    <img title="Choose a Genera set, to display the presence or absence of these for all enzymes in the Map "  src="/a/assets/wdk/images/question.png" ></img></a>
+    <imp:image title="Choose a Genera set, to display the presence or absence of these for all enzymes in the Map "  src="wdk/images/question.png" /></a>
         <ul>
           <li><a href="javascript:void(0)" onclick="changeExperiment('')">None</a></li>
 

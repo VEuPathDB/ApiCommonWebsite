@@ -1,6 +1,5 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,174 +8,104 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.controller.action.ShowQuestionAction;
+import org.gusdb.wdk.controller.action.ProcessBooleanAction;
+import org.gusdb.wdk.controller.action.ProcessQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.QuestionForm;
 import org.gusdb.wdk.controller.form.WizardForm;
-import org.gusdb.wdk.controller.wizard.StageHandler;
-import org.gusdb.wdk.controller.wizard.StageHandlerUtility;
-import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.controller.wizard.ProcessBooleanStageHandler;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.jspwrap.AnswerParamBean;
-import org.gusdb.wdk.model.jspwrap.ParamBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
+import org.gusdb.wdk.model.jspwrap.StrategyBean;
+import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
-public abstract class ShowSpanStageHandler implements StageHandler {
-  
-    private static final String ATTR_PREVIOUS_STEP = "previousStep";
-    private static final String ATTR_IMPORT_STEP = "importStep";
-    private static final String ATTR_ENABLE_OUTPUT = "enableOuput";
+public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
-    private static final String SPAN_QUESTION = CConstants.WDK_QUESTION_KEY;
+  public static final String PARAM_CUSTOM_NAME = "customName";
+  public static final String PARAM_STRATEGY = "strategy";
+  public static final String PARAM_FILTER = "customName";
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    protected abstract StepBean getChildStep(ActionServlet servlet,
-            HttpServletRequest request, HttpServletResponse response,
-            WizardForm wizardForm) throws Exception;
-
     @Override
-    public Map<String, Object> execute(ActionServlet servlet,
+    public StepBean getChildStep(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
 
-        // get child step
-        StepBean childStep = getChildStep(servlet, request, response,
-                wizardForm);
+        UserBean user = ActionUtility.getUser(servlet, request);
 
-        // get a span logic question
+        // create a new step from question
+        String questionName = request.getParameter(CConstants.QUESTION_FULLNAME_PARAM);
+        if (questionName == null || questionName.length() == 0)
+            throw new WdkUserException("Required "
+                    + CConstants.QUESTION_FULLNAME_PARAM + " is missing.");
+
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-        String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(childStep.getRecordClass().getFullName());
-        QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
+        QuestionBean question = wdkModel.getQuestion(questionName);
 
-        // initialize the wizardForm so that it has the param information
+        // prepare the params
         QuestionForm questionForm = new QuestionForm();
-        questionForm.setQuestion(spanQuestion);
+        questionForm.copyFrom(wizardForm);
         questionForm.setServlet(servlet);
-        ShowQuestionAction.prepareQuestionForm(spanQuestion, servlet, request,
-                questionForm);
-        wizardForm.copyFrom(questionForm);
+        questionForm.setQuestion(question);
 
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put(ATTR_IMPORT_STEP, childStep);
-        attributes.put(SPAN_QUESTION, spanQuestion);
+        Map<String, String> params = ProcessQuestionAction.prepareParams(user,
+                request, questionForm);
 
-        // determine the previous step
-        String action = wizardForm.getAction();
-        if (action.equals(WizardForm.ACTION_ADD)) {
-            prepareAdd(servlet, request, wizardForm, childStep, attributes);
-        } else if (action.equals(WizardForm.ACTION_INSERT)) {
-            prepareInsert(servlet, request, wizardForm, childStep, attributes);
-        } else if (action.equals(WizardForm.ACTION_REVISE)) {
-            prepareRevise(servlet, request, wizardForm, childStep, attributes);
-        } else {
-            throw new WdkUserException("Unknown wizard action: " + action);
+        // get the assigned weight
+        String strWeight = request.getParameter(CConstants.WDK_ASSIGNED_WEIGHT_KEY);
+        boolean hasWeight = (strWeight != null && strWeight.length() > 0);
+        int weight = Utilities.DEFAULT_WEIGHT;
+        if (hasWeight) {
+            if (!strWeight.matches("[\\-\\+]?\\d+"))
+                throw new WdkUserException("Invalid weight value: '"
+                        + strWeight + "'. Only integers are allowed.");
+            if (strWeight.length() > 9)
+                throw new WdkUserException("Weight number is too big: "
+                        + strWeight);
+            weight = Integer.parseInt(strWeight);
+        }
+
+        // create a step from the input
+        String filterName = request.getParameter(PARAM_FILTER);
+        int stepId = Integer.valueOf(request.getParameter(CConstants.WDK_STEP_ID_KEY));
+        int strategyId = Integer.valueOf(request.getParameter(CConstants.WDK_STRATEGY_ID_KEY));
+        
+        StrategyBean strategy = user.getStrategy(strategyId);
+
+        StepBean childStep = null;
+        String importStrategyId = request.getParameter("importStrategy");
+        if (questionName != null && questionName.length() > 0) {
+          // a question name specified, either create a step from it, or revise a current step
+          String action = request.getParameter(ProcessBooleanAction.PARAM_ACTION);
+          if (action.equals(WizardForm.ACTION_REVISE)) {
+            childStep = ProcessBooleanStageHandler.updateStepWithQuestion(
+                servlet, request, wizardForm, strategy, questionName, user, wdkModel, stepId);
+          }
+          else {
+            childStep = user.createStep(null, question, params, filterName,
+                false, true, weight);
+          }
+        }
+        else if (importStrategyId != null && importStrategyId.length() > 0) {
+          // a step specified, it must come from an insert strategy. make a
+          // copy of it, and mark it as collapsable.
+          childStep = ProcessBooleanStageHandler.createStepFromStrategy(
+              user, strategy, Integer.valueOf(importStrategyId));
+        }
+
+        String customName = request.getParameter(PARAM_CUSTOM_NAME);
+        if (customName != null && customName.trim().length() > 0) {
+            childStep.setCustomName(customName);
+            childStep.update(false);
         }
 
         logger.debug("Leaving SpanFromQuestionStageHandler....");
-        return attributes;
+        return childStep;
     }
 
-    private void prepareInsert(ActionServlet servlet,
-            HttpServletRequest request, WizardForm wizardForm,
-            StepBean childStep, Map<String, Object> attributes)
-            throws NumberFormatException, WdkModelException, WdkUserException {
-        StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
-        StepBean previousStep, nextStep;
-        String nextParam = null;
-        if (currentStep.isCombined()) { // insert before a combined step
-            previousStep = StageHandlerUtility.getPreviousStep(servlet,
-                    request, wizardForm);
-            nextStep = currentStep;
-            nextParam = currentStep.getPreviousStepParam();
-        } else { // insert before the first step
-            previousStep = childStep;
-            childStep = currentStep;
-            nextStep = currentStep.getNextStep();
-            if (nextStep == null) {
-                nextStep = currentStep.getParentStep();
-                if (nextStep != null) nextParam = nextStep.getChildStepParam();
-            } else {
-                nextParam = nextStep.getPreviousStepParam();
-            }
-        }
-        String enableOutput = enableOutput(previousStep, childStep, nextStep,
-                nextParam);
-        attributes.put(ATTR_ENABLE_OUTPUT, enableOutput);
-        attributes.put(ATTR_PREVIOUS_STEP, previousStep);
-
-        // also set the step ids as the default of the the input params
-        wizardForm.setValue("span_a", previousStep.getStepId());
-        wizardForm.setValue("span_b", childStep.getStepId());
-    }
-
-    private void prepareRevise(ActionServlet servlet,
-            HttpServletRequest request, WizardForm wizardForm,
-            StepBean childStep, Map<String, Object> attributes)
-            throws WdkModelException {
-        StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
-        StepBean previousStep = currentStep.getPreviousStep();
-        StepBean nextStep = currentStep.getNextStep();
-        String nextParam = null;
-        if (nextStep == null) {
-            nextStep = currentStep.getParentStep();
-            if (nextStep != null) nextParam = nextStep.getChildStepParam();
-        } else {
-            nextParam = nextStep.getPreviousStepParam();
-        }
-
-        String enableOutput = enableOutput(previousStep, childStep, nextStep,
-                nextParam);
-        attributes.put(ATTR_ENABLE_OUTPUT, enableOutput);
-        attributes.put(ATTR_PREVIOUS_STEP, previousStep);
-
-        // also set the step ids as the default of the the input params
-        wizardForm.setValue("span_a", previousStep.getStepId());
-        wizardForm.setValue("span_b", childStep.getStepId());
-    }
-
-    private void prepareAdd(ActionServlet servlet, HttpServletRequest request,
-            WizardForm wizardForm, StepBean childStep,
-            Map<String, Object> attributes) throws NumberFormatException,
-            WdkUserException, WdkModelException {
-        StepBean rootStep = StageHandlerUtility.getRootStep(servlet, request,
-                wizardForm);
-        StepBean previousStep = rootStep;
-        StepBean nextStep = rootStep.getNextStep();
-        String nextParam = null;
-        if (nextStep == null) {
-            nextStep = rootStep.getParentStep();
-            if (nextStep != null) nextParam = nextStep.getChildStepParam();
-        } else {
-            nextParam = nextStep.getPreviousStepParam();
-        }
-        String enableOutput = enableOutput(previousStep, childStep, nextStep,
-                nextParam);
-        attributes.put(ATTR_ENABLE_OUTPUT, enableOutput);
-        attributes.put(ATTR_PREVIOUS_STEP, previousStep);
-
-        // also set the step ids as the default of the the input params
-        wizardForm.setValue("span_a", previousStep.getStepId());
-        wizardForm.setValue("span_b", childStep.getStepId());
-    }
-
-    private String enableOutput(StepBean previousStep, StepBean childStep,
-            StepBean nextStep, String nextParam) throws WdkModelException {
-        if (nextStep == null) return "ab";
-
-        QuestionBean question = nextStep.getQuestion();
-        Map<String, ParamBean<?>> params = question.getParamsMap();
-        AnswerParamBean param = (AnswerParamBean) params.get(nextParam);
-
-        String previousType = previousStep.getRecordClass().getFullName();
-        String childType = childStep.getRecordClass().getFullName();
-
-        String output = "";
-        if (param.allowRecordClass(previousType)) output += "a";
-        if (param.allowRecordClass(childType)) output += "b";
-        return output;
-    }
 }

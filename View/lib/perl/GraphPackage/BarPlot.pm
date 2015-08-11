@@ -8,8 +8,6 @@ use ApiCommonWebsite::View::GraphPackage::PlotPart;
 use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage;
 
-use Data::Dumper;
-
 #--------------------------------------------------------------------------------
 
 sub getIsStacked                 { $_[0]->{'_stack_bars'                     }}
@@ -56,15 +54,11 @@ sub makeRPlotString {
 
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
-
  };
 
   if($@) {
     return $self->blankPlotPart();
   }
-
-
-
 
   foreach(@{$self->getProfileSets()}) {
     if(scalar @{$_->errors()} > 0) {
@@ -679,31 +673,6 @@ sub new {
 }
 
 
-package ApiCommonWebsite::View::GraphPackage::BarPlot::LightTrap;
-use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
-use strict;
-
-
-sub new {
-  my $class = shift; 
-   my $self = $class->SUPER::new(@_);
-
-   #no need to set, already set in your class
-   #At this point query has run, no need for all the variables, just category and Id to make the name graph
-   my $Id = $self->getId();
-   #my $Category = $self->getCategory();
-
-   $self->setDefaultYMax(20);
-   $self->setDefaultYMin(0);
-   $self->setYaxisLabel('Counts');
-
-   $self->setPartName('Metadata Graph');
-#   $self->setPlotTitle("Title - $Id");
-
-   return $self;
-}
-
-1;
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
