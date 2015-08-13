@@ -3,20 +3,19 @@ package org.apidb.apicommon.model;
 import java.util.Map;
 import java.util.Set;
 
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.query.Column;
 import org.gusdb.wdk.model.query.Query;
-import org.gusdb.wdk.model.record.RecordClass;
-import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.model.question.DynamicAttributeSet;
-import org.gusdb.wdk.model.question.AttributeList;
 import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.record.attribute.ColumnAttributeField;
 // import org.apache.log4j.Logger;
+import org.gusdb.wdk.model.user.User;
 
 
 public class TranscriptBooleanQuery extends BooleanQuery {
@@ -80,19 +79,19 @@ public class TranscriptBooleanQuery extends BooleanQuery {
 	contextQuestion.addFilter(gbf);
     }
     
+    @Override
     protected void prepareColumns(RecordClass recordClass) {
-	super.prepareColumns(recordClass);
-	
-	Column column = new Column();
-	column.setName(LEFT_MATCH_COLUMN);
-	column.setQuery(this);
-	columnMap.put(LEFT_MATCH_COLUMN, column);
+      super.prepareColumns(recordClass);
 
-	column = new Column();
-	column.setName(RIGHT_MATCH_COLUMN);
-	column.setQuery(this);
-	columnMap.put(RIGHT_MATCH_COLUMN, column);
- 	
+      Column column = new Column();
+      column.setName(LEFT_MATCH_COLUMN);
+      column.setQuery(this);
+      columnMap.put(LEFT_MATCH_COLUMN, column);
+
+      column = new Column();
+      column.setName(RIGHT_MATCH_COLUMN);
+      column.setQuery(this);
+      columnMap.put(RIGHT_MATCH_COLUMN, column);
     }
 
     /*
