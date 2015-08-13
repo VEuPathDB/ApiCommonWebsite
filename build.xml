@@ -76,7 +76,8 @@
                                                        GBrowse-Installation,
                                                        ApiCommonWebsite/Model-Installation,
                                                        ApiCommonWebsite/View-Installation,
-                                                       ApiCommonWebsite/Site-Installation">
+                                                       ApiCommonWebsite/Site-Installation,
+                                                       ApiCommonWebsite/Service-Installation">
 
     <ant target="defaultProjectInstall">
       <property name="project" value="ApiCommonWebsite"/>
@@ -129,6 +130,12 @@
     </ant>
   </target>
 
+  <target name="ApiCommonWebsite/Service-Installation" depends="ApiCommonWebsite/Model-Installation">
+    <ant target="defaultComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="Service"/>
+    </ant>
+  </target>
 
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
@@ -204,6 +211,20 @@
       <property name="component" value="View"/>
     </ant>
     
+  </target>
+
+  <target name="ApiCommonWebsite/Service-WebInstallation">
+
+    <ant target="defaultComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="Service"/>
+    </ant>
+
+    <ant target="defaultWebComponentInstall">
+      <property name="project" value="ApiCommonWebsite"/>
+      <property name="component" value="Service"/>
+    </ant>
+
   </target>
 
   <target name="installCustomWebLog4j" if="custom.weblog4j.present">

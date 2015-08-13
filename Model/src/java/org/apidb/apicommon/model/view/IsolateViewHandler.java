@@ -28,8 +28,8 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
             WdkUserException;
 
     @Override
-    public Map<String, Object> process(Step step) throws WdkModelException,
-            WdkUserException {
+    public Map<String, Object> process(Step step, Map<String, String[]> params)
+            throws WdkModelException, WdkUserException {
         logger.debug("Entering IsolateViewHandler...");
 
         ResultSet resultSet = null;
