@@ -71,12 +71,14 @@ sub run {
 	 my $typeArg        = $Cgi->param('typeArg');
          my $template     = $Cgi->param('template');
          my $dataset     = $Cgi->param('dataset');
-
+         my $startdate = $Cgi->param('startdate'); #add variables specific to the graph
+         my $enddate = $Cgi->param('enddate');
+                   
          my $widthOverride     = $Cgi->param('w');
          my $heightOverride     = $Cgi->param('h');
          my $compact     = $Cgi->param('compact');
          my $idType     = $Cgi->param('idType');
-
+	 
 
          my $thumbnail_b    = $Cgi->param('thumb');
          my @visibleParts   = split(',', $Cgi->param('vp') || '');
@@ -126,6 +128,7 @@ sub run {
          eval "import $class";
 
 	 $class = $class . "::$datasetClassName" if($template);
+         
          my $_gp = eval {
            $class->new({dataPlotterArg => $typeArg,
                         QueryHandle => $_qh,
@@ -141,6 +144,8 @@ sub run {
                         IdType => $idType,
                         WidthOverride => $widthOverride,
                         HeightOverride => $heightOverride,
+                        StartDate => $startdate, #add variables to the dataset class
+                        EndDate => $enddate,
                        });
          };
 
