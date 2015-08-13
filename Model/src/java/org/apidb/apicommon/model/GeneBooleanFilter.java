@@ -141,6 +141,7 @@ public class GeneBooleanFilter extends StepFilter {
 	  }
   }
   
+  @Override
   public JSONObject getDefaultValue() {
 	  JSONObject jsValue = new JSONObject();
 	  JSONArray jsArray = new JSONArray();

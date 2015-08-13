@@ -7,8 +7,6 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.user.User;
-import org.apache.log4j.Logger;
-
 
 public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
     private static final String NL = System.lineSeparator();
