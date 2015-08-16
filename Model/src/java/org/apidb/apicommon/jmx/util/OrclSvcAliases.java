@@ -55,7 +55,7 @@ public class OrclSvcAliases {
             Hashtable<String, String> env = new Hashtable<String, String>();
     
             env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-            String ldapUrl = "ldap://ds2.apidb.org " +
+            String ldapUrl = "ldap://ds1.apidb.org " +
                              "ldap://ds4.apidb.org "; 
             env.put(Context.PROVIDER_URL, ldapUrl);
             DirContext dctx = new InitialDirContext(env);
