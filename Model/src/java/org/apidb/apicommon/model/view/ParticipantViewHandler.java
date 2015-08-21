@@ -28,7 +28,7 @@ public abstract class ParticipantViewHandler implements SummaryViewHandler {
             WdkUserException;
 
     @Override
-    public Map<String, Object> process(Step step) throws WdkModelException,
+    public Map<String, Object> process(Step step, Map<String, String[]> parameters) throws WdkModelException,
             WdkUserException {
         logger.debug("Entering DwellingViewHandler...");
 
