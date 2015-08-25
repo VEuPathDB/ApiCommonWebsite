@@ -27,10 +27,10 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   private static final String ORIG_SQL_PARAM = "%%originalSql%%";
 
   private static final String FILTER_SQL =
-      "SELECT * FROM (" + ORIG_SQL_PARAM + ") subq1_ " +
-      "WHERE subq1_.SOURCE_ID IN ( " +
-      "  SELECT MIN(subq2_.SOURCE_ID) FROM (" + ORIG_SQL_PARAM + ") subq2_ " +
-      "  GROUP BY subq2_.GENE_SOURCE_ID " +
+      "SELECT * FROM (" + ORIG_SQL_PARAM + ") " +
+      "WHERE SOURCE_ID IN ( " +
+      "  SELECT MIN(subq_.SOURCE_ID) FROM (" + ORIG_SQL_PARAM + ") subq_ " +
+      "  GROUP BY subq_.GENE_SOURCE_ID " +
       ")";
 
   public RepresentativeTranscriptFilter() {
@@ -46,7 +46,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   @Override
   public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
       WdkUserException {
-    throw new UnsupportedOperationException("This filter does not provice a FilterSummary");
+    throw new UnsupportedOperationException("This filter does not provide a FilterSummary");
   }
 
   @Override
@@ -58,7 +58,6 @@ public class RepresentativeTranscriptFilter extends StepFilter {
 
   @Override
   public boolean defaultValueEquals(JSONObject value) throws WdkModelException {
-    // TODO Auto-generated method stub
     return false;
   }
 
