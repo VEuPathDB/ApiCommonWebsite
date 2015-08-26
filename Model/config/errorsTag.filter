@@ -74,6 +74,7 @@ invalidQuestionSet = WDK Model .+ does not contain a Question set with name
 invalidQuestionSet.referer =
 
 # showXmlDataContent.do is no longer used. Only catch if there's a referer
+# (this one might be contained within the InvalidPathException case below)
 obsoleteShowXmlDataContent = showXmlDataContent.do$
 obsoleteShowXmlDataContent.referer =
 
@@ -82,3 +83,8 @@ userException = WdkUserException
 
 # filter out WdkIllegalArgumentException (assume user error or spam)
 wdkIllegalArgumentException = WdkIllegalArgumentException
+
+# Aug 2015: 5300 of these generated in a month, most with no referrer
+# filter out wrong URLs, some are broken only due to using lowercase 
+# (we assume most are spam and that we run a broken link software in our sites to find broken links)
+InvalidPathException = InvalidPathException
