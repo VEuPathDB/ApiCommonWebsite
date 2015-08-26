@@ -27,9 +27,10 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   private static final String ORIG_SQL_PARAM = "%%originalSql%%";
 
   private static final String FILTER_SQL =
-      "SELECT * FROM (" + ORIG_SQL_PARAM + ") " +
+      "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
+      "SELECT * FROM inputSql " +
       "WHERE SOURCE_ID IN ( " +
-      "  SELECT MIN(subq_.SOURCE_ID) FROM (" + ORIG_SQL_PARAM + ") subq_ " +
+      "  SELECT MIN(subq_.SOURCE_ID) FROM inputSql subq_ " +
       "  GROUP BY subq_.GENE_SOURCE_ID " +
       ")";
 
