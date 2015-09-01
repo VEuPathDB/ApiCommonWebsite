@@ -14,6 +14,64 @@
        </attribute>
     </record>
 -->
+
+<record>
+  <attribute name="headline">FungiDB 25 Released</attribute>
+  <attribute name="date">23 July 2015 13:00</attribute>
+  <attribute name="tag">fungidb7_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 25</strong></p>
+
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Genome Sequence and Annotation</h4>
+        <ul>
+          <li>
+            <a href="http://fungidb.org/a/getDataset.do?datasets=AoryRIB40_primary_genome_RSRC"><i>Aspergillus oryzae</i> RIB40</a> &mdash;
+            <a href="http://www.aspergillusgenome.org/download/chromosomal_feature_files/">AspGD version 13 April 2015</a>.
+            Genome sequence and annotation for this organism are available for the first time in FungiDB.
+          </li>
+        </ul>
+      </section>
+      
+            <section>
+        <h4>Curated Phenotypes </h4>
+        <ul>
+          <li>
+            <a href="http://fungidb.org/fungidb/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=116">
+            Curated Cryptococcus Phenotypes</a> &mdash; 
+            Phenotypes curated from the literature by Diane Inglis are available in tabulated form on the 
+            gene pages of
+            <a href="http://fungidb.org/fungidb/im.do?s=f5f5fee2563a7db1"> 446 genes </a> from 
+            <i>Cryptococcus gattii</i> strains WM276 and R265, <i>Cryptpcoccus neoformans</i> var. neoformans JEC21, var. grubii H99, 
+            and var. neoformans B-3501A.
+          </li>
+        </ul>
+      </section>
+
+
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
 <record>
        <attribute name="headline">FungiDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>

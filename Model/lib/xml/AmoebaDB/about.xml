@@ -14,10 +14,14 @@
        <attribute name="tag">generalinfo</attribute>
        <attribute name="text">
 <![CDATA[
-AmoebaDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic database for <i>Entamoeba</i> and <i>Acanthamoeba</i>
- parasites.  In its first iteration (released in early 2010), AmoebaDB contains the genomes of three <i>Entamoeba</i> species (see below).  
+AmoebaDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic database for <i>Entamoeba</i> and <i>Acanthamoeba</i> parasites.  In its first iteration (released in early 2010), AmoebaDB contains the genomes of three <i>Entamoeba</i> species (see below).  
 AmoebaDB integrates whole genome sequence and annotation and will rapidly expand to include experimental data and environmental isolate sequences 
 provided by community researchers . The database includes supplemental bioinformatics analyses and a web interface for data-mining.
+<br><br>
+For a list of the data integrated into AmoebaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
+
 ]]>
 
 </attribute>
@@ -29,7 +33,7 @@ provided by community researchers . The database includes supplemental bioinform
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in AmoebaDB is provided by independent researchers.  For a list of the data integrated into AmoebaDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in AmoebaDB is provided by independent researchers.  For a list of the data integrated into AmoebaDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -42,8 +46,9 @@ Much of the data in AmoebaDB is provided by independent researchers.  For a list
        <![CDATA[
 EuPathDB databases rely heavily on community input.  Each project in EuPathDB benefits from the advice and mentoring of members from each specific community. 
 We hold monthly organism calls for each of our databases with members of the scientific advisory teams and others from the community.  
-Anyone interested in joining one of these conference calls is encouraged to contact us.  While monthly conference calls for AmoebaDB are already underway, 
-a specific scientific advisory team as not yet been assembled.
+Anyone interested in joining one of these conference calls is encouraged to contact us.  
+<!-- While monthly conference calls for AmoebaDB are already underway, 
+a specific scientific advisory team as not yet been assembled. -->
        ]]>
        </attribute>
    </record>
@@ -92,9 +97,10 @@ Please see Citing AmoebaDB below.
        <![CDATA[
 When citing AmoebaDB itself, please use:
 <br><br>
-<b>EuPathDB: a portal to eukaryotic pathogen databases.</b> <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D415">Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. Epub 2009 Nov 13.</a>
+<b><a href="http://www.ncbi.nlm.nih.gov/pubmed/20974635">AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a>
 
-<br><br>Much of the data in AmoebaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into AmoebaDB and the related publications please see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.
+
+<br><br>Much of the data in AmoebaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into AmoebaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
 
 
        ]]>

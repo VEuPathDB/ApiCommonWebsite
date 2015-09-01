@@ -423,14 +423,14 @@ export let DatasetRecord = React.createClass({
   }
 });
 
-let Tooltip = React.createClass({
+export let Tooltip = React.createClass({
   componentDidMount() {
-    //this._setupTooltip();
-    this.$target = $(this.getDOMNode()).find('.wdk-RecordTable-recordLink');
+    this.$target = $(React.findDOMNode(this));
+    this._setupTooltip();
   },
   componentDidUpdate() {
     this._destroyTooltip();
-    //this._setupTooltip();
+    this._setupTooltip();
   },
   componentWillUnmount() {
     this._destroyTooltip();
@@ -456,28 +456,6 @@ let Tooltip = React.createClass({
     }
   },
   render() {
-    // FIXME - Figure out why we lose the fixed-data-table className
-    // Losing the fixed-data-table className for some reason... adding it back.
-    let child = React.Children.only(this.props.children);
-    return React.addons.cloneWithProps(child, {
-      className: child.props.className + " public_fixedDataTableCell_cellContent",
-      onMouseOver: this._setupTooltip
-    });
+    return this.props.children;
   }
 });
-
-export function datasetCellRenderer(attributeValue, attributeName, attributes, index, columnData, width, defaultRenderer) {
-  let reactElement = defaultRenderer(attributeValue, attributeName, attributes, index, columnData, width);
-
-  if (attributeName === 'primary_key') {
-    return (
-      <Tooltip
-        text={attributes.description}
-        width={width}
-      >{reactElement}</Tooltip>
-    );
-  }
-  else {
-    return reactElement;
-  }
-}

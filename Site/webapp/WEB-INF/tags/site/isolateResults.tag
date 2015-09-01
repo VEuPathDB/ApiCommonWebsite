@@ -49,7 +49,7 @@
           scope="request"
           items="${wdk_paging_total}"
           maxItems="${wdk_paging_total}"
-          url="${wdk_paging_url}"
+          url="${requestUri}"
           maxPageItems="${wdk_paging_pageSize}"
           export="offset,currentPageNumber=pageNumber">
   <c:forEach var="paramName" items="${wdk_paging_params}">
@@ -316,7 +316,8 @@
 <table width="100%">
 	<tr align=center>
     	  <td> <b><br/> 
-     	  Please select at least two isolates to run ClustalW. Note: only isolates from a single page will be aligned. <br/>
+     	  Please select at least two isolates to run Clustalw. Note: only isolates from a single page will be aligned. <br/>
+       The result is an alignment of the locus that was used to type the isolates.<br/>
      	  (Increase the page size in 'Advanced Paging' to increase the number that can be aligned).  </b>
     	  </td>
   	</tr>

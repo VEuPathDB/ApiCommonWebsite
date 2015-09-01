@@ -38,6 +38,15 @@ will provide insights into an early evolutionary stage of
 eukaryotic chromosome organization as well as other aspects of
 the prokaryotic / eukaryotic divergence.
 
+<br><br>
+For a list
+of the data integrated into GiardiaDB and the related
+publications please see <a
+href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>
+Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
+
+
 
        ]]>
        </attribute>
@@ -112,8 +121,8 @@ Number of Bases Used in Assembly
 </table>
 <br>
 <div id="cirbulletlist"><ul>
-<li>The <a href = "/a/showXmlDataContent.do?name=XmlQuestions.GenomeDataType">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-<li>The <a href="/a/showXmlDataContent.do?name=XmlQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
+<li>The <a href = "processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> provides an overview of the content in GiardiaDB, all organisms and data types covered.
+<li>The <a href="processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in GiardiaDB, by various datatypes.
 </ul></div>
 
        ]]>
@@ -242,12 +251,7 @@ When citing GiardiaDB itself, please use:
 <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18824479">
 GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> 2009 Jan;37(Database issue):D526-30. Aurrecoechea C, et al.
 
-<br><br>Much of the data in GiardiaDB is provided by independent
-researchers.  Please cite them if you use their data.  For a list
-of the data integrated into GiardiaDB and the related
-publications please see <a
-href="getDataset.do?display=detail"
-class="blue"> Data Sources</a>.
+<br><br>Much of the data in GiardiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into GiardiaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
        ]]>
        </attribute>
    </record>

@@ -18,6 +18,215 @@
        </attribute>
     </record>
 -->
+
+<record>
+  <attribute name="headline">TriTrypDB 25 Released</attribute>
+  <attribute name="date">23 July 2015 13:00</attribute>
+  <attribute name="tag">tritrypdb7_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 25</strong></p>
+
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Genome Sequence and Annotation</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lpyrH10_primary_genome_RSRC"><i>Leptomonas pyrrhocoris</i> H10</a> &mdash;
+            LukesLab version 5 May 2014. This genome sequence and annotation 
+            are available for the first time in TriTrypDB and are provided pre-publication by Julius Lukes, Czech Academy of Sciences.
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lseyATCC30220_primary_genome_RSRC"><i>Leptomonas seymouri </i> ATCC 30220 </a> &mdash;
+            YurchenkoLab version 6 May 2014.
+            This genome sequence and annotation are available for the first time in TriTrypDB and 
+            are provided pre-publication by Vyacheslav Yurchenko, University of Ostrava.
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Genome Annotation</h4>
+        <aside>
+        Annotation for the following genomes is now available in TriTrypDB.  These genomes from the 
+         <a href="http://tritrypdb.org/tritrypdb/communityDownload.do?fname=Trypanosomatid_Sequencing_White_Paper.pdf">
+         Trypanosomatid sequencing white paper</a> project were annotated in collaboration with The Sanger Institute's 
+         <a href="https://www.sanger.ac.uk/research/projects/parasitegenomics/"> Parasite Genomics Group</a>. 
+        </aside>
+        
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=cfasCfCl_primary_genome_RSRC"><i>Crithidia fasciculata</i> Cf-Cl</a> 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lmajLV39c5_primary_genome_RSRC"><i>Leishmania major</i> LV39c5 </a> 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lmajSD75.1_primary_genome_RSRC"><i>Leishmania major</i> SD 75.1</a> 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=emonLV88_primary_genome_RSRC"><i>Endotrypanum monterogeii</i> LV88</a> 
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Updated Functional Annotation</h4>
+        
+        <aside>
+        Annotation updated: products, GO terms, EC numbers, gene names and synonyms.
+       </aside>
+        
+        <ul>
+          <li>
+            <a href="https://docs.google.com/spreadsheets/d/1CyjkSgKP-XWilwD1yfkcPmSprpbfmOXWt-auFiWPIoM/edit?usp=sharing">Summary of annotation updates </a> 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 355 genes with 
+            <a href="http://www.genedb.org/rss/Lbraziliensis/since/4/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=ldonBPK282A1_primary_genome_RSRC"><i>L. donovani</i> BPK282A1 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 469 genes with 
+            <a href="http://www.genedb.org/rss/Ldonovani_BPK282A1/since/4/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=linfJPCM5_primary_genome_RSRC"><i>L. infantum</i> JPCM5 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 279 genes with 
+            <a href="http://www.genedb.org/rss/Linfantum/since/4/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=lmajFriedlin_primary_genome_RSRC"><i>L. major</i> strain Friedlin </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 306 genes with 
+            <a href="http://www.genedb.org/rss/Lmajor/since/4/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=lmexMHOMGT2001U1103_primary_genome_RSRC"><i>L. mexicana</i> MHOM/GT/2001/U1103 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 238 genes with 
+            <a href="http://www.genedb.org/rss/Lmexicana/since/4/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_primary_genome_RSRC"><i>Trypanosoma brucei</i> 927 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 2381 genes with 
+            <a href="http://www.genedb.org/rss/Tbruceibrucei927/since/4/months">updated annotations</a>. Products based on Pfam domain hits were added 
+            to ~1200 hypothetical proteins
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tbrugambienseDAL972_primary_genome_RSRC"><i>T. brucei gambiense</i> DAL972  </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 232 genes with 
+            <a href="http://www.genedb.org/rss/Tbruceigambiense/since/4/months">updated annotations</a>. 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tconIL3000_primary_genome_RSRC"><i>Trypanosoma congolense</i> IL3000</a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 109 genes with 
+            <a href="http://www.genedb.org/rss/Tcongolense/since/4/months">updated annotations</a>. 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tcruCLBrener_primary_genome_RSRC"><i>Trypanosoma cruzi</i> CL Brener</a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 675 genes with 
+            <a href="http://www.genedb.org/rss/Tcruzi/since/4/months">updated annotations</a>. 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tvivY486_primary_genome_RSRC"><i>Trypanosoma vivax</i> Y486 </a> &mdash;
+            updated (<a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-05/">GeneDB version May, 2015</a>) 209 genes with 
+            <a href="http://www.genedb.org/rss/Tvivax/since/4/months">updated annotations</a>. 
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>RNA Sequencing</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lpyrH10_Flegontov_Transcriptome_rnaSeq_RSRC">
+            Transcriptome of total- and polyA RNA fraction (LpyrH10)</a> &mdash; 
+            Illumina RNA sequencing of total- and polyA-RNA fractions from <i>Leptomonas pyrrhocoris</i> H10.  Provided 
+            pre-publication by Julius Lukes, Czech Academy of Sciences. 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lseyATCC30220_Flegontov_PolyA_Transcriptome_rnaSeq_RSRC">
+            Transcriptome at 23C and 35C growth conditions </a> &mdash; 
+            Transcriptome of <i>L. seymouri</i> ATCC 30220 at 23 and 35C growth conditions determined by 
+            Illumina sequencing. Provided pre-publication by Vyacheslav Yurchenko, University of Ostrava. 
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Proteomics</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=tcruCLBrener_massSpec_Docampo_Contractile_Vacuole_Proteome_RSRC,tcruCLBrenerNon-Esmeraldo-like_massSpec_Docampo_Contractile_Vacuole_Proteome_RSRC,tcruCLBrenerEsmeraldo-like_massSpec_Docampo_Contractile_Vacuole_Proteome_RSRC">
+            Contractile Vacuole Proteome, epimatigote (CL Brener)</a> &mdash; 
+            Proteomic analysis of a <i>T. cruzi</i> CL Brener fraction enriched for contractile vacuoles 
+            and analyzed by one-dimensional gel electrophoresis and LC-MS/MS <i>T. cruzi</i> CL Brener.  Provided by 
+            Roberto Docampo, University of Georgia;  
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/21437209"> Ulrich et al.</a>. 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=tbruTREU927_massSpec_Docampo_Acidocalcisome_Proteomics_RSRC">
+            Acidocalcisome proteome, procyclic form (Tb927) </a> &mdash; 
+            Proteome of acidocalcisome fractions from <i>Trypanosoma brucei</i> TREU927 procyclic form parasites. Provided 
+            by Roberto Docampo, University of Georgia; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25503798">Huang et al.</a>.
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Whole genome sequencing of isolates for SNP analysis</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lmajFriedlin_HTS_SNP_BeverlyIsolateV1_RSRC">Aligned genomic sequence reads - <i>L. major</i> isolate V1</a> &mdash; 
+            Illumina genome sequencing of <i>Leishmania major</i> Friedlin isolate V1. 
+            Sequencing reads were aligned to <i>Leishmania major</i> Friedlin and used to determine SNPs. Stephen M. Beverley, Washington University in St. Louis. 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=ldonBPK282A1_HTS_SNP_Indian_SOLiD_Isolates_RSRC">Aligned genomic sequence reads - 3 <i>L. donovani</i> Indian Isolates</a> &mdash; 
+            Illumina genome sequencing of <i>Leishmania donovani</i> BHU-1095, 39, and 2001. 
+            Sequencing reads were aligned to <i>Leishmania donovani</i> BPK282A1 and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=23418454">Singh et al.</a> 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=linfJPCM5_HTS_SNP_Sequencing_12_Strains_Of_Putative_Hybrids_RSRC">Aligned genomic sequence reads - 12 <i>L. infantum</i> hybrids </a> &mdash; 
+            Illumina genome sequencing of 11 <i>Leishmania infantum</i> isolates from sand flies 
+            and 1 patient isolate in a focus of cutaneous leishmaniasis in the Cukurova province of southeast Turkey. 
+            Sequencing reads were aligned to <i>Leishmania infantum</i> JPCM5 and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24453988">Rogers et al.</a> 
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=ldonBPK282A1_HTS_SNP_Zhang_Visceral_Leishmaniasis_RSRC">Aligned genomic sequence reads - <i>L. donovani</i> Sri Lanka Isolates</a> &mdash; 
+            Illumina genome sequencing of Sri Lankan isolates MON-37CL, and MON-37VL.  
+            Sequencing reads were aligned to <i>Leishmania donovani</i> BPK282A1 and used to determine SNPs. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=23265615">Ranasinghe et al.</a> 
+          </li>
+        </ul>
+      </section>
+
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+
 <record>
        <attribute name="headline">TriTrypDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>

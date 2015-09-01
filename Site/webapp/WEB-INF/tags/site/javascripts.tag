@@ -41,6 +41,7 @@
     <imp:script src="wdkCustomization/js/export-basket.js"/>
     <imp:script src="wdkCustomization/js/spanlogic.js"/>
     <imp:script src="wdkCustomization/js/genome-view.js"/>
+    <imp:script src="wdkCustomization/js/transcript-view.js"/>
 
       <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=${gkey}&sensor=false"><jsp:text/></script> -->
       <!-- moved to isolateResults.tag
@@ -74,6 +75,7 @@
     <imp:script src="wdkCustomization/js/questions/fold-change.js"/>
     <imp:script src="wdkCustomization/js/questions/radio-params.js"/>
     <imp:script src="wdkCustomization/js/questions/isolatesByTaxon.js"/>
+    <imp:script src="wdkCustomization/js/questions/snp.js"/>
     <imp:script src="wdkCustomization/js/analysis/enrichment.js"/>
   </c:if>
 
