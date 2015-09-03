@@ -560,6 +560,30 @@ sub new {
    return $self;
 }
 
+package ApiCommonWebsite::View::GraphPackage::LinePlot::MRNADecay;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(4);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Expression Value');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Expression Values - $id");
+
+   $self->setMakeYAxisFoldInduction(0);
+   $self->setIsLogged(0);
+
+   return $self;
+}
+
+
 package ApiCommonWebsite::View::GraphPackage::BarPlot::Standardized;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
