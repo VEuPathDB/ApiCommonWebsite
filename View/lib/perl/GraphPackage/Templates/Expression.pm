@@ -278,3 +278,7 @@ sub forceXLabelsHorizontal {
 
 
 1;
+
+#--------------------------------------------------------------------------------
+
+# TEMPLATE_ANCHOR microarrayMRNADecayGraph
