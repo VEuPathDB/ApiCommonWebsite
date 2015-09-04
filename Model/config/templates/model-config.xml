@@ -40,7 +40,6 @@
             showConnectionsInterval="${userdb.show_connections_interval}"
             showConnectionsDuration="${userdb.show_connections_duration}"
             userSchema="${userdb.userschema}"
-            wdkEngineSchema="${userdb.wdk_engine_schema}" 
             />
            
     <emailSubject>
