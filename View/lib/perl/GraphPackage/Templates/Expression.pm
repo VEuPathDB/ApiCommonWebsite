@@ -283,3 +283,14 @@ sub forceXLabelsHorizontal {
 #--------------------------------------------------------------------------------
 
 # TEMPLATE_ANCHOR microarrayMRNADecayGraph
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::pfal3D7_microarrayExpression_Llinas_RT_Transcription_Decay_RSRC;
+
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setPointsPch([ 'NA', '15', 'NA', 'NA']);
+}
+
+1;
