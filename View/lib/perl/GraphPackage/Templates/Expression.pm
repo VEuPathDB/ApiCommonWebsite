@@ -110,7 +110,7 @@ sub getProfileSetsArray {
 
   my @profileSetsArray;
 
-  foreach my $profile (@profiles) {
+  foreach my $profile (sort @profiles) {
     my $expectedStderrProfileName = "standard error - $profile";
 
     my $stderrProfile = $stderrProfiles{$expectedStderrProfileName} ? $expectedStderrProfileName : "";
@@ -129,6 +129,7 @@ sub getPercentileSetsArray {
     push @percentiles, $profileName;
   }
 
+  # Need to enforce a sort order.  The internal Convention for Two Channel is red/green
   my @sortedPercentiles = sort { $b cmp $a } @percentiles;
 
   my @percentileSetsArray;
