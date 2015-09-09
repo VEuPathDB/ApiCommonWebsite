@@ -23,6 +23,11 @@ sub finalPercentileAdjustments {}
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
+sub getPercentileGraphType {
+  my $self = shift;
+  return $self->getGraphType();
+}
+
 # Template subclasses need to implement this....should return a valid PlotPart for the given Graph Type (LogRatio, RMA, ...)
 sub getExprPlotPartModuleString {}
 
@@ -189,12 +194,20 @@ sub makeAndSetPlots {
   $profile->setColors($colors);
   $profile->setAdjustProfile($self->getProfileRAdjust());
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile;
+  if(lc($self->getPercentileGraphType()) eq 'line') {
+    $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+    $percentile->setXaxisLabel($xAxisLabel);
+  }
+  else {
+    $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+    $percentile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
+  }
+
   $percentile->setProfileSets($percentileSets);
 
   $percentile->setColors($pctColors);
   $percentile->setAdjustProfile($self->getPercentileRAdjust());
-  $percentile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
 
   if($bottomMarginSize) {
     $profile->setElementNameMarginSize($bottomMarginSize);
