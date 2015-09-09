@@ -14,8 +14,12 @@ sub getPercentileColors {
   return ['LightSlateGray', 'DarkSlateGray'];
 }
 
-1;
+# @Override.  Two channel microarray percentiles should be bar plots
+sub getPercentileGraphType {
+  return 'bar';
+}
 
+1;
 
 #--------------------------------------------------------------------------------
 
