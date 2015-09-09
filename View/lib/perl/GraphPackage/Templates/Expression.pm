@@ -28,6 +28,10 @@ sub getPercentileGraphType {
   return $self->getGraphType();
 }
 
+sub sortPercentileProfiles {
+  $a cmp $b;
+}
+
 # Template subclasses need to implement this....should return a valid PlotPart for the given Graph Type (LogRatio, RMA, ...)
 sub getExprPlotPartModuleString {}
 
@@ -134,8 +138,7 @@ sub getPercentileSetsArray {
     push @percentiles, $profileName;
   }
 
-  # Need to enforce a sort order.  The internal Convention for Two Channel is red/green
-  my @sortedPercentiles = sort { $b cmp $a } @percentiles;
+  my @sortedPercentiles = sort sortPercentileProfiles @percentiles;
 
   my @percentileSetsArray;
   foreach my $pctProfile (@sortedPercentiles) {
@@ -304,6 +307,12 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   $profile->setPointsPch([ 'NA', '15', 'NA', 'NA']);
+}
+
+sub finalPercentileAdjustments {
+  my ($self, $percentile) = @_;
+
+  $percentile->setPointsPch([ 'NA', '15', 'NA', 'NA']);
 }
 
 1;

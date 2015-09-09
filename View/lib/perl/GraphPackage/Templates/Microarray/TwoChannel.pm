@@ -19,6 +19,12 @@ sub getPercentileGraphType {
   return 'bar';
 }
 
+# @Override.  The internal Convention for Two Channel is red/green
+sub sortPercentileProfiles {
+  $b cmp $a;
+}
+
+
 1;
 
 #--------------------------------------------------------------------------------
