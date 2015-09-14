@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apidb.apicommon.model.view.genome;
 
 import org.gusdb.wdk.model.WdkModelException;
@@ -8,7 +5,6 @@ import org.gusdb.wdk.model.WdkUserException;
 
 /**
  * @author jerric
- * 
  */
 public class DynamicSpanGenomeViewHandler extends GenomeViewHandler {
 
@@ -24,7 +20,7 @@ public class DynamicSpanGenomeViewHandler extends GenomeViewHandler {
         sql.append("    ids.start_min AS " + COLUMN_START + ", ");
         sql.append("    ids.end_max AS " + COLUMN_END + ", ");
         sql.append("    '' AS " + COLUMN_DESCRIPTION + ", ");
-        sql.append("    ids.start_min || '..' || ids.end_max AS context, ");
+        sql.append("    ids.start_min || '..' || ids.end_max AS " + COLUMN_CONTEXT + ", ");
         sql.append("    ids.strand AS " + COLUMN_STRAND);
         sql.append(" FROM (SELECT source_id, ");
         sql.append("            regexp_substr(source_id, '[^:]+', 1, 1) as sequence_id, ");
