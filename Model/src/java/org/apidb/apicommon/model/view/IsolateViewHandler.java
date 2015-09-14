@@ -16,6 +16,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.SummaryViewHandler;
 import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.User;
 
 public abstract class IsolateViewHandler implements SummaryViewHandler {
 
@@ -28,13 +29,12 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
             WdkUserException;
 
     @Override
-    public Map<String, Object> process(Step step, Map<String, String[]> params)
-            throws WdkModelException, WdkUserException {
+    public Map<String, Object> process(Step step, Map<String, String[]> params,
+        User user, WdkModel wdkModel) throws WdkModelException, WdkUserException {
         logger.debug("Entering IsolateViewHandler...");
 
         ResultSet resultSet = null;
         try {
-            WdkModel wdkModel = step.getQuestion().getWdkModel();
             AnswerValue answerValue = step.getAnswerValue();
             String sql = prepareSql(answerValue.getIdSql());
             DataSource dataSource = wdkModel.getAppDb().getDataSource();
@@ -79,5 +79,12 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
         } finally {
             SqlUtils.closeResultSetAndStatement(resultSet);
         }
+    }
+
+    @Override
+    public String processUpdate(Step step, Map<String, String[]> parameters, User user, WdkModel wdkModel)
+        throws WdkModelException, WdkUserException {
+      // this summary view does not perform updates
+      return null;
     }
 }
