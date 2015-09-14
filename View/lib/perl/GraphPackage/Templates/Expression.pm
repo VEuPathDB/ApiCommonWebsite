@@ -306,13 +306,13 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::pfal3D7_mic
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
-  $profile->setPointsPch([ 'NA', '15', 'NA', 'NA']);
+  $profile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
 }
 
 sub finalPercentileAdjustments {
   my ($self, $percentile) = @_;
 
-  $percentile->setPointsPch([ 'NA', '15', 'NA', 'NA']);
+  $percentile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
 }
 
 1;
