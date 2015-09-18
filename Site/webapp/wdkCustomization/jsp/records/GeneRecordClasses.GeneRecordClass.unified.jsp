@@ -182,7 +182,7 @@ organismFull:   Plasmodium falciparum 3D7
 <!----------- Previous IDS  --- ONLY PLASMO according to Omar -------------->
 <c:if test="${projectId eq 'PlasmoDB'}">
 <c:if test="${attrs['old_ids'].value != null && attrs['old_ids'].value ne id }">
-  <br><span style="font-size:70%">${attrs['OldIds'].value}</span><br>
+  <br><span style="font-size:70%">${attrs['OldIds'].value}</span>
 </c:if>
 </c:if>
 
@@ -219,67 +219,44 @@ organismFull:   Plasmodium falciparum 3D7
     <c:when test="${attrs['release_policy'].value  != null}">
       <c:set var="release_policy" value="NOTE: ${attrs['release_policy'].value}"/>
     </c:when>
-    <c:when test="${attrs['is_annotated'].value == 0}">
+    <c:when test="${attrs['is_published'].value == 0}">
       <c:set var="release_policy" value="NOTE: The data for this genome is unpublished. You should consult with the Principal Investigators before undertaking large scale analyses of the annotation or underlying sequence."/>
     </c:when>
   </c:choose>
 
-
-<c:set var="is_genedb_organism" value="${attrs['is_genedb_organism'].value}"/> 
-<c:set var="link_url" value="${attrs['link_url'].value}"/>
-<c:set var="ext_id" value="${attrs['ext_id'].value}"/>
-<c:set var="display_text" value="${attrs['display_text'].value}"/>
+<div style="margin:2px;padding:5px;font-size:75%">
 
 <c:choose>
-  <c:when test="${is_genedb_organism == 1}">
-    <div style="margin:12px;padding:5px">
 
+  <%-- annotation change for this gene --%>
+  <c:when test="${attrs['is_genedb_organism'].value == 1 && attrs['updated_annotation'].value != null}">
+    <a href="${attrs['GeneDB_updated_text'].value}" title="${release_policy}">${attrs['GeneDB_updated_text'].value}</a>
+    <c:if test="${attrs['new_product_name'].value != null}">
+      <br><span style="font-size:90%">${attrs['GeneDB_New_Product'].value}</span>
+    </c:if>
+  </c:when>
+
+  <%-- special linkout for this genome--%>
+  
+  <c:when test="${attrs['has_special_display_text'].value == 1}">
     <c:choose>
-
-      <%-- annotation change for this gene --%>
-      <c:when test="${attrs['updated_annotation'].value != null}">
-        <c:set var="genedb_url" value="${attrs['GeneDB_updated_url'].value}"/>
-        <c:set var="genedb_text" value="${attrs['GeneDB_updated_text'].value}"/>
-        <a href="${genedb_url}" title="${release_policy}">${genedb_text}</a>
-        <c:if test="${attrs['new_product_name'].value != null}">
-          <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
-        </c:if>
+      <c:when test="${attrs['has_special_link_url'].value == 1}">
+        <a href="${attrs['special_link_url'].value}" title="${release_policy}">${attrs['special_display_text'].value}</a>
       </c:when>
-
-      <%-- special linkout for this genome--%>
-      <c:when test="${link_url ne 'no link'}">
-        <a href="${link_url}" title="${release_policy}">${display_text}</a>
-        <c:if test="${attrs['new_product_name'].value != null}">
-          <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
-        </c:if>
-      </c:when>
-
       <c:otherwise>
-        <c:if test="${attrs['new_product_name'].value != null}">
-          <br><span style="font-size:75%">${attrs['GeneDB_New_Product'].value}</span>
-        </c:if>
-        <b>${release_policy}</b>
+        ${attrs['special_display_text'].value}
       </c:otherwise>
-
     </c:choose>
-    </div>
-
-  </c:when> <%-- end when GeneDB organism --%>
-
-  <c:otherwise>
-    <%-- non-GeneDB organism --%>
-
-      <%-- special linkout for this genome--%>
-      <c:if test="${link_url} ne 'no link'">
-        <a href="${link_url}">${display_text}</a>
-      </c:if>
-
-      <b>${release_policy}</b>
-
-  </c:otherwise>
+  </c:when>
 
 </c:choose>
 </div>
+</div>
+
+<c:if test="${release_policy != null}">
+  <b><i>${release_policy}</b></i>
+</c:if>
+
 
 
 
@@ -350,10 +327,15 @@ organismFull:   Plasmodium falciparum 3D7
                                        fn:contains(header['User-Agent'], 'Netscape') }"/>
 --%>
 
+<%---------- alternate products table ---------------%>
+
+<c:if test="${attrs['has_alternate_products'].value eq 'Yes'}">
+  <imp:wdkTable2 tblName="AlternateProducts" isOpen="true"  attribution=""/>
+</c:if>
+
 <%-- === from toxo ===== --%>
 <!-- strains comparison table -->
 <imp:wdkTable2 tblName="Strains" isOpen="true"  attribution=""/>
-
 
 <%---------- HTS SNP OVERVIEW --------- BASED ON ATTRIBUTE  ------%>
 <c:if test="${attrs['hasHtsSnps'].value eq '1'}">
