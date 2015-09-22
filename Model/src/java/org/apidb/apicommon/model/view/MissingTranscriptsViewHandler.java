@@ -25,35 +25,39 @@ public class MissingTranscriptsViewHandler implements SummaryViewHandler {
 	public Map<String, Object> process(Step step, Map<String, String[]> parameters, User user, WdkModel wdkModel)
 			throws WdkModelException, WdkUserException {
 
-		// get answer from Transcripts step
-		UserBean userBean = new UserBean(user);
-		StepBean stepBean = new StepBean(userBean, step);
-		AnswerValueBean answer = stepBean.getAnswerValue();
+	  // get answer from Transcripts step
+	  UserBean userBean = new UserBean(user);
+	  StepBean stepBean = new StepBean(userBean, step);
+	  AnswerValueBean answer = stepBean.getAnswerValue();
 
-		// get new step, to make result view from
-		// use original step id, so that state is in this view is associated with it
-		Step newStep = new Step(wdkModel.getStepFactory(), user, step.getStepId()); 
+	  // get new step, to make result view from
+	  // use original step id, so that state is in this view is associated with it
+	  Step newStep = new Step(wdkModel.getStepFactory(), user, step.getStepId()); 
+	  newStep.setInMemoryOnly(true);
 		
-		newStep.setQuestionName("InternalQuestions.GenesByMissingTranscriptsTransform");
-		Map<String, String> paramValues = new HashMap<String, String>();
-		paramValues.put("gene_result", "" + step.getStepId());
-		newStep.setParamValues(paramValues);
+	  newStep.setQuestionName("InternalQuestions.GenesByMissingTranscriptsTransform");
+	  Map<String, String> paramValues = new HashMap<String, String>();
+	  paramValues.put("gene_result", "" + step.getStepId());
+	  paramValues.put("genesWithTranscripts", "Missing transcripts");
+	  paramValues.put("missingOrFoundTranscripts", "Missing");
+	  newStep.setParamValues(paramValues);
 		
-	    // override attributes so they are remembered in the step using the suffix
-	    AnswerValueAttributes attributes = answer.getAnswerValue().getAttributes();
-	    AttributeField pkField = stepBean.getQuestion().getRecordClass()
-	        .getPrimaryKeyAttribute().getPrimaryKeyAttributeField();
-	    Map<String, AttributeField> summaryFields = AnswerValueAttributes
-	        .buildSummaryAttributeFieldMap(user, step.getQuestion(), USER_PREFERENCE_SUFFIX, pkField);
-	    attributes.overrideSummaryAttributeFieldMap(summaryFields);
+	  // override attributes so they are remembered in the step using the suffix
+	  AnswerValueAttributes attributes = answer.getAnswerValue().getAttributes();
+	  AttributeField pkField = stepBean.getQuestion().getRecordClass()
+	    .getPrimaryKeyAttribute().getPrimaryKeyAttributeField();
+	  Map<String, AttributeField> summaryFields = AnswerValueAttributes
+	    .buildSummaryAttributeFieldMap(user, step.getQuestion(), USER_PREFERENCE_SUFFIX, pkField);
+	  attributes.overrideSummaryAttributeFieldMap(summaryFields);
 
-		Map<String, Object> model = ResultTablePaging.processPaging(
-	            parameters, stepBean.getQuestion(), userBean, answer);
+	  StepBean newStepBean = new StepBean(userBean, newStep);
 
-	    // pass the new step to the JSP to be rendered instead of the normal step
-	    model.put(MISSING_TRANSCRIPTS_STEP, stepBean);
+	  Map<String, Object> model = ResultTablePaging.processPaging(parameters, newStepBean.getQuestion(), userBean, newStepBean.getAnswerValue());
 
-	    return model;
+	  // pass the new step to the JSP to be rendered instead of the normal step
+	  model.put(MISSING_TRANSCRIPTS_STEP,  newStepBean);
+
+	  return model;
 	}
 
 	@Override
