@@ -19,8 +19,10 @@ import org.gusdb.wdk.model.user.User;
 
 public class MissingTranscriptsViewHandler implements SummaryViewHandler {
 
-	private static final String USER_PREFERENCE_SUFFIX = "_missingTranscriptsView";
-	  private static final String MISSING_TRANSCRIPTS_STEP = "missingTranscriptsStep";
+  private static final String USER_PREFERENCE_SUFFIX = "_missingTranscriptsView";
+  private static final String MISSING_TRANSCRIPTS_STEP = "missingTranscriptsStep";
+  private static final String TRANSCRIPT_ID_FIELD = "source_id";
+
 	@Override
 	public Map<String, Object> process(Step step, Map<String, String[]> parameters, User user, WdkModel wdkModel)
 			throws WdkModelException, WdkUserException {
@@ -38,14 +40,13 @@ public class MissingTranscriptsViewHandler implements SummaryViewHandler {
 	  newStep.setQuestionName("InternalQuestions.GenesByMissingTranscriptsTransform");
 	  Map<String, String> paramValues = new HashMap<String, String>();
 	  paramValues.put("gene_result", "" + step.getStepId());
-	  paramValues.put("genesWithTranscripts", "Missing transcripts");
-	  paramValues.put("missingOrFoundTranscripts", "Missing");
 	  newStep.setParamValues(paramValues);
 		
 	  // override attributes so they are remembered in the step using the suffix
 	  AnswerValueAttributes attributes = answer.getAnswerValue().getAttributes();
-	  AttributeField pkField = stepBean.getQuestion().getRecordClass()
-	    .getPrimaryKeyAttribute().getPrimaryKeyAttributeField();
+	  //	  AttributeField pkField = stepBean.getQuestion().getRecordClass()
+	  //	    .getPrimaryKeyAttribute().getPrimaryKeyAttributeField();
+    AttributeField pkField = step.getQuestion().getRecordClass().getAttributeFieldMap().get(TRANSCRIPT_ID_FIELD);
 	  Map<String, AttributeField> summaryFields = AnswerValueAttributes
 	    .buildSummaryAttributeFieldMap(user, step.getQuestion(), USER_PREFERENCE_SUFFIX, pkField);
 	  attributes.overrideSummaryAttributeFieldMap(summaryFields);
