@@ -1,6 +1,8 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import org.gusdb.wdk.model.TreeNode;
+import org.gusdb.fgputil.functional.TreeNode;
+import org.gusdb.wdk.model.FieldTree;
+import org.gusdb.wdk.model.SelectableItem;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractStepAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -13,30 +15,28 @@ public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
 
   @Override
   public Object getFormViewModel() throws WdkModelException {
-    TreeNode root = buildTreeParam();
-    root.setDefaultLeaves("value2", "value3", "value6");
-    return root;
+    FieldTree tree = buildTreeParam();
+    tree.addDefaultLeaves("value2", "value3", "value6");
+    return tree;
   }
 
-  private TreeNode buildTreeParam() {
-    TreeNode root = new TreeNode("root", "Root", "This is the root value.");
-    TreeNode branch1 = new TreeNode("branch1", "Branch 1");
-    TreeNode val1 = new TreeNode("value1", "Value 1");
-    TreeNode val2 = new TreeNode("value2", "Value 2");
-    branch1.addChildNode(val1);
-    branch1.addChildNode(val2);
+  private FieldTree buildTreeParam() {
+    FieldTree tree = new FieldTree(new SelectableItem("root", "Root", "This is the root value."));
+    TreeNode<SelectableItem> root = tree.getRoot();
+
+    TreeNode<SelectableItem> branch1 = new TreeNode<>(new SelectableItem("branch1", "Branch 1"));
+    branch1.addChild(new SelectableItem("value1", "Value 1"));
+    branch1.addChild(new SelectableItem("value2", "Value 2"));
     root.addChildNode(branch1);
-    TreeNode branch2 = new TreeNode("branch2", "Branch 2");
-    TreeNode val3 = new TreeNode("value3", "Value 3");
-    TreeNode val4 = new TreeNode("value4", "Value 4");
-    branch2.addChildNode(val3);
-    branch2.addChildNode(val4);
+
+    TreeNode<SelectableItem> branch2 = new TreeNode<>(new SelectableItem("branch2", "Branch 2"));
+    branch2.addChild(new SelectableItem("value3", "Value 3"));
+    branch2.addChild(new SelectableItem("value4", "Value 4"));
     root.addChildNode(branch2);
-    TreeNode val5 = new TreeNode("value5", "Value 5");
-    TreeNode val6 = new TreeNode("value6", "Value 6");
-    root.addChildNode(val5);
-    root.addChildNode(val6);
-    return root;
+
+    root.addChild(new SelectableItem("value5", "Value 5"));
+    root.addChild(new SelectableItem("value6", "Value 6"));
+    return tree;
   }
 
   @Override
