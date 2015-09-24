@@ -7,9 +7,12 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.fgputil.FormatUtil;
+import org.gusdb.fgputil.functional.TreeNode;
 import org.gusdb.wdk.controller.summary.ResultTablePaging;
 import org.gusdb.wdk.controller.summary.SummaryTableUpdateProcessor;
-import org.gusdb.wdk.model.TreeNode;
+import org.gusdb.wdk.model.FieldTree;
+import org.gusdb.wdk.model.FieldTree.NameMatchPredicate;
+import org.gusdb.wdk.model.SelectableItem;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -55,11 +58,11 @@ public class GeneViewHandler implements SummaryViewHandler {
     Map<String, Object> model = ResultTablePaging.processPaging(
         parameters, stepBean.getQuestion(), userBean, answer);
 
-    // override available attributes
+    // get base available attributes and remove those not relevant to gene view
     AnswerValueAttributes attributes = answer.getAnswerValue().getAttributes();
-    TreeNode root = attributes.getDisplayableAttributeTree();
-    root.remove(TRANSCRIPT_CATEGORY_NAME);
-    attributes.overrideDisplayableAttributeTree(root);
+    FieldTree tree = attributes.getDisplayableAttributeTree();
+    TreeNode<SelectableItem> root = tree.getRoot();
+    root.removeAll(new NameMatchPredicate(TRANSCRIPT_CATEGORY_NAME));
 
     // override summary attributes
     AttributeField pkField = stepBean.getQuestion().getRecordClass()
@@ -70,18 +73,21 @@ public class GeneViewHandler implements SummaryViewHandler {
     trimAttribsNotInTree(summaryFields, root);
     LOG.debug("Summary Attribs AFTER: " + FormatUtil.arrayToString(summaryFields.keySet().toArray()));
     attributes.overrideSummaryAttributeFieldMap(summaryFields);
+    tree.setSelectedLeaves(new ArrayList<>(summaryFields.keySet()));
+    attributes.overrideDisplayableAttributeTree(tree);
 
     // pass the new step to the JSP to be rendered instead of the normal step
     model.put(GENE_FILTERED_STEP, stepBean);
     return model;
   }
 
-  private static void trimAttribsNotInTree(Map<String, AttributeField> attributes, TreeNode attributeTree) {
+  private static void trimAttribsNotInTree(Map<String, AttributeField> attributes,
+      TreeNode<SelectableItem> attributeTree) {
     List<String> origNames = new ArrayList<>(attributes.keySet());
     for (String name : origNames) {
       // remove if not in tree, but skip primary key (i.e. don't remove)
       if (name.equals(PRIMARY_KEY_FIELD)) continue;
-      if (attributeTree.find(name) == null) {
+      if (attributeTree.findFirst(new NameMatchPredicate(name)) == null) {
         attributes.remove(name);
       }
     }

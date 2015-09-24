@@ -5,9 +5,12 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.fgputil.FormatUtil;
+import org.gusdb.fgputil.functional.TreeNode;
 import org.gusdb.wdk.controller.summary.ResultTablePaging;
 import org.gusdb.wdk.controller.summary.SummaryTableUpdateProcessor;
-import org.gusdb.wdk.model.TreeNode;
+import org.gusdb.wdk.model.FieldTree;
+import org.gusdb.wdk.model.FieldTree.NameMatchPredicate;
+import org.gusdb.wdk.model.SelectableItem;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -43,11 +46,12 @@ public class TranscriptViewHandler implements SummaryViewHandler {
 
     // override default and available columns
     AnswerValueAttributes attributes = answer.getAnswerValue().getAttributes();
-    TreeNode root = attributes.getDisplayableAttributeTree();
+    FieldTree tree = attributes.getDisplayableAttributeTree();
+    TreeNode<SelectableItem> root = tree.getRoot();
     for (String fieldName : FIELDS_TO_REMOVE) {
-      root.remove(fieldName);
+      root.removeAll(new NameMatchPredicate(fieldName));
     }
-    attributes.overrideDisplayableAttributeTree(root);
+    attributes.overrideDisplayableAttributeTree(tree);
 
     // override summary attributes
     AttributeField pkField = step.getQuestion().getRecordClass().getAttributeFieldMap().get(TRANSCRIPT_ID_FIELD);
