@@ -54,7 +54,9 @@ public class GeneViewHandler implements SummaryViewHandler {
     UserBean userBean = new UserBean(user);
     StepBean stepBean = new StepBean(userBean, step);
     AnswerValueBean answer = stepBean.getViewAnswerValue();
-    answer.getRecords();
+
+    // set paging and custom sorting
+    answer.setSortingMap(user.getSortingAttributes(step.getQuestion().getFullName(), USER_PREFERENCE_SUFFIX));
     Map<String, Object> model = ResultTablePaging.processPaging(
         parameters, stepBean.getQuestion(), userBean, answer);
 
@@ -69,9 +71,7 @@ public class GeneViewHandler implements SummaryViewHandler {
         .getPrimaryKeyAttribute().getPrimaryKeyAttributeField();
     Map<String, AttributeField> summaryFields = AnswerValueAttributes
         .buildSummaryAttributeFieldMap(user, step.getQuestion(), USER_PREFERENCE_SUFFIX, pkField);
-    LOG.debug("Summary Attribs BEFORE: " + FormatUtil.arrayToString(summaryFields.keySet().toArray()));
     trimAttribsNotInTree(summaryFields, root);
-    LOG.debug("Summary Attribs AFTER: " + FormatUtil.arrayToString(summaryFields.keySet().toArray()));
     attributes.overrideSummaryAttributeFieldMap(summaryFields);
     tree.setSelectedLeaves(new ArrayList<>(summaryFields.keySet()));
     attributes.overrideDisplayableAttributeTree(tree);
