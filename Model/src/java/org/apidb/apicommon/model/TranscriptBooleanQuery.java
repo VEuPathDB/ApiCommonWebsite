@@ -22,6 +22,8 @@ public class TranscriptBooleanQuery extends BooleanQuery {
 
 //  private static final Logger logger = Logger.getLogger(TranscriptBooleanQuery.class);
 
+	public static final String LEFT_MATCH_COLUMN_TITLE = "Returned by previous step";
+	public static final String RIGHT_MATCH_COLUMN_TITLE = "Returned by latest step";
 	public static final String LEFT_MATCH_COLUMN = "left_match";
 	public static final String RIGHT_MATCH_COLUMN = "right_match";
 
@@ -39,13 +41,13 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     	ColumnAttributeField left_af = new ColumnAttributeField();
 	left_af.excludeResources(wdkModel.getProjectId());
     	left_af.setName(LEFT_MATCH_COLUMN);
-    	left_af.setDisplayName("Matches prev step");
+    	left_af.setDisplayName(LEFT_MATCH_COLUMN_TITLE);
     	das.addAttributeField(left_af);
     	
     	ColumnAttributeField right_af = new ColumnAttributeField();
 	right_af.excludeResources(wdkModel.getProjectId());
     	right_af.setName(RIGHT_MATCH_COLUMN);
-    	right_af.setDisplayName("Matches this step");
+    	right_af.setDisplayName(RIGHT_MATCH_COLUMN_TITLE);
     	das.addAttributeField(right_af);
     }
 
