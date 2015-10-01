@@ -1,5 +1,6 @@
 package org.apidb.apicommon.model.view;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -22,7 +23,14 @@ public class GeneViewHandler extends AltSpliceViewHandler {
 
   private static final String GENE_FILTERED_STEP = "geneFilteredStep";
   private static final String USER_PREFERENCE_SUFFIX = "_geneview";
+
+  // attribute categories we will or may remove
   private static final String TRANSCRIPT_CATEGORY_NAME = "trans_parent";
+  private static final String DYNAMIC_ATTRIB_CATEGORY_NAME = "dynamic";
+
+  // custom properties on gene questions
+  private static final String QUESTION_TYPE_PROPLIST_KEY = "questionType";
+  private static final String TRANSCRIPT_QUESTION_PROP_NAME = "transcript";
 
   @Override
   protected String getUserPreferenceSuffix() {
@@ -42,8 +50,13 @@ public class GeneViewHandler extends AltSpliceViewHandler {
   }
 
   @Override
-  protected void customizeAvailableAttributeTree(TreeNode<SelectableItem> root) {
+  protected void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root) throws WdkModelException {
     root.removeAll(new NameMatchPredicate(TRANSCRIPT_CATEGORY_NAME));
+    String[] questionTypes = step.getQuestion().getPropertyList(QUESTION_TYPE_PROPLIST_KEY);
+    if (questionTypes != null && Arrays.asList(questionTypes).contains(TRANSCRIPT_QUESTION_PROP_NAME)) {
+      // 
+      root.removeAll(new NameMatchPredicate(DYNAMIC_ATTRIB_CATEGORY_NAME));
+    }
   }
 
   @Override

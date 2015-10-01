@@ -8,6 +8,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.FieldTree.NameMatchPredicate;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
+import org.gusdb.wdk.model.user.Step;
 
 public abstract class AbstractTranscriptViewHandler extends AltSpliceViewHandler {
 
@@ -18,7 +19,7 @@ public abstract class AbstractTranscriptViewHandler extends AltSpliceViewHandler
   };
 
   @Override
-  protected void customizeAvailableAttributeTree(TreeNode<SelectableItem> root) {
+  protected void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root) {
     root.removeAll(new NameMatchPredicate(Arrays.asList(FIELDS_TO_REMOVE)));
   }
 

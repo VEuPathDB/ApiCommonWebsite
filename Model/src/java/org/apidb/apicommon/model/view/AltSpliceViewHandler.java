@@ -33,7 +33,7 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
 
   protected abstract String getUserPreferenceSuffix();
   protected abstract Step customizeStep(Step step, User user, WdkModel wdkModel) throws WdkModelException;
-  protected abstract void customizeAvailableAttributeTree(TreeNode<SelectableItem> root);
+  protected abstract void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root) throws WdkModelException;
   protected abstract AttributeField getLeftmostField(StepBean stepBean) throws WdkModelException;
   protected abstract void customizeModelForView(Map<String, Object> model, StepBean stepBean) throws WdkModelException;
 
@@ -70,7 +70,7 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
     TreeNode<SelectableItem> root = tree.getRoot();
 
     // customize attributes in the Add Columns pop-up
-    customizeAvailableAttributeTree(root);
+    customizeAvailableAttributeTree(step, root);
 
     // override summary attributes
     AttributeField leftmostField = getLeftmostField(stepBean);
