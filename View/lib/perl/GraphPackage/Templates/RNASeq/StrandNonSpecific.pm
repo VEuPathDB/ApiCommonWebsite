@@ -105,8 +105,6 @@ sub init {
 
   $self->setGraphObjects(@rnaseqs);
 
-  print STDERR Dumper $self;
-
   return $self;
 }
 
