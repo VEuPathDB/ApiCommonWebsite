@@ -289,7 +289,6 @@ RCODE
   print $r_fh $rcode;
 #  print STDERR $rcode;
 
-
   $r_fh->close();
 
   my $tempFiles = $self->getTempFiles();
