@@ -237,9 +237,6 @@ for(i in 1:length(profile.files)) {
 
   profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
 
-  if(!is.null(profile.df\$ELEMENT_ORDER)) {
-    profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
-  }
   profile = profile.df\$VALUE;
 
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
@@ -259,9 +256,6 @@ for(i in 1:length(profile.files)) {
    if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
-     if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
-       stderr.tmp = aggregate(stderr.tmp, list(stderr.tmp\$ELEMENT_ORDER), mean, na.rm=T)
-     }
     stderr = stderr.tmp\$VALUE;
    } else {
      stderr = element.names;

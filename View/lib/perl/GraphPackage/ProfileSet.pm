@@ -102,12 +102,9 @@ sub writeProfileFile{
 
   my $_dict = {};
 
-  my $elementNames = $self->getElementNames();
-
   my $profile = $self->getProfileCannedQuery($suffix, $idType, $id);
 
   $profile->prepareDictionary($_dict);
-  $profile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
 
   my $profile_fn = eval { $profile->makeTabFile($qh, $_dict) }; $@ && $self->logError($@);
 
