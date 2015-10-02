@@ -554,8 +554,8 @@ sub new {
    return $self;
 }
 
-package ApiCommonWebsite::View::GraphPackage::LinePlot::MRNADecay;
-use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+package ApiCommonWebsite::View::GraphPackage::BarPlot::MRNADecay;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
 sub new {
