@@ -147,9 +147,6 @@ stderr.df\$V1 = NULL;
 for(i in 1:length(profile.files)) {
   profile.tmp = read.table(profile.files[i], header=T, sep=\"\\t\");
 
-  if(!is.null(profile.tmp\$ELEMENT_ORDER)) {
-    profile.tmp = aggregate(profile.tmp, list(profile.tmp\$ELEMENT_ORDER), mean, na.rm=T)
-  }
   profile = profile.tmp\$VALUE;
 
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
@@ -158,9 +155,6 @@ for(i in 1:length(profile.files)) {
    if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
-     if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
-       stderr.tmp = aggregate(stderr.tmp, list(stderr.tmp\$ELEMENT_ORDER), mean, na.rm=T)
-     }
     stderr = stderr.tmp\$VALUE;
    } else {
      stderr = element.names;
@@ -560,8 +554,8 @@ sub new {
    return $self;
 }
 
-package ApiCommonWebsite::View::GraphPackage::LinePlot::MRNADecay;
-use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+package ApiCommonWebsite::View::GraphPackage::BarPlot::MRNADecay;
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
 sub new {
