@@ -66,6 +66,11 @@
       
       <section>
         <h4>Functional Annotation Updated</h4>
+        
+        <aside>
+          Annotation updated: products, GO terms, EC numbers, gene names and synonyms
+        </aside>
+        
         <ul>
           <li>
             <a href="http://plasmodb.org/plasmo/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=49"><i>Plasmodium falciparum</i> 3D7</a> &mdash;
@@ -102,6 +107,7 @@
         </li>
       </section>
       
+     
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
