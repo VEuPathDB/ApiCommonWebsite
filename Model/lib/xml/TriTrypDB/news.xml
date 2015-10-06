@@ -20,6 +20,74 @@
 -->
 
 <record>
+  <attribute name="headline">TriTrypDB 26 Released</attribute>
+  <attribute name="date">13 Oct 2015 13:00</attribute>
+  <attribute name="tag">tritrypdb10_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 26</strong></p>
+
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Proteomics</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=tbruTREU927_massSpec_Bastin_detached_intact_flagellum_RSRC">
+                                 Intact flagellar proteome of procyclic form (Tb427)</a> &mdash;
+            Proteome of detached intact flagella from <i>Trypanosoma brucei</i> Lister 427 procyclic form parasites.
+            Peptides are aligned to <i>T. brucei</i> TREU 927.  
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/24741115">Subota et al.</a>
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Comparative Genomics</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lmexMHOMGT2001U1103_originsOfReplication_McCulloch_Origins_RSRC,
+                     lmajFriedlin_originsOfReplication_McCulloch_Origins_Replicate2_RSRC,lmajFriedlin_originsOfReplication_McCulloch_Origins_Replicate1_RSRC">
+                     Promastigote Form Origins of Replication</a> &mdash;
+            Origins of replication in <i>L. major</i> Friedlin and <i>L. mexicana</i> MHOMGT2001U1103 promastigotes determined by Marker 
+            Frequency Analysis, a technique that compares frequency of marker sequences 
+            in replicating and non-replicating cells. Whole genome DNAseq of FACS sorted promastigotes is presented as the 
+            ratio (early S and late S vs G2-phase) of the frequencies of markers (DNAseq reads) in 2.5 kb bins. 
+            (Richard McCulloch - The Wellcome Trust Centre for Molecular Parasitology)
+          </li>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=tbruTREU927_originsOfReplication_McCulloch_Origins_Replicate_RSRC,
+                     tbruTREU927_originsOfReplication_McCulloch_Origins_RSRC">
+                                 Procyclic Form Origins of Replication</a> &mdash;
+            Origins of replication in <i>T.brucei</i> TREU927 Procyclic form determined by Marker Frequency Analysis, a 
+            technique that compares frequency of marker sequences in replicating and non-replicating cells. 
+            Whole genome DNAseq of FACS sorted procyclic cells is presented as the 
+            ratio (early S and late S, or  early-mid S phase vs G2-phase) of the frequencies of markers (DNAseq reads) in 2.5 kb bins. 
+            (Richard McCulloch - The Wellcome Trust Centre for Molecular Parasitology)
+          </li>
+        </ul>
+      </section>
+
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">TriTrypDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
   <attribute name="tag">tritrypdb7_15_release</attribute>

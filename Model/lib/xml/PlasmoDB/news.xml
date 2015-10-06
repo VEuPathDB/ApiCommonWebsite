@@ -39,18 +39,54 @@
         <ul>
           <li>
             <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pberANKA_primary_genome_RSRC"><i>Plasmodium berghei</i> ANKA</a> &mdash;
-            the genome was updated to the reassembled and reannotated 
-            <a href="http://www.genedb.org/Homepage/Pberghei">GeneDB version 18 June 2015</a>.
+            updated and improved assembly and annotation
+            <a href="http://www.genedb.org/Homepage/Pberghei">GeneDB version 18 June 2015</a>. 
+            From the 
+            <a href="https://www.sanger.ac.uk/research/projects/parasitegenomics/">Parasite Genomics Group</a> at the Wellcome Trust Sanger Institute. 
+            <a href="http://www.sanger.ac.uk/datasharing/">Data Use Policy</a>.
           </li>
           <li>
             <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pchachabaudi_primary_genome_RSRC"><i>Plasmodium chabaudi</i> chabaudi</a> &mdash;
-            the genome was updated to the reassembled and reannotated 
-            <a href="http://www.genedb.org/Homepage/Pchabaudi">GeneDB version 18 June 2015</a>.
+            updated and improved assembly and annotation 
+            <a href="http://www.genedb.org/Homepage/Pchabaudi">GeneDB version 18 June 2015</a>. 
+            From the 
+            <a href="https://www.sanger.ac.uk/research/projects/parasitegenomics/">Parasite Genomics Group</a> at the Wellcome Trust Sanger Institute. 
+            <a href="http://www.sanger.ac.uk/datasharing/">Data Use Policy</a>.
           </li>
           <li>
             <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pknoH_primary_genome_RSRC"><i>Plasmodium knowlesi</i> strain H </a> &mdash;
             the genome was updated to the reassembled and reannotated 
-            <a href="http://www.genedb.org/Homepage/Pknowlesi">GeneDB version 18 June 2015</a>.
+            <a href="http://www.genedb.org/Homepage/Pknowlesi">GeneDB version 18 June 2015</a>. 
+            From the 
+            <a href="https://www.sanger.ac.uk/research/projects/parasitegenomics/">Parasite Genomics Group</a> at the Wellcome Trust Sanger Institute. 
+            <a href="http://www.sanger.ac.uk/datasharing/">Data Use Policy</a>.
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Functional Annotation Updated</h4>
+        <ul>
+          <li>
+            <a href="http://plasmodb.org/plasmo/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=49"><i>Plasmodium falciparum</i> 3D7</a> &mdash;
+            updated 
+            <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
+            506 genes with 
+            <a href="http://www.genedb.org/rss/Pfalciparum/since/12/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://plasmodb.org/plasmo/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=65"><i>Plasmodium rechenowi</i> CDC</a> &mdash;
+            updated
+            <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
+            302 genes with 
+            <a href="http://www.genedb.org/rss/Pyoelii17X/since/12/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://plasmodb.org/plasmo/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=82"><i>Plasmodium yoelii yoelii</i> 17X </a> &mdash;
+            updated 
+            <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
+            312 genes with 
+            <a href="http://www.genedb.org/rss/Pyoelii17X/since/12/months">updated annotations</a>.
           </li>
         </ul>
       </section>
