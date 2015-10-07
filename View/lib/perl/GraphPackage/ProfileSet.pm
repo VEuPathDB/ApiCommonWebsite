@@ -102,11 +102,27 @@ sub writeProfileFile{
 
   my $_dict = {};
 
+  my $elementNames = $self->getElementNames();
+
   my $profile = $self->getProfileCannedQuery($suffix, $idType, $id);
 
   $profile->prepareDictionary($_dict);
 
+  my @elementOrder;
+  if(scalar @$elementNames > 0) {
+    for my $i (1..scalar @$elementNames) {
+      if($elementNames->[$i - 1]) {
+        push @elementOrder, $i;
+      }
+    }
+  }
+
+  $profile->setElementOrder(\@elementOrder) if(scalar @$elementNames > 0);
+
   my $profile_fn = eval { $profile->makeTabFile($qh, $_dict) }; $@ && $self->logError($@);
+
+
+#  print STDERR "PROFILEFILE=$profile_fn\n";
 
   $self->setProfileFile($profile_fn);
 
@@ -123,7 +139,11 @@ sub writeElementNamesFile {
 
   $elementNamesProfile->setElementOrder($elementNames) if(scalar @$elementNames > 0);
   my $elementNames_fn = eval { $elementNamesProfile->makeTabFile($qh, $_dict)  }; $@ && $self->logError($@);
+
+
+#  print STDERR "ELEMNTNAMES=$elementNames_fn\n";
   $self->setElementNamesFile($elementNames_fn);
+
 }
 
 
