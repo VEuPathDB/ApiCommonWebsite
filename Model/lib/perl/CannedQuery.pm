@@ -166,7 +166,7 @@ sub getSimpleValues {
         for (my $i = 0; $i < @profile; $i++) {
           my $pseudo_row = { %$_row,
                              VALUE         => $Self->_treatValue($profile[$i]),
-                             ELEMENT_ORDER => $i,
+                             ELEMENT_ORDER => $i + 1,
           };
 
           push(@Rv, $pseudo_row);
