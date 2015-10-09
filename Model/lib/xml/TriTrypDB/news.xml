@@ -19,6 +19,8 @@
     </record>
 -->
 
+Whole genome sequencing of isolates for SNP analysis
+
 <record>
   <attribute name="headline">TriTrypDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
@@ -44,6 +46,19 @@
             Proteome of detached intact flagella from <i>Trypanosoma brucei</i> Lister 427 procyclic form parasites.
             Peptides are aligned to <i>T. brucei</i> TREU 927.  
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24741115">Subota et al.</a>
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>Whole genome sequencing of isolates for SNP analysis</h4>
+        <ul>
+          <li>
+            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=cfasCfCl_HTS_SNP_reference_genome_sequencing_RSRC">
+                                 Aligned genomic sequence reads - strain Cf-Cl</a> &mdash;
+            <i>Crithidia fasciculata</i> strain Cf-Cl  high throughput DNA sequencing data 
+                    was aligned to the <i>Crithidia fasciculata</i> Cf-Cl reference and used to determine SNPs. 
+                    (Stephen M. Beverley, Washington University in St. Louis) 
           </li>
         </ul>
       </section>
