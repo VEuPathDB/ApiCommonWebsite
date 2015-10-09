@@ -55,7 +55,9 @@
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150055.1">Genbank version 18 July 2007</a>.
           </li>
         <ul>
-        
+      </section>
+      
+      <section>
         <h4>New Genome Sequence: available for the first time in FungiDB:</h4>   
           <li>
             <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC2394_primary_genome_RSRC">Coccidioides immitis RMSCC 2394</a> &mdash;
@@ -96,7 +98,7 @@
         </ul>
       </section>
       
-       <section>
+
       <h3>New Function</h3>
       
       <section>
