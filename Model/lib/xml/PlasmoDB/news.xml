@@ -73,21 +73,42 @@
         
         <ul>
           <li>
-            <a href="http://plasmodb.org/plasmo/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=49"><i>Plasmodium falciparum</i> 3D7</a> &mdash;
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pberANKA_primary_genome_RSRC"><i>Plasmodium berghei</i> ANKA</a> &mdash;
+            updated 
+            <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
+            101 genes with 
+            <a href="http://www.genedb.org/rss/Pberghei/since/4/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pchachabaudi_primary_genome_RSRC"><i>Plasmodium chabaudi chabaudi</i> AS</a> &mdash;
+            updated 
+            <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
+            115 genes with 
+            <a href="http://www.genedb.org/rss/Pchabaudi/since/4/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pfal3D7_primary_genome_RSRC"><i>Plasmodium falciparum</i> 3D7</a> &mdash;
             updated 
             <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
             506 genes with 
             <a href="http://www.genedb.org/rss/Pfalciparum/since/12/months">updated annotations</a>.
           </li>
           <li>
-            <a href="http://plasmodb.org/plasmo/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=65"><i>Plasmodium rechenowi</i> CDC</a> &mdash;
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pknoH_primary_genome_RSRC"><i>Plasmodium knowlesi</i> H</a> &mdash;
+            updated 
+            <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
+            129 genes with 
+            <a href="http://www.genedb.org/rss/Pknowlesi/since/12/months">updated annotations</a>.
+          </li>
+          <li>
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=preiCDC_primary_genome_RSRC"><i>Plasmodium rechenowi</i> CDC</a> &mdash;
             updated
             <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
             302 genes with 
             <a href="http://www.genedb.org/rss/Pyoelii17X/since/12/months">updated annotations</a>.
           </li>
           <li>
-            <a href="http://plasmodb.org/plasmo/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=82"><i>Plasmodium yoelii yoelii</i> 17X </a> &mdash;
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pyoeyoelii17X_primary_genome_RSRC"><i>Plasmodium yoelii yoelii</i> 17X </a> &mdash;
             updated 
             <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-08/">GeneDB version August 2015</a>. 
             312 genes with 
