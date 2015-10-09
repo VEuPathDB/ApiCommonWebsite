@@ -54,11 +54,12 @@
             genome sequence and annotation updated to 
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150055.1">Genbank version 18 July 2007</a>.
           </li>
-        <ul>
+        </ul>
       </section>
       
       <section>
-        <h4>New Genome Sequence: available for the first time in FungiDB:</h4>   
+        <h4>New Genome Sequence: available for the first time in FungiDB:</h4> 
+        <ul>  
           <li>
             <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC2394_primary_genome_RSRC">Coccidioides immitis RMSCC 2394</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000149895.1">Genbank version 11 Feb 2006</a>.
