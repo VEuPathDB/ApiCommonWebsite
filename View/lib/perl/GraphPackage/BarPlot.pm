@@ -145,14 +145,27 @@ stderr.df\$V1 = NULL;
 
 
 for(i in 1:length(profile.files)) {
+  skip.stderr = FALSE;
   profile.tmp = read.table(profile.files[i], header=T, sep=\"\\t\");
 
+  if(!is.null(profile.tmp\$ELEMENT_ORDER)) {
+    eo.count = length(profile.tmp\$ELEMENT_ORDER);
+
+    if(!is.numeric(profile.tmp\$ELEMENT_ORDER)) {
+      stop(\"Elemnet order must be numeric for aggregation\");
+    }
+    profile.tmp = aggregate(profile.tmp, list(profile.tmp\$ELEMENT_ORDER), mean, na.rm=T)
+    if(length(profile.tmp\$ELEMENT_ORDER) != eo.count) {
+      skip.stderr = TRUE;
+    }
+
+  }
   profile = profile.tmp\$VALUE;
 
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
-   if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
+   if(!skip.stderr && !is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
     stderr = stderr.tmp\$VALUE;

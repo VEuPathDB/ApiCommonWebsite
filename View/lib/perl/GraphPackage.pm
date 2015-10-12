@@ -214,7 +214,7 @@ sub rOpenFile {
 	 my $h     = int($fmt eq 'pdf' ? $Height / 72 : $Height);
 
 	 if(lc($fmt) eq 'pdf') {
-           qq{pdf(file="$out_f", width=$w, height=$h)};
+           $Rv = qq{pdf(file="$out_f", width=$w, height=$h)};
          }
          elsif(lc($fmt) eq 'png') {
            $Rv = qq{png(file="$out_f", width=$w, height=$h)};
@@ -249,6 +249,8 @@ sub _rPreamble {
    my $Rv = <<StandardComponents;
 
 # -------------------------------- colors --------------------------------
+
+options(warn=-1);
 
 plasmodb.pct.color   <- rgb(0.4, 0.4, 0.8);
 
