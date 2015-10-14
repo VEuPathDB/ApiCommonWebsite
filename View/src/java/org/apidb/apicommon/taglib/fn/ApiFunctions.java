@@ -28,9 +28,9 @@ public class ApiFunctions {
       case "SchistoDB":
         return "SchistoDB : The Schistosoma Genomics Resource";
       case "ToxoDB":
-        return "ToxoDB : The Toxoplasma Genomicse Resource";
+        return "ToxoDB : The Toxoplasma Genomics Resource";
       case "TrichDB":
-        return "TrichDB : The Trichomonas Genomicse Resource";
+        return "TrichDB : The Trichomonas Genomics Resource";
       case "TriTrypDB":
         return "TriTrypDB : The Kinetoplastid Genomics Resource";
       default:
