@@ -123,7 +123,8 @@
         <li>
           <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pfal3D7_microarrayAntibody_Kazura_Reinfection_RSRC">
                                   Treatment-time to reinfection cohort from Kisumu area, Kenya collected in 2003 </a> &mdash;
-            Dataset summary goes here.  
+            Protein microarrays were probed with plasma from residents of a community in Kenya monitored for 12 weeks 
+            for reinfection and symptomatic malaria after administration of antimalarial drugs.
           <a href="http://www.ncbi.nlm.nih.gov/pubmed/25883384">Dent et al.</a>.
         </li>
       </section>
