@@ -91,6 +91,8 @@ sub makeGraphs {
   my $sense = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
   $sense->setMinRpkmProfileSetDisplayName("Sense Unique");
   $sense->setDiffRpkmProfileSetDisplayName("Sense Non-Unique");
+  # TODO:  Display Name should add suffix for the case when we have multiple profile sets per experiment
+
   $sense->setMinRpkmProfileSet($self->getMinSenseRpkmProfileSet());
   $sense->setDiffRpkmProfileSet($self->getDiffSenseRpkmProfileSet());
   $sense->setPctProfileSet($self->getPctSenseProfileSet());

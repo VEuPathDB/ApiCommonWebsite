@@ -102,8 +102,14 @@ sub makeGraphs {
   my $minRpkmProfileSet = $self->getMinRpkmProfileSet();
   my $diffRpkmProfileSet = $self->getDiffRpkmProfileSet();
 
+  my ($minSuffix) = $minRpkmProfileSet =~ /(\s-\s.+)$/; 
+  my ($diffSuffix) = $diffRpkmProfileSet =~ /(\s-\s.+)\s-\sdiff$/; 
+
   my $minRpkmProfileSetDisplay = $self->getMinRpkmProfileSetDisplayName() ? $self->getMinRpkmProfileSetDisplayName() : "Unique";
   my $diffRpkmProfileSetDisplay = $self->getDiffRpkmProfileSetDisplayName() ? $self->getDiffRpkmProfileSetDisplayName() : "Non Unique";
+
+  $minRpkmProfileSetDisplay .= $minSuffix if($minSuffix);
+  $diffRpkmProfileSetDisplay .= $diffSuffix if($diffSuffix);
 
   my $pctProfileSet = $self->getPctProfileSet();
   my $additionalRCode = $self->getAdditionalRCode();
