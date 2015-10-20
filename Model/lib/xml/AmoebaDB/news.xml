@@ -30,48 +30,43 @@
      <h3>New Features</h3>
       
       <section>
-        <h4>GBrowse Track Search </h4>
-        
+       <h4>GBrowse Track Search </h4>
         <ul>
-        
           <li>
             The Select Tracks page in the Genome Browser now includes a search function.  Search for specific tracks 
             based on a word or phrase from the track title or category.   
-            <a href="http://luffa.gacrc.uga.edu/swfeltz/images/GBrowse_news_item.jpg">image<a>
+            <a href="http://luffa.gacrc.uga.edu/swfeltz/images/GBrowse_news_item.jpg">image</a>
           </li>
-          
         </ul>
       </section>
       
       <section>
-        <h4>New Tutorials</h4>
-        
+       <h4>New Tutorials</h4>
         <ul>
           <li>
-            <a href="https://youtu.be/qGLkAEzQpqU">Find genes with an enriched GO term<a>
+            <a href="https://youtu.be/qGLkAEzQpqU">Find genes with an enriched GO term</a>
           </li>
           <li>
-            <a href="https://youtu.be/0fkkJJ9f2cw">Downloading untranslated regions of genes<a>
+            <a href="https://youtu.be/0fkkJJ9f2cw">Downloading untranslated regions of genes</a>
           </li>
           <li>
-            <a href="https://youtu.be/dfx7CCr1_uo">Download sequence for genes in a search result<a>
+            <a href="https://youtu.be/dfx7CCr1_uo">Download sequence for genes in a search result</a>
           </li>
           <li>
-            <a href="https://youtu.be/ByBAYywzSWU">Downloading sequence from a gene page<a>
+            <a href="https://youtu.be/ByBAYywzSWU">Downloading sequence from a gene page</a>
           </li>
           <li>
-            <a href="https://youtu.be/3DtOwQM9Cts">Download the sequence of all genes for an organism<a>
+            <a href="https://youtu.be/3DtOwQM9Cts">Download the sequence of all genes for an organism</a>
           </li>
           <li>
-            <a href="https://youtu.be/XNUgT6HEjGY">Download the Sequence (fasta) and Annotation (gff) files for a genome<a>
+            <a href="https://youtu.be/XNUgT6HEjGY">Download the Sequence (fasta) and Annotation (gff) files for a genome</a>
           </li>
           <li>
-            <a href="https://youtu.be/1-onu5raD6M">Downloading coding sequence<a>
+            <a href="https://youtu.be/1-onu5raD6M">Downloading coding sequence</a>
           </li>
           <li>
-            <a href="https://youtu.be/b2hgT65H4CQ">Downloading protein sequence<a>
+            <a href="https://youtu.be/b2hgT65H4CQ">Downloading protein sequence</a>
           </li>
-          
         </ul>
       </section>
       
