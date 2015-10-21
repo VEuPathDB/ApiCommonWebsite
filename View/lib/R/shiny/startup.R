@@ -2,17 +2,15 @@
 
 library(shiny)
 
-# get app dir name from args
+# get app dir name and port from args
 args <- commandArgs(trailingOnly=TRUE)
 appName <- args[1]
-if (is.na(appName)) {
-  print("USAGE: startup.R <app_dir>")
+port <- args[2]
+if (is.na(appName) || is.na(port)) {
+  print("USAGE: startup.R <app_dir> <port>")
   q()
 }
 
-# source this app's config.R to get the webapp port
-print("Reading app's config.R to retrieve webappPort")
-source(paste0("apps/",appName,"/config.R"))
-
 # run the app
-runApp(paste0("apps/",appName), webappPort, host="0.0.0.0")
+print(paste0("Starting ", appName, " on port ", port))
+runApp(paste0("apps/",appName), strtoi(port), host="0.0.0.0")
