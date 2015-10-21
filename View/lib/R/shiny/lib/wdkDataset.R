@@ -6,7 +6,7 @@ library(shiny)
 # directly from the step analysis storage dir (passed in). If
 # fetchStyle is "url", data is read from URL.
 
-getWdkDataset <- function(session, fetchStyle, dataStorageDir="") {
+getWdkDataset <- function(session, fetchStyle, expectHeader, dataStorageDir="") {
 
   query = parseQueryString(session$clientData$url_search)
 
@@ -26,6 +26,6 @@ getWdkDataset <- function(session, fetchStyle, dataStorageDir="") {
         need(fetchUrl != "", "Must pass a dataUrl query paramenter")
     )
     print(paste0("Will read from: ", fetchUrl), stderr())
-    read.table(fetchUrl, sep="\t", header=FALSE)
+    read.table(fetchUrl, sep="\t", header=expectHeader)
   }
 }
