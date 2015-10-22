@@ -16,6 +16,150 @@
 -->
 
 <record>
+  <attribute name="headline">FungiDB 26 Released</attribute>
+  <attribute name="date">15 October 2015 13:00</attribute>
+  <attribute name="tag">fungidb10_15_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 26</strong></p>
+
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Genome Sequence and Annotation: the following genomes were updated to the current Genbank versions</h4>
+        <ul>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=Umay521_primary_genome_RSRC">Ustilago maydis 521</a> &mdash;
+            genome sequence and annotation updated to 
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/272671">Genbank version 18 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposC735deltSOWgp_primary_genome_RSRC">Coccidioides posadasii C735 delta SOWgp</a> &mdash;
+            genome sequence and annotation updated to 
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCF_000151335.1">Genbank version 17 June 2009</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposSilveira_primary_genome_RSRC">Coccidioides posadasii Silveira</a> &mdash;
+            genome sequence and annotation updated to 
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000170175.2">Genbank version 25 Jan 2011</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC3488_primary_genome_RSRC">Coccidioides posadasii RMSCC3488</a> &mdash;
+            genome sequence and annotation updated to 
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150055.1">Genbank version 18 July 2007</a>.
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h4>New Genome Sequence: available for the first time in FungiDB:</h4> 
+        <ul>  
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC2394_primary_genome_RSRC">Coccidioides immitis RMSCC 2394</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000149895.1">Genbank version 11 Feb 2006</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC3703_primary_genome_RSRC">Coccidioides immitis RMSCC 3703</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150085.1#/st">Genbank version 18 July 2007</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0001_primary_genome_RSRC">Coccidioides posadasii CPA 0001</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150245.1">Genbank version 19 Nov 2007</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0020_primary_genome_RSRC">Coccidioides posadasii CPA 0020</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150615.1">Genbank version 30 Jan 2008</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0066_primary_genome_RSRC">Coccidioides posadasii CPA 0066</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150645.1">Genbank version 7 Feb 2008</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC1037_primary_genome_RSRC">Coccidioides posadasii RMSCC 1037</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150555.1">Genbank version 30 Jan 2008</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC1038_primary_genome_RSRC">Coccidioides posadasii RMSCC 1038</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150585.1">Genbank version 30 Jan 2008</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC2133_primary_genome_RSRC">Coccidioides posadasii RMSCC 2133</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150185.1">Genbank version 19 Nov 2007</a>.
+          </li>
+          <li>
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC3700_primary_genome_RSRC">Coccidioides posadasii RMSCC 3700</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150215.1">Genbank version 19 Nov 2007</a>.
+          </li>
+        </ul>
+      </section>
+      
+
+      <h3>New Features</h3>
+      
+      <section>
+       <h4>GBrowse Track Search </h4>
+        <ul>
+          <li>
+            The Select Tracks page in the Genome Browser now includes a search function.  Search for specific tracks 
+            based on a word or phrase from the track title or category.   
+            <a href="http://luffa.gacrc.uga.edu/swfeltz/images/GBrowse_news_item.jpg">image</a>
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+       <h4>New Tutorials</h4>
+        <ul>
+          <li>
+            <a href="https://youtu.be/qGLkAEzQpqU">Find genes with an enriched GO term</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/0fkkJJ9f2cw">Downloading untranslated regions of genes</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/dfx7CCr1_uo">Download sequence for genes in a search result</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/ByBAYywzSWU">Downloading sequence from a gene page</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/3DtOwQM9Cts">Download the sequence of all genes for an organism</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/XNUgT6HEjGY">Download the Sequence (fasta) and Annotation (gff) files for a genome</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/1-onu5raD6M">Downloading coding sequence</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/b2hgT65H4CQ">Downloading protein sequence</a>
+          </li>
+        </ul>
+      </section>
+      
+
+
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">FungiDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
   <attribute name="tag">fungidb7_15_release</attribute>

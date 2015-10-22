@@ -15,7 +15,7 @@
         </row> 
         <row>
           <attribute name="title">BRCs Pathogen Portal</attribute>
-          <attribute name="url">http://www.pathogenportal.org/</attribute>
+          <attribute name="url">http://rnaseq.pathogenportal.org/</attribute>
         </row> 
         <row>
           <attribute name="title">OrthoMCL</attribute>

@@ -229,17 +229,26 @@ stderr.df = as.data.frame(matrix(nrow=length(profile.files)));
 stderr.df\$V1 = NULL;
 
 for(i in 1:length(profile.files)) {
+  skip.stderr = FALSE;
+
   if(skip.profiles[i]) {
     next;
   };
 
-  
-
   profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
 
   if(!is.null(profile.df\$ELEMENT_ORDER)) {
+    eo.count = length(profile.df\$ELEMENT_ORDER);
+    if(!is.numeric(profile.df\$ELEMENT_ORDER)) {
+      stop(\"Elemnet order must be numeric for aggregation\");
+    }
     profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
+    if(length(profile.df\$ELEMENT_ORDER) != eo.count) {
+      skip.stderr = TRUE;
+    }
+
   }
+
   profile = profile.df\$VALUE;
 
   element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
@@ -256,12 +265,9 @@ for(i in 1:length(profile.files)) {
     is.numeric.element.names = is.numeric.element.names == 'BANANAS';
   }
 
-   if(!is.na(stderr.files[i]) && stderr.files[i] != '') {
+   if(!skip.stderr && !is.na(stderr.files[i]) && stderr.files[i] != '') {
      stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
 
-     if(!is.null(stderr.tmp\$ELEMENT_ORDER)) {
-       stderr.tmp = aggregate(stderr.tmp, list(stderr.tmp\$ELEMENT_ORDER), mean, na.rm=T)
-     }
     stderr = stderr.tmp\$VALUE;
    } else {
      stderr = element.names;
@@ -802,6 +808,30 @@ sub new {
    return $self;
 }
 
+#--------------------------------------------------------------------------------
+
+package ApiCommonWebsite::View::GraphPackage::LinePlot::MRNADecay;
+use base qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
+use strict;
+
+sub new {
+  my $class = shift; 
+   my $self = $class->SUPER::new(@_);
+
+   my $id = $self->getId();
+
+   $self->setDefaultYMax(4);
+   $self->setDefaultYMin(0);
+   $self->setYaxisLabel('Expression Values');
+
+   $self->setPartName('exprn_val');
+   $self->setPlotTitle("Expression Values - $id");
+
+   $self->setMakeYAxisFoldInduction(0);
+   $self->setIsLogged(0);
+
+   return $self;
+}
 
 #--------------------------------------------------------------------------------
 

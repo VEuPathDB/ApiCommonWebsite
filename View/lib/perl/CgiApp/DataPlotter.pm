@@ -169,7 +169,7 @@ sub run {
 
 	 # report or delete temporary files.
 	 if ($save_b) {
-      print STDERR join("\t", 'Files', @filesToDelete), "\n";
+      print STDERR join("\n", 'Files', @filesToDelete), "\n";
 	 }
    else {
 	  map {unlink $_ if $_} @filesToDelete;

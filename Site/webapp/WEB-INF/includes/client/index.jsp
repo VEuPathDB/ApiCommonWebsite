@@ -1,7 +1,41 @@
 <%@ page contentType="text/html; charset=utf8" %>
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
-<imp:pageFrame refer="betaApp">
+<imp:pageFrameFixed refer="betaApp">
   <style>
+    body, h1, h2, h3, h4, h5, h6 {
+      font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+    }
+    h1 {
+      text-align: left;
+      margin: 0;
+      padding: 22px 0;
+      font-size: 2.5em;
+      font-weight: 300;
+    }
+    h2 {
+      font-size: 1.8em;
+      font-weight: 400;
+      margin: 0;
+      padding: 12px 0 8px 0;
+    }
+    h3 {
+      margin: 0;
+      padding: 22px 0 8px 0;
+    }
+    h4 {
+      margin: 0;
+      padding: 10px 0 8px 0;
+    }
+
+    #wdk-container {
+      height: calc(100% - 132px);
+      position: relative;
+    }
+
+    .eupathdb-DatasetRecord {
+      padding: 0 2em;
+    }
+
     .eupathdb-DatasetRecord h2,
     .eupathdb-DatasetRecord h3 {
       margin: 22px 0 11px;
@@ -73,31 +107,31 @@
       }
     }
     .eupathdb-Beta-Announcement {
-      position: absolute;
-      top: 136px;
-      right: 0;
-      z-index: 1;
-      padding: 0 2em;
-      display: inline-block;
+      float: right;
       font-style: italic;
       font-size: 1.2em;
+      padding: 4px 0;
     }
   </style>
 
-  <div class="eupathdb-Beta-Announcement" title="BETA means pre-release; a beta page is given out to a large group of users to try under real conditions. Beta versions have gone through alpha testing inhouse and are generally fairly close in look, feel and function to the final product; however, design changes often occur as a result.">
-    <p>
-      <%-- <i class="fa fa-lg fa-exclamation-circle" style="color: rgb(25, 89, 200);"></i> --%>
-      You are viewing a <strong>BETA</strong> (pre-release) page.
-      <a data-name="contact_us" class="new-window" href="contact.do">Feedback and comments</a>
-      are welcome!
-    </p>
-  </div>
+  <!-- We will pass this to WDK as the root element within which the client will render HTML -->
+  <div id="wdk-container"><jsp:text/></div>
 
-  <main
-    data-baseUrl="${pageContext.request.contextPath}/app/"
-    data-serviceUrl="${pageContext.request.contextPath}/service"
-  ></main>
-
+  <!-- `getApiClientConfig` is created in the global scope, so we can call this
+       from other JavaScript code where we initialize the WDK client
+       (see wdkCustomization/js/application.js) -->
+  <script>
+    function getApiClientConfig() {
+      return {
+        rootUrl: "${pageContext.request.contextPath}/app/",
+        endpoint: "${pageContext.request.contextPath}/service",
+        rootElement: document.getElementById("wdk-container"),
+        // Use an immediately-invoked function expression in case ${model} is empty
+        // to prevent a syntax error.
+        initialData: (function(initialData) { return initialData; }(${model}))
+      };
+    }
+  </script>
   <imp:script src="wdk/js/wdk.client.js"/>
   <imp:script src="wdkCustomization/js/application.bundle.js"/>
-</imp:pageFrame>
+</imp:pageFrameFixed>
