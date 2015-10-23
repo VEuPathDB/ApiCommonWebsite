@@ -34,15 +34,15 @@ shinyServer(function(input, output, session) {
 
     # Set variable as supplied from the UI
     x1 <- input$x
-    if (is.na(x1)) { x1 <- "AvgHemoglobin" }
+    #if (is.na(x1)) { x1 <- "AvgHemoglobin" }
     y1 <- input$y
-    if (is.na(y1)) { y1 <- "Avgageatvisit" }
+    #if (is.na(y1)) { y1 <- "Avgageatvisit" }
     clr <- input$color
-    if (is.na(clr)) { clr <- "G6pdGenotype" }
+    #if (is.na(clr)) { clr <- "G6pdGenotype" }
     facet <- input$facet
-    if (is.na(facet)) { facet <- "GeographicLocation" }
+    #if (is.na(facet)) { facet <- "GeographicLocation" }
     plt <- input$ptype
-    if (is.na(plt)) { plt <- "point" }
+    #if (is.na(plt)) { plt <- "point" }
 
     print(paste0("Input params: ",x1," ",y1," ",clr," ",facet," ",plt))
 

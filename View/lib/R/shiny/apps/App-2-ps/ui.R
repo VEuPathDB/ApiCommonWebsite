@@ -1,6 +1,6 @@
 ## ui.R
 require(rCharts)
-options(RCHART_LIB = 'polycharts')
+#options(RCHART_LIB = 'polycharts')
 
 shinyUI(pageWithSidebar(
   headerPanel("Visualizing participant information"),
@@ -8,21 +8,23 @@ shinyUI(pageWithSidebar(
   sidebarPanel(
     selectInput(inputId = "x",
                 label = "Plot",
-                choices = c('AvgHemoglobin', 'AvgWeight', 'AvgAnopheles', 'Avgageatvisit','AgeAtTimeOfEnrollment',
-                            'GeoMeanParasiteDensity','MatchingVisitsYear','matchingvisits','YearsofObservation'),
-                selected = "AvgHemoglobin"),
+    #            choices = c('AvgHemoglobin', 'AvgWeight','AvgAnopheles','Avgageatvisit','AgeAtTimeOfEnrollment',
+    #                        'GeoMeanParasiteDensity','MatchingVisitsYear','matchingvisits','YearsofObservation'),
+                choices = c('AgeAtTimeOfEnrollment','MatchingVisitsYear','YearsofObservation'
+                selected = "AgeAtTimeOfEnrollment"),
     selectInput(inputId = "y",
                 label = "Against",
-                choices = c('Avgageatvisit','AvgHemoglobin', 'AvgWeight', 'AvgAnopheles', 'AgeAtTimeOfEnrollment',
-                            'GeoMeanParasiteDensity','MatchingVisitsYear','matchingvisits','YearsofObservation'),
-                selected = "Avgageatvisit"),
+    #            choices = c('Avgageatvisit','AvgHemoglobin','AvgWeight','AvgAnopheles','AgeAtTimeOfEnrollment',
+    #                        'GeoMeanParasiteDensity','MatchingVisitsYear','matchingvisits','YearsofObservation'),
+                choices = c('AgeAtTimeOfEnrollment','MatchingVisitsYear','YearsofObservation'),
+                selected = "MatchingVisitsYear"),
     selectInput(inputId = "facet",
                 label = "Facets",
-                choices = c('GeographicLocation','Sex', 'G6pdGenotype','AthalassemiaGenotype','HbsGenotype'),
+                choices = c('GeographicLocation','Sex','G6pdGenotype','AthalassemiaGenotype','HbsGenotype'),
                 selected = "GeographicLocation"),
     selectInput(inputId = "color",
                 label = "Color",
-                choices = c('G6pdGenotype','GeographicLocation','Sex', 'AthalassemiaGenotype','HbsGenotype'),
+                choices = c('GeographicLocation','Sex','G6pdGenotype','AthalassemiaGenotype','HbsGenotype'),
                 selected = "G6pdGenotype"),
     selectInput(inputId = "ptype",
                 label = "Plot Type",
