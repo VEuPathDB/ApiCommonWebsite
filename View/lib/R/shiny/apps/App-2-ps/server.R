@@ -1,5 +1,5 @@
 ## server.r
-#options(shiny.trace=TRUE)
+options(shiny.trace=TRUE)
 require(rCharts)
 
 source("../../lib/wdkDataset.R")
@@ -25,7 +25,7 @@ shinyServer(function(input, output, session) {
     ps$GeographicLocation <- as.factor(ps$GeographicLocation)
 
     str(ps) # Check data after conversion
-    
+
     # compute max dates
     #max.d <- max(as.Date(cv$visit_date,"%Y-%m-%d"))
     #min.d <- min(as.Date(cv$visit_date,"%Y-%m-%d"))
@@ -47,7 +47,7 @@ shinyServer(function(input, output, session) {
     print(paste0("Input params: ",x1," ",y1," ",clr," ",facet," ",plt))
 
     #Plot out graph using supplied information
-    p1 <- rPlot(x1, y1, data=ps, type=plt, color=clr, facet=facet)
+    p1 <- rPlot(x=x1, y=y1, data=ps, type=plt, color=clr, facet=facet)
     #p1$addParams(dom = 'myChart')
     return(p1)
 

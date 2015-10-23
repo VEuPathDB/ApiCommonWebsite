@@ -1,5 +1,7 @@
 ## ui.R
 require(rCharts)
+options(RCHART_LIB = 'polycharts')
+
 shinyUI(pageWithSidebar(
   headerPanel("Visualizing participant information"),
   
