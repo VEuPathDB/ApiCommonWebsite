@@ -11,7 +11,7 @@ shinyServer(function(input, output, session) {
     getWdkDataset(session, fetchStyle, FALSE, dataStorageDir)
   )
   
-  output$myChart <- renderChart({
+  output$myChart <- renderChart2({
 
     ps <- datasetFetcher()
     names(ps) <- substr(names(ps),2,50) # Drop the preceeding 'x's added to the variable names
