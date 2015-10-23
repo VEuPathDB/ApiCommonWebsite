@@ -1,2 +1,2 @@
 fetchStyle <- "disk"
-dataStorageDir <- "/var/www/Common/tmp/wdkStepAnalysisJobs"
+dataStorageDir <- "/var/www/Common/tmp/wdkStepAnalysisJobs/prsmcommN"
