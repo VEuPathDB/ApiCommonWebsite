@@ -10,7 +10,7 @@ shinyUI(pageWithSidebar(
                 label = "Plot",
     #            choices = c('AvgHemoglobin', 'AvgWeight','AvgAnopheles','Avgageatvisit','AgeAtTimeOfEnrollment',
     #                        'GeoMeanParasiteDensity','MatchingVisitsYear','matchingvisits','YearsofObservation'),
-                choices = c('AgeAtTimeOfEnrollment','MatchingVisitsYear','YearsofObservation'
+                choices = c('AgeAtTimeOfEnrollment','MatchingVisitsYear','YearsofObservation'),
                 selected = "AgeAtTimeOfEnrollment"),
     selectInput(inputId = "y",
                 label = "Against",
