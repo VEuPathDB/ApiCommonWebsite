@@ -18,7 +18,8 @@ getWdkDataset <- function(session, fetchStyle, expectHeader, dataStorageDir="") 
     )
     dataFile <- paste0(dataStorageDir, "/", contextHash, "/data.tab")
     print(paste0("Will read from: ", dataFile), stderr())
-    read.table(dataFile, sep="\t", header=FALSE)
+    #read.table(dataFile, sep="\t", header=expectHeader)
+    read.csv(dataFile, sep = "\t", as.is=TRUE, na.strings=(list("null")))
   }
   else {
     fetchUrl = get("dataUrl", query)
