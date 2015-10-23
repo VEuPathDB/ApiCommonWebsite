@@ -1,5 +1,5 @@
 ## server.r
-options(shiny.trace=TRUE)
+#options(shiny.trace=TRUE)
 require(rCharts)
 
 source("../../lib/wdkDataset.R")
@@ -17,20 +17,20 @@ shinyServer(function(input, output, session) {
     names(ps) <- substr(names(ps),2,50) # Drop the preceeding 'x's added to the variable names
     names(ps) <- gsub('\\.','',names(ps)) # Drop periods inserted into column names by R
 
-    #coerce variables in the data frame to desired datatype
+    # Coerce variables in the data frame to desired datatype
     ps$Sex <- as.factor(ps$Sex)
     ps$G6pdGenotype <- as.factor(ps$G6pdGenotype)
     ps$HbsGenotype <- as.factor(ps$HbsGenotype)
     ps$AthalassemiaGenotype <- as.factor(ps$AthalassemiaGenotype)
     ps$GeographicLocation <- as.factor(ps$GeographicLocation)
 
-    str(ps) # Check data after conversion
+    #str(ps) # Check data after conversion
 
     # compute max dates
     #max.d <- max(as.Date(cv$visit_date,"%Y-%m-%d"))
     #min.d <- min(as.Date(cv$visit_date,"%Y-%m-%d"))
 
-    #str(input)
+    str(input)
 
     # Set variable as supplied from the UI
     x1 <- input$x
@@ -46,9 +46,9 @@ shinyServer(function(input, output, session) {
 
     print(paste0("Input params: ",x1," ",y1," ",clr," ",facet," ",plt))
 
-    #Plot out graph using supplied information
+    # Plot out graph using supplied information
     p1 <- rPlot(x=x1, y=y1, data=ps, type=plt, color=clr, facet=facet)
-    #p1$addParams(dom = 'myChart')
+    p1$addParams(dom = 'myChart')
     return(p1)
 
   })
