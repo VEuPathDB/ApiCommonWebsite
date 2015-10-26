@@ -54,7 +54,7 @@ public class GeneViewHandler extends AltSpliceViewHandler {
     root.removeAll(new NameMatchPredicate(TRANSCRIPT_CATEGORY_NAME));
     String[] questionTypes = step.getQuestion().getPropertyList(QUESTION_TYPE_PROPLIST_KEY);
     if (questionTypes != null && Arrays.asList(questionTypes).contains(TRANSCRIPT_QUESTION_PROP_NAME)) {
-      // 
+      // assume that dynamic columns of transcript questions are transcript attributes and remove from gene view
       root.removeAll(new NameMatchPredicate(DYNAMIC_ATTRIB_CATEGORY_NAME));
     }
   }
