@@ -40,7 +40,7 @@
 
 <c:set var="attr" value="${attrs['overview']}"/>
 <c:set var="start_date" value="01-aug-2011"/>
- <c:set var="end_date"  value="01-JUN-2015"/>
+ <c:set var="end_date"  value="30-JUN-2015"/>
 
 
 <imp:panel 
