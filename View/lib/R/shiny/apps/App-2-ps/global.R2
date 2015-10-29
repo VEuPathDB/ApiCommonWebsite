@@ -1,4 +1,6 @@
-setwd("E:/Users/San/Desktop/Temp/R/shiny/Ryan/App-2-ps")
+#setwd("E:/Users/San/Desktop/Temp/R/shiny/Ryan/App-2-ps")
+source("../../lib/wdkDataset.R")
+source("config.R")
 
 ps <- read.csv("ps.csv", stringsAsFactors = FALSE, na.strings = "null") #Import data to work with
 names(ps) <- substr(names(ps),2,50)#Drop the preceeding 'x's added to the variable names

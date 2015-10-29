@@ -1,5 +1,8 @@
 #set working directory
-setwd("E:/Users/San/Desktop/Temp/R/shiny/App-3-lts")
+#setwd("E:/Users/San/Desktop/Temp/R/shiny/App-3-lts")
+source("../../lib/wdkDataset.R")
+source("config.R")
+
 library(reshape2)
 library(rCharts)
 
