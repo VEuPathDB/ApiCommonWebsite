@@ -1,5 +1,7 @@
 #set working directory
-setwd("E:/Users/San/Desktop/Temp/R/shiny/Ryan/App-1-cv")
+#setwd("E:/Users/San/Desktop/Temp/R/shiny/Ryan/App-1-cv")
+source("../../lib/wdkDataset.R")
+source("config.R")
 
 cv <- read.csv("visits.csv", sep = ",", as.is = T, na.strings = (list('null'))) #import data
 
