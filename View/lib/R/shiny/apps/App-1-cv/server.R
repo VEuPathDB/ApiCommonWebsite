@@ -1,8 +1,36 @@
 ## server.r
 require(rCharts)
-shinyServer(function(input, output) {
+
+source("../../lib/wdkDataset.R")
+source("config.R")
+
+shinyServer(function(input, output, session) {
+
+  datasetFetcher <- reactive(
+    getWdkDataset(session, fetchStyle, FALSE, dataStorageDir)
+  )
   
     output$myChart <- renderChart({
+
+      cv <- datasetFetcher()
+
+      str(cv)
+      names(cv) <- substr(names(cv),3,50) #Remove preceeding 'x.'
+      names(cv) = gsub("\\.", "", names(cv)) #Remove remaining periods
+
+      #coerce variables to required type:
+      cv$ClinicalVisitType <- as.factor(cv$ClinicalVisitType)
+      cv$BloodSmearStatus <- as.factor(cv$BloodSmearStatus)
+      cv$MalariaDiagnosis <- as.factor(cv$MalariaDiagnosis)
+      cv$GeographicLocation <- as.factor(cv$GeographicLocation)
+      cv$BloodSmearReading <- as.factor(cv$BloodSmearReading)
+      cv$Febrile <- as.factor(cv$Febrile)
+      cv$Feversubjective <- as.factor(cv$Feversubjective)
+##      cv$SevereMalariaSymptoms <- as.factor(cv$SevereMalariaSymptoms)
+      cv$Species <- as.factor(cv$Species)
+
+      str(input)
+
       #Set values for graphing
       x_ <- input$x
       y_ <- input$y
@@ -16,8 +44,9 @@ shinyServer(function(input, output) {
       
       #scv <- subset(cv, visit_date > min.d & visit_date < max.d, select = c(x_, y_, clr,fill,grp,visit_date))
       #paste(scv)
-    p1 <- rPlot(input$x, input$y, data = cv, type = typ, group =grp,facet=fct, color=clr)
-    p1$addParams(dom = 'myChart')
-    return(p1)
+
+      p1 <- rPlot(input$x, input$y, data = cv, type = typ, group =grp,facet=fct, color=clr)
+      p1$addParams(dom = 'myChart')
+      return(p1)
   })
 })
