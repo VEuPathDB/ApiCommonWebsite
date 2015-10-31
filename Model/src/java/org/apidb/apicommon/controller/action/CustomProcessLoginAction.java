@@ -45,7 +45,7 @@ public class CustomProcessLoginAction extends ProcessLoginAction {
             .append(CConstants.WDK_LOGIN_ERROR_KEY).append("=").append(errorText);
       }
       else {
-        loginPageUrl.append("/showError.do?")
+        loginPageUrl.append("/showErrorPage.do?")
             .append(CConstants.WDK_ERROR_TEXT_KEY).append("=").append(errorText);
       }
     }
