@@ -129,6 +129,18 @@
         </li>
       </section>
       
+      <section>
+      <h4>Transcription Start Sites:</h4>
+      <ul>
+        <li>
+          <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pfal3D7_Chabbert_TSS_GFF_RSRC">
+                                  TSS from 5'cap-selected mRNA </a> &mdash;
+            Transcription Start Site locations for P.falciparum 3D7. Genome-wide transcription start sites mapping based on 
+            high-throughput sequencing of 5' cap-selected mRNA molecules isolated from 6 time points during <i>P. falciparum</i> 
+            3D7 intra-erythrocytic asexual cycle. Lars Steinmetz (EMBL Heidelberg)
+        </li>
+      </section>
+      
      <h3>New Features</h3>
       
       <section>
@@ -137,7 +149,7 @@
           <li>
             The Select Tracks page in the Genome Browser now includes a search function.  Search for specific tracks 
             based on a word or phrase from the track title or category.   
-            <a href="http://luffa.gacrc.uga.edu/swfeltz/images/GBrowse_news_item.jpg">image<a>
+            <a href="http://luffa.gacrc.uga.edu/swfeltz/images/GBrowse_news_item.jpg">image</a>
           </li>
         </ul>
       </section>
@@ -146,28 +158,28 @@
        <h4>New Tutorials</h4>
         <ul>
           <li>
-            <a href="https://youtu.be/qGLkAEzQpqU">Find genes with an enriched GO term<a>
+            <a href="https://youtu.be/qGLkAEzQpqU">Find genes with an enriched GO term</a>
           </li>
           <li>
-            <a href="https://youtu.be/0fkkJJ9f2cw">Downloading untranslated regions of genes<a>
+            <a href="https://youtu.be/0fkkJJ9f2cw">Downloading untranslated regions of genes</a>
           </li>
           <li>
-            <a href="https://youtu.be/dfx7CCr1_uo">Download sequence for genes in a search result<a>
+            <a href="https://youtu.be/dfx7CCr1_uo">Download sequence for genes in a search result</a>
           </li>
           <li>
-            <a href="https://youtu.be/ByBAYywzSWU">Downloading sequence from a gene page<a>
+            <a href="https://youtu.be/ByBAYywzSWU">Downloading sequence from a gene page</a>
           </li>
           <li>
-            <a href="https://youtu.be/3DtOwQM9Cts">Download the sequence of all genes for an organism<a>
+            <a href="https://youtu.be/3DtOwQM9Cts">Download the sequence of all genes for an organism</a>
           </li>
           <li>
-            <a href="https://youtu.be/XNUgT6HEjGY">Download the Sequence (fasta) and Annotation (gff) files for a genome<a>
+            <a href="https://youtu.be/XNUgT6HEjGY">Download the Sequence (fasta) and Annotation (gff) files for a genome</a>
           </li>
           <li>
-            <a href="https://youtu.be/1-onu5raD6M">Downloading coding sequence<a>
+            <a href="https://youtu.be/1-onu5raD6M">Downloading coding sequence</a>
           </li>
           <li>
-            <a href="https://youtu.be/b2hgT65H4CQ">Downloading protein sequence<a>
+            <a href="https://youtu.be/b2hgT65H4CQ">Downloading protein sequence</a>
           </li>
         </ul>
       </section>
