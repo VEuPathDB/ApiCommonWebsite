@@ -129,6 +129,18 @@
         </li>
       </section>
       
+      <section>
+      <h4>Transcription Start Sites:</h4>
+      <ul>
+        <li>
+          <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pfal3D7_Chabbert_TSS_GFF_RSRC">
+                                  TSS from 5'cap-selected mRNA </a> &mdash;
+            Transcription Start Site locations for P.falciparum 3D7. Genome-wide transcription start sites mapping based on 
+            high-throughput sequencing of 5' cap-selected mRNA molecules isolated from 6 time points during <i>P. falciparum</i> 
+            3D7 intra-erythrocytic asexual cycle. Lars Steinmetz (EMBL Heidelberg)
+        </li>
+      </section>
+      
      <h3>New Features</h3>
       
       <section>
