@@ -42,16 +42,15 @@ sub init {
   my $Args = ref $_[0] ? shift : {@_};
 
   $Self->SUPER::init($Args);
-
-	$Self->setProfileSet           ( $Args->{ProfileSet          } );
+  $Self->setProfileSet           ( $Args->{ProfileSet          } );
 
   $Self->setSql(<<Sql);
-SELECT distinct pen.element_order, pen.name
-FROM   apidb.ProfileSet         ps
-,      apidb.ProfileElementName pen
-WHERE  ps.name            = '<<ProfileSet>>'
-AND    pen.profile_set_id = ps.profile_set_id
-ORDER  BY pen.element_order
+SELECT distinct pan.node_order_num, pan.name
+FROM   study.protocolAppNode pan, study.study s, study.studylink sl
+WHERE  s.name            = '<<ProfileSet>>'
+AND    s.study_id = sl.study_id
+AND    pan.protocol_app_node_id = sl.protocol_app_node_id
+ORDER  BY pan.node_order_num
 Sql
 
   return $Self;

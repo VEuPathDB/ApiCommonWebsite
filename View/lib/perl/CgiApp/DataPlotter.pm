@@ -70,7 +70,7 @@ sub run {
 	 my $save_b         = $Cgi->param('save');
 	 my $typeArg        = $Cgi->param('typeArg');
          my $template     = $Cgi->param('template');
-         my $dataset     = $Cgi->param('dataset');
+         my $datasetId     = $Cgi->param('datasetId');
 
          my $widthOverride     = $Cgi->param('w');
          my $heightOverride     = $Cgi->param('h');
@@ -119,7 +119,7 @@ sub run {
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          # dataset Need to strip the dashes from package name
-         my $datasetClassName = $dataset;
+         my $datasetClassName = $datasetId;
          $datasetClassName =~ s/-//g if ($datasetClassName);
 
          eval "require $class";
@@ -131,7 +131,7 @@ sub run {
                         QueryHandle => $_qh,
                         Id => $id,
                         SecondaryId => $sid,
-                        Dataset => $dataset,
+                        DatasetId => $datasetId,
                         WantLogged => $wantLogged,
                         Format => $gddFormat,
                         OutputFile => $fmt_f,

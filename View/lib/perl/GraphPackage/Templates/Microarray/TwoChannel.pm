@@ -19,10 +19,11 @@ sub getPercentileGraphType {
   return 'bar';
 }
 
+# GUS 4 - dont need overrride?
 # @Override.  The internal Convention for Two Channel is red/green
-sub sortPercentileProfiles {
-  $b cmp $a;
-}
+#sub sortPercentileProfiles {
+#  $b cmp $a;
+#}
 
 
 1;

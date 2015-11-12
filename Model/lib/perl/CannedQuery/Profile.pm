@@ -50,15 +50,15 @@ sub init {
         $Self->setSecondaryId          ( $Args->{SecondaryId         } );
         $Self->setUseSecondary         ( $Args->{UseSecondary        } );
 	$Self->setProfileSet           ( $Args->{ProfileSet          } );
+	$Self->setProfileType           ( $Args->{ProfileType          } );
         $Self->setElementOrder         ( $Args->{ElementOrder        } ); 
 
   $Self->setSql(<<Sql);
 SELECT profile_AS_STRING
-FROM   apidb.Profile    p
-,      apidb.ProfileSet ps
-WHERE  p.source_id      = '<<Id>>'
-AND    p.profile_set_id = ps.profile_set_id
-AND    ps.name          = '<<ProfileSet>>'
+FROM   apidbtuning.Profile  p
+WHERE  p.gene_source_id      = '<<Id>>'
+AND    p.profile_set_name          = '<<ProfileSet>>'
+AND   p.profile_type           = '<<ProfileType>>'
 Sql
 
   return $Self;
@@ -78,6 +78,9 @@ sub setUseSecondary         { $_[0]->{'UseSecondary'      } = $_[1]; $_[0] }
 sub getProfileSet           { $_[0]->{'ProfileSet'        } }
 sub setProfileSet           { $_[0]->{'ProfileSet'        } = $_[1]; $_[0] }
 
+sub getProfileType           { $_[0]->{'ProfileType'        } }
+sub setProfileType           { $_[0]->{'ProfileType'        } = $_[1]; $_[0] }
+
 sub getElementOrder         { $_[0]->{'ElementOrder'      } }
 sub setElementOrder         { $_[0]->{'ElementOrder'      } = $_[1]; $_[0] }
 
@@ -93,6 +96,7 @@ sub prepareDictionary {
 
 	 $Dict->{Id}         = $Self->getUseSecondary() ? $Self->getSecondaryId() : $Self->getId();
 	 $Dict->{ProfileSet} = $Self->getProfileSet();
+	 $Dict->{ProfileType} = $Self->getProfileType();
 
 	 return $Rv;
 }

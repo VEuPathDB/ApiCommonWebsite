@@ -48,7 +48,7 @@ sub init {
    $Self->setThumbnail            ( $Args->{Thumbnail           } );
    $Self->setVisibleParts         ( $Args->{VisibleParts        } );
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
-   $Self->setDataset              ( $Args->{Dataset             } );
+   $Self->setDatasetId              ( $Args->{DatasetId             } );
    $Self->setWantLogged           ( $Args->{WantLogged          } );
 
    $Self->setWidthOverride           ( $Args->{WidthOverride          } );
@@ -95,8 +95,8 @@ sub setVisibleParts            { $_[0]->{'VisibleParts'                } = $_[1]
 sub getSecondaryId             { $_[0]->{'SecondaryId'                 } }
 sub setSecondaryId             { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
 
-sub getDataset                 { $_[0]->{'Dataset'                     } }
-sub setDataset                 { $_[0]->{'Dataset'                     } = $_[1]; $_[0] }
+sub getDatasetId                 { $_[0]->{'DatasetId'                     } }
+sub setDatasetId                 { $_[0]->{'DatasetId'                     } = $_[1]; $_[0] }
 
 sub getWantLogged              { $_[0]->{'WantLogged'                  } }
 sub setWantLogged              { $_[0]->{'WantLogged'                  } = $_[1]; $_[0] }
