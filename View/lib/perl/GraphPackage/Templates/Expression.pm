@@ -29,7 +29,7 @@ sub getPercentileGraphType {
 }
 
 sub sortPercentileProfiles {
-  $a cmp $b;
+  $a->{profileName} cmp $b->{profileName} && $a->{profileType} cmp $b->{profileType};
 }
 
 # Template subclasses need to implement this....should return a valid PlotPart for the given Graph Type (LogRatio, RMA, ...)
@@ -65,7 +65,7 @@ sub init {
 sub getAllProfileSetNames {
   my ($self) = @_;
 
-  my $datasetName = $self->getDataset();
+  my $datasetId = $self->getDatasetId();
 
   my $id = $self->getId();
 
@@ -74,58 +74,48 @@ sub getAllProfileSetNames {
   my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
 
   my $sh = $dbh->prepare($sql);
-  $sh->execute($datasetName);
+  $sh->execute($datasetId);
 
   my @rv = ();
 
-  while(my ($profileName) = $sh->fetchrow_array()) {
+  while(my ($profileName, $profileType) = $sh->fetchrow_array()) {
     next if($self->isExcludedProfileSet($profileName));
-    push @rv, $profileName;
+    my $p = {profileName=>$profileName, profileType=>$profileType};
+    push @rv, $p;
   }
   $sh->finish();
-
-
-  if ($sh->rows() == 0 ){
-    my $filterSql =  ApiCommonWebsite::View::GraphPackage::Util::getFilteredProfileSetsSql();
-    $sh = $dbh->prepare($filterSql);
-    $sh->execute($datasetName,$id);
-
-    while(my ($profileName) = $sh->fetchrow_array()) {
-      next if($self->isExcludedProfileSet($profileName));
-      push @rv, $profileName;
-    }
-    $sh->finish();
-  }
-  
   return \@rv;
 }
 
 
 sub getProfileSetsArray {
-  my ($self, $allProfileSetNames) = @_;
+  my ($self, $allProfiles) = @_;
 
   my (%stderrProfiles, @profiles);
 
-  foreach my $profileName (@$allProfileSetNames) {
-    next if($profileName =~ /percentile/i);
+  foreach my $profile (@$allProfiles) {
+    my $profileName = $profile->{profileName};
+    my $profileType = $profile->{profileType};
 
-    if($profileName =~ /^standard error - /) {
+    next if($profileType =~ /percentile/i);
+
+    if($profileType =~ /standard_error/) {
       $stderrProfiles{$profileName} = 1;
-    } 
+    }
     else {
       push @profiles, $profileName;
     }
   }
 
   my @profileSetsArray;
-
   foreach my $profile (sort @profiles) {
-    my $expectedStderrProfileName = "standard error - $profile";
-
-    my $stderrProfile = $stderrProfiles{$expectedStderrProfileName} ? $expectedStderrProfileName : "";
-
-    push @profileSetsArray, [$profile, $stderrProfile];
+    if ($stderrProfiles{$profile}) {
+      push @profileSetsArray, [$profile, 'values', $profile, 'standard_error'];
+    } else {
+      push @profileSetsArray, [$profile, 'values'];
+    }
   }
+
   return \@profileSetsArray;
 }
 
@@ -133,16 +123,20 @@ sub getPercentileSetsArray {
   my ($self, $allProfileSetNames) = @_;
 
   my @percentiles;
-  foreach my $profileName (@$allProfileSetNames) {
-    next unless($profileName =~ /percentile/i);
-    push @percentiles, $profileName;
+
+  foreach my $profile (@$allProfileSetNames) {
+    my $profileName = $profile->{profileName};
+    my $profileType = $profile->{profileType};
+
+    next unless($profileType =~ /percentile/i);
+    push @percentiles, $profile;
   }
 
   my @sortedPercentiles = sort sortPercentileProfiles @percentiles;
 
   my @percentileSetsArray;
   foreach my $pctProfile (@sortedPercentiles) {
-    push @percentileSetsArray, [$pctProfile, ''];
+    push @percentileSetsArray, [$pctProfile->{profileName}, $pctProfile->{profileType}];
   }
 
   return \@percentileSetsArray;
@@ -314,5 +308,5 @@ sub finalPercentileAdjustments {
 
   $percentile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
 }
-
 1;
+

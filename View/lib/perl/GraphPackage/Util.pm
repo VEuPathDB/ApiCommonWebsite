@@ -13,17 +13,19 @@ sub makeProfileSets {
 
   foreach my $row (@$arr) {
     my $mainProfileSet = $row->[0];
-    my $relatedProfileSet = $row->[1];
-    my $elementNames = $row->[2];
-    my $alternateSourceId = $row->[3];
-    my $scale = $row->[4];
-    my $metaDataCategory = $row->[5];
-    my $mainProfileSetDisplayName = $row->[6];
+    my $mainProfileType = $row->[1];
+    my $relatedProfileSet = $row->[2];
+    my $relatedProfileType = $row->[3];
+    my $elementNames = $row->[4];
+    my $alternateSourceId = $row->[5];
+    my $scale = $row->[6];
+    my $metaDataCategory = $row->[7];
+    my $mainProfileSetDisplayName = $row->[8];
 
-    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $mainProfileSetDisplayName);
+    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $mainProfileType, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $mainProfileSetDisplayName);
 
     if($relatedProfileSet) {
-      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $elementNames, $alternateSourceId, $scale, $metaDataCategory);
+      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $relatedProfileType, $elementNames, $alternateSourceId, $scale, $metaDataCategory);
       $profileSet->setRelatedProfileSet($relatedSet);
     }
     push @rv, $profileSet;
@@ -34,33 +36,12 @@ sub makeProfileSets {
 
 
 sub getProfileSetsSql {
-  return "select ps.name,d.name
-from apidb.profileset ps,
-sres.externaldatabase d, 
-sres.externaldatabaserelease r
-where ps.external_database_release_id = r.external_database_release_id
-and r.external_database_id = d.external_database_id
-and d.name = ?"
-
+  return "SELECT DISTINCT pt.profile_set_name, pt.profile_type
+FROM apidbtuning.ProfileType pt, apidbtuning.DatasetNameTaxon dnt
+WHERE pt.dataset_name = dnt.name
+AND dnt.dataset_presenter_id = ?"
 }
 
-sub getFilteredProfileSetsSql {
-   return "select ps.name
-from apidb.profileset ps,
-apidb.profile p,
-sres.externaldatabase d, 
-sres.externaldatabaserelease r,
-(select dsnt.name 
- from APIDBTUNING.datasetpresenter dp, 
-      APIDBTUNING.datasetnametaxon dsnt
- where dp.dataset_presenter_id = dsnt.dataset_presenter_id
-   and dp.name = ?) dp
-where ps.external_database_release_id = r.external_database_release_id
-and r.external_database_id = d.external_database_id
-and dp.name = d.name
-and p.profile_set_id = ps.profile_set_id
-and p.source_id = ?"
-}
 
 sub rStringVectorFromArray {
   my ($stringArray, $name) = @_;
