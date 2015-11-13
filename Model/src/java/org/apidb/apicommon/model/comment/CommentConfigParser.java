@@ -1,14 +1,11 @@
-/**
- * 
- */
 package org.apidb.apicommon.model.comment;
 
 import java.io.IOException;
 import java.net.URL;
 
 import org.apache.commons.digester.Digester;
+import org.gusdb.fgputil.xml.XmlParser;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.XmlParser;
 import org.xml.sax.SAXException;
 
 /**
@@ -17,8 +14,10 @@ import org.xml.sax.SAXException;
  */
 public class CommentConfigParser extends XmlParser {
 
-    public CommentConfigParser(String gusHome) throws WdkModelException {
-        super(gusHome, "lib/rng/comment-config.rng");
+    private final String gusHome;
+
+    public CommentConfigParser(String gusHome) {
+        this.gusHome = gusHome;
     }
 
     /**
@@ -32,9 +31,12 @@ public class CommentConfigParser extends XmlParser {
     public CommentConfig parseConfig(String projectId) throws WdkModelException, CommentModelException {
         try {
           // validate the configuration file
-          URL configURL = makeURL(gusHome, getConfigFile(projectId));
-          validate(configURL);
-          return (CommentConfig) digester.parse(configURL.openStream());
+          configureValidator(gusHome + "/lib/rng/comment-config.rng");
+          URL configURL = makeURL(gusHome + "/" + getConfigFile(projectId));
+          if (!validate(configURL)) {
+            throw new WdkModelException("Validation failed: " + configURL.toExternalForm());
+          }
+          return (CommentConfig) getDigester().parse(configURL.openStream());
         }
         catch (IOException | SAXException ex) {
           throw new CommentModelException(ex);
