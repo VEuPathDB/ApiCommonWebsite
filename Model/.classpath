@@ -14,5 +14,10 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/wdk-controller"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/struts/struts-core/1.3.10/struts-core-1.3.10.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/json/json/20140107/json-20140107.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/thaiopensource/jing/20091111/jing-20091111.jar" sourcepath="M2_REPO/com/thaiopensource/jing/20091111/jing-20091111-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/Users/rdoherty/.m2/repository/com/thaiopensource/jing/20091111/jing-20091111-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
