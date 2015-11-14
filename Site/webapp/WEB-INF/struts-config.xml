@@ -298,7 +298,7 @@
     
     <action
       path="/showQuestion"
-      type="org.apidb.apicommon.controller.action.CustomShowQuestionAction"
+      type="org.gusdb.wdk.controller.action.ShowQuestionAction"
       scope="request"
       validate="false"
       name="questionForm">
@@ -452,7 +452,7 @@
     </action>
     <action
       path="/showRecord"
-      type="org.apidb.apicommon.controller.action.CustomShowRecordAction"
+      type="org.gusdb.wdk.controller.action.ShowRecordAction"
       scope="request">
       <forward name="show_record" path="/record.jsp"/>
       <forward name="run-question" path="/processQuestion.do?questionFullName=GeneQuestions.GeneBySingleLocusTag&amp;value(single_gene_id)=${SOURCE_ID}&amp;questionSubmit=Get+Answer"/>
