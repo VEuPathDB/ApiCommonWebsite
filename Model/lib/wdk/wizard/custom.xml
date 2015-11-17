@@ -4,11 +4,13 @@
 	<!-- show question page, and allow user to choose the params, this page 
 		will go to one of the three stages: boolean, process_transform, or span. 
 		This stage is customized to process data source. -->
+  <!--  Removed for PRISM/ICEMR sites
 	<stage name="question" display="Select parameters"
 		handlerClass="org.apidb.apicommon.controller.wizard.CustomShowQuestionStageHandler">
 		<description>Please choose parameters and the operation.</description>
 		<result type="view">/wdk/jsp/wizard/question.jsp</result>
 	</stage>
+  -->
 
 	<stage name="span_from_question" display="Select Parameters"
 		handlerClass="org.apidb.apicommon.controller.wizard.SpanFromQuestionStageHandler">
