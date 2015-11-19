@@ -17,6 +17,9 @@ from apidbtuning.geneid gi, apidbtuning.geneattributes ga
 where ga.source_id = gi.gene
 and (gi.database_name like '%uniprot_dbxref_RSRC'
 or gi.database_name like '%dbxref_gene2Uniprot_RSRC'
+or gi.database_name like '%dbxref_uniprot_linkout_RSRC'
+or gi.database_name like '%dbxref_uniprotkb_from_annotation_RSRC'
+or gi.database_name like '%dbxref_simple_gene2Uniprot_RSRC'
 or gi.database_name = 'Links to Uniprot Genes')";
   
   my $sth = $dbh->prepare($sql);
