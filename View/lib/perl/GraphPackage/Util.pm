@@ -37,8 +37,9 @@ sub makeProfileSets {
 
 sub getProfileSetsSql {
   return "SELECT DISTINCT pt.profile_set_name, pt.profile_type
-FROM apidbtuning.ProfileType pt, apidbtuning.DatasetNameTaxon dnt
+FROM apidbtuning.ProfileSamples ps, apidbtuning.ProfileType pt, apidbtuning.DatasetNameTaxon dnt
 WHERE pt.dataset_name = dnt.name
+AND pt.profile_set_name = ps.study_name
 AND dnt.dataset_presenter_id = ?"
 }
 

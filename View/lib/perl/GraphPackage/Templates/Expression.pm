@@ -23,6 +23,13 @@ sub finalPercentileAdjustments {}
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
+sub getKey{
+  my ($self, $profileSetName, $profileType) = @_;
+  my ($suffix) = $profileSetName =~ /\- (.+)$/;
+  $suffix = '_suffix' if (!$suffix);
+  return "${suffix}_${profileType}";
+}
+
 sub getPercentileGraphType {
   my $self = shift;
   return $self->getGraphType();
@@ -52,12 +59,19 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-  my $allProfileSetNames = $self->getAllProfileSetNames();
-
-  my $profileSetsArray = $self->getProfileSetsArray($allProfileSetNames);
-  my $percentileSetsArray = $self->getPercentileSetsArray($allProfileSetNames);
-
-  $self->makeAndSetPlots($profileSetsArray, $percentileSetsArray);
+  my $allProfileSets = $self->getAllProfileSetNames();
+  my %plotParts;
+  my %hasStdError;
+  foreach my $p (@{$allProfileSets}){
+    my $profileName = $p->{profileName};
+    my $profileType = $p->{profileType};
+    my $key = $self->getKey($profileName, $profileType);
+    push @{$plotParts{$key}}, $p;
+    if ($profileType eq 'standard_error') {
+     $hasStdError{$profileName} = 1;
+   }
+  }
+  $self->makeAndSetPlots(\%plotParts, \%hasStdError);
 
   return $self;
 }
@@ -87,144 +101,86 @@ sub getAllProfileSetNames {
   return \@rv;
 }
 
+sub sortKeys {
+  my ($a_suffix, $a_type) = split("\_", $a);
+  my ($b_suffix, $b_type) = split("\_", $b);
+  return ($b_type cmp $a_type)  && ($a_suffix cmp $b_suffix);
 
-sub getProfileSetsArray {
-  my ($self, $allProfiles) = @_;
-
-  my (%stderrProfiles, @profiles);
-
-  foreach my $profile (@$allProfiles) {
-    my $profileName = $profile->{profileName};
-    my $profileType = $profile->{profileType};
-
-    next if($profileType =~ /percentile/i);
-
-    if($profileType =~ /standard_error/) {
-      $stderrProfiles{$profileName} = 1;
-    }
-    else {
-      push @profiles, $profileName;
-    }
-  }
-
-  my @profileSetsArray;
-  foreach my $profile (sort @profiles) {
-    if ($stderrProfiles{$profile}) {
-      push @profileSetsArray, [$profile, 'values', $profile, 'standard_error'];
-    } else {
-      push @profileSetsArray, [$profile, 'values'];
-    }
-  }
-
-  return \@profileSetsArray;
-}
-
-sub getPercentileSetsArray {
-  my ($self, $allProfileSetNames) = @_;
-
-  my @percentiles;
-
-  foreach my $profile (@$allProfileSetNames) {
-    my $profileName = $profile->{profileName};
-    my $profileType = $profile->{profileType};
-
-    next unless($profileType =~ /percentile/i);
-    push @percentiles, $profile;
-  }
-
-  my @sortedPercentiles = sort sortPercentileProfiles @percentiles;
-
-  my @percentileSetsArray;
-  foreach my $pctProfile (@sortedPercentiles) {
-    push @percentileSetsArray, [$pctProfile->{profileName}, $pctProfile->{profileType}];
-  }
-
-  return \@percentileSetsArray;
 }
 
 sub makeAndSetPlots {
-  my ($self, $profileSetsArray, $percentileSetsArray) = @_;
+  my ($self, $plotParts, $hasStdError) = @_;
+  my @rv;
 
   my $bottomMarginSize = $self->getBottomMarginSize();
   my $colors= $self->getColors();
   my $pctColors= $self->getPercentileColors();
   my $sampleLabels = $self->getSampleLabels();
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($percentileSetsArray);
 
-  my $profile;
-  my $xAxisLabel;
+  foreach my $key (sort sortKeys keys %$plotParts) {
+    my @plotProfiles =  @{$plotParts->{$key} };
+    my @profileSetsArray;
 
-  my $plotPartModule = $self->getExprPlotPartModuleString();  
-  if(lc($self->getGraphType()) eq 'bar') {
-    my $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
+    foreach my $p (@plotProfiles) {
+      if ($hasStdError->{ $p->{profileName} }) {
+	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
+      } else {
+	push @profileSetsArray, [$p->{profileName}, $p->{profileType}];
+      }
+    }
 
-    $profile = eval {
-      $plotObj->new(@_);
+    my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+    my $xAxisLabel;
+    my $plotObj;
+    my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
+
+    if(lc($self->getGraphType()) eq 'bar') {
+      $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
+    } elsif(lc($self->getGraphType()) eq 'line') {
+      $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
+      $xAxisLabel= $self->getXAxisLabel();
+    } else {
+      die "Graph must define a graph type of bar or line";
+    }
+    my $profile = eval {
+      $plotObj->new($self);
     };
-
     if ($@) {
       die "Unable to make plot $plotObj: $@";
     }
 
-    $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
-
-  } elsif(lc($self->getGraphType()) eq 'line') {
-    my $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
-    $xAxisLabel= $self->getXAxisLabel();
-
-    $profile = eval {
-      $plotObj->new(@_);
-    };
-
-    if ($@) {
-      die "Unable to make plot $plotObj: $@";
+    if(lc($self->getGraphType()) eq 'bar') {
+      $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
     }
 
+    $profile->setProfileSets($profileSets);
 
-  } else {
-    die "Graph must define a graph type of bar or line";
+    if($bottomMarginSize) {
+      $profile->setElementNameMarginSize($bottomMarginSize);
+    }
+
+    if($xAxisLabel) {
+      $profile->setXaxisLabel($xAxisLabel);
+    }
+
+    if(@$sampleLabels) {
+      $profile->setSampleLabels($sampleLabels);
+    }
+
+    # These can be implemented by the subclass if needed
+    if ($key=~/percentile/) {
+      $profile->setColors($pctColors);
+      #$profile->setAdjustProfile($self->getPercentileRAdjust());
+      $self->finalPercentileAdjustments($profile);
+    } else {
+      $profile->setColors($colors);
+      #$profile->setAdjustProfile($self->getProfileRAdjust());
+      $self->finalProfileAdjustments($profile);
+    }
+    push @rv, $profile;
   }
-
-  $profile->setProfileSets($profileSets);
-  $profile->setColors($colors);
-  $profile->setAdjustProfile($self->getProfileRAdjust());
-
-  my $percentile;
-  if(lc($self->getPercentileGraphType()) eq 'line') {
-    $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
-    $percentile->setXaxisLabel($xAxisLabel);
-  }
-  else {
-    $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
-    $percentile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
-  }
-
-  $percentile->setProfileSets($percentileSets);
-
-  $percentile->setColors($pctColors);
-  $percentile->setAdjustProfile($self->getPercentileRAdjust());
-
-  if($bottomMarginSize) {
-    $profile->setElementNameMarginSize($bottomMarginSize);
-    $percentile->setElementNameMarginSize($bottomMarginSize);
-  }
-  
-  if($xAxisLabel) {
-    $profile->setXaxisLabel($xAxisLabel);
-  }
-
-  if(@$sampleLabels) {
-    $profile->setSampleLabels($sampleLabels);
-    $percentile->setSampleLabels($sampleLabels);
-  }
-
-  # These can be implemented by the subclass if needed
-  $self->finalProfileAdjustments($profile);
-  $self->finalPercentileAdjustments($percentile);
-
-  $self->setGraphObjects($profile, $percentile);
+  $self->setGraphObjects(@rv);
 }
 
 
@@ -258,14 +214,12 @@ sub getSampleLabels {
 
 sub getColors {
   my ($self) = @_;
-
   my $colorsString = $self->getColorsString();
 
   if($colorsString) {
     my @rv = split(/;/, $colorsString);
     return \@rv;
   }
-
   return ['blue', 'grey'];
 }
 
@@ -310,3 +264,17 @@ sub finalPercentileAdjustments {
 }
 1;
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
+use strict;
+sub getGraphType { 'bar' }
+sub excludedProfileSetsString { '' }
+sub getSampleLabelsString { '' }
+sub getColorsString { ''  } 
+sub getForceXLabelsHorizontalString { '' } 
+sub getBottomMarginSize {  }
+sub getExprPlotPartModuleString { 'RMA' }
+sub getXAxisLabel { '' }
+
+# 1;

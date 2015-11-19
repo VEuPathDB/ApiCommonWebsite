@@ -36,7 +36,7 @@ sub new {
 
    my $self = $class->SUPER::new(@_);
 
-   $self->setSpaceBetweenBars(0.1);
+   $self->setSpaceBetweenBars(0.3);
   $self->setAxisPadding(1.1);
    return $self;
 }
@@ -463,7 +463,7 @@ sub new {
 
 
 
-package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked;
+package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeq;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
@@ -474,27 +474,25 @@ sub new {
   my $id = $self->getId();
   my $wantLogged = $self->getWantLogged();
 
-  $self->setPartName('rpkm');
-  $self->setYaxisLabel('RPKM');
-  $self->setIsStacked(1);
+  $self->setPartName('fpkm');
+  $self->setYaxisLabel('FPKM');
+  $self->setIsStacked(0);
   $self->setDefaultYMin(0);
   $self->setDefaultYMax(50);
-  $self->setPlotTitle("RPKM - $id");
+  $self->setPlotTitle("FPKM - $id");
 
-  # RUM RPKM Are Not logged in the db
-  # JB:  Cannot take the log2 of the diff profiles then add
-#  if($wantLogged) {
-#    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
-#    $self->setYaxisLabel('RPKM (log2)');
-#    $self->setIsLogged(1);
-#    $self->setDefaultYMax(4);
-#  }
+  if($wantLogged) {
+    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
+    $self->setYaxisLabel('FPKM (log2)');
+    $self->setIsLogged(1);
+    $self->setDefaultYMax(4);
+  }
 
   return $self;
 }
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::PairedEndRNASeqStacked;
-use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked);
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeq);
 use strict;
 
 sub new {

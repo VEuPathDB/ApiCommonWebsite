@@ -225,6 +225,7 @@ sub makeProfileNamesCannedQuery {
        ( Name         => "_names_$suffix",
          Id           => $id,
          ProfileSet   => $profileSetName,
+	 ProfileType => $profileSetType,
          MetaDataCategory => $metaDataCategory,
        );
    }
@@ -233,6 +234,7 @@ sub makeProfileNamesCannedQuery {
       ( Name         => "_names_$suffix",
         Id           => $id,
         ProfileSet   => $profileSetName,
+	 ProfileType => $profileSetType,
       );
    }
 
