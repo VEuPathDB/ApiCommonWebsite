@@ -378,5 +378,13 @@ div.colCopy {
 	color: #8f0165;
 }
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	ShinyAnalysis CSS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.step-analysis-results-pane iframe {
+width: 100%;
+height: 700px;
+over-flow:visible;
+}
 
 /*THE END */
