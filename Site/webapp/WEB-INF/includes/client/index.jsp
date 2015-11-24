@@ -32,6 +32,40 @@
       position: relative;
     }
 
+    .eupathdb-ExpressionGraphContainer {
+      overflow: auto;
+      position: relative;
+    }
+
+    .eupathdb-ExpressionGraphLoading {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+    }
+
+    .eupathdb-ExpressionGraph {
+      float: left;
+    }
+
+    .eupathdb-ExpressionGraphDetails {
+      margin-left: 500px;
+    }
+
+    .wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell.wdk-DataTableCell__eupathdb_release {
+      width: 125px;;
+    }
+
+    .wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell.wdk-DataTableCell__display_name {
+      max-width: 300px;
+    }
+
+    .wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      height: 1em;
+    }
+
     .eupathdb-DatasetRecord {
       padding: 0 2em;
     }
