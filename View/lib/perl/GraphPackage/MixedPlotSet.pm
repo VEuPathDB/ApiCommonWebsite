@@ -14,6 +14,16 @@ sub setMainLegend {
   $self->SUPER::setMainLegend($hash);
 }
 
+
+sub declareParts {
+  my ($self) = @_;
+
+  my $graphObjects = $self->getGraphObjects();
+  my @parts = map {$_->getPartName()} sort @$graphObjects;
+
+  return join(",", @parts);
+}
+
 #--------------------------------------------------------------------------------
 
 sub getGraphObjects { $_[0]->{_graph_objects} }
