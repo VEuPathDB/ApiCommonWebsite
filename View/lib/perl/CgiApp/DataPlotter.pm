@@ -150,7 +150,7 @@ sub run {
 	 }
 
          if($declareParts) {
-			print $Cgi->header(-Content_type => "text/plain",
+			print $Cgi->header(-Content_type => "text/plain");
            print $_gp->declareParts();
            return;
          }
