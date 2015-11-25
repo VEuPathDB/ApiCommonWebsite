@@ -77,6 +77,7 @@ sub run {
          my $compact     = $Cgi->param('compact');
          my $idType     = $Cgi->param('idType');
 
+         my $declareParts     = $Cgi->param('declareParts');
 
          my $thumbnail_b    = $Cgi->param('thumb');
          my @visibleParts   = split(',', $Cgi->param('vp') || '');
@@ -147,6 +148,12 @@ sub run {
 	 if ($@) {
            die "Unable to load driver for '$type': $@";
 	 }
+
+         if($declareParts) {
+			print $Cgi->header(-Content_type => "text/plain",
+           print $_gp->declareParts();
+           return;
+         }
 
 	 my @files = $_gp->run();
 
