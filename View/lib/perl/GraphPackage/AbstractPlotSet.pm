@@ -204,6 +204,7 @@ sub makeR {
   my $mS = ApiCommonWebsite::View::MultiScreen->new
     ( Parts => $parts,
       VisibleParts => $self->getVisibleParts(),
+      VisiblePartsAreFuzzy => $self->getVisiblePartsAreFuzzy(),
       Thumbnail    => $thumb_b
     );
 
