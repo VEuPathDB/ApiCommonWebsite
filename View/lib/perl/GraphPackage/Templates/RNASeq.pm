@@ -5,16 +5,20 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
 use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
+use Data::Dumper;
 
 sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
   my ($suffix) = $profileSetName =~ /\- (.+) \[/;
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- /;
-  $suffix = '_suffix' if (!$suffix);
-  die if (!$strand);
+  $suffix = '' if (!$suffix);
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
 
-  return "${suffix}_${profileType}_${strand}";
+  die if (!$strand);
+  $strand = $strand eq 'unstranded'? ''  :  '_' . $strand;
+  return "${suffix}_${profileType}${strand}";
 }
+
 
 sub sortKeys {
   my ($a_suffix, $a_type, $a_strand) = split("\_", $a);
@@ -46,16 +50,16 @@ sub isExcludedProfileSet {
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
 
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_66f9e70b8a;
-use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
-use strict;
-sub getGraphType { 'bar' }
-sub excludedProfileSetsString { '' }
-sub getSampleLabelsString {''}
-sub getColorsString {}
-sub getForceXLabelsHorizontalString { '1' } 
-sub getBottomMarginSize {  }
-sub getExprPlotPartModuleString { 'RNASeq' }
-sub getXAxisLabel { '' }
+# package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_66f9e70b8a;
+# use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
+# use strict;
+# sub getGraphType { 'bar' }
+# sub excludedProfileSetsString { '' }
+# sub getSampleLabelsString {''}
+# sub getColorsString {}
+# sub getForceXLabelsHorizontalString { '1' } 
+# sub getBottomMarginSize {  }
+# sub getExprPlotPartModuleString { 'RNASeq' }
+# sub getXAxisLabel { '' }
 
 1;
