@@ -26,7 +26,8 @@ sub getGraphType {}
 sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
   my ($suffix) = $profileSetName =~ /\- (.+)$/;
-  $suffix = '_suffix' if (!$suffix);
+  $suffix = '' if (!$suffix);
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
   return "${suffix}_${profileType}";
 }
 
@@ -149,6 +150,10 @@ sub makeAndSetPlots {
     if ($@) {
       die "Unable to make plot $plotObj: $@";
     }
+    my $profile_part_name = $profile->getPartName();
+    $key =~s/values/$profile_part_name/;
+    $key =~s/^\_//;
+    $profile->setPartName($key);
 
     if(lc($self->getGraphType()) eq 'bar') {
       $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
@@ -180,6 +185,7 @@ sub makeAndSetPlots {
     }
     push @rv, $profile;
   }
+#print STDERR Dumper @rv;
   $self->setGraphObjects(@rv);
 }
 
