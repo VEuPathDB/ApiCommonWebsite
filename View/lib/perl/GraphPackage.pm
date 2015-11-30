@@ -47,6 +47,7 @@ sub init {
    $Self->setId                   ( $Args->{Id                  } );
    $Self->setThumbnail            ( $Args->{Thumbnail           } );
    $Self->setVisibleParts         ( $Args->{VisibleParts        } );
+   $Self->setVisiblePartsAreFuzzy         ( $Args->{VisiblePartsAreFuzzy        } );
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
    $Self->setDatasetId              ( $Args->{DatasetId             } );
    $Self->setWantLogged           ( $Args->{WantLogged          } );
@@ -91,6 +92,9 @@ sub setScalingFactor           { $_[0]->{'ScalingFactor'               } = $_[1]
 
 sub getVisibleParts            { $_[0]->{'VisibleParts'                } }
 sub setVisibleParts            { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
+
+sub getVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } }
+sub setVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } = $_[1]; $_[0] }
 
 sub getSecondaryId             { $_[0]->{'SecondaryId'                 } }
 sub setSecondaryId             { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }

@@ -82,6 +82,8 @@ sub run {
          my $thumbnail_b    = $Cgi->param('thumb');
          my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
+         my $visiblePartsAreFuzzy     = $Cgi->param('vpAreFuzzy');
+
 	 my @errors;
 
 	 push(@errors, 'model must be supplied') if not defined $pkg;
@@ -142,6 +144,7 @@ sub run {
                         IdType => $idType,
                         WidthOverride => $widthOverride,
                         HeightOverride => $heightOverride,
+                        VisiblePartsAreFuzzy => $visiblePartsAreFuzzy,
                        });
          };
 
