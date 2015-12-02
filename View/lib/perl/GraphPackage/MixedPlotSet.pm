@@ -19,7 +19,7 @@ sub declareParts {
   my ($self) = @_;
 
   my $graphObjects = $self->getGraphObjects();
-  my @parts = map {$_->getPartName()} sort @$graphObjects;
+  my @parts = map {$_->getPartName()} @$graphObjects;
 
   return join(",", @parts);
 }
@@ -46,6 +46,7 @@ sub setGraphObjects {
     unless ($name) {  
       die "Part name must be defined"; 
     }
+print STDERR "GOT NAME = $name\n";
     $profileSetsHash->{$name}->{size}  = $size;
     $profileSetsHash->{$name}->{count}++ ;
 
