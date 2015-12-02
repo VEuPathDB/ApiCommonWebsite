@@ -15,10 +15,28 @@ sub getKey{
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
 
   die if (!$strand);
-  $strand = $strand eq 'unstranded'? ''  :  '_' . $strand;
+  $strand = $strand eq 'unstranded'? ''  :  '_' . $self->getStrandDictionary()->{$strand};
   return "${suffix}_${profileType}${strand}";
 }
 
+sub switchStrands {
+  return 0;
+}
+
+sub getStrandDictionary {
+  my $self = shift;
+  my $firststrand = 'sense';
+  my $secondstrand = 'antisense';
+
+  if ($self->switchStrands()) {
+    $firststrand = 'antisense';
+    $secondstrand = 'sense';
+  }
+  return { 'unstranded' => '',
+	   'firststrand' => $firststrand,
+	   'secondstrand' => $secondstrand
+	 };
+}
 
 sub sortKeys {
   my ($a_suffix, $a_type, $a_strand) = split("\_", $a);
@@ -30,12 +48,19 @@ sub sortKeys {
 
 sub isExcludedProfileSet {
   my ($self, $psName) = @_;
+  my ($strand) = $psName =~ /\[.+ \- (.+) \- /;
+  $strand = $self->getStrandDictionary()->{$strand};
+
+  my ($isCufflinks) = ($psName =~/\[cuff \-/)? 1: 0;
+
   my $val =   $self->SUPER::isExcludedProfileSet($self, $psName);
   if ($val) {
 #print STDERR "exclude by super - return 1\n";
     return 1;
   } elsif ($psName =~ /htseq-intersection/){
 #print STDERR "exclude intersection: $psName - return 1\n";
+    return 1;
+  } elsif ($isCufflinks && $strand eq 'antisense'){
     return 1;
   } else {
 #print STDERR "$psName - return 0\n";

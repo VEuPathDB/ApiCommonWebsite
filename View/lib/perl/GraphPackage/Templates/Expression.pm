@@ -63,6 +63,8 @@ sub init {
   my $allProfileSets = $self->getAllProfileSetNames();
   my %plotParts;
   my %hasStdError;
+
+  #print STDERR Dumper $allProfileSets;
   foreach my $p (@{$allProfileSets}){
     my $profileName = $p->{profileName};
     my $profileType = $p->{profileType};
@@ -87,6 +89,8 @@ sub getAllProfileSetNames {
   my $dbh = $self->getQueryHandle();
 
   my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
+
+  #print STDERR "SQL=$sql\n";
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetId);
@@ -118,6 +122,7 @@ sub makeAndSetPlots {
   my $pctColors= $self->getPercentileColors();
   my $sampleLabels = $self->getSampleLabels();
 
+#print STDERR Dumper $plotParts;
 
   foreach my $key (sort sortKeys keys %$plotParts) {
     my @plotProfiles =  @{$plotParts->{$key} };
@@ -135,7 +140,7 @@ sub makeAndSetPlots {
     my $xAxisLabel;
     my $plotObj;
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
-
+      #print STDERR $self->getGraphType() . " IS THE Graph_type\n";
     if(lc($self->getGraphType()) eq 'bar') {
       $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line') {
@@ -150,10 +155,13 @@ sub makeAndSetPlots {
     if ($@) {
       die "Unable to make plot $plotObj: $@";
     }
-    my $profile_part_name = $profile->getPartName();
+
+    my $profile_part_name = $profile->getPartName(); # percentile / rma
     $key =~s/values/$profile_part_name/;
     $key =~s/^\_//;
     $profile->setPartName($key);
+
+    $profile->setPlotTitle("$key - " . $profile->getId() );
 
     if(lc($self->getGraphType()) eq 'bar') {
       $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
@@ -185,10 +193,9 @@ sub makeAndSetPlots {
     }
     push @rv, $profile;
   }
-#print STDERR Dumper @rv;
+  #print STDERR Dumper \@rv;
   $self->setGraphObjects(@rv);
 }
-
 
 # get the string and make an array
 sub excludedProfileSetsArray { 
