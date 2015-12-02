@@ -73,9 +73,7 @@ sub applyFuzzyVisibleParts {
 
    foreach my $part (@{$Self->getParts()}) {
      my $partName = $part->{Name};
-
-     my @fuzzyParts = split(',', ($Self->getVisiblePartsAreFuzzy()) );
-     foreach my $vp (@fuzzyParts) {
+     foreach my $vp (@{$Self->getVisibleParts()}) {
        if($partName =~ /$vp/) {
          push @visibleParts, $partName;
          last;
