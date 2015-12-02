@@ -46,7 +46,7 @@ sub setGraphObjects {
     unless ($name) {  
       die "Part name must be defined"; 
     }
-print STDERR "GOT NAME = $name\n";
+#print STDERR "GOT NAME = $name\n";
     $profileSetsHash->{$name}->{size}  = $size;
     $profileSetsHash->{$name}->{count}++ ;
 
