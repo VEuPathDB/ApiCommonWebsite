@@ -465,7 +465,7 @@ for(i in 1:nrow(lines.df)) {
          if(max(nchar(colnames(lines.df))) > 4) {
            my.las = 2;
          }
-       my.at = x.coords.rank;
+       my.at = 1:length(colnames(new.lines));;
        my.labels = colnames(new.lines);
      }
    }
