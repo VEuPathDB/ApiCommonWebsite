@@ -7,21 +7,34 @@ use vars qw( @ISA );
 use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 use Data::Dumper;
 
+# @Override
 sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
-  my ($suffix) = $profileSetName =~ /\- (.+) \[/;
+
+  my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- /;
-  $suffix = '' if (!$suffix);
+  $groupName = '' if (!$groupName);
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
 
   die if (!$strand);
   $strand = $strand eq 'unstranded'? ''  :  '_' . $self->getStrandDictionary()->{$strand};
-  return "${suffix}_${profileType}${strand}";
+  return "${groupName}_${profileType}${strand}";
 }
 
 sub switchStrands {
   return 0;
 }
+
+# @Override
+sub getGroupRegex {
+  return qr/\- (.+) \[/;
+}
+
+# @Override
+sub getRemainderRegex {
+  return qr/\[(\S+) /;
+}
+
 
 sub getStrandDictionary {
   my $self = shift;
@@ -38,6 +51,7 @@ sub getStrandDictionary {
 	 };
 }
 
+# @Override
 sub sortKeys {
   my ($a_suffix, $a_type, $a_strand) = split("\_", $a);
   my ($b_suffix, $b_type, $b_strand) = split("\_", $b);
@@ -45,7 +59,7 @@ sub sortKeys {
 
 }
 
-
+# @Override
 sub isExcludedProfileSet {
   my ($self, $psName) = @_;
   my ($strand) = $psName =~ /\[.+ \- (.+) \- /;

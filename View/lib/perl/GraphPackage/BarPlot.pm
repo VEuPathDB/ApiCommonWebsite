@@ -109,6 +109,15 @@ sub makeRPlotString {
   my $scale = $self->getScalingFactor;
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
+  my $legendLabels = $self->getLegendLabels();
+
+  my $legendLabelsString;
+
+  if ($hasExtraLegend ) {
+      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
+    }
+  my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
+
   my $extraLegendSize = $self->getExtraLegendSize();
 
   my $axisPadding = $self->getAxisPadding();
@@ -121,6 +130,7 @@ $elementNamesFiles
 $stderrFiles
 $colorsString
 $sampleLabelsString
+$legendLabelsString
 
 is.compact=$isCompactString;
 
@@ -366,6 +376,12 @@ if($hasExtraLegend && !is.compact) {
   # To add a legend into the margin... you need to convert ndc coordinates into user coordinates
   figureRegionXMax = par()\$fig[2];
   figureRegionYMax = par()\$fig[4];
+
+
+  if ($hasLegendLabels) {
+      my.labels = legend.label;
+      }
+
 
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(figureRegionYMax, from='ndc', to='user'),

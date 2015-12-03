@@ -23,12 +23,41 @@ sub finalPercentileAdjustments {}
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
+sub getGroupNameFromProfileSetName {
+  my ($self, $profileSetName) = @_;
+  my $regex = $self->getGroupRegex();
+
+  my ($rv) = $profileSetName =~ /$regex/;
+
+  return $rv;
+}
+
+sub getRemainderNameFromProfileSetName {
+  my ($self, $profileSetName) = @_;
+  my $regex = $self->getRemainderRegex();
+
+  my ($rv) = $profileSetName =~ /$regex/;
+
+  return $rv;
+}
+
+
+sub getGroupRegex {
+  return qr/.+/;
+}
+
+sub getRemainderRegex {
+  return qr/(.+)/;
+}
+
+
 sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
-  my ($suffix) = $profileSetName =~ /\- (.+)$/;
-  $suffix = '' if (!$suffix);
+
+  my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
+  $groupName = '' if (!$groupName);
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
-  return "${suffix}_${profileType}";
+  return "${groupName}_${profileType}";
 }
 
 sub getPercentileGraphType {
@@ -64,7 +93,7 @@ sub init {
   my %plotParts;
   my %hasStdError;
 
-  #print STDERR Dumper $allProfileSets;
+
   foreach my $p (@{$allProfileSets}){
     my $profileName = $p->{profileName};
     my $profileType = $p->{profileType};
@@ -90,7 +119,6 @@ sub getAllProfileSetNames {
 
   my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
 
-  #print STDERR "SQL=$sql\n";
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetId);
@@ -122,13 +150,11 @@ sub makeAndSetPlots {
   my $pctColors= $self->getPercentileColors();
   my $sampleLabels = $self->getSampleLabels();
 
-#print STDERR Dumper $plotParts;
-
   foreach my $key (sort sortKeys keys %$plotParts) {
     my @plotProfiles =  @{$plotParts->{$key} };
     my @profileSetsArray;
 
-    foreach my $p (@plotProfiles) {
+    foreach my $p (sort {$a->{profileName} gt $b->{profileName} } @plotProfiles) {
       if ($hasStdError->{ $p->{profileName} }) {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
       } else {
@@ -136,11 +162,13 @@ sub makeAndSetPlots {
       }
     }
 
+
     my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+
     my $xAxisLabel;
     my $plotObj;
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
-      #print STDERR $self->getGraphType() . " IS THE Graph_type\n";
+
     if(lc($self->getGraphType()) eq 'bar') {
       $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line') {
@@ -162,6 +190,15 @@ sub makeAndSetPlots {
     $profile->setPartName($key);
 
     $profile->setPlotTitle("$key - " . $profile->getId() );
+
+
+    $profile->setHasExtraLegend(1);
+
+
+
+    my @legendNames = map { $self->getRemainderNameFromProfileSetName($_->[0]) } @profileSetsArray;
+    $profile->setLegendLabels(\@legendNames);
+
 
     if(lc($self->getGraphType()) eq 'bar') {
       $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
@@ -193,7 +230,6 @@ sub makeAndSetPlots {
     }
     push @rv, $profile;
   }
-  #print STDERR Dumper \@rv;
   $self->setGraphObjects(@rv);
 }
 
@@ -227,6 +263,7 @@ sub getSampleLabels {
 
 sub getColors {
   my ($self) = @_;
+
   my $colorsString = $self->getColorsString();
 
   if($colorsString) {
