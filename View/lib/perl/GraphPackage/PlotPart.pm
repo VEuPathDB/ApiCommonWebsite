@@ -85,6 +85,11 @@ sub setTitleLine                 { $_[0]->{'_title_line'                    } = 
 sub isCompact                    { $_[0]->{'_is_compact'                    }}
 sub setIsCompact                 { $_[0]->{'_is_compact'                    } = $_[1]}
 
+sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
+sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
+
+
+
 #----------------------------------------------------------------------------------------------
 
 sub new {
