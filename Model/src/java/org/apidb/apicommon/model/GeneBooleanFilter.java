@@ -106,7 +106,7 @@ public class GeneBooleanFilter extends StepFilter {
       for (int i = 0; i < jsArray.length(); i++) {
         String value = jsArray.getString(i);
         sql.append("OR (" + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + "= '" + value.charAt(0) + "' AND " +
-            TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + "= '" + value.charAt(1) + "')");
+            TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + "= '" + value.charAt(1) + "') ");
       }
     }
     catch (JSONException ex) {
