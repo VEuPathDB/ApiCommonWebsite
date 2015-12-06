@@ -16,6 +16,7 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
+import org.apidb.apicommon.model.TranscriptBooleanQuery;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
