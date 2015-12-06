@@ -1,4 +1,4 @@
-package org.apidb.apicommon.model;
+package org.apidb.apicommon.model.filter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
