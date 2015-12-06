@@ -14,6 +14,8 @@ import org.gusdb.wdk.model.question.DynamicAttributeSet;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.record.attribute.ColumnAttributeField;
+import org.apidb.apicommon.model.filter.GeneBooleanFilter;
+
 // import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.user.User;
 
