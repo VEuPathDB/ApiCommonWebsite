@@ -22,7 +22,37 @@
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of FungiDB 27</strong></p>
+    
+    <section>
+      <h3>New data in this release</h3>
 
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+      
+      <section>
+       <h4>RNA Sequencing</h4>
+       <aside>
+         The following RNA sequencing data was originally loaded into FungiDB in Sept 2013 but erroneously 
+         contained several <i>A. nidulans</i> samples that were aligned to N. crassa.  The <i>A. nidulans</i> data 
+         and <i>N. crassa</i> data are now two separate data sets in FungiDB. 
+       </aside> 
+        <ul>
+         <li>
+            <a href="http://fungidb.org/fungidb.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_44b0c00509">
+                       Inducer-Free Cellulase Secretion in Neurospora Crassa</a> &mdash;
+            Global mRNA abundances from liquid cultures of N. crassa were measured by sequencing on the Illumina Genome Analyzer IIx 
+            and HiSeq2000 platforms. Cultures were harvested at 4 hours (N. crassa), after a switch to media of interest. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+          </li>
+          <li>
+            <a href="http://fungidb.org/fungidb.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_8e61740c73">
+                       Inducer-Free Cellulase Secretion in Aspergillus nidulans</a> &mdash;
+            Global mRNA abundances from liquid cultures of A. nidulans were measured by sequencing on the Illumina Genome Analyzer IIx 
+            and HiSeq2000 platforms. Cultures were harvested at 6 hours, after a switch to media of interest.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+          </li>
+         </ul>
     <section>
      <h3>New Features</h3>
       
