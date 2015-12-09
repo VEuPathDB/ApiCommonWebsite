@@ -35,6 +35,34 @@
         The data set title below links to a full description and list of associated searches and GBrowse tracks.
       </aside>
      
+        <section>
+        <h4>Transcriptomics:</h4>
+        <ul>
+          <li>
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
+                               Transcription and mRNA decay over asexual life cycle</a> &mdash;
+            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
+            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
+            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
+          </li>
+          <li>
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_61eb91f8f8">
+                                 Transcription and mRNA decay over asexual life cycle - logged</a> &mdash;
+            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
+            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
+            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
+            Log2 expression values are presented for this dataset.
+          </li>
+          <li>
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_5bb820a874">
+                   Ribosome profiling and mRNA sequencing of asexual cell cycle stages</a> &mdash;
+                   RNA sequencing of total and polysome-associated mRNA during 5 stages of the <i>P. falciparum</i> 
+                   blood phase developmental cycle. RNA from W2 strain asexual stages were aligned to 
+                   <i>P. falciparum</i> 3D7.
+                   <a href="http://www.ncbi.nlm.nih.gov/pubmed/25493618">Caro et al.</a>
+          </li>
+         </ul>
+         </section>
      
      <h3>New Features</h3>
       
@@ -79,32 +107,33 @@
       <aside>
         The data set title below links to a full description and list of associated searches and GBrowse tracks.
       </aside>
-      
+
       <section>
-        <h4>Transcriptomics:</h4>
+        <h4>Genome Sequence and Annotation: the following genomes were updated to the current GeneDB versions</h4>
         <ul>
           <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
-                               Transcription and mRNA decay over asexual life cycle</a> &mdash;
-            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
-            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
-            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pberANKA_primary_genome_RSRC"><i>Plasmodium berghei</i> ANKA</a> &mdash;
+            updated and improved assembly and annotation
+            <a href="http://www.genedb.org/Homepage/Pberghei">GeneDB version 6 July 2015</a>. 
+            From the 
+            <a href="https://www.sanger.ac.uk/research/projects/parasitegenomics/">Parasite Genomics Group</a> at the Wellcome Trust Sanger Institute. 
+            <a href="http://www.sanger.ac.uk/datasharing/">Data Use Policy</a>.
           </li>
           <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_61eb91f8f8">
-                                 Transcription and mRNA decay over asexual life cycle - logged</a> &mdash;
-            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
-            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
-            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
-            Log2 expression values are presented for this dataset.
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pchachabaudi_primary_genome_RSRC"><i>Plasmodium chabaudi</i> chabaudi</a> &mdash;
+            updated and improved assembly and annotation 
+            <a href="http://www.genedb.org/Homepage/Pchabaudi">GeneDB version 18 June 2015</a>. 
+            From the 
+            <a href="https://www.sanger.ac.uk/research/projects/parasitegenomics/">Parasite Genomics Group</a> at the Wellcome Trust Sanger Institute. 
+            <a href="http://www.sanger.ac.uk/datasharing/">Data Use Policy</a>.
           </li>
           <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_5bb820a874">
-                   Ribosome profiling and mRNA sequencing of asexual cell cycle stages</a> &mdash;
-                   RNA sequencing of total and polysome-associated mRNA during 5 stages of the <i>P. falciparum</i> 
-                   blood phase developmental cycle. RNA from W2 strain asexual stages were aligned to 
-                   <i>P. falciparum</i> 3D7.
-                   <a href="http://www.ncbi.nlm.nih.gov/pubmed/25493618">Caro et al.</a>
+            <a href="http://PlasmoDB.org/a/getDataset.do?datasets=pknoH_primary_genome_RSRC"><i>Plasmodium knowlesi</i> strain H </a> &mdash;
+            the genome was updated to the reassembled and reannotated 
+            <a href="http://www.genedb.org/Homepage/Pknowlesi">GeneDB version 18 June 2015</a>. 
+            From the 
+            <a href="https://www.sanger.ac.uk/research/projects/parasitegenomics/">Parasite Genomics Group</a> at the Wellcome Trust Sanger Institute. 
+            <a href="http://www.sanger.ac.uk/datasharing/">Data Use Policy</a>.
           </li>
         </ul>
       </section>
