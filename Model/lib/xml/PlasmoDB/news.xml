@@ -40,18 +40,9 @@
         <ul>
           <li>
           <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
-                               Transcription and mRNA decay over asexual life cycle</a> &mdash;
-            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
-            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
-            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
-          </li>
-          <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_61eb91f8f8">
-                                 Transcription and mRNA decay over asexual life cycle - logged</a> &mdash;
-            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
-            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
-            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
-            Log2 expression values are presented for this dataset.
+                               Asexual life cycle time course with biosynthetic pyrimidine labeling</a> &mdash;
+            Microarray analysis of 48-hour timecourse during the asexual development of P. falciparum 3D7. Biosynthetic 
+            pyrimidine labeling was used to provide an estimate of newly synthesized vs steady state transcripts at each time point.
           </li>
           <li>
           <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_5bb820a874">
