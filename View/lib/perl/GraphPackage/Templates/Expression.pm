@@ -294,9 +294,6 @@ sub forceXLabelsHorizontal {
 
 1;
 
-#--------------------------------------------------------------------------------
-
-# TEMPLATE_ANCHOR microarrayMRNADecayGraph
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::pfal3D7_microarrayExpression_Llinas_RT_Transcription_Decay_RSRC;
 
@@ -315,16 +312,21 @@ sub finalPercentileAdjustments {
 1;
 
 
-package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
-use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
-use strict;
-sub getGraphType { 'bar' }
-sub excludedProfileSetsString { '' }
-sub getSampleLabelsString { '' }
-sub getColorsString { ''  } 
-sub getForceXLabelsHorizontalString { '' } 
-sub getBottomMarginSize {  }
-sub getExprPlotPartModuleString { 'RMA' }
-sub getXAxisLabel { '' }
+# package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
+# use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
+# use strict;
+# sub getGraphType { 'bar' }
+# sub excludedProfileSetsString { '' }
+# sub getSampleLabelsString { '' }
+# sub getColorsString { ''  } 
+# sub getForceXLabelsHorizontalString { '' } 
+# sub getBottomMarginSize {  }
+# sub getExprPlotPartModuleString { 'RMA' }
+# sub getXAxisLabel { '' }
+#1;
 
-# 1;
+#--------------------------------------------------------------------------------
+
+# TEMPLATE_ANCHOR microarraySimpleRmaGraph
+# TEMPLATE_ANCHOR microarraySimpleQuantileGraph
+# TEMPLATE_ANCHOR microarrayMRNADecayGraph
