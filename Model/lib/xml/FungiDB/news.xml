@@ -15,6 +15,74 @@
     </record>
 -->
 <record>
+  <attribute name="headline">FungiDB 27 Released</attribute>
+  <attribute name="date">15 Jan 2016 13:00</attribute>
+  <attribute name="tag">fungidb01_16_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 27</strong></p>
+    
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+      
+      <section>
+       <h4>RNA Sequencing</h4>
+       <aside>
+         The following RNA sequencing data was originally loaded into FungiDB in Sept 2013 but erroneously 
+         contained several <i>A. nidulans</i> samples that were aligned to N. crassa.  The <i>A. nidulans</i> data 
+         and <i>N. crassa</i> data are now two separate data sets in FungiDB. 
+       </aside> 
+        <ul>
+         <li>
+            <a href="http://fungidb.org/fungidb.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_44b0c00509">
+                       Inducer-Free Cellulase Secretion in Neurospora Crassa</a> &mdash;
+            Global mRNA abundances from liquid cultures of N. crassa were measured by sequencing on the Illumina Genome Analyzer IIx 
+            and HiSeq2000 platforms. Cultures were harvested at 4 hours (N. crassa), after a switch to media of interest. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+          </li>
+          <li>
+            <a href="http://fungidb.org/fungidb.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_8e61740c73">
+                       Inducer-Free Cellulase Secretion in Aspergillus nidulans</a> &mdash;
+            Global mRNA abundances from liquid cultures of A. nidulans were measured by sequencing on the Illumina Genome Analyzer IIx 
+            and HiSeq2000 platforms. Cultures were harvested at 6 hours, after a switch to media of interest.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+          </li>
+         </ul>
+    <section>
+     <h3>New Features</h3>
+      
+      <section>
+       <h4>New Tutorials</h4>
+        <ul>
+          <li>
+            <a href="https://youtu.be/TODO">TODO</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/TODO">TODO</a>
+          </li>
+      </section>
+      
+ 
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
        <attribute name="headline">EuPathDB Outreach Position</attribute>
        <attribute name="date">18 November 2015 12:00</attribute>
        <attribute name="tag">outreach_job</attribute>

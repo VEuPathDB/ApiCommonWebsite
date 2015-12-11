@@ -19,6 +19,80 @@
 -->
 
 <record>
+  <attribute name="headline">PlasmoDB 27 Released</attribute>
+  <attribute name="date">15 Jan 2016 13:00</attribute>
+  <attribute name="tag">plasmodb01_16_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 27</strong></p>
+
+    <section>
+    
+     <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+     
+        <section>
+        <h4>Transcriptomics:</h4>
+        <ul>
+          <li>
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
+                               Transcription and mRNA decay over asexual life cycle</a> &mdash;
+            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
+            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
+            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
+          </li>
+          <li>
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_61eb91f8f8">
+                                 Transcription and mRNA decay over asexual life cycle - logged</a> &mdash;
+            Microarray analysis of 48-hour timecourse during the asexual development of <i>P. falciparum </i> 3D7. 
+            Hourly time points were collected before and after an additinal 10 min bisynthetic pyrimidine labeling and analyzed 
+            to determine the relative contribution of transcirption and stability/decay to the total mRNA abundance. 
+            Log2 expression values are presented for this dataset.
+          </li>
+          <li>
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_5bb820a874">
+                   Ribosome profiling and mRNA sequencing of asexual cell cycle stages</a> &mdash;
+                   RNA sequencing of total and polysome-associated mRNA during 5 stages of the <i>P. falciparum</i> 
+                   blood phase developmental cycle. RNA from W2 strain asexual stages were aligned to 
+                   <i>P. falciparum</i> 3D7.
+                   <a href="http://www.ncbi.nlm.nih.gov/pubmed/25493618">Caro et al.</a>
+          </li>
+         </ul>
+         </section>
+     
+     <h3>New Features</h3>
+      
+      <section>
+       <h4>New Tutorials</h4>
+        <ul>
+          <li>
+            <a href="https://youtu.be/TODO">TODO</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/TODO">TODO</a>
+          </li>
+      </section>
+      
+ 
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">PlasmoDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
   <attribute name="tag">plasmodb10_15_release</attribute>
