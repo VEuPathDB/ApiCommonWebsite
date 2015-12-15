@@ -22,6 +22,7 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
    * The request has a set of transcript IDs.  Transform that into the set of all 
    * transcript IDs for the genes in the original set.
    */
+  @Override
   protected List<String[]> getRecords(HttpServletRequest request, RecordClassBean recordClass)
       throws JSONException, WdkUserException, WdkModelException {
 
