@@ -43,9 +43,9 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
     int count = 0;
     for (String[] record : records) {
       if (count == 0)
-        geneIdsString = new StringBuilder(record[geneSourceIdColumn]);
+        geneIdsString = new StringBuilder("'" + record[geneSourceIdColumn] + "'");
       else
-        geneIdsString.append(", " + record[geneSourceIdColumn]);
+        geneIdsString.append(", '" + record[geneSourceIdColumn] + "'");
       
       // run the query for this batch
       if (count++ == 1000) {
@@ -72,12 +72,14 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
   private void runBatch(DataSource dataSource, String sql, List<String[]> expandedRecords, String[] pkColumns) throws WdkModelException {
     try {
       ResultSet resultSet = SqlUtils.executeQuery(dataSource, sql, "expand-basket-to-transcripts");
-      String[] row = new String[pkColumns.length];
-      for (int i = 0; i<pkColumns.length; i++) row[i] = resultSet.getString(i);
-      expandedRecords.add(row);
+      while (resultSet.next()) {
+	String[] row = new String[pkColumns.length];
+        for (int i = 0; i<pkColumns.length; i++) row[i] = resultSet.getString(i+1);
+        expandedRecords.add(row);
+      }
     }
     catch (SQLException e) {
-      throw new WdkModelException("failed running SQL to expand basket " + sql + e);
+      throw new WdkModelException("failed running SQL to expand basket: " + sql + e);
     }
  
   }
