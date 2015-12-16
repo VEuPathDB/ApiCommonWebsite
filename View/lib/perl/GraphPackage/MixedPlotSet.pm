@@ -46,7 +46,7 @@ sub setGraphObjects {
   $self->setProfileSetsHash($profileSetsHash);
   foreach my $name (keys %$profileSetsHash) {
     unless ($profileSetsHash->{$name}->{count} == 1) {
-      die "Non-unique part name $name is defiend for mixed plot";
+      die "Non-unique part name $name is defined for mixed plot";
     }
   }
 
