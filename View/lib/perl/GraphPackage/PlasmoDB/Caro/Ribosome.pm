@@ -57,7 +57,7 @@ sub init {
   $stackedRibosomeSense->setProfileSets([$profileSets->[2], $profileSets->[3]]);
   $stackedRibosomeSense->setColors([$colors->[0],$colors->[4]] );
   $stackedRibosomeSense->setPartName('rpkm_ribosome_sense');
-  my $basePlotTitle = $stackedRibosomeSense->getPlotTitle;
+  $basePlotTitle = $stackedRibosomeSense->getPlotTitle;
   $stackedRibosomeSense->setPlotTitle($basePlotTitle." - sense - Ribosome");
   $stackedRibosomeSense->setElementNameMarginSize(6);
 
@@ -66,7 +66,7 @@ sub init {
   $stackedRibosomeAnti->setProfileSets([$profileSets->[0], $profileSets->[1]]);
   $stackedRibosomeAnti->setColors([$colors->[1],$colors->[4]] );
   $stackedRibosomeAnti->setPartName('rpkm_ribosome_anti');
-  my $basePlotTitle = $stackedRibosomeAnti->getPlotTitle;
+  $basePlotTitle = $stackedRibosomeAnti->getPlotTitle;
   $stackedRibosomeAnti->setPlotTitle($basePlotTitle." - antisense - Ribosome");
   $stackedRibosomeAnti->setElementNameMarginSize(6);
 
@@ -75,7 +75,7 @@ sub init {
   $stackedSteadySense->setProfileSets([$profileSets->[4], $profileSets->[5]]);
   $stackedSteadySense->setColors([$colors->[2],$colors->[4]] );
   $stackedSteadySense->setPartName('rpkm_steady_sense');
-  my $basePlotTitle = $stackedSteadySense->getPlotTitle;
+  $basePlotTitle = $stackedSteadySense->getPlotTitle;
   $stackedSteadySense->setPlotTitle($basePlotTitle." - sense - Steady State");
   $stackedSteadySense->setElementNameMarginSize(6);
 
@@ -83,7 +83,7 @@ sub init {
   $stackedSteadyAnti->setProfileSets([$profileSets->[6], $profileSets->[7]]);
   $stackedSteadyAnti->setColors([$colors->[3],$colors->[4]] );
   $stackedSteadyAnti->setPartName('rpkm_steady_anti');
-  my $basePlotTitle = $stackedSteadyAnti->getPlotTitle;
+  $basePlotTitle = $stackedSteadyAnti->getPlotTitle;
   $stackedSteadyAnti->setPlotTitle($basePlotTitle." - antisense - Steady State");
   $stackedSteadyAnti->setElementNameMarginSize(6);
 
@@ -91,7 +91,7 @@ sub init {
   $percentile->setProfileSets([$percentileSets->[0],$percentileSets->[2],]);
   $percentile->setColors([$colors->[0],$colors->[2],]);
   $percentile->setArePointsLast(1);
-  $percentile->setPartName('percentile_sense');
+  $percentile->setPartName('percentile');
   $percentile->setXaxisLabel('Hours post infection');
   $percentile->setPlotTitle($basePlotTitle." - percentile - sense");
   $percentile->setElementNameMarginSize(6);
