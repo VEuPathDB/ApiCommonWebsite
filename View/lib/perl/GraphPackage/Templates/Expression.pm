@@ -27,8 +27,9 @@ sub getGroupNameFromProfileSetName {
   my ($self, $profileSetName) = @_;
   my $regex = $self->getGroupRegex();
 
-  my ($rv) = $profileSetName =~ /$regex/;
-
+  $profileSetName =~ /$regex/;
+  my $rv;
+  if ($1) { $rv =$1;}
   return $rv;
 }
 
@@ -36,8 +37,9 @@ sub getRemainderNameFromProfileSetName {
   my ($self, $profileSetName) = @_;
   my $regex = $self->getRemainderRegex();
 
-  my ($rv) = $profileSetName =~ /$regex/;
-
+  $profileSetName =~ /$regex/;
+  my $rv;
+  if ($1) { $rv =$1;}
   return $rv;
 }
 
@@ -54,7 +56,8 @@ sub getRemainderRegex {
 sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
 
-  my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
+  my $groupName = $self->getGroupNameFromProfileSetName($profileSetName);
+#print STDERR "groupName = $groupName FOR $profileSetName\n";
   $groupName = '' if (!$groupName);
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
   return "${groupName}_${profileType}";
@@ -154,14 +157,17 @@ sub makeAndSetPlots {
     my @plotProfiles =  @{$plotParts->{$key} };
     my @profileSetsArray;
 
-    foreach my $p (sort {$a->{profileName} gt $b->{profileName} } @plotProfiles) {
+#print STDERR Dumper   \@plotProfiles;
+    my @sortedPlotProfiles = sort {$a->{profileName} cmp $b->{profileName} } @plotProfiles;
+print STDERR Dumper   \@sortedPlotProfiles;
+    foreach my $p (@sortedPlotProfiles) {
       if ($hasStdError->{ $p->{profileName} }) {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
       } else {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}];
       }
     }
-
+#print STDERR Dumper   \@profileSetsArray;
 
     my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
@@ -192,13 +198,13 @@ sub makeAndSetPlots {
     $profile->setPlotTitle("$key - " . $profile->getId() );
 
 
-    $profile->setHasExtraLegend(1);
-
-
-
     my @legendNames = map { $self->getRemainderNameFromProfileSetName($_->[0]) } @profileSetsArray;
-    $profile->setLegendLabels(\@legendNames);
 
+    # omit the legend when there is just one profile
+    if  ($#legendNames) {
+      $profile->setHasExtraLegend(1); 
+      $profile->setLegendLabels(\@legendNames);
+    }
 
     if(lc($self->getGraphType()) eq 'bar') {
       $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
@@ -295,8 +301,41 @@ sub forceXLabelsHorizontal {
 1;
 
 
-package ApiCommonWebsite::View::GraphPackage::Templates::Expression::pfal3D7_microarrayExpression_Llinas_RT_Transcription_Decay_RSRC;
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
+sub getGroupRegex {
+  return 'winzeler';
+}
+sub getRemainderRegex {
+  return 'winzeler_(.+)';
+}
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_84d52f99c7;
+sub getGroupRegex {
+  return ' (\S+) Derived';
+}
+sub getRemainderRegex {
+  return '(Hour \d+)';
+}
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /^Profiles of /){
+    return 1;
+  }
+  return 0;
+} 
+
+1;
+
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_0fa4237b4b;
 
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
@@ -311,6 +350,15 @@ sub finalPercentileAdjustments {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_307a1b10a9;
+sub getGroupRegex {
+  return 'ZB Pvivax Time Series';
+}
+#sub getRemainderRegex {
+#  return  'Patient ';
+#}
+
+1;
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
@@ -330,3 +378,4 @@ sub finalPercentileAdjustments {
 # TEMPLATE_ANCHOR microarraySimpleRmaGraph
 # TEMPLATE_ANCHOR microarraySimpleQuantileGraph
 # TEMPLATE_ANCHOR microarrayMRNADecayGraph
+# TEMPLATE_ANCHOR microarraySimpleTwoChannelGraph
