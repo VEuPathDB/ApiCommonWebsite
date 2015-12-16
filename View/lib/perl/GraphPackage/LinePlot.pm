@@ -255,10 +255,8 @@ for(i in 1:length(profile.files)) {
   element.names = as.character(element.names.df\$NAME);
 
 
-  element.names.numeric = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
+  element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
   is.numeric.element.names = !is.na(element.names.numeric);
-
-
 
   if($forceNoLines) {
     element.names.numeric = NA;
@@ -315,7 +313,7 @@ if($yAxisFoldInductionFromM) {
 
 isTimeSeries = FALSE;
 
-x.coords = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(lines.df), perl=T));
+x.coords = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", colnames(lines.df), perl=T));
 x.coords.rank = rank(x.coords, na.last=$pointsLast);
 
 
@@ -393,7 +391,7 @@ if ($hasMetaData) {
 
     sampleNamesFull = as.matrix(as.data.frame(strsplit(colnames(points.df), ':')));
     sampleNamesMeta = as.vector(sampleNamesFull[2,]);
-    numeric.sample.names = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", sampleNamesMeta, perl=T));
+    numeric.sample.names = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", sampleNamesMeta, perl=T));
 
     uniqueMeta = unique(sampleNamesMeta);
 
@@ -465,7 +463,7 @@ for(i in 1:nrow(lines.df)) {
          if(max(nchar(colnames(lines.df))) > 4) {
            my.las = 2;
          }
-       my.at = 1:length(colnames(new.lines));;
+       my.at = 1:length(x.coords.rank);
        my.labels = colnames(new.lines);
      }
    }
@@ -481,7 +479,7 @@ if (!$hasMetaData) {
   colnames(y.coords) = as.character(x.coords);
 
   y.coords = y.coords[!is.na(colSums(y.coords))];
-  x.coords.line = as.numeric(sub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
+  x.coords.line = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
   uniqueElements = length(unique(unlist(x.coords.line, use.names = FALSE)))
   if( ( $smoothLines ) ) {
@@ -540,18 +538,16 @@ if (!$hasMetaData) {
 
   }
 
-  
-  my.color = the.colors;
+ 
 
   if($varyGlyphByXAxis) {
     my.pch = points.pch;
-    my.color = the.colors;
   }
 
   points(x.coords,
        new.points[i,],
-       col  = my.color,
-       bg   = my.color,
+       col  = the.colors[i],
+       bg   = the.colors[i],
        type = ifelse(is.compact, \"c\", \"p\"),
        pch  = my.pch,
        cex  = 1
