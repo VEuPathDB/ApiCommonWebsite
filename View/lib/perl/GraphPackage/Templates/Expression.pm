@@ -18,7 +18,6 @@ sub getPercentileRAdjust {}
 sub getProfileRAdjust {}
 
 sub finalProfileAdjustments {}
-sub finalPercentileAdjustments {}
 
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
@@ -227,13 +226,11 @@ print STDERR Dumper   \@sortedPlotProfiles;
     # These can be implemented by the subclass if needed
     if ($key=~/percentile/) {
       $profile->setColors($pctColors);
-      #$profile->setAdjustProfile($self->getPercentileRAdjust());
-      $self->finalPercentileAdjustments($profile);
     } else {
       $profile->setColors($colors);
-      #$profile->setAdjustProfile($self->getProfileRAdjust());
-      $self->finalProfileAdjustments($profile);
     }
+
+    $self->finalProfileAdjustments($profile);
     push @rv, $profile;
   }
   $self->setGraphObjects(@rv);
@@ -343,11 +340,6 @@ sub finalProfileAdjustments {
   $profile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
 }
 
-sub finalPercentileAdjustments {
-  my ($self, $percentile) = @_;
-
-  $percentile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
-}
 1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_307a1b10a9;
@@ -359,6 +351,87 @@ sub getGroupRegex {
 #}
 
 1;
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_1556ad1e1e;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $colors = $profile->getColors();
+
+  my @allColors;
+  foreach(1..8) {
+    push @allColors, $colors->[0];
+  }
+  foreach(1..9) {
+    push @allColors, $colors->[1];
+  }
+  $profile->setColors(\@allColors);
+}
+
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_3ef554e244;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $colors = ['green', 'green', 'green', 'green', 'blue', 'blue', 'blue', 'red', 'red', 'red', 'red', 'red'];
+
+  $profile->setIsHorizontal(1);
+  $profile->setColors($colors);
+}
+1;
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_7349a4c6a5;
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $colors = ['#6495ED', '#E9967A', '#2F4F4F' ];
+  my $legend = ['Wild Type', 'sir2A', 'sir2B'];
+
+  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
+
+  my $wildTypeSamples = ['ring','trophozoite','schizont','','','','','',''];
+  my $sir2ASamples = ['','','','ring','trophozoite','schizont','','',''];
+  my $sir2BSamples = ['','','', '','','', 'ring','trophozoite','schizont'];
+
+  my @profileArray = (['Profiles of E-TABM-438 from Cowman', 'values', '', '', $wildTypeSamples ],
+                      ['Profiles of E-TABM-438 from Cowman', 'values', '', '', $sir2ASamples ],
+                      ['Profiles of E-TABM-438 from Cowman', 'values', '', '', $sir2BSamples ],
+                     );
+
+  my @percentileArray = (['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles', '', '', $wildTypeSamples],
+                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles', '', '', $sir2ASamples],
+                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles', '', '', $sir2BSamples],
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setForceHorizontalXAxis(1);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setForceHorizontalXAxis(1);
+
+  $self->setGraphObjects($rma, $percentile);
+
+  return $self;
+}
+
+1;
+
+
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
