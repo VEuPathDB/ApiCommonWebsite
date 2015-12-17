@@ -20,6 +20,7 @@ sub init {
   my $colors = ['#E57C24', '#FFB87E','#315B7D','#588EBB','#DDDDDD'];
   my $legend = ['Ribosome - Sense', 'Ribosome - Antisense', 'Steady State - Sense', 'Steady State - Antisense'];
 
+  my $sampleLabels = ['R','ET', 'LT', 'S', 'M'];
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
   
   my @profileArray = (
@@ -45,8 +46,9 @@ sub init {
   $line->setColors([$colors->[0], $colors->[1],$colors->[2], $colors->[3],]);
   $line->setArePointsLast(1);
   $line->setElementNameMarginSize(6);
-  $line->setXaxisLabel('Hours post infection');
+  $line->setXaxisLabel('Life Cycle Stage');
   $line->setPartName('rpkm_time_course');
+  $line->setSampleLabels($sampleLabels);
   my $id = $self->getId();
   $line->setPlotTitle("RPKM - $id - Time Course");
 
@@ -58,6 +60,7 @@ sub init {
   $stackedRibosomeSense->setPartName('rpkm_ribosome_sense');
   my $basePlotTitle = $stackedRibosomeSense->getPlotTitle;
   $stackedRibosomeSense->setPlotTitle($basePlotTitle." - sense - Ribosome");
+  $stackedRibosomeSense->setSampleLabels($sampleLabels);
   $stackedRibosomeSense->setElementNameMarginSize(6);
 
 
@@ -67,6 +70,7 @@ sub init {
   $stackedRibosomeAnti->setPartName('rpkm_ribosome_anti');
   my $basePlotTitle = $stackedRibosomeAnti->getPlotTitle;
   $stackedRibosomeAnti->setPlotTitle($basePlotTitle." - antisense - Ribosome");
+  $stackedRibosomeAnti->setSampleLabels($sampleLabels);
   $stackedRibosomeAnti->setElementNameMarginSize(6);
 
 
@@ -76,6 +80,7 @@ sub init {
   $stackedSteadySense->setPartName('rpkm_steady_sense');
   my $basePlotTitle = $stackedSteadySense->getPlotTitle;
   $stackedSteadySense->setPlotTitle($basePlotTitle." - sense - Steady State");
+  $stackedSteadySense->setSampleLabels($sampleLabels);
   $stackedSteadySense->setElementNameMarginSize(6);
 
   my $stackedSteadyAnti = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
@@ -84,6 +89,7 @@ sub init {
   $stackedSteadyAnti->setPartName('rpkm_steady_anti');
   my $basePlotTitle = $stackedSteadyAnti->getPlotTitle;
   $stackedSteadyAnti->setPlotTitle($basePlotTitle." - antisense - Steady State");
+  $stackedSteadyAnti->setSampleLabels($sampleLabels);
   $stackedSteadyAnti->setElementNameMarginSize(6);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
@@ -93,6 +99,7 @@ sub init {
   $percentile->setPartName('percentile');
   $percentile->setXaxisLabel('Hours post infection');
   $percentile->setPlotTitle($basePlotTitle." - percentile");
+  $percentile->setSampleLabels($sampleLabels);
   $percentile->setElementNameMarginSize(6);
 
   $self->setGraphObjects($line, $stackedRibosomeSense, $stackedRibosomeAnti,$stackedSteadySense,$stackedSteadyAnti, $percentile,);
