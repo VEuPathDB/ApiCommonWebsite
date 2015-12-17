@@ -10,6 +10,7 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
+use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
 
 use Data::Dumper;
 
@@ -161,7 +162,7 @@ sub makeAndSetPlots {
 
 #print STDERR Dumper   \@plotProfiles;
     my @sortedPlotProfiles = sort {$a->{profileName} cmp $b->{profileName} } @plotProfiles;
-print STDERR Dumper   \@sortedPlotProfiles;
+#print STDERR Dumper   \@sortedPlotProfiles;
     foreach my $p (@sortedPlotProfiles) {
       if ($hasStdError->{ $p->{profileName} }) {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
@@ -181,6 +182,10 @@ print STDERR Dumper   \@sortedPlotProfiles;
       $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line') {
       $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
+      $xAxisLabel= $self->getXAxisLabel();
+    } elsif(lc($self->getGraphType()) eq 'scatter') {
+      # TODO: handle two channel graphs in a different module
+      $plotObj = "ApiCommonWebsite::View::GraphPackage::ScatterPlot::LogRatio";
       $xAxisLabel= $self->getXAxisLabel();
     } else {
       die "Graph must define a graph type of bar or line";
