@@ -105,6 +105,9 @@ sub init {
      $hasStdError{$profileName} = 1;
    }
   }
+
+
+
   $self->makeAndSetPlots(\%plotParts, \%hasStdError);
 
   return $self;
@@ -373,6 +376,53 @@ sub finalProfileAdjustments {
 
 1;
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
+
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  $profile->addAdjustProfile('profile.df = cbind(profile.df[,1], profile.df[,3:9], profile.df[,2]);');
+
+  my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
+  $profile->setSampleLabels(\@winzelerNames);
+}
+
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  my @tempSorbNames = (2..7, "M");
+
+  my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
+
+  my @winzelerProfileArray = (['winzeler_cc_sorbExp','values', '', '', \@tempSorbNames],
+                              ['winzeler_cc_tempExp', 'values', '', '', \@tempSorbNames],
+                              ['winzeler_cc_sexExp', 'values', '','', [1, 'G']]
+                             );
+
+  my @colors = ('cyan', 'purple', 'brown' );
+
+  my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
+
+  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $winzeler->setProfileSets($winzelerProfileSets);
+  $winzeler->setColors(\@colors);
+  $winzeler->setPartName('line');
+  $winzeler->setPointsPch([15,15,15]);
+  $winzeler->setAdjustProfile('points.df = points.df - mean(points.df[points.df > 0], na.rm=T);lines.df = lines.df - mean(lines.df[lines.df > 0], na.rm=T)');
+  $winzeler->setArePointsLast(1);
+  $winzeler->setSampleLabels(\@winzelerNames);
+
+  my $graphObjects = $self->getGraphObjects();
+  push @$graphObjects, $winzeler;
+
+  $self->setGraphObjects(@$graphObjects);
+
+}
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_3ef554e244;
 
 sub finalProfileAdjustments {
@@ -386,7 +436,65 @@ sub finalProfileAdjustments {
 1;
 
 
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_3f06ca816e;
+
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $colors = ['#F08080', '#7CFC00' ];
+  my $legend = ['untreated', 'chloroquine'];
+  my $pch = [22];
+
+  my $untreated = ['106/1','','106/1 (76I)','', '106/1 (76I_352K)', ''];
+  my $treated = ['', '106/1','','106/1 (76I)','', '106/1 (76I_352K)'];
+
+
+  my @profileArray = (['E-GEOD-10022 array from Su','values', '', '', $untreated],
+                      ['E-GEOD-10022 array from Su', 'values', '', '', $treated]
+                     );
+
+  my @percentileArray = (['E-GEOD-10022 array from Su', 'channel1_percentiles', '', '', $untreated],
+                         ['E-GEOD-10022 array from Su', 'channel1_percentiles', '', '', $treated],
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setForceHorizontalXAxis(1);
+  $rma->setHasExtraLegend(1); 
+  $rma->setLegendLabels($legend);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setForceHorizontalXAxis(1);
+  $percentile->setHasExtraLegend(1); 
+  $percentile->setLegendLabels($legend);
+
+  $self->setGraphObjects($rma, $percentile);
+
+  return $self;
+
+}
+
+
+
+
+1;
+
+
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_7349a4c6a5;
+
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
 sub init {
   my $self = shift;
 
@@ -394,8 +502,6 @@ sub init {
 
   my $colors = ['#6495ED', '#E9967A', '#2F4F4F' ];
   my $legend = ['Wild Type', 'sir2A', 'sir2B'];
-
-  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
 
   my $wildTypeSamples = ['ring','trophozoite','schizont','','','','','',''];
   my $sir2ASamples = ['','','','ring','trophozoite','schizont','','',''];
@@ -418,11 +524,15 @@ sub init {
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
+  $rma->setHasExtraLegend(1); 
+  $rma->setLegendLabels($legend);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
+  $percentile->setHasExtraLegend(1); 
+  $percentile->setLegendLabels($legend);
 
   $self->setGraphObjects($rma, $percentile);
 
@@ -430,6 +540,66 @@ sub init {
 }
 
 1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c6622915ff;
+
+#TODO
+sub _init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $colors = ['purple', 'darkred', 'green', 'orange']; # as in the paper!
+  my $pch = [19,24,20,23];
+  my $legend = ['Ring', 'Trophozoite', 'Schizont', 'Late schiz.'];
+
+
+  my @profileArray = (['DeRisi_HalfLife', 'values', '', ''],
+                     );
+
+
+  my $id = $self->getId();
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+
+  my $hl = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
+  $hl->setProfileSets($profileSets);
+  $hl->setColors($colors);
+  $hl->setForceHorizontalXAxis(1);
+  $hl->setPartName('half_life');
+  $hl->setHighlightMissingValues(1);
+  $hl->setYaxisLabel('half-life (min)');
+  $hl->setPlotTitle("Half-life - $id");
+
+
+  my @profileArrayLine = (['Profiles of Derisi HalfLife-Ring', 'values', '', ''],
+                          ['Profiles of Derisi HalfLife-Trophozoite', 'values', '', ''],
+                          ['Profiles of Derisi HalfLife-Schizont', 'values', '', ''],
+                          ['Profiles of Derisi HalfLife-Late_Schizont', 'values', '', '']
+                         );
+  
+  my $profileSetsLine = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayLine);
+
+  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $line->setPartName('expr_val');
+  $line->setProfileSets($profileSetsLine);
+  $line->setColors($colors);
+  $line->setYaxisLabel('half-life (min)');
+  $line->setPlotTitle("Expression Normalized to 0 Hour - $id");
+  $line->setPointsPch($pch);
+  $line->setDefaultYMax(1);
+  $line->setDefaultYMin(0);
+
+  # R code normalizes to the 0HR Timepoint then filters away the Control Sample
+  # Could have done the filtering by passing an array to "makeProfileSets" foreach of the profiles
+  $line->setAdjustProfile("for(i in 1:nrow(lines.df)) { lines.df[i,] = 2^lines.df[i,]/2^lines.df[i,2]};lines.df = lines.df[,2:ncol(lines.df)];points.df = points.df[,2:ncol(points.df)];"); 
+
+  $self->setGraphObjects($hl, $line);
+  return $self;
+}
+
+1;
+
 
 
 
