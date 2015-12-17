@@ -170,6 +170,7 @@ sub makeAndSetPlots {
       $plotObj->new(@_);
     };
 
+
     if ($@) {
       die "Unable to make plot $plotObj: $@";
     }
@@ -305,14 +306,59 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::pfal3D7_mic
 
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
-
+  
+  my $legendLabels = (['labeled','total','total fitted','unlabeled']);
   $profile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legendLabels);
 }
 
 sub finalPercentileAdjustments {
   my ($self, $percentile) = @_;
 
   $percentile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
+}
+
+sub setGraphObjects { 
+  my $self = shift;
+  my $graphs = [];
+  
+  my $legendLabels = (['labeled','total','total fitted','unlabeled']);
+  foreach my $plotPart (@_) {
+    my $name = $plotPart->setHasExtraLegend(1);
+    my $size = $plotPart->setLegendLabels($legendLabels);
+
+
+    push @{$graphs}, $plotPart;
+  }
+
+  my $pch = ['NA'];
+  my $colors = ['black'];
+  my $legend = ['Total Expression'];
+
+  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
+  
+  my @profileArray = (
+                      ['Llinas RT transcription and decay total Profiles - loess'],
+                     );
+
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+ 
+  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $line->setProfileSets([$profileSets->[0]]);
+  $line->setPartName('exprn_val_log_ratio');
+  $line->setYaxisLabel('Expression Values (log2 ratio)');
+  $line->setPointsPch($pch);
+  $line->setColors([$colors->[0], $colors->[1],$colors->[2], $colors->[3],]);
+  $line->setArePointsLast(1);
+  $line->setElementNameMarginSize(6);
+  $line->setXaxisLabel('Hours post infection');
+  my $id = $self->getId();
+  my $basePlotTitle = $line->getPlotTitle;
+  $line->setPlotTitle("$basePlotTitle - $id - Time Course");
+  push (@{$graphs},$line);
+  $self->SUPER::setGraphObjects(@{$graphs});
 }
 
 1;
