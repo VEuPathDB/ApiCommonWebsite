@@ -23,14 +23,14 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
   
   my @profileArray = (
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand - diff'],
                       ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand'],
                       ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand - diff'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand - diff'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand - diff'],
                       ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand'],
                       ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand - diff'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand - diff'],
                      );
 
 
@@ -40,8 +40,7 @@ sub init {
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets([$profileSets->[0],$profileSets->[2],$profileSets->[4],$profileSets->[6],]);
   $line->setPartName('rpkm_line');
-  $line->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
-  $line->setYaxisLabel('RPKM (log2)');
+  $line->setYaxisLabel('RPKM');
   $line->setPointsPch($pch);
   $line->setColors([$colors->[0], $colors->[1],$colors->[2], $colors->[3],]);
   $line->setArePointsLast(1);
@@ -54,7 +53,7 @@ sub init {
 
   my $partName;
   my $stackedRibosomeSense = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
-  $stackedRibosomeSense->setProfileSets([$profileSets->[2], $profileSets->[3]]);
+  $stackedRibosomeSense->setProfileSets([$profileSets->[0], $profileSets->[1]]);
   $stackedRibosomeSense->setColors([$colors->[0],$colors->[4]] );
   $stackedRibosomeSense->setPartName('rpkm_ribosome_sense');
   my $basePlotTitle = $stackedRibosomeSense->getPlotTitle;
@@ -63,7 +62,7 @@ sub init {
 
 
   my $stackedRibosomeAnti = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
-  $stackedRibosomeAnti->setProfileSets([$profileSets->[0], $profileSets->[1]]);
+  $stackedRibosomeAnti->setProfileSets([$profileSets->[2], $profileSets->[3]]);
   $stackedRibosomeAnti->setColors([$colors->[1],$colors->[4]] );
   $stackedRibosomeAnti->setPartName('rpkm_ribosome_anti');
   my $basePlotTitle = $stackedRibosomeAnti->getPlotTitle;
