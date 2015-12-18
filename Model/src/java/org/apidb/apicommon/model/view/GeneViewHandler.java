@@ -31,6 +31,7 @@ public class GeneViewHandler extends AltSpliceViewHandler {
   // custom properties on gene questions
   private static final String QUESTION_TYPE_PROPLIST_KEY = "questionType";
   private static final String TRANSCRIPT_QUESTION_PROP_NAME = "transcript";
+  private static final String TRANSCRIPT_BOOLEAN_QUESTION_SUBSTR = "boolean_question_Transcript";
 
   @Override
   protected String getUserPreferenceSuffix() {
@@ -53,7 +54,8 @@ public class GeneViewHandler extends AltSpliceViewHandler {
   protected void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root) throws WdkModelException {
     root.removeAll(new NameMatchPredicate(TRANSCRIPT_CATEGORY_NAME));
     String[] questionTypes = step.getQuestion().getPropertyList(QUESTION_TYPE_PROPLIST_KEY);
-    if (questionTypes != null && Arrays.asList(questionTypes).contains(TRANSCRIPT_QUESTION_PROP_NAME)) {
+    if (questionTypes != null && 
+        (Arrays.asList(questionTypes).contains(TRANSCRIPT_QUESTION_PROP_NAME) || step.getQuestionName().contains(TRANSCRIPT_BOOLEAN_QUESTION_SUBSTR) )) {
       // assume that dynamic columns of transcript questions are transcript attributes and remove from gene view
       root.removeAll(new NameMatchPredicate(DYNAMIC_ATTRIB_CATEGORY_NAME));
     }
