@@ -237,7 +237,7 @@ for(i in 1:length(profile.files)) {
   if(!is.null(profile.df\$ELEMENT_ORDER)) {
     eo.count = length(profile.df\$ELEMENT_ORDER);
     if(!is.numeric(profile.df\$ELEMENT_ORDER)) {
-      stop(\"Elemnet order must be numeric for aggregation\");
+      stop(\"Element order must be numeric for aggregation\");
     }
     profile.df = aggregate(profile.df, list(profile.df\$ELEMENT_ORDER), mean, na.rm=T)
     if(length(profile.df\$ELEMENT_ORDER) != eo.count) {
@@ -437,50 +437,50 @@ for(i in 1:nrow(lines.df)) {
         );
 
 
-   my.las= 0;
-   my.at = axTicks(1);
-   my.labels = colnames(new.lines)
+    my.las= 0;
+    my.at = axTicks(1);
+    my.labels = colnames(new.lines)
 
-   if($overrideXAxisLabels) {
-     if(max(nchar(x.axis.label)) > 4) {
-       my.las = 2;
-     }
+    if($overrideXAxisLabels) {
+      if(max(nchar(x.axis.label)) > 4) {
+        my.las = 2;
+      }
 
-     if(isTimeSeries) {
-       my.labels = x.axis.label;
-     } else {
-       my.at = 1:length(x.coords.rank);
-       my.labels = x.axis.label;
-     }
-   } else {
-     if(isTimeSeries) {
-       my.at = NULL;
-       my.labels = TRUE;
-     } else {
-         if(max(nchar(colnames(lines.df))) > 4) {
-           my.las = 2;
-         }
-       my.at = 1:length(x.coords.rank);
-       my.labels = colnames(new.lines);
-     }
+      if(isTimeSeries) {
+        my.labels = x.axis.label;
+      } else {
+        my.at = 1:length(x.coords.rank);
+        my.labels = x.axis.label;
+      }
+    } else {
+      if(isTimeSeries) {
+        my.at = NULL;
+        my.labels = TRUE;
+      } else {
+          if(max(nchar(colnames(lines.df))) > 4) {
+            my.las = 2;
+          }
+        my.at = 1:length(x.coords.rank);
+        my.labels = colnames(new.lines);
+      }
+    }
+
+
+    if (!$hasMetaData) {
+      axis(1, at=my.at, labels=my.labels, las=my.las);
+    }
+
    }
+   # To have connected lines... you can't have NA's
+   y.coords = new.lines[i,];
+   colnames(y.coords) = as.character(x.coords);
 
+   y.coords = y.coords[!is.na(colSums(y.coords))];
+   x.coords.line = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
-if (!$hasMetaData) {
-   axis(1, at=my.at, labels=my.labels, las=my.las);
-}
-
- }
-  # To have connected lines... you can't have NA's
-  y.coords = new.lines[i,];
-  colnames(y.coords) = as.character(x.coords);
-
-  y.coords = y.coords[!is.na(colSums(y.coords))];
-  x.coords.line = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
-
-  uniqueElements = length(unique(unlist(x.coords.line, use.names = FALSE)))
-  if( ( $smoothLines ) ) {
-    points(x.coords.line,
+   uniqueElements = length(unique(unlist(x.coords.line, use.names = FALSE)))
+   if( ( $smoothLines ) ) {
+     points(x.coords.line,
          y.coords,
          col  = 'grey75',
          bg   = 'grey75',
@@ -488,67 +488,67 @@ if (!$hasMetaData) {
          pch  = my.pch,
          cex  = 0.5
          );
-    if ( ( uniqueElements > 3) ) {
-    lines(x.coords.line,
-         y.coords,
-         col  = 'grey75',
-         bg  = 'grey75',
-         cex  = 0.5
-         );
+      if ( ( uniqueElements > 3) ) {
+         lines(x.coords.line,
+               y.coords,
+               col  = 'grey75',
+               bg  = 'grey75',
+               cex  = 0.5
+               );
 
-    approxInterp = approx(x.coords.line, n=$splineApproxN);
-    predict_x = approxInterp\$y;
+         approxInterp = approx(x.coords.line, n=$splineApproxN);
+         predict_x = approxInterp\$y;
 
-    lines(predict(smooth.spline(x=x.coords.line, y=y.coords$df),predict_x),
-         col  = the.colors[i],
-         bg   = the.colors[i],
-         cex  = 1
-         );
-    } else {
-          lines(x.coords.line,
-         y.coords,
-         col  = the.colors[i],
-         bg   = the.colors[i],
-         type = ifelse(is.compact, \"l\", \"o\"),
-         pch  = my.pch,
-         cex  = 1
-         );
-    }
-  } else {
+         lines(predict(smooth.spline(x=x.coords.line, y=y.coords$df),predict_x),
+               col  = the.colors[i],
+               bg   = the.colors[i],
+               cex  = 1
+              );
+      } else {
+         lines(x.coords.line,
+               y.coords,
+               col  = the.colors[i],
+               bg   = the.colors[i],
+               type = ifelse(is.compact, \"l\", \"o\"),
+               pch  = my.pch,
+               cex  = 1
+              );
+      }
+   } else {
 
 
-    if($isFilled && length(x.coords.line > 1)) {
-      polygon( c( x.coords.line[1], x.coords.line, x.coords.line[length(x.coords.line)]),
-               c( 0,         y.coords, 0),
-               col = the.colors[i],
-               border = the.colors[i]
-         );
-    }
-    lines(x.coords.line,
-         y.coords,
-         col  = the.colors[i],
-         bg   = the.colors[i],
-         type = ifelse(is.compact, \"l\", \"o\"),
-         pch  = my.pch,
-         cex  = 1
-         );
+     if($isFilled && length(x.coords.line > 1)) {
+       polygon( c( x.coords.line[1], x.coords.line, x.coords.line[length(x.coords.line)]),
+                c( 0,         y.coords, 0),
+                col = the.colors[i],
+                border = the.colors[i]
+              );
+     }
+     lines(x.coords.line,
+           y.coords,
+           col  = the.colors[i],
+           bg   = the.colors[i],
+           type = ifelse(is.compact, \"l\", \"o\"),
+           pch  = my.pch,
+           cex  = 1
+          );
 
-  }
+   }
 
  
 
-  if($varyGlyphByXAxis) {
-    my.pch = points.pch;
-  }
+   if($varyGlyphByXAxis) {
+     my.pch = points.pch;
+   }
 
-  points(x.coords,
-       new.points[i,],
-       col  = the.colors[i],
-       bg   = the.colors[i],
-       type = ifelse(is.compact, \"c\", \"p\"),
-       pch  = my.pch,
-       cex  = 1
-       );
+   points(x.coords,
+          new.points[i,],
+          col  = the.colors[i],
+          bg   = the.colors[i],
+          type = ifelse(is.compact, \"c\", \"p\"),
+          pch  = my.pch,
+          cex  = 1
+         );
 }
 
 yAxis = axis(4,tick=F,labels=F);
@@ -591,10 +591,15 @@ if($hasExtraLegend && !is.compact) {
       my.cex = 0.8 * $scale;
       }
 
-if ($hasMetaData) {
-   my.color = meta.legend.colors;
-   my.labels = meta.legend.labels;
-}
+  if ($hasMetaData) {
+     my.color = meta.legend.colors;
+     my.labels = meta.legend.labels;
+  }
+  else {
+    my.color = the.colors;
+  }
+
+  lapply(my.color, write, stderr(), append=TRUE, ncolumns=1000);
 
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(centerPoint, from='ndc', to='user'),
