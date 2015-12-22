@@ -29,25 +29,18 @@
     <p><strong>We are pleased to announce the release of TriTrypDB 27</strong></p>
 
     <section>
-     <h3>New Features</h3>
-      
-      <section>
-       <h4>New Tutorials</h4>
-        <ul>
-          <li>
-            <a href="https://youtu.be/TODO">TODO</a>
-          </li>
-          <li>
-            <a href="https://youtu.be/TODO">TODO</a>
-          </li>
-      </section>
-      
-      <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+     <section>
         <h4>Updated Functional Annotation</h4>
         
         <aside>
         Annotation updated: products, GO terms, EC numbers, gene names and synonyms.
-       </aside>
+        </aside>
         
         <ul>
           <li>
@@ -100,11 +93,28 @@
           </li>
           <li>
             <a href="http://tritrypdb.org/a/getDataset.do?datasets=tvivY486_primary_genome_RSRC"><i>Trypanosoma vivax</i> Y486 </a> &mdash;
-            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>).
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
             <a href="http://www.genedb.org/rss/Tvivax/since/4/months">100 genes</a> with updated annotations. 
           </li>
         </ul>
       </section>
+      </section>
+      
+      <section>
+     <h3>New Features</h3>
+      <section>
+       <h4>New Tutorials</h4>
+        <ul>
+          <li>
+            <a href="https://youtu.be/TODO">TODO</a>
+          </li>
+          <li>
+            <a href="https://youtu.be/TODO">TODO</a>
+          </li>
+      </section>
+
+      
+      
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
