@@ -1,0 +1,34 @@
+
+RECORD SVC
+curl -G -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record -d expandRecordClasses=true -d expandTables=true
+
+curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/GeneRecordClasses.GeneRecordClass
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/GeneRecordClasses.GeneRecordClass/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/recordInstanceRequest.json  
+
+
+
+ANSWER SVC
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest.json 
+
+
+
+QUESTION SVC
+curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/question
+
+curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/question/GeneQuestions.GenesByTransmembraneDomains
+
+curl  -H "Content-Type: application/json" http://sfischer.toxodb.org/toxo.sfischer/service/question/GeneQuestions.GenesByTransmembraneDomains?expandParams=true
+
+curl  -i -X POST -H "Content-Type: application/json" http://sfischer.toxodb.org/toxo.sfischer/service/question/GeneQuestions.GenesByTransmembraneDomains?expandParams=true -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/transMembraneQuestionReviseRequest.json
+
+curl  -H "Content-Type: application/json" http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpChipQuestions.SnpsByStrain?expandParams=true
+
+curl  -i -X POST -H "Content-Type: application/json" http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpChipQuestions.SnpsByStrain?expandParams=true -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/snpChipByStrainsReviseRequest.json
+
+curl  -i -X POST -H "Content-Type: application/json" http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpChipQuestions.SnpsByStrain/refreshedDependentParams -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/snpChipByStrainsChangeRequest.json
+
+
+
+ONTOLOGY SVC
+curl  -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/ontology
