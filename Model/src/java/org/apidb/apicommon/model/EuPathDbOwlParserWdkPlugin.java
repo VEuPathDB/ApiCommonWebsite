@@ -1,5 +1,6 @@
 package org.apidb.apicommon.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import org.apidb.apicommon.model.ontology.OBOentity;
 import org.apidb.apicommon.model.ontology.OWLReasonerRunner;
 import org.apidb.apicommon.model.ontology.OntologyManipulator;
 import org.gusdb.fgputil.functional.TreeNode;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.ontology.JavaOntologyPlugin;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -28,11 +30,13 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
 
   public static final String orderAnnotPropStr = "http://purl.obolibrary.org/obo/EUPATH_0000274"; // Display order annotation property IRI                                                                                        
   public static final String reasonerName = "hermit";
-  public static final String owlFileFullPathParamName = "owlFileFullPath";
+  public static final String owlFilePathParam = "owlFilePath";
 
   @Override
-  public TreeNode<Map<String, List<String>>> getTree(Map<String, String> parameters) throws WdkModelException {
-    String inputOwlFile = parameters.get(owlFileFullPathParamName);
+  public TreeNode<Map<String, List<String>>> getTree(Map<String, String> parameters, String ontologyName) throws WdkModelException {
+ 
+    String inputOwlFile = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME) + "/" + parameters.get(owlFilePathParam);
+ 
     // load OWL format ontology
     OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
     OWLOntology ont = OntologyManipulator.load(inputOwlFile, manager);
@@ -47,12 +51,12 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
     TreeNode <Map<String, List<String>>> tree = new TreeNode<Map<String, List<String>>>(convertToMap(ont, df, owlClass));
     
     // build tree
-    build(topNode, reasoner, ont, df, orderAnnotPropStr, tree);
+    build(topNode, reasoner, ont, df, df.getOWLAnnotationProperty(IRI.create(orderAnnotPropStr)), tree);
     return tree;
   }
   
   public static void build(Node<OWLClass> parent, OWLReasoner reasoner, OWLOntology ont, OWLDataFactory df,
-      String orderAnnotPropStr, TreeNode<Map<String, List<String>>> tree) throws WdkModelException {
+      OWLAnnotationProperty orderAnnotProp, TreeNode<Map<String, List<String>>> tree) throws WdkModelException {
     // We don't want to print out the bottom node (containing owl:Nothing
     // and unsatisfiable classes) because this would appear as a leaf node
     // everywhere
@@ -67,7 +71,6 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
         throw new WdkModelException("Node has multiple entities"); // how can we tell user which node?
  
       for (OWLClass owlClass : child.getEntities()) {
-        OWLAnnotationProperty orderAnnotProp = df.getOWLAnnotationProperty(IRI.create(orderAnnotPropStr));
         String orderAnnotPropVal = OBOentity.getStringAnnotProps(owlClass, df, ont, orderAnnotProp);
  
         if (orderAnnotPropVal.length() == 0) throw new WdkModelException("No order annotation provided in node");  // how to show user which node?
@@ -86,9 +89,9 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
         tree.addChildNode(t);
       }
 
-     build(childTermNode.getNode(), reasoner, ont, df, orderAnnotPropStr, tree);
+     build(childTermNode.getNode(), reasoner, ont, df, orderAnnotProp, tree);
     }
-}
+  }
         
   private static Map<String, List<String>> convertToMap(OWLOntology ont, OWLDataFactory df, OWLClass cls) throws WdkModelException {
     Map<String, List<String>> node = new HashMap<String, List<String>>();
@@ -108,11 +111,15 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
   }
 
   @Override
-  public void validateParameters(Map<String, String> parameters) throws WdkModelException {
-    // TODO Auto-generated method stub
+  public void validateParameters(Map<String, String> parameters, String ontologyName)
+      throws WdkModelException {
 
+    String owlFileName = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME) + "/" +
+        parameters.get(owlFilePathParam);
+    if (!(new File(owlFileName).exists()))
+      throw new WdkModelException("For ontology '" + ontologyName + "', OWL file does not exist: " + owlFileName);
   }
-  
+
   public static class TermNode implements Comparable<TermNode>{
     private Node<OWLClass> node;
     private Integer order;
