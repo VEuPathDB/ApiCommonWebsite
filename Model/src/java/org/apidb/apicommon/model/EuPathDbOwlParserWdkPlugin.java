@@ -12,6 +12,7 @@ import org.apidb.apicommon.model.ontology.OBOentity;
 import org.apidb.apicommon.model.ontology.OWLReasonerRunner;
 import org.apidb.apicommon.model.ontology.OntologyManipulator;
 import org.gusdb.fgputil.functional.TreeNode;
+import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.ontology.JavaOntologyPlugin;
@@ -35,7 +36,7 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
   @Override
   public TreeNode<Map<String, List<String>>> getTree(Map<String, String> parameters, String ontologyName) throws WdkModelException {
  
-    String inputOwlFile = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME) + "/" + parameters.get(owlFilePathParam);
+    String inputOwlFile = GusHome.getGusHome() + "/" + parameters.get(owlFilePathParam);
  
     // load OWL format ontology
     OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
