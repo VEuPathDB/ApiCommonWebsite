@@ -13,7 +13,6 @@ import org.apidb.apicommon.model.ontology.OWLReasonerRunner;
 import org.apidb.apicommon.model.ontology.OntologyManipulator;
 import org.gusdb.fgputil.functional.TreeNode;
 import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.ontology.JavaOntologyPlugin;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -115,7 +114,7 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
   public void validateParameters(Map<String, String> parameters, String ontologyName)
       throws WdkModelException {
 
-    String owlFileName = System.getProperty(Utilities.SYSTEM_PROPERTY_GUS_HOME) + "/" +
+    String owlFileName =  GusHome.getGusHome() + "/" +
         parameters.get(owlFilePathParam);
     if (!(new File(owlFileName).exists()))
       throw new WdkModelException("For ontology '" + ontologyName + "', OWL file does not exist: " + owlFileName);
