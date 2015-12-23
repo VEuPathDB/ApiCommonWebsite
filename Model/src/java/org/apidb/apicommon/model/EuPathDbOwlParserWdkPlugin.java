@@ -48,24 +48,27 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
     // get root node
     Node<OWLClass> topNode = reasoner.getTopClassNode();
     OWLClass owlClass = topNode.getEntities().iterator().next(); // get first one
-    TreeNode <Map<String, List<String>>> tree = new TreeNode<Map<String, List<String>>>(convertToMap(ont, df, owlClass));
+    Map<String, List<String>> contents = convertToMap(ont, df, owlClass);
+    // if (contents == null) throw new WdkModelException("For ontology '" + ontologyName + "' the root node has null contents");
+    if (contents == null) contents = new HashMap<String, List<String>>();
+    TreeNode <Map<String, List<String>>> tree = new TreeNode<Map<String, List<String>>>(contents);
     
     // build tree
     build(topNode, reasoner, ont, df, df.getOWLAnnotationProperty(IRI.create(orderAnnotPropStr)), tree);
     return tree;
   }
   
-  public static void build(Node<OWLClass> parent, OWLReasoner reasoner, OWLOntology ont, OWLDataFactory df,
-      OWLAnnotationProperty orderAnnotProp, TreeNode<Map<String, List<String>>> tree) throws WdkModelException {
+  public static void build(Node<OWLClass> parentClass, OWLReasoner reasoner, OWLOntology ont, OWLDataFactory df,
+      OWLAnnotationProperty orderAnnotProp, TreeNode<Map<String, List<String>>> parentTree) throws WdkModelException {
     // We don't want to print out the bottom node (containing owl:Nothing
     // and unsatisfiable classes) because this would appear as a leaf node
     // everywhere
-    if (parent.isBottomNode()) return;
+    if (parentClass.isBottomNode()) return;
 
     // get children of a parent node and sort children based on their display order
     List<TermNode> childList = new ArrayList<TermNode>();
 
-    for (Node<OWLClass> child : reasoner.getSubClasses(parent.getRepresentativeElement(), true)) {
+    for (Node<OWLClass> child : reasoner.getSubClasses(parentClass.getRepresentativeElement(), true)) {
 
       if (child.getSize() > 1)
         throw new WdkModelException("Node has multiple entities"); // how can we tell user which node?
@@ -86,11 +89,11 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
       OWLClass owlClass = childTermNode.getNode().getEntities().iterator().next();  // only get first
       Map<String, List<String>> content = convertToMap(ont, df, owlClass);
       if (content != null) {
-        TreeNode<Map<String, List<String>>> t = new TreeNode<Map<String, List<String>>>(content);
-        tree.addChildNode(t);
+        TreeNode<Map<String, List<String>>> childTree = new TreeNode<Map<String, List<String>>>(content);
+        parentTree.addChildNode(childTree);
+	build(childTermNode.getNode(), reasoner, ont, df, orderAnnotProp, childTree);
       }
 
-     build(childTermNode.getNode(), reasoner, ont, df, orderAnnotProp, tree);
     }
   }
         
