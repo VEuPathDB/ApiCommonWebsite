@@ -102,7 +102,7 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
     for (OWLAnnotation currAnnot : annotList) {
       OWLAnnotationProperty annotProp = currAnnot.getProperty();
       String annotPropLabel = OBOentity.getLabel(annotProp, ont, df);
-      if (node.containsKey(annotPropLabel)) throw new WdkModelException("Duplicate keys: " + annotPropLabel);
+      if (node.containsKey(annotPropLabel)) continue;   // apparently the class can return redundant annotation properties, with identical values.
       ArrayList<String> annotValues = OBOentity.getStringArrayAnnotProps(cls, df, ont, annotProp);
       if (annotValues.size() > 0 ) node.put(annotPropLabel, annotValues);
     }
