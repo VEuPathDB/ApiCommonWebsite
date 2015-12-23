@@ -98,7 +98,7 @@ sub init {
   $percentile->setColors([$colors->[0],$colors->[1],$colors->[2],$colors->[3],]);
   $percentile->setArePointsLast(1);
   $percentile->setPartName('percentile');
-  $percentile->setXaxisLabel('Hours post infection');
+  $percentile->setXaxisLabel('Life Cycle Stage');
   my $basePlotTitle = $percentile->getPlotTitle;
   $percentile->setPlotTitle($basePlotTitle." - percentile");
   $percentile->setSampleLabels($sampleLabels);
