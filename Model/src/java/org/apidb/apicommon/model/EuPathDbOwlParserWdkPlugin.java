@@ -73,7 +73,8 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
       for (OWLClass owlClass : child.getEntities()) {
         String orderAnnotPropVal = OBOentity.getStringAnnotProps(owlClass, df, ont, orderAnnotProp);
  
-        if (orderAnnotPropVal.length() == 0) throw new WdkModelException("No order annotation provided in node");  // how to show user which node?
+       // if (orderAnnotPropVal.length() == 0) throw new WdkModelException("No order annotation provided in node");  // how to show user which node?
+        if (orderAnnotPropVal.length() == 0) orderAnnotPropVal = "0";
         TermNode t = new TermNode(child, Integer.parseInt(orderAnnotPropVal));
         if (t != null) childList.add(t);
       }
