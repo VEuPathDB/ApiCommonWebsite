@@ -104,7 +104,7 @@ public class MatchedTranscriptFilter extends StepFilter {
       JSONArray jsArray = jsValue.getJSONArray("values");
       for (int i = 0; i < jsArray.length(); i++) {
         String value = jsArray.getString(i);
-        sql.append("OR " + MATCHED_RESULT_COLUMN + "= '" + value.charAt(0) + " ");
+        sql.append(" OR " + MATCHED_RESULT_COLUMN + "= '" + value.charAt(0) + "'");
       }
     }
     catch (JSONException ex) {
