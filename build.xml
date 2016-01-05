@@ -7,7 +7,7 @@
   <import file="${projectsDir}/EuPathWebSvcCommon/build.xml" />
   <import file="${projectsDir}/GBrowse/build.xml" />
   <import file="${projectsDir}/ApiCommonShared/build.xml" />
-
+  <import file="${projectsDir}/ApiCommonWebService/build.xml" />
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
@@ -17,12 +17,13 @@
     <available file="${projectsDir}/GBrowse" type="dir" property="GBrowse.present" />
     <available file="${projectsDir}/EuPathWebSvcCommon" type="dir"  property="EuPathWebSvcCommon.present" />
     <available file="${projectsDir}/ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
+    <available file="${projectsDir}/ApiCommonWebService" type="dir" property="ApiCommonWebService.present" />
     <antcall target="GBrowse-Checkout"/>
     <antcall target="EuPathWebSvcCommon-Checkout"/>
     <antcall target="ApiCommonShared-Checkout"/>
+    <antcall target="ApiCommonWebService-Checkout"/>
   </target>
-  
-  
+    
   <target name="GBrowse-Checkout" unless="GBrowse.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
       <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/GBrowse"/>
@@ -48,6 +49,13 @@
     </ant>
   </target>
 
+  <target name="ApiCommonWebService-Checkout" unless="ApiCommonWebService.present">
+    <ant target="defaultProjectCheckout" inheritAll="false">
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonWebService"/>
+      <property name="project" value="ApiCommonWebService"/>
+      <property name="version" value="trunk"/>
+    </ant>
+  </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo    Update    oooooooooooooooooooooooooo -->
@@ -62,6 +70,9 @@
     </ant>
      <ant target="defaultProjectUpdate">
       <property name="project" value="ApiCommonShared"/>
+    </ant>
+    <ant target="defaultProjectUpdate">
+      <property name="project" value="ApiCommonWebService"/>
     </ant>
   </target>
 
@@ -84,6 +95,11 @@
     </ant>
     
     <antcall target="ApiCommonWebsite-Glossary"/>
+
+    <!-- This is a hack so the ApiCommonWebService project is included in dashboard -->
+    <!--    It's necessary so our yaml-based auto-config doesn't fail
+               (it will try to configure files in ApiCommonWebService) -->
+    <antcall target="ApiCommonWebService-Installation"/>
 
   </target>
 
