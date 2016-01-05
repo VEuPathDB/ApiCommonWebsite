@@ -29,8 +29,79 @@
     <p><strong>We are pleased to announce the release of TriTrypDB 27</strong></p>
 
     <section>
-     <h3>New Features</h3>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+     <section>
+        <h4>Updated Functional Annotation</h4>
+        
+        <aside>
+        Annotation updated: products, GO terms, EC numbers, gene names and synonyms.
+        </aside>
+        
+        <ul>
+          <li>
+            <a href="https://docs.google.com/spreadsheets/d/13xhl0p2kIKiBOeMinMkNa8rStjpF8z2AfqAK0Yxwz_Q/edit#gid=1363153282">Summary of annotation updates </a> 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.   
+            <a href="http://www.genedb.org/rss/Lbraziliensis/since/4/months">87 genes</a> with updated annotations.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=ldonBPK282A1_primary_genome_RSRC"><i>L. donovani</i> BPK282A1 </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Ldonovani_BPK282A1/since/4/months">85 genes</a> with updated annotations.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=linfJPCM5_primary_genome_RSRC"><i>L. infantum</i> JPCM5 </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Linfantum/since/4/months">85 genes</a> with updated annotations.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=lmajFriedlin_primary_genome_RSRC"><i>L. major</i> strain Friedlin </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Lmajor/since/4/months">114 genes</a> with updated annotations.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=lmexMHOMGT2001U1103_primary_genome_RSRC"><i>L. mexicana</i> MHOM/GT/2001/U1103 </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.  
+            <a href="http://www.genedb.org/rss/Lmexicana/since/4/months">87 genes</a> with updated annotations.
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_primary_genome_RSRC"><i>Trypanosoma brucei</i> 927 </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Tbruceibrucei927/since/4/months">792 genes</a> with updated annotations. 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tbrugambienseDAL972_primary_genome_RSRC"><i>T. brucei gambiense</i> DAL972  </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Tbruceigambiense/since/4/months">121 genes</a> with updated annotations. 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tconIL3000_primary_genome_RSRC"><i>Trypanosoma congolense</i> IL3000</a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Tcongolense/since/4/months">105 genes</a> with updated annotations. 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tcruCLBrener_primary_genome_RSRC"><i>Trypanosoma cruzi</i> CL Brener</a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Tcruzi/since/4/months">196 genes</a> with updated annotations. 
+          </li>
+          <li>
+            <a href="http://tritrypdb.org/a/getDataset.do?datasets=tvivY486_primary_genome_RSRC"><i>Trypanosoma vivax</i> Y486 </a> &mdash;
+            updated to <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a>.
+            <a href="http://www.genedb.org/rss/Tvivax/since/4/months">100 genes</a> with updated annotations. 
+          </li>
+        </ul>
+      </section>
+      </section>
       
+      <section>
+     <h3>New Features</h3>
       <section>
        <h4>New Tutorials</h4>
         <ul>
@@ -41,8 +112,9 @@
             <a href="https://youtu.be/TODO">TODO</a>
           </li>
       </section>
+
       
- 
+      
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
