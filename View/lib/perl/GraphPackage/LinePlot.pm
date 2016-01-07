@@ -48,6 +48,10 @@ sub getHasMetaData              { $_[0]->{'_has_meta_data'                 }}
 sub setHasMetaData              { $_[0]->{'_has_meta_data'                 } = $_[1]}
 
 
+sub getForceConnectPoints              { $_[0]->{'_force_connect_points'                 }}
+sub setForceConnectPoints              { $_[0]->{'_force_connect_points'                 } = $_[1]}
+
+
 
 #--------------------------------------------------------------------------------
 
@@ -161,6 +165,7 @@ sub makeRPlotString {
   $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
   my $forceNoLines = $self->getForceNoLines() ? 'TRUE' : 'FALSE';
+  my $forceConnectPoints = $self->getForceConnectPoints() ? 'TRUE' : 'FALSE';
   my $varyGlyphByXAxis = $self->getVaryGlyphByXAxis() ? 'TRUE' : 'FALSE';
   my $isFilled = $self->getIsFilled() ? 'TRUE' : 'FALSE';
 
@@ -525,13 +530,13 @@ for(i in 1:nrow(lines.df)) {
               );
      }
      lines(x.coords.line,
-           y.coords,
-           col  = the.colors[i],
-           bg   = the.colors[i],
-           type = ifelse(is.compact, \"l\", \"o\"),
-           pch  = my.pch,
-           cex  = 1
-          );
+          y.coords,
+          col  = the.colors[i],
+          bg   = the.colors[i],
+          type = ifelse(is.compact, \"l\", \"o\"),
+          pch  = my.pch,
+          cex  = 1
+         );
 
    }
 
@@ -541,6 +546,20 @@ for(i in 1:nrow(lines.df)) {
      my.pch = points.pch;
    }
 
+
+
+if($forceConnectPoints) {
+   lines(x.coords,
+          new.points[i,],
+          col  = the.colors[i],
+          bg   = the.colors[i],
+          type = ifelse(is.compact, \"l\", \"o\"),
+          pch  = my.pch,
+          cex  = 1
+         );
+
+}
+else {
    points(x.coords,
           new.points[i,],
           col  = the.colors[i],
@@ -549,6 +568,9 @@ for(i in 1:nrow(lines.df)) {
           pch  = my.pch,
           cex  = 1
          );
+}
+
+
 }
 
 yAxis = axis(4,tick=F,labels=F);
