@@ -24,19 +24,22 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
   
   my @profileArray = (
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand - diff'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand - diff'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand - diff'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand - diff'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand', undef, $sampleLabels],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand - diff', undef, $sampleLabels],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand', undef, $sampleLabels],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand - diff', undef, $sampleLabels],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand', undef, $sampleLabels],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand - diff', undef, $sampleLabels],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand', undef, $sampleLabels],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand - diff', undef, $sampleLabels],
                      );
 
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand'],['percentile - Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand'],['percentile - Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand'],['percentile - Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand']]);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand',undef, $sampleLabels],
+                                                                                    ['percentile - Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand',undef, $sampleLabels],
+                                                                                    ['percentile - Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand',undef, $sampleLabels],
+                                                                                    ['percentile - Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand',undef, $sampleLabels]]);
   
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets([$profileSets->[0],$profileSets->[2],$profileSets->[4],$profileSets->[6],]);
@@ -50,6 +53,8 @@ sub init {
   $line->setSampleLabels($sampleLabels);
   my $id = $self->getId();
   $line->setPlotTitle("RPKM - $id - Time Course");
+  $line->setForceConnectPoints(1);
+
 
 # Removed Stack Bar plots based on request from Outreach Team.
 
@@ -103,7 +108,7 @@ sub init {
   $percentile->setPlotTitle($basePlotTitle." - percentile");
   $percentile->setSampleLabels($sampleLabels);
   $percentile->setElementNameMarginSize(6);
-
+  $percentile->setForceConnectPoints(1);
   #$self->setGraphObjects($line, $stackedRibosomeSense, $stackedRibosomeAnti,$stackedSteadySense,$stackedSteadyAnti, $percentile,);
 
   $self->setGraphObjects($line, $percentile);
