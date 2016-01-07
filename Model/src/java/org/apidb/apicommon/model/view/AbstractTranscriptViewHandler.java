@@ -15,7 +15,8 @@ public abstract class AbstractTranscriptViewHandler extends AltSpliceViewHandler
   private static final String TRANSCRIPT_ID_FIELD = "transcript_link";
 
   private static final String[] FIELDS_TO_REMOVE = {
-    TRANSCRIPT_ID_FIELD, "gene_transcript_count", "transcripts_found_per_gene"
+    //TRANSCRIPT_ID_FIELD, "gene_transcript_count", "transcripts_found_per_gene"
+		TRANSCRIPT_ID_FIELD
   };
 
   @Override
