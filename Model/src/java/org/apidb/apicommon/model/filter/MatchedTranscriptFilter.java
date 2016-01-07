@@ -156,7 +156,7 @@ public class MatchedTranscriptFilter extends StepFilter {
     JSONObject jsValue = new JSONObject();
     JSONArray jsArray = new JSONArray();
     jsArray.put("Y");
-    jsArray.put("N");
+		// jsArray.put("N");
     jsValue.put("values", jsArray);
     return jsValue;
   }
