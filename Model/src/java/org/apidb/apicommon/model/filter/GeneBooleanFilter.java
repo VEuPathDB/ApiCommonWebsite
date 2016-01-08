@@ -20,6 +20,7 @@ import org.apidb.apicommon.model.TranscriptBooleanQuery;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.gusdb.wdk.model.user.Step;
 
 public class GeneBooleanFilter extends StepFilter {
 
@@ -140,12 +141,12 @@ public class GeneBooleanFilter extends StepFilter {
 
   @Override
   public boolean defaultValueEquals(JSONObject jsValue) throws WdkModelException {
-    if (getDefaultValue() == null)
+    if (getDefaultValue(null) == null)
       return false;
     try {
       JSONArray jsArray = jsValue.getJSONArray("values");
       Set<String> set1 = getStringSetFromJSONArray(jsArray);
-      jsArray = getDefaultValue().getJSONArray("values");
+      jsArray = getDefaultValue(null).getJSONArray("values");
       Set<String> set2 = getStringSetFromJSONArray(jsArray);
       return set1.equals(set2);
     }
@@ -155,7 +156,7 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public JSONObject getDefaultValue() {
+  public JSONObject getDefaultValue(Step step) {
     JSONObject jsValue = new JSONObject();
     JSONArray jsArray = new JSONArray();
     jsArray.put("YY");
