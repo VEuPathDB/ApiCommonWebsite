@@ -12,6 +12,7 @@ use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
 use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
 
+use Scalar::Util qw /blessed/;
 use Data::Dumper;
 
 # Subclasses can adjust the RCode but we won't let the templates do this
@@ -60,6 +61,8 @@ sub getKey{
 #print STDERR "groupName = $groupName FOR $profileSetName\n";
   $groupName = '' if (!$groupName);
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+  $profileType = 'percentile' if ($profileType eq 'channel2_percentiles');
+
   return "${groupName}_${profileType}";
 }
 
@@ -161,7 +164,7 @@ sub makeAndSetPlots {
     my @profileSetsArray;
 
 #print STDERR Dumper   \@plotProfiles;
-    my @sortedPlotProfiles = sort {$a->{profileName} cmp $b->{profileName} } @plotProfiles;
+    my @sortedPlotProfiles = sort {$a->{profileName}.$a->{profileType} cmp $b->{profileName}.$b->{profileType}} @plotProfiles;
 #print STDERR Dumper   \@sortedPlotProfiles;
     foreach my $p (@sortedPlotProfiles) {
       if ($hasStdError->{ $p->{profileName} }) {
@@ -178,7 +181,7 @@ sub makeAndSetPlots {
     my $plotObj;
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
 
-    if(lc($self->getGraphType()) eq 'bar') {
+    if(lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)  ) {
       $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line') {
       $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
@@ -345,7 +348,7 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_0fa4237b
 
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
-  
+
   my $legendLabels = (['labeled','total','total fitted','unlabeled']);
   $profile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
   $profile->setHasExtraLegend(1);
@@ -672,4 +675,4 @@ sub _init {
 # TEMPLATE_ANCHOR microarraySimpleRmaGraph
 # TEMPLATE_ANCHOR microarraySimpleQuantileGraph
 # TEMPLATE_ANCHOR microarrayMRNADecayGraph
-# TEMPLATE_ANCHOR microarraySimpleTwoChannelGraph
+
