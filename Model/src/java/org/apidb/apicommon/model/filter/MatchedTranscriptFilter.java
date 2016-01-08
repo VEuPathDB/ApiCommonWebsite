@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -19,8 +20,11 @@ import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.gusdb.wdk.model.user.Step;
 
 public class MatchedTranscriptFilter extends StepFilter {
+
+	private static final Logger logger = Logger.getLogger(MatchedTranscriptFilter.class); 
 
   protected static final String COUNT_COLUMN = "count";
   protected static final String MATCHED_RESULT_COLUMN = "matched_result";
@@ -137,12 +141,12 @@ public class MatchedTranscriptFilter extends StepFilter {
 
   @Override
   public boolean defaultValueEquals(JSONObject jsValue) throws WdkModelException {
-    if (getDefaultValue() == null)
+    if (getDefaultValue(null) == null)
       return false;
     try {
       JSONArray jsArray = jsValue.getJSONArray("values");
       Set<String> set1 = getStringSetFromJSONArray(jsArray);
-      jsArray = getDefaultValue().getJSONArray("values");
+      jsArray = getDefaultValue(null).getJSONArray("values");
       Set<String> set2 = getStringSetFromJSONArray(jsArray);
       return set1.equals(set2);
     }
@@ -152,13 +156,18 @@ public class MatchedTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public JSONObject getDefaultValue() {
-    JSONObject jsValue = new JSONObject();
-    JSONArray jsArray = new JSONArray();
-    jsArray.put("Y");
-		// jsArray.put("N");
-    jsValue.put("values", jsArray);
-    return jsValue;
+  public JSONObject getDefaultValue(Step step) {
+		if( step == null || !step.isCombined() ) {
+				JSONObject jsValue = new JSONObject();
+				JSONArray jsArray = new JSONArray();
+				jsArray.put("Y");
+				// jsArray.put("N");
+				jsValue.put("values", jsArray);
+				return jsValue;
+		}
+		else {
+			return null;
+		}
   }
 
   private Set<String> getStringSetFromJSONArray(JSONArray jsArray) throws JSONException {
