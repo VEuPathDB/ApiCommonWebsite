@@ -23,8 +23,8 @@ public class TranscriptBooleanQuery extends BooleanQuery {
 
 //  private static final Logger logger = Logger.getLogger(TranscriptBooleanQuery.class);
 
-  public static final String LEFT_MATCH_COLUMN_TITLE = "Returned by previous search";
-  public static final String RIGHT_MATCH_COLUMN_TITLE = "Returned by latest search";
+  public static final String LEFT_MATCH_COLUMN_TITLE = "Returned by Previous Search";
+  public static final String RIGHT_MATCH_COLUMN_TITLE = "Returned by Latest Search";
   public static final String LEFT_MATCH_COLUMN_TITLE_DESC = "Transcripts returned by your previous step (yes or no)";
   public static final String RIGHT_MATCH_COLUMN_TITLE_DESC = "Transcripts returned by your latest search (yes or no)";
   public static final String LEFT_MATCH_COLUMN = "left_match";
