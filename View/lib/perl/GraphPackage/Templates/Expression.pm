@@ -354,9 +354,13 @@ sub setGraphObjects {
   $line->setArePointsLast(1);
   $line->setElementNameMarginSize(6);
   $line->setXaxisLabel('Hours post infection');
+  $line->setHasExtraLegend(1);
+  $line->setLegendLabels(['total']);
+  $line->setSmoothLines(1);
+  $line->setSplineApproxN(100);    
+  $line->setXaxisLabel('Hours post infection');
   my $id = $self->getId();
-  my $basePlotTitle = $line->getPlotTitle;
-  $line->setPlotTitle("$basePlotTitle - $id - Time Course");
+  $line->setPlotTitle("Expression Values - $id - Total Expression");
   push (@{$graphs},$line);
   $self->SUPER::setGraphObjects(@{$graphs});
 }
