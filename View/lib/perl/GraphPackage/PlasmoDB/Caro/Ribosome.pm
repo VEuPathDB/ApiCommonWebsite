@@ -18,10 +18,10 @@ sub init {
 
   my $pch = [19,24,15,17];
   my $colors = ['#E57C24', '#FFB87E','#315B7D','#588EBB','#DDDDDD'];
-  my $legend = ['Ribosome - Sense', 'Ribosome - Antisense', 'Steady State - Sense', 'Steady State - Antisense'];
+  my $legend = ['Ribosome - Sense', 'Ribosome - Antisense', 'Steady State - Sense', 'Steady State - Antisense','Translational Effeciency'];
 
   my $sampleLabels = ['R','ET', 'LT', 'S', 'M'];
-  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
+  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
   
   my @profileArray = (
                       ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand', undef, $sampleLabels],
@@ -40,6 +40,9 @@ sub init {
                                                                                     ['percentile - Ribosome profile and mRNA transcriptome of asexual stages - ribosome - antisense strand',undef, $sampleLabels],
                                                                                     ['percentile - Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand',undef, $sampleLabels],
                                                                                     ['percentile - Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand',undef, $sampleLabels]]);
+
+  my $translationalEffSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Ribosome profile and mRNA transcriptome of asexual stages - translational efficiency - sense_strand',undef, $sampleLabels],
+['Ribosome profile and mRNA transcriptome of asexual stages - translational efficiency - antisense_strand',undef, $sampleLabels],]);
   
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets([$profileSets->[0],$profileSets->[2],$profileSets->[4],$profileSets->[6],]);
@@ -111,7 +114,16 @@ sub init {
   $percentile->setForceConnectPoints(1);
   #$self->setGraphObjects($line, $stackedRibosomeSense, $stackedRibosomeAnti,$stackedSteadySense,$stackedSteadyAnti, $percentile,);
 
-  $self->setGraphObjects($line, $percentile);
+  my $transEff = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
+  $transEff->setProfileSets([$translationalEffSets->[0]]);
+  $transEff->setYaxisLabel('Efficiency Ratio');
+  $transEff->setColors([$colors->[4]]);
+  $transEff->setElementNameMarginSize(6);
+  $transEff->setPartName('trans_eff');
+  $transEff->setSampleLabels($sampleLabels);
+  my $id = $self->getId();
+  $transEff->setPlotTitle("$id - Translational Efficiency");
+  $self->setGraphObjects($line, $percentile,$transEff);
 
   return $self;
 
