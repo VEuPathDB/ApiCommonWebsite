@@ -1,5 +1,6 @@
 package org.apidb.apicommon.controller.action;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.eupathdb.common.model.ProjectMapper;
 import org.gusdb.wdk.controller.action.ShowRecordAction;
+import org.gusdb.wdk.controller.actions.client.RecordPageAdapter;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -32,6 +34,9 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private static final String PARAM_SOURCE_ID = "source_id";
     private static final String PARAM_GENE_SOURCE_ID = "gene_source_id";
     private static final String PARAM_PROJECT_ID = "project_id";
+    
+    private static final String GENE_RECORD_CLASS_NAME = "GeneRecordClasses.GeneRecordClass";
+    private static final String TRANSCRIPT_RECORD_CLASS_NAME = "TranscriptRecordClasses.TranscriptRecordClass";
 
     private static final String PARAM_RECORD_CLASS = "record_class";
 
@@ -47,6 +52,12 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private static final String PATTERN_SOURCE_ID = "\\$\\{SOURCE_ID\\}";
 
     private static final String FORWARD_ID_QUESTION = "run-question";
+    private static final String FORWARD_CLIENT_RECORD_PAGE = "client-record-page";
+
+    private static final Map<String, String> recordClassMap = new HashMap<String, String>();
+    static {
+      recordClassMap.put(GENE_RECORD_CLASS_NAME, TRANSCRIPT_RECORD_CLASS_NAME);
+    }
 
     private static final Logger logger = Logger.getLogger(CustomShowRecordAction.class);
 
@@ -59,7 +70,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         // need to check if the old record is mapped to more than one records
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         
-        String rcName = request.getParameter(PARAM_NAME);
+        String rcName = getRecordClassName(request);
         wdkModel.validateRecordClassName(rcName);
         
         String sourceId = request.getParameter(PARAM_SOURCE_ID);
@@ -75,14 +86,23 @@ public class CustomShowRecordAction extends ShowRecordAction {
         }
 
         ActionForward forward;
-        if (hasMultipleRecords(request, wdkModel, rcName, sourceId, geneSourceId)) {
+        if (TRANSCRIPT_RECORD_CLASS_NAME.equals(rcName)) {
+          RecordClassBean recordClassBean = wdkModel.getRecordClass(rcName);
+          @SuppressWarnings("unchecked")
+          String clientUrl = RecordPageAdapter.createUrl(recordClassBean, request.getParameterMap());
+          forward = new ActionForward("/app" + clientUrl, true);
+        }
+        
+        else if (hasMultipleRecords(request, wdkModel, rcName, sourceId, geneSourceId)) {
             // the old id is mapped to multiple ids, run a id question to get
             // the result.
             forward = mapping.findForward(FORWARD_ID_QUESTION);
             String url = forward.getPath().replaceAll(PATTERN_SOURCE_ID,
                     sourceId);
             forward = new ActionForward(url, false);
-        } else { // map to single Id, load data sources & go to record page.
+        }
+        
+        else { // map to single Id, load data sources & go to record page.
             // run execute from parent
             forward = super.execute(mapping, form, request, response);
 
@@ -161,5 +181,13 @@ public class CustomShowRecordAction extends ShowRecordAction {
         request.setAttribute(ATTR_REFERENCE_PROFILE_GRAPHS, profileGraphRefs);
         request.setAttribute(ATTR_REFERENCE_ATTRIBUTES, attributeRefs);
         request.setAttribute(ATTR_REFERENCE_TABLES, tableRefs);
+    }
+    
+    private String getRecordClassName(HttpServletRequest request) {
+      String rcName = request.getParameter(PARAM_NAME);
+      if (recordClassMap.containsKey(rcName)) {
+        return recordClassMap.get(rcName);
+      }
+      return rcName;
     }
 }
