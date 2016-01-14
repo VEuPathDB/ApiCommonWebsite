@@ -42,6 +42,76 @@
         Annotation updated: products, GO terms, EC numbers, gene names and synonyms.
         </aside>
         
+        <a href="https://docs.google.com/spreadsheets/d/13xhl0p2kIKiBOeMinMkNa8rStjpF8z2AfqAK0Yxwz_Q/edit#gid=1363153282">Summary of annotation updates </a>
+        
+        <style>
+           #FunctAnnot_Bld27 td, #FunctAnnot_Bld27 th {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           }
+           #FunctAnnot_Bld27 {
+           margin-left : 2 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld27"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>GeneDB Version</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>87 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=ldonBPK282A1_primary_genome_RSRC"><i>L. donovani</i> BPK282A1 </a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>85 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=linfJPCM5_primary_genome_RSRC"><i>L. infantum</i> JPCM5 </a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>85 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=lmajFriedlin_primary_genome_RSRC"><i>L. major</i> strain Friedlin </a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>114 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=lmexMHOMGT2001U1103_primary_genome_RSRC"><i>L. mexicana</i> MHOM/GT/2001/U1103 </a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>87 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_primary_genome_RSRC"><i>Trypanosoma brucei</i> 927 </a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>792 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=tbrugambienseDAL972_primary_genome_RSRC"><i>T. brucei gambiense</i> DAL972</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>121 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=tconIL3000_primary_genome_RSRC"><i>Trypanosoma congolense</i> IL3000</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>105 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=tcruCLBrener_primary_genome_RSRC"><i>Trypanosoma cruzi</i> CL Brener</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>196 genes</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=tvivY486_primary_genome_RSRC"><i>Trypanosoma vivax</i> Y486 </a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td>100 genes</td>
+           </tr>
+           </table>
+        <br><br>
         <ul>
           <li>
             <a href="https://docs.google.com/spreadsheets/d/13xhl0p2kIKiBOeMinMkNa8rStjpF8z2AfqAK0Yxwz_Q/edit#gid=1363153282">Summary of annotation updates </a> 
