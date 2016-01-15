@@ -47,8 +47,8 @@ public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.reco
     List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
 
     // if asking for a default transcript
-    // for each gene found, return it, along with its alphabetically first transcript
-    if (inputTranscriptId.equals("_DEFAULT_")) {
+    // then, for each gene found, return it, along with its alphabetically first transcript
+    if (inputTranscriptId.equals("_DEFAULT_TRANSCRIPT_")) {
       String prevGene = "";
       for (String transcript : transcriptToGene.keySet()) {
         String gene = transcriptToGene.get(transcript);
@@ -59,7 +59,7 @@ public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.reco
       }
     }
 
-    // otherwise, just map the gene to new gene id, and go w/ the provided transcript id (and a prayer that is not old)
+    // otherwise, map the gene to new gene id, and go w/ the input transcript id (if it is old, it will cause user err)
     else {
       String gene = transcriptToGene.get(inputTranscriptId);
       if (gene != null) result.add(getPkMap(gene, inputTranscriptId, user.getWdkModel().getProjectId()));
