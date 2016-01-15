@@ -2476,7 +2476,7 @@ is available under the "Transcript Expression" section in ToxoDB<a
 href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence"><span
 style="font-weight: bold;"></span></a>.&nbsp; In addition, expression
 coverage and percentile graphs are available on <a
-href="http://toxodb.org/toxo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TGME49_070250&amp;project_id=ToxoDB"><span
+href="http://toxodb.org/toxo/app/record/gene/TGME49_070250"><span
 style="font-weight: bold;">gene pages</span></a>.&nbsp; <br>
 </li>
 </ul>

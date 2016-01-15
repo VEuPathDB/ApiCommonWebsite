@@ -1293,7 +1293,7 @@ do not have orthologs in mammals.&nbsp; Click here to explore this
 feature.</li>
   <li>A table of paralogs (if any) is now available on gene pages
 allowing you to view expanded gene families -- See <a
- href="http://trichdb.org/trichdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TVAG_386080&amp;project_id=TrichDB">TVAG_386080</a>
+ href="http://trichdb.org/trichdb/app/record/gene/TVAG_386080">TVAG_386080</a>
 for example (scroll down to the Orthologs and Paralogs Table).</li>
   <li>Now after you perform a BlastN against genomic sequence you
 can link from the blast output to the correct coordinates in the

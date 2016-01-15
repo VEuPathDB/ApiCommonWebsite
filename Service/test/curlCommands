@@ -2,9 +2,9 @@
 RECORD SVC
 curl -G -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record -d expandRecordClasses=true -d expandTables=true
 
-curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/GeneRecordClasses.GeneRecordClass
+curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/TranscriptRecordClasses.TranscriptRecordClass
 
-curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/GeneRecordClasses.GeneRecordClass/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/recordInstanceRequest.json  
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/TranscriptRecordClasses.TranscriptRecordClass/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/recordInstanceRequest.json  
 
 
 
