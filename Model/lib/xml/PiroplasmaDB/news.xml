@@ -825,7 +825,7 @@ orentalis
             annulata</i> schizonts from the </span><strong><a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
 Mass
             spec evidence search page</a></strong><span class="tracktitle">. In
-          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=TA12105&amp;project_id=PiroplasmaDB">gene
+          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/app/record/gene/TA12105">gene
 pages
             in the Protein Section</a></strong><span class="tracktitle"> and in
           the genome browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.

@@ -176,7 +176,7 @@
       <dynamic-attributes>true</dynamic-attributes>
       <attribute>
           <description>
-          The two-part name of the WDK record class. e.g. GeneRecordClasses.GeneRecordClass
+          The two-part name of the WDK record class. e.g. EstRecordClasses.EstRecordClass
           </description>
           <name>name</name>
           <required>true</required>

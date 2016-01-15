@@ -21,12 +21,12 @@ public class ProjectMapperTest {
   @Test
   public void testGetRecordUrl() throws WdkModelException {
     ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
-    String recordClass = "GeneRecordClasses.GeneRecordClass";
+    String recordClass = "TranscriptRecordClasses.TranscriptRecordClass";
     String projectId = "PlasmoDB";
-    String sourceId = "PF11_0344";
-    String url = mapper.getRecordUrl(recordClass, projectId, sourceId);
-    String expected = "http://plasmodb.org/plasmo/showRecord.do?name="
-        + recordClass + "&project_id=" + projectId + "&source_id=" + sourceId;
+    String sourceId = "_DEFAULT_TRANSCRIPT_";
+    String geneSourceId = "PF11_0344";
+    String url = mapper.getRecordUrl(recordClass, projectId, sourceId, geneSourceId);
+    String expected = "http://plasmodb.org/plasmo/app/record/gene/" + geneSourceId;
     Assert.assertEquals(expected, url);
   }
 

@@ -2249,7 +2249,7 @@ evidence. <br>
 <ul>
 <li>Mass spec data can also be visualized in the protein section of
 gene pages (for example, scroll down to the "Protein" section of <a
-href="/tritrypdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;source_id=Tb927.8.2160&amp;project_id=TriTrypDB"><span
+href="/tritrypdb/app/record/gene/Tb927.8.2160"><span
 style="font-weight: bold;">this gene page</span></a>) and in the <a
 href="/cgi-bin/gbrowse/tritrypdb/?start=667617;stop=672616;ref=Tb927_08_v4;width=800;version=100;flip=0;grid=1;id=94322a54b7fa01cd26a8db428b7ebefe;l=AlmeidaMassSpecPeptides%1EGene;h_feat=tb927.8.2160%40yellow"><span
 style="font-weight: bold;">genome browser</span></a>.&nbsp; Mousing

@@ -1729,7 +1729,7 @@ functional
 data in relation to your BLAST hits.</li>
   <li>A table of paralogs (if any) is now available on gene pages
 allowing you to view expanded gene families -- See <a
- href="http://giardiadb.org/giardiadb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&amp;project_id=GiardiaDB&amp;primary_key=GL50803_15158">GL50803_15158&nbsp;</a>for
+ href="http://giardiadb.org/giardiadb/app/record/gene/GL50803_15158">GL50803_15158&nbsp;</a>for
 example (scroll down to the Orthologs and Paralogs Table).</li>
   <li>The type ahead feature has been implemented for GO term, EC
 number and Interpro domain searches.</li>
