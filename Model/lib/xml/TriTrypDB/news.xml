@@ -43,12 +43,14 @@
         </aside>
         
         <a href="https://docs.google.com/spreadsheets/d/13xhl0p2kIKiBOeMinMkNa8rStjpF8z2AfqAK0Yxwz_Q/edit#gid=1363153282">Summary of annotation updates </a>
+        <br><br>
         
         <style>
-           #FunctAnnot_Bld27 td, #FunctAnnot_Bld27 th {
+           #FunctAnnot_Bld27 table, #FunctAnnot_Bld27 td, #FunctAnnot_Bld27 th, #FunctAnnot_Bld27 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
+           border: 1px solid black;
            }
            #FunctAnnot_Bld27 {
            margin-left : 2 em;
@@ -112,6 +114,8 @@
            </tr>
            </table>
         <br><br>
+        
+        <!--
         <ul>
           <li>
             <a href="https://docs.google.com/spreadsheets/d/13xhl0p2kIKiBOeMinMkNa8rStjpF8z2AfqAK0Yxwz_Q/edit#gid=1363153282">Summary of annotation updates </a> 
@@ -167,6 +171,8 @@
             <a href="http://www.genedb.org/rss/Tvivax/since/4/months">100 genes</a> with updated annotations. 
           </li>
         </ul>
+        -->
+        
       </section>
       </section>
       
