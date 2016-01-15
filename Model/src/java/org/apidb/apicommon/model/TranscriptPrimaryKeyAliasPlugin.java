@@ -16,6 +16,8 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.user.User;
 
+import org.apache.log4j.Logger;
+
 /**
  * Transform an input PK (potentially old) into zero, one or more valid transcript PKs
  * by:
@@ -25,6 +27,7 @@ import org.gusdb.wdk.model.user.User;
  *
  */
 public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin {
+  private static final Logger logger = Logger.getLogger(TranscriptPrimaryKeyAliasPlugin.class);
 
   @Override
   public List<Map<String, Object>> getPrimaryKey(User user, Map<String, Object> inputPkValues)
@@ -43,30 +46,33 @@ public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.reco
 
     List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
 
-    if (inputTranscriptId == null) {
-      // for each gene found, return it, along with its alphabetically first transcript
+    // if asking for a default transcript
+    // for each gene found, return it, along with its alphabetically first transcript
+    if (inputTranscriptId.equals("_DEFAULT_")) {
       String prevGene = "";
       for (String transcript : transcriptToGene.keySet()) {
         String gene = transcriptToGene.get(transcript);
         if (!prevGene.equals(gene)) {
-          result.add(getPkMap(gene, transcript));
+          result.add(getPkMap(gene, transcript, user.getWdkModel().getProjectId()));
           prevGene = gene;
         }
       }
     }
+
+    // otherwise, just map the gene to new gene id, and go w/ the provided transcript id (and a prayer that is not old)
     else {
       String gene = transcriptToGene.get(inputTranscriptId);
-      if (gene != null) result.add(getPkMap(gene, inputTranscriptId));
+      if (gene != null) result.add(getPkMap(gene, inputTranscriptId, user.getWdkModel().getProjectId()));
     }
 
     return result;
   }
   
-  private Map<String, Object> getPkMap(String gene, String transcript) {
+  private Map<String, Object> getPkMap(String gene, String transcript, String projectId) {
     Map<String, Object> pk = new HashMap<String, Object>();
     pk.put("gene_source_id", gene);
     pk.put("source_id", transcript);
-    pk.put("project_id", "");
+    pk.put("project_id", projectId);
     return pk;
   }
   
@@ -93,7 +99,7 @@ public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.reco
     } finally {
       if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet);
     }
-    return null;
+    return map;
   }
 
 }
