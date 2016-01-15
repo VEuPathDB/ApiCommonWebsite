@@ -32,29 +32,34 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
   public static final String reasonerName = "hermit";
   public static final String owlFilePathParam = "owlFilePath";
 
+  private TreeNode<Map<String, List<String>>> tree == null;
+
   @Override
   public TreeNode<Map<String, List<String>>> getTree(Map<String, String> parameters, String ontologyName) throws WdkModelException {
  
-    String inputOwlFile = GusHome.getGusHome() + "/" + parameters.get(owlFilePathParam);
+    if (tree == null) {
+      String inputOwlFile = GusHome.getGusHome() + "/" + parameters.get(owlFilePathParam);
  
-    // load OWL format ontology
-    OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-    OWLOntology ont = OntologyManipulator.load(inputOwlFile, manager);
-    OWLDataFactory df = manager.getOWLDataFactory();
+      // load OWL format ontology
+      OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+      OWLOntology ont = OntologyManipulator.load(inputOwlFile, manager);
+      OWLDataFactory df = manager.getOWLDataFactory();
 
-    // reasoning the ontology
-    OWLReasoner reasoner = OWLReasonerRunner.runReasoner(manager, ont, reasonerName);
+      // reasoning the ontology
+      OWLReasoner reasoner = OWLReasonerRunner.runReasoner(manager, ont, reasonerName);
 
-    // get root node
-    Node<OWLClass> topNode = reasoner.getTopClassNode();
-    OWLClass owlClass = topNode.getEntities().iterator().next(); // get first one
-    Map<String, List<String>> contents = convertToMap(ont, df, owlClass);
-    // if (contents == null) throw new WdkModelException("For ontology '" + ontologyName + "' the root node has null contents");
-    if (contents == null) contents = new HashMap<String, List<String>>();
-    TreeNode <Map<String, List<String>>> tree = new TreeNode<Map<String, List<String>>>(contents);
+      // get root node
+      Node<OWLClass> topNode = reasoner.getTopClassNode();
+      OWLClass owlClass = topNode.getEntities().iterator().next(); // get first one
+      Map<String, List<String>> contents = convertToMap(ont, df, owlClass);
+      // if (contents == null) throw new WdkModelException("For ontology '" + ontologyName + "' the root node has null contents");
+      if (contents == null) contents = new HashMap<String, List<String>>();
+      tree = new TreeNode<Map<String, List<String>>>(contents);
     
-    // build tree
-    build(topNode, reasoner, ont, df, df.getOWLAnnotationProperty(IRI.create(orderAnnotPropStr)), tree);
+      // build tree
+      build(topNode, reasoner, ont, df, df.getOWLAnnotationProperty(IRI.create(orderAnnotPropStr)), tree);
+    }
+
     return tree;
   }
   
