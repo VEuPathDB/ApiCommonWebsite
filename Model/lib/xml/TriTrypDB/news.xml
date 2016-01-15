@@ -50,10 +50,12 @@
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
            border: 1px solid black;
            }
            #FunctAnnot_Bld27 {
-           margin-left : 2 em;
+           margin-left : 5 em;
            }
          </style> 
            <table id="FunctAnnot_Bld27"> 
