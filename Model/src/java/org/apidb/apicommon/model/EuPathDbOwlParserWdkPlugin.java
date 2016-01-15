@@ -32,7 +32,7 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
   public static final String reasonerName = "hermit";
   public static final String owlFilePathParam = "owlFilePath";
 
-  private TreeNode<Map<String, List<String>>> tree == null;
+  private TreeNode<Map<String, List<String>>> tree = null;
 
   @Override
   public TreeNode<Map<String, List<String>>> getTree(Map<String, String> parameters, String ontologyName) throws WdkModelException {
