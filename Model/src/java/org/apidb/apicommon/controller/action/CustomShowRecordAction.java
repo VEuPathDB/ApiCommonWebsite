@@ -52,7 +52,6 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private static final String PATTERN_SOURCE_ID = "\\$\\{SOURCE_ID\\}";
 
     private static final String FORWARD_ID_QUESTION = "run-question";
-    private static final String FORWARD_CLIENT_RECORD_PAGE = "client-record-page";
 
     private static final Map<String, String> recordClassMap = new HashMap<String, String>();
     static {
