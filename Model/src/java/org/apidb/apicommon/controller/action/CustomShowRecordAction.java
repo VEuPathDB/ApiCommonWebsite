@@ -37,6 +37,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
     
     private static final String GENE_RECORD_CLASS_NAME = "GeneRecordClasses.GeneRecordClass";
     private static final String TRANSCRIPT_RECORD_CLASS_NAME = "TranscriptRecordClasses.TranscriptRecordClass";
+    private static final String PATHWAY_RECORD_CLASS_NAME = "PathwayRecordClasses.PathwayRecordClass";
 
     private static final String PARAM_RECORD_CLASS = "record_class";
 
@@ -85,7 +86,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         }
 
         ActionForward forward;
-        if (TRANSCRIPT_RECORD_CLASS_NAME.equals(rcName)) {
+        if (!PATHWAY_RECORD_CLASS_NAME.equals(rcName)) {
           RecordClassBean recordClassBean = wdkModel.getRecordClass(rcName);
           @SuppressWarnings("unchecked")
           String clientUrl = RecordPageAdapter.createUrl(recordClassBean, request.getParameterMap());
