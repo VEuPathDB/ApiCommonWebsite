@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
@@ -69,7 +70,7 @@ public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.reco
   }
   
   private Map<String, Object> getPkMap(String gene, String transcript, String projectId) {
-    Map<String, Object> pk = new HashMap<String, Object>();
+    Map<String, Object> pk = new LinkedHashMap<String, Object>();
     pk.put("gene_source_id", gene);
     pk.put("source_id", transcript);
     pk.put("project_id", projectId);
