@@ -6,6 +6,8 @@ use Math::Round;
 
 use ApiCommonWebsite::View::GraphPackage::ProfileSet;
 
+use Data::Dumper;
+
 sub makeProfileSets {
   my ($arr) = @_;
 
