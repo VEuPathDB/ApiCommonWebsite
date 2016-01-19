@@ -65,7 +65,7 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td><a href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a></td>
+             <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a></td>
              <td><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
              <td>87 genes</td>
            </tr>
