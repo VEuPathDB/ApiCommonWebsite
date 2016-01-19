@@ -73,12 +73,14 @@
       <section>
         <h4>Gene Family Nomenclature in <i>Plasmodium</i> Genomes<h4>
         
-        GeneDB would like some feedback from the community on gene family nomenclature in Plasmodium genomes! 
-        Please take a look at their 
-        <a href="http://www.genedb.org/artemis/Gene_family_nomenclature_proposal.pdf">gene family nomenclature proposal</a>
-        and 
-        <a href="genedb-help@sanger.ac.uk">let them know</a> if you have any comments.  
-      
+        <li>
+          GeneDB would like your feedback on gene family nomenclature in <i>Plasmodium</i> genomes! 
+          Please take a look at their 
+          <a href="http://www.genedb.org/artemis/Gene_family_nomenclature_proposal.pdf">gene family nomenclature proposal</a>
+          and 
+          <a href="mailto:genedb-help@sanger.ac.uk">send GeneDB</a> your comments.
+        </li>    
+      </section>
  
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
