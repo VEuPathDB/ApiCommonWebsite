@@ -12,6 +12,8 @@ use ApiCommonWebsite::Model::CannedQuery::ProfileFixedValue;
 use ApiCommonWebsite::View::MultiScreen;
 use ApiCommonWebsite::View::GraphPackage::Util;
 
+use Data::Dumper;
+
 #--------------------------------------------------------------------------------
 
 #TODO: would like to factor out into PlotPart.pm
@@ -405,8 +407,14 @@ sub addToProfileDataMatrix {
     my @avgValues = ('Header');
 
     for(my $i = 1; $i < scalar(keys(%values)) + 1; $i++) {
-      my @allValues = @{$values{$i}};
+      my @allValues;
+      unless (defined $values{$i}) { 
+        @allValues = ('NA') x scalar(@names);
+      } else {
+        @allValues = @{$values{$i}};
+      }
 
+      
       my $sum = 0;
       my $naCount = 0;
       foreach(@allValues) {
@@ -418,6 +426,8 @@ sub addToProfileDataMatrix {
         }
       }
 
+      
+
       if($naCount == scalar @allValues) {
         push @avgValues, 'NA';
       }
@@ -425,7 +435,15 @@ sub addToProfileDataMatrix {
         push @avgValues, $sum / (scalar(@allValues) - $naCount);
       }
     }
-
+    my $naCount = 0;
+    foreach(@avgValues) {
+      if($_ eq 'NA') {
+        $naCount++;
+      }
+    }
+    if ($naCount+1 == scalar @avgValues) {
+      next;
+    }
     unless(scalar @names == scalar @avgValues) {
       die "Element Names file Different length than Values File";
     }
@@ -448,9 +466,9 @@ sub addToProfileDataMatrix {
 
       push @$allNames, $namesHash unless(ApiCommonWebsite::View::GraphPackage::Util::isSeen($name, $allNames));
 
-      my $distinctProfileSet = $i > 0 ? $profileSet . "_" . $i : $profileSet;
+#      my $distinctProfileSet = $i > 0 ? $profileSet . "_" . $i : $profileSet;
 
-      $allValues->{$distinctProfileSet}->{$name} = $value;
+      $allValues->{$profileSet}->{$name} = $value;
     }
 
 
