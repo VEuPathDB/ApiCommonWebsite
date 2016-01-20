@@ -3,7 +3,6 @@ package org.apidb.apicommon.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +13,8 @@ import org.apidb.apicommon.model.ontology.OntologyManipulator;
 import org.gusdb.fgputil.functional.TreeNode;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.ontology.JavaOntologyPlugin;
+import org.gusdb.wdk.model.ontology.OntologyFactoryPlugin;
+import org.gusdb.wdk.model.ontology.OntologyNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
@@ -26,16 +26,16 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
-public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
+public class EuPathDbOwlParserWdkPlugin implements OntologyFactoryPlugin {
 
   public static final String orderAnnotPropStr = "http://purl.obolibrary.org/obo/EUPATH_0000274"; // Display order annotation property IRI                                                                                        
   public static final String reasonerName = "hermit";
   public static final String owlFilePathParam = "owlFilePath";
 
-  private TreeNode<Map<String, List<String>>> tree = null;
+  private TreeNode<OntologyNode> tree = null;
 
   @Override
-  public TreeNode<Map<String, List<String>>> getTree(Map<String, String> parameters, String ontologyName) throws WdkModelException {
+  public TreeNode<OntologyNode> getTree(Map<String, String> parameters, String ontologyName) throws WdkModelException {
  
     if (tree == null) {
       String inputOwlFile = GusHome.getGusHome() + "/" + parameters.get(owlFilePathParam);
@@ -51,10 +51,10 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
       // get root node
       Node<OWLClass> topNode = reasoner.getTopClassNode();
       OWLClass owlClass = topNode.getEntities().iterator().next(); // get first one
-      Map<String, List<String>> contents = convertToMap(ont, df, owlClass);
+      OntologyNode contents = convertToMap(ont, df, owlClass);
       // if (contents == null) throw new WdkModelException("For ontology '" + ontologyName + "' the root node has null contents");
-      if (contents == null) contents = new HashMap<String, List<String>>();
-      tree = new TreeNode<Map<String, List<String>>>(contents);
+      if (contents == null) contents = new OntologyNode();
+      tree = new TreeNode<OntologyNode>(contents);
     
       // build tree
       build(topNode, reasoner, ont, df, df.getOWLAnnotationProperty(IRI.create(orderAnnotPropStr)), tree);
@@ -64,7 +64,7 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
   }
   
   public static void build(Node<OWLClass> parentClass, OWLReasoner reasoner, OWLOntology ont, OWLDataFactory df,
-      OWLAnnotationProperty orderAnnotProp, TreeNode<Map<String, List<String>>> parentTree) throws WdkModelException {
+      OWLAnnotationProperty orderAnnotProp, TreeNode<OntologyNode> parentTree) throws WdkModelException {
     // We don't want to print out the bottom node (containing owl:Nothing
     // and unsatisfiable classes) because this would appear as a leaf node
     // everywhere
@@ -92,18 +92,18 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
     
     for (TermNode childTermNode : childList) {
       OWLClass owlClass = childTermNode.getNode().getEntities().iterator().next();  // only get first
-      Map<String, List<String>> content = convertToMap(ont, df, owlClass);
+      OntologyNode content = convertToMap(ont, df, owlClass);
       if (content != null) {
-        TreeNode<Map<String, List<String>>> childTree = new TreeNode<Map<String, List<String>>>(content);
+        TreeNode<OntologyNode> childTree = new TreeNode<>(content);
         parentTree.addChildNode(childTree);
-	build(childTermNode.getNode(), reasoner, ont, df, orderAnnotProp, childTree);
+        build(childTermNode.getNode(), reasoner, ont, df, orderAnnotProp, childTree);
       }
 
     }
   }
-        
-  private static Map<String, List<String>> convertToMap(OWLOntology ont, OWLDataFactory df, OWLClass cls) throws WdkModelException {
-    Map<String, List<String>> node = new HashMap<String, List<String>>();
+
+  private static OntologyNode convertToMap(OWLOntology ont, OWLDataFactory df, OWLClass cls) {
+    OntologyNode node = new OntologyNode();
     Set<OWLAnnotation> annotList = cls.getAnnotations(ont);
 
     if (annotList.size() == 0)  return null;
@@ -146,12 +146,9 @@ public class EuPathDbOwlParserWdkPlugin implements JavaOntologyPlugin {
         return order;
     }
     
-    public int compareTo(TermNode term)
-    {
+    @Override
+    public int compareTo(TermNode term) {
         return getOrder().compareTo(term.getOrder());
     }
-}
-
-
-
+  }
 }
