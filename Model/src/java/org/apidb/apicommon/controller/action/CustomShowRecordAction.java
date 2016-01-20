@@ -88,7 +88,6 @@ public class CustomShowRecordAction extends ShowRecordAction {
         ActionForward forward;
         if (!PATHWAY_RECORD_CLASS_NAME.equals(rcName)) {
           RecordClassBean recordClassBean = wdkModel.getRecordClass(rcName);
-          @SuppressWarnings("unchecked")
           String clientUrl = RecordPageAdapter.createUrl(recordClassBean, request.getParameterMap());
           forward = new ActionForward("/app" + clientUrl, true);
         }

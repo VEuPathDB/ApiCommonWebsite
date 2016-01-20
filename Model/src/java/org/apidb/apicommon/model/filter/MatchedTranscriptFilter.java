@@ -9,22 +9,19 @@ import java.util.Set;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
+import org.gusdb.wdk.model.filter.StepFilter;
+import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.gusdb.wdk.model.user.Step;
 
 public class MatchedTranscriptFilter extends StepFilter {
-
-	private static final Logger logger = Logger.getLogger(MatchedTranscriptFilter.class); 
 
   protected static final String COUNT_COLUMN = "count";
   protected static final String MATCHED_RESULT_COLUMN = "matched_result";
