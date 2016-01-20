@@ -19,5 +19,7 @@
 			<attribute name="javadoc_location" value="jar:file:/Users/rdoherty/.m2/repository/com/thaiopensource/jing/20091111/jing-20091111-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/org.semanticweb.HermiT.jar"/>
+	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/owlapi-distribution-3.5.0.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
