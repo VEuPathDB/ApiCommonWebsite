@@ -58,57 +58,57 @@
            <table id="FunctAnnot_Bld27"> 
            <tr>
              <th>TriTrypDB Genome Version</th>
-             <th>GeneDB Version</th>
+             <th>Download GeneDB GFF file</th>
              <th>Genes Updated</th>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=lbraMHOMBR75M2904_primary_genome_RSRC"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Lbraziliensis.noseq.gff3.gz">Lbraziliensis.noseq.gff3.gz</a></td>
              <td>87 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=ldonBPK282A1_primary_genome_RSRC"><i>L. donovani</i> BPK282A1 </a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Ldonovani_BPK282A1.noseq.gff3.gz">Ldonovani_BPK282A1.noseq.gff3.gz</a></td>
              <td>85 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=linfJPCM5_primary_genome_RSRC"><i>L. infantum</i> JPCM5 </a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Linfantum.noseq.gff3.gz">Linfantum.noseq.gff3.gz</a></td>
              <td>85 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=lmajFriedlin_primary_genome_RSRC"><i>L. major</i> strain Friedlin </a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Lmajor.noseq.gff3.gz">Lmajor.noseq.gff3.gz</a></td>
              <td>114 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=lmexMHOMGT2001U1103_primary_genome_RSRC"><i>L. mexicana</i> MHOM/GT/2001/U1103 </a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Lmexicana.noseq.gff3.gz">Lmexicana.noseq.gff3.gz</a></td>
              <td>87 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_primary_genome_RSRC"><i>Trypanosoma brucei</i> 927 </a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Tbruceibrucei927.noseq.gff3.gz">Tbruceibrucei927.noseq.gff3.gz</a></td>
              <td>792 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=tbrugambienseDAL972_primary_genome_RSRC"><i>T. brucei gambiense</i> DAL972</a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Tbruceigambiense.noseq.gff3.gz">Tbruceigambiense.noseq.gff3.gz</a></td>
              <td>121 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=tconIL3000_primary_genome_RSRC"><i>Trypanosoma congolense</i> IL3000</a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Tcongolense.noseq.gff3.gz">Tcongolense.noseq.gff3.gz</a></td>
              <td>105 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=tcruCLBrener_primary_genome_RSRC"><i>Trypanosoma cruzi</i> CL Brener</a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Tcruzi.noseq.gff3.gz">Tcruzi.noseq.gff3.gz</a></td>
              <td>196 genes</td>
            </tr>
            <tr>
              <td title="This data set title links to a full description and list of associated searches and GBrowse tracks."><a href="http://tritrypdb.org/a/getDataset.do?datasets=tvivY486_primary_genome_RSRC"><i>Trypanosoma vivax</i> Y486 </a></td>
-             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/">GeneDB version Oct, 2015</a></td>
+             <td><a href="ftp://ftp.sanger.ac.uk/pub/pathogens/gff3/2015-10/Tvivax.noseq.gff3.gz">Tvivax.noseq.gff3.gz</a></td>
              <td>100 genes</td>
            </tr>
            </table>
