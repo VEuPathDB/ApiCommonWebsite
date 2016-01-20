@@ -68,17 +68,20 @@
           </li>
       </section>
       
-    <h3>Request for Feedback</he3
+    <h3>Request for Feedback</h3>
     
       <section>
         <h4>Gene Family Nomenclature in <i>Plasmodium</i> Genomes<h4>
-        
-        GeneDB would like some feedback from the community on gene family nomenclature in Plasmodium genomes! 
-        Please take a look at their 
-        <a href="http://www.genedb.org/artemis/Gene_family_nomenclature_proposal.pdf">gene family nomenclature proposal</a>
-        and 
-        <a href="genedb-help@sanger.ac.uk">let them know</a> if you have any comments.  
-      
+        <ul>
+          <li>
+            The current naming convention for multigene families is problematic for the different species of malaria parasites. 
+            GeneDB curators are working to fix the problems and would like your feedback. Please take a look at their 
+            <a href="http://www.genedb.org/artemis/Gene_family_nomenclature_proposal.pdf">gene family nomenclature proposal</a>
+            and 
+            <a href="mailto:genedb-help@sanger.ac.uk?subject=Gene%20Family%20Nomenclature%20in%20Plasmodium%20Genomes">send GeneDB</a> your comments.
+          </li>
+        </ul>      
+      </section>
  
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
