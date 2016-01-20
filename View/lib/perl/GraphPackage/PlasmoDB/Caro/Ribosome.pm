@@ -17,7 +17,7 @@ sub init {
 
   my $pch = [19,24,15,17];
   my $colors = ['#E57C24','#315B7D','#588EBB','#DDDDDD'];
-  my $legend = ['Ribosome', 'Steady State - Sense', 'Steady State - Antisense','Translational Effeciency'];
+  my $legend = ['Ribosome', 'mRNA - Sense', 'mRNA - Antisense','Translational Effeciency'];
 
   my $sampleLabels = ['R','ET', 'LT', 'S', 'M'];
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
@@ -69,13 +69,12 @@ sub init {
   my $transEff = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
   $transEff->setProfileSets([$translationalEffSets->[0]]);
   $transEff->setYaxisLabel('Efficiency Ratio');
-  $transEff->setColors([$colors->[4]]);
+  $transEff->setColors([$colors->[3]]);
   $transEff->setElementNameMarginSize(6);
   $transEff->setPartName('trans_eff');
   $transEff->setSampleLabels($sampleLabels);
-  my $id = $self->getId();
   $transEff->setPlotTitle("$id - Translational Efficiency");
-  $self->setGraphObjects($line, $percentile,$transEff);
+  $self->setGraphObjects($transEff,$line, $percentile);
 
   return $self;
 
