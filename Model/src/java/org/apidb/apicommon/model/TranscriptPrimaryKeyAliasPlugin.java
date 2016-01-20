@@ -3,7 +3,6 @@ package org.apidb.apicommon.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +11,11 @@ import java.util.TreeMap;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.user.User;
-
-import org.apache.log4j.Logger;
 
 /**
  * Transform an input PK (potentially old) into zero, one or more valid transcript PKs
@@ -28,6 +26,8 @@ import org.apache.log4j.Logger;
  *
  */
 public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin {
+
+  @SuppressWarnings("unused")
   private static final Logger logger = Logger.getLogger(TranscriptPrimaryKeyAliasPlugin.class);
 
   @Override
