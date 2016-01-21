@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -22,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MatchedTranscriptFilter extends StepFilter {
+
+  private static final Logger logger = Logger.getLogger(MatchedTranscriptFilter.class);
 
   protected static final String COUNT_COLUMN = "count";
   protected static final String MATCHED_RESULT_COLUMN = "matched_result";
@@ -154,7 +157,12 @@ public class MatchedTranscriptFilter extends StepFilter {
 
   @Override
   public JSONObject getDefaultValue(Step step) {
-		if( step == null || !step.isCombined() ) {
+		String questionName="";
+		if( step != null) {
+			questionName = step.getQuestionName();
+		}
+			if( step == null || (!step.isCombined() && !questionName.toLowerCase().contains("basket")) ) {
+				//if( step == null || !step.isCombined() ) {
 				JSONObject jsValue = new JSONObject();
 				JSONArray jsArray = new JSONArray();
 				jsArray.put("Y");
@@ -163,6 +171,7 @@ public class MatchedTranscriptFilter extends StepFilter {
 				return jsValue;
 		}
 		else {
+			logger.debug("_____________this step DOES NOT GET THE MATCHED RESULT FILTER");
 			return null;
 		}
   }
