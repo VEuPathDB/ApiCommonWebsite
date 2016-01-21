@@ -171,9 +171,9 @@ sub getTaxonToDirMap {
 
      my $sql = <<EOSQL;
 SELECT distinct ga.organism, taxon.grp, org.abbrev 
-FROM   ApiDBTuning.GeneAttributes ga, ApiDB.Organism org,
+FROM   ApiDBTuning.TranscriptAttributes ga, ApiDB.Organism org,
        (SELECT organism, row_number() over (order by organism) as grp 
-        FROM (SELECT distinct organism FROM ApiDBTuning.GeneAttributes)
+        FROM (SELECT distinct organism FROM ApiDBTuning.TranscriptAttributes)
        ) taxon 
 WHERE  ga.taxon_id = org.taxon_id
 AND    ga.gene_type = 'protein coding'
