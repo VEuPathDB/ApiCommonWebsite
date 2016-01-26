@@ -257,8 +257,10 @@ for(i in 1:length(profile.files)) {
   element.names = as.character(element.names.df\$NAME);
 
 
-  element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
+  element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z()+-]+ *\", \"\", element.names, perl=T));
   is.numeric.element.names = !is.na(element.names.numeric);
+
+  write(is.numeric.element.names, stderr());
 
   if($forceNoLines) {
     element.names.numeric = NA;

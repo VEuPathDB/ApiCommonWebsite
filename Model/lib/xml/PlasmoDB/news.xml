@@ -68,14 +68,15 @@
           </li>
       </section>
       
-    <h3>Request for Feedback</h3>
+    <h3>Request for Feedback from GeneDB about Gene Family Nomenclature</h3>
     
       <section>
-        <h4>Gene Family Nomenclature in <i>Plasmodium</i> Genomes</h4>
+       <h4>  </h4>
         <ul>
           <li>
-            The current naming convention for multigene families is problematic for the different species of malaria parasites. 
-            GeneDB curators are working to fix the problems and would like your feedback. Please take a look at their 
+            GeneDB proposes a possible new naming convention for <i>Plasmodium</i> gene families since the current 
+            naming convention can be ambiguous. For example, currently several gene families are called fam-a, though they are not related. 
+            Please take a look at GeneDB's
             <a href="http://www.genedb.org/artemis/Gene_family_nomenclature_proposal.pdf">gene family nomenclature proposal</a>
             and 
             <a href="mailto:genedb-help@sanger.ac.uk?subject=Gene%20Family%20Nomenclature%20in%20Plasmodium%20Genomes">send GeneDB</a> your comments.
