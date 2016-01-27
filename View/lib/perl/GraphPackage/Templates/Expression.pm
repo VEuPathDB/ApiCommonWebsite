@@ -303,7 +303,7 @@ sub forceXLabelsHorizontal {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::pfal3D7_microarrayExpression_Llinas_RT_Transcription_Decay_RSRC;
 
-
+use Data::Dumper;
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
   
@@ -332,32 +332,32 @@ sub setGraphObjects {
     push @{$graphs}, $plotPart;
   }
 
-  my $pch = ['NA'];
-  my $colors = ['black'];
-  my $legend = ['Total Expression'];
+  my $pch = ['NA','NA'];
+  my $colors = ['grey','black'];
+  my $legend = ['Total Expression', 'Total Expression - smoothed'];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
   
   my @profileArray = (
                       ['Llinas RT transcription and decay total Profiles - loess'],
+                      ['Llinas RT transcription and decay total Profiles - loess - smoothed']
                      );
 
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+
+  print STDERR Dumper $profilesSets;
  
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
-  $line->setProfileSets([$profileSets->[0]]);
+  $line->setProfileSets([$profileSets->[0],$profileSets->[1]]);
   $line->setPartName('exprn_val_log_ratio');
   $line->setYaxisLabel('Expression Values (log2 ratio)');
   $line->setPointsPch($pch);
-  $line->setColors([$colors->[0], $colors->[1],$colors->[2], $colors->[3],]);
+  $line->setColors([$colors->[0], $colors->[1]]);
   $line->setArePointsLast(1);
   $line->setElementNameMarginSize(6);
   $line->setXaxisLabel('Hours post infection');
   $line->setHasExtraLegend(1);
-  $line->setLegendLabels(['total']);
-  $line->setSmoothLines(1);
-  $line->setSplineApproxN(100);    
+  $line->setLegendLabels(['total', 'smoothed']);
   $line->setXaxisLabel('Hours post infection');
   my $id = $self->getId();
   $line->setPlotTitle("Expression Values - $id - Total Expression");
