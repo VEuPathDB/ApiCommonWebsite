@@ -53,9 +53,15 @@ sub getStrandDictionary {
 
 # @Override
 sub sortKeys {
-  my ($a_suffix, $a_type, $a_strand) = split("\_", $a);
-  my ($b_suffix, $b_type, $b_strand) = split("\_", $b);
-  return ($b_type cmp $a_type)  && ($a_suffix cmp $b_suffix) && ($a_strand cmp $b_strand);
+  my ($self, $a_tmp, $b_tmp) = @_;
+
+  my ($a_suffix, $a_type, $a_strand) = split(/\_/, $a_tmp);
+  my ($b_suffix, $b_type, $b_strand) = split(/\_/, $b_tmp);
+
+  $a_suffix ="" if !($a_suffix);
+  $b_suffix ="" if !($b_suffix);
+
+  return ($b_type cmp $a_type)  || ($a_suffix cmp $b_suffix) || ($b_strand cmp $a_strand);
 
 }
 
