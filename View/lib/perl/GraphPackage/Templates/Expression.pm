@@ -104,9 +104,11 @@ sub init {
     my $profileName = $p->{profileName};
     my $profileType = $p->{profileType};
     my $key = $self->getKey($profileName, $profileType);
-    push @{$plotParts{$key}}, $p;
+
     if ($profileType eq 'standard_error') {
      $hasStdError{$profileName} = 1;
+   } else {
+     push @{$plotParts{$key}}, $p;
    }
   }
 
@@ -144,9 +146,14 @@ sub getAllProfileSetNames {
 }
 
 sub sortKeys {
-  my ($a_suffix, $a_type) = split("\_", $a);
-  my ($b_suffix, $b_type) = split("\_", $b);
-  return ($b_type cmp $a_type)  && ($a_suffix cmp $b_suffix);
+  my ($self, $a_tmp, $b_tmp) = @_;
+  $a_tmp  =~s/^_//;
+  $b_tmp =~s/^_//;
+
+  my ($a_type, $a_suffix) = split(/\_/, $a_tmp);
+  my ($b_type, $b_suffix) = split(/\_/, $b_tmp);
+
+  return ($b_type cmp $a_type) || ($a_suffix cmp $b_suffix);
 
 }
 
@@ -159,7 +166,7 @@ sub makeAndSetPlots {
   my $pctColors= $self->getPercentileColors();
   my $sampleLabels = $self->getSampleLabels();
 
-  foreach my $key (sort sortKeys keys %$plotParts) {
+  foreach my $key (sort {$self->sortKeys($a, $b)} keys %$plotParts) {
     my @plotProfiles =  @{$plotParts->{$key} };
     my @profileSetsArray;
 
