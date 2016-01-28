@@ -342,7 +342,7 @@ sub setGraphObjects {
   my $self = shift;
   my $graphs = [];
   
-  my $legendLabels = (['Transcription','Decay','Total Abundance']);
+  my $legendLabels = (['Transcription','Stabilization','Total Abundance']);
   foreach my $plotPart (@_) {
     my $name = $plotPart->setHasExtraLegend(1);
     my $size = $plotPart->setLegendLabels($legendLabels);
