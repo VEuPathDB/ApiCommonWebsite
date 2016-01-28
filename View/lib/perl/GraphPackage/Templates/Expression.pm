@@ -53,7 +53,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $allProfileSetNames = $self->getAllProfileSetNames();
-
+  
   my $profileSetsArray = $self->getProfileSetsArray($allProfileSetNames);
   my $percentileSetsArray = $self->getPercentileSetsArray($allProfileSetNames);
 
@@ -302,50 +302,68 @@ sub forceXLabelsHorizontal {
 # TEMPLATE_ANCHOR microarrayMRNADecayGraph
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::pfal3D7_microarrayExpression_Llinas_RT_Transcription_Decay_RSRC;
-
 use Data::Dumper;
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
   
-  my $legendLabels = (['labeled','total','total fitted','unlabeled']);
-  $profile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
+  my $legendLabels = (['labeled','total','unlabeled']);
+  $profile->setPointsPch(['NA','NA','NA']);
   $profile->setHasExtraLegend(1);
   $profile->setLegendLabels($legendLabels);
+}
+
+
+sub getProfileSetsArray {
+  my ($self, $allProfileSetNames) = @_;
+  my @profileArray = (
+                      ['Llinas RT transcription and decay labeled Profiles'],
+                      ['Llinas RT transcription and decay unlabeled Profiles'],
+                      ['Llinas RT transcription and decay total Profiles'],
+                     ); 
+  return \@profileArray;
+}
+sub getPercentileSetsArray {
+  my ($self, $allProfileSetNames) = @_;
+  my @profileArray = (
+                      ['percentile - Llinas RT transcription and decay labeled Profiles'],
+                      ['percentile - Llinas RT transcription and decay unlabeled Profiles'],
+                      ['percentile - Llinas RT transcription and decay total Profiles'],
+                     ); 
+  return \@profileArray;
 }
 
 sub finalPercentileAdjustments {
   my ($self, $percentile) = @_;
 
-  $percentile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
+  $percentile->setPointsPch(['NA','NA','NA']);
 }
 
 sub setGraphObjects { 
   my $self = shift;
   my $graphs = [];
   
-  my $legendLabels = (['labeled','total','total fitted','unlabeled']);
+  my $legendLabels = (['Transcription','Decay','Total Abundance']);
   foreach my $plotPart (@_) {
     my $name = $plotPart->setHasExtraLegend(1);
     my $size = $plotPart->setLegendLabels($legendLabels);
-
-
+    $plotPart->setExtraLegendSize(6.5);
+    my $baseTitle = $plotPart->getPlotTitle();
+    $plotPart->setPlotTitle($baseTitle. " - mRNA Dynamics");
     push @{$graphs}, $plotPart;
   }
 
-  my $pch = ['NA','NA'];
+  my $pch = ['15','NA'];
   my $colors = ['grey','black'];
   my $legend = ['Total Expression', 'Total Expression - smoothed'];
 
   
   my @profileArray = (
                       ['Llinas RT transcription and decay total Profiles - loess'],
-                      ['Llinas RT transcription and decay total Profiles - loess - smoothed']
+                      ['Llinas RT transcription and decay total Profiles - smoothed']
                      );
 
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-
-  print STDERR Dumper $profilesSets;
  
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets([$profileSets->[0],$profileSets->[1]]);
@@ -360,7 +378,7 @@ sub setGraphObjects {
   $line->setLegendLabels(['total', 'smoothed']);
   $line->setXaxisLabel('Hours post infection');
   my $id = $self->getId();
-  $line->setPlotTitle("Expression Values - $id - Total Expression");
+  $line->setPlotTitle("Expression Values - $id - Total mRNA Abundance");
   push (@{$graphs},$line);
   $self->SUPER::setGraphObjects(@{$graphs});
 }
