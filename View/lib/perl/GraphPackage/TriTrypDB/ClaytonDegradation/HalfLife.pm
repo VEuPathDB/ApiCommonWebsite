@@ -20,7 +20,7 @@ sub init {
   my $legend = ['Procyclic Form', 'Procyclic Form - Scaled', 'Bloodstream Form','Bloodstream Form - Scaled'];
 
   my $sampleLabels = [];
-  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
+#  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
   
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(
                       [
@@ -36,6 +36,8 @@ sub init {
 
   my $halfLifeSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','mRNA decay in bloodstream and procyclic form - half_life_error', $sampleLabels,undef,undef,undef,'half-life']]);
 
+  my $legendLabels = (['PC','PC Scaled','BF','BF Scaled']);
+
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors([$colors->[0],$colors->[1], $colors->[2], $colors->[3]]);
@@ -46,8 +48,11 @@ sub init {
   my $id = $self->getId();
   $line->setPlotTitle("RPKM - $id");
   $line->setSampleLabels($sampleLabels);
-  $line->setElementNameMarginSize(10);
+  $line->setElementNameMarginSize(4);
   $line->setIsLogged(0);
+  $line->setHasExtraLegend(1);
+  $line->setLegendLabels($legendLabels);
+  $line->setExtraLegendSize(6);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
@@ -58,13 +63,16 @@ sub init {
   my $basePlotTitle = $percentile->getPlotTitle;
   $percentile->setPlotTitle($basePlotTitle." - percentile");
   $percentile->setSampleLabels($sampleLabels);
-  $percentile->setElementNameMarginSize(10);
+  $percentile->setElementNameMarginSize(4);
+  $percentile->setHasExtraLegend(1);
+  $percentile->setLegendLabels([$legendLabels->[0],$legendLabels->[2]]);
+  $percentile->setExtraLegendSize(6);
 
   my $halfLife = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
   $halfLife->setProfileSets([$halfLifeSets->[0]]);
   $halfLife->setYaxisLabel('hours');
   $halfLife->setColors(['#DDDDDD']);
-  $halfLife->setElementNameMarginSize(10);
+  $halfLife->setElementNameMarginSize(4);
   $halfLife->setPartName('half-life');
   $halfLife->setSampleLabels($sampleLabels);
   $halfLife->setPlotTitle("$id - HalfLife");
