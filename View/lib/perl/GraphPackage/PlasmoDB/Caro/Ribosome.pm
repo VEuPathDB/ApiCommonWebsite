@@ -17,18 +17,16 @@ sub init {
 
   my $pch = [19,24,15,17];
   my $colors = ['#E57C24','#315B7D','#588EBB','#DDDDDD'];
-  my $legend = ['Ribosome', 'Steady State - Sense', 'Steady State - Antisense','Translational Effeciency'];
+  my $legend = ['Ribosome', 'mRNA - Sense', 'mRNA - Antisense','Translational Effeciency'];
 
   my $sampleLabels = ['R','ET', 'LT', 'S', 'M'];
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
   
   my @profileArray = (
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand', undef, $sampleLabels,undef,undef,undef,'ribosome'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand - diff', undef, $sampleLabels,undef,undef,undef,'ribosome - diff'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand', undef, $sampleLabels,undef,undef,undef,'mRNA sense'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand - diff', undef, $sampleLabels,undef,undef,undef,'mRNA sense - diff'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand', undef, $sampleLabels,undef,undef,undef,'mRNA antisense'],
-                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand - diff', undef, $sampleLabels,undef,undef,undef,'mRNA antisense - diff'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - ribosome - sense strand', undef, $sampleLabels,undef,undef,undef,'RPKM - ribosome'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - sense strand', undef, $sampleLabels,undef,undef,undef,'RPKM - mRNA sense'],
+                      ['Ribosome profile and mRNA transcriptome of asexual stages - steady_state - antisense strand', undef, $sampleLabels,undef,undef,undef,'RPKM - mRNA antisense'],
+
                      );
 
 
@@ -40,7 +38,7 @@ sub init {
   my $translationalEffSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Ribosome profile and mRNA transcriptome of asexual stages - translational efficiency - sense_strand',undef, $sampleLabels,undef,undef,undef,'translational efficiency']]);
 
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
-  $line->setProfileSets([$profileSets->[0],$profileSets->[2],$profileSets->[4]]);
+  $line->setProfileSets([$profileSets->[0],$profileSets->[1],$profileSets->[2]]);
   $line->setYaxisLabel('RPKM');
   $line->setPointsPch($pch);
   $line->setColors([$colors->[0],$colors->[1], $colors->[2],]);
@@ -68,14 +66,13 @@ sub init {
 
   my $transEff = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
   $transEff->setProfileSets([$translationalEffSets->[0]]);
-  $transEff->setYaxisLabel('Efficiency Ratio');
-  $transEff->setColors([$colors->[4]]);
+  $transEff->setYaxisLabel('Translational Effeciency');
+  $transEff->setColors([$colors->[3]]);
   $transEff->setElementNameMarginSize(6);
   $transEff->setPartName('trans_eff');
   $transEff->setSampleLabels($sampleLabels);
-  my $id = $self->getId();
   $transEff->setPlotTitle("$id - Translational Efficiency");
-  $self->setGraphObjects($line, $percentile,$transEff);
+  $self->setGraphObjects($transEff,$line, $percentile);
 
   return $self;
 

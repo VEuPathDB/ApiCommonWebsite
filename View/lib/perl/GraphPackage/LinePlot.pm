@@ -90,7 +90,6 @@ sub makeRPlotString {
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
   };
-
   if($@) {
     return $self->blankPlotPart();
   }
@@ -260,8 +259,9 @@ for(i in 1:length(profile.files)) {
   element.names = as.character(element.names.df\$NAME);
 
 
-  element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", element.names, perl=T));
+  element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z()+-]+ *\", \"\", element.names, perl=T));
   is.numeric.element.names = !is.na(element.names.numeric);
+
 
   if($forceNoLines) {
     element.names.numeric = NA;
@@ -367,12 +367,12 @@ for(j in 1:length(x.coords.rank)) {
 # set left margin size based on longest tick mark label
 
 long.tick = nchar(max(pretty(c(y.min,y.max))));
-
 left.margin.size = 4;
 
 if((long.tick +1 ) > left.margin.size) {
     left.margin.size = ((long.tick)+1);
 }
+
 # extra legend size specified in # of lines
 
 extra.legend.size = 0;
@@ -381,7 +381,6 @@ if($hasExtraLegend) {
 }
 
 title.line = $titleLine;
-
 
 if(!is.compact) {
   par(mar       = c($bottomMargin,left.margin.size,1.5 + title.line, fold.induction.margin + extra.legend.size), xpd=NA);
@@ -406,7 +405,6 @@ if ($hasMetaData) {
         colfunc = colorRampPalette(the.colors);
 
         sorted.unique.meta = sort(numeric.unique.meta);
-        write(sorted.unique.meta, stderr());
         uniqueColors = colfunc(length(sorted.unique.meta)+1)[1:length(sorted.unique.meta)];
         the.colors = numeric.sample.names;
     } else {
@@ -423,7 +421,6 @@ if ($hasMetaData) {
      meta.legend.labels = sorted.unique.meta;
 }
 
-
 for(i in 1:nrow(lines.df)) {
 
   if(!is.null(points.pch)) {
@@ -432,18 +429,17 @@ for(i in 1:nrow(lines.df)) {
   else {
     my.pch = default.pch[i];
   }
-
   if(i == 1) {
     plot(x.coords,
          type = \"n\",
          xlab = \"$xAxisLabel\",
          xlim = c(x.min, x.max),
          xaxt = \"n\",
-         ylab = \"$yAxisLabel\",
+         ylab = \"\",
          ylim = c(y.min, y.max),
          axes = FALSE
         );
-
+      title(ylab=\"$yAxisLabel\", line=left.margin.size -1 ,);
 
     my.las= 0;
     my.at = axTicks(1);
