@@ -349,6 +349,7 @@ sub setGraphObjects {
     $plotPart->setExtraLegendSize(6.5);
     my $baseTitle = $plotPart->getPlotTitle();
     $plotPart->setPlotTitle($baseTitle. " - mRNA Dynamics");
+    $plotPart->setYaxisLabel('Modeled Expression Values') if ($baseTitle =~/Expression/); 
     push @{$graphs}, $plotPart;
   }
 
