@@ -16,11 +16,11 @@ sub init {
   $self->SUPER::init(@_);
 
   my $pch = [19,24,15,17];
-  my $colors =['#F2BD79','#996622','#99C5FF','#0049A8','#DDDDDD'];
+  my $colors =['#996622','#0049A8',];
   my $legend = ['Procyclic Form', 'Bloodstream Form',];
 
   my $sampleLabels = [];
-#  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
+  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
   
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(
                       [
@@ -34,48 +34,45 @@ sub init {
 
   my $halfLifeSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','mRNA decay in bloodstream and procyclic form - half_life_error', $sampleLabels,undef,undef,undef,'half-life']]);
 
-  my $legendLabels = (['Procyclic Form','Bloodstream Form']);
+#  my $legendLabels = (['Procyclic Form','Bloodstream Form']);
 
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $line->setProfileSets($profileSets);
-  $line->setColors([$colors->[1],$colors->[3]]);
+  $line->setColors([$colors->[0],$colors->[1]]);
   $line->setYaxisLabel('RPKM');
   #$line->setPointsPch($pch);
   $line->setPartName('rpkm');
-  $line->setXaxisLabel('Life Cycle Stage');
+  $line->setXaxisLabel('Time (mins)');
   my $id = $self->getId();
   $line->setPlotTitle("RPKM - $id");
   $line->setSampleLabels($sampleLabels);
   $line->setElementNameMarginSize(4);
   $line->setIsLogged(0);
-  $line->setHasExtraLegend(1);
-  $line->setLegendLabels($legendLabels);
-  $line->setExtraLegendSize(6);
-
-print STDERR "line :";
-print STDERR Dumper $line;
+#  $line->setHasExtraLegend(1);
+#  $line->setLegendLabels($legendLabels);
+#  $line->setExtraLegendSize(6);
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
-  $percentile->setColors([$colors->[1],$colors->[3],]);
+  $percentile->setColors([$colors->[0],$colors->[1],]);
   #$percentile->setArePointsLast(1);
   $percentile->setPartName('percentile');
-  $percentile->setXaxisLabel('Life Cycle Stage');
+  $percentile->setXaxisLabel('Time (mins)');
   my $basePlotTitle = $percentile->getPlotTitle;
   $percentile->setPlotTitle($basePlotTitle." - percentile");
   $percentile->setSampleLabels($sampleLabels);
   $percentile->setElementNameMarginSize(4);
-  $percentile->setHasExtraLegend(1);
-  $percentile->setLegendLabels([$legendLabels->[0],$legendLabels->[1]]);
-  $percentile->setExtraLegendSize(6);
+#  $percentile->setHasExtraLegend(1);
+#  $percentile->setLegendLabels([$legendLabels->[0],$legendLabels->[1]]);
+#  $percentile->setExtraLegendSize(6);
 
 print STDERR "pct :";
 print STDERR Dumper $percentile;
 
   my $halfLife = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
   $halfLife->setProfileSets([$halfLifeSets->[0]]);
-  $halfLife->setYaxisLabel('Half-life (minutes)');
-  $halfLife->setColors(['#DDDDDD']);
+  $halfLife->setYaxisLabel('Half-life (mins)');
+  $halfLife->setColors([$colors->[0],$colors->[1]]);
   $halfLife->setElementNameMarginSize(4);
   $halfLife->setPartName('half-life');
   $halfLife->setSampleLabels($sampleLabels);
