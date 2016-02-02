@@ -381,8 +381,6 @@ sub setGraphObjects {
     my $name = $plotPart->setHasExtraLegend(1);
     my $size = $plotPart->setLegendLabels($legendLabels);
 
-
-    $plotPart->setYaxisLabel('Modeled Expression Values') if ($baseTitle =~/Expression/); 
     push @{$graphs}, $plotPart;
   }
 
