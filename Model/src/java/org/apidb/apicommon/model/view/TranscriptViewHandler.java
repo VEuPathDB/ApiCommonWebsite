@@ -26,10 +26,12 @@ public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
   @Override
   protected void customizeModelForView(Map<String, Object> model, StepBean stepBean) throws WdkModelException {
 
-    // figure out if transcript-only filter is on and inform view to check checkbox accordingly
+    // read from step if transcript-only filter is ...
     boolean filterOn = (stepBean.getStep().getViewFilterOptions()
         .getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null);
 
+		// ... and inform view to check checkbox accordingly
+		// model contains the "model" for this view (does not relate to wdkModel)
     model.put(RepresentativeTranscriptFilter.FILTER_NAME, filterOn);
   }
 
