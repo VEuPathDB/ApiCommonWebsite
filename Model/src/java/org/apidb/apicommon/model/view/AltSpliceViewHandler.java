@@ -29,12 +29,12 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
 
   private static final Logger LOG = Logger.getLogger(AltSpliceViewHandler.class);
 
-  private static final String PRIMARY_KEY_FIELD = "primary_key";
+  protected static final String PRIMARY_KEY_FIELD = "primary_key";
 
   protected abstract String getUserPreferenceSuffix();
   protected abstract Step customizeStep(Step step, User user, WdkModel wdkModel) throws WdkModelException;
   protected abstract void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root) throws WdkModelException;
-  protected abstract AttributeField getLeftmostField(StepBean stepBean) throws WdkModelException;
+  protected abstract AttributeField[] getLeftmostFields(StepBean stepBean) throws WdkModelException;
   protected abstract void customizeModelForView(Map<String, Object> model, StepBean stepBean) throws WdkModelException;
 
   @Override
@@ -73,11 +73,9 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
     customizeAvailableAttributeTree(step, root);
 
     // override summary attributes
-    AttributeField leftmostField = getLeftmostField(stepBean);
-    Map<String, AttributeField> summaryFields = AnswerValueAttributes
-        .buildSummaryAttributeFieldMap(user, step.getQuestion(),
-            getUserPreferenceSuffix(), leftmostField);
-    trimAttribsNotInTree(summaryFields, root, leftmostField);
+    AttributeField[] leftmostFields = getLeftmostFields(stepBean);
+    Map<String, AttributeField> summaryFields = AnswerValueAttributes.buildSummaryAttributeFieldMap(user, step.getQuestion(), getUserPreferenceSuffix(), leftmostFields);
+    trimAttribsNotInTree(summaryFields, root, leftmostFields);
     attributes.overrideSummaryAttributeFieldMap(summaryFields);
 
     // assign currently selected columns to be selected nodes in Add Columns pop-up
@@ -91,12 +89,15 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
   }
 
   private static void trimAttribsNotInTree(Map<String, AttributeField> attributes,
-      TreeNode<SelectableItem> attributeTree, AttributeField leftmostField) {
+      TreeNode<SelectableItem> attributeTree, AttributeField[] leftmostFields) {
     List<String> origNames = new ArrayList<>(attributes.keySet());
     for (String name : origNames) {
       // remove if not in tree, but don't remove primary key or chosen leftmost field
-      if (name.equals(PRIMARY_KEY_FIELD) || name.equals(leftmostField.getName())) continue;
-      if (attributeTree.findFirst(new NameMatchPredicate(name)) == null) {
+      if ( name.equals(PRIMARY_KEY_FIELD) ) continue;
+      for(AttributeField a : leftmostFields) {
+				if ( name.equals(a.getName()) ) continue;
+			}
+      if ( attributeTree.findFirst( new NameMatchPredicate(name) ) == null ) {
         attributes.remove(name);
       }
     }

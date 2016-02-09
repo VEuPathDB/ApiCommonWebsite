@@ -62,9 +62,9 @@ public class GeneViewHandler extends AltSpliceViewHandler {
   }
 
   @Override
-  protected AttributeField getLeftmostField(StepBean stepBean) throws WdkModelException {
-    return stepBean.getQuestion().getRecordClass()
-        .getPrimaryKeyAttribute().getPrimaryKeyAttributeField();
+  protected AttributeField[] getLeftmostFields(StepBean stepBean) throws WdkModelException {
+		return new AttributeField[]{ stepBean.getQuestion().getRecordClass()
+        .getPrimaryKeyAttribute().getPrimaryKeyAttributeField() };
   }
 
   @Override
