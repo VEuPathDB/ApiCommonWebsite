@@ -25,12 +25,12 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(
                       [
                        ['mRNA decay in bloodstream and procyclic form - PC_scaled', undef, $sampleLabels,undef,undef,undef,'procyclic form'],
-                       ['mRNA decay in bloodstream and procyclic form - BF_scaled', undef, $sampleLabels,undef,undef,undef,'bloodstream form'],
+                       ['mRNA decay in bloodstream and procyclic form - BS_scaled', undef, $sampleLabels,undef,undef,undef,'bloodstream form'],
                       ]);
 
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([
                                                                                      ['percentile - mRNA decay in bloodstream and procyclic form - PC',undef, $sampleLabels,undef,undef,undef,'percentile - procyclic form'],
-                                                                                    ['percentile - mRNA decay in bloodstream and procyclic form - BF',undef, $sampleLabels,undef,undef,undef,'percentile - bloodstream form']]);
+                                                                                    ['percentile - mRNA decay in bloodstream and procyclic form - BS',undef, $sampleLabels,undef,undef,undef,'percentile - bloodstream form']]);
 
   my $halfLifeSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','mRNA decay in bloodstream and procyclic form - half_life_error', $sampleLabels,undef,undef,undef,'half-life']]);
 
