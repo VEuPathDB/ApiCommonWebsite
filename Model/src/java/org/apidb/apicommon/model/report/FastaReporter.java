@@ -77,7 +77,11 @@ public abstract class FastaReporter extends Reporter {
 
     Response response = null;
     try {
-      response = client.target("http://localhost" + getSrtToolUri()).request(
+      String baseUrl = trimWebapp(wdkModel.getModelConfig().getWebAppUrl());
+      String srtToolUri = getSrtToolUri();
+      String srtUrl = baseUrl + (srtToolUri.startsWith("/") ? srtToolUri : "/" + srtToolUri);
+      LOG.info("Submitting form to " + srtUrl);
+      response = client.target(srtUrl).request(
           MediaType.APPLICATION_OCTET_STREAM_TYPE).post(
               Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
       int status = response.getStatus();
@@ -90,6 +94,15 @@ public abstract class FastaReporter extends Reporter {
     finally {
       if (response != null) response.close();
     }
+  }
+
+  private String trimWebapp(String webAppUrl) {
+    // trim trailing slash
+    if (webAppUrl.endsWith("/"))
+      webAppUrl = webAppUrl.substring(0, webAppUrl.length() - 1);
+    int baseUrlEnd = webAppUrl.length() - 1;
+    while (webAppUrl.charAt(baseUrlEnd) != '/') baseUrlEnd--;
+    return webAppUrl.substring(0, baseUrlEnd);
   }
 
   private Map<String, String> buildFormData(JSONObject configuration, String projectId, AnswerValue answer) throws WdkModelException, WdkUserException {
