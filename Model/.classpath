@@ -21,5 +21,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/org.semanticweb.HermiT.jar"/>
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/owlapi-distribution-3.5.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
