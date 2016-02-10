@@ -65,18 +65,18 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
         parameters, stepBean.getQuestion(), userBean, new AnswerValueBean(answer));
 
     // get base available attributes 
-		// (since this is not serving the Add Columns popup anymore we do not need the tree)
+    // (since this is not serving the Add Columns popup anymore we do not need the tree)
     AnswerValueAttributes attributes = answer.getAttributes(); // all in record plus question specific
     FieldTree tree = attributes.getDisplayableAttributeTree();
     TreeNode<SelectableItem> root = tree.getRoot();
 
     // customize attributes: 
-		//   in gene view remove those not relevant
+    //   in gene view remove those not relevant
     customizeAvailableAttributeTree(step, root);
 
     // override summary attributes: 
-		//   get the summary attrbs to be included in the results page for this specific step result,
-		//   and trim off those NOT in ontology
+    //   get the summary attrbs to be included in the results page for this specific step result,
+    //   and trim off those NOT in ontology
     AttributeField[] leftmostFields = getLeftmostFields(stepBean);
     Map<String, AttributeField> summaryFields = AnswerValueAttributes.buildSummaryAttributeFieldMap(user, step.getQuestion(), getUserPreferenceSuffix(), leftmostFields);
     trimAttribsNotInTree(summaryFields, root, leftmostFields);
@@ -99,8 +99,8 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
       // remove if not in tree, but don't remove primary key or chosen leftmost field
       if ( name.equals(PRIMARY_KEY_FIELD) ) continue;
       for(AttributeField a : leftmostFields) {
-				if ( name.equals(a.getName()) ) continue;
-			}
+        if ( name.equals(a.getName()) ) continue;
+      }
       if ( attributeTree.findFirst( new NameMatchPredicate(name) ) == null ) {
         attributes.remove(name);
       }
