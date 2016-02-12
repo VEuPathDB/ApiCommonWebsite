@@ -146,10 +146,10 @@ sub processParams {
 my $sqlQueries;
 
 $sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.ProteinSequence seq
+SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+AND    bfmv.gene_source_id = ?
 EOSQL
 
 $sqlQueries->{orfProteinSql} = <<EOSQL;
@@ -165,17 +165,17 @@ AND    bfmv.source_id = ?
 EOSQL
 
 $sqlQueries->{transcriptSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.TranscriptSequence seq
-WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.TranscriptSequence seq
+WHERE  bfmv.transcript_source_id = seq.source_id
+AND    bfmv.gene_source_id = ?
 EOSQL
 
 $sqlQueries->{cdsSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.CodingSequence seq
-WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.CodingSequence seq
+WHERE  bfmv.transcript_source_id = seq.source_id
+AND    bfmv.gene_source_id = ?
 EOSQL
 
 
@@ -222,11 +222,12 @@ sub handleNonGenomic {
     }
 
     $sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.source_id, substr(seq.sequence,  $start_position, ($seq_length)),
-        bfmv.product, bfmv.organism as name
-FROM   ApidbTuning.GeneAttributes bfmv, ApidbTuning.ProteinSequence seq
+SELECT bfmv.gene_source_id, substr(seq.sequence,  $start_position, ($seq_length)),
+        bfmv.gene_product AS product, bfmv.organism AS name
+FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.source_id = seq.source_id
-AND    bfmv.source_id = ?
+AND    bfmv.gene_source_id = ?
+
 EOSQL
     $sql = $site->{geneProteinSql};
   }
@@ -296,10 +297,17 @@ sub handleGenomic {
   my $beginAnchRev = 0;
   my $endAnchRev = 0;
 
-  $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
-  $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
-  $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
-  $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+  if ($self->{geneOrOrf} eq "gene") {
+    $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
+    $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
+    $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
+    $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
+  } else {
+    $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+    $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+    $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+    $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+  }
 
   my $beginOffset = $self->{upstreamOffset};
   my $endOffset = $self->{downstreamOffset};
@@ -315,8 +323,8 @@ sub handleGenomic {
   $endRev = "($beginAnchRev - $beginOffset)";
 
 $sqlQueries->{geneGenomicSql} = <<EOSQL;
-select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
-     bfmv.start_min, bfmv.end_max,
+select bfmv.source_id, s.source_id, bfmv.organism, bfmv.gene_product AS product,
+     bfmv.gene_start_min, bfmv.gene_end_max,
      DECODE(bfmv.strand,'reverse',1,'forward',0) as is_reversed,
      CASE WHEN bfmv.is_reversed = 1
      THEN $beginAnchRev
@@ -336,9 +344,9 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.NaSequence s
+FROM ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE s.source_id = bfmv.sequence_id
-AND bfmv.source_id IN (
+AND bfmv.gene_source_id IN (
     SELECT gene FROM (
         SELECT gene, CASE WHEN id = gene THEN 2 WHEN id = LOWER(gene) THEN 1 ELSE 0 END AS matchiness
         FROM ApidbTuning.GeneId WHERE LOWER(id) = LOWER( ?)
@@ -372,7 +380,7 @@ select bfmv.source_id, s.source_id, bfmv.organism,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.OrfAttributes bfmv, ApidbTuning.NaSequence s
+FROM ApidbTuning.OrfAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 EOSQL

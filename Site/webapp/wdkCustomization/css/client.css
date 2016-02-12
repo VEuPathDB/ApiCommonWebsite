@@ -1,0 +1,403 @@
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+}
+h1 {
+  text-align: left;
+  margin: 0;
+  padding: 22px 0;
+  font-size: 3em;
+  font-weight: 300;
+}
+h2 {
+  font-size: 1.8em;
+  font-weight: 500;
+  margin: 0;
+  padding: 12px 0 8px 0;
+}
+h3 {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: 0;
+  padding: 22px 0 8px 0;
+}
+h4 {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 0;
+  padding: 10px 0 8px 0;
+}
+
+.form-group {
+  margin: .6em 0;
+}
+
+.form-radio {
+  margin: .4em;
+}
+
+#wdk-container {
+  height: calc(100% - 132px);
+  position: relative;
+  text-rendering: optimizeLegibility;
+}
+
+.wdk-RecordSection {
+  padding-top: 32px;
+  margin-top: -42px;
+}
+
+.wdk-RecordOverview {
+  color: #555555;
+}
+
+.wdk-RecordOverview:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.wdk-RecordSidebar__fixed {
+  left: -298px;
+}
+
+.GeneOverviewLeft, .GeneOverviewRight {
+  float: left;
+}
+
+.GeneOverviewLeft {
+  max-width: 35em;
+  margin-right: 2em;
+}
+
+.GeneOverviewRight {
+  max-width: calc(100% - 40em);
+  position: relative;
+  top: -4.5em;
+  margin-bottom: -4.5em;
+}
+
+.GeneOverviewLeft h1, .GeneOverviewRight .GeneOverviewProduct {
+  padding: 10px 0;
+}
+
+.GeneOverviewRight .GeneOverviewProduct {
+  font-size: 2em;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.GeneOverviewItem, .eupathdb-TranscriptThumbnailLabel {
+  margin: .2em 0;
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+.GeneOverviewItem label {
+  font-weight: bold;
+}
+
+.GeneOverviewItem label:after {
+  content: ":";
+}
+
+.GeneOverviewIntent {
+  font-size: 1.2em;
+  font-style: italic;
+  margin: .2em 0 2em 0;
+}
+
+.GeneOverviewGeneType {
+  position: relative;
+  top: -1em;
+  font-weight: normal;
+}
+
+.wdk-Record-sidebar-title {
+  padding: .4em 1.5em .4em 1em;
+}
+
+/*
+.wdk-RecordContainer__TranscriptRecordClasses\.TranscriptRecordClass .wdk-RecordHeading {
+  display: none;
+}
+*/
+
+.eupathdb-TranscriptTabContent .wdk-RecordSection {
+  margin-top: -84px;
+  padding-top: 64px;
+}
+
+.eupathdb-TranscriptThumbnails {
+  /*
+  position: relative;
+  top: -4em;
+  left: 4em;
+  */
+}
+
+.eupathdb-TranscriptThumbnailWrapper {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 2em;
+}
+
+.eupathdb-TranscriptThumbnail {
+  height: 100px;
+  width: 170px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.eupathdb-TranscriptThumbnail img {
+  position: relative;
+  left: -24px;
+}
+
+.eupathdb-TranscriptThumbnail:hover {
+  position: absolute;
+  z-index: 1;
+  height: auto;
+  width: 710px;
+  box-shadow: 0px 0px 14px #ddd;
+  left: 30em;
+}
+
+.eupathdb-TranscriptThumbnail:hover img {
+  width: 800px;
+  left: -90px;
+}
+
+.eupathdb-ExpressionGraphContainer {
+  overflow: auto;
+  position: relative;
+}
+
+.eupathdb-ExpressionGraphLoading {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+.eupathdb-ExpressionGraph {
+  float: left;
+}
+
+.eupathdb-ExpressionGraphDetails {
+  margin-left: 500px;
+}
+
+.wdk-RecordAttributeSectionItem.wdk-RecordAttributeSectionItem__fasta_transcript_sequence {
+  width: 100%;
+}
+
+.wdk-RecordAttributeSectionItem.wdk-RecordAttributeSectionItem__fasta_transcript_sequence .wdk-RecordAttributeName {
+  display: block;
+}
+
+.wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell.wdk-DataTableCell__eupathdb_release {
+  width: 125px;;
+}
+
+.wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell.wdk-DataTableCell__display_name {
+  max-width: 300px;
+}
+
+.wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 1em;
+}
+
+.eupathdb-MercatorTable {
+  padding: 0 1em;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+}
+
+.eupathdb-MercatorTable .wdk-CheckboxList {
+  padding: .4em;
+}
+
+.eupathdb-MercatorTable input[type="submit"] {
+  margin: 1em 0;
+}
+
+.eupathdb-DatasetRecord {
+  padding: 0 2em;
+}
+
+.eupathdb-DatasetRecord h2,
+.eupathdb-DatasetRecord h3 {
+  margin: 22px 0 11px;
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.eupathdb-DatasetRecord-summary {
+  font-size: 1.2em;
+}
+.eupathdb-DatasetRecord ul {
+  line-height: 1.6;
+  list-style: none;
+  padding-left: 1em;
+  margin: 0;
+}
+.eupathdb-DatasetRecord-title {
+  color: black;
+}
+.eupathdb-DatasetRecord-headerTable tr th {
+  white-space: nowrap;
+  padding-right: 1em;
+  vertical-align: top;
+  text-align: right;
+  border: none;
+}
+
+.eupathdb-DatasetRecord-GraphImg {
+  width: 450px;
+}
+
+/*
+@media (min-width: 1175px) {
+  .eupathdb-DatasetRecord {
+    padding: 0 20px;
+    max-width: 1350px;
+    margin: auto;
+  }
+  .eupathdb-DatasetRecord-Main {
+    float: left;
+    max-width: 700px;
+  }
+  .eupathdb-DatasetRecord-Sidebar {
+    max-width: 375px;
+    float: right;
+    font-size: 95%;
+    color: #333333;
+  }
+  .eupathdb-DatasetRecord-Sidebar ul {
+    padding-left: 0;
+  }
+  .eupathdb-DatasetRecord-Sidebar table {
+    width: 100%;
+  }
+}
+*/
+
+@media (min-width: 1150px) {
+  .eupathdb-DatasetRecord-GraphMeta {
+    width: 58%;
+    float: right;
+  }
+  .eupathdb-DatasetRecord-GraphData {
+    width: 450px;
+  }
+}
+@media (min-width: 1300px) {
+  .eupathdb-DatasetRecord-GraphMeta {
+    width: 65%;
+  }
+}
+.eupathdb-Beta-Announcement {
+  float: right;
+  font-style: italic;
+  font-size: 1.2em;
+  padding: 4px 0;
+}
+
+.eupathdb-TranscriptRecordNavigationSectionContainer h3 {
+  padding-top: 18px;
+}
+
+.eupathdb-TranscriptRecordNavigationSectionContainer h3:first-child {
+  padding-top: 10px;
+}
+
+.eupathdb-TranscriptListContainer {
+  margin-bottom: 6px;
+}
+
+.eupathdb-TranscriptRecordNavList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+}
+
+.eupathdb-TranscriptRecordNavList > li a {
+  padding-left: 1em;
+  position: relative;
+  display: block;
+}
+.eupathdb-TranscriptRecordNavList > li a:hover,
+.eupathdb-TranscriptRecordNavList > li a.active {
+  font-weight: 400;
+}
+.eupathdb-TranscriptRecordNavList > li a:hover:before,
+.eupathdb-TranscriptRecordNavList > li a.active:before {
+  font-family: FontAwesome;
+  opacity: 0.8;
+  position: absolute;
+  left: -2px;
+  content: '\f178 ';
+}
+.eupathdb-TranscriptSticky {
+  background: #fcfcfc;
+  padding-top: 36px;
+}
+.eupathdb-TranscriptSticky-fixed {
+  z-index: 1;
+  border-color: #999;
+  position: fixed;
+  top: 0;
+  width: calc(100vw - 362px);
+}
+#wdk-container .eupathdb-TranscriptHeading {
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 1em;
+  padding-top: .2em;
+}
+.eupathdb-TranscriptTabList {
+  border-bottom: 1px solid #aaa;
+}
+.eupathdb-TranscriptTabList:before,
+.eupathdb-TranscriptTabList:after {
+  content: "";
+  display: table;
+  border-collapse: collapse;
+}
+.eupathdb-TranscriptTabList:after {
+  clear: both;
+}
+.eupathdb-TranscriptLink {
+  display: block;
+  float: left;
+  padding: .8em;
+  font-size: 1.3em;
+  font-weight: 400;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin-right: 2px;
+  margin-bottom: -1px;
+}
+.eupathdb-TranscriptLink:hover,
+.eupathdb-TranscriptLink:focus {
+  background-color: #ccc;
+  z-index: 1;
+}
+.eupathdb-TranscriptLink-active,
+.eupathdb-TranscriptLink-active:hover,
+.eupathdb-TranscriptLink-active:focus {
+  background-color: #fcfcfc;
+  border-color: #aaa;
+}
+.eupathdb-TranscriptTabContent {
+  border: 1px solid #aaa;
+  border-top: none;
+  padding: 2em;
+}

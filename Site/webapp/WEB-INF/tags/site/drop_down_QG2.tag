@@ -21,6 +21,7 @@
 <c:set value="${wdkModel.questionSets}" var="questionSets"/>
 
 <ul style="margin:0;padding:0;list-style:none">
+
   <c:forEach items="${rootCatMap}" var="rootCatEntry">
     <c:set var="recType" value="${rootCatEntry.key}" />
     <c:set var="rootCat" value="${rootCatEntry.value}" />
@@ -28,23 +29,24 @@
 
       <%-- ================================= GENES   ================================= --%>
 
-      <c:when test="${recType=='GeneRecordClasses.GeneRecordClass'}">
+      <c:when test="${recType=='TranscriptRecordClasses.TranscriptRecordClass'}">
         <li>
           <c:choose>
             <c:when test="${from == 'webservices'}">
-              <a title="This one WADL contains documentation for all gene web service searches"  href="<c:url value='/webservices/GeneQuestions.wadl'/>"><h3 style="font-size:150%;margin-bottom:10px;margin-left:10px;">Search for Genes</h3></a>
+              <a title="This one WADL contains documentation for all gene web service searches"  href="<c:url value='/webservices/GeneQuestions.wadl'/>"><h3 style="font-size:150%;margin-bottom:10px;margin-left:10px;">Genes</h3></a>
               <c:set var="children" value="${rootCat.webserviceChildren}" />
             </c:when>
             <c:otherwise>
-              <a href="#" class="dropdown">Search for Genes</a>
+              <a href="#" class="dropdown">Genes</a>
               <c:set var="children" value="${rootCat.websiteChildren}" />
             </c:otherwise>
           </c:choose>
-          <ul>
+          <ul>       <%-- GENE CATEGORIES --%>
+<li><a href="/plasmo.aurreco/showQuestion.do?questionFullName=GeneQuestions.GenesByTextSearch">Text (product name, notes, etc.)</a>
+</li>
             <c:forEach items="${children}" var="catEntry">
               <c:set var="cat" value="${catEntry.value}" />
-              <c:if test="${fn:length(cat.websiteQuestions) > 0}">
-
+          <%--    <c:if test="${fn:length(cat.websiteQuestions) > -1}"> --%>
                 <%-- GENE CATEGORY --%>
                 <li>     
                   <c:choose>
@@ -59,10 +61,8 @@
                       <c:set var="categories" value="${cat.websiteChildren}" /> 
                     </c:otherwise>
                   </c:choose>
-                  <ul>
+                  <ul>           <%-- GENE QUESTIONS --%>
                     <c:forEach items="${questions}" var="q">
-
-                      <%-- GENE QUESTION --%>
                       <li>
                       <c:choose>
                       <c:when test="${from == 'webservices'}">
@@ -82,7 +82,7 @@
                           ${flag}
                         </c:if>
                       </c:when>
-                      <c:otherwise>
+                      <c:otherwise>      <%-- WEBSITE --%>
                         <a href="<c:url value="/showQuestion.do?questionFullName=${q.fullName}"/>">${q.displayName}
                           <imp:questionFeature question="${q}" />
                         </a>
@@ -90,7 +90,7 @@
                     </c:choose>
                   </li>
                 </c:forEach>
-                          
+                             <%-- GENE SUBCATEGORIES --%>
                 <c:forEach items="${categories}" var="cEntry">
                   <c:set var="cat" value="${cEntry.value}" />
                     <li>
@@ -101,6 +101,7 @@
                         </c:when>
                         <c:otherwise>
                           <a href="javascript:void(0)" class="dropdown">${cat.displayName}</a>
+                          <c:set var="questions" value="${cat.websiteQuestions}" />
                         </c:otherwise>
                       </c:choose>
                       <ul>
@@ -137,7 +138,7 @@
                   </c:forEach>   
                 </ul>
               </li>
-            </c:if>
+       <%--     </c:if> --%>
           </c:forEach>
         </ul>
       </li>

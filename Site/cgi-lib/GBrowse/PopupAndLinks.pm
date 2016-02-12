@@ -58,13 +58,6 @@ sub orfLink {
   return $link;
 }
 
-sub sageTagLink { 
-  my $f = shift;
-  my $name = $f->name;
-  my $link = "/a/showRecord.do?name=SageTagRecordClasses.SageTagRecordClass&primary_key=$name";
-  return $link;
-}
-
 sub ArrayElementLink {
 #  my $f = shift;
 #  my $name = $f->name;
@@ -100,7 +93,7 @@ sub gffTssChabbert {
   else {
     my $gene = defined $assignedFeature ? $assignedFeature : $assignedFeat;
 
-    my  $link = "<a href='/a/showRecord.do?name=GeneRecordClasses.GeneRecordClass&primary_key=$gene'>$gene</a>";
+    my  $link = "<a href='/a/app/record/gene/$gene'>$gene</a>";
     push @data, [ 'Assigned Feature'=> $link];
   }
 
@@ -413,9 +406,7 @@ sub geneTitleGB2 {
     $loc .= $_->location->to_FTstring. "<br />";
   }
 
-
-
-  
+  my ($gene_id) = $f->get_tag_values("geneId");
   my ($soTerm) = $f->get_tag_values("soTerm");
   my ($isPseudo) = $f->get_tag_values("isPseudo");
   my ($orthomclName) = $f->get_tag_values("orthomcl_name");
@@ -439,7 +430,7 @@ sub geneTitleGB2 {
   my ($seqId) = $f->get_tag_values("Contig");
   my $gbLinkParams = "start=$linkStart;stop=$linkStop;ref=$seqId";
 
-  return qq{javascript:escape(gene_title(this,'$projectId','$sourceId','$chr','$loc','$soTerm','$product','$taxon','$utr','$gbLinkParams', '$orthomclName'))};
+  return qq{javascript:escape(gene_title(this,'$projectId','$sourceId','$chr','$loc','$soTerm','$product','$taxon','$utr','$gbLinkParams', '$orthomclName','$gene_id'))};
 } 
 
 
@@ -799,15 +790,11 @@ sub ArrayElementTitle {
   hover($f, \@data);
 }
 
-sub rumIntronTitle {  
+sub gsnapIntronTitle {  
   my ($f) = @_;
   my ($sample) = $f->get_tag_values('Sample');
-  my ($lour) = $f->get_tag_values('LOUR');
-  my ($sour) =  $f->get_tag_values('SOUR');
-  my ($lonr) =  $f->get_tag_values('LONR');
-  my ($sonr) =  $f->get_tag_values('SONR');
-  my ($canonical) =  $f->get_tag_values('Canonical');
-  my ($knowintron) = $f->get_tag_values('KnownIntron');
+  my ($urs) = $f->get_tag_values('URS');
+  my ($nrs) =  $f->get_tag_values('NRS');
   my $start = $f->start;
   my $stop = $f->stop;
 
@@ -815,46 +802,32 @@ sub rumIntronTitle {
   push @data, [ 'Sample:' => $sample ];
   push @data, [ 'Genome Location:' => "$start - $stop"];
   push @data, [ 'Score'   => $f->score ];
-  push @data, [ 'Signal is canonical:'        => "$canonical" ];
-  push @data, [ 'Long Overlap Unique Reads:'  => "$lour" ];
-  push @data, [ 'Short Overlap Unique Reads:' => "$sour" ];
-  push @data, [ 'Long Overlap NU Reads:'      => "$lonr" ];
-  push @data, [ 'Short Overlap NU Reads:'     => "$sonr" ];
-
+  push @data, [ 'Unique Reads:'  => "$urs" ];
+  push @data, [ 'NU Reads:'     => "$nrs" ];
+print STDERR "$sample / $start / $stop / $urs / $nrs " .  $f->score . "\n";
 #  hover('Splice Site Junctions', \@data);
     hover($f, \@data);
 }
 
-sub rumIntronTitleUnified {  
+sub gsnapIntronTitleUnified {  
   my ($f) = @_;
   my ($samples) = $f->get_tag_values('Samples');
   my ($scores) = $f->get_tag_values('Scores');
   my ($exps) = $f->get_tag_values('Exps');
-  my ($lours) = $f->get_tag_values('LOURS');
-  my ($sours) =  $f->get_tag_values('SOURS');
-  my ($lonrs) =  $f->get_tag_values('LONRS');
-  my ($sonrs) =  $f->get_tag_values('SONRS');
-
-  my ($notCans)  =  $f->get_tag_values('NOTCAN');
+  my ($urs) = $f->get_tag_values('URS');
+  my ($nrs) =  $f->get_tag_values('NRS');
 
   my $start = $f->start;
   my $stop = $f->stop;
 
-  my $sum_lour = eval join '+', split /[,|\|]/, $lours;
-  my $sum_sour = eval join '+', split /[,|\|]/, $sours;
-
-  # sum=Score;  this should be the sum of the long and short unique reads;  bug int he score in the db
-  my $sum = $sum_lour + $sum_sour;
+  my $sum = eval join '+', split /[,|\|]/, $urs;
 
   my @sample_arr = split /\|/, $samples;
   my @score_arr  = split /\|/, $scores;
   my @exp_arr    = split /\|/, $exps;
 
-  my @lour_arr    = split /\|/, $lours;
-  my @sour_arr    = split /\|/, $sours;
-  my @lonrs_arr    = split /\|/, $lonrs;
-  my @sonrs_arr    = split /\|/, $sonrs;
-  my @notCan_arr   = split /\|/, $notCans;
+  my @ur_arr    = split /\|/, $urs;
+  my @nrs_arr    = split /\|/, $nrs;
 
   my $note = "The overall score is the sum of the short and long overlap unique reads from all samples.";
   my @data;
@@ -862,17 +835,13 @@ sub rumIntronTitleUnified {
   push @data, [ '<b>Score</b>'     => "<b>$sum</b>" ];
   push @data, [ '<b>Note</b>'     => $note ];
 
-
   my $count = 0;
-  my $html = "<table><tr><th>Experiment</th><th>Sample</th><th>Score</th><th>Long Unique</th><th>Short Unique</th><th>Long Non-Unique</th><th>Short Non-Unique</th><th>Canonical</th></tr>";
+  my $html = "<table><tr><th>Experiment</th><th>Sample</th><th>Score</th><th>Unique</th><th>Non-Unique</th></tr>";
   foreach my $exp (@exp_arr) {
      my $sample = $sample_arr[$count];
      my $score = $score_arr[$count];
-     my $lour_exps = $lour_arr[$count];
-     my $sour_exps = $sour_arr[$count];
-     my $lonrs_exps = $lonrs_arr[$count];
-     my $sonrs_exps = $sonrs_arr[$count];
-     my $notCan_exps = $notCan_arr[$count];
+     my $ur_exps = $ur_arr[$count];
+     my $nrs_exps = $nrs_arr[$count];
 
      $exp =~ s/_RSRC$//g;
      $exp =~ s/RNASeq//ig;
@@ -880,22 +849,17 @@ sub rumIntronTitleUnified {
 
      my @sa = split /,/, $sample;
      my @sc = split /,/, $score;
-     my @lour = split /,/, $lour_exps;
-     my @sour = split /,/, $sour_exps;
-     my @lonrs = split /,/, $lonrs_exps;
-     my @sonrs = split /,/, $sonrs_exps;
-     my @notCans = split /,/, $notCan_exps;
+     my @ur = split /,/, $ur_exps;
+     my @nrs = split /,/, $nrs_exps;
 
      my $seen = 0;
      for(my $i = 0; $i < $#sa + 1; $i++) {
-
-       my $isCanonical = $notCans[$i] ? 'false' : 'true';
-       my $score = $lour[$i] + $sour[$i];
+       my $score = $ur[$i];
 
        if($seen == 0) {
-         $html .= "<tr><td>$exp</td><td>$sa[$i]</td><td>$score</td><td>$lour[$i]</td><td>$sour[$i]</td><td>$lonrs[$i]</td><td>$sonrs[$i]</td><td>$isCanonical</td></tr>"; 
+         $html .= "<tr><td>$exp</td><td>$sa[$i]</td><td>$score</td><td>$ur[$i]</td><td>$nrs[$i]</td></tr>"; 
        } else {
-         $html .= "<tr><td></td><td>$sa[$i]</td><td>$score</td><td>$lour[$i]</td><td>$sour[$i]</td><td>$lonrs[$i]</td><td>$sonrs[$i]</td><td>$isCanonical</td></tr>"; 
+         $html .= "<tr><td></td><td>$sa[$i]</td><td>$score</td><td>$ur[$i]</td><td>$nrs[$i]</td></tr>"; 
        }
        $seen = 1;
      }
@@ -1122,41 +1086,6 @@ sub blastxTitle {
   push @data, [ 'Description:' => $desc ];
   hover($f, \@data); 
 }
-
-
-
-# TODO:  There is a link to a ToxoDB specific Database... is this needed?  can we get this from the sage tag record page?  Want to make the popup as generic as possible so all sites can use
-sub sageTagTitle { 
-  my ($f, $note) = @_;
-  my $name         = $f->name;
-  my ($sourceId)    = $f->get_tag_values('SourceID'); 
-  my $start        = $f->start; 
-  my $stop         = $f->stop; 
-  my $strand       = $f->strand;
-  ($start,$stop) = ($stop,$start) if ($strand == -1); 
-  my ($tag)        = $f->get_tag_values('Sequence'); 
-#  my $sageDb_url = "<a target='new' href=http://vmbmod10.msu.montana.edu/vmb/cgi-bin/sage.cgi?prevpage=newsage4.htm;normal=yes;database=toxoditagscorrect;library=sp;intag=" 
-#    . $tag . ">TgSAGEDB</a>";
-  my ($occurrence) = $f->get_tag_values('Occurrence'); 
-  my @data; 
-  push @data, [ 'Name:'          => "$name" ];
-  push @data, [ 'Source ID:'          => "$sourceId" ];
-  push @data, [ 'Temporary external ID:' => "$name" ];
-  push @data, [ 'Location:'        => "$start..$stop" ];
-  push @data, [ 'Sequence:'        => $tag ];
-  push @data, [ 'Found in genome:' => $occurrence ];
-  push @data, [ 'Note:'            => $note ] if $note;
-#  push @data, [ 'Link'             => $sageDb_url];
-  my $bulkEntries = $f->bulkAttributes();
-  push @data, [ "<b>Library</b>" => "<b>Percent | RawCount</b>" ];
-  foreach my $item (@$bulkEntries) {
-    my $lib = $item->{LIBRARY_NAME};
-    my $raw_count = $item->{RAW_COUNT};
-    my $percent = sprintf("%.3f", $item->{LIBRARY_TAG_PERCENTAGE});
-    push @data, [ "$lib" => "$percent % | $raw_count" ];
-  }
-  hover($f, \@data); 
-} 
 
 
 sub geneticMarkersTitle {

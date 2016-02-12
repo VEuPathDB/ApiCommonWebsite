@@ -126,7 +126,7 @@ function getSaveRowLinks(projectId, sourceId) {
 /****** Pop-up functions for various record types ******/
 
 // Gene title
-function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, utr, gbLinkParams, orthomcl) {
+function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, utr, gbLinkParams, orthomcl, geneId) {
 
   // In ToxoDB, sequences of alternative gene models have to be returned
   var ignore_gene_alias = 0;
@@ -143,7 +143,8 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
         + "&ids=" + sourceId
         + "&ignore_gene_alias=" + ignore_gene_alias
         + "&type=protein&upstreamAnchor=Start&upstreamOffset=0&downstreamAnchor=End&downstreamOffset=0&endAnchor3=End&go=Get+Sequences' target='_blank'>protein</a>"
-  var recordLink = "<a href='../../../gene/" + sourceId + "'>Gene Page</a>";
+  //  var recordLink = "<a href='../../../gene/" + sourceId + "'>Gene Page</a>";
+  var recordLink = "";  // TO FIX for GUS4
   var gbLink = "<a href='../../../../cgi-bin/gbrowse/" + projectId.toLowerCase() + "/?" + gbLinkParams + "'>GBrowse</a>";
   var orthomclLink = "<a href='http://orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=" + orthomcl + "'>" + orthomcl + "</a>";
 
@@ -151,6 +152,7 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   var rows = new Array();
   rows.push(twoColRow('Species:', taxon));
   rows.push(twoColRow('ID:', sourceId));
+  rows.push(twoColRow('Gene ID:', geneId)); 
   rows.push(twoColRow('Gene Type:', soTerm));
   rows.push(twoColRow('Description:', product));
 
@@ -166,7 +168,8 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   if(utr != '') {
     rows.push(twoColRow('UTR:', utr));
   }
-  rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
+  // TO FIX for GUS4
+  //  rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
   if (soTerm =='Protein Coding') {
       rows.push(twoColRow('Download:', cdsLink + " | " + proteinLink));
       if ( orthomcl.substring(0,3) == 'OG2') {

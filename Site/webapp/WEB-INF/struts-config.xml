@@ -196,7 +196,7 @@
     </action>
     <action
       path="/processBasket"
-      type="org.gusdb.wdk.controller.action.ProcessBasketAction"
+      type="org.apidb.apicommon.controller.action.CustomProcessBasketAction"
       scope="request"
       validate="false">
     </action>
@@ -450,6 +450,7 @@
       <forward name="show-summary-view" path="/showSummaryView.do"/>
       <forward name="pq-show-basket" path="/showBasket.do"/>
     </action>
+
     <action
       path="/showRecord"
       type="org.apidb.apicommon.controller.action.CustomShowRecordAction"

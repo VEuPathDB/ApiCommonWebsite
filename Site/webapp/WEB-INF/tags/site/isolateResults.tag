@@ -260,8 +260,8 @@
       		</div>
 
        		<c:choose>
-           	<c:when test = "${eupathIsolatesQuestion && record.summaryAttributes['data_type'] eq 'Sequencing Typed'}">
-             	<a href="showRecord.do?name=${recNam}&project_id=${projectId}&source_id=${id}">${fieldVal}</a><input type="checkbox" name="selectedFields" style="margin-top: 0px; margin-bottom: 0px;" value="${primaryKey.value}">
+           	<c:when test = "${eupathIsolatesQuestion}">
+             	<a href="showRecord.do?name=${recNam}&source_id=${id}">${fieldVal}</a><input type="checkbox" name="selectedFields" style="margin-top: 0px; margin-bottom: 0px;" value="${primaryKey.value}">
              	<c:set var="clustalwIsolatesCount" value="${clustalwIsolatesCount + 1}"/>
            	</c:when>
            	<c:otherwise>

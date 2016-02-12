@@ -47,8 +47,9 @@ sub init {
    $Self->setId                   ( $Args->{Id                  } );
    $Self->setThumbnail            ( $Args->{Thumbnail           } );
    $Self->setVisibleParts         ( $Args->{VisibleParts        } );
+   $Self->setVisiblePartsAreFuzzy         ( $Args->{VisiblePartsAreFuzzy        } );
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
-   $Self->setDataset              ( $Args->{Dataset             } );
+   $Self->setDatasetId              ( $Args->{DatasetId             } );
    $Self->setWantLogged           ( $Args->{WantLogged          } );
 
    $Self->setWidthOverride           ( $Args->{WidthOverride          } );
@@ -92,11 +93,14 @@ sub setScalingFactor           { $_[0]->{'ScalingFactor'               } = $_[1]
 sub getVisibleParts            { $_[0]->{'VisibleParts'                } }
 sub setVisibleParts            { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
 
+sub getVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } }
+sub setVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } = $_[1]; $_[0] }
+
 sub getSecondaryId             { $_[0]->{'SecondaryId'                 } }
 sub setSecondaryId             { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
 
-sub getDataset                 { $_[0]->{'Dataset'                     } }
-sub setDataset                 { $_[0]->{'Dataset'                     } = $_[1]; $_[0] }
+sub getDatasetId                 { $_[0]->{'DatasetId'                     } }
+sub setDatasetId                 { $_[0]->{'DatasetId'                     } = $_[1]; $_[0] }
 
 sub getWantLogged              { $_[0]->{'WantLogged'                  } }
 sub setWantLogged              { $_[0]->{'WantLogged'                  } = $_[1]; $_[0] }
@@ -118,6 +122,10 @@ sub setCompact              { $_[0]->{'Compact'                  } = $_[1]; $_[0
 sub getIdType              { $_[0]->{'IdType'                  } }
 sub setIdType              { $_[0]->{'IdType'                  } = $_[1]; $_[0] }
 
+
+sub declareParts {
+  return "";
+}
 
 
 # ========================================================================

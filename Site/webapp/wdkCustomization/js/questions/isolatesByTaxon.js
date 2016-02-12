@@ -1,6 +1,6 @@
 wdk.questionView('IsolateQuestions.IsolateByTaxon', wdk.views.core.View.extend({
 
-  MAX_SELECTED: 900,
+  MAX_SELECTED: 2000,
 
   events: {
     'submit': 'addStrainCountCheck'
@@ -11,7 +11,7 @@ wdk.questionView('IsolateQuestions.IsolateByTaxon', wdk.views.core.View.extend({
 
     'You have selected <%= checkedCount %>.  Please reduce the number and try again.\n\n'+
 
-    'Note: If you absolutely need ><%= MAX_SELECTED %> strains, add another ' +
+    'Note: If you do need ><%= MAX_SELECTED %> strains, add another ' +
     'step to your strategy, choose "Isolates By Taxon/Strain" again,\n'+
     'select additional strains, and union the results.'
   ),

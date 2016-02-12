@@ -1,0 +1,34 @@
+{
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Toxoplasma gondii GT1"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  },
+  "displayInfo": {
+    "format": "tabular",
+    "formatConfig":{
+      "pagination": {
+        "offset": 0,
+        "numRecords": 10
+      },
+      "attributes": [product],
+      "tables": [InterPro],
+      "sorting": [],
+      "downloadType": "excel"
+  }
+ }
+}
+

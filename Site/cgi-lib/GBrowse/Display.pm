@@ -33,19 +33,6 @@ sub synSpanLabel {
   return $name; 
 }
 
-# not sure why this is returning the name ... should only be 1 or 0
-sub sageTagLabel {
-  my $f = shift;
-  my $start = $f->start;
-  my $stop  = $f->stop;
-  my $strand  = $f->strand;
-  $start = $stop if ($strand == -1);
-  my ($tag_seq) = $f->get_tag_values("Tag"); 
-  my ($count) = $f->get_tag_values("Occurrence"); 
-  return  $start . " [" . $count . "]"; 
-}
-
-
 
 #--------------------------------------------------------------------------------
 #  Methods For Color
@@ -157,30 +144,8 @@ sub MassSpecScoreBgColor {
    return '#500000';
 }
 
-sub sageTagFgColor { 
-  my $f            = shift;
-  my $strand       = $f->strand; 
-  my ($occurrence) = $f->get_tag_values('Occurrence'); 
-  if ($strand  eq "+1") {
-    return "lightblue" if ($occurrence < 3);
-    return "darkblue" if ($occurrence > 5);
-    return "blue";
-  } else {
-    return "pink" if ($occurrence < 3);
-    return "darkred" if ($occurrence > 5);
-    return "red";
-  }
-}
 
-sub sageTagUniqueMapFgColor { 
-  my $f            = shift;
-  my $strand       = $f->strand; 
-  my ($occurrence) = $f->get_tag_values('Occurrence'); 
-  return "grey" if ($occurrence > 1);
-  ($strand eq "+1") ? "blue" : "darkred";
-}
-
-sub rumIntronBgColorFromSample {
+sub gsnapIntronBgColorFromSample {
   my $f = shift;
 
   my %colors = (#Pf-RNASeq_Newbold
@@ -248,53 +213,42 @@ sub rumIntronBgColorFromSample {
   return '#F87431';  # Sienna1
 } 
 
-sub rumIntronBgColorFromScore {
+sub gsnapIntronBgColorFromScore {
   my $f = shift;
 
-  my ($lours) = $f->get_tag_values('LOURS');
-  my ($sours) =  $f->get_tag_values('SOURS');
-  
-  ($lours) = $f->get_tag_values('LOUR') unless $lours;
-  ($sours) = $f->get_tag_values('SOUR') unless $sours;
-
-  my $sum_lour = eval join '+', split /[,|\|]/, $lours;
-  my $sum_sour = eval join '+', split /[,|\|]/, $sours;
-
-  my $sum = $sum_lour + $sum_sour;
+  my ($urs) = $f->get_tag_values('URS');
+  my $sum = eval join '+', split /[,|\|]/, $urs;
 
   # http://www.computerhope.com/htmcolor.htm
+  return '#B6B6B4' if $sum <= 2;   # Gray Cloud
   return '#F88017' if $sum <= 5;   # Dark Orange
   return '#F87217' if $sum <= 10;  # Dark Orange1
   return '#E56717' if $sum <= 20;  # Dark Orange2
   return '#C35617' if $sum <= 50;  # Dark Orange3
   return '#8A4117' if $sum <= 100; # Sienna
   return '#7E3517' if $sum <= 200; # Sienna4
-  return '#7E2217';   # Indian Red4
+  return '#800517';   # Firebrick
 }
 
 
-sub rumIntronHeightFromScore {
+sub gsnapIntronHeightFromScore {
   my $f = shift;
 
-  my ($lours) = $f->get_tag_values('LOURS');
-  my ($sours) =  $f->get_tag_values('SOURS');
-
-  my $sum_lour = eval join '+', split /[,|\|]/, $lours;
-  my $sum_sour = eval join '+', split /[,|\|]/, $sours;
-
-  my $sum = $sum_lour + $sum_sour;
+  my ($urs) = $f->get_tag_values('URS');
+  my $sum = eval join '+', split /[,|\|]/, $urs;
 
   # http://www.computerhope.com/htmcolor.htm
+  return 3 if $sum <= 2;   # Gray Cloud
   return 5 if $sum <= 5;   # Dark Orange
   return 6 if $sum <= 10;  # Dark Orange1
   return 7 if $sum <= 20;  # Dark Orange2
   return 8 if $sum <= 50;  # Dark Orange3
   return 9 if $sum <= 100; # Sienna
   return 10 if $sum <= 200; # Sienna4
-  return 11;   # Indian Red4
+  return 11;   # Firebrick
 }
 
-sub rumIntronUnifiedWidth {
+sub gsnapIntronUnifiedWidth {
   my $f = shift;
   my ($scores) = $f->get_tag_values('Scores'); 
   my $sum = eval join '+', split /;/, $scores;
@@ -1090,7 +1044,7 @@ sub dustCitation {
   return "Selecting this option displays regions of low compositional complexity, as defined by the DUST algorithm of Tatusov and Lipman.  For more information on DUST click <a href=\"ftp://ftp.ncbi.nlm.nih.gov/pub/agarwala/windowmasker/windowmasker_suppl.pdf\">here</a>.";
 }
 
-sub rumIntronCitation {
+sub gsnapIntronCitation {
   return <<EOL;
   Mouse-over column description: <br/><br/>
 SCORE: 
@@ -1099,30 +1053,29 @@ SCORE:
   splice signal.  So if the splice signals are not characterized the score
   is zero.
   <br/><br/>
-LONG_OVERLAP_UNIQUE_READS: 
+UNIQUE_READS: 
   The number of reads mapping across the junction for which their alignment
   is unique and they have at least 8 bases on each side of the junction.
   These are the ones that count towards the "score". 
   <br/><br/>
-SHORT_OVERLAP_UNIQUE_READS:
-  The number of reads mapping across the junction for which their alignment
-  is unique and they have less than 8 bases on one (or both) sides of the
-  junction 
-  <br/><br/>
-LONG_OVERLAP_NU_READS:
+NU_READS:
   The number of reads mapping across the junction for which their alignment
   is not unique and they have at least 8 bases on each side of the junction
-  <br/><br/>
-SHORT_OVERLAP_NU_READS:
-  The number of reads mapping across the junction for which their alignment
-  is not unique and they have less than 8 bases on one (or both) sides of
-  the junction
-	<br/><br/>
-CANONICAL:
-	This refers to the splice junction.  If the splice junction is the standard splice signal GTAG then this is reported as "true", otherwise it is reported as "false".
+  <br/><br/><br/>
+Color of glyph changes with the Score as follow:
+  <p><table width="50%">
+  <tr><th align="left">Color</th><th align="left">Score</th></th></tr>
+  <tr><td bgcolor='white'><font color="#B6B6B4"><b>Gray</b></font></td><td>&nbsp  less than 2</tr>
+  <tr><td bgcolor='white'><font color="#F88017"><b>Orange</b></font></td><td>&nbsp  between 2 and 5</tr>
+  <tr><td bgcolor='white'><font color="#F87217"><b>Dark Orange1</b></font></td><td>&nbsp between 5 and 10</tr>
+  <tr><td bgcolor='white'><font color="#E56717"><b>Dark Orange2</b></font></td><td>&nbsp between 10 and 20</tr>
+  <tr><td bgcolor='white'><font color="#C35617"><b>Dark Orange3</b></font></td><td>&nbsp between 20 and 50</tr>
+  <tr><td bgcolor='white'><font color="#8A4117"><b>Sienna</b></font></td><td>&nbsp between 50 and 100</tr>
+  <tr><td bgcolor='white'><font color="#7E3517"><b>Sienna4</b></font></td><td>&nbsp between 100 and 200</tr>
+  <tr><td bgcolor='white'><font color="#800517"><b>Firebrick</b></font></td><td>&nbsp greater than 200</tr>
+</table>
 EOL
-
-} 
+}
 
 sub massSpecKey {
   my $projectId = $ENV{PROJECT_ID};

@@ -39,8 +39,10 @@ sub init {
 
    $Self->setParts                ( $Args->{Parts               } );
    $Self->setVisibleParts         ( $Args->{VisibleParts        } );
+   $Self->setVisiblePartsAreFuzzy         ( $Args->{VisiblePartsAreFuzzy        } );
    $Self->setThumbnail            ( $Args->{Thumbnail           } );
 
+   $Self->applyFuzzyVisibleParts();
    $Self->applyVisiblePartsDefaults();
 
    return $Self;
@@ -54,10 +56,37 @@ sub setParts                { $_[0]->{'Parts'                       } = $_[1]; $
 sub getVisibleParts         { $_[0]->{'VisibleParts'                } || [] }
 sub setVisibleParts         { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
 
+sub getVisiblePartsAreFuzzy         { $_[0]->{'VisiblePartsAreFuzzy'                } }
+sub setVisiblePartsAreFuzzy         { $_[0]->{'VisiblePartsAreFuzzy'                } = $_[1]; $_[0] }
+
 sub getThumbnail            { $_[0]->{'Thumbnail'                   } }
 sub setThumbnail            { $_[0]->{'Thumbnail'                   } = $_[1]; $_[0] }
 
-# ---------------------- applyVisiblePartsDefaults -----------------------
+# ---------------------- applyFuzzy -----------------------
+
+sub applyFuzzyVisibleParts {
+   my $Self = shift;
+
+   return unless($Self->getVisiblePartsAreFuzzy());
+
+   my @visibleParts;
+
+   foreach my $part (@{$Self->getParts()}) {
+     my $partName = $part->{Name};
+     foreach my $vp (@{$Self->getVisibleParts()}) {
+       if($partName =~ /$vp/) {
+         push @visibleParts, $partName;
+         last;
+       }
+     }
+   }
+
+   $Self->setVisibleParts(\@visibleParts);
+
+   return $Self;
+}
+
+# ---------------------------- numberOfParts -----------------------------
 
 sub applyVisiblePartsDefaults {
    my $Self = shift;
@@ -70,6 +99,8 @@ sub applyVisiblePartsDefaults {
 
    return $Self;
 }
+
+
 
 # ---------------------------- numberOfParts -----------------------------
 

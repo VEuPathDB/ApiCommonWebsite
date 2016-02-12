@@ -22,6 +22,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.SummaryViewHandler;
 import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.User;
 
 /**
  * @author jerric
@@ -67,8 +68,8 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
    * @see org.gusdb.wdk.view.SummaryViewHandler#process(org.gusdb.wdk.model.user .Step)
    */
   @Override
-  public Map<String, Object> process(Step step, Map<String, String[]> parameters)
-      throws WdkModelException, WdkUserException {
+  public Map<String, Object> process(Step step, Map<String, String[]> parameters,
+      User user, WdkModel wdkModel) throws WdkModelException, WdkUserException {
     logger.debug("Entering SpanGenomeViewHandler...");
     Map<String, Object> results = new HashMap<String, Object>();
 
@@ -82,7 +83,6 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     Sequence[] sequences;
     ResultSet resultSet = null;
     try {
-      WdkModel wdkModel = step.getQuestion().getWdkModel();
       DataSource dataSource = wdkModel.getAppDb().getDataSource();
 
       // compose an sql to get all sequences from the feature id query.
@@ -130,6 +130,13 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     results.put(PROP_MAX_LENGTH, maxLength);
     logger.debug("Leaving SpanGenomeViewHandler...");
     return results;
+  }
+
+  @Override
+  public String processUpdate(Step step, Map<String, String[]> parameters, User user, WdkModel wdkModel)
+      throws WdkModelException, WdkUserException {
+    // this summary view does not perform updates
+    return null;
   }
 
   private Sequence[] loadSequences(DataSource dataSource, String sql, ResultSet resultSet) throws SQLException {
@@ -223,7 +230,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
     Map<String, Sequence> chromosomes = new HashMap<>();
     sql = "SELECT source_id AS " + COLUMN_SEQUENCE_ID + ", length AS " + COLUMN_SEQUENCE_LENGTH 
         + ", chromosome AS " + COLUMN_CHROMOSOME + ", organism AS " + COLUMN_ORGANISM 
-        + " FROM ApiDBTuning.SequenceAttributes "
+        + " FROM ApidbTuning.GenomicSeqAttributes "
         + " WHERE chromosome IS NOT NULL "
         + "   AND organism IN (SELECT organism FROM (" + sql + "))";
     ResultSet resultSet = null;

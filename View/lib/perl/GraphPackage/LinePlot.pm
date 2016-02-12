@@ -44,9 +44,6 @@ sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = 
 sub getSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     }}
 sub setSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     } = $_[1]}
 
-sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
-sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
-
 sub getHasMetaData              { $_[0]->{'_has_meta_data'                 }}
 sub setHasMetaData              { $_[0]->{'_has_meta_data'                 } = $_[1]}
 

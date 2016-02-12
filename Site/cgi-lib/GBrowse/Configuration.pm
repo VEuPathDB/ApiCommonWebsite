@@ -11,8 +11,13 @@ use DAS::Util::SynView;
 
 use HTML::Template;
 
+use LWP::UserAgent;
+use JSON qw( decode_json );
+
 require Exporter;
 
+
+use Data::Dumper;
 umask 0;
 
 # Export Static Methods
@@ -34,6 +39,10 @@ sub new {
   bless ($self, $class);
   $self->dbh($dbh);
   $self->{dbh}{InactiveDestroy} = 1;
+
+
+
+
   return $self;
 }
 
@@ -329,4 +338,105 @@ EOL
 
   return $self->{proteomics_citation_from_ext_database_name}->{$extdb};
 }
+
+
+sub getOntologyCategoryFromTrackName {
+  my ($trackName, $allTracks, $optionalTerminus) = @_;
+
+  if($self->{_ontology_category_from_track_name}->{$trackName}) {
+    $rv = $self->{_ontology_category_from_track_name}->{$trackName};
+  }
+  else {
+    my $ua = LWP::UserAgent->new;
+  
+    my $server_endpoint = "http://$ENV{HTTP_HOST}/$ENV{CONTEXT_PATH}/service/ontology/Categories/path";
+
+    # set custom HTTP request header fields
+    my $req = HTTP::Request->new(POST => $server_endpoint);
+    $req->header('content-type' => 'application/json');
+ 
+    # add POST data to HTTP request body
+    my $post_data = '{ "scope": "gbrowse" }';
+    $req->content($post_data);
+ 
+    my $resp = $ua->request($req);
+    if ($resp->is_success) {
+      my %allTracks;
+
+      foreach(@$allTracks) {
+        $allTracks{$_} = 1;
+      }
+
+      my $decoded_json = decode_json( $resp->decoded_content  );
+
+      my %trackNameToPathHashRef;
+      my %nodeDisplayOrder;
+
+      my $reallyBigOrderNumber = 10000000;
+
+      foreach my $pathArrayRef (@$decoded_json) {
+
+        my @pathLabels;
+
+        my $lastIndex = scalar @$pathArrayRef - 1;
+
+        my $track = $pathArrayRef->[$lastIndex]->{name}->[0];
+
+        next unless($allTracks{$track});
+
+        for(my $i = 1; $i < $lastIndex; $i ++) {
+          my $pathLabel = $pathArrayRef->[$i]->{'EuPathDB alternative term'}->[0];
+
+          my $displayOrder = defined $pathArrayRef->[$i]->{'display order'} ? $pathArrayRef->[$i]->{'display order'}->[0] : $reallyBigOrderNumber;
+
+          push @pathLabels, $pathLabel;
+          $nodeDisplayOrder{$pathLabel} = $displayOrder;
+        }
+
+
+        $trackNameToPathHashRef{$track} = \@pathLabels;
+      }
+  
+      my @sortedNodeNames = sort { $nodeDisplayOrder{$a} <=> $nodeDisplayOrder{$b} || $a cmp $b } keys(%nodeDisplayOrder);
+      my $neededZeros = length(scalar(@sortedNodeNames)) - 1;
+
+      for(my $i = 0; $i < scalar @sortedNodeNames; $i++) {
+
+        my $orderPrefix = sprintf("%0${$neededZeros}d", $i+1);
+
+        # replace w/ new display order
+        $nodeDisplayOrder{$sortedNodeNames[$i]} = $orderPrefix;
+
+      }
+
+      foreach my $trackName (keys %trackNameToPathHashRef) {
+        my $pathLabels = $trackNameToPathHashRef{$trackName};
+        my $firstNode = $pathLabels->[0];
+        $pathLabels->[0] = $nodeDisplayOrder{$firstNode} . " $firstNode";
+
+        my $pathLabelsAsString = join(" : ", @$pathLabels);
+        $trackNameToPathHashRef{$trackName} = $pathLabelsAsString;
+      }
+
+      $self->{_ontology_category_from_track_name} = \%trackNameToPathHashRef;
+    }
+    else {
+      print STDERR "HTTP POST error code: ", $resp->code, "\n";
+      print STDERR "HTTP POST error message: ", $resp->message, "\n";
+    }
+    $rv = $self->{_ontology_category_from_track_name}->{$trackName};
+  }
+
+  if($optionalTerminus) {
+    return "$rv : $optionalTerminus";
+  }
+  return $rv;
+}
+
+
 1;
+
+
+
+
+

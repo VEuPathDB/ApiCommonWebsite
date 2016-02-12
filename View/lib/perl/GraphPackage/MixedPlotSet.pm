@@ -14,6 +14,16 @@ sub setMainLegend {
   $self->SUPER::setMainLegend($hash);
 }
 
+
+sub declareParts {
+  my ($self) = @_;
+
+  my $graphObjects = $self->getGraphObjects();
+  my @parts = map {$_->getPartName()} @$graphObjects;
+
+  return join(",", @parts);
+}
+
 #--------------------------------------------------------------------------------
 
 sub getGraphObjects { $_[0]->{_graph_objects} }
@@ -36,6 +46,7 @@ sub setGraphObjects {
     unless ($name) {  
       die "Part name must be defined"; 
     }
+#print STDERR "GOT NAME = $name\n";
     $profileSetsHash->{$name}->{size}  = $size;
     $profileSetsHash->{$name}->{count}++ ;
 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apidb.apicommon.model.view.genome;
 
 import org.gusdb.wdk.model.WdkModelException;
@@ -8,7 +5,6 @@ import org.gusdb.wdk.model.WdkUserException;
 
 /**
  * @author jerric
- * 
  */
 public class DynamicSpanGenomeViewHandler extends GenomeViewHandler {
 
@@ -24,7 +20,7 @@ public class DynamicSpanGenomeViewHandler extends GenomeViewHandler {
         sql.append("    ids.start_min AS " + COLUMN_START + ", ");
         sql.append("    ids.end_max AS " + COLUMN_END + ", ");
         sql.append("    '' AS " + COLUMN_DESCRIPTION + ", ");
-        sql.append("    ids.start_min || '..' || ids.end_max AS context, ");
+        sql.append("    ids.start_min || '..' || ids.end_max AS " + COLUMN_CONTEXT + ", ");
         sql.append("    ids.strand AS " + COLUMN_STRAND);
         sql.append(" FROM (SELECT source_id, ");
         sql.append("            regexp_substr(source_id, '[^:]+', 1, 1) as sequence_id, ");
@@ -32,7 +28,7 @@ public class DynamicSpanGenomeViewHandler extends GenomeViewHandler {
         sql.append("            regexp_substr(regexp_substr(source_id, '[^:]+', 1, 2), '[^\\-]+', 1,2) as end_max, ");
         sql.append("            CASE regexp_substr(source_id, '[^:]+', 1, 3) WHEN 'f' THEN 1 ELSE 0 END AS strand ");
         sql.append("       FROM (" + idSql + ") ");
-        sql.append("      ) ids, ApidbTuning.SequenceAttributes sa");
+        sql.append("      ) ids, ApidbTuning.GenomicSeqAttributes sa");
         sql.append(" WHERE ids.sequence_id = sa.source_id");
 
         return sql.toString();

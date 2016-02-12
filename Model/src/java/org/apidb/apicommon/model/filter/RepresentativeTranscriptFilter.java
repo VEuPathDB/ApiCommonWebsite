@@ -24,6 +24,16 @@ public class RepresentativeTranscriptFilter extends StepFilter {
    */
   public static final String FILTER_NAME = "representativeTranscriptOnly";
 
+  private static final String ORIG_SQL_PARAM = "%%originalSql%%";
+
+  private static final String FILTER_SQL =
+      "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
+      "SELECT * FROM inputSql " +
+      "WHERE SOURCE_ID IN ( " +
+      "  SELECT MIN(subq_.SOURCE_ID) FROM inputSql subq_ " +
+      "  GROUP BY subq_.GENE_SOURCE_ID " +
+      ")";
+
   public RepresentativeTranscriptFilter() {
     super(FILTER_NAME);
   }
@@ -37,14 +47,19 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   @Override
   public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
       WdkUserException {
-    throw new UnsupportedOperationException("This filter does not provice a FilterSummary");
+    throw new UnsupportedOperationException("This filter does not provide a FilterSummary");
   }
 
   @Override
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException,
       WdkUserException {
-    LOG.info("Applying Representative Transcript Filter to SQL: " + idSql);
-    return "select * from ( " + idSql + " ) where rownum = 1"; 
+    LOG.debug("Applying Representative Transcript Filter to SQL: " + idSql);
+    return FILTER_SQL.replace(ORIG_SQL_PARAM, idSql);
+  }
+
+  @Override
+  public boolean defaultValueEquals(JSONObject value) throws WdkModelException {
+    return false;
   }
 
 }
