@@ -2,6 +2,7 @@ package org.apidb.apicommon.model.view;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
@@ -16,6 +17,10 @@ import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
 import org.json.JSONObject;
 
+import org.gusdb.fgputil.functional.FunctionalInterfaces.Predicate;
+import org.gusdb.wdk.model.ontology.Ontology;
+import org.gusdb.wdk.model.ontology.OntologyNode;
+
 public class GeneViewHandler extends AltSpliceViewHandler {
 
   @SuppressWarnings("unused")
@@ -24,7 +29,7 @@ public class GeneViewHandler extends AltSpliceViewHandler {
   private static final String GENE_FILTERED_STEP = "geneFilteredStep";
   private static final String USER_PREFERENCE_SUFFIX = "_geneview";
 
-  // attribute categories we will or may remove
+  // attribute categories we will or may remove (might be obsolete)
   private static final String TRANSCRIPT_CATEGORY_NAME = "trans_parent";
   private static final String DYNAMIC_ATTRIB_CATEGORY_NAME = "dynamic";
 
@@ -50,9 +55,23 @@ public class GeneViewHandler extends AltSpliceViewHandler {
     return step;
   }
 
+  // remove attributes in summary that apply to Transcripts (in ontology: property "geneOrTranscript" = transcript)
   @Override
-  protected void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root) throws WdkModelException {
-    root.removeAll(new NameMatchPredicate(TRANSCRIPT_CATEGORY_NAME));
+  protected void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root, WdkModel model) throws WdkModelException {
+    Ontology ontology = model.getOntology("Categories");
+
+    // (1) get summary attributes nodes in attribute tree (dont care about categories)
+    List<TreeNode<SelectableItem>> sumAttr =  root.getLeafNodes();
+
+    // (2) for each summary attribute 
+    for(TreeNode<SelectableItem> a : sumAttr) {
+      Predicate<OntologyNode> predicate = new IsTrAttrPredicate(a.getContents().getName());
+      // (2.1) check if there is a node in ontology with a.name that is targetType(attribute) in scope(results) and geneOrTr(transcript)
+      // (2.2) and remove if found
+      if ( ontology.findFirst(predicate) != null)
+        root.removeAll(new NameMatchPredicate(a.getContents().getName()));  // should be only 1
+    }
+
     String[] questionTypes = step.getQuestion().getPropertyList(QUESTION_TYPE_PROPLIST_KEY);
     if (questionTypes != null && 
         (Arrays.asList(questionTypes).contains(TRANSCRIPT_QUESTION_PROP_NAME) || step.getQuestionName().contains(TRANSCRIPT_BOOLEAN_QUESTION_SUBSTR) )) {
@@ -63,7 +82,7 @@ public class GeneViewHandler extends AltSpliceViewHandler {
 
   @Override
   protected AttributeField[] getLeftmostFields(StepBean stepBean) throws WdkModelException {
-		return new AttributeField[]{ stepBean.getQuestion().getRecordClass()
+    return new AttributeField[]{ stepBean.getQuestion().getRecordClass()
         .getPrimaryKeyAttribute().getPrimaryKeyAttributeField() };
   }
 
@@ -72,4 +91,22 @@ public class GeneViewHandler extends AltSpliceViewHandler {
     // pass the new step to the JSP to be rendered instead of the normal step
     model.put(GENE_FILTERED_STEP, stepBean);
   }
+
+  // =======================================================================
+  private class IsTrAttrPredicate implements Predicate<OntologyNode> {
+    String name;
+    IsTrAttrPredicate(String name) {
+      this.name = name;
+    }   
+    @Override
+      public boolean test(OntologyNode node) {
+        return node.containsKey("scope") && node.get("scope").contains("results") && 
+             node.containsKey("targetType") && node.get("targetType").contains("attribute") && 
+             node.containsKey("recordClassName") && node.get("recordClassName").contains("TranscriptRecordClasses.TranscriptRecordClass") && 
+             node.containsKey("name") && node.get("name").contains(name) &&
+             node.containsKey("geneOrTranscript") && node.get("geneOrTranscript").contains("transcript");
+      }
+  }
+
+
 }

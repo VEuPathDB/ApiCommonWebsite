@@ -33,7 +33,7 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
 
   protected abstract String getUserPreferenceSuffix();
   protected abstract Step customizeStep(Step step, User user, WdkModel wdkModel) throws WdkModelException;
-  protected abstract void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root) throws WdkModelException;
+  protected abstract void customizeAvailableAttributeTree(Step step, TreeNode<SelectableItem> root, WdkModel model) throws WdkModelException;
   protected abstract AttributeField[] getLeftmostFields(StepBean stepBean) throws WdkModelException;
   protected abstract void customizeModelForView(Map<String, Object> model, StepBean stepBean) throws WdkModelException;
 
@@ -65,18 +65,19 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
         parameters, stepBean.getQuestion(), userBean, new AnswerValueBean(answer));
 
     // get base available attributes 
-    // (since this is not serving the Add Columns popup anymore we do not need the tree)
+    // (since this is not serving the Add Columns popup anymore we do not need a tree, could be a List)
     AnswerValueAttributes attributes = answer.getAttributes(); // all in record plus question specific
     FieldTree tree = attributes.getDisplayableAttributeTree();
     TreeNode<SelectableItem> root = tree.getRoot();
 
     // customize attributes: 
     //   in gene view remove those not relevant
-    customizeAvailableAttributeTree(step, root);
+    customizeAvailableAttributeTree(step, root, wdkModel);
 
     // override summary attributes: 
-    //   get the summary attrbs to be included in the results page for this specific step result,
-    //   and trim off those NOT in ontology
+    //   get the summary attrbs to be included in the results page for this *specific* step result,
+    //   and trim off those NOT in root (which contains all model attributes, available to this view)
+    //   this trimming will cleanup old attr in preferences
     AttributeField[] leftmostFields = getLeftmostFields(stepBean);
     Map<String, AttributeField> summaryFields = AnswerValueAttributes.buildSummaryAttributeFieldMap(user, step.getQuestion(), getUserPreferenceSuffix(), leftmostFields);
     trimAttribsNotInTree(summaryFields, root, leftmostFields);
