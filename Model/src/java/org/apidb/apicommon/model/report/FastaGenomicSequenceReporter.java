@@ -4,7 +4,7 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class FastaGenomicSequenceReporter extends FastaReporter {
 
-  FastaGenomicSequenceReporter(AnswerValue answerValue, int startIndex, int endIndex) {
+  public FastaGenomicSequenceReporter(AnswerValue answerValue, int startIndex, int endIndex) {
     super(answerValue, startIndex, endIndex);
   }
 

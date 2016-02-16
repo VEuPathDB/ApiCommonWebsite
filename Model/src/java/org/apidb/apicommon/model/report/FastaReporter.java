@@ -3,9 +3,7 @@ package org.apidb.apicommon.model.report;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -23,7 +21,9 @@ import org.gusdb.fgputil.IoUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.report.Reporter;
+import org.gusdb.wdk.model.report.StandardReporter.Configuration;
 import org.json.JSONObject;
 
 public abstract class FastaReporter extends Reporter {
@@ -46,6 +46,16 @@ public abstract class FastaReporter extends Reporter {
   @Override
   public void configure(JSONObject configuration) {
     _configuration = configuration;
+  }
+
+  @Override
+  public String getDownloadFileName() {
+    if (_configuration.has(Configuration.ATTACHMENT_TYPE_JSON)) {
+      return (_configuration.getString(Configuration.ATTACHMENT_TYPE_JSON).equals("text") ?
+          this.getQuestion().getName() + ".fasta" : null);
+    }
+    // if unspecified, return parent's default
+    return super.getDownloadFileName();
   }
 
   @Override
@@ -111,22 +121,8 @@ public abstract class FastaReporter extends Reporter {
     for (String key : JSONObject.getNames(configuration)) {
       formInputs.put(key, configuration.get(key).toString());
     }
-    formInputs.put("ids", FormatUtil.arrayToString(getIds(answer).toArray(), " "));
+    formInputs.put("ids", new AnswerValueBean(answer).getAllIdList());
     return formInputs;
-  }
-
-  private List<String> getIds(AnswerValue answer) throws WdkModelException, WdkUserException {
-    List<String> ids = new ArrayList<>();
-    List<String[]> primaryKeys = answer.getAllIds();
-    for (String[] keys : primaryKeys) {
-      
-      ids.add(translatePrimaryKeySet(keys));
-    }
-    return ids;
-  }
-
-  protected String translatePrimaryKeySet(String[] primaryKeys) {
-    return primaryKeys[0];
   }
 
   @Override
