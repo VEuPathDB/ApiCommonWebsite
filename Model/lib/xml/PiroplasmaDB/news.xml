@@ -17,8 +17,8 @@
 
 <record>
   <attribute name="headline">PiroplasmaDB 27 Released</attribute>
-  <attribute name="date">15 Jan 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb01_16_release</attribute>
+  <attribute name="date">19 Feb 2016 13:00</attribute>
+  <attribute name="tag">piroplasmadb02_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -31,11 +31,17 @@
        <h4>New Tutorials</h4>
         <ul>
           <li>
-            <a href="https://youtu.be/TODO">TODO</a>
+            <a href="https://youtu.be/z6c_FhMCdPo">Exploring expression distributions with our Percentile Ranking searches</a> - 
+            Percentile ranking is one way that EuPathDB analyzes expression data.  This tutorial 
+            describes our percentile ranking of expression data and the searches that we offer based on that analysis.
           </li>
           <li>
-            <a href="https://youtu.be/TODO">TODO</a>
+            <a href="https://youtu.be/Yk9kkaPAmAE">Finding Differentially expressed genes based on Fold Change with a P-value</a> - 
+            One way EuPathDB analyzes expression is to determine statistically significant differential gene expression using the  
+            Fisher's exact test. This tutorial describes our Fold Change w/ P-value searches that return differentially 
+            expressed genes based on the level of statistical confidence that you choose.
           </li>
+         </ul>
       </section>
       
  

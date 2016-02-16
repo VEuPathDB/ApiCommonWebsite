@@ -2,9 +2,9 @@ package org.apidb.apicommon.model.report;
 
 import org.gusdb.wdk.model.answer.AnswerValue;
 
-public class FastaGenomicSegmentReporter extends FastaReporter {
+public class FastaGenomicSequenceReporter extends FastaReporter {
 
-  FastaGenomicSegmentReporter(AnswerValue answerValue, int startIndex, int endIndex) {
+  FastaGenomicSequenceReporter(AnswerValue answerValue, int startIndex, int endIndex) {
     super(answerValue, startIndex, endIndex);
   }
 
