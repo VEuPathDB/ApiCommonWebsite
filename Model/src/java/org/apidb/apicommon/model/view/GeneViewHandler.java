@@ -30,7 +30,7 @@ public class GeneViewHandler extends AltSpliceViewHandler {
   private static final String USER_PREFERENCE_SUFFIX = "_geneview";
 
   // attribute categories we will or may remove (might be obsolete)
-  private static final String TRANSCRIPT_CATEGORY_NAME = "trans_parent";
+  //private static final String TRANSCRIPT_CATEGORY_NAME = "trans_parent";
   private static final String DYNAMIC_ATTRIB_CATEGORY_NAME = "dynamic";
 
   // custom properties on gene questions
