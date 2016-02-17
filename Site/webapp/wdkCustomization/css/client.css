@@ -56,7 +56,7 @@ h4 {
   clear: both;
 }
 
-.wdk-RecordContainer__TranscriptRecordClasses\.TranscriptRecordClass .wdk-RecordHeading {
+.wdk-RecordContainer__GeneRecordClasses\.GeneRecordClass .wdk-RecordHeading {
   display: none;
 }
 
@@ -154,17 +154,52 @@ h4 {
 }
 
 .eupathdb-TranscriptThumbnail {
+  /*
   height: 100px;
   width: 170px;
   overflow: hidden;
-  border: 1px solid #ccc;
+  */
+  border: 1px solid #aaa;
 }
 
 .eupathdb-TranscriptThumbnail img {
+  /*
   position: relative;
   left: -24px;
+  */
 }
 
+.eupathdb-TranscriptThumbnailPopover {
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  top: 20px;
+  background: #1f1f1f;
+  color: #fafafa;
+  border: 1px solid #aaa;
+  box-shadow: 0px 0px 20px #999;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.eupathdb-TranscriptThumbnailPopover h3 {
+  text-align: center;
+  padding: 8px 0;
+  font-weight: 400;
+}
+
+.eupathdb-TranscriptThumbnailPopover div {
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.eupathdb-TranscriptThumbnailPopover img {
+  max-height: 80vh;
+  max-width: 80vw;
+  border: 1px solid #aaa;
+}
+
+/*
 .eupathdb-TranscriptThumbnail:hover {
   position: absolute;
   z-index: 1;
@@ -178,6 +213,7 @@ h4 {
   width: 800px;
   left: -90px;
 }
+*/
 
 .eupathdb-ExpressionGraphContainer {
   overflow: auto;
