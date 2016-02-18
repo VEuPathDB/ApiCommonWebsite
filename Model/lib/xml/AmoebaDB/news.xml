@@ -30,6 +30,18 @@
      <h3>New Features</h3>
       
       <section>
+       <h4>New Login Protocol</h4>
+        <ul>
+          <li>Our new protocol recognizes your initial login across all EuPathDB sites.  
+              For example, if you log into AmoebaDB and then visit PlasmoDB, clicking 
+              Login transfers your credentials and automatically logs you into PlasmoDB.  
+              You will have to log off of each site separately.
+          </li>
+        </ul>
+       </h4>
+      </section>
+       
+      <section>
        <h4>New Tutorials</h4>
         <ul>
           <li>
