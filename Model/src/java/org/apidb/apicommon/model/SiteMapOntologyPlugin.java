@@ -38,7 +38,7 @@ public class SiteMapOntologyPlugin extends EuPathDbOwlParserWdkPlugin {
     @Override
     public TreeNode<OntologyNode> map(OntologyNode nodeContents,
         List<TreeNode<OntologyNode>> mappedChildren) {
-      
+
       TreeNode<OntologyNode> newNode = new TreeNode<OntologyNode>(nodeContents);
       String parentLabel = "unknown";
       if (nodeContents.get("label") != null) parentLabel = nodeContents.get("label").get(0);
@@ -54,8 +54,11 @@ public class SiteMapOntologyPlugin extends EuPathDbOwlParserWdkPlugin {
 	  logger.info("------------------" + nodeContents.get("EuPathDB alternative term"));
       }
       
+      boolean isTopLevel = false;  // a hack to hide top level individuals
       for (TreeNode<OntologyNode> child : mappedChildren) {
         
+	isTopLevel |= child.getContents().get("EuPathDB alternative term") != null && child.getContents().get("EuPathDB alternative term").get(0).equals("Gene models");
+
         // a category - just add to parent
          if (child.getChildNodes().size() !=  0) {
            newNode.addChildNode(child);
@@ -92,6 +95,9 @@ public class SiteMapOntologyPlugin extends EuPathDbOwlParserWdkPlugin {
          }        
       }
       
+      // now add in our synthetic categories
+      if (isTopLevel) return newNode;   // don't bother if we are in the very top level
+
       if (trackSubCategory.getChildNodes().size() != 0) newNode.addChildNode(trackSubCategory);
 
       // order of record class subcats is alphabetical, starting after track sub cat (if any)
@@ -104,7 +110,10 @@ public class SiteMapOntologyPlugin extends EuPathDbOwlParserWdkPlugin {
         RecordSubCategory recordSubCat = recordSubCategories.get(className);
         recordSubCat.addToParent(newNode, order++);
       }
-      if ( nodeContents.get("EuPathDB alternative term") != null && nodeContents.get("EuPathDB alternative term").get(0).equals("Gene models")) logger.info(newNode.toString());
+
+      if (DEBUG) {
+	if ( nodeContents.get("EuPathDB alternative term") != null && nodeContents.get("EuPathDB alternative term").get(0).equals("Gene models")) logger.info(newNode.toString());
+      }
       return newNode;
     }    
   }
