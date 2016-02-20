@@ -130,6 +130,8 @@ public class SiteMapOntologyPlugin extends EuPathDbOwlParserWdkPlugin {
       Matcher matcher = pattern.matcher(rcn);
       if (matcher.find()) n = matcher.group(1);  
       if (n.equals("Transcript")) n = "Gene";
+      if (n.equals("DynSpan")) n = "Genomic Segment";
+      if (n.equals("Sequence")) n = "Genomic Sequence";
       ArrayList<String> names = new ArrayList<String>();
       names.add(n);
       nodeContents.put("recordClassDisplayName", names);
@@ -144,6 +146,11 @@ public class SiteMapOntologyPlugin extends EuPathDbOwlParserWdkPlugin {
     ArrayList<String> labels = new ArrayList<String>();
     labels.add(label);
     nodeContents.put("label", labels);
+
+    // a flag to tell client these are special to site map
+    ArrayList<String> sms = new ArrayList<String>();
+    sms.add("true");
+    nodeContents.put("SiteMapSpecial", sms);
 
     ArrayList<String> names = new ArrayList<String>();
     names.add(displayName);
@@ -179,7 +186,7 @@ public class SiteMapOntologyPlugin extends EuPathDbOwlParserWdkPlugin {
     void addToParent(TreeNode<OntologyNode> parent, int order) {
 
       if (recordCatNode == null) {
-	recordCatNode = makeCategoryNode(recordName, "Components related to " + recordName + " records", order, label);
+	recordCatNode = makeCategoryNode(recordName + " Records", "Components related to " + recordName + " records", order, label);
 	parent.addChildNode(recordCatNode);
       }
 
