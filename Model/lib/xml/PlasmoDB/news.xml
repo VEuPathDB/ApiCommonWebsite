@@ -65,14 +65,27 @@
        Use this search &mdash;
        <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByHostResponse#GeneQuestions.GenesByICEMRHostResponse">Identify Genes based on ICEMR Serum Antibody Levels </a> &mdash; 
        to find the <i>Plasmodium</i> genes whose protein products served as antigens during host-immune response. <br><br>
-        
+       
+       The following datasets are available for the first time in PlasmoDB Release 27:
         <ul>
           <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
-             Amazonia ICEMR Malaria-specific human serum antigens
-                               </a> &mdash;
-            
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">Amazonia ICEMR Malaria-specific human serum antigens</a>
+          </li> 
+          <li>
+          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_ebd57ee1b5">Malawi ICEMR Malaria-specific human serum antigens </a>
+          </li> 
+          <li>
+          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_fb75148bb6">South Africa ICEMR Malaria-specific human serum antigens</a>
           </li>  
+          <li>
+          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_3bd78c7fec">South Pacific ICEMR Malaria-specific human serum antigens</a>
+          </li> 
+          <li>
+          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_fe710231ed">Southeast Asia ICEMR Malaria-specific human serum antigens</a>
+          </li> 
+          <li>
+          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_16d3d360de">Uganda ICEMR Malaria-specific human serum antigens</a>
+          </li> 
      
      <h3>New Features</h3>
       
