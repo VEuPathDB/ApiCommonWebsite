@@ -39,14 +39,14 @@
        </aside> 
         <ul>
          <li>
-            <a href="http://fungidb.org/fungidb.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_44b0c00509">
+            <a href="http://fungidb.org/fungidb/app/record/dataset/DS_44b0c00509">
                        Inducer-Free Cellulase Secretion in Neurospora Crassa</a> &mdash;
             Global mRNA abundances from liquid cultures of N. crassa were measured by sequencing on the Illumina Genome Analyzer IIx 
             and HiSeq2000 platforms. Cultures were harvested at 4 hours (N. crassa), after a switch to media of interest. 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
           </li>
           <li>
-            <a href="http://fungidb.org/fungidb.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_8e61740c73">
+            <a href="http://fungidb.org/fungidb/app/record/dataset/DS_8e61740c73">
                        Inducer-Free Cellulase Secretion in Aspergillus nidulans</a> &mdash;
             Global mRNA abundances from liquid cultures of A. nidulans were measured by sequencing on the Illumina Genome Analyzer IIx 
             and HiSeq2000 platforms. Cultures were harvested at 6 hours, after a switch to media of interest.

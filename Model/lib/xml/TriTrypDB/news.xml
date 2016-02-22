@@ -35,7 +35,7 @@
         <h4>New RNA Sequencing data</h4>
         <ul>
           <li>
-            <a href="http://TriTrypDB.org/a/getDataset.do?datasets=tbruTREU927_Clayton_mRNADegradation_halfLife_rnaSeq_RSRC">
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_fd602b26e6">
                                  mRNA Decay in Bloodstream and Procyclic Forms</a> &mdash;
             The decay of <i>T. brucei</i> TREU 927 mRNA in bloodstream and procyclic forms was determined by
             sequencing RNA that was harvested at various times from cultures incubated in ActinomycinD to inhibit transcription.  
