@@ -35,8 +35,8 @@
         The data set title below links to a full description and list of associated searches and GBrowse tracks.
       </aside>
      
-        <section>
-        <h4>Transcriptomics:</h4>
+      <section>
+       <h4>Transcriptomics:</h4>
         <ul>
           <li>
           <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
@@ -54,6 +54,25 @@
           </li>
          </ul>
          </section>
+         
+        <section>
+       <h4>Protein Array Data:</h4>
+       
+       <a href="https://www.niaid.nih.gov/labsandresources/resources/icemr/Pages/programOverview.aspx">International Centers for Excellence in Malria Research (ICEMR)</a> 
+       research project collaboration to determine malaria-specific antigens in 
+       patient serum &mdash;
+       Protein array analysis of antibodies in patient serum samples as well as structured sample and clinical data from 6 ICEMR projects are integrated into PlasmoDB. 
+       Use this search &mdash;
+       <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByHostResponse#GeneQuestions.GenesByICEMRHostResponse">Identify Genes based on ICEMR Serum Antibody Levels </a> &mdash; 
+       to find the <i>Plasmodium</i> genes whose protein products served as antigens during host-immune response. <br><br>
+        
+        <ul>
+          <li>
+          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
+             Amazonia ICEMR Malaria-specific human serum antigens
+                               </a> &mdash;
+            
+          </li>  
      
      <h3>New Features</h3>
       
