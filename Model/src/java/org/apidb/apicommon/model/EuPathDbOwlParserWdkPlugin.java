@@ -72,7 +72,7 @@ public class EuPathDbOwlParserWdkPlugin implements OntologyFactoryPlugin {
   }
   
   
-  public static void build(Node<OWLClass> parentClass, OWLReasoner reasoner, OWLOntology ont, OWLDataFactory df,
+  private static void build(Node<OWLClass> parentClass, OWLReasoner reasoner, OWLOntology ont, OWLDataFactory df,
       OWLAnnotationProperty orderAnnotProp, TreeNode<OntologyNode> parentTree) throws WdkModelException {
     // We don't want to print out the bottom node (containing owl:Nothing
     // and unsatisfiable classes) because this would appear as a leaf node
@@ -138,7 +138,7 @@ public class EuPathDbOwlParserWdkPlugin implements OntologyFactoryPlugin {
       throw new WdkModelException("For ontology '" + ontologyName + "', OWL file does not exist: " + owlFileName);
   }
 
-  public static class TermNode implements Comparable<TermNode>{
+  private static class TermNode implements Comparable<TermNode>{
     private Node<OWLClass> node;
     private Integer order;
     
