@@ -39,13 +39,13 @@
        <h4>Transcriptomics:</h4>
         <ul>
           <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_0fa4237b4b">
                                Asexual life cycle time course with biosynthetic pyrimidine labeling</a> &mdash;
             Microarray analysis of 48-hour timecourse during the asexual development of P. falciparum 3D7. Biosynthetic 
             pyrimidine labeling was used to provide an estimate of newly synthesized vs steady state transcripts at each time point.
           </li>
           <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_5bb820a874">
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_5bb820a874">
                    Ribosome profiling and mRNA sequencing of asexual cell cycle stages</a> &mdash;
                    RNA sequencing of total and polysome-associated mRNA during 5 stages of the <i>P. falciparum</i> 
                    blood phase developmental cycle. RNA from W2 strain asexual stages were aligned to 
@@ -67,22 +67,22 @@
        The following datasets are available for the first time in PlasmoDB Release 27:
         <ul>
           <li>
-          <a href="http://plasmodb.org/plasmo.b27/app/record/DatasetRecordClasses.DatasetRecordClass?dataset_id=DS_0fa4237b4b">Amazonia ICEMR Malaria-specific human serum antigens</a>
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_0fa4237b4b">Amazonia ICEMR Malaria-specific human serum antigens</a>
           </li> 
           <li>
-          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_ebd57ee1b5">Malawi ICEMR Malaria-specific human serum antigens </a>
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_ebd57ee1b5">Malawi ICEMR Malaria-specific human serum antigens </a>
           </li> 
           <li>
-          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_fb75148bb6">South Africa ICEMR Malaria-specific human serum antigens</a>
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_fb75148bb6">South Africa ICEMR Malaria-specific human serum antigens</a>
           </li>  
           <li>
-          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_3bd78c7fec">South Pacific ICEMR Malaria-specific human serum antigens</a>
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3bd78c7fec">South Pacific ICEMR Malaria-specific human serum antigens</a>
           </li> 
           <li>
-          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_fe710231ed">Southeast Asia ICEMR Malaria-specific human serum antigens</a>
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_fe710231ed">Southeast Asia ICEMR Malaria-specific human serum antigens</a>
           </li> 
           <li>
-          <a href="http://plasmodb.org/plasmo/getDataset.do?question=GeneQuestions.GenesByICEMRHostResponse&display=detail#DS_16d3d360de">Uganda ICEMR Malaria-specific human serum antigens</a>
+          <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_16d3d360de">Uganda ICEMR Malaria-specific human serum antigens</a>
           </li> 
          </ul>
         </section> 
