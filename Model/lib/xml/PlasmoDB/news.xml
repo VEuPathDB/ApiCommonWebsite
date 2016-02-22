@@ -61,7 +61,8 @@
        <a href="https://www.niaid.nih.gov/labsandresources/resources/icemr/Pages/programOverview.aspx">International Centers for Excellence in Malria Research (ICEMR)</a> 
        research project collaboration to determine malaria-specific antigens in 
        patient serum &mdash;
-       Protein array analysis of antibodies in patient serum samples as well as structured sample and clinical data from 6 ICEMR projects are integrated into PlasmoDB. 
+       
+       PlasmoDB integrated protein array analysis of antibodies in patient serum samples as well as structured sample and clinical data from 6 ICEMR groups.
        Use this search &mdash;
        <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByHostResponse#GeneQuestions.GenesByICEMRHostResponse">Identify Genes based on ICEMR Serum Antibody Levels </a> &mdash; 
        to find the <i>Plasmodium</i> genes whose protein products served as antigens during host-immune response. <br><br>
