@@ -57,15 +57,12 @@
          
         <section>
        <h4>Protein Array Data:</h4>
-       Malaria-specific antigens in patient serum &mdash; a collaboration between the 
-       <a href="https://www.niaid.nih.gov/labsandresources/resources/icemr/Pages/programOverview.aspx">International Centers for Excellence in Malaria Research (ICEMR)</a>.  
-       encompassing protein array analysis of antibodies in patient serum as well as structured sample and clinical data from 6 ICEMR groups.
-       Use this PlasmoDB search - 
-       <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByHostResponse#GeneQuestions.GenesByICEMRHostResponse">Identify Genes based on ICEMR Serum Antibody Levels </a> - 
-       to find the <i>Plasmodium</i> genes whose protein products served as antigens during host-immune response. The search employs a filter parameter interface that facilitates searching across data from all ICEMRs. <br><br>
+       Malaria-specific antigens in patient serum &mdash; A collaboration between the 
+       <a href="https://www.niaid.nih.gov/labsandresources/resources/icemr/Pages/programOverview.aspx">International Centers for Excellence in Malaria Research (ICEMR)</a>  
+       encompassing protein array analysis of antibodies in patient serum as well as structured sample and 
+       clinical data from the 6 ICEMR groups listed below.<br><br>
        
-       The following datasets are available for the first time in PlasmoDB Release 27:
-        <ul>
+       <ul>
           <li>
           <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_4735ffc000">Amazonia ICEMR Malaria-specific human serum antigens</a>
           </li> 
@@ -85,6 +82,14 @@
           <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_16d3d360de">Uganda ICEMR Malaria-specific human serum antigens</a>
           </li> 
          </ul>
+       
+       Use this PlasmoDB search - 
+       <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByHostResponse#GeneQuestions.GenesByICEMRHostResponse">Identify Genes based on ICEMR Serum Antibody Levels </a> - 
+       to find the <i>Plasmodium</i> genes whose protein products served as antigens during host-immune response. 
+       The search employs a filter parameter interface that facilitates searching across data from all ICEMRs. <br><br>
+       
+       
+        
         </section> 
      
      <h3>New Features</h3>
