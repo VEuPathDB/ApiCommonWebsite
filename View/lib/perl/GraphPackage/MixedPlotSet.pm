@@ -28,6 +28,8 @@ sub declareParts {
 
 sub getGraphObjects { $_[0]->{_graph_objects} }
 
+sub addGraphObject { push @{$_[0]->{_graph_objects}}, $_[1] }
+
 sub setGraphObjects { 
   my $self = shift;
 
