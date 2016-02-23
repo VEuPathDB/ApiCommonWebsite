@@ -98,11 +98,13 @@ export function Main(WdkMain) {
   return function ApiMain(props) {
     return (
       <WdkMain {...props}>
+        {/*
         <div
           className="eupathdb-Beta-Announcement"
           title="BETA means pre-release; a beta page is given out to a large group of users to try under real conditions. Beta versions have gone through alpha testing inhouse and are generally fairly close in look, feel and function to the final product; however, design changes often occur as a result.">
             You are viewing a <strong>BETA</strong> (pre-release) page. <a data-name="contact_us" className="new-window" href="contact.do">Feedback and comments</a> are welcome!
         </div>
+        */}
         {props.children}
         <Footer/>
       </WdkMain>
@@ -179,7 +181,7 @@ export function StepDownloadForm(WdkStepDownloadForm) {
         return ( <TabularReporterForm {...props}/> );
       case 'srt':
         switch (props.recordClass.name) {
-          case 'GeneRecordClasses.GeneRecordClass':
+          case 'TranscriptRecordClass.TranscriptRecordClass':
             return ( <FastaGeneReporterForm {...props}/> );
           case 'SequenceRecordClasses.SequenceRecordClass':
             return ( <FastaGenomicSequenceReporterForm {...props}/> );
@@ -216,20 +218,21 @@ export function RecordTable(WdkRecordTable) {
     if (props.table.name === 'MercatorTable') {
       Table = Gene.MercatorTable;
     }
-    return <Table {...props} DefaultComponent={WdkRecordTable}/>;
+    if (props.table.name === 'ProteinProperties') {
+      Table = Gene.ProteinPropertiesTable;
+    }
+      return <Table {...props} DefaultComponent={WdkRecordTable}/>;
   };
 }
 
 export function RecordAttribute(WdkRecordAttribute) {
   return function ApiRecordAttribute(props) {
-    if (props.name === 'dna_gtracks') {
-      return ( <Gene.GbrowseContext {...props} /> );
-    }
+    switch (props.recordClass.name) {
+      case Gene.RECORD_CLASS_NAME:
+        return <Gene.GeneRecordAttribute {...props} WdkRecordAttribute={WdkRecordAttribute}/>
 
-    if (props.name === 'protein_gtracks') {
-      return ( <Gene.ProteinContext {...props} /> );
+      default:
+        return <WdkRecordAttribute {...props}/>
     }
-
-    return ( <WdkRecordAttribute {...props}/> );
   };
 }

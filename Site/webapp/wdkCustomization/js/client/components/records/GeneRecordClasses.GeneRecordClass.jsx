@@ -1,8 +1,11 @@
 import React from 'react';
 import lodash from 'lodash';
 import ExpressionGraph from '../common/ExpressionGraph';
+import * as Gbrowse from '../common/Gbrowse';
+import { isNodeOverflowing } from '../../utils';
 
 let {
+  ComponentUtils,
   OntologyUtils,
   TreeUtils
 } = Wdk.client;
@@ -124,38 +127,30 @@ export function RecordOverview(props) {
     location_text,
     genus_species,
     strain,
-    status,
+    genome_status,
+    data_release_policy,
+    special_link,
+    user_comment_link,
+    new_product_name,
     product,
     context_start,
     context_end,
     source_id,
-    protein_length,
-    protein_gtracks
+    protein_length = 865,
+    protein_gtracks = 'InterproDomains%1ESignalP%1ETMHMM%1EExportPred%1EHydropathyPlot%1EBLASTP%1ELowComplexity%1ESecondaryStructure'
   } = props.record.attributes;
 
-  let thumbnails = [
-    {
-      targetId: 'genomic-context',
-      imgUrl: `/cgi-bin/gbrowse_img/plasmodb/?name=${sequence_id}:${context_start}..${context_end};l=Gene;hmap=gbrowseSyn;width=600`,
-      label: 'Gene Model'
-    },
-    {
-      targetId: 'genomic-context',
-      imgUrl: `/cgi-bin/gbrowse_img/plasmodb/?name=${sequence_id}:${context_start}..${context_end};l=Synteny/pfal_span+pfal_gene+pfit_span+pfit_gene+pviv_span+pviv_gene+pkno_span+pkno_gene+pcyn_span+pcyn_gene+prei_span+prei_gene+pber_span+pber_gene+py17X_span+py17X_gene+pyXNL_span+pyXNL_gene+pyYM_span+pyYM_gene+pcha_span+pcha_gene;hmap=pbrowse;width=600`,
-      label: 'Synteny'
-    },
-    {
-      targetId: 'protein-features',
-      imgUrl: `/cgi-bin/gbrowse_img/plasmodbaa/?name=${source_id}:1..${protein_length};l=${protein_gtracks};hmap=pbrowse;genepage=1;width=600`,
-      label: 'Protein Features'
-    }
 
-  ];
+    // TODO:  get the attribute name from the model instead of the hard coded one in contexts
+    Gbrowse.contexts.map(thumbnail => (
+        thumbnail.imgUrl = props.record.attributes[thumbnail.gbrowse_url]
+    ));
+
+
   return (
     <div className="wdk-RecordOverview">
       <div className="GeneOverviewTitle">
-        <h1 className="GeneOverviewId">{props.record.displayName}</h1>
-        {' '}
+        <h1 className="GeneOverviewId">{props.record.displayName + ' '}</h1>
         <h2 className="GeneOverviewProduct">{product}</h2>
       </div>
       <div className="GeneOverviewLeft">
@@ -166,13 +161,17 @@ export function RecordOverview(props) {
         <br/>
         <OverviewItem label="Species" value={genus_species}/>
         <OverviewItem label="Strain" value={strain}/>
-        <OverviewItem label="Status" value={status}/>
+        <OverviewItem label="Status" value={genome_status}/>
+        <br/>
+        <div className="GeneOverviewItem">{ComponentUtils.safeHtml(user_comment_link)}</div>
       </div>
 
       <div className="GeneOverviewRight">
-        <div className="GeneOverviewItem GeneOverviewIntent">This Gene Page reflects ongoing unpublished curation at GeneDB, enabling annotators to incorporate User Comments into the official record.  Users interested in publishing whole genome or other large-scale analysis should use PlasmoDB v5.3 (download here) or contact the primary investigator.</div>
+        <div className="GeneOverviewItem">{ComponentUtils.safeHtml(new_product_name)}</div>
+        <div className="GeneOverviewItem">{ComponentUtils.safeHtml(special_link)}</div>
+        <div className="GeneOverviewItem GeneOverviewIntent">{ComponentUtils.safeHtml(data_release_policy)}</div>
 
-        <OverviewThumbnails thumbnails={thumbnails}/>
+        <OverviewThumbnails  thumbnails={Gbrowse.contexts}/>
       </div>
     </div>
   );
@@ -181,7 +180,7 @@ export function RecordOverview(props) {
 function OverviewItem(props) {
   let { label, value = 'undefined' } = props;
   return value == null ? <noscript/> : (
-    <div className="GeneOverviewItem"><label>{label}</label> {lodash.capitalize(value)}</div>
+    <div className="GeneOverviewItem"><label>{label}</label> {ComponentUtils.safeHtml(value)}</div>
   );
 }
 
@@ -191,47 +190,71 @@ class OverviewThumbnails extends React.Component {
   constructor(...args) {
     super(...args);
     this.timeoutId = null;
+    this.node = null;
     this.state = {
       showPopover: false
     };
+    this._computePosition = this._computePosition.bind(this);
+    this._detectOverflow = lodash.throttle(this._detectOverflow.bind(this), 250);
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this._detectOverflow);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._detectOverflow);
   }
 
   setActiveThumbnail(event, thumbnail) {
-    console.log(event.target);
+    if (thumbnail === this.state.activeThumbnail) return;
     this.setState({
-      activeThumbnail: thumbnail
+      activeThumbnail: thumbnail,
+      screenX: event.target.offsetLeft + event.target.clientWidth,
+      showPopover: false
     });
   }
 
-  showPopover() {
-    this._setShowPopover(true, 200);
-  }
+    showPopover() {
+        this._setShowPopover(true, 250);
+    }
 
-  hidePopover() {
-    this._setShowPopover(false, 800);
-  }
+    hidePopover() {
+        this._setShowPopover(false, 250);
+    }
 
-  _setShowPopover(show, delay) {
-    clearTimeout(this.timeoutId);
-    this.timeoutId = setTimeout(() => {
-      this.setState({
-        showPopover: show
-      });
-    }, delay);
+    _setShowPopover(show, delay) {
+        clearTimeout(this.timeoutId);
+        this.timeoutId = setTimeout(() => {
+            this.setState({ showPopover: show });
+        }, delay);
+    }
+
+    _computePosition(popoverNode) {
+        if (popoverNode == null) return;
+        let popoverWidth = popoverNode.clientWidth;
+        let popoverLeft = this.state.screenX + popoverWidth + 10 > window.innerWidth
+                        ? 10
+                        : this.state.screenX + 10;
+        this.setState({ popoverLeft });
+    }
+
+  _detectOverflow() {
+    console.log('is overflowed', isNodeOverflowing(this.node));
   }
 
   render() {
     return (
-      <div className="eupathdb-TranscriptThumbnails">
+      <div ref={ n => this.node = n } className="eupathdb-GeneThumbnails">
         {this.props.thumbnails.map(thumbnail => (
-          <div className="eupathdb-TranscriptThumbnailWrapper">
-            <div className="eupathdb-TranscriptThumbnailLabel">
-              <a href={'#' + thumbnail.targetId}>{thumbnail.label}</a>
+          <div className="eupathdb-GeneThumbnailWrapper">
+            <div className="eupathdb-GeneThumbnailLabel">
+              <a href={'#' + thumbnail.gbrowse_url}>{thumbnail.displayName}</a>
             </div>
-            <div className="eupathdb-TranscriptThumbnail"
+            <div className="eupathdb-GeneThumbnail"
               onMouseEnter={event => { this.showPopover(); this.setActiveThumbnail(event, thumbnail) }}
               onMouseLeave={() => this.hidePopover()}>
-              <a href={'#' + thumbnail.targetId}>
+              <a href={'#' + thumbnail.gbrowse_url}>
                 <img width="150" src={thumbnail.imgUrl}/>
               </a>
             </div>
@@ -245,12 +268,14 @@ class OverviewThumbnails extends React.Component {
   renderPopover() {
     if (this.state.showPopover) {
       return (
-        <div className="eupathdb-TranscriptThumbnailPopover"
+        <div className="eupathdb-GeneThumbnailPopover"
+          style={{ left: this.state.popoverLeft || '' }}
+          ref={this._computePosition}
           onMouseEnter={event => { this.showPopover() }}
           onMouseLeave={() => { this.hidePopover() }}>
-          <h3>{this.state.activeThumbnail.label}</h3>
+          <h3>{this.state.activeThumbnail.displayName}</h3>
           <div>(Click on image to view section on page)</div>
-          <a href={'#' + this.state.activeThumbnail.targetId}
+          <a href={'#' + this.state.activeThumbnail.gbrowse_url}
             onClick={() => this.setState({ showPopover: false })}>
             <img src={this.state.activeThumbnail.imgUrl}/>
           </a>
@@ -261,85 +286,17 @@ class OverviewThumbnails extends React.Component {
 
 }
 
-let gbrowseScripts = [ '/gbrowse/apiGBrowsePopups.js', '/gbrowse/wz_tooltip.js' ]
-function injectGbrowseScripts(event) {
-  resizeIframe(event);
-  let iframe = event.target;
-
-  let gbrowseWindow = iframe.contentWindow.window;
-  let gbrowseDocumentBody = iframe.contentWindow.document.body;
-
-  gbrowseWindow.wdk = wdk;
-  gbrowseWindow.jQuery = jQuery;
-
-  for (let scriptUrl of gbrowseScripts) {
-    let script = document.createElement('script');
-    script.src = scriptUrl;
-    gbrowseDocumentBody.appendChild(script);
-    console.log(gbrowseDocumentBody, script);
+export function GeneRecordAttribute(props) {
+    let context = Gbrowse.contexts.find(context => context.gbrowse_url === props.name);
+    if (context != null) {
+      return ( <Gbrowse.GbrowseContext {...props} context={context} /> );
   }
-}
 
-function resizeIframe(event) {
-  let iframe = event.target;
-  iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 20 + 'px';
-}
+//  if (props.name === 'protein_gtracks') {
+//    return ( <Gbrowse.ProteinContext {...props} /> );
+//  }
 
-export function GbrowseContext(props) {
-  let {
-    sequence_id,
-    context_start,
-    context_end,
-    source_id,
-    dna_gtracks = 'test'
-  } = props.record.attributes;
-
-  let lowerProjectId = wdk.MODEL_NAME.toLowerCase();
-  let lowerGeneId = source_id.toLowerCase();
-
-  let queryParams = {
-    name: `${sequence_id}:${context_start}..${context_end}`,
-    hmap: 'gbrowseSyn',
-    l: dna_gtracks,
-    width: 800,
-    embed: 1,
-    h_feat: `${lowerGeneId}@yellow`,
-    genepage: 1
-  };
-
-  let queryParamString = Object.keys(queryParams).reduce((str, key) => `${str};${key}=${queryParams[key]}` , '');
-  let iframeUrl = `/cgi-bin/gbrowse_img/${lowerProjectId}/?${queryParamString}`;
-  let gbrowseUrl = `/cgi-bin/gbrowse/${lowerProjectId}/?name=${sequence_id}:${context_start}..${context_end};h_feat=${lowerGeneId}@yellow`;
-
-  return (
-    <div id="genomic-context">
-      <center>
-        <strong>Genomic Context</strong>
-        <a id="gbView" href={gbrowseUrl}>View in Genome Browser</a>
-        <div>(<i>use right click or ctrl-click to open in a new window</i>)</div>
-        <div id="${gnCtxDivId}"></div>
-        <iframe src={iframeUrl} seamless style={{ width: '100%', border: 'none' }} onLoad={injectGbrowseScripts} />
-        <a id="gbView" href={gbrowseUrl}>View in Genome Browser</a>
-        <div>(<i>use right click or ctrl-click to open in a new window</i>)</div>
-      </center>
-    </div>
-  );
-}
-
-export function ProteinContext(props) {
-  let { source_id, protein_length, protein_gtracks } = props.record.attributes;
-
-  return (
-    <div id="protein-features">
-      <strong>Protein Features</strong>
-      <iframe
-        src={`/cgi-bin/gbrowse_img/${wdk.MODEL_NAME.toLowerCase()}aa/?name=${source_id}:1..${protein_length};l=${protein_gtracks};hmap=pbrowse;width=800;embed=1;genepage=1`}
-        seamless
-        style={{ width: '100%', border: 'none' }}
-        onLoad={resizeIframe}
-      />
-    </div>
-  );
+  return ( <props.WdkRecordAttribute {...props}/> );
 }
 
 let treeCache = new WeakMap;
@@ -504,6 +461,24 @@ export function ExpressionGraphTable(props) {
     />
   );
 }
+
+export function ProteinPropertiesTable(props) {
+  let included = props.table.properties.includeInTable || [];
+
+  let table = Object.assign({}, props.table, {
+    attributes: props.table.attributes.filter(tm => included.indexOf(tm.name) > -1)
+  });
+
+  return (
+    <props.DefaultComponent
+      {...props}
+      table={table}
+      childRow={childProps =>
+        <Gbrowse.ProteinContext rowData={props.value[childProps.rowIndex]}/>}
+    />
+  );
+}
+
 
 
 export function MercatorTable(props) {
