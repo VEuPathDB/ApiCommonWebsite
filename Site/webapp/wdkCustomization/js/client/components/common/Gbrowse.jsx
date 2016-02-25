@@ -1,57 +1,94 @@
+import React from 'react';
+import { Components } from 'wdk-client';
+
+let { CollapsibleSection } = Components;
+
 export let contexts = [
     {
         gbrowse_url: 'GeneModelGbrowseUrl',
         displayName: 'Gene Model',
-        thumbnail: false
+        anchor: 'GeneModelGbrowseUrl',
+        isPbrowse: false
     },
     {
         gbrowse_url: 'SyntenyGbrowseUrl',
         displayName: 'Synteny',
-        thumbnail: true
+        anchor: 'SyntenyGbrowseUrl',
+        isPbrowse: false
     },
     {
         gbrowse_url: 'SnpsGbrowseUrl',
         displayName: 'SNPs',
-        thumbnail: true
+        anchor: 'SnpsGbrowseUrl',
+        isPbrowse: false
+    },
+    {
+        gbrowse_url: 'FeaturesPbrowseUrl',
+        displayName: 'Protein Features',
+        anchor: 'ProteinProperties',
+        isPbrowse: true
+    },
+    {
+        gbrowse_url: 'ProteomicsPbrowseUrl',
+        displayName: 'Proteomics',
+        anchor: 'ProteinExpressionPBrowse',
+        isPbrowse: true
     },
 ];
 
+
 let gbrowseScripts = [ '/gbrowse/apiGBrowsePopups.js', '/gbrowse/wz_tooltip.js' ]
 
-export function GbrowseContext(props) {
+export let GbrowseContext = React.createClass({
 
-    let gbrowseUrl = props.record.attributes[props.name];
-//    let lowerGeneId = source_id.toLowerCase();
+  getInitialState() {
+    return {
+      isCollapsed: true
+    };
+  },
 
-  let queryParams = {
-    width: 800,
-    embed: 1,
-//    h_feat: `${lowerGeneId}@yellow`,
-  };
+  render() {
 
-  let queryParamString = Object.keys(queryParams).reduce((str, key) => `${str};${key}=${queryParams[key]}` , '');
-      let iframeUrl = `${gbrowseUrl};${queryParamString}`;
+      let gbrowseUrl = this.props.record.attributes[this.props.name];
+  //    let lowerGeneId = source_id.toLowerCase();
 
-  return (
-    <div id={props.name} className="wdk-RecordAttributeSectionItem" style={{ display: 'block', width: '100%' }}>
-      <div className="wdk-RecordAttributeName"><strong>{props.displayName}</strong></div>
-      <iframe src={iframeUrl} seamless style={{ width: '100%', border: 'none' }} onLoad={gbrowseOnload} />
-    </div>
-  );
-}
+    let queryParams = {
+      width: 800,
+      embed: 1,
+  //    h_feat: `${lowerGeneId}@yellow`,
+    };
+
+    let queryParamString = Object.keys(queryParams).reduce((str, key) => `${str};${key}=${queryParams[key]}` , '');
+        let iframeUrl = `${gbrowseUrl};${queryParamString}`;
+
+    return (
+      <CollapsibleSection
+        id={this.props.name}
+        className="eupathdb-GbrowseContext"
+        style={{ display: 'block', width: '100%' }}
+        headerContent={this.props.displayName}
+        isCollapsed={this.state.isCollapsed}
+        onCollapsedChange={isCollapsed => this.setState({ isCollapsed })}
+      >
+        <iframe src={iframeUrl} seamless style={{ width: '100%', border: 'none' }} onLoad={gbrowseOnload}/>
+      </CollapsibleSection>
+    );
+  }
+
+});
 
 export function ProteinContext(props) {
-    let url = props.rowData.ProteinPropsPbrowseUrl;
-    let divId = "protein-features-" + props.rowData.transcript_id
+    let url = props.rowData.ProteinPbrowseUrl;
+    let divId = props.table.name + "-" + props.rowData.transcript_id
 
   return (
       <div id={divId}>
-      <strong>Protein Features</strong>
+      <strong>{props.table.displayName}</strong>
       <iframe
         src={`${url};width=800;embed=1;genepage=1`}
         seamless
         style={{ width: '100%', border: 'none' }}
-        onLoad={resizeIframe}
+        onLoad={pbrowseOnLoad}
       />
     </div>
   );
@@ -61,6 +98,12 @@ function gbrowseOnload(event) {
   let iframe = event.target;
   setBaseTarget(iframe);
   injectGbrowseScripts(iframe);
+  resizeIframe(iframe);
+}
+
+function pbrowseOnLoad(event) {
+  let iframe = event.target;
+  setBaseTarget(iframe);
   resizeIframe(iframe);
 }
 

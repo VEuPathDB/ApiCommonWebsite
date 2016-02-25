@@ -1,20 +1,21 @@
 import React from 'react';
 import lodash from 'lodash';
+import {
+  Components,
+  ComponentUtils,
+  OntologyUtils,
+  TreeUtils
+} from 'wdk-client';
 import ExpressionGraph from '../common/ExpressionGraph';
 import * as Gbrowse from '../common/Gbrowse';
 import { isNodeOverflowing } from '../../utils';
 
-let {
-  ComponentUtils,
-  OntologyUtils,
-  TreeUtils
-} = Wdk.client;
 
 let {
   NativeCheckboxList,
   RecordLink,
   Sticky
-} = Wdk.client.Components;
+} = Components;
 
 export const GENE_ID = 'gene';
 export const TRANSCRIPT_ID = 'transcript';
@@ -147,6 +148,9 @@ export function RecordOverview(props) {
     ));
 
 
+    let filteredGBrowseContexts = Gbrowse.contexts.filter(context => !context.isPbrowse || (context.isPbrowse && gene_type == 'protein coding' ));
+
+
   return (
     <div className="wdk-RecordOverview">
       <div className="GeneOverviewTitle">
@@ -171,10 +175,30 @@ export function RecordOverview(props) {
         <div className="GeneOverviewItem">{ComponentUtils.safeHtml(special_link)}</div>
         <div className="GeneOverviewItem GeneOverviewIntent">{ComponentUtils.safeHtml(data_release_policy)}</div>
 
-        <OverviewThumbnails  thumbnails={Gbrowse.contexts}/>
+        <OverviewThumbnails  thumbnails={filteredGBrowseContexts}/>
       </div>
     </div>
   );
+}
+
+let expressionRE = /ExpressionGraphs$/;
+export function RecordTable(props) {
+  let Table = props.DefaultComponent;
+
+  if (expressionRE.test(props.table.name)) {
+    Table = ExpressionGraphTable;
+  }
+  if (props.table.name === 'MercatorTable') {
+    Table = MercatorTable;
+  }
+  if (props.table.name === 'ProteinProperties') {
+    Table = ProteinPbrowseTable;
+  }
+  if (props.table.name === 'ProteinExpressionPBrowse') {
+    Table = ProteinPbrowseTable;
+  }
+
+  return <Table {...props}/>
 }
 
 function OverviewItem(props) {
@@ -249,12 +273,12 @@ class OverviewThumbnails extends React.Component {
         {this.props.thumbnails.map(thumbnail => (
           <div className="eupathdb-GeneThumbnailWrapper">
             <div className="eupathdb-GeneThumbnailLabel">
-              <a href={'#' + thumbnail.gbrowse_url}>{thumbnail.displayName}</a>
+              <a href={'#' + thumbnail.anchor}>{thumbnail.displayName}</a>
             </div>
             <div className="eupathdb-GeneThumbnail"
               onMouseEnter={event => { this.showPopover(); this.setActiveThumbnail(event, thumbnail) }}
               onMouseLeave={() => this.hidePopover()}>
-              <a href={'#' + thumbnail.gbrowse_url}>
+              <a href={'#' + thumbnail.anchor}>
                 <img width="150" src={thumbnail.imgUrl}/>
               </a>
             </div>
@@ -275,7 +299,7 @@ class OverviewThumbnails extends React.Component {
           onMouseLeave={() => { this.hidePopover() }}>
           <h3>{this.state.activeThumbnail.displayName}</h3>
           <div>(Click on image to view section on page)</div>
-          <a href={'#' + this.state.activeThumbnail.gbrowse_url}
+          <a href={'#' + this.state.activeThumbnail.anchor}
             onClick={() => this.setState({ showPopover: false })}>
             <img src={this.state.activeThumbnail.imgUrl}/>
           </a>
@@ -286,7 +310,7 @@ class OverviewThumbnails extends React.Component {
 
 }
 
-export function GeneRecordAttribute(props) {
+export function RecordAttribute(props) {
     let context = Gbrowse.contexts.find(context => context.gbrowse_url === props.name);
     if (context != null) {
       return ( <Gbrowse.GbrowseContext {...props} context={context} /> );
@@ -296,7 +320,7 @@ export function GeneRecordAttribute(props) {
 //    return ( <Gbrowse.ProteinContext {...props} /> );
 //  }
 
-  return ( <props.WdkRecordAttribute {...props}/> );
+  return ( <props.DefaultComponent {...props}/> );
 }
 
 let treeCache = new WeakMap;
@@ -445,7 +469,7 @@ export let RecordMainSection = React.createClass({
 });
 */
 
-export function ExpressionGraphTable(props) {
+function ExpressionGraphTable(props) {
   let included = props.table.properties.includeInTable || [];
 
   let table = Object.assign({}, props.table, {
@@ -462,7 +486,7 @@ export function ExpressionGraphTable(props) {
   );
 }
 
-export function ProteinPropertiesTable(props) {
+function ProteinPbrowseTable(props) {
   let included = props.table.properties.includeInTable || [];
 
   let table = Object.assign({}, props.table, {
@@ -474,14 +498,14 @@ export function ProteinPropertiesTable(props) {
       {...props}
       table={table}
       childRow={childProps =>
-        <Gbrowse.ProteinContext rowData={props.value[childProps.rowIndex]}/>}
+        <Gbrowse.ProteinContext {...props} rowData={props.value[childProps.rowIndex]}/>}
     />
   );
 }
 
 
 
-export function MercatorTable(props) {
+function MercatorTable(props) {
   return (
     <div className="eupathdb-MercatorTable">
       <form action="/cgi-bin/pairwiseMercator">
