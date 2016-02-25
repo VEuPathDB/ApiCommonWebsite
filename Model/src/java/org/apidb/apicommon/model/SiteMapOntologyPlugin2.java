@@ -53,7 +53,7 @@ public class SiteMapOntologyPlugin2 extends EuPathDbOwlParserWdkPlugin {
 
       // a sub-category node that will hold tracks, if any
       TreeNode<OntologyNode> trackSubCategory = makeCategoryNode("Genome Browser Tracks", "Genome browser tracks",
-          new Integer(1), parentLabel + "-tracks");
+								 new Integer(1), parentLabel + "-tracks", parentLabel);
 
       if (DEBUG) {
         if (nodeContents.get("EuPathDB alternative term") != null &&
@@ -112,24 +112,22 @@ public class SiteMapOntologyPlugin2 extends EuPathDbOwlParserWdkPlugin {
         newNode.addChildNode(trackSubCategory);
 
       if (searchesByRecord.size() != 0) {
-        TreeNode<OntologyNode> searchesSubCategory = makeCategoryNode("Searches", "Searches", new Integer(2), parentLabel+"-searches");
+        TreeNode<OntologyNode> searchesSubCategory = makeCategoryNode("Searches", "Searches", new Integer(2), parentLabel+"-searches", parentLabel);
         newNode.addChildNode(searchesSubCategory);
         for (String recordName : new TreeSet<String>(searchesByRecord.keySet())) {
-          TreeNode<OntologyNode> recordSubCategory = makeCategoryNode(recordName, recordName + " Searches", new Integer(2), parentLabel+"-searches-"+recordName);
-          newNode.addChildNode(searchesSubCategory);
           for (TreeNode<OntologyNode> individual : searchesByRecord.get(recordName)) {
-            recordSubCategory.addChildNode(individual);
+            searchesSubCategory.addChildNode(individual);
           }
         }
         
       }
 
       if (pageElementsByRecord.size() != 0) {
-        TreeNode<OntologyNode> pageSubCategory = makeCategoryNode("Records", "Record pages", new Integer(3), parentLabel+"-records");
+        TreeNode<OntologyNode> pageSubCategory = makeCategoryNode("Record Pages", "Record pages", new Integer(3), parentLabel+"-records", parentLabel);
         newNode.addChildNode(pageSubCategory);
-        for (String recordName : new TreeSet<String>(searchesByRecord.keySet())) {
-          TreeNode<OntologyNode> recordSubCategory = makeCategoryNode(recordName, recordName + " Page", new Integer(2), parentLabel+"-records-"+recordName);
-          newNode.addChildNode(recordSubCategory);
+        for (String recordName : new TreeSet<String>(pageElementsByRecord.keySet())) {
+          TreeNode<OntologyNode> recordSubCategory = makeCategoryNode(recordName + " Page", recordName + " Page", new Integer(2), parentLabel+"-records-"+recordName, parentLabel);
+          pageSubCategory.addChildNode(recordSubCategory);
           for (TreeNode<OntologyNode> individual : pageElementsByRecord.get(recordName)) {
             recordSubCategory.addChildNode(individual);
           }
@@ -175,7 +173,7 @@ public class SiteMapOntologyPlugin2 extends EuPathDbOwlParserWdkPlugin {
   }
 
   private TreeNode<OntologyNode> makeCategoryNode(String displayName, String description, int order,
-      String label) {
+						  String label, String ontologyParent) {
     OntologyNode nodeContents = new OntologyNode();
     TreeNode<OntologyNode> node = new TreeNode<OntologyNode>(nodeContents);
 
@@ -187,6 +185,11 @@ public class SiteMapOntologyPlugin2 extends EuPathDbOwlParserWdkPlugin {
     ArrayList<String> sms = new ArrayList<String>();
     sms.add("true");
     nodeContents.put("SiteMapSpecial", sms);
+
+    // remember the real ontology term we are under
+    ArrayList<String> aa = new ArrayList<String>();
+    aa.add(ontologyParent.replaceAll(" ", "-").toLowerCase());
+    nodeContents.put("ontologyParent", aa);
 
     ArrayList<String> names = new ArrayList<String>();
     names.add(displayName);
