@@ -1,6 +1,7 @@
-import { Components } from 'wdk-client';
+import { Components, ComponentUtils } from 'wdk-client';
 import Footer from './components/common/Footer';
 import { findComponent } from './components/records';
+import * as Gbrowse from './components/common/Gbrowse';
 
 // load individual reporter forms
 import TabularReporterForm from './components/reporters/TabularReporterForm';
@@ -134,9 +135,15 @@ export function Record(DefaultComponent) {
 }
 
 function RecordAttributionSection(props) {
-  let ResolvedComponent =
-    findComponent('RecordAttributionSection', props.recordClass.name) || 'noscript';
-  return <ResolvedComponent {...props}/>
+  if ('attribution' in props.record.attributes) {
+    return (
+      <div>
+        <h3>Record Attribution</h3>
+        {ComponentUtils.renderAttributeValue(props.record.attributes.attribution)}
+      </div>
+    )
+  }
+  return <noscript/>
 }
 
 export function RecordOverview(DefaultComponent) {
@@ -223,6 +230,11 @@ export function RecordTable(DefaultComponent) {
 
 export function RecordAttribute(DefaultComponent) {
   return function ApiRecordAttribute(props) {
+    let context = Gbrowse.contexts.find(context => context.gbrowse_url === props.name);
+    if (context != null) {
+      return ( <Gbrowse.GbrowseContext {...props} context={context} /> );
+    }
+
     let ResolvedComponent =
       findComponent('RecordAttribute', props.recordClass.name) || DefaultComponent;
     return <ResolvedComponent {...props} DefaultComponent={DefaultComponent}/>

@@ -120,6 +120,7 @@ function TranscriptList(props, context) {
 }
 
 export function RecordOverview(props) {
+  let { attributes } = props.record;
   let {
     name,
     type_with_pseudo,
@@ -140,16 +141,21 @@ export function RecordOverview(props) {
     context_start,
     context_end,
     source_id
-  } = props.record.attributes;
+  } = attributes;
 
 
     // TODO:  get the attribute name from the model instead of the hard coded one in contexts
-    Gbrowse.contexts.map(thumbnail => (
-        thumbnail.imgUrl = props.record.attributes[thumbnail.gbrowse_url]
-    ));
-
-
-    let filteredGBrowseContexts = Gbrowse.contexts.filter(context => !context.isPbrowse || (context.isPbrowse && type_with_pseudo == 'protein coding' ));
+    // Filter out contexts that are not available in this gene record and add imgUrl
+    let filteredGBrowseContexts = Gbrowse.contexts
+    .filter(context => {
+      if (context.gbrowse_url in attributes) {
+        return  !context.isPbrowse || (context.isPbrowse && type_with_pseudo == 'protein coding' );
+      }
+      return false;
+    })
+    .map(thumbnail => Object.assign({}, thumbnail, {
+      imgUrl: attributes[thumbnail.gbrowse_url]
+    }));
 
 
   return (
@@ -158,6 +164,14 @@ export function RecordOverview(props) {
         <h1 className="GeneOverviewId">{props.record.displayName + ' '}</h1>
         <h2 className="GeneOverviewProduct">{product}</h2>
       </div>
+
+      {new_product_name ? (
+        <div className="GeneOverviewSubtitle">
+          <h1 className="GeneOverviewHiddenId">{props.record.displayName + ' '}</h1>
+          <div className="GeneOverviewNewProduct">{ComponentUtils.renderAttributeValue(new_product_name)}</div>
+        </div>
+      ) : null}
+
       <div className="GeneOverviewLeft">
         <OverviewItem label="Name" value={name}/>
         <div className="GeneOverviewItem">{ComponentUtils.renderAttributeValue(new_gene_name)}</div>
@@ -174,7 +188,6 @@ export function RecordOverview(props) {
       </div>
 
       <div className="GeneOverviewRight">
-        <div className="GeneOverviewItem">{ComponentUtils.renderAttributeValue(new_product_name)}</div>
         <div className="GeneOverviewItem GeneOverviewIntent">{ComponentUtils.renderAttributeValue(data_release_policy)}</div>
 
         <OverviewThumbnails  thumbnails={filteredGBrowseContexts}/>
@@ -311,15 +324,6 @@ class OverviewThumbnails extends React.Component {
     }
   }
 
-}
-
-export function RecordAttribute(props) {
-    let context = Gbrowse.contexts.find(context => context.gbrowse_url === props.name);
-    if (context != null) {
-      return ( <Gbrowse.GbrowseContext {...props} context={context} /> );
-  }
-
-  return ( <props.DefaultComponent {...props}/> );
 }
 
 let treeCache = new WeakMap;
