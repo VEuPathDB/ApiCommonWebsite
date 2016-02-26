@@ -231,10 +231,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
     public static void loadReferences(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
-        logger.info("******CustomShowQuestionAction: in loadRefereneces");
-        logger.info("\n\n******CustomShowQuestionAction: to load questions by dataset");
         loadQuestionsByDataset(servlet, request);
-        logger.info("\n\n\n\n\n******CustomShowQuestionAction: questions loaded, to load datasets");
         loadDatasets(servlet, request);
     }
 
