@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -93,8 +94,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     public static void loadQuestionsByDataset(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-
         UserBean user = ActionUtility.getUser(servlet, request);
+
+        //eg:  InternalGeneDatasetQuestions.GenesByRNASeqEvidence
         String questionName = request.getParameter(PARAM_QUESTION_FULL);
         QuestionBean question;
         if (questionName == null) {
@@ -104,13 +106,23 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             question = wdkModel.getQuestion(questionName);
         }
 
+        // Internal questions (eg: InternalGeneDatasetQuestions.GenesByRNASeqEvidence) have datasetType/datasetSubtype as properties in the model
+        //   "datasetType" value (eg: transcript_expression) corresponds to their category in categories.xml
+        //   "datasetSubtype" value (eg: rnaseq) corresponds to the category of the specific expr searches in categories.xml scope webservices
+        // the specific expr searches have as a property (displayCategory) in the model 
+        //   "displayCategory" value (eg: "fold_change") corresponds to the category of the specific expr searches in categories.xml scope datasets
+        // (yes, expresion searches appear twice in categories.xml in different categories and scopes. )
         String[] datasetTypes = question.getPropertyList("datasetType");
         String[] datasetSubtypes = question.getPropertyList("datasetSubtype");
+        logger.debug(" ******** datasetTypes: " + Arrays.toString(datasetTypes) );
+        logger.debug(" ******** datasetSubtypes: " + Arrays.toString(datasetSubtypes) );
 
-        // get dataset records
+        // in questions other than these internal ones we leave the action..
         // skip if no datasetType defined
         if (datasetTypes.length == 0) return;
 
+
+        // set 3 data structures that will be passed to jsp in request
         // { dataset => { type => question, ... }, ... }
         Map<RecordBean, Map<String, List<QuestionBean>>> questionsByDataset =
                 new LinkedHashMap<RecordBean, Map<String, List<QuestionBean>>>();
@@ -121,20 +133,21 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                         return c1.getName().compareTo(c2.getName());
                     }
                 });
-
         Map<RecordBean, List<QuestionBean>> uncatQuestionsMap =
           new LinkedHashMap<RecordBean, List<QuestionBean>>();
 
+
+        // 1- Obtain "datasets by type/subtype"
         String dsQuestionName;
         Map<String, String> params = new LinkedHashMap<String, String>();
         params.put("record_class", question.getRecordClass().getFullName());
-        params.put("dataset_type", datasetTypes[0]);
+        params.put("dataset_type", datasetTypes[0]); // eg: transcript_expression
 
         if (datasetSubtypes.length == 0) {
             dsQuestionName = "DatasetQuestions.DatasetsByType";
         } else {
             dsQuestionName = "DatasetQuestions.DatasetsByTypeAndSubtype";
-            params.put("dataset_subtype", datasetSubtypes[0]);
+            params.put("dataset_subtype", datasetSubtypes[0]); // eg: array or rnaseq
         }
 
         QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
@@ -146,6 +159,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         while (dsRecords.hasNext()) {
             //i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
             RecordBean dsRecord = dsRecords.next();
+
+            // checking on a dataset record table that provides wdk references... 
+            // we need the references for this dataset, with correct record_class and target_type "question"
             TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
             Map<String, List<QuestionBean>> internalQuestionsMap =
                     new LinkedHashMap<String, List<QuestionBean>>();
@@ -156,6 +172,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 String targetName = row.get("target_name").toString();
 
                 if (targetType.equals(TYPE_QUESTION)) {
+    
+                  // internalQuestion is the expression search
                     QuestionBean internalQuestion = wdkModel.getQuestion(
                             targetName);
 
@@ -172,18 +190,23 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                     //         internalQuestion.getPropertyList("displayCategory");
 
                     List<CategoryBean> displayCategories =
-                            internalQuestion.getDatasetCategories();
+                      //  internalQuestion.getDatasetCategories();
+                      //in the ontology these searches appear under webservices scope
+                      internalQuestion. getWebServiceCategories(); 
                     logger.debug("Dataset categories: " + displayCategories.size());
 
+
                     if (displayCategories.size() == 1) {
-                        displayCategorySet.add(displayCategories.get(0));
-                        String catName = displayCategories.get(0).getName();
-                        List<QuestionBean> internalQuestions = internalQuestionsMap.get(catName);
-                        if (internalQuestions == null) {
-                          internalQuestions = new ArrayList<QuestionBean>();
-                          internalQuestionsMap.put(catName, internalQuestions);
-                        }
-                        internalQuestions.add(internalQuestion);
+                      displayCategorySet.add(displayCategories.get(0));
+                      String catName = displayCategories.get(0).getName();
+                      logger.debug("**** category:" + catName);
+
+                      List<QuestionBean> internalQuestions = internalQuestionsMap.get(catName);
+                      if (internalQuestions == null) {
+                        internalQuestions = new ArrayList<QuestionBean>();
+                        internalQuestionsMap.put(catName, internalQuestions);
+                      }
+                      internalQuestions.add(internalQuestion);
                     }
                     else {
                       // Track uncategorized questions
@@ -208,7 +231,10 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
     public static void loadReferences(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
+        logger.info("******CustomShowQuestionAction: in loadRefereneces");
+        logger.info("\n\n******CustomShowQuestionAction: to load questions by dataset");
         loadQuestionsByDataset(servlet, request);
+        logger.info("\n\n\n\n\n******CustomShowQuestionAction: questions loaded, to load datasets");
         loadDatasets(servlet, request);
     }
 
@@ -220,7 +246,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         ActionForward forward = super.execute(mapping, form, request, response);
         loadReferences(servlet, request);
 
-				logger.info("CustomShowQuestionAction going to: " + forward);
+        logger.info("*****CustomShowQuestionAction going to: " + forward);
         return forward;
     }
 
