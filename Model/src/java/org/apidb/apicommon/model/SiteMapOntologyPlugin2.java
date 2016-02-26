@@ -93,7 +93,7 @@ public class SiteMapOntologyPlugin2 extends EuPathDbOwlParserWdkPlugin {
           } 
 
           // if a wdk entity, add into a sub category based on its record class name
-          else if (scope.contains("menu")) {
+          else if (scope.contains("menu") || scope.contains("webservice")) {
             if (!searchesByRecord.containsKey(recordName)) searchesByRecord.put(recordName, new ArrayList<TreeNode<OntologyNode>>());
             searchesByRecord.get(recordName).add(child);
           }
@@ -114,12 +114,15 @@ public class SiteMapOntologyPlugin2 extends EuPathDbOwlParserWdkPlugin {
       if (searchesByRecord.size() != 0) {
         TreeNode<OntologyNode> searchesSubCategory = makeCategoryNode("Searches", "Searches", new Integer(2), parentLabel+"-searches", parentLabel);
         newNode.addChildNode(searchesSubCategory);
+	int order = 1;
         for (String recordName : new TreeSet<String>(searchesByRecord.keySet())) {
           for (TreeNode<OntologyNode> individual : searchesByRecord.get(recordName)) {
+	    List<String> l = new ArrayList<String>();
+	    l.add(new Integer(order++).toString());
+	    individual.getContents().put("display order", l);
             searchesSubCategory.addChildNode(individual);
           }
         }
-        
       }
 
       if (pageElementsByRecord.size() != 0) {
