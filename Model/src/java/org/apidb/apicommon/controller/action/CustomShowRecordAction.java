@@ -87,8 +87,14 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
         ActionForward forward;
         if (!PATHWAY_RECORD_CLASS_NAME.equals(rcName)) {
+					Map<String, String[]> myParams = new HashMap<String, String[]>();
+          myParams.putAll(request.getParameterMap()); //shallow copy
+					if (TRANSCRIPT_RECORD_CLASS_NAME.equals(rcName)) {
+						myParams.put(PARAM_SOURCE_ID, myParams.get(PARAM_GENE_SOURCE_ID)); 
+						rcName = GENE_RECORD_CLASS_NAME;
+					}
           RecordClassBean recordClassBean = wdkModel.getRecordClass(rcName);
-          String clientUrl = RecordPageAdapter.createUrl(recordClassBean, request.getParameterMap());
+          String clientUrl = RecordPageAdapter.createUrl(recordClassBean, myParams);
           forward = new ActionForward("/app" + clientUrl, true);
         }
         
