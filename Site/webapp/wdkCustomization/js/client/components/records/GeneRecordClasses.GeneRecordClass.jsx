@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import lodash from 'lodash';
 import {
   Components,
@@ -120,90 +121,62 @@ function TranscriptList(props, context) {
   );
 }
 
-export function RecordOverview(props) {
-  let { attributes } = props.record;
-  let {
-    name,
-    type_with_pseudo,
-    chromosome,
-    sequence_id,
-    location_text,
-    genus_species,
-    strain,
-    genome_status,
-    data_release_policy,
-    special_link,
-    user_comment_link,
-    new_product_name,
-    new_gene_name,
-    gbrowse_link,
-    pbrowse_link,
-    product,
-    context_start,
-    context_end,
-    source_id
-  } = attributes;
+/**
+ * Render thumbnails at eupathdb-GeneThumbnailsContainer
+ */
+export class RecordOverview extends React.Component {
 
+  componentDidMount() {
+    this.renderThumbnails();
+  }
 
-    // TODO:  get the attribute name from the model instead of the hard coded one in contexts
-    // Filter out contexts that are not available in this gene record and add imgUrl
-    let filteredGBrowseContexts = Gbrowse.contexts
-    .filter(context => {
-      if (context.gbrowse_url in attributes) {
-        return  !context.isPbrowse || (context.isPbrowse && type_with_pseudo == 'protein coding' );
-      }
-      return false;
+  componentDidUpdate() {
+    this.renderThumbnails();
+  }
+
+  renderThumbnails() {
+    let { recordClass } = this.props;
+    let { attributes } = this.props.record;
+    let { gene_type, protein_expression_gtracks } = attributes;
+    let isProteinCoding = gene_type === 'protein coding';
+    let filteredGBrowseContexts = Gbrowse.contexts.filter(context => {
+      return context.gbrowse_url in attributes && (
+        !context.isPbrowse || (isProteinCoding && context.gbrowse_url !== 'ProteomicsPbrowseUrl') ||
+        (isProteinCoding && context.gbrowse_url === 'ProteomicsPbrowseUrl' && protein_expression_gtracks)
+      );
     })
     .map(thumbnail => Object.assign({}, thumbnail, {
-      imgUrl: attributes[thumbnail.gbrowse_url]
+      imgUrl: attributes[thumbnail.gbrowse_url],
+      displayName: recordClass.attributesMap.get(thumbnail.gbrowse_url).displayName
     }));
+    let thumbsContainer = this.node.querySelector('.eupathdb-GeneThumbnailsContainer');
+    if (thumbsContainer == null) {
+      console.error('Warning: Could not find GeneThumbnailsContainer');
+    }
+    else {
+      ReactDOM.render((
+        <OverviewThumbnails thumbnails={filteredGBrowseContexts}/>
+      ), thumbsContainer);
+    }
+  }
 
-
-  return (
-    <div className="wdk-RecordOverview">
-      <div className="GeneOverviewTitle">
-        <h1 className="GeneOverviewId">{props.record.displayName + ' '}</h1>
-        <h2 className="GeneOverviewProduct">{product}</h2>
+  render() {
+    let { DefaultComponent } = this.props;
+    return (
+      <div ref={node => this.node = node}>
+        <DefaultComponent {...this.props}/>
       </div>
+    );
+  }
 
-      {new_product_name ? (
-        <div className="GeneOverviewSubtitle">
-          <h1 className="GeneOverviewHiddenId">{props.record.displayName + ' '}</h1>
-          <div className="GeneOverviewNewProduct">{ComponentUtils.renderAttributeValue(new_product_name)}</div>
-        </div>
-      ) : null}
-
-      <div className="GeneOverviewLeft">
-        <OverviewItem label="Name" value={name}/>
-        <div className="GeneOverviewItem">{ComponentUtils.renderAttributeValue(new_gene_name)}</div>
-        <OverviewItem label="Type" value={type_with_pseudo}/>
-        <OverviewItem label="Chromosome" value={chromosome}/>
-        <OverviewItem label="Location" value={location_text}/>
-        <br/>
-        <OverviewItem label="Species" value={genus_species}/>
-        <OverviewItem label="Strain" value={strain}/>
-        <OverviewItem label="Status" value={genome_status}/>
-        <br/>
-        <div className="GeneOverviewItem">{ComponentUtils.renderAttributeValue(special_link)}</div>
-        <div className="GeneOverviewItem">{ComponentUtils.renderAttributeValue(user_comment_link)}</div>
-      </div>
-
-      <div className="GeneOverviewRight">
-        <div className="GeneOverviewItem GeneOverviewIntent">{ComponentUtils.renderAttributeValue(data_release_policy)}</div>
-
-        <OverviewThumbnails  thumbnails={filteredGBrowseContexts}/>
-        <div className="GeneOverviewItem">{ComponentUtils.renderAttributeValue(gbrowse_link)}, {ComponentUtils.renderAttributeValue(pbrowse_link)}</div>
-      </div>
-    </div>
-  );
 }
 
-let expressionRE = /ExpressionGraphs$/;
+let expressionRE = /ExpressionGraphs|HostResponseGraphs|PhenotypeGraphs$/;
 export function RecordTable(props) {
   let Table = props.DefaultComponent;
 
   if (expressionRE.test(props.table.name)) {
-    Table = ExpressionGraphTable;
+      Table = ExpressionGraphTable;
   }
   if (props.table.name === 'MercatorTable') {
     Table = MercatorTable;
@@ -300,7 +273,7 @@ class OverviewThumbnails extends React.Component {
     return (
       <div ref={this.setNode} className="eupathdb-GeneThumbnails">
         {this.props.thumbnails.map(thumbnail => (
-          <div className="eupathdb-GeneThumbnailWrapper">
+          <div className="eupathdb-GeneThumbnailWrapper" key={thumbnail.gbrowse_url}>
             <div className="eupathdb-GeneThumbnailLabel">
               <a href={'#' + thumbnail.anchor}>{thumbnail.displayName}</a>
             </div>
@@ -530,8 +503,8 @@ function SequencesTable(props) {
       {...props}
       table={table}
       childRow={childProps => {
-        let utrColor = 'rgb(252, 181, 203)';
-        let intronColor = 'rgb(144, 212, 111)';
+        let utrClassName = 'eupathdb-UtrSequenceNucleotide';
+        let intronClassName = 'eupathdb-IntronSequenceNucleotide';
 
         let {
           protein_sequence,
@@ -545,31 +518,38 @@ function SequencesTable(props) {
           gen_rel_intron_utr_coords
         } = childProps.rowData;
 
-        let transcriptHighlightRegions = [
+        let transcriptRegions = [
           JSON.parse(five_prime_utr_coords) || undefined,
           JSON.parse(three_prime_utr_coords) || undefined
-        ]
-        .filter(coords => coords != null)
-        .map(coords => {
-          return { color: utrColor, start: coords[0], end: coords[1] };
+        ].filter(coords => coords != null)
+
+        let transcriptHighlightRegions = transcriptRegions.map(coords => {
+          return { className: utrClassName, start: coords[0], end: coords[1] };
         });
 
-        let genomicHighlightRegions = JSON.parse(gen_rel_intron_utr_coords || '[]')
-        .map(coord => {
+        let genomicRegions = JSON.parse(gen_rel_intron_utr_coords || '[]');
+
+        let genomicHighlightRegions = genomicRegions.map(coord => {
           return {
-            color: coord[0] === 'Intron' ? intronColor : utrColor,
+            className: coord[0] === 'Intron' ? intronClassName : utrClassName,
             start: coord[1],
             end: coord[2]
           };
         });
 
+        let genomicRegionTypes = lodash(genomicRegions)
+        .map(region => region[0])
+        .sortBy()
+        .uniq(true)
+        .value();
 
+        let legendStyle = { marginRight: '1em', textDecoration: 'underline' };
         return (
           <div>
             {protein_sequence == null ? null : (
               <div style={{ padding: '1em' }}>
                 <h3>Predicted Protein Sequence</h3>
-                <div>{protein_length} bp</div>
+                <div><span style={legendStyle}>{protein_length} bp</span></div>
                 <Sequence sequence={protein_sequence}/>
               </div>
             )}
@@ -577,18 +557,28 @@ function SequencesTable(props) {
             {protein_sequence == null ? null : <hr/>}
 
             <div style={{ padding: '1em' }}>
-              <h3>Predicted RNA/mRNA Sequence (introns spliced out; utrs highlighted)</h3>
-              <div>{transcript_length} bp</div>
+              <h3>Predicted RNA/mRNA Sequence (Introns spliced out{ transcriptRegions.length > 0 ? '; UTRs highlighted' : null })</h3>
+              <div>
+                <span style={legendStyle}>{transcript_length} bp</span>
+                { transcriptRegions.length > 0 ? <span style={legendStyle} className={utrClassName}>&nbsp;UTR&nbsp;</span> : null }
+              </div>
               <Sequence sequence={transcript_sequence}
                 highlightRegions={transcriptHighlightRegions}/>
             </div>
 
             <div style={{ padding: '1em' }}>
-              <h3>Genomic Sequence (introns and utrs highlighted)</h3>
-              <div>{genomic_sequence_length} bp</div>
+              <h3>Genomic Sequence { genomicRegionTypes.length > 0 ? ' (' + genomicRegionTypes.map(t => t + 's').join(' and ') + ' highlighted)' : null}</h3>
+              <div>
+                <span style={legendStyle}>{genomic_sequence_length} bp</span>
+                {genomicRegionTypes.map(t => {
+                  let className = t === 'Intron' ? intronClassName : utrClassName;
+                  return (
+                    <span style={legendStyle} className={className}>&nbsp;{t}&nbsp;</span>
+                  );
+                })}
+              </div>
               <Sequence sequence={genomic_sequence}
                 highlightRegions={genomicHighlightRegions}/>
-              <div>Sequence length: {genomic_sequence.length} bp</div>
             </div>
 
           </div>
