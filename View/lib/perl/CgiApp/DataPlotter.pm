@@ -79,6 +79,8 @@ sub run {
 
          my $declareParts     = $Cgi->param('declareParts');
 
+         my $default    = $Cgi->param('default');
+
          my $thumbnail_b    = $Cgi->param('thumb');
          my @visibleParts   = split(',', $Cgi->param('vp') || '');
 
@@ -139,6 +141,7 @@ sub run {
                         Format => $gddFormat,
                         OutputFile => $fmt_f,
                         Thumbnail => $thumbnail_b,
+                        DefaultPlotPart => $default,
                         VisibleParts => \@visibleParts,
                         Compact => $compact,
                         IdType => $idType,
