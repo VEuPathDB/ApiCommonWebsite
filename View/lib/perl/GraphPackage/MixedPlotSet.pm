@@ -6,6 +6,8 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::AbstractPlotSet );
 use ApiCommonWebsite::View::GraphPackage::AbstractPlotSet;
 
+use Tie::IxHash;
+
 sub setMainLegend {
   my ($self, $hash) = @_;
 
@@ -37,7 +39,8 @@ sub setGraphObjects {
     die "Graph Ojbects Array Not Defined Correctly" ;
   }
 
-  my $profileSetsHash = {};
+  my %profileSetsHash;
+  tie %profileSetsHash, 'Tie::IxHash';
 
   my $graphs = [];
 
@@ -49,16 +52,16 @@ sub setGraphObjects {
       die "Part name must be defined"; 
     }
 #print STDERR "GOT NAME = $name\n";
-    $profileSetsHash->{$name}->{size}  = $size;
-    $profileSetsHash->{$name}->{count}++ ;
+    $profileSetsHash{$name}->{size}  = $size;
+    $profileSetsHash{$name}->{count}++ ;
 
     push @{$graphs}, $plotPart;
   }
 
   #for the mixedPlot, this hash only contains the size and name, this is a workaround for backward compatibility
-  $self->setProfileSetsHash($profileSetsHash);
-  foreach my $name (keys %$profileSetsHash) {
-    unless ($profileSetsHash->{$name}->{count} == 1) {
+  $self->setProfileSetsHash(\%profileSetsHash);
+  foreach my $name (keys %profileSetsHash) {
+    unless ($profileSetsHash{$name}->{count} == 1) {
       die "Non-unique part name $name is defined for mixed plot";
     }
   }
