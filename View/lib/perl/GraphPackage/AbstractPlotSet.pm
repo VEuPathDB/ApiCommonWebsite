@@ -187,20 +187,28 @@ sub makeR {
 
   my $parts = [];
 
-  my $legendSize = 1;
-  if($self->getMainLegend()) {
-    $legendSize = $self->getLegendSize();
-  }
+#  my $legendSize = 1;
+ # if($self->getMainLegend()) {
+ #   $legendSize = $self->getLegendSize();
+ # }
 
-  push(@$parts, { Name => "_LEGEND",   Size => $legendSize });
+ # push(@$parts, { Name => "_LEGEND",   Size => $legendSize });
 
 
   my $profileSetsHash = $self->getProfileSetsHash();
 
+  my $defaultPlotPart = $self->getDefaultPlotPart();
+
+  my $i = 0;
   foreach my $ps (keys %$profileSetsHash) {
     my $sizeFromHash = $profileSetsHash->{$ps}->{size};
     my $size = defined $sizeFromHash ? $sizeFromHash : $self->getScreenSize();
-    push(@$parts, { Name => "$ps",   Size => $size});
+
+    if(($defaultPlotPart && $i == 0) || !$defaultPlotPart) {
+        push(@$parts, { Name => "$ps",   Size => $size});
+    }
+
+    $i++;
   }
 
   my $mS = ApiCommonWebsite::View::MultiScreen->new

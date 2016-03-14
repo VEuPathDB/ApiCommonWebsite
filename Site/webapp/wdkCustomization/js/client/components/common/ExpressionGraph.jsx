@@ -18,8 +18,12 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
       imgError: false,
       details: null,
       graphId: null,
-      visibleParts: null
+      visibleParts: null,
+      dataTableCollapsed: true
     };
+    this.handleDataTableCollapseChange = dataTableCollapsed => {
+      this.setState({ dataTableCollapsed });
+    }
   }
 
   componentDidMount() {
@@ -27,16 +31,16 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.rowData !== nextProps.rowData) {
-      this.setStateFromProps(nextProps);
-    }
+      if (this.props.rowData !== nextProps.rowData) {
+          this.setStateFromProps(nextProps);
+      }
   }
 
   // TODO Better name
   setStateFromProps(props) {
     this.setState({ loading: true });
 
-    let { rowData } = props;
+    let { rowData, dataTable  } = props;
     let graphIds = rowData.graph_ids.split(/\s*,\s*/);
     let graphId = this.state.graphId || graphIds[0];
     let baseUrl = '/cgi-bin/dataPlotter.pl?' +
@@ -45,6 +49,7 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
       'datasetId=' + rowData.dataset_id + '&' +
       'template=' + (rowData.is_graph_custom === 'false' ? 1 : '') + '&' +
       'id=' + graphId;
+
 
     $.get(baseUrl + '&declareParts=1').then(partsString => {
       let parts = partsString.split(/\s*,\s*/);
@@ -60,7 +65,9 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
           description: rowData.description,
           x_axis: rowData.x_axis,
           y_axis: rowData.y_axis
-        }
+        },
+          datasetId: rowData.dataset_id,
+          dataTable: dataTable
       })
     });
   }
@@ -95,7 +102,7 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
       return this.renderLoading();
     }
 
-    let { visibleParts, graphId } = this.state;
+    let { visibleParts, graphId, dataTable, datasetId} = this.state;
 
     let {
       baseUrl,
@@ -103,10 +110,10 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
       graphIds,
       description,
       x_axis,
-      y_axis
+      y_axis,
     } = this.state.details;
 
-    let baseUrlWithState = `${baseUrl}&id=${graphId}&vp=_LEGEND,${visibleParts}`;
+    let baseUrlWithState = `${baseUrl}&id=${graphId}&vp=${visibleParts}`;
 
     let imgUrl = baseUrlWithState + '&fmt=png';
     let tableUrl = baseUrlWithState + '&fmt=table';
@@ -125,6 +132,21 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
           {this.renderImgError()}
         </div>
         <div className="eupathdb-ExpressionGraphDetails">
+
+          <Components.CollapsibleSection
+            className={"eupathdb-" + this.props.dataTable.table.name + "Container"}
+            headerContent="Data table"
+            headerComponent='h4'
+            isCollapsed={this.state.dataTableCollapsed}
+            onCollapsedChange={this.handleDataTableCollapseChange}>
+            <dataTable.DefaultComponent
+              record={dataTable.record}
+              recordClass={dataTable.recordClass}
+              table={dataTable.table}
+              value={dataTable.value.filter(dat => dat.dataset_id == datasetId)}
+            />
+          </Components.CollapsibleSection>
+
           <h4>Description</h4>
           <div dangerouslySetInnerHTML={{__html: description}}/>
 
@@ -137,7 +159,7 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
           <h4>Choose gene for which to display graph</h4>
           {graphIds.map(graphId => {
             return (
-              <label>
+              <label key={graphId}>
                 <input
                   type="radio"
                   checked={graphId === this.state.graphId}
@@ -149,7 +171,7 @@ export default class ExpressionGraph extends ComponentUtils.PureComponent {
           <h4>Choose graph(s) to display</h4>
           {parts.map(part => {
             return (
-              <label>
+              <label key={part}>
                 <input
                   type="checkbox"
                   checked={this.state.visibleParts.indexOf(part) > -1}
