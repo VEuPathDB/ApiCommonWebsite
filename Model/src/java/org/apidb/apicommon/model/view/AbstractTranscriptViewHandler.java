@@ -29,9 +29,9 @@ public abstract class AbstractTranscriptViewHandler extends AltSpliceViewHandler
   @Override
   protected AttributeField[] getLeftmostFields(StepBean stepBean) throws WdkModelException {
     AttributeField[] myAttrFieldArray = new AttributeField[2];
-		myAttrFieldArray[0] = stepBean.getStep().getQuestion().getRecordClass()
-			.getAttributeFieldMap().get(TRANSCRIPT_ID_FIELD);
 		myAttrFieldArray[1] = stepBean.getStep().getQuestion().getRecordClass()
+			.getAttributeFieldMap().get(TRANSCRIPT_ID_FIELD);
+		myAttrFieldArray[0] = stepBean.getStep().getQuestion().getRecordClass()
 			.getAttributeFieldMap().get(PRIMARY_KEY_FIELD);
     for(int i=0;i<2;i++) {
 			myAttrFieldArray[i] = myAttrFieldArray[i].clone();
