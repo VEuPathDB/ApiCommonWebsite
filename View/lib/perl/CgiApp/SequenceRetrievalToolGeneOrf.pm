@@ -146,10 +146,11 @@ sub processParams {
 my $sqlQueries;
 
 $sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
-WHERE  bfmv.source_id = seq.source_id
+WHERE  bfmv.protein_source_id = seq.source_id
 AND    bfmv.gene_source_id = ?
+ORDER BY bfmv.source_id
 EOSQL
 
 $sqlQueries->{orfProteinSql} = <<EOSQL;
@@ -165,17 +166,19 @@ AND    bfmv.source_id = ?
 EOSQL
 
 $sqlQueries->{transcriptSql} = <<EOSQL;
-SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.TranscriptSequence seq
 WHERE  bfmv.transcript_source_id = seq.source_id
 AND    bfmv.gene_source_id = ?
+ORDER BY bfmv.source_id
 EOSQL
 
 $sqlQueries->{cdsSql} = <<EOSQL;
-SELECT bfmv.gene_source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.CodingSequence seq
 WHERE  bfmv.transcript_source_id = seq.source_id
 AND    bfmv.gene_source_id = ?
+ORDER BY bfmv.source_id
 EOSQL
 
 
@@ -222,12 +225,12 @@ sub handleNonGenomic {
     }
 
     $sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.gene_source_id, substr(seq.sequence,  $start_position, ($seq_length)),
+SELECT bfmv.source_id, substr(seq.sequence,  $start_position, ($seq_length)),
         bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
-WHERE  bfmv.source_id = seq.source_id
+WHERE  bfmv.protein_source_id = seq.source_id
 AND    bfmv.gene_source_id = ?
-
+ORDER BY bfmv.source_id
 EOSQL
     $sql = $site->{geneProteinSql};
   }
@@ -251,18 +254,20 @@ EOSQL
   my $sth = $dbh->prepare($sql);
 
   for my $inputId (@$ids) {
-    $sth->execute($inputId);
-    my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array();
+   $sth->execute($inputId);
+
+   while (my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array()){
     my $descrip = " | $organism | $product | $type ";
 
-    if ($inputId ne $geneOrfSourceId) {
+    if (!$geneOrfSourceId) { #($inputId ne $geneOrfSourceId) {
       push(@invalidIds, $inputId);
     } else {
+      $descrip = " ($inputId) $descrip" if ($inputId ne $geneOrfSourceId);
       $self->writeSeq($seqIO, $seq, $descrip, $geneOrfSourceId, 1, length($seq), 0);
     }
   }
   print "\nInvalid IDs:\n" . join("  \n", @invalidIds) if (scalar(@invalidIds));
-
+ }
 }
 
 sub mapGeneFeatureSourceIds {
@@ -352,6 +357,7 @@ AND bfmv.gene_source_id IN (
         FROM ApidbTuning.GeneId WHERE LOWER(id) = LOWER( ?)
         ORDER BY matchiness desc )
     WHERE rownum=1 )
+ORDER BY bfmv.source_id
 EOSQL
 
 $sqlQueries->{orfGenomicSql} = <<EOSQL;
@@ -383,6 +389,7 @@ select bfmv.source_id, s.source_id, bfmv.organism,
 FROM ApidbTuning.OrfAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
+ORDER BY bfmv.source_id
 EOSQL
 
   my $sql;
@@ -403,36 +410,36 @@ EOSQL
 
   foreach my $inputId (@$ids) {
     $sth->execute($inputId);
-    my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $expectStart, $expectEnd, $seq)
-      = $sth->fetchrow_array() ;
-    if (!$geneOrfSourceId) {
-      push(@invalidIds, $inputId);
-    } else {
-       if ($isReversed == 0) {
-	   $expectStart = $expectStart + $beginOffset;
-	   $expectEnd = $expectEnd + $endOffset; 
-       }
-       else {
-	   $expectStart = $expectStart - $endOffset;
-	   $expectEnd = $expectEnd - $beginOffset;
-       }
-      my $expectedLength = $expectEnd - $expectStart  + 1;
+    while (my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $expectStart, $expectEnd, $seq)
+      = $sth->fetchrow_array()){
+      if (!$geneOrfSourceId) {
+	push(@invalidIds, $inputId);
+      } else {
+	if ($isReversed == 0) {
+	  $expectStart = $expectStart + $beginOffset;
+	  $expectEnd = $expectEnd + $endOffset; 
+	}
+	else {
+	  $expectStart = $expectStart - $endOffset;
+	  $expectEnd = $expectEnd - $beginOffset;
+	}
+	my $expectedLength = $expectEnd - $expectStart  + 1;
 
-      my $strand = "$seqSourceId " . ($isReversed? 'reverse | ' : 'forward | ');
-      my $uplus = $self->{upstreamOffset} < 0? "" : "+";
-      my $dplus = $self->{downstreamOffset} < 0? "" : "+";
-      my $model = $self->getModel();
-      my $desc = " | $taxonName | $product | genomic | ${strand}($self->{geneOrOrf}$self->{upstreamAnchor}$uplus$self->{upstreamOffset} to $self->{geneOrOrf}$self->{downstreamAnchor}$dplus$self->{downstreamOffset})";
-      if (length($seq) < $expectedLength ) {
+	my $strand = "$seqSourceId " . ($isReversed? 'reverse | ' : 'forward | ');
+	my $uplus = $self->{upstreamOffset} < 0? "" : "+";
+	my $dplus = $self->{downstreamOffset} < 0? "" : "+";
+	my $model = $self->getModel();
+	my $desc = " | $taxonName | $product | genomic | ${strand}($self->{geneOrOrf}$self->{upstreamAnchor}$uplus$self->{upstreamOffset} to $self->{geneOrOrf}$self->{downstreamAnchor}$dplus$self->{downstreamOffset})";
+	if (length($seq) < $expectedLength ) {
 	  $desc = $desc . " | WARNING: Partial sequence retrieved";
+	}
+	$desc = " ($inputId) $desc" if ($inputId ne $geneOrfSourceId);
+	$self->writeSeq($seqIO, $seq, $desc, $geneOrfSourceId,
+			$start, $end, $isReversed);
       }
-      $desc = " ($inputId) $desc" if ($inputId ne $geneOrfSourceId);
-      $self->writeSeq($seqIO, $seq, $desc, $geneOrfSourceId,
-		      $start, $end, $isReversed);
     }
   }
   print "\nInvalid IDs:\n" . join("  \n", @invalidIds) if (scalar(@invalidIds));
-
 }
 
 # start, end, geneStart and geneEnd are always in forward strand coordinates
