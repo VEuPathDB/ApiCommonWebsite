@@ -23,7 +23,7 @@ sub init {
 
   $Self->setSql(<<Sql);
 SELECT   
-lta.total_anopheles as value
+lta.SUM_FEMALE_AS_IN_A_COLLECTION as value
 FROM APIDBTUNING.DWELLINGATTRIBUTES da, APIDBTUNING.LIGHTTRAPATTRIBUTES lta
 where da.source_id=lta.PARENT_ID
 and da.source_id='<<Id>>'

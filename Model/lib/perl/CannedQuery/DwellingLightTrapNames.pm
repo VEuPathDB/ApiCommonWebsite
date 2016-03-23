@@ -21,7 +21,7 @@ sub init {
 
   $Self->setSql(<<Sql);
 SELECT   
-lta.monthyear as name, rownum as element_order
+lta.date_of_visit as name, rownum as element_order
 FROM APIDBTUNING.DWELLINGATTRIBUTES da, APIDBTUNING.LIGHTTRAPATTRIBUTES lta
 where da.source_id=lta.PARENT_ID
 and da.source_id='<<Id>>'
