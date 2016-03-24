@@ -1,34 +1,22 @@
 {
   "questionDefinition": {
     "questionName": "GeneQuestions.GenesByExonCount",
-    "params": [
-      {
-        "name": "organism",
-        "value": "Toxoplasma gondii GT1"
-      },
-      {
-        "name": "num_exons_gte",
-        "value": "38"
-      },
-      {
-        "name": "num_exons_lte",
-        "value": "39"
-      }
-    ],
+    "parameters": {
+      "organism" : "Plasmodium falciparum 3D7",
+      "num_exons_gte" : "16",
+      "num_exons_lte" : "20",
+      "reference_strains_only" : "Yes",
+      "scope" : "Gene"
+     },
     "filters": []
   },
-  "displayInfo": {
+  "formatting": {
     "format": "tabular",
     "formatConfig":{
-      "pagination": {
-        "offset": 0,
-        "numRecords": 10
-      },
-      "attributes": [product],
-      "tables": [InterPro],
-      "sorting": [],
-      "downloadType": "excel"
+      "attributes": ["source_id"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    }
   }
- }
 }
 

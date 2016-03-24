@@ -5,8 +5,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.controller.action.ProcessBasketAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
@@ -14,23 +18,60 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.RecordClassBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CustomProcessBasketAction extends ProcessBasketAction {
+  
+  private HttpServletRequest _request;
+  
+  public ActionForward execute(ActionMapping mapping, ActionForm form,
+      HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+    this._request = request;
+    return super.execute(mapping, form, request, response);
+  }
+  
+  /**
+   * Return a Transcript RecordClassBean for Gene record classes. Since
+   * source_id in the Gene record class is in the same position as gene_source_id
+   * in the Transcript record class, this will have the effect of getRecords
+   * expanding the gene record into the related transcript records.
+   */
+  protected RecordClassBean getRecordClass(String type,
+      WdkModelBean wdkModel) throws WdkModelException, WdkUserException {
+    return "GeneRecordClasses.GeneRecordClass".equals(type)
+        ? wdkModel.getRecordClass("TranscriptRecordClasses.TranscriptRecordClass")
+        : super.getRecordClass(type, wdkModel);
+  }
   
   /**
    * The request has a set of transcript IDs.  Transform that into the set of all 
    * transcript IDs for the genes in the original set.
    */
   @Override
-  protected List<String[]> getRecords(HttpServletRequest request, RecordClassBean recordClass)
+  protected List<String[]> getRecords(String data, RecordClassBean recordClass)
       throws JSONException, WdkUserException, WdkModelException {
+    
+    if (!"TranscriptRecordClasses.TranscriptRecordClass".equals(recordClass.getFullName())) {
+      return super.getRecords(data, recordClass);
+    }
+    
+    if (isGeneRequest()) {
+      JSONArray dataJson = new JSONArray(data);
+      for (int i = 0; i < dataJson.length(); i++) {
+        JSONObject obj = (JSONObject)dataJson.get(i);
+        obj.put("gene_source_id", obj.get("source_id"));
+      }
+      data = dataJson.toString();
+    }
 
     // construct a comma delimited string of the primary key columns for this record class
     StringBuilder pkString = new StringBuilder();
     int geneSourceIdColumn = getPrimaryKeyColString(pkString, recordClass);
    
-    List<String[]> records = super.getRecords(request, recordClass);
+    List<String[]> records = super.getRecords(data, recordClass);
     List<String[]> expandedRecords = new ArrayList<String[]>();
 
     WdkModelBean wdkModelBean = ActionUtility.getWdkModel(servlet);
@@ -83,6 +124,10 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
       throw new WdkModelException("failed running SQL to expand basket: " + sql + e);
     }
  
+  }
+  
+  private boolean isGeneRequest() {
+    return "GeneRecordClasses.GeneRecordClass".equals(_request.getParameter("type"));
   }
 
 }

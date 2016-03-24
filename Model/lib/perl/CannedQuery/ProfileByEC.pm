@@ -12,7 +12,7 @@ sub init {
   $Self->SUPER::init($Args);
 
   $Self->setSql(<<Sql);
-            select p.gene_source_id, ec.ec_number, p.profile_as_string
+            select p.source_id, ec.ec_number, p.profile_as_string
             from apidbtuning.profile p,
             (SELECT DISTINCT ta.gene_source_id, ec.ec_number
             FROM  dots.aaSequenceEnzymeClass asec, sres.enzymeClass ec,ApidbTuning.TranscriptAttributes ta

@@ -51,7 +51,8 @@ sub snpBgFromIsCodingAndNonSyn {
   my $color = 'white';
   if ($isCoding == 1 || $isCoding =~ /yes/i) {
     my ($nonSyn) = $f->get_tag_values("NonSyn"); 
-    $color = $nonSyn? 'blue' : 'lightblue'; 
+    my ($nonsense) = $f->get_tag_values("Nonsense"); 
+    $color = $nonsense ? 'red' : $nonSyn ? 'blue' : 'lightblue'; 
   }
   return $color; 
 }
@@ -220,13 +221,13 @@ sub gsnapIntronBgColorFromScore {
   my $sum = eval join '+', split /[,|\|]/, $urs;
 
   # http://www.computerhope.com/htmcolor.htm
-  return '#B6B6B4' if $sum <= 2;   # Gray Cloud
+  return '#B6B6B4' if $sum <= 3;   # Gray Cloud
   return '#F88017' if $sum <= 5;   # Dark Orange
-  return '#F87217' if $sum <= 10;  # Dark Orange1
-  return '#E56717' if $sum <= 20;  # Dark Orange2
-  return '#C35617' if $sum <= 50;  # Dark Orange3
-  return '#8A4117' if $sum <= 100; # Sienna
-  return '#7E3517' if $sum <= 200; # Sienna4
+  return '#F87217' if $sum <= 20;  # Dark Orange1
+  return '#E56717' if $sum <= 50;  # Dark Orange2
+  return '#C35617' if $sum <= 100;  # Dark Orange3
+  return '#8A4117' if $sum <= 400; # Sienna
+  return '#7E3517' if $sum <= 1000; # Sienna4
   return '#800517';   # Firebrick
 }
 
@@ -246,6 +247,22 @@ sub gsnapIntronHeightFromScore {
   return 9 if $sum <= 100; # Sienna
   return 10 if $sum <= 200; # Sienna4
   return 11;   # Firebrick
+}
+
+sub gsnapIntronHeightFromPercent {
+  my $f = shift;
+
+  my ($perc) = $f->get_tag_values('IntronPercent'); 
+
+  # http://www.computerhope.com/htmcolor.htm
+  return 4 if $perc <= 5;   # Gray Cloud
+  return 6 if $perc <= 20;   # Dark Orange
+##  return 6 if $score <= 10;  # Dark Orange1
+  return 8 if $perc <= 40;  # Dark Orange2
+##  return 8 if $score <= 50;  # Dark Orange3
+  return 10 if $perc <= 60; # Sienna
+  return 12 if $perc <= 80; # Sienna4
+  return 13;   # Firebrick
 }
 
 sub gsnapIntronUnifiedWidth {

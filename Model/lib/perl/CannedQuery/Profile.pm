@@ -56,7 +56,7 @@ sub init {
   $Self->setSql(<<Sql);
 SELECT profile_AS_STRING
 FROM   apidbtuning.Profile  p
-WHERE  p.gene_source_id      = '<<Id>>'
+WHERE  p.source_id      = '<<Id>>'
 AND    p.profile_set_name          = '<<ProfileSet>>'
 AND   p.profile_type           = '<<ProfileType>>'
 Sql
