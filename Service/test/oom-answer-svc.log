@@ -1,0 +1,1025 @@
+16/Mar/2016:13:40:59] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:13:47:49] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:13:49:31] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:13:59:31] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:14:01:51] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:14:04:00] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:14:04:26] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:14:05:44] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:14:08:32] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "downloadType": "excel",
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      }
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "params": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:14:24:42] 128.91.84.207 - HTTP Request: GET /question
+[16/Mar/2016:14:25:00] 128.91.84.207 - HTTP Request: GET /question/GeneQuestions.GenesByExonCount
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandParams": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandAttributes": ["true"]
+}
+[16/Mar/2016:14:33:02] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": [
+      {
+        "name": "organism",
+        "value": "Plasmodium falciparum 3D7"
+      },
+      {
+        "name": "num_exons_gte",
+        "value": "38"
+      },
+      {
+        "name": "num_exons_lte",
+        "value": "39"
+      }
+    ],
+    "filters": []
+  }
+}
+[16/Mar/2016:14:35:13] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "num_exons_gte": "38",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "39"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:14:35:57] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "num_exons_gte": "38",
+      "reference_strains_only": "yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "39"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:14:36:40] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "gene",
+      "num_exons_gte": "38",
+      "reference_strains_only": "yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "39"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:14:37:40] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "38",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "39"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:14:38:05] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "3",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "9"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:14:52:01] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "3",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "9"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:14:56:26] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "3",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "9"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:15:01:04] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "3",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "9"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:15:22:27] 128.91.49.190 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "3",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "9"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:15:26:58] 128.91.49.190 - HTTP Request: POST /answer
+Request Body: {
+  "displayInfo": {
+    "formatConfig": {
+      "tables": ["InterPro"],
+      "sorting": [],
+      "attributes": ["product"],
+      "pagination": {
+        "numRecords": 10,
+        "offset": 0
+      },
+      "attachmentType": "excel"
+    },
+    "format": "tabular"
+  },
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "3",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "9"
+    },
+    "filters": []
+  }
+}
+[16/Mar/2016:16:13:41] 128.91.84.207 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "scope": "Gene",
+      "num_exons_gte": "16",
+      "reference_strains_only": "Yes",
+      "organism": "Plasmodium falciparum 3D7",
+      "num_exons_lte": "20"
+    },
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "includeHeader": true,
+      "attributes": ["source_id"],
+      "attachmentType": "plain"
+    },
+    "format": "attrTable"
+  }
+}
+[17/Mar/2016:15:25:15] 108.16.60.184 - HTTP Request: GET /ontology/SiteMap
+[17/Mar/2016:15:25:15] 108.16.60.184 - HTTP Request: GET /question
+Query Parameters: {"expandQuestions": ["true"]}
+[17/Mar/2016:15:25:15] 108.16.60.184 - HTTP Request: GET /record
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandRecordClasses": ["true"],
+  "expandAttributes": ["true"]
+}
+[17/Mar/2016:15:27:40] 108.16.60.184 - HTTP Request: GET /ontology/Categories
+[17/Mar/2016:15:27:40] 108.16.60.184 - HTTP Request: GET /question
+Query Parameters: {"expandQuestions": ["true"]}
+[17/Mar/2016:15:27:40] 108.16.60.184 - HTTP Request: GET /record
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandRecordClasses": ["true"],
+  "expandAttributes": ["true"]
+}
+[17/Mar/2016:15:28:04] 108.16.60.184 - HTTP Request: GET /ontology/Categories
+[17/Mar/2016:15:28:04] 108.16.60.184 - HTTP Request: GET /record
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandRecordClasses": ["true"],
+  "expandAttributes": ["true"]
+}
+[17/Mar/2016:15:28:04] 108.16.60.184 - HTTP Request: GET /question
+Query Parameters: {"expandQuestions": ["true"]}
+[17/Mar/2016:16:04:01] 108.16.60.184 - HTTP Request: GET /question
+[17/Mar/2016:16:04:16] 108.16.60.184 - HTTP Request: GET /question/IsolateQuestions.IsolateByIsolationSource
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandParams": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandAttributes": ["true"]
+}
+[17/Mar/2016:16:05:11] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {"formatConfig": {"pagination": {
+    "numRecords": 10,
+    "offset": 0
+  }}}
+}
+[17/Mar/2016:16:06:23] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "includeHeader": true,
+      "attributes": ["source_id"],
+      "attachmentType": "plain"
+    },
+    "format": "tabular"
+  }
+}
+[17/Mar/2016:16:07:36] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "includeHeader": true,
+      "attributes": ["source_id"],
+      "attachmentType": "plain"
+    },
+    "format": "attributeTabDelim"
+  }
+}
+[17/Mar/2016:16:32:02] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {"formatConfig": {"pagination": {
+    "numRecords": 10,
+    "offset": 0
+  }}}
+}
+[17/Mar/2016:16:33:11] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "includeHeader": true,
+      "attributes": ["source_id"],
+      "attachmentType": "plain"
+    },
+    "format": "tabular"
+  }
+}
+[17/Mar/2016:16:33:26] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "includeHeader": true,
+      "attributes": ["source_id"],
+      "attachmentType": "plain"
+    },
+    "format": "attributesTabDelim"
+  }
+}
+[17/Mar/2016:16:34:03] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["References"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[17/Mar/2016:20:37:16] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["References"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[17/Mar/2016:20:39:11] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[18/Mar/2016:07:30:53] 108.16.60.184 - HTTP Request: GET /question
+[18/Mar/2016:08:05:10] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[18/Mar/2016:08:06:56] 108.16.60.184 - HTTP Request: GET /ontology/Categories
+[18/Mar/2016:08:06:56] 108.16.60.184 - HTTP Request: GET /record
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandRecordClasses": ["true"],
+  "expandAttributes": ["true"]
+}
+[18/Mar/2016:08:06:56] 108.16.60.184 - HTTP Request: GET /question
+Query Parameters: {"expandQuestions": ["true"]}
+[18/Mar/2016:08:07:01] 108.16.60.184 - HTTP Request: GET /user/current
+[18/Mar/2016:08:07:01] 108.16.60.184 - HTTP Request: GET /user/current/preference
+[18/Mar/2016:08:07:01] 108.16.60.184 - HTTP Request: GET /question
+Query Parameters: {"expandQuestions": ["true"]}
+[18/Mar/2016:08:07:01] 108.16.60.184 - HTTP Request: GET /record
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandRecordClasses": ["true"],
+  "expandAttributes": ["true"]
+}
+[18/Mar/2016:08:07:01] 108.16.60.184 - HTTP Request: GET /ontology/__wdk_categories__
+[18/Mar/2016:08:07:02] 108.16.60.184 - HTTP Request: POST /record/IsolateRecordClasses.IsolateRecordClass/instance
+Request Body: {
+  "tables": [
+    "description",
+    "geographic_location",
+    "isolation_source",
+    "product",
+    "IsolateComments",
+    "organism",
+    "strain",
+    "Reference",
+    "GeneOverlap"
+  ],
+  "primaryKey": [
+    {
+      "name": "source_id",
+      "value": "AJ438799"
+    },
+    {
+      "name": "project_id",
+      "value": "PlasmoDB"
+    }
+  ],
+  "attributes": [
+    "description",
+    "geographic_location",
+    "specific_host",
+    "primary_key",
+    "isolation_source",
+    "product",
+    "organism",
+    "strain",
+    "sequence",
+    "sequence_length"
+  ]
+}
+[18/Mar/2016:08:07:03] 108.16.60.184 - HTTP Request: POST /record/IsolateRecordClasses.IsolateRecordClass/instance
+Request Body: {
+  "tables": [],
+  "primaryKey": [
+    {
+      "name": "source_id",
+      "value": "AJ438799"
+    },
+    {
+      "name": "project_id",
+      "value": "PlasmoDB"
+    }
+  ],
+  "attributes": ["in_basket"]
+}
+[18/Mar/2016:09:00:29] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[18/Mar/2016:09:13:01] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[18/Mar/2016:09:27:19] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[18/Mar/2016:14:24:45] 108.16.60.184 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[23/Mar/2016:19:54:09] 108.16.60.184 - HTTP Request: GET /ontology/SiteMap
+[23/Mar/2016:19:54:09] 108.16.60.184 - HTTP Request: GET /record
+Query Parameters: {
+  "expandTables": ["true"],
+  "expandTableAttributes": ["true"],
+  "expandRecordClasses": ["true"],
+  "expandAttributes": ["true"]
+}
+[23/Mar/2016:19:54:09] 108.16.60.184 - HTTP Request: GET /question
+Query Parameters: {"expandQuestions": ["true"]}
+[23/Mar/2016:19:56:26] 128.91.49.190 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableTabDelim"
+  }
+}
+[23/Mar/2016:21:17:45] 128.91.49.190 - HTTP Request: POST /answer
+[23/Mar/2016:21:18:31] 128.91.49.190 - HTTP Request: POST /answer
+[23/Mar/2016:21:21:30] 128.91.49.190 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "tables": ["Reference"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    },
+    "format": "tableColumnar"
+  }
+}
+[23/Mar/2016:21:24:28] 128.91.49.190 - HTTP Request: POST /answer
+Request Body: {
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {"isolation_source": "blood"},
+    "filters": []
+  },
+  "formatting": {
+    "formatConfig": {
+      "includeHeader": true,
+      "attributes": ["source_id"],
+      "attachmentType": "plain"
+    },
+    "format": "attributesColumnar"
+  }
+}
