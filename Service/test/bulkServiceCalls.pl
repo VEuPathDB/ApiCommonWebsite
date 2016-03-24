@@ -1,10 +1,10 @@
 use strict;
 
-usage() unless scalar(@ARGV) == 1;
+usage() unless scalar(@ARGV) == 2;
 
-my ($inputLogFile) = @ARGV;
+my ($inputLogFile, $url) = @ARGV;
 
-my $cmd = 'curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @tmpFile';
+my $cmd = "curl -i -X POST -H \"Content-Type: application/json\"  $url/service/answer -d \@tmpFile";
 
 open(LF, $inputLogFile) || die "Can't open input log file '$inputLogFile'\n";
 
@@ -35,7 +35,13 @@ sub usage {
 
 Run service calls specified in input service log file.
 
-Usage: bulkServiceCalls service_log_file
+For now, only recognizes calls to answer service.
+
+Usage: bulkServiceCalls service_log_file url
+
+Where:
+  service_log_file:  a wdk service log file.
+  url:  part of the url before the /service.  Eg:  http://sfischer.plasmodb.org/plasmo.sfischer
 ";
 
 }
