@@ -714,7 +714,7 @@ Request Body: {
       "attributes": ["source_id"],
       "attachmentType": "plain"
     },
-    "format": "attributeTabDelim"
+    "format": "attributeColumnar"
   }
 }
 [17/Mar/2016:16:32:02] 108.16.60.184 - HTTP Request: POST /answer
@@ -758,7 +758,7 @@ Request Body: {
       "attributes": ["source_id"],
       "attachmentType": "plain"
     },
-    "format": "attributesTabDelim"
+    "format": "attributesColumnar"
   }
 }
 [17/Mar/2016:16:34:03] 108.16.60.184 - HTTP Request: POST /answer
@@ -774,7 +774,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [17/Mar/2016:20:37:16] 108.16.60.184 - HTTP Request: POST /answer
@@ -790,7 +790,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [17/Mar/2016:20:39:11] 108.16.60.184 - HTTP Request: POST /answer
@@ -806,7 +806,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [18/Mar/2016:07:30:53] 108.16.60.184 - HTTP Request: GET /question
@@ -823,7 +823,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [18/Mar/2016:08:06:56] 108.16.60.184 - HTTP Request: GET /ontology/Categories
@@ -912,7 +912,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [18/Mar/2016:09:13:01] 108.16.60.184 - HTTP Request: POST /answer
@@ -928,7 +928,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [18/Mar/2016:09:27:19] 108.16.60.184 - HTTP Request: POST /answer
@@ -944,7 +944,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [18/Mar/2016:14:24:45] 108.16.60.184 - HTTP Request: POST /answer
@@ -960,7 +960,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [23/Mar/2016:19:54:09] 108.16.60.184 - HTTP Request: GET /ontology/SiteMap
@@ -986,7 +986,7 @@ Request Body: {
       "includeHeader": true,
       "attachmentType": "plain"
     },
-    "format": "tableTabDelim"
+    "format": "tableColumnar"
   }
 }
 [23/Mar/2016:21:17:45] 128.91.49.190 - HTTP Request: POST /answer
