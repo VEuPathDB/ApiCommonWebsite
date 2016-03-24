@@ -112,8 +112,9 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
   }
   
   private void runBatch(DataSource dataSource, String sql, List<String[]> expandedRecords, String[] pkColumns) throws WdkModelException {
+    ResultSet resultSet = null;
     try {
-      ResultSet resultSet = SqlUtils.executeQuery(dataSource, sql, "expand-basket-to-transcripts");
+      resultSet = SqlUtils.executeQuery(dataSource, sql, "expand-basket-to-transcripts");
       while (resultSet.next()) {
 	String[] row = new String[pkColumns.length];
         for (int i = 0; i<pkColumns.length; i++) row[i] = resultSet.getString(i+1);
@@ -122,6 +123,9 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
     }
     catch (SQLException e) {
       throw new WdkModelException("failed running SQL to expand basket: " + sql + e);
+    }
+    finally {
+      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet);
     }
  
   }
