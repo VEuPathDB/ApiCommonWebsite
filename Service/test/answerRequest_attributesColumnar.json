@@ -1,0 +1,18 @@
+{
+  "questionDefinition": {
+    "questionName": "IsolateQuestions.IsolateByIsolationSource",
+    "parameters": {
+      "isolation_source": "blood"
+    },
+    "filters": []
+  },
+  "formatting": {
+    "format": "attributesColumnar",
+    "formatConfig":{
+      "attributes": ["source_id"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    }
+  }
+
+}
