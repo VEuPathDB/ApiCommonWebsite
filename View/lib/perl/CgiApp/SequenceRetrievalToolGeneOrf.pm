@@ -303,10 +303,10 @@ sub handleGenomic {
   my $endAnchRev = 0;
 
   if ($self->{geneOrOrf} eq "gene") {
-    $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
-    $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_start_min)' : 'nvl(bfmv.coding_end,bfmv.gene_end_max)';
-    $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
-    $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.gene_end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.gene_start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.gene_end_max)' : 'nvl(bfmv.coding_end,bfmv.gene_start_min)';
+    $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+    $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
+    $beginAnchRev = $self->{upstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
+    $endAnchRev = $self->{downstreamAnchor} eq $START ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $END ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.end_max)' : 'nvl(bfmv.coding_end,bfmv.start_min)';
   } else {
     $beginAnch = $self->{upstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{upstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{upstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
     $endAnch = $self->{downstreamAnchor} eq $START ? 'bfmv.start_min' : $self->{downstreamAnchor} eq $END ? 'bfmv.end_max' : $self->{downstreamAnchor} eq $CODESTART ? 'nvl(bfmv.coding_start,bfmv.start_min)' : 'nvl(bfmv.coding_end,bfmv.end_max)';
@@ -328,16 +328,16 @@ sub handleGenomic {
   $endRev = "($beginAnchRev - $beginOffset)";
 
 $sqlQueries->{geneGenomicSql} = <<EOSQL;
-select bfmv.source_id, s.source_id, bfmv.organism, bfmv.gene_product AS product,
-     bfmv.gene_start_min, bfmv.gene_end_max,
-     DECODE(bfmv.strand,'reverse',1,'forward',0) as is_reversed,
+select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
+     bfmv.start_min, bfmv.end_max,
+     bfmv.is_reversed,
      CASE WHEN bfmv.is_reversed = 1
      THEN $beginAnchRev
      ELSE $beginAnch END as expect_start,
      CASE WHEN bfmv.is_reversed = 1
      THEN $endAnchRev
      ELSE $endAnch END as expect_end,
-     CASE WHEN bfmv.strand = 'reverse'
+     CASE WHEN bfmv.is_reversed =1
      THEN
        CASE WHEN $startRev < 0
        THEN substr(s.sequence, 0, greatest(0, ($endRev + 1)))
@@ -349,9 +349,9 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.gene_product AS product,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
+FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE s.source_id = bfmv.sequence_id
-AND bfmv.gene_source_id IN (
+AND bfmv.source_id IN (
     SELECT gene FROM (
         SELECT gene, CASE WHEN id = gene THEN 2 WHEN id = LOWER(gene) THEN 1 ELSE 0 END AS matchiness
         FROM ApidbTuning.GeneId WHERE LOWER(id) = LOWER( ?)
@@ -410,33 +410,33 @@ EOSQL
 
   foreach my $inputId (@$ids) {
     $sth->execute($inputId);
-    while (my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $expectStart, $expectEnd, $seq)
-      = $sth->fetchrow_array()){
-      if (!$geneOrfSourceId) {
-	push(@invalidIds, $inputId);
-      } else {
-	if ($isReversed == 0) {
-	  $expectStart = $expectStart + $beginOffset;
-	  $expectEnd = $expectEnd + $endOffset; 
-	}
-	else {
-	  $expectStart = $expectStart - $endOffset;
-	  $expectEnd = $expectEnd - $beginOffset;
-	}
-	my $expectedLength = $expectEnd - $expectStart  + 1;
+    my ($geneOrfSourceId, $seqSourceId, $taxonName, $product, $start, $end, $isReversed, $expectStart, $expectEnd, $seq)
+      = $sth->fetchrow_array();
 
-	my $strand = "$seqSourceId " . ($isReversed? 'reverse | ' : 'forward | ');
-	my $uplus = $self->{upstreamOffset} < 0? "" : "+";
-	my $dplus = $self->{downstreamOffset} < 0? "" : "+";
-	my $model = $self->getModel();
-	my $desc = " | $taxonName | $product | genomic | ${strand}($self->{geneOrOrf}$self->{upstreamAnchor}$uplus$self->{upstreamOffset} to $self->{geneOrOrf}$self->{downstreamAnchor}$dplus$self->{downstreamOffset})";
-	if (length($seq) < $expectedLength ) {
-	  $desc = $desc . " | WARNING: Partial sequence retrieved";
-	}
-	$desc = " ($inputId) $desc" if ($inputId ne $geneOrfSourceId);
-	$self->writeSeq($seqIO, $seq, $desc, $geneOrfSourceId,
-			$start, $end, $isReversed);
+    if (!$geneOrfSourceId) {
+      push(@invalidIds, $inputId);
+    } else {
+      if ($isReversed == 0) {
+	$expectStart = $expectStart + $beginOffset;
+	$expectEnd = $expectEnd + $endOffset; 
       }
+      else {
+	$expectStart = $expectStart - $endOffset;
+	$expectEnd = $expectEnd - $beginOffset;
+      }
+      my $expectedLength = $expectEnd - $expectStart  + 1;
+      
+      my $strand = "$seqSourceId " . ($isReversed? 'reverse | ' : 'forward | ');
+      my $uplus = $self->{upstreamOffset} < 0? "" : "+";
+      my $dplus = $self->{downstreamOffset} < 0? "" : "+";
+      my $model = $self->getModel();
+      my $desc = " | $taxonName | $product | genomic | ${strand}($self->{geneOrOrf}$self->{upstreamAnchor}$uplus$self->{upstreamOffset} to $self->{geneOrOrf}$self->{downstreamAnchor}$dplus$self->{downstreamOffset})";
+      if (length($seq) < $expectedLength ) {
+	$desc = $desc . " | WARNING: Partial sequence retrieved";
+      }
+      $desc = " ($inputId) $desc" if ($inputId ne $geneOrfSourceId);
+      $self->writeSeq($seqIO, $seq, $desc, $geneOrfSourceId,
+		      $start, $end, $isReversed);
     }
   }
   print "\nInvalid IDs:\n" . join("  \n", @invalidIds) if (scalar(@invalidIds));
