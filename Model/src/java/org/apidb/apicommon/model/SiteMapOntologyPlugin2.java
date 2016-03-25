@@ -162,6 +162,7 @@ public class SiteMapOntologyPlugin2 extends EuPathDbOwlParserWdkPlugin {
       Matcher matcher = pattern.matcher(rcn);
       if (matcher.find())
         n = matcher.group(1);
+      if (n == null) n= "Malformed record class name: " + rcn;
       if (n.equals("Transcript"))
         n = "Gene";
       if (n.equals("DynSpan"))
