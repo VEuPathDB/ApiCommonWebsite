@@ -112,14 +112,14 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         // the specific expr searches have as a property (displayCategory) in the model 
         //   "displayCategory" value (eg: "fold_change") corresponds to the category of the specific expr searches in categories.xml scope datasets
         // (yes, expresion searches appear twice in categories.xml in different categories and scopes. )
-        String[] datasetTypes = question.getPropertyList("datasetType");
+        String[] datasetCategories = question.getPropertyList("datasetCategory");
         String[] datasetSubtypes = question.getPropertyList("datasetSubtype");
-        logger.debug(" ******** datasetTypes: " + Arrays.toString(datasetTypes) );
+        logger.debug(" ******** datasetCategory: " + Arrays.toString(datasetCategories) );
         logger.debug(" ******** datasetSubtypes: " + Arrays.toString(datasetSubtypes) );
 
         // in questions other than these internal ones we leave the action..
         // skip if no datasetType defined
-        if (datasetTypes.length == 0) return;
+        if (datasetCategories.length == 0) return;
 
 
         // set 3 data structures that will be passed to jsp in request
@@ -137,18 +137,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
           new LinkedHashMap<RecordBean, List<QuestionBean>>();
 
 
-        // 1- Obtain "datasets by type/subtype"
-        String dsQuestionName;
+        // 1- Obtain "datasets by category/subtype"
+        String dsQuestionName = "DatasetQuestions.DatasetsByCategoryAndSubtype";
         Map<String, String> params = new LinkedHashMap<String, String>();
-        params.put("record_class", question.getRecordClass().getFullName());
-        params.put("dataset_type", datasetTypes[0]); // eg: transcript_expression
-
-        if (datasetSubtypes.length == 0) {
-            dsQuestionName = "DatasetQuestions.DatasetsByType";
-        } else {
-            dsQuestionName = "DatasetQuestions.DatasetsByTypeAndSubtype";
-            params.put("dataset_subtype", datasetSubtypes[0]); // eg: array or rnaseq
-        }
+        params.put("dataset_category", datasetCategories[0]);
+        params.put("dataset_subtype", datasetSubtypes[0]);
 
         QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
         AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
