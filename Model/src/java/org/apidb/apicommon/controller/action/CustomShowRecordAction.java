@@ -86,7 +86,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         }
 
         ActionForward forward;
-        if (!PATHWAY_RECORD_CLASS_NAME.equals(rcName)) {
+        if (!rcName.startsWith("AjaxRecordClasses.")) {
 					Map<String, String[]> myParams = new HashMap<String, String[]>();
           myParams.putAll(request.getParameterMap()); //shallow copy
 					if (TRANSCRIPT_RECORD_CLASS_NAME.equals(rcName)) {
