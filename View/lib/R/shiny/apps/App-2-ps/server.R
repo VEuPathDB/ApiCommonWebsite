@@ -22,7 +22,7 @@ shinyServer(function(input, output, session) {
     ps$G6pdGenotype <- as.factor(ps$G6pdGenotype)
     ps$HbsGenotype <- as.factor(ps$HbsGenotype)
     ps$AthalassemiaGenotype <- as.factor(ps$AthalassemiaGenotype)
-    ps$GeographicLocation <- as.factor(ps$GeographicLocation)
+    ps$SubcountyInUganda <- as.factor(ps$SubcountyInUganda)
 
     #str(ps) # Check data after conversion
 
@@ -40,7 +40,7 @@ shinyServer(function(input, output, session) {
     clr <- input$color
     #if (is.na(clr)) { clr <- "G6pdGenotype" }
     facet <- input$facet
-    #if (is.na(facet)) { facet <- "GeographicLocation" }
+    #if (is.na(facet)) { facet <- "SubcountyInUganda" }
     plt <- input$ptype
     #if (is.na(plt)) { plt <- "point" }
 

@@ -19,15 +19,15 @@ shinyServer(function(input, output, session) {
       names(cv) = gsub("\\.", "", names(cv)) #Remove remaining periods
 
       #coerce variables to required type:
-      cv$ClinicalVisitType <- as.factor(cv$ClinicalVisitType)
-      cv$BloodSmearStatus <- as.factor(cv$BloodSmearStatus)
+      cv$VisitType <- as.factor(cv$VisitType)
+      cv$AsexualParasitesPresent <- as.factor(cv$AsexualParasitesPresent)
       cv$MalariaDiagnosis <- as.factor(cv$MalariaDiagnosis)
-      cv$GeographicLocation <- as.factor(cv$GeographicLocation)
-      cv$BloodSmearReading <- as.factor(cv$BloodSmearReading)
+      cv$SubcountyInUganda <- as.factor(cv$SubcountyInUganda)
+      cv$AsexualParasiteDensity <- as.factor(cv$AsexualParasiteDensity )
       cv$Febrile <- as.factor(cv$Febrile)
-      cv$Feversubjective <- as.factor(cv$Feversubjective)
+##      cv$Feversubjective <- as.factor(cv$Feversubjective)
 ##      cv$SevereMalariaSymptoms <- as.factor(cv$SevereMalariaSymptoms)
-      cv$Species <- as.factor(cv$Species)
+##      cv$Species <- as.factor(cv$Species)
 
       str(input)
 
