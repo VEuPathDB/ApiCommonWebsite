@@ -252,26 +252,11 @@ sub hover2 {
 }
 
 sub myfooter { 
-  return getPageContent("http://$ENV{SERVER_NAME}/a/footer.jsp");
-  # return qq(<hr><!--#include virtual='/a/footer.jsp' -->); 
+  return qq(<hr><!--#include virtual='/a/footer.jsp' -->); 
 }
 
 sub myheader {
-  return getPageContent("http://$ENV{SERVER_NAME}/a/header.jsp?originParam=http://$ENV{SERVER_NAME}$ENV{REQUEST_URI}");
-  # return qq(<!--#include virtual='/a/header.jsp?originParam=http://$ENV{SERVER_NAME}$ENV{REQUEST_URI}'-->);
-}
-
-sub getPageContent {
-  my ($url) = @_;
-  my $ua = LWP::UserAgent->new;
-  $ua->timeout(10);
-  my $response = $ua->get($url);
-  if ($response->is_success) {
-    return $response->decoded_content;
-  }
-  else {
-    return "Unable to get content of $url " . $response->message;
-  }
+  return qq(<!--#include virtual='/a/header.jsp?originParam=http://$ENV{SERVER_NAME}$ENV{REQUEST_URI}'-->);
 }
 
 sub mypostgrid { 
