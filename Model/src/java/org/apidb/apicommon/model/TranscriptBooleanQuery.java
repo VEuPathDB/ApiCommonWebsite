@@ -23,12 +23,14 @@ public class TranscriptBooleanQuery extends BooleanQuery {
 
 //  private static final Logger logger = Logger.getLogger(TranscriptBooleanQuery.class);
 
-  public static final String LEFT_MATCH_COLUMN_TITLE = "Returned by Previous Search";
-  public static final String RIGHT_MATCH_COLUMN_TITLE = "Returned by Latest Search";
-  public static final String LEFT_MATCH_COLUMN_TITLE_DESC = "Transcripts returned by your previous step (yes or no)";
-  public static final String RIGHT_MATCH_COLUMN_TITLE_DESC = "Transcripts returned by your latest search (yes or no)";
+  public static final String LEFT_MATCH_COLUMN_TITLE = "Transcript Returned by Previous Search";
+  public static final String RIGHT_MATCH_COLUMN_TITLE = "Transcript Returned by Latest Search";
+  public static final String LEFT_MATCH_COLUMN_TITLE_DESC = "Transcript returned by your previous step (yes or no)";
+  public static final String RIGHT_MATCH_COLUMN_TITLE_DESC = "Transcript returned by your latest search (yes or no)";
   public static final String LEFT_MATCH_COLUMN = "left_match";
   public static final String RIGHT_MATCH_COLUMN = "right_match";
+  public static final String TR_COUNT = "gene_transcript_count";
+  public static final String TR_FOUND_COUNT = "transcripts_found_per_gene";
 
   public TranscriptBooleanQuery() throws WdkModelException {
     super();
@@ -72,10 +74,17 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     super.setContextQuestion(contextQuestion);
     addDynamicAttributeSetToQuestion(wdkModel);
     Set<String> summaryAttrsSet = contextQuestion.getRecordClass().getSummaryAttributeFieldMap().keySet();
-    String[] summaryAttrNames = summaryAttrsSet.toArray(new String[summaryAttrsSet.size()+2]);
-    summaryAttrNames[summaryAttrsSet.size()] = LEFT_MATCH_COLUMN;
-    summaryAttrNames[summaryAttrsSet.size()+1] = RIGHT_MATCH_COLUMN;
-    contextQuestion.setDefaultSummaryAttributeNames(summaryAttrNames);
+
+		// we do not want to show the Y/N dynamic columns by default
+    //String[] summaryAttrNames = summaryAttrsSet.toArray(new String[summaryAttrsSet.size()+2]);
+    //summaryAttrNames[summaryAttrsSet.size()] = LEFT_MATCH_COLUMN;
+    //summaryAttrNames[summaryAttrsSet.size()+1] = RIGHT_MATCH_COLUMN;
+
+		// we want to show the Transcript count by default
+    String[] defaultSummaryAttrNames = summaryAttrsSet.toArray(new String[summaryAttrsSet.size()+1]);
+    defaultSummaryAttrNames[summaryAttrsSet.size()] = TR_COUNT;
+
+    contextQuestion.setDefaultSummaryAttributeNames(defaultSummaryAttrNames);
     GeneBooleanFilter gbf = new GeneBooleanFilter();
     // this should be read from the model?
     gbf.setView("/wdkCustomization/jsp/filters/gene-boolean-filter.jsp");
@@ -104,4 +113,6 @@ public class TranscriptBooleanQuery extends BooleanQuery {
   public Query clone() {
     return new TranscriptBooleanQuery(this);
   }
+
+
 }
