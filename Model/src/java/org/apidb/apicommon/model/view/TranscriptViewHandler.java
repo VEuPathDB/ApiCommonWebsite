@@ -8,9 +8,18 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
+import org.json.JSONObject;
 
 public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
 
+  private static final boolean REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT = false;
+
+  private static boolean shouldEngageFilter(User user) {
+    // get user preference
+    String prefValue = user.getProjectPreferences().get(RepresentativeTranscriptFilter.FILTER_NAME);
+    return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
+  }
+  
   @Override
   protected String getUserPreferenceSuffix() {
     // this view uses the default preference suffix (i.e. the empty string)
@@ -19,20 +28,38 @@ public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
 
   @Override
   protected Step customizeStep(Step step, User user, WdkModel wdkModel) throws WdkModelException {
-    // no step customization needed
-    return step;
-  }
 
-  @Override
-  protected void customizeModelForView(Map<String, Object> model, StepBean stepBean) throws WdkModelException {
-
-    // read from step if transcript-only filter is ...
-    boolean filterOn = (stepBean.getStep().getViewFilterOptions()
+    // read from step if transcript-only filter is turned on...
+    boolean filterOnInStep = (step.getViewFilterOptions()
         .getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null);
 
-		// ... and inform view to check checkbox accordingly
-		// model contains the "model" for this view (does not relate to wdkModel)
-    model.put(RepresentativeTranscriptFilter.FILTER_NAME, filterOn);
+    boolean shouldEngageFilter = shouldEngageFilter(user);
+
+    // use passed step value if matches preference; otherwise toggle
+    if (filterOnInStep == shouldEngageFilter) {
+      return step;
+    }
+
+    Step stepCopy = new Step(step);
+    if (shouldEngageFilter) {
+      // add view filter
+      stepCopy.addViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
+    }
+    else {
+      // remove view filter (already present)
+      stepCopy.removeViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
+    }
+
+    return stepCopy;
+  }
+
+  /**
+   * Adds model value for transcript filter checkbox
+   */
+  @Override
+  protected void customizeModelForView(Map<String, Object> model, StepBean stepBean) throws WdkModelException {
+    // model contains the "model" for this view (does not relate to wdkModel)
+    model.put(RepresentativeTranscriptFilter.FILTER_NAME, shouldEngageFilter(stepBean.getUser().getUser()));
   }
 
 }
