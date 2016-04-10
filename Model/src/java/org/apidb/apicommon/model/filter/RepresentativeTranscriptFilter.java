@@ -23,9 +23,11 @@ public class RepresentativeTranscriptFilter extends StepFilter {
    * </ol>
    */
   public static final String FILTER_NAME = "representativeTranscriptOnly";
+  public static final String ATTR_TABLE_NAME = "ApiDBTuning.TranscriptAttributes";
 
   private static final String ORIG_SQL_PARAM = "%%originalSql%%";
 
+	/*
   private static final String FILTER_SQL =
       "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
       "SELECT * FROM inputSql " +
@@ -33,6 +35,22 @@ public class RepresentativeTranscriptFilter extends StepFilter {
       "  SELECT MIN(subq_.SOURCE_ID) FROM inputSql subq_ " +
       "  GROUP BY subq_.GENE_SOURCE_ID " +
       ")";
+	*/
+
+	// select the longest transcript
+  private static final String FILTER_SQL =
+      "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
+      "SELECT * FROM inputSql " +
+      "WHERE SOURCE_ID IN ( " +  
+         "  SELECT  ta1.source_id " +
+         "  FROM " + ATTR_TABLE_NAME + " ta1  " +
+         "  LEFT OUTER JOIN " + ATTR_TABLE_NAME + " ta2 " +
+         "  ON ta1.gene_source_id = ta2.gene_source_id " + 
+         "     AND " +
+         "     ta1.length < ta2.length " +
+         "  WHERE ta2.gene_source_id IS NULL " +
+       ")";
+
 
   public RepresentativeTranscriptFilter() {
     super(FILTER_NAME);
