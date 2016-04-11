@@ -8,10 +8,10 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.question.Question;
-import org.gusdb.wdk.model.report.AttributesColumnarReporter;
+import org.gusdb.wdk.model.report.TableColumnarReporter;
 import org.json.JSONObject;
 
-public class TranscriptTableReporter extends AttributesColumnarReporter {
+public class TranscriptTableReporter extends TableColumnarReporter {
   
   public static final String PROP_STEP_ID = "stepId";
   private String stepId = null;
