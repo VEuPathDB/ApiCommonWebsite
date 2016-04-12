@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
 
+  private static final String TRANSCRIPT_FILTERED_STEP = "geneFilteredStep";
   private static final boolean REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT = false;
 
   private static boolean shouldEngageFilter(User user) {
@@ -60,6 +61,8 @@ public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
   protected void customizeModelForView(Map<String, Object> model, StepBean stepBean) throws WdkModelException {
     // model contains the "model" for this view (does not relate to wdkModel)
     model.put(RepresentativeTranscriptFilter.FILTER_NAME, shouldEngageFilter(stepBean.getUser().getUser()));
+    // pass the new step to the JSP to be rendered instead of the normal step
+    model.put(TRANSCRIPT_FILTERED_STEP, stepBean);
   }
 
 }
