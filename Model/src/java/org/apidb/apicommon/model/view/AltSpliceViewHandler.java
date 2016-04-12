@@ -79,7 +79,8 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
     //   and trim off those NOT in root (which contains all model attributes, available to this view)
     //   this trimming will cleanup old attr in preferences
     AttributeField[] leftmostFields = getLeftmostFields(stepBean);
-    Map<String, AttributeField> summaryFields = AnswerValueAttributes.buildSummaryAttributeFieldMap(user, step.getQuestion(), getUserPreferenceSuffix(), leftmostFields);
+    Map<String, AttributeField> summaryFields = AnswerValueAttributes.buildSummaryAttributeFieldMap(
+        user, step.getQuestion(), getUserPreferenceSuffix(), leftmostFields);
     trimAttribsNotInTree(summaryFields, root, leftmostFields);
     attributes.overrideSummaryAttributeFieldMap(summaryFields);
 
@@ -98,11 +99,13 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
     List<String> origNames = new ArrayList<>(attributes.keySet());
     for (String name : origNames) {
       // remove if not in tree, but don't remove primary key or chosen leftmost field
-      if ( name.equals(PRIMARY_KEY_FIELD) ) continue;
-      for(AttributeField a : leftmostFields) {
-        if ( name.equals(a.getName()) ) continue;
+      boolean skip = false;
+      if (name.equals(PRIMARY_KEY_FIELD)) skip = true;
+      for (AttributeField a : leftmostFields) {
+        if (name.equals(a.getName())) skip = true;
       }
-      if ( attributeTree.findFirst( new NameMatchPredicate(name) ) == null ) {
+      if (skip) continue;
+      if (attributeTree.findFirst(new NameMatchPredicate(name)) == null) {
         attributes.remove(name);
       }
     }
