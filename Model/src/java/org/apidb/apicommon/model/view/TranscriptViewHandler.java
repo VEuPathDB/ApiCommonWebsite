@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
 
-  private static final String TRANSCRIPT_FILTERED_STEP = "geneFilteredStep";
+  private static final String TRANSCRIPT_FILTERED_STEP = "modifiedStep";
   private static final boolean REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT = false;
 
   private static boolean shouldEngageFilter(User user) {
