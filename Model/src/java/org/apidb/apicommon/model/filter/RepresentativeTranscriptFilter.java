@@ -89,9 +89,8 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   @Override
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException,
       WdkUserException {
-    LOG.debug("Applying Representative Transcript Filter to SQL: " + idSql);
-
-    LOG.debug("RESULTING IN: " + FILTER_SQL.replace(ORIG_SQL_PARAM, idSql) );
+    //LOG.debug("Applying Representative Transcript Filter to SQL: " + idSql);
+    //LOG.debug("RESULTING IN: " + FILTER_SQL.replace(ORIG_SQL_PARAM, idSql) );
 
     return FILTER_SQL.replace(ORIG_SQL_PARAM, idSql);
   }
