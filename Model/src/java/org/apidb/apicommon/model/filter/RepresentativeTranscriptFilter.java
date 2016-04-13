@@ -24,10 +24,10 @@ public class RepresentativeTranscriptFilter extends StepFilter {
    */
   public static final String FILTER_NAME = "representativeTranscriptOnly";
   public static final String ATTR_TABLE_NAME = "ApiDBTuning.TranscriptAttributes";
-
   private static final String ORIG_SQL_PARAM = "%%originalSql%%";
 
-	/*
+	/* 
+  // select first transcript when ordered by source_id 
   private static final String FILTER_SQL =
       "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
       "SELECT * FROM inputSql " +
@@ -35,22 +35,40 @@ public class RepresentativeTranscriptFilter extends StepFilter {
       "  SELECT MIN(subq_.SOURCE_ID) FROM inputSql subq_ " +
       "  GROUP BY subq_.GENE_SOURCE_ID " +
       ")";
+
 	*/
 
-	// select the longest transcript
+
+	// select the longest transcript;  
+	// return only one of them (MAX source_id) if several have the same length
   private static final String FILTER_SQL =
       "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
       "SELECT * FROM inputSql " +
-      "WHERE SOURCE_ID IN ( " +  
-         "  SELECT  ta1.source_id " +
-         "  FROM " + ATTR_TABLE_NAME + " ta1  " +
-         "  LEFT OUTER JOIN " + ATTR_TABLE_NAME + " ta2 " +
-         "  ON ta1.gene_source_id = ta2.gene_source_id " + 
-         "     AND " +
-         "     ta1.length < ta2.length " +
-         "  WHERE ta2.gene_source_id IS NULL " +
-       ")";
+      "WHERE SOURCE_ID IN ( " +
+      "    SELECT MAX(ta.SOURCE_ID) " +
+      "      KEEP (DENSE_RANK FIRST ORDER BY ta.length DESC) AS SOURCE_ID " +
+      "      FROM inputSql subq_, " + ATTR_TABLE_NAME + " ta " + 
+      "     WHERE ta.source_id =  subq_.source_id " +
+      "  GROUP BY subq_.GENE_SOURCE_ID " +
+      ")";
 
+
+	/*
+	// select the longest transcript:  returns multiple if same length
+  private static final String FILTER_SQL =
+      "WITH inputSql as (" + ORIG_SQL_PARAM + "), " +
+      " inputSql2 as " +
+      " ( SELECT inputSql.*, ta.length " +
+      "     FROM inputSql, " + ATTR_TABLE_NAME + " ta " +  
+      "    WHERE inputSql.source_id = ta.source_id )" +
+      " SELECT is21.* " +
+      "   FROM inputSql2 is21 " +
+      "        LEFT OUTER JOIN inputSql2 is22 " +
+      "        ON (is21.gene_source_id = is22.gene_source_id " + 
+      "             AND " +
+      "            is21.length < is22.length) " +
+      "  WHERE is22.gene_source_id IS NULL ";
+	*/
 
   public RepresentativeTranscriptFilter() {
     super(FILTER_NAME);
@@ -72,6 +90,9 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException,
       WdkUserException {
     LOG.debug("Applying Representative Transcript Filter to SQL: " + idSql);
+
+    LOG.debug("RESULTING IN: " + FILTER_SQL.replace(ORIG_SQL_PARAM, idSql) );
+
     return FILTER_SQL.replace(ORIG_SQL_PARAM, idSql);
   }
 
