@@ -15,6 +15,14 @@ curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.or
 
 curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesColumnar.json 
 
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_tableColumnarTranscripts.json 
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesColumnarTranscripts.json 
+
+
+STEP SVC
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/step -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/stepRequest_Transcripts.json 
 
 
 QUESTION SVC

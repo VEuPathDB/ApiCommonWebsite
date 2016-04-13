@@ -15,13 +15,15 @@
               description="tab we are looking at"
 %>
 
+<c:set var="wdkAnswer" value="${step.answerValue}"/>
 <c:set var="recordClass" value="${step.answerValue.question.recordClass}"/>
 <c:set var="questionName" value="${step.answerValue.question.name}"/>
 <c:set var="baseUrl" value="${pageContext.request.contextPath}"/>
 
 <c:if test="${fn:contains(recordClass.name,'Transcript')}"> 
-  <c:set var="showViewFilter" value="${step.answerValue.resultSize != step.answerValue.displayResultSize}"/>
   <c:set var="trRecord" value="true"/>
+  <c:set var="showViewFilter" value="${step.answerValue.resultSize != step.answerValue.displayResultSize}"/>
+
   <%-- gene count with missing tr --%>
   <c:set var="genesMissingTranscriptsCount" 
          value="${step.answerValue.resultProperties['genesMissingTranscriptsCount']}" />
@@ -34,7 +36,7 @@
 
 
 <!-- step could be single or combined:
-     single: will show icon in the tr-tab if there are missing trasncripts (N <> 0)
+     single:   will show icon in the tr-tab if there are missing trasncripts (N <> 0)
      combined: will show the icon in the tr-tab if either YN,NY,NN <> 0
      exceptions: basket result step:       do not show anything
                  span logic combined step: do not show anything
@@ -42,6 +44,8 @@
 
 <!-- ANY TAB, ANY STEP, ANY RECORD -->
 <div id="${view}">
+
+ 
 
   <!-- if LEAF step, if this is a Transcript Record and NOT a basket result:
          generate transcripts counts, to later (js) decide if the tab icon/warning sentence are needed
@@ -91,7 +95,7 @@
   </c:if>  
 
 
-  <!-- if boolean step (spanlogic does not need filter for now): if this is a Transcript Record:
+  <!-- if BOOLEAN step (spanlogic does not need filter for now): if this is a Transcript Record:
          generate transcripts counts, to later (js) decide if the tab icon/warning sentence are needed -->
   <c:if test="${step.isBoolean && trRecord eq 'true'}"> 
     <c:set var="option" value="${step.filterOptions.filterOptions['gene_boolean_filter_array']}"/>
@@ -134,18 +138,28 @@
       </div>
     </div>
   </c:if>  
- 
-
-<!-- if TRANSCRIPT VIEW, if Transcript count different than Gene count we show the view filter 'show only one transcript per gene' -->
-<%--   <c:if test="${view eq 'transcripts'}">  --%>
-  <c:if test="${showViewFilter eq 'true'}"> 
+    
+                
+<!-- if TRANSCRIPT VIEW, if Transcript count <> Gene count we show the representative transcript filter -->
+  <c:if test="${view eq 'transcripts' && showViewFilter eq 'true'}"> 
     <c:set var="checkToggleBox" value="${requestScope.representativeTranscriptOnly ? 'checked=\"checked\"' : '' }"/>
-    <div id="onlyOneTrPerGene">
+    <div id="oneTr-filter">
+      <!-- only when checked -->
+<!--      <span id="filter-icon" style="visibility:hidden"><imp:image height="14px" src="wdk/images/filter-short.png"/></span>
+--> 
+      <span id="gene-count">
+        ${wdkAnswer.displayResultSize eq 1 ? step.recordClass.displayName : step.recordClass.displayNamePlural}:
+        <span>${wdkAnswer.displayResultSize}</span>
+      </span>
+      <span id="transcript-count">
+        ${wdkAnswer.resultSize eq 1 ? wdkAnswer.question.recordClass.nativeDisplayName : wdkAnswer.question.recordClass.nativeDisplayNamePlural}:
+        <span>${wdkAnswer.resultSize}</span>
+      </span>
       <input type="checkbox" ${checkToggleBox} data-stepid="${requestScope.wdkStep.stepId}" 
              onclick="javascript:toggleRepresentativeTranscripts(this)">
-      <span>Show Only One Transcript Per Gene</span>
+      <span id="prompt">Show Only One Transcript Per Gene</span>
     </div>
-   <%-- <c:set var="excludeBasketColumn" value="true" />  not needed since we have only one tab the _default view--%>
+    <%-- <c:set var="excludeBasketColumn" value="true" />  not needed since we have only one tab the _default view--%>
   </c:if>
 
 

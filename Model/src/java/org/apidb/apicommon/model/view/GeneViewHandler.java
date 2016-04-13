@@ -26,7 +26,7 @@ public class GeneViewHandler extends AltSpliceViewHandler {
   @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(GeneViewHandler.class);
 
-  private static final String GENE_FILTERED_STEP = "geneFilteredStep";
+  private static final String GENE_FILTERED_STEP = "modifiedStep";
   private static final String USER_PREFERENCE_SUFFIX = "_geneview";
 
   // attribute categories we will or may remove (might be obsolete)

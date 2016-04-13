@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model.view;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import org.gusdb.fgputil.functional.TreeNode;
 import org.gusdb.wdk.model.SelectableItem;
@@ -28,15 +29,14 @@ public abstract class AbstractTranscriptViewHandler extends AltSpliceViewHandler
 
   @Override
   protected AttributeField[] getLeftmostFields(StepBean stepBean) throws WdkModelException {
-    AttributeField[] myAttrFieldArray = new AttributeField[2];
-		myAttrFieldArray[1] = stepBean.getStep().getQuestion().getRecordClass()
-			.getAttributeFieldMap().get(TRANSCRIPT_ID_FIELD);
-		myAttrFieldArray[0] = stepBean.getStep().getQuestion().getRecordClass()
-			.getAttributeFieldMap().get(PRIMARY_KEY_FIELD);
-    for(int i=0;i<2;i++) {
-			myAttrFieldArray[i] = myAttrFieldArray[i].clone();
-			myAttrFieldArray[i].setRemovable(false);
-		}
+    Map<String,AttributeField> fieldMap = stepBean.getStep().getQuestion().getRecordClass().getAttributeFieldMap();
+    AttributeField[] myAttrFieldArray = new AttributeField[]{
+        fieldMap.get(PRIMARY_KEY_FIELD), fieldMap.get(TRANSCRIPT_ID_FIELD)
+    };
+    for(int i=0; i < myAttrFieldArray.length; i++) {
+      myAttrFieldArray[i] = myAttrFieldArray[i].clone();
+      myAttrFieldArray[i].setRemovable(false);
+    }
     return myAttrFieldArray;
   }
 }

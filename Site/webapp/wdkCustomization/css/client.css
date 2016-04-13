@@ -41,6 +41,11 @@ h4 {
   text-rendering: optimizeLegibility;
 }
 
+/* 230px is based on height of header, footer, and margin/padding of wdk-RootContainer */
+.wdk-RootContainer {
+  min-height: calc(100vh - 230px);
+}
+
 .wdk-RecordOverview {
   color: #555555;
   margin-bottom: -1em;
@@ -129,6 +134,13 @@ h4 {
 
 .eupathdb-RecordOverviewLeft h1, .eupathdb-RecordOverviewRight .GeneOverviewProduct {
   padding: 10px 0;
+}
+
+.eupathdb-RecordOverviewItem {
+  white-space: nowrap;
+  width: 100%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .eupathdb-RecordOverviewItem, .eupathdb-ThumbnailLabel {
@@ -306,26 +318,31 @@ h4 {
   display: block;
 }
 
+.wdk-RecordTable__ExampleGraphs .wdk-DataTable,
+.wdk-RecordTable__ExpressionGraphs .wdk-DataTable,
 .wdk-RecordTable__ExpressionGraphs .wdk-DataTable,
 .wdk-RecordTable__ProteinExpressionGraphs .wdk-DataTable {
   table-layout: fixed;
   width: 100%;
 }
 
+.wdk-RecordTable__ExampleGraphs .wdk-DataTableCell.wdk-DataTableCell__source_id,
 .wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell.wdk-DataTableCell__eupathdb_release,
 .wdk-RecordTable__ProteinExpressionGraphs .wdk-DataTableCell__short_attribution,
 .wdk-RecordTable__ProteinExpressionGraphs .wdk-DataTableCell__assay_type {
   width: 125px;
 }
 
+.wdk-RecordTable__ExampleGraphs .wdk-DataTableCell.wdk-DataTableCell__display_name,
 .wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell.wdk-DataTableCell__display_name,
 .wdk-RecordTable__ProteinExpressionGraphs .wdk-DataTableCell.wdk-DataTableCell__display_name {
   max-width: 300px;
 }
 
 
-.wdk-RecordTable__ExpressionGraphs .wdk-DataTableCell,
-.wdk-RecordTable__ProteinExpressionGraphs .wdk-DataTableCell {
+.wdk-RecordTable__ExampleGraphs .wdk-DataTableCellContent,
+.wdk-RecordTable__ExpressionGraphs .wdk-DataTableCellContent,
+.wdk-RecordTable__ProteinExpressionGraphs .wdk-DataTableCellContent {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

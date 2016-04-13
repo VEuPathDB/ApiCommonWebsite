@@ -1,0 +1,22 @@
+{
+  "questionDefinition": {
+    "questionName": "GeneQuestions.GenesByExonCount",
+    "parameters": {
+      "organism" : "Plasmodium falciparum 3D7",
+      "num_exons_gte" : "16",
+      "num_exons_lte" : "20",
+      "reference_strains_only" : "Yes",
+      "scope" : "Gene"
+    },
+    "filters": []
+  },
+  "formatting": {
+    "format": "transcriptAttributesColumnar",
+    "formatConfig":{
+      "attributes": ["source_id"],
+      "includeHeader": true,
+      "attachmentType": "plain"
+    }
+  }
+
+}

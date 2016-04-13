@@ -14,7 +14,6 @@
   <c:set var="debug" value="${requestScope.WEBSITE_RELEASE_STAGE eq websiteRelease.development}"/>
   <!-- JavaScript provided by WDK -->
   <imp:wdkJavascripts refer="${refer}" debug="${debug}"/>
-  <imp:script src="wdk/js/wdk.client.js"/>
 
   <c:set var="base" value="${pageContext.request.contextPath}"/>
   <c:set var="props" value="${applicationScope.wdkModel.properties}" />
@@ -79,6 +78,7 @@
 
   <c:if test="${refer == 'question' || refer == 'summary'}">
     <!-- <imp:parameterScript /> -->
+    <imp:script src="wdkCustomization/js/datasetsByQuestion.js"/>
     <imp:script src="wdkCustomization/js/questions/orthologpattern.js"/>
     <imp:script src="wdkCustomization/js/questions/span-location.js"/>
     <imp:script src="wdkCustomization/js/questions/mutuallyExclusiveParams.js"/>
