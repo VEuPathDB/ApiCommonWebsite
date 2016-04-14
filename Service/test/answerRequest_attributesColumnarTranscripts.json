@@ -11,7 +11,7 @@
     "filters": []
   },
   "formatting": {
-    "format": "transcriptAttributesColumnar",
+    "format": "attributesTabular",
     "formatConfig":{
       "attributes": ["source_id"],
       "includeHeader": true,

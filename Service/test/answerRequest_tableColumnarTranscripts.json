@@ -11,12 +11,12 @@
     "filters": []
   },
   "formatting": {
-    "format": "transcriptTableColumnar",
+    "format": "tableTabular",
     "formatConfig":{
       "tables": ["Orthologs"],
       "includeHeader": true,
       "attachmentType": "plain",
-      "stepId": "103381830"
+      "stepId": "103383380"
     }
   }
 
