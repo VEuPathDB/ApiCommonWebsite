@@ -9,12 +9,12 @@ import org.gusdb.wdk.model.filter.Filter;
 import org.gusdb.wdk.model.filter.FilterOption;
 import org.gusdb.wdk.model.filter.FilterOptionList;
 import org.gusdb.wdk.model.question.Question;
-import org.gusdb.wdk.model.report.AttributesColumnarReporter;
+import org.gusdb.wdk.model.report.AttributesTabularReporter;
 import org.json.JSONObject;
 // import org.apache.log4j.Logger;
 
 
-public class TranscriptAttributesReporter extends AttributesColumnarReporter {
+public class TranscriptAttributesReporter extends AttributesTabularReporter {
   // private static final Logger logger = Logger.getLogger(TranscriptAttributesReporter.class);
   
   public static final String PROP_APPLY_FILTER = "applyFilter";

@@ -11,13 +11,13 @@ curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/
 ANSWER SVC
 curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest.json 
 
-curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_tableColumnar.json 
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_tableTabular.json 
 
-curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesColumnar.json 
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesTabular.json 
 
-curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_tableColumnarTranscripts.json 
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_tableTabularTranscripts.json 
 
-curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesColumnarTranscripts.json 
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesTabularTranscripts.json 
 
 
 STEP SVC
