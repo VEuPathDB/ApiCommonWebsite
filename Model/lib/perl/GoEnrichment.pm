@@ -33,7 +33,7 @@ sub getAnnotatedGenesCountBgd {
 SELECT count(distinct ga.source_id)
 FROM ApidbTuning.GoTermSummary gts, ApidbTuning.GeneAttributes ga
 where ga.taxon_id = $taxonId
-  and gts.source_id = ga.source_id
+  and gts.gene_source_id = ga.source_id
   and gts.is_not is null
   and gts.displayable_source in ($self->{sources})
 --  and gts.evidence_code in ($self->{evidCodes})
@@ -49,10 +49,10 @@ sub getAnnotatedGenesCountResult {
   my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
-SELECT count(distinct gts.source_id)
+SELECT count(distinct gts.gene_source_id)
 FROM ApidbTuning.GoTermSummary gts,
      ($geneResultSql) r
-where gts.source_id = r.source_id
+where gts.gene_source_id = r.source_id
   and gts.is_not is null
   and gts.displayable_source in ($self->{sources})
 --  and gts.evidence_code in ($self->{evidCodes})
@@ -70,14 +70,14 @@ sub getDataSql {
 return "
 select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from
- (SELECT gt.go_id, count(distinct gts.source_id) as bgdcnt, gt.name
+ (SELECT gt.go_id, count(distinct gts.gene_source_id) as bgdcnt, gt.name
             FROM apidbtuning.geneattributes gf,
                  apidbtuning.gotermsummary gts,
                  sres.GoTerm gt,
                  sres.GoRelationship gr,
                  sres.GoRelationshipType grt
             WHERE gf.taxon_id = $taxonId
-              AND gts.source_id = gf.source_id
+              AND gts.gene_source_id = gf.source_id
               AND gts.ontology = '$self->{subOntology}'
               AND gts.displayable_source in ($self->{sources})
 --              AND gts.evidence_code in ($self->{evidCodes})
@@ -88,13 +88,13 @@ from
               AND grt.name = 'closure'
             group BY gt.go_id, gt.name
    ) bgd,
-   (SELECT gt.go_id, count(distinct gts.source_id) as resultcnt
+   (SELECT gt.go_id, count(distinct gts.gene_source_id) as resultcnt
             FROM ApidbTuning.GoTermSummary gts,
                  sres.GoTerm gt,
                  sres.GoRelationship gr,
                  sres.GoRelationshipType grt,
                  ($geneResultSql) r
-            WHERE gts.source_id = r.source_id
+            WHERE gts.gene_source_id = r.source_id
               AND gts.ontology = '$self->{subOntology}'
               AND gts.displayable_source in ($self->{sources})
 --              AND gts.evidence_code in ($self->{evidCodes})
