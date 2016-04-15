@@ -239,7 +239,7 @@
     Display stacktraces on non-public sites unless the showStacktrace attribute
     is set to "false". Never show stacktraces on public sites. Stacktraces
     and other state information are emailed when encountered on public sites.
-    Email sent to value of SITE_ADMIN_EMAIL in WDK model.prop.
+    Email sent to value of ADMIN_EMAIL in WDK model-config.xml.
     </description>
     <name>errors</name>
     <tagclass>org.apidb.apicommon.taglib.wdk.ErrorsTag</tagclass>

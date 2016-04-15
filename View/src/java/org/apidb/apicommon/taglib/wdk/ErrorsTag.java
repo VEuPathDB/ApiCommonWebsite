@@ -47,7 +47,7 @@ import org.gusdb.wdk.model.WdkModel;
  * is an application or JSP exception as the resulting ActionMessage text is garbage.
  *
  * Also includes conditional error reporting via email. Email addresses are set
- * in the SITE_ADMIN_EMAIL property of the WDK's model.prop . Only public sites 
+ * in the ADMIN_EMAIL property of the WDK's model-config.xml (CWL 13APR16). Only public sites 
  * compose and send email reports.
  * 
  * @author mheiges
@@ -57,19 +57,6 @@ import org.gusdb.wdk.model.WdkModel;
  */
 public class ErrorsTag extends WdkTagBase {
 
-    private static String[] PUBLIC_PREFIXES = {
-        "",
-        "qa.",
-        "beta.",
-        "w1.",
-        "w2.",
-        "b1.",
-        "b2.",
-        "q1.",
-        "q2.",
-        "www."
-    };
-    
     // file defining error filters
     private static final String FILTER_FILE = "/WEB-INF/wdk-model/config/errorsTag.filter";
     
@@ -189,7 +176,6 @@ public class ErrorsTag extends WdkTagBase {
     private static ErrorContext getErrorContext(ServletContext servletContext,
             HttpServletRequest request, WdkModel wdkModel) {
         return new ErrorContext(
-            PUBLIC_PREFIXES,
             wdkModel,
             servletContext.getInitParameter("model"),
             new HttpRequestData(request),
