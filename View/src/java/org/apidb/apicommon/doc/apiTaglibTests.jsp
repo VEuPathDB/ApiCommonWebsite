@@ -145,7 +145,8 @@ WEBSERVICEMIRROR from model.prop: <b>${props['WEBSERVICEMIRROR']}</b>
 Parse Java property file into page scope. Example reading WEB-INF/wdk-model/config/CryptoDB/model.prop
 <small>(model.prop is technically not a java property file, but it's the closest I could find)</small>
 <blockquote>
-SITE_ADMIN_EMAIL: <b>${prop['SITE_ADMIN_EMAIL']}</b>
+<%-- SITE_ADMIN_EMAIL from model.prop replaced with ADMIN_EMAIL from model-config.xml - CWL 13APR16 --%>
+ADMIN_EMAIL: <b>${wdkModel.model.modelConfig.adminEmail}</b>
 </blockquote>
 </c:catch>
 <c:if test="${ e != null }">
