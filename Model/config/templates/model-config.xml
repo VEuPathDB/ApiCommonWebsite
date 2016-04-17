@@ -5,6 +5,7 @@
              webAppUrl="${myURL}"
              smtpServer="${smtp_server}"
              supportEmail="${support_email}"
+             adminEmail="${admin_email}"
              defaultRole="${default_role}"
              secretKeyFile="${auth_secret_keyfile}"
              >

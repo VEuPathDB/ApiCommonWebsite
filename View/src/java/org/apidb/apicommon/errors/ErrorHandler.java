@@ -58,7 +58,7 @@ public class ErrorHandler {
         _context = context;
         _writerProvider = writerProvider;
         _logMarker = UUID.randomUUID().toString();
-        _showStacktrace = !_context.isPublicSite();
+        _showStacktrace = !_context.siteIsMonitored();
     }
 
     public void handleErrors() {
@@ -188,7 +188,8 @@ public class ErrorHandler {
         String[] recipients = context.getAdminEmails();
 
         if (recipients.length == 0) {
-            LOG.error("SITE_ADMIN_EMAIL is not configured in model.prop; cannot send exception report.");
+            // Replacing SITE_ADMIN_EMAIL from model.prop with ADMIN_EMAIL for model-config.xml
+            LOG.error("ADMIN_EMAIL is not configured in model-config.xml; cannot send exception report.");
             return;
         }
         
