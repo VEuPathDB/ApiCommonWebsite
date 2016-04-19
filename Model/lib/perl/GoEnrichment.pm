@@ -52,7 +52,7 @@ sub getAnnotatedGenesCountResult {
 SELECT count(distinct gts.gene_source_id)
 FROM ApidbTuning.GoTermSummary gts,
      ($geneResultSql) r
-where gts.gene_source_id = r.source_id
+where gts.gene_source_id = r.gene_source_id
   and gts.is_not is null
   and gts.displayable_source in ($self->{sources})
 --  and gts.evidence_code in ($self->{evidCodes})

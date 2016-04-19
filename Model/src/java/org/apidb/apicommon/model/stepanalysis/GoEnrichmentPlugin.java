@@ -123,7 +123,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String sql = "SELECT count(distinct gts.go_term_id) as " + countColumn + NL +
       "FROM ApidbTuning.GoTermSummary gts,"  + NL +
       "(" + idSql + ") r"  + NL +
-      "where gts.source_id = r.source_id" + NL +
+      "where gts.gene_source_id = r.gene_source_id" + NL +
       "and gts.ontology = '" + ontology + "'" + NL +
       "and gts.displayable_source in (" + sourcesStr + ")" + NL
       // +  "and gts.evidence_code in (" + evidCodesStr + ")" + NL
@@ -183,9 +183,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     BasicResultSetHandler handler = new BasicResultSetHandler();
 
     // check for non-zero count of genes with GO associations
-    String sql = "select count(distinct gts.source_id) as " + countColumn + NL +
+    String sql = "select count(distinct gts.gene_source_id) as " + countColumn + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.source_id = r.source_id";
+      "where gts.gene_source_id = r.gene_source_id";
 
     new SQLRunner(ds, sql).executeQuery(handler);
 
@@ -213,7 +213,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // find annotation sources used in the result set
     String sql = "select distinct gts.displayable_source" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.source_id = r.source_id";
+      "where gts.gene_source_id = r.gene_source_id";
     new SQLRunner(ds, sql).executeQuery(handler);
     List<Option> sources = new ArrayList<>();
 
@@ -225,7 +225,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // find ontologies used in the result set
     sql = "select distinct gts.ontology" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.source_id = r.source_id and gts.ontology is not null";
+      "where gts.gene_source_id = r.gene_source_id and gts.ontology is not null";
     new SQLRunner(ds, sql).executeQuery(handler);
     List<Option> ontologies = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
@@ -236,7 +236,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // find evidence codes used in the result set
     sql = "select distinct gts.evidence_code" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.source_id = r.source_id";
+      "where gts.gene_source_id = r.gene_source_id";
     new SQLRunner(ds, sql).executeQuery(handler);
     List<String> evidCodes = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {

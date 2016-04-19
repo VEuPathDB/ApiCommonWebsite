@@ -108,7 +108,7 @@ public class EnrichmentPluginUtil {
     return "SELECT ga.source_id " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
-        "where ga.source_id = r.source_id " +
+        "where ga.source_id = r.gene_source_id " +
         "and  ga.taxon_id = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
   }
 
@@ -134,7 +134,7 @@ public class EnrichmentPluginUtil {
     String sql = "SELECT distinct ga.taxon_id, ga.organism " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
-        "where ga.source_id = r.source_id " +
+        "where ga.source_id = r.gene_source_id " +
         "order by ga.organism asc";
     DataSource ds = wdkModel.getAppDb().getDataSource();
     new SQLRunner(ds, sql).executeQuery(new ResultSetHandler() {
