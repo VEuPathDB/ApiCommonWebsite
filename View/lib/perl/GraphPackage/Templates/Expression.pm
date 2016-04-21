@@ -218,8 +218,8 @@ sub makeAndSetPlots {
 
     my @legendNames = map { $self->getRemainderNameFromProfileSetName($_->[0]) } @profileSetsArray;
 
-    # omit the legend when there is just one profile
-    if  ($#legendNames) {
+    # omit the legend when there is just one profile, and it is not a RNASeq dataset
+    if  ($#legendNames || ref($self)=~/RNASeq/) {
       $profile->setHasExtraLegend(1); 
       $profile->setLegendLabels(\@legendNames);
     }
