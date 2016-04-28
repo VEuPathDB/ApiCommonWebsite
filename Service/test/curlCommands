@@ -6,6 +6,8 @@ curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfisc
 
 curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/TranscriptRecordClasses.TranscriptRecordClass/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/recordInstanceRequest.json  
 
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/record/gene/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/recordInstanceRequestPlasmoFull.json
+
 
 
 ANSWER SVC
