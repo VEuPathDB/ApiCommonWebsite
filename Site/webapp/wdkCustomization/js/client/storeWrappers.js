@@ -5,19 +5,9 @@ import * as persistence from './util/persistence';
 
 /** Return subcass of the provided StepDownloadFormViewStore */
 export function StepDownloadFormViewStore(WdkStepDownloadFormViewStore) {
-  let { STEP_DOWNLOAD_SELECT_REPORTER } = WdkStepDownloadFormViewStore.actionTypes;
   return class ApiStoreDownloadFormViewStore extends WdkStepDownloadFormViewStore {
-    reduce(state, action) {
-      let nextState = super.reduce(state, action);
-      // if new reporter was just selected, update form state to initial state of that form
-      if (action.type == STEP_DOWNLOAD_SELECT_REPORTER) {
-        let Reporter = selectReporterComponent(nextState.selectedReporter, nextState.recordClass.name);
-        let userStoreState = this._storeContainer.UserStore.getState();
-        let { formState, formUiState } = Reporter.getInitialState(nextState, userStoreState);
-        nextState.formState = formState;
-        nextState.formUiState = formUiState;
-      }
-      return nextState;
+    getSelectedReporter(selectedReporterName, recordClassName) {
+      return selectReporterComponent(selectedReporterName, recordClassName);
     }
   }
 }
@@ -34,6 +24,8 @@ export function RecordViewStore(WdkRecordViewStore) {
         }
         case actionTypes.SHOW_SECTION:
         case actionTypes.HIDE_SECTION:
+        case actionTypes.SHOW_ALL_FIELDS:
+        case actionTypes.HIDE_ALL_FIELDS:
           setCollapsedSections(nextState);
           return nextState;
         default:

@@ -1,9 +1,12 @@
+import lodash from 'lodash';
 import { Components, ComponentUtils } from 'wdk-client';
 import Footer from './components/common/Footer';
 import { findComponent } from './components/records';
 import * as Gbrowse from './components/common/Gbrowse';
 import Sequence from './components/common/Sequence';
 import { selectReporterComponent } from './util/reporterSelector';
+import ApiApplicationSpecificProperties from './components/ApiApplicationSpecificProperties';
+import ApiUserIdentity from './components/ApiUserIdentity';
 
 // Remove project_id from record links
 export function RecordLink(WdkRecordLink) {
@@ -57,23 +60,6 @@ export function RecordController(WdkRecordController) {
       return ( <WdkRecordController {...props} /> );
     }
 
-    /*
-    if (recordClass === Gene.GENE_ID) {
-      let [ geneId, transcriptId ] = splat.split('/');
-
-      if (transcriptId == null) {
-
-        // only the gene id is requested... either use the last transcript id the
-        // user requested for the gene id, or use the default
-        transcriptId = window.sessionStorage.getItem(
-          Gene.TRANSCRIPT_ID_KEY_PREFIX + geneId) || DEFAULT_TRANSCRIPT_MAGIC_STRING;
-
-        // add transcript id to request
-        splat = `${geneId}/${transcriptId}`;
-      }
-    }
-    */
-
     // Append project id to request
     let params = Object.assign({}, props.params, {
       splat: `${splat}/${wdk.MODEL_NAME}`
@@ -90,13 +76,6 @@ export function AppController(WdkAppController) {
   return function ApiAppController(props) {
     return (
       <div>
-        {/*
-        <div
-          className="eupathdb-Beta-Announcement"
-          title="BETA means pre-release; a beta page is given out to a large group of users to try under real conditions. Beta versions have gone through alpha testing inhouse and are generally fairly close in look, feel and function to the final product; however, design changes often occur as a result.">
-            You are viewing a <strong>BETA</strong> (pre-release) page. <a data-name="contact_us" className="new-window" href="contact.do">Feedback and comments</a> are welcome!
-        </div>
-        */}
         <WdkAppController {...props}/>
         <Footer/>
       </div>
@@ -155,36 +134,6 @@ export function RecordOverview(DefaultComponent) {
   };
 }
 
-/*
-export function RecordMainSection(WdkRecordMainSection) {
-  return function ApiRecordMainSection(props) {
-    if (props.recordClass.name ==  Gene.RECORD_CLASS_NAME && props.depth == null) {
-      return <Gene.RecordMainSection {...props} DefaultComponent={WdkRecordMainSection}/>;
-    }
-    return <WdkRecordMainSection {...props}/>
-  };
-}
-*/
-
-/*
-export function RecordNavigationSectionCategories(WdkRecordNavigationSectionCategories) {
-  return function ApiRecordNavigationSectionCategories(props) {
-    switch (props.recordClass.name) {
-      case 'TranscriptRecordClasses.TranscriptRecordClass':
-        return (
-          <Gene.RecordNavigationSectionCategories
-            {...props}
-            DefaultComponent={WdkRecordNavigationSectionCategories}
-          />
-        );
-
-      default:
-        return <WdkRecordNavigationSectionCategories {...props}/>
-    }
-  };
-}
-*/
-
 // Customize StepDownloadForm to show the appropriate form based on the
 //   selected reporter and record class
 export function StepDownloadForm(WdkStepDownloadForm) {
@@ -196,6 +145,7 @@ export function StepDownloadForm(WdkStepDownloadForm) {
 
 export function RecordTable(DefaultComponent) {
   return function ApiRecordTable(props) {
+    if (lodash.isEmpty(props.value)) return <DefaultComponent {...props}/>;
     let ResolvedComponent =
       findComponent('RecordTable', props.recordClass.name) || DefaultComponent;
     return <ResolvedComponent {...props} DefaultComponent={DefaultComponent}/>
@@ -218,5 +168,51 @@ export function RecordAttribute(DefaultComponent) {
     let ResolvedComponent =
       findComponent('RecordAttribute', props.recordClass.name) || DefaultComponent;
     return <ResolvedComponent {...props} DefaultComponent={DefaultComponent}/>
+  };
+}
+
+/**
+ * Overrides the Identification fieldset on the User Profile/Account form from the WDK.  ApiDB
+ * does not use all the fields that the WDK provides
+ * @returns {function()} - React component overriding the original WDK component
+ * @constructor
+ */
+export function UserIdentity() {
+  return ApiUserIdentity;
+}
+
+/**
+ * Overrides the Contact fieldset on the User Profile/Account form from the WDK.  ApiDB
+ * does not collect contact information.  Consequently, the WDK UserContact component is
+ * replaced with an empty React component
+ * @returns {Function} - Empty React component
+ * @constructor
+ */
+export function UserContact() {
+  return function() { return <noscript /> };
+}
+
+/**
+ * Overrides the Preferences fieldset on the User Profile/Account form from the WDK.  The WDK
+ * has no application specific properties although it provides for that possibility.  The empty
+ * React component placeholder is overriden with an ApiDB specific component.
+ * @returns {*} - Application specific properties component
+ * @constructor
+ */
+export function ApplicationSpecificProperties() {
+  return ApiApplicationSpecificProperties;
+}
+
+/**
+ * Trims PROJECT_ID off the tail end of a comma-delimited list of primary key value parts
+ */
+export function PrimaryKeySpan(DefaultComponent) {
+  return function(props) {
+    let pkValues = props.primaryKeyString.split(',');
+    let newPkString = pkValues[0];
+    for (let i = 1; i < pkValues.length - 1; i++) {
+      newPkString += ", " + pkValues[i];
+    }
+    return ( <span>{newPkString}</span> );
   };
 }

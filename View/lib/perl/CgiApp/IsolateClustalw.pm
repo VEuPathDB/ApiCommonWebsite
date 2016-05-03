@@ -72,7 +72,7 @@ EOSQL
   } else {  # regular isolates
     $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
-FROM   ApidbTuning.IsolateSequence etn
+FROM   ApidbTuning.PopsetSequence etn
 WHERE etn.source_id in ($ids)
 EOSQL
   }

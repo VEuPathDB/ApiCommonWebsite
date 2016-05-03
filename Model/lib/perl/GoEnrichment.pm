@@ -52,7 +52,7 @@ sub getAnnotatedGenesCountResult {
 SELECT count(distinct gts.gene_source_id)
 FROM ApidbTuning.GoTermSummary gts,
      ($geneResultSql) r
-where gts.gene_source_id = r.gene_source_id
+where gts.gene_source_id = r.source_id
   and gts.is_not is null
   and gts.displayable_source in ($self->{sources})
 --  and gts.evidence_code in ($self->{evidCodes})
@@ -70,40 +70,26 @@ sub getDataSql {
 return "
 select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from
- (SELECT gt.go_id, count(distinct gts.gene_source_id) as bgdcnt, gt.name
+ (SELECT gts.go_id, count(distinct gts.gene_source_id) as bgdcnt, gts.go_term_name as name
             FROM apidbtuning.geneattributes gf,
-                 apidbtuning.gotermsummary gts,
-                 sres.GoTerm gt,
-                 sres.GoRelationship gr,
-                 sres.GoRelationshipType grt
+                 apidbtuning.gotermsummary gts
             WHERE gf.taxon_id = $taxonId
               AND gts.gene_source_id = gf.source_id
               AND gts.ontology = '$self->{subOntology}'
               AND gts.displayable_source in ($self->{sources})
 --              AND gts.evidence_code in ($self->{evidCodes})
               AND gts.is_not is null
-              AND gr.child_term_id = gts.go_term_id
-              AND gt.go_term_id = gr.parent_term_id
-              AND grt.go_relationship_type_id = gr.go_relationship_type_id
-              AND grt.name = 'closure'
-            group BY gt.go_id, gt.name
+            group BY gts.go_id, gts.go_term_name
    ) bgd,
-   (SELECT gt.go_id, count(distinct gts.gene_source_id) as resultcnt
+   (SELECT gts.go_id, count(distinct gts.gene_source_id) as resultcnt
             FROM ApidbTuning.GoTermSummary gts,
-                 sres.GoTerm gt,
-                 sres.GoRelationship gr,
-                 sres.GoRelationshipType grt,
                  ($geneResultSql) r
             WHERE gts.gene_source_id = r.source_id
               AND gts.ontology = '$self->{subOntology}'
               AND gts.displayable_source in ($self->{sources})
 --              AND gts.evidence_code in ($self->{evidCodes})
               AND gts.is_not is null
-              AND gr.child_term_id = gts.go_term_id
-              AND gt.go_term_id = gr.parent_term_id
-              AND gr.go_relationship_type_id = grt.go_relationship_type_id
-              AND grt.name = 'closure'
-            group BY gt.go_id
+            group BY gts.go_id
       ) rslt
 where bgd.go_id = rslt.go_id
 ";
