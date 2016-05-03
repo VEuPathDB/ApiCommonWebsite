@@ -1,5 +1,6 @@
 package org.apidb.apicommon.service.services;
 
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -52,7 +53,7 @@ public class TranscriptToggleService extends WdkService {
     }
     catch (JSONException e) {
       LOG.error("Unable to parse input JSON", e);
-      return getBadRequestBodyResponse("JSON object required with property " +
+      throw new BadRequestException("JSON object required with property " +
           RepresentativeTranscriptFilter.FILTER_NAME + " (boolean).");
     }
   }
