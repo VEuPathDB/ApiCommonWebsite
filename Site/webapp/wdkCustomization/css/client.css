@@ -5,7 +5,7 @@ h1 {
   text-align: left;
   margin: 0;
   padding: 22px 0;
-  font-size: 3em;
+  font-size: 2.8em;
   font-weight: 300;
 }
 h2 {
@@ -57,15 +57,32 @@ h4 {
   clear: both;
 }
 
+/* Hide default record ID printed by WDK for genes */
 .wdk-RecordContainer__GeneRecordClasses\.GeneRecordClass .wdk-RecordHeading {
   display: none;
 }
+
+/* Hide default record ID printed by WDK for compounds */
+.wdk-RecordContainer__CompoundRecordClasses\.CompoundRecordClass .wdk-RecordHeading {
+  display: none;
+}
+
+/* Hide default record ID printed by WDK for popsets */
+.wdk-RecordContainer__PopsetRecordClasses\.PopsetRecordClass .wdk-RecordHeading {
+  display: none;
+}
+
+/* Hide default record ID printed by WDK for ests */
+.wdk-RecordContainer__EstRecordClasses\.EstRecordClass .wdk-RecordHeading {
+  display: none;
+}
+
 
 .wdk-RecordNavigationSectionHeader {
   color: #777;
 }
 
-.GeneOverviewTitle, .GeneOverviewSubtitle {
+.eupathdb-RecordOverviewTitle, .eupathdb-GeneOverviewSubtitle {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -74,12 +91,12 @@ h4 {
   font-size: 2em;
 }
 
-.GeneOverviewSubtitle {
+.eupathdb-GeneOverviewSubtitle {
   padding: 0 !important; /* i give up */
   font-size: 1rem;
 }
 
-.GeneOverviewSubtitle[data-new-product-name=''] {
+.eupathdb-GeneOverviewSubtitle[data-new-product-name=''] {
   display: none;
 }
 
@@ -89,29 +106,29 @@ h4 {
   background-color: #E6E6E6;
 }
 
-.GeneOverviewId, .GeneOverviewHiddenId, .GeneOverviewProduct, .GeneOverviewNewProduct {
+.eupathdb-RecordOverviewId, .eupathdb-RecordOverviewDescription {
   display: inline;
 }
 
-.GeneOverviewId, .GeneOverviewHiddenId {
-  font-size: 1.5em;
+.eupathdb-RecordOverviewId {
+  font-size: 1.3em;
 }
 
-.GeneOverviewHiddenId {
+.eupathdb-GeneOverviewSubtitle .eupathdb-RecordOverviewId {
   visibility: hidden;
   line-height: 0;
   display: inline-block;
   height: 0;
-  padding: 0 10px 0 0;
-  font-size: 2.2em;
+  padding: 0;
+  font-size: 1.95em;
 }
 
-.GeneOverviewProduct {
+.eupathdb-RecordOverviewDescription {
   font-weight: 500;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 
-.GeneOverviewNewProduct {
+.eupathdb-GeneOverviewSubtitle .eupathdb-RecordOverviewDescription {
   font-size: 1rem;
   font-style: italic;
   vertical-align: text-top;
