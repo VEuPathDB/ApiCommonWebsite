@@ -124,7 +124,7 @@ h4 {
 }
 
 .eupathdb-RecordOverviewDescription {
-  font-weight: 500;
+  font-weight: 300;
   font-size: 1.3em;
 }
 
@@ -268,27 +268,8 @@ h4 {
   margin-top: 16px;
   display: inline-block;
   max-width: 100%;
-  width: 410px;
   min-height: 140px;
   white-space: nowrap;
-}
-
-@media all and (min-width: 1170px) {
-  .eupathdb-ThumbnailsContainer {
-    width: 590px;
-  }
-}
-
-@media all and (min-width: 1335px) {
-  .eupathdb-ThumbnailsContainer {
-    width: 764px;
-  }
-}
-
-@media all and (min-width: 1515px) {
-  .eupathdb-ThumbnailsContainer {
-    width: auto;
-  }
 }
 
 .eupathdb-ThumbnailWrapper {
