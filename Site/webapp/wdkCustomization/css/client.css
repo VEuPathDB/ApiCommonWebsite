@@ -36,7 +36,7 @@ h4 {
 }
 
 #wdk-container {
-  height: calc(100% - 132px);
+  min-height: calc(100% - 206px);
   position: relative;
   text-rendering: optimizeLegibility;
 }
@@ -138,9 +138,10 @@ h4 {
   left: -298px;
 }
 
+/* gene page overview */
 .eupathdb-RecordOverviewLeft, .eupathdb-RecordOverviewRight {
   float: left;
-  margin-top: 1em;
+  margin-top: 2em;
 }
 
 .eupathdb-RecordOverviewLeft {
@@ -464,7 +465,8 @@ h4 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 1em;
+  height: 1.4em;
+  line-height: 1.8em;
 }
 
 .eupathdb-MercatorTable {
