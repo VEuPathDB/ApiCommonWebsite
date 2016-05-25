@@ -12,12 +12,12 @@ public class GeoIsolateViewHandler extends IsolateViewHandler {
         sql.append("    i.source_id , ");
         sql.append("    i.latitude AS lat ,");
         sql.append("    i.longitude AS lng ,");
-        sql.append("    i.country    ");
+        sql.append("    REGEXP_REPLACE(i.geographic_location,'\\:.*','') as country");
         sql.append(" FROM ApidbTuning.PopsetAttributes i, ");
         sql.append("      (" + idSql + ") idq ");
         sql.append(" WHERE  ");
         sql.append("   i.source_id = idq.source_id ");
-        sql.append("   AND i.country is not null ");
+        sql.append("   AND i.geographic_location is not null ");
         sql.append(" ) group by country, lat, lng ");
 
         return sql.toString();

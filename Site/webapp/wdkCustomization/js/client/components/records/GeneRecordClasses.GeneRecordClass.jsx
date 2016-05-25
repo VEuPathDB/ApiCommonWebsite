@@ -1,12 +1,14 @@
 /* global wdk */
+import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import lodash from 'lodash';
 import {NativeCheckboxList} from 'wdk-client/Components';
 import {renderAttributeValue} from 'wdk-client/ComponentUtils';
+import {isNodeOverflowing} from '../../utils';
 import ExpressionGraph from '../common/ExpressionGraph';
 import Sequence from '../common/Sequence';
-import * as Thumbnails from '../common/OverviewThumbnails';
+import {OverviewThumbnails} from '../common/OverviewThumbnails';
 import * as Gbrowse from '../common/Gbrowse';
 import {SnpsAlignmentTable} from '../common/Snps';
 
@@ -17,10 +19,33 @@ export class RecordOverview extends React.Component {
 
   componentDidMount() {
     this.renderThumbnails();
+    this.addProductTooltip();
   }
 
   componentDidUpdate() {
     this.renderThumbnails();
+  }
+
+  componentWillUnmount() {
+    $(this.node).find('.eupathdb-RecordOverviewTitle, .eupathdb-GeneOverviewSubtitle').qtip('destroy', true);
+  }
+
+  addProductTooltip() {
+    $(this.node).find('.eupathdb-RecordOverviewTitle, .eupathdb-GeneOverviewSubtitle')
+    .wdkTooltip({
+      content: {
+        text: (event, api) => {
+          return api.elements.target.find('.eupathdb-RecordOverviewDescription').text();
+        }
+      },
+      events: {
+        show: (event, api) => {
+          if (!isNodeOverflowing(api.elements.target[0])) {
+            event.preventDefault();
+          }
+        }
+      }
+    });
   }
 
   renderThumbnails() {
@@ -54,7 +79,7 @@ export class RecordOverview extends React.Component {
     }
     else {
       ReactDOM.render((
-        <Thumbnails.OverviewThumbnails  thumbnails={filteredGBrowseContexts}/>
+        <OverviewThumbnails  thumbnails={filteredGBrowseContexts}/>
       ), thumbsContainer);
     }
   }
