@@ -719,16 +719,32 @@ h4 {
 }
 
 
-@media all and (min-width: 850px) {
+.eupathdb-ReporterFormSubmit {
+  text-align: center;
+  width: 90vw;
+  padding: 2em 0;
+}
+
+@media all and (min-width: 800px) {
   .eupathdb-ReporterForm {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .eupathdb-ReporterFormGroup:first-of-type {
-    margin-left: 100px;
-    width: calc(50% - 100px);
-  }
+  .eupathdb-ReporterFormGroup { width: 350px; }
+
+  .eupathdb-ReporterForm__shared .eupathdb-ReporterFormGroup__columns      { order: 1; }
+  .eupathdb-ReporterForm__shared .eupathdb-ReporterFormGroup__otherOptions { order: 2; }
+  .eupathdb-ReporterForm__shared .eupathdb-ReporterFormGroup__tables       { order: 3; }
+}
+
+/* break point based on combined width of all ReporterFormGroup elemens */
+@media all and (min-width: 1024px) {
+  .eupathdb-ReporterFormGroup { margin: 0 auto; }
+  .eupathdb-ReporterFormGroup__otherOptions { width: auto; }
+  .eupathdb-ReporterForm__shared .eupathdb-ReporterFormGroup__columns      { order: 1; }
+  .eupathdb-ReporterForm__shared .eupathdb-ReporterFormGroup__tables       { order: 2; }
+  .eupathdb-ReporterForm__shared .eupathdb-ReporterFormGroup__otherOptions { order: 3; }
 }
 
 .eupathdb-ReporterFormGroup .wdk-CheckboxTree-list li label {
@@ -738,29 +754,28 @@ h4 {
 
 /* Query Grid CSS */
 
+#eupathdb-QueryGrid p {
+  font-size: 1.2em;
+}
 
 #eupathdb-QueryGrid ul {
-  font-size: 12px;
+  font-size: 0.95em;
   font-weight: 400;
   text-align: left;
   background-color: #FFF;
   margin: 0;
-  padding: 1em 0 1em 0;
-}
-
-#eupathdb-QueryGrid > div > ul > li {
-  list-style-type: none;
-  text-align: center;
-  font-weight: bold;
-  width:100%;
+  padding: 0.3em 0 1em 0;
+  line-height: 1.25em;
 }
 
 #eupathdb-QueryGrid li.threeTierList, #eupathdb-QueryGrid li.twoTierList {
   background-color: #DDD;
-}
-
-#eupathdb-QueryGrid li.threeTierList > ul, #eupathdb-QueryGrid li.twoTierList > ul {
-
+  list-style-type: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
+  line-height: 1.55em;
+  width:100%;
 }
 
 #eupathdb-QueryGrid li.threeTierList > ul > li {
@@ -769,7 +784,12 @@ h4 {
   display: inline-block;
   vertical-align: top;
   margin-left: 0.5em;
-  width: 32%;
+  line-height: 1.3em;
+  width: 32.5%;
+}
+
+#eupathdb-QueryGrid li.threeTierList > ul > li > span {
+  padding-left: 1em;
 }
 
 #eupathdb-QueryGrid li.threeTierList > ul > li > ul {
@@ -794,6 +814,9 @@ h4 {
 }
 
 #eupathdb-QueryGrid .bullet {
-  color:  #3b99fc;
+  color: #000;
+  font-size: 0.4em;
+  height: 1em;
+  top: 1.2em;
 }
 

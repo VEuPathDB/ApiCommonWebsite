@@ -1,10 +1,13 @@
+import {Tooltip} from 'wdk-client/Components';
+
 let QueryGrid;
 QueryGrid = React.createClass({
 
   render() {
     return (
       <div id="eupathdb-QueryGrid">
-        <h1>Query Grid</h1>
+        <h1>All Available Searches</h1>
+        <p>Select a search to start a new search strategy.</p>
         {this.setUpGrid(this.props.grid)}
       </div>
     );
@@ -17,7 +20,7 @@ QueryGrid = React.createClass({
           {grid.filter(item => {
             return item.categories.length > 0
           }).map(item => {
-            return <li className="threeTierList">ID {item.recordClassName.split(".")[0]} By:
+            return <li className="threeTierList">{item.recordClassName.split(".")[0].replace("RecordClasses","")} Searches
               {this.setUpCategories(item.categories)}
             </li>
           })}
@@ -26,9 +29,12 @@ QueryGrid = React.createClass({
           {grid.filter(item => {
             return item.categories.length === 0
           }).map(item => {
-            return <li className="twoTierList">ID {item.recordClassName.split(".")[0]} By:
-              {this.setUpSearches(item.searches)}
-            </li>
+            return(
+              <li className="twoTierList">
+                <span>{item.recordClassName.split(".")[0].replace("RecordClasses","")} Searches</span>
+                {this.setUpSearches(item.searches)}
+              </li>
+            )
           })}
         </ul>
       </div>
@@ -39,9 +45,12 @@ QueryGrid = React.createClass({
     return (
       <ul>
         {categories.map(category => {
-          return <li>{category.categoryName}
-            {this.setUpSearches(category.searches)}
+          return(
+            <li>
+              <span>{category.categoryName}</span>
+              {this.setUpSearches(category.searches)}
           </li>
+          )
         })}
       </ul>
     );
@@ -53,7 +62,14 @@ QueryGrid = React.createClass({
         {searches.map(search => {
           return(
             search.displayName == null ? "" :
-              <li><i className="bullet fa-li fa fa-search"></i>{search.displayName}</li>
+              <li>
+                <i className="bullet fa fa-li fa-circle"></i>
+                <Tooltip content={search.description}>
+                <a href={wdk.webappUrl('showQuestion.do?questionFullName=' + search.fullName)}>
+                  {search.displayName}
+                </a>
+                </Tooltip>
+              </li>
           )
         })}
       </ul>
