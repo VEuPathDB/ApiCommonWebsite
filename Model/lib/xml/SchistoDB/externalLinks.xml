@@ -8,7 +8,19 @@
         <row>
           <attribute name="title">EuPathDB</attribute>
           <attribute name="url">http://www.EuPathDB.org/</attribute>
+        </row>
+        <row>
+          <attribute name="title">EuPathDB Workshops</attribute>
+          <attribute name="url">http://workshop.eupathdb.org/</attribute>
         </row> 
+        <row>
+          <attribute name="title">Companion</attribute>
+          <attribute name="url">https://companion.sanger.ac.uk</attribute>
+        </row> 
+        <row>
+          <attribute name="title">OrthoMCL</attribute>
+          <attribute name="url">http://orthomcl.org/</attribute>
+        </row>  
       </table>
 
 
