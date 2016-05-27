@@ -14,8 +14,8 @@
           <attribute name="url">http://workshop.eupathdb.org/</attribute>
         </row> 
         <row>
-          <attribute name="title">BRCs Pathogen Portal</attribute>
-          <attribute name="url">http://rnaseq.pathogenportal.org/</attribute>
+          <attribute name="title">Companion</attribute>
+          <attribute name="url">https://companion.sanger.ac.uk</attribute>
         </row> 
         <row>
           <attribute name="title">OrthoMCL</attribute>
