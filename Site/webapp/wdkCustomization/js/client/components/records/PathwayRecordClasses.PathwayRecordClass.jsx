@@ -13,7 +13,7 @@ let pathwayFileExt = ".xgmml";
 // initialization options
 let options = {
   // where you have the Cytoscape Web SWF
-   swfPath: "/swf/CytoscapeWeb",
+  swfPath: "/swf/CytoscapeWeb",
   //swfPath: "http://www.plasmodb.org/swf/CytoscapeWeb",
   // where you have the Flash installer SWF
   flashInstallerPath: "/swf/playerProductInstall"
