@@ -494,7 +494,7 @@ sub new {
   $self->setYaxisLabel('FPKM');
   $self->setIsStacked(0);
   $self->setDefaultYMin(0);
-  $self->setDefaultYMax(50);
+  $self->setDefaultYMax(10);
   $self->setPlotTitle("FPKM - $id");
 
   if($wantLogged) {
