@@ -80,7 +80,7 @@ sub isExcludedProfileSet {
   } elsif ($psName =~ /htseq-intersection/){
 #print STDERR "exclude intersection: $psName - return 1\n";
     return 1;
-  } elsif ($isCufflinks && $strand eq 'antisense'){
+  } elsif ($isCufflinks){
     return 1;
   } else {
 #print STDERR "$psName - return 0\n";
