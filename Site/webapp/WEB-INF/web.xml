@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4"
+<web-app version="3.1"
     xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_3_1.xsd">
 
   <context-param>
     <param-name>GUS_HOME</param-name>
@@ -149,12 +149,7 @@
   
   <!-- WDK RESTful client filter -->
   <servlet>
-    <servlet-name>WDKClient</servlet-name>
-    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-    <init-param>
-      <param-name>javax.ws.rs.Application</param-name>
-      <param-value>org.gusdb.wdk.client.WdkClientApplication</param-value>
-    </init-param>
+    <servlet-name>org.gusdb.wdk.client.WdkClientApplication</servlet-name>
     <init-param>
       <param-name>jersey.config.server.provider.classnames</param-name>
       <param-value>org.glassfish.jersey.server.mvc.jsp.JspMvcFeature</param-value>
@@ -165,37 +160,27 @@
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>WDKClient</servlet-name>
+    <servlet-name>org.gusdb.wdk.client.WdkClientApplication</servlet-name>
     <url-pattern>/app/*</url-pattern>
   </servlet-mapping>
 
   <!-- End of WDK Restful client filter -->
   <!-- WSF RESTful service filter -->
   <servlet>
-    <servlet-name>WSF</servlet-name>
-    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-    <init-param>
-      <param-name>javax.ws.rs.Application</param-name>
-      <param-value>org.gusdb.wsf.service.WsfServiceApplication</param-value>
-    </init-param>
+    <servlet-name>org.gusdb.wsf.service.WsfServiceApplication</servlet-name>
   </servlet>
   <servlet-mapping>
-    <servlet-name>WSF</servlet-name>
+    <servlet-name>org.gusdb.wsf.service.WsfServiceApplication</servlet-name>
     <url-pattern>/services/WsfService/*</url-pattern>
   </servlet-mapping>
   <!-- End of WSF Restful service filter -->
   
   <!-- WDK RESTful service filter -->
   <servlet>
-    <servlet-name>WDK</servlet-name>
-    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-    <init-param>
-      <param-name>javax.ws.rs.Application</param-name>
-      <param-value>org.apidb.apicommon.service.ApiWebServiceApplication</param-value>
-    </init-param>
+    <servlet-name>org.apidb.apicommon.service.ApiWebServiceApplication</servlet-name>
   </servlet>
   <servlet-mapping>
-    <servlet-name>WDK</servlet-name>
+    <servlet-name>org.apidb.apicommon.service.ApiWebServiceApplication</servlet-name>
     <url-pattern>/service/*</url-pattern>
   </servlet-mapping>
   <!-- End of WSF Restful service filter -->
