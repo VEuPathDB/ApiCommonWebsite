@@ -149,7 +149,7 @@ $sqlQueries->{geneProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.protein_source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.transcript_source_id = ?)
+AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
 ORDER BY bfmv.source_id
 EOSQL
 
@@ -168,16 +168,16 @@ EOSQL
 $sqlQueries->{transcriptSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.TranscriptSequence seq
-WHERE  bfmv.transcript_source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.transcript_source_id = ?)
+WHERE  bfmv.source_id = seq.source_id
+AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
 ORDER BY bfmv.source_id
 EOSQL
 
 $sqlQueries->{cdsSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.CodingSequence seq
-WHERE  bfmv.transcript_source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.transcript_source_id = ?)
+WHERE  bfmv.source_id = seq.source_id
+AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
 ORDER BY bfmv.source_id
 EOSQL
 
@@ -229,7 +229,7 @@ SELECT bfmv.source_id, substr(seq.sequence,  $start_position, ($seq_length)),
         bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.protein_source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.transcript_source_id = ?)
+AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
 ORDER BY bfmv.source_id
 EOSQL
     $sql = $site->{geneProteinSql};
@@ -273,7 +273,25 @@ EOSQL
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sh = $dbh->prepare("select gene as id from (select gene, case when id = gene then 2 when id = lower(gene) then 1 else 0 end as matchiness from ApidbTuning.GeneId where lower(id) = lower(?) order by matchiness desc) where rownum=1 UNION select transcript_source_id as id from ApidbTuning.TranscriptAttributes where lower(transcript_source_id) = lower(?)");
+  my $sh = $dbh->prepare("<<SQL");
+      select gene as id
+      from (select gene,
+                   case
+                     when id = gene
+                       then 2
+                     when id = lower(gene)
+                       then 1
+                     else 0
+                   end as matchiness
+            from ApidbTuning.GeneId
+            where lower(id) = lower(?)
+            order by matchiness desc)
+      where rownum=1
+    UNION
+      select source_id as id
+      from ApidbTuning.TranscriptAttributes
+      where lower(source_id) = lower(?)
+SQL
 
   my @ids;
 
