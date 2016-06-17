@@ -1,0 +1,45 @@
+{
+  "tables": [
+    "GeneTranscripts",
+    "Alias",
+    "UserComments",
+    "GeneLinkouts",
+    "GeneLocation",
+    "PubMed",
+    "Taxonomy",
+    "SNPsAlignment",
+    "Orthologs",
+    "MercatorTable",
+    "RodMalPhenotype",
+    "Plasmo_eQTL_Table",
+    "ExpressionGraphs",
+    "Sequences",
+    "3dPreds",
+    "PdbSimilarities",
+    "InterPro",
+    "ProteinProperties",
+    "ECNumbers",
+    "GOTerms",
+    "MetabolicPathwaysMPMP",
+    "MetabolicPathways",
+    "CompoundsMetabolicPathways",
+    "Y2hInteractions",
+    "MassSpec",
+    "ProteinExpressionPBrowse",
+    "MassSpecMod",
+    "ProteinExpressionGraphs",
+    "Epitopes"
+  ],
+  "includeOverview": false,
+  "primaryKey": [
+    {
+      "name": "source_id",
+      "value": "PF3D7_1133400"
+    },
+    {
+      "name": "project_id",
+      "value": "PlasmoDB"
+    }
+  ],
+  "attributes": []
+}
