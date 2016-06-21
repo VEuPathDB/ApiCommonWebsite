@@ -14,6 +14,70 @@
        </attribute>
     </record>
 -->
+
+<record>
+  <attribute name="headline">FungiDB 28 Released</attribute>
+  <attribute name="date">30 Mar 2016 13:00</attribute>
+  <attribute name="tag">fungidb03_16_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 28</strong></p>
+    
+    <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+      
+      <section>
+       <h4>RNA Sequencing</h4>
+
+        <ul>
+         <li>
+            <a href="http://fungidb.org/fungidb/app/record/dataset/DS_f449ea4017">
+                       <i>A. fumigatus</i> transcriptome of wild-type vs veA and mtfA deletion mutants</a> &mdash;
+             RNA sequencing of <i>A. fumigatus</i> wild-type and deletion mutants of the secondary metabolite regulators, VeA and MtfA. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25786130">Lind et al.</a>.
+          </li>
+          <li>
+            <a href="http://fungidb.org/fungidb./app/record/dataset/DS_2f12000593">
+                       <i>A. nidulans</i> transcriptome of wild-type vs veA and mtfA deletion mutants</a> &mdash;
+             RNA sequencing of <i>A. nidulans</i> wild-type and deletion mutants of the secondary metabolite regulators, VeA and MtfA. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25786130">Lind et al.</a>.
+          </li>
+         </ul>
+    <section>
+     <h3>New Features</h3>
+      
+      <section>
+       <h4>New Tutorials</h4>
+        <ul>
+          <li>
+            <a href="https://youtu.be/dERj_DLdxyE">Entering User Comments for FungiDB Genes</a> - 
+            User comments are an easy way for you to enter your knowledge about genes, genomic sequences 
+            or isolates.  Watch this tutorial to learn how to enter a comment about a gene.
+          </li>
+         </ul>
+      </section>
+      
+ 
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
+
 <record>
   <attribute name="headline">FungiDB 27 Released</attribute>
   <attribute name="date">19 Feb 2016 13:00</attribute>

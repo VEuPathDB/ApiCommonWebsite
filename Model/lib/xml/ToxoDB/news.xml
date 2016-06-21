@@ -16,6 +16,85 @@
 --> 
 
 <record>
+  <attribute name="headline">ToxoDB 28 Released</attribute>
+  <attribute name="date">30 Mar 2016 13:00</attribute>
+  <attribute name="tag">toxodb03_16_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 28</strong></p>
+    
+    <section>
+    <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+    
+       <section>
+        <h4>RNA sequencing</h4>
+        <ul>
+          <li>
+            <a href="http://toxodb.org/toxo/app/record/dataset/DS_0d0de5d7c3">
+             Gametocytes vs 2 Asexual Stages </a> &mdash; 
+            Tanscriptomes of <i>Eimeria tenella</i> Houghton gametocytes compared to sporozoites and merozoites, determined by RNA sequencing
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25765081">Walker et al.</a> 
+          </li>
+      </section>
+      
+      <section>
+        <h4>Proteomics</h4>
+          <aside>
+          The following data sets were reloaded at the request of the data provider (J. Wastling) because the data analysis was significantly improved 
+          by applying multiple search engines. The new analysis produced more peptide/protein identifications and more reliable quantitation.
+          </aside>
+          
+          <ul>
+          <li>
+            <a href="http://toxodb.org/toxo/app/record/dataset/DS_e611ed9e90">
+             <i>N. caninum</i> Proteome During an Infection in Homo sapiens (Quant) </a> &mdash; 
+                   <i>N. caninum</i> peptide sequences from 6 proteomic analyses of parasite/host cell samples that were
+                   collected during time course infections in human foreskin fibroblasts. Wastling and Xia, unpublished
+          </li>
+          <li>
+            <a href="http://toxodb.org/toxo/app/record/dataset/DS_3c48f52edb">
+             <i>T. gondii</i> Proteome During an Infection in H. sapiens (Quant) </a> &mdash; 
+                   <i>T. gondii</i> peptide sequences from 6 proteomic analyses of mixed parasite/host cell samples that were
+                   collected during time course infections in human foreskin fibroblasts. 
+                   (6 time course experiments using 4 different strains of <i>T. gondii</i>) Wastling and Xia, unpublished
+          </li>
+          <li>
+            <a href="http://toxodb.org/toxo/app/record/dataset/DS_ff403b724f">
+                   <i>N. caninum</i> Proteome During Infection in humans </a> &mdash; 
+                   <i>N. caninum</i> peptide sequences from a proteomic analysis of a mixed parasite/host sample
+                   collected during infection in human foreskin fibroblasts. Wastling and Xia, unpublished
+          </li>
+          <li>
+            <a href="http://toxodb.org/toxo/app/record/dataset/DS_7d25610674">
+                   <i>T gondii</i> Proteome During Infection in Homo sapiens </a> &mdash; 
+                   <i>T. gondii</i> peptide sequences from a proteomic analysis of a mixed parasite/host sample
+                   collected during infection in human foreskin fibroblasts. Multiple strains were analyzed (GT1 ME49 RH VEG) and all data 
+                   were aligned to TgME49.   Wastling and Xia, unpublished
+          </li>
+          </ul>
+        </section>
+        </section>
+ 
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">ToxoDB 27 Released</attribute>
   <attribute name="date">19 Feb 2016 13:00</attribute>
   <attribute name="tag">toxodb02_16_release</attribute>

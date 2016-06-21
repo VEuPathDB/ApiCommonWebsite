@@ -20,6 +20,54 @@
     </record>
 -->
 
+<record>
+  <attribute name="headline">HostDB 28 Released</attribute>
+  <attribute name="date">30 Mar 2016 13:00</attribute>
+  <attribute name="tag">hostdb03_16_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of HostDB 28</strong></p>
+
+    <section>
+     <h3>Updated Data sets</h3>
+      
+      <section>
+      <h4>Proteomics</h4>
+          <aside>
+          The following data sets were reloaded at the request of the data provider (J. Wastling) because the data analysis was significantly improved 
+          by applying multiple search engines. The new analysis produced more peptide/protein identifications and more reliable quantitation.
+          </aside>
+          
+          <ul>
+          <li>
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_08fe07cd15">
+             Quantitative Proteome During an Infection with 4 strains of T. gondii and one strain of <i>N. caninum</i></a> &mdash; 
+                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of mixed parasite/host samples
+                   collected during time course infections with 4 different strains of <i>T. gondii</i>. Wastling and Xia, unpublished
+          </li>
+          <li>
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_70b01a66ee">
+             Proteome During Infection with 4 strains of <i>T. gondii</i> and one strain of <i>N. caninum</i> </a> &mdash; 
+                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of a mixed parasite/host sample
+      collected during <i>T. gondii</i> infections in human foreskin fibroblasts. Wastling and Xia, unpublished
+          </li>
+      </section>
+     
+      
+ 
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
 
 <record>
   <attribute name="headline">HostDB 27 Released</attribute>
