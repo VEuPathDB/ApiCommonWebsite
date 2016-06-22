@@ -22,7 +22,7 @@ sub init {
             ) ec
    WHERE  p.profile_set_name          = '<<ProfileSet>>'
     AND p.profile_type           = '<<ProfileType>>'
-    AND p.gene_source_id = ec.gene_source_id
+    AND p.source_id = ec.gene_source_id
 
 
 
