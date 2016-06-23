@@ -8,7 +8,7 @@ import {CompoundStructure} from '../common/Compound';
 
 export const RECORD_CLASS_NAME = 'PathwayRecordClasses.PathwayRecordClass';
 
-const EC_NUMBER_SEARCH_PREFIX = '/a/processQuestion.do?questionFullName=' +
+const EC_NUMBER_SEARCH_PREFIX = '/processQuestion.do?questionFullName=' +
   'GeneQuestions.InternalGenesByEcNumber&organism=all&array%28ec_source%29=all' +
   '&questionSubmit=Get+Answer&ec_number_pattern=N/A&ec_wildcard=';
 
@@ -364,19 +364,19 @@ export class CytoscapeDrawing extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.resizeMap = _.throttle(this.resizeMap.bind(this), 250);
-    this.state = this.context.viewStore.getState().pathwayRecord;
+    this.state = context.store.getState().pathwayRecord;
   }
 
   componentDidMount() {
-    let { viewStore } = this.context;
+    let { store } = this.context;
     this.resizeMap();
     this.initMenu();
     this.initVis();
     $(this.detailContainer).draggable({
       iframeFix: '#eupathdb-PathwayRecord-cytoscapeweb embed'
     });
-    this.storeSub = viewStore.addListener(() => {
-      this.setState(viewStore.getState().pathwayRecord);
+    this.storeSub = store.addListener(() => {
+      this.setState(store.getState().pathwayRecord);
     });
     $(window).on('resize', this.resizeMap);
   }
@@ -595,7 +595,7 @@ export class CytoscapeDrawing extends React.Component {
 
 CytoscapeDrawing.contextTypes = {
   dispatchAction: React.PropTypes.func.isRequired,
-  viewStore: React.PropTypes.object.isRequired
+  store: React.PropTypes.object.isRequired
 };
 
 function VisMenu(props) {
@@ -654,7 +654,7 @@ function PathwayGraph(props) {
   return(
     <li>
       <a href="javascript:void(0)"
-         onClick={() => vis.changeExperiment(graph.internal + "," + graph.xaxis_description)} >
+         onClick={() => vis.changeExperiment(graph.internal)} >
         {graph.display_name}
       </a>
     </li>
@@ -708,8 +708,11 @@ function EnzymeNodeDetails(props) {
   let { nodeData } = props;
   return (
     <div>
-      <p><b>EC Number:</b> {nodeData.label}</p>
-      <p><b>Enzyme Name or Description:</b> {nodeData.Description}</p>
+      <p><b>EC Number or Reaction:</b> {nodeData.label}</p>
+
+      {nodeData.Description && (  
+        <p><b>Enzyme Name or Description:</b> {nodeData.Description}</p>
+      )}  
 
       {nodeData.Organisms && (
         <div>
@@ -730,9 +733,12 @@ function EnzymeNodeDetails(props) {
               <li key={organism}>{organism}</li>
             ))}
           </ul>
-          <div>
-            <a href={EC_NUMBER_SEARCH_PREFIX + nodeData.label}>Search for Gene(s) By EC Number</a>
-          </div>
+        </div>
+      )}
+    
+      {nodeData.Organisms && (
+        <div>
+          <a href={wdk.webappUrl(EC_NUMBER_SEARCH_PREFIX + nodeData.label)}>Search for Gene(s) By EC Number</a>
         </div>
       )}
 
@@ -760,11 +766,10 @@ function MolecularEntityNodeDetails(props) {
         <div><a href={wdk.webappUrl('/app/record/compound/' + nodeData.CID)}>View on this site</a></div>
       )}
 
-      <div><a href={'http://www.genome.jp/dbget-bin/www_bget?' + nodeData.label}>View in KEGG</a></div>
 
       {nodeData.SID && (
         <div>
-          <div><a href={'http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=' + nodeData.SID}>View in PubChem</a></div>
+          <div><a href={'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=' + nodeData.CID}>View in CHEBI</a></div>
           {/*<div><img src={'http://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&sid=' + nodeData.SID}/></div>*/}
         </div>
       )}
