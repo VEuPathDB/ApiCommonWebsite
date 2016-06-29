@@ -26,6 +26,7 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
   
   private HttpServletRequest _request;
   
+  @Override
   public ActionForward execute(ActionMapping mapping, ActionForm form,
       HttpServletRequest request, HttpServletResponse response)
       throws Exception {
@@ -39,6 +40,7 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
    * in the Transcript record class, this will have the effect of getRecords
    * expanding the gene record into the related transcript records.
    */
+  @Override
   protected RecordClassBean getRecordClass(String type,
       WdkModelBean wdkModel) throws WdkModelException, WdkUserException {
     return "GeneRecordClasses.GeneRecordClass".equals(type)
