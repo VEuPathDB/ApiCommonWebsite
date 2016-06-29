@@ -155,7 +155,7 @@ public class PhenotypeAction extends CommentAction {
             userFile.setProjectName(projectName);
             userFile.setProjectVersion(projectVersion);
 
-            CommentActionUtility.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
+            UserFileFactoryManager.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
 
             int fileId = userFile.getUserFileId();
             String fileStr = fileId + "|" + fileName + "|" + notes;
@@ -171,13 +171,13 @@ public class PhenotypeAction extends CommentAction {
 
         // add the comment
         ServletContext context = servlet.getServletContext();
-        CommentActionUtility.getCommentFactory(context).addComment(comment);
+        CommentFactoryManager.getCommentFactory(context).addComment(comment);
 
         String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
         int commentId = comment.getCommentId();
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "&commentTargetId=" + commentTarget + "#" + commentId; 
 
-        Comment c = CommentActionUtility.getCommentFactory(context).getComment(commentId);
+        Comment c = CommentFactoryManager.getCommentFactory(context).getComment(commentId);
 
         StringBuffer body = new StringBuffer();
         body.append("Thanks for your pheontype comment on " + stableId + "!\n");

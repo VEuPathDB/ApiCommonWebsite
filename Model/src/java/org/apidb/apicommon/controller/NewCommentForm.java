@@ -539,7 +539,7 @@ public class NewCommentForm extends ActionForm {
            targetId = request.getParameter("commentTargetId"); 
         }
 
-        ArrayList<MultiBox> list = CommentActionUtility.getCommentFactory(context)
+        ArrayList<MultiBox> list = CommentFactoryManager.getCommentFactory(context)
             .getMultiBoxData("category", "target_category_id", "TargetCategory",
                 "comment_target_id='" + targetId + "'" );
 
