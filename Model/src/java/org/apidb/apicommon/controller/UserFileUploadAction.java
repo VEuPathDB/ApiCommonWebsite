@@ -74,7 +74,7 @@ public class UserFileUploadAction extends Action {
       userFile.setProjectName(projectName);
       userFile.setProjectVersion(projectVersion);
 
-      CommentActionUtility.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
+      UserFileFactoryManager.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
       
       logger.debug("contentType " + userFile.getContentType());
       logger.debug("fileName " + userFile.getFileName());

@@ -67,7 +67,7 @@ public class UserFileDownloadAction extends DownloadAction {
 
   protected File getFile(String fname, String projectId) {
     ServletContext context = servlet.getServletContext();
-    CommentFactory factory = CommentActionUtility.getCommentFactory(context);
+    CommentFactory factory = CommentFactoryManager.getCommentFactory(context);
     CommentConfig commentConfig = factory.getCommentConfig();
 
     String uploadPath = commentConfig.getUserFileUploadDir();

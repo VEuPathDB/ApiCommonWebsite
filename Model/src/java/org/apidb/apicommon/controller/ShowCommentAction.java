@@ -30,7 +30,7 @@ public class ShowCommentAction extends CommentAction {
 
         // get the factory
         ServletContext context = servlet.getServletContext();
-        CommentFactory factory = CommentActionUtility.getCommentFactory(context);
+        CommentFactory factory = CommentFactoryManager.getCommentFactory(context);
 
         // get the comments for the (project_id, stable_id) tuple
         ShowCommentForm commentForm = (ShowCommentForm) form;
