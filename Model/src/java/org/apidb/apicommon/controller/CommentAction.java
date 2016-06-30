@@ -10,4 +10,5 @@ public abstract class CommentAction extends Action {
 
     public static final String LOCATION_COORDINATETYPE_PROTEIN = "protein";
     public static final String LOCATION_COORDINATETYPE_GENOME = "genome";
+
 }

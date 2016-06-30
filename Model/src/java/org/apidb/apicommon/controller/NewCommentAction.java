@@ -227,7 +227,7 @@ public class NewCommentAction extends CommentAction {
             userFile.setProjectName(projectName);
             userFile.setProjectVersion(projectVersion);
 
-            CommentActionUtility.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
+            UserFileFactoryManager.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
 
             int fileId = userFile.getUserFileId();
             String fileStr = fileId + "|" + fileName + "|" + notes;
@@ -256,7 +256,7 @@ public class NewCommentAction extends CommentAction {
 
         // add the comment
         ServletContext context = servlet.getServletContext();
-        CommentActionUtility.getCommentFactory(context).addComment(comment, previousCommentId);
+        CommentFactoryManager.getCommentFactory(context).addComment(comment, previousCommentId);
 
         String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "&commentTargetId=" + comment.getCommentTarget() + "#" + comment.getCommentId(); 

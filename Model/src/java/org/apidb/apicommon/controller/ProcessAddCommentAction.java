@@ -147,7 +147,7 @@ public class ProcessAddCommentAction extends CommentAction {
 
         // add the comment
         ServletContext context = servlet.getServletContext();
-        CommentActionUtility.getCommentFactory(context).addComment(comment);
+        CommentFactoryManager.getCommentFactory(context).addComment(comment);
 
         // redirect back to the referer page
         request.setAttribute("submitStatus", "success");
