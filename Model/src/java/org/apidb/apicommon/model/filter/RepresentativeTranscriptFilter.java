@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 public class RepresentativeTranscriptFilter extends StepFilter {
 
+  @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(RepresentativeTranscriptFilter.class);
 
   /**
