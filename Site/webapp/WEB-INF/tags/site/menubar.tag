@@ -114,6 +114,9 @@
         <li title="Annotate your sequence and determine orthology, phylogeny & synteny">
           <a href="https://companion.sanger.ac.uk"> Companion</a></li>
 
+         <li title="Eukaryotic Pathogen CRISPR guide RNA/DNA Design Tool">
+          <a href="http://grna.ctegd.uga.edu"> EuPaGDT</a></li>
+
         <li><a href="/pubcrawler/${project}"> PubMed and Entrez</a></li>
         <c:if test="${project != 'EuPathDB'}" >
           <li><a href="/cgi-bin/gbrowse/${fn:toLowerCase(project)}/">Genome Browser </a></li>
