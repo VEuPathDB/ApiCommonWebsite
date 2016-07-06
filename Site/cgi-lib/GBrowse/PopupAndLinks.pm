@@ -829,7 +829,7 @@ sub gsnapIntronTitleUnified {
   my $start = $f->start;
   my $stop = $f->stop;
 
-  my $sum = eval join '+', split /[,|\|]/, $scores;
+  my $sum = eval join '+', split /[,|\|]/, $urs;
 
   my @sample_arr = split /\|/, $samples;
   my @score_arr  = split /\|/, $scores;
@@ -873,6 +873,92 @@ sub gsnapIntronTitleUnified {
          $html .= "<tr><td></td><td>$sa[$i]</td><td>$score</td><td>$ur[$i]</td><td>$nrs[$i]</td></tr>"; 
        }
        $seen = 1;
+     }
+     $count++;
+  }
+  $html .= "</table>";
+  push @data, [ '' => $html ];
+
+
+#  hover('Unified Splice Site Junctions - RNASeq', \@data);
+  hover($f, \@data); 
+}
+
+sub gsnapUnifiedIntronJunctionTitle {  
+  my ($f) = @_;
+  ##arrays
+  my ($exps) = $f->get_tag_values('Exps');
+  my ($samples) = $f->get_tag_values('Samples');
+  my ($urs) = $f->get_tag_values('URS');
+  my ($isrpm) = $f->get_tag_values('ISRPM');
+  my ($nrs) =  $f->get_tag_values('NRS');
+  my ($percSamp) = $f->get_tag_values('PerMaxSample'); 
+  my ($expRatio) = $f->get_tag_values('ExpRatio'); 
+  my ($isrpmExpRatio) = $f->get_tag_values('IsrpmExpRatio'); 
+  my ($avgExpRatio) = $f->get_tag_values('AvgExpRatio'); 
+  my ($isrpmAvgExpRatio) = $f->get_tag_values('IsrpmAvgExpRatio'); 
+  ##attributes
+  my ($totalScore) = $f->get_tag_values('TotalScore'); 
+  my ($intronPercent) = $f->get_tag_values('IntronPercent'); 
+  my ($intronRatio) = $f->get_tag_values('IntronRatio'); 
+  my ($matchesGeneStrand) = $f->get_tag_values('MatchesGeneStrand'); 
+
+  my $start = $f->start;
+  my $stop = $f->stop;
+
+
+  my @exp_arr    = split /\|/, $exps;
+  my @sample_arr = split /\|/, $samples;
+  my @ur_arr    = split /\|/, $urs;
+  my @isrpm_arr    = split /\|/, $isrpm;
+  my @nrs_arr    = split /\|/, $nrs;
+  my @percSamp_arr = split /\|/, $percSamp;
+  my @expRatio_arr = split /\|/, $expRatio;
+  my @isrpmExpRatio_arr = split /\|/, $isrpmExpRatio;
+  my @avgExpRatio_arr = split /\|/, $avgExpRatio;
+  my @isrpmAvgExpRatio_arr = split /\|/, $isrpmAvgExpRatio;
+
+
+  my @data;
+  push @data, [ 'Location:'  => "$start - $stop (".($stop - $start + 1).")"];
+  push @data, [ '<b>Sum Unique Reads</b>'     => "<b>$totalScore</b>" ];
+  push @data, [ '<b>Percent of Max</b>'  => "<b>$intronPercent</b>"] if $intronPercent;
+  push @data, [ '<b>Score/Expression</b>'  => "<b>$intronRatio</b>"] if $intronRatio;
+##  push @data, [ '<b>Consistent Strand</b>'  => "<b>".($matchesGeneStrand == 1 ? "Yes" : $matchesGeneStrand == -1 ? "NA" : "No")." ($matchesGeneStrand)</b>"];
+
+  my $count = 0;
+  my $html;
+  if($intronPercent){
+    $html = "<table><tr><th>Experiment</th><th>Sample</th><th>Unique</th><th>ISRPM</th><th>Non-Unique</th><th>ISRPM/ Sample</th><th>ISRPM/ AvgExp</th><th>% Sample</th></tr>";
+  }else{
+    $html = "<table><tr><th>Experiment</th><th>Sample</th><th>Unique</th><th>ISRPM</th><th>Non-Unique</th><th>ISRPM/ AvgExp</th></tr>";
+  }
+  foreach my $exp (@exp_arr) {
+
+#     $exp =~ s/_RSRC$//g;
+#     $exp =~ s/RNASeq//ig;
+#     $exp =~ s/_/ /g;
+
+     my @sa = split /,/, $sample_arr[$count];
+     my @ur = split /,/, $ur_arr[$count];
+     my @isrpm = split /,/, $isrpm_arr[$count];
+     my @nrs = split /,/, $nrs_arr[$count];
+     my @rs = split /,/, $isrpmExpRatio_arr[$count];
+     my @rt = split /,/, $isrpmAvgExpRatio_arr[$count];
+     my @ps = split /,/, $percSamp_arr[$count];
+
+     for(my $i = 0; $i < $#sa + 1; $i++) {
+
+       if($i == 0) {
+         $html .= "<tr><td>$exp</td><td>$sa[$i]</td><td>$ur[$i]</td><td>$isrpm[$i]</td><td>$nrs[$i]</td>"; 
+       } else {
+         $html .= "<tr><td></td><td>$sa[$i]</td><td>$ur[$i]</td><td>$isrpm[$i]</td><td>$nrs[$i]</td>"; 
+       }
+       if($intronPercent){
+         $html .= "<td>$rs[$i]</td><td>$rt[$i]</td><td>$ps[$i]</td></tr>";
+       }else{
+         $html .= "<td>$rt[$i]</td></tr>";
+       }
      }
      $count++;
   }
