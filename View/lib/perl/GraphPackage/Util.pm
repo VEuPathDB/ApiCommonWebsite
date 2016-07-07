@@ -42,6 +42,7 @@ sub getProfileSetsSql {
 FROM apidbtuning.ProfileSamples ps, apidbtuning.ProfileType pt, apidbtuning.DatasetNameTaxon dnt
 WHERE pt.dataset_name = dnt.name
 AND pt.profile_set_name = ps.study_name
+AND profile_set_name not like '%PaGE'
 AND dnt.dataset_presenter_id = ?"
 }
 
