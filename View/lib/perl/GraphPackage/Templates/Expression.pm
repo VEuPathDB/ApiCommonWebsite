@@ -734,17 +734,6 @@ sub init {
 
 1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_e8c4cf2187;
-
-sub finalProfileAdjustments {
-  my ($self, $profile) = @_;
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
-  $rma->setHasExtraLegend(0);
-  $rma->setLegendLabels();
-
-}
-
-
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
 # use strict;
