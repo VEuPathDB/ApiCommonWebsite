@@ -173,7 +173,7 @@ sub makeProfileCannedQuery {
   my $scale = $self->getScale();
 
   my $profile;
-  if(lc($idType) eq 'ec') {
+  if(($idType) && lc($idType) eq 'ec') {
     $profile = ApiCommonWebsite::Model::CannedQuery::ProfileByEC->new
         ( Name         => "_data_$suffix",
           Id           => $id,
