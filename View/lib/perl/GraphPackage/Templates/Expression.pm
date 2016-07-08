@@ -318,7 +318,7 @@ sub forceXLabelsHorizontal {
 
 
 
-
+### PlasmoDB ###
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
 sub getGroupRegex {
   return 'winzeler';
@@ -665,6 +665,84 @@ sub _init {
 1;
 
 
+
+
+### ToxoDB ###
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_e8c4cf2187;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+#  $profile->addAdjustProfile('profile.df = cbind(profile.df[,1], profile.df[,3], profile.df[,2], profile.df[,4]);');
+
+  my $colors = $profile->getColors();
+  my @elementNames = ("WT:Stressed","WT:Unstressed","KO:Stressed","KO:Unstressed");
+#  my $legendLabels = ["Wild Type", "GCN5-A Knockout", ];
+  my $legendLabels = ["", "Wild Type", "GCN5-A Knockout", ];
+
+  $profile->setSampleLabels(\@elementNames);
+  $profile->setColors([$colors->[0], $colors->[0],$colors->[1], $colors->[1]]);
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legendLabels);
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2daab8c933;
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+  my $colors = ['#B22222','#6A5ACD','#87CEEB' ];
+  my $legend = ['GT1', 'ME49', 'CTGara'];
+
+  my $gt1Samples = ['Tachyzoite','Compound 1','pH=8.2','','','','','',''];
+  my $me49Samples = ['','','','Tachyzoite','Compound 1','pH=8.2','','',''];
+  my $ctgSamples = ['','','', '','','', 'Tachyzoite','Compound 1','pH=8.2'];
+
+  my @profileArray = (['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'values', '', '', $gt1Samples ],
+                      ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'values', '', '', $me49Samples ],
+                      ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'values', '', '', $ctgSamples ],
+                     );
+
+  my @percentileArray = (['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'channel1_percentiles', '', '', $gt1Samples],
+                         ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'channel1_percentiles', '', '', $me49Samples],
+                         ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'channel1_percentiles', '', '', $ctgSamples],
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setForceHorizontalXAxis(1);
+  $rma->setHasExtraLegend(1); 
+  $rma->setLegendLabels($legend);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setForceHorizontalXAxis(1);
+  $percentile->setHasExtraLegend(1);
+  $percentile->setLegendLabels($legend);
+
+  $self->setGraphObjects($rma, $percentile);
+
+  return $self;
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_e8c4cf2187;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setHasExtraLegend(0);
+  $rma->setLegendLabels();
+
+}
 
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
