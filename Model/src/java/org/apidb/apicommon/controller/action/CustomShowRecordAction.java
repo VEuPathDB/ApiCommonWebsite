@@ -77,6 +77,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         if (sourceId == null) sourceId = request.getParameter(PARAM_PRIMARY_KEY);
         
         String geneSourceId = request.getParameter(PARAM_GENE_SOURCE_ID);
+				logger.debug("rcName is: " + rcName +  ", source_id is: " + sourceId + ", gene_source_id is: " + geneSourceId + " \n" );
 
         // if the action is used EuPathDB, we will redirect record page to component project.
         if (wdkModel.getProjectId().equals("EuPathDB")) {
