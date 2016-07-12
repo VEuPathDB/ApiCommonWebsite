@@ -273,7 +273,7 @@ EOSQL
 sub mapGeneFeatureSourceIds {
   my ($self, $inputIds, $dbh) = @_;
 
-  my $sh = $dbh->prepare("<<SQL");
+  my $sql = <<SQL;
       select gene as id
       from (select gene,
                    case
@@ -293,6 +293,7 @@ sub mapGeneFeatureSourceIds {
       where lower(source_id) = lower(?)
 SQL
 
+  my $sh = $dbh->prepare($sql);
   my @ids;
 
   foreach my $in (@{$inputIds}) {
