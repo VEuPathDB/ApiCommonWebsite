@@ -144,6 +144,155 @@ sub defineGraphs {
 
 #--------------------------------------------------------------------------------
 
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_a8800cfd76;
+
+
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my @colors = ('blue', 'red', 'orange');
+  my @legend = ('HB3', '3D7', 'DD2');
+
+  # TODO: Why isn't the scaling working??
+  my $_3D7Scaling = 52/48;
+
+  my @hb3Graphs = $self->defineGraphs('HB3', $colors[0], 'DeRisi HB3 Smoothed', 'DeRisi HB3 non-smoothed', 'Timepoint Mapping And Life Stage Fractions - HB3', undef);
+  my @_3D7Graphs = $self->defineGraphs('3D7', $colors[1], 'DeRisi 3D7 Smoothed', 'DeRisi 3D7 non-smoothed', 'Timepoint Mapping And Life Stage Fractions - 3D7', $_3D7Scaling);
+  my @dd2Graphs = $self->defineGraphs('Dd2', $colors[2], 'DeRisi Dd2 Smoothed', 'DeRisi Dd2 non-smoothed', 'Timepoint Mapping And Life Stage Fractions - Dd2', undef);
+
+
+  my $combined = $self->makeCombinedGraph();
+
+
+  $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs);
+
+  return $self;
+}
+
+sub getTimePointMapping {
+  my ($self, $profileSetName, $timePointProfileSetName) = @_;
+
+  my $sql = "select pen.name, tpp.profile_as_string
+from apidb.profileset ps, apidb.profileelementname pen,
+     apidb.profile tpp, apidb.profileset tpps
+where pen.profile_set_id = ps.profile_set_id
+and ps.name = ?
+and tpps.profile_set_id = tpp.profile_set_id
+and tpps.name = ?
+and tpp.source_id = pen.name
+order by pen.element_order";
+
+  my $qh = $self->getQueryHandle();
+
+  my $sh = $qh->prepare($sql);
+
+  $sh->execute($profileSetName, $timePointProfileSetName);
+
+  my @rv;
+
+  while(my ($old, $new) = $sh->fetchrow_array()) {
+    push @rv, $new;
+  }
+  $sh->finish();
+
+  return \@rv;
+}
+
+
+sub makeCombinedGraph {
+  my ($self) = @_;
+
+  my $_3d7ProfileSet = 'DeRisi 3D7 Smoothed';
+  my $hb3ProfileSet = 'DeRisi HB3 Smoothed';
+  my $dd2ProfileSet = 'DeRisi Dd2 Smoothed';
+
+#  my $times_3d7 = $self->getTimePointMapping($_3d7ProfileSet, '48 Hour Cycle Timepoint Map for 3D7');
+#  my $times_hb3 = $self->getTimePointMapping($hb3ProfileSet, '48 Hour Cycle Timepoint Map for HB3');
+#  my $times_dd2 = $self->getTimePointMapping($dd2ProfileSet, '48 Hour Cycle Timepoint Map for Dd2');
+
+  my @derisiProfileArray = ([$hb3ProfileSet, 'values', '', '', '', ''],
+                            [$_3d7ProfileSet, 'values', '', '', '', ''],
+                            [$dd2ProfileSet, 'values', '', '', '', ''],
+                           );
+  
+#  my @derisiProfileArray = ([$hb3ProfileSet, 'value', '', '', '', '', $times_hb3],
+#                            [$_3d7ProfileSet, 'value', '', '', '', '', $times_3d7],
+#                            [$dd2ProfileSet, 'value', '', '', '', '', $times_dd2],
+#                           );
+
+  my $derisiProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@derisiProfileArray);
+
+  my @colors = ('blue', 'red', 'orange', 'cyan', 'purple' );
+
+  my $derisi = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $derisi->setProfileSets($derisiProfileSets);
+  $derisi->setColors([@colors[0..2]]);
+  $derisi->setPointsPch([15,15,15]);
+  $derisi->setPartName('derisi');
+
+
+  return $derisi;
+}
+
+
+sub defineGraphs {
+  my ($self, $name, $color, $smoothed, $nonSmoothed, $fraction, $scale) = @_;
+
+  my @pch = (15, 15);  
+  my @profileSetNames = ([$smoothed, 'values'],
+                         [$nonSmoothed, 'values']
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+
+  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $line->setProfileSets($profileSets);
+  $line->setColors([$color, 'gray']);
+  $line->setPointsPch(\@pch);
+  $line->setPartName("expr_val_" . $name);
+  my $lineTitle = $line->getPlotTitle();
+  $line->setPlotTitle("$name - $lineTitle");
+
+   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$smoothed, 'channel1_percentiles']]);
+   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+   $percentile->setProfileSets($percentileSets);
+   $percentile->setPointsPch(['NA']);
+   $percentile->setIsFilled(1);
+   $percentile->setColors([$color]);
+   $percentile->setPartName("percentile_" . $name);
+   my $pctTitle = $percentile->getPlotTitle();
+   $percentile->setPlotTitle("$name - $pctTitle");
+
+   my @fractions = ([$fraction, 'value', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
+                    [$fraction, 'value', '', '', '', 'schizont stage', $scale],
+                    [$fraction, 'value', '', '', '', 'trophozoite stage', $scale],
+                   );
+
+   my $fractionSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@fractions);
+
+   my $postscript = "
+ text(8,  50, col=\"white\", labels=c(\"Ring\"));
+ text(23, 50, col=\"white\", labels=c(\"Trophozoite\"));
+ text(40, 50, col=\"white\", labels=c(\"Schizont\"));
+ ";
+
+   my @colors = ('#E9967A', '#4169E1', '#FF69B4');
+   my $lifeStages = ApiCommonWebsite::View::GraphPackage::LinePlot::Filled->new(@_);
+   $lifeStages->setProfileSets($fractionSets);
+   $lifeStages->setPlotTitle("$name - Life Stage Population Percentages");
+   $lifeStages->setYaxisLabel("%");
+   $lifeStages->setColors(\@colors);
+   $lifeStages->setRPostscript($postscript);
+   $lifeStages->setPointsPch(['NA', 'NA', 'NA']);
+   $lifeStages->setPartName("lifeStages_" . $name);
+
+  return($line, $percentile, $lifeStages);
+}
+
+#--------------------------------------------------------------------------------
+
 # TEMPLATE_ANCHOR microarraySimpleTwoChannelGraph
 
 
