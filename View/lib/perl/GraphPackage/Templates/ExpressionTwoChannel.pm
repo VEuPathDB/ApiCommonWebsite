@@ -172,30 +172,24 @@ sub init {
 }
 
 sub getTimePointMapping {
-  my ($self, $profileSetName, $timePointProfileSetName) = @_;
+  my ($self, $timePointProfileSetName) = @_;
 
-  my $sql = "select pen.name, tpp.profile_as_string
-from apidb.profileset ps, apidb.profileelementname pen,
-     apidb.profile tpp, apidb.profileset tpps
-where pen.profile_set_id = ps.profile_set_id
-and ps.name = ?
-and tpps.profile_set_id = tpp.profile_set_id
-and tpps.name = ?
-and tpp.source_id = pen.name
-order by pen.element_order";
+
+  my $sql = "select profile_as_string 
+from apidbtuning.profile
+where source_id = 'timepoint'
+and profile_set_name = ?";
 
   my $qh = $self->getQueryHandle();
 
   my $sh = $qh->prepare($sql);
 
-  $sh->execute($profileSetName, $timePointProfileSetName);
+  $sh->execute($timePointProfileSetName);
 
-  my @rv;
-
-  while(my ($old, $new) = $sh->fetchrow_array()) {
-    push @rv, $new;
-  }
+  my ($profileAsString) = $sh->fetchrow_array();
   $sh->finish();
+  my @rv = split(/\t/, $profileAsString);
+
 
   return \@rv;
 }
@@ -208,19 +202,15 @@ sub makeCombinedGraph {
   my $hb3ProfileSet = 'DeRisi HB3 Smoothed';
   my $dd2ProfileSet = 'DeRisi Dd2 Smoothed';
 
-#  my $times_3d7 = $self->getTimePointMapping($_3d7ProfileSet, '48 Hour Cycle Timepoint Map for 3D7');
-#  my $times_hb3 = $self->getTimePointMapping($hb3ProfileSet, '48 Hour Cycle Timepoint Map for HB3');
-#  my $times_dd2 = $self->getTimePointMapping($dd2ProfileSet, '48 Hour Cycle Timepoint Map for Dd2');
+  my $times_3d7 = $self->getTimePointMapping('Timepoint Mapping And Life Stage Fractions - 3D7');
+  my $times_hb3 = $self->getTimePointMapping('Timepoint Mapping And Life Stage Fractions - HB3');
+  my $times_dd2 = $self->getTimePointMapping('Timepoint Mapping And Life Stage Fractions - Dd2');
 
-  my @derisiProfileArray = ([$hb3ProfileSet, 'values', '', '', '', ''],
-                            [$_3d7ProfileSet, 'values', '', '', '', ''],
-                            [$dd2ProfileSet, 'values', '', '', '', ''],
+
+  my @derisiProfileArray = ([$hb3ProfileSet, 'values', '', '', $times_hb3],
+                            [$_3d7ProfileSet, 'values', '', '', $times_3d7],
+                            [$dd2ProfileSet, 'values', '', '', $times_dd2],
                            );
-  
-#  my @derisiProfileArray = ([$hb3ProfileSet, 'value', '', '', '', '', $times_hb3],
-#                            [$_3d7ProfileSet, 'value', '', '', '', '', $times_3d7],
-#                            [$dd2ProfileSet, 'value', '', '', '', '', $times_dd2],
-#                           );
 
   my $derisiProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@derisiProfileArray);
 
@@ -230,7 +220,7 @@ sub makeCombinedGraph {
   $derisi->setProfileSets($derisiProfileSets);
   $derisi->setColors([@colors[0..2]]);
   $derisi->setPointsPch([15,15,15]);
-  $derisi->setPartName('derisi');
+  $derisi->setPartName('overlay');
 
 
   return $derisi;
