@@ -69,6 +69,7 @@ required:
  crypURL: http://$wmc->{'host_class_prefix'}cryptodb.org/cryptodb/
  fungURL: http://$wmc->{'host_class_prefix'}fungidb.org/fungidb/
  giarURL: http://$wmc->{'host_class_prefix'}giardiadb.org/giardiadb/
+ mbioURL: http://$wmc->{'host_class_prefix'}microbiomedb.org/mbio/
  micrURL: http://$wmc->{'host_class_prefix'}microsporidiadb.org/micro/
  piroURL: http://$wmc->{'host_class_prefix'}piroplasmadb.org/piro/
  plasURL: http://$wmc->{'host_class_prefix'}plasmodb.org/plasmo/
