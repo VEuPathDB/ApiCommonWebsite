@@ -116,12 +116,13 @@ sub makeRLegendString {
   }
 
   my $colors = $legendHash->{colors};
+  my $legendColors = ($legendHash->{legendColors})? $legendHash->{legendColors}:$colors ;
   my $names = $legendHash->{short_names};
   my $pch = $legendHash->{points_pch};
   my $fill = $legendHash->{fill};
   my $nCols = $legendHash->{cols};
 
-  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'legend.colors');
+  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendColors, 'legend.colors');
   my $rNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($names, 'legend.names');
   my $rPointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pch, 'points.pch');
   my $rFill = $fill ? "TRUE" : "FALSE";

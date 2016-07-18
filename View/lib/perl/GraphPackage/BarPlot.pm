@@ -65,8 +65,8 @@ sub makeRPlotString {
       return $self->blankPlotPart();
     }
   }
-
   my $colors = $self->getColors();
+
   my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
 
   my $rAdjustProfile = $self->getAdjustProfile();
@@ -111,11 +111,15 @@ sub makeRPlotString {
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $legendLabels = $self->getLegendLabels();
 
-  my $legendLabelsString;
-
+  my ($legendLabelsString, $legendColors, $legendColorsString);
   if ($hasExtraLegend ) {
-      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
+      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label');
+
+      $legendColors = $self->getLegendColors();
+      $legendColors = $colors if !($legendColors);
+      $legendColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendColors, 'legend.colors');
     }
+
   my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
 
   my $extraLegendSize = $self->getExtraLegendSize();
@@ -131,6 +135,7 @@ $stderrFiles
 $colorsString
 $sampleLabelsString
 $legendLabelsString
+$legendColorsString
 
 is.compact=$isCompactString;
 
@@ -377,18 +382,16 @@ if($hasExtraLegend && !is.compact) {
   figureRegionXMax = par()\$fig[2];
   figureRegionYMax = par()\$fig[4];
 
-
   if ($hasLegendLabels) {
       my.labels = legend.label;
       }
-
 
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(figureRegionYMax, from='ndc', to='user'),
          my.labels,
          cex   = (0.8 * $scale),
          ncol  = 1,
-         fill=the.colors,
+         fill=legend.colors,
          bty='n',
          xjust=1,
          yjust=1
