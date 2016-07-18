@@ -76,6 +76,9 @@ sub getErrorsFileHandle          { $_[0]->{'_file_handle'                   }}
 sub getHasExtraLegend            { $_[0]->{'_has_extra_legend'              }}
 sub setHasExtraLegend            { $_[0]->{'_has_extra_legend'              } = $_[1]}
 
+sub getLegendColors              { $_[0]->{'_legend_colors'                 }}
+sub setLegendColors              { $_[0]->{'_legend_colors'                 } = $_[1]}
+
 sub getExtraLegendSize           { $_[0]->{'_extra_legend_size'             }}
 sub setExtraLegendSize           { $_[0]->{'_extra_legend_size'             } = $_[1]}
 

@@ -676,12 +676,14 @@ sub finalProfileAdjustments {
 
   my $colors = $profile->getColors();
   my @elementNames = ("WT:Stressed","WT:Unstressed","KO:Stressed","KO:Unstressed");
-#  my $legendLabels = ["Wild Type", "GCN5-A Knockout", ];
-  my $legendLabels = ["", "Wild Type", "GCN5-A Knockout", ];
+
+  my $legendLabels = ["Wild Type", "GCN5-A Knockout", ];
+  $profile->setLegendColors(["#D87093","#87CEEB"]);
 
   $profile->setSampleLabels(\@elementNames);
   $profile->setColors([$colors->[0], $colors->[0],$colors->[1], $colors->[1]]);
   $profile->setHasExtraLegend(1);
+
   $profile->setLegendLabels($legendLabels);
 }
 
@@ -729,6 +731,20 @@ sub init {
 
   $self->setGraphObjects($rma, $percentile);
 
+  return $self;
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2750122e82;
+sub finalProfileAdjustments {
+
+  my ($self, $profile) = @_;
+  my $legend = ['oocyst', 'tachyzoite', 'bradyzoite'];
+  $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
+
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legend);
   return $self;
 }
 
