@@ -14,6 +14,9 @@ use ApiCommonWebsite::Model::CannedQuery::ProfileByEC;
 sub getName                      { $_[0]->{'_name'             }}
 sub setName                      { $_[0]->{'_name'             } = $_[1]}
 
+sub getSubId                     { $_[0]->{'_sub_id'           }}
+sub setSubId                     { $_[0]->{'_sub_id'           } = $_[1]} 
+
 sub getType                      { $_[0]->{'_type'             }}
 sub setType                      { $_[0]->{'_type'             } = $_[1]}
 
@@ -52,7 +55,7 @@ sub logError              { push @{$_[0]->{'_errors'}}, $_[1] }
 sub errors                { $_[0]->{'_errors'               }}
 
 sub new {
-  my ($class, $name, $type, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $displayName) = @_;
+  my ($class, $name, $type, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $displayName, $subId) = @_;
 
   unless($name) {
     die "ProfileSet Name missing: $!";
@@ -63,6 +66,7 @@ sub new {
   $self->setName($name);
   $self->setType($type);
   $self->setDisplayName($displayName);
+  $self->setSubId($subId);
 
   unless(ref($elementNames) eq 'ARRAY') {
     $elementNames = [];
@@ -171,6 +175,7 @@ sub makeProfileCannedQuery {
   my $profileSetName = $self->getName();
   my $profileSetType = $self->getType();
   my $scale = $self->getScale();
+  my $subId = $self->getSubId();
 
   my $profile;
   if(($idType) && lc($idType) eq 'ec') {
@@ -184,8 +189,12 @@ sub makeProfileCannedQuery {
   }
 
   else {
+    if (defined $subId) {
+        $id = "$id|$subId";
+    }
     $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
         ( Name         => "_data_$suffix",
+        #if there is a suffix, append suffix to id
           Id           => $id,
           ProfileSet   => $profileSetName,
 	  ProfileType => $profileSetType,
