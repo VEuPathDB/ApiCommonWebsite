@@ -701,15 +701,16 @@ sub init {
   my $gt1Samples = ['Tachyzoite','Compound 1','pH=8.2','','','','','',''];
   my $me49Samples = ['','','','Tachyzoite','Compound 1','pH=8.2','','',''];
   my $ctgSamples = ['','','', '','','', 'Tachyzoite','Compound 1','pH=8.2'];
+  my $profileName ="three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions";
 
-  my @profileArray = (['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'values', '', '', $gt1Samples ],
-                      ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'values', '', '', $me49Samples ],
-                      ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'values', '', '', $ctgSamples ],
+  my @profileArray = (["$profileName", "values", "$profileName", "standard_error", $gt1Samples ],
+                      ["$profileName", "values", "$profileName", "standard_error", $me49Samples ],
+                      ["$profileName", "values", "$profileName", "standard_error", $ctgSamples ],
                      );
 
-  my @percentileArray = (['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'channel1_percentiles', '', '', $gt1Samples],
-                         ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'channel1_percentiles', '', '', $me49Samples],
-                         ['three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions', 'channel1_percentiles', '', '', $ctgSamples],
+  my @percentileArray = (["$profileName", "channel1_percentiles", "", "", $gt1Samples],
+                         ["$profileName", "channel1_percentiles", "", "", $me49Samples],
+                         ["$profileName", "channel1_percentiles", "", "", $ctgSamples],
                         );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -747,8 +748,36 @@ sub finalProfileAdjustments {
   $profile->setLegendLabels($legend);
   return $self;
 }
-
 1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_994d646c6a;
+sub finalProfileAdjustments {
+
+  my ($self, $profile) = @_;
+  my $legend = ['1', '2', '3','4','5','6'];
+  $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
+
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legend);
+  return $self;
+}
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_73d06a9e7b;
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /Expression profiling of the 3 archetypal T. gondii lineages/){
+    return 1;
+  }
+  return 0;
+}
+1;
+
+
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
