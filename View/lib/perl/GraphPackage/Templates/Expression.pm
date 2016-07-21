@@ -753,7 +753,7 @@ sub finalProfileAdjustments {
 
   $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
   $profile->setHasExtraLegend(1);
-  $profile->setElementNameMarginSize(60);
+  $profile->setElementNameMarginSize(5);
   $profile->setLegendLabels($legend);
 
   return $self;
