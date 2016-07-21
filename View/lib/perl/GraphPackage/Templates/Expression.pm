@@ -546,11 +546,7 @@ sub init {
   $self->setGraphObjects($rma, $percentile);
 
   return $self;
-
 }
-
-
-
 
 1;
 
@@ -752,16 +748,31 @@ sub finalProfileAdjustments {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_994d646c6a;
 sub finalProfileAdjustments {
-
   my ($self, $profile) = @_;
-  my $legend = ['1', '2', '3','4','5','6'];
-  $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
+  my $legend = ['Pru Alkaline', 'Pru CO2-starvation', 'Pru sodium nitroprusside', 'RH Alkaline'];
 
+  $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
   $profile->setHasExtraLegend(1);
+  $profile->setElementNameMarginSize(60);
   $profile->setLegendLabels($legend);
+
   return $self;
 }
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /\(by Florence Dzierszinski\)$/){
+    return 1;
+  }
+  return 0;
+}
 1;
+
+
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_73d06a9e7b;
 sub isExcludedProfileSet {
