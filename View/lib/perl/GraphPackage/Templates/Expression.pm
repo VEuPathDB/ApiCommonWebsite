@@ -751,7 +751,6 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
   #my $legend = ['Pru Alkaline', 'Pru CO2-starvation', 'Pru sodium nitroprusside', 'RH Alkaline'];
   my $legend = ['Pru Alk', 'Pru CO2', 'Pru Na', 'RH Alk'];
-  $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
   $profile->setHasExtraLegend(1);
   $profile->setLegendLabels($legend);
 
