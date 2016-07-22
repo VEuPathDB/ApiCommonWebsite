@@ -747,29 +747,32 @@ sub finalProfileAdjustments {
 1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_994d646c6a;
+sub getKey {
+  my ($self, $profileSetName, $profileType) = @_;
+
+  my $groupName = $self->getGroupNameFromProfileSetName($profileSetName);
+
+  $groupName = '' if (!$groupName);
+  $groupName = '2-14 days' if ($profileSetName =~ /\(by Florence Dzierszinski\)$/);
+#print STDERR "groupName = $groupName FOR $profileSetName\n";
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+  $profileType = 'percentile' if ($profileType eq 'channel2_percentiles');
+
+  return "${groupName}_${profileType}";
+}
+
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
   #my $legend = ['Pru Alkaline', 'Pru CO2-starvation', 'Pru sodium nitroprusside', 'RH Alkaline'];
-  my $legend = ['Pru Alk', 'Pru CO2', 'Pru Na', 'RH Alk'];
-  $profile->setHasExtraLegend(1);
-  $profile->setLegendLabels($legend);
+  my $legend;
+
+  $profile->setHasExtraLegend(0);
 
   return $self;
 }
 
-sub isExcludedProfileSet {
-  my ($self, $psName) = @_;
 
-  foreach(@{$self->excludedProfileSetsArray()}) {
-    return 1 if($_ eq $psName);
-  }
-  if ($psName =~ /\(by Florence Dzierszinski\)$/){
-    return 1;
-  }
-  return 0;
-}
 1;
-
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_73d06a9e7b;
