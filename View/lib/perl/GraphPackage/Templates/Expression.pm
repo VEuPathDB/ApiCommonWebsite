@@ -730,8 +730,8 @@ sub init {
 
   return $self;
 }
-
 1;
+
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2750122e82;
 sub finalProfileAdjustments {
@@ -746,33 +746,108 @@ sub finalProfileAdjustments {
 }
 1;
 
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_994d646c6a;
-sub getKey {
-  my ($self, $profileSetName, $profileType) = @_;
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
 
-  my $groupName = $self->getGroupNameFromProfileSetName($profileSetName);
+  my $colorsRoos = ['#4682B4','#6B8E23','#00FF00','#2E8B57'];
+  my $colorsFlo  = ['#CD853F','#8FBC8F'];
+  my $graphs;
 
-  $groupName = '' if (!$groupName);
-  $groupName = '2-14 days' if ($profileSetName =~ /\(by Florence Dzierszinski\)$/);
-#print STDERR "groupName = $groupName FOR $profileSetName\n";
-  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
-  $profileType = 'percentile' if ($profileType eq 'channel2_percentiles');
+  my @profileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'values', '', ''],
+ 			  ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'values', '', '']
+			  );
 
-  return "${groupName}_${profileType}";
+   my @profileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'values', '', ''],
+                          ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'values', '', '']
+                         );
+
+   my @percentileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'channel1_percentiles', '', '']
+ 			    );
+
+   my @percentileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'channel1_percentiles', '', ''],
+ 			    ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'channel1_percentiles', '', '']
+ 			   );
+
+  my $id = $self->getId();
+
+   my $profileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayRoos);
+
+  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $rma->setProfileSets($profileSetsRoos);
+  $rma->setPartName('Roos_RMA');
+  $rma->setYaxisLabel('RMA Value (log2)');
+  $rma->setColors($colorsRoos);
+  $rma->setElementNameMarginSize(4);
+  $rma->setHasExtraLegend(1);
+  $rma->setLegendLabels(['Pru Alk', 'Pru CO2', 'Pru NA', 'RH Alk']);
+  $rma->setXaxisLabel('Hours post infection');
+  $rma->setPlotTitle("0-72 hours RMA Expression Value - $id");
+  $rma->setDefaultYMin(0);
+  push (@{$graphs},$rma);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
+   my $percentileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayRoos);
+
+  my $percentileRoos = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $percentileRoos->setProfileSets($percentileSetsRoos);
+  $percentileRoos->setPartName('Roos_percentile');
+  $percentileRoos->setYaxisLabel('Percentile');
+  $percentileRoos->setColors($colorsRoos);
+  $percentileRoos->setElementNameMarginSize(4);
+  $percentileRoos->setHasExtraLegend(1);
+  $percentileRoos->setLegendLabels(['Pru Alk', 'Pru CO2', 'Pru NA', 'RH Alk']);
+  $percentileRoos->setXaxisLabel('Hours post infection');
+  $percentileRoos->setPlotTitle("0-72 hours Percentile - $id");
+  $percentileRoos->setDefaultYMax(100);
+  push (@{$graphs},$percentileRoos);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
+
+  my $profileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayFlo);
+
+  my $rmaFlo =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $rmaFlo->setProfileSets($profileSetsFlo);
+  $rmaFlo->setPartName('Dzierszinskis_RMA');
+  $rmaFlo->setYaxisLabel('RMA Value (log2)');
+  $rmaFlo->setColors($colorsFlo);
+  $rmaFlo->setElementNameMarginSize(4);
+  $rmaFlo->setHasExtraLegend(1);
+  $rmaFlo->setLegendLabels(['Pru Co2', 'VEG CO2']);
+  $rmaFlo->setXaxisLabel('Days post infection');
+  $rmaFlo->setPlotTitle("2-14 days RMA Expression Value - $id");
+  $rmaFlo->setDefaultYMin(0);
+  push (@{$graphs},$rmaFlo);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
+   my $percentileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayFlo);
+
+  my $percentileFlo = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $percentileFlo->setProfileSets($percentileSetsFlo);
+  $percentileFlo->setPartName('Flo_percentile');
+  $percentileFlo->setYaxisLabel('Percentile');
+  $percentileFlo->setColors($colorsFlo);
+  $percentileFlo->setElementNameMarginSize(4);
+  $percentileFlo->setHasExtraLegend(1);
+  $percentileFlo->setLegendLabels(['Pru CO2', 'VEG CO2']);
+  $percentileFlo->setXaxisLabel('Days post infection');
+  $percentileFlo->setPlotTitle("2-14 days Percentile - $id");
+  $percentileFlo->setDefaultYMax(100);
+  push (@{$graphs},$percentileFlo);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
 }
-
-sub finalProfileAdjustments {
-  my ($self, $profile) = @_;
-  #my $legend = ['Pru Alkaline', 'Pru CO2-starvation', 'Pru sodium nitroprusside', 'RH Alkaline'];
-  my $legend;
-
-  $profile->setHasExtraLegend(0);
-
-  return $self;
-}
-
 
 1;
+
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_73d06a9e7b;
