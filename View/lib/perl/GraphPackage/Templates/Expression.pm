@@ -779,7 +779,7 @@ sub init {
 
   my $id = $self->getId();
 
-   my $profileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayRoos);
+  my $profileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayRoos);
 
   my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $rma->setProfileSets($profileSetsRoos);
@@ -864,6 +864,83 @@ sub isExcludedProfileSet {
 }
 1;
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c1a3dbb014;
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+  my @profileSet=(['M.White Cell Cycle Microarray', 'values', '', ''],);
+  my @percentileSet=(['M.White Cell Cycle Microarray', 'channel1_percentiles', '', ''],);
+
+  my $colors = ['#CD853F'];
+  my $graphs;
+  my $id = $self->getId();
+  my $cellCycleTopMargin = "
+lines(c(2,5.75), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
+text(4, y.max + (y.max - y.min)*0.16, 'S(1)');
+
+lines(c(5,6.9), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
+text(5.3, y.max + (y.max - y.min)*0.2, 'M');
+text(6.3, y.max + (y.max - y.min)*0.2, 'C');
+
+lines(c(6.1,10.4), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1));
+text(8.5, y.max + (y.max - y.min)*0.16, 'G1');
+
+lines(c(10,13.2), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
+text(11.25, y.max + (y.max - y.min)*0.2, 'S(2)');
+
+lines(c(12,14), c(y.max + (y.max - y.min)*0.15, y.max + (y.max - y.min)*0.15));
+text(12.3, y.max + (y.max - y.min)*0.22, 'M');
+text(13.3, y.max + (y.max - y.min)*0.22, 'C');
+";
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSet);
+  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setPartName('rma');
+  $rma->setColors($colors);
+  $rma->setSmoothLines(1);
+  $rma->setSplineApproxN(61);
+  $rma->setDefaultYMax(10);
+  $rma->setDefaultYMin(4);
+  $rma->setElementNameMarginSize(6.4);
+  $rma->setTitleLine(2.25);
+  $rma->setRPostscript($cellCycleTopMargin);
+  $rma->setXaxisLabel('Time point (hours)');
+  $rma->setYaxisLabel('RMA Value (log2)');
+  $rma->setPlotTitle("RMA Expression Value - $id");
+
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
+  my $percentile =  ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setPartName('percentile');
+  $percentile->setColors($colors);
+  $percentile->setSmoothLines(1);
+  $percentile->setSplineApproxN(61);
+  $percentile->setElementNameMarginSize(6.4);
+  $percentile->setTitleLine(2.25);
+  $percentile->setRPostscript($cellCycleTopMargin);
+  $percentile->setXaxisLabel('Time point (hours)');
+  $percentile->setYaxisLabel('Percentile');
+  $percentile->setPlotTitle("Percentile - $id");
+
+  $self->SUPER::setGraphObjects($rma, $percentile);
+}
+
+# sub isExcludedProfileSet {
+#   my ($self, $psName) = @_;
+
+#   foreach(@{$self->excludedProfileSetsArray()}) {
+#     return 1 if($_ eq $psName);
+#   }
+#   if ($psName =~ /M.White Cell Cycle Microarray spline smoothed/){
+#     return 1;
+#   }
+#   return 0;
+# }
+
+1;
 
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
