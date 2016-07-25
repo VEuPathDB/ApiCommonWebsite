@@ -229,9 +229,9 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     String query = "select count(*) count from " + userFileSchema + "userfile " + "where filename = ?";
     ResultSet rs = null;
-
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = null;
+      ps = null;
       DataSource dataSource = database.getDataSource();
       ps = SqlUtils.getPreparedStatement(dataSource, query);
 
@@ -249,7 +249,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
       throw new WdkModelException(ex);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
     return exists;
   }

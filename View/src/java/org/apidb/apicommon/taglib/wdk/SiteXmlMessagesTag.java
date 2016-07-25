@@ -109,7 +109,7 @@ public class SiteXmlMessagesTag extends WdkTagBase {
         } catch (SQLException sqle) {
             throw sqle;
         } finally {
-            SqlUtils.closeResultSetAndStatement(rs);
+            SqlUtils.closeResultSetAndStatement(rs, ps);
         }
         
         return messages;

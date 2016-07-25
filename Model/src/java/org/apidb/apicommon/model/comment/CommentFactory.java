@@ -85,9 +85,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     ResultSet rs = null;
     CommentTarget target = null;
     String query = null;
+    PreparedStatement ps = null;
     try {
       query = "SELECT * FROM " + config.getCommentSchema() + "comment_target WHERE comment_target_id=?";
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, query);
+      ps = SqlUtils.getPreparedStatement(commentDs, query);
       ps.setString(1, internalValue);
       rs = ps.executeQuery();
       if (!rs.next())
@@ -103,7 +104,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
     finally {
       // close the connection
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
     return target;
   }
@@ -539,52 +540,36 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   private void updateFiles(int newCommentId, String[] files) throws SQLException {
     String commentSchema = config.getCommentSchema();
-    ResultSet rs = null;
 
-    try {
-      for (String file : files) {
-        if (file == null)
-          continue;
-        String[] str = file.split("\\|");
-        String sql = "UPDATE " + commentSchema + "CommentFile " + " SET comment_id = " + newCommentId +
-            " WHERE file_id = " + Integer.parseInt(str[0]);
+    for (String file : files) {
+      if (file == null)
+        continue;
+      String[] str = file.split("\\|");
+      String sql = "UPDATE " + commentSchema + "CommentFile " + " SET comment_id = " + newCommentId +
+          " WHERE file_id = " + Integer.parseInt(str[0]);
 
-        SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-comment-id");
-      }
-    }
-    finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-comment-id");
     }
   }
 
   private void setInvisibleComment(String previousCommentId) throws SQLException {
     String commentSchema = config.getCommentSchema();
-    ResultSet rs = null;
 
-    try {
-      String sql = "UPDATE " + commentSchema + "comments " + " SET is_visible = 0" + " WHERE comment_id = '" +
-          previousCommentId + "'";
+    String sql = "UPDATE " + commentSchema + "comments " + " SET is_visible = 0" + " WHERE comment_id = '" +
+        previousCommentId + "'";
 
-      SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-visible");
-    }
-    finally {
-      SqlUtils.closeResultSetAndStatement(rs);
-    }
+    SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-visible");
+
   }
 
   private void updatePrevCommentId(String previousCommentId, int commentId) throws SQLException {
     String commentSchema = config.getCommentSchema();
-    ResultSet rs = null;
 
-    try {
       String sql = "UPDATE " + commentSchema + "comments " + " SET prev_comment_id = '" + previousCommentId +
           "'" + " WHERE comment_id = " + commentId;
 
       SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-previous-comment-id");
-    }
-    finally {
-      SqlUtils.closeResultSetAndStatement(rs);
-    }
+
   }
 
   private void saveAssociatedStableIds(int commentId, String[] associatedStableIds) throws SQLException {
@@ -747,8 +732,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("AND c.comment_id = ? ");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -815,7 +801,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(ex);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
 
       // print connection status
       printStatus();
@@ -830,8 +816,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE comment_id = ? and database_name = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       ps.setString(2, databaseName);
       rs = ps.executeQuery();
@@ -849,7 +836,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -861,8 +848,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE comment_id = ? and database_name = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       ps.setString(2, databaseName);
       rs = ps.executeQuery();
@@ -880,7 +868,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -893,8 +881,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE a.target_category_id = b.target_category_id AND a.comment_id = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -920,7 +909,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -933,8 +922,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE a.mutant_marker_id = b.mutant_marker_id AND a.comment_id = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -951,7 +941,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -964,8 +954,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE a.mutant_reporter_id = b.mutant_reporter_id AND a.comment_id = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -982,7 +973,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -1018,8 +1009,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("AND a.comment_id = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -1040,7 +1032,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -1052,8 +1044,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE comment_id = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -1072,7 +1065,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -1084,8 +1077,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE comment_id = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -1102,7 +1096,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -1114,8 +1108,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("WHERE comment_id = ?");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -1131,7 +1126,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -1146,8 +1141,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(" AND ced.external_database_id = ed.external_database_id");
 
     ResultSet rs = null;
+    PreparedStatement ps = null;
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       ps.setInt(1, commentId);
       rs = ps.executeQuery();
 
@@ -1161,7 +1157,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
     }
   }
 
@@ -1241,7 +1237,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(ex);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, null);
 
       // print connection status
       printStatus();
@@ -1255,7 +1251,6 @@ public class CommentFactory implements Manageable<CommentFactory> {
   public void deleteComment(String commentId) throws WdkModelException {
     String commentSchema = config.getCommentSchema();
 
-    ResultSet rs = null;
     try {
       // update comments table set is_visible = 0
       String sql = "UPDATE " + commentSchema + "comments " + "SET is_visible = 0 " + "WHERE comment_id = '" +
@@ -1266,19 +1261,15 @@ public class CommentFactory implements Manageable<CommentFactory> {
     catch (SQLException e) {
       throw new WdkModelException(e);
     }
-    finally {
-      SqlUtils.closeResultSetAndStatement(rs);
 
-      // print connection status
-      printStatus();
-    }
   }
 
   public ArrayList<MultiBox> getMultiBoxData(String nameCol, String valueCol, String table, String condition) {
 
     ArrayList<MultiBox> list = new ArrayList<MultiBox>();
     ResultSet rs = null;
-
+    PreparedStatement ps = null;
+    
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT " + nameCol + "," + valueCol);
     sql.append(" FROM  " + config.getCommentSchema() + table);
@@ -1289,7 +1280,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     MultiBox multiBox = null;
 
     try {
-      PreparedStatement ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
       rs = ps.executeQuery();
 
       while (rs.next()) {
@@ -1305,7 +1296,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new RuntimeException(e);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(rs);
+      SqlUtils.closeResultSetAndStatement(rs, ps);
       // printStatus();
     }
   }

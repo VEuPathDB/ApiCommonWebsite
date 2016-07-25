@@ -98,7 +98,7 @@ public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.reco
     } catch (SQLException e) {
       throw new WdkModelException(e);
     } finally {
-      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet);
+      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
     return map;
   }

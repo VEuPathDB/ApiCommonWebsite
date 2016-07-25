@@ -75,7 +75,7 @@ public class WorkflowStatus extends BeanBase implements WorkflowStatusMBean {
     } catch (Exception e) {
         logger.error("NPE ", e);
     } finally {
-        SqlUtils.closeResultSetAndStatement(rs);
+        SqlUtils.closeResultSetAndStatement(rs, ps);
     } 
   }
 
