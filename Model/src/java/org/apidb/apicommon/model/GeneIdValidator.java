@@ -37,9 +37,9 @@ public class GeneIdValidator {
 				sql.append("SELECT id FROM ApidbTuning.Geneid ");
         sql.append("WHERE id = ? ");
 
-
+        PreparedStatement ps = null;
         try {
-            PreparedStatement ps = SqlUtils.getPreparedStatement(
+            ps = SqlUtils.getPreparedStatement(
                     dataSource, sql.toString());
             ps.setString(1, sourceId);
             ps.setString(2, sourceId);
@@ -56,7 +56,7 @@ public class GeneIdValidator {
             return false;
         } finally {
              // close the connection
-             SqlUtils.closeResultSetAndStatement(rs);
+             SqlUtils.closeResultSetAndStatement(rs, ps);
         }
 
         return false;

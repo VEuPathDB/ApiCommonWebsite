@@ -127,7 +127,7 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
       throw new WdkModelException("failed running SQL to expand basket: " + sql + e);
     }
     finally {
-      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet);
+      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
  
   }
