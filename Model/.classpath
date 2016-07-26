@@ -5,7 +5,6 @@
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/gdata-core-1.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-util"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/EuPath Common Model"/>
 	<classpathentry kind="lib" path="lib/java/not-deployed/jsp-api-2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/wdk-model"/>
 	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
@@ -22,5 +21,6 @@
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/org.semanticweb.HermiT.jar"/>
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/owlapi-distribution-3.5.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/eupath-site-common-model"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
