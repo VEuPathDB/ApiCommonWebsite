@@ -64,7 +64,7 @@ public class GeneBooleanFilter extends StepFilter {
       throw new WdkModelException(ex);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(resultSet);
+      SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
     return new ListColumnFilterSummary(counts);
   }
@@ -160,8 +160,8 @@ public class GeneBooleanFilter extends StepFilter {
     JSONObject jsValue = new JSONObject();
     JSONArray jsArray = new JSONArray();
     jsArray.put("YY");
-    jsArray.put("YN");
-    jsArray.put("NY");
+    //jsArray.put("YN");
+    //jsArray.put("NY");
     jsValue.put("values", jsArray);
     return jsValue;
   }

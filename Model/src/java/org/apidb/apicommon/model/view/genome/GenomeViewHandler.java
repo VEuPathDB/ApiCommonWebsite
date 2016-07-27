@@ -99,7 +99,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
       throw new WdkModelException(ex);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(resultSet);
+      SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
 
     // check if want to display the detail view, or density view
@@ -242,7 +242,7 @@ public abstract class GenomeViewHandler implements SummaryViewHandler {
         chromosomes.put(sequenceId, chromosome);
       }
     } finally {
-      SqlUtils.closeResultSetAndStatement(resultSet);
+      SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
     return chromosomes;
   }

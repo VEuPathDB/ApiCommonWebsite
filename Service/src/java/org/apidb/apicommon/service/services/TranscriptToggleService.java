@@ -33,9 +33,9 @@ public class TranscriptToggleService extends WdkService {
       boolean filterTurnedOn = input.getBoolean(RepresentativeTranscriptFilter.FILTER_NAME);
       LOG.info("Action is to turn filter: " + filterTurnedOn);
       Step step = getWdkModel().getStepFactory().getStepById(stepId);
-      if (getCurrentUser().getUserId() != step.getUser().getUserId()) {
+      if (getSessionUser().getUserId() != step.getUser().getUserId()) {
         LOG.warn("Attempt made to edit Step " + stepId + " by non-owner (user id " +
-            getCurrentUser().getUserId() + "); session expired?");
+            getSessionUser().getUserId() + "); session expired?");
         throw new ForbiddenException(WdkService.PERMISSION_DENIED);
       }
       if (filterTurnedOn) {

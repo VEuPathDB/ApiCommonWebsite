@@ -318,7 +318,7 @@ sub forceXLabelsHorizontal {
 
 
 
-
+### PlasmoDB ###
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
 sub getGroupRegex {
   return 'winzeler';
@@ -546,11 +546,7 @@ sub init {
   $self->setGraphObjects($rma, $percentile);
 
   return $self;
-
 }
-
-
-
 
 1;
 
@@ -665,6 +661,286 @@ sub _init {
 1;
 
 
+
+
+### ToxoDB ###
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_e8c4cf2187;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+#  $profile->addAdjustProfile('profile.df = cbind(profile.df[,1], profile.df[,3], profile.df[,2], profile.df[,4]);');
+
+  my $colors = $profile->getColors();
+  my @elementNames = ("WT:Stressed","WT:Unstressed","KO:Stressed","KO:Unstressed");
+
+  my $legendLabels = ["Wild Type", "GCN5-A Knockout", ];
+  $profile->setLegendColors(["#D87093","#87CEEB"]);
+
+  $profile->setSampleLabels(\@elementNames);
+  $profile->setColors([$colors->[0], $colors->[0],$colors->[1], $colors->[1]]);
+  $profile->setHasExtraLegend(1);
+
+  $profile->setLegendLabels($legendLabels);
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2daab8c933;
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+  my $colors = ['#B22222','#6A5ACD','#87CEEB' ];
+  my $legend = ['GT1', 'ME49', 'CTGara'];
+
+  my $gt1Samples = ['Tachyzoite','Compound 1','pH=8.2','','','','','',''];
+  my $me49Samples = ['','','','Tachyzoite','Compound 1','pH=8.2','','',''];
+  my $ctgSamples = ['','','', '','','', 'Tachyzoite','Compound 1','pH=8.2'];
+  my $profileName ="three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions";
+
+  my @profileArray = (["$profileName", "values", "$profileName", "standard_error", $gt1Samples ],
+                      ["$profileName", "values", "$profileName", "standard_error", $me49Samples ],
+                      ["$profileName", "values", "$profileName", "standard_error", $ctgSamples ],
+                     );
+
+  my @percentileArray = (["$profileName", "channel1_percentiles", "", "", $gt1Samples],
+                         ["$profileName", "channel1_percentiles", "", "", $me49Samples],
+                         ["$profileName", "channel1_percentiles", "", "", $ctgSamples],
+                        );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+
+  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setColors($colors);
+  $rma->setForceHorizontalXAxis(1);
+  $rma->setHasExtraLegend(1); 
+  $rma->setLegendLabels($legend);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setForceHorizontalXAxis(1);
+  $percentile->setHasExtraLegend(1);
+  $percentile->setLegendLabels($legend);
+
+  $self->setGraphObjects($rma, $percentile);
+
+  return $self;
+}
+1;
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2750122e82;
+sub finalProfileAdjustments {
+
+  my ($self, $profile) = @_;
+  my $legend = ['oocyst', 'tachyzoite', 'bradyzoite'];
+  $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
+
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legend);
+  return $self;
+}
+1;
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_994d646c6a;
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  my $colorsRoos = ['#4682B4','#6B8E23','#00FF00','#2E8B57'];
+  my $colorsFlo  = ['#CD853F','#8FBC8F'];
+  my $graphs;
+
+  my @profileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'values', '', ''],
+ 			  ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'values', '', '']
+			  );
+
+   my @profileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'values', '', ''],
+                          ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'values', '', '']
+                         );
+
+   my @percentileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'channel1_percentiles', '', '']
+ 			    );
+
+   my @percentileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'channel1_percentiles', '', ''],
+ 			    ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'channel1_percentiles', '', '']
+ 			   );
+
+  my $id = $self->getId();
+
+  my $profileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayRoos);
+
+  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $rma->setProfileSets($profileSetsRoos);
+  $rma->setPartName('Roos_RMA');
+  $rma->setYaxisLabel('RMA Value (log2)');
+  $rma->setColors($colorsRoos);
+  $rma->setElementNameMarginSize(4);
+  $rma->setHasExtraLegend(1);
+  $rma->setLegendLabels(['Pru Alk', 'Pru CO2', 'Pru NA', 'RH Alk']);
+  $rma->setXaxisLabel('Hours post infection');
+  $rma->setPlotTitle("0-72 hours RMA Expression Value - $id");
+  $rma->setDefaultYMin(0);
+  push (@{$graphs},$rma);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
+   my $percentileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayRoos);
+
+  my $percentileRoos = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $percentileRoos->setProfileSets($percentileSetsRoos);
+  $percentileRoos->setPartName('Roos_percentile');
+  $percentileRoos->setYaxisLabel('Percentile');
+  $percentileRoos->setColors($colorsRoos);
+  $percentileRoos->setElementNameMarginSize(4);
+  $percentileRoos->setHasExtraLegend(1);
+  $percentileRoos->setLegendLabels(['Pru Alk', 'Pru CO2', 'Pru NA', 'RH Alk']);
+  $percentileRoos->setXaxisLabel('Hours post infection');
+  $percentileRoos->setPlotTitle("0-72 hours Percentile - $id");
+  $percentileRoos->setDefaultYMax(100);
+  push (@{$graphs},$percentileRoos);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
+
+  my $profileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayFlo);
+
+  my $rmaFlo =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $rmaFlo->setProfileSets($profileSetsFlo);
+  $rmaFlo->setPartName('Dzierszinskis_RMA');
+  $rmaFlo->setYaxisLabel('RMA Value (log2)');
+  $rmaFlo->setColors($colorsFlo);
+  $rmaFlo->setElementNameMarginSize(4);
+  $rmaFlo->setHasExtraLegend(1);
+  $rmaFlo->setLegendLabels(['Pru Co2', 'VEG CO2']);
+  $rmaFlo->setXaxisLabel('Days post infection');
+  $rmaFlo->setPlotTitle("2-14 days RMA Expression Value - $id");
+  $rmaFlo->setDefaultYMin(0);
+  push (@{$graphs},$rmaFlo);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
+   my $percentileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayFlo);
+
+  my $percentileFlo = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $percentileFlo->setProfileSets($percentileSetsFlo);
+  $percentileFlo->setPartName('Flo_percentile');
+  $percentileFlo->setYaxisLabel('Percentile');
+  $percentileFlo->setColors($colorsFlo);
+  $percentileFlo->setElementNameMarginSize(4);
+  $percentileFlo->setHasExtraLegend(1);
+  $percentileFlo->setLegendLabels(['Pru CO2', 'VEG CO2']);
+  $percentileFlo->setXaxisLabel('Days post infection');
+  $percentileFlo->setPlotTitle("2-14 days Percentile - $id");
+  $percentileFlo->setDefaultYMax(100);
+  push (@{$graphs},$percentileFlo);
+  $self->SUPER::setGraphObjects(@{$graphs});
+
+}
+
+1;
+
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_73d06a9e7b;
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /Expression profiling of the 3 archetypal T. gondii lineages/){
+    return 1;
+  }
+  return 0;
+}
+1;
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c1a3dbb014;
+# LAST RESORT IS TO OVERRIDE THE INIT METHOD
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+  my @profileSet=(['M.White Cell Cycle Microarray', 'values', '', ''],);
+  my @percentileSet=(['M.White Cell Cycle Microarray', 'channel1_percentiles', '', ''],);
+
+  my $colors = ['#CD853F'];
+  my $graphs;
+  my $id = $self->getId();
+  my $cellCycleTopMargin = "
+lines(c(2,5.75), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
+text(4, y.max + (y.max - y.min)*0.16, 'S(1)');
+
+lines(c(5,6.9), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
+text(5.3, y.max + (y.max - y.min)*0.2, 'M');
+text(6.3, y.max + (y.max - y.min)*0.2, 'C');
+
+lines(c(6.1,10.4), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1));
+text(8.5, y.max + (y.max - y.min)*0.16, 'G1');
+
+lines(c(10,13.2), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
+text(11.25, y.max + (y.max - y.min)*0.2, 'S(2)');
+
+lines(c(12,14), c(y.max + (y.max - y.min)*0.15, y.max + (y.max - y.min)*0.15));
+text(12.3, y.max + (y.max - y.min)*0.22, 'M');
+text(13.3, y.max + (y.max - y.min)*0.22, 'C');
+";
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSet);
+  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  $rma->setProfileSets($profileSets);
+  $rma->setPartName('rma');
+  $rma->setColors($colors);
+  $rma->setSmoothLines(1);
+  $rma->setSplineApproxN(61);
+  $rma->setDefaultYMax(10);
+  $rma->setDefaultYMin(4);
+  $rma->setElementNameMarginSize(6.4);
+  $rma->setTitleLine(2.25);
+  $rma->setRPostscript($cellCycleTopMargin);
+  $rma->setXaxisLabel('Time point (hours)');
+  $rma->setYaxisLabel('RMA Value (log2)');
+  $rma->setPlotTitle("RMA Expression Value - $id");
+
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
+  my $percentile =  ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setPartName('percentile');
+  $percentile->setColors($colors);
+  $percentile->setSmoothLines(1);
+  $percentile->setSplineApproxN(61);
+  $percentile->setElementNameMarginSize(6.4);
+  $percentile->setTitleLine(2.25);
+  $percentile->setRPostscript($cellCycleTopMargin);
+  $percentile->setXaxisLabel('Time point (hours)');
+  $percentile->setYaxisLabel('Percentile');
+  $percentile->setPlotTitle("Percentile - $id");
+
+  $self->SUPER::setGraphObjects($rma, $percentile);
+}
+
+# sub isExcludedProfileSet {
+#   my ($self, $psName) = @_;
+
+#   foreach(@{$self->excludedProfileSetsArray()}) {
+#     return 1 if($_ eq $psName);
+#   }
+#   if ($psName =~ /M.White Cell Cycle Microarray spline smoothed/){
+#     return 1;
+#   }
+#   return 0;
+# }
+
+1;
 
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;

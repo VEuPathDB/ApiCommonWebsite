@@ -1,3 +1,5 @@
+USER DATASET SVC
+curl -G -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/1234/user-dataset -d expandDetails=true 
 
 RECORD SVC
 curl -G -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record -d expandRecordClasses=true -d expandTables=true

@@ -7,6 +7,7 @@ use vars qw( @ISA );
 use ApiCommonWebsite::View::GraphPackage::PlotPart;
 use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage;
+use Data::Dumper;
 
 #--------------------------------------------------------------------------------
 
@@ -28,7 +29,11 @@ sub setSpaceBetweenBars          { $_[0]->{'_space_between_bars'             } =
 sub getAxisPadding          { $_[0]->{'_axis_padding'             }}
 sub setAxisPadding          { $_[0]->{'_axis_padding'             } = $_[1]}
 
+sub getAxisLty                  { $_[0]->{'_axis_lty'                        }}
+sub setAxisLty                  { $_[0]->{'_axis_lty'                        } = $_[1]}
 
+sub getLas                      { $_[0]->{'_las'                             }}
+sub setLas                      { $_[0]->{'_las'                             } =$_[1]}
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -65,8 +70,8 @@ sub makeRPlotString {
       return $self->blankPlotPart();
     }
   }
-
   my $colors = $self->getColors();
+
   my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
 
   my $rAdjustProfile = $self->getAdjustProfile();
@@ -76,6 +81,13 @@ sub makeRPlotString {
   my $yMax = $self->getDefaultYMax();
   my $yMin = $self->getDefaultYMin();
 
+  my $axisLty = $self->getAxisLty();
+  my $axisLtyString = defined($axisLty) ? 'TRUE' : 'FALSE';
+  $axisLty = defined($axisLty)? $axisLty : 'NULL';
+
+  my $las = $self->getLas();
+  my $lasString = defined($las) ? 'TRUE' : 'FALSE';
+  $las = defined($las) ? $las : 'NULL';
 
   my $isCompactString = "FALSE";
 
@@ -111,16 +123,23 @@ sub makeRPlotString {
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $legendLabels = $self->getLegendLabels();
 
-  my $legendLabelsString;
-
+  my ($legendLabelsString, $legendColors, $legendColorsString);
   if ($hasExtraLegend ) {
-      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
+      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label');
+
+      $legendColors = $self->getLegendColors();
+      $legendColors = $colors if !($legendColors);
+      $legendColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendColors, 'legend.colors');
     }
+
   my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
 
   my $extraLegendSize = $self->getExtraLegendSize();
 
   my $axisPadding = $self->getAxisPadding();
+
+  print STDERR Dumper $profileFiles;
+  print STDERR Dumper $elementNamesFiles;
 
   my $rv = "
 # ---------------------------- BAR PLOT ----------------------------
@@ -131,6 +150,7 @@ $stderrFiles
 $colorsString
 $sampleLabelsString
 $legendLabelsString
+$legendColorsString
 
 is.compact=$isCompactString;
 
@@ -287,9 +307,18 @@ if($overrideXAxisLabels) {
   my.labels = colnames(profile.df);
 }
 
-my.las = 0;
-if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
-  my.las = 2;
+if($lasString) {
+    my.las = $las;
+} else if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
+    my.las = 2;
+} else {
+    my.las = 0;
+}
+
+if ($axisLtyString) {
+    my.axis.lty = $axisLty;
+} else {
+    my.axis.lty = \"solid\";
 }
 
 
@@ -303,7 +332,7 @@ if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
              las = my.las,
              axes = FALSE,
              cex.axis=$scale,
-             axis.lty  =  \"solid\",
+             axis.lty = my.axis.lty,
              horiz=$horiz,
             );
 
@@ -377,18 +406,16 @@ if($hasExtraLegend && !is.compact) {
   figureRegionXMax = par()\$fig[2];
   figureRegionYMax = par()\$fig[4];
 
-
   if ($hasLegendLabels) {
       my.labels = legend.label;
       }
-
 
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(figureRegionYMax, from='ndc', to='user'),
          my.labels,
          cex   = (0.8 * $scale),
          ncol  = 1,
-         fill=the.colors,
+         fill=legend.colors,
          bty='n',
          xjust=1,
          yjust=1
@@ -640,7 +667,6 @@ sub new {
 
    $self->setDefaultYMax(10);
    $self->setDefaultYMin(0);
-#   $self->setYaxisLabel('Mass');
    $self->setYaxisLabel('');
 
    $self->setPartName('mass_spec');

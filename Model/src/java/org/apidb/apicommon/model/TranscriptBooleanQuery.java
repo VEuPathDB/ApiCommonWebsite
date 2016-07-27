@@ -72,7 +72,7 @@ public class TranscriptBooleanQuery extends BooleanQuery {
   @Override
   public void setContextQuestion(Question contextQuestion) throws WdkModelException {
     super.setContextQuestion(contextQuestion);
-    addDynamicAttributeSetToQuestion(wdkModel);
+    addDynamicAttributeSetToQuestion(_wdkModel);
     Set<String> summaryAttrsSet = contextQuestion.getRecordClass().getSummaryAttributeFieldMap().keySet();
 
 		// we do not want to show the Y/N dynamic columns by default

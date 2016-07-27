@@ -103,7 +103,7 @@ public class GenePrimaryKeyAliasPlugin implements org.gusdb.wdk.model.record.Pri
     } catch (SQLException e) {
       throw new WdkModelException(e);
     } finally {
-      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet);
+      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
     return map;
   }

@@ -4,10 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import lodash from 'lodash';
 import {NativeCheckboxList} from 'wdk-client/Components';
-import {renderAttributeValue} from 'wdk-client/ComponentUtils';
 import {seq} from 'wdk-client/IterableUtils';
 import {isNodeOverflowing} from '../../util/domUtils';
-import ExpressionGraph from '../common/ExpressionGraph';
+import DatasetGraph from '../common/DatasetGraph';
 import Sequence from '../common/Sequence';
 import {OverviewThumbnails} from '../common/OverviewThumbnails';
 import * as Gbrowse from '../common/Gbrowse';
@@ -118,59 +117,60 @@ RecordOverview.contextTypes = {
 
 let expressionRE = /ExpressionGraphs|HostResponseGraphs|PhenotypeGraphs$/;
 export function RecordTable(props) {
-  return expressionRE.test(props.table.name)              ? <ExpressionGraphTable {...props} />
+  return expressionRE.test(props.table.name)              ? <DatasetGraphTable {...props} />
        : props.table.name === 'MercatorTable'             ? <MercatorTable {...props} />
        : props.table.name === 'ProteinProperties'         ? <ProteinPbrowseTable {...props} />
        : props.table.name === 'ProteinExpressionPBrowse'  ? <ProteinPbrowseTable {...props} />
        : props.table.name === 'Sequences'                 ? <SequencesTable {...props} />
        : props.table.name === 'UserComments'              ? <UserCommentsTable {...props} />
-       : props.table.name === 'SNPsAlignment'             ? <SnpsAlignmentForm {...props}
-                                                              seqIdAttributeName="sequence_id"
-                                                              strainAttributeName="strain"
-                                                              startAttributeName="context_start"
-                                                              endAttributeName="context_end" />
+       : props.table.name === 'SNPsAlignment'             ? <SNPsAlignment {...props} />
        : <props.DefaultComponent {...props} />
 }
 
-function OverviewItem(props) {
-    let { label, value = 'undefined' } = props;
-    return value == null ? <noscript/> : (
-        <div className="GeneOverviewItem"><label>{label}</label> {renderAttributeValue(value)}</div>
-    );
+function SNPsAlignment(props) {
+  let { context_start, context_end, sequence_id, organism_full } = props.record.attributes;
+  return (
+    <SnpsAlignmentForm
+      start={context_start}
+      end={context_end}
+      sequenceId={sequence_id}
+      organism={organism_full} />
+  )
 }
 
-function ExpressionGraphTable(props) {
-    let included = props.table.properties.includeInTable || [];
+function DatasetGraphTable(props) {
+  let included = props.table.properties.includeInTable || [];
 
-    let dataTable;
+  let dataTable;
 
-    if(props.table.name == "HostResponseGraphs") {
-        // TODO
+  if(props.table.name == "HostResponseGraphs") {
+    // TODO
+  }
+  else {
+    dataTable = Object.assign({}, {
+      value: props.record.tables.ExpressionGraphsDataTable,
+      table: props.recordClass.tables.find(obj => obj.name == "ExpressionGraphsDataTable"),
+      record: props.record,
+      recordClass: props.recordClass,
+      DefaultComponent: props.DefaultComponent
     }
-    else {
-        dataTable = Object.assign({}, {
-            value: props.record.tables.ExpressionGraphsDataTable,
-            table: props.recordClass.tables.find(obj => obj.name == "ExpressionGraphsDataTable"),
-            record: props.record,
-            recordClass: props.recordClass,
-            DefaultComponent: props.DefaultComponent
-                }
-        );
+    );
 
-    }
+  }
 
-    let table = Object.assign({}, props.table, {
-        attributes: props.table.attributes.filter(tm => included.indexOf(tm.name) > -1)
-    });
+  let table = Object.assign({}, props.table, {
+    attributes: props.table.attributes.filter(tm => included.indexOf(tm.name) > -1)
+  });
 
-
-    return (
-        <props.DefaultComponent
-      {...props}
-      table={table}
-      childRow={childProps =>
-          <ExpressionGraph  rowData={props.value[childProps.rowIndex]} dataTable={dataTable}  />}
+  return (
+    <div>
+      <props.DefaultComponent
+        {...props}
+        table={table}
+        childRow={childProps =>
+          <DatasetGraph  rowData={props.value[childProps.rowIndex]} dataTable={dataTable}  />}
       />
+    </div>
   );
 }
 
@@ -294,13 +294,14 @@ function MercatorTable(props) {
         <input type="hidden" name="project_id" value={wdk.MODEL_NAME}/>
 
         <div className="form-group">
-          <label><strong>Contig ID:</strong> <input name="contig" defaultValue={props.record.attributes.sequence_id}/></label>
+          <label><strong>Contig ID:</strong> <input type="text" name="contig" defaultValue={props.record.attributes.sequence_id}/></label>
         </div>
 
         <div className="form-group">
           <label>
             <strong>Nucleotide positions: </strong>
             <input
+              type="text"
               name="start"
               defaultValue={props.record.attributes.start_min}
               maxLength="10"
@@ -308,6 +309,7 @@ function MercatorTable(props) {
             />
           </label>
           <label> to <input
+              type="text"
               name="stop"
               defaultValue={props.record.attributes.end_max}
               maxLength="10"
@@ -341,10 +343,17 @@ function MercatorTable(props) {
 }
 
 function UserCommentsTable(props) {
+  let { user_comment_link_url } = props.record.attributes;
   return (
     <div>
       <p>
-        <a href={props.record.attributes.user_comment_link_url}>
+        <a href={user_comment_link_url}
+          onClick={e => {
+            if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) return;
+            e.preventDefault();
+            wdk.user.login('add a comment', user_comment_link_url);
+          }}
+        >
           Add a comment <i className="fa fa-comment"/>
         </a>
       </p>

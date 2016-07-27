@@ -75,7 +75,7 @@ public class TuningManagerStatus extends BeanBase implements TuningManagerStatus
     } catch (Exception e) {
         logger.error("NPE ", e);
     } finally {
-        SqlUtils.closeResultSetAndStatement(rs);
+        SqlUtils.closeResultSetAndStatement(rs, ps);
     } 
   }
 
