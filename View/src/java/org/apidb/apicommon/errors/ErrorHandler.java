@@ -58,7 +58,7 @@ public class ErrorHandler {
         _context = context;
         _writerProvider = writerProvider;
         _logMarker = UUID.randomUUID().toString();
-        _showStacktrace = !_context.siteIsMonitored();
+        _showStacktrace = !_context.isSiteMonitored();
     }
 
     public void handleErrors() {
@@ -71,7 +71,7 @@ public class ErrorHandler {
 
         // take action on this error depending on context and filter match
         String filterMatchWarning = "";
-        if (_context.siteIsMonitored()) {
+        if (_context.isSiteMonitored()) {
             if (matchedFilterKey == null) {
                 // error did not match filters
                 constructAndSendMail(_errors, _context, _logMarker);
@@ -185,9 +185,9 @@ public class ErrorHandler {
     private static void constructAndSendMail(ErrorBundle errors, ErrorContext context, String logMarker) {
 
         RequestData requestData = context.getRequestData();
-        String[] recipients = context.getAdminEmails();
+        List<String> recipients = context.getAdminEmails();
 
-        if (recipients.length == 0) {
+        if (recipients.isEmpty()) {
             // Replacing SITE_ADMIN_EMAIL from model.prop with ADMIN_EMAIL for model-config.xml
             LOG.error("ADMIN_EMAIL is not configured in model-config.xml; cannot send exception report.");
             return;
@@ -197,7 +197,7 @@ public class ErrorHandler {
         String subject = getEmailSubject(context);
         String message = getEmailBody(errors, context, logMarker);
 
-        sendMail(recipients, from, subject, message.toString());
+        sendMail(recipients.toArray(new String[recipients.size()]), from, subject, message.toString());
     }
 
     private static String getEmailSubject(ErrorContext context) {
