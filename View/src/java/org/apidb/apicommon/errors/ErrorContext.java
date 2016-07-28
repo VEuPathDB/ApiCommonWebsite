@@ -1,7 +1,7 @@
 package org.apidb.apicommon.errors;
 
+import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import org.gusdb.wdk.controller.actionutil.RequestData;
 import org.gusdb.wdk.model.WdkModel;
@@ -35,19 +35,19 @@ public class ErrorContext {
     public Map<String, Object> getSessionAttributeMap() { return _sessionAttributeMap; }
 
     /**
-     * Whether or not the site is monitored now depends on whether administrator email(s) exist - CWL 13APR16
-     * @return - true if the site is monitored and false otherwise
+     * A site is considered monitored if the administrator email from adminEmail in the model-config.xml has content.
+     * @return - true if the administrator email has content, false otherwise.
      */
-    public boolean siteIsMonitored() {
-      String emailProp = _wdkModel.getModelConfig().getAdminEmail();
-      return emailProp != null && !emailProp.isEmpty();
+    public boolean isSiteMonitored() {
+      return !getAdminEmails().isEmpty();
     }
-    
-    public String[] getAdminEmails() {
-        // Replacing SITE_ADMIN_EMAIL from model.prop with ADMIN_EMAIL from model-config.xml - CWL 13APR16 
-        //String emailProp = _wdkModel.getProperties().get("SITE_ADMIN_EMAIL");
-        String emailProp = _wdkModel.getModelConfig().getAdminEmail();
-        return (emailProp == null || emailProp.isEmpty() ? new String[]{} :
-            Pattern.compile("[,\\s]+").split(emailProp));
+
+    /**
+     * Collect the comma delimited list of administrator emails from adminEmail in the model-config.xml and
+     * return them as an array
+     * @return - array of administrator emails
+     */
+    public List<String> getAdminEmails() {
+      return _wdkModel.getModelConfig().getAdminEmails();
     }
 }
