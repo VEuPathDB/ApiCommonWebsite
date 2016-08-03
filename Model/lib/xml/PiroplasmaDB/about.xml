@@ -14,7 +14,7 @@
        <attribute name="tag">generalinfo</attribute>
        <attribute name="text">
        <![CDATA[
-For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 <br><br>
 Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 
@@ -28,7 +28,7 @@ Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in PiroplamaDB is provided by independent researchers.  For a list of the data integrated into PiroplasmaDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in PiroplamaDB is provided by independent researchers.  For a list of the data integrated into PiroplasmaDB and the related publications see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -83,7 +83,7 @@ When citing PiroplasmaDB itself, please use:
 <br><br>
 <b>EuPathDB: a portal to eukaryotic pathogen databases.</b> <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D415">Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. Epub 2009 Nov 13.</a>
 
-<br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sources</a>.
+<br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sources</a>.
        ]]>
        </attribute>
    </record>

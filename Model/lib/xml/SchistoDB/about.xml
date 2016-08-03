@@ -27,7 +27,7 @@ Geographic Distribution:
 <br><br>
 Schistosoma mansoni is found in parts of South America and the Caribbean, Africa, and the Middle East; S. haematobium in Africa and the Middle East; and S. japonicum in the Far East. 
 <br><br>
-For a list of the data integrated into SchistoDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+For a list of the data integrated into SchistoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 <br><br>
 Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 
@@ -62,7 +62,7 @@ Unannotated genomes:
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in SchistoDB is provided by independent researchers.  For a list of the data integrated into SchistoDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in SchistoDB is provided by independent researchers.  For a list of the data integrated into SchistoDB and the related publications see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -162,7 +162,7 @@ SchistoDB: a Schistosoma mansoni genome resource.</a> 2009 Jan;37(Database issue
 researchers.  Please cite them if you use their data.  For a list
 of the data integrated into SchistoDB and the related
 publications please see <a
-href="app/answer/DatasetQuestions.AllDatasets"
+href="app/search/dataset/AllDatasets/result"
 class="blue"> Data Sets</a>.
        ]]>
        </attribute>
