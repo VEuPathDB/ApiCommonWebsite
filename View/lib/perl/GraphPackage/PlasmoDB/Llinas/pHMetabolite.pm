@@ -13,7 +13,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(800);
+  $self->setPlotWidth(600);
 
   my $compoundId = $self->getId();
 
@@ -23,14 +23,24 @@ sub init {
 
   my $dbh = $self->getQueryHandle();
 
-  my $sql = "SELECT DISTINCT cms.isotopomer
-             FROM results.compoundmassspec cms
-             , study.protocolappnode pan
-             , chebi.compounds c
-             WHERE c.chebi_accession = '$compoundId'
-             AND cms.compound_id = c.id
-             AND cms.protocol_app_node_id = pan.protocol_app_node_id
-             ORDER BY cms.isotopomer";
+    # some compounds have duplicate rows where the isotopomer is C12 and null
+    # if both exist, take only the C12 row
+    my $sql =   "WITH iso AS (
+                    SELECT DISTINCT cms.isotopomer
+                    FROM results.compoundmassspec cms
+                    , study.protocolappnode pan
+                    , chebi.compounds c
+                    WHERE c.chebi_accession = '$compoundId'
+                    AND cms.compound_id = c.id
+                    AND cms.protocol_app_node_id = pan.protocol_app_node_id
+                    )
+                SELECT DISTINCT
+                CASE WHEN 'C12' in (SELECT * from iso)
+                    THEN nvl(isotopomer, 'C12')
+                    ELSE isotopomer
+                    END AS isotopomer
+                FROM (SELECT * FROM iso)";
+            
 
 
   my $sh = $dbh->prepare($sql);
@@ -79,10 +89,11 @@ RADJUST
   $massSpec->setColors($colors);
   $massSpec->setDefaultYMax(100);
   $massSpec->setIsStacked(1);
-  $massSpec->setSampleLabels(['','','','pH 6.4','','','','','','pH 7.4','','','','','','pH 8.4','','']);
+  $massSpec->setSampleLabels(['','','','6.4','','','','','','7.4','','','','','','8.4','','']);
   $massSpec->setSpaceBetweenBars("c(0.75, rep(0, time=5))");
   $massSpec->setAxisLty(0);
   $massSpec->setLas(0);
+  $massSpec->setLabelCex(0.9);
   $massSpec->setHasExtraLegend(1);
   $massSpec->setExtraLegendSize(8.0);
   $massSpec->setLegendColors($colors);
