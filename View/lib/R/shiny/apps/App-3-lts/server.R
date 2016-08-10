@@ -20,7 +20,7 @@ shinyServer(function(input, output, session) {
 #coerce variables to required type:
 LTS$SubcountyInUganda <- as.factor(LTS$SubcountyInUganda)
 
-LTS.S <- subset(LTS, AnophelesCollectedtotal >0, select = c("DateOfVisit","SumFemaleAsInACollection","SubcountyInUganda",
+LTS.S <- subset(LTS, SumFemaleAsFunestusInAC >0, select = c("DateOfVisit","SumFemaleAsInACollection","SubcountyInUganda",
                                                             "TotalAnophelesPositive","TotalAnophelesTested","Parous",
                                                             "Nulliparous","SumFemaleAsFunestusInAC","SumFemaleAsGambiaeInACo","AnophelesOther","SourceId"))
       LTS.M <- melt(LTS.S, id.vars =c("DateOfVisit","SourceId","SubcountyInUganda"))
