@@ -17,13 +17,15 @@ shinyServer(function(input, output, session) {
     names(LTS) <- substr(names(LTS),3,50) #Remove preceeding 'x.'
     names(LTS) = gsub("\\.", "", names(LTS)) #Remove remaining periods
    
+# columns in the data file
+# [# Female Anopheles Collected]  [# A. Gambiae]  [# A. Funestus] [Total Anopheles Tested]        [Total Anopheles Positive]      [Subcounty In Uganda]   [Date Of Visit] [Gravid A. Gambiae]     [Gravid A. Funestus]    [Parous]        [Nulliparous]   
 #coerce variables to required type:
 LTS$SubcountyInUganda <- as.factor(LTS$SubcountyInUganda)
 
-LTS.S <- subset(LTS, SumFemaleAsFunestusInAC >0, select = c("DateOfVisit","SumFemaleAsInACollection","SubcountyInUganda",
+LTS.S <- subset(LTS, TotalAnophelesTested >0, select = c("DateOfVisit","TotalAnophelesTested","SubcountyInUganda",
                                                             "TotalAnophelesPositive","TotalAnophelesTested","Parous",
-                                                            "Nulliparous","SumFemaleAsFunestusInAC","SumFemaleAsGambiaeInACo","AnophelesOther","SourceId"))
-      LTS.M <- melt(LTS.S, id.vars =c("DateOfVisit","SourceId","SubcountyInUganda"))
+                                                            "Nulliparous","GravidAFunestus","GravidAGambiae"))
+      LTS.M <- melt(LTS.S, id.vars =c("DateOfVisit","SubcountyInUganda") )
       LTS.D <- dcast(LTS.M,DateOfVisit+SubcountyInUganda~variable, fun.aggregate = sum)
       x <-input$pvar
       y <- input$yvar
