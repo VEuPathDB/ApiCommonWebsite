@@ -823,3 +823,38 @@ h4 {
   top: 1.2em;
 }
 
+#eupathdb-GalaxyTerms {
+  width: 100%;
+  font-size: 110%;
+}
+
+#eupathdb-GalaxyTerms-login {
+  width: 100%;
+}
+
+#eupathdb-GalaxyTerms-login td {
+  vertical-align: middle;
+}
+
+#eupathdb-GalaxyTerms-initial {
+  width: 100%;
+}
+
+#eupathdb-GalaxyTerms img {
+  width: 90%;
+}
+
+#eupathdb-GalaxyTerms img {
+  border: solid #365EA2 1px;
+}
+
+#eupathdb-GalaxyTerms-initial td {
+  width: 33%;
+  text-align:center;
+}
+
+#eupathdb-GalaxyTerms-submit {
+  margin-top: 2em;
+  text-align: center;
+  font-size: 120%;
+}

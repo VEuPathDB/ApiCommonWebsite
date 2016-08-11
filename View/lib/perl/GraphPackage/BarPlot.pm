@@ -33,7 +33,10 @@ sub getAxisLty                  { $_[0]->{'_axis_lty'                        }}
 sub setAxisLty                  { $_[0]->{'_axis_lty'                        } = $_[1]}
 
 sub getLas                      { $_[0]->{'_las'                             }}
-sub setLas                      { $_[0]->{'_las'                             } =$_[1]}
+sub setLas                      { $_[0]->{'_las'                             } = $_[1]}
+
+sub getLabelCex                 { $_[0]->{'_label_cex'                      }}
+sub setLabelCex                 { $_[0]->{'_label_cex'                      } = $_[1]}
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -88,6 +91,9 @@ sub makeRPlotString {
   my $las = $self->getLas();
   my $lasString = defined($las) ? 'TRUE' : 'FALSE';
   $las = defined($las) ? $las : 'NULL';
+
+  my $labelCex = $self->getLabelCex();
+  $labelCex = defined($labelCex) ? $labelCex : 1 ;
 
   my $isCompactString = "FALSE";
 
@@ -328,6 +334,7 @@ if ($axisLtyString) {
              ylim      = y.lim,
              beside    = $beside,
              names.arg = my.labels,
+             cex.names = $labelCex,
              space = my.space,
              las = my.las,
              axes = FALSE,

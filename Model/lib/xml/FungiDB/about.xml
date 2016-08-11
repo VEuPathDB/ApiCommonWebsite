@@ -16,7 +16,7 @@
 <![CDATA[
 FungiDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
 database for the kingdom Fungi.  FungiDB was first released in early 2011 as a collaborative project between EuPathDB and the group of Jason Stajich (University of California, Riverside). At the end of 2015, 
-FungiDB was integrated into the EuPathDB bioinformatic resource center - see this <a href="http://fungidb.org/fungidb/showXmlDataContent.do?name=XmlQuestions.News#comm_lett">news item</a> for additional information.  For a list of the data integrated into FungiDB today and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+FungiDB was integrated into the EuPathDB bioinformatic resource center - see this <a href="http://fungidb.org/fungidb/showXmlDataContent.do?name=XmlQuestions.News#comm_lett">news item</a> for additional information.  For a list of the data integrated into FungiDB today and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 <br><br>
 FungiDB integrates whole genome sequence and annotation and also includes experimental and environmental isolate sequence data. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 <br><br>
@@ -243,7 +243,7 @@ When citing FungiDB itself, please use:
 <b><a href="http://www.ncbi.nlm.nih.gov/pubmed/22064857">FungiDB: an integrated functional genomics database for fungi</a></b>.
 Stajich JE, Harris T, Brunk BP, Brestelli J, Fischer S, Harb OS, Kissinger JC, Li W, Nayak V, Pinney DF, Stoeckert CJ Jr, Roos DS. Nucleic Acids Res. 2012 Jan 1;40(D1):D675-D681.
 
-<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 
        ]]>
        </attribute>
