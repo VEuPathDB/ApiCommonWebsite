@@ -1,4 +1,4 @@
-#library(zoo)
+library(zoo)
 require(rCharts)
 require(reshape2)
 source("../../lib/wdkDataset.R")
@@ -9,7 +9,6 @@ shinyServer(function(input, output, session) {
   datasetFetcher <- reactive({
     getWdkDataset(session, fetchStyle, FALSE, dataStorageDir)
   })
-
   output$LTSChart <- renderChart2({
 
     LTS <- datasetFetcher()
@@ -29,7 +28,7 @@ LTS.S <- subset(LTS, TotalAnophelesTested >0, select = c("DateOfVisit","TotalAno
       LTS.D <- dcast(LTS.M,DateOfVisit+SubcountyInUganda~variable, fun.aggregate = sum)
       x <-input$pvar
       y <- input$yvar
-      g <- input$group
+      g <- input$group   
       f <- input$facet
      
       #sort dataframe by MonthYear
