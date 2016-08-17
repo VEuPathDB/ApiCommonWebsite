@@ -11,7 +11,7 @@ public class GeneGenomeViewHandler extends GenomeViewHandler {
     @Override
     public String prepareSql(String idSql) throws WdkModelException,
             WdkUserException {
-        StringBuilder sql = new StringBuilder("SELECT ");
+        StringBuilder sql = new StringBuilder("SELECT DISTINCT ");
         sql.append("    ga.gene_source_id AS " + COLUMN_SOURCE_ID + ", ");
         sql.append("    ga.sequence_id AS " + COLUMN_SEQUENCE_ID + ", ");
         sql.append("    sa.length AS " + COLUMN_SEQUENCE_LENGTH + ", ");
