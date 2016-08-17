@@ -9,49 +9,50 @@ let GalaxyTerms = React.createClass({
     return (
       <div id="eupathdb-GalaxyTerms">
         <h1>Analyze My Experiment</h1>
-       
-        <table id="eupathdb-GalaxyTerms-login">
-          <tbody>
-            <tr>
-              <td width="60%">
-                <p>It looks like this is the first time you are exploring this service.</p>
-                <p>We have a little paperwork to get out of the way.</p>
-                <p>The EuPathDB Galaxy service is hosted by Globus Genomics, an affiate of Globus.</p>
-                <p>This first login screen will always appear:</p>
-              </td>
-              <td width="40%" align="right"><Image title="Screenshot of Globus Page" src="wdkCustomization/images/globusGalaxy.png"/></td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          However <em>just for this first visit to Galaxy,</em> Globus will show you three screens. Here
-          is a preview, so you know what to expect.
-        </p>
-        <table id="eupathdb-GalaxyTerms-initial">
-          <tbody>
-            <tr>
-              <td><Image title="Screenshot of Globus Page" src="wdkCustomization/images/globusGalaxy.png"/></td>
-              <td><Image title="Screenshot of Globus Page" src="wdkCustomization/images/globusGalaxy.png"/></td>
-              <td><Image title="Screenshot of Globus Page" src="wdkCustomization/images/globusGalaxy.png"/></td>
-            </tr>
-            <tr>
-              <td>
-                (1) If you already have a Globus account, you can
-                link it to your new EuPathDB account.
-                <strong>Your choice.</strong> If you don't
-                have a prior Globus account, choose <strong>No Thanks.</strong>
-              </td>
-              <td>
-                (2) Their Terms and Conditions.<br />
-                <strong>Please read and click Agree</strong>
-              </td>
-              <td>
-                (3) Permission to share identity with us.<br />
-                <strong>Please click Allow.</strong>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <p className="eupath-bigItalic">Welcome to the EuPathDB Data Analysis Services</p>
+          <p>EuPathDB provides a free data analysis service.  Use it to analyze your experimental data. 
+             The service uses Galaxy and is provided as a collaboration between EuPathDB and 
+             <a href="https://www.globus.org/genomics"> Globus Genomics</a>, an affiliate of &nbsp;
+             <a href="https://www.globus.org">Globus</a>.
+          </p>
+          <p>The easy-to-use services offered are:
+            <ul>
+            <li> RNA Sequencing </li>
+            <li> SNP Calling    </li>
+            </ul>
+          </p>
+        </div>
+        <br />
+        <div>
+          <p> Before heading to Galaxy for the first time, Globus will show you three screens.  
+              Here is a preview, so you know what to expect.
+          </p>
+          <div id="eupathdb-GalaxyTerms-initial">
+          <span className="column-left" >
+            <Image title="Option to link an existing Globus Account" src="wdkCustomization/images/globus-02-link-account.jpg"/>
+              <p>
+                (1) If you already have a Globus account, you can link it to
+                your EuPathDB account. <strong>Your choice.</strong> If you
+                don't have a prior Globus account, choose <strong>No Thanks</strong>.
+              </p>
+          </span>
+          <span className="column-center">
+            <Image title="Agree to Globus account terms" src="wdkCustomization/images/globus-03-account-terms.jpg"/>
+            <p>
+                (2) Complete your account information and agree to Globus's
+                Terms and Conditions. Please read, make your selections, and click <strong>Continue</strong>.
+            </p>
+          </span>
+          <span className="column-right">
+            <Image title="Grant permission to access your Globus account" src="wdkCustomization/images/globus-04-oauth-perms.jpg"/>
+            <p>
+                (3) Grant permission to share your Globus identity and files
+                with us. Please click <strong>Allow</strong>.
+            </p>
+          </span>
+          </div>
+        </div>
         <div id="eupathdb-GalaxyTerms-submit">
           <input name="galaxySubmit" value="Go to Galaxy" title="Click to go to galaxy" type="submit" onClick={this.onSubmit} />
         </div>
