@@ -44,9 +44,6 @@ sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = 
 sub getSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     }}
 sub setSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     } = $_[1]}
 
-sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
-sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
-
 sub getHasMetaData              { $_[0]->{'_has_meta_data'                 }}
 sub setHasMetaData              { $_[0]->{'_has_meta_data'                 } = $_[1]}
 
@@ -725,7 +722,7 @@ sub new {
   $self->setIsLogged(1);
 
   # RMAExpress is log2
-  if($wantLogged eq '0') {
+  if(($wantLogged) && $wantLogged eq '0') {
     $self->setAdjustProfile('lines.df = 2^(lines.df);points.df = 2^(points.df);stderr.df = 2^(stderr.df);');
     $self->setYaxisLabel("RMA Value");
   }

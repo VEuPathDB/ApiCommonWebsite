@@ -42,16 +42,15 @@ sub init {
   my $Args = ref $_[0] ? shift : {@_};
 
   $Self->SUPER::init($Args);
-
-	$Self->setProfileSet           ( $Args->{ProfileSet          } );
+  $Self->setProfileSet           ( $Args->{ProfileSet          } );
+  $Self->setProfileType           ( $Args->{ProfileType          } );
 
   $Self->setSql(<<Sql);
-SELECT distinct pen.element_order, pen.name
-FROM   apidb.ProfileSet         ps
-,      apidb.ProfileElementName pen
-WHERE  ps.name            = '<<ProfileSet>>'
-AND    pen.profile_set_id = ps.profile_set_id
-ORDER  BY pen.element_order
+SELECT  rownum as element_order,protocol_app_node_name AS name
+FROM  apidbtuning.ProfileSamples
+WHERE  study_name            = '<<ProfileSet>>'
+AND profile_type = '<<ProfileType>>'
+ORDER  BY node_order_num
 Sql
 
   return $Self;
@@ -61,6 +60,8 @@ Sql
 
 sub getProfileSet           { $_[0]->{'ProfileSet'        } }
 sub setProfileSet           { $_[0]->{'ProfileSet'        } = $_[1]; $_[0] }
+sub getProfileType           { $_[0]->{'ProfileType'        } }
+sub setProfileType           { $_[0]->{'ProfileType'        } = $_[1]; $_[0] }
 
 # ========================================================================
 # --------------------------- Support Methods ----------------------------
@@ -73,6 +74,7 @@ sub prepareDictionary {
 	 my $Rv = $Dict;
 
 	 $Dict->{ProfileSet} = $Self->getProfileSet();
+	 $Dict->{ProfileType} = $Self->getProfileType();
 
 	 return $Rv;
 }

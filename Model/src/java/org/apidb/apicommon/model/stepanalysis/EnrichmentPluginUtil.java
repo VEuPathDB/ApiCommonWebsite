@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.gusdb.fgputil.FormatUtil;
-import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
 import org.gusdb.wdk.model.WdkModel;
@@ -108,8 +107,8 @@ public class EnrichmentPluginUtil {
     return "SELECT ga.source_id " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
-        "where ga.source_id = r.source_id " +
-        "and  ga.taxon_id = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
+        "where ga.source_id = r.gene_source_id " +
+        "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
   }
 
   public static String getPvalueCutoff(Map<String, String[]> params) {
@@ -117,9 +116,7 @@ public class EnrichmentPluginUtil {
   }
 
   /**
-   * Returns two lists containing the taxon_id and organism name of the distinct orgs
-   * in the current AnswerValue.  The two lists are returned as a two-element list,
-   * with the first element being the list of taxon_ids, and the second the org names.
+   * Returns list of the distinct orgs in the current AnswerValue.  
    * 
    * @param answerValue answer value for the step to analyze
    * @param wdkModel WDK model object
@@ -127,34 +124,30 @@ public class EnrichmentPluginUtil {
    * @throws WdkModelException
    * @throws WdkUserException
    */
-  public static List<List<String>> getDistinctOrgsInAnswer(AnswerValue answerValue,
+  public static List<String> getDistinctOrgsInAnswer(AnswerValue answerValue,
       WdkModel wdkModel) throws WdkModelException, WdkUserException {
-    final List<String> taxonIds = new ArrayList<>();
     final List<String> orgNames = new ArrayList<>();
-    String sql = "SELECT distinct ga.taxon_id, ga.organism " +
+    String sql = "SELECT distinct ga.organism " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
-        "where ga.source_id = r.source_id " +
+        "where ga.source_id = r.gene_source_id " +
         "order by ga.organism asc";
     DataSource ds = wdkModel.getAppDb().getDataSource();
     new SQLRunner(ds, sql).executeQuery(new ResultSetHandler() {
       @Override
       public void handleResult(ResultSet rs) throws SQLException {
         while (rs.next()) {
-          taxonIds.add(rs.getString(1));
-          orgNames.add(rs.getString(2));
+          orgNames.add(rs.getString(1));
         }}});
-    return new ListBuilder<List<String>>().add(taxonIds).add(orgNames).toList();
+    return orgNames;
   }
 
   public static List<Option> getOrgOptionList(AnswerValue answerValue,
       WdkModel wdkModel) throws WdkModelException, WdkUserException {
-    List<List<String>> orgList = getDistinctOrgsInAnswer(answerValue, wdkModel);
-    List<String> taxonIds = orgList.get(0);
-    List<String> orgNames = orgList.get(1);
+    List<String> orgList = getDistinctOrgsInAnswer(answerValue, wdkModel);
     List<Option> orgOptionList = new ArrayList<>();
-    for (int i = 0; i < orgList.get(0).size(); i++) {
-      orgOptionList.add(new Option(taxonIds.get(i), orgNames.get(i)));
+    for (String organism : orgList) {
+      orgOptionList.add(new Option(organism, organism));
     }
     return orgOptionList;
   }
@@ -164,7 +157,7 @@ public class EnrichmentPluginUtil {
   @Deprecated
   public static void checkSingleOrgAnswerValue(AnswerValue answerValue, WdkModel wdkModel)
       throws WdkModelException, WdkUserException, IllegalAnswerValueException {
-    List<String> distinctOrgs = getDistinctOrgsInAnswer(answerValue, wdkModel).get(0);
+    List<String> distinctOrgs = getDistinctOrgsInAnswer(answerValue, wdkModel);
     if (distinctOrgs.size() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
           "one organism.  This enrichment analysis tool only accepts gene " +

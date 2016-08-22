@@ -7,6 +7,7 @@ use vars qw( @ISA );
 use ApiCommonWebsite::View::GraphPackage::PlotPart;
 use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage;
+use Data::Dumper;
 
 #--------------------------------------------------------------------------------
 
@@ -28,7 +29,14 @@ sub setSpaceBetweenBars          { $_[0]->{'_space_between_bars'             } =
 sub getAxisPadding          { $_[0]->{'_axis_padding'             }}
 sub setAxisPadding          { $_[0]->{'_axis_padding'             } = $_[1]}
 
+sub getAxisLty                  { $_[0]->{'_axis_lty'                        }}
+sub setAxisLty                  { $_[0]->{'_axis_lty'                        } = $_[1]}
 
+sub getLas                      { $_[0]->{'_las'                             }}
+sub setLas                      { $_[0]->{'_las'                             } = $_[1]}
+
+sub getLabelCex                 { $_[0]->{'_label_cex'                      }}
+sub setLabelCex                 { $_[0]->{'_label_cex'                      } = $_[1]}
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -36,7 +44,7 @@ sub new {
 
    my $self = $class->SUPER::new(@_);
 
-   $self->setSpaceBetweenBars(0.1);
+   $self->setSpaceBetweenBars(0.3);
   $self->setAxisPadding(1.1);
    return $self;
 }
@@ -65,8 +73,8 @@ sub makeRPlotString {
       return $self->blankPlotPart();
     }
   }
-
   my $colors = $self->getColors();
+
   my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
 
   my $rAdjustProfile = $self->getAdjustProfile();
@@ -76,6 +84,16 @@ sub makeRPlotString {
   my $yMax = $self->getDefaultYMax();
   my $yMin = $self->getDefaultYMin();
 
+  my $axisLty = $self->getAxisLty();
+  my $axisLtyString = defined($axisLty) ? 'TRUE' : 'FALSE';
+  $axisLty = defined($axisLty)? $axisLty : 'NULL';
+
+  my $las = $self->getLas();
+  my $lasString = defined($las) ? 'TRUE' : 'FALSE';
+  $las = defined($las) ? $las : 'NULL';
+
+  my $labelCex = $self->getLabelCex();
+  $labelCex = defined($labelCex) ? $labelCex : 1 ;
 
   my $isCompactString = "FALSE";
 
@@ -109,9 +127,25 @@ sub makeRPlotString {
   my $scale = $self->getScalingFactor;
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
+  my $legendLabels = $self->getLegendLabels();
+
+  my ($legendLabelsString, $legendColors, $legendColorsString);
+  if ($hasExtraLegend ) {
+      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label');
+
+      $legendColors = $self->getLegendColors();
+      $legendColors = $colors if !($legendColors);
+      $legendColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendColors, 'legend.colors');
+    }
+
+  my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
+
   my $extraLegendSize = $self->getExtraLegendSize();
 
   my $axisPadding = $self->getAxisPadding();
+
+  print STDERR Dumper $profileFiles;
+  print STDERR Dumper $elementNamesFiles;
 
   my $rv = "
 # ---------------------------- BAR PLOT ----------------------------
@@ -121,6 +155,8 @@ $elementNamesFiles
 $stderrFiles
 $colorsString
 $sampleLabelsString
+$legendLabelsString
+$legendColorsString
 
 is.compact=$isCompactString;
 
@@ -277,9 +313,18 @@ if($overrideXAxisLabels) {
   my.labels = colnames(profile.df);
 }
 
-my.las = 0;
-if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
-  my.las = 2;
+if($lasString) {
+    my.las = $las;
+} else if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
+    my.las = 2;
+} else {
+    my.las = 0;
+}
+
+if ($axisLtyString) {
+    my.axis.lty = $axisLty;
+} else {
+    my.axis.lty = \"solid\";
 }
 
 
@@ -289,11 +334,12 @@ if(max(nchar(my.labels)) > 4 && !($horizontalXAxisLabels)) {
              ylim      = y.lim,
              beside    = $beside,
              names.arg = my.labels,
+             cex.names = $labelCex,
              space = my.space,
              las = my.las,
              axes = FALSE,
              cex.axis=$scale,
-             axis.lty  =  \"solid\",
+             axis.lty = my.axis.lty,
              horiz=$horiz,
             );
 
@@ -367,12 +413,16 @@ if($hasExtraLegend && !is.compact) {
   figureRegionXMax = par()\$fig[2];
   figureRegionYMax = par()\$fig[4];
 
+  if ($hasLegendLabels) {
+      my.labels = legend.label;
+      }
+
   legend(grconvertX(figureRegionXMax, from='ndc', to='user'),
          grconvertY(figureRegionYMax, from='ndc', to='user'),
          my.labels,
          cex   = (0.8 * $scale),
          ncol  = 1,
-         fill=the.colors,
+         fill=legend.colors,
          bty='n',
          xjust=1,
          yjust=1
@@ -463,7 +513,7 @@ sub new {
 
 
 
-package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked;
+package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeq;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
@@ -474,27 +524,25 @@ sub new {
   my $id = $self->getId();
   my $wantLogged = $self->getWantLogged();
 
-  $self->setPartName('rpkm');
-  $self->setYaxisLabel('RPKM');
-  $self->setIsStacked(1);
+  $self->setPartName('fpkm');
+  $self->setYaxisLabel('FPKM');
+  $self->setIsStacked(0);
   $self->setDefaultYMin(0);
-  $self->setDefaultYMax(50);
-  $self->setPlotTitle("RPKM - $id");
+  $self->setDefaultYMax(10);
+  $self->setPlotTitle("FPKM - $id");
 
-  # RUM RPKM Are Not logged in the db
-  # JB:  Cannot take the log2 of the diff profiles then add
-#  if($wantLogged) {
-#    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
-#    $self->setYaxisLabel('RPKM (log2)');
-#    $self->setIsLogged(1);
-#    $self->setDefaultYMax(4);
-#  }
+  if($wantLogged) {
+    $self->setAdjustProfile('profile.df=profile.df + 1; profile.df = log2(profile.df);');
+    $self->setYaxisLabel('FPKM (log2)');
+    $self->setIsLogged(1);
+    $self->setDefaultYMax(4);
+  }
 
   return $self;
 }
 
 package ApiCommonWebsite::View::GraphPackage::BarPlot::PairedEndRNASeqStacked;
-use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked);
+use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeq);
 use strict;
 
 sub new {
@@ -626,7 +674,6 @@ sub new {
 
    $self->setDefaultYMax(10);
    $self->setDefaultYMin(0);
-#   $self->setYaxisLabel('Mass');
    $self->setYaxisLabel('');
 
    $self->setPartName('mass_spec');

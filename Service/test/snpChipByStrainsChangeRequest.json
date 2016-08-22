@@ -1,0 +1,12 @@
+{
+  "changedParam": {"name": "snp_assay_type", "value":"Broad_ar_array"}, 
+  "contextParamValues": {
+     "organism": "Plasmodium falciparum 3D7",
+     "snp_assay_type": "Broad_ar_array",
+     "snpchip_strain_meta": "{\"ignored\":[],\"values\":[\"Wang Pha-1\",\"Wang Pha-11\",\"Wang Pha-18\",\"Wang Pha-19\",\"Wang Pha-21\",\"Wang Pha-23\",\"Wang Pha-26\",\"Wang Pha-29\",\"Wang Pha-6\",\"Wang Pha-8\",\"Wang Pha-9\"],\"filters\":[{\"field\":{\"visible\":false,\"term\":\"DateCollected\",\"parent\":\"BioMaterialCharacteristics\",\"display\":\"DateCollected\",\"leaf\":\"true\",\"type\":\"string\",\"filter\":\"membership\"},\"values\":[\"2008-02\"],\"display\":\"DateCollected is 2008-02\"}]}",
+     "WebServicesPath": "dflt",
+     "ReadFrequencyPercent": "80%",
+     "MinPercentMinorAlleles": "0",
+     "MinPercentIsolateCalls": "80",
+  }
+}

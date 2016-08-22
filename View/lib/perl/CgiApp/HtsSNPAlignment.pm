@@ -28,6 +28,7 @@ sub processParams {
   my @ids = split /,/, $p;
   my $list;
   foreach my $id (@ids){
+    $id =~ s/ \(.+\)$//;
     $list = $list.  "'" . $id. "',";
   }
   $list =~ s/\,$//;

@@ -29,7 +29,7 @@ Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
        <![CDATA[
-Much of the data in PlasmoDB is provided by independent researchers.  For a list of the data integrated into PlasmoDB and the related publications see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
+Much of the data in PlasmoDB is provided by independent researchers.  For a list of the data integrated into PlasmoDB and the related publications see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.  Please cite the authors/providers when you use their data. 
        ]]>
        </attribute>
    </record>
@@ -105,7 +105,7 @@ When citing PlasmoDB itself, please use:
 <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18957442">
 PlasmoDB: a functional genomic database for malaria parasites.</a> Nucleic Acids Res. 2008 Oct 31. Aurrecoechea C, et al.
 
-<br><br>Much of the data in PlasmoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PlasmoDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>Much of the data in PlasmoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PlasmoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
        ]]>
        </attribute>
    </record>
