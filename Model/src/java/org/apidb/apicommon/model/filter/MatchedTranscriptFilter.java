@@ -163,23 +163,23 @@ public class MatchedTranscriptFilter extends StepFilter {
 
   @Override
   public JSONObject getDefaultValue(Step step) {
-		String questionName="";
-		if( step != null) {
-			questionName = step.getQuestionName();
-		}
-			if( step == null || (!step.isCombined() && !questionName.toLowerCase().contains("basket")) ) {
-				//if( step == null || !step.isCombined() ) {
-				JSONObject jsValue = new JSONObject();
-				JSONArray jsArray = new JSONArray();
-				jsArray.put("Y");
-				// jsArray.put("N");
-				jsValue.put("values", jsArray);
-				return jsValue;
-		}
-		else {
-			logger.debug("_____________this step DOES NOT GET THE MATCHED RESULT FILTER");
-			return null;
-		}
+    String questionName = "";
+    if (step != null) {
+      questionName = step.getQuestionName();
+    }
+    if (step == null || (!step.isCombined() && !questionName.toLowerCase().contains("basket"))) {
+      // if( step == null || !step.isCombined() ) {
+      JSONObject jsValue = new JSONObject();
+      JSONArray jsArray = new JSONArray();
+      jsArray.put("Y");
+      // jsArray.put("N");
+      jsValue.put("values", jsArray);
+      return jsValue;
+    }
+    else {
+      logger.debug("_____________this step DOES NOT GET THE MATCHED RESULT FILTER");
+      return null;
+    }
   }
 
   private Set<String> getStringSetFromJSONArray(JSONArray jsArray) throws JSONException {
