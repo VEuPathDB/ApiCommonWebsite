@@ -28,7 +28,7 @@ public class ProcessSpanStageHandler implements StageHandler {
 
     public static String getSpanQuestion(String type) throws WdkUserException {
         String questionName = null;
-        if (type.equals("GeneRecordClasses.GeneRecordClass")) {
+        if (type.equals("TranscriptRecordClasses.TranscriptRecordClass")) {
             questionName = "SpanQuestions.GenesBySpanLogic";
         } else if (type.equals("OrfRecordClasses.OrfRecordClass")) {
             questionName = "SpanQuestions.OrfsBySpanLogic";

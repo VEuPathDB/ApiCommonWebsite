@@ -1,0 +1,9 @@
+{
+       "primaryKey": {
+          "source_id": "TGGT1_215260",
+          "project_id" :"ToxoDB"
+        },
+     "tables": [ "InterPro", "TMHMM" ],
+     "attributes": [ "protein_length", "molecular_weight" ]
+}
+

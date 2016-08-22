@@ -42,7 +42,7 @@ the prokaryotic / eukaryotic divergence.
 For a list
 of the data integrated into GiardiaDB and the related
 publications please see <a
-href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 <br><br>
 Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?page=schedule">EuPathDB Workshop at UGA</a> exercises to see the scope of data and functionality in our sites.  
 
@@ -251,7 +251,7 @@ When citing GiardiaDB itself, please use:
 <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18824479">
 GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> 2009 Jan;37(Database issue):D526-30. Aurrecoechea C, et al.
 
-<br><br>Much of the data in GiardiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into GiardiaDB and the related publications please see <a href="app/answer/DatasetQuestions.AllDatasets" class="blue"> Data Sets</a>.
+<br><br>Much of the data in GiardiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into GiardiaDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
        ]]>
        </attribute>
    </record>

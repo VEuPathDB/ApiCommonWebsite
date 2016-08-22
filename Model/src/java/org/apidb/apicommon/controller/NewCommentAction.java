@@ -1,6 +1,7 @@
 package org.apidb.apicommon.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -166,7 +167,12 @@ public class NewCommentAction extends CommentAction {
 
         if((associatedStableIdsStr != null) && (associatedStableIdsStr.trim().length() != 0)) {
           String[] ids = handleDelimiter(associatedStableIdsStr).split(" ");
-          comment.setAssociatedStableIds(ids);
+          //comment.setAssociatedStableIds(ids);
+					// often users enter the stable ID in the related IDs input box, let's not add it as related
+					LOG.debug("related IDs to " + stableId + " in this comment are: " + Arrays.toString(ids));
+					ArrayList<String> tempIds = new ArrayList<String>(Arrays.asList(ids));
+					if ( tempIds.contains(stableId) ) tempIds.remove(stableId); 
+					comment.setAssociatedStableIds(tempIds.toArray(new String[tempIds.size()] ));
         }
 
         if((authorsStr != null) && (authorsStr.trim().length() != 0)) {
@@ -221,7 +227,7 @@ public class NewCommentAction extends CommentAction {
             userFile.setProjectName(projectName);
             userFile.setProjectVersion(projectVersion);
 
-            CommentActionUtility.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
+            UserFileFactoryManager.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
 
             int fileId = userFile.getUserFileId();
             String fileStr = fileId + "|" + fileName + "|" + notes;
@@ -250,7 +256,7 @@ public class NewCommentAction extends CommentAction {
 
         // add the comment
         ServletContext context = servlet.getServletContext();
-        CommentActionUtility.getCommentFactory(context).addComment(comment, previousCommentId);
+        CommentFactoryManager.getCommentFactory(context).addComment(comment, previousCommentId);
 
         String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "&commentTargetId=" + comment.getCommentTarget() + "#" + comment.getCommentId(); 

@@ -116,12 +116,13 @@ sub makeRLegendString {
   }
 
   my $colors = $legendHash->{colors};
+  my $legendColors = ($legendHash->{legendColors})? $legendHash->{legendColors}:$colors ;
   my $names = $legendHash->{short_names};
   my $pch = $legendHash->{points_pch};
   my $fill = $legendHash->{fill};
   my $nCols = $legendHash->{cols};
 
-  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'legend.colors');
+  my $rColorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendColors, 'legend.colors');
   my $rNamesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($names, 'legend.names');
   my $rPointsPchString = ApiCommonWebsite::View::GraphPackage::Util::rNumericVectorFromArray($pch, 'points.pch');
   my $rFill = $fill ? "TRUE" : "FALSE";
@@ -187,25 +188,34 @@ sub makeR {
 
   my $parts = [];
 
-  my $legendSize = 1;
-  if($self->getMainLegend()) {
-    $legendSize = $self->getLegendSize();
-  }
+#  my $legendSize = 1;
+ # if($self->getMainLegend()) {
+ #   $legendSize = $self->getLegendSize();
+ # }
 
-  push(@$parts, { Name => "_LEGEND",   Size => $legendSize });
+ # push(@$parts, { Name => "_LEGEND",   Size => $legendSize });
 
 
   my $profileSetsHash = $self->getProfileSetsHash();
 
+  my $defaultPlotPart = $self->getDefaultPlotPart();
+
+  my $i = 0;
   foreach my $ps (keys %$profileSetsHash) {
     my $sizeFromHash = $profileSetsHash->{$ps}->{size};
     my $size = defined $sizeFromHash ? $sizeFromHash : $self->getScreenSize();
-    push(@$parts, { Name => "$ps",   Size => $size});
+
+    if(($defaultPlotPart && $i == 0) || !$defaultPlotPart) {
+        push(@$parts, { Name => "$ps",   Size => $size});
+    }
+
+    $i++;
   }
 
   my $mS = ApiCommonWebsite::View::MultiScreen->new
     ( Parts => $parts,
       VisibleParts => $self->getVisibleParts(),
+      VisiblePartsAreFuzzy => $self->getVisiblePartsAreFuzzy(),
       Thumbnail    => $thumb_b
     );
 

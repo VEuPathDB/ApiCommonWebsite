@@ -76,6 +76,9 @@ sub getErrorsFileHandle          { $_[0]->{'_file_handle'                   }}
 sub getHasExtraLegend            { $_[0]->{'_has_extra_legend'              }}
 sub setHasExtraLegend            { $_[0]->{'_has_extra_legend'              } = $_[1]}
 
+sub getLegendColors              { $_[0]->{'_legend_colors'                 }}
+sub setLegendColors              { $_[0]->{'_legend_colors'                 } = $_[1]}
+
 sub getExtraLegendSize           { $_[0]->{'_extra_legend_size'             }}
 sub setExtraLegendSize           { $_[0]->{'_extra_legend_size'             } = $_[1]}
 
@@ -84,6 +87,11 @@ sub setTitleLine                 { $_[0]->{'_title_line'                    } = 
 
 sub isCompact                    { $_[0]->{'_is_compact'                    }}
 sub setIsCompact                 { $_[0]->{'_is_compact'                    } = $_[1]}
+
+sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
+sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
+
+
 
 #----------------------------------------------------------------------------------------------
 

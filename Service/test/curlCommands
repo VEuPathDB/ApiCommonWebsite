@@ -1,0 +1,60 @@
+USER DATASET SVC
+curl -G -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/119782143/user-dataset -d expandDetails=true 
+
+curl -i -X PUT -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/119782143/user-dataset/555/share -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/userDatasetShare.json  
+
+curl -i -X PUT -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/119782143/user-dataset/555/meta -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/userDatasetMeta.json
+
+
+
+RECORD SVC
+curl -G -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record -d expandRecordClasses=true -d expandTables=true
+
+curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/TranscriptRecordClasses.TranscriptRecordClass
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/record/TranscriptRecordClasses.TranscriptRecordClass/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/recordInstanceRequest.json  
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/record/gene/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/recordInstanceRequestPlasmoFull.json
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/record/gene/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/genePageFirstRequestPlasmo.json
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/record/gene/instance -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/genePageSecondtRequestPlasmo.json
+
+
+
+ANSWER SVC
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest.json 
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_tableTabular.json 
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesTabular.json 
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_tableTabularTranscripts.json 
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/answer -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/answerRequest_attributesTabularTranscripts.json 
+
+
+STEP SVC
+
+curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/step -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/stepRequest_Transcripts.json 
+
+
+QUESTION SVC
+curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/question
+
+curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/question/GeneQuestions.GenesByTransmembraneDomains
+
+curl  -H "Content-Type: application/json" http://sfischer.toxodb.org/toxo.sfischer/service/question/GeneQuestions.GenesByTransmembraneDomains?expandParams=true
+
+curl  -i -X POST -H "Content-Type: application/json" http://sfischer.toxodb.org/toxo.sfischer/service/question/GeneQuestions.GenesByTransmembraneDomains?expandParams=true -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/transMembraneQuestionReviseRequest.json
+
+curl  -H "Content-Type: application/json" http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpChipQuestions.SnpsByStrain?expandParams=true
+
+curl  -i -X POST -H "Content-Type: application/json" http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpChipQuestions.SnpsByStrain?expandParams=true -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/snpChipByStrainsReviseRequest.json
+
+curl  -i -X POST -H "Content-Type: application/json" http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpChipQuestions.SnpsByStrain/refreshedDependentParams -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/snpChipByStrainsChangeRequest.json
+
+
+
+ONTOLOGY SVC
+curl  -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/ontology

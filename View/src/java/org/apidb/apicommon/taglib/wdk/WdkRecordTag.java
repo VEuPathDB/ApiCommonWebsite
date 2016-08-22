@@ -1,6 +1,6 @@
 /**
 
-Create a WDK record of given 'name' (e.g. GeneRecordClasses.GeneRecordClass).
+Create a WDK record of given 'name' (e.g. TranscriptRecordClasses.TranscriptRecordClass).
 Accepts dynamic attibutes. This allows passing required attributes (e.g source_id and 
 project_id) to satisfy the given record. The attribute names defined in the JSP
 should match the names required by the record.
@@ -14,7 +14,7 @@ Usage in a JSP document:
   ${attrs['primaryKey'].value}
 
   <%-- mix in another record, for no good reason other than you can --%>
-  <api:wdkRecord name="GeneRecordClasses.GeneRecordClass" 
+  <api:wdkRecord name="TranscriptRecordClasses.TranscriptRecordClass" 
      recordKey="generec" source_id="TGME49_039250" project_id='ToxoDB' />
   <c:set var="geneattrs" value="${generec.attributes}"/>
   ${generec['primaryKey'].value}

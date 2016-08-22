@@ -33,7 +33,7 @@ wdkRecord tag instantiates a wdk record for a given record name and can be used 
 JSP page, avoiding the need to have the JSP file be named after the record class. More than 
 one record can be instantiated in a single JSP page.
 <p>
-Two records, GeneRecordClasses.GeneRecordClass (generec) and 
+Two records, TranscriptRecordClasses.TranscriptRecordClass (generec) and 
 EstRecordClasses.EstRecordClass (wdkRecord) co-mingled in same page.
 
 <p>
@@ -50,7 +50,7 @@ Record 1, using default recordKey=wdkRecord
 Record 2, with explicit param settings. use of <rtexprvalue> in source_id
 --%>
 <c:set var='source_id' value='cgd7_230'/>
-<api:wdkRecord name="GeneRecordClasses.GeneRecordClass" 
+<api:wdkRecord name="TranscriptRecordClasses.TranscriptRecordClass" 
     recordKey="generec" source_id="${source_id}" project_id='CryptoDB' />
 <c:set var="geneattrs" value="${generec.attributes}"/>
 <c:set var="attrs"     value="${wdkRecord.attributes}"/>
@@ -145,7 +145,8 @@ WEBSERVICEMIRROR from model.prop: <b>${props['WEBSERVICEMIRROR']}</b>
 Parse Java property file into page scope. Example reading WEB-INF/wdk-model/config/CryptoDB/model.prop
 <small>(model.prop is technically not a java property file, but it's the closest I could find)</small>
 <blockquote>
-SITE_ADMIN_EMAIL: <b>${prop['SITE_ADMIN_EMAIL']}</b>
+<%-- SITE_ADMIN_EMAIL from model.prop replaced with ADMIN_EMAIL from model-config.xml - CWL 13APR16 --%>
+ADMIN_EMAIL: <b>${wdkModel.model.modelConfig.adminEmail}</b>
 </blockquote>
 </c:catch>
 <c:if test="${ e != null }">

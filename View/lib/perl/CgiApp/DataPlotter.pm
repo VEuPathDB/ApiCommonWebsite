@@ -70,16 +70,21 @@ sub run {
 	 my $save_b         = $Cgi->param('save');
 	 my $typeArg        = $Cgi->param('typeArg');
          my $template     = $Cgi->param('template');
-         my $dataset     = $Cgi->param('dataset');
+         my $datasetId     = $Cgi->param('datasetId');
 
          my $widthOverride     = $Cgi->param('w');
          my $heightOverride     = $Cgi->param('h');
          my $compact     = $Cgi->param('compact');
          my $idType     = $Cgi->param('idType');
 
+         my $declareParts     = $Cgi->param('declareParts');
+
+         my $default    = $Cgi->param('default');
 
          my $thumbnail_b    = $Cgi->param('thumb');
          my @visibleParts   = split(',', $Cgi->param('vp') || '');
+
+         my $visiblePartsAreFuzzy     = $Cgi->param('vpAreFuzzy');
 
 	 my @errors;
 
@@ -119,7 +124,7 @@ sub run {
          my $class = "ApiCommonWebsite::View::GraphPackage::$pkg" . "::$type";
 
          # dataset Need to strip the dashes from package name
-         my $datasetClassName = $dataset;
+         my $datasetClassName = $datasetId;
          $datasetClassName =~ s/-//g if ($datasetClassName);
 
          eval "require $class";
@@ -131,22 +136,30 @@ sub run {
                         QueryHandle => $_qh,
                         Id => $id,
                         SecondaryId => $sid,
-                        Dataset => $dataset,
+                        DatasetId => $datasetId,
                         WantLogged => $wantLogged,
                         Format => $gddFormat,
                         OutputFile => $fmt_f,
                         Thumbnail => $thumbnail_b,
+                        DefaultPlotPart => $default,
                         VisibleParts => \@visibleParts,
                         Compact => $compact,
                         IdType => $idType,
                         WidthOverride => $widthOverride,
                         HeightOverride => $heightOverride,
+                        VisiblePartsAreFuzzy => $visiblePartsAreFuzzy,
                        });
          };
 
 	 if ($@) {
            die "Unable to load driver for '$type': $@";
 	 }
+
+         if($declareParts) {
+			print $Cgi->header(-Content_type => "text/plain");
+           print $_gp->declareParts();
+           return;
+         }
 
 	 my @files = $_gp->run();
 
