@@ -146,13 +146,14 @@ public class MatchedTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public boolean defaultValueEquals(JSONObject jsValue) throws WdkModelException {
-    if (getDefaultValue(null) == null)
-      return false;
+  public boolean defaultValueEquals(Step step, JSONObject jsValue) throws WdkModelException {
+    JSONObject defaultValue = getDefaultValue(step);
+    if (defaultValue == null && jsValue == null) return true;
+    if (defaultValue == null || jsValue == null) return false;
     try {
       JSONArray jsArray = jsValue.getJSONArray("values");
       Set<String> set1 = getStringSetFromJSONArray(jsArray);
-      jsArray = getDefaultValue(null).getJSONArray("values");
+      jsArray = defaultValue.getJSONArray("values");
       Set<String> set2 = getStringSetFromJSONArray(jsArray);
       return set1.equals(set2);
     }
@@ -163,12 +164,7 @@ public class MatchedTranscriptFilter extends StepFilter {
 
   @Override
   public JSONObject getDefaultValue(Step step) {
-    String questionName = "";
-    if (step != null) {
-      questionName = step.getQuestionName();
-    }
-    if (step == null || (!step.isCombined() && !questionName.toLowerCase().contains("basket"))) {
-      // if( step == null || !step.isCombined() ) {
+    if (!step.isCombined() && !step.getQuestionName().toLowerCase().contains("basket")) {
       JSONObject jsValue = new JSONObject();
       JSONArray jsArray = new JSONArray();
       jsArray.put("Y");

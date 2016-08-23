@@ -14,6 +14,8 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.filter.StepFilter;
+import org.gusdb.wdk.model.query.BooleanOperator;
+import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.apidb.apicommon.model.TranscriptBooleanQuery;
@@ -140,13 +142,14 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public boolean defaultValueEquals(JSONObject jsValue) throws WdkModelException {
-    if (getDefaultValue(null) == null)
-      return false;
+  public boolean defaultValueEquals(Step step, JSONObject jsValue) throws WdkModelException {
+    JSONObject defaultValue = getDefaultValue(step);
+    if (defaultValue == null && jsValue == null) return true;
+    if (defaultValue == null || jsValue == null) return false;
     try {
       JSONArray jsArray = jsValue.getJSONArray("values");
       Set<String> set1 = getStringSetFromJSONArray(jsArray);
-      jsArray = getDefaultValue(null).getJSONArray("values");
+      jsArray = defaultValue.getJSONArray("values");
       Set<String> set2 = getStringSetFromJSONArray(jsArray);
       return set1.equals(set2);
     }
@@ -156,12 +159,28 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public JSONObject getDefaultValue(Step step) {
+  public JSONObject getDefaultValue(Step step) throws WdkModelException {
+    // TODO: check whether intersection or union and apply
+    Map<String,String> paramValues = step.getParamValues();
+    boolean isWdkSetOperation = paramValues.containsKey(BooleanQuery.OPERATOR_PARAM);
+    if (isWdkSetOperation) {
+      BooleanOperator op = BooleanOperator.parse(paramValues.get(BooleanQuery.OPERATOR_PARAM));
+      switch (op) {
+        case UNION: return getValues("YY", "YN", "NY");
+        case INTERSECT: return getValues("YY");
+        case LEFT_MINUS: return getValues("YN");
+        case RIGHT_MINUS: return getValues("NY");
+      }
+    }
+    return null;
+  }
+
+  private static JSONObject getValues(String... values) {
     JSONObject jsValue = new JSONObject();
     JSONArray jsArray = new JSONArray();
-    jsArray.put("YY");
-    //jsArray.put("YN");
-    //jsArray.put("NY");
+    for (String value : values) {
+      jsArray.put(value);
+    }
     jsValue.put("values", jsArray);
     return jsValue;
   }
