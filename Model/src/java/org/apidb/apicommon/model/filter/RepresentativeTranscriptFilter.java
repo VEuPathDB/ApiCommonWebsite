@@ -6,6 +6,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
+import org.gusdb.wdk.model.user.Step;
 import org.json.JSONObject;
 
 public class RepresentativeTranscriptFilter extends StepFilter {
@@ -97,7 +98,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public boolean defaultValueEquals(JSONObject value) throws WdkModelException {
+  public boolean defaultValueEquals(Step step, JSONObject value) throws WdkModelException {
     return false;
   }
 
