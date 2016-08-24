@@ -3,6 +3,7 @@ package org.apidb.apicommon.model;
 import java.util.Map;
 import java.util.Set;
 
+import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -14,7 +15,6 @@ import org.gusdb.wdk.model.question.DynamicAttributeSet;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.record.attribute.ColumnAttributeField;
-import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 // import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.user.User;
 
@@ -75,22 +75,24 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     addDynamicAttributeSetToQuestion(_wdkModel);
     Set<String> summaryAttrsSet = contextQuestion.getRecordClass().getSummaryAttributeFieldMap().keySet();
 
-		// we do not want to show the Y/N dynamic columns by default
+    // we do not want to show the Y/N dynamic columns by default
     //String[] summaryAttrNames = summaryAttrsSet.toArray(new String[summaryAttrsSet.size()+2]);
     //summaryAttrNames[summaryAttrsSet.size()] = LEFT_MATCH_COLUMN;
     //summaryAttrNames[summaryAttrsSet.size()+1] = RIGHT_MATCH_COLUMN;
 
-		// we want to show the Transcript count by default
+    // we want to show the Transcript count by default
     String[] defaultSummaryAttrNames = summaryAttrsSet.toArray(new String[summaryAttrsSet.size()+1]);
     defaultSummaryAttrNames[summaryAttrsSet.size()] = TR_COUNT;
 
     contextQuestion.setDefaultSummaryAttributeNames(defaultSummaryAttrNames);
-    GeneBooleanFilter gbf = new GeneBooleanFilter();
-    // this should be read from the model?
-    gbf.setView("/wdkCustomization/jsp/filters/gene-boolean-filter.jsp");
+
+    // Add GeneBooleanFilter to this specific question.  Must do so explicitly since we don't
+    // want this filter to appear on all transcript steps.
+    GeneBooleanFilter gbf = (GeneBooleanFilter)RecordClass.resolveStepFilterReferenceByName(
+        "transcriptFilters.geneBooleanFilter", _wdkModel, "TranscriptBooleanQuery");
     contextQuestion.addFilter(gbf);
   }
-    
+
   @Override
   protected void prepareColumns(RecordClass recordClass) {
     super.prepareColumns(recordClass);
