@@ -83,10 +83,10 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String countColumn = "CNT";
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql = 
-        "SELECT count (distinct gp.pathway_source_id) as " + countColumn + NL +
-        "FROM   apidbtuning.genepathway gp, " + NL +
+        "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
+        "FROM   apidbtuning.transcriptPathway tp, " + NL +
         "(" + idSql + ") r" + NL +
-        "WhERe  gp.gene_source_id = r.source_id";
+        "WhERe  tp.gene_source_id = r.source_id";
 
     LOG.info(sql);
     DataSource ds = getWdkModel().getAppDb().getDataSource();
@@ -141,8 +141,8 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     // check for non-zero count of genes with Pathways
     String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
-      "from  apidbtuning.genepathway gp, (" + idSql + ") r" + NL +
-      "WHERE  gp.gene_source_id = r.source_id";
+      "from  apidbtuning.transcriptPathway gp, (" + idSql + ") r" + NL +
+      "WHERE  gp.gene_source_id = r.gene_source_id";
 
     new SQLRunner(ds, sql).executeQuery(handler);
 
@@ -163,12 +163,18 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
 
+    String idSql = getAnswerValue().getIdSql();
+
     // find annotation sources used in the result set
-    String sql = "select 'KEGG' as source from dual";
+    String sql = "select distinct tp.pathway_source" + NL +
+      "from apidbtuning.transcriptPathway tp, (" + idSql + ") r" + NL +
+      "where tp.gene_source_id = r.gene_source_id";
+
     new SQLRunner(ds, sql).executeQuery(handler);
     List<Option> sources = new ArrayList<>();
+
     for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(new Option(cols.get("SOURCE").toString()));
+      sources.add(new Option(cols.get("PATHWAY_SOURCE").toString()));
     }
 
     // get orgs to display in select

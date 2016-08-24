@@ -20,6 +20,7 @@ sub run {
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
+  $self->{source} = $source;
   $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $source);
 }
 
@@ -27,10 +28,11 @@ sub getAnnotatedGenesCountBgd {
   my ($self, $dbh, $taxonId) = @_;
 
   my $sql = "
-SELECT count (distinct gp.gene_source_id)
-         from    apidbtuning.genepathway gp, ApidbTuning.GeneAttributes ga
+SELECT count (distinct tp.gene_source_id)
+         from    apidbtuning.transcriptPathway tp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
-        AND    gp.gene_source_id = ga.source_id
+        AND    tp.gene_source_id = ga.source_id
+        AND    tp.pathway_source in ($self->{source})
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -43,11 +45,12 @@ sub getAnnotatedGenesCountResult {
   my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
-SELECT count (distinct gp.gene_source_id)
-         from  apidbtuning.genepathway gp,
+SELECT count (distinct tp.gene_source_id)
+         from  apidbtuning.transcriptPathway tp,
                ($geneResultSql) r
-        where  gp.gene_source_id = r.source_id
-          and gp.exact_match = 1
+        where  tp.gene_source_id = r.source_id
+          and tp.exact_match = 1
+          and tp.pathway_source in ($self->{source})
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -62,19 +65,21 @@ sub getDataSql {
 return "
 select distinct bgd.pathway_source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.pathway_name
 from
- (SELECT  gp.pathway_source_id,  count (distinct gp.gene_source_id) as bgdcnt, gp.pathway_name
-        from   apidbtuning.genepathway gp, ApidbTuning.GeneAttributes ga
+ (SELECT  tp.pathway_source_id,  count (distinct tp.gene_source_id) as bgdcnt, tp.pathway_name
+        from   apidbtuning.transcriptPathway tp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
-         and   gp.gene_source_id = ga.source_id
-         and gp.exact_match = 1
-        group by gp.pathway_source_id, gp.pathway_name
+         and   tp.gene_source_id = ga.source_id
+         and tp.exact_match = 1
+         and tp.pathway_source in ($self->{source})
+        group by tp.pathway_source_id, tp.pathway_name
    ) bgd,
-   (SELECT  gp.pathway_source_id,  count (distinct gp.gene_source_id) as resultcnt
-        from   ApidbTuning.GenePathway gp,
+   (SELECT  tp.pathway_source_id,  count (distinct tp.gene_source_id) as resultcnt
+        from   ApidbTuning.TranscriptPathway tp,
                ($geneResultSql) r
-        where  gp.gene_source_id = r.source_id
-          and gp.exact_match = 1
-        group by gp.pathway_source_id
+        where  tp.gene_source_id = r.source_id
+          and tp.exact_match = 1
+          and tp.pathway_source in ($self->{source})
+        group by tp.pathway_source_id
  ) rslt
 where bgd.pathway_source_id = rslt.pathway_source_id
 ";
@@ -93,6 +98,7 @@ Where:
   pValueCutoff:         the p-value exponent to use as a cutoff.  terms with a larger exponent are not returned
   outputFile:           the file in which to write results
   modelName:            eg, PlasmoDB.  Used to find the database connection.
+  source:               Pathway source
 
 The gene result must only include genes from a single taxon.  It is an error otherwise.
 
