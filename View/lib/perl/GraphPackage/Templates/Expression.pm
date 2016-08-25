@@ -943,6 +943,23 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 1;
 
 
+
+### TriTrypDB ###
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_04880972f5;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  my $legend = ['biorep01','biorep02'];
+
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legend);
+  return $self;
+}
+1;
+
+
+
+
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
 # use strict;
