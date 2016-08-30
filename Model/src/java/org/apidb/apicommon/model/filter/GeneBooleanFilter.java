@@ -165,9 +165,10 @@ public class GeneBooleanFilter extends StepFilter {
       case INTERSECT: return getFilterValueArray("YY");
       case LEFT_MINUS: return getFilterValueArray("YN");
       case RIGHT_MINUS: return getFilterValueArray("NY");
+      default: return getFilterValueArray("YY", "YN", "NY");
     }
-    return null;
   }
+
   @Override
   public JSONObject getDefaultValue(Step step) throws WdkModelException {
     // TODO: check whether intersection or union and apply

@@ -5,6 +5,7 @@ import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterVal
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;
 import org.gusdb.fgputil.JsonType;
@@ -47,7 +48,8 @@ import org.json.JSONObject;
  */
 public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
-  private static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
+  private static final Logger LOG = Logger.getLogger(Gus4StepTableMigrator.class);
+
   private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
   private static final String USE_BOOLEAN_FILTER_PARAM = "use_boolean_filter";
 
@@ -59,14 +61,24 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   @Override
   public RowResult<StepData> processRecord(StepData step, WdkModel wdkModel) throws WdkModelException {
     RowResult<StepData> result = new RowResult<>(false, step);
-    Question question = wdkModel.getQuestion(step.getQuestionName());
+    Question question;
+    try {
+      question = wdkModel.getQuestion(step.getQuestionName());
+    }
+    catch (WdkModelException e) {
+      LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model.");
+      return result;
+    }
     RecordClass recordClass = question.getRecordClass();
     boolean isBoolean = question.getQuery().isBoolean();
-    boolean isTransform = question.getQuery().isTransform();
-    boolean isLeaf = !isBoolean && !isTransform;
-    
+    boolean isLeaf = !question.getQuery().isCombined();
+
+    // 0. If "params" prop not present then place entire paramFilters inside and write back
+    updateParamsProperty(result);
+
     // 1. Add "filters" property if not present and convert any found objects to filter array
-    updateFiltersProperty(result);
+    updateFiltersProperty(result, Step.KEY_FILTERS);
+    updateFiltersProperty(result, Step.KEY_VIEW_FILTERS);
 
     // 2. Add matched transcript filter to all leaf transcript steps
     addMatchedTranscriptFilter(result, isLeaf, recordClass);
@@ -83,8 +95,18 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return result;
   }
 
+  private static void updateParamsProperty(RowResult<StepData> result) {
+    JSONObject paramFilters = result.getTableRow().getParamFilters();
+    if (paramFilters.has(Step.KEY_PARAMS)) return;
+    JSONObject newParamFilters = new JSONObject();
+    newParamFilters.put(Step.KEY_PARAMS, paramFilters);
+    result.getTableRow().setParamFilters(newParamFilters);
+    result.setModified();
+  }
+
   private static void removeUnknownFilterParamValues(RowResult<StepData> result, Question question) throws WdkModelException {
-    JSONObject params = result.getTableRow().getParamFilters().getJSONObject(Step.KEY_PARAMS);
+    StepData step = result.getTableRow();
+    JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
     Map<String, Param> qParams = question.getParamMap();
     Set<String> paramNames  = params.keySet();
     for (String paramName : paramNames) {
@@ -96,11 +118,19 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
         continue;
       }
       String value = params.getString(paramName);
-      if (!"Unknown".equals(value)) {
-        continue;
+      JSONObject filterParamValue = new JSONObject(value);
+      JSONArray valueFilters = filterParamValue.getJSONArray("filters");
+      for (int i = 0; i < valueFilters.length(); i++) {
+        JSONObject obj = valueFilters.getJSONObject(i);
+        JSONArray valuesArray = obj.getJSONArray("values");
+        for (int j = 0; j < valuesArray.length(); j++) {
+          Object nestedValue = valuesArray.get(j);
+          if (nestedValue instanceof String && "Unknown".equals(nestedValue)) {
+            valuesArray.put(j, JSONObject.NULL);
+            result.setModified();
+          }
+        }
       }
-      params.put(paramName, "null");
-      result.setModified();
     }
   }
 
@@ -115,11 +145,14 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private static void addGeneBooleanFilter(RowResult<StepData> result, boolean isBoolean, RecordClass recordClass) throws WdkModelException, JSONException {
     StepData step = result.getTableRow();
     if (!isBoolean) return;
-    if (!recordClass.getFullName().equals(GENE_RECORDCLASS)) return;
+    if (!recordClass.getFullName().equals(TRANSCRIPT_RECORDCLASS)) return;
     // figure out default value based on boolean param
     JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
     boolean isWdkSetOperation = params.has(BooleanQuery.OPERATOR_PARAM);
-    if (!isWdkSetOperation) return;
+    if (!isWdkSetOperation) {
+      LOG.warn("Found boolean step (ID " + step.getStepId() + ") that does not have param " + BooleanQuery.OPERATOR_PARAM);
+      return;
+    }
     JSONObject defaultValue = GeneBooleanFilter.getDefaultValue(params.getString(BooleanQuery.OPERATOR_PARAM));
     if (defaultValue == null) return;
     boolean modified = addFilterValueArray(step, GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, defaultValue);
@@ -166,18 +199,18 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return true;
   }
 
-  private static void updateFiltersProperty(RowResult<StepData> result) {
+  private static void updateFiltersProperty(RowResult<StepData> result, String filtersKey) {
     try {
-      JsonType json = new JsonType(result.getTableRow().getParamFilters().get(Step.KEY_FILTERS).toString());
+      JsonType json = new JsonType(result.getTableRow().getParamFilters().get(filtersKey).toString());
       if (json.getNativeType().equals(NativeType.OBJECT)) {
         // need to convert to array
-        result.getTableRow().getParamFilters().put(Step.KEY_FILTERS, new JSONArray());
+        result.getTableRow().getParamFilters().put(filtersKey, new JSONArray());
         result.setModified();
       }
     }
     catch (JSONException e) {
       // means filter value not present
-      result.getTableRow().getParamFilters().put(Step.KEY_FILTERS, new JSONArray());
+      result.getTableRow().getParamFilters().put(filtersKey, new JSONArray());
       result.setModified();
     }
   }
