@@ -51,6 +51,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private static final Logger LOG = Logger.getLogger(Gus4StepTableMigrator.class);
 
+  private static final boolean LOG_INVALID_STEPS = false;
+
   private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
   private static final String USE_BOOLEAN_FILTER_PARAM = "use_boolean_filter";
 
@@ -70,8 +72,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       question = wdkModel.getQuestion(step.getQuestionName());
     }
     catch (WdkModelException e) {
-      LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model (" +
-          INVALID_STEP_COUNT_QUESTION.incrementAndGet() + " total invalid steps by question).");
+      if (LOG_INVALID_STEPS)
+        LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model (" +
+            INVALID_STEP_COUNT_QUESTION.incrementAndGet() + " total invalid steps by question).");
       return result;
     }
     RecordClass recordClass = question.getRecordClass();
@@ -118,10 +121,11 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     Set<String> paramNames  = params.keySet();
     for (String paramName : paramNames) {
       if (!qParams.containsKey(paramName)) {
-        LOG.warn("Step " + result.getTableRow().getStepId() +
-            " contains param " + paramName + ", no longer required by question " +
-            question.getFullName() + "(" + INVALID_STEP_COUNT_PARAMS.incrementAndGet() +
-            " invalid steps by param).");
+        if (LOG_INVALID_STEPS)
+          LOG.warn("Step " + result.getTableRow().getStepId() +
+              " contains param " + paramName + ", no longer required by question " +
+              question.getFullName() + "(" + INVALID_STEP_COUNT_PARAMS.incrementAndGet() +
+              " invalid steps by param).");
         return;
       }
       Param param = qParams.get(paramName);
