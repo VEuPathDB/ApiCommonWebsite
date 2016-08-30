@@ -39,8 +39,10 @@
              Features include a new streamlined and uncluttered look, new navigation tools, and improved 
              tables with search functions for quickly finding and displaying the data you want. 
              </li>
-             <li>Transcripts Represented on Gene Pages and Search Results - All associated transcripts are now 
-             represented on gene pages. 
+             <li>Transcripts Represented on Gene Pages and Search Results - Transcripts are listed in gene 
+             page tables when data can be unambiguously assigned to a transcript. Search result tables now 
+             contain a Transcript ID column.  Also, result pages for searches that query transcript-specific 
+             data (e.g. Predicted Signal Peptide) contain an Explore function for investigating transcript subsets.
            </ul>
          </h4>
       
