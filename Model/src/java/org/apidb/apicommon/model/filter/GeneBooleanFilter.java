@@ -27,7 +27,7 @@ import org.gusdb.wdk.model.user.Step;
 public class GeneBooleanFilter extends StepFilter {
 
   protected static final String COLUMN_COUNT = "count";
-  private static final String GENE_BOOLEAN_FILTER_ARRAY_KEY = "gene_boolean_filter_array";
+  public static final String GENE_BOOLEAN_FILTER_ARRAY_KEY = "gene_boolean_filter_array";
 
   public GeneBooleanFilter() {
     super("geneBooleanFilter");

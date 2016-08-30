@@ -28,7 +28,7 @@ public class MatchedTranscriptFilter extends StepFilter {
 
   protected static final String COUNT_COLUMN = "count";
   protected static final String MATCHED_RESULT_COLUMN = "matched_result";
-  private static final String MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY = "matched_transcript_filter_array";
+  public static final String MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY = "matched_transcript_filter_array";
 
   public MatchedTranscriptFilter() {
     super("matchedTranscriptFilter");
