@@ -1,8 +1,10 @@
 package org.apidb.apicommon.model.filter;
 
+import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterValueArray;
+import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getStringSetFromValueArray;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -151,10 +153,8 @@ public class MatchedTranscriptFilter extends StepFilter {
     if (defaultValue == null && jsValue == null) return true;
     if (defaultValue == null || jsValue == null) return false;
     try {
-      JSONArray jsArray = jsValue.getJSONArray("values");
-      Set<String> set1 = getStringSetFromJSONArray(jsArray);
-      jsArray = defaultValue.getJSONArray("values");
-      Set<String> set2 = getStringSetFromJSONArray(jsArray);
+      Set<String> set1 = getStringSetFromValueArray(jsValue);
+      Set<String> set2 = getStringSetFromValueArray(defaultValue);
       return set1.equals(set2);
     }
     catch (JSONException ex) {
@@ -165,27 +165,11 @@ public class MatchedTranscriptFilter extends StepFilter {
   @Override
   public JSONObject getDefaultValue(Step step) {
     if (!step.isCombined() && !step.getQuestionName().toLowerCase().contains("basket")) {
-      JSONObject jsValue = new JSONObject();
-      JSONArray jsArray = new JSONArray();
-      jsArray.put("Y");
-      // jsArray.put("N");
-      jsValue.put("values", jsArray);
-      return jsValue;
+      return getFilterValueArray("Y");
     }
     else {
       logger.debug("_____________this step DOES NOT GET THE MATCHED RESULT FILTER");
       return null;
     }
   }
-
-  private Set<String> getStringSetFromJSONArray(JSONArray jsArray) throws JSONException {
-    Set<String> set = new HashSet<String>();
-
-    for (int i = 0; i < jsArray.length(); i++) {
-      String value = jsArray.getString(i);
-      set.add(value);
-    }
-    return set;
-  }
-
 }
