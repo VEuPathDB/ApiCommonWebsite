@@ -1,28 +1,30 @@
 package org.apidb.apicommon.model.filter;
 
+import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterValueArray;
+import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getStringSetFromValueArray;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 import javax.sql.DataSource;
 
+import org.apidb.apicommon.model.TranscriptBooleanQuery;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.filter.FilterSummary;
+import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.BooleanOperator;
 import org.gusdb.wdk.model.query.BooleanQuery;
-import org.gusdb.wdk.model.filter.FilterSummary;
-import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
-import org.apidb.apicommon.model.TranscriptBooleanQuery;
+import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.gusdb.wdk.model.user.Step;
 
 public class GeneBooleanFilter extends StepFilter {
 
@@ -147,10 +149,8 @@ public class GeneBooleanFilter extends StepFilter {
     if (defaultValue == null && jsValue == null) return true;
     if (defaultValue == null || jsValue == null) return false;
     try {
-      JSONArray jsArray = jsValue.getJSONArray("values");
-      Set<String> set1 = getStringSetFromJSONArray(jsArray);
-      jsArray = defaultValue.getJSONArray("values");
-      Set<String> set2 = getStringSetFromJSONArray(jsArray);
+      Set<String> set1 = getStringSetFromValueArray(jsValue);
+      Set<String> set2 = getStringSetFromValueArray(defaultValue);
       return set1.equals(set2);
     }
     catch (JSONException ex) {
@@ -158,41 +158,24 @@ public class GeneBooleanFilter extends StepFilter {
     }
   }
 
+  public static JSONObject getDefaultValue(String booleanOperatorValue) throws WdkModelException {
+    BooleanOperator op = BooleanOperator.parse(booleanOperatorValue);
+    switch (op) {
+      case UNION: return getFilterValueArray("YY", "YN", "NY");
+      case INTERSECT: return getFilterValueArray("YY");
+      case LEFT_MINUS: return getFilterValueArray("YN");
+      case RIGHT_MINUS: return getFilterValueArray("NY");
+    }
+    return null;
+  }
   @Override
   public JSONObject getDefaultValue(Step step) throws WdkModelException {
     // TODO: check whether intersection or union and apply
     Map<String,String> paramValues = step.getParamValues();
     boolean isWdkSetOperation = paramValues.containsKey(BooleanQuery.OPERATOR_PARAM);
     if (isWdkSetOperation) {
-      BooleanOperator op = BooleanOperator.parse(paramValues.get(BooleanQuery.OPERATOR_PARAM));
-      switch (op) {
-        case UNION: return getValues("YY", "YN", "NY");
-        case INTERSECT: return getValues("YY");
-        case LEFT_MINUS: return getValues("YN");
-        case RIGHT_MINUS: return getValues("NY");
-      }
+      return getDefaultValue(paramValues.get(BooleanQuery.OPERATOR_PARAM));
     }
     return null;
   }
-
-  private static JSONObject getValues(String... values) {
-    JSONObject jsValue = new JSONObject();
-    JSONArray jsArray = new JSONArray();
-    for (String value : values) {
-      jsArray.put(value);
-    }
-    jsValue.put("values", jsArray);
-    return jsValue;
-  }
-
-  private Set<String> getStringSetFromJSONArray(JSONArray jsArray) throws JSONException {
-    Set<String> set = new HashSet<String>();
-
-    for (int i = 0; i < jsArray.length(); i++) {
-      String value = jsArray.getString(i);
-      set.add(value);
-    }
-    return set;
-  }
-
 }
