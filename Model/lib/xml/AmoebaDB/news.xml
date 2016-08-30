@@ -31,15 +31,15 @@
       <h3>New Features</h3>
          </section>
            <ul>
-             <li>Ontology Assignments - Searches, data and GBrowse tracks are now categorized according to 
+             <li>Ontology Assignments - <br>Searches, data and GBrowse tracks are now categorized according to 
              Onotbee's EMBRACE Data & Methods Ontology (EDAM).  This offers a controlled vocabulary and consistent 
              data structure throughout the sites. 
              </li>
-             <li>Record Pages Redesigned - Gene pages, and in-fact all our record pages, have a new structure. 
+             <li>Record Pages Redesigned - <br>Gene pages, and in-fact all our record pages, have a new structure. 
              Features include a new streamlined and uncluttered look, new navigation tools, and improved 
              tables with search functions for quickly finding and displaying the data you want. 
              </li>
-             <li>Transcripts Represented on Gene Pages and Search Results - Transcripts are now represented on 
+             <li>Transcripts Represented on Gene Pages and Search Results - <br>Transcripts are now represented on 
              gene pages and listed in tables when data can be 
              unambiguously assigned to a transcript. Search result tables now 
              contain a Transcript ID column.  Also, result pages for searches that query transcript-specific 
