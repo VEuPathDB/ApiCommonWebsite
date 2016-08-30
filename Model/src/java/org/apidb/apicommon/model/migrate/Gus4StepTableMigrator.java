@@ -4,6 +4,7 @@ import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterVal
 
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
@@ -53,6 +54,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
   private static final String USE_BOOLEAN_FILTER_PARAM = "use_boolean_filter";
 
+  private static final AtomicInteger INVALID_STEP_COUNT_QUESTION = new AtomicInteger(0);
+  private static final AtomicInteger INVALID_STEP_COUNT_PARAMS = new AtomicInteger(0);
+
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
     return new TableRowUpdater<StepData>(new StepDataFactory(false), this, wdkModel);
@@ -66,7 +70,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       question = wdkModel.getQuestion(step.getQuestionName());
     }
     catch (WdkModelException e) {
-      LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model.");
+      LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model (" +
+          INVALID_STEP_COUNT_QUESTION.incrementAndGet() + " total invalid steps by question).");
       return result;
     }
     RecordClass recordClass = question.getRecordClass();
@@ -104,14 +109,20 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     result.setModified();
   }
 
-  private static void removeUnknownFilterParamValues(RowResult<StepData> result, Question question) throws WdkModelException {
+  private static void removeUnknownFilterParamValues(RowResult<StepData> result, Question question) {
     StepData step = result.getTableRow();
     JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
+    
     Map<String, Param> qParams = question.getParamMap();
+    
     Set<String> paramNames  = params.keySet();
     for (String paramName : paramNames) {
       if (!qParams.containsKey(paramName)) {
-        throw new WdkModelException("Step " + result.getTableRow().getStepId() + " does not contain required param " + paramName);
+        LOG.warn("Step " + result.getTableRow().getStepId() +
+            " contains param " + paramName + ", no longer required by question " +
+            question.getFullName() + "(" + INVALID_STEP_COUNT_PARAMS.incrementAndGet() +
+            " invalid steps by param).");
+        return;
       }
       Param param = qParams.get(paramName);
       if (!(param instanceof FilterParam)) {
@@ -122,12 +133,15 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       JSONArray valueFilters = filterParamValue.getJSONArray("filters");
       for (int i = 0; i < valueFilters.length(); i++) {
         JSONObject obj = valueFilters.getJSONObject(i);
-        JSONArray valuesArray = obj.getJSONArray("values");
-        for (int j = 0; j < valuesArray.length(); j++) {
-          Object nestedValue = valuesArray.get(j);
-          if (nestedValue instanceof String && "Unknown".equals(nestedValue)) {
-            valuesArray.put(j, JSONObject.NULL);
-            result.setModified();
+        Object valuesObject = obj.get("values");
+        if (valuesObject instanceof JSONArray) {
+          JSONArray valuesArray = (JSONArray)valuesObject;
+          for (int j = 0; j < valuesArray.length(); j++) {
+            Object nestedValue = valuesArray.get(j);
+            if (nestedValue instanceof String && "Unknown".equals(nestedValue)) {
+              valuesArray.put(j, JSONObject.NULL);
+              result.setModified();
+            }
           }
         }
       }
