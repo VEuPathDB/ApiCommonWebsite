@@ -34,31 +34,35 @@
              <li>Ontology Assignments - <br>Searches, data and GBrowse tracks are now categorized according to 
              Onotbee's EMBRACE Data & Methods Ontology (EDAM).  This offers a controlled vocabulary and consistent 
              data structure throughout the sites. 
-             </li>
+             </li><br>
              <li>Record Pages Redesigned - <br>Gene pages, and in-fact all our record pages, have a new structure. 
              Features include a new streamlined and uncluttered look, new navigation tools, and improved 
              tables with search functions for quickly finding and displaying the data you want. 
-             </li>
-             <li>Transcripts Represented on Gene Pages and Search Results - <br>Transcripts are now represented on 
-             gene pages and listed in tables when data can be 
-             unambiguously assigned to a transcript. Search result tables now 
-             contain a Transcript ID column.  Also, result pages for searches that query transcript-specific 
+             </li><br>
+             <li>Transcripts Represented on Gene Pages and Search Results - <br>Transcripts are graphically represented on 
+             gene pages and listed in gene page tables when data can be 
+             unambiguously assigned to a transcript. Search result now 
+             contain a Transcript ID column.  Also, the result pages for searches that query transcript-specific 
              data (e.g. Predicted Signal Peptide) contain an Explore function for investigating transcript subsets.
+             
+             An explore function 
              </li>
            </ul>
         </section>   
              
 
-      
+      <section>
       <h3>No new data in this release</h3>
+      </section>
       
+      <section>
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
         When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
         When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
       </aside>
-
+      </section>
     </section>
     ]]>
   </attribute>
