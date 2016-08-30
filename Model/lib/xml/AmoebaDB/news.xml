@@ -19,8 +19,8 @@
 
 <record>
   <attribute name="headline">AmoebaDB 29 Released</attribute>
-  <attribute name="date">TODO 30 Mar 2016 13:00</attribute>
-  <attribute name="tag">TODO amoebadb03_16_release</attribute>
+  <attribute name="date">16 Sept 2016 13:00</attribute>
+  <attribute name="tag">amoebadb09_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -39,16 +39,13 @@
              Features include a new streamlined and uncluttered look, new navigation tools, and improved 
              tables with search functions for quickly finding and displaying the data you want. 
              </li>
-             <li>Transcripts Repreented on Gene Pages and Search Results - All associated transcripts are now 
-             represented on gene pages. Data that can be unambiguously assigned to a particular transcript are 
+             <li>Transcripts Represented on Gene Pages and Search Results - All associated transcripts are now 
+             represented on gene pages. 
            </ul>
          </h4>
       
       <h3>No new data in this release</h3>
       
-      
-      
-
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
