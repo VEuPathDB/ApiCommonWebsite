@@ -307,13 +307,17 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
               "GeneQuestions.GenesBySimilarity",
               "GenomicSequenceQuestions.SequencesBySimilarity",
               "InternalQuestions.GeneRecordClasses_GeneRecordClassBySnapshotBasket",
-              "InternalQuestions.boolean_question_GeneRecordClasses_GeneRecordClass"
+              "InternalQuestions.boolean_question_GeneRecordClasses_GeneRecordClass",
+              "InternalQuestions.TranscriptRecordClasses_TranscriptRecordClassBySnapshotBasket",
+              "InternalQuestions.boolean_question_TranscriptRecordClasses_TranscriptRecordClass"
           })))
       .add(new ThreeTuple<String, String, List<String>>(
           "IsolateRecordClass", "PopsetRecordClass", Arrays.asList(new String[] {
               "IsolateQuestions.IsolatesBySimilarity",
               "InternalQuestions.IsolateRecordClasses_IsolateRecordClassBySnapshotBasket",
-              "InternalQuestions.boolean_question_IsolateRecordClasses_IsolateRecordClass"
+              "InternalQuestions.boolean_question_IsolateRecordClasses_IsolateRecordClass",
+              "InternalQuestions.PopsetRecordClasses_PopsetRecordClassBySnapshotBasket",
+              "InternalQuestions.boolean_question_PopsetRecordClasses_PopsetRecordClass"
           })))
       .toList();
 
@@ -364,8 +368,10 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     String displayParams = step.getParamFilters().toString();
     for (ThreeTuple<String, String, List<String>> change : DISPLAY_PARAM_REPLACEMENTS) {
       if (change.getThird().contains(questionName)) {
-        displayParams = displayParams.replaceAll(change.getFirst(), change.getSecond());
-        modifiedByThisMethod = true;
+        if (displayParams.contains(change.getFirst())) {
+          displayParams = displayParams.replaceAll(change.getFirst(), change.getSecond());
+          modifiedByThisMethod = true;
+        }
       }
     }
     if (modifiedByThisMethod) {
