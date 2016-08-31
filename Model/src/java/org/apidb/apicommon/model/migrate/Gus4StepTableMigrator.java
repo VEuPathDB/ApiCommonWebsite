@@ -19,14 +19,17 @@ import org.gusdb.fgputil.JsonType.NativeType;
 import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.Tuples.ThreeTuple;
+import org.gusdb.fgputil.functional.FunctionalInterfaces.Function;
+import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.filter.FilterOption;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
+import org.gusdb.wdk.model.fix.table.steps.StepData;
+import org.gusdb.wdk.model.fix.table.steps.StepDataFactory;
+import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
 import org.gusdb.wdk.model.fix.table.TableRowUpdater;
-import org.gusdb.wdk.model.fix.table.tables.StepData;
-import org.gusdb.wdk.model.fix.table.tables.StepDataFactory;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.param.FilterParam;
 import org.gusdb.wdk.model.query.param.Param;
@@ -61,6 +64,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private static final boolean LOG_INVALID_STEPS = false;
   private static final boolean LOG_PARAM_FILTER_DIFFS = false;
+  private static final boolean LOG_LOADED_QUESTION_MAPPING = true;
 
   private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
   private static final String USE_BOOLEAN_FILTER_PARAM = "use_boolean_filter";
@@ -68,73 +72,114 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private static final AtomicInteger INVALID_STEP_COUNT_QUESTION = new AtomicInteger(0);
   private static final AtomicInteger INVALID_STEP_COUNT_PARAMS = new AtomicInteger(0);
 
+  private static enum UpdateType {
+    paramFilterRecordClasses,
+    questionNameUpdate,
+    updateParams,
+    fixFilters,
+    addViewFilters,
+    useBoolFilter,
+    matchedTxFilter,
+    geneBoolFilter,
+    removeUnknown
+  }
+
+  private static final Map<UpdateType, AtomicInteger> UPDATE_TYPE_COUNTS =
+      Functions.mapKeys(Arrays.asList(UpdateType.values()), new Function<UpdateType, AtomicInteger>() {
+        @Override public AtomicInteger apply(UpdateType obj) { return new AtomicInteger(0); }});
+
+  private WdkModel _wdkModel;
+  private StepQuestionUpdater _qNameUpdater;
+
+  @Override
+  public boolean configure(WdkModel wdkModel, List<String> args) {
+    try {
+      _wdkModel = wdkModel;
+      if (args.isEmpty()) {
+        System.err.println("PLUGIN ARGS: <question_map_file>");
+        return false;
+      }
+      _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
+      return true;
+    }
+    catch (Exception e) {
+      System.err.println(FormatUtil.getStackTrace(e));
+      return false;
+    }
+  }
+
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
     return new TableRowUpdater<StepData>(new StepDataFactory(false), this, wdkModel);
   }
 
   @Override
-  public RowResult<StepData> processRecord(StepData step, WdkModel wdkModel) throws WdkModelException {
-    RowResult<StepData> result = new RowResult<>(false, step);
-    List<String> mods = new ArrayList<>();
-    
-    // First must replace old question names with new
-    if (updateQuestionNames(result)) mods.add("updateQuestionNames");
+  public void dumpStatistics() {
+    LOG.info("# remaining invalid steps by question name: " + INVALID_STEP_COUNT_QUESTION.get());
+    LOG.info("# invalid steps by parameter names: " + INVALID_STEP_COUNT_PARAMS.get());
+    for (UpdateType type : UpdateType.values()) {
+      LOG.info(UPDATE_TYPE_COUNTS.get(type).get() + " steps updated by '" + type.name() + "'");
+    }
+  }
 
+  @Override
+  public RowResult<StepData> processRecord(StepData step) throws WdkModelException {
+    RowResult<StepData> result = new RowResult<>(false, step);
+    List<UpdateType> mods = new ArrayList<>();
+
+    // 1. Replace strings in display_parmas based on a few old question names, then conver those names
+    if (fixParamFilterRecordClasses(result)) mods.add(UpdateType.paramFilterRecordClasses);
+
+    // 2. Use QuestionMapper to update question names
+    if (_qNameUpdater.updateQuestionName(result)) mods.add(UpdateType.questionNameUpdate);
+    
+    // 3. If "params" prop not present then place entire paramFilters inside and write back
+    if (updateParamsProperty(result)) mods.add(UpdateType.updateParams);
+
+    // 4. Add "filters" property if not present and convert any found objects to filter array
+    if (updateFiltersProperty(result, Step.KEY_FILTERS)) mods.add(UpdateType.fixFilters);
+    if (updateFiltersProperty(result, Step.KEY_VIEW_FILTERS)) mods.add(UpdateType.addViewFilters);
+
+    // 5. Remove use_boolean_filter param when found
+    if (removeUseBooleanFilterParam(result)) mods.add(UpdateType.useBoolFilter);
+
+    // take a break here to look up some WDK model data needed by the remaining sections
     Question question;
     try {
       // use (possibly already modified) question name to look up question in the current model
-      question = wdkModel.getQuestion(step.getQuestionName());
+      question = _wdkModel.getQuestion(step.getQuestionName());
     }
     catch (WdkModelException e) {
+      int invalidStepsByQuestion = INVALID_STEP_COUNT_QUESTION.incrementAndGet();
       if (LOG_INVALID_STEPS)
         LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model (" +
-            INVALID_STEP_COUNT_QUESTION.incrementAndGet() + " total invalid steps by question).");
+            invalidStepsByQuestion + " total invalid steps by question).");
       return result;
     }
     RecordClass recordClass = question.getRecordClass();
     boolean isBoolean = question.getQuery().isBoolean();
     boolean isLeaf = !question.getQuery().isCombined();
 
-    // TEST: update steps with rare substring inside step ids
-    //if (updateByStepId(result)) mods.add("test-updateByStepId");
+    // 6. Add matched transcript filter to all leaf transcript steps
+    if (addMatchedTranscriptFilter(result, isLeaf, recordClass)) mods.add(UpdateType.matchedTxFilter);
 
-    // 0. If "params" prop not present then place entire paramFilters inside and write back
-    if (updateParamsProperty(result)) mods.add("updateParams");
+    // 7. Add gene boolean filter to all boolean transcript steps
+    if (addGeneBooleanFilter(result, isBoolean, recordClass)) mods.add(UpdateType.geneBoolFilter);
 
-    // 1. Add "filters" property if not present and convert any found objects to filter array
-    if (updateFiltersProperty(result, Step.KEY_FILTERS)) mods.add("fixFilters");
-    if (updateFiltersProperty(result, Step.KEY_VIEW_FILTERS)) mods.add("addViewFilters");
-
-    // 2. Add matched transcript filter to all leaf transcript steps
-    if (addMatchedTranscriptFilter(result, isLeaf, recordClass)) mods.add("matchedTxFilter");
-
-    // 3. Add gene boolean filter to all boolean transcript steps
-    if (addGeneBooleanFilter(result, isBoolean, recordClass)) mods.add("geneBoolFilter");
-
-    // 4. Remove use_boolean_filter param when found
-    if (removeUseBooleanFilterParam(result, isBoolean)) mods.add("useBoolFilter");
-
-    // 5. For parameters that are filterParams: convert value "Unknown" to null
-    if (removeUnknownFilterParamValues(result, question)) mods.add("removeUnknown");
+    // 8. For parameters that are filterParams: convert value "Unknown" to null
+    if (removeUnknownFilterParamValues(result, question)) mods.add(UpdateType.removeUnknown);
 
     if (result.isModified()) {
       LOG.info("Step " + result.getTableRow().getStepId() + " modified by " + FormatUtil.arrayToString(mods.toArray()));
+      for (UpdateType type : mods) {
+        UPDATE_TYPE_COUNTS.get(type).incrementAndGet();
+      }
       if (LOG_PARAM_FILTER_DIFFS) {
         LOG.info("Incoming paramFilters: " + new JSONObject(step.getOrigParamFiltersString()).toString(2));
         LOG.info("Outgoing paramFilters: " + step.getParamFilters().toString(2));
       }
     }
     return result;
-  }
-
-  @SuppressWarnings("unused")
-  private static boolean updateByStepId(RowResult<StepData> result) {
-    if (String.valueOf(result.getTableRow().getStepId()).contains("74542")) {
-      result.setModified();
-      return true;
-    }
-    return false;
   }
 
   private static boolean updateParamsProperty(RowResult<StepData> result) {
@@ -157,10 +202,11 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     Set<String> paramNames  = params.keySet();
     for (String paramName : paramNames) {
       if (!qParams.containsKey(paramName)) {
+        int invalidStepsByParam = INVALID_STEP_COUNT_PARAMS.incrementAndGet();
         if (LOG_INVALID_STEPS) {
           LOG.warn("Step " + result.getTableRow().getStepId() +
               " contains param " + paramName + ", no longer required by question " +
-              question.getFullName() + "(" + INVALID_STEP_COUNT_PARAMS.incrementAndGet() +
+              question.getFullName() + "(" + invalidStepsByParam +
               " invalid steps by param).");
         }
         return false;
@@ -191,8 +237,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return modifiedByThisMethod;
   }
 
-  private static boolean removeUseBooleanFilterParam(RowResult<StepData> result, boolean isBoolean) {
-    if (!isBoolean) return false;
+  private static boolean removeUseBooleanFilterParam(RowResult<StepData> result) {
     JSONObject params = result.getTableRow().getParamFilters().getJSONObject(Step.KEY_PARAMS);
     if (!params.has(USE_BOOLEAN_FILTER_PARAM)) return false;
     params.remove(USE_BOOLEAN_FILTER_PARAM);
@@ -358,7 +403,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
           "InternalQuestions.PopsetRecordClasses_PopsetRecordClassBySnapshotBasket")
       .toMap();
 
-  private static boolean updateQuestionNames(RowResult<StepData> result) {
+  private static boolean fixParamFilterRecordClasses(RowResult<StepData> result) {
 
     StepData step = result.getTableRow();
     String questionName = step.getQuestionName();
