@@ -28,13 +28,13 @@
     
     <section>
     <h3>Release 29 in Beta </h3>
-           Offered as a beta site, Release 29 represents extensive efforts to improve navigation and data accessibility 
-           on gene pages, improve presentation of alternative transcripts, and provide consistent verbiage and data categories.
+           Offered as a beta site, AmoebaDB Release 29 represents extensive efforts to improve navigation and data accessibility 
+           on gene and other record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts.
            <ul>
-             <li>Access Release 29 Beta via http://beta.amoebadb.org. </li>
+             <li>Access Release 29 Beta via <a href="http://amoebadb.org/amoeba/">http://beta.amoebadb.org.</a> </li>
              <li>Provide Feedback - <br>We can polish our new features based on your valuable feedback. Please consider contributing to 
              our efforts to improve by completing a survey.  <a href'"http://alpha.plasmodb.org/plasmo.alpha/">I want to contribute</a> </li>
-             <li>Release 28 is Still Available - <br>Release 28 is available until we finalize our new features.</li>
+             <li>Release 28 is Still Available - <br><a href="http://amoebadb.org/amoeba/">AmoebaDB Release 28</a> is available until we finalize our new features.</li>
      </section>
       
      <section> 
@@ -54,7 +54,7 @@
              unambiguously assigned to a transcript. All search results now 
              contain a Transcript ID column.  The results of searches that query transcript-specific 
              data (e.g. Predicted Signal Peptide) contain an Explore function for investigating transcript subsets.
-             </li>
+             </li><br>
              <li>Download Search Result Redesigned - <br>The page for downloading search results and associated data has 
              an improved design that reflects the new ontological data categories and offers the ability to download 
              all transcripts per gene when downloading gene results.
