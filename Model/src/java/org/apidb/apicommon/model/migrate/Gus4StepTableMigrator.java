@@ -3,8 +3,10 @@ package org.apidb.apicommon.model.migrate;
 import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterValueArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -14,6 +16,9 @@ import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.JsonType;
 import org.gusdb.fgputil.JsonType.NativeType;
+import org.gusdb.fgputil.ListBuilder;
+import org.gusdb.fgputil.MapBuilder;
+import org.gusdb.fgputil.Tuples.ThreeTuple;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.filter.FilterOption;
@@ -71,8 +76,14 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   @Override
   public RowResult<StepData> processRecord(StepData step, WdkModel wdkModel) throws WdkModelException {
     RowResult<StepData> result = new RowResult<>(false, step);
+    List<String> mods = new ArrayList<>();
+    
+    // First must replace old question names with new
+    if (updateQuestionNames(result)) mods.add("updateQuestionNames");
+
     Question question;
     try {
+      // use (possibly already modified) question name to look up question in the current model
       question = wdkModel.getQuestion(step.getQuestionName());
     }
     catch (WdkModelException e) {
@@ -84,10 +95,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     RecordClass recordClass = question.getRecordClass();
     boolean isBoolean = question.getQuery().isBoolean();
     boolean isLeaf = !question.getQuery().isCombined();
-    List<String> mods = new ArrayList<>();
 
     // TEST: update steps with rare substring inside step ids
-    if (updateByStepId(result)) mods.add("test-updateByStepId");
+    //if (updateByStepId(result)) mods.add("test-updateByStepId");
 
     // 0. If "params" prop not present then place entire paramFilters inside and write back
     if (updateParamsProperty(result)) mods.add("updateParams");
@@ -118,6 +128,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return result;
   }
 
+  @SuppressWarnings("unused")
   private static boolean updateByStepId(RowResult<StepData> result) {
     if (String.valueOf(result.getTableRow().getStepId()).contains("74542")) {
       result.setModified();
@@ -146,11 +157,12 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     Set<String> paramNames  = params.keySet();
     for (String paramName : paramNames) {
       if (!qParams.containsKey(paramName)) {
-        if (LOG_INVALID_STEPS)
+        if (LOG_INVALID_STEPS) {
           LOG.warn("Step " + result.getTableRow().getStepId() +
               " contains param " + paramName + ", no longer required by question " +
               question.getFullName() + "(" + INVALID_STEP_COUNT_PARAMS.incrementAndGet() +
               " invalid steps by param).");
+        }
         return false;
       }
       Param param = qParams.get(paramName);
@@ -270,4 +282,108 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     result.setModified();
     return true;
   }
+
+  /*
+   * display_param replacements- tuples of "fromString", "toString", array of question names to apply to
+   * 
+   * Encapsulates the data values in the following SQL:
+   * 
+   * Steps table: display_params contains “GeneRecord”
+   * 
+   * UPDATE userlogins5.steps
+   * SET display_params=replace(display_params, 'GeneRecordClass', 'TranscriptRecordClass')
+   * WHERE question_name in ('GeneQuestions.GenesBySimilarity', 'GenomicSequenceQuestions.SequencesBySimilarity', 'InternalQuestions.GeneRecordClasses_GeneRecordClassBySnapshotBasket', 'InternalQuestions.boolean_question_GeneRecordClasses_GeneRecordClass');
+   * 
+   * Steps table: display_params contains “IsolateRecord”
+   * 
+   * UPDATE userlogins5.steps
+   * SET display_params=replace(display_params, 'IsolateRecordClass', 'PopsetRecordClass')
+   * WHERE question_name in ('IsolateQuestions.IsolatesBySimilarity', 'InternalQuestions.IsolateRecordClasses_IsolateRecordClassBySnapshotBasket', 'InternalQuestions.boolean_question_IsolateRecordClasses_IsolateRecordClass');
+   */
+  private static final List<ThreeTuple<String, String, List<String>>> DISPLAY_PARAM_REPLACEMENTS =
+      new ListBuilder<ThreeTuple<String, String, List<String>>>()
+      .add(new ThreeTuple<String, String, List<String>>(
+          "GeneRecordClass", "TranscriptRecordClass", Arrays.asList(new String[] {
+              "GeneQuestions.GenesBySimilarity",
+              "GenomicSequenceQuestions.SequencesBySimilarity",
+              "InternalQuestions.GeneRecordClasses_GeneRecordClassBySnapshotBasket",
+              "InternalQuestions.boolean_question_GeneRecordClasses_GeneRecordClass"
+          })))
+      .add(new ThreeTuple<String, String, List<String>>(
+          "IsolateRecordClass", "PopsetRecordClass", Arrays.asList(new String[] {
+              "IsolateQuestions.IsolatesBySimilarity",
+              "InternalQuestions.IsolateRecordClasses_IsolateRecordClassBySnapshotBasket",
+              "InternalQuestions.boolean_question_IsolateRecordClasses_IsolateRecordClass"
+          })))
+      .toList();
+
+  /*
+   * question name replacements- tuples of "fromName", "toName"
+   * 
+   * Encapsulates the data values in the following SQL:
+   * 
+   * Steps table: question_name contains “GeneRecord” 
+   * 
+   * UPDATE userlogins5.steps
+   * SET question_name='InternalQuestions.boolean_question_TranscriptRecordClasses_TranscriptRecordClass'
+   * WHERE question_name = 'InternalQuestions.boolean_question_GeneRecordClasses_GeneRecordClass'
+   * 
+   * UPDATE userlogins5.steps
+   * SET question_name='InternalQuestions.TranscriptRecordClasses_TranscriptRecordClassBySnapshotBasket'
+   * WHERE question_name = 'InternalQuestions.GeneRecordClasses_GeneRecordClassBySnapshotBasket'
+   * 
+   * Steps table: question_name contains “IsolateRecord”
+   * 
+   * UPDATE userlogins5.steps
+   * SET question_name='InternalQuestions.boolean_question_PopsetRecordClasses_PopsetRecordClass'
+   * WHERE question_name = 'InternalQuestions.boolean_question_IsolateRecordClasses_IsolateRecordClass'
+   * 
+   * UPDATE userlogins5.steps
+   * SET question_name='InternalQuestions.PopsetRecordClasses_PopsetRecordClassBySnapshotBasket'
+   * WHERE question_name = 'InternalQuestions.IsolateRecordClasses_IsolateRecordClassBySnapshotBasket'
+   */
+  private static final Map<String,String> QUESTION_NAME_REPLACEMENTS =
+      new MapBuilder<String, String>()
+      .put("InternalQuestions.boolean_question_GeneRecordClasses_GeneRecordClass",
+          "InternalQuestions.boolean_question_TranscriptRecordClasses_TranscriptRecordClass")
+      .put("InternalQuestions.GeneRecordClasses_GeneRecordClassBySnapshotBasket",
+          "InternalQuestions.TranscriptRecordClasses_TranscriptRecordClassBySnapshotBasket")
+      .put("InternalQuestions.boolean_question_IsolateRecordClasses_IsolateRecordClass",
+          "InternalQuestions.boolean_question_PopsetRecordClasses_PopsetRecordClass")
+      .put("InternalQuestions.IsolateRecordClasses_IsolateRecordClassBySnapshotBasket",
+          "InternalQuestions.PopsetRecordClasses_PopsetRecordClassBySnapshotBasket")
+      .toMap();
+
+  private static boolean updateQuestionNames(RowResult<StepData> result) {
+
+    StepData step = result.getTableRow();
+    String questionName = step.getQuestionName();
+    boolean modifiedByThisMethod = false;
+
+    // apply display_params changes
+    String displayParams = step.getParamFilters().toString();
+    for (ThreeTuple<String, String, List<String>> change : DISPLAY_PARAM_REPLACEMENTS) {
+      if (change.getThird().contains(questionName)) {
+        displayParams = displayParams.replaceAll(change.getFirst(), change.getSecond());
+        modifiedByThisMethod = true;
+      }
+    }
+    if (modifiedByThisMethod) {
+      step.setParamFilters(new JSONObject(displayParams));
+      result.setModified();
+    }
+
+    // apply new question names
+    for (Entry<String, String> entry : QUESTION_NAME_REPLACEMENTS.entrySet()) {
+      if (step.getQuestionName().equals(entry.getKey())) {
+        step.setQuestionName(entry.getValue());
+        result.setModified();
+        modifiedByThisMethod = true;
+        break;
+      }
+    }
+
+    return modifiedByThisMethod;
+  }
+
 }
