@@ -55,6 +55,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private static final Logger LOG = Logger.getLogger(Gus4StepTableMigrator.class);
 
   private static final boolean LOG_INVALID_STEPS = false;
+  private static final boolean LOG_PARAM_FILTER_DIFFS = false;
 
   private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
   private static final String USE_BOOLEAN_FILTER_PARAM = "use_boolean_filter";
@@ -85,6 +86,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     boolean isLeaf = !question.getQuery().isCombined();
     List<String> mods = new ArrayList<>();
 
+    // TEST: update steps with rare substring inside step ids
+    if (updateByStepId(result)) mods.add("test-updateByStepId");
+
     // 0. If "params" prop not present then place entire paramFilters inside and write back
     if (updateParamsProperty(result)) mods.add("updateParams");
 
@@ -105,11 +109,21 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     if (removeUnknownFilterParamValues(result, question)) mods.add("removeUnknown");
 
     if (result.isModified()) {
-      LOG.info("Step modified by " + FormatUtil.arrayToString(mods.toArray()));
-      LOG.info("Incoming paramFilters: " + new JSONObject(step.getOrigParamFiltersString()).toString(2));
-      LOG.info("Outgoing paramFilters: " + step.getParamFilters().toString(2));
+      LOG.info("Step " + result.getTableRow().getStepId() + " modified by " + FormatUtil.arrayToString(mods.toArray()));
+      if (LOG_PARAM_FILTER_DIFFS) {
+        LOG.info("Incoming paramFilters: " + new JSONObject(step.getOrigParamFiltersString()).toString(2));
+        LOG.info("Outgoing paramFilters: " + step.getParamFilters().toString(2));
+      }
     }
     return result;
+  }
+
+  private static boolean updateByStepId(RowResult<StepData> result) {
+    if (String.valueOf(result.getTableRow().getStepId()).contains("74542")) {
+      result.setModified();
+      return true;
+    }
+    return false;
   }
 
   private static boolean updateParamsProperty(RowResult<StepData> result) {
@@ -125,7 +139,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private static boolean removeUnknownFilterParamValues(RowResult<StepData> result, Question question) {
     StepData step = result.getTableRow();
     JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
-    
+    boolean modifiedByThisMethod = false;
+
     Map<String, Param> qParams = question.getParamMap();
     
     Set<String> paramNames  = params.keySet();
@@ -142,8 +157,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       if (!(param instanceof FilterParam)) {
         continue;
       }
-      String value = params.getString(paramName);
-      JSONObject filterParamValue = new JSONObject(value);
+      JSONObject filterParamValue = new JSONObject(params.getString(paramName));
       JSONArray valueFilters = filterParamValue.getJSONArray("filters");
       for (int i = 0; i < valueFilters.length(); i++) {
         JSONObject obj = valueFilters.getJSONObject(i);
@@ -155,12 +169,14 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
             if (nestedValue instanceof String && "Unknown".equals(nestedValue)) {
               valuesArray.put(j, JSONObject.NULL);
               result.setModified();
+              modifiedByThisMethod = true;
             }
           }
         }
       }
+      params.put(paramName, filterParamValue.toString());
     }
-    return result.isModified();
+    return modifiedByThisMethod;
   }
 
   private static boolean removeUseBooleanFilterParam(RowResult<StepData> result, boolean isBoolean) {
@@ -186,8 +202,11 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     JSONObject defaultValue = GeneBooleanFilter.getDefaultValue(params.getString(BooleanQuery.OPERATOR_PARAM));
     if (defaultValue == null) return false;
     boolean modified = addFilterValueArray(step, GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, defaultValue);
-    if (modified) result.setModified();
-    return result.isModified();
+    if (modified) {
+      result.setModified();
+      return true;
+    }
+    return false;
   }
 
   private static boolean addMatchedTranscriptFilter(RowResult<StepData> result, boolean isLeaf, RecordClass recordClass) {
@@ -202,8 +221,11 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     // add filter with default value if not already present
     JSONObject defaultValue = getFilterValueArray("Y");
     boolean modified = addFilterValueArray(step, MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY, defaultValue);
-    if (modified) result.setModified();
-    return result.isModified();
+    if (modified) {
+      result.setModified();
+      return true;
+    }
+    return false;
   }
 
   private static boolean addFilterValueArray(StepData step, String name, JSONObject value) {
@@ -232,21 +254,20 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static boolean updateFiltersProperty(RowResult<StepData> result, String filtersKey) {
+    JSONObject paramFilters = result.getTableRow().getParamFilters();
     try {
-      JsonType json = new JsonType(result.getTableRow().getParamFilters().get(filtersKey).toString());
-      if (json.getNativeType().equals(NativeType.OBJECT)) {
-        // need to convert to array
-        result.getTableRow().getParamFilters().put(filtersKey, new JSONArray());
-        result.setModified();
-        return true;
+      JsonType json = new JsonType(paramFilters.get(filtersKey));
+      if (json.getNativeType().equals(NativeType.ARRAY)) {
+        // value is already array; do nothing
+        return false;
       }
-      return false;
+      // otherwise need to convert to array
     }
     catch (JSONException e) {
-      // means filter value not present
-      result.getTableRow().getParamFilters().put(filtersKey, new JSONArray());
-      result.setModified();
-      return true;
+      // means filter value not present; add
     }
+    paramFilters.put(filtersKey, new JSONArray());
+    result.setModified();
+    return true;
   }
 }
