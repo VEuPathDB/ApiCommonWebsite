@@ -1,5 +1,3 @@
 #!/bin/bash
 
-projectHome=$1
-
-fgpJava org.gusdb.wdk.model.fix.table.TableRowUpdater $projectHome org.apidb.apicommon.model.migrate.Gus4StepTableMigrator
+fgpJava org.gusdb.wdk.model.fix.table.TableRowUpdater org.apidb.apicommon.model.migrate.Gus4StepTableMigrator $@
