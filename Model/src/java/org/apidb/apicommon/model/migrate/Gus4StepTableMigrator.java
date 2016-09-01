@@ -95,15 +95,15 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   public boolean configure(WdkModel wdkModel, List<String> args) {
     try {
       _wdkModel = wdkModel;
-      if (args.isEmpty()) {
-        System.err.println("PLUGIN ARGS: <question_map_file>");
+      if (args.size() != 1) {
+        LOG.error("PLUGIN ARGS: <question_map_file>");
         return false;
       }
       _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
       return true;
     }
     catch (Exception e) {
-      System.err.println(FormatUtil.getStackTrace(e));
+      LOG.error(e);
       return false;
     }
   }
@@ -115,8 +115,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   @Override
   public void dumpStatistics() {
-    LOG.info("# remaining invalid steps by question name: " + INVALID_STEP_COUNT_QUESTION.get());
-    LOG.info("# invalid steps by parameter names: " + INVALID_STEP_COUNT_PARAMS.get());
+    LOG.info("Invalid Steps: # remaining by question name: " + INVALID_STEP_COUNT_QUESTION.get());
+    LOG.info("Invalid Steps: # remaining by parameter names: " + INVALID_STEP_COUNT_PARAMS.get());
     for (UpdateType type : UpdateType.values()) {
       LOG.info(UPDATE_TYPE_COUNTS.get(type).get() + " steps updated by '" + type.name() + "'");
     }
