@@ -64,7 +64,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private static final boolean LOG_INVALID_STEPS = false;
   private static final boolean LOG_PARAM_FILTER_DIFFS = false;
-  private static final boolean LOG_LOADED_QUESTION_MAPPING = true;
+  private static final boolean LOG_LOADED_QUESTION_MAPPING = false;
 
   private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
   private static final String USE_BOOLEAN_FILTER_PARAM = "use_boolean_filter";
@@ -124,7 +124,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   @Override
   public RowResult<StepData> processRecord(StepData step) throws WdkModelException {
-    RowResult<StepData> result = new RowResult<>(false, step);
+    RowResult<StepData> result = new RowResult<>(step);
     List<UpdateType> mods = new ArrayList<>();
 
     // 1. Replace strings in display_parmas based on a few old question names, then conver those names
@@ -143,7 +143,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     // 5. Remove use_boolean_filter param when found
     if (removeUseBooleanFilterParam(result)) mods.add(UpdateType.useBoolFilter);
 
-    // take a break here to look up some WDK model data needed by the remaining sections
+    // Look up some WDK model data needed by the remaining sections.  Doing it AFTER the above steps since
+    //   question names will have been updated and we won't kick out as many invalid steps whose question
+    //   names are missing from the current model.
     Question question;
     try {
       // use (possibly already modified) question name to look up question in the current model
@@ -170,7 +172,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     if (removeUnknownFilterParamValues(result, question)) mods.add(UpdateType.removeUnknown);
 
     if (result.isModified()) {
-      LOG.info("Step " + result.getTableRow().getStepId() + " modified by " + FormatUtil.arrayToString(mods.toArray()));
+      LOG.info("Step " + result.getRow().getStepId() + " modified by " + FormatUtil.arrayToString(mods.toArray()));
       for (UpdateType type : mods) {
         UPDATE_TYPE_COUNTS.get(type).incrementAndGet();
       }
@@ -183,17 +185,17 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static boolean updateParamsProperty(RowResult<StepData> result) {
-    JSONObject paramFilters = result.getTableRow().getParamFilters();
+    JSONObject paramFilters = result.getRow().getParamFilters();
     if (paramFilters.has(Step.KEY_PARAMS)) return false;
     JSONObject newParamFilters = new JSONObject();
     newParamFilters.put(Step.KEY_PARAMS, paramFilters);
-    result.getTableRow().setParamFilters(newParamFilters);
+    result.getRow().setParamFilters(newParamFilters);
     result.setModified();
     return true;
   }
 
   private static boolean removeUnknownFilterParamValues(RowResult<StepData> result, Question question) {
-    StepData step = result.getTableRow();
+    StepData step = result.getRow();
     JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
     boolean modifiedByThisMethod = false;
 
@@ -204,7 +206,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       if (!qParams.containsKey(paramName)) {
         int invalidStepsByParam = INVALID_STEP_COUNT_PARAMS.incrementAndGet();
         if (LOG_INVALID_STEPS) {
-          LOG.warn("Step " + result.getTableRow().getStepId() +
+          LOG.warn("Step " + result.getRow().getStepId() +
               " contains param " + paramName + ", no longer required by question " +
               question.getFullName() + "(" + invalidStepsByParam +
               " invalid steps by param).");
@@ -238,7 +240,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static boolean removeUseBooleanFilterParam(RowResult<StepData> result) {
-    JSONObject params = result.getTableRow().getParamFilters().getJSONObject(Step.KEY_PARAMS);
+    JSONObject params = result.getRow().getParamFilters().getJSONObject(Step.KEY_PARAMS);
     if (!params.has(USE_BOOLEAN_FILTER_PARAM)) return false;
     params.remove(USE_BOOLEAN_FILTER_PARAM);
     result.setModified();
@@ -246,7 +248,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static boolean addGeneBooleanFilter(RowResult<StepData> result, boolean isBoolean, RecordClass recordClass) throws WdkModelException, JSONException {
-    StepData step = result.getTableRow();
+    StepData step = result.getRow();
     if (!isBoolean) return false;
     if (!recordClass.getFullName().equals(TRANSCRIPT_RECORDCLASS)) return false;
     // figure out default value based on boolean param
@@ -271,7 +273,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     //   transcript question
     //   leaf step
     //   non-basket
-    StepData step = result.getTableRow();
+    StepData step = result.getRow();
     if (!isLeaf) return false;
     if (!recordClass.getFullName().equals(TRANSCRIPT_RECORDCLASS)) return false;
     if (step.getQuestionName().toLowerCase().contains("basket")) return false;
@@ -311,7 +313,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static boolean updateFiltersProperty(RowResult<StepData> result, String filtersKey) {
-    JSONObject paramFilters = result.getTableRow().getParamFilters();
+    JSONObject paramFilters = result.getRow().getParamFilters();
     try {
       JsonType json = new JsonType(paramFilters.get(filtersKey));
       if (json.getNativeType().equals(NativeType.ARRAY)) {
@@ -405,7 +407,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private static boolean fixParamFilterRecordClasses(RowResult<StepData> result) {
 
-    StepData step = result.getTableRow();
+    StepData step = result.getRow();
     String questionName = step.getQuestionName();
     boolean modifiedByThisMethod = false;
 
