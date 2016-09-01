@@ -32,6 +32,45 @@
     <![CDATA[
     <p><strong>We are pleased to announce the release of CryptoDB 29</strong></p>
 
+<section>
+    <h3>Release 29 in Beta </h3>
+           Offered as a beta site, CryptoDB Release 29 represents extensive efforts to improve navigation and data accessibility 
+           on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts.
+           <ul>
+             <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
+             and <a href="http://cryptodb.org/cryptodb/contact.do">Contact Us</a>to tell us about your experience. 
+              </li><br>
+             <li>Release 28 is Still Available - <br><a href="http://cryptodb.org/cryptodb//">CryptoDB Release 28</a> is available until we finalize our new features.</li><br>
+     </section>
+      
+     <section> 
+      <h3>New Features</h3>
+         
+           <ul>
+             <li>Ontology Assignments - <br>Searches, data and GBrowse tracks are now categorized according to the 
+             <a href="http://www.ontobee.org/ontology/EDAM?iri=http://edamontology.org/topic_3070">EMBRACE Data & Methods Ontology (EDAM)</a>. 
+             This offers a controlled vocabulary and consistent data structure throughout the site. 
+             </li><br>
+             <li>Record Pages Redesigned - <br>Gene pages, and in-fact all our record pages, have a new structure. 
+             Features include a new streamlined and uncluttered look, new navigation tools, and improved 
+             tables with search functions for quickly finding and displaying the data you want. 
+             </li><br>
+             <li>Transcripts Represented on Gene Pages and Search Results - <br>Transcripts are graphically represented on 
+             gene pages and listed in gene page tables when data can be 
+             unambiguously assigned to a transcript. All search results now 
+             contain a Transcript ID column.  The results of searches that query transcript-specific 
+             data (e.g. Predicted Signal Peptide) contain an Explore function for investigating transcript subsets.
+             </li><br>
+             <li>Download Search Result Redesigned - <br>The page for downloading search results and associated data has 
+             an improved design that reflects the new ontological data categories and offers the ability to download 
+             all transcripts per gene when downloading gene results.
+             </li><br>
+             <li>RNA Sequencing Workflow - We updated our RNA sequencing analysis. The new workflow aligns 
+             reads with GSNAP, calculates FPKM/RPKM from HT-Seq counts and determines differential expression with DESeq2.
+             </li>
+           </ul>
+        </section>   
+
     <section>
       <h3>New data in this release</h3>
       <h4>Annotation is updated for the following genome:</h4><br>
