@@ -2,6 +2,7 @@ package org.apidb.apicommon.model.migrate;
 
 import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterValueArray;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -92,20 +93,12 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private StepQuestionUpdater _qNameUpdater;
 
   @Override
-  public boolean configure(WdkModel wdkModel, List<String> args) {
-    try {
-      _wdkModel = wdkModel;
-      if (args.size() != 1) {
-        LOG.error("PLUGIN ARGS: <question_map_file>");
-        return false;
-      }
-      _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
-      return true;
+  public void configure(WdkModel wdkModel, List<String> args) throws IOException {
+    if (args.size() != 1) {
+      throw new IllegalArgumentException("Missing arguments.  Plugin args: <question_map_file>");
     }
-    catch (Exception e) {
-      LOG.error(e);
-      return false;
-    }
+    _wdkModel = wdkModel;
+    _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
   }
 
   @Override
