@@ -69,13 +69,15 @@
       <section>
       <h3>New data in this release</h3>
       These genomes have updated annotation:<br>
-      Acanthamoeba castellanii str. Neff<br>
-      Entamoeba histolytica HM-1:IMSS-A<br>
-      Entamoeba histolytica HM-1:IMSS-B<br>
-      Entamoeba histolytica HM-3:IMSS<br>
-      Entamoeba histolytica KU27<br>
-      Entamoeba nuttalli P19<br>
-      Entamoeba invadens IP1<br>
+         <ul>
+          <li>Acanthamoeba castellanii str. Neff</li>
+          <li>Entamoeba histolytica HM-1:IMSS-A</li>
+          <li>Entamoeba histolytica HM-1:IMSS-B</li>
+          <li>Entamoeba histolytica HM-3:IMSS</li>
+          <li>Entamoeba histolytica KU27</li>
+          <li>Entamoeba nuttalli P19</li>
+          <li>Entamoeba invadens IP1</li>
+         </ul>
       </section>
       
       <section>
