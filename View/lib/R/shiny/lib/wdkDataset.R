@@ -9,14 +9,16 @@ library(shiny)
 getWdkDataset <- function(session, fetchStyle, expectHeader, dataStorageDir="") {
 
   query = parseQueryString(session$clientData$url_search)
-
+  
   if (fetchStyle == "disk") {
     contextHash = get("contextHash", query)
+    projectFolder <- get("projectFolder", query)
     validate(
       need(contextHash != "", "Must pass a contextHash query parameter"),
+      need(projectFolder != "", "Must pass the data storage directory as a query parameter"),
       need(grepl("..",contextHash), "Hash must be sent alone")
     )
-    dataFile <- paste0(dataStorageDir, "/", contextHash, "/data.tab")
+    dataFile <- paste0(dataStorageDir, "/", projectFolder, "/", contextHash, "/data.tab")
     print(paste0("Will read from: ", dataFile), stderr())
     #read.table(dataFile, sep="\t", header=expectHeader)
     read.csv(dataFile, sep = "\t", as.is=TRUE, na.strings=(list("null")))
