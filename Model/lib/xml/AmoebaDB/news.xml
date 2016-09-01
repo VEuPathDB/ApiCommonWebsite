@@ -60,7 +60,7 @@
              all transcripts per gene when downloading gene results.
              </li><br>
              <li>RNA Sequencing Workflow - We updated our RNA sequencing analysis. The new workflow aligns 
-             reads with GSNAP, calculates FPKM from HT-Seq counts and determines differential expression with DESeq2.
+             reads with GSNAP, calculates FPKM/RPKM from HT-Seq counts and determines differential expression with DESeq2.
              </li>
            </ul>
         </section>   
@@ -68,7 +68,7 @@
 
       <section>
       <h3>New data in this release</h3>
-      These genomes have updated annotation:<br>
+      Annotation is updated for the following genomes:<br>
          <ul>
           <li>Acanthamoeba castellanii str. Neff</li>
           <li>Entamoeba histolytica HM-1:IMSS-A</li>
