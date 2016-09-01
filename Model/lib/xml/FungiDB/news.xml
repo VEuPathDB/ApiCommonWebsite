@@ -16,6 +16,94 @@
 -->
 
 <record>
+  <attribute name="headline">FungiDB 29 Released</attribute>
+  <attribute name="date">16 Sep 2016 13:00</attribute>
+  <attribute name="tag">fungidb09_16_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 29</strong></p>
+    
+    <section>
+      <h3>New data in this release</h3>
+      <h4>Annotation is updated for the following genomes:</h4><br>
+         <ul>
+          <li><i>Ajellomyces capsulatus</i> G186AR</li>
+          <li><i>Ajellomyces capsulatus</i> NAm1</li>
+          <li><i>Albugo laibachii</i> Nc14</li>
+          <li><i>Allomyces macrogynus</i> ATCC 38327</li>
+          <li><i>Allomyces macrogynus</i> ATCC 38327</li>
+          <li><i>Aphanomyces astaci</i> strain APO3</li>
+          <li><i>Aphanomyces invadans</i> NJM9701</li>
+          <li><i>Aspergillus clavatus</i> NRRL 1</li>
+          <li><i>Aspergillus flavus</i> NRRL3357</li>
+          <li><i>Aspergillus fumigatus</i> Af293</li>
+          <li><i>Aspergillus nidulans</i> FGSC A4</li>
+          <li><i>Aspergillus niger</i> ATCC 1015</li>
+          <li><i>Aspergillus niger</i> CBS 513.88</li>
+          <li><i>Aspergillus oryzae</i> RIB40</li>
+          <li><i>Aspergillus terreus</i> NIH2624</li>
+          <li><i>Botrytis cinerea</i> B05.10</li>
+          <li><i>Candida albicans</i> SC5314</li>
+          <li><i>Candida glabrata</i> CBS 138</li>
+          <li><i>Coprinopsis cinerea</i> okayama7#130</li>
+          <li><i>Cryptococcus gattii</i> R265</li>
+          <li><i>Cryptococcus gattii</i> WM276</li>
+          <li><i>Cryptococcus neoformans</i> var. grubii H99</li>
+          <li><i>Cryptococcus neoformans</i> var. neoformans B-3501A</li>
+          <li><i>Cryptococcus neoformans</i> var. neoformans JEC21</li>
+          <li><i>Fusarium graminearum</i> PH-1</li>
+          <li><i>Fusarium oxysporum f. sp. lycopersici</i> 4287</li>
+          <li><i>Fusarium verticillioides</i> 7600</li>
+          <li><i>Hyaloperonospora arabidopsidis</i> Emoy2</li>
+          <li><i>Magnaporthe oryzae</i> 70-15</li>
+          <li><i>Malassezia globosa</i> CBS 7966</li>
+          <li><i>Melampsora larici-populina</i> 98AG31</li>
+          <li><i>Neosartorya fischeri</i> NRRL 181</li>
+          <li><i>Neurospora crassa</i> OR74A</li>
+          <li><i>Neurospora tetrasperma</i> FGSC 2508</li>
+          <li><i>Phanerochaete chrysosporium</i> RP-78</li>
+          <li><i>Phytophthora infestans</i> T30-4</li>
+          <li><i>Phytophthora parasitica</i> INRA-310</li>
+          <li><i>Phytophthora sojae strain</i> P6497</li>
+          <li><i>Pneumocystis jirovecii</i> SE8</li>
+          <li><i>Puccinia graminis f. sp. tritici</i> CRL 75-36-700-3</li>
+          <li><i>Pythium aphanidermatum</i> DAOM BR444</li>
+          <li><i>Pythium arrhenomanes</i> ATCC 12531</li>
+          <li><i>Pythium irregulare</i> DAOM BR486</li>
+          <li><i>Pythium iwayamai</i> DAOM BR242034</li>
+          <li><i>Pythium ultimum</i> DAOM BR144</li>
+          <li><i>Pythium ultimum</i> var. sporangiiferum BR650</li>
+          <li><i>Rhizopus delemar</i> RA 99-880</li>
+          <li><i>Saprolegnia diclina</i> VS20</li>
+          <li><i>Saprolegnia parasitica</i> CBS 223.65</li>
+          <li><i>Schizosaccharomyces japonicus</i> yFS275</li>
+          <li><i>Schizosaccharomyces octosporus</i> yFS286</li>
+          <li><i>Schizosaccharomyces pombe</i> 972h-</li>
+          <li><i>Sclerotinia sclerotiorum</i> 1980 UF-70</li>
+          <li><i>Sordaria macrospora</i> k-hell</li>
+          <li><i>Spizellomyces punctatus</i> DAOM BR117</li>
+          <li><i>Sporisorium reilianum</i> SRZ2</li>
+          <li><i>Talaromyces marneffei</i> ATCC 18224</li>
+          <li><i>Talaromyces stipitatus </i>ATCC 10500</li>
+          <li><i>Tremella mesenterica</i> DSM 1558</li>
+          <li><i>Trichoderma reesei</i> QM6a</li>
+          <li><i>Yarrowia lipolytica</i> CLIB122</li>
+          </ul>
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">FungiDB 28 Released</attribute>
   <attribute name="date">30 Mar 2016 13:00</attribute>
   <attribute name="tag">fungidb03_16_release</attribute>
