@@ -70,12 +70,21 @@
     <section>
       <h3>New data in this release</h3>
 
-      <aside>
-        The data set title below links to a full description and list of associated searches and GBrowse tracks.
-      </aside>
 
+     <section>
+        <h4>Transcriptomics</h4>
+        <ul>
+          <li>
+            <a href="http://plasmodb.org/app/record/dataset/DS_94a7108bd5">Trophozoite transcriptomes after mosquito transmission or direct injection into mice</a> &mdash; 
+            Illumina mRNA sequencing of <i>P. chabaudi chabaudi</i> AS trophozoites isolated from mice that were infected with serial blood passaged 
+            parasites via mosquito bite or direct injection of parasitized erythrocytes.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23719378">Spence et al.</a>.
+          </li>
+        </ul>
+      </section>
+      
       <section>
-        <h4>New Genome Sequence and Annotation</h4>
+        <h4>Genome Sequence and Annotation</h4>
         <ul>
           <li>
             <a href="http://plasmodb.org/app/record/dataset/DS_ad07e73d42"><i>Plasmodium vivax</i> P01</a> &mdash; 
