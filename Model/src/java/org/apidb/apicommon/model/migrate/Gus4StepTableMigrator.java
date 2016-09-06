@@ -63,7 +63,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private static final Logger LOG = Logger.getLogger(Gus4StepTableMigrator.class);
 
-  private static final boolean LOG_INVALID_STEPS = false;
+  private static final boolean LOG_INVALID_STEPS = true;
   private static final boolean LOG_PARAM_FILTER_DIFFS = false;
   private static final boolean LOG_LOADED_QUESTION_MAPPING = false;
 
@@ -187,13 +187,13 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return true;
   }
 
-  private static boolean removeUnknownFilterParamValues(RowResult<StepData> result, Question question) {
+  static boolean removeUnknownFilterParamValues(RowResult<StepData> result, Question question) {
     StepData step = result.getRow();
     JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
     boolean modifiedByThisMethod = false;
 
     Map<String, Param> qParams = question.getParamMap();
-    
+
     Set<String> paramNames  = params.keySet();
     for (String paramName : paramNames) {
       if (!qParams.containsKey(paramName)) {
@@ -201,13 +201,15 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
         if (LOG_INVALID_STEPS) {
           LOG.warn("Step " + result.getRow().getStepId() +
               " contains param " + paramName + ", no longer required by question " +
-              question.getFullName() + "(" + invalidStepsByParam +
+              question.getFullName() + " (" + invalidStepsByParam +
               " invalid steps by param).");
         }
-        return false;
+        // skip this param but continue to fix other params
+        continue;
       }
       Param param = qParams.get(paramName);
       if (!(param instanceof FilterParam)) {
+        // this fix only applies to filter params
         continue;
       }
       JSONObject filterParamValue = new JSONObject(params.getString(paramName));
