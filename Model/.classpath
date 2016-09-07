@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="/ApiCommon Shared Model/lib/java/owlapi-distribution-3.5.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eupath-site-common-model"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/4.11/junit-4.11.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
