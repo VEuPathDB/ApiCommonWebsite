@@ -64,7 +64,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private static final Logger LOG = Logger.getLogger(Gus4StepTableMigrator.class);
 
-  private static final boolean LOG_INVALID_STEPS = true;
+  private static final boolean LOG_INVALID_STEPS = false;
   private static final boolean LOG_PARAM_FILTER_DIFFS = false;
   private static final boolean LOG_LOADED_QUESTION_MAPPING = false;
 
