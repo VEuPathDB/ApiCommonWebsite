@@ -270,14 +270,19 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private static JSONObject minMaxToString(JSONObject object) {
     try {
       JSONObject newObj = new JSONObject();
-      newObj.put("min", String.valueOf(object.getDouble("min")));
-      newObj.put("max", String.valueOf(object.getDouble("max")));
+      newObj.put("min", getJsonNullOrString(object.get("min")));
+      newObj.put("max", getJsonNullOrString(object.get("max")));
       return newObj;
     }
     catch (JSONException e) {
       LOG.error("Could not find min or max properties on object: " + object.toString(2));
       throw e;
     }
+  }
+
+  private static Object getJsonNullOrString(Object object) {
+    if (object.equals(JSONObject.NULL)) return object;
+    return object.toString();
   }
 
   private static JSONArray replaceUnknowns(JSONArray array) {
