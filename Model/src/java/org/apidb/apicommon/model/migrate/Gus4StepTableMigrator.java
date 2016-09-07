@@ -219,6 +219,11 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       for (int i = 0; i < valueFilters.length(); i++) {
         // need to replace each filter object with one in the current format
         JSONObject oldFilter = valueFilters.getJSONObject(i);
+        if (alreadyCurrentFilterFormat(oldFilter)) {
+          continue;
+        }
+        result.setModified();
+        modifiedByThisMethod = true;
         JSONObject newFilter = new JSONObject();
         // Add "field" property- should always be a string now
         JsonType oldField = new JsonType(oldFilter.get("field"));
@@ -246,18 +251,33 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
         }
         valueFilters.put(i, newFilter);
       }
-      result.setModified();
-      modifiedByThisMethod = true;
       params.put(paramName, filterParamValue.toString());
     }
     return modifiedByThisMethod;
   }
 
+  private static boolean alreadyCurrentFilterFormat(JSONObject filterObj) {
+    return (
+        filterObj.length() == 2 &&
+        filterObj.has("field") &&
+        filterObj.get("field") instanceof String &&
+        filterObj.has("value") &&
+        (filterObj.get("value") instanceof JSONObject ||
+         filterObj.get("value") instanceof JSONArray)
+    );
+  }
+
   private static JSONObject minMaxToString(JSONObject object) {
-    JSONObject newObj = new JSONObject();
-    newObj.put("min", String.valueOf(object.getDouble("min")));
-    newObj.put("max", String.valueOf(object.getDouble("max")));
-    return newObj;
+    try {
+      JSONObject newObj = new JSONObject();
+      newObj.put("min", String.valueOf(object.getDouble("min")));
+      newObj.put("max", String.valueOf(object.getDouble("max")));
+      return newObj;
+    }
+    catch (JSONException e) {
+      LOG.error("Could not find min or max properties on object: " + object.toString(2));
+      throw e;
+    }
   }
 
   private static JSONArray replaceUnknowns(JSONArray array) {
