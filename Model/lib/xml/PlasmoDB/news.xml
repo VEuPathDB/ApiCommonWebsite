@@ -30,12 +30,14 @@
     <section>
     <h3>PlasmoDB 29 in Beta </h3>
            Offered as a beta site, PlasmoDB 29 represents extensive efforts to improve navigation and data accessibility 
-           on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts.
+           on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. When available, 
+           genomes were updated to the latest version and  genomic analyses were rerun. 
            <ul>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
              and <a href="http://plasmodb.org/plasmo/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
              <li>Release 28 is Still Available - <br><a href="http://r28.plasmodb.org/plasmo/">PlasmoDB 28</a> is available until we finalize our new features.</li><br>
+            </ul> 
      </section>
       
      <section> 
@@ -87,6 +89,10 @@
         <h4>Genome Sequence and Annotation</h4>
         <ul>
           <li>
+          When available, genomes were updated to the latest versions.
+          </li>  
+          
+          <li>
             <a href="http://plasmodb.org/app/record/dataset/DS_ad07e73d42"><i>Plasmodium vivax</i> P01</a> &mdash; 
             <a href="http://www.genedb.org/Homepage/PvivaxP01">GeneDB version 18 June 2015</a>. 
             From the 
@@ -125,22 +131,7 @@
           </li>
         </ul>
       </section>
-      
-      <section>
-      <h4>Annotation was updated for the following genomes:</h4>
-         <ul>
-          <li><i>Plasmodium falciparum</i> 3D7</li>
-          <li><i>Plasmodium falciparum</i> IT</li>
-          <li><i>Plasmodium berghei</i> ANKA</li>
-          <li><i>Plasmodium chabaudi</i> chabaudi</li>
-          <li><i>Plasmodium knowlesi</i> strain H</li>
-          <li><i>Plasmodium reichenowi</i> CDC</li>
-          <li><i>Plasmodium vivax</i> Sal-1</li>
-          <li><i>Plasmodium yoelii yoelii</i> 17X</li>
-          <li><i>Plasmodium yoelii yoelii</i> YM</li>
-         </ul>
-      </section>
-      
+
       
       </section>
        ]]>
