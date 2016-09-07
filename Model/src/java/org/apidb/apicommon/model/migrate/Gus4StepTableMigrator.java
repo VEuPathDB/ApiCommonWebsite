@@ -15,8 +15,9 @@ import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;
 import org.gusdb.fgputil.FormatUtil;
+import org.gusdb.fgputil.JsonIterators;
 import org.gusdb.fgputil.JsonType;
-import org.gusdb.fgputil.JsonType.NativeType;
+import org.gusdb.fgputil.JsonType.ValueType;
 import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.Tuples.ThreeTuple;
@@ -27,10 +28,10 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.filter.FilterOption;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
+import org.gusdb.wdk.model.fix.table.TableRowUpdater;
 import org.gusdb.wdk.model.fix.table.steps.StepData;
 import org.gusdb.wdk.model.fix.table.steps.StepDataFactory;
 import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
-import org.gusdb.wdk.model.fix.table.TableRowUpdater;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.param.FilterParam;
 import org.gusdb.wdk.model.query.param.Param;
@@ -82,7 +83,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     useBoolFilter,
     matchedTxFilter,
     geneBoolFilter,
-    removeUnknown
+    fixFilterParamValues
   }
 
   private static final Map<UpdateType, AtomicInteger> UPDATE_TYPE_COUNTS =
@@ -161,8 +162,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     // 7. Add gene boolean filter to all boolean transcript steps
     if (addGeneBooleanFilter(result, isBoolean, recordClass)) mods.add(UpdateType.geneBoolFilter);
 
-    // 8. For parameters that are filterParams: convert value "Unknown" to null
-    if (removeUnknownFilterParamValues(result, question)) mods.add(UpdateType.removeUnknown);
+    // 8. Filter param format has changed a bit; update existing steps to comply
+    if (fixFilterParamValues(result, question)) mods.add(UpdateType.fixFilterParamValues);
 
     if (result.isModified()) {
       LOG.info("Step " + result.getRow().getStepId() + " modified by " + FormatUtil.arrayToString(mods.toArray()));
@@ -187,14 +188,14 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return true;
   }
 
-  static boolean removeUnknownFilterParamValues(RowResult<StepData> result, Question question) {
+  static boolean fixFilterParamValues(RowResult<StepData> result, Question question) throws WdkModelException {
     StepData step = result.getRow();
     JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
     boolean modifiedByThisMethod = false;
 
     Map<String, Param> qParams = question.getParamMap();
 
-    Set<String> paramNames  = params.keySet();
+    Set<String> paramNames = params.keySet();
     for (String paramName : paramNames) {
       if (!qParams.containsKey(paramName)) {
         int invalidStepsByParam = INVALID_STEP_COUNT_PARAMS.incrementAndGet();
@@ -212,26 +213,60 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
         // this fix only applies to filter params
         continue;
       }
+      // all filter params must be modified; brand new format
       JSONObject filterParamValue = new JSONObject(params.getString(paramName));
       JSONArray valueFilters = filterParamValue.getJSONArray("filters");
       for (int i = 0; i < valueFilters.length(); i++) {
-        JSONObject obj = valueFilters.getJSONObject(i);
-        Object valuesObject = obj.get("values");
-        if (valuesObject instanceof JSONArray) {
-          JSONArray valuesArray = (JSONArray)valuesObject;
-          for (int j = 0; j < valuesArray.length(); j++) {
-            Object nestedValue = valuesArray.get(j);
-            if (nestedValue instanceof String && "Unknown".equals(nestedValue)) {
-              valuesArray.put(j, JSONObject.NULL);
-              result.setModified();
-              modifiedByThisMethod = true;
-            }
+        // need to replace each filter object with one in the current format
+        JSONObject oldFilter = valueFilters.getJSONObject(i);
+        JSONObject newFilter = new JSONObject();
+        // Add "field" property- should always be a string now
+        JsonType oldField = new JsonType(oldFilter.get("field"));
+        newFilter.put("field", (oldField.getType().equals(ValueType.OBJECT) ?
+            oldField.getJSONObject().getString("term") : // if object, get term property
+            oldField.getString()));                      // should be string if not object
+        // see if old filter had values property
+        if (oldFilter.has("values")) {
+          JsonType json = new JsonType(oldFilter.get("values"));
+          switch(json.getType()) {
+            case OBJECT:
+              newFilter.put("value", minMaxToString(json.getJSONObject()));
+              break;
+            case ARRAY:
+              newFilter.put("value", replaceUnknowns(json.getJSONArray()));
+              break;
+            default:
+              throw new WdkModelException("Unexpected value type " +
+                  json.getType() + " of value " + json + " in values property.");
           }
         }
+        else {
+          // really old format; min and max are outside values prop in their own props
+          newFilter.put("value", minMaxToString(oldFilter));
+        }
+        valueFilters.put(i, newFilter);
       }
+      result.setModified();
+      modifiedByThisMethod = true;
       params.put(paramName, filterParamValue.toString());
     }
     return modifiedByThisMethod;
+  }
+
+  private static JSONObject minMaxToString(JSONObject object) {
+    JSONObject newObj = new JSONObject();
+    newObj.put("min", String.valueOf(object.getDouble("min")));
+    newObj.put("max", String.valueOf(object.getDouble("max")));
+    return newObj;
+  }
+
+  private static JSONArray replaceUnknowns(JSONArray array) {
+    JSONArray newArray = new JSONArray();
+    for (JsonType value : JsonIterators.arrayIterable(array)) {
+      newArray.put(value.getType().equals(ValueType.STRING) && "Unknown".equals(value.getString()) ?
+        JSONObject.NULL : value.get());
+    }
+    return newArray;
   }
 
   private static boolean removeUseBooleanFilterParam(RowResult<StepData> result) {
@@ -311,7 +346,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     JSONObject paramFilters = result.getRow().getParamFilters();
     try {
       JsonType json = new JsonType(paramFilters.get(filtersKey));
-      if (json.getNativeType().equals(NativeType.ARRAY)) {
+      if (json.getType().equals(ValueType.ARRAY)) {
         // value is already array; do nothing
         return false;
       }
