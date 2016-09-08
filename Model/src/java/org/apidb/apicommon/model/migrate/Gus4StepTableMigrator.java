@@ -109,8 +109,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   @Override
   public void dumpStatistics() {
-    LOG.info("Invalid Steps: # remaining by question name: " + INVALID_STEP_COUNT_QUESTION.get());
-    LOG.info("Invalid Steps: # remaining by parameter names: " + INVALID_STEP_COUNT_PARAMS.get());
+    LOG.info("Invalid Steps: # that still have invalid questions: " + INVALID_STEP_COUNT_QUESTION.get());
+    LOG.info("Invalid Steps: # that have invalid params: " + INVALID_STEP_COUNT_PARAMS.get());
     for (UpdateType type : UpdateType.values()) {
       LOG.info(UPDATE_TYPE_COUNTS.get(type).get() + " steps updated by '" + type.name() + "'");
     }
@@ -121,7 +121,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     RowResult<StepData> result = new RowResult<>(step);
     List<UpdateType> mods = new ArrayList<>();
 
-    // 1. Replace strings in display_parmas based on a few old question names, then conver those names
+    // 1. Replace strings in display_params based on a few old question names, then convert those names
     if (fixParamFilterRecordClasses(result)) mods.add(UpdateType.paramFilterRecordClasses);
 
     // 2. Use QuestionMapper to update question names
@@ -196,9 +196,14 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     Map<String, Param> qParams = question.getParamMap();
 
     Set<String> paramNames = params.keySet();
+    boolean stepCountedAsInvalid = false;
+    int invalidStepsByParam;
     for (String paramName : paramNames) {
       if (!qParams.containsKey(paramName)) {
-        int invalidStepsByParam = INVALID_STEP_COUNT_PARAMS.incrementAndGet();
+        if (!stepCountedAsInvalid) {
+          invalidStepsByParam = INVALID_STEP_COUNT_PARAMS.incrementAndGet();
+          stepCountedAsInvalid = true;
+        }
         if (LOG_INVALID_STEPS) {
           LOG.warn("Step " + result.getRow().getStepId() +
               " contains param " + paramName + ", no longer required by question " +
