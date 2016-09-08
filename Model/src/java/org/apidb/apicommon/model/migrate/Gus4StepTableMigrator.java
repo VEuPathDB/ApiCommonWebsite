@@ -31,7 +31,6 @@ import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
 import org.gusdb.wdk.model.fix.table.TableRowUpdater;
 import org.gusdb.wdk.model.fix.table.steps.StepData;
 import org.gusdb.wdk.model.fix.table.steps.StepDataFactory;
-import org.gusdb.wdk.model.fix.table.steps.StepDataTestFactory;
 import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.param.FilterParam;
@@ -105,7 +104,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
-    return new TableRowUpdater<StepData>(new StepDataTestFactory(false), this, wdkModel);
+    return new TableRowUpdater<StepData>(new StepDataFactory(false), this, wdkModel);
   }
 
   @Override
