@@ -72,14 +72,24 @@
         </section>   
 
      <section>
-      <h3>Updated Genomes</h3>
+      <h3>New Data</h3>
       <h4>Genome sequence and annotation is updated for the following genomes:</h4>
          <ul>
           <li><i>Homo sapiens</i> REF</li>
           <li><i>Mus musculus</i> C57CL6J</li>
          </ul>
-      </section> 
- 
+     </section>
+     <section>  
+      <h4>Transcriptomics</h4>
+        <ul>
+          <li>
+            <a href="http://hostdb.org/app/record/dataset/DS_fcdd4f7a49">Transcriptome during infection with 29 strains of T. gondii</a> &mdash; 
+            Four transcriptomes were added to this data set for a total of 29 strains in this 
+            comparative transcriptome analysis of <i>Toxoplasma gondii</i> and the murine macrophages infected with them.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot et al.</a>.
+          </li>
+        </ul>
+      </section>
       
  
       <aside>
