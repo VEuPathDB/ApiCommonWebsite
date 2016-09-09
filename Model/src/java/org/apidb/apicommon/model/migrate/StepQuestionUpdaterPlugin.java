@@ -31,7 +31,8 @@ public class StepQuestionUpdaterPlugin implements TableRowUpdaterPlugin<StepData
 
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
-    return new TableRowUpdater<StepData>(new StepDataFactory(false), this, wdkModel);
+    StepDataFactory factory = new StepDataFactory(false);
+    return new TableRowUpdater<StepData>(factory, factory, this, wdkModel);
   }
 
   @Override

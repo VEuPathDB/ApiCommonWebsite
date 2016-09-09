@@ -93,7 +93,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private WdkModel _wdkModel;
   private StepQuestionUpdater _qNameUpdater;
-  private StepDataFactory _stepDataFactory;
+  private boolean _useTestFactory;
 
   @Override
   public void configure(WdkModel wdkModel, List<String> args) throws IOException {
@@ -102,12 +102,13 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     }
     _wdkModel = wdkModel;
     _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
-    _stepDataFactory = (args.size() == 1 ? new StepDataFactory(false) : new StepDataTestFactory(false));
+    _useTestFactory = (args.size() == 2);
   }
 
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
-    return new TableRowUpdater<StepData>(_stepDataFactory, this, wdkModel);
+    StepDataFactory factory = (_useTestFactory ? new StepDataTestFactory(false) : new StepDataFactory(false));
+    return new TableRowUpdater<StepData>(factory, factory, this, wdkModel);
   }
 
   @Override
