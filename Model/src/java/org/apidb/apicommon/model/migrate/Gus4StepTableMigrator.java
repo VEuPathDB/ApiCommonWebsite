@@ -31,6 +31,7 @@ import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
 import org.gusdb.wdk.model.fix.table.TableRowUpdater;
 import org.gusdb.wdk.model.fix.table.steps.StepData;
 import org.gusdb.wdk.model.fix.table.steps.StepDataFactory;
+import org.gusdb.wdk.model.fix.table.steps.StepDataTestFactory;
 import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.param.FilterParam;
@@ -92,27 +93,32 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private WdkModel _wdkModel;
   private StepQuestionUpdater _qNameUpdater;
+  private StepDataFactory _stepDataFactory;
 
   @Override
   public void configure(WdkModel wdkModel, List<String> args) throws IOException {
-    if (args.size() != 1) {
-      throw new IllegalArgumentException("Missing arguments.  Plugin args: <question_map_file>");
+    if (args.size() < 1 || args.size() > 2 || (args.size() == 2 && !args.get(1).equals("test"))) {
+      throw new IllegalArgumentException("Incorrect arguments.  Plugin args: <question_map_file> [test]");
     }
     _wdkModel = wdkModel;
     _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
+    _stepDataFactory = (args.size() == 1 ? new StepDataFactory(false) : new StepDataTestFactory(false));
   }
 
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
-    return new TableRowUpdater<StepData>(new StepDataFactory(false), this, wdkModel);
+    return new TableRowUpdater<StepData>(_stepDataFactory, this, wdkModel);
   }
 
   @Override
   public void dumpStatistics() {
-    LOG.info("Invalid Steps: # that still have invalid questions: " + INVALID_STEP_COUNT_QUESTION.get());
-    LOG.info("Invalid Steps: # that have invalid params: " + INVALID_STEP_COUNT_PARAMS.get());
+    LOG.info("Invalid Steps:");
+    LOG.info("  " + INVALID_STEP_COUNT_QUESTION.get() + " steps still have invalid questions");
+    LOG.info("  " + INVALID_STEP_COUNT_PARAMS.get() + " steps have invalid param names");
+    LOG.info("    Note: param values are not validated and must be checked separately");
+    LOG.info("Updated Steps:");
     for (UpdateType type : UpdateType.values()) {
-      LOG.info(UPDATE_TYPE_COUNTS.get(type).get() + " steps updated by '" + type.name() + "'");
+      LOG.info("  " + UPDATE_TYPE_COUNTS.get(type).get() + " steps updated by '" + type.name() + "'");
     }
   }
 
