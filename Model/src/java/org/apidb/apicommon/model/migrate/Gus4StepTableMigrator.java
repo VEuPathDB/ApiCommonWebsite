@@ -185,7 +185,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     // 8. Filter param format has changed a bit; update existing steps to comply
     if (fixFilterParamValues(result, question)) mods.add(UpdateType.fixFilterParamValues);
 
-    if (result.isModified()) {
+    if (result.shouldWrite()) {
       LOG.info("Step " + result.getRow().getStepId() + " modified by " + FormatUtil.arrayToString(mods.toArray()));
       for (UpdateType type : mods) {
         UPDATE_TYPE_COUNTS.get(type).incrementAndGet();
@@ -204,7 +204,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     JSONObject newParamFilters = new JSONObject();
     newParamFilters.put(Step.KEY_PARAMS, paramFilters);
     result.getRow().setParamFilters(newParamFilters);
-    result.setModified();
+    result.setShouldWrite(true);
     return true;
   }
 
@@ -247,7 +247,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
         if (alreadyCurrentFilterFormat(oldFilter)) {
           continue;
         }
-        result.setModified();
+        result.setShouldWrite(true);
         modifiedByThisMethod = true;
         JSONObject newFilter = new JSONObject();
         // Add "field" property- should always be a string now
@@ -323,7 +323,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     JSONObject params = result.getRow().getParamFilters().getJSONObject(Step.KEY_PARAMS);
     if (!params.has(USE_BOOLEAN_FILTER_PARAM)) return false;
     params.remove(USE_BOOLEAN_FILTER_PARAM);
-    result.setModified();
+    result.setShouldWrite(true);
     return true;
   }
 
@@ -342,7 +342,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     if (defaultValue == null) return false;
     boolean modified = addFilterValueArray(step, GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, defaultValue);
     if (modified) {
-      result.setModified();
+      result.setShouldWrite(true);
       return true;
     }
     return false;
@@ -361,7 +361,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     JSONObject defaultValue = getFilterValueArray("Y");
     boolean modified = addFilterValueArray(step, MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY, defaultValue);
     if (modified) {
-      result.setModified();
+      result.setShouldWrite(true);
       return true;
     }
     return false;
@@ -406,7 +406,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       // means filter value not present; add
     }
     paramFilters.put(filtersKey, new JSONArray());
-    result.setModified();
+    result.setShouldWrite(true);
     return true;
   }
 
@@ -503,14 +503,14 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     }
     if (modifiedByThisMethod) {
       step.setParamFilters(new JSONObject(displayParams));
-      result.setModified();
+      result.setShouldWrite(true);
     }
 
     // apply new question names
     for (Entry<String, String> entry : QUESTION_NAME_REPLACEMENTS.entrySet()) {
       if (step.getQuestionName().equals(entry.getKey())) {
         step.setQuestionName(entry.getValue());
-        result.setModified();
+        result.setShouldWrite(true);
         modifiedByThisMethod = true;
         break;
       }
