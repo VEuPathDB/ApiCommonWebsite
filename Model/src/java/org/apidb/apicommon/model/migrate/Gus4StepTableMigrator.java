@@ -108,7 +108,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
     StepDataFactory factory = (_useTestFactory ? new StepDataTestFactory(false) : new StepDataFactory(false));
-    return new TableRowUpdater<StepData>(factory, factory, this, wdkModel);
+    return new TableRowUpdater<StepData>(factory, ListBuilder.asList(factory), this, wdkModel);
   }
 
   @Override
