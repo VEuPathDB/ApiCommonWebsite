@@ -3,6 +3,7 @@ package org.apidb.apicommon.model.migrate;
 import java.io.IOException;
 import java.util.List;
 
+import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
@@ -32,7 +33,7 @@ public class StepQuestionUpdaterPlugin implements TableRowUpdaterPlugin<StepData
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
     StepDataFactory factory = new StepDataFactory(false);
-    return new TableRowUpdater<StepData>(factory, factory, this, wdkModel);
+    return new TableRowUpdater<StepData>(factory, ListBuilder.asList(factory), this, wdkModel);
   }
 
   @Override
