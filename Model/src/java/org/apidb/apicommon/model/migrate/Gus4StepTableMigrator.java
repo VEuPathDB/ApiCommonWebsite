@@ -28,10 +28,12 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.filter.FilterOption;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
+import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowWriter;
 import org.gusdb.wdk.model.fix.table.TableRowUpdater;
 import org.gusdb.wdk.model.fix.table.steps.StepData;
 import org.gusdb.wdk.model.fix.table.steps.StepDataFactory;
-import org.gusdb.wdk.model.fix.table.steps.StepDataTestFactory;
+import org.gusdb.wdk.model.fix.table.steps.StepDataTestWriter;
+import org.gusdb.wdk.model.fix.table.steps.StepDataWriter;
 import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.param.FilterParam;
@@ -93,7 +95,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   private WdkModel _wdkModel;
   private StepQuestionUpdater _qNameUpdater;
-  private boolean _useTestFactory;
+  private boolean _useTestWriter;
 
   @Override
   public void configure(WdkModel wdkModel, List<String> args) throws IOException {
@@ -102,13 +104,24 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     }
     _wdkModel = wdkModel;
     _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
-    _useTestFactory = (args.size() == 2);
+    _useTestWriter = (args.size() == 2);
   }
 
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
-    StepDataFactory factory = (_useTestFactory ? new StepDataTestFactory(false) : new StepDataFactory(false));
-    return new TableRowUpdater<StepData>(factory, ListBuilder.asList(factory), this, wdkModel);
+    StepDataFactory factory = new StepDataFactory(false);
+    return (_useTestWriter ?
+        // use test writer and do not write modified step IDs to wdk_updated_steps
+        new TableRowUpdater<StepData>(factory, new StepDataTestWriter(), this, wdkModel) :
+        // otherwise use 'real' writer and write modified step IDs to wdk_updated_steps
+        new TableRowUpdater<StepData>(factory, getWriterList(), this, wdkModel));
+  }
+
+  private List<TableRowWriter<StepData>> getWriterList() {
+    return new ListBuilder<TableRowWriter<StepData>>()
+        .add(new StepDataWriter())
+        .add(new UpdatedStepWriter())
+        .toList();
   }
 
   @Override
