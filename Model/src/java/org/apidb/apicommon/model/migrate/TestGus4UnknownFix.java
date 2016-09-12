@@ -36,7 +36,7 @@ public class TestGus4UnknownFix {
         plugin.configure(model, new ListBuilder<String>().add(
             emptyQuestionMappingFile.toAbsolutePath().toString()).toList());
         RowResult<StepData> result = plugin.processRecord(step);
-        System.out.println("Modified? " + result.isModified());
+        System.out.println("Should write? " + result.shouldWrite());
         System.out.println("Old value: " + new JSONObject(result.getRow().getOrigParamFiltersString()).toString(2));
         System.out.println("New value: " + result.getRow().getParamFilters().toString(2));
       }
