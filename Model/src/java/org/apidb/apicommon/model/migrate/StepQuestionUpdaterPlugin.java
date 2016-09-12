@@ -7,9 +7,11 @@ import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
+import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowWriter;
 import org.gusdb.wdk.model.fix.table.TableRowUpdater;
 import org.gusdb.wdk.model.fix.table.steps.StepData;
 import org.gusdb.wdk.model.fix.table.steps.StepDataFactory;
+import org.gusdb.wdk.model.fix.table.steps.StepDataWriter;
 import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
 
 /**
@@ -32,8 +34,14 @@ public class StepQuestionUpdaterPlugin implements TableRowUpdaterPlugin<StepData
 
   @Override
   public TableRowUpdater<StepData> getTableRowUpdater(WdkModel wdkModel) {
-    StepDataFactory factory = new StepDataFactory(false);
-    return new TableRowUpdater<StepData>(factory, ListBuilder.asList(factory), this, wdkModel);
+    return new TableRowUpdater<StepData>(new StepDataFactory(false), getWriterList(), this, wdkModel);
+  }
+
+  private List<TableRowWriter<StepData>> getWriterList() {
+    return new ListBuilder<TableRowWriter<StepData>>()
+        .add(new StepDataWriter())
+        .add(new UpdatedStepWriter())
+        .toList();
   }
 
   @Override
