@@ -331,15 +331,11 @@ function UserCommentsTable(props, context) {
   return (
     <div>
       <p>
-        <a href={user_comment_link_url}
-          onClick={e => {
-            if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) return;
-            e.preventDefault();
-            context.eventHandlers.showLoginWarning('add a comment', user_comment_link_url);
-          }}
-        >
-          Add a comment <i className="fa fa-comment"/>
-        </a>
+        <strike title="This feature has been disabled for alpha sites.">
+          <a href={'javascript:alert("This feature has been disabled for alpha sites.")'}>
+            Add a comment <i className="fa fa-comment"/>
+          </a>
+        </strike>
       </p>
       <props.DefaultComponent {...props} />
     </div>
