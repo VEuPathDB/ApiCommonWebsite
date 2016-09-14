@@ -169,10 +169,13 @@ sub run {
 	 # now.
 
 	 if (!$quiet_b) {
+                       my $outputFile = $_gp->getOutputFile();
+
+
 			print $Cgi->header(-Content_type => $contentType{$format},
                          -Expires      => 'Sun, 01 Jan 2006 12:00:01 GMT',
                         );
-			system "cat $fmt_f";
+			system "cat $outputFile";
 	 }
 
 	 # report or delete temporary files.
