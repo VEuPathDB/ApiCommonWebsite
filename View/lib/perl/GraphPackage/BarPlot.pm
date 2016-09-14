@@ -490,7 +490,7 @@ sub new {
 
 
 
-package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStackedSpliced;
+package ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqSpliced;
 use base qw( ApiCommonWebsite::View::GraphPackage::BarPlot );
 use strict;
 
