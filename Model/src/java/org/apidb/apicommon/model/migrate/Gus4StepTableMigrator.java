@@ -100,7 +100,13 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   @Override
   public void configure(WdkModel wdkModel, List<String> args) throws IOException {
     if (args.size() < 1 || args.size() > 2 || (args.size() == 2 && !args.get(1).equals("test"))) {
-      throw new IllegalArgumentException("Incorrect arguments.  Plugin args: <question_map_file> [test]");
+      throw new IllegalArgumentException(
+          "\n\nIncorrect arguments.  Plugin args: <question_map_file> [test]\n\n" +
+          "question_map_file: file in the format from=to on each row mapping old question names to new question names\n\n" +
+          "Using optional 'test' argument will:\n" +
+          " 1. Not update actual step values in STEPS table\n" +
+          " 2. Will instead write display_params changes and other info to wdkmaint.STEP_UPDATER_PLUGIN_TEST table\n" +
+          " 3. Will (!!) (still) write modified step IDs to wdkmaint.WDK_UPDATED_STEPS table\n\n");
     }
     _wdkModel = wdkModel;
     _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
@@ -112,14 +118,14 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     StepDataFactory factory = new StepDataFactory(false);
     return (_useTestWriter ?
         // use test writer and do not write modified step IDs to wdk_updated_steps
-        new TableRowUpdater<StepData>(factory, new StepDataTestWriter(), this, wdkModel) :
+        new TableRowUpdater<StepData>(factory, getWriterList(new StepDataTestWriter()), this, wdkModel) :
         // otherwise use 'real' writer and write modified step IDs to wdk_updated_steps
-        new TableRowUpdater<StepData>(factory, getWriterList(), this, wdkModel));
+        new TableRowUpdater<StepData>(factory, getWriterList(new StepDataWriter()), this, wdkModel));
   }
 
-  private List<TableRowWriter<StepData>> getWriterList() {
+  private List<TableRowWriter<StepData>> getWriterList(StepDataWriter stepDataWriter) {
     return new ListBuilder<TableRowWriter<StepData>>()
-        .add(new StepDataWriter())
+        .add(stepDataWriter)
         .add(new UpdatedStepWriter())
         .toList();
   }
@@ -129,7 +135,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     LOG.info("Invalid Steps:");
     LOG.info("  " + INVALID_STEP_COUNT_QUESTION.get() + " steps still have invalid questions");
     LOG.info("  " + INVALID_STEP_COUNT_PARAMS.get() + " steps have invalid param names");
-    LOG.info("    Note: param values are not validated and must be checked separately");
+    LOG.info("   Note: param values are not validated and must be checked separately");
     LOG.info("Updated Steps:");
     for (UpdateType type : UpdateType.values()) {
       LOG.info("  " + UPDATE_TYPE_COUNTS.get(type).get() + " steps updated by '" + type.name() + "'");
