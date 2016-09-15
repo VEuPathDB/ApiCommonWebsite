@@ -62,13 +62,15 @@ $(document).ready(function() {
                <th width=250>Headline:</th>
                <th style="word-wrap: break-word"> 
                <a name=${comment.commentId}>${comment.headline}</a> 
-               <c:if test="${comment.userId eq wdkUser.userId}">
-               &nbsp;&nbsp;&nbsp; 
 
+               &nbsp;&nbsp;&nbsp; (Edit and Delete have been disabled for alpha sites.)
+<!--
                <a href="editComment.do?projectId=${comment.projectName}&stableId=${comment.stableId}&commentTargetId=${comment.commentTarget}&commentId=${comment.commentId}&email=${wdkUser.email}">[edit comment]</a>
 
                <a href="deleteComment.do?projectId=${comment.projectName}&stableId=${comment.stableId}&commentTargetId=${comment.commentTarget}&commentId=${comment.commentId}&email=${wdkUser.email}" class="delete">[delete comment]</a>
+-->
                </c:if>
+
                </th>
             </tr>
 
