@@ -20,6 +20,10 @@ sub run {
   }
 }
 
+sub declareParts {
+  return "phenotype_score";
+}
+
 1;
 
 
