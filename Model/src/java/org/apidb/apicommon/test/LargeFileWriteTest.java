@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -15,10 +14,21 @@ public class LargeFileWriteTest {
 
   private static final long KILOBYTES_PER_GENE = 100;
 
-  public static void main() throws Exception {
-    doLargeFileTest(250);
-    doLargeFileTest(2500);
-    doLargeFileTest(25000);
+  private static final int[] BUFFER_SIZES = {
+      8192 /* Java default */,
+      32768,
+      131072
+  };
+
+  private static final boolean CLEAN_UP_FILES = true;
+  
+  public static void main(String[] args) throws Exception {
+    for (int bufferSize : BUFFER_SIZES) {
+      System.out.println("\n%%%%%%%%%%% TEST, BUFFER SIZE = " + bufferSize + " %%%%%%%%%%%\n");
+      doLargeFileTest(250, bufferSize);
+      doLargeFileTest(2500, bufferSize);
+      doLargeFileTest(25000, bufferSize);
+    }
   }
 
   public static long getBytes(long numGenes) {
@@ -27,47 +37,29 @@ public class LargeFileWriteTest {
     return numBytes;
   }
 
-  private static void doLargeFileTest(long numGenes) throws IOException, InterruptedException {
+  private static void doLargeFileTest(long numGenes, int bufferSize) throws IOException {
     long numBytes = getBytes(numGenes);
-    System.out.println("Will dump file simulating " + numGenes + " genes (" +
-        KILOBYTES_PER_GENE + "k each = " + numBytes + " bytes)");
+    String testFileName = "/var/tmp/largeFile." + numGenes + "." + bufferSize + ".txt";
+    System.out.println("Will dump file '" + testFileName + "' simulating " + numGenes + " genes (" +
+        KILOBYTES_PER_GENE + "k each = " + numBytes + " bytes).");
     Timer t = new Timer();
-    String testFileName = "/var/tmp/largeFile.txt";
-    System.out.println("Writing...");
     try (FileWriter fWriter = new FileWriter(testFileName);
-         BufferedWriter writer = new BufferedWriter(fWriter)) {
+         BufferedWriter writer = new BufferedWriter(fWriter, bufferSize)) {
       for (long i = 0; i < numBytes; i++) {
         writer.write((byte)1);
       }
     }
     System.out.println("File written.  Took " + t.getElapsedStringAndRestart());
-    System.out.println("Reading...");
     try (FileReader fReader = new FileReader(testFileName);
-         BufferedReader reader = new BufferedReader(fReader)) {
+         BufferedReader reader = new BufferedReader(fReader, bufferSize)) {
       while (reader.ready()) {
         reader.read();
       }
     }
     System.out.println("File read.  Took " + t.getElapsedStringAndRestart());
-    System.out.println("Checking file size in kilobytes:");
-    dumpProcessResults("du -k " + testFileName);
-    dumpProcessResults("du -h " + testFileName);
-    System.out.println("Removing test file...");
-    Files.delete(Paths.get(testFileName));
-    System.out.println("Done.  Delete took " + t.getElapsedStringAndRestart());
-  }
-
-  private static void dumpProcessResults(String execLine) throws IOException, InterruptedException {
-    Process p = Runtime.getRuntime().exec(execLine);
-    BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
-    BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-    // read stdout; less likely to blow buffer with stderr
-    while (stdout.ready()){
-      System.out.println(stdout.readLine());
+    if (CLEAN_UP_FILES) {
+      Files.delete(Paths.get(testFileName));
+      System.out.println("File deleted.  Took " + t.getElapsedStringAndRestart());
     }
-    while (stderr.ready()) {
-      System.err.println(stderr.readLine());
-    }
-    p.waitFor();
   }
 }
