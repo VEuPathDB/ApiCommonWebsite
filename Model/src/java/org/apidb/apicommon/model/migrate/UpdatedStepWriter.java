@@ -41,7 +41,7 @@ public class UpdatedStepWriter implements TableRowWriter<StepData> {
 
   @Override
   public void setUp(WdkModel wdkModel) throws Exception {
-   // if wdk_updated_steps does not exist, create it
+    // if wdk_updated_steps does not exist, create it
     DatabaseInstance userDb = wdkModel.getUserDb();
     DataSource userDs = userDb.getDataSource();
     if (!userDb.getPlatform().checkTableExists(
