@@ -8,6 +8,7 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.filter.FilterOptionList;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.report.AttributesTabularReporter;
+import org.json.JSONException;
 import org.json.JSONObject;
 // import org.apache.log4j.Logger;
 
@@ -28,9 +29,14 @@ public class TranscriptAttributesReporter extends AttributesTabularReporter {
   }
 
   @Override
-  public void configure(JSONObject config) {
+  public void configure(JSONObject config) throws WdkModelException {
     super.configure(config);
-    applyFilter = config.getBoolean(PROP_APPLY_FILTER);
+    try {
+      applyFilter = config.getBoolean(PROP_APPLY_FILTER);
+    }
+    catch (JSONException e) {
+      throw new WdkModelException("Missing required reporter property (boolean): " + PROP_APPLY_FILTER); 
+    }
   }
 
   /**
@@ -38,8 +44,6 @@ public class TranscriptAttributesReporter extends AttributesTabularReporter {
    */
   @Override
   public void initialize() throws WdkModelException {
-    if (applyFilter == null)
-      throw new WdkModelException("Missing required reporter property: " + PROP_APPLY_FILTER); 
     if (!applyFilter)
       return; // use existing answer value
 
