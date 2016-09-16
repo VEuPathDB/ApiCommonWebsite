@@ -58,6 +58,13 @@
              contain a Transcript ID column.  The results of searches that query transcript-specific 
              data (e.g. Predicted Signal Peptide) contain an Explore function for investigating transcript subsets.
              </li><br>
+             <li>Galaxy Workspace - <br> EuPathDB sites now include a Galaxy-based workspace for large-scale data analyses. 
+             Developed in partnership with <a href="https://www.globus.org/genomics">Globus Genomics</a>, 
+             workspaces offer a private analysis platform with published workflows and pre-loaded annotated genomes. 
+             The workspace is accessed through the “Analyze My Experiment” tab on the home page of any EuPathDB resource 
+             and can be used to upload your own data, compose and run custom workflows, retrieve results and share 
+             workflows and data analyses with colleagues.
+             </li><br>
              <li>Download Search Result Redesigned - <br>The page for downloading search results and associated data has 
              an improved design that reflects the new ontological data categories and offers the ability to download 
              all transcripts per gene when downloading gene results.
