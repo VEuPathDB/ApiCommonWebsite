@@ -29,8 +29,7 @@
     <h3>MicrosporidiaDB 29 in Beta </h3>
            Offered as a beta site, MicrosporidiaDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
-           When available, 
-           genomes were updated to their latest version and genome analyses were rerun.
+           All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
              and <a href="http://microsporidiadb.org/micro/contact.do">Contact Us</a> to tell us about your experience. 
@@ -43,7 +42,7 @@
       <h3>New Features</h3>
          
            <ul>
-             <li>Ontology Assignments - <br>Searches, data and GBrowse tracks are now categorized according to the 
+             <li>Data Categories - <br>Searches, data and GBrowse tracks are now categorized according to the 
              <a href="http://www.ontobee.org/ontology/EDAM?iri=http://edamontology.org/topic_3070">EMBRACE Data & Methods Ontology (EDAM)</a>. 
              This offers a controlled vocabulary and consistent data structure throughout the site. 
              </li><br>
