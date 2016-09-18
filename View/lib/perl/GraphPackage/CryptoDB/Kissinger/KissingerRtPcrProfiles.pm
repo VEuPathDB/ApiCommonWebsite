@@ -18,7 +18,7 @@ sub init {
 
   my $xAxisLabels = ['2 Hrs', '6 Hrs','12 Hrs', '24 Hrs','36 Hrs','48 Hrs','72 Hrs'];
 
-  my @profileArray = (['Cparvum_RT_PCR_Kissinger', '', $xAxisLabels ]);
+  my @profileArray = (['Cparvum_RT_PCR_Kissinger', 'values', '', '', $xAxisLabels ]);
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 

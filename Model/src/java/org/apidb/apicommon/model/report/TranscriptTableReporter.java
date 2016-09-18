@@ -26,7 +26,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
   }
 
   @Override
-  public void configure(JSONObject config) {
+  public void configure(JSONObject config) throws WdkModelException {
     super.configure(config);
     stepId = config.getString(PROP_STEP_ID);
   }

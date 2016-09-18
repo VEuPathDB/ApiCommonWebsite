@@ -15,13 +15,13 @@ sub init {
   $self->setPlotWidth(600);
   $self->setScreenSize(300);
 
-  my $metaDataCategory = $self->getTypeArg();
   my $colors = ['blue','white'];
 
-  my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','','','','',$metaDataCategory]);
+  my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values']);
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
+  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::LogRatio->new(@_);
+#  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
 

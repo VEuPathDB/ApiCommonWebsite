@@ -87,6 +87,12 @@ sub getDbiDsn {
         : $self->{dbiDsn}
 }
 
+# return to appDb value, for backward compatibility
+sub getUserDbiDsn {
+    my ($self) = @_;
+    return $self->{userDb}->{dbiDsn};
+}
+
 1;
 
 

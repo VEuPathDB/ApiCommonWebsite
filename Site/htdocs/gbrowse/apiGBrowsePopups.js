@@ -1,4 +1,4 @@
-/* global jQuery */
+/* global Balloon, jQuery, Wdk, apidb */
 
 //********************************************************************************/
 // Two configurations available for gene pop-ups:
@@ -12,12 +12,22 @@ var GbrowsePopupConfig = getGbrowsePopupConfig(false, "Basket:", "Add", "Remove"
 //********************************************************************************/
 
 function getGbrowsePopupConfig(showFav, saveRowTitle, addBasketText, removeBasketText) {
-	var config = new Object();
-	config.showFavoriteLinks = showFav;
-	config.saveRowTitle = saveRowTitle;
-	config.addBasketText = addBasketText;
-	config.removeBasketText = removeBasketText;
-	return config;
+  var config = new Object();
+  config.showFavoriteLinks = showFav;
+  config.saveRowTitle = saveRowTitle;
+  config.addBasketText = addBasketText;
+  config.removeBasketText = removeBasketText;
+  return config;
+}
+
+/**
+ * Record descriptor used for wdkService calls
+ */
+function createRecordDescriptor(sourceId, projectId) {
+  return {
+    id: [ { name: 'project_id', value: projectId }, { name: 'source_id', value: sourceId } ],
+    recordClassName: 'GeneRecordClasses.GeneRecordClass'
+  };
 }
 
 /****** Table-building utilities ******/
@@ -36,99 +46,138 @@ function fiveColRow(one, two, three, four, five) {
 
 /****** Favorite link functions for GBrowse ******/
 
-var saveFavTextLink = 'As Favorite <img width="20" src="/a/wdk/images/favorite_gray.gif"/>';
-var removeFavTextLink = 'Remove From Favorites <img width="20" src="/a/wdk/images/favorite_color.gif"/>';
+var saveFavTextLink = '<img width="16" src="/a/wdk/images/favorite_gray.gif"/> Add As Favorite';
+var removeFavTextLink = '<img width="16" src="/a/wdk/images/favorite_color.gif"/> Remove From Favorites';
+var loadingFavTextLink = '<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> <span class="sr-only">Loading...</span>';
 
 function applyCorrectFavoriteLink(sourceId, projectId) {
-	wdk.favorite.performIfItemIsFavorite(projectId, sourceId, 'GeneRecordClasses.GeneRecordClass',
-			function() { setSavedItemLink(projectId, sourceId, 'gbfavorite', 'removeGeneAsFavorite', removeFavTextLink); },
-			function() { /* no action needed if not a favorite */ });
+  apidb.context.wdkService.getFavoriteStatus(createRecordDescriptor(sourceId, projectId))
+    .then(function(isInFavorites) {
+      if (isInFavorites) {
+        return setSavedItemLink(projectId, sourceId, 'gbfavorite', 'removeGeneAsFavorite', removeFavTextLink);
+      }
+      else {
+        return setSavedItemLink(projectId, sourceId, 'gbfavorite', 'addGeneAsFavorite', saveFavTextLink);
+      }
+    }).catch(logAndAlert);
 }
 
 function addGeneAsFavorite(projectId, sourceId) {
-	performSavedItemOp(addToFavorites, projectId, sourceId, 'gbfavorite', 'removeGeneAsFavorite', removeFavTextLink);
+  if (checkLogin()) {
+    setSavedItemLink(projectId, sourceId, 'gbfavorite', 'addGeneAsFavorite', loadingFavTextLink);
+    apidb.context.wdkService.updateFavoriteStatus(createRecordDescriptor(sourceId, projectId), true)
+      .then(function() {
+        setSavedItemLink(projectId, sourceId, 'gbfavorite', 'removeGeneAsFavorite', removeFavTextLink);
+      }).catch(logAndAlert);
+  }
 }
 
 function removeGeneAsFavorite(projectId, sourceId) {
-	performSavedItemOp(removeFromFavorites, projectId, sourceId, 'gbfavorite', 'addGeneAsFavorite', saveFavTextLink);
+  if (checkLogin()) {
+    setSavedItemLink(projectId, sourceId, 'gbfavorite', 'removeGeneAsFavorite', loadingFavTextLink);
+    apidb.context.wdkService.updateFavoriteStatus(createRecordDescriptor(sourceId, projectId), false)
+      .then(function() {
+        setSavedItemLink(projectId, sourceId, 'gbfavorite', 'addGeneAsFavorite', saveFavTextLink);
+      }).catch(logAndAlert);
+  }
 }
 
 
 /****** Basket link functions for GBrowse ******/
 
-var saveBasketTextLink = GbrowsePopupConfig.addBasketText + ' <img width="20" src="/a/wdk/images/basket_gray.png"/>';
-var removeBasketTextLink = GbrowsePopupConfig.removeBasketText + ' <img width="20" src="/a/wdk/images/basket_color.png"/>';
+var saveBasketTextLink = '<img width="16" src="/a/wdk/images/basket_gray.png"/> ' + GbrowsePopupConfig.addBasketText;
+var removeBasketTextLink = '<img width="16" src="/a/wdk/images/basket_color.png"/> ' + GbrowsePopupConfig.removeBasketText;
+var loadingBasketTextLink = '<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> <span class="sr-only">Loading...</span>';
 
 function applyCorrectBasketLink(sourceId, projectId) {
-	wdk.basket.performIfItemInBasket(projectId, sourceId, 'GeneRecordClasses.GeneRecordClass',
-			function() { setSavedItemLink(projectId, sourceId, 'gbbasket', 'removeGeneFromBasket', removeBasketTextLink); },
-			function() { /* no action needed if not in basket */ });
+  apidb.context.wdkService.getBasketStatus(createRecordDescriptor(sourceId, projectId))
+    .then(function(isInBasket) {
+      if (isInBasket) {
+        setSavedItemLink(projectId, sourceId, 'gbbasket', 'removeGeneFromBasket', removeBasketTextLink);
+      }
+      else {
+        setSavedItemLink(projectId, sourceId, 'gbbasket', 'addGeneToBasket', saveBasketTextLink);
+      }
+    }).catch(logAndAlert);
 }
 
 function addGeneToBasket(projectId, sourceId) {
-	performSavedItemOp(wdk.basket.addToBasket, projectId, sourceId, 'gbbasket', 'removeGeneFromBasket', removeBasketTextLink);
+  if (checkLogin()) {
+    setSavedItemLink(projectId, sourceId, 'gbbasket', 'addGeneToBasket', loadingBasketTextLink);
+    apidb.context.wdkService.updateBasketStatus(createRecordDescriptor(sourceId, projectId), true)
+      .then(function() {
+        setSavedItemLink(projectId, sourceId, 'gbbasket', 'removeGeneFromBasket', removeBasketTextLink);
+      }).catch(logAndAlert);
+  }
 }
 
 function removeGeneFromBasket(projectId, sourceId) {
-	performSavedItemOp(wdk.basket.removeFromBasket, projectId, sourceId, 'gbbasket', 'addGeneToBasket', saveBasketTextLink);
+  if (checkLogin()) {
+    setSavedItemLink(projectId, sourceId, 'gbbasket', 'removeGeneFromBasket', loadingBasketTextLink);
+    apidb.context.wdkService.updateBasketStatus(createRecordDescriptor(sourceId, projectId), false)
+      .then(function() {
+        setSavedItemLink(projectId, sourceId, 'gbbasket', 'addGeneToBasket', saveBasketTextLink);
+      }).catch(logAndAlert);
+  }
 }
 
 
 /****** Utility link functions for GBrowse ******/
 
-function checkLogin() {
-	if (!wdk.user.isUserLoggedIn()) {
-    // Balloon is not used on gene pages
-		if ('Balloon' in window) Balloon.prototype.hideTooltip(1);
-		wdk.user.login();
-		return; // if user logs in, will not get here
-	}
+function logAndAlert(error) {
+  console.error(error);
+  alert('Unable to complete the action.');
 }
 
-function performSavedItemOp(funcToCall, projectId, sourceId, selectionSuffix, nextFunction, nextLinkText) {
-	checkLogin();
-	jQuery('#'+sourceId+'_'+selectionSuffix).html('<img width="20" src="/a/wdk/images/loading.gif"/>');
-	funcToCall(projectId, sourceId, 'GeneRecordClasses.GeneRecordClass',
-		    function(result) {
-				setSavedItemLink(projectId, sourceId, selectionSuffix, nextFunction, nextLinkText);
-			});
+function checkLogin() {
+  var user = apidb.context.stores.GlobalDataStore.getState().user;
+  if (user.isGuest) {
+    // Balloon is not used on gene pages
+    if ('Balloon' in window) Balloon.prototype.hideTooltip(1);
+    apidb.context.dispatchAction(Wdk.ActionCreators.UserActionCreators.showLoginForm())
+  }
+  return !user.isGuest;
 }
 
 function setSavedItemLink(projectId, sourceId, selectionSuffix, nextFunction, nextLinkText) {
-	jQuery('#'+sourceId+'_'+selectionSuffix)
-    	.html("<a href=\"javascript:void(0);\" onclick=\""+nextFunction+"('"+projectId+"','"+sourceId+"');\">"+nextLinkText+"</a>");
+  jQuery('#' + sourceId + '_' + selectionSuffix).html(
+    '<button' +
+      ' type="button"' +
+      ' onclick="' + nextFunction + '(\'' + projectId + '\',\'' + sourceId + '\')"' +
+      ' style="width: 105px">' + nextLinkText + '</button>');
 }
 
 function getSaveRowLinks(projectId, sourceId) {
-	var saveRowLinks;
-	if (wdk.user.isUserLoggedIn()) {
-		// enable saving as favorite or to basket
-		var favoriteLink = "<span id=\"" + sourceId + "_gbfavorite\"><a href=\"javascript:void(0);\" onclick=\"addGeneAsFavorite('" + projectId + "','" + sourceId + "');\">" + saveFavTextLink + "</a></span>";
-		var basketLink = "<span id=\"" + sourceId + "_gbbasket\"><a href=\"javascript:void(0);\" onclick=\"addGeneToBasket('" + projectId + "','" + sourceId + "');\">" + saveBasketTextLink + "</a></span>";
+  var saveRowLinks;
+  var user = apidb.context.stores.GlobalDataStore.getState().user;
+  if (!user.isGuest) {
+    // enable saving as favorite or to basket
+    var favoriteLink = "<span id=\"" + sourceId + "_gbfavorite\"><button style=\"width: 105px\" type=\"button\" onclick=\"addGeneAsFavorite('" + projectId + "','" + sourceId + "');\">" + loadingFavTextLink + "</button></span>";
+    var basketLink = "<span id=\"" + sourceId + "_gbbasket\"><button style=\"width: 105px\" type=\"button\" onclick=\"addGeneToBasket('" + projectId + "','" + sourceId + "');\">" + loadingBasketTextLink + "</button></span>";
 
-		if (GbrowsePopupConfig.showFavoriteLinks) {
-			saveRowLinks = favoriteLink + " | " + basketLink;
-			// now set appropriate links based on whether gene is already in basket/favorites
-			applyCorrectBasketLink(sourceId, projectId);
-			applyCorrectFavoriteLink(sourceId, projectId);
-		} else {
-			// only show basket link
-			saveRowLinks = basketLink;
-			applyCorrectBasketLink(sourceId, projectId);
-		}
+    if (GbrowsePopupConfig.showFavoriteLinks) {
+      saveRowLinks = favoriteLink + " | " + basketLink;
+      // now set appropriate links based on whether gene is already in basket/favorites
+      applyCorrectBasketLink(sourceId, projectId);
+      applyCorrectFavoriteLink(sourceId, projectId);
+    } else {
+      // only show basket link
+      saveRowLinks = basketLink;
+      applyCorrectBasketLink(sourceId, projectId);
+    }
 
-	} else {
-		// prompt user to log in if he wants to to save genes
-		saveRowLinks = "<a onclick=\"checkLogin()\" href=\"javascript:void(0)\">Log in</a> to save genes.";
-	}
-	return saveRowLinks;
+  } else {
+    // prompt user to log in if he wants to to save genes
+    saveRowLinks = "<a onclick=\"checkLogin()\" href=\"javascript:void(0)\">Log in</a> to save genes.";
+  }
+  return saveRowLinks;
 }
 
 
 /****** Pop-up functions for various record types ******/
 
 // Gene title
-function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, utr, gbLinkParams, orthomcl, geneId) {
+function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon, utr, gbLinkParams, orthomcl, geneId, baseUrl, baseRecordUrl) {
 
   // In ToxoDB, sequences of alternative gene models have to be returned
   var ignore_gene_alias = 0;
@@ -137,16 +186,16 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   }
 
   // expand minimalist input data
-  var cdsLink = "<a href='../../../cgi-bin/geneSrt?project_id=" + projectId
-        + "&ids=" + sourceId
-        + "&ignore_gene_alias=" + ignore_gene_alias
-        + "&type=CDS&upstreamAnchor=Start&upstreamOffset=0&downstreamAnchor=End&downstreamOffset=0&go=Get+Sequences' target='_blank'>CDS</a>"
-  var proteinLink = "<a href='../../../cgi-bin/geneSrt?project_id=" + projectId
-        + "&ids=" + sourceId
-        + "&ignore_gene_alias=" + ignore_gene_alias
-        + "&type=protein&upstreamAnchor=Start&upstreamOffset=0&downstreamAnchor=End&downstreamOffset=0&endAnchor3=End&go=Get+Sequences' target='_blank'>protein</a>"
-  var recordLink = '<a href="../../../app/record/gene/' + geneId + '">Gene Page</a>';
-  var gbLink = "<a href='../../../../cgi-bin/gbrowse/" + projectId.toLowerCase() + "/?" + gbLinkParams + "'>GBrowse</a>";
+  var cdsLink = "<a href='" + baseUrl + "/cgi-bin/geneSrt?project_id=" + projectId
+    + "&ids=" + sourceId
+    + "&ignore_gene_alias=" + ignore_gene_alias
+    + "&type=CDS&upstreamAnchor=Start&upstreamOffset=0&downstreamAnchor=End&downstreamOffset=0&go=Get+Sequences' target='_blank'>CDS</a>"
+  var proteinLink = "<a href='" + baseUrl + "/cgi-bin/geneSrt?project_id=" + projectId
+    + "&ids=" + sourceId
+    + "&ignore_gene_alias=" + ignore_gene_alias
+    + "&type=protein&upstreamAnchor=Start&upstreamOffset=0&downstreamAnchor=End&downstreamOffset=0&endAnchor3=End&go=Get+Sequences' target='_blank'>protein</a>"
+  var recordLink = '<a href="' + baseRecordUrl + '/app/record/gene/' + geneId + '">Gene Page</a>';
+  var gbLink = "<a href='" + baseUrl + "/cgi-bin/gbrowse/" + projectId.toLowerCase() + "/?" + gbLinkParams + "'>GBrowse</a>";
   var orthomclLink = "<a href='http://orthomcl.org/cgi-bin/OrthoMclWeb.cgi?rm=sequenceList&groupac=" + orthomcl + "'>" + orthomcl + "</a>";
 
   // format into html table rows
@@ -160,11 +209,11 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   var exon_or_cds = 'Exon:';
 
   if (soTerm =='Protein Coding') {
-      exon_or_cds = 'CDS:';
+    exon_or_cds = 'CDS:';
   }
 
   if (loc != '') {
-     rows.push(twoColRow(exon_or_cds, loc)) ;
+    rows.push(twoColRow(exon_or_cds, loc)) ;
   }
   if(utr != '') {
     rows.push(twoColRow('UTR:', utr));
@@ -172,12 +221,12 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
   // TO FIX for GUS4
   //  rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
   if (soTerm =='Protein Coding') {
-      rows.push(twoColRow('Download:', cdsLink + " | " + proteinLink));
-      if ( orthomcl.substring(0,3) == 'OG2') {
-	  rows.push(twoColRow('OrthoMCL', orthomclLink));
-      } else {
-	  rows.push(twoColRow('OrthoMCL', orthomcl));
-      }
+    rows.push(twoColRow('Download:', cdsLink + " | " + proteinLink));
+    if ( orthomcl.substring(0,3) == 'OG2') {
+      rows.push(twoColRow('OrthoMCL', orthomclLink));
+    } else {
+      rows.push(twoColRow('OrthoMCL', orthomcl));
+    }
   }
   rows.push(twoColRow('Links:', gbLink + " | " + recordLink));
 
@@ -188,28 +237,28 @@ function gene_title (tip, projectId, sourceId, chr, loc, soTerm, product, taxon,
 
 
 // Syntetic Gene title
-function syn_gene_title (tip, projectId, sourceId, taxon, geneType, desc, location, gbLinkParams, orthomcl) {
+function syn_gene_title (tip, projectId, sourceId, taxon, geneType, desc, location, gbLinkParams, orthomcl, baseRecordUrl) {
 
-	var gbLink = '<a href="../../../../cgi-bin/gbrowse/' + projectId.toLowerCase() + '/?' + gbLinkParams + '">GBrowse</a>';
-	var recordLink = '<a href="../../../app/record/gene/' + sourceId + '">Gene Page</a>';
+  var gbLink = '<a href="../../../../cgi-bin/gbrowse/' + projectId.toLowerCase() + '/?' + gbLinkParams + '">GBrowse</a>';
+  var recordLink = '<a href="' + baseRecordUrl + '/app/record/gene/' + sourceId + '">Gene Page</a>';
 
-	// format into html table rows
-	var rows = new Array();
-	rows.push(twoColRow('Gene:', sourceId));
-	rows.push(twoColRow('Species:', taxon));
-	rows.push(twoColRow('Gene Type:', geneType));
-	rows.push(twoColRow('Description:', desc));
-	rows.push(twoColRow('Location:', location));
-	rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
-	rows.push(twoColRow('Links:', gbLink + ' | ' + recordLink));
+  // format into html table rows
+  var rows = new Array();
+  rows.push(twoColRow('Gene:', sourceId));
+  rows.push(twoColRow('Species:', taxon));
+  rows.push(twoColRow('Gene Type:', geneType));
+  rows.push(twoColRow('Description:', desc));
+  rows.push(twoColRow('Location:', location));
+  rows.push(twoColRow(GbrowsePopupConfig.saveRowTitle, getSaveRowLinks(projectId, sourceId)));
+  rows.push(twoColRow('Links:', gbLink + ' | ' + recordLink));
 
   if (geneType =='Protein Coding') {
-      rows.push(twoColRow('OrthoMCL', orthomcl));
+    rows.push(twoColRow('OrthoMCL', orthomcl));
   }
 
 
-	tip.T_TITLE = 'Syntenic Gene: ' + sourceId;
-	return table(rows);
+  tip.T_TITLE = 'Syntenic Gene: ' + sourceId;
+  return table(rows);
 }
 
 
@@ -326,7 +375,7 @@ function pst (tip, paramsString) {
     if (v[REVERSED] == '1') na = revArray[na];
     var aa = variant[2];
     var info =
-     'NA=' + na + ((v[IS_CODING] == 'yes')? '&nbsp;&nbsp;&nbsp;&nbsp;AA=' + aa : '');
+      'NA=' + na + ((v[IS_CODING] == 'yes')? '&nbsp;&nbsp;&nbsp;&nbsp;AA=' + aa : '');
     rows.push(twoColRow(strain, info));
   }
 
@@ -400,11 +449,11 @@ function htspst (tip, paramsString) {
     if (v[REVERSED] == '1') na = revArray[na];
     var aa = variant[2];
     var info =
-     'NA=' + na + ((v[IS_CODING] == 'yes')? '&nbsp;&nbsp;&nbsp;&nbsp;AA=' + aa : '');
+      'NA=' + na + ((v[IS_CODING] == 'yes')? '&nbsp;&nbsp;&nbsp;&nbsp;AA=' + aa : '');
     strains.push(fiveColRow(strain, na, (v[IS_CODING] == 'yes') ? aa : '&nbsp;',variant[3],variant[4]));
   }
 
-//  tip.T_BGCOLOR = 'lightskyblue';
+  //  tip.T_BGCOLOR = 'lightskyblue';
   tip.T_TITLE = 'SNP';
   return table(rows) + table(strains);
 }

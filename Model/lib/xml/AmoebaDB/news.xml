@@ -30,9 +30,14 @@
     <h3>AmoebaDB 29 in Beta </h3>
            Offered as a beta site, AmoebaDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
-           When available, 
-           genomes were updated to their latest version and genome analyses were rerun. 
+           All data were refreshed to the latest version and genome analyses were rerun. 
            <ul>
+             <li>Here is some help information to get you started with our new features.<br>
+                 <a href="http://amoebadb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
+                 <a href="http://amoebadb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
+                 <a href="http://amoebadb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
+                 <!--Workspaces<br>-->
+             </li>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
              and <a href="http://amoebadb.org/amoeba/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
@@ -44,7 +49,7 @@
       <h3>New Features</h3>
          
            <ul>
-             <li>Ontology Assignments - <br>Searches, data and GBrowse tracks are now categorized according to the 
+             <li>Data Categories - <br>Searches, data and GBrowse tracks are now categorized according to the 
              <a href="http://www.ontobee.org/ontology/EDAM?iri=http://edamontology.org/topic_3070">EMBRACE Data & Methods Ontology (EDAM)</a>. 
              This offers a controlled vocabulary and consistent data structure throughout the site. 
              </li><br>
@@ -57,6 +62,13 @@
              unambiguously assigned to a transcript. All search results now 
              contain a Transcript ID column.  The results of searches that query transcript-specific 
              data (e.g. Predicted Signal Peptide) contain an Explore function for investigating transcript subsets.
+             </li><br>
+             <li>Galaxy Workspace - <br> EuPathDB sites now include a Galaxy-based workspace for large-scale data analyses. 
+             Developed in partnership with <a href="https://www.globus.org/genomics">Globus Genomics</a>, 
+             workspaces offer a private analysis platform with published workflows and pre-loaded annotated genomes. 
+             The workspace is accessed through the “Analyze My Experiment” tab on the home page of any EuPathDB resource 
+             and can be used to upload your own data, compose and run custom workflows, retrieve results and share 
+             workflows and data analyses with colleagues.
              </li><br>
              <li>Download Search Result Redesigned - <br>The page for downloading search results and associated data has 
              an improved design that reflects the new ontological data categories and offers the ability to download 
