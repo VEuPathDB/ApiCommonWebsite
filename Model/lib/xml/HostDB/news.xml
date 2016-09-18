@@ -30,8 +30,8 @@
     <p><strong>We are pleased to announce the release of HostDB 29</strong></p>
 
     <section>
-    <h3>HostDB 29 in Beta </h3>
-           Offered as a beta site, HostDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>HostDB 29 in Alpha </h3>
+           Offered as an alpha site, HostDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
@@ -40,7 +40,7 @@
                  <a href="http://hostdb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
                  <a href="http://hostdb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
-             </li>
+             </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
              and <a href="http://beta.hostdb.org/hostdb.b28/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
