@@ -25,7 +25,7 @@
     <p><strong>We are pleased to announce the release of FungiDB 29</strong></p>
     
         <section>
-    <h3>FungiDB 29 in Beta </h3>
+    <h3>FungiDB 29 in Alpha </h3>
            Offered as a beta site, FungiDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
@@ -35,11 +35,11 @@
                  <a href="http://fungidb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
                  <a href="http://fungidb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
-             </li>
+             </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
              and <a href="http://fungidb.org/fungidb/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
-             <li>FungiDB 28 is Still Available - <br><a href="http://r28.fungidb.org/fungidb/">FungiDB 28</a> is available until we finalize our new features.</li><br>
+             <li>FungiDB 28 is Still Available - <br><a href="http://fungidb.org/fungidb/">FungiDB 28</a> is available until we finalize our new features.</li><br>
            </ul>
      </section>
       
