@@ -92,6 +92,39 @@ sub isExcludedProfileSet {
 1;
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_3f5188c7a8;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
+use strict;
+sub getGraphType { 'bar' }
+sub excludedProfileSetsString { '' }
+sub getSampleLabelsString { '' }
+sub getColorsString { '#800080;#008000'  } 
+sub getForceXLabelsHorizontalString { 'true' } 
+sub getBottomMarginSize { 0 }
+sub getExprPlotPartModuleString { 'RNASeq' }
+sub getXAxisLabel { '' }
+sub switchStrands {
+   return 0;
+}
+
+sub getRemainderRegex {
+  return qr/Horn(.*) \[/;
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my @labels = map {"fpkm" . $_} @{$profile->getLegendLabels()};
+  $profile->setLegendLabels(\@labels);
+}
+
+
+
+
+1;
+
+
+
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
 
