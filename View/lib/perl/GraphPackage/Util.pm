@@ -39,12 +39,22 @@ sub makeProfileSets {
 
 
 sub getProfileSetsSql {
-  return "SELECT DISTINCT pt.profile_set_name, pt.profile_type
-FROM apidbtuning.ProfileSamples ps, apidbtuning.ProfileType pt, apidbtuning.DatasetNameTaxon dnt
-WHERE pt.dataset_name = dnt.name
-AND pt.profile_set_name = ps.study_name
-AND profile_set_name not like '%PaGE'
-AND dnt.dataset_presenter_id = ?"
+  return "
+select DISTINCT pt.profile_set_name, pt.profile_type
+from apidbtuning.profiletype pt
+  ,  (select distinct sl.study_id
+      from study.studylink sl, apidbtuning.protocolappnoderesults panr
+      where sl.protocol_app_node_id = panr.protocol_app_node_id
+      and panr.result_table = 'Results::NAFeatureDiffResult') dr
+ , apidbtuning.DatasetNameTaxon dnt
+where dnt.dataset_presenter_id = ?
+and pt.dataset_name = dnt.name
+and pt.profile_type = 'values'
+and pt.profile_study_id = dr.study_id (+)
+and dr.study_id is null
+";
+
+
 }
 
 
