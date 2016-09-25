@@ -441,6 +441,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
               "GenomicSequenceQuestions.SequencesBySimilarity",
               "InternalQuestions.GeneRecordClasses_GeneRecordClassBySnapshotBasket",
               "InternalQuestions.boolean_question_GeneRecordClasses_GeneRecordClass",
+              "GeneQuestions.GeneBySingleLocusTag",
               "InternalQuestions.TranscriptRecordClasses_TranscriptRecordClassBySnapshotBasket",
               "InternalQuestions.boolean_question_TranscriptRecordClasses_TranscriptRecordClass"
           })))
