@@ -3,12 +3,12 @@
 use strict;
 use lib $ENV{GUS_HOME};
 use DBI;
-use ApiCommonWebsite::Model::ModelConfig;
+use EuPathSiteCommon::Model::ModelConfig;
 
 if (!$ARGV[0]) {die "usage: resetCache modelName\n";}
 my $model = $ARGV[0];
 
-my $c = new ApiCommonWebsite::Model::ModelConfig($model);
+my $c = new EuPathSiteCommon::Model::ModelConfig($model);
 
 
 my $dbh = DBI->connect(

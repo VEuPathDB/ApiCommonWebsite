@@ -2,10 +2,10 @@
 
 use strict;
 use lib $ENV{GUS_HOME};
-use ApiCommonWebsite::Model::ModelConfig;
+use EuPathSiteCommon::Model::ModelConfig;
 use Data::Dumper;
 
-my $c = new ApiCommonWebsite::Model::ModelConfig($ARGV[0]);
+my $c = new EuPathSiteCommon::Model::ModelConfig($ARGV[0]);
 
 print '=' x 30, "\n";
 
