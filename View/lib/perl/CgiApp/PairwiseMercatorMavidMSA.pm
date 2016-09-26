@@ -9,7 +9,7 @@ use Bio::Seq;
 
 use Data::Dumper;
 
-use EuPathSiteCommon::Model::ModelProp;
+use WDK::Model::ModelProp;
 use EuPathSiteCommon::Model::ModelXML;
 
 use Bio::Graphics::Browser2::PadAlignment;
@@ -539,7 +539,7 @@ sub validateMacros {
 
   my $project = $cgi->param('project_id');
 
-  my $props =  EuPathSiteCommon::Model::ModelProp->new($project);
+  my $props =  WDK::Model::ModelProp->new($project);
   my $model = EuPathSiteCommon::Model::ModelXML->new('apiCommonModel.xml');
 
   my $buildNumber = $model->getBuildNumberByProjectId($project);

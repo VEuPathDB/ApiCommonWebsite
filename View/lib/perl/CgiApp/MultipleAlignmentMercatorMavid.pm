@@ -6,7 +6,7 @@ use strict;
 use Bio::SeqIO;
 use Bio::Seq;
 
-use EuPathSiteCommon::Model::ModelProp;
+use WDK::Model::ModelProp;
 
 use CGI::Carp qw(fatalsToBrowser set_message);
 
@@ -213,7 +213,7 @@ sub validateMacros {
   my ($cgi) = @_;
 
   my $project = $cgi->param('project_id');
-  my $props =  EuPathSiteCommon::Model::ModelProp->new($project);
+  my $props =  WDK::Model::ModelProp->new($project);
   my $mercatorOutputDir = $props->{MERCATOR_OUTPUT_DIR};
   my $cndsrcBin =  $props->{CNDSRC_BIN};
 
