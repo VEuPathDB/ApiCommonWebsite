@@ -3,13 +3,13 @@ package ApiCommonWebsite::Model::AbstractEnrichment;
 use strict;
 use DBI;
 use File::Basename;
-use EuPathSiteCommon::Model::ModelConfig;
+use WDK::Model::ModelConfig;
 use IPC::Open2;
 
 sub run {
   my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff) = @_;
 
-  my $c = new EuPathSiteCommon::Model::ModelConfig($modelName);
+  my $c = new WDK::Model::ModelConfig($modelName);
 
   my $dbh = DBI->connect($c->getAppDb->getDbiDsn, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
 
