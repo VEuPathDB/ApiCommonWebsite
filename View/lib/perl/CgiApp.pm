@@ -23,7 +23,7 @@ use strict;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
 
-use ApiCommonWebsite::Model::ModelConfig;
+use EuPathSiteCommon::Model::ModelConfig;
 
 use DBI;
 use DBD::Oracle;
@@ -139,7 +139,7 @@ sub getQueryHandle {
 
    my $Rv;
 
-   my $_config = new ApiCommonWebsite::Model::ModelConfig($Self->getProjectId());
+   my $_config = new EuPathSiteCommon::Model::ModelConfig($Self->getProjectId());
                        
    $Rv = DBI->connect( $_config->getDbiDsn(),
                        $_config->getLogin(),
