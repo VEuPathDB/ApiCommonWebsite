@@ -30,29 +30,43 @@ public class ApiSiteSetup {
   private static void addTranscriptBooleanReviseListener() {
     Events.subscribe(new EventListener() {
       @Override public void eventTriggered(Event event) throws Exception {
-        Step revisedStep = ((StepRevisedEvent)event).getRevisedStep();
-        if (revisedStep.isBoolean() && revisedStep.getRecordClass().getFullName()
+        StepRevisedEvent reviseEvent = (StepRevisedEvent)event;
+        Step revisedStep = reviseEvent.getRevisedStep();
+        if (!revisedStep.isBoolean() || !revisedStep.getRecordClass().getFullName()
             .equals("TranscriptRecordClasses.TranscriptRecordClass")) {
-          // transcript boolean step was revised; reset GeneBooleanFilter to default for new value
-          FilterOption geneBooleanFilter = revisedStep.getFilterOptions()
-              .getFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY);
-          if (geneBooleanFilter == null) {
-            throw new WdkModelException("Found transcript boolean step " +
-                revisedStep.getStepId() + " without GeneBooleanFilter.");
-          }
-          String operator = revisedStep.getParamValues().get(BooleanQuery.OPERATOR_PARAM);
-          if (operator == null) {
-            throw new WdkModelException("Found transcript boolen step " +
-                revisedStep.getStepId() + " without " + BooleanQuery.OPERATOR_PARAM + " parameter.");
-          }
-          if (!geneBooleanFilter.isSetToDefaultValue(revisedStep)) {
-            JSONObject newValue = GeneBooleanFilter.getDefaultValue(operator);
-            LOG.info("Resetting gene boolean filter on step " + revisedStep.getStepId() +
-                " to default value: " + newValue.toString(2));
-            revisedStep.addFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, newValue);
-            revisedStep.saveParamFilters();
-          }
+          // only edit transcript boolean steps
+          return;
         }
+        // transcript boolean step was revised; make sure it was an operator change
+        String newOperator = getOperator(revisedStep);
+        String oldOperator = getOperator(reviseEvent.getPreviousVersion());
+        if (newOperator.equalsIgnoreCase(oldOperator)) {
+          // only modify default filter value if operator changed
+          return;
+        }
+        // reset GeneBooleanFilter to default for new value
+        FilterOption geneBooleanFilter = revisedStep.getFilterOptions()
+            .getFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY);
+        if (geneBooleanFilter == null) {
+          throw new WdkModelException("Found transcript boolean step " +
+              revisedStep.getStepId() + " without GeneBooleanFilter.");
+        }
+        if (!geneBooleanFilter.isSetToDefaultValue(revisedStep)) {
+          JSONObject newValue = GeneBooleanFilter.getDefaultValue(newOperator);
+          LOG.info("Resetting gene boolean filter on step " + revisedStep.getStepId() +
+              " to default value: " + newValue.toString(2));
+          revisedStep.addFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, newValue);
+          revisedStep.saveParamFilters();
+        }
+      }
+
+      private String getOperator(Step revisedStep) throws WdkModelException {
+        String operator = revisedStep.getParamValues().get(BooleanQuery.OPERATOR_PARAM);
+        if (operator == null) {
+          throw new WdkModelException("Found transcript boolen step " +
+              revisedStep.getStepId() + " without " + BooleanQuery.OPERATOR_PARAM + " parameter.");
+        }
+        return operator;
       }
     }, StepRevisedEvent.class);
   }
