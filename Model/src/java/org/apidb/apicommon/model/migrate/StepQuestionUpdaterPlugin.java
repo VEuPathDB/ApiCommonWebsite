@@ -3,6 +3,7 @@ package org.apidb.apicommon.model.migrate;
 import java.io.IOException;
 import java.util.List;
 
+import org.eupathdb.common.fix.UpdatedStepWriter;
 import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
