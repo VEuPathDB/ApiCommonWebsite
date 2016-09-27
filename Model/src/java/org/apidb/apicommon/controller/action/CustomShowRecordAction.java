@@ -130,7 +130,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
       ProjectMapper mapper = ProjectMapper.getMapper(wdkModel.getModel());
       String url = (geneSourceId == null)?
 	  mapper.getRecordUrl(recordClass, projectId, sourceId) :
-	  mapper.getRecordUrl(recordClass, projectId, sourceId, geneSourceId);
+	  mapper.getRecordUrl(GENE_RECORD_CLASS_NAME, projectId, sourceId, geneSourceId);
       return new ActionForward(url, true);
     }
 
