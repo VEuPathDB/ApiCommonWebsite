@@ -33,6 +33,8 @@ public class ApiFunctions {
         return "TrichDB : The Trichomonas Genomics Resource";
       case "TriTrypDB":
         return "TriTrypDB : The Kinetoplastid Genomics Resource";
+      case "MicrobiomeDB":
+        return "MicrobiomeDB : The Microbiome Resource";
       default:
         return null;
     }
