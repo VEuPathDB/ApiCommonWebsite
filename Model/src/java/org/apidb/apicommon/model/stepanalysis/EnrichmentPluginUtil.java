@@ -43,7 +43,7 @@ public class EnrichmentPluginUtil {
   public static void validateOrganism(Map<String, String[]> formParams, AnswerValue answerValue,
       WdkModel wdkModel, ValidationErrors errors) throws WdkModelException, WdkUserException {
     String organism = getSingleAllowableValueParam(ORGANISM_PARAM_KEY, formParams, errors);
-    if (!getDistinctOrgsInAnswer(answerValue, wdkModel).get(0).contains(organism)) {
+    if (!getDistinctOrgsInAnswer(answerValue, wdkModel).contains(organism)) {
       errors.addParamMessage(ORGANISM_PARAM_KEY, "Invalid value passed for Organism: '" + organism + "' does not appear in this result.");
     }
   }
