@@ -22,8 +22,8 @@ sub init {
   $self->setPlotWidth(450);
 
   # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
-  my @profileArray = (['Cparvum_RT_PCR_Kissinger'],
-                      ['Cparvum_RT_PCR_Kissinger'],
+  my @profileArray = (['Cparvum_RT_PCR_Kissinger','values'],
+                      ['Cparvum_RT_PCR_Kissinger','values'],
                      );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
