@@ -118,10 +118,55 @@ sub finalProfileAdjustments {
   $profile->setLegendLabels(\@labels);
 }
 
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_af621bdb28;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+#  $self->setXAxisLabel("hours");
+  my @colors = ('#D87093','#D87093');
+
+  # Draw the diff first in light grey ... then the min rpkm will go on top
+  my @profileArray = (['Nematocida parisii ERTm1 Spores [htseq-union - unstranded - fpkm]', 'values', ''],
+                      ['C. elegans Time Series - Infected [htseq-union - unstranded - fpkm]', 'values', ''],
+                     );
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets
+ ([['Nematocida parisii ERTm1 Spores [htseq-union - unstranded - fpkm]', 'channel1_percentiles', ''],
+  ['C. elegans Time Series - Infected [htseq-union - unstranded - fpkm]', 'channel1_percentiles', '']]
+                     );
+
+#  my $additionalRCode = "lines.df[2,] = lines.df[2,] + lines.df[3,];";
 
 
+  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
+  $stacked->setProfileSets($profileSets);
+  $stacked->setColors(\@colors);
+
+#  $stacked->addAdjustProfile($additionalRCode);
+  $stacked->setXaxisLabel("hours");
+  $stacked->setPointsPch([19,'NA','NA']);
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors([$colors[0]]);
+
+  $stacked->setElementNameMarginSize(6);
+  $percentile->setElementNameMarginSize(6);
+
+
+  $self->setGraphObjects($stacked, $percentile);
+
+
+  return $self;
+}
 
 1;
+
 
 
 
