@@ -220,7 +220,7 @@ sub makeCombinedGraph {
   $derisi->setProfileSets($derisiProfileSets);
   $derisi->setColors([@colors[0..2]]);
   $derisi->setPointsPch([15,15,15]);
-  $derisi->setPartName('overlay');
+  $derisi->setPartName('exprn_val_overlay');
 
 
   return $derisi;
