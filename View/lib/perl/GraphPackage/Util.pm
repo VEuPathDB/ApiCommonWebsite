@@ -49,7 +49,6 @@ from apidbtuning.profiletype pt
  , apidbtuning.DatasetNameTaxon dnt
 where dnt.dataset_presenter_id = ?
 and pt.dataset_name = dnt.name
-and pt.profile_type = 'values'
 and pt.profile_study_id = dr.study_id (+)
 and dr.study_id is null
 ";
