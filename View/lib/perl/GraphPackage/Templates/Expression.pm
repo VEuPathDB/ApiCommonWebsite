@@ -362,59 +362,72 @@ sub finalProfileAdjustments {
   $profile->setLegendLabels($legendLabels);
 }
 
-1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_307a1b10a9;
-sub getGroupRegex {
-  return 'ZB Pvivax Time Series';
+sub getProfileSetsArray {
+  my ($self, $allProfileSetNames) = @_;
+  my @profileArray = (
+                      ['Llinas RT transcription and decay labeled Profiles'],
+                      ['Llinas RT transcription and decay unlabeled Profiles'],
+                      ['Llinas RT transcription and decay total Profiles'],
+      ); 
+  return \@profileArray;
 }
-#sub getRemainderRegex {
-#  return  'Patient ';
-#}
+
 
 sub setGraphObjects { 
   my $self = shift;
   my $graphs = [];
   
-  my $legendLabels = (['labeled','total','total fitted','unlabeled']);
+  my $legendLabels = (['Transcription','Stabilization','Total Abundance']);
   foreach my $plotPart (@_) {
     my $name = $plotPart->setHasExtraLegend(1);
     my $size = $plotPart->setLegendLabels($legendLabels);
-
+    $plotPart->setExtraLegendSize(6.5);
+    my $baseTitle = $plotPart->getPlotTitle();
+    $plotPart->setPlotTitle($baseTitle. " - mRNA Dynamics");
+    $plotPart->setYaxisLabel('Modeled Expression Values') if ($baseTitle =~/Expression/); 
     push @{$graphs}, $plotPart;
   }
 
-  my $pch = ['NA'];
+  my $pch = ['15','NA'];
   my $colors = ['black'];
-  my $legend = ['Total Expression'];
+  my $legend = ['Total Expression', 'Total Expression - smoothed'];
 
-  $self->setMainLegend({colors => $colors, short_names => $legend, cols => 2});
   
   my @profileArray = (
-                      ['Llinas RT transcription and decay total Profiles - loess'],
-                     );
+                      ['Llinas RT transcription and decay total Profiles - loess', 'values'],
+#                      ['Llinas RT transcription and decay total Profiles - smoothed', 'values']
+      );
 
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
  
   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
-  $line->setProfileSets([$profileSets->[0]]);
+  $line->setProfileSets($profileSets);
   $line->setPartName('exprn_val_log_ratio');
   $line->setYaxisLabel('Expression Values (log2 ratio)');
   $line->setPointsPch($pch);
-  $line->setColors([$colors->[0], $colors->[1],$colors->[2], $colors->[3],]);
+  $line->setColors([$colors->[0]]);
   $line->setArePointsLast(1);
   $line->setElementNameMarginSize(6);
   $line->setXaxisLabel('Hours post infection');
   $line->setHasExtraLegend(1);
-  $line->setLegendLabels(['total']);
   $line->setSmoothLines(1);
-  $line->setSplineApproxN(100);    
+  $line->setSmoothWithLoess(1);
+  $line->setLegendLabels(['total', 'loess smoothed']);
   $line->setXaxisLabel('Hours post infection');
   my $id = $self->getId();
-  $line->setPlotTitle("Expression Values - $id - Total Expression");
+  $line->setPlotTitle("Expression Values - $id - Total mRNA Abundance");
   push (@{$graphs},$line);
   $self->SUPER::setGraphObjects(@{$graphs});
+}
+
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_307a1b10a9;
+sub getGroupRegex {
+  return 'ZB Pvivax Time Series';
 }
 
 1;
