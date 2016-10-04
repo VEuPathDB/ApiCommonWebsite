@@ -38,6 +38,11 @@ sub setArePointsLast             { $_[0]->{'_are_points_last'               } = 
 sub getSmoothLines               { $_[0]->{'_smooth_lines'                  }}
 sub setSmoothLines               { $_[0]->{'_smooth_lines'                  } = $_[1]}
 
+
+sub getSmoothWithLoess           { $_[0]->{'_smooth_with_loess'                  }}
+sub setSmoothWithLoess           { $_[0]->{'_smooth_with_loess'                  } = $_[1]}
+
+
 sub getSplineApproxN             { $_[0]->{'_spline_approx_n'               }}
 sub setSplineApproxN             { $_[0]->{'_spline_approx_n'               } = $_[1]}
 
@@ -72,7 +77,12 @@ sub makeRPlotString {
   my ($self, $idType) = @_;
 
   my $sampleLabels = $self->getSampleLabels();
+  print STDERR Dumper $sampleLabels;
+
   my $sampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'x.axis.label');
+
+  print STDERR "SAMPLELABLES=$sampleLabelsString\n";
+
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
   my $colors = $self->getColors();
@@ -134,6 +144,8 @@ sub makeRPlotString {
   my $rPostscript = $self->getRPostscript();
 
   my $smoothLines = $self->getSmoothLines();
+  my $smoothWithLoess = $self->getSmoothWithLoess();
+
   my $splineApproxN = $self->getSplineApproxN();
 
   $yMax = $yMax ? $yMax : "-Inf";
@@ -154,6 +166,7 @@ sub makeRPlotString {
   $pointsLast = $pointsLast ? 'TRUE' : 'FALSE';
 
   $smoothLines = $smoothLines ? 'TRUE' : 'FALSE'; 
+  $smoothWithLoess = $smoothWithLoess ? 'TRUE' : 'FALSE'; 
 
   my $dfString;
   if($df) {
@@ -480,7 +493,7 @@ for(i in 1:nrow(lines.df)) {
    x.coords.line = as.numeric(gsub(\" *[a-z-A-Z]+ *\", \"\", colnames(y.coords), perl=T));
 
    uniqueElements = length(unique(unlist(x.coords.line, use.names = FALSE)))
-   if( ( $smoothLines ) ) {
+   if( ( $smoothLines || $smoothWithLoess ) ) {
      points(x.coords.line,
          y.coords,
          col  = 'grey75',
@@ -497,6 +510,10 @@ for(i in 1:nrow(lines.df)) {
                cex  = 0.5
                );
 
+          if($smoothWithLoess) {
+            lines(loess.smooth(x=x.coords.line, y=y.coords$df));
+          }
+          else {
          approxInterp = approx(x.coords.line, n=$splineApproxN);
          predict_x = approxInterp\$y;
 
@@ -505,6 +522,8 @@ for(i in 1:nrow(lines.df)) {
                bg   = the.colors[i],
                cex  = 1
               );
+         }
+
       } else {
          lines(x.coords.line,
                y.coords,
