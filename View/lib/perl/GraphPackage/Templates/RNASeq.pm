@@ -168,6 +168,45 @@ sub init {
 1;
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d57671ced8;
+
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $pch = [19,24];
+  my $colors = ['#E9967A', '#4682B4', '#DDDDDD'];
+
+  my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm]', 'values'],
+                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm]', 'values'],
+                     );
+
+
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm]', 'channel1_percentiles']]);
+
+  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  $line->setProfileSets($profileSets);
+  $line->setPartName('rpkm_line');
+  $line->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
+  $line->setYaxisLabel('RPKM (log2)');
+  $line->setPointsPch($pch);
+  $line->setColors([$colors->[0], $colors->[1]]);
+
+  my $id = $self->getId();
+  $line->setPlotTitle("RPKM - $id");
+
+  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors([$colors->[0]]);
+
+  $self->setGraphObjects($line, $percentile);
+
+  return $self;
+}
+
+1;
 
 
 #--------------------------------------------------------------------------------
