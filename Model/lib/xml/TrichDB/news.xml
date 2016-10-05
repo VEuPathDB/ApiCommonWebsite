@@ -21,15 +21,15 @@
 -->
 <record>
   <attribute name="headline">TrichDB 29 Released</attribute>
-  <attribute name="date">16 Sep 2016 13:00</attribute>
-  <attribute name="tag">trichdb09_16_release</attribute>
+  <attribute name="date">15 Oct 2016 13:00</attribute>
+  <attribute name="tag">trichdb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
 
     <section>
-    <h3>TrichDB 29 in Alpha </h3>
-           Offered as a beta site, TrichDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>TrichDB 29</h3>
+           TrichDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>

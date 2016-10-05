@@ -30,16 +30,16 @@
 
 <record>
   <attribute name="headline">GiardaDB 29 Released</attribute>
-  <attribute name="date">16 Sep 2016 13:00</attribute>
-  <attribute name="tag">giardiadb09_16_release</attribute>
+  <attribute name="date">15 Oct 2016 13:00</attribute>
+  <attribute name="tag">giardiadb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of GiardiaDB 29</strong></p>
 
     <section>
-    <h3>GiardiaDB 29 in Alpha </h3>
-           Offered as an alpha site, GiardiaDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>GiardiaDB 29</h3>
+           GiardiaDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
