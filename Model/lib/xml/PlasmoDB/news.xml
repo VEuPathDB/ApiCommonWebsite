@@ -117,6 +117,8 @@
       
       <section>
         <h4>Updated Functional Annotation</h4>
+          Note: Only a simplified version of the GO term annotation is available in PlasmoDB 29. It is possible to 
+        <a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/CURRENT/">download the full GO annotation files from GeneDB (GAF files).</a><br><br>
         <ul>
           <li>
             <a href="https://docs.google.com/spreadsheets/d/1ecq3kc3hz2ObAjODHVpb6R72Au3TrLOWFSUlGbYC1mo/edit#gid=933942639">Summary of annotation updates </a>which include products, GO terms, EC numbers, gene names, synonyms and PMIDs.
