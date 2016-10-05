@@ -12,5 +12,6 @@
 	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/struts/struts-core/1.3.10/struts-core-1.3.10.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/struts/struts-taglib/1.3.10/struts-taglib-1.3.10.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/json/json/20140107/json-20140107.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
