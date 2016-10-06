@@ -160,7 +160,7 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_ec7df4510a"><i>Trypanosoma vivax</i> Y486 </a></td>
-             <td title="Click here to download GeneDB's GFF file for this genome."><a href="fftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-07/Tvivax.noseq.gff3.gz">Tvivax.noseq.gff3.gz</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-07/Tvivax.noseq.gff3.gz">Tvivax.noseq.gff3.gz</a></td>
              <td>221 genes</td>
            </tr>
            </table>
@@ -195,59 +195,60 @@
            <table id="StructAnnot_Bld29"> 
            <tr>
              <th>TriTrypDB Genome Version</th>
-             <th>Download GeneDB GAF file</th>
-             <th>Genes Updated</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>    ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_3b2d78a053"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Lbraziliensis.gaf">Lbraziliensis.gaf</a></td>
-             <td>1641 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Lbraziliensis.noseq.gff3.gz">Lbraziliensis.noseq.gff3.gz</a></td>
+             <td>106 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_21f12513c4"><i>L. donovani</i> BPK282A1 </a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Ldonovani_BPK282A1.gaf">Ldonovani_BPK282A1.gaf</a></td>
-             <td>1741 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Ldonovani_BPK282A1.noseq.gff3.gz">Ldonovani_BPK282A1.noseq.gff3.gz</a></td>
+             <td>123 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_54c31cddc4"><i>L. infantum</i> JPCM5 </a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Linfantum.gaf">Linfantum.gaf</a></td>
-             <td>1618 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Linfantum.noseq.gff3.gz">Linfantum.noseq.gff3.gz</a></td>
+             <td>29 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_839623217a"><i>L. major</i> strain Friedlin </a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Lmajor.gaf">Lmajor.gaf</a></td>
-             <td>1796 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Lmajor.noseq.gff3.gz">Lmajor.noseq.gff3.gz</a></td>
+             <td>1581 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_e318592c8e"><i>L. mexicana</i> MHOM/GT/2001/U1103 </a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Lmexicana.gaf">Lmexicana.gaf</a></td>
-             <td>398 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Lmexicana.noseq.gff3.gz">Lmexicana.noseq.gff3.gz</a></td>
+             <td>389 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927 </a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tbruceibrucei927.gaf">Tbruceibrucei927.gaf</a></td>
-             <td>1493 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tbruceibrucei927.noseq.gff3.gz">Tbruceibrucei927.noseq.gff3.gz</a></td>
+             <td>1331 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_34f7091496"><i>T. brucei gambiense</i> DAL972</a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tbruceigambiense.gaf">Tbruceigambiense.gaf</a></td>
-             <td>226 genes</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense</i> IL3000</a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tcongolense.gaf">Tcongolense.gaf</a></td>
-             <td>206 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tbruceigambiense.noseq.gff3.gz">Tbruceigambiense.noseq.gff3.gz</a></td>
+             <td>2008 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi</i> CL Brener</a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tcruzi.gaf">Tcruzi.gaf</a></td>
-             <td>1734 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tcruzi.noseq.gff3.gz">Tcruzi.noseq.gff3.gz</a></td>
+             <td>14 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense</i> IL3000</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tcongolense.noseq.gff3.gz">Tcongolense.noseq.gff3.gz</a></td>
+             <td>829 genes</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_ec7df4510a"><i>Trypanosoma vivax</i> Y486 </a></td>
-             <td title="Click here to download GeneDB's GAF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tvivax.gaf">Tvivax.gaf</a></td>
-             <td>221 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/Tvivax.noseq.gff3.gz">Tvivax.noseq.gff3.gz</a></td>
+             <td>713 genes</td>
            </tr>
+          
            </table>
         <br><br>
         
