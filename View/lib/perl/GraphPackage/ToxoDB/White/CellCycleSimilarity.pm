@@ -21,8 +21,8 @@ sub init {
   $self->setPlotWidth(450);
 
   # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
-  my @profileArray = (['M.White Cell Cycle Microarray'],
-                      ['M.White Cell Cycle Microarray'],
+  my @profileArray = (['M.White Cell Cycle Microarray','values'],
+                      ['M.White Cell Cycle Microarray','values'],
                      );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
