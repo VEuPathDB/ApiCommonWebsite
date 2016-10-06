@@ -23,8 +23,8 @@ sub init {
   $self->setPlotWidth(450);
 
   # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
-  my @profileArray = (['Profiles of DD2-HB3 expression from Ferdig'],
-                      ['Profiles of DD2-HB3 expression from Ferdig'],
+  my @profileArray = (['Profiles of DD2-HB3 expression from Ferdig','values'],
+                      ['Profiles of DD2-HB3 expression from Ferdig','values'],
                      );
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
