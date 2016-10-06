@@ -196,7 +196,7 @@
            <tr>
              <th>TriTrypDB Genome Version</th>
              <th>Download GeneDB GFF file</th>
-             <th>Genes Updated</th>    ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2016-05/
+             <th>Genes Updated</th>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/app/record/dataset/DS_3b2d78a053"><i>L. braziliensis</i> MHOM/BR/75/M2904 </a></td>
