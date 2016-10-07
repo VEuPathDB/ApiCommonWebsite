@@ -24,6 +24,9 @@ sub finalProfileAdjustments {}
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
+
+sub restrictProfileSetsBySourceId {}
+
 sub getGroupNameFromProfileSetName {
   my ($self, $profileSetName) = @_;
   my $regex = $self->getGroupRegex();
@@ -128,8 +131,8 @@ sub getAllProfileSetNames {
 
   my $dbh = $self->getQueryHandle();
 
-  my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
-
+  my $restrictProfileSetsBySourceId = $self->restrictProfileSetsBySourceId();
+  my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql($restrictProfileSetsBySourceId, $self->getId());
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetId);
