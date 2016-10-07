@@ -39,6 +39,28 @@ sub makeProfileSets {
 
 
 sub getProfileSetsSql {
+  my ($restrictBySourceId, $sourceId) = @_;
+
+  if($restrictBySourceId) {
+    return "
+select DISTINCT pt.profile_set_name, pt.profile_type
+from apidbtuning.profiletype pt, apidbtuning.profile p
+  ,  (select distinct sl.study_id
+      from study.studylink sl, apidbtuning.protocolappnoderesults panr
+      where sl.protocol_app_node_id = panr.protocol_app_node_id
+      and panr.result_table = 'Results::NAFeatureDiffResult') dr
+ , apidbtuning.DatasetNameTaxon dnt
+where dnt.dataset_presenter_id = ?
+and pt.dataset_name = dnt.name
+and pt.profile_study_id = dr.study_id (+)
+and dr.study_id is null
+and p.profile_study_id = pt.profile_study_id
+and p.profile_type = pt.profile_type
+and p.source_id = '$sourceId'
+";
+  }
+
+
   return "
 select DISTINCT pt.profile_set_name, pt.profile_type
 from apidbtuning.profiletype pt

@@ -8,6 +8,7 @@ use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
+sub restrictProfileSetsBySourceId { return 1;}
 
 # use standard colors for all percentile graphs
 sub getPercentileColors {
