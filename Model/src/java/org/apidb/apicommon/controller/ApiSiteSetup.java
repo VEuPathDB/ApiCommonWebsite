@@ -1,5 +1,7 @@
 package org.apidb.apicommon.controller;
 
+import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
+
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.gusdb.fgputil.events.Event;
@@ -32,8 +34,7 @@ public class ApiSiteSetup {
       @Override public void eventTriggered(Event event) throws Exception {
         StepRevisedEvent reviseEvent = (StepRevisedEvent)event;
         Step revisedStep = reviseEvent.getRevisedStep();
-        if (!revisedStep.isBoolean() || !revisedStep.getRecordClass().getFullName()
-            .equals("TranscriptRecordClasses.TranscriptRecordClass")) {
+        if (!revisedStep.isBoolean() || !isTranscriptRecordClass(revisedStep.getRecordClass())) {
           // only edit transcript boolean steps
           return;
         }

@@ -1,25 +1,26 @@
 package org.apidb.apicommon.model.view;
 
+import static org.apidb.apicommon.model.TranscriptUtil.TRANSCRIPT_RECORDCLASS;
+
 import java.util.Arrays;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
+import org.gusdb.fgputil.functional.FunctionalInterfaces.Predicate;
 import org.gusdb.fgputil.functional.TreeNode;
 import org.gusdb.wdk.model.FieldTree.NameMatchPredicate;
 import org.gusdb.wdk.model.SelectableItem;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
+import org.gusdb.wdk.model.ontology.Ontology;
+import org.gusdb.wdk.model.ontology.OntologyNode;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
 import org.json.JSONObject;
-
-import org.gusdb.fgputil.functional.FunctionalInterfaces.Predicate;
-import org.gusdb.wdk.model.ontology.Ontology;
-import org.gusdb.wdk.model.ontology.OntologyNode;
 
 public class GeneViewHandler extends AltSpliceViewHandler {
 
@@ -102,7 +103,7 @@ public class GeneViewHandler extends AltSpliceViewHandler {
       public boolean test(OntologyNode node) {
         return node.containsKey("scope") && node.get("scope").contains("results") && 
              node.containsKey("targetType") && node.get("targetType").contains("attribute") && 
-             node.containsKey("recordClassName") && node.get("recordClassName").contains("TranscriptRecordClasses.TranscriptRecordClass") && 
+             node.containsKey("recordClassName") && node.get("recordClassName").contains(TRANSCRIPT_RECORDCLASS) && 
              node.containsKey("name") && node.get("name").contains(name) &&
              node.containsKey("geneOrTranscript") && node.get("geneOrTranscript").contains("transcript");
       }

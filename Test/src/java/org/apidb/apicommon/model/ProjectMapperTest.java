@@ -21,7 +21,7 @@ public class ProjectMapperTest {
   @Test
   public void testGetRecordUrl() throws WdkModelException {
     ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
-    String recordClass = "TranscriptRecordClasses.TranscriptRecordClass";
+    String recordClass = TranscriptUtil.TRANSCRIPT_RECORDCLASS;
     String projectId = "PlasmoDB";
     String sourceId = "_DEFAULT_TRANSCRIPT_";
     String geneSourceId = "PF11_0344";

@@ -4,8 +4,8 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class FastaGeneReporter extends FastaReporter {
 
-  public FastaGeneReporter(AnswerValue answerValue, int startIndex, int endIndex) {
-    super(answerValue, startIndex, endIndex);
+  public FastaGeneReporter(AnswerValue answerValue) {
+    super(answerValue);
   }
 
   @Override

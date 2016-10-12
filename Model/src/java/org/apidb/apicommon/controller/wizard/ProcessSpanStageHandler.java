@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionServlet;
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
@@ -26,27 +27,19 @@ public class ProcessSpanStageHandler implements StageHandler {
 
     private static final Logger logger = Logger.getLogger(ProcessSpanStageHandler.class);
 
+    // maps record class to the matching span question
     public static String getSpanQuestion(String type) throws WdkUserException {
-        String questionName = null;
-        if (type.equals("TranscriptRecordClasses.TranscriptRecordClass")) {
-            questionName = "SpanQuestions.GenesBySpanLogic";
-        } else if (type.equals("OrfRecordClasses.OrfRecordClass")) {
-            questionName = "SpanQuestions.OrfsBySpanLogic";
-        } else if (type.equals("IsolateRecordClasses.IsolateRecordClass")) {
-            questionName = "SpanQuestions.IsolatesBySpanLogic";
-        } else if (type.equals("SnpRecordClasses.SnpRecordClass")) {
-            questionName = "SpanQuestions.SnpsBySpanLogic";
-        } else if (type.equals("SnpChipRecordClasses.SnpChipRecordClass")) {
-            questionName = "SpanQuestions.SnpsChipsBySpanLogic";
-        } else if (type.equals("DynSpanRecordClasses.DynSpanRecordClass")) {
-            questionName = "SpanQuestions.DynSpansBySpanLogic";
-        } else if (type.equals("SageTagRecordClasses.SageTagRecordClass")) {
-            questionName = "SpanQuestions.DynSpansBySpanLogic";
-        } else {
-            throw new WdkUserException("The record type " + type
-                    + " is not supported in Span Logic operation.");
-        }
-        return questionName;
+      switch(type) {
+        case TranscriptUtil.TRANSCRIPT_RECORDCLASS:     return "SpanQuestions.GenesBySpanLogic";
+        case "OrfRecordClasses.OrfRecordClass":         return "SpanQuestions.OrfsBySpanLogic";
+        case "IsolateRecordClasses.IsolateRecordClass": return "SpanQuestions.IsolatesBySpanLogic";
+        case "SnpRecordClasses.SnpRecordClass":         return "SpanQuestions.SnpsBySpanLogic";
+        case "SnpChipRecordClasses.SnpChipRecordClass": return "SpanQuestions.SnpsChipsBySpanLogic";
+        case "DynSpanRecordClasses.DynSpanRecordClass": return "SpanQuestions.DynSpansBySpanLogic";
+        case "SageTagRecordClasses.SageTagRecordClass": return "SpanQuestions.DynSpansBySpanLogic";
+        default:
+          throw new WdkUserException("The record type " + type + " is not supported in Span Logic operation.");
+      }
     }
 
     @Override

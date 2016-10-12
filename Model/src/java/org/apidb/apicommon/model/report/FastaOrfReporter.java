@@ -4,8 +4,8 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class FastaOrfReporter extends FastaReporter {
 
-  public FastaOrfReporter(AnswerValue answerValue, int startIndex, int endIndex) {
-    super(answerValue, startIndex, endIndex);
+  public FastaOrfReporter(AnswerValue answerValue) {
+    super(answerValue);
   }
 
   @Override

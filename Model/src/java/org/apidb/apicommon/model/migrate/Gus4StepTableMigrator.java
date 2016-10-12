@@ -1,5 +1,6 @@
 package org.apidb.apicommon.model.migrate;
 
+import static org.apidb.apicommon.model.TranscriptUtil.TRANSCRIPT_RECORDCLASS;
 import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterValueArray;
 
 import java.io.IOException;
@@ -66,8 +67,6 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   private static final boolean LOG_INVALID_STEPS = false;
   private static final boolean LOG_PARAM_FILTER_DIFFS = false;
   private static final boolean LOG_LOADED_QUESTION_MAPPING = false;
-
-  private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
 
   private static final AtomicInteger INVALID_STEP_COUNT_QUESTION = new AtomicInteger(0);
   private static final AtomicInteger INVALID_STEP_COUNT_PARAMS = new AtomicInteger(0);

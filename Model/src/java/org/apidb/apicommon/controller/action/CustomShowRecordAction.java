@@ -1,5 +1,9 @@
 package org.apidb.apicommon.controller.action;
 
+import static org.apidb.apicommon.model.TranscriptUtil.GENE_RECORDCLASS;
+import static org.apidb.apicommon.model.TranscriptUtil.TRANSCRIPT_RECORDCLASS;
+import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -34,11 +38,6 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private static final String PARAM_SOURCE_ID = "source_id";
     private static final String PARAM_GENE_SOURCE_ID = "gene_source_id";
     private static final String PARAM_PROJECT_ID = "project_id";
-    
-    private static final String GENE_RECORD_CLASS_NAME = "GeneRecordClasses.GeneRecordClass";
-    private static final String TRANSCRIPT_RECORD_CLASS_NAME = "TranscriptRecordClasses.TranscriptRecordClass";
-    private static final String PATHWAY_RECORD_CLASS_NAME = "PathwayRecordClasses.PathwayRecordClass";
-
     private static final String PARAM_RECORD_CLASS = "record_class";
 
     private static final String TABLE_REFERENCE = "References";
@@ -56,7 +55,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
     private static final Map<String, String> recordClassMap = new HashMap<String, String>();
     static {
-      recordClassMap.put(GENE_RECORD_CLASS_NAME, TRANSCRIPT_RECORD_CLASS_NAME);
+      recordClassMap.put(GENE_RECORDCLASS, TRANSCRIPT_RECORDCLASS);
     }
 
     private static final Logger logger = Logger.getLogger(CustomShowRecordAction.class);
@@ -88,12 +87,12 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
         ActionForward forward;
         if (!rcName.startsWith("AjaxRecordClasses.")) {
-					Map<String, String[]> myParams = new HashMap<String, String[]>();
+          Map<String, String[]> myParams = new HashMap<String, String[]>();
           myParams.putAll(request.getParameterMap()); //shallow copy
-					if (TRANSCRIPT_RECORD_CLASS_NAME.equals(rcName)) {
-						myParams.put(PARAM_SOURCE_ID, myParams.get(PARAM_GENE_SOURCE_ID)); 
-						rcName = GENE_RECORD_CLASS_NAME;
-					}
+          if (isTranscriptRecordClass(rcName)) {
+            myParams.put(PARAM_SOURCE_ID, myParams.get(PARAM_GENE_SOURCE_ID)); 
+            rcName = GENE_RECORDCLASS;
+          }
           RecordClassBean recordClassBean = wdkModel.getRecordClass(rcName);
           String clientUrl = RecordPageAdapter.createUrl(recordClassBean, myParams);
           forward = new ActionForward("/app" + clientUrl, true);
@@ -130,7 +129,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
       ProjectMapper mapper = ProjectMapper.getMapper(wdkModel.getModel());
       String url = (geneSourceId == null)?
 	  mapper.getRecordUrl(recordClass, projectId, sourceId) :
-	  mapper.getRecordUrl(GENE_RECORD_CLASS_NAME, projectId, sourceId, geneSourceId);
+	  mapper.getRecordUrl(GENE_RECORDCLASS, projectId, sourceId, geneSourceId);
       return new ActionForward(url, true);
     }
 
