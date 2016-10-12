@@ -98,7 +98,7 @@ public class SingleTableRecordStreamTest {
         model.getQuestion(QUESTION_NAME), PARAMETERS, null, 0, -1, false, true, 0, FILTERS(model));
   }
 
-  private static Function<AttributeField, String> getFieldValue(Map<String, AttributeValue> row) {
+  private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
     return new Function<AttributeField,String>() {
       @Override public String apply(AttributeField field) {
         try { return (String)row.get(field.getName()).getValue(); }
