@@ -1,5 +1,7 @@
 package org.apidb.apicommon.controller.action;
 
+import static org.apidb.apicommon.model.TranscriptUtil.*;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import javax.sql.DataSource;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.controller.action.ProcessBasketAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
@@ -43,9 +46,9 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
   @Override
   protected RecordClassBean getRecordClass(String type,
       WdkModelBean wdkModel) throws WdkModelException, WdkUserException {
-    return "GeneRecordClasses.GeneRecordClass".equals(type)
-        ? wdkModel.getRecordClass("TranscriptRecordClasses.TranscriptRecordClass")
-        : super.getRecordClass(type, wdkModel);
+    return isGeneRecordClass(type) ?
+        wdkModel.getRecordClass(TRANSCRIPT_RECORDCLASS) :
+        super.getRecordClass(type, wdkModel);
   }
   
   /**
@@ -56,7 +59,7 @@ public class CustomProcessBasketAction extends ProcessBasketAction {
   protected List<String[]> getRecords(String data, RecordClassBean recordClass)
       throws JSONException, WdkUserException, WdkModelException {
     
-    if (!"TranscriptRecordClasses.TranscriptRecordClass".equals(recordClass.getFullName())) {
+    if (!isTranscriptRecordClass(recordClass.getRecordClass())) {
       return super.getRecords(data, recordClass);
     }
     

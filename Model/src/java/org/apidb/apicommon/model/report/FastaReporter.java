@@ -22,26 +22,21 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
-import org.gusdb.wdk.model.report.Reporter;
-import org.gusdb.wdk.model.report.StandardReporter.Configuration;
+import org.gusdb.wdk.model.report.AbstractReporter;
+import org.gusdb.wdk.model.report.StandardConfig;
 import org.json.JSONObject;
 
-public abstract class FastaReporter extends Reporter {
+public abstract class FastaReporter extends AbstractReporter {
 
   private static final Logger LOG = Logger.getLogger(FastaReporter.class);
 
   protected abstract String getSrtToolUri();
 
-  FastaReporter(AnswerValue answerValue, int startIndex, int endIndex) {
-    super(answerValue, startIndex, endIndex);
+  FastaReporter(AnswerValue answerValue) {
+    super(answerValue);
   }
 
   private JSONObject _configuration;
-
-  @Override
-  public String getConfigInfo() {
-    return "undocumented";
-  }
 
   @Override
   public void configure(JSONObject configuration) {
@@ -49,28 +44,28 @@ public abstract class FastaReporter extends Reporter {
   }
 
   @Override
+  public void configure(Map<String, String> config) throws WdkUserException, WdkModelException {
+    throw new UnsupportedOperationException("This reporter must be configured with JSON.");
+  }
+
+  @Override
   public String getDownloadFileName() {
-    if (_configuration.has(Configuration.ATTACHMENT_TYPE_JSON)) {
-      return (_configuration.getString(Configuration.ATTACHMENT_TYPE_JSON).equals("text") ?
-          this.getQuestion().getName() + ".fasta" : null);
+    if (_configuration.has(StandardConfig.ATTACHMENT_TYPE_JSON)) {
+      return (_configuration.getString(StandardConfig.ATTACHMENT_TYPE_JSON).equals("text") ?
+          getQuestion().getName() + ".fasta" : null);
     }
     // if unspecified, return parent's default
     return super.getDownloadFileName();
   }
 
   @Override
-  protected void initialize() throws WdkModelException {
-    // nothing to do here; will open connection in write()
-  }
-
-  @Override
-  public void write(OutputStream out) throws WdkModelException, WdkUserException {
+  public void write(OutputStream out) throws WdkModelException {
     try {
-     Map<String,String> inputFields = buildFormData(_configuration, wdkModel.getProjectId(), baseAnswer);
+     Map<String,String> inputFields = buildFormData(_configuration, _wdkModel.getProjectId(), _baseAnswer);
      LOG.debug(FormatUtil.prettyPrint(inputFields, Style.MULTI_LINE));
      transferFormResult(inputFields, out);
     }
-    catch (IOException e) {
+    catch (IOException | WdkUserException e) {
       throw new WdkModelException("Cannot output FASTA reporter data", e);
     }
   }
@@ -87,7 +82,7 @@ public abstract class FastaReporter extends Reporter {
 
     Response response = null;
     try {
-      String baseUrl = trimWebapp(wdkModel.getModelConfig().getWebAppUrl());
+      String baseUrl = trimWebapp(_wdkModel.getModelConfig().getWebAppUrl());
       String srtToolUri = getSrtToolUri();
       String srtUrl = baseUrl + (srtToolUri.startsWith("/") ? srtToolUri : "/" + srtToolUri);
       LOG.info("Submitting form to " + srtUrl);
@@ -106,7 +101,7 @@ public abstract class FastaReporter extends Reporter {
     }
   }
 
-  private String trimWebapp(String webAppUrl) {
+  private static String trimWebapp(String webAppUrl) {
     // trim trailing slash
     if (webAppUrl.endsWith("/"))
       webAppUrl = webAppUrl.substring(0, webAppUrl.length() - 1);
@@ -115,7 +110,8 @@ public abstract class FastaReporter extends Reporter {
     return webAppUrl.substring(0, baseUrlEnd);
   }
 
-  private Map<String, String> buildFormData(JSONObject configuration, String projectId, AnswerValue answer) throws WdkModelException, WdkUserException {
+  private static Map<String, String> buildFormData(JSONObject configuration, String projectId, AnswerValue answer)
+      throws WdkModelException, WdkUserException {
     Map<String,String> formInputs = new HashMap<>();
     formInputs.put("project_id", projectId);
     for (String key : JSONObject.getNames(configuration)) {
@@ -124,10 +120,4 @@ public abstract class FastaReporter extends Reporter {
     formInputs.put("ids", new AnswerValueBean(answer).getAllIdList());
     return formInputs;
   }
-
-  @Override
-  protected void complete() {
-    // nothing to do here; will close connection in write()
-  }
-
 }
