@@ -7,12 +7,15 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.User;
 import org.json.JSONObject;
 
 public class RepresentativeTranscriptFilter extends StepFilter {
 
   @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(RepresentativeTranscriptFilter.class);
+
+  private static final boolean REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT = false;
 
   /**
    * The following String value is used in a variety of places.  Do not change
@@ -102,4 +105,34 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return false;
   }
 
+  public static boolean shouldEngageFilter(User user) {
+    // get user preference
+    String prefValue = user.getProjectPreferences().get(RepresentativeTranscriptFilter.FILTER_NAME);
+    return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
+  }
+
+  public static Step applyToStepFromUserPreference(Step step, User user) throws WdkModelException {
+    // read from step if transcript-only filter is turned on...
+    boolean filterOnInStep = (step.getViewFilterOptions()
+        .getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null);
+
+    boolean shouldEngageFilter = shouldEngageFilter(user);
+
+    // use passed step value if matches preference; otherwise toggle
+    if (filterOnInStep == shouldEngageFilter) {
+      return step;
+    }
+
+    Step stepCopy = new Step(step);
+    if (shouldEngageFilter) {
+      // add view filter
+      stepCopy.addViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
+    }
+    else {
+      // remove view filter (already present)
+      stepCopy.removeViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
+    }
+
+    return stepCopy;
+  }
 }
