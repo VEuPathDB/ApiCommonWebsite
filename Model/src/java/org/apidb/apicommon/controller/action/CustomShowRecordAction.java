@@ -54,9 +54,6 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private static final String FORWARD_ID_QUESTION = "run-question";
 
     private static final Map<String, String> recordClassMap = new HashMap<String, String>();
-    static {
-      recordClassMap.put(GENE_RECORDCLASS, TRANSCRIPT_RECORDCLASS);
-    }
 
     private static final Logger logger = Logger.getLogger(CustomShowRecordAction.class);
 
