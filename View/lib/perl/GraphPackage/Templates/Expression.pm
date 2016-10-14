@@ -865,6 +865,17 @@ sub init {
 1;
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_35bb13db5b;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  my $legend = ['WildType_V_Mutant','Time_Series', '11hr_Egress'];
+
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legend);
+  return $self;
+}
+1;
+
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_73d06a9e7b;
 sub isExcludedProfileSet {
