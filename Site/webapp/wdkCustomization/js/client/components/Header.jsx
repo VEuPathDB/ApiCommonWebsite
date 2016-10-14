@@ -120,12 +120,13 @@ function Header(props) {
               text: 'PubMed and Entrez',
               url: '/pubcrawler/PlasmoDB'
             },
-            {
-              id: 'gbrowse',
-              text: 'Genome Browser',
-              url: '/cgi-bin/gbrowse/' + projectId.toLowerCase(),
-              exclude: 'EuPathDB'
-            },
+            ...(!isEuPathDB ? [
+              {
+                id: 'gbrowse',
+                text: 'Genome Browser',
+                url: '/cgi-bin/gbrowse/' + projectId.toLowerCase()
+              }
+            ] : []),
             ...(isPlasmoDB ? [
               {
                 id: 'plasmoap',
@@ -197,8 +198,7 @@ function Header(props) {
               {
                 id: 'data-files',
                 text: 'Data Files',
-                url: '/common/downloads',
-                exclude: 'EuPathDB'
+                url: '/common/downloads'
               }
             ] : [
               {
