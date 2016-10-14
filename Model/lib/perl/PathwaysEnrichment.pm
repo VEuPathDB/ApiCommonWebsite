@@ -65,21 +65,21 @@ sub getDataSql {
 return "
 select distinct bgd.pathway_source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.pathway_name
 from
- (SELECT  tp.pathway_source_id,  count (distinct tp.gene_source_id) as bgdcnt, tp.pathway_name
+ (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id,  count (distinct tp.gene_source_id) as bgdcnt, tp.pathway_name
         from   apidbtuning.transcriptPathway tp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
          and   tp.gene_source_id = ga.source_id
          and tp.exact_match = 1
          and tp.pathway_source in ($self->{source})
-        group by tp.pathway_source_id, tp.pathway_name
+        group by tp.pathway_source_id, tp.pathway_name, tp.pathway_source
    ) bgd,
-   (SELECT  tp.pathway_source_id,  count (distinct tp.gene_source_id) as resultcnt
+   (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id,  count (distinct tp.gene_source_id) as resultcnt
         from   ApidbTuning.TranscriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
           and tp.exact_match = 1
           and tp.pathway_source in ($self->{source})
-        group by tp.pathway_source_id
+        group by tp.pathway_source_id, tp.pathway_source
  ) rslt
 where bgd.pathway_source_id = rslt.pathway_source_id
 ";
