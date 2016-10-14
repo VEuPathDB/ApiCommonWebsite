@@ -28,10 +28,20 @@ sub setMainLegend {
   my $hash = {colors => [ '#E9967A', '#87CEFA', '#00BFFF','#4169E1', '#0000FF', ], short_names => $legend, points_pch => $pch, cols=> 2};
 
   $self->SUPER::setMainLegend($hash);
-
-
 }
 
+1;
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_3c48f52edb;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  my $legend = ['GT1 0 to 16 hr','ME49 0 to 16 hr','ME49 0 to 44 hr', 'RH 0 to 36 hr',
+		'VEG 0 to 16 hr', 'VEG 0 to 44 hr'];
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legend);
+  return $self;
+}
 1;
 
 
