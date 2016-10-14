@@ -39,11 +39,12 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tab";
   
   private static final ResultRow HEADER_ROW = new ResultRow(
-      "Pathway ID", "Pathway Name", "Genes in the bkgd with this pathway","Genes in your result with this pathway", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
+      "Pathway ID", "Pathway Name", "Pathway Source", "Genes in the bkgd with this pathway","Genes in your result with this pathway", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
   private static final ResultRow COLUMN_HELP = new ResultRow(
       "Pathway ID",
       "Pathway Name",
+      "Pathway Source",
       "Number of genes in this pathway in the background",
       "Number of genes in this pathway in your result",
       "Percentage of genes in the background in this pathway that are present in your result",
@@ -194,7 +195,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
-        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7], columns[8], columns[9]));
+        String[] primaryKeys = columns[0].split("__PK__");  // source_id and pathway_source (eg, KEGG)
+        if (primaryKeys.length != 2) throw new WdkModelException ("invalid compbined primary key: " + columns[0]);
+        results.add(new ResultRow(primaryKeys[0], columns[1], primaryKeys[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7], columns[8], columns[9]));
       }
       return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(PATHWAY_BASE_URL_PROP_KEY));
     }
@@ -252,6 +255,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     private String _pathwayId;
     private String _pathwayName;
+    private String _pathwaySource;
     private String _bgdGenes;
     private String _resultGenes;
     private String _percentInResult;
@@ -261,9 +265,10 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private String _benjamini;
     private String _bonferroni;
 
-    public ResultRow(String pathwayId, String pathwayName, String bgdGenes, String resultGenes, String percentInResult, String foldEnrich, String oddsRatio, String pValue, String benjamini, String bonferroni) {
+    public ResultRow(String pathwayId, String pathwayName, String pathwaySource, String bgdGenes, String resultGenes, String percentInResult, String foldEnrich, String oddsRatio, String pValue, String benjamini, String bonferroni) {
       _pathwayId = pathwayId;
       _pathwayName = pathwayName;
+      _pathwaySource = pathwaySource;
       _bgdGenes = bgdGenes;
       _resultGenes = resultGenes;
       _percentInResult = percentInResult;
@@ -276,6 +281,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     public String getPathwayId() { return _pathwayId; }
     public String getPathwayName() { return _pathwayName; }
+    public String getPathwaySource() { return _pathwaySource; }
     public String getBgdGenes() { return _bgdGenes; }
     public String getResultGenes() { return _resultGenes; }
     public String getPercentInResult() { return _percentInResult; }
