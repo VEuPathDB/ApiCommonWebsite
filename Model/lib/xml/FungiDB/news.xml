@@ -77,7 +77,60 @@
              </li>
            </ul>
         </section>  
-    
+        
+      <section>
+      <h3>New data in this release</h3>
+        <h4>Updated Phenotype</h4>
+        <ul>
+          <li>
+            <a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">Manually Curated Phenotypes </a> &mdash; 
+            New dphenotypes added to manually curated phenotypes for <i>Aspergillus</i> species. See table below for details.  
+          </li>
+        </ul>  
+          <br><br>
+                
+        <style>
+           #Phenotypes_Bld29 table, #Phenotypes_Bld29 td, #Phenotypes_Bld29 th, #Phenotypes_Bld29 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotypes_Bld29 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotypes_Bld29"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mappings</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td <i>Aspergillus funigatus</i> Af293</td>
+             <td 599</td>
+             <td>271</td>
+           </tr>
+           <tr>
+             <td <i>Aspergillus nidulans</i> FGSC A4</td>
+             <td 2356</td>
+             <td> 1008</td>
+           </tr>
+           <tr>
+             <td <i>Aspergillus niger</i> CBS 513.88</td>
+             <td 135</td>
+             <td> 86</td>
+           </tr>
+           <tr>
+             <td <i>Aspergillus oryzae</i> RIB40</td>
+             <td 96</td>
+             <td> 63</td>
+           </tr>
+           </table>
+        <br>
+      </section>      
     
     <section>
       <h3>New data in this release</h3>
