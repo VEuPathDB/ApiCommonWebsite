@@ -92,7 +92,7 @@
         <h4>Phenotype</h4>
         <ul>
           <li>
-            <a href="http://toxodb.org/app/record/dataset/DS_e7e26db90f">Fitness during the T. gondii lytic cycle. (Genome-Wide CRISPR Screen) </a> &mdash; 
+            <a href="http://toxodb.org/toxo/app/record/dataset/DS_d4745ea297">Fitness during the T. gondii lytic cycle. (Genome-Wide CRISPR Screen) </a> &mdash; 
             Genome-wide loss of function screen (CRISPR) that measures each gene's contribution to <i>Toxoplasma gondii</i> fitness during infection of human 
             fibroblasts. Phenotype score = log2 (sgRNA of infected cultures / sgRNA composition of original library).  
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27594426">Sidik et al.</a>
