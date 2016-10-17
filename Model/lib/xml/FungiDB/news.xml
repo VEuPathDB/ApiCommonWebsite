@@ -80,6 +80,7 @@
         
       <section>
       <h3>New data in this release</h3>
+      <div style="margin-left: 1em;">
         <h4>Updated Phenotype</h4>
         <ul>
           <li>
@@ -88,7 +89,7 @@
           </li>
         </ul>  
           <br><br>
-                
+       <div style="margin-left: 1em;">         
         <style>
            #Phenotypes_Bld29 table, #Phenotypes_Bld29 td, #Phenotypes_Bld29 th, #Phenotypes_Bld29 tr {
            text-align : center;
@@ -109,18 +110,18 @@
              <th>Genes with phenotypes</th>
            </tr>
            <tr>
-             <td <i>Aspergillus funigatus</i> Af293</td>
-             <td 599</td>
+             <td> <i>Aspergillus funigatus</i> Af293</td>
+             <td> 599</td>
              <td>271</td>
            </tr>
            <tr>
-             <td <i>Aspergillus nidulans</i> FGSC A4</td>
-             <td 2356</td>
+             <td> <i>Aspergillus nidulans</i> FGSC A4</td>
+             <td> 2356</td>
              <td> 1008</td>
            </tr>
            <tr>
-             <td <i>Aspergillus niger</i> CBS 513.88</td>
-             <td 135</td>
+             <td> <i>Aspergillus niger</i> CBS 513.88</td>
+             <td> 135</td>
              <td> 86</td>
            </tr>
            <tr>
@@ -131,9 +132,8 @@
            </table>
         <br>
       </section>      
-    
-    <section>
-      <h3>New data in this release</h3>
+    </div>
+
       <h4>Annotation is updated for the following genomes:</h4>
          <ul>
           <li><i>Ajellomyces capsulatus</i> G186AR</li>
@@ -198,6 +198,7 @@
           <li><i>Trichoderma reesei</i> QM6a</li>
           <li><i>Yarrowia lipolytica</i> CLIB122</li>
           </ul>
+      </div>    
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
