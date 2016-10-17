@@ -85,7 +85,7 @@
         <h4>Updated Functional Annotation and PMID references</h4>
         
         <aside>
-        Functional annotations  in TriTrypDB 29 are current with GeneDB July 2016 gff versions. 
+        Functional annotations in TriTrypDB 29 are current with GeneDB July 2016 gff versions. 
         </aside>
         
         <a href="https://docs.google.com/spreadsheets/d/1aJdrbEIRAd6zbHZlhiZ4tJ7Twe9ATt7y5WMjtG8Zn9M/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms and PMIDs.
