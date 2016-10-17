@@ -85,7 +85,7 @@
         <ul>
           <li>
             <a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">Manually Curated Phenotypes </a> &mdash; 
-            New dphenotypes added to manually curated phenotypes for <i>Aspergillus</i> species. See table below for details.  
+            New phenotypes added to Manually Curated Phenotypes for <i>Aspergillus</i> species. See table below for details.  
           </li>
         </ul>  
           <br><br>
@@ -125,8 +125,8 @@
              <td> 86</td>
            </tr>
            <tr>
-             <td <i>Aspergillus oryzae</i> RIB40</td>
-             <td 96</td>
+             <td> <i>Aspergillus oryzae</i> RIB40</td>
+             <td> 96</td>
              <td> 63</td>
            </tr>
            </table>
@@ -134,6 +134,7 @@
       </section>      
     </div>
 
+    <div style="margin-left: 1em;"> 
       <h4>Annotation is updated for the following genomes:</h4>
          <ul>
           <li><i>Ajellomyces capsulatus</i> G186AR</li>
@@ -199,6 +200,7 @@
           <li><i>Yarrowia lipolytica</i> CLIB122</li>
           </ul>
       </div>    
+      </div>
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
