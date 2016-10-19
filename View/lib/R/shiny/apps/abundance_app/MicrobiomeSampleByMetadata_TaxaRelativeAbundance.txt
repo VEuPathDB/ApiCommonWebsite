@@ -1,0 +1,546 @@
+[Sample ID]	[Taxon]	[Kingdom/SuperKingdom]	[Phylum]	[Class]	[Order]	[Family]	[Genus]	[Species]	[Relative Abundance]	
+EUSMPL0020-1-1	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.8446	
+EUSMPL0020-1-1	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0538	
+EUSMPL0020-1-1	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0324	
+EUSMPL0020-1-1	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0139	
+EUSMPL0020-1-1	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0075	
+EUSMPL0020-1-1	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0052	
+EUSMPL0020-1-1	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0038	
+EUSMPL0020-1-1	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0032	
+EUSMPL0020-1-1	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0027	
+EUSMPL0020-1-1	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0022	
+EUSMPL0020-1-1	1231973	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Mbohmt7	0.0022	
+EUSMPL0020-1-1	1232726	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Adhmto1	0.0014	
+EUSMPL0020-1-1	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0013	
+EUSMPL0020-1-1	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0007	
+EUSMPL0020-1-1	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0005	
+EUSMPL0020-1-1	954123	Bacteria	Proteobacteria	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Sphingomonas sp. CHNTR37	0.0004	
+EUSMPL0020-1-1	1069287	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. B-5-1	0.0004	
+EUSMPL0020-1-1	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0003	
+EUSMPL0020-1-1	1302959	Bacteria	Actinobacteria	Actinobacteria	Micrococcales	Microbacteriaceae	N/A	Microbacteriaceae bacterium SAP01_5	0.0002	
+EUSMPL0020-1-1	1043785	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella pneumoniae	0.0002	
+EUSMPL0020-1-1	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0001	
+EUSMPL0020-1-1	1180651	Bacteria	Firmicutes	Bacilli	Bacillales	Staphylococcaceae	Salinicoccus	Salinicoccus jeotgali	0.0001	
+EUSMPL0020-1-1	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0001	
+EUSMPL0020-1-1	1231662	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sakei	0.0001	
+EUSMPL0020-1-1	991421	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Methylobacteriaceae	Methylobacterium	Methylobacterium fujisawaense	0.0001	
+EUSMPL0020-1-1	1133759	Bacteria	Proteobacteria	Betaproteobacteria	Burkholderiales	Oxalobacteraceae	N/A	uncultured Oxalobacteraceae bacterium	0.0001	
+EUSMPL0020-1-1	1112271	Bacteria	Proteobacteria	N/A	N/A	N/A	N/A	uncultured proteobacterium	0.0001	
+EUSMPL0020-1-1	1329978	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured marine bacterium	0.0001	
+EUSMPL0020-1-1	81326	Eukaryota	Streptophyta	Liliopsida	Pandanales	Cyclanthaceae	Carludovica	Carludovica palmata	0.0001	
+EUSMPL0020-1-1	113948	Eukaryota	Streptophyta	N/A	Asterales	Goodeniaceae	Scaevola	Scaevola aemula	0.0001	
+EUSMPL0020-1-1	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.0001	
+EUSMPL0020-1-147	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.3157	
+EUSMPL0020-1-147	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.2349	
+EUSMPL0020-1-147	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0541	
+EUSMPL0020-1-147	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0469	
+EUSMPL0020-1-147	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0155	
+EUSMPL0020-1-147	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.007	
+EUSMPL0020-1-147	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0058	
+EUSMPL0020-1-147	1232726	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Adhmto1	0.0043	
+EUSMPL0020-1-147	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0028	
+EUSMPL0020-1-147	1043785	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella pneumoniae	0.0012	
+EUSMPL0020-1-147	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0007	
+EUSMPL0020-1-147	1233057	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Thmro15	0.0005	
+EUSMPL0020-1-147	1059044	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	uncultured Enterobacteriaceae bacterium	0.0004	
+EUSMPL0020-1-147	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0003	
+EUSMPL0020-1-147	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0003	
+EUSMPL0020-1-147	1231791	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anhor4	0.0002	
+EUSMPL0020-1-147	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0002	
+EUSMPL0020-1-147	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0002	
+EUSMPL0020-1-147	1042918	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. BSRA1	0.0001	
+EUSMPL0020-1-147	1042359	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	uncultured Enterobacter sp.	0.0001	
+EUSMPL0020-1-147	1038533	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	uncultured Pantoea sp.	0.0001	
+EUSMPL0020-1-147	1037088	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	uncultured Raoultella sp.	0.0001	
+EUSMPL0020-1-147	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0001	
+EUSMPL0020-1-147	1058852	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Aquamonas haywardensis	0.0001	
+EUSMPL0020-1-147	1034788	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	Candidatus Nardonella	endosymbiont of Sphenophorus levis	0.0001	
+EUSMPL0020-1-147	81326	Eukaryota	Streptophyta	Liliopsida	Pandanales	Cyclanthaceae	Carludovica	Carludovica palmata	0.0001	
+EUSMPL0020-1-148	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.3011	
+EUSMPL0020-1-148	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.1131	
+EUSMPL0020-1-148	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0392	
+EUSMPL0020-1-148	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0267	
+EUSMPL0020-1-148	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0218	
+EUSMPL0020-1-148	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0139	
+EUSMPL0020-1-148	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.002	
+EUSMPL0020-1-148	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.0005	
+EUSMPL0020-1-148	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0004	
+EUSMPL0020-1-148	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0004	
+EUSMPL0020-1-148	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0004	
+EUSMPL0020-1-148	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0004	
+EUSMPL0020-1-148	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0003	
+EUSMPL0020-1-148	1232726	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Adhmto1	0.0002	
+EUSMPL0020-1-148	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0002	
+EUSMPL0020-1-148	1244765	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium biavatii	0.0001	
+EUSMPL0020-1-148	1037327	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	Pantoea agglomerans	0.0001	
+EUSMPL0020-1-148	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0001	
+EUSMPL0020-1-148	1079633	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	uncultured Pseudomonas sp.	0.0001	
+EUSMPL0020-1-148	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0001	
+EUSMPL0020-1-148	1112271	Bacteria	Proteobacteria	N/A	N/A	N/A	N/A	uncultured proteobacterium	0.0001	
+EUSMPL0020-1-148	58476	Eukaryota	Streptophyta	N/A	Polypodiales	Dennstaedtiaceae	Pteridium	Pteridium aquilinum	0.0001	
+EUSMPL0020-1-149	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.1212	
+EUSMPL0020-1-149	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0775	
+EUSMPL0020-1-149	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0532	
+EUSMPL0020-1-149	1232726	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Adhmto1	0.0237	
+EUSMPL0020-1-149	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.02	
+EUSMPL0020-1-149	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0138	
+EUSMPL0020-1-149	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0012	
+EUSMPL0020-1-149	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0008	
+EUSMPL0020-1-149	1244765	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium biavatii	0.0006	
+EUSMPL0020-1-149	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0006	
+EUSMPL0020-1-149	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.0004	
+EUSMPL0020-1-149	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0003	
+EUSMPL0020-1-149	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0002	
+EUSMPL0020-1-149	1245346	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium indicum	0.0001	
+EUSMPL0020-1-149	1221028	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Geobacillus	Geobacillus thermoleovorans	0.0001	
+EUSMPL0020-1-149	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0001	
+EUSMPL0020-1-149	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0001	
+EUSMPL0020-1-149	1079633	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	uncultured Pseudomonas sp.	0.0001	
+EUSMPL0020-1-149	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0001	
+EUSMPL0020-1-150	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.357	
+EUSMPL0020-1-150	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0923	
+EUSMPL0020-1-150	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0036	
+EUSMPL0020-1-150	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0025	
+EUSMPL0020-1-150	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0025	
+EUSMPL0020-1-150	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0016	
+EUSMPL0020-1-150	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.001	
+EUSMPL0020-1-150	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0008	
+EUSMPL0020-1-150	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0005	
+EUSMPL0020-1-150	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0003	
+EUSMPL0020-1-150	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0003	
+EUSMPL0020-1-150	1304197	Bacteria	Actinobacteria	Actinobacteria	Micrococcales	Micrococcaceae	Micrococcus	Micrococcus cohnii	0.0001	
+EUSMPL0020-1-150	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0001	
+EUSMPL0020-1-150	1231791	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anhor4	0.0001	
+EUSMPL0020-1-150	1233057	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Thmro15	0.0001	
+EUSMPL0020-1-150	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0001	
+EUSMPL0020-1-150	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0001	
+EUSMPL0020-1-150	1069287	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. B-5-1	0.0001	
+EUSMPL0020-1-150	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0001	
+EUSMPL0020-1-150	1144033	Bacteria	Proteobacteria	N/A	N/A	N/A	N/A	proteobacterium symbiont of Nilaparvata lugens	0.0001	
+EUSMPL0020-1-150	1112271	Bacteria	Proteobacteria	N/A	N/A	N/A	N/A	uncultured proteobacterium	0.0001	
+EUSMPL0020-1-150	81326	Eukaryota	Streptophyta	Liliopsida	Pandanales	Cyclanthaceae	Carludovica	Carludovica palmata	0.0001	
+EUSMPL0020-1-150	56753	Eukaryota	Streptophyta	N/A	Lycopodiales	Lycopodiaceae	Huperzia	Huperzia lucidula	0.0001	
+EUSMPL0020-1-151	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.1451	
+EUSMPL0020-1-151	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.1322	
+EUSMPL0020-1-151	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.1007	
+EUSMPL0020-1-151	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0883	
+EUSMPL0020-1-151	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.072	
+EUSMPL0020-1-151	956670	Bacteria	Proteobacteria	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Sphingomonas sp. 1PNM-20	0.0489	
+EUSMPL0020-1-151	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0439	
+EUSMPL0020-1-151	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0332	
+EUSMPL0020-1-151	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0146	
+EUSMPL0020-1-151	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0112	
+EUSMPL0020-1-151	1234321	Bacteria	Firmicutes	Bacilli	Lactobacillales	Carnobacteriaceae	Granulicatella	Granulicatella elegans	0.0101	
+EUSMPL0020-1-151	1059044	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	uncultured Enterobacteriaceae bacterium	0.0079	
+EUSMPL0020-1-151	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0034	
+EUSMPL0020-1-151	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0028	
+EUSMPL0020-1-151	960704	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Roseomonas	Roseomonas sp. S2-87	0.0022	
+EUSMPL0020-1-151	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0022	
+EUSMPL0020-1-151	938738	Bacteria	Bacteroidetes	Bacteroidia	Bacteroidales	Rikenellaceae	Alistipes	Alistipes massiliensis	0.0017	
+EUSMPL0020-1-151	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0017	
+EUSMPL0020-1-151	1194345	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus panaciterrae	0.0011	
+EUSMPL0020-1-151	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0011	
+EUSMPL0020-1-151	1214696	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus sp. A1148	0.0006	
+EUSMPL0020-1-151	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0006	
+EUSMPL0020-1-151	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.0006	
+EUSMPL0020-1-152	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.3323	
+EUSMPL0020-1-152	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.3082	
+EUSMPL0020-1-152	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.091	
+EUSMPL0020-1-152	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0359	
+EUSMPL0020-1-152	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0291	
+EUSMPL0020-1-152	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0175	
+EUSMPL0020-1-152	1116967	Bacteria	Proteobacteria	Deltaproteobacteria	Desulfuromonadales	Geobacteraceae	Geobacter	Geobacter sulfurreducens	0.0155	
+EUSMPL0020-1-152	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0109	
+EUSMPL0020-1-152	1286544	Bacteria	Actinobacteria	Actinobacteria	Corynebacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium amycolatum	0.0084	
+EUSMPL0020-1-152	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0056	
+EUSMPL0020-1-152	934764	Bacteria	Bacteroidetes	N/A	N/A	N/A	N/A	uncultured Bacteroidetes bacterium	0.0053	
+EUSMPL0020-1-152	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0025	
+EUSMPL0020-1-152	1232726	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Adhmto1	0.0022	
+EUSMPL0020-1-152	1278483	Bacteria	Actinobacteria	Actinobacteria	Micromonosporales	Micromonosporaceae	Actinoplanes	Actinoplanes sp. HBUM 84225	0.0014	
+EUSMPL0020-1-152	1333237	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured soil bacterium	0.0012	
+EUSMPL0020-1-152	1242226	Bacteria	Actinobacteria	Actinobacteria	Propionibacteriales	Nocardioidaceae	Marmoricola	Marmoricola sp. CNJ872 PL04	0.0011	
+EUSMPL0020-1-152	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0011	
+EUSMPL0020-1-152	983468	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Rhizobiaceae	Rhizobium	Rhizobium sp. R2S6	0.0008	
+EUSMPL0020-1-152	992098	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Methylobacteriaceae	Methylobacterium	Methylobacterium sp. C3102	0.0007	
+EUSMPL0020-1-152	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0007	
+EUSMPL0020-1-152	962118	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	alpha proteobacterium hswX150	0.0006	
+EUSMPL0020-1-152	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0006	
+EUSMPL0020-1-152	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0006	
+EUSMPL0020-1-152	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0003	
+EUSMPL0020-1-152	1244765	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium biavatii	0.0002	
+EUSMPL0020-1-152	961750	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Acetobacter	Acetobacter pasteurianus	0.0002	
+EUSMPL0020-1-152	1286328	Bacteria	Actinobacteria	Actinobacteria	Corynebacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium renale	0.0001	
+EUSMPL0020-1-152	1286699	Bacteria	Actinobacteria	Actinobacteria	Corynebacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium sp. 1337	0.0001	
+EUSMPL0020-1-152	1243503	Bacteria	Actinobacteria	Actinobacteria	N/A	N/A	N/A	actinobacterium YNPRH1P-1	0.0001	
+EUSMPL0020-1-152	1231791	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anhor4	0.0001	
+EUSMPL0020-1-152	1169279	Bacteria	Firmicutes	Clostridia	Clostridiales	N/A	N/A	uncultured Clostridiales bacterium	0.0001	
+EUSMPL0020-1-152	1165333	Bacteria	Firmicutes	Tissierellia	Tissierellales	Peptoniphilaceae	Peptoniphilus	Peptoniphilus senegalensis	0.0001	
+EUSMPL0020-1-152	1037781	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	Pantoea sp. NCCP-532	0.0001	
+EUSMPL0020-1-152	1059044	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	uncultured Enterobacteriaceae bacterium	0.0001	
+EUSMPL0020-1-152	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0001	
+EUSMPL0020-1-152	1082213	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas fluorescens	0.0001	
+EUSMPL0020-1-152	1072520	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas putida	0.0001	
+EUSMPL0020-1-152	1069287	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. B-5-1	0.0001	
+EUSMPL0020-1-159	1244921	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium kashiwanohense	0.6667	
+EUSMPL0020-1-159	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.1667	
+EUSMPL0020-1-159	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.1667	
+EUSMPL0020-1-160	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.5549	
+EUSMPL0020-1-160	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.1913	
+EUSMPL0020-1-160	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.107	
+EUSMPL0020-1-160	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0593	
+EUSMPL0020-1-160	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0199	
+EUSMPL0020-1-160	1053481	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Escherichia	Escherichia sp. enrichment culture clone 19(2012)	0.0089	
+EUSMPL0020-1-160	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0089	
+EUSMPL0020-1-160	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0068	
+EUSMPL0020-1-160	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0067	
+EUSMPL0020-1-160	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0059	
+EUSMPL0020-1-160	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.0051	
+EUSMPL0020-1-160	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0033	
+EUSMPL0020-1-160	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0025	
+EUSMPL0020-1-160	1043646	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella oxytoca	0.0014	
+EUSMPL0020-1-160	1042918	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. BSRA1	0.0012	
+EUSMPL0020-1-160	1042359	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	uncultured Enterobacter sp.	0.001	
+EUSMPL0020-1-160	1034788	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	Candidatus Nardonella	endosymbiont of Sphenophorus levis	0.0007	
+EUSMPL0020-1-160	1043785	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella pneumoniae	0.0006	
+EUSMPL0020-1-160	916323	Bacteria	N/A	N/A	N/A	N/A	N/A	unidentified bacterium	0.0005	
+EUSMPL0020-1-160	1306438	Bacteria	Actinobacteria	Actinobacteria	Micrococcales	Micrococcaceae	Arthrobacter	Arthrobacter sp. S10	0.0004	
+EUSMPL0020-1-160	1040733	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. MB-2-2-4	0.0004	
+EUSMPL0020-1-160	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0004	
+EUSMPL0020-1-160	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0003	
+EUSMPL0020-1-160	1194378	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus racemilacticus	0.0003	
+EUSMPL0020-1-160	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0003	
+EUSMPL0020-1-160	966104	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Bartonellaceae	Bartonella	uncultured Bartonella sp.	0.0003	
+EUSMPL0020-1-160	1050710	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Buttiauxella	Buttiauxella sp. NW51	0.0003	
+EUSMPL0020-1-160	1144913	Bacteria	Tenericutes	Mollicutes	Mycoplasmatales	Mycoplasmataceae	Mycoplasma	Mycoplasma wenyonii	0.0003	
+EUSMPL0020-1-160	1230935	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Leuconostoc	uncultured Leuconostoc sp.	0.0002	
+EUSMPL0020-1-160	1036075	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Arsenophonus	Arsenophonus endosymbiont of Dermacentor variabilis	0.0002	
+EUSMPL0020-1-160	1041370	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter cloacae	0.0002	
+EUSMPL0020-1-160	1052660	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Mangrovibacter	Mangrovibacter plantisponsor	0.0002	
+EUSMPL0020-1-160	1052813	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pluralibacter	Pluralibacter gergoviae	0.0002	
+EUSMPL0020-1-160	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0002	
+EUSMPL0020-1-160	1221028	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Geobacillus	Geobacillus thermoleovorans	0.0001	
+EUSMPL0020-1-160	1183323	Bacteria	Firmicutes	Bacilli	Bacillales	Staphylococcaceae	Staphylococcus	Staphylococcus aureus	0.0001	
+EUSMPL0020-1-160	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0001	
+EUSMPL0020-1-160	1041359	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter hormaechei	0.0001	
+EUSMPL0020-1-160	1042384	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. enrichment culture clone HSL11	0.0001	
+EUSMPL0020-1-160	1038533	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	uncultured Pantoea sp.	0.0001	
+EUSMPL0020-1-160	1037166	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	Raoultella ornithinolytica	0.0001	
+EUSMPL0020-1-160	1046543	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0001	
+EUSMPL0020-1-160	1057707	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Enterobacteriaceae bacterium Acj 122	0.0001	
+EUSMPL0020-1-160	1058540	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Enterobacteriaceae bacterium KRT1	0.0001	
+EUSMPL0020-1-160	1059044	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	uncultured Enterobacteriaceae bacterium	0.0001	
+EUSMPL0020-1-160	1112271	Bacteria	Proteobacteria	N/A	N/A	N/A	N/A	uncultured proteobacterium	0.0001	
+EUSMPL0020-1-160	913811	Bacteria	N/A	N/A	N/A	N/A	N/A	bacterium J004	0.0001	
+EUSMPL0020-1-160	113948	Eukaryota	Streptophyta	N/A	Asterales	Goodeniaceae	Scaevola	Scaevola aemula	0.0001	
+EUSMPL0020-1-161	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.32	
+EUSMPL0020-1-161	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.1571	
+EUSMPL0020-1-161	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0713	
+EUSMPL0020-1-161	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0281	
+EUSMPL0020-1-161	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0168	
+EUSMPL0020-1-161	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0136	
+EUSMPL0020-1-161	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0054	
+EUSMPL0020-1-161	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0054	
+EUSMPL0020-1-161	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.0046	
+EUSMPL0020-1-161	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0014	
+EUSMPL0020-1-161	1043785	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella pneumoniae	0.0014	
+EUSMPL0020-1-161	1042359	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	uncultured Enterobacter sp.	0.001	
+EUSMPL0020-1-161	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0009	
+EUSMPL0020-1-161	1043646	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella oxytoca	0.0009	
+EUSMPL0020-1-161	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0009	
+EUSMPL0020-1-161	1004623	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodobacterales	Rhodobacteraceae	Rhodobacter	Rhodobacter sp. INCT285	0.0007	
+EUSMPL0020-1-161	1042918	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. BSRA1	0.0007	
+EUSMPL0020-1-161	1050710	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Buttiauxella	Buttiauxella sp. NW51	0.0006	
+EUSMPL0020-1-161	1183323	Bacteria	Firmicutes	Bacilli	Bacillales	Staphylococcaceae	Staphylococcus	Staphylococcus aureus	0.0004	
+EUSMPL0020-1-161	1034788	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	Candidatus Nardonella	endosymbiont of Sphenophorus levis	0.0003	
+EUSMPL0020-1-161	916323	Bacteria	N/A	N/A	N/A	N/A	N/A	unidentified bacterium	0.0003	
+EUSMPL0020-1-161	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0002	
+EUSMPL0020-1-161	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0002	
+EUSMPL0020-1-161	1040733	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. MB-2-2-4	0.0002	
+EUSMPL0020-1-161	1058852	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Aquamonas haywardensis	0.0002	
+EUSMPL0020-1-161	1071374	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas mendocina	0.0002	
+EUSMPL0020-1-161	1244921	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium kashiwanohense	0.0001	
+EUSMPL0020-1-161	1286699	Bacteria	Actinobacteria	Actinobacteria	Corynebacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium sp. 1337	0.0001	
+EUSMPL0020-1-161	1174833	Bacteria	Firmicutes	Bacilli	Bacillales	Paenibacillaceae	Brevibacillus	Brevibacillus sp. HT3(2007b)	0.0001	
+EUSMPL0020-1-161	1230935	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Leuconostoc	uncultured Leuconostoc sp.	0.0001	
+EUSMPL0020-1-161	1168440	Bacteria	Firmicutes	Clostridia	Clostridiales	Clostridiaceae	Proteiniclasticum	Proteiniclasticum ruminis	0.0001	
+EUSMPL0020-1-161	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0001	
+EUSMPL0020-1-161	1042384	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. enrichment culture clone HSL11	0.0001	
+EUSMPL0020-1-161	1052813	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pluralibacter	Pluralibacter gergoviae	0.0001	
+EUSMPL0020-1-161	1037166	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	Raoultella ornithinolytica	0.0001	
+EUSMPL0020-1-161	1046543	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0001	
+EUSMPL0020-1-161	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0001	
+EUSMPL0020-1-161	1029456	Bacteria	Proteobacteria	Gammaproteobacteria	Xanthomonadales	Xanthomonadaceae	Stenotrophomonas	Stenotrophomonas panacihumi	0.0001	
+EUSMPL0020-1-162	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.5	
+EUSMPL0020-1-162	1244921	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium kashiwanohense	0.25	
+EUSMPL0020-1-162	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.25	
+EUSMPL0020-1-163	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.6189	
+EUSMPL0020-1-163	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.0887	
+EUSMPL0020-1-163	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0877	
+EUSMPL0020-1-163	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0295	
+EUSMPL0020-1-163	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.01	
+EUSMPL0020-1-163	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0094	
+EUSMPL0020-1-163	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.006	
+EUSMPL0020-1-163	1037088	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	uncultured Raoultella sp.	0.0053	
+EUSMPL0020-1-163	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0047	
+EUSMPL0020-1-163	1231973	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Mbohmt7	0.0042	
+EUSMPL0020-1-163	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0032	
+EUSMPL0020-1-163	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0024	
+EUSMPL0020-1-163	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0016	
+EUSMPL0020-1-163	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0013	
+EUSMPL0020-1-163	1230935	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Leuconostoc	uncultured Leuconostoc sp.	0.0011	
+EUSMPL0020-1-163	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0008	
+EUSMPL0020-1-163	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0006	
+EUSMPL0020-1-163	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0006	
+EUSMPL0020-1-163	1069287	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. B-5-1	0.0002	
+EUSMPL0020-1-163	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0001	
+EUSMPL0020-1-163	1037166	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	Raoultella ornithinolytica	0.0001	
+EUSMPL0020-1-163	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0001	
+EUSMPL0020-1-163	101772	Eukaryota	Streptophyta	N/A	Laurales	Hernandiaceae	Gyrocarpus	Gyrocarpus americanus	0.0001	
+EUSMPL0020-1-164	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.904	
+EUSMPL0020-1-164	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.0339	
+EUSMPL0020-1-164	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0279	
+EUSMPL0020-1-164	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.023	
+EUSMPL0020-1-164	1231973	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Mbohmt7	0.0015	
+EUSMPL0020-1-164	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0011	
+EUSMPL0020-1-164	1230935	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Leuconostoc	uncultured Leuconostoc sp.	0.0008	
+EUSMPL0020-1-164	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0006	
+EUSMPL0020-1-164	1069287	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. B-5-1	0.0005	
+EUSMPL0020-1-164	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0004	
+EUSMPL0020-1-164	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0003	
+EUSMPL0020-1-164	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0003	
+EUSMPL0020-1-164	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0002	
+EUSMPL0020-1-164	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0002	
+EUSMPL0020-1-164	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0002	
+EUSMPL0020-1-164	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0002	
+EUSMPL0020-1-164	1286699	Bacteria	Actinobacteria	Actinobacteria	Corynebacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium sp. 1337	0.0001	
+EUSMPL0020-1-164	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0001	
+EUSMPL0020-1-164	1232995	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus paucivorans	0.0001	
+EUSMPL0020-1-164	1004335	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodobacterales	Rhodobacteraceae	Nereida	uncultured Nereida sp.	0.0001	
+EUSMPL0020-1-164	1050710	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Buttiauxella	Buttiauxella sp. NW51	0.0001	
+EUSMPL0020-1-164	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0001	
+EUSMPL0020-1-164	81326	Eukaryota	Streptophyta	Liliopsida	Pandanales	Cyclanthaceae	Carludovica	Carludovica palmata	0.0001	
+EUSMPL0020-1-2	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.3757	
+EUSMPL0020-1-2	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.3497	
+EUSMPL0020-1-2	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0752	
+EUSMPL0020-1-2	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0671	
+EUSMPL0020-1-2	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.0235	
+EUSMPL0020-1-2	1052813	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pluralibacter	Pluralibacter gergoviae	0.0147	
+EUSMPL0020-1-2	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0116	
+EUSMPL0020-1-2	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0105	
+EUSMPL0020-1-2	1232726	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Adhmto1	0.0043	
+EUSMPL0020-1-2	1043646	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella oxytoca	0.0037	
+EUSMPL0020-1-2	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0025	
+EUSMPL0020-1-2	1043785	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Klebsiella	Klebsiella pneumoniae	0.0024	
+EUSMPL0020-1-2	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0017	
+EUSMPL0020-1-2	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0012	
+EUSMPL0020-1-2	1037088	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	uncultured Raoultella sp.	0.001	
+EUSMPL0020-1-2	1042918	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter sp. BSRA1	0.0009	
+EUSMPL0020-1-2	1042359	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	uncultured Enterobacter sp.	0.0009	
+EUSMPL0020-1-2	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0009	
+EUSMPL0020-1-2	1244765	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium biavatii	0.0007	
+EUSMPL0020-1-2	1053481	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Escherichia	Escherichia sp. enrichment culture clone 19(2012)	0.0007	
+EUSMPL0020-1-2	1058852	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Aquamonas haywardensis	0.0006	
+EUSMPL0020-1-2	1034788	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	Candidatus Nardonella	endosymbiont of Sphenophorus levis	0.0006	
+EUSMPL0020-1-2	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0005	
+EUSMPL0020-1-2	916323	Bacteria	N/A	N/A	N/A	N/A	N/A	unidentified bacterium	0.0005	
+EUSMPL0020-1-2	1050710	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Buttiauxella	Buttiauxella sp. NW51	0.0004	
+EUSMPL0020-1-2	1244921	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium kashiwanohense	0.0002	
+EUSMPL0020-1-2	1231791	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anhor4	0.0002	
+EUSMPL0020-1-2	1046543	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0002	
+EUSMPL0020-1-2	893880	Bacteria	Acidobacteria	N/A	N/A	N/A	N/A	uncultured Acidobacteria bacterium	0.0001	
+EUSMPL0020-1-2	1245270	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium angulatum	0.0001	
+EUSMPL0020-1-2	1179220	Bacteria	Firmicutes	Bacilli	Bacillales	Paenibacillaceae	Ammoniphilus	uncultured Ammoniphilus sp.	0.0001	
+EUSMPL0020-1-2	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0001	
+EUSMPL0020-1-2	1231999	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus antri	0.0001	
+EUSMPL0020-1-2	1233441	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Aahonto7	0.0001	
+EUSMPL0020-1-2	1166374	Bacteria	Firmicutes	Clostridia	Clostridiales	Clostridiaceae	Clostridium	uncultured Clostridium sp.	0.0001	
+EUSMPL0020-1-2	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0001	
+EUSMPL0020-1-2	1002293	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodobacterales	Rhodobacteraceae	Roseobacter	Roseobacter sp. SO3	0.0001	
+EUSMPL0020-1-2	996148	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Rickettsiaceae	Rickettsia	Rickettsia endosymbiont of Cerobasis guestfalica	0.0001	
+EUSMPL0020-1-2	1127581	Bacteria	Proteobacteria	Betaproteobacteria	Burkholderiales	Burkholderiaceae	Burkholderia	Burkholderia sp. DF4EH10	0.0001	
+EUSMPL0020-1-2	1036075	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Arsenophonus	Arsenophonus endosymbiont of Dermacentor variabilis	0.0001	
+EUSMPL0020-1-2	1035579	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Cronobacter	Cronobacter muytjensii	0.0001	
+EUSMPL0020-1-2	1041370	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Enterobacter	Enterobacter cloacae	0.0001	
+EUSMPL0020-1-2	1037781	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	Pantoea sp. NCCP-532	0.0001	
+EUSMPL0020-1-2	1038533	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	uncultured Pantoea sp.	0.0001	
+EUSMPL0020-1-2	1037166	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	Raoultella ornithinolytica	0.0001	
+EUSMPL0020-1-2	1058540	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Enterobacteriaceae bacterium KRT1	0.0001	
+EUSMPL0020-1-2	1059044	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	uncultured Enterobacteriaceae bacterium	0.0001	
+EUSMPL0020-1-2	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0001	
+EUSMPL0020-1-2	216031	Eukaryota	Streptophyta	N/A	Cycadales	Zamiaceae	Zamia	Zamia integrifolia	0.0001	
+EUSMPL0020-1-3	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.5694	
+EUSMPL0020-1-3	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0481	
+EUSMPL0020-1-3	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.042	
+EUSMPL0020-1-3	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0131	
+EUSMPL0020-1-3	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0033	
+EUSMPL0020-1-3	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0026	
+EUSMPL0020-1-3	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0009	
+EUSMPL0020-1-3	81326	Eukaryota	Streptophyta	Liliopsida	Pandanales	Cyclanthaceae	Carludovica	Carludovica palmata	0.0007	
+EUSMPL0020-1-3	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0005	
+EUSMPL0020-1-3	1231912	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sanfranciscensis	0.0003	
+EUSMPL0020-1-3	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0003	
+EUSMPL0020-1-3	1036075	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Arsenophonus	Arsenophonus endosymbiont of Dermacentor variabilis	0.0003	
+EUSMPL0020-1-3	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0003	
+EUSMPL0020-1-3	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0003	
+EUSMPL0020-1-3	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0003	
+EUSMPL0020-1-3	1244765	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium biavatii	0.0002	
+EUSMPL0020-1-3	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0002	
+EUSMPL0020-1-3	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0002	
+EUSMPL0020-1-3	1183323	Bacteria	Firmicutes	Bacilli	Bacillales	Staphylococcaceae	Staphylococcus	Staphylococcus aureus	0.0001	
+EUSMPL0020-1-3	1233441	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Aahonto7	0.0001	
+EUSMPL0020-1-3	1231791	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anhor4	0.0001	
+EUSMPL0020-1-3	1052813	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pluralibacter	Pluralibacter gergoviae	0.0001	
+EUSMPL0020-1-3	1072520	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas putida	0.0001	
+EUSMPL0020-1-3	113948	Eukaryota	Streptophyta	N/A	Asterales	Goodeniaceae	Scaevola	Scaevola aemula	0.0001	
+EUSMPL0020-1-3	216031	Eukaryota	Streptophyta	N/A	Cycadales	Zamiaceae	Zamia	Zamia integrifolia	0.0001	
+EUSMPL0020-1-305	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.3333	
+EUSMPL0020-1-305	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.1515	
+EUSMPL0020-1-305	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.1212	
+EUSMPL0020-1-305	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0606	
+EUSMPL0020-1-305	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0303	
+EUSMPL0020-1-306	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.985	
+EUSMPL0020-1-306	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.002	
+EUSMPL0020-1-306	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0019	
+EUSMPL0020-1-306	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0014	
+EUSMPL0020-1-306	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0013	
+EUSMPL0020-1-306	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.001	
+EUSMPL0020-1-306	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0009	
+EUSMPL0020-1-306	1059044	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	uncultured Enterobacteriaceae bacterium	0.0007	
+EUSMPL0020-1-306	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0004	
+EUSMPL0020-1-306	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0004	
+EUSMPL0020-1-306	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0003	
+EUSMPL0020-1-306	1232726	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Adhmto1	0.0002	
+EUSMPL0020-1-306	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0002	
+EUSMPL0020-1-306	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0002	
+EUSMPL0020-1-306	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0002	
+EUSMPL0020-1-306	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0001	
+EUSMPL0020-1-306	934764	Bacteria	Bacteroidetes	N/A	N/A	N/A	N/A	uncultured Bacteroidetes bacterium	0.0001	
+EUSMPL0020-1-306	1183323	Bacteria	Firmicutes	Bacilli	Bacillales	Staphylococcaceae	Staphylococcus	Staphylococcus aureus	0.0001	
+EUSMPL0020-1-306	1168296	Bacteria	Firmicutes	Clostridia	Clostridiales	Clostridiaceae	Fonticella	Fonticella tunisiensis	0.0001	
+EUSMPL0020-1-306	1115753	Bacteria	Proteobacteria	Deltaproteobacteria	N/A	N/A	N/A	uncultured delta proteobacterium	0.0001	
+EUSMPL0020-1-306	1072520	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas putida	0.0001	
+EUSMPL0020-1-306	878550	Eukaryota	Phaeophyceae	N/A	Ectocarpales	Ectocarpaceae	Ectocarpus	Ectocarpus siliculosus	0.0001	
+EUSMPL0020-1-307	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.5492	
+EUSMPL0020-1-307	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.1594	
+EUSMPL0020-1-307	1038533	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	uncultured Pantoea sp.	0.0419	
+EUSMPL0020-1-307	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0379	
+EUSMPL0020-1-307	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0218	
+EUSMPL0020-1-307	1037781	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	Pantoea sp. NCCP-532	0.0197	
+EUSMPL0020-1-307	934764	Bacteria	Bacteroidetes	N/A	N/A	N/A	N/A	uncultured Bacteroidetes bacterium	0.0179	
+EUSMPL0020-1-307	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0172	
+EUSMPL0020-1-307	81326	Eukaryota	Streptophyta	Liliopsida	Pandanales	Cyclanthaceae	Carludovica	Carludovica palmata	0.0155	
+EUSMPL0020-1-307	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0121	
+EUSMPL0020-1-307	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0072	
+EUSMPL0020-1-307	1183323	Bacteria	Firmicutes	Bacilli	Bacillales	Staphylococcaceae	Staphylococcus	Staphylococcus aureus	0.0061	
+EUSMPL0020-1-307	957490	Bacteria	Proteobacteria	Alphaproteobacteria	Sphingomonadales	Erythrobacteraceae	Altererythrobacter	Altererythrobacter sp. OB38-2	0.0056	
+EUSMPL0020-1-307	1166374	Bacteria	Firmicutes	Clostridia	Clostridiales	Clostridiaceae	Clostridium	uncultured Clostridium sp.	0.004	
+EUSMPL0020-1-307	1037327	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	Pantoea agglomerans	0.0033	
+EUSMPL0020-1-307	1058743	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Enterobacteriaceae bacterium KRT2	0.002	
+EUSMPL0020-1-307	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.002	
+EUSMPL0020-1-307	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0019	
+EUSMPL0020-1-307	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0017	
+EUSMPL0020-1-307	1168296	Bacteria	Firmicutes	Clostridia	Clostridiales	Clostridiaceae	Fonticella	Fonticella tunisiensis	0.0014	
+EUSMPL0020-1-307	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0011	
+EUSMPL0020-1-307	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.001	
+EUSMPL0020-1-307	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0009	
+EUSMPL0020-1-307	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0005	
+EUSMPL0020-1-307	1058327	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Enterobacteriaceae bacterium KMMT	0.0005	
+EUSMPL0020-1-307	1037166	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Raoultella	Raoultella ornithinolytica	0.0004	
+EUSMPL0020-1-307	1005075	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodobacterales	Rhodobacteraceae	Paracoccus	Paracoccus kawasakiensis	0.0003	
+EUSMPL0020-1-307	1004349	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodobacterales	Rhodobacteraceae	Rhodobacter	Rhodobacter sp. R-36943	0.0003	
+EUSMPL0020-1-307	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.0003	
+EUSMPL0020-1-307	1191198	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus cereus	0.0002	
+EUSMPL0020-1-307	1052813	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pluralibacter	Pluralibacter gergoviae	0.0002	
+EUSMPL0020-1-307	103188	Eukaryota	Streptophyta	N/A	Proteales	Proteaceae	Grevillea	Grevillea robusta	0.0002	
+EUSMPL0020-1-307	1245346	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium indicum	0.0001	
+EUSMPL0020-1-307	1214696	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus sp. A1148	0.0001	
+EUSMPL0020-1-307	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0001	
+EUSMPL0020-1-307	1037636	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Pantoea	Pantoea sp. DLA77	0.0001	
+EUSMPL0020-1-307	1051028	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Serratia	Serratia plymuthica	0.0001	
+EUSMPL0020-1-307	1058852	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Aquamonas haywardensis	0.0001	
+EUSMPL0020-1-307	1058540	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	N/A	Enterobacteriaceae bacterium KRT1	0.0001	
+EUSMPL0020-1-307	1025543	Bacteria	Proteobacteria	Gammaproteobacteria	Pasteurellales	Pasteurellaceae	Haemophilus	Haemophilus pittmaniae	0.0001	
+EUSMPL0020-1-307	1069287	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. B-5-1	0.0001	
+EUSMPL0020-1-307	1079633	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	uncultured Pseudomonas sp.	0.0001	
+EUSMPL0020-1-307	1329978	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured marine bacterium	0.0001	
+EUSMPL0020-1-307	102174	Eukaryota	Streptophyta	N/A	Buxales	Buxaceae	Didymeles	Didymeles perrieri	0.0001	
+EUSMPL0020-1-307	887750	Eukaryota	N/A	N/A	N/A	N/A	N/A	uncultured eukaryote	0.0001	
+EUSMPL0020-1-308	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.8889	
+EUSMPL0020-1-308	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0741	
+EUSMPL0020-1-308	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.0247	
+EUSMPL0020-1-309	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.2632	
+EUSMPL0020-1-309	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.2632	
+EUSMPL0020-1-309	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.2105	
+EUSMPL0020-1-309	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.1053	
+EUSMPL0020-1-309	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0526	
+EUSMPL0020-1-309	1242226	Bacteria	Actinobacteria	Actinobacteria	Propionibacteriales	Nocardioidaceae	Marmoricola	Marmoricola sp. CNJ872 PL04	0.0526	
+EUSMPL0020-1-310	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.3846	
+EUSMPL0020-1-310	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.2308	
+EUSMPL0020-1-310	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.1026	
+EUSMPL0020-1-310	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.1026	
+EUSMPL0020-1-310	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0769	
+EUSMPL0020-1-310	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0513	
+EUSMPL0020-1-310	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0256	
+EUSMPL0020-1-4	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.4183	
+EUSMPL0020-1-4	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.054	
+EUSMPL0020-1-4	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.039	
+EUSMPL0020-1-4	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.0249	
+EUSMPL0020-1-4	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0087	
+EUSMPL0020-1-4	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0022	
+EUSMPL0020-1-4	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0019	
+EUSMPL0020-1-4	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0014	
+EUSMPL0020-1-4	1036075	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Arsenophonus	Arsenophonus endosymbiont of Dermacentor variabilis	0.0006	
+EUSMPL0020-1-4	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0006	
+EUSMPL0020-1-4	1290689	Bacteria	Actinobacteria	Actinobacteria	Corynebacteriales	Dietziaceae	Dietzia	Dietzia psychralcaliphila	0.0004	
+EUSMPL0020-1-4	1244921	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium kashiwanohense	0.0003	
+EUSMPL0020-1-4	966104	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Bartonellaceae	Bartonella	uncultured Bartonella sp.	0.0003	
+EUSMPL0020-1-4	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.0003	
+EUSMPL0020-1-4	958908	Bacteria	Proteobacteria	Alphaproteobacteria	N/A	N/A	N/A	uncultured alpha proteobacterium	0.0003	
+EUSMPL0020-1-4	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0003	
+EUSMPL0020-1-4	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0003	
+EUSMPL0020-1-4	12943	Archaea	N/A	N/A	N/A	N/A	N/A	uncultured archaeon	0.0002	
+EUSMPL0020-1-4	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0002	
+EUSMPL0020-1-4	1241186	Bacteria	Actinobacteria	Actinobacteria	Propionibacteriales	Nocardioidaceae	Nocardioides	uncultured Nocardioides sp.	0.0001	
+EUSMPL0020-1-4	934764	Bacteria	Bacteroidetes	N/A	N/A	N/A	N/A	uncultured Bacteroidetes bacterium	0.0001	
+EUSMPL0020-1-4	1205307	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	uncultured Bacillus sp.	0.0001	
+EUSMPL0020-1-4	1231662	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sakei	0.0001	
+EUSMPL0020-1-4	1231791	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anhor4	0.0001	
+EUSMPL0020-1-4	961750	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Acetobacter	Acetobacter pasteurianus	0.0001	
+EUSMPL0020-1-4	1035579	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Cronobacter	Cronobacter muytjensii	0.0001	
+EUSMPL0020-1-4	1049165	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Salmonella	Salmonella enterica	0.0001	
+EUSMPL0020-1-4	1051876	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Serratia	Serratia sp. M24T3	0.0001	
+EUSMPL0020-1-4	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0001	
+EUSMPL0020-1-4	951813	Bacteria	Verrucomicrobia	N/A	N/A	N/A	N/A	uncultured Verrucomicrobia bacterium	0.0001	
+EUSMPL0020-1-4	81326	Eukaryota	Streptophyta	Liliopsida	Pandanales	Cyclanthaceae	Carludovica	Carludovica palmata	0.0001	
+EUSMPL0020-1-4	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.0001	
+EUSMPL0020-1-5	1244921	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium kashiwanohense	0.6	
+EUSMPL0020-1-5	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.4	
+EUSMPL0020-1-6	960992	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconacetobacter	uncultured Gluconacetobacter sp.	0.3894	
+EUSMPL0020-1-6	1173194	Bacteria	Firmicutes	Bacilli	N/A	N/A	N/A	uncultured Bacilli bacterium	0.3801	
+EUSMPL0020-1-6	1231973	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Mbohmt7	0.0735	
+EUSMPL0020-1-6	1231591	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sp. Anuhmto23	0.0485	
+EUSMPL0020-1-6	1232998	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	uncultured Lactobacillus sp.	0.0051	
+EUSMPL0020-1-6	993270	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	N/A	N/A	uncultured Rhizobiales bacterium	0.0046	
+EUSMPL0020-1-6	1313195	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured bacterium	0.0025	
+EUSMPL0020-1-6	9290	N/A	N/A	N/A	N/A	N/A	N/A	uncultured organism	0.0017	
+EUSMPL0020-1-6	1231662	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus sakei	0.0014	
+EUSMPL0020-1-6	1230462	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Fructobacillus	Fructobacillus tropaeoli	0.0013	
+EUSMPL0020-1-6	960930	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	N/A	uncultured Acetobacteraceae bacterium	0.0013	
+EUSMPL0020-1-6	1230935	Bacteria	Firmicutes	Bacilli	Lactobacillales	Leuconostocaceae	Leuconostoc	uncultured Leuconostoc sp.	0.0006	
+EUSMPL0020-1-6	1032053	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	gamma proteobacterium PEB0174	0.0003	
+EUSMPL0020-1-6	63172	Eukaryota	Streptophyta	N/A	Chloranthales	Chloranthaceae	Sarcandra	Sarcandra grandifolia	0.0003	
+EUSMPL0020-1-6	1232995	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus paucivorans	0.0002	
+EUSMPL0020-1-6	961308	Bacteria	Proteobacteria	Alphaproteobacteria	Rhodospirillales	Acetobacteraceae	Gluconobacter	Gluconobacter frateurii	0.0002	
+EUSMPL0020-1-6	1022773	Bacteria	Proteobacteria	Gammaproteobacteria	Orbales	Orbaceae	Frischella	Frischella perrara	0.0002	
+EUSMPL0020-1-6	1024725	Bacteria	Proteobacteria	Gammaproteobacteria	N/A	N/A	N/A	uncultured gamma proteobacterium	0.0002	
+EUSMPL0020-1-6	1244921	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium kashiwanohense	0.0001	
+EUSMPL0020-1-6	1244941	Bacteria	Actinobacteria	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Bifidobacterium	uncultured Bifidobacterium sp.	0.0001	
+EUSMPL0020-1-6	1233391	Bacteria	Firmicutes	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Lactobacillus coryniformis	0.0001	
+EUSMPL0020-1-6	1170570	Bacteria	Firmicutes	Clostridia	Clostridiales	Peptostreptococcaceae	Peptostreptococcus	uncultured Peptostreptococcus sp.	0.0001	
+EUSMPL0020-1-6	966104	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Bartonellaceae	Bartonella	uncultured Bartonella sp.	0.0001	
+EUSMPL0020-1-6	1133759	Bacteria	Proteobacteria	Betaproteobacteria	Burkholderiales	Oxalobacteraceae	N/A	uncultured Oxalobacteraceae bacterium	0.0001	
+EUSMPL0020-1-6	1035978	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacteriales	Enterobacteriaceae	Providencia	Providencia sp. RDS6	0.0001	
+EUSMPL0020-1-6	1069287	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. B-5-1	0.0001	
+EUSMPL0020-1-6	1069357	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas sp. NCCP-560	0.0001	
+EUSMPL0020-1-6	1315479	Bacteria	N/A	N/A	N/A	N/A	N/A	uncultured compost bacterium	0.0001	
+EUSMPL0020-1-6	102174	Eukaryota	Streptophyta	N/A	Buxales	Buxaceae	Didymeles	Didymeles perrieri	0.0001	
