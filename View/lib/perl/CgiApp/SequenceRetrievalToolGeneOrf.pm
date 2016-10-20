@@ -347,7 +347,7 @@ sub handleGenomic {
   $endRev = "($beginAnchRev - $beginOffset)";
 
 $sqlQueries->{geneGenomicSql} = <<EOSQL;
-select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
+select bfmv.gene_source_id, s.source_id, bfmv.organism, bfmv.gene_product as product,
      bfmv.start_min, bfmv.end_max,
      bfmv.is_reversed,
      CASE WHEN bfmv.is_reversed = 1
@@ -368,15 +368,15 @@ select bfmv.source_id, s.source_id, bfmv.organism, bfmv.product,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.GeneAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
+FROM ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.GenomicSequenceSequence s
 WHERE s.source_id = bfmv.sequence_id
-AND bfmv.source_id IN (
+AND bfmv.gene_source_id IN (
     SELECT gene FROM (
         SELECT gene, CASE WHEN id = gene THEN 2 WHEN id = LOWER(gene) THEN 1 ELSE 0 END AS matchiness
         FROM ApidbTuning.GeneId WHERE LOWER(id) = LOWER( ?)
         ORDER BY matchiness desc )
     WHERE rownum=1 )
-ORDER BY bfmv.source_id
+ORDER BY bfmv.gene_source_id
 EOSQL
 
 $sqlQueries->{orfGenomicSql} = <<EOSQL;
