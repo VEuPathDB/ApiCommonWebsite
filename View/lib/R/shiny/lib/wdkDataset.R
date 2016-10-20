@@ -6,10 +6,10 @@ library(shiny)
 # directly from the step analysis storage dir (passed in). If
 # fetchStyle is "url", data is read from URL.
 
-getWdkDataset <- function(session, fetchStyle, expectHeader, dataStorageDir="") {
+getWdkDataset <- function(session, fetchStyle, filename, expectHeader, dataStorageDir="") {
 
   query = parseQueryString(session$clientData$url_search)
-  
+
   if (fetchStyle == "disk") {
     contextHash = get("contextHash", query)
     projectFolder <- get("projectFolder", query)
@@ -18,12 +18,13 @@ getWdkDataset <- function(session, fetchStyle, expectHeader, dataStorageDir="") 
       need(projectFolder != "", "Must pass the data storage directory as a query parameter"),
       need(grepl("..",contextHash), "Hash must be sent alone")
     )
-    dataFile <- paste0(dataStorageDir, "/", projectFolder, "/", contextHash, "/data.tab")
+    dataFile <- paste0(dataStorageDir, "/", projectFolder, "/", contextHash, "/", filename)
     print(paste0("Will read from: ", dataFile), stderr())
     #read.table(dataFile, sep="\t", header=expectHeader)
     read.csv(dataFile, sep = "\t", as.is=TRUE, na.strings=(list("null")))
   }
   else {
+    # this style currently allows only one data file in the 'dataUrl' query param
     fetchUrl = get("dataUrl", query)
     validate(
         need(fetchUrl != "", "Must pass a dataUrl query paramenter")

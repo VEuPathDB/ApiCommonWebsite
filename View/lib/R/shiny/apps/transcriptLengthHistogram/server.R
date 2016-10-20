@@ -6,7 +6,7 @@ source("config.R")
 shinyServer(function(input, output, session) {
 
   dataSet <- reactive(
-    getWdkDataset(session, fetchStyle, FALSE, dataStorageDir)
+    getWdkDataset(session, fetchStyle, 'data.tab', FALSE, dataStorageDir)
   )
 
   # draw the histogram with the specified number of bins
