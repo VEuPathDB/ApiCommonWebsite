@@ -14,10 +14,9 @@ public class GeneIdValidator {
 
     public GeneIdValidator(WdkModelBean wdkModelBean) {
         try {
-            // WdkModel wdkModel = WdkModel.construct(projectId, gusHome);
-            dataSource = wdkModelBean.getModel().getAppDb().getDataSource();
+          dataSource = wdkModelBean.getModel().getAppDb().getDataSource();
         } catch (Exception e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
     }
 
