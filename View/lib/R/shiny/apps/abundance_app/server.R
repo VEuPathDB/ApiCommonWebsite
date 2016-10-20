@@ -1,6 +1,7 @@
 library(shiny)
 library(ggplot2)
 source("functions.R")
+source("config.R")
 source("../../lib/wdkDataset.R")
 
 shinyServer(function(input, output, session) {
