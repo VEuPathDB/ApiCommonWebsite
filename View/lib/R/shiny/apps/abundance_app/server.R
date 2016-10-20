@@ -3,7 +3,7 @@ library(ggplot2)
 source("functions.R")
 source("../../lib/wdkDataset.R")
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   # any time the user change the taxonomic level the data is reactively reloaded
   data <- reactive({
