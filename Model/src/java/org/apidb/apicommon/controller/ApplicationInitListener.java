@@ -11,7 +11,6 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 /**
  * A class that is initialized at the start of the web application. This makes
  * sure global resources are available to all the contexts that need them
- * 
  */
 public class ApplicationInitListener implements ServletContextListener {
 
@@ -30,4 +29,3 @@ public class ApplicationInitListener implements ServletContextListener {
     WdkInitializer.terminateWdk(context);
   }
 }
-

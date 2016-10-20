@@ -25,9 +25,7 @@ public class TestGus4UnknownFix {
 
   @Test
   public void testFilterFix() throws Exception {
-    WdkModel model = null;
-    try {
-      model = WdkModel.construct(PROJECT_ID, GusHome.getGusHome());
+    try (WdkModel model = WdkModel.construct(PROJECT_ID, GusHome.getGusHome())) {
       for (int i = 0; i < TEST_CASES.length; i++) {
         StepData step = getStep(i);
         Gus4StepTableMigrator plugin = new Gus4StepTableMigrator();
@@ -40,9 +38,6 @@ public class TestGus4UnknownFix {
         System.out.println("Old value: " + new JSONObject(result.getRow().getOrigParamFiltersString()).toString(2));
         System.out.println("New value: " + result.getRow().getParamFilters().toString(2));
       }
-    }
-    finally {
-      if (model != null) model.releaseResources();
     }
   }
 
