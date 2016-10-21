@@ -11,7 +11,7 @@ shinyServer(function(input, output, session) {
 
      dat <-
       read.csv(
-        getWdkDatasetFile(session, 'TaxaRelativeAbundance.tab', FALSE, dataStorageDir),
+        getWdkDatasetFile('TaxaRelativeAbundance.tab', session, FALSE, dataStorageDir),
         sep = "\t",
         check.names = FALSE
      )
