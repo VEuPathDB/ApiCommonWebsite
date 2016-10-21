@@ -9,15 +9,12 @@ shinyServer(function(input, output, session) {
   # any time the user change the taxonomic level the data is reactively reloaded
   data <- reactive({
 
-    dat <- getWdkDataset(session, fetchStyle, 'TaxaRelativeAbundance.tab', FALSE, dataStorageDir)
-
-    # Revert to hard-coded data file if necessary
-    # dat <-
-    #  read.csv(
-    #    "MicrobiomeSampleByMetadata_TaxaRelativeAbundance.txt",
-    #    sep = "\t",
-    #    check.names = FALSE
-    # )
+     dat <-
+      read.csv(
+        getWdkDatasetFile(session, 'TaxaRelativeAbundance.tab', FALSE, dataStorageDir),
+        sep = "\t",
+        check.names = FALSE
+     )
 
     taxa.level <- input$taxa.level
     cols <-  c(3:taxa.level)
