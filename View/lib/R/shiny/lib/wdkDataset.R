@@ -33,3 +33,19 @@ getWdkDataset <- function(session, fetchStyle, filename, expectHeader, dataStora
     read.table(fetchUrl, sep="\t", header=expectHeader)
   }
 }
+
+getWdkDatasetFile <- function(session, filename, expectHeader, dataStorageDir="") {
+
+  query = parseQueryString(session$clientData$url_search)
+
+  contextHash = get("contextHash", query)
+  projectFolder <- get("projectFolder", query)
+  validate(
+    need(contextHash != "", "Must pass a contextHash query parameter"),
+    need(projectFolder != "", "Must pass the data storage directory as a query parameter"),
+    need(grepl("..",contextHash), "Hash must be sent alone")
+  )
+  dataFile <- paste0(dataStorageDir, "/", projectFolder, "/", contextHash, "/", filename)
+  print(paste0("Will read from: ", dataFile), stderr())
+  dataFile
+}
