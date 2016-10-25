@@ -19,7 +19,7 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.report.StandardConfig;
 import org.gusdb.wdk.model.report.StandardConfig.StreamStrategy;
-import org.gusdb.wdk.service.request.DataValidationException;
+import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.service.AnswerService;
 import org.json.JSONException;
 import org.json.JSONObject;
