@@ -1,5 +1,5 @@
 {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "organism" : "Plasmodium falciparum 3D7",
