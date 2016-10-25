@@ -20,12 +20,12 @@ public class TranscriptTableReporter extends TableTabularReporter {
   } 
 
   @Override
-  public void configure(Map<String, String> config) {
+  public TranscriptTableReporter configure(Map<String, String> config) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void configure(JSONObject config) throws WdkUserException {
+  public TranscriptTableReporter configure(JSONObject config) throws WdkUserException {
     String stepId = config.getString(PROP_STEP_ID);
     if (!FormatUtil.isInteger(stepId)) {
       throw new WdkUserException("Property '" + PROP_STEP_ID + "' must be an integer.");
@@ -34,6 +34,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
     _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer, Integer.parseInt(stepId));
     // now that base answer is a Gene answer, check and assign selected table field name
     super.configure(config);
+    return this;
   }
 
   @Override

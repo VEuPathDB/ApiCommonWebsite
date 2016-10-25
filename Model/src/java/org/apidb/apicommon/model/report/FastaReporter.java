@@ -39,12 +39,13 @@ public abstract class FastaReporter extends AbstractReporter {
   private JSONObject _configuration;
 
   @Override
-  public void configure(JSONObject configuration) {
+  public FastaReporter configure(JSONObject configuration) {
     _configuration = configuration;
+    return this;
   }
 
   @Override
-  public void configure(Map<String, String> config) throws WdkUserException, WdkModelException {
+  public FastaReporter configure(Map<String, String> config) throws WdkUserException, WdkModelException {
     throw new UnsupportedOperationException("This reporter must be configured with JSON.");
   }
 
