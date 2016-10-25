@@ -13,7 +13,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -47,7 +47,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -81,7 +81,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -115,7 +115,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -149,7 +149,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -183,7 +183,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -217,7 +217,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -251,7 +251,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -285,7 +285,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "params": [
       {
@@ -327,7 +327,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": [
       {
@@ -361,7 +361,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "num_exons_gte": "38",
@@ -386,7 +386,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "num_exons_gte": "38",
@@ -412,7 +412,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "gene",
@@ -439,7 +439,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -466,7 +466,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -493,7 +493,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -520,7 +520,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -547,7 +547,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -574,7 +574,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -601,7 +601,7 @@ Request Body: {
     },
     "format": "tabular"
   },
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -615,7 +615,7 @@ Request Body: {
 }
 [16/Mar/2016:16:13:41] 128.91.84.207 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "GeneQuestions.GenesByExonCount",
     "parameters": {
       "scope": "Gene",
@@ -675,7 +675,7 @@ Query Parameters: {
 }
 [17/Mar/2016:16:05:11] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -687,7 +687,7 @@ Request Body: {
 }
 [17/Mar/2016:16:06:23] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -703,7 +703,7 @@ Request Body: {
 }
 [17/Mar/2016:16:07:36] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -719,7 +719,7 @@ Request Body: {
 }
 [17/Mar/2016:16:32:02] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -731,7 +731,7 @@ Request Body: {
 }
 [17/Mar/2016:16:33:11] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -747,7 +747,7 @@ Request Body: {
 }
 [17/Mar/2016:16:33:26] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -763,7 +763,7 @@ Request Body: {
 }
 [17/Mar/2016:16:34:03] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -779,7 +779,7 @@ Request Body: {
 }
 [17/Mar/2016:20:37:16] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -795,7 +795,7 @@ Request Body: {
 }
 [17/Mar/2016:20:39:11] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -812,7 +812,7 @@ Request Body: {
 [18/Mar/2016:07:30:53] 108.16.60.184 - HTTP Request: GET /question
 [18/Mar/2016:08:05:10] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -901,7 +901,7 @@ Request Body: {
 }
 [18/Mar/2016:09:00:29] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -917,7 +917,7 @@ Request Body: {
 }
 [18/Mar/2016:09:13:01] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -933,7 +933,7 @@ Request Body: {
 }
 [18/Mar/2016:09:27:19] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -949,7 +949,7 @@ Request Body: {
 }
 [18/Mar/2016:14:24:45] 108.16.60.184 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -975,7 +975,7 @@ Query Parameters: {
 Query Parameters: {"expandQuestions": ["true"]}
 [23/Mar/2016:19:56:26] 128.91.49.190 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -993,7 +993,7 @@ Request Body: {
 [23/Mar/2016:21:18:31] 128.91.49.190 - HTTP Request: POST /answer
 [23/Mar/2016:21:21:30] 128.91.49.190 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []
@@ -1009,7 +1009,7 @@ Request Body: {
 }
 [23/Mar/2016:21:24:28] 128.91.49.190 - HTTP Request: POST /answer
 Request Body: {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {"isolation_source": "blood"},
     "filters": []

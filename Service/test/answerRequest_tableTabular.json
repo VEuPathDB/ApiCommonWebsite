@@ -1,5 +1,5 @@
 {
-  "questionDefinition": {
+  "answerSpec": {
     "questionName": "IsolateQuestions.IsolateByIsolationSource",
     "parameters": {
       "isolation_source": "blood"
