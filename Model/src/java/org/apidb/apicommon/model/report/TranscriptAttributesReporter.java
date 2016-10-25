@@ -26,15 +26,16 @@ public class TranscriptAttributesReporter extends AttributesTabularReporter {
   } 
 
   @Override
-  public void configure(Map<String, String> config) {
+  public TranscriptAttributesReporter configure(Map<String, String> config) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void configure(JSONObject config) throws WdkUserException {
+  public TranscriptAttributesReporter configure(JSONObject config) throws WdkUserException {
     super.configure(config);
     try {
       applyFilter = config.getBoolean(PROP_APPLY_FILTER);
+      return this;
     }
     catch (JSONException e) {
       throw new WdkUserException("Missing required reporter property (boolean): " + PROP_APPLY_FILTER); 
