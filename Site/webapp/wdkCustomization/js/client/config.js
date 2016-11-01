@@ -8,7 +8,8 @@ export let {
   buildNumber,    // comes from model xml
   releaseDate,    // comes from model xml
   facebookId,     // comes from config
-  twitterId       // comes from config
+  twitterId,      // comes from config
+  youtubeId       // comes from config
 } = window.__WDK_CONFIG__;
 
 // __EUPATHDB_ANNOUNCEMENTS__ is defined in index.jsp
