@@ -1,4 +1,4 @@
-// __WDK_CONFIG__ is defined in index.jsp
+// __EUPATHDB_CONFIG__ is defined in index.jsp
 export let {
   rootElement,    // comes from pageFrame
   rootUrl,        // comes from deployment descriptor
@@ -10,7 +10,7 @@ export let {
   facebookId,     // comes from config
   twitterId,      // comes from config
   youtubeId       // comes from config
-} = window.__WDK_CONFIG__;
+} = window.__EUPATHDB_CONFIG__;
 
 // __EUPATHDB_ANNOUNCEMENTS__ is defined in index.jsp
 export let announcements = window.__EUPATHDB_ANNOUNCEMENTS__;

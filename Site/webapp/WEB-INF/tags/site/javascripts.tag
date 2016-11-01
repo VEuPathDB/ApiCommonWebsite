@@ -17,7 +17,7 @@
 
   <script>
     // used by apidb to initialize wdk
-    window.__WDK_CONFIG__ = {
+    window.__EUPATHDB_CONFIG__ = {
       projectId: "${applicationScope.wdkModel.projectId}",
       webAppUrl: "${pageContext.request.contextPath}",
       endpoint: "${pageContext.request.contextPath}/service"
