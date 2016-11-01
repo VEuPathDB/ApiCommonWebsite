@@ -9,11 +9,9 @@ export let {
   releaseDate,    // comes from model xml
   facebookId,     // comes from config
   twitterId,      // comes from config
-  youtubeId       // comes from config
+  youtubeId,      // comes from config
+  announcements
 } = window.__EUPATHDB_CONFIG__;
-
-// __EUPATHDB_ANNOUNCEMENTS__ is defined in index.jsp
-export let announcements = window.__EUPATHDB_ANNOUNCEMENTS__;
 
 // Question name and search param to use for quick search boxes in header
 // TODO Put these in config
