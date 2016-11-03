@@ -64,7 +64,7 @@
              <li>Galaxy Workspace - <br> EuPathDB sites now include a Galaxy-based workspace for large-scale data analyses. 
              Developed in partnership with <a href="https://www.globus.org/genomics">Globus Genomics</a>, 
              workspaces offer a private analysis platform with published workflows and pre-loaded annotated genomes. 
-             The workspace is accessed through the “Analyze My Experiment” tab on the home page of any EuPathDB resource 
+             The workspace is accessed through the "Analyze My Experiment" tab on the home page of any EuPathDB resource 
              and can be used to upload your own data, compose and run custom workflows, retrieve results and share 
              workflows and data analyses with colleagues.
              </li><br>
@@ -110,7 +110,7 @@
              <th>Genes with phenotypes</th>
            </tr>
            <tr>
-             <td> <i>Aspergillus funigatus</i> Af293</td>
+             <td> <i>Aspergillus fumigatus</i> Af293</td>
              <td> 599</td>
              <td>271</td>
            </tr>
