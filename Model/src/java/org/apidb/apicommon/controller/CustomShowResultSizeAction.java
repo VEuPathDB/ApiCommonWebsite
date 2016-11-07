@@ -35,20 +35,16 @@ import org.gusdb.wdk.model.user.Step;
 public class CustomShowResultSizeAction extends ShowResultSizeAction {
 
   // Query set where custom query lives
-  private static final String CUSTOM_FILTER_SIZE_QUERY_SET = "TranscriptAttributes";
+  private static final String CUSTOM_FILTER_SIZE_QUERY_SET = "GeneSummaries";
 
   // Custom query name
-  private static final String CUSTOM_FILTER_SIZE_QUERY_NAME = "transcriptFilterSizes";
+  private static final String CUSTOM_FILTER_SIZE_QUERY_NAME = "bulkAnswerFilterCounts";
 
   // column of custom query result that contains filter name (or species param to filter)
   private static final String FILTER_NAME_COLUMN = "filter_name";
 
   // column of custom query result that contains result size for that filter
   private static final String FILTER_SIZE_COLUMN = "size";
-
-  // param name of answer filter instance, the value of which may be returned by the
-  //   custom query in the first column instead of filter name
-  private static final String ANSWER_FILTER_PARAM_NAME = "species";
 
   public static class CustomAllSizesFetcher extends AllSizesFetcher {
     
@@ -83,12 +79,13 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     // build list of actual results from query results and get list of filters not provided by query
     for (AnswerFilterInstance filterInstance : answerValue.getQuestion().getRecordClass().getFilterInstances()) {
       String filterName = filterInstance.getName();
+      Map<String, Object> answerFilterParams = filterInstance.getParamValueMap();
       if (queryResults.containsKey(filterName)) {
         finalResults.put(filterName, queryResults.get(filterName));
       }
       // hack since query results may contain a count value keyed on filter param value instead of name
-      else if (queryResults.containsKey(filterInstance.getParamValueMap().get(ANSWER_FILTER_PARAM_NAME))) {
-        finalResults.put(filterName, queryResults.get(filterInstance.getParamValueMap().get(ANSWER_FILTER_PARAM_NAME)));
+      else if (!answerFilterParams.isEmpty() && queryResults.containsKey(answerFilterParams.keySet().iterator().next())) {
+        finalResults.put(filterName, queryResults.get(answerFilterParams.keySet().iterator().next()));
       }
       else {
         // custom size query did not return result for this filter; add to list of remaining filters
