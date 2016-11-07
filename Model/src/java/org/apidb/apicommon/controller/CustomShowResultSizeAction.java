@@ -27,12 +27,27 @@ import org.gusdb.wdk.model.query.Query;
 import org.gusdb.wdk.model.query.QueryInstance;
 import org.gusdb.wdk.model.user.Step;
 
+/**
+ * Loads filter result sizes using a custom query defined in the model
+ * 
+ * @author rdoherty
+ */
 public class CustomShowResultSizeAction extends ShowResultSizeAction {
 
+  // Query set where custom query lives
   private static final String CUSTOM_FILTER_SIZE_QUERY_SET = "TranscriptAttributes";
+
+  // Custom query name
   private static final String CUSTOM_FILTER_SIZE_QUERY_NAME = "transcriptFilterSizes";
+
+  // column of custom query result that contains filter name (or species param to filter)
   private static final String FILTER_NAME_COLUMN = "filter_name";
+
+  // column of custom query result that contains result size for that filter
   private static final String FILTER_SIZE_COLUMN = "size";
+
+  // param name of answer filter instance, the value of which may be returned by the
+  //   custom query in the first column instead of filter name
   private static final String ANSWER_FILTER_PARAM_NAME = "species";
 
   public static class CustomAllSizesFetcher extends AllSizesFetcher {
