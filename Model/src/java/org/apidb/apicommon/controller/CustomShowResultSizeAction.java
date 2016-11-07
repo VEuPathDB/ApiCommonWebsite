@@ -8,7 +8,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.gusdb.fgputil.FormatUtil;
+import org.gusdb.fgputil.FormatUtil.Style;
 import org.gusdb.fgputil.cache.UnfetchableItemException;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
@@ -34,6 +37,8 @@ import org.gusdb.wdk.model.user.Step;
  */
 public class CustomShowResultSizeAction extends ShowResultSizeAction {
 
+  private static final Logger LOG = Logger.getLogger(CustomShowResultSizeAction.class);
+
   // Query set where custom query lives
   private static final String CUSTOM_FILTER_SIZE_QUERY_SET = "GeneSummaries";
 
@@ -58,7 +63,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
       try {
         Step step = _wdkModel.getStepFactory().getStepById(stepId);
         AnswerValue answerValue = step.getAnswerValue(false);
-        if (TranscriptUtil.isTranscriptQuestion(answerValue.getQuestion())) {
+        if (!TranscriptUtil.isTranscriptQuestion(answerValue.getQuestion())) {
           return super.updateItem(stepId, previousVersion);
         }
         previousVersion.sizeMap = getAllFilterDisplaySizes(answerValue, _wdkModel);
@@ -94,6 +99,8 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     }
     // get filter sizes not found by custom query in the traditional way (each costs us a trip to the DB)
     finalResults.putAll(answerValue.getFilterDisplaySizes(unfoundFilters));
+    LOG.info("Generated " + finalResults.size() + " from bulk filter size query and individual queries: " +
+        FormatUtil.prettyPrint(finalResults, Style.MULTI_LINE));
     return finalResults;
   }
 
@@ -103,6 +110,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     QueryInstance<?> queryInstance = query.makeInstance(answerValue.getUser(),
         new LinkedHashMap<String, String>(), true, 0, new LinkedHashMap<String, String>());
     String sql = queryInstance.getSql().replace(Utilities.MACRO_ID_SQL, answerValue.getIdSql());
+    LOG.info("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();
     new SQLRunner(wdkModel.getAppDb().getDataSource(), sql).executeQuery(new ResultSetHandler() {
       @Override public void handleResult(ResultSet rs) throws SQLException {
@@ -111,6 +119,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
         }
       }
     });
+    LOG.info("Loaded " + querySizes.size() + " from bulk filter size query: " + FormatUtil.prettyPrint(querySizes, Style.MULTI_LINE));
     return querySizes;
   }
 
@@ -118,6 +127,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   @Override
   protected String getFilterResultSizes(int stepId)
       throws WdkModelException, WdkUserException {
+    LOG.info("Loading result sizes for step " + stepId);
     WdkModel wdkModel = ActionUtility.getWdkModel(getServlet()).getModel();
     Map<String, Integer> sizes = CacheMgr.get().getFilterSizeCache()
         .getFilterSizes(stepId, new CustomAllSizesFetcher(wdkModel));
