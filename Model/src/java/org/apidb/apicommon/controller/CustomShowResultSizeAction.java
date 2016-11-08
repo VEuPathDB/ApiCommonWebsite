@@ -109,7 +109,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, answerValue.getIdSql());
     LOG.debug("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();
-    new SQLRunner(wdkModel.getAppDb().getDataSource(), sql).executeQuery(new ResultSetHandler() {
+    new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, CUSTOM_FILTER_SIZE_QUERY_NAME).executeQuery(new ResultSetHandler() {
       @Override public void handleResult(ResultSet rs) throws SQLException {
         while (rs.next()) {
           querySizes.put(rs.getString(FILTER_NAME_COLUMN), rs.getInt(FILTER_SIZE_COLUMN));
