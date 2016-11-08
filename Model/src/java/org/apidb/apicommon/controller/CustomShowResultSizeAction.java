@@ -49,7 +49,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   private static final String FILTER_NAME_COLUMN = "filter_name";
 
   // column of custom query result that contains result size for that filter
-  private static final String FILTER_SIZE_COLUMN = "size";
+  private static final String FILTER_SIZE_COLUMN = "count";
 
   public static class CustomAllSizesFetcher extends AllSizesFetcher {
     
