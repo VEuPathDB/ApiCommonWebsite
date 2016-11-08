@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +26,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerFilterInstance;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.query.Query;
-import org.gusdb.wdk.model.query.QueryInstance;
+import org.gusdb.wdk.model.query.SqlQuery;
 import org.gusdb.wdk.model.user.Step;
 
 /**
@@ -107,9 +106,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   private static Map<String, Integer> getSizesFromCustomQuery(AnswerValue answerValue, WdkModel wdkModel)
       throws WdkModelException, WdkUserException {
     Query query = wdkModel.getQuerySet(CUSTOM_FILTER_SIZE_QUERY_SET).getQuery(CUSTOM_FILTER_SIZE_QUERY_NAME);
-    QueryInstance<?> queryInstance = query.makeInstance(answerValue.getUser(),
-        new LinkedHashMap<String, String>(), true, 0, new LinkedHashMap<String, String>());
-    String sql = queryInstance.getSql().replace(Utilities.MACRO_ID_SQL, answerValue.getIdSql());
+    String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, answerValue.getIdSql());
     LOG.info("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();
     new SQLRunner(wdkModel.getAppDb().getDataSource(), sql).executeQuery(new ResultSetHandler() {
