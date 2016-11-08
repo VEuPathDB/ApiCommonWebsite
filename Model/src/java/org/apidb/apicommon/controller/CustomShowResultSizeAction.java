@@ -98,7 +98,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     }
     // get filter sizes not found by custom query in the traditional way (each costs us a trip to the DB)
     finalResults.putAll(answerValue.getFilterDisplaySizes(unfoundFilters));
-    LOG.info("Generated " + finalResults.size() + " from bulk filter size query and individual queries: " +
+    LOG.debug("Generated " + finalResults.size() + " from bulk filter size query and individual queries: " +
         FormatUtil.prettyPrint(finalResults, Style.MULTI_LINE));
     return finalResults;
   }
@@ -107,7 +107,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
       throws WdkModelException, WdkUserException {
     Query query = wdkModel.getQuerySet(CUSTOM_FILTER_SIZE_QUERY_SET).getQuery(CUSTOM_FILTER_SIZE_QUERY_NAME);
     String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, answerValue.getIdSql());
-    LOG.info("Running query: " + query.getFullName() + " with SQL: " + sql);
+    LOG.debug("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();
     new SQLRunner(wdkModel.getAppDb().getDataSource(), sql).executeQuery(new ResultSetHandler() {
       @Override public void handleResult(ResultSet rs) throws SQLException {
@@ -116,7 +116,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
         }
       }
     });
-    LOG.info("Loaded " + querySizes.size() + " from bulk filter size query: " + FormatUtil.prettyPrint(querySizes, Style.MULTI_LINE));
+    LOG.debug("Loaded " + querySizes.size() + " from bulk filter size query: " + FormatUtil.prettyPrint(querySizes, Style.MULTI_LINE));
     return querySizes;
   }
 
@@ -124,7 +124,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   @Override
   protected String getFilterResultSizes(int stepId)
       throws WdkModelException, WdkUserException {
-    LOG.info("Loading result sizes for step " + stepId);
+    LOG.debug("Loading result sizes for step " + stepId);
     WdkModel wdkModel = ActionUtility.getWdkModel(getServlet()).getModel();
     Map<String, Integer> sizes = CacheMgr.get().getFilterSizeCache()
         .getFilterSizes(stepId, new CustomAllSizesFetcher(wdkModel));
