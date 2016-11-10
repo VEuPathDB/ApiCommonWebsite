@@ -92,7 +92,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     LOG.info(sql);
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
-    new SQLRunner(ds, sql).executeQuery(handler);
+    new SQLRunner(ds, sql, "count-filtered-pathways").executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
@@ -145,7 +145,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "from  apidbtuning.transcriptPathway gp, (" + idSql + ") r" + NL +
       "WHERE  gp.gene_source_id = r.gene_source_id";
 
-    new SQLRunner(ds, sql).executeQuery(handler);
+    new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
@@ -171,7 +171,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "from apidbtuning.transcriptPathway tp, (" + idSql + ") r" + NL +
       "where tp.gene_source_id = r.gene_source_id";
 
-    new SQLRunner(ds, sql).executeQuery(handler);
+    new SQLRunner(ds, sql, "select-pathway-sources").executeQuery(handler);
     List<Option> sources = new ArrayList<>();
 
     for (Map<String,Object> cols : handler.getResults()) {

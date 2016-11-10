@@ -131,7 +131,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
-    new SQLRunner(ds, sql).executeQuery(handler);
+    new SQLRunner(ds, sql, "count-filtered-go-terms").executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
@@ -187,7 +187,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.gene_source_id = r.gene_source_id";
 
-    new SQLRunner(ds, sql).executeQuery(handler);
+    new SQLRunner(ds, sql, "count-go-genes").executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
@@ -214,7 +214,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String sql = "select distinct gts.displayable_source" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.gene_source_id = r.gene_source_id";
-    new SQLRunner(ds, sql).executeQuery(handler);
+    new SQLRunner(ds, sql, "select-go-term-sources").executeQuery(handler);
     List<Option> sources = new ArrayList<>();
 
     for (Map<String,Object> cols : handler.getResults()) {
@@ -226,7 +226,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     sql = "select distinct gts.ontology" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.gene_source_id = r.gene_source_id and gts.ontology is not null";
-    new SQLRunner(ds, sql).executeQuery(handler);
+    new SQLRunner(ds, sql, "select-go-term-ontologies").executeQuery(handler);
     List<Option> ontologies = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
       ontologies.add(new Option(cols.get("ONTOLOGY").toString()));
