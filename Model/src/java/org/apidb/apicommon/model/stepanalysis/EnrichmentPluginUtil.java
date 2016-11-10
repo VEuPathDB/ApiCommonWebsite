@@ -133,7 +133,7 @@ public class EnrichmentPluginUtil {
         "where ga.source_id = r.gene_source_id " +
         "order by ga.organism asc";
     DataSource ds = wdkModel.getAppDb().getDataSource();
-    new SQLRunner(ds, sql).executeQuery(new ResultSetHandler() {
+    new SQLRunner(ds, sql, "select-distinct-orgs-in-result").executeQuery(new ResultSetHandler() {
       @Override
       public void handleResult(ResultSet rs) throws SQLException {
         while (rs.next()) {
