@@ -63,22 +63,40 @@ sub getDataSql {
   my ($self, $taxonId, $geneResultSql) = @_;
 
 return "
-select distinct bgd.pathway_source_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.pathway_name
+select distinct bgd.pathway_source_id
+, bgdcnt
+, resultcnt 
+, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd
+, bgd.pathway_name
 from
- (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id,  count (distinct tp.gene_source_id) as bgdcnt, tp.pathway_name
-        from   apidbtuning.transcriptPathway tp, ApidbTuning.GeneAttributes ga
+    (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
+        , count (distinct tp.gene_source_id) as bgdcnt
+        , tp.pathway_name
+        from   apidbtuning.transcriptPathway tp 
+        , ApidbTuning.GeneAttributes ga
+        , apidbtuning.pathwaycompounds pc
+        , apidbtuning.pathwayreactions pr
         where  ga.taxon_id = $taxonId
-         and   tp.gene_source_id = ga.source_id
-         and tp.exact_match = 1
-         and tp.pathway_source in ($self->{source})
+        and   tp.gene_source_id = ga.source_id
+        and pc.pathway_id = tp.pathway_id
+        and pr.reaction_id = pc.reaction_id
+        and pr.ext_db_name = pc.ext_db_name
+        and pr.enzyme = tp.ec_number
+        and tp.pathway_source in ($self->{source})
         group by tp.pathway_source_id, tp.pathway_name, tp.pathway_source
    ) bgd,
-   (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id,  count (distinct tp.gene_source_id) as resultcnt
-        from   ApidbTuning.TranscriptPathway tp,
-               ($geneResultSql) r
+   (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
+        ,  count (distinct tp.gene_source_id) as resultcnt
+        from   ApidbTuning.TranscriptPathway tp
+        , ($geneResultSql) r
+        , apidbtuning.pathwaycompounds pc
+        , apidbtuning.pathwayreactions pr
         where  tp.gene_source_id = r.source_id
-          and tp.exact_match = 1
-          and tp.pathway_source in ($self->{source})
+        and tp.pathway_source in ($self->{source})
+        and pc.pathway_id = tp.pathway_id
+        and pr.reaction_id = pc.reaction_id
+        and pr.ext_db_name = pc.ext_db_name
+        and pr.enzyme = tp.ec_number
         group by tp.pathway_source_id, tp.pathway_source
  ) rslt
 where bgd.pathway_source_id = rslt.pathway_source_id
