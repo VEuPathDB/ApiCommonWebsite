@@ -78,18 +78,20 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   private static Map<String, Integer> getAllFilterDisplaySizes(AnswerValue answerValue, WdkModel wdkModel)
       throws WdkModelException, WdkUserException {
     Map<String, Integer> queryResults = getSizesFromCustomQuery(answerValue, wdkModel);
+    LOG.debug("Bulk query returned: " + FormatUtil.prettyPrint(queryResults, Style.MULTI_LINE));
     Map<String, Integer> finalResults = new HashMap<>();
     List<String> unfoundFilters = new ArrayList<>();
     // build list of actual results from query results and get list of filters not provided by query
     for (AnswerFilterInstance filterInstance : answerValue.getQuestion().getRecordClass().getFilterInstances()) {
       String filterName = filterInstance.getName();
       Map<String, Object> answerFilterParams = filterInstance.getParamValueMap();
+      Object firstParamValue = answerFilterParams.isEmpty() ? null : answerFilterParams.values().iterator().next();
       if (queryResults.containsKey(filterName)) {
         finalResults.put(filterName, queryResults.get(filterName));
       }
       // hack since query results may contain a count value keyed on filter param value instead of name
-      else if (!answerFilterParams.isEmpty() && queryResults.containsKey(answerFilterParams.keySet().iterator().next())) {
-        finalResults.put(filterName, queryResults.get(answerFilterParams.keySet().iterator().next()));
+      else if (firstParamValue != null && queryResults.containsKey(firstParamValue)) {
+        finalResults.put(filterName, queryResults.get(firstParamValue));
       }
       else {
         // custom size query did not return result for this filter; add to list of remaining filters
