@@ -4272,7 +4272,7 @@ By providing access to TriTrypDB 1.1 prior to its official release, we hope to o
        <attribute name="item">
           
          <![CDATA[
-Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <b><a href="http://tritrypdb.org/tritrypdbshowSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
+Annotation of the Kinetoplastida is ramping up again as part of the collaborative efforts of EuPathDB and GeneDB.  Annotations are being carried out at the Welcome Trust Sanger Center, the Seattle Biomedical Research Institute and the University of Georgia. <b><a href="http://tritrypdb.org/tritrypdb/showSummary.do?questionFullName=GeneQuestions.GenesWithUpdatedAnnotation">Click here</a></b> to see the list of genes that have been re-annotated since December 1, 2008 when this current build of TriTrypDB was started.
           ]]>
        </attribute>
     </record>

@@ -28,7 +28,7 @@ sequences provided by community researchers . The database includes supplemental
        <attribute name="tag">citingproviders</attribute>
        <attribute name="text">
      <![CDATA[
-Some data in HostDB is provided by independent researchers.  For a list of the data integrated into HostDB and the related publications see <a href="getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
+Some data in HostDB is provided by independent researchers.  For a list of the data integrated into HostDB and the related publications see <a href="@LEGACY_WEBAPP_BASE_URL@/getDataset.do?display=detail" class="blue"> Data Sources</a>.  Please cite the authors/providers when you use their data. 
     ]]>
        </attribute>
    </record>
