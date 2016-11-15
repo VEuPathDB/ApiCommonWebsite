@@ -20,8 +20,8 @@ shinyServer(function(input, output, session) {
 
       #coerce variables to required type:
       cv$VisitType <- as.factor(cv$VisitType)
-      cv$AsexualParasitesPresent <- as.factor(cv$AsexualParasitesPresent)
-      cv$MalariaDiagnosis <- as.factor(cv$MalariaDiagnosis)
+      cv$AsexualParasitesPresent <- as.factor(cv$AsexualParasitesPresentmicroscopy)
+      cv$MalariaDiagnosis <- as.factor(cv$MalariaDiagnosisAndParasiteStatus)
       cv$SubcountyInUganda <- as.factor(cv$SubcountyInUganda)
       cv$AsexualParasiteDensity <- as.factor(cv$AsexualParasiteDensity )
       cv$Febrile <- as.factor(cv$Febrile)
