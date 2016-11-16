@@ -7,16 +7,22 @@ use ApiCommonWebsite::View::CgiApp;
 
 use CGI::Session;
 use Bio::Graphics::Browser2::PadAlignment;
+use Bio::SeqIO;
+use Bio::Seq;
 
 sub run {
   my ($self, $cgi) = @_;
 
   my $dbh = $self->getQueryHandle($cgi);
+  my $type  = $cgi->param('type');
 
-  print $cgi->header('text/html');
-
+  if ($type eq 'fasta'){
+    print $cgi->header('text/plain');
+  } else {
+    print $cgi->header('text/html');
+  }
   $self->processParams($cgi, $dbh);
-  $self->handleIsolates($dbh, $cgi);
+  $self->handleIsolates($dbh, $cgi, $type);
 
   exit();
 }
@@ -38,11 +44,10 @@ sub processParams {
 }
 
 sub handleIsolates {
-  my ($self, $dbh, $cgi) = @_;
+  my ($self, $dbh, $cgi, $type) = @_;
 
   my $ids = $self->{ids};
 
-  my $type  = $cgi->param('type');
   my $start = $cgi->param('start');
   my $end   = $cgi->param('end');
   my $sid   = $cgi->param('sid');
@@ -66,37 +71,61 @@ FROM   dots.nasequence nas
 WHERE  nas.source_id in ($ids) 
 EOSQL
 
-  my @sequences;
+
   my $sth = $dbh->prepare($sql);
   $sth->execute();
-  while(my ($id, $seq) = $sth->fetchrow_array()) {
-    $id =~ s/^$sid\.// unless ($id eq $sid);
-    push @sequences, ($id => $seq);
+
+  if ($type eq 'fasta'){
+    my %seqH;
+    while(my ($id, $seq) = $sth->fetchrow_array()) {
+      $id =~ s/^$sid\.// unless ($id eq $sid);
+      $seqH{$id}= $seq;
+    }
+
+    my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+
+    foreach my $id (keys %seqH){
+      my $sequence = $seqH{$id};
+      $sequence =~ s/-//g;
+
+      my $fastaSeq = Bio::Seq->new( -seq => $sequence,
+                                    -display_id  => $id
+                                     );
+      $seqIO->write_seq($fastaSeq);
+    }
+    $seqIO->close();
   }
 
-  my @segments;
 
-  my $align = Bio::Graphics::Browser2::PadAlignment->new(\@sequences,\@segments);
-
-  my %origins = ();
   if ($type =~ /htsSNP/i){
+    my @sequences;
+    my %origins = ();
+
+    while(my ($id, $seq) = $sth->fetchrow_array()) {
+      $id =~ s/^$sid\.// unless ($id eq $sid);
+      push @sequences, ($id => $seq);
+    }
+
+    my @segments;
+    my $align = Bio::Graphics::Browser2::PadAlignment->new(\@sequences,\@segments);
+
      foreach my $id (split /,/, $ids) {
         $id =~ s/'//g;
         $id =~ s/^$sid\.// unless ($id eq $sid);
         $origins{$id} = $start;
      }
-  }
 
   print "<table align=center width=800>";
   print "<tr><td>";
   print "<pre>";
   print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
-                                                  show_similarities => 1, 
-                                                  show_matches      => 1})); 
+						  show_similarities => 1, 
+						  show_matches      => 1}));
 
   print "</pre>";
   print "</td></tr>";
   print "</table>";
+  }
 }
 
 1;
