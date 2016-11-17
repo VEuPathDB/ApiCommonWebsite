@@ -54,6 +54,7 @@ sub handleIsolates {
   my $sid   = $cgi->param('sid');
   my $project_id = $cgi->param('project_id');
   my $organism   = $cgi->param('organism');
+  my $macrodata  = $cgi->param('macrodata');
 
   $start =~ s/,//g;
   $end =~ s/,//g;
@@ -63,39 +64,44 @@ sub handleIsolates {
     $start = $start - 50;
   }
 
-  # FOR displaying metadata
-  my %data;
-  $pan_names =~ s/'(\w*)'/'$1 (Sequence Variation)'/g;
+  my $sql;
+  my $sth;
 
-  my $sql = <<EOSQL;
+  # FOR displaying metadata
+  if ($macrodata) {
+    my %data;
+    $pan_names =~ s/'(\w*)'/'$1 (Sequence Variation)'/g;
+
+    $sql = <<EOSQL;
 SELECT REPLACE(pan_name,' (Sequence Variation)',''), term, value
 FROM apidbtuning.pancharacteristicmetadata
 WHERE subtype = 'HTS_SNP'
 AND pan_name in ($pan_names)
 AND organism = '$organism'
 EOSQL
-  my $sth = $dbh->prepare($sql);
-  $sth->execute();
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
 
-  my ($tab,$newline)=("&nbsp;&nbsp;","<BR>");
-  if ($type eq 'fasta'){
-    ($tab,$newline)=("\t","\n");
+    my ($tab,$newline)=("&nbsp;&nbsp;","<BR>");
+    if ($type eq 'fasta'){
+      ($tab,$newline)=("\t","\n");
+    }
+
+    while(my ($node, $term, $value) = $sth->fetchrow_array()) {
+      $data{$node}->{$term} = $value;
+    }
+
+    print "### Metadata for the Strains: ### $tab $tab (Sequences are below)$newline";
+    foreach my $key (sort keys %data) {
+      print "#Strain=$key : ";
+      foreach my $ca (sort keys  ($data{$key})) {
+	print "$ca=". $data{$key}->{$ca} . "$tab" ;
+      }
+      print "$newline";
+    }
+
+    print "$newline$newline";
   }
-
-  while(my ($node, $term, $value) = $sth->fetchrow_array()) {
-    $data{$node}->{$term} = $value;
-    }
-
-  foreach my $key (sort keys %data) {
-    print "Strain=$key : ";
-    foreach my $ca (sort keys  ($data{$key})) {
-      print "$ca=". $data{$key}->{$ca} . "$tab" ;
-    }
-    print "$newline";
-    }
-
-  print "$newline$newline";
-
 
 
 
