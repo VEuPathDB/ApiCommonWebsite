@@ -47,11 +47,13 @@ sub handleIsolates {
   my ($self, $dbh, $cgi, $type) = @_;
 
   my $ids = $self->{ids};
+  my $pan_names = $ids;
 
   my $start = $cgi->param('start');
   my $end   = $cgi->param('end');
   my $sid   = $cgi->param('sid');
   my $project_id = $cgi->param('project_id');
+  my $organism   = $cgi->param('organism');
 
   $start =~ s/,//g;
   $end =~ s/,//g;
@@ -60,10 +62,47 @@ sub handleIsolates {
     $end   = $start + 50;
     $start = $start - 50;
   }
-  my $sql = "";
 
+  # FOR displaying metadata
+  my %data;
+  $pan_names =~ s/'(\w*)'/'$1 (Sequence Variation)'/g;
+
+  my $sql = <<EOSQL;
+SELECT REPLACE(pan_name,' (Sequence Variation)',''), term, value
+FROM apidbtuning.pancharacteristicmetadata
+WHERE subtype = 'HTS_SNP'
+AND pan_name in ($pan_names)
+AND organism = '$organism'
+EOSQL
+  my $sth = $dbh->prepare($sql);
+  $sth->execute();
+
+  my ($tab,$newline)=("&nbsp;&nbsp;","<BR>");
+  if ($type eq 'fasta'){
+    ($tab,$newline)=("\t","\n");
+  }
+
+  while(my ($node, $term, $value) = $sth->fetchrow_array()) {
+    $data{$node}->{$term} = $value;
+    }
+
+  foreach my $key (sort keys %data) {
+    print "Strain=$key : ";
+    foreach my $ca (sort keys  ($data{$key})) {
+      print "$ca=". $data{$key}->{$ca} . "$tab" ;
+    }
+    print "$newline";
+    }
+
+  print "$newline$newline";
+
+
+
+
+# FOR Alignment/Fasta
   $ids =~ s/'(\w)/'$sid\.$1/g;
   $ids .= ",'$sid'";   # always compare with reference isolate
+
   $sql = <<EOSQL;
 SELECT source_id, 
        substr(nas.sequence, $start,$end-$start+1) as sequence 
@@ -71,8 +110,7 @@ FROM   dots.nasequence nas
 WHERE  nas.source_id in ($ids) 
 EOSQL
 
-
-  my $sth = $dbh->prepare($sql);
+  $sth = $dbh->prepare($sql);
   $sth->execute();
 
   if ($type eq 'fasta'){
