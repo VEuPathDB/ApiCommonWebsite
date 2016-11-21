@@ -1,6 +1,8 @@
 USER DATASET SVC
 curl -G -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/119782143/user-dataset -d expandDetails=true 
 
+curl -G -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/119782143/user-dataset/888 
+
 curl -i -X PUT -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/119782143/user-dataset/555/share -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/userDatasetShare.json  
 
 curl -i -X PUT -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/user/119782143/user-dataset/555/meta -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/userDatasetMeta.json
