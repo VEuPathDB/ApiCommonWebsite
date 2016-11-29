@@ -32,8 +32,21 @@ sub setMainLegend {
 
 1;
 
-
+# for ToxoDB
 package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_3c48f52edb;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  my $legend = ['GT1 0 to 16 hr','ME49 0 to 16 hr','ME49 0 to 44 hr', 'RH 0 to 36 hr',
+		'VEG 0 to 16 hr', 'VEG 0 to 44 hr'];
+  $profile->setHasExtraLegend(1);
+  $profile->setLegendLabels($legend);
+  return $self;
+}
+1;
+
+
+# for HostDB
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_08fe07cd15;
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
   my $legend = ['GT1 0 to 16 hr','ME49 0 to 16 hr','ME49 0 to 44 hr', 'RH 0 to 36 hr',
