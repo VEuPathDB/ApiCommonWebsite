@@ -29,7 +29,7 @@ sub run {
                 dsp.build_number_introduced,
                 dsc.name,
                 dsc.email,
-                dsnt.name as dataset
+                dsnt.dataset_presenter_id as dataset
 from apidbtuning.datasetpresenter dsp, apidbtuning.datasetnametaxon dsnt, apidbtuning.datasetcontact dsc
 where dsp.dataset_presenter_id = dsc.dataset_presenter_id
 and dsp.dataset_presenter_id = dsnt.dataset_presenter_id 
@@ -110,8 +110,7 @@ foreach my $key (keys %$data) {
 
     print STDOUT $cgi->p("Your Data set(s) can be accessed here:");
 
-    my $link = "http://qa.${projectId}.org/a/getDataset.do?datasets=$datasetNames";
-
+    my $link = "http://qa.${projectId}.org/a/app/record/dataset/$datasetNames";
     print STDOUT $cgi->a( {href => $link}, $link);
 
     print STDOUT $cgi->p("username:  TODO <br /> password:  TODO");
