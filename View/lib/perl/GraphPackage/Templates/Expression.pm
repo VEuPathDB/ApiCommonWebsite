@@ -177,7 +177,7 @@ sub makeAndSetPlots {
     my @sortedPlotProfiles = sort {$a->{profileName}.$a->{profileType} cmp $b->{profileName}.$b->{profileType}} @plotProfiles;
 #print STDERR Dumper   \@sortedPlotProfiles;
     foreach my $p (@sortedPlotProfiles) {
-      if ($hasStdError->{ $p->{profileName} }) {
+      if ($hasStdError->{ $p->{profileName}} && !($key=~/percentile/)) {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
       } else {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}];
