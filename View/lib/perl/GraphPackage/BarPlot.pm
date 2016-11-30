@@ -37,6 +37,10 @@ sub setLas                      { $_[0]->{'_las'                             } =
 
 sub getLabelCex                 { $_[0]->{'_label_cex'                      }}
 sub setLabelCex                 { $_[0]->{'_label_cex'                      } = $_[1]}
+
+sub getSkipStdErr                 { $_[0]->{'_skip_std_err'                      }}
+sub setSkipStdErr                 { $_[0]->{'_skip_std_err'                      } = $_[1]}
+
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -46,6 +50,7 @@ sub new {
 
    $self->setSpaceBetweenBars(0.3);
   $self->setAxisPadding(1.1);
+  $self->setSkipStdErr(0);
    return $self;
 }
 
@@ -56,7 +61,7 @@ sub makeRPlotString {
   my $sampleLabels = $self->getSampleLabels();
   my $sampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'x.axis.label');
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
-
+  my $skipStdErr = $self->getSkipStdErr() ? 'TRUE' : 'FALSE';
 
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
@@ -181,7 +186,7 @@ stderr.df\$V1 = NULL;
 
 
 for(i in 1:length(profile.files)) {
-  skip.stderr = FALSE;
+  skip.stderr = $skipStdErr;
   profile.tmp = read.table(profile.files[i], header=T, sep=\"\\t\");
 
   if(!is.null(profile.tmp\$ELEMENT_ORDER)) {
@@ -455,6 +460,7 @@ sub new {
   if(defined($wantLogged) && $wantLogged eq '0') {
     $self->setAdjustProfile('profile.df = 2^(profile.df);stderr.df = 2^stderr.df;');
     $self->setYaxisLabel("RMA Value");
+    $self->setSkipStdErr(1);
   }
 
   $self->setDefaultYMax(4);
@@ -536,6 +542,7 @@ sub new {
     $self->setYaxisLabel('FPKM (log2)');
     $self->setIsLogged(1);
     $self->setDefaultYMax(4);
+    $self->setSkipStdErr(1);
   }
 
   return $self;
