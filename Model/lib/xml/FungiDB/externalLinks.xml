@@ -6,8 +6,12 @@
 <record>
 
   <table name="communityLinks">
+         <row>
+	          <attribute name="title"><![CDATA[Pathogen Host Interactions database]]></attribute>
+            <attribute name="url"><![CDATA[http://www.phi-base.org]]></attribute>
+        </row>
         <row>
-	    <attribute name="title"><![CDATA[The Hyphal Tip Blog]]></attribute>
+	          <attribute name="title"><![CDATA[The Hyphal Tip Blog]]></attribute>
             <attribute name="url"><![CDATA[http://fungalgenomes.org/blog]]></attribute>
         </row>
         <row>
