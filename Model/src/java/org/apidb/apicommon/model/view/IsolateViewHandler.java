@@ -50,12 +50,10 @@ public abstract class IsolateViewHandler implements SummaryViewHandler {
                     isolate = new Isolate(isolateId);
                     isolates.put(isolateId, isolate);
 
-                    int total = resultSet.getInt("total");
-                    isolate.setTotal(total);
-                    // String type = resultSet.getString("data_type");
-                    //isolate.setType(type);
-                    isolate.setLat(resultSet.getDouble("lat"));
-                    isolate.setLng(resultSet.getDouble("lng"));
+                    isolate.setTotal(resultSet.getInt("total"));
+                    isolate.setLat(resultSet.getDouble("latitude"));
+                    isolate.setLng(resultSet.getDouble("longitude"));
+                    isolate.setGaz(resultSet.getString("gaz"));
                 }
             }
 

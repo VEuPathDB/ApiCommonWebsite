@@ -8,17 +8,15 @@ public class GeoIsolateViewHandler extends IsolateViewHandler {
     @Override
     public String prepareSql(String idSql) throws WdkModelException,
             WdkUserException {
-        StringBuilder sql = new StringBuilder("select country as country, count(country) as total, lat, lng from ( SELECT ");
-        sql.append("    i.source_id , ");
-        sql.append("    i.latitude AS lat ,");
-        sql.append("    i.longitude AS lng ,");
-        sql.append("    REGEXP_REPLACE(i.geographic_location,'\\:.*','') as country");
-        sql.append(" FROM ApidbTuning.PopsetAttributes i, ");
-        sql.append("      (" + idSql + ") idq ");
-        sql.append(" WHERE  ");
-        sql.append("   i.source_id = idq.source_id ");
-        sql.append("   AND i.geographic_location is not null ");
-        sql.append(" ) group by country, lat, lng ");
+        StringBuilder sql = new StringBuilder("select ");
+        sql.append("       cnt.country, cnt.total, cnt.latitude, cnt.longitude, ot.source_id as gaz ");
+        sql.append("from sres.OntologyTerm ot, ");
+        sql.append("     (select count(*) as total, latitude, longitude, curated_geographic_location as country ");
+        sql.append("      from ApidbTuning.PopsetAttributes ");
+        sql.append("      where source_id in (select source_id from ( " + idSql + " )) ");
+        sql.append("      group by latitude, longitude, curated_geographic_location) cnt ");
+        sql.append("where ot.name = cnt.country ");
+        sql.append("  and ot.source_id like 'GAZ%' ");
 
         return sql.toString();
     }
