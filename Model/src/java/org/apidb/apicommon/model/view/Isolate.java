@@ -4,6 +4,7 @@ package org.apidb.apicommon.model.view;
 public class Isolate {
 
     private String country;
+    private String gaz;
     private String type;
     private int total;
     private double lat;
@@ -29,6 +30,13 @@ public class Isolate {
         this.country = country;
     }
 
+    public String getGaz() {
+        return gaz;
+    }
+
+    public void setGaz(String gaz) {
+        this.gaz = gaz;
+    }
     public String getType() {
         return type;
     }
