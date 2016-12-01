@@ -11,7 +11,7 @@ public class ResultCounterPlugin extends AbstractStepAnalyzer {
 
   @Override
   public ExecutionStatus runAnalysis(AnswerValue answerValue, StatusLogger log) throws WdkModelException, WdkUserException {
-    Integer result = answerValue.getResultSize();
+    Integer result = answerValue.getResultSizeFactory().getResultSize();
     setPersistentObject(result);
     return ExecutionStatus.COMPLETE;
   }

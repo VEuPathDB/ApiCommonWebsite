@@ -67,15 +67,13 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             QuestionBean dsQuestion = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_QUESTION);
             Map<String, String> params = new LinkedHashMap<String, String>();
             params.put(PARAM_QUESTION, questionName);
-            AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
-                    params, true, 0);
+            AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user, params, true, 0);
 
             // find all referenced attributes and tables;
             Iterator<RecordBean> dsRecords = answerValue.getRecords();
             while (dsRecords.hasNext()) {
                 RecordBean dsRecord = dsRecords.next();
-                TableValue tableValue = dsRecord.getTables().get(
-                        TABLE_REFERENCE);
+                TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
                 for (Map<String, AttributeValue> row : tableValue) {
                     String targetType = row.get("target_type").toString();
                     String targetName = row.get("target_name").toString();

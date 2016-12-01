@@ -99,7 +99,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
       }
     }
     // get filter sizes not found by custom query in the traditional way (each costs us a trip to the DB)
-    finalResults.putAll(answerValue.getFilterDisplaySizes(unfoundFilters));
+    finalResults.putAll(answerValue.getResultSizeFactory().getFilterDisplaySizes(unfoundFilters));
     LOG.debug("Generated " + finalResults.size() + " from bulk filter size query and individual queries: " +
         FormatUtil.prettyPrint(finalResults, Style.MULTI_LINE));
     return finalResults;
