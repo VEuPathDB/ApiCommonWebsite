@@ -99,8 +99,30 @@ EOSQL
 
   my $cmd = "/usr/bin/clustalw2 -infile=$infile -outfile=$outfile > $tmpfile";
   system($cmd);
+ my %origins = ();
+  &createHTML($outfile,$cgi,%origins);
+     
+  open(D, "$dndfile");
+  print "<pre>";
+  print "<hr>.dnd file\n\n";
+  while(<D>) {
+    print $_;
+  }
+  close D;
+  print "</pre>";
+}
 
-  open(O, "$outfile");
+sub error {
+  my ($msg) = @_;
+
+  print "ERROR: $msg\n\n";
+  exit(1);
+}
+
+
+sub createHTML {
+    my ($outfile, $cgi, %origins) = @_;
+  open(O, "$outfile") or die "cant open $outfile for reading:$!";
   my %hash;
   tie %hash, "Tie::IxHash";
 
@@ -125,29 +147,14 @@ EOSQL
 
   my $align = Bio::Graphics::Browser2::PadAlignment->new(\@dnas,\@alignments);
 
-  my %origins = ();
+#  my %origins = ();
 
   print $cgi->pre("CLUSTAL 2.1 Multiple Sequence Alignments\n");
   print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
                                                    show_similarities => 1, 
                                                    show_matches      => 1})); 
 
-     
-  open(D, "$dndfile");
-  print "<pre>";
-  print "<hr>.dnd file\n\n";
-  while(<D>) {
-    print $_;
-  }
-  close D;
-  print "</pre>";
 }
 
-sub error {
-  my ($msg) = @_;
-
-  print "ERROR: $msg\n\n";
-  exit(1);
-}
 
 1;
