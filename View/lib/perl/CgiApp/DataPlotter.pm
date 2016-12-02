@@ -130,6 +130,9 @@ sub run {
          eval "require $class";
          eval "import $class";
 
+         print STDERR "$class\n";
+
+
 	 $class = $class . "::$datasetClassName" if($template);
          my $_gp = eval {
            $class->new({dataPlotterArg => $typeArg,
