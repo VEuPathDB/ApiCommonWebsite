@@ -1,6 +1,6 @@
 package ApiCommonWebsite::View::CgiApp::multipleSeqAlignment;
 use base qw( ApiCommonWebsite::View::CgiApp );
-#use IO::Uncompress::Gunzip;
+
 use strict;
 use File::Basename;
 use File::Temp qw(tempfile);
@@ -45,12 +45,8 @@ sub run {
     
     my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh, $taxonToDirNameMap);
     my ($mercatorOutputDir, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
-#    print Dumper "mercator is $mercatorOutputDir \n ";
-#    print Dumper "ref is $referenceGenome\n";
     my $referenceSequence = &getReferenceSequence($project, $contig, $referenceGenome, $start, $stop, $dbh);
-#    print Dumper "ref seq is $referenceSequence \n";
     my $referenceId = $contig;
-    
     if ($revComp eq 'on') {
 	$referenceSequence = &reverseCompliment($referenceSequence);
 	$alignmentHash{$referenceId}=$referenceSequence;
@@ -58,20 +54,20 @@ sub run {
 	$originsHash{$referenceId}=$negstart;
    }
     else {
- #   print Dumper "reverse";
- #  print Dumper $referenceSequence;
-   
     $alignmentHash{$referenceId}=$referenceSequence;
     $originsHash{$referenceId}=$start;
     }
+
+    my $regex = join '|', @$genomes;
+
     foreach my $pairs (@$pairwiseDirectories) {
+
 	my %agpHash;
 	my @agpArraybackwards;
 	my @fullCoordCheck;
 	my $pair = basename($pairs);
-	my $regex = join '|', @$genomes;
+
 	if (($pair =~ /$referenceGenome/) && ($pair=~ /$regex/)) {
-#	    print Dumper "gets past the ref genome issue\n";
 	    my @org_names = split "-", $pair;
 	    foreach my $elements (@org_names) {
 		
@@ -79,6 +75,7 @@ sub run {
 		my %agp = %{$agpHashRef};
 		my @backwardAgp = @{$backwardAgpArrayRef};
 		my @coord = @{$coordRef};
+
 		foreach my $agpkey (keys %agp) {
 		    if (exists $agpHash{$agpkey}) {
 			print Dumper "ERROR YOU HAVE THE AGP MAP THE WRONG WAY ROUNG\n";
@@ -88,9 +85,7 @@ sub run {
 		    }
 		}
 		foreach my $agpBack (@backwardAgp) {
-#		    print Dumper "the array hash is \n";
 		    my %agpbackHash = %{$agpBack};
-#		    print Dumper %agpbackHash;
 		    push (@agpArraybackwards, \%agpbackHash)
 		}
 		foreach my $co (@coord) {
@@ -98,10 +93,10 @@ sub run {
 		    push (@fullCoordCheck, \%coordHash)
 		}
 	    }
+
 	    my ($sequenceHashRef,$orHashRef) = &createAlignmentHash($pairs, \%agpHash, $referenceGenome, $start, $stop, $contig, $strand, \@agpArraybackwards, $revComp, \@fullCoordCheck);
+
 	    my %sequenceHash = %$sequenceHashRef;
-#	    print Dumper "seq HASH";
-#	    print Dumper %sequenceHash;
      
 	    my %orHash= %$orHashRef;
 	    foreach my $sequenceToAlign (keys %sequenceHash){
@@ -122,20 +117,10 @@ sub run {
 	    }
 	}
     }
-#    print Dumper "before sending is $mercatorOutputDir";
+
     my $tempfile = &doClustalWalignment(\%alignmentHash, $mercatorOutputDir, $referenceId);
     if ($type eq 'clustal') {
 	ApiCommonWebsite::View::CgiApp::IsolateClustalw::createHTML($tempfile,$cgi,%originsHash);
-#	print Dumper %originsHash;
-#    my $alignmentObj = Bio::AlignIO->new(-file => $tempfile);    
-#    my $aln = $alignmentObj->next_aln();
-#    $aln->set_displayname_flat();
-#    my $out = Bio::AlignIO->new(-fh     =>  \*STDOUT,
-#				-format => 'clustalw');
-#    $out->write_aln($aln);
-#    my $cmd = "rm $tempfile";
-#    system($cmd);
-#	$cgi->end_html;
     }
     elsif($type eq 'fasta_ungapped') {
 	my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
@@ -189,6 +174,7 @@ sub run {
 
 
 sub createAlignmentHash {
+
     my ($folder, $agpHashRef, $ref, $start, $stop, $contig, $strand, $backArrayRef, $revComp, $coordRef) = @_;
     my $mapfile = $folder."/alignments/map";
     my @pairNames = split "-", basename($folder);
@@ -204,27 +190,32 @@ sub createAlignmentHash {
     else {
 	print Dumper "cant determine comparator\n ";
     }
-    my ($alignmentFolder, $refSourceId, $refStart, $refEnd, $refStrand, $otherSourceId, $otherStart, $otherEnd, $otherStrand);
+
     my %sequenceHash;
     my %originsHash;
+
     open (IN, "$mapfile") or die "can't open the map file for $folder to determine alignment folders\n";
     while (my $line = <IN>) {
 	chomp $line;
+
+        my ($alignmentFolder, $refSourceId, $refStart, $refEnd, $refStrand, $otherSourceId, $otherStart, $otherEnd, $otherStrand);
+
 	my @temps = split "\t", $line;
 	my $agp=$agpHashRef->{$contig};
-#	print Dumper " agp HAshRef\n\n";
-#	print Dumper $agpHashRef;
+
 	my $userCoordObj = Bio::Location::Simple->new( -seq_id => $contig,
 						       -start => $start,
 						       -end =>  $stop,
 						       -strand => $strand );  #make sure strand I pass is bioperl strand - this should of been dome when i checked parameters  
+
 	my $result = $agp->map($userCoordObj);
 	my $detStartFromUser = $result->start; 
 	my $detEndFromUser =$result->end;
+
+
 	my $refContig = $result->seq_id;
 	my $sliceStart;
 	my $sliceEnd;
-#	print Dumper $refContig;
 	if ($temps[1] =~/$refContig/) {
 	    ($alignmentFolder, $refSourceId, $refStart, $refEnd, $refStrand, $otherSourceId, $otherStart, $otherEnd, $otherStrand) = @temps;
 	}
@@ -234,23 +225,24 @@ sub createAlignmentHash {
 	else {
 	    next; 
 	}
+
 	my ($sliceStart, $sliceEnd, $useThisRegion) =&determineSlice($detStartFromUser, $detEndFromUser, $refStart, $refEnd, $alignmentFolder, $other);
 	if ($useThisRegion == 1) {
 	    my $folderToGetMfa = $folder."/alignments/".$alignmentFolder;
 	    my $alignmentObj;
 	    opendir(my $dh, $folderToGetMfa) || die "Can't open $folderToGetMfa: $!";
 	    while (readdir $dh) {
-#		print Dumper $_;
+
 		my $file = $folderToGetMfa."/".$_;
 
 		if ($file =~ /mavid.mfa.gz$/) {
-#		    print Dumper "getting to gz";
+
 		    open (my $z, '-|', '/usr/bin/gunzip', '-c', $file) or die "can't open $file $!";
 		    $alignmentObj = Bio::AlignIO->new(-fh => \*$z, -format => 'fasta');    
 		    
 		}
 		elsif($file=~ /mavid.mfa$/) {
-#		    print Dumper "geting to not gzip";
+
  		
 		    
 		open (my $z, "$file") or die "cant open $folderToGetMfa$!";
@@ -260,19 +252,9 @@ sub createAlignmentHash {
 		else { 
 		    next;
 		}
-#		print Dumper "file is $file \n";
-#	  }
 	    }
+
 	    closedir $dh;
-	   # print Dumper "slice is $sliceStart to $sliceEnd";
-#	    my $z = new->IO::Uncompress::Unzip ($folderToGetMfa) or die "IO::Uncompress::Gunzip failed \n";
-	
-#	    my $cmd = "gunzip $folderToGetMfa";
-#	    system($cmd);
-#	    my $unzip = $folderToGetMfa;
-#	    $unzip =~ s/.gz//;
-#          print Dumper "mfa folder is $unzip";
-#	    my $startToPull = $sliceStart;
 	    
 #YOU REALLY NEED TO THINK ABOUT THIS AS ITS BASED ON THE REF SEQUENCE SO YOUR MATHS IS WRONG STILL 
 #	    print Dumper "getting to !";
@@ -355,18 +337,19 @@ sub createAlignmentHash {
 				}
 			    }
 			}
+
+                        # JB: Start and END are not defined here for this url
+                        # jbrestel.plasmodb.org/cgi-bin/pairwiseMercator?project_id=PlasmoDB&contig=Pf3D7_11_v3&start=1293856&stop=1295724&revComp=on&genomes=pyoeyoelii17XNL&type=clustal
 			my $OtherCoordObj = Bio::Location::Simple->new( -seq_id => $otherSourceId,
 									-start => $useStart,
 									-end =>  $useEnd,
 									-strand => $otherStrand );  #make sure strand I pass is bioperl strand - this should of been dome when i checked parameters  
+                        
+
 			my $result2 = $agp2->map($OtherCoordObj);
+
 			if (defined $result2) {
-#	    my $detStartforOther = $result2->start; 
-#	    my $detEndForOther =$result2->end;
-#			    print Dumper "result2";
-#			    print Dumper $result2;
-			    my $OtherContig = $result2->seq_id;
-#			    my $OtherContig = $DoIwork;
+                          my $OtherContig = $result2->seq_id;
 			    my $uniqueid = $OtherContig;
 			    if ($revComp eq 'on') {
 				$seqonly = &reverseCompliment($seqonly);
@@ -389,14 +372,6 @@ sub createAlignmentHash {
 				    $originsHash{$uniqueid}=$seqStart;
 				}
 			    }
-#			    print Dumper "other source id \n";
-#			    print Dumper $otherSourceId;
-#			    print Dumper "other conting $OtherContig";
-#			    print Dumper "do i work $DoIwork";
-#	    print Dumper "unique contig\n";
-#	    print Dumper $OtherContig;
-#			    print Dumper "SEQUENCES REV ARE:";
-#			    print Dumper $seqonly;
 			    $sequenceHash{$uniqueid}=$seqonly;
 			    last;
 			}
@@ -416,14 +391,16 @@ sub createAlignmentHash {
 	}
 	
 	elsif ($useThisRegion ==0) {
-#	    print Dumper "alginment folder $alignmentFolder is not being used";
 	    next;
 	}
 	
 	else {
 	    print Dumper "there is an error determining if the region should be used. please check the determineSlice subroutine\n";
 	}
+
     }
+
+
     return (\%sequenceHash, \%originsHash);
     
 }
@@ -590,13 +567,14 @@ sub validateParams {
     if($length > 100000) {
 	&userError("Values provided exceed the Maximum Allowed Alignemnt of 100KB");
     }
+
+    my @filteredGenomes;
+    foreach(@genomes) {
+      push @filteredGenomes, $_ unless($_ eq $referenceGenome);
+    }
     
-    
-    
-    return ($contig, $start, $stop, $strand, $type, $referenceGenome, \@genomes);
+    return ($contig, $start, $stop, $strand, $type, $referenceGenome, \@filteredGenomes);
 }
-
-
 
 
 sub getOrganismFromContig {
@@ -731,15 +709,7 @@ sub makeAgpMap {
 	    my $agp = Bio::Coordinate::Pair->new( -in  => $ctg, -out => $ctg_on_chr );
 	    my $agp2 = Bio::Coordinate::Pair->new( -in => $ctg_on_chr, -out => $ctg);
 	    my $pieceSourceId = $source_id;
-	    if ($source_id eq 'AABL01000725') {
-#		print Dumper " mine these are the ones in the map file chromo $virtualSourceId start $virtualStart end $virtualEnd";
-	    }
-	   elsif ($source_id eq 'PyYM_13_v1') {
-#		print Dumper " these are the ones in the map filechromo $virtualSourceId start $virtualStart end $virtualEnd";
-	    }
-	   elsif ($source_id eq 'AABL01001319') {
-#		print Dumper " for the correct one these are the ones in the map file chromo $virtualSourceId start $virtualStart end $virtualEnd";
-	    }
+
 	    #my $agp2 = Bio::Coordinate::Pair->new( -in =>$ctg_on_chr, -out =>$ctg);
 	    #my $pieceSourceId2 = $virtualSourceId;
 #		    print Dumper "agp is";
