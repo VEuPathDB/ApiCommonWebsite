@@ -63,7 +63,7 @@ public abstract class FastaReporter extends AbstractReporter {
   public void write(OutputStream out) throws WdkModelException {
     try {
      Map<String,String> inputFields = buildFormData(_configuration, _wdkModel.getProjectId(), _baseAnswer);
-     LOG.debug(FormatUtil.prettyPrint(inputFields, Style.MULTI_LINE));
+     LOG.debug("\n\n\n**************" + FormatUtil.prettyPrint(inputFields, Style.MULTI_LINE));
      transferFormResult(inputFields, out);
     }
     catch (IOException | WdkUserException e) {
