@@ -169,7 +169,7 @@ $sqlQueries->{transcriptSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.TranscriptSequence seq
 WHERE  bfmv.source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? )
+AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
 ORDER BY bfmv.source_id
 EOSQL
 
@@ -254,8 +254,7 @@ EOSQL
   my $sth = $dbh->prepare($sql);
 
   for my $inputId (@$ids) {
- #  $sth->execute($inputId, $inputId);
-  $sth->execute($inputId);
+  $sth->execute($inputId, $inputId);
 
    while (my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array()){
     my $descrip = " | $organism | $product | $type ";
