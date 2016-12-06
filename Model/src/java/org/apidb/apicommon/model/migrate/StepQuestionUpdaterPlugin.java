@@ -47,9 +47,7 @@ public class StepQuestionUpdaterPlugin implements TableRowUpdaterPlugin<StepData
 
   @Override
   public RowResult<StepData> processRecord(StepData step) throws Exception {
-    RowResult<StepData> result = new RowResult<>(step);
-    _qNameUpdater.updateQuestionName(result);
-    return result;
+    return new RowResult<>(step).setShouldWrite(_qNameUpdater.updateQuestionName(step));
   }
 
   @Override

@@ -1,6 +1,6 @@
 package org.apidb.apicommon.model.migrate;
 
-import static org.apidb.apicommon.model.TranscriptUtil.TRANSCRIPT_RECORDCLASS;
+import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
 import static org.apidb.apicommon.model.filter.FilterValueArrayUtil.getFilterValueArray;
 
 import java.io.IOException;
@@ -139,27 +139,28 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
 
   @Override
   public RowResult<StepData> processRecord(StepData step) throws WdkModelException {
-    RowResult<StepData> result = new RowResult<>(step);
+
+    // this list will record the parts of processing that modify the step (can be >1)
     List<UpdateType> mods = new ArrayList<>();
 
     // 1. Replace strings in display_params based on a few old question names, then convert those names
-    if (fixParamFilterRecordClasses(result)) mods.add(UpdateType.paramFilterRecordClasses);
+    if (fixParamFilterRecordClasses(step)) mods.add(UpdateType.paramFilterRecordClasses);
 
     // 2. Use QuestionMapper to update question names
-    if (_qNameUpdater.updateQuestionName(result)) mods.add(UpdateType.questionNameUpdate);
+    if (_qNameUpdater.updateQuestionName(step)) mods.add(UpdateType.questionNameUpdate);
     
     // 3. If "params" prop not present then place entire paramFilters inside and write back
-    if (NonApiGus4StepMigrationPlugin.updateParamsProperty(result)) mods.add(UpdateType.updateParams);
+    if (NonApiGus4StepMigrationPlugin.updateParamsProperty(step)) mods.add(UpdateType.updateParams);
 
     // 4. Add "filters" property if not present and convert any found objects to filter array
-    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(result, Step.KEY_FILTERS)) mods.add(UpdateType.fixFilters);
-    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(result, Step.KEY_VIEW_FILTERS)) mods.add(UpdateType.addViewFilters);
+    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, Step.KEY_FILTERS)) mods.add(UpdateType.fixFilters);
+    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, Step.KEY_VIEW_FILTERS)) mods.add(UpdateType.addViewFilters);
 
     // 5. Remove use_boolean_filter param when found
-    if (NonApiGus4StepMigrationPlugin.removeUseBooleanFilterParam(result)) mods.add(UpdateType.useBoolFilter);
+    if (NonApiGus4StepMigrationPlugin.removeUseBooleanFilterParam(step)) mods.add(UpdateType.useBoolFilter);
 
     // 6. Some steps have both a params property and params as top-level properties in display_params; remove the latter
-    if (NonApiGus4StepMigrationPlugin.removeOldDisplayParamProps(result)) mods.add(UpdateType.removeOldDisplayParamProps);
+    if (NonApiGus4StepMigrationPlugin.removeOldDisplayParamProps(step)) mods.add(UpdateType.removeOldDisplayParamProps);
 
     // Look up some WDK model data needed by the remaining sections.  Doing it AFTER the above steps since
     //   question names will have been updated and we won't kick out as many invalid steps whose question
@@ -174,22 +175,24 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       if (LOG_INVALID_STEPS)
         LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model (" +
             invalidStepsByQuestion + " total invalid steps by question).");
-      return result;
+      return new RowResult<StepData>(step).setShouldWrite(!mods.isEmpty());
     }
     RecordClass recordClass = question.getRecordClass();
     boolean isBoolean = question.getQuery().isBoolean();
     boolean isLeaf = !question.getQuery().isCombined();
 
     // 7. Add matched transcript filter to all leaf transcript steps
-    if (addMatchedTranscriptFilter(result, isLeaf, recordClass)) mods.add(UpdateType.matchedTxFilter);
+    if (addMatchedTranscriptFilter(step, isLeaf, recordClass)) mods.add(UpdateType.matchedTxFilter);
 
     // 8. Add gene boolean filter to all boolean transcript steps
-    if (addGeneBooleanFilter(result, isBoolean, recordClass)) mods.add(UpdateType.geneBoolFilter);
+    if (addGeneBooleanFilter(step, isBoolean, recordClass)) mods.add(UpdateType.geneBoolFilter);
 
     // 9. Filter param format has changed a bit; update existing steps to comply
-    if (NonApiGus4StepMigrationPlugin.fixFilterParamValues(result, question,
+    if (NonApiGus4StepMigrationPlugin.fixFilterParamValues(step, question,
         LOG_INVALID_STEPS, INVALID_STEP_COUNT_PARAMS)) mods.add(UpdateType.fixFilterParamValues);
 
+    // log modification and return result
+    RowResult<StepData> result = new RowResult<StepData>(step).setShouldWrite(!mods.isEmpty());
     if (result.shouldWrite()) {
       LOG.info("Step " + result.getRow().getStepId() + " modified by " + FormatUtil.arrayToString(mods.toArray()));
       for (UpdateType type : mods) {
@@ -203,10 +206,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return result;
   }
 
-  private static boolean addGeneBooleanFilter(RowResult<StepData> result, boolean isBoolean, RecordClass recordClass) throws WdkModelException, JSONException {
-    StepData step = result.getRow();
+  private static boolean addGeneBooleanFilter(StepData step, boolean isBoolean, RecordClass recordClass) throws WdkModelException, JSONException {
     if (!isBoolean) return false;
-    if (!recordClass.getFullName().equals(TRANSCRIPT_RECORDCLASS)) return false;
+    if (!isTranscriptRecordClass(recordClass)) return false;
     // figure out default value based on boolean param
     JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
     boolean isWdkSetOperation = params.has(BooleanQuery.OPERATOR_PARAM);
@@ -216,31 +218,20 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     }
     JSONObject defaultValue = GeneBooleanFilter.getDefaultValue(params.getString(BooleanQuery.OPERATOR_PARAM));
     if (defaultValue == null) return false;
-    boolean modified = addFilterValueArray(step, GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, defaultValue);
-    if (modified) {
-      result.setShouldWrite(true);
-      return true;
-    }
-    return false;
+    return addFilterValueArray(step, GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, defaultValue);
   }
 
-  private static boolean addMatchedTranscriptFilter(RowResult<StepData> result, boolean isLeaf, RecordClass recordClass) {
+  private static boolean addMatchedTranscriptFilter(StepData step, boolean isLeaf, RecordClass recordClass) {
     // requirements:
     //   transcript question
     //   leaf step
     //   non-basket
-    StepData step = result.getRow();
     if (!isLeaf) return false;
-    if (!recordClass.getFullName().equals(TRANSCRIPT_RECORDCLASS)) return false;
+    if (!isTranscriptRecordClass(recordClass)) return false;
     if (step.getQuestionName().toLowerCase().contains("basket")) return false;
     // add filter with default value if not already present
     JSONObject defaultValue = getFilterValueArray("Y");
-    boolean modified = addFilterValueArray(step, MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY, defaultValue);
-    if (modified) {
-      result.setShouldWrite(true);
-      return true;
-    }
-    return false;
+    return addFilterValueArray(step, MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY, defaultValue);
   }
 
   private static boolean addFilterValueArray(StepData step, String name, JSONObject value) {
@@ -344,9 +335,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
           "InternalQuestions.PopsetRecordClasses_PopsetRecordClassBySnapshotBasket")
       .toMap();
 
-  private static boolean fixParamFilterRecordClasses(RowResult<StepData> result) {
+  private static boolean fixParamFilterRecordClasses(StepData step) {
 
-    StepData step = result.getRow();
     String questionName = step.getQuestionName();
     boolean modifiedByThisMethod = false;
 
@@ -362,14 +352,12 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     }
     if (modifiedByThisMethod) {
       step.setParamFilters(new JSONObject(displayParams));
-      result.setShouldWrite(true);
     }
 
     // apply new question names
     for (Entry<String, String> entry : QUESTION_NAME_REPLACEMENTS.entrySet()) {
       if (step.getQuestionName().equals(entry.getKey())) {
         step.setQuestionName(entry.getValue());
-        result.setShouldWrite(true);
         modifiedByThisMethod = true;
         break;
       }
