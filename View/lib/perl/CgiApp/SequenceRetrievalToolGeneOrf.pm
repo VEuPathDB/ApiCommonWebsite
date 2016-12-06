@@ -449,7 +449,7 @@ EOSQL
       = $sth->fetchrow_array();
 
     if (!$geneOrfSourceId) {
-      push(@invalidIds, $inputId);
+      push(@invalidIds, $inputId) unless $self->{sourceIdFilter} eq 'genesOnly';
     } else {
       if ($isReversed == 0) {
 	$expectStart = $expectStart + $beginOffset;
