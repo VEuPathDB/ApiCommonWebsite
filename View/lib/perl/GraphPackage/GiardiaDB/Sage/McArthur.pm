@@ -24,8 +24,8 @@ sub init {
 
   $self->setMainLegend({colors => \@legendColors, short_names => $legend});
 
-  my @profileSetsArray = (['giar sage tag frequencies sense', '',''],
-                          ['giar sage tag frequencies antisense', '','']);
+  my @profileSetsArray = (['giar sage tag frequencies sense', 'values',''],
+                          ['giar sage tag frequencies antisense', 'values','']);
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
