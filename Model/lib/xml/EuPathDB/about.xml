@@ -16,7 +16,7 @@
        <![CDATA[
 
 EuPathDB (formerly ApiDB) is an integrated database 
-covering the eukaryotic pathogens in the genera listed in our <a href="processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> page.
+covering the eukaryotic pathogens in the genera listed in our <a href="/a/processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> page.
 <br>
 While these organisms are supported by a taxon-specific database/website built upon the same infrastructure, the EuPathDB portal offers an 
 entry point to all of these resources, and the opportunity to leverage orthology for searches across genera.
@@ -43,8 +43,8 @@ Please check our annual <a href="http://workshop.eupathdb.org/current/index.php?
        <![CDATA[
 
 <div id="cirbulletlist"><ul>
-<li>The <a href = "processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
-<li>The <a href="processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
+<li>The <a href = "/a/processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">EuPathDB Data Summary</a> provides an overview of the content in EuPathDB across sites, all organisms and data types covered.
+<li>The <a href="/a/processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">EuPathDB Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in EuPathDB, by various datatypes.
 </ul></div>
 
        ]]>
