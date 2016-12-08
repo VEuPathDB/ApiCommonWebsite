@@ -27,7 +27,7 @@
         </row>
  <row>
           <attribute name="title"><![CDATA[Recent <i>EuPathDB</i> publications]]></attribute>
-          <attribute name="url"><![CDATA[showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs]]></attribute>
+          <attribute name="url"><![CDATA[/a/showXmlDataContent.do?name=XmlQuestions.EuPathDBPubs]]></attribute>
         </row>
       </table>
 

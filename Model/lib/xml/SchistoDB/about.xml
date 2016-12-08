@@ -77,8 +77,8 @@ Much of the data in SchistoDB is provided by independent researchers.  For a lis
 
 
 <div id="cirbulletlist"><ul>
-<li>The <a href = "processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> provides an overview of the content, all organisms and data types covered.
-<li>The <a href="processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in SchistoDB, by various datatypes.
+<li>The <a href = "/a/processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes">Data Summary</a> provides an overview of the content, all organisms and data types covered.
+<li>The <a href="/a/processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics">Gene Metrics Table</a> summarizes the number of genes for the organisms currently available in SchistoDB, by various datatypes.
 </ul></div>
 
 
