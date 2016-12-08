@@ -16,13 +16,8 @@ sub init {
   $self->SUPER::init(@_);
 
   my @legendColors = ('#A52A2A', '#DEB887');
-  my @colors;
-
-  push (@colors, @legendColors[0 ..1]) for 1 .. 10;
 
   my $legend = ["sense", "antisense"];
-
-  $self->setMainLegend({colors => \@legendColors, short_names => $legend});
 
   my @profileSetsArray = (['giar sage tag frequencies sense', 'values',''],
                           ['giar sage tag frequencies antisense', 'values','']);
@@ -33,6 +28,11 @@ sub init {
   $percents->setProfileSets($profileSets);
   $percents->setColors(\@legendColors);
   $percents->setElementNameMarginSize(8.5);
+
+
+  $percents->setHasExtraLegend(1); 
+  $percents->setLegendLabels($legend);
+
 
   $self->setGraphObjects($percents);
 
