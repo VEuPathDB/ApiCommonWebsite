@@ -40,6 +40,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     private static final String ATTR_QUESTIONS_BY_DATASET = "questions_by_dataset_map";
     private static final String ATTR_DISPLAY_CATEGORIES = "display_categories";
     private static final String ATTR_UNCATEGORIZED_QUESTIONS = "uncategorized_questions_by_dataset_map";
+    private static final String ATTR_MISSING_IN_MODEL_QUESTIONS = "missing_inModel_questions_by_dataset_map";
 
     private static final Logger logger = Logger.getLogger(CustomShowQuestionAction.class);
 
@@ -104,12 +105,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             question = wdkModel.getQuestion(questionName);
         }
 
-        // Internal questions (eg: InternalGeneDatasetQuestions.GenesByRNASeqEvidence) have datasetType/datasetSubtype as properties in the model
-        //   "datasetType" value (eg: transcript_expression) corresponds to their category in categories.xml
-        //   "datasetSubtype" value (eg: rnaseq) corresponds to the category of the specific expr searches in categories.xml scope webservices
-        // the specific expr searches have as a property (displayCategory) in the model 
+        // Internal questions (eg: InternalGeneDatasetQuestions.GenesByRNASeqEvidence) have 2 properties in the model
+        //   "datasetType" value (eg: RNASeq) corresponds to their category in ontology?
+        //   "datasetSubtype" value (eg: rnaseq) corresponds to ?
+        // The specific expr searches have a property in the model 
         //   "displayCategory" value (eg: "fold_change") corresponds to the category of the specific expr searches in categories.xml scope datasets
-        // (yes, expresion searches appear twice in categories.xml in different categories and scopes. )
         String[] datasetCategories = question.getPropertyList("datasetCategory");
         String[] datasetSubtypes = question.getPropertyList("datasetSubtype");
         logger.debug(" ******** datasetCategory: " + Arrays.toString(datasetCategories) );
@@ -133,7 +133,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 });
         Map<RecordBean, List<QuestionBean>> uncatQuestionsMap =
           new LinkedHashMap<RecordBean, List<QuestionBean>>();
-
+        Map<RecordBean, List<String>> missQuestionsMap =
+          new LinkedHashMap<RecordBean, List<String>>();
 
         // 1- Obtain "datasets by category/subtype"
         String dsQuestionName = "DatasetQuestions.DatasetsByCategoryAndSubtype";
@@ -157,13 +158,16 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             Map<String, List<QuestionBean>> internalQuestionsMap =
                     new LinkedHashMap<String, List<QuestionBean>>();
             List<QuestionBean> uncatQuestions = new ArrayList<QuestionBean>();
+            List<String> missQuestions = new ArrayList<String>();
 
             for (Map<String, AttributeValue> row : tableValue) {
                 String targetType = row.get("target_type").toString();
                 String targetName = row.get("target_name").toString();
+                logger.debug("targetType is: " + targetType + " and targetName is: " + targetName);
 
                 if (targetType.equals(TYPE_QUESTION)) {
     
+                  try {
                   // internalQuestion is the expression search
                     QuestionBean internalQuestion = wdkModel.getQuestion(
                             targetName);
@@ -184,7 +188,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                       //  internalQuestion.getDatasetCategories();
                       //in the ontology these searches appear under webservices scope
                       internalQuestion. getWebServiceCategories(); 
-                    logger.debug("Dataset categories: " + displayCategories.size());
+                      logger.debug("Dataset categories: " + displayCategories.size());
 
 
                     if (displayCategories.size() == 1) {
@@ -204,25 +208,36 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                       uncatQuestions.add(internalQuestion);
                       logger.debug("Found an uncategorized question: " + internalQuestion.getFullName());
                     }
-                }
-            }
+                  }
+                  catch  (Exception ex)  {
+                    logger.debug("****** FOUND MISSING QUESTION SKIPPING: " + targetName);
+                    missQuestions.add(targetName);
+                    continue;
+                  }
+                }//if question
+            }//for
             if (internalQuestionsMap.size() > 0) {
               questionsByDataset.put(dsRecord, internalQuestionsMap);
             }
             if (uncatQuestions.size() > 0) {
               uncatQuestionsMap.put(dsRecord, uncatQuestions);
             }
-        }
+            if (missQuestions.size() > 0) {
+              missQuestionsMap.put(dsRecord, missQuestions);
+            }
+        }//while
 
         // logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
         request.setAttribute(ATTR_QUESTIONS_BY_DATASET, questionsByDataset);
         request.setAttribute(ATTR_UNCATEGORIZED_QUESTIONS, uncatQuestionsMap);
         request.setAttribute(ATTR_DISPLAY_CATEGORIES, displayCategorySet);
+        request.setAttribute(ATTR_MISSING_IN_MODEL_QUESTIONS, missQuestionsMap);
     }
 
     public static void loadReferences(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         loadQuestionsByDataset(servlet, request);
+        //logger.debug("\n\n MOVING TO LOAD DATASETS \n\n");
         loadDatasets(servlet, request);
     }
 
