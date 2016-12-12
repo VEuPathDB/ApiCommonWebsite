@@ -465,7 +465,7 @@ public class NewCommentForm extends ActionForm {
                                 "Invalid Gene Identifier",
                                 "In Part III, Gene Identifier \""
                                         + related_id
-                                        + "\" is not valid related gene id! Please correct it and try again."));
+                                        + "\" is not a valid gene id! Please correct it and try again."));
             }
 				 	}
         }
