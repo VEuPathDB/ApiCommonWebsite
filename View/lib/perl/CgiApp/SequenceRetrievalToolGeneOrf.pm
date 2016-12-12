@@ -39,6 +39,8 @@ sub run {
 
   $self->processParams($cgi, $dbh);
 
+  $self->setSqls();
+
   my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 
   if ($self->{type} eq 'genomic') {
@@ -68,6 +70,7 @@ sub processParams {
   $self->{endOffset3} = $cgi->param('endOffset3');
   $self->{startAnchor3}   = $cgi->param('startAnchor3');
   $self->{endAnchor3} = $cgi->param('endAnchor3');
+  $self->{sourceIdFilter} = $cgi->param('sourceIdFilter');
 
   # to allow for NOT mapping an id to the latest one
   $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
@@ -143,17 +146,23 @@ sub processParams {
 
 }
 
-my $sqlQueries;
+sub setSqls {
+  my ($self) = @_;
 
-$sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+  my $sourceIdAndClause = "(bfmv.gene_source_id = ? OR bfmv.source_id = ?)";
+  $sourceIdAndClause = "bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
+  $sourceIdAndClause = "bfmv.source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
+  my $sourceId = $self->{sourceIdFilter} eq 'genesOnly'? "bfmv.gene_source_id" : "bfmv.source_id";
+
+  $self->{sqlQueries}->{geneProteinSql} = <<EOSQL;
+SELECT $sourceId, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.protein_source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
+AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
 EOSQL
 
-$sqlQueries->{orfProteinSql} = <<EOSQL;
+  $self->{sqlQueries}->{orfProteinSql} = <<EOSQL;
 SELECT bfmv.source_id, seq.sequence,
        CASE bfmv.is_reversed
 	   WHEN 0 THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
@@ -165,22 +174,23 @@ WHERE  bfmv.source_id = seq.source_id
 AND    bfmv.source_id = ?
 EOSQL
 
-$sqlQueries->{transcriptSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+  $self->{sqlQueries}->{transcriptSql} = <<EOSQL;
+SELECT $sourceId, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.TranscriptSequence seq
 WHERE  bfmv.source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
+AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
 EOSQL
 
-$sqlQueries->{cdsSql} = <<EOSQL;
-SELECT bfmv.source_id, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
+  $self->{sqlQueries}->{cdsSql} = <<EOSQL;
+SELECT $sourceId, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.CodingSequence seq
 WHERE  bfmv.source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
+AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
 EOSQL
 
+}
 
 
 sub handleNonGenomic {
@@ -188,7 +198,7 @@ sub handleNonGenomic {
 
   my $sql;
   my $type = $self->{type};
-  my $site = $sqlQueries;
+  my $site = $self->{sqlQueries};
 
   my $inputIds = $self->{inputIds};
   my $ids;
@@ -224,12 +234,18 @@ sub handleNonGenomic {
       $seq_length = "$self->{endOffset3} - $self->{startOffset3} + 1";
     }
 
-    $sqlQueries->{geneProteinSql} = <<EOSQL;
-SELECT bfmv.source_id, substr(seq.sequence,  $start_position, ($seq_length)),
+    my $sourceIdAndClause = "(bfmv.gene_source_id = ? OR bfmv.source_id = ?)";
+    $sourceIdAndClause = "bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
+    $sourceIdAndClause = "bfmv.source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
+    my $sourceId = $self->{sourceIdFilter} eq 'genesOnly'? "bfmv.gene_source_id" : "bfmv.source_id";
+
+
+    $self->{sqlQueries}->{geneProteinSql} = <<EOSQL;
+SELECT $sourceId, substr(seq.sequence,  $start_position, ($seq_length)),
         bfmv.gene_product AS product, bfmv.organism AS name
 FROM   ApidbTuning.TranscriptAttributes bfmv, ApidbTuning.ProteinSequence seq
 WHERE  bfmv.protein_source_id = seq.source_id
-AND    (bfmv.gene_source_id = ? OR bfmv.source_id = ?)
+AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
 EOSQL
     $sql = $site->{geneProteinSql};
@@ -254,15 +270,21 @@ EOSQL
   my $sth = $dbh->prepare($sql);
 
   for my $inputId (@$ids) {
-   $sth->execute($inputId, $inputId);
+    if ($self->{sourceIdFilter}) {
+      $sth->execute($inputId);  # if filter applied, use only one ID, not two
+    } else {
+      $sth->execute($inputId, $inputId);
+    }
+
 
    while (my ($geneOrfSourceId, $seq, $product, $organism) = $sth->fetchrow_array()){
     my $descrip = " | $organism | $product | $type ";
 
-    if (!$geneOrfSourceId) { #($inputId ne $geneOrfSourceId) {
+    if (!$geneOrfSourceId) {  # NOTE: i don't see how we could ever get this condition, as the sql always returns a src id
+ #  if ($inputId ne $geneOrfSourceId) {
       push(@invalidIds, $inputId);
     } else {
-      $descrip = " ($inputId) $descrip" if ($inputId ne $geneOrfSourceId);
+      $descrip = " ($inputId) $descrip" if ($inputId ne $geneOrfSourceId); # don't get here if $self->{sourceIdFilter} is set.
       $self->writeSeq($seqIO, $seq, $descrip, $geneOrfSourceId, 1, length($seq), 0);
     }
   }
@@ -314,7 +336,7 @@ SQL
 sub handleGenomic {
   my ($self, $dbh, $seqIO) = @_;
 
-  my $site = $sqlQueries;
+  my $site = $self->{sqlQueries};
 
   my $beginAnch = 0;
   my $endAnch = 0;
@@ -340,7 +362,7 @@ sub handleGenomic {
   $startRev = "($endAnchRev - $endOffset)";
   $endRev = "($beginAnchRev - $beginOffset)";
 
-$sqlQueries->{geneGenomicSql} = <<EOSQL;
+  $self->{sqlQueries}->{geneGenomicSql} = <<EOSQL;
 select bfmv.gene_source_id, s.source_id, bfmv.organism, bfmv.gene_product as product,
      bfmv.start_min, bfmv.end_max,
      bfmv.is_reversed,
@@ -373,7 +395,7 @@ AND bfmv.gene_source_id IN (
 ORDER BY bfmv.gene_source_id
 EOSQL
 
-$sqlQueries->{orfGenomicSql} = <<EOSQL;
+  $self->{sqlQueries}->{orfGenomicSql} = <<EOSQL;
 select bfmv.source_id, s.source_id, bfmv.organism, 
      CASE WHEN bfmv.is_reversed = 0
      THEN 'nt ' || bfmv.start_min || '-' || bfmv.end_max || ' of ' || bfmv.nas_id
@@ -427,7 +449,7 @@ EOSQL
       = $sth->fetchrow_array();
 
     if (!$geneOrfSourceId) {
-      push(@invalidIds, $inputId);
+      push(@invalidIds, $inputId) unless $self->{sourceIdFilter} eq 'genesOnly';
     } else {
       if ($isReversed == 0) {
 	$expectStart = $expectStart + $beginOffset;
