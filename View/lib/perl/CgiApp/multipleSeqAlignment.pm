@@ -24,6 +24,7 @@ sub run {
     my ($self, $cgi) = @_;
     my %alignmentHash;
     my %originsHash;
+#    my @alignmentsPad;
     my $project = $cgi->param('project_id');
     my $contig = $cgi->param('contig');
     my $start= $cgi->param('start');
@@ -45,18 +46,6 @@ sub run {
     
     my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh, $taxonToDirNameMap);
     my ($mercatorOutputDir, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
-    my $referenceSequence = &getReferenceSequence($project, $contig, $referenceGenome, $start, $stop, $dbh);
-    my $referenceId = $contig;
-    if ($revComp eq 'on') {
-	$referenceSequence = &reverseCompliment($referenceSequence);
-	$alignmentHash{$referenceId}=$referenceSequence;
-	my $negstart = (-1 * $start);
-	$originsHash{$referenceId}=$negstart;
-   }
-    else {
-    $alignmentHash{$referenceId}=$referenceSequence;
-    $originsHash{$referenceId}=$start;
-    }
 
     my $regex = join '|', @$genomes;
 
@@ -69,6 +58,7 @@ sub run {
 
 	if (($pair =~ /$referenceGenome/) && ($pair=~ /$regex/)) {
 	    my @org_names = split "-", $pair;
+#	    print Dumper "pair is $pair";
 	    foreach my $elements (@org_names) {
 		
 		my ($agpHashRef, $backwardAgpArrayRef, $coordRef) = &makeAgpMap($pairs, $pair, $elements);
@@ -93,7 +83,7 @@ sub run {
 		    push (@fullCoordCheck, \%coordHash)
 		}
 	    }
-
+#removed @alignments from front array below 
 	    my ($sequenceHashRef,$orHashRef) = &createAlignmentHash($pairs, \%agpHash, $referenceGenome, $start, $stop, $contig, $strand, \@agpArraybackwards, $revComp, \@fullCoordCheck);
 
 	    my %sequenceHash = %$sequenceHashRef;
@@ -105,6 +95,7 @@ sub run {
 		}
 		else {
 		    $alignmentHash{$sequenceToAlign} = $sequenceHash{$sequenceToAlign};
+#		    print Dumper "seq to align is $sequenceToAlign";
 		}
 	    }
 	    foreach my $startPoint (keys %orHash) {
@@ -115,13 +106,43 @@ sub run {
 		    $originsHash{$startPoint} = $orHash{$startPoint};
 		}
 	    }
+	  #  my @alignmentsArray = @alignments;
+	   # foreach my $arrayRef (@alignmentsArray) {
+		
+	#	push  (@alignmentsPad , $arrayRef);
+	 #   }
+	    
 	}
     }
-
+    my $referenceSequence = &getReferenceSequence($project, $contig, $referenceGenome, $start, $stop, $dbh);
+    my $referenceId = $contig;
+    if ($revComp eq 'on') {
+	$referenceSequence = &reverseCompliment($referenceSequence);
+	$alignmentHash{$referenceId}=$referenceSequence;
+	my $negstart = (-1 * $start);
+	$originsHash{$referenceId}=$negstart;
+   }
+    else {
+    $alignmentHash{$referenceId}=$referenceSequence;
+    $originsHash{$referenceId}=$start;
+    }
+#    print Dumper "alignments";
+ #   print Dumper @alignmentsPad;
+ #   print Dumper %originsHash;
+#    print Dumper "HASH";
+ #   print Dumper %alignmentHash;
     my $tempfile = &doClustalWalignment(\%alignmentHash, $mercatorOutputDir, $referenceId);
     if ($type eq 'clustal') {
 	ApiCommonWebsite::View::CgiApp::IsolateClustalw::createHTML($tempfile,$cgi,%originsHash);
-    }
+#	my $in  = Bio::AlignIO->new(-file   => $tempfile,
+#				    -format =>'clustalw');
+#	my $out = Bio::AlignIO->new(-fh   => \*STDOUT,
+ #                            -format => 'clustalw');
+#
+ #   while ( my $aln = $in->next_aln() ) {
+  #      $out->write_aln($aln);
+   # } 
+   }
     elsif($type eq 'fasta_ungapped') {
 	my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
 	
@@ -190,29 +211,32 @@ sub createAlignmentHash {
     else {
 	print Dumper "cant determine comparator\n ";
     }
-
+    
     my %sequenceHash;
     my %originsHash;
-
+    my @alignments;
+    my $regionFound=0;
     open (IN, "$mapfile") or die "can't open the map file for $folder to determine alignment folders\n";
+#    print Dumper "map file $mapfile";
     while (my $line = <IN>) {
 	chomp $line;
-
+	
         my ($alignmentFolder, $refSourceId, $refStart, $refEnd, $refStrand, $otherSourceId, $otherStart, $otherEnd, $otherStrand);
-
+	
 	my @temps = split "\t", $line;
 	my $agp=$agpHashRef->{$contig};
-
+	
 	my $userCoordObj = Bio::Location::Simple->new( -seq_id => $contig,
 						       -start => $start,
 						       -end =>  $stop,
 						       -strand => $strand );  #make sure strand I pass is bioperl strand - this should of been dome when i checked parameters  
-
+	
 	my $result = $agp->map($userCoordObj);
+#	print Dumper $result;
 	my $detStartFromUser = $result->start; 
 	my $detEndFromUser =$result->end;
-
-
+	
+	
 	my $refContig = $result->seq_id;
 	my $sliceStart;
 	my $sliceEnd;
@@ -225,27 +249,28 @@ sub createAlignmentHash {
 	else {
 	    next; 
 	}
-
 	my ($sliceStart, $sliceEnd, $useThisRegion) =&determineSlice($detStartFromUser, $detEndFromUser, $refStart, $refEnd, $alignmentFolder, $other);
 	if ($useThisRegion == 1) {
+	    $regionFound =1;
 	    my $folderToGetMfa = $folder."/alignments/".$alignmentFolder;
+#	    print Dumper "$folderToGetMfa $sliceStart $sliceEnd";
 	    my $alignmentObj;
 	    opendir(my $dh, $folderToGetMfa) || die "Can't open $folderToGetMfa: $!";
 	    while (readdir $dh) {
-
+		
 		my $file = $folderToGetMfa."/".$_;
-
+		
 		if ($file =~ /mavid.mfa.gz$/) {
-
+		    
 		    open (my $z, '-|', '/usr/bin/gunzip', '-c', $file) or die "can't open $file $!";
 		    $alignmentObj = Bio::AlignIO->new(-fh => \*$z, -format => 'fasta');    
 		    
 		}
 		elsif($file=~ /mavid.mfa$/) {
-
- 		
 		    
-		open (my $z, "$file") or die "cant open $folderToGetMfa$!";
+		    
+		    
+		    open (my $z, "$file") or die "cant open $folderToGetMfa$!";
 		    $alignmentObj = Bio::AlignIO->new(-fh => \*$z, -format => 'fasta');    
 		    
 		}
@@ -253,137 +278,146 @@ sub createAlignmentHash {
 		    next;
 		}
 	    }
-
+	    
 	    closedir $dh;
 	    
-#YOU REALLY NEED TO THINK ABOUT THIS AS ITS BASED ON THE REF SEQUENCE SO YOUR MATHS IS WRONG STILL 
-#	    print Dumper "getting to !";
-#	    print Dumper "getting to 2";
-#	    if (!defined $alignmentObj) {
-#		print Dumper "ERROR cant find mavid.mfa or mavid.mfa.gz in $folderToGetMfa $!";
-#	    }
-	    
 	    my $aln = $alignmentObj->next_aln();
-	    #   my $alnId = $aln->id;
-#	    print Dumper "align \n\n  $aln";
-	    #  if ($alnId eq $other) {
 	    my $length = $aln->length();
-#	    my $EndToPull = $length-$sliceEnd;
 	    my $start_pos = $aln->column_from_residue_number( $ref, $sliceStart);
 	    my $end_pos = $aln->column_from_residue_number( $ref, $sliceEnd);
-#	    print Dumper "start $start_pos end $end_pos other $other";
-#	    my $start_pos = $sliceStart;
-#	    my $end_pos = $EndToPull;
+#          print Dumper "start $start_pos end $end_pos other $other";
 	    my $aln2 = $aln->slice($start_pos,$end_pos);
-#	    my $aln3 = $aln2->remove_gaps;
+	    my $aln3 = $aln2->remove_gaps;
 #		print Dumper "alingment3\n";
 #		print Dumper $aln3;
 #		print Dumper "other is \n";
 #		print Dumper $other;
-	    my $seq = $aln2->get_seq_by_id($other);   
+	    my $seq = $aln3->get_seq_by_id($other);   
+#	    print Dumper $other;
+#	    print Dumper $seq;
 	    if (defined $seq) {
 #		my $sublength = $end_pos-$start_pos;
 		my $seqonly = $seq->seq;
 #		my $seq = $aln->seq;
 #		my $substring = substr($seq, $start_pos, $sublength);
-		
 		my $id = $seq->id;
+#		print Dumper "seq id is $id";
 		my $seqStart = $seq->start;
 		my $seqEnd = $seq->end;
-#		print Dumper "lalalalalalalala  im getting through id $id \n";
-#	    print Dumper $seqonly;
-#	    $cmd = "gzip $unzip";
-#	    system($cmd);
-#		print Dumper "other is $otherSourceId \n ";
-		
+#		print Dumper "start end $seqStart $seqEnd other $otherStart $otherEnd";
 		my @agpback = @{$backArrayRef};
 		my @coordCheck = @{$coordRef};
+		my $OtherContigId;
+#		my $strandCheck;
+#		if ($otherStrand eq '+') {
+#		     $strandCheck = 1;
+#		}
+#		else {
+#		     $strandCheck = -1;
+#		}
+		my %matches;
+		my $matchCount =0;
 		foreach my $element (@agpback) {
-
-#		    print Dumper "is this a hash ref $element";
-		    my $swap = bless($element);
-#		    print Dumper $swap;
-#		    my $test= Bio::Coordinate::Pair::swap($swap);
-#		    if ($test != 1) {
-#			print Dumper "swap not happening";
-#		    }
-##	    print Dumper "\n\n\n\n\n\n\n\n IT SHOULD BE SWAPPED NOW";
-##	    print Dumper $swap;
-		    my $agp2= $swap->{$otherSourceId};
+		    my $agp2= $element->{$otherSourceId};
+		    my $startToPull;
+		    my $endToPull;
 		    if (defined $agp2) {
 #			print Dumper "agp2\n";
 #			print Dumper $agp2;
-			my $pullStart = $otherStart+$sliceStart;
-#			print Dumper "MATHS $pullStart = $otherStart + $sliceStart";
-			my $pullEnd = ($pullStart + ($sliceEnd-$sliceStart));
-#			print Dumper "MATHS $pullEnd = $pullStart + ($sliceEnd - $sliceStart)";
-#			print Dumper "pull start $pullStart $pullEnd";
-			my $useStart;
-			my $useEnd;
-			my $DoIwork;
-			foreach my $co (@coordCheck) {
-			    my %range = %{$co};
-#			    print Dumper "range";
-#			    print Dumper %range;
-			    if (exists $range{$otherSourceId}){
-#				print Dumper "getting into coord hash";
-				my $check = $range{$otherSourceId};
-				my @temps = split  "-" , $check;
-				if (($temps[0] <= $pullStart) && ($temps[1] >= $pullEnd) && ($pullStart < $temps[1]) && ($pullEnd > $temps[0])) {
-				    $useStart = $temps[0];
-				    $useEnd = $temps[1];
-				    $DoIwork = $temps[2];
-#				    print Dumper "use start $useStart $useEnd";
-				}
-			    }
-			}
-
-                        # JB: Start and END are not defined here for this url
-                        # jbrestel.plasmodb.org/cgi-bin/pairwiseMercator?project_id=PlasmoDB&contig=Pf3D7_11_v3&start=1293856&stop=1295724&revComp=on&genomes=pyoeyoelii17XNL&type=clustal
-			my $OtherCoordObj = Bio::Location::Simple->new( -seq_id => $otherSourceId,
-									-start => $useStart,
-									-end =>  $useEnd,
-									-strand => $otherStrand );  #make sure strand I pass is bioperl strand - this should of been dome when i checked parameters  
-                        
-
-			my $result2 = $agp2->map($OtherCoordObj);
-
-			if (defined $result2) {
-                          my $OtherContig = $result2->seq_id;
-			    my $uniqueid = $OtherContig;
-			    if ($revComp eq 'on') {
-				$seqonly = &reverseCompliment($seqonly);
-				#####reverse complement the sequence here
-				if ($otherStrand eq '+') {
-				
-				my $negseqStart = (-1 * $seqStart);
-				$originsHash{$uniqueid}=$negseqStart;
-			   	}
-				else { 
-				    $originsHash{$uniqueid}=$seqStart;
-				}
+			if ($agp2->in->seq_id eq $otherSourceId) { 
+#			    my %matches;
+#			    print Dumper "agp choosen";
+#			    print Dumper $agp2;
+			    #my $strandTest = $agp2->in->strand;
+			    # if ($strandTest eq $strandCheck) {
+			    my $start = $agp2->in->start;
+			    my $end = $agp2->in->end;
+			    my $startContig = $agp2->out->start;
+			    my $endContig = $agp2->out->end;
+#				print Dumper $start;
+			    if ($otherStrand eq '-') {
+#				print Dumper "negative strand" ;
+#				print Dumper "$otherEnd $seqEnd"; 
+				$startToPull = $otherEnd - $seqEnd;
+				$endToPull= $startToPull +($seqEnd-$seqStart);
 			    }
 			    else {
-				if ($otherStrand eq '-'){
-				my $negseqStart = (-1 * $seqStart);
-				$originsHash{$uniqueid}=$negseqStart;
-				}
-				else {
-				    $originsHash{$uniqueid}=$seqStart;
-				}
+				$startToPull = $seqStart;
+				$endToPull = $seqEnd;
 			    }
-			    $sequenceHash{$uniqueid}=$seqonly;
-			    last;
+			    my $lala = $agp2->in->seq_id;
+			    my $lalala = $agp2->out->seq_id;
+#			    print Dumper "start pull $startToPull $endToPull $lala $lalala $start $end";
+			    if ((($start < $startToPull) && ($end < $endToPull) && ($end > $startToPull)) || (( $start >= $startToPull) && ($start <= $endToPull)) || (($start >= $startToPull) && ($end <=$endToPull)) || (($startToPull > $start) && ($endToPull < $end))) {
+				$OtherContigId = $agp2->out->seq_id;
+				@{$matches{$OtherContigId}} = ($seqonly,$start,$end,$startToPull,$endToPull,$startContig,$endContig,$refStrand,$otherStrand);
+#				    print Dumper "YES $OtherContigId";
+				$matchCount ++;
+			    }
+			    else { 
+				my  $OtherContigId2 = $agp2->out->seq_id;
+#				print Dumper "Skipping $OtherContigId2";
+				next;
+			    }
+			    # }
+			    #   else {
+#			#	print Dumper "stand is $strandTest";
+			    #	next;
+			    #   }
 			}
 			
-			else {
-			    next;
-			}
+#			if ($revComp eq 'on') {
+#			    $seqonly = &reverseCompliment($seqonly);
+			    #####reverse complement the sequence here
+#			    if ($otherStrand eq '+') {
+#				my $negseqStart = (-1 * $seqStart);
+#				$originsHash{$uniqueid}=$negseqStart;
+#			    }
+#			    else { 
+#				$originsHash{$uniqueid}=$seqStart;
+#			    }
+#			}
+#			else {
+#			    if ($otherStrand eq '-'){
+#				my $negseqStart = (-1 * $seqStart);
+#				$originsHash{$uniqueid}=$negseqStart;
+#			    }
+#			    else {
+#				$originsHash{$uniqueid}=$seqStart;
+#			    }
+#			}
 		    }
 		    else {
 			next;
 		    }
+
 		}
+#			    print Dumper "only getting here after looking at each one";
+		
+		my (%hashOfNewSeqCoords) = &determineSplitSeq(%matches);
+		#removed @tempAlignments from array and slice start and end from sub 
+		my ($tempSeqHashRef, $tempOriHashRef) = &workOutSeq($revComp,%hashOfNewSeqCoords);
+		my %tempSeqHash = %{$tempSeqHashRef};
+		my %tempOriHash = %{$tempOriHashRef};
+		foreach my $one (keys %tempSeqHash) {
+		    $sequenceHash{$one} = $tempSeqHash{$one};
+		}
+		foreach my $two (keys %tempOriHash) {
+		    $originsHash{$two}=$tempOriHash{$two};
+		}
+#		foreach my $three (@tempAlignments){
+#		    push (@alignments , $three);
+#		}
+		    #HERE DO THE SPLITING ETC ETC 
+#		    my ($finalSeq, finalOrigin) = &workOutSeq(
+#			print Dumper "array is @alignArray";
+#			print Dumper "overall is @alignments";
+#			last;
+###			}
+		
+###			else {
+###			    next;
+#		    }
 	    }
 	    else{
 		next;
@@ -397,10 +431,14 @@ sub createAlignmentHash {
 	else {
 	    print Dumper "there is an error determining if the region should be used. please check the determineSlice subroutine\n";
 	}
-
     }
-
-
+    
+ #   print Dumper "region found $regionFound $other";
+    #removed @alignments
+ #   print Dumper "SEQUENCE HASH";
+ #   print Dumper %sequenceHash; 
+   # print Dumper "origins hash";
+   # print Dumper %originsHash;
     return (\%sequenceHash, \%originsHash);
     
 }
@@ -485,7 +523,7 @@ sub validateMacros {
     
       my $mercatorOutputDir = $wsMirror . "/$project/build-$buildNumber/mercator_pairwise/";
  #   my $mercatorOutputDir = "/var/www/PlasmoDB/plasmodb.pulmanj/plasmo/";
-    #   print Dumper "folder is $mercatorOutputDir\n";
+ #      print Dumper "folder is $mercatorOutputDir\n";
     opendir(DIR, $mercatorOutputDir) || die "Can't open $mercatorOutputDir for reading:$!";
     my @pairwiseDirs = grep { -d "$mercatorOutputDir/$_" &&  /[a-zA-Z0-9_-]/ } readdir(DIR);
     closedir DIR;
@@ -665,7 +703,9 @@ where source_id = ?";
     
     $sth->finish();
     my $length = $stop-$start;
-    my $substring = substr($sequence, $start, $length);
+    my $newStart = $start-1;
+    my $newlength = $length +1;
+    my $substring = substr($sequence, $newStart, $newlength);
 #    print Dumper "seq is \n $sequence \n";
 #    print Dumper "sub is \n $substring \n ";
     return $substring;
@@ -698,12 +738,17 @@ sub makeAgpMap {
 	    my $ctg = Bio::Location::Simple->new( -seq_id => $source_id,
 						  -start => $start,
 						  -end =>  $end,
-						  -strand => '+1' );
+						  -strand => $virtualStrand);
 	    
 	    my $ctg_on_chr = Bio::Location::Simple->new( -seq_id =>  $virtualSourceId,
 							 -start => $virtualStart,
 							 -end =>  $virtualEnd,
-							 -strand => $virtualStrand );
+							 -strand => '+1' );
+	    
+#	    my $ctg2 = Bio::Location::Simple->new( -seq_id => $source_id,
+#						  -start => $start,
+#						  -end =>  $end,
+#						  -strand => $virtualStrand );
 	    
 	    
 	    my $agp = Bio::Coordinate::Pair->new( -in  => $ctg, -out => $ctg_on_chr );
@@ -712,8 +757,8 @@ sub makeAgpMap {
 
 	    #my $agp2 = Bio::Coordinate::Pair->new( -in =>$ctg_on_chr, -out =>$ctg);
 	    #my $pieceSourceId2 = $virtualSourceId;
-#		    print Dumper "agp is";
-#		    print Dumper $agp;
+#	    print Dumper "agp is";
+#		    print Dumper $agp2;
 	    if (exists $agpHash{$pieceSourceId}){
 		print Dumper "ERROR AGP MAP WRONG IN SUB MAKEAGPMAP";
 	    }
@@ -745,6 +790,163 @@ sub reverseCompliment {
 #    print Dumper $revcomp;
     return $revcomp;
 }
+
+######I AM UP TO HERE AND THIS BUT SHOULD BE OK BUT I NEED TO JUST CHECK EVERYTHING ###############
+
+
+sub workOutSeq {
+#removed slive start and end 
+    my ($revComp,%newHash) = @_;
+    my %originsHash;
+    my %sequenceHash;
+#    my @alignments;
+    foreach my $element (keys %newHash) {
+	my ($seqonly,$newStart,$newEnd,$refStrand,$otherStrand) = @{$newHash{$element}};
+	###### for my motes below new start has replaced startToPull
+	
+	my $uniqueid = $element;
+	
+	if ($revComp eq 'on') {
+	    if ($refStrand eq '+') {
+		if ($otherStrand eq '+') {
+		    $seqonly = &reverseCompliment($seqonly);
+		    my $negseqStart = (-1 * $newStart);
+		    $originsHash{$uniqueid}=$negseqStart;
+		    
+		}
+		elsif ($otherStrand eq '-') {
+		    $seqonly = &reverseCompliment($seqonly);
+		    $originsHash{$uniqueid}=$newStart;
+		}
+		else {
+		    print Dumper "ERROR OTHER STRAND NOT DETERMINED";
+		}
+	    }
+	    elsif($refStrand eq '-') {
+		if($otherStrand eq '+') {
+		    $originsHash{$uniqueid}=$newStart;
+		}
+		elsif($otherStrand eq '-') {
+		    my $negseqStart = (-1 * $newStart);
+		    $originsHash{$uniqueid}=$negseqStart;
+		}
+		else {
+		    print Dumper "ERROR OTHER STRAND NOT DETERMINED";
+		}
+	    }
+	    else{
+		print Dumper "ERROR REFERENCE STRAND CAN NOT BE DETERMINED";
+	    }
+	}
+	elsif($revComp ne 'on') {
+	    if ($refStrand eq '+') {
+		if ($otherStrand eq '+') {
+		    $originsHash{$uniqueid}=$newStart;
+		}
+		elsif($otherStrand eq '-') {
+		    my $negseqStart = (-1 * $newStart);
+		    $originsHash{$uniqueid}=$negseqStart;
+		}
+		else {
+		    print Dumper "ERROR OTHER STRAND NOT DETERMINED";
+		}
+	    }
+	    elsif($refStrand eq '-') {
+		if ($otherStrand eq '+') {
+		    $seqonly = &reverseCompliment($seqonly);
+		    $originsHash{$uniqueid}=$newStart;
+		}
+		elsif($otherStrand eq '-') {
+		    $seqonly = &reverseCompliment($seqonly);
+		    my $negseqStart = (-1 * $newStart);
+		    $originsHash{$uniqueid}=$negseqStart;
+		}
+		else {
+		    print Dumper "ERROR OTHER STRAND NOT DETERMINED";
+		}
+	    }
+	    else {
+		print Dumper "ERROR REF STRAND CAN NOT BE DETERMINED";
+	    }
+	}
+	$sequenceHash{$uniqueid}=$seqonly;
+#	my @alignArray = ($uniqueid,$sliceStart,$sliceEnd,$newStart,$newEnd);
+#	push (@alignments, \@alignArray);
+    }
+#    print Dumper "WITHIN";
+ #   print Dumper %sequenceHash;
+    return(\%sequenceHash, \%originsHash)
+	
+}
+
+sub determineSplitSeq {
+    my %hash = @_;
+    my %newHash;
+    my $numberSeq = scalar keys %hash;
+    my %multipleHash;
+    my $seqToSplit;
+    my $length;
+    foreach my $element (keys %hash) {
+	my ($seqonly,$assStart,$assEnd,$startToPull,$endToPull,$startContig,$endContig,$refStrand,$otherStrand) = @{$hash{$element}}; 
+	
+	$length = length($seqonly);
+	$seqToSplit = $seqonly;
+	my ($newStart,$newEnd,$newseq);
+	if($assStart<$startToPull) {
+	    $newStart = ($startToPull - $assStart);
+	}
+	elsif($assStart >= $startToPull) {
+	    $newStart = 1;
+	}
+	else {
+	    print Dumper "Error cant determind new start";
+	}
+	if($assEnd <=$endToPull) {
+	    $newEnd = $endContig;
+	}
+	elsif($assEnd >$endToPull) {
+	    $newEnd = $endContig-($assEnd-$endToPull)
+	}
+	else {
+	    print Dumper "cant determine new end";
+	}
+	if ($numberSeq ==1) {
+#	    print Dumper "getting into onlt 1 in hash";
+	    @{$newHash{$element}}=($seqonly,$newStart,$newEnd,$refStrand,$otherStrand);
+#	    print Dumper " new start end $newStart $newEnd seq $seqonly";
+	}
+	elsif ($numberSeq >1) {
+	    @{$multipleHash{$assStart}}=($element,$newStart,$newEnd,$refStrand,$otherStrand,$seqonly);	    
+	}
+	else {
+	    print Dumper "ERROR THERE ISNT ANY MATCHES BEEN SET FOR NUMBERING";
+	}	
+    }
+    if (defined %multipleHash) {
+	#DO SEQ MAGIC HERE
+	my $count = 0;
+#So I know the Ass stuff and I need to order this to know how to split the sequence up. 
+	foreach (sort { $a <=> $b } keys(%multipleHash)){
+	    my ($element,$newStart,$newEnd,$refStrand,$otherStrand,$seqonly) = @{$multipleHash{$_}};
+	    my $snippetLength = ($newEnd-$newStart);
+#	    print Dumper "new start nd end $newStart $newEnd";
+#	    print Dumper "new length is $snippetLength Length original is $length";
+	    if ($length == $snippetLength) {
+		print Dumper "ERROR the full length of alignment matches length of the fragment";
+	    }
+	    else {
+		my $newSeq = substr $seqonly, $count, $snippetLength;
+#		print Dumper "seq $newSeq";
+		$count += $snippetLength;
+		@{$newHash{$element}}=($newSeq,$newStart,$newEnd,$refStrand,$otherStrand);
+		
+	    }
+	}
+	
+	
+    }
+    return (%newHash);
+} 
 1;
 
 
