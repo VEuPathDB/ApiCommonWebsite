@@ -15,12 +15,12 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $sources, $evidCodes) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $evidCodes) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
-  $self->{sources} = $sources;
+#  $self->{sources} = $sources;
   $self->{evidCodes} = $evidCodes;
   $self->{subOntology} = $subOntology;
   $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
@@ -35,9 +35,11 @@ FROM ApidbTuning.GoTermSummary gts, ApidbTuning.GeneAttributes ga
 where ga.taxon_id = $taxonId
   and gts.gene_source_id = ga.source_id
   and gts.is_not is null
-  and gts.displayable_source in ($self->{sources})
---  and gts.evidence_code in ($self->{evidCodes})
+--  and gts.displayable_source in ($self->{sources})
+  AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
 ";
+
+  print STDERR "SQL=$sql\n";
 
   my $stmt = $self->runSql($dbh, $sql);
   my ($geneCount) = $stmt->fetchrow_array();
@@ -54,8 +56,8 @@ FROM ApidbTuning.GoTermSummary gts,
      ($geneResultSql) r
 where gts.gene_source_id = r.source_id
   and gts.is_not is null
-  and gts.displayable_source in ($self->{sources})
---  and gts.evidence_code in ($self->{evidCodes})
+--  and gts.displayable_source in ($self->{sources})
+  AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -76,8 +78,9 @@ from
             WHERE gf.taxon_id = $taxonId
               AND gts.gene_source_id = gf.source_id
               AND gts.ontology = '$self->{subOntology}'
-              AND gts.displayable_source in ($self->{sources})
---              AND gts.evidence_code in ($self->{evidCodes})
+--              AND gts.displayable_source in ($self->{sources})
+                AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+
               AND gts.is_not is null
             group BY gts.go_id, gts.go_term_name
    ) bgd,
@@ -86,8 +89,9 @@ from
                  ($geneResultSql) r
             WHERE gts.gene_source_id = r.source_id
               AND gts.ontology = '$self->{subOntology}'
-              AND gts.displayable_source in ($self->{sources})
---              AND gts.evidence_code in ($self->{evidCodes})
+--              AND gts.displayable_source in ($self->{sources})
+               AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+
               AND gts.is_not is null
             group BY gts.go_id
       ) rslt

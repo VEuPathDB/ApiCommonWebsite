@@ -34,8 +34,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final Logger LOG = Logger.getLogger(GoEnrichmentPlugin.class);
 
   private static final String GO_TERM_BASE_URL_PROP_KEY = "goTermPageUrl";
-  // private static final String GO_EVID_CODE_PARAM_KEY = "goEvidenceCodes";
-  private static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
+  private static final String GO_EVID_CODE_PARAM_KEY = "goEvidenceCodes";
+    //private static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
   private static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
 
   private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
@@ -50,6 +50,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "run separate GO enrichment analyses.</p>";
 
   private static final String PROJECT_ID_KEY = "@PROJECT_ID@";
+
+    /*
   private static final String SOURCES_PARAM_HELP =
       "<p>Choose the GO Association Source(s) that you wish to include in the analysis.</p>" + 
       "<ol style='list-style:inside'>GO terms in " + 
@@ -60,6 +62,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       " which may include a combination of electronically transferred or manually curated associations.</li>" + 
       "</ul>" +
       "<p>Not all sources are available for every genome.</p>";
+    */
+
+  private static final String EVIDENCE_PARAM_HELP =
+      "<p>A GO Evidence Code of IEA is assigned to a computationally assigned association." + 
+      "All others have some degree of curation</p>";
 
   private static final String PVALUE_PARAM_HELP =
       "<p>Choose the P-Value Cutoff that a GO term must meet before it is " +
@@ -96,12 +103,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
     // validate annotation sources 
-    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
-        GO_ASSOC_SRC_PARAM_KEY, formParams, errors);
+    //    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
+    //        GO_ASSOC_SRC_PARAM_KEY, formParams, errors);
 
-    /*// validate evidence codes
+    // validate evidence codes
     String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
-        GO_EVID_CODE_PARAM_KEY, formParams, errors); */
+        GO_EVID_CODE_PARAM_KEY, formParams, errors); 
 
     // validate ontology
     String ontology = EnrichmentPluginUtil.getSingleAllowableValueParam(
@@ -109,13 +116,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     // only validate further if the above pass
     if (errors.isEmpty()) {
-      validateFilteredGoTerms(sourcesStr, /*evidCodesStr,*/ ontology, errors);
+        validateFilteredGoTerms(/*sourcesStr,*/  evidCodesStr, ontology, errors);
     }
 
     return errors;
   }
 
-  private void validateFilteredGoTerms(String sourcesStr,/* String evidCodesStr,*/ String ontology, ValidationErrors errors)
+    private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, ValidationErrors errors)
       throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
@@ -125,9 +132,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "(" + idSql + ") r"  + NL +
       "where gts.gene_source_id = r.source_id" + NL +
       "and gts.ontology = '" + ontology + "'" + NL +
-      "and gts.displayable_source in (" + sourcesStr + ")" + NL
-      // +  "and gts.evidence_code in (" + evidCodesStr + ")" + NL
+        //"and gts.displayable_source in (" + sourcesStr + ")" + NL
+       "AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in (" + evidCodesStr + ")" + NL
       ;
+
+
+    System.err.println("sql");
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
@@ -152,18 +162,20 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
     String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
-    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
-        GO_ASSOC_SRC_PARAM_KEY, params, null); // in sql format
-    //String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
-    //    GO_EVID_CODE_PARAM_KEY, params, null); // in sql format
+
+    //    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
+    //        GO_ASSOC_SRC_PARAM_KEY, params, null); // in sql format
+
+    String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
+        GO_EVID_CODE_PARAM_KEY, params, null); // in sql format
     String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY)[0];
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
-        wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + sourcesStr);
+        wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql,
-        wdkModel.getProjectId(), pValueCutoff, ontology, sourcesStr, /* evidCodesStr */ };
+                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr  };
   }
 
   /**
@@ -211,6 +223,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql = getAnswerValue().getIdSql();
 
     // find annotation sources used in the result set
+    /*
     String sql = "select distinct gts.displayable_source" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.gene_source_id = r.gene_source_id";
@@ -221,9 +234,10 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       String srcDisplay = cols.get("DISPLAYABLE_SOURCE").toString();
       sources.add(new Option(srcDisplay, srcDisplay));
     }
+    */
 
     // find ontologies used in the result set
-    sql = "select distinct gts.ontology" + NL +
+    String sql = "select distinct gts.ontology" + NL +
       "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
       "where gts.gene_source_id = r.gene_source_id and gts.ontology is not null";
     new SQLRunner(ds, sql, "select-go-term-ontologies").executeQuery(handler);
@@ -232,23 +246,22 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       ontologies.add(new Option(cols.get("ONTOLOGY").toString()));
     }
 
-    /*
+
     // find evidence codes used in the result set
-    sql = "select distinct gts.evidence_code" + NL +
-      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.gene_source_id = r.gene_source_id";
+    sql = "select 'Curated' as evidence from dual union select 'Computed' from dual";
     new SQLRunner(ds, sql).executeQuery(handler);
-    List<String> evidCodes = new ArrayList<>();
+    List<Option> evidCodes = new ArrayList<>();
     for (Map<String,Object> cols : handler.getResults()) {
-      evidCodes.add(cols.get("EVIDENCE_CODE").toString());
+        String evidString = cols.get("EVIDENCE").toString();
+        evidCodes.add(new Option(evidString, evidString));
     }
-    */
+
 
     // get orgs to display in select
     List<Option> orgOptionList = EnrichmentPluginUtil
         .getOrgOptionList(getAnswerValue(), getWdkModel());
 
-    return new FormViewModel(orgOptionList, sources, ontologies /*, evidCodes*/, getWdkModel().getProjectId());
+    return new FormViewModel(orgOptionList, /*sources,*/ ontologies , evidCodes, getWdkModel().getProjectId());
   }
 
   @Override
@@ -272,17 +285,19 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class FormViewModel {
 
+      //      System.err.println("Made it to FormViewModel");
+
     private List<Option> _orgOptions;
-    private List<Option> _sourceOptions;
+      //    private List<Option> _sourceOptions;
     private List<Option> _ontologyOptions;
-    // private List<String> _evidCodeOptions;
+      private List<Option> _evidCodeOptions;
     private String _projectId;
 
-    public FormViewModel(List<Option> orgOptions, List<Option> sourceOptions, List<Option> ontologyOptions /*, List<String> evidCodeOptions*/, String projectId) {
+      public FormViewModel(List<Option> orgOptions, /*List<Option> sourceOptions,*/ List<Option> ontologyOptions, List<Option> evidCodeOptions, String projectId) {
       _orgOptions = orgOptions;
-      _sourceOptions = sourceOptions;
+      //      _sourceOptions = sourceOptions;
       _ontologyOptions = ontologyOptions;
-      // _evidCodeOptions = evidCodeOptions;
+       _evidCodeOptions = evidCodeOptions;
       _projectId = projectId;
     }
 
@@ -290,13 +305,15 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       return _orgOptions;
     }
 
+      /*
     public List<Option> getSourceOptions() {
       return _sourceOptions;
     }
+      */
 
-    /* public List<String> getEvidCodeOptions() {
+    public List<Option> getEvidCodeOptions() {
       return _evidCodeOptions;
-    } */
+    } 
 
     public List<Option> getOntologyOptions() {
       return _ontologyOptions;
@@ -304,7 +321,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
     public String getOntologyParamHelp() { return ONTOLOGY_PARAM_HELP; }
-    public String getSourcesParamHelp() { return SOURCES_PARAM_HELP.replace(PROJECT_ID_KEY, _projectId); }
+      //    public String getSourcesParamHelp() { return SOURCES_PARAM_HELP.replace(PROJECT_ID_KEY, _projectId); }
+    public String getEvidenceParamHelp() { return EVIDENCE_PARAM_HELP; }
     public String getPvalueParamHelp() { return PVALUE_PARAM_HELP; }
   }
 
@@ -328,8 +346,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
-    public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
-    // public String getEvidCodes() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY), ", "); }
+    // public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
+    public String getEvidCodes() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY), ", "); }
     public String getGoOntologies() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY), ", "); }
     public String getGoTermBaseUrl() { return _goTermBaseUrl; }
   }
