@@ -18,6 +18,7 @@ use EuPathSiteCommon::Model::ModelXML;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
 use ApiCommonWebsite::View::CgiApp::IsolateClustalw;
+#use ApiCommonWebsite::View::CgiApp::htmlClustalo;
 use Bio::Graphics::Browser2::PadAlignment;
 
 sub run {
@@ -135,13 +136,13 @@ sub run {
     if ($type eq 'clustal') {
 	ApiCommonWebsite::View::CgiApp::IsolateClustalw::createHTML($tempfile,$cgi,%originsHash);
 #	my $in  = Bio::AlignIO->new(-file   => $tempfile,
-#				    -format =>'clustalw');
+#				    -format =>'clustalo');
 #	my $out = Bio::AlignIO->new(-fh   => \*STDOUT,
- #                            -format => 'clustalw');
+ #                           -format => 'clustalo');
 #
- #   while ( my $aln = $in->next_aln() ) {
-  #      $out->write_aln($aln);
-   # } 
+ #  while ( my $aln = $in->next_aln() ) {
+ #       $out->write_aln($aln);
+ #   } 
    }
     elsif($type eq 'fasta_ungapped') {
 	my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
@@ -470,10 +471,19 @@ sub doClustalWalignment {
 	}
     }
     
-    my $cmd = "/usr/bin/clustalw2 -infile=$multifasta -outfile=$outfile -OUTORDER=input -SEQNOS=on > $tempfile";
+#    my $cmd = "/usr/bin/clustalw2 -infile=$multifasta -outfile=$outfile -OUTORDER=input -SEQNOS=on > $tempfile";
+#    if(-e $outfile) {
+#	print Dumper "it exists\n";
+#	}
+   my $cmd = "/usr/bin/clustalo --infile=$multifasta --outfile=$outfile --outfmt clustal --output-order tree-order --seqtype dna  --force 2> $tempfile";
     system($cmd);
-#    my $cmd = " rm $multifasta $tempfile";
-#    system($cmd);
+#    open (IN, $tempfile) or die "cant open $tempfile!\n";
+ #   while (<IN>){
+#	print Dumper $_;
+ #   }
+  #  close IN;
+    my $cmd = " rm $multifasta $tempfile";
+    system($cmd);
     return $outfile;
     
 }
@@ -703,9 +713,9 @@ where source_id = ?";
     
     $sth->finish();
     my $length = $stop-$start;
-    my $newStart = $start-1;
-    my $newlength = $length +1;
-    my $substring = substr($sequence, $newStart, $newlength);
+    my $newStart = ($start-1);
+#    my $newlength = $length;
+    my $substring = substr($sequence, $newStart, $length);
 #    print Dumper "seq is \n $sequence \n";
 #    print Dumper "sub is \n $substring \n ";
     return $substring;
