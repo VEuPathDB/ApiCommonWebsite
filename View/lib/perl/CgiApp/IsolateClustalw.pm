@@ -100,6 +100,7 @@ EOSQL
   my $cmd = "/usr/bin/clustalw2 -infile=$infile -outfile=$outfile > $tmpfile";
   system($cmd);
  my %origins = ();
+#  my @alignments = ();
   &createHTML($outfile,$cgi,%origins);
      
   open(D, "$dndfile");
@@ -128,7 +129,15 @@ sub createHTML {
 
   while(<O>) {
     chomp;
-    next if (/^CLUSTAL/i || /^\s+$/ || /\*{1,}+/);
+    if ($_ =~/CLUSTAL O/) {
+  print $cgi->pre("CLUSTAL O(1.2.3) Multiple Sequence Alignments\n");
+  next;
+    }
+    elsif($_=~/^CLUSTAL/) {
+  print $cgi->pre("CLUSTAL 2.1 Multiple Sequence Alignments\n");
+    next;
+    }
+    next if (/^\s+$/ || /\*{1,}+/);
     my ($id, $seq) = split /\s+/, $_;
     $id =~ s/\s+//g; 
     next if $id eq ""; # not sure why empty ids are not skipped.
@@ -137,19 +146,22 @@ sub createHTML {
   close O;
 
   my @dnas;
-  my @alignments;
+  
+  my @alignments2;
   while(my ($id, $seqs) = each %hash) {
     my $seq = join '', @{$hash{$id}};
-    #my $length = length($seq);
-    #push @alignments, [$id, 0, $length, 0, $length]; 
+    my $new_seq = $seq;
+    $new_seq =~ s/_//g;
+    my $length = length($new_seq);
+    push @alignments2, [$id, 0, $length, 0, $length]; 
     push @dnas, $id, $seq;
   }
 
-  my $align = Bio::Graphics::Browser2::PadAlignment->new(\@dnas,\@alignments);
+  my $align = Bio::Graphics::Browser2::PadAlignment->new(\@dnas,\@alignments2);
 
 #  my %origins = ();
 
-  print $cgi->pre("CLUSTAL 2.1 Multiple Sequence Alignments\n");
+#  print $cgi->pre("CLUSTAL 2.1 Multiple Sequence Alignments\n");
   print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
                                                    show_similarities => 1, 
                                                    show_matches      => 1})); 
