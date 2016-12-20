@@ -154,6 +154,14 @@ When citing TrichDB itself, please use:
 <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18824479">
 GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> 2009 Jan;37(Database issue):D526-30. Aurrecoechea C, et al.
 
+<br><br>
+When citing EuPathDB itself, please use:
+<br>
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
+EuPathDB: the eukaryotic pathogen genomics database resource.</a>
+2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+
+
 <br><br>Much of the data in TrichDB is provided by independent
 researchers.  Please cite them if you use their data.  For a list
 of the data integrated into TrichDB and the related
