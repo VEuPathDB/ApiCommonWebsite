@@ -35,9 +35,6 @@ sub setAxisLty                  { $_[0]->{'_axis_lty'                        } =
 sub getLas                      { $_[0]->{'_las'                             }}
 sub setLas                      { $_[0]->{'_las'                             } = $_[1]}
 
-sub getLabelCex                 { $_[0]->{'_label_cex'                      }}
-sub setLabelCex                 { $_[0]->{'_label_cex'                      } = $_[1]}
-
 sub getSkipStdErr                 { $_[0]->{'_skip_std_err'                      }}
 sub setSkipStdErr                 { $_[0]->{'_skip_std_err'                      } = $_[1]}
 
@@ -97,9 +94,6 @@ sub makeRPlotString {
   my $lasString = defined($las) ? 'TRUE' : 'FALSE';
   $las = defined($las) ? $las : 'NULL';
 
-  my $labelCex = $self->getLabelCex();
-  $labelCex = defined($labelCex) ? $labelCex : 1 ;
-
   my $isCompactString = "FALSE";
 
   if($self->isCompact()) {
@@ -110,6 +104,7 @@ sub makeRPlotString {
   my $isHorizontal = $self->getIsHorizontal();
 
   my $horizontalXAxisLabels = $self->getForceHorizontalXAxis();
+
   my $yAxisFoldInductionFromM = $self->getMakeYAxisFoldInduction();
   my $highlightMissingValues = $self->getHighlightMissingValues();
 
@@ -237,7 +232,7 @@ for(i in 1:length(profile.files)) {
 # allow minor adjustments to profile
 $rAdjustProfile
 
-names.margin = $bottomMargin;
+
 fold.induction.margin = 1;
 if($yAxisFoldInductionFromM) {
   fold.induction.margin = 3.5;
@@ -288,29 +283,6 @@ if(is.compact) {
   par(mar       = c(0,0,0,0),xaxt=\"n\", bty=\"n\", xpd=TRUE);
 }
 
-if($horiz) {
-  par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
-  x.lim = c(d.min, d.max);
-  y.lim = NULL;
-
-  yaxis.side = 1;
-  foldchange.side = 3;
-
-  yaxis.line = 2;
-
-} else {
-
-  if(!is.compact) {
-    par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA);
-  } 
-  y.lim = c(d.min, d.max);
-  x.lim = NULL;
-
-  yaxis.side = 2;
-  foldchange.side = 4;
-
-  yaxis.line = left.margin.size - 1;
-}
 
 if($overrideXAxisLabels) {
   my.labels = x.axis.label;
@@ -333,20 +305,61 @@ if ($axisLtyString) {
 }
 
 
+#names.margin = $bottomMargin;
+names.margin = max(round(max(nchar(my.labels)) / 3), 3);
+
+if($horiz) {
+  par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
+  x.lim = c(d.min, d.max);
+  y.lim = NULL;
+
+  yaxis.side = 1;
+  foldchange.side = 3;
+
+  yaxis.line = 2;
+
+} else {
+
+  if(!is.compact) {
+    par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA, cex=0.9);
+  } 
+  y.lim = c(d.min, d.max);
+  x.lim = NULL;
+
+  yaxis.side = 2;
+  foldchange.side = 4;
+
+  yaxis.line = left.margin.size - 1;
+}
+
+
+
+
+showAxisNames = FALSE;
+if($horiz || nrow(profile.df) > 1) {
+  showAxisNames = TRUE;
+}
+
   plotXPos = barplot(as.matrix(profile.df),
              col       = the.colors,
              xlim      = x.lim,
              ylim      = y.lim,
              beside    = $beside,
+             axisnames = showAxisNames,
+             axes = FALSE,
+             cex.names = $scale,
              names.arg = my.labels,
-             cex.names = $labelCex,
              space = my.space,
              las = my.las,
-             axes = FALSE,
              cex.axis=$scale,
              axis.lty = my.axis.lty,
              horiz=$horiz,
             );
+
+
+if(!$horiz && nrow(profile.df) == 1) {
+  text(plotXPos, par(\"usr\")[3], labels = my.labels, srt = 45, adj = c(1,1.1), xpd = TRUE)
+}
 
 mtext('$yAxisLabel', side=yaxis.side, line=yaxis.line, cex=$scale, las=0)
 yAxis = axis(foldchange.side, tick=F, labels=F);
