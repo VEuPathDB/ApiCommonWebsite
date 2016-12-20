@@ -35,6 +35,53 @@
 </record>
 -->
 <record>
+    <attribute name="record_date">20 December 2016 15:00</attribute>
+    <attribute name="tag">PubMed:27903906 </attribute>
+    <attribute name="authors">
+Aurrecoechea A, Barreto A, Basenko EY, Brestelli J, Brunk BP, Cade S, Crouch K, 
+Doherty R, Falke D, Fischer S, Gajria B, Harb OS, Heiges M, Hertz-Fowler C, Hu S, 
+Iodice J, Kissinger JC, Lawrence C, Li W, Pinney DF, Pulman JA, Roos DS, 
+Shanmugasundram A, Silva-Franco F, Steinbiss S, Stoeckert CJ Jr, Spruill D, Wang H, Warrenfeltz S, Zheng J.
+    </attribute>
+    <attribute name="title">
+        <![CDATA[
+EuPathDB: the eukaryotic pathogen genomics database resource.
+         ]]>
+    </attribute>
+    <attribute name="reference">
+        <![CDATA[
+          Nucleic Acids Res. 2016 Nov 29. pii: gkw1105. [Epub ahead of print]
+        ]]>
+    </attribute>
+    <attribute name="links">
+        <![CDATA[
+        [ <a href="http://nar.oxfordjournals.org/content/early/2016/11/29/nar.gkw1105.long">Full text</a>]
+        ]]>
+    </attribute>
+    <attribute name="pmid">27903906</attribute>
+    <attribute name="isbn"></attribute>
+    <attribute name="abstract">
+        <![CDATA[
+The Eukaryotic Pathogen Genomics Database Resource (EuPathDB, http://eupathdb.org) is a collection of databases 
+covering 170+ eukaryotic pathogens (protists & fungi), along with relevant free-living and non-pathogenic species, 
+and select pathogen hosts. To facilitate the discovery of meaningful biological relationships, the databases couple 
+preconfigured searches with visualization and analysis tools for comprehensive data mining via intuitive graphical 
+interfaces and APIs. All data are analyzed with the same workflows, including creation of gene orthology profiles, 
+so data are easily compared across data sets, data types and organisms. EuPathDB is updated with numerous new analysis 
+tools, features, data sets and data types. New tools include GO, metabolic pathway and word enrichment analyses plus 
+an online workspace for analysis of personal, non-public, large-scale data. Expanded data content is mostly genomic 
+and functional genomic data while new data types include protein microarray, metabolic pathways, compounds, 
+quantitative proteomics, copy number variation, and polysomal transcriptomics. New features include consistent 
+categorization of searches, data sets and genome browser tracks; redesigned gene pages; effective integration of 
+alternative transcripts; and a EuPathDB Galaxy instance for private analyses of a user's data. Forthcoming upgrades 
+include user workspaces for private integration of data with existing EuPathDB data and improved integration and 
+presentation of host-pathogen interactions.
+ ]]>
+    </attribute>
+</record>
+
+
+<record>
     <attribute name="record_date">23 March 2015 15:00</attribute>
     <attribute name="tag">PubMed:25388105</attribute>
     <attribute name="authors">
