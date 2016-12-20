@@ -93,7 +93,6 @@ RADJUST
   $massSpec->setSpaceBetweenBars("c(0.75, rep(0, time=5))");
   $massSpec->setAxisLty(0);
   $massSpec->setLas(0);
-  $massSpec->setLabelCex(0.9);
   $massSpec->setHasExtraLegend(1);
   $massSpec->setExtraLegendSize(8.0);
   $massSpec->setLegendColors($colors);
