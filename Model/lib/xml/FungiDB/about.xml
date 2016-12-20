@@ -243,15 +243,16 @@ When citing FungiDB itself, please use:
 <b><a href="http://www.ncbi.nlm.nih.gov/pubmed/22064857">FungiDB: an integrated functional genomics database for fungi</a></b>.
 Stajich JE, Harris T, Brunk BP, Brestelli J, Fischer S, Harb OS, Kissinger JC, Li W, Nayak V, Pinney DF, Stoeckert CJ Jr, Roos DS. Nucleic Acids Res. 2012 Jan 1;40(D1):D675-D681.
 
-<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
-
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
 EuPathDB: the eukaryotic pathogen genomics database resource.</a>
 2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
-<br><br>
+
+<br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
+
+
        ]]>
        </attribute>
    </record>
