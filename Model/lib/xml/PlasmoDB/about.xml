@@ -105,8 +105,6 @@ When citing PlasmoDB itself, please use:
 <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18957442">
 PlasmoDB: a functional genomic database for malaria parasites.</a> Nucleic Acids Res. 2008 Oct 31. Aurrecoechea C, et al.
 
-<br><br>Much of the data in PlasmoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PlasmoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
-       
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
@@ -114,6 +112,10 @@ When citing EuPathDB itself, please use:
 EuPathDB: the eukaryotic pathogen genomics database resource.</a>
 2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
 <br>
+
+<br><br>Much of the data in PlasmoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PlasmoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
+       
+
        ]]>
        </attribute>
    </record>

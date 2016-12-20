@@ -158,6 +158,13 @@ When citing SchistoDB itself, please use:
 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18842636">
 SchistoDB: a Schistosoma mansoni genome resource.</a> 2009 Jan;37(Database issue):D579-82. Zerlotini A, et al.
 
+<br><br>
+When citing EuPathDB itself, please use:
+<br>
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
+EuPathDB: the eukaryotic pathogen genomics database resource.</a>
+2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+
 <br><br>Much of the data in SchistoDB is provided by independent
 researchers.  Please cite them if you use their data.  For a list
 of the data integrated into SchistoDB and the related
@@ -165,13 +172,7 @@ publications please see <a
 href="app/search/dataset/AllDatasets/result"
 class="blue"> Data Sets</a>.
 
-<br><br>
-When citing EuPathDB itself, please use:
-<br>
-<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
-EuPathDB: the eukaryotic pathogen genomics database resource.</a>
-2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
-<br>
+
        ]]>
        </attribute>
    </record>

@@ -99,8 +99,7 @@ Please see Citing HostDB below.
        <attribute name="tag">citing</attribute>
        <attribute name="text">
        <![CDATA[
-When citing HostDB itself, please use:
-<br><br>
+
 
 <br><br>Some data in HostDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into HostDB and the related publications please see <a href="/a/getDataset.do?display=detail" class="blue"> Data Sources</a>.
 
