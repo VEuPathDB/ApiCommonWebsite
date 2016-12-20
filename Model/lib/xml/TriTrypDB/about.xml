@@ -155,6 +155,14 @@ Aslett et al.<br>
  Nucleic Acids Research 2010 38(Database issue):D457-D462; doi:10.1093/nar/gkp851<br>
 [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkp851">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D457">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D457">PDF</a> ]
 
+<br><br>
+When citing EuPathDB itself, please use:
+<br>
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
+EuPathDB: the eukaryotic pathogen genomics database resource.</a>
+2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+
+
 <br><br>Much of the data in TriTrypDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into TriTrypDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
      
   ]]>

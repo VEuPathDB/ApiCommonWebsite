@@ -84,6 +84,14 @@ When citing PiroplasmaDB itself, please use:
 <b>EuPathDB: a portal to eukaryotic pathogen databases.</b> <a href="http://nar.oxfordjournals.org/cgi/content/full/38/suppl_1/D415">Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. Epub 2009 Nov 13.</a>
 
 <br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sources</a>.
+
+<br><br>
+When citing EuPathDB itself, please use:
+<br>
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
+EuPathDB: the eukaryotic pathogen genomics database resource.</a>
+2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+<br>
        ]]>
        </attribute>
    </record>

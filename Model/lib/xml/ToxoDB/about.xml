@@ -109,6 +109,14 @@ B. Gajria, A. Bahl, J. Brestelli, J. Dommer, S. Fischer, X. Gao, M. Heiges, J. I
 [ <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkm981v1">Abstract</a> | <a href="http://nar.oxfordjournals.org/cgi/content/full/gkm981v1">Full text</a> | <a href="http://nar.oxfordjournals.org/cgi/reprint/gkm981v1">PDF</a> ]
 
 <br><br>Much of the data in ToxoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into ToxoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
+
+<br><br>
+When citing EuPathDB itself, please use:
+<br>
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
+EuPathDB: the eukaryotic pathogen genomics database resource.</a>
+2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+<br>
        ]]>
        </attribute>
    </record>
