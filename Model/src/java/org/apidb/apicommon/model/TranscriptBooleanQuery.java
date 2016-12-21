@@ -15,6 +15,7 @@ import org.gusdb.wdk.model.question.DynamicAttributeSet;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.record.attribute.ColumnAttributeField;
+import org.gusdb.wdk.model.record.attribute.QueryColumnAttributeField;
 // import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.user.User;
 
@@ -43,13 +44,13 @@ public class TranscriptBooleanQuery extends BooleanQuery {
   private void addDynamicAttributeSetToQuestion(WdkModel wdkModel) throws WdkModelException {
     DynamicAttributeSet das = getContextQuestion().getDynamicAttributeSet();
   
-    ColumnAttributeField left_af = new ColumnAttributeField();
+    ColumnAttributeField left_af = new QueryColumnAttributeField();
     left_af.excludeResources(wdkModel.getProjectId());
     left_af.setName(LEFT_MATCH_COLUMN);
     left_af.setDisplayName(LEFT_MATCH_COLUMN_TITLE);
     das.addAttributeField(left_af);
 
-    ColumnAttributeField right_af = new ColumnAttributeField();
+    ColumnAttributeField right_af = new QueryColumnAttributeField();
     right_af.excludeResources(wdkModel.getProjectId());
     right_af.setName(RIGHT_MATCH_COLUMN);
     right_af.setDisplayName(RIGHT_MATCH_COLUMN_TITLE);
