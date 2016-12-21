@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.log4j.Logger;
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;
 import org.eupathdb.common.fix.NonApiGus4StepMigrationPlugin;
@@ -81,7 +82,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     useBoolFilter,
     matchedTxFilter,
     geneBoolFilter,
-    fixFilterParamValues
+    fixFilterParamValues,
+    removeTxFilterFromNonTxSteps
   }
 
   private static final Map<UpdateType, AtomicInteger> UPDATE_TYPE_COUNTS =
@@ -190,6 +192,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     // 9. Filter param format has changed a bit; update existing steps to comply
     if (NonApiGus4StepMigrationPlugin.fixFilterParamValues(step, question,
         LOG_INVALID_STEPS, INVALID_STEP_COUNT_PARAMS)) mods.add(UpdateType.fixFilterParamValues);
+
+    // 10. Remove “matched_transcript_filter_array” filter from non-transcript steps
+    if (removeTxFilterFromNonTxSteps(step, question)) mods.add(UpdateType.removeTxFilterFromNonTxSteps);
 
     // log modification and return result
     RowResult<StepData> result = new RowResult<StepData>(step).setShouldWrite(!mods.isEmpty());
@@ -366,4 +371,24 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return modifiedByThisMethod;
   }
 
+  private static boolean removeTxFilterFromNonTxSteps(StepData step, Question question) {
+    boolean modified = false;
+    if (!TranscriptUtil.isTranscriptQuestion(question)) {
+      JSONObject displayParams = step.getParamFilters();
+      JSONArray filters = displayParams.getJSONArray(Step.KEY_FILTERS);
+      for (int i = 0; i < filters.length(); i++) {
+        JSONObject filter = filters.getJSONObject(i);
+        String name = filter.getString(FilterOption.KEY_NAME);
+        if (MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY.equals(name)) {
+          // illegal; this filter should not be here
+          filters.remove(i);
+          // decrement to look at the next filter in the list (now at this index)
+          i--;
+          // set this step as modified
+          modified = true;
+        }
+      }
+    }
+    return modified;
+  }
 }
