@@ -36,10 +36,12 @@ sub setMainLegend {
 package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_3c48f52edb;
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
-  my $legend = ['GT1 0 to 16 hr','ME49 0 to 16 hr','ME49 0 to 44 hr', 'RH 0 to 36 hr',
-		'VEG 0 to 16 hr', 'VEG 0 to 44 hr'];
+
   $profile->setHasExtraLegend(1);
-  $profile->setLegendLabels($legend);
+
+  my @legendLabels = map {s/Quantitative protein expression of Tgondii proteins in infection of human cells - //;$_} @{$profile->getLegendLabels()};
+
+  $profile->setLegendLabels(\@legendLabels);
   return $self;
 }
 1;
