@@ -28,12 +28,12 @@ import org.gusdb.wdk.model.WdkModelException;
 
 public class UserFileFactory implements Manageable<UserFileFactory> {
 
-  private Logger logger = Logger.getLogger(UserFileFactory.class);
-  private DatabaseInstance database;
-  //private DataSource dataSource;
-  private DBPlatform platform;
-  private CommentConfig config;
-  private String projectId;
+  private static Logger LOG = Logger.getLogger(UserFileFactory.class);
+
+  private DatabaseInstance _database;
+  private DBPlatform _platform;
+  private CommentConfig _config;
+  private String _projectId;
 
   @Override
   public UserFileFactory getInstance(String projectId, String gusHome) throws WdkModelException {
@@ -57,14 +57,14 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
   private void initialize(DatabaseInstance database, CommentConfig config, String projectId) {
     // this.dataSource = database.getDataSource();
-    this.database = database;
-    this.platform = database.getPlatform();
-    this.config = config;
-    this.projectId = projectId;
+    this._database = database;
+    this._platform = database.getPlatform();
+    this._config = config;
+    this._projectId = projectId;
   }
 
   public void addUserFile(UserFile userFile) throws UserFileUploadException {
-    File filePath = new File(config.getUserFileUploadDir() + "/" + projectId);
+    File filePath = new File(_config.getUserFileUploadDir() + "/" + _projectId);
     String fileName = userFile.getFileName();
     File fileOnDisk = null;
 
@@ -73,7 +73,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     try {
       if (!fileName.equals("")) {
-        logger.debug("File save path:" + filePath.toString());
+        LOG.debug("File save path:" + filePath.toString());
         fileOnDisk = new File(filePath, fileName);
 
         int ver = 0;
@@ -94,7 +94,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
         fileOutStream.close();
 
         userFile.setChecksum(md5sum(fileOnDisk));
-        logger.debug("MD5 " + userFile.getChecksum());
+        LOG.debug("MD5 " + userFile.getChecksum());
 
         userFile.setFormat(getFormat(fileOnDisk));
         userFile.setFileSize(fileOnDisk.length());
@@ -107,15 +107,15 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
     }
     catch (IOException ioe) {
       String msg = "Could not write '" + fileName + "' to '" + filePath + "'";
-      logger.warn(msg);
+      LOG.warn(msg);
       throw new UserFileUploadException(msg + "\n" + ioe);
     }
     catch (Exception e) {
-      logger.warn(e);
+      LOG.warn(e);
       if (fileOnDisk != null) {
-        logger.warn("Deleting " + fileOnDisk.getPath());
+        LOG.warn("Deleting " + fileOnDisk.getPath());
         if (fileOnDisk.exists() && !fileOnDisk.delete())
-          logger.warn("\nUnable to delete " + fileOnDisk.getPath() +
+          LOG.warn("\nUnable to delete " + fileOnDisk.getPath() +
               ". This file may not be correctly recorded in the database.");
       }
       throw new UserFileUploadException(e);
@@ -124,12 +124,12 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
   }
 
   public void insertUserFileMetaData(UserFile userFile) throws WdkModelException {
-    String userFileSchema = config.getUserFileSchema();
+    String userFileSchema = _config.getUserFileSchema();
 
     PreparedStatement ps = null;
     try {
-      DataSource dataSource = database.getDataSource();
-      int userFileId = platform.getNextId(dataSource, userFileSchema, "UserFile");
+      DataSource dataSource = _database.getDataSource();
+      int userFileId = _platform.getNextId(dataSource, userFileSchema, "UserFile");
 
       ps = SqlUtils.getPreparedStatement(dataSource, "INSERT INTO " + userFileSchema + "userfile (" +
           "userFileId, filename, " + "checksum, uploadTime, " + "ownerUserId, title, notes, " +
@@ -163,12 +163,8 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
     }
   }
 
-  public UserFile getUserFile(int commentId) {
-    return null;
-  }
-
   public CommentConfig getCommentConfig() {
-    return config;
+    return _config;
   }
 
   private String md5sum(File fileOnDisk) throws IOException, NoSuchAlgorithmException {
@@ -223,7 +219,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
   }
 
   private boolean nameExistsInDb(String filename) throws WdkModelException {
-    String userFileSchema = config.getUserFileSchema();
+    String userFileSchema = _config.getUserFileSchema();
 
     boolean exists = true;
 
@@ -231,18 +227,13 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = null;
-      DataSource dataSource = database.getDataSource();
-      ps = SqlUtils.getPreparedStatement(dataSource, query);
-
+      ps = SqlUtils.getPreparedStatement(_database.getDataSource(), query);
       ps.setString(1, filename);
-
       rs = ps.executeQuery();
-      if (!rs.next())
+      if (!rs.next()) {
         throw new WdkModelException("Unable to query for filename " + filename);
-
+      }
       exists = (rs.getInt("count") != 0);
-
     }
     catch (SQLException ex) {
       ex.printStackTrace();
