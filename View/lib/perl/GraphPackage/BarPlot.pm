@@ -306,7 +306,7 @@ if ($axisLtyString) {
 
 
 #names.margin = $bottomMargin;
-names.margin = max(round(max(nchar(my.labels)) / 3), 3);
+names.margin = max(round(max(nchar(my.labels)) / 2.5), 3);
 
 if($horiz) {
   par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
