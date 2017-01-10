@@ -62,17 +62,20 @@ sub makeRPlotString {
 
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
+  my $blankGraph = $self->blankPlotPart();
+
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
  };
 
   if($@) {
-    return $self->blankPlotPart();
+    return $blankGraph;
   }
 
   foreach(@{$self->getProfileSets()}) {
     if(scalar @{$_->errors()} > 0) {
-      return $self->blankPlotPart();
+      return $blankGraph;
+
     }
   }
   my $colors = $self->getColors();
@@ -160,8 +163,6 @@ $legendColorsString
 
 is.compact=$isCompactString;
 
-screen(screens[screen.i]);
-screen.i <- screen.i + 1;
 
 #-------------------------------------------------------------------
 
@@ -228,6 +229,13 @@ for(i in 1:length(profile.files)) {
     stderr.df[[this.name]][i] = stderr[j];
   }
 }
+
+# blank graph if all values are zero
+if(sum(profile.df, na.rm=TRUE) > 0) {
+
+screen(screens[screen.i]);
+screen.i <- screen.i + 1;
+
 
 # allow minor adjustments to profile
 $rAdjustProfile
@@ -448,6 +456,11 @@ if($hasExtraLegend && !is.compact) {
 }
 
   plasmodb.title(\"$plotTitle\", line=title.line);
+
+} else {
+ $blankGraph;
+}
+
 ";
 
   return $rv;
