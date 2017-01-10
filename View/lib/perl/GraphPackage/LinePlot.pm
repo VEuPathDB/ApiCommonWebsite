@@ -77,11 +77,8 @@ sub makeRPlotString {
   my ($self, $idType) = @_;
 
   my $sampleLabels = $self->getSampleLabels();
-  print STDERR Dumper $sampleLabels;
 
   my $sampleLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($sampleLabels, 'x.axis.label');
-
-  print STDERR "SAMPLELABLES=$sampleLabelsString\n";
 
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
@@ -94,11 +91,14 @@ sub makeRPlotString {
 
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
+  my $blankGraph = $self->blankPlotPart();
+
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
   };
   if($@) {
-    return $self->blankPlotPart();
+    return $blankGraph;
+
   }
 
   my $profileSets = $self->getProfileSets();
@@ -118,7 +118,7 @@ sub makeRPlotString {
   }
 
   if(scalar @$profileSets == $skipped) {
-    return $self->blankPlotPart();
+    return $blankGraph;
   }
 
   my $skipProfilesString = ApiCommonWebsite::View::GraphPackage::Util::rBooleanVectorFromArray(\@skipProfileSets, 'skip.profiles');
@@ -218,8 +218,6 @@ $skipProfilesString
 
 is.compact=$isCompactString;
 
-screen(screens[screen.i]);
-screen.i <- screen.i + 1;
 #-------------------------------------------------
 
 if(length(profile.files) != length(element.names.files)) {
@@ -242,14 +240,14 @@ points.df\$V1 = NULL;
 stderr.df = as.data.frame(matrix(nrow=length(profile.files)));
 stderr.df\$V1 = NULL;
 
-for(i in 1:length(profile.files)) {
+for(ii in 1:length(profile.files)) {
   skip.stderr = FALSE;
 
-  if(skip.profiles[i]) {
+  if(skip.profiles[ii]) {
     next;
   };
 
-  profile.df = read.table(profile.files[i], header=T, sep=\"\\t\");
+  profile.df = read.table(profile.files[ii], header=T, sep=\"\\t\");
 
   if(!is.null(profile.df\$ELEMENT_ORDER)) {
     eo.count = length(profile.df\$ELEMENT_ORDER);
@@ -265,7 +263,7 @@ for(i in 1:length(profile.files)) {
 
   profile = profile.df\$VALUE;
 
-  element.names.df = read.table(element.names.files[i], header=T, sep=\"\\t\");
+  element.names.df = read.table(element.names.files[ii], header=T, sep=\"\\t\");
   element.names = as.character(element.names.df\$NAME);
 
 
@@ -278,8 +276,8 @@ for(i in 1:length(profile.files)) {
     is.numeric.element.names = is.numeric.element.names == 'BANANAS';
   }
 
-   if(!skip.stderr && !is.na(stderr.files[i]) && stderr.files[i] != '') {
-     stderr.tmp = read.table(stderr.files[i], header=T, sep=\"\\t\");
+   if(!skip.stderr && !is.na(stderr.files[ii]) && stderr.files[ii] != '') {
+     stderr.tmp = read.table(stderr.files[ii], header=T, sep=\"\\t\");
 
     stderr = stderr.tmp\$VALUE;
    } else {
@@ -304,19 +302,29 @@ for(i in 1:length(profile.files)) {
     }
 
     if(is.numeric.element.names[j]) {
-      lines.df[[this.name]][i] = profile[j];
+      lines.df[[this.name]][ii] = profile[j];
 
     } else {
-      points.df[[this.name]][i] = profile[j];
+      points.df[[this.name]][ii] = profile[j];
     }
      
     if(is.null(.subset2(stderr.df, this.name, exact=TRUE))) {
      stderr.df[[this.name]] = NA;
 
-     stderr.df[[this.name]][i] = stderr[j];
+     stderr.df[[this.name]][ii] = stderr[j];
     }
   }
 }
+
+# proceed if there are some values
+pointsAllNA = sum(is.na(points.df)) == nrow(points.df) * ncol(points.df);
+linesAllNA = sum(is.na(lines.df)) == nrow(lines.df) * ncol(lines.df);
+if((!pointsAllNA && !linesAllNA) || (pointsAllNA || sum(points.df, na.rm=TRUE) > 0) || (linesAllNA || sum(lines.df, na.rm=TRUE) > 0)) {
+
+screen(screens[screen.i]);
+screen.i <- screen.i + 1;
+
+
 
 # allow minor adjustments to profile
 $rAdjustProfile
@@ -666,6 +674,11 @@ if(!is.compact) {
 lines (c(0,length(profile) * 2), c(0,0), col=\"gray25\");
 
 plasmodb.title(\"$plotTitle\", line=title.line);
+
+} else {
+ $blankGraph;
+}
+
 
 ";
   return $rcode;
