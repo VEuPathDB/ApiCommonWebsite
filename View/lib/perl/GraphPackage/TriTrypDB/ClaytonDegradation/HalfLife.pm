@@ -18,7 +18,9 @@ sub init {
   my $pch = [19,24,15,17];
   my $colors =['#996622','#0049A8',];
 
-  my $halfLifeSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','mRNA decay in bloodstream and procyclic form - half_life_error', undef,undef,undef,undef,'half-life']]);
+  my $halfLifeSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','values', 'mRNA decay in bloodstream and procyclic form - half_life_error','values', undef,undef,undef,undef,'half-life']]);
+
+  my $id = $self->getId();
 
   my $halfLife = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
   $halfLife->setProfileSets([$halfLifeSets->[0]]);
