@@ -34,6 +34,8 @@ getWdkDataset <- function(session, fetchStyle, filename, expectHeader, dataStora
   }
 }
 
+## following funciton returns the full path to the filename passed in as first argument
+
 getWdkDatasetFile <- function(filename, session, expectHeader, dataStorageDir="") {
 
   query = parseQueryString(session$clientData$url_search)
