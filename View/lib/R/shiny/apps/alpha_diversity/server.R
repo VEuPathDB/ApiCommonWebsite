@@ -2,16 +2,17 @@ library(shiny)
 library(ggplot2)
 library(phyloseq)
 library(reshape2)
-source("functions.R")
 source("config.R")
 source("../../lib/wdkDataset.R")
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   
   #Change with the file with abundances
   df_abundance <-
     read.csv(
+#      "MicrobiomeSampleByMetadata_TaxaRelativeAbundance.txt",
       getWdkDatasetFile('TaxaRelativeAbundance.tab', session, FALSE, dataStorageDir),
+#      "TaxaRelativeAbundance.tab",
       sep = "\t",
       col.names = c("Sample","Taxon", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "Abundance", "Nada")
     )
@@ -21,6 +22,7 @@ shinyServer(function(input, output) {
     read.csv(
 #      "fran_updated_Characteristics_tabfile.txt",
       getWdkDatasetFile('Characteristics.tab', session, FALSE, dataStorageDir),
+#      "Characteristics.tab",
       sep = "\t",
       col.names = c("SampleName", "Source", "Property", "Value", "Type", "Filter", "Nada")
     )
