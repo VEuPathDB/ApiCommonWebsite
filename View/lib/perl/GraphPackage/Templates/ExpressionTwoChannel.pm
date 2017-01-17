@@ -223,6 +223,10 @@ sub makeCombinedGraph {
   $derisi->setPartName('exprn_val_overlay');
 
 
+  $derisi->setHasExtraLegend(1);
+  $derisi->setLegendLabels(['HB3', '3D7', 'DD2']);
+
+
   return $derisi;
 }
 
