@@ -54,7 +54,7 @@ sub handleIsolates {
   my $sid   = $cgi->param('sid');
   my $project_id = $cgi->param('project_id');
   my $organism   = $cgi->param('organism');
-  my $macrodata  = $cgi->param('macrodata');
+  my $metadata  = $cgi->param('metadata');
 
   $start =~ s/,//g;
   $end =~ s/,//g;
@@ -68,7 +68,7 @@ sub handleIsolates {
   my $sth;
 
   # FOR displaying metadata
-  if ($macrodata) {
+  if ($metadata) {
     my %data;
     $pan_names =~ s/'(\w*)'/'$1 (Sequence Variation)'/g;
 
