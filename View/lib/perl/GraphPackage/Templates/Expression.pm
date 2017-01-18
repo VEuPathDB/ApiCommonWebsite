@@ -11,6 +11,7 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
 use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
+use ApiCommonWebsite::View::GraphPackage::PieChart;
 
 use Scalar::Util qw /blessed/;
 use Data::Dumper;
