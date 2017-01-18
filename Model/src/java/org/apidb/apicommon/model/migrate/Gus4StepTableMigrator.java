@@ -102,8 +102,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
           "question_map_file: file in the format from=to on each row mapping old question names to new question names\n\n" +
           "Using optional 'test' argument will:\n" +
           " 1. Not update actual step values in STEPS table\n" +
-          " 2. Will instead write display_params changes and other info to wdkmaint.STEP_UPDATER_PLUGIN_TEST table\n" +
-          " 3. Will (!!) (still) write modified step IDs to wdkmaint.WDK_UPDATED_STEPS table\n\n");
+          " 2. Will instead write display_params changes and other info to <login_schema>.STEP_UPDATER_PLUGIN_TEST table\n" +
+          " 3. Will (!!) (still) write modified step IDs to <login_schema>.WDK_UPDATED_STEPS table\n\n");
     }
     _wdkModel = wdkModel;
     _qNameUpdater = new StepQuestionUpdater(args.get(0), LOG_LOADED_QUESTION_MAPPING);
