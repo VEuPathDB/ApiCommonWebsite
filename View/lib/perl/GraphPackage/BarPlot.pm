@@ -314,9 +314,12 @@ if ($axisLtyString) {
 
 
 #names.margin = $bottomMargin;
-names.margin = max(round(max(nchar(my.labels)) / 2.5), 3);
+
 
 if($horiz) {
+
+names.margin = max(round(max(nchar(my.labels)) / 2), 3);
+
   par(mar       = c(5, names.margin,title.line + fold.induction.margin, 1 + extra.legend.size), xpd=NA, oma=c(1,1,1,1));
   x.lim = c(d.min, d.max);
   y.lim = NULL;
@@ -327,6 +330,8 @@ if($horiz) {
   yaxis.line = 2;
 
 } else {
+
+names.margin = max(round(max(nchar(my.labels)) / 2.5), 3);
 
   if(!is.compact) {
     par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA, cex=0.9);
