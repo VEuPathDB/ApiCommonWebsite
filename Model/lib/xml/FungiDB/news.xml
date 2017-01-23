@@ -27,20 +27,22 @@
       <section>
         <h3>New data in this release</h3> 
         
-        <h2>Genomes:</h2> The following annotated genomes appear for the first time in FungiDB. <a href="https://www.ncbi.nlm.nih.gov/pubmed/25474325">Munoz et al.</a>
+        <h4>Genomes:</h4> The following annotated genomes appear for the first time in FungiDB. <a href="https://www.ncbi.nlm.nih.gov/pubmed/25474325">Munoz et al.</a>
           <ul>
           <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62eea7f9f2"><i>Paracoccidioides brasiliensis</i> Pb18</a></li>
           <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_768c059dc4"><i>Paracoccidioides brasiliensis</i> Pb03</a></li>
           <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_2889f1f1e7"><i>Paracoccidioides lutzii</i> Pb01</a></li>
           </ul>
           
-        <h2>RNA Sequencing:</h2>
+        <h4>RNA Sequencing:</h4>
            <a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">Transcriptome induction by five crop straws</a> &ndash;   
            A transcriptomic analysis of <i>Neurospora crassa</i> using five major crop residues.
            <a href="https://www.ncbi.nlm.nih.gov/pubmed/25691917">Wang et al.</a>
         
-        <h2>Whole genome sequencing of isolates for SNP analysis:</h2>
+        <h4>Whole genome sequencing of isolates for SNP analysis:</h4>
            <a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
+           Coccidioides whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
+           <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA274372">NCBI's Bioproject record page</a>
       </section>
       
       <section>           
