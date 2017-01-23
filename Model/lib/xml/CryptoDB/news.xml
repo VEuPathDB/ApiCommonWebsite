@@ -36,13 +36,12 @@
         <h3>New Data in Release 30</h3>
         
         <h4>Genome Sequence</h4>
-        <ul>
-          <li>
-            <a href="http://TODO...CryptoDB.org/a/getDataset.do?datasets=chom37999_primary_genome_RSRC"><i>Cryptosporidium hominis</i> 37999</a> &mdash;
-            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000804495.1">Genbank version 18 Dec 2014</a>. This genome sequence is provided pre-publication by 
-            Lihua Xiao, Centers for Disease Control USA.
-          </li>
-        </ul>
+
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_7f6973790e"><i>Cryptosporidium hominis</i> UdeA01 </a> &mdash; 
+            Whole genome sequence and annotation for C. hominis UdeA01, that was directly isolated from an infected human. 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB10000">Genbank Bioproject PRJEB1000</a>. 
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/26549794">Isaza et al.</a>
+                 
       </section>
       
       <section>
