@@ -30,12 +30,64 @@
       <section>
         <h3>New Data in Release 30</h3> 
         
-          <h4>Genomes:</h4>
+          <h4>Genome Sequence and Annotation:</h4>
+
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_597478d531"><i>Plasmodium coatneyi</i> strain Hackeri</a> &ndash; 
+              Updated to the re-sequenced and re-annotated <a href="https://www.ncbi.nlm.nih.gov/bioproject/315987">GenBank version</a> from the 
+              <a href="http://www.systemsbiology.emory.edu/index.html">MaHPIC Consortium</a>.  
+              <a =href="https://www.ncbi.nlm.nih.gov/pubmed/27587810">Chien et al.</a>
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_18cd64a91b"><i>Plasmodium fragile</i> strain nilgiri</a> &ndash; 
+              New to PlasmoDB and integrated as the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000956335.1">Genbank version</a> from the 
+              <a href="https://olive.broadinstitute.org/collections/plasmodium_100_genomes.5/strains>Broad Institutes Plasmodium 100 Genomes</a> initiative. 
+              (unpublished). 
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_a9b5b294ad"><i>Plasmodium inui</i> strain San Antonio 1</a> &ndash; 
+              New to PlasmoDB and integrated as the ... Genbank version Jan 31, 2014
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3986a0b578"><i>Plasmodium malariae</i> strain UG01</a> &ndash; 
+              First release of this genome in PlasmoDB (version from 19th of September 2016). Provided by the 
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at the 
+              <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_a4928ff670"><i>Plasmodium ovale</i> strain curtisi GH01</a> &ndash; 
+              First release of this genome in PlasmoDB (version from 19th of September 2016). Provided by the 
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at the 
+              <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_4c2903c205"><i>Plasmodium vinckei petteri</i> strain CR</a> &ndash; 
+               New to PlasmoDB and integrated as the ... Genbank version ??
+               </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_19b83aa2be"><i>Plasmodium vinckei vinckei</i> strain vinckei</a> &ndash; 
+               New to PlasmoDB and integrated as the ... Genbank version ??
+               </li>
+            <li><a href="http://qa.plasmodb.org/plasmo.b30/app/record/dataset/DS_b5a76b5939"><i>Plasmodium yoelii yoelii</i> 17X</a> &ndash;
+               The genome was updated to the reassembled and reannotated GeneDB version from 28th of October 2016. Provided by the 
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at the 
+              <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>. This is a completed genome (version 3), 
+              in 14 pieces with no gaps. 
+              </li>
+           </ul>
+           
+          <h4>Proteomics</h4>
+          Gametocyte proteomics
           
-            <ul>
-        
-        
-        
+          <h4>Whole genome sequencing of isolates</h4>
+           <ul>
+            <li>Aligned genomic sequence reads - 5 Field Isolates
+               Whole genome sequencing of five <i>P. vivax</i> isolates obtained from Malagasy and Cambodian patients, and of the monkey-adapted Belem strain.
+               </li>
+            <li>Aligned genomic sequence reads - strain SY57 
+               Whole genome sequencing of <i>Plasmodium reichenowi</i> SY57. The data were used to call SNPs against the <i>Plasmodium reichenowi</i> CDC reference genome.
+               </li>
+          
+          <h4>RNA Sequencing</h4>
+          Female and Male Gametocyte Transcriptomes
+          
+     </section>
+     
+     <section>     
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
