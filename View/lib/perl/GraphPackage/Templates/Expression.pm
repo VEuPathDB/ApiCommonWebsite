@@ -450,6 +450,12 @@ sub finalProfileAdjustments {
     push @allColors, $colors->[1];
   }
   $profile->setColors(\@allColors);
+
+  $profile->setLegendColors([$colors->[0], $colors->[1]]);
+  my $legend = ['mild disease', 'severe disease'];
+  $profile->setHasExtraLegend(1); 
+  $profile->setLegendLabels($legend);
+
 }
 
 
@@ -511,6 +517,12 @@ sub finalProfileAdjustments {
 
   $profile->setIsHorizontal(1);
   $profile->setColors($colors);
+
+  $profile->setLegendColors(["red", "green", "blue"]);
+  my $legend = ['merozoite invasion', 'SIR KO', 'red cell receptor invasion'];
+  $profile->setHasExtraLegend(1); 
+  $profile->setLegendLabels($legend);
+
 }
 1;
 
