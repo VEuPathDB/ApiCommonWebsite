@@ -194,6 +194,9 @@ sub init {
   $line->setPointsPch($pch);
   $line->setColors([$colors->[0], $colors->[1]]);
 
+  $line->setHasExtraLegend(1);
+  $line->setLegendLabels(['Normal', 'Scaled']);
+
   my $id = $self->getId();
   $line->setPlotTitle("RPKM - $id");
 
