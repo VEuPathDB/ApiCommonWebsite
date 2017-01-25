@@ -20,6 +20,50 @@
 -->
 
 <record>
+  <attribute name="headline">TriTrypDB 30 Released</attribute>
+  <attribute name="date">26 Jan 2017 13:00</attribute>
+  <attribute name="tag">tritrypdb01_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 30</strong></p>
+      
+      <section>
+        <h3>New data in TriTrypDB 30</h3> 
+        
+        <h4>Quantitative Proteomics</h4>
+          <ul>
+           <li><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0eaaca5395">Purine Stress Response in Promastigotes</a> &ndash; 
+               Quantitative proteomic comparison (AMT tag method) of purine-rich and purine-starved <i>L. donovani</i> promastigotes at 6, 12, 24, and 48h. 
+               Data are analyzed against the <i>L. infantum</i> JPCM5 genome.  
+               <a href="https://www.ncbi.nlm.nih.gov/pubmed/24586154>Martin et al.</a>
+           </li>
+          </ul>
+               
+       <h4>Cellular Localization Imaging</h4>   
+          <ul>
+           <li><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T. brucei</i> proteins</a> &ndash; 
+              Images and localization information associated with GO terms obtained from the <a href="http://tryptag.org/?pageType=landing">TrypTag project</a>. 
+              Access the data on gene pages <a href="http://qa.tritrypdb.org/tritrypdb.b30/app/record/gene/Tb927.11.760#protein-targeting-and-localization">example</a>
+              and through a dedicated search based on GO terms (<a href="http://qa.tritrypdb.org/tritrypdb.b30/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTermCL>Identify Genes based on Cellular Localization Imaging</a>).       
+           </li>
+          </ul>  
+      </section>
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">TriTrypDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
   <attribute name="tag">tritrypdb10_16_release</attribute>
