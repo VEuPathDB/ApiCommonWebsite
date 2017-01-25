@@ -16,6 +16,53 @@
 --> 
 
 <record>
+  <attribute name="headline">ToxoDB 30 Released</attribute>
+  <attribute name="date">26 Jan 2017 13:00</attribute>
+  <attribute name="tag">toxodb01_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 30</strong></p>
+      
+      <section>
+        <h3>New data in ToxoDB Release 30</h3> 
+        
+         <h4>Genome Sequence and Annotation:</h4>
+             The following genomes were updated to the current Genbank versions which include new sequence as well as annotation that 
+             appears for the first time in ToxoDB. 
+           <ul>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_33643900b8"><i>Toxoplasma gondii</i> strain ARI</a>. &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000250965.2">Genbank version March 14, 2016</a></li>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_2690249f2e"><i>Toxoplasma gondii</i> strain CatPRC2</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000256725.2">Genbank version March 23, 2016  </li>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_1b7ea4af1d"><i>Toxoplasma gondii</i> strain FOU</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000224905.2">Genbank version Aug 13, 2014</li>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_a858cc3262"><i>Toxoplasma gondii</i> strain GAB2-2007-GAL-DOM2</a>. &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000325525.2">Genbank version Aug 13, 2014</li>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_1fe8488ee3"><i>Toxoplasma gondii</i> strain p89</a> &ndash;    
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000224885.2">Genbank version Aug 13, 2014</li>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_5093564a84"><i>Toxoplasma gondii</i> strain RUB</a> &ndash;     
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000224805.2">Genbank version Aug 13, 2014</li>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_eb943568f9"><i>Toxoplasma gondii</i> strain MAS</a> &ndash;     
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000224865.2">Genbank version Aug 15, 2014</li>
+             <li><a href="http://toxodb.org/toxo/app/record/dataset/DS_7814fa16c8"><i>Toxoplasma gondii</i> strain VAND</a> &ndash;    
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000224845.2">Genbank version Aug 15, 2014</li>
+          </ul>  
+       </section>   
+       <section>    
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">ToxoDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
   <attribute name="tag">toxodb10_16_release</attribute>
