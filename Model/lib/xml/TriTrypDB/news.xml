@@ -44,8 +44,8 @@
           <ul>
            <li><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T. brucei</i> proteins</a> &ndash; 
               Images and localization information associated with GO terms obtained from the <a href="http://tryptag.org/?pageType=landing">TrypTag project</a>. 
-              Access the data on gene pages (<a href="http://qa.tritrypdb.org/tritrypdb.b30/app/record/gene/Tb927.11.760#protein-targeting-and-localization">example</a>)
-              and through a dedicated search based on GO terms (<a href="http://qa.tritrypdb.org/tritrypdb.b30/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTermCL">Identify Genes based on Cellular Localization Imaging</a>).       
+              Access the data on gene pages (<a href="http://tritrypdb.org/tritrypdb/app/record/gene/Tb927.11.760#protein-targeting-and-localization">example</a>)
+              and through a dedicated search based on GO terms (<a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTermCL">Identify Genes based on Cellular Localization Imaging</a>).       
            </li>
           </ul>  
       </section>
