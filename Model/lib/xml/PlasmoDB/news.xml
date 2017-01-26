@@ -62,7 +62,7 @@
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_19b83aa2be"><i>Plasmodium vinckei vinckei</i> strain vinckei</a> &ndash; 
                New to PlasmoDB and integrated as the ... Genbank version ??
                </li>
-            <li><a href="http://qa.plasmodb.org/plasmo.b30/app/record/dataset/DS_b5a76b5939"><i>Plasmodium yoelii yoelii</i> 17X</a> &ndash;
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_b5a76b5939"><i>Plasmodium yoelii yoelii</i> 17X</a> &ndash;
                The genome was updated to the reassembled and reannotated GeneDB version from 28th of October 2016. Provided by the 
               <a href="http://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at the 
               <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>. This is a completed genome (version 3), 
@@ -71,7 +71,22 @@
            </ul>
            
           <h4>Proteomics</h4>
-          Gametocyte proteomics
+          <ul>
+           <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_6c7d1a3134">Male and Female Gametocyte Proteomes</a> &ndash; 
+               Proteomics data for male, female and mixed <i>P. falciparum</i> 3D7 gametocytes.  This transcriptomics data set has a corresponding proteomics data set called 
+               <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f223d2037c">Female and Male Gametocyte Transcriptomes</a>. 
+               <a href="https://www.ncbi.nlm.nih.gov/pubmed/27298255">Lasonder et al.</a>
+           </li>
+          </ul>
+          
+          <h4>RNA Sequencing</h4>
+          <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f223d2037c">Female and Male Gametocyte Transcriptomes</a> &ndash; 
+                Directional RNA-seq data from <i>P. falciparum</i>.  This transcriptomics data set has a corresponding proteomics data set called 
+                <a href ="http://plasmodb.org/plasmo/app/record/dataset/DS_6c7d1a3134">Male and Female Gametocyte Proteomes</a>. 
+                <a href="https://www.ncbi.nlm.nih.gov/pubmed/27298255">Lasonder et al.</a> 
+             </li>
+          </ul>
           
           <h4>Whole genome sequencing of isolates</h4>
            <ul>
@@ -81,9 +96,8 @@
             <li>Aligned genomic sequence reads - strain SY57 
                Whole genome sequencing of <i>Plasmodium reichenowi</i> SY57. The data were used to call SNPs against the <i>Plasmodium reichenowi</i> CDC reference genome.
                </li>
+           </ul>
           
-          <h4>RNA Sequencing</h4>
-          Female and Male Gametocyte Transcriptomes
           
      </section>
      
@@ -1762,7 +1776,7 @@ based
       <ul>
         <li>View sequencing read pileups, reads aligned to the <i>P. falciparum 3D7</i>
           genome, and read density plots in GBrowse using the options under the
-          Select Tracks heading: <a href="http://qa.plasmodb.org/cgi-bin/gbrowse/plasmodb/?name=Pf3D7_11_v3:1278856..1310724;h_feat=pf3d7_1133400@yellow"><strong>HTS
+          Select Tracks heading: <a href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?name=Pf3D7_11_v3:1278856..1310724;h_feat=pf3d7_1133400@yellow"><strong>HTS
 SNPs,
               pfal3D7_Conway_HTS_SNP</strong>.</a></li>
       </ul>
