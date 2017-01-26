@@ -91,6 +91,18 @@ sub isExcludedProfileSet {
 
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b8755b3393;
+
+sub init {
+my $self = shift;
+$self->SUPER::init(@_);
+
+$self->setPlotWidth(700);
+
+return $self;
+}
+
+1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_3f5188c7a8;
 use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
