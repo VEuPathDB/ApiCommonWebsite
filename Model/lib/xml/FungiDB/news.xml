@@ -27,11 +27,17 @@
       <section>
         <h3>New data in this release</h3> 
         
-        <h4>Genomes:</h4> The following annotated genomes appear for the first time in FungiDB. <a href="https://www.ncbi.nlm.nih.gov/pubmed/25474325">Munoz et al.</a>
+        <h4>Genomes:</h4> The following annotated genomes appear for the first time in FungiDB. Sequenced at the Broad Institute and <a href="https://www.ncbi.nlm.nih.gov/pubmed/25474325">Munoz et al.</a>
           <ul>
-          <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62eea7f9f2"><i>Paracoccidioides brasiliensis</i> Pb18</a></li>
-          <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_768c059dc4"><i>Paracoccidioides brasiliensis</i> Pb03</a></li>
-          <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_2889f1f1e7"><i>Paracoccidioides lutzii</i> Pb01</a></li>
+          <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62eea7f9f2"><i>Paracoccidioides brasiliensis</i> Pb18</a> &ndash;
+              Integrated into FungiDB as <a href="https://www.ncbi.nlm.nih.gov/bioproject/28733">Genbank version Oct 24, 2014</a>. 
+              </li>
+          <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_768c059dc4"><i>Paracoccidioides brasiliensis</i> Pb03</a> &ndash; 
+              Integrated into FungiDB as <a href="https://www.ncbi.nlm.nih.gov/bioproject/27779">Genbank version Nov 13, 2014</a>. 
+          </li>
+          <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_2889f1f1e7"><i>Paracoccidioides lutzii</i> Pb01</a> &ndash; 
+              Integrated into FungiDB as <a href="https://www.ncbi.nlm.nih.gov/bioproject/28731">Genbank version Nov 03, 2014</a>. 
+          </li>
           </ul>
           
         <h4>RNA Sequencing:</h4>
