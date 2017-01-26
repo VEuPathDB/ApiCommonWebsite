@@ -77,6 +77,11 @@
                <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f223d2037c">Female and Male Gametocyte Transcriptomes</a>. 
                <a href="https://www.ncbi.nlm.nih.gov/pubmed/27298255">Lasonder et al.</a>
            </li>
+           <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_6c7d1a3134">Sporozoite surface proteome</a> &ndash; 
+               Proteome of <i>P. falciparum</i> NF54 salivary gland sporozoite surface proteins isolated by 
+               affinity enrichment of surface-exposed proteins labeled with a biotin tag. 
+               <a href="https://www.ncbi.nlm.nih.gov/pubmed/27128092">Swearingen et al.</a>
+           </li>
           </ul>
           
           <h4>RNA Sequencing</h4>
