@@ -163,15 +163,17 @@
     </ant>
 
     <echo message="Building ApiCommonWebsite/Site assets"/>
-    <exec dir="${projectsDir}/ApiCommonWebsite/Site"
-      executable="make"
+    <exec executable="yarn"
+      dir="${projectsDir}/ApiCommonWebsite/Site"
       failonerror="true"
       failifexecutionfails="true"/>
 
-    <echo message="Copying ApiCommonWebsite/Site assets to webapp"/>
-    <copy todir="${webappTargetDir}">
-      <fileset dir="${projectsDir}/ApiCommonWebsite/Site/dist"/>
-    </copy>
+    <exec executable="${projectsDir}/WDK/View/node_modules/.bin/webpack"
+      dir="${projectsDir}/ApiCommonWebsite/Site"
+      failonerror="true"
+      failifexecutionfails="true">
+      <arg line="--output-path ${webappTargetDir}"/>
+    </exec>
 
     <antcall target="EuPathSiteCommon-post-webinstall"/>
 
