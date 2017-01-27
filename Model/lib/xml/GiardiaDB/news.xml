@@ -41,10 +41,12 @@
         <h3>New data in this release</h3> 
         
           <h4>RNA Sequencing</h4>
-            <a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_42de7ed04c">Time-dependent transcriptional changes in axenic trophozoites</a> &ndash;   
-            Time-Dependent Transcriptional Changes in Axenic Giardia duodenalis Trophozoites. 
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/26636323">Ansell et al.</a> 
-          </h2>
+            <ul>
+              <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_42de7ed04c">Time-dependent transcriptional changes in axenic trophozoites</a> &ndash;   
+                  Time-Dependent Transcriptional Changes in Axenic Giardia duodenalis Trophozoites. 
+                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/26636323">Ansell et al.</a> 
+              </li>
+           </ul>
       </section>
       
       <section>   
