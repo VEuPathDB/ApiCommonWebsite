@@ -91,6 +91,21 @@ sub isExcludedProfileSet {
 
 1;
 
+# ToxoDB tgonME49_Saeij_Jeroen_strains_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_485e6e94e3;
+
+sub init {
+my $self = shift;
+$self->SUPER::init(@_);
+
+$self->setPlotWidth(700);
+
+return $self;
+}
+
+1;
+
+# HostDB mmusC57BL6J_Saeij_Jeroen_strains_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b8755b3393;
 
 sub init {
