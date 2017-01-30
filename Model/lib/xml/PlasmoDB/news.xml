@@ -104,6 +104,15 @@
                <a href="https://www.ncbi.nlm.nih.gov/pubmed/27002652">Sundararaman et al.</a>
                </li>
            </ul>
+           
+           <h4>Phenotypes</h4>
+          <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3bcc2ee874">RMgmDB - Rodent Malaria genetically modified Parasites</a> &ndash; 
+                This data set is updated to the RMgm version from 07 Nov 2016.  Mutant phenotypes are described in the Phenotype table of corersponding gene pages 
+                for <i>P. berhei</i> ANKA, <i>P. falciparum</i> 3D7, <i>P. vivax</i> P01, <i>P. yoelii</i> 17X, and <i>P. yoelii</i> YM.  
+                <a href="http://www.pberghei.eu/index.php">RMgm Database site</a> 
+             </li>
+          </ul>
           
           
      </section>
