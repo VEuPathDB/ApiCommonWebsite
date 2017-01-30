@@ -72,7 +72,7 @@
                The genome was updated to the reassembled and reannotated 
                <a href="https://www.ncbi.nlm.nih.gov/bioproject/256942">GeneDB version 28 Oct 2016</a>. Provided by the 
               <a href="http://www.sanger.ac.uk/science/groups/berriman-group">Parasite Genomics Group</a> at the 
-              <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>. This is a completed genome (version 3), 
+              <a href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>. This is a completed genome (version 3), 
               in 14 pieces with no gaps. 
               </li>
            </ul>
@@ -115,7 +115,7 @@
            <h4>Phenotypes</h4>
           <ul>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3bcc2ee874">RMgmDB - Rodent Malaria genetically modified Parasites</a> &ndash; 
-                This data set is updated to the RMgm version from 07 Nov 2016.  Mutant phenotypes are described in the Phenotype table of corersponding gene pages 
+                This data set is updated to the RMgm version from 07 Nov 2016.  Mutant phenotypes are described in the Phenotype table of corresponding gene pages 
                 for <i>P. berhei</i> ANKA, <i>P. falciparum</i> 3D7, <i>P. vivax</i> P01, <i>P. yoelii</i> 17X, and <i>P. yoelii</i> YM.  
                 <a href="http://www.pberghei.eu/index.php">RMgm Database</a> 
              </li>
