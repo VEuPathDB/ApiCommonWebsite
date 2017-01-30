@@ -71,10 +71,10 @@
           <attribute name="title">WHO/TDR</attribute>
           <attribute name="url">http://www.who.int/tdr/</attribute>
         </row>
-        <row>
+       <!-- link no longer active, we have the info from the site in our community download files <row>
           <attribute name="title">VSG-DB</attribute>
           <attribute name="url">http://www.vsgdb.net/</attribute>
-        </row>
+        </row>-->
 <row>
           <attribute name="title">The U-insertion/deletion Edited Sequence Database</attribute>
           <attribute name="url">http://dna.kdna.ucla.edu/trypanosome/database.html</attribute>
