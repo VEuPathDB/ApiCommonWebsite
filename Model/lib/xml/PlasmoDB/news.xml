@@ -36,7 +36,7 @@
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_597478d531"><i>Plasmodium coatneyi</i> strain Hackeri</a> &ndash; 
               Updated to the re-sequenced and re-annotated <a href="https://www.ncbi.nlm.nih.gov/bioproject/315987">GenBank version</a> from the 
               <a href="http://www.systemsbiology.emory.edu/index.html">MaHPIC Consortium</a>.  
-              <a =href="https://www.ncbi.nlm.nih.gov/pubmed/27587810">Chien et al.</a>
+              <a href="https://www.ncbi.nlm.nih.gov/pubmed/27587810">Chien et al.</a>
               </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_18cd64a91b"><i>Plasmodium fragile</i> strain nilgiri</a> &ndash; 
               New to PlasmoDB and integrated as the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_000956335.1">Genbank version</a> from the 
@@ -44,27 +44,34 @@
               (unpublished). 
               </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_a9b5b294ad"><i>Plasmodium inui</i> strain San Antonio 1</a> &ndash; 
-              New to PlasmoDB and integrated as the ... Genbank version Jan 31, 2014
+              Sequenced at the <a href="https://www.broadinstitute.org/genomics"<Broad Institute</a>. 
+              New to PlasmoDB and integrated as the 
+              <a href="https://www.ncbi.nlm.nih.gov/bioproject/176387">Genbank version Jan 31, 2014</a>.
               </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3986a0b578"><i>Plasmodium malariae</i> strain UG01</a> &ndash; 
               First release of this genome in PlasmoDB (version from 19th of September 2016). Provided by the 
-              <a href="http://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at the 
-              <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group">Parasite Genomics Group</a> at the 
+              <a href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
               </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_a4928ff670"><i>Plasmodium ovale</i> strain curtisi GH01</a> &ndash; 
               First release of this genome in PlasmoDB (version from 19th of September 2016). Provided by the 
-              <a href="http://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at the 
-              <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group">Parasite Genomics Group</a> at the 
+              <a href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
               </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_4c2903c205"><i>Plasmodium vinckei petteri</i> strain CR</a> &ndash; 
-               New to PlasmoDB and integrated as the ... Genbank version ??
+               Sequenced at the <a href="https://www.broadinstitute.org/genomics"<Broad Institute</a>. 
+               New to PlasmoDB and integrated as the 
+               <a href="https://www.ncbi.nlm.nih.gov/bioproject/163125">Genbank version 27 Jan 2014</a>.
                </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_19b83aa2be"><i>Plasmodium vinckei vinckei</i> strain vinckei</a> &ndash; 
-               New to PlasmoDB and integrated as the ... Genbank version ??
+               Sequenced at the <a href="https://www.broadinstitute.org/genomics"<Broad Institute</a>. 
+               New to PlasmoDB and integrated as the 
+               <a href="https://www.ncbi.nlm.nih.gov/bioproject/163123">Genbank version 17 June 2014</a>.
                </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_b5a76b5939"><i>Plasmodium yoelii yoelii</i> 17X</a> &ndash;
-               The genome was updated to the reassembled and reannotated GeneDB version from 28th of October 2016. Provided by the 
-              <a href="http://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at the 
+               The genome was updated to the reassembled and reannotated 
+               <a href="https://www.ncbi.nlm.nih.gov/bioproject/256942">GeneDB version 28 Oct 2016</a>. Provided by the 
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group">Parasite Genomics Group</a> at the 
               <a> href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>. This is a completed genome (version 3), 
               in 14 pieces with no gaps. 
               </li>
@@ -110,7 +117,7 @@
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3bcc2ee874">RMgmDB - Rodent Malaria genetically modified Parasites</a> &ndash; 
                 This data set is updated to the RMgm version from 07 Nov 2016.  Mutant phenotypes are described in the Phenotype table of corersponding gene pages 
                 for <i>P. berhei</i> ANKA, <i>P. falciparum</i> 3D7, <i>P. vivax</i> P01, <i>P. yoelii</i> 17X, and <i>P. yoelii</i> YM.  
-                <a href="http://www.pberghei.eu/index.php">RMgm Database site</a> 
+                <a href="http://www.pberghei.eu/index.php">RMgm Database</a> 
              </li>
           </ul>
           
