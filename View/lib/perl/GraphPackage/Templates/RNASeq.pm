@@ -194,7 +194,10 @@ sub init {
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
+  $percentile->setForceHorizontalXAxis(1);
 
+  my $legend = ['Spores', '8 hrs', '16 hrs', '30 hrs', '40 hrs', '64 hrs'];
+  $percentile->setSampleLabels($legend);
 
   $stacked->setElementNameMarginSize(6);
   $percentile->setElementNameMarginSize(6);
