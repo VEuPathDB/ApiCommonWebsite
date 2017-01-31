@@ -119,6 +119,19 @@ return $self;
 
 1;
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b0427cd47b;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = ['acute infection ', 'chronic infection '];
+  $profile->setSampleLabels($legend);
+}
+1;
+
+
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_3f5188c7a8;
 use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
 use strict;
@@ -181,6 +194,7 @@ sub init {
   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
+
 
   $stacked->setElementNameMarginSize(6);
   $percentile->setElementNameMarginSize(6);
