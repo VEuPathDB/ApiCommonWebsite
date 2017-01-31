@@ -82,6 +82,9 @@ EOSQL
   $sth->execute();
   while(my ($id, $seq) = $sth->fetchrow_array()) {
     $id =~ s/^$sid\.// unless ($id eq $sid);
+    my $noN = $seq;
+    $noN =~ s/[ACGT]//g;
+    next if length($noN) == length($seq);
     $sequence .= ">$id\n$seq\n";
   }
 
