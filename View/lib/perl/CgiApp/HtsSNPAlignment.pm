@@ -122,6 +122,9 @@ EOSQL
   if ($type eq 'fasta'){
     my %seqH;
     while(my ($id, $seq) = $sth->fetchrow_array()) {
+      my $noN = $seq;
+      $noN =~ s/[ACGT]//g;
+      next if length($noN) == length($seq);
       $id =~ s/^$sid\.// unless ($id eq $sid);
       $seqH{$id}= $seq;
     }
@@ -146,6 +149,9 @@ EOSQL
     my %origins = ();
 
     while(my ($id, $seq) = $sth->fetchrow_array()) {
+      my $noN = $seq;
+      $noN =~ s/[ACGT]//g;
+      next if length($noN) == length($seq);
       $id =~ s/^$sid\.// unless ($id eq $sid);
       push @sequences, ($id => $seq);
     }
