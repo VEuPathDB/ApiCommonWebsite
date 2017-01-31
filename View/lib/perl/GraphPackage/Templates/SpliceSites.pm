@@ -35,6 +35,17 @@ sub finalProfileAdjustments {
 1;
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::SpliceSites::DS_8bc463a882;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = ['NSR SLs', 'Random SLs'];
+  $profile->setSampleLabels($legend);
+}
+1;
+
 #--------------------------------------------------------------------------------
 
 
