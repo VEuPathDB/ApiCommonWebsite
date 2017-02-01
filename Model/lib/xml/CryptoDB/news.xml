@@ -25,8 +25,8 @@
 
 <record>
   <attribute name="headline">CryptoDB 30 Released</attribute>
-  <attribute name="date">26 Jan 2017 13:00</attribute>
-  <attribute name="tag">cryptodb01_17_release</attribute>
+  <attribute name="date">03 Feb 2017 13:00</attribute>
+  <attribute name="tag">cryptodb02_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
