@@ -9,9 +9,13 @@ my $c = new WDK::Model::ModelConfig($ARGV[0]);
 
 print '=' x 30, "\n";
 
-print 'dbiDsn '   . $c->getDbiDsn . "\n";
-print 'login '    . $c->getLogin . "\n";
-print 'password ' . $c->getPassword . "\n";
+print 'AppDb dbiDsn '   . $c->getAppDbDbiDsn . "\n";
+print 'AppDb login '    . $c->getAppDbLogin . "\n";
+print 'AppDb password ' . $c->getAppDbPassword . "\n";
+
+print 'UserDb dbiDsn '   . $c->getUserDbDbiDsn . "\n";
+print 'UserDb login '    . $c->getUserDbLogin . "\n";
+print 'UserDb password ' . $c->getUserDbPassword . "\n";
 
 print 'modelName ' . $c->getModelName . "\n";
 

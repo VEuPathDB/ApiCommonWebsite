@@ -141,11 +141,11 @@ sub getQueryHandle {
 
    my $_config = new WDK::Model::ModelConfig($Self->getProjectId());
                        
-   $Rv = DBI->connect( $_config->getDbiDsn(),
-                       $_config->getLogin(),
-                       $_config->getPassword()
+   $Rv = DBI->connect( $_config->getAppDbDbiDsn(),
+                       $_config->getAppDbLogin(),
+                       $_config->getAppDbPassword()
                      )
-   || die "unable to open db handle to ", $_config->getDbiDsn();
+   || die "unable to open db handle to ", $_config->getAppDbDbiDsn();
 
    # solve oracle clob problem; not that we're liable to need it...
    $Rv->{LongTruncOk} = 0;
