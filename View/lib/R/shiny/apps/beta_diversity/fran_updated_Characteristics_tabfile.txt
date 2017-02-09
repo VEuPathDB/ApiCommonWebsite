@@ -1,0 +1,790 @@
+[Sample ID]	[Source/Sample Type]	[Property]	[Value]	[Type]	[Filter]	
+EUSMPL0020-1-1	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-1	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-1	host	biological sex	male	string	membership	
+EUSMPL0020-1-1	host	collection_timestamp	8/2/12	string	membership	
+EUSMPL0020-1-1	host	day_of_life	30	number	range	
+EUSMPL0020-1-1	host	delivery	Cesarean	string	membership	
+EUSMPL0020-1-1	host	diet_2	bd	string	membership	
+EUSMPL0020-1-1	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-1	host	diet_3	eb	string	membership	
+EUSMPL0020-1-1	host	elevation	33	number	range	
+EUSMPL0020-1-1	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-1	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-1	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-1	host	host diet	bd	string	membership	
+EUSMPL0020-1-1	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-1	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-1	host	mom_child	C	string	membership	
+EUSMPL0020-1-1	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-1	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-1	host	month	1	number	range	
+EUSMPL0020-1-1	host	month_of_life	1	number	range	
+EUSMPL0020-1-1	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-1	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-1	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-1	host	studyid	7	string	membership	
+EUSMPL0020-1-1	host	subjec	7	string	membership	
+EUSMPL0020-1-1	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-1	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-1	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-1	sample from organism	sample_summary	Cesarean.bd.n.1	string	membership	
+EUSMPL0020-1-1	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-1	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-1	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-147	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-147	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-147	host	biological sex	male	string	membership	
+EUSMPL0020-1-147	host	collection_timestamp	8/21/12	string	membership	
+EUSMPL0020-1-147	host	day_of_life	49	number	range	
+EUSMPL0020-1-147	host	delivery	Cesarean	string	membership	
+EUSMPL0020-1-147	host	diet_2	bd	string	membership	
+EUSMPL0020-1-147	host	diet_2_month	bd_2	string	membership	
+EUSMPL0020-1-147	host	diet_3	eb	string	membership	
+EUSMPL0020-1-147	host	elevation	33	number	range	
+EUSMPL0020-1-147	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-147	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-147	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-147	host	host diet	bd	string	membership	
+EUSMPL0020-1-147	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-147	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-147	host	mom_child	C	string	membership	
+EUSMPL0020-1-147	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-147	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-147	host	month	2	number	range	
+EUSMPL0020-1-147	host	month_of_life	1.6	number	range	
+EUSMPL0020-1-147	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-147	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-147	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-147	host	studyid	7	string	membership	
+EUSMPL0020-1-147	host	subjec	7	string	membership	
+EUSMPL0020-1-147	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-147	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-147	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-147	sample from organism	sample_summary	Cesarean.bd.n.1	string	membership	
+EUSMPL0020-1-147	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-147	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-147	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-148	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-148	host	biological sex	male	string	membership	
+EUSMPL0020-1-148	host	collection_timestamp	8/30/12	string	membership	
+EUSMPL0020-1-148	host	day_of_life	31	number	range	
+EUSMPL0020-1-148	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-148	host	diet_2	bd	string	membership	
+EUSMPL0020-1-148	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-148	host	diet_3	eb	string	membership	
+EUSMPL0020-1-148	host	elevation	33	number	range	
+EUSMPL0020-1-148	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-148	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-148	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-148	host	host diet	bd	string	membership	
+EUSMPL0020-1-148	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-148	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-148	host	mom_child	C	string	membership	
+EUSMPL0020-1-148	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-148	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-148	host	month	1	number	range	
+EUSMPL0020-1-148	host	month_of_life	1	number	range	
+EUSMPL0020-1-148	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-148	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-148	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-148	host	studyid	8	string	membership	
+EUSMPL0020-1-148	host	subjec	8	string	membership	
+EUSMPL0020-1-148	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-148	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-148	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-148	sample from organism	sample_summary	Vaginal.bd.n.0	string	membership	
+EUSMPL0020-1-148	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-148	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-148	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-149	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-149	host	biological sex	male	string	membership	
+EUSMPL0020-1-149	host	collection_timestamp	7/12/12	string	membership	
+EUSMPL0020-1-149	host	day_of_life	31	number	range	
+EUSMPL0020-1-149	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-149	host	diet_2	bd	string	membership	
+EUSMPL0020-1-149	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-149	host	diet_3	eb	string	membership	
+EUSMPL0020-1-149	host	elevation	33	number	range	
+EUSMPL0020-1-149	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-149	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-149	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-149	host	host diet	bd	string	membership	
+EUSMPL0020-1-149	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-149	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-149	host	mom_child	C	string	membership	
+EUSMPL0020-1-149	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-149	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-149	host	month	1	number	range	
+EUSMPL0020-1-149	host	month_of_life	1	number	range	
+EUSMPL0020-1-149	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-149	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-149	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-149	host	studyid	9	string	membership	
+EUSMPL0020-1-149	host	subjec	9	string	membership	
+EUSMPL0020-1-149	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-149	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-149	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-149	sample from organism	sample_summary	Vaginal.bd.n.0	string	membership	
+EUSMPL0020-1-149	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-149	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-149	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-150	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-150	host	biological sex	male	string	membership	
+EUSMPL0020-1-150	host	collection_timestamp	9/11/12	string	membership	
+EUSMPL0020-1-150	host	day_of_life	30	number	range	
+EUSMPL0020-1-150	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-150	host	diet_2	bd	string	membership	
+EUSMPL0020-1-150	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-150	host	diet_3	eb	string	membership	
+EUSMPL0020-1-150	host	elevation	33	number	range	
+EUSMPL0020-1-150	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-150	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-150	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-150	host	host diet	bd	string	membership	
+EUSMPL0020-1-150	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-150	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-150	host	mom_child	C	string	membership	
+EUSMPL0020-1-150	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-150	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-150	host	month	1	number	range	
+EUSMPL0020-1-150	host	month_of_life	1	number	range	
+EUSMPL0020-1-150	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-150	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-150	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-150	host	studyid	10	string	membership	
+EUSMPL0020-1-150	host	subjec	10	string	membership	
+EUSMPL0020-1-150	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-150	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-150	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-150	sample from organism	sample_summary	Vaginal.fd.n.0	string	membership	
+EUSMPL0020-1-150	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-150	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-150	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-151	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-151	host	biological sex	male	string	membership	
+EUSMPL0020-1-151	host	collection_timestamp	9/20/12	string	membership	
+EUSMPL0020-1-151	host	day_of_life	39	number	range	
+EUSMPL0020-1-151	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-151	host	diet_2	bd	string	membership	
+EUSMPL0020-1-151	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-151	host	diet_3	eb	string	membership	
+EUSMPL0020-1-151	host	elevation	33	number	range	
+EUSMPL0020-1-151	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-151	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-151	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-151	host	host diet	bd	string	membership	
+EUSMPL0020-1-151	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-151	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-151	host	mom_child	C	string	membership	
+EUSMPL0020-1-151	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-151	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-151	host	month	1	number	range	
+EUSMPL0020-1-151	host	month_of_life	1.3	number	range	
+EUSMPL0020-1-151	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-151	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-151	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-151	host	studyid	10	string	membership	
+EUSMPL0020-1-151	host	subjec	10	string	membership	
+EUSMPL0020-1-151	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-151	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-151	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-151	sample from organism	sample_summary	Vaginal.fd.n.0	string	membership	
+EUSMPL0020-1-151	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-151	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-151	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-152	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-152	host	biological sex	male	string	membership	
+EUSMPL0020-1-152	host	collection_timestamp	9/24/12	string	membership	
+EUSMPL0020-1-152	host	day_of_life	43	number	range	
+EUSMPL0020-1-152	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-152	host	diet_2	bd	string	membership	
+EUSMPL0020-1-152	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-152	host	diet_3	eb	string	membership	
+EUSMPL0020-1-152	host	elevation	33	number	range	
+EUSMPL0020-1-152	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-152	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-152	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-152	host	host diet	bd	string	membership	
+EUSMPL0020-1-152	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-152	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-152	host	mom_child	C	string	membership	
+EUSMPL0020-1-152	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-152	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-152	host	month	1	number	range	
+EUSMPL0020-1-152	host	month_of_life	1.4	number	range	
+EUSMPL0020-1-152	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-152	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-152	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-152	host	studyid	10	string	membership	
+EUSMPL0020-1-152	host	subjec	10	string	membership	
+EUSMPL0020-1-152	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-152	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-152	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-152	sample from organism	sample_summary	Vaginal.fd.n.0	string	membership	
+EUSMPL0020-1-152	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-152	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-152	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-159	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-159	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-159	host	biological sex	male	string	membership	
+EUSMPL0020-1-159	host	collection_timestamp	9/27/12	string	membership	
+EUSMPL0020-1-159	host	day_of_life	31	number	range	
+EUSMPL0020-1-159	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-159	host	diet_2	bd	string	membership	
+EUSMPL0020-1-159	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-159	host	diet_3	eb	string	membership	
+EUSMPL0020-1-159	host	elevation	33	number	range	
+EUSMPL0020-1-159	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-159	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-159	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-159	host	host diet	bd	string	membership	
+EUSMPL0020-1-159	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-159	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-159	host	mom_child	C	string	membership	
+EUSMPL0020-1-159	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-159	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-159	host	month	1	number	range	
+EUSMPL0020-1-159	host	month_of_life	1	number	range	
+EUSMPL0020-1-159	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-159	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-159	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-159	host	studyid	14	string	membership	
+EUSMPL0020-1-159	host	subjec	14	string	membership	
+EUSMPL0020-1-159	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-159	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-159	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-159	sample from organism	sample_summary	Vaginal.bd.n.1	string	membership	
+EUSMPL0020-1-159	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-159	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-159	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-160	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-160	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-160	host	biological sex	male	string	membership	
+EUSMPL0020-1-160	host	collection_timestamp	10/4/12	string	membership	
+EUSMPL0020-1-160	host	day_of_life	31	number	range	
+EUSMPL0020-1-160	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-160	host	diet_2	bd	string	membership	
+EUSMPL0020-1-160	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-160	host	diet_3	eb	string	membership	
+EUSMPL0020-1-160	host	elevation	33	number	range	
+EUSMPL0020-1-160	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-160	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-160	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-160	host	host diet	bd	string	membership	
+EUSMPL0020-1-160	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-160	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-160	host	mom_child	C	string	membership	
+EUSMPL0020-1-160	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-160	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-160	host	month	1	number	range	
+EUSMPL0020-1-160	host	month_of_life	1	number	range	
+EUSMPL0020-1-160	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-160	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-160	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-160	host	studyid	16	string	membership	
+EUSMPL0020-1-160	host	subjec	16	string	membership	
+EUSMPL0020-1-160	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-160	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-160	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-160	sample from organism	sample_summary	Vaginal.bd.n.1	string	membership	
+EUSMPL0020-1-160	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-160	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-160	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-161	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-161	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-161	host	biological sex	male	string	membership	
+EUSMPL0020-1-161	host	collection_timestamp	10/18/12	string	membership	
+EUSMPL0020-1-161	host	day_of_life	45	number	range	
+EUSMPL0020-1-161	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-161	host	diet_2	bd	string	membership	
+EUSMPL0020-1-161	host	diet_2_month	bd_2	string	membership	
+EUSMPL0020-1-161	host	diet_3	eb	string	membership	
+EUSMPL0020-1-161	host	elevation	33	number	range	
+EUSMPL0020-1-161	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-161	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-161	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-161	host	host diet	bd	string	membership	
+EUSMPL0020-1-161	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-161	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-161	host	mom_child	C	string	membership	
+EUSMPL0020-1-161	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-161	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-161	host	month	2	number	range	
+EUSMPL0020-1-161	host	month_of_life	1.5	number	range	
+EUSMPL0020-1-161	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-161	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-161	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-161	host	studyid	16	string	membership	
+EUSMPL0020-1-161	host	subjec	16	string	membership	
+EUSMPL0020-1-161	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-161	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-161	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-161	sample from organism	sample_summary	Vaginal.bd.n.1	string	membership	
+EUSMPL0020-1-161	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-161	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-161	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-162	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-162	host	biological sex	male	string	membership	
+EUSMPL0020-1-162	host	collection_timestamp	10/23/12	string	membership	
+EUSMPL0020-1-162	host	day_of_life	32	number	range	
+EUSMPL0020-1-162	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-162	host	diet_2	fd	string	membership	
+EUSMPL0020-1-162	host	diet_2_month	fd_1	string	membership	
+EUSMPL0020-1-162	host	diet_3	fd	string	membership	
+EUSMPL0020-1-162	host	elevation	33	number	range	
+EUSMPL0020-1-162	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-162	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-162	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-162	host	host diet	fd	string	membership	
+EUSMPL0020-1-162	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-162	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-162	host	mom_child	C	string	membership	
+EUSMPL0020-1-162	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-162	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-162	host	month	1	number	range	
+EUSMPL0020-1-162	host	month_of_life	1.1	number	range	
+EUSMPL0020-1-162	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-162	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-162	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-162	host	studyid	22	string	membership	
+EUSMPL0020-1-162	host	subjec	22	string	membership	
+EUSMPL0020-1-162	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-162	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-162	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-162	sample from organism	sample_summary	Vaginal.fd.n.0	string	membership	
+EUSMPL0020-1-162	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-162	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-162	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-163	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-163	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-163	host	biological sex	male	string	membership	
+EUSMPL0020-1-163	host	collection_timestamp	11/14/12	string	membership	
+EUSMPL0020-1-163	host	day_of_life	30	number	range	
+EUSMPL0020-1-163	host	delivery	Cesarean	string	membership	
+EUSMPL0020-1-163	host	diet_2	bd	string	membership	
+EUSMPL0020-1-163	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-163	host	diet_3	bd	string	membership	
+EUSMPL0020-1-163	host	elevation	33	number	range	
+EUSMPL0020-1-163	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-163	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-163	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-163	host	host diet	bd	string	membership	
+EUSMPL0020-1-163	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-163	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-163	host	mom_child	C	string	membership	
+EUSMPL0020-1-163	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-163	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-163	host	month	1	number	range	
+EUSMPL0020-1-163	host	month_of_life	1	number	range	
+EUSMPL0020-1-163	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-163	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-163	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-163	host	studyid	25	string	membership	
+EUSMPL0020-1-163	host	subjec	25	string	membership	
+EUSMPL0020-1-163	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-163	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-163	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-163	sample from organism	sample_summary	Cesarean.fd.n.1	string	membership	
+EUSMPL0020-1-163	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-163	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-163	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-164	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-164	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-164	host	biological sex	male	string	membership	
+EUSMPL0020-1-164	host	collection_timestamp	11/26/12	string	membership	
+EUSMPL0020-1-164	host	day_of_life	42	number	range	
+EUSMPL0020-1-164	host	delivery	Cesarean	string	membership	
+EUSMPL0020-1-164	host	diet_2	bd	string	membership	
+EUSMPL0020-1-164	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-164	host	diet_3	bd	string	membership	
+EUSMPL0020-1-164	host	elevation	33	number	range	
+EUSMPL0020-1-164	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-164	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-164	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-164	host	host diet	bd	string	membership	
+EUSMPL0020-1-164	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-164	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-164	host	mom_child	C	string	membership	
+EUSMPL0020-1-164	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-164	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-164	host	month	1	number	range	
+EUSMPL0020-1-164	host	month_of_life	1.4	number	range	
+EUSMPL0020-1-164	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-164	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-164	host	run_prefix_prep	SeqRun2	string	membership	
+EUSMPL0020-1-164	host	studyid	25	string	membership	
+EUSMPL0020-1-164	host	subjec	25	string	membership	
+EUSMPL0020-1-164	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-164	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-164	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-164	sample from organism	sample_summary	Cesarean.fd.n.1	string	membership	
+EUSMPL0020-1-164	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-164	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-164	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-2	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-2	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-2	host	biological sex	male	string	membership	
+EUSMPL0020-1-2	host	collection_timestamp	4/26/12	string	membership	
+EUSMPL0020-1-2	host	day_of_life	32	number	range	
+EUSMPL0020-1-2	host	delivery	Cesarean	string	membership	
+EUSMPL0020-1-2	host	diet_2	bd	string	membership	
+EUSMPL0020-1-2	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-2	host	diet_3	eb	string	membership	
+EUSMPL0020-1-2	host	elevation	33	number	range	
+EUSMPL0020-1-2	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-2	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-2	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-2	host	host diet	bd	string	membership	
+EUSMPL0020-1-2	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-2	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-2	host	mom_child	C	string	membership	
+EUSMPL0020-1-2	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-2	host	mom_prenatal_abx	True	string	membership	
+EUSMPL0020-1-2	host	mom_prenatal_abx_class	nitrofuran	string	membership	
+EUSMPL0020-1-2	host	mom_prenatal_abx_trimester	1	number	range	
+EUSMPL0020-1-2	host	month	1	number	range	
+EUSMPL0020-1-2	host	month_of_life	1.1	number	range	
+EUSMPL0020-1-2	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-2	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-2	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-2	host	studyid	2	string	membership	
+EUSMPL0020-1-2	host	subjec	2	string	membership	
+EUSMPL0020-1-2	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-2	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-2	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-2	sample from organism	sample_summary	Cesarean.bd.n.1	string	membership	
+EUSMPL0020-1-2	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-2	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-2	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-3	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-3	host	biological sex	male	string	membership	
+EUSMPL0020-1-3	host	collection_timestamp	12/19/12	string	membership	
+EUSMPL0020-1-3	host	day_of_life	35	number	range	
+EUSMPL0020-1-3	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-3	host	diet_2	bd	string	membership	
+EUSMPL0020-1-3	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-3	host	diet_3	bd	string	membership	
+EUSMPL0020-1-3	host	elevation	33	number	range	
+EUSMPL0020-1-3	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-3	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-3	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-3	host	host diet	bd	string	membership	
+EUSMPL0020-1-3	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-3	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-3	host	mom_child	C	string	membership	
+EUSMPL0020-1-3	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-3	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-3	host	month	1	number	range	
+EUSMPL0020-1-3	host	month_of_life	1.2	number	range	
+EUSMPL0020-1-3	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-3	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-3	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-3	host	studyid	27	string	membership	
+EUSMPL0020-1-3	host	subjec	27	string	membership	
+EUSMPL0020-1-3	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-3	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-3	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-3	sample from organism	sample_summary	Vaginal.bd.n.0	string	membership	
+EUSMPL0020-1-3	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-3	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-3	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-305	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-305	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-305	host	biological sex	male	string	membership	
+EUSMPL0020-1-305	host	collection_timestamp	5/17/12	string	membership	
+EUSMPL0020-1-305	host	day_of_life	53	number	range	
+EUSMPL0020-1-305	host	delivery	Cesarean	string	membership	
+EUSMPL0020-1-305	host	diet_2	bd	string	membership	
+EUSMPL0020-1-305	host	diet_2_month	bd_2	string	membership	
+EUSMPL0020-1-305	host	diet_3	eb	string	membership	
+EUSMPL0020-1-305	host	elevation	33	number	range	
+EUSMPL0020-1-305	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-305	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-305	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-305	host	host diet	bd	string	membership	
+EUSMPL0020-1-305	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-305	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-305	host	mom_child	C	string	membership	
+EUSMPL0020-1-305	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-305	host	mom_prenatal_abx	True	string	membership	
+EUSMPL0020-1-305	host	mom_prenatal_abx_class	nitrofuran	string	membership	
+EUSMPL0020-1-305	host	mom_prenatal_abx_trimester	1	number	range	
+EUSMPL0020-1-305	host	month	2	number	range	
+EUSMPL0020-1-305	host	month_of_life	1.7	number	range	
+EUSMPL0020-1-305	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-305	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-305	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-305	host	studyid	2	string	membership	
+EUSMPL0020-1-305	host	subjec	2	string	membership	
+EUSMPL0020-1-305	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-305	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-305	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-305	sample from organism	sample_summary	Cesarean.bd.n.1	string	membership	
+EUSMPL0020-1-305	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-305	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-305	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-306	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-306	host	biological sex	male	string	membership	
+EUSMPL0020-1-306	host	collection_timestamp	1/18/13	string	membership	
+EUSMPL0020-1-306	host	day_of_life	34	number	range	
+EUSMPL0020-1-306	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-306	host	diet_2	bd	string	membership	
+EUSMPL0020-1-306	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-306	host	diet_3	eb	string	membership	
+EUSMPL0020-1-306	host	elevation	33	number	range	
+EUSMPL0020-1-306	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-306	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-306	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-306	host	host diet	bd	string	membership	
+EUSMPL0020-1-306	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-306	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-306	host	mom_child	C	string	membership	
+EUSMPL0020-1-306	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-306	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-306	host	month	1	number	range	
+EUSMPL0020-1-306	host	month_of_life	1.1	number	range	
+EUSMPL0020-1-306	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-306	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-306	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-306	host	studyid	30	string	membership	
+EUSMPL0020-1-306	host	subjec	30	string	membership	
+EUSMPL0020-1-306	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-306	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-306	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-306	sample from organism	sample_summary	Vaginal.bd.n.0	string	membership	
+EUSMPL0020-1-306	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-306	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-306	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-307	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-307	host	biological sex	male	string	membership	
+EUSMPL0020-1-307	host	collection_timestamp	1/28/13	string	membership	
+EUSMPL0020-1-307	host	day_of_life	44	number	range	
+EUSMPL0020-1-307	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-307	host	diet_2	bd	string	membership	
+EUSMPL0020-1-307	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-307	host	diet_3	eb	string	membership	
+EUSMPL0020-1-307	host	elevation	33	number	range	
+EUSMPL0020-1-307	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-307	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-307	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-307	host	host diet	bd	string	membership	
+EUSMPL0020-1-307	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-307	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-307	host	mom_child	C	string	membership	
+EUSMPL0020-1-307	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-307	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-307	host	month	1	number	range	
+EUSMPL0020-1-307	host	month_of_life	1.4	number	range	
+EUSMPL0020-1-307	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-307	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-307	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-307	host	studyid	30	string	membership	
+EUSMPL0020-1-307	host	subjec	30	string	membership	
+EUSMPL0020-1-307	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-307	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-307	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-307	sample from organism	sample_summary	Vaginal.bd.n.0	string	membership	
+EUSMPL0020-1-307	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-307	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-307	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-308	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-308	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-308	host	biological sex	male	string	membership	
+EUSMPL0020-1-308	host	collection_timestamp	1/29/13	string	membership	
+EUSMPL0020-1-308	host	day_of_life	32	number	range	
+EUSMPL0020-1-308	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-308	host	diet_2	bd	string	membership	
+EUSMPL0020-1-308	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-308	host	diet_3	eb	string	membership	
+EUSMPL0020-1-308	host	elevation	33	number	range	
+EUSMPL0020-1-308	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-308	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-308	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-308	host	host diet	bd	string	membership	
+EUSMPL0020-1-308	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-308	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-308	host	mom_child	C	string	membership	
+EUSMPL0020-1-308	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-308	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-308	host	month	1	number	range	
+EUSMPL0020-1-308	host	month_of_life	1.1	number	range	
+EUSMPL0020-1-308	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-308	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-308	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-308	host	studyid	31	string	membership	
+EUSMPL0020-1-308	host	subjec	31	string	membership	
+EUSMPL0020-1-308	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-308	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-308	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-308	sample from organism	sample_summary	Vaginal.bd.n.1	string	membership	
+EUSMPL0020-1-308	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-308	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-308	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-309	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-309	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-309	host	biological sex	male	string	membership	
+EUSMPL0020-1-309	host	collection_timestamp	2/7/13	string	membership	
+EUSMPL0020-1-309	host	day_of_life	41	number	range	
+EUSMPL0020-1-309	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-309	host	diet_2	bd	string	membership	
+EUSMPL0020-1-309	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-309	host	diet_3	eb	string	membership	
+EUSMPL0020-1-309	host	elevation	33	number	range	
+EUSMPL0020-1-309	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-309	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-309	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-309	host	host diet	bd	string	membership	
+EUSMPL0020-1-309	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-309	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-309	host	mom_child	C	string	membership	
+EUSMPL0020-1-309	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-309	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-309	host	month	1	number	range	
+EUSMPL0020-1-309	host	month_of_life	1.3	number	range	
+EUSMPL0020-1-309	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-309	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-309	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-309	host	studyid	31	string	membership	
+EUSMPL0020-1-309	host	subjec	31	string	membership	
+EUSMPL0020-1-309	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-309	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-309	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-309	sample from organism	sample_summary	Vaginal.bd.n.1	string	membership	
+EUSMPL0020-1-309	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-309	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-309	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-310	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-310	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-310	host	biological sex	male	string	membership	
+EUSMPL0020-1-310	host	collection_timestamp	2/20/13	string	membership	
+EUSMPL0020-1-310	host	day_of_life	54	number	range	
+EUSMPL0020-1-310	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-310	host	diet_2	bd	string	membership	
+EUSMPL0020-1-310	host	diet_2_month	bd_2	string	membership	
+EUSMPL0020-1-310	host	diet_3	eb	string	membership	
+EUSMPL0020-1-310	host	elevation	33	number	range	
+EUSMPL0020-1-310	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-310	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-310	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-310	host	host diet	bd	string	membership	
+EUSMPL0020-1-310	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-310	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-310	host	mom_child	C	string	membership	
+EUSMPL0020-1-310	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-310	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-310	host	month	2	number	range	
+EUSMPL0020-1-310	host	month_of_life	1.8	number	range	
+EUSMPL0020-1-310	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-310	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-310	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-310	host	studyid	31	string	membership	
+EUSMPL0020-1-310	host	subjec	31	string	membership	
+EUSMPL0020-1-310	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-310	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-310	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-310	sample from organism	sample_summary	Vaginal.bd.n.1	string	membership	
+EUSMPL0020-1-310	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-310	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-310	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-4	host	abx1_pmp_all_bymonth	pre	string	membership	
+EUSMPL0020-1-4	host	abx_name	Cephalexin	string	membership	
+EUSMPL0020-1-4	host	abx_pmp_all	pre	string	membership	
+EUSMPL0020-1-4	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-4	host	biological sex	male	string	membership	
+EUSMPL0020-1-4	host	collection_timestamp	2/1/13	string	membership	
+EUSMPL0020-1-4	host	course_num	1	number	range	
+EUSMPL0020-1-4	host	day_of_life	31	number	range	
+EUSMPL0020-1-4	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-4	host	diet_2	bd	string	membership	
+EUSMPL0020-1-4	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-4	host	diet_3	eb	string	membership	
+EUSMPL0020-1-4	host	elevation	33	number	range	
+EUSMPL0020-1-4	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-4	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-4	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-4	host	host diet	bd	string	membership	
+EUSMPL0020-1-4	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-4	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-4	host	mom_child	C	string	membership	
+EUSMPL0020-1-4	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-4	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-4	host	month	1	number	range	
+EUSMPL0020-1-4	host	month_of_life	1	number	range	
+EUSMPL0020-1-4	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-4	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-4	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-4	host	studyid	32	string	membership	
+EUSMPL0020-1-4	host	subjec	32	string	membership	
+EUSMPL0020-1-4	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-4	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-4	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-4	sample from organism	sample_summary	Vaginal.bd.n.0	string	membership	
+EUSMPL0020-1-4	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-4	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-4	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-5	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-5	host	biological sex	male	string	membership	
+EUSMPL0020-1-5	host	collection_timestamp	5/20/13	string	membership	
+EUSMPL0020-1-5	host	day_of_life	31	number	range	
+EUSMPL0020-1-5	host	delivery	Vaginal	string	membership	
+EUSMPL0020-1-5	host	diet_2	bd	string	membership	
+EUSMPL0020-1-5	host	diet_2_month	bd_1	string	membership	
+EUSMPL0020-1-5	host	diet_3	eb	string	membership	
+EUSMPL0020-1-5	host	elevation	33	number	range	
+EUSMPL0020-1-5	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-5	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-5	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-5	host	host diet	bd	string	membership	
+EUSMPL0020-1-5	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-5	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-5	host	mom_child	C	string	membership	
+EUSMPL0020-1-5	host	mom_ld_abx	False	string	membership	
+EUSMPL0020-1-5	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-5	host	month	1	number	range	
+EUSMPL0020-1-5	host	month_of_life	1	number	range	
+EUSMPL0020-1-5	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-5	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-5	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-5	host	studyid	35	string	membership	
+EUSMPL0020-1-5	host	subjec	35	string	membership	
+EUSMPL0020-1-5	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-5	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-5	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-5	sample from organism	sample_summary	Vaginal.bd.n.0	string	membership	
+EUSMPL0020-1-5	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-5	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-5	sample from organism	scientific_name	human gut metagenome	string	membership	
+EUSMPL0020-1-6	host	abx_all_sources	1	number	range	
+EUSMPL0020-1-6	host	antiexposedall	n	string	membership	
+EUSMPL0020-1-6	host	biological sex	male	string	membership	
+EUSMPL0020-1-6	host	collection_timestamp	5/15/13	string	membership	
+EUSMPL0020-1-6	host	day_of_life	42	number	range	
+EUSMPL0020-1-6	host	delivery	Cesarean	string	membership	
+EUSMPL0020-1-6	host	diet_2	fd	string	membership	
+EUSMPL0020-1-6	host	diet_2_month	fd_1	string	membership	
+EUSMPL0020-1-6	host	diet_3	fd	string	membership	
+EUSMPL0020-1-6	host	elevation	33	number	range	
+EUSMPL0020-1-6	host	env_feature	human-associated habitat	string	membership	
+EUSMPL0020-1-6	host	environment (biome)	urban biome	string	membership	
+EUSMPL0020-1-6	host	geographic location (country and/or sea,region)	USA:NY:NYC	string	membership	
+EUSMPL0020-1-6	host	host diet	fd	string	membership	
+EUSMPL0020-1-6	host	latitude coordinate measurement datum	40.742	number	range	
+EUSMPL0020-1-6	host	longitude coordinate measurement datum	-73.974	number	range	
+EUSMPL0020-1-6	host	mom_child	C	string	membership	
+EUSMPL0020-1-6	host	mom_ld_abx	True	string	membership	
+EUSMPL0020-1-6	host	mom_prenatal_abx	False	string	membership	
+EUSMPL0020-1-6	host	month	1	number	range	
+EUSMPL0020-1-6	host	month_of_life	1.4	number	range	
+EUSMPL0020-1-6	host	physical_specimen_location	NYUMC	string	membership	
+EUSMPL0020-1-6	host	physical_specimen_remaining	True	string	membership	
+EUSMPL0020-1-6	host	run_prefix_prep	SeqRun1	string	membership	
+EUSMPL0020-1-6	host	studyid	36	string	membership	
+EUSMPL0020-1-6	host	subjec	36	string	membership	
+EUSMPL0020-1-6	host	taxon_id	408170	number	membership	
+EUSMPL0020-1-6	host	title	ECAM: Antibiotics, birth mode, and diet shape microbiome maturation during early life	string	membership	
+EUSMPL0020-1-6	sample from organism	dna_extracted	True	string	membership	
+EUSMPL0020-1-6	sample from organism	sample_summary	Cesarean.fd.n.1	string	membership	
+EUSMPL0020-1-6	sample from organism	sample_type	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-6	sample from organism	sampletype	Stool_Stabilizer	string	membership	
+EUSMPL0020-1-6	sample from organism	scientific_name	human gut metagenome	string	membership	
