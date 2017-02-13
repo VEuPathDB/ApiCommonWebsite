@@ -7,6 +7,10 @@
 
   <table name="communityLinks">
          <row>
+	          <attribute name="title"><![CDATA[PhytoPathDB]]></attribute>
+            <attribute name="url"><![CDATA[http://www.phytopathdb.org]]></attribute>
+        </row>
+        <row>
 	          <attribute name="title"><![CDATA[Pathogen Host Interactions database]]></attribute>
             <attribute name="url"><![CDATA[http://www.phi-base.org]]></attribute>
         </row>
