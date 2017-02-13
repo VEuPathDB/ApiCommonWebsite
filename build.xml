@@ -244,9 +244,11 @@
 
   <target name="dashboardDoc" if="dashboard.present">
     <echo message="Compiling phpdoc" />
+    <!-- errors to /dev/null due to Smarty bug: https://bugzilla.redhat.com/show_bug.cgi?id=1352882 -->
     <exec executable="phpdoc" 
       failonerror="false"
       failifexecutionfails="false"
+      error="/dev/null"
     >
       <arg line="--ignore phpdoc/,css/,js/,config/,test/,images/,doc/" />
       <arg line="--defaultpackagename dashboard" />
