@@ -46,6 +46,20 @@ sub finalProfileAdjustments {
 }
 1;
 
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::SpliceSites::DS_c23bc65b49;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = ['SL end-enriched cDNA'];
+  $profile->setSampleLabels($legend);
+}
+1;
+
+
 #--------------------------------------------------------------------------------
 
 
