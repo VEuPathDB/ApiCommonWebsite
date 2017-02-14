@@ -108,7 +108,9 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   private static Map<String, Integer> getSizesFromCustomQuery(AnswerValue answerValue, WdkModel wdkModel)
       throws WdkModelException, WdkUserException {
     Query query = wdkModel.getQuerySet(CUSTOM_FILTER_SIZE_QUERY_SET).getQuery(CUSTOM_FILTER_SIZE_QUERY_NAME);
-    String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, answerValue.getIdSql());
+    AnswerValue clone = new AnswerValue(answerValue);
+    clone.setFilterInstance((AnswerFilterInstance)null);
+    String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, clone.getIdSql());
     LOG.debug("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();
     new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, CUSTOM_FILTER_SIZE_QUERY_NAME).executeQuery(new ResultSetHandler() {
