@@ -355,52 +355,51 @@ sub isExcludedProfileSet {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_0fa4237b4b;
 
-sub finalProfileAdjustments {
-  my ($self, $profile) = @_;
-
-  my $legendLabels = (['labeled','total','total fitted','unlabeled']);
-  $profile->setPointsPch([ 'NA', 'NA', 'NA', 'NA']);
-  $profile->setHasExtraLegend(1);
-  $profile->setLegendLabels($legendLabels);
-}
-
-
-sub getProfileSetsArray {
-  my ($self, $allProfileSetNames) = @_;
+sub getAllProfileSetNames {
+  my ($self) = @_;
   my @profileArray = (
-                      ['Llinas RT transcription and decay labeled Profiles'],
-                      ['Llinas RT transcription and decay unlabeled Profiles'],
-                      ['Llinas RT transcription and decay total Profiles'],
-      ); 
-  return \@profileArray;
+                      'Llinas RT transcription and decay labeled Profiles',
+                      'Llinas RT transcription and decay unlabeled Profiles',
+                      'Llinas RT transcription and decay total Profiles',
+      );
+
+  my @rv;
+  foreach(@profileArray) {
+    my $profileType = 'values';
+    my $p = {profileName=>$_, profileType=>$profileType};
+    push @rv, $p;
+  }
+
+  return \@rv;
 }
 
 
-sub setGraphObjects { 
+sub getRemainderNameFromProfileSetName {
+  my ($self, $profileSetName) = @_;
+  my $remainder =   $self->SUPER::getRemainderNameFromProfileSetName($profileSetName);
+
+  my $map = {'total' => 'Total Abundance', 'labeled' => 'Transcription', 'unlabeled' => 'Stabilization'};
+
+  return $map->{$remainder};
+}
+
+sub getRemainderRegex {
+  return qr/Llinas RT transcription and decay (.+) Profiles/;
+}
+
+
+sub init {
   my $self = shift;
-  my $graphs = [];
-  
-  my $legendLabels = (['Transcription','Stabilization','Total Abundance']);
-  foreach my $plotPart (@_) {
-    my $name = $plotPart->setHasExtraLegend(1);
-    my $size = $plotPart->setLegendLabels($legendLabels);
-    $plotPart->setExtraLegendSize(6.5);
-    my $baseTitle = $plotPart->getPlotTitle();
-    $plotPart->setPlotTitle($baseTitle. " - mRNA Dynamics");
-    $plotPart->setYaxisLabel('Modeled Expression Values') if ($baseTitle =~/Expression/); 
-    push @{$graphs}, $plotPart;
-  }
+  $self->SUPER::init(@_);
 
   my $pch = ['15','NA'];
   my $colors = ['black'];
   my $legend = ['Total Expression', 'Total Expression - smoothed'];
-
   
   my @profileArray = (
                       ['Llinas RT transcription and decay total Profiles - loess', 'values'],
 #                      ['Llinas RT transcription and decay total Profiles - smoothed', 'values']
       );
-
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
  
@@ -420,9 +419,22 @@ sub setGraphObjects {
   $line->setXaxisLabel('Hours post infection');
   my $id = $self->getId();
   $line->setPlotTitle("Expression Values - $id - Total mRNA Abundance");
-  push (@{$graphs},$line);
-  $self->SUPER::setGraphObjects(@{$graphs});
+
+  my $graphObjects = $self->getGraphObjects();
+  
+  my $dynamics = $graphObjects->[0];
+  my $baseTitle = $dynamics->getPlotTitle();
+  $dynamics->setPointsPch([ 'NA', 'NA', 'NA']);
+  $dynamics->setColors(['red','black','blue']);
+  $dynamics->setHasExtraLegend(1);
+  $dynamics->setPlotTitle($baseTitle. " - mRNA Dynamics");
+  $dynamics->setYaxisLabel('Modeled Expression Values');
+
+  push @$graphObjects, $line;
+
+  $self->setGraphObjects(@$graphObjects);
 }
+
 
 
 1;
