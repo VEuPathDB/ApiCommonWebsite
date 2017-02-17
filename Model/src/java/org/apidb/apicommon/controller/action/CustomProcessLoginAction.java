@@ -3,10 +3,10 @@ package org.apidb.apicommon.controller.action;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import org.gusdb.fgputil.web.RequestData;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.user.ProcessLoginAction;
 import org.gusdb.wdk.controller.actionutil.ActionResult;
-import org.gusdb.wdk.controller.actionutil.RequestData;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
