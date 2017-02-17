@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class ApiSiteSetup {
 
   private static final Logger LOG = Logger.getLogger(ApiSiteSetup.class);
-  
+
   /**
    * Initialize any parts of the ApiCommon web application not handled by normal
    * WDK initialization.

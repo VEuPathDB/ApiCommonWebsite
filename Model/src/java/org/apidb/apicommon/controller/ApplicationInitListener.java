@@ -4,9 +4,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.gusdb.wdk.controller.CConstants;
+import org.eupathdb.common.controller.EuPathSiteSetup;
 import org.gusdb.wdk.controller.WdkInitializer;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.WdkModel;
 
 /**
  * A class that is initialized at the start of the web application. This makes
@@ -19,7 +19,9 @@ public class ApplicationInitListener implements ServletContextListener {
     ServletContext context = sce.getServletContext();
     WdkInitializer.initializeWdk(context);
     CommentFactoryManager.initializeCommentFactory(context);
-    ApiSiteSetup.initialize(((WdkModelBean)context.getAttribute(CConstants.WDK_MODEL_KEY)).getModel());
+    WdkModel wdkModel = WdkInitializer.getWdkModel(context);
+    EuPathSiteSetup.initialize(wdkModel);
+    ApiSiteSetup.initialize(wdkModel);
   }
 
   @Override
