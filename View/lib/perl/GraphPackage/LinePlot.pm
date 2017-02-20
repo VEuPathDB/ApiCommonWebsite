@@ -807,6 +807,7 @@ sub new {
 
   $self->setPointsPch(['NA']);
 
+  $self->setSmoothLines(1);
   $self->setIsFilled(1);
   
   return $self;
