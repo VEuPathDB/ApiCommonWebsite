@@ -17,7 +17,7 @@
     </record>
 --> 
  <record>
-       <attribute name="headline">EuPathDB is hiring!!!</attribute>
+       <attribute name="headline">EuPathDB is hiring</attribute>
        <attribute name="date">21 Feb 2017 13:00</attribute>
        <attribute name="tag">job_2_2017</attribute>
        <attribute name="category">release</attribute>
