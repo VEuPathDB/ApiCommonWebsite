@@ -30,6 +30,17 @@ sub getProfileRAdjust { return 'profile.df = log2(profile.df);'}
 
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_aef92040c6;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = [''];
+  $profile->setSampleLabels($legend);
+}
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
 
 sub finalProfileAdjustments {
