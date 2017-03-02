@@ -73,6 +73,9 @@ sub makeRPlotString {
   }
 
   foreach(@{$self->getProfileSets()}) {
+
+
+
     if(scalar @{$_->errors()} > 0) {
       return $blankGraph;
 
@@ -231,7 +234,7 @@ for(i in 1:length(profile.files)) {
 }
 
 # blank graph if all values are zero
-if(sum(profile.df, na.rm=TRUE) > 0) {
+if(abs(sum(profile.df, na.rm=TRUE)) > 0) {
 
 screen(screens[screen.i]);
 screen.i <- screen.i + 1;
