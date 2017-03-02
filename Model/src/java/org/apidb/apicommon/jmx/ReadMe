@@ -1,8 +1,8 @@
 The JmxInitListener registers the mbeans. This listener must be defined in
 the webapp's web.xml.
   <listener>
-    <listener-class>org.apidb.apicommon.jmx.JmxInitListener</listener-class>
+    <listener-class>org.gusdb.wdk.jmx.JmxInitListener</listener-class>
   </listener>
 
 mbeans that will be loaded are defined (classname and objectname) in 
-org.apidb.apicommon.jmx.MBeanSet
+org.gusdb.wdk.jmx.MBeanSet
