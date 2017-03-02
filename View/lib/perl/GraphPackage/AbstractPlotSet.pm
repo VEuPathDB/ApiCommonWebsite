@@ -368,7 +368,6 @@ sub writeProfileFiles {
   my @rv = ($profile_fn, $elementNames_fn);
 
   if (@errors) {
-    print STDERR "ERRORS!!!!\n";
     $self->reportErrorsAndBlankGraph($r_fh, (@profileErrors,@errors));
   }
 
