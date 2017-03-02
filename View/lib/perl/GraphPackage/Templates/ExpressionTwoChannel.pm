@@ -5,6 +5,7 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
 use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
+use Data::Dumper;
 
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
@@ -16,6 +17,7 @@ sub finalProfileAdjustments {
   }
 }
 1;
+
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_84d52f99c7;
 
@@ -144,7 +146,6 @@ sub defineGraphs {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_a8800cfd76;
 
-
 sub init {
   my $self = shift;
 
@@ -162,9 +163,10 @@ sub init {
 
 
   my $combined = $self->makeCombinedGraph();
+  my $ccPie = $self->makeCellCycleGraph();
 
 
-  $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs);
+  $self->setGraphObjects($combined, $ccPie, @hb3Graphs, @_3D7Graphs, @dd2Graphs);
 
   return $self;
 }
@@ -191,6 +193,25 @@ and profile_set_name = ?";
 
   return \@rv;
 }
+
+
+sub makeCellCycleGraph {
+  my ($self) = @_;
+
+#  my $_3d7ProfileSet = 'DeRisi 3D7 Smoothed';
+  my $hb3ProfileSet = 'DeRisi HB3 Smoothed';
+  my $times_hb3 = $self->getTimePointMapping('Timepoint Mapping And Life Stage Fractions - HB3');
+#  my $dd2ProfileSet = 'DeRisi Dd2 Smoothed';
+
+  my @derisiProfileArray = ([$hb3ProfileSet, 'values', '', '', $times_hb3]);
+
+  my $derisiProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@derisiProfileArray);
+  my $derisi = ApiCommonWebsite::View::GraphPackage::PieChart::CellCycle->new(@_);
+  $derisi->setProfileSets($derisiProfileSets);
+
+  return $derisi;
+}
+
 
 
 sub makeCombinedGraph {
@@ -283,6 +304,8 @@ sub defineGraphs {
   return($line, $percentile, $lifeStages);
 }
 
+1;
+
 #--------------------------------------------------------------------------------
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
@@ -334,6 +357,21 @@ sub init {
 
   return $self;
 }
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_3021e25a77;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+  
+  $self->setPlotWidth(1000);
+
+  return $self;
+}
+
+1;
 
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR microarraySimpleTwoChannelGraph
