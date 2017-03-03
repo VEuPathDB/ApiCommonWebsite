@@ -22,6 +22,43 @@
     
     
 -->
+
+<record>
+  <attribute name="headline">CryptoDB 31 Released</attribute>
+  <attribute name="date">08 Mar 2017 13:00</attribute>
+  <attribute name="tag">cryptodb03_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of CryptoDB 31</strong></p>
+      
+      <section>
+        <h3>New Data in Release 31</h3>
+        
+        <h4>Genome Sequence</h4>
+
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/TO DO ><i>Cryptosporidium ubiquitum</i> isolate 39726</a> &mdash; 
+            summary
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB10000">Genbank Bioproject XXXXX</a>. 
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXXX">XXXXXX et al.</a>
+                 
+      </section>
+      
+      <section>
+        <h3>No New features in this release</h3> 
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
 <record>
        <attribute name="headline">EuPathDB is Hiring</attribute>
        <attribute name="date">21 Feb 2017 13:00</attribute>
