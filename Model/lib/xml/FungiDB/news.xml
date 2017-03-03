@@ -14,6 +14,71 @@
        </attribute>
     </record>
 -->
+
+<record>
+  <attribute name="headline">FungiDB 31 Released</attribute>
+  <attribute name="date">08 Mar 2017 13:00</attribute>
+  <attribute name="tag">fungidb03_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 31</strong></p>
+      
+      <section>
+        <h3>New data in this release</h3> 
+          
+        <h4>RNA Sequencing:</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
+                 Summary
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
+                 Summary
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
+                 Summary
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
+                 Summary
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
+                 Summary
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             </li>
+           </ul>
+    
+        <h4>Whole genome sequencing of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
+                 Coccidioides whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA274372">NCBI's Bioproject record page</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
+                 Coccidioides whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA274372">NCBI's Bioproject record page</a>
+             </li>
+           </ul>
+      </section>
+
+      <section>           
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
 <record>
        <attribute name="headline">EuPathDB is Hiring</attribute>
        <attribute name="date">21 Feb 2017 13:00</attribute>
