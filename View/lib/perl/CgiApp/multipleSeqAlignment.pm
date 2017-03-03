@@ -628,8 +628,6 @@ sub validateParams {
       push @filteredGenomes, $_ unless($_ eq $referenceGenome);
     }
 
-    print STDERR Dumper \@filteredGenomes;
-    
     return ($contig, $start, $stop, $strand, $type, $referenceGenome, \@filteredGenomes);
 }
 
@@ -966,6 +964,13 @@ sub determineSplitSeq {
     }
     return (%newHash);
 } 
+
+sub userError {
+  my ($msg) = @_;
+
+  die "$msg\n\nPlease Try again!\n";
+}
+
 1;
 
 
