@@ -25,33 +25,53 @@
     <p><strong>We are pleased to announce the release of FungiDB 31</strong></p>
       
       <section>
-        <h3>New data in this release</h3> 
+        <h3>New data in this release</h3>
+        
+        <h4>Annotated Genomes</h4>
+          <ul>
+            <li>a href="http://fungidb.org/fungidb/app/record/dataset/DS_e386d68c74"><i>Fusarium fujikuroi</i></a> strain IMI 58289 &ndash;   
+                 appearing for the first time in FungiDB.  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/23825955">Wiemann et al.</a>
+            </li>
+            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cd90ec7602"><i>Fusarium graminearum</i></a> strain PH-1 &ndash;   
+                 appearing for the first time in FungiDB. 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26198851">King et al.</a>
+             </li>
           
         <h4>RNA Sequencing:</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b0e1b490a">Cell cycle transcriptome of <i>Cryptococcus neoformans</i></a>  var. grubii &ndash;   
+                 Summary missign from presenter
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f101fb2669">Cell cycle transcriptome of <i>Saccharomyces cerevisiae</i></a> S288C &ndash;   
+                 Summary missing from presenter
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ae73c0972">Transcriptome during sexual development in <i>Neurospora crassa</i></a> OR74A &ndash;   
+                 Genome-wide transcriptomics of <i>Neurospora crassa</i> across eight stages of sexual development.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25329823">Lehr et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f595797fd2">Transcriptome of <i>Neurospora discreta</i> during sexual development</a> &ndash;   
+                 Genome-wide transcriptomics of <i>Neurospora discreta</i> across eight stages of sexual development.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25329823">Lehr et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d9ee583dcc">Transcriptome of <i>Neurospora tetrasperma</i> during sexual development</a> &ndash;   
+                 Genome-wide transcriptomics of Neurospora tetrasperma across eight stages of sexual development.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25329823">Lehr et al.</a>
              </li>
            </ul>
-    
+           
+       
+        <h4>Proteomics:</h4>
+        Will the proteomics go in this build? <br>
+        Check the search<br>
+        anidFGSCA4_massSpec_Marten_phosphoproteome_RSRC<br>
+        <br>
+        
+            
         <h4>Whole genome sequencing of isolates for SNP analysis:</h4>
+        <b>change to correct data sets</b><br>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
                  Coccidioides whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
