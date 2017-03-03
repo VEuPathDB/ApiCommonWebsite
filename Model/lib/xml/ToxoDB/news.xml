@@ -29,10 +29,10 @@
         
         <h4>Annotated Genome</h4>
 
-            <a href="http://toxodb.org/toxodb/app/record/dataset/TO DO ><i>Cyclospora cayetanensis</i>  strain CHN_HEN01</a> &mdash; 
-            summary
-            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB10000">Genbank Bioproject XXXXX</a>. 
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXXX">XXXXXX et al.</a>
+            <a href="http://toxodb.org/toxodb/app/record/dataset/DS_e2540b4397><i>Cyclospora cayetanensis</i> strain CHN_HEN01</a> &mdash; 
+            appearing for the first time in ToxoDB.<br>
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256967">Genbank Bioproject PRJNA256967</a> <br>
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27129308">Liu et al.</a>
                  
       </section>
       
