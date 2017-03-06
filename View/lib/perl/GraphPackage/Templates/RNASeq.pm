@@ -272,17 +272,3 @@ sub init {
 # sub getXAxisLabel { '' }
 
 1;
-
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4b0e1b490a;
-use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
-use strict;
-sub getExprPlotPartModuleString { 'PairedEndRNASeq' }
-
-1;
-
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_f101fb2669;
-use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
-use strict;
-sub getExprPlotPartModuleString { 'PairedEndRNASeq' }
-
-1;
