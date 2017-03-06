@@ -5,7 +5,6 @@ library(reshape2)
 source("config.R")
 source("../../lib/wdkDataset.R")
 
-
 shinyServer(function(input, output, session) {
   columns <- NULL
   hash_sample_names<- NULL
@@ -14,7 +13,6 @@ shinyServer(function(input, output, session) {
     #Change with the file with abundances
     df_abundance <-
       read.csv(
-#        "MicrobiomeSampleByMetadata_TaxaRelativeAbundance.txt",
         getWdkDatasetFile('TaxaRelativeAbundance.tab', session, FALSE, dataStorageDir),
         sep = "\t",
         col.names = c("Sample","Taxon", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "Abundance", "EmptyColumn")
@@ -23,11 +21,11 @@ shinyServer(function(input, output, session) {
     # Change with the Metadata file
     df_sample <-
       read.csv(
-#        "fran_updated_Characteristics_tabfile.txt",
         getWdkDatasetFile('Characteristics.tab', session, FALSE, dataStorageDir),
         sep = "\t",
         col.names = c("SampleName", "Source", "Property", "Value", "Type", "Filter", "EmptyColumn")
       )
+    
     df_sample.formatted <- dcast(data = df_sample,formula = SampleName~Property, value.var = "Value")
     rownames(df_sample.formatted) <- df_sample.formatted[,1]
     columns <<- colnames(df_sample.formatted)
@@ -154,16 +152,5 @@ shinyServer(function(input, output, session) {
 	        )
 	      }
 	    }
-	})
-	
-	observeEvent(input$plot_click, {
-		click <- input$plot_click
-		if (is.null(click$x))
-			return(NULL)
-		# df <- data()
-		# lvls <- levels(df$Sample)
-		# sample <- lvls[round(click$x)]
-		# selected_sample = subset(df, df$Sample == sample)
-		# output$sample_subset <- renderDataTable(selected_sample,options = list(aaSorting = list(list(2, 'desc'),list(1, 'asc'))) )
 	})
 })
