@@ -19,7 +19,7 @@
 -->
 
 <record>
-  <attribute name="headline">PlasmoDB 30 Released</attribute>
+  <attribute name="headline">PlasmoDB 31 Released</attribute>
   <attribute name="date">08 Mar 2017 13:00</attribute>
   <attribute name="tag">plasmodb03_17_release</attribute>
   <attribute name="category">release</attribute>
