@@ -10,7 +10,7 @@ shinyUI(
                        "Fisher" = "Fisher"),
                      selected = c("Chao1", "Shannon"), inline=T),
     div(style = "display: none;",
-	     checkboxInput("taxa_are_rows", label = "", value = TRUE)
+	     checkboxInput("taxa_are_rows", label = "", value = T)
 	 ),
 	  uiOutput("category"),
     		div(
