@@ -72,9 +72,9 @@
              </li>
            </ul>
           
-        <h4>Whole genome sequencing of isolates for SNP analysis:</h4>
+        <h4>Whole genome sequence of isolates for SNP analysis:</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_a0e51f125a">Next-generation sequencing to analyze 43 isolates from 11 HIV-infected patients with oropharyngeal candidiasis.</a> &ndash;
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_a0e51f125a">Aligned genomic sequence reads: HIV patients with oropharyngeal candidiasis</a> &ndash;
                  Forty three clinical isolates of <i>C. albicans</i> were collected from 11 immunocompromised patients treated with flucanosole. DNA changes occurring over time were tracked by next generation sequencing approach.<br>
                  <a href="https://www.ncbi.nlm.nih.gov/bioproject/257929">NCBI's Bioproject record page</a><br>
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25646566">Ford et al.</a>
