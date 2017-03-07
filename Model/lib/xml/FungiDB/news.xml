@@ -25,44 +25,118 @@
     <p><strong>We are pleased to announce the release of FungiDB 31</strong></p>
       
       <section>
-        <h3>New data in this release</h3> 
+        <h3>New data in this release</h3>
+        
+        <h4>Annotated Genomes:</h4>
+           <ul>
+            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_e386d68c74"><i>Fusarium fujikuroi</i> strain IMI 58289</a> &ndash;   
+                 appearing for the first time in FungiDB.  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/23825955">Wiemann et al.</a>
+            </li>
+            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cd90ec7602"><i>Fusarium graminearum</i> strain PH-1</a> &ndash;   
+                 appearing for the first time in FungiDB. 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26198851">King et al.</a>
+             </li>
+          </ul>
           
         <h4>RNA Sequencing:</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b0e1b490a">Cell cycle transcriptome of <i>Cryptococcus neoformans</i>  var. grubii</a> &ndash;   
+                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Cryptococcus neoformans var. grubii</i>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f101fb2669">Cell cycle transcriptome of <i>Saccharomyces cerevisiae</i> S288C</a> &ndash;   
+                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Saccharomyces cerevisiae</i>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ae73c0972">Transcriptome during sexual development in <i>Neurospora crassa</i> OR74A</a> &ndash;   
+                 Genome-wide transcriptomics of <i>Neurospora crassa</i> across eight stages of sexual development.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25329823">Lehr et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f595797fd2">Transcriptome of <i>Neurospora discreta</i> during sexual development</a> &ndash;   
+                 Genome-wide transcriptomics of <i>Neurospora discreta</i> across eight stages of sexual development.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25329823">Lehr et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d62dec852a">TODO</a> &ndash;   
-                 Summary
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/XXXX">XXXX et al.</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d9ee583dcc">Transcriptome of <i>Neurospora tetrasperma</i> during sexual development</a> &ndash;   
+                 Genome-wide transcriptomics of <i>Neurospora tetrasperma</i> across eight stages of sexual development.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25329823">Lehr et al.</a>
              </li>
            </ul>
-    
-        <h4>Whole genome sequencing of isolates for SNP analysis:</h4>
+           
+       
+        <h4>Proteomics:</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
-                 Coccidioides whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA274372">NCBI's Bioproject record page</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b0e1b490a">Phosphopeptide enriched sample (strain A1166)</a> &ndash; 
+                 <i>Aspergillus nidulans</i> Phosphoproteome.
+                 <a href=" https://www.ncbi.nlm.nih.gov/pubmed/25116090">Ramsubramaniam et al.</a>
+             </li>
+           </ul>
+          
+        <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_a0e51f125a">Aligned genomic sequence reads: HIV patients with oropharyngeal candidiasis</a> &ndash;
+                 Forty three clinical isolates of <i>C. albicans</i> were collected from 11 immunocompromised patients treated with flucanosole. DNA changes occurring over time were tracked by next generation sequencing approach.<br>
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/257929">NCBI's Bioproject record page</a>,  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25646566">Ford et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
-                 Coccidioides whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
+                 <i>Coccidioides</i> whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA274372">NCBI's Bioproject record page</a>
              </li>
            </ul>
       </section>
+      
+      <section>
+        <h4>Updated Functional Annotation</h4>
+
+        <aside>
+        Functional annotations in FungiDB 31 have been updated for the following genomes:
+        </aside>
+        
+        <style>
+           #FunctAnnot_Bld31 table, #FunctAnnot_Bld31 td, #FunctAnnot_Bld31 th, #FunctAnnot_Bld31 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld31 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld31"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td>22 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td>24 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td>6928 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        <a href="https://docs.google.com/spreadsheets/d/14iTsgt4CcI0YF4Y3Z6Uq2EKvSFkX7GqegteANDSkb50/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+        
+        <br><br>
+        
+        <b>Neurospora Broad Community Annotation Project</b><br><br>
+        Annotations from the Broad Community Annotation Project have been loaded for <i>Neurospora crassa</i> OR74A. Updates include publications, 
+        EC numbers, GO terms, gene mappings and MIPS annotations (converted to GO terms). 
+        <a href="https://github.com/fungidb/neurospora/tree/master/Community_annotations/curator_raw/Broad_2014_02">Raw dumps from Broad</a> are available as are 
+        <a href="https://github.com/fatimasilva/neurospora/tree/master/Community_annotations/tidy">parsed and cleaned tab files</a>.
+        
+      </section> 
 
       <section>           
          <aside>
