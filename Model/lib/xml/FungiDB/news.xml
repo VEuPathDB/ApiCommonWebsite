@@ -85,6 +85,58 @@
              </li>
            </ul>
       </section>
+      
+      <section>
+        <h4>Updated Functional Annotation</h4>
+
+        <aside>
+        Functional annotations in FungiDB 31 have been updated for the following genomes:
+        </aside>
+        
+        <style>
+           #FunctAnnot_Bld31 table, #FunctAnnot_Bld31 td, #FunctAnnot_Bld31 th, #FunctAnnot_Bld31 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld31 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld31"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td>22 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td>24 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td>6928 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        <a href="https://docs.google.com/spreadsheets/d/14iTsgt4CcI0YF4Y3Z6Uq2EKvSFkX7GqegteANDSkb50/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+        
+        <br><br>
+        
+        <b>Neurospora Broad Community Annotation Project</b><br><br>
+        Annotations from the Broad Community Annotation Project have been loaded for <i>Neurospora crassa</i> OR74A. Updates include publications, 
+        EC numbers, GO terms, gene mappings and MIPS annotations (converted to GO terms). 
+        <a href="https://github.com/fungidb/neurospora/tree/master/Community_annotations/curator_raw/Broad_2014_02">Raw dumps from Broad</a> are available as are 
+        <a href="https://github.com/fatimasilva/neurospora/tree/master/Community_annotations/tidy">parsed and cleaned tab files</a>.
+        
+      </section> 
 
       <section>           
          <aside>
