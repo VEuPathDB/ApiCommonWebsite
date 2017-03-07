@@ -38,11 +38,87 @@
             appears for the first time in TriTrypDB. 
             This data was provided by the <a href="http://www1.osu.cz/~yurchenko/index.php">Yurchenko lab</a>. 
             
-            <br><br>
+     </section>
             
-            The <i>Trypanosoma brucei</i> TREU927 annotation was updated to correct misrepresented 3' UTR sequences. 
-            
-      </section>     
+     <section>
+        <h4>Updated Functional Annotation</h4>
+        
+        
+        <aside>
+        Functional annotations in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes:
+        </aside>
+        
+        <style>
+           #FunctAnnot_Bld31 table, #FunctAnnot_Bld31 td, #FunctAnnot_Bld31 th, #FunctAnnot_Bld31 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld31 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld31"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-01/Tbruceibrucei927.noseq.gff3.gz">Tbruceibrucei927.noseq.gff3.gz</a></td>
+             <td>930 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        <a href="https://docs.google.com/spreadsheets/d/1tdffPh46KsApkcMHShzhmnnJyvk2NL0u04ODZUKohKw/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms and PMIDs.
+        
+      </section>  
+      
+      <section>
+        <h4>Updated Structural Annotations from GeneDB</h4>
+
+        <aside>
+        Structural annotations (gene models) in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes: 
+        </aside>
+        
+        <style>
+           #StructAnnot_Bld31 table, #StructAnnot_Bld31 td, #StructAnnot_Bld31 th, #StructAnnot_Bld31 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #StructAnnot_Bld31 {
+           margin-left : 5 em;
+           }
+         </style> 
+          <table id="StructAnnot_Bld31"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-01/Tbruceibrucei927.noseq.gff3.gz">Tbruceibrucei927.noseq.gff3.gz</a></td>
+             <td>87 genes</td>
+           </tr>
+          </table>
+        <br><br>
+        
+        <a href="https://docs.google.com/spreadsheets/d/1p9z8PPH4_rPacZMo7Pw1XNB60e20AEHC5sNoN17QPxM/edit?usp=sharing">Summary of annotation updates</a> which include added and deleted genes, changes in CDS coordinates and updates in gene IDs.
+        <br><br>
+        
+        In addition, poly A sites for <i>Trypanosoma brucei</i> 927 have been remapped and 3' UTR predictions fixed in this release.
+
+      </section>      
             
             
       <section>
