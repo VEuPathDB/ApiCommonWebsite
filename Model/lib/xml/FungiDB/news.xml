@@ -88,10 +88,9 @@
       
       <section>
         <h4>Updated Functional Annotation</h4>
-
-        <aside>
+        <div style="margin-left: 3em;">
+        
         Functional annotations in FungiDB 31 have been updated for the following genomes:
-        </aside>
         
         <style>
            #FunctAnnot_Bld31 table, #FunctAnnot_Bld31 td, #FunctAnnot_Bld31 th, #FunctAnnot_Bld31 tr {
@@ -124,10 +123,10 @@
              <td>6928 genes</td>
            </tr>
            </table>
-           <br><br>
+           <br>
            
         <a href="https://docs.google.com/spreadsheets/d/14iTsgt4CcI0YF4Y3Z6Uq2EKvSFkX7GqegteANDSkb50/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
-        
+
         <br><br>
         
         <b>Neurospora Broad Community Annotation Project</b><br><br>
@@ -135,7 +134,7 @@
         EC numbers, GO terms, gene mappings and MIPS annotations (converted to GO terms). 
         <a href="https://github.com/fungidb/neurospora/tree/master/Community_annotations/curator_raw/Broad_2014_02">Raw dumps from Broad</a> are available as are 
         <a href="https://github.com/fatimasilva/neurospora/tree/master/Community_annotations/tidy">parsed and cleaned tab files</a>.
-        
+        </div>        
       </section> 
 
       <section>           
