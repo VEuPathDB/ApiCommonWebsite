@@ -42,7 +42,9 @@
             
      <section>
         <h4>Updated Functional Annotation</h4>
-
+        
+        <div style="margin-left: 3em;">
+        
         <aside>
         Functional annotations in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes:
         </aside>
@@ -75,12 +77,14 @@
            <br><br>
            
         <a href="https://docs.google.com/spreadsheets/d/1tdffPh46KsApkcMHShzhmnnJyvk2NL0u04ODZUKohKw/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms and PMIDs.
-        
+        </div>
       </section>  
       
       <section>
         <h4>Updated Structural Annotations from GeneDB</h4>
-
+        
+        <div style="margin-left: 3em;">
+        
         <aside>
         Structural annotations (gene models) in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes: 
         </aside>
@@ -116,7 +120,7 @@
         <br><br>
         
         In addition, poly A sites for <i>Trypanosoma brucei</i> 927 have been remapped and 3' UTR predictions fixed in this release.
-
+        </div>
       </section>      
             
             
