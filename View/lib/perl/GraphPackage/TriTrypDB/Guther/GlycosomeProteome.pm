@@ -51,8 +51,9 @@ AND ga.gene_source_id = '$geneId'
   $quant->setProfileSets($profileSets);
   $quant->setColors( $colors{$colorNum});
   $quant->setForceHorizontalXAxis(0);
+  $quant->setYaxisLabel('Log2(H/L)');
 
-  my $sampleLabel = ["Score"];
+  my $sampleLabel = ["Confidence Group"];
   $quant->setSampleLabels($sampleLabel);
 
   $self->setGraphObjects($quant,);
