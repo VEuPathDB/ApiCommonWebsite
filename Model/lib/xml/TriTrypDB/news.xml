@@ -45,9 +45,7 @@
         
         <div style="margin-left: 3em;">
         
-        <aside>
         Functional annotations in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes:
-        </aside>
         
         <style>
            #FunctAnnot_Bld31 table, #FunctAnnot_Bld31 td, #FunctAnnot_Bld31 th, #FunctAnnot_Bld31 tr {
@@ -85,9 +83,7 @@
         
         <div style="margin-left: 3em;">
         
-        <aside>
         Structural annotations (gene models) in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes: 
-        </aside>
         
         <style>
            #StructAnnot_Bld31 table, #StructAnnot_Bld31 td, #StructAnnot_Bld31 th, #StructAnnot_Bld31 tr {
