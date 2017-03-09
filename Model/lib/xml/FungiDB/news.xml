@@ -74,10 +74,11 @@
           
         <h4>Whole genome sequence of isolates for SNP analysis:</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_a0e51f125a">Aligned genomic sequence reads: HIV patients with oropharyngeal candidiasis</a> &ndash;
-                 Forty three clinical isolates of <i>C. albicans</i> were collected from 11 immunocompromised patients treated with flucanosole. DNA changes occurring over time were tracked by next generation sequencing approach.<br>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_a0e51f125a">Aligned genomic sequence reads - <i>C. albicans</i> clinical isolates</a> &ndash;
+                 Whole genome sequencing data from multiple <i>C. albicans</i> isolates collected 
+                  from patients wtih oropharyngeal candidiasis.
                  <a href="https://www.ncbi.nlm.nih.gov/bioproject/257929">NCBI's Bioproject record page</a>,  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25646566">Ford et al.</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25646566"> Ford et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
                  <i>Coccidioides</i> whole population genome SNP analysis reveals local population structure and patterns of dispersal in the Western Hemisphere.
