@@ -50,16 +50,23 @@ shinyServer(function(input, output, session) {
 	output$abundanceChart <- renderPlot({
 	  physeqobj = physeq()
     ordination = ordinate(physeqobj, method = "PCoA", distance = input$distance)
-    chart <- plot_ordination(physeqobj, ordination, color=input$category)+theme(
-      panel.grid.major.x = element_blank(), legend.position="none")+geom_point(size = 4, alpha= 0.5)
+    if(identical(input$category, "All Samples")){
+      chart <- plot_ordination(physeqobj, ordination, color="SampleName")+theme(
+        panel.grid.major.x = element_blank(), legend.position="none")+geom_point(size = 4, alpha= 0.5)
+    }else{
+      chart <- plot_ordination(physeqobj, ordination, color=input$category)+theme(
+        panel.grid.major.x = element_blank(), legend.position="none")+geom_point(size = 4, alpha= 0.5)  
+    }
+    
     richness_default <<- chart$data
 	  chart
 	})
 	
 	output$category <- renderUI({
 	  lvls <- columns
+	  lvls[1] <- "All Samples"
 	  selectInput("category", label = "Category: ", 
-	              choices = lvls, selected = lvls[2])
+	              choices = lvls, selected = 1)
 	  
 	})
 	
@@ -90,17 +97,32 @@ shinyServer(function(input, output, session) {
       )
     near_points <- nearPoints(richness_default, hover)
     if(nrow(near_points) > 0){
-          text_hover <- ""
-          for(i in 1:nrow(near_points)){
-              text_hover <- paste0(text_hover,
-                                   "<b>Sample: </b>",near_points[i,"SampleName"],
-                                   sprintf("<br><b>%s: </b>%s",input$category, near_points[i,hash_sample_names[[input$category]]]),
-                                   "<br><b>Axis.1: </b>", sprintf("%.3f",near_points[i,"Axis.1"]),
-                                   "<br><b>Axis.2: </b>", sprintf("%.3f<br>",near_points[i,"Axis.2"]) )
-          }
-          wellPanel(style = style,
-                    HTML(text_hover)
-          )
+      if(identical(input$category, "All Samples")){
+        category_hover = "SampleName"
+        text_hover <- ""
+        for(i in 1:nrow(near_points)){
+          text_hover <- paste0(text_hover,
+                               "<b>Sample: </b>",near_points[i,"SampleName"],
+                               "<br><b>Axis.1: </b>", sprintf("%.3f",near_points[i,"Axis.1"]),
+                               "<br><b>Axis.2: </b>", sprintf("%.3f<br>",near_points[i,"Axis.2"]) )
+        }
+        wellPanel(style = style,
+                  HTML(text_hover)
+        )
+      }else{
+        category_hover = hash_sample_names[[input$category]]
+        text_hover <- ""
+        for(i in 1:nrow(near_points)){
+          text_hover <- paste0(text_hover,
+                               "<b>Sample: </b>",near_points[i,"SampleName"],
+                               sprintf("<br><b>%s: </b>%s",input$category, near_points[i,category_hover]),
+                               "<br><b>Axis.1: </b>", sprintf("%.3f",near_points[i,"Axis.1"]),
+                               "<br><b>Axis.2: </b>", sprintf("%.3f<br>",near_points[i,"Axis.2"]) )
+        }
+        wellPanel(style = style,
+                  HTML(text_hover)
+        )
+      }
     }
 	})
 })

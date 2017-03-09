@@ -50,6 +50,10 @@ sub run {
 
     my $regex = join '|', @$genomes;
 
+    unless($regex) {
+      print "Please choose at least one organism which is not the reference";
+    }
+
     foreach my $pairs (@$pairwiseDirectories) {
 
 	my %agpHash;
@@ -57,8 +61,10 @@ sub run {
 	my @fullCoordCheck;
 	my $pair = basename($pairs);
 
-	if (($pair =~ /$referenceGenome/) && ($pair=~ /$regex/)) {
-	    my @org_names = split "-", $pair;
+	if ($regex && ($pair =~ /$referenceGenome/) && ($pair=~ /$regex/)) {
+#	    my @org_names = split "-", $pair;
+            my @org_names = map { s/\.agp//; basename($_); } glob($pairs . "/*.agp");
+
 #	    print Dumper "pair is $pair";
 	    foreach my $elements (@org_names) {
 		
@@ -543,8 +549,9 @@ sub validateMacros {
     
     my %genomesHash;
     foreach my $dir (@pairwiseDirs) {
+      my @genomes = map { s/\.agp//; basename($_); } glob($dir . "/*.agp");
 	
-	my (@genomes) = split("-", $dir);
+#	my (@genomes) = split("-", $dir);
 	if(scalar @genomes == 2) {
 	    $genomesHash{$genomes[0]} = 1;
 	    $genomesHash{$genomes[1]} = 1;
@@ -620,7 +627,7 @@ sub validateParams {
     foreach(@genomes) {
       push @filteredGenomes, $_ unless($_ eq $referenceGenome);
     }
-    
+
     return ($contig, $start, $stop, $strand, $type, $referenceGenome, \@filteredGenomes);
 }
 
@@ -957,6 +964,13 @@ sub determineSplitSeq {
     }
     return (%newHash);
 } 
+
+sub userError {
+  my ($msg) = @_;
+
+  die "$msg\n\nPlease Try again!\n";
+}
+
 1;
 
 

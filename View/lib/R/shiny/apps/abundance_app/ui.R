@@ -12,8 +12,8 @@ shinyUI(
     			plotOutput("abundanceChart",
     								 hover = hoverOpts("plot_hover", delay = 100, delayType = "debounce"),
     								 click = clickOpts("plot_click"), width = "100%"),
-    			uiOutput("hover_info")
-    			# dataTableOutput("sample_subset")
+    			uiOutput("hover_info"),
+    			dataTableOutput("sample_subset")
     		)
 ) 
 	

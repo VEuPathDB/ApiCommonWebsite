@@ -799,11 +799,12 @@ sub new {
   my $self = $class->SUPER::new(@_);
   my $id = $self->getId();
 
-  $self->setPartName('rpkm');
-  $self->setYaxisLabel('RPKM');
+  $self->setPartName('fpkm');
+  $self->setYaxisLabel('FPKM');
+  $self->setPlotTitle("FPKM - $id");
   $self->setDefaultYMin(0);
   $self->setDefaultYMax(20);
-  $self->setPlotTitle("RPKM - $id");
+
 
   $self->setPointsPch(['NA']);
 
