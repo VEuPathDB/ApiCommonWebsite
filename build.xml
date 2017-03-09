@@ -157,31 +157,17 @@
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
 
-    <ant target="defaultWebComponentInstall">
+    <ant target="eupathWebComponentInstall">
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
-
-    <echo message="Building ApiCommonWebsite/Site assets"/>
-    <exec executable="yarn"
-      dir="${projectsDir}/ApiCommonWebsite/Site"
-      failonerror="true"
-      failifexecutionfails="true"/>
-
-    <exec executable="${projectsDir}/WDK/View/node_modules/.bin/webpack"
-      dir="${projectsDir}/ApiCommonWebsite/Site"
-      failonerror="true"
-      failifexecutionfails="true">
-      <arg line="--output-path ${webappTargetDir}"/>
-    </exec>
-
-    <antcall target="EuPathSiteCommon-post-webinstall"/>
 
     <ant target="webComponentPartCopy">
       <property name="componentDir" value="${projectsDir}/ApiCommonWebsite/Site"/>
       <property name="part" value="dashboard"/>
       <property name="to" value="${htdocsTargetDir}/../dashboard"/>
     </ant>
+
     <available file="${htdocsTargetDir}/../dashboard" type="dir" property="dashboard.present"/>
     <antcall target="dashboardDoc"/>
 
