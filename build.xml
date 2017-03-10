@@ -162,15 +162,6 @@
       <property name="component" value="Site"/>
     </ant>
 
-    <ant target="webComponentPartCopy">
-      <property name="componentDir" value="${projectsDir}/ApiCommonWebsite/Site"/>
-      <property name="part" value="dashboard"/>
-      <property name="to" value="${htdocsTargetDir}/../dashboard"/>
-    </ant>
-
-    <available file="${htdocsTargetDir}/../dashboard" type="dir" property="dashboard.present"/>
-    <antcall target="dashboardDoc"/>
-
     <available file="${targetDir}/config/log4j.xml.custom-web" property="custom.weblog4j.present"/>
     <antcall target="installCustomWebLog4j"/>
     <available file="${webappTargetDir}/WEB-INF/classes/log4j.xml" property="weblog4j.present"/>
@@ -226,24 +217,6 @@
     <dirname  property="webappDir" file="${webappTargetDir}"/>
     <basename property="webapp" file="${webappDir}"/>
     <replace file="${webappTargetDir}/WEB-INF/classes/log4j.xml" token="@WEBAPP@" value="${webapp}"/>
-  </target>
-
-  <target name="dashboardDoc" if="dashboard.present">
-    <echo message="Compiling phpdoc" />
-    <!-- errors to /dev/null due to Smarty bug: https://bugzilla.redhat.com/show_bug.cgi?id=1352882 -->
-    <exec executable="phpdoc" 
-      failonerror="false"
-      failifexecutionfails="false"
-      error="/dev/null"
-    >
-      <arg line="--ignore phpdoc/,css/,js/,config/,test/,images/,doc/" />
-      <arg line="--defaultpackagename dashboard" />
-      <arg line="--title /dashboard" />
-      <arg line="-t ${htdocsTargetDir}/../dashboard/phpdoc" />
-      <arg line="-d ${htdocsTargetDir}/../dashboard" />
-      <arg line="-o HTML:Smarty:PHP" />
-      <arg value="-q"/>      
-    </exec>
   </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
