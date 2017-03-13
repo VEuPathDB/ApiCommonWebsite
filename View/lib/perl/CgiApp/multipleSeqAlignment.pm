@@ -205,7 +205,8 @@ sub createAlignmentHash {
 
     my ($folder, $agpHashRef, $ref, $start, $stop, $contig, $strand, $backArrayRef, $revComp, $coordRef) = @_;
     my $mapfile = $folder."/alignments/map";
-    my @pairNames = split "-", basename($folder);
+    my @pairNames = map { s/\.agp//; basename($_); } glob($folder . "/*.agp");
+
     my $first = $pairNames[0];
     my $second = $pairNames[1];
     my $other;
