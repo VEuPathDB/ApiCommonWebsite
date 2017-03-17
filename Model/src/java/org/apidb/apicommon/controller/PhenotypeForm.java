@@ -269,7 +269,7 @@ public class PhenotypeForm extends ActionForm {
         setFormFiles(indx, file);
     }
 
-    public FormFile getFile() {
+    public FormFile getFile(int idx) {
         return file;
     }
 
@@ -286,7 +286,7 @@ public class PhenotypeForm extends ActionForm {
         setFormNotes(indx, notes);
     }
 
-    public String getNotes() {
+    public String getNotes(int idx) {
         return notes;
     }
 
