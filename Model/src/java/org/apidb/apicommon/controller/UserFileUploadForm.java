@@ -37,7 +37,7 @@ public class UserFileUploadForm extends ActionForm {
         this.file = file;
         setFormFiles(indx, file);
     }
-    public FormFile getFile() {
+    public FormFile getFile(int idx) {
         return file;
     }
 
@@ -61,7 +61,7 @@ public class UserFileUploadForm extends ActionForm {
         setFormNotes(indx, notes);
     }
 
-    public String getNotes() {
+    public String getNotes(int idx) {
         return notes;
     }
     
