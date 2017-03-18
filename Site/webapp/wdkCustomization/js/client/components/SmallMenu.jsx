@@ -109,17 +109,17 @@ export default class SmallMenu extends Component {
             <NewWindowLink href={webAppUrl + '/contact.do'}>Contact Us</NewWindowLink>
           </li>
           {twitterId && <li className="socmedia-link no-divider">
-            <a href={'http://twitter.com/' + twitterId} target="_blank">
+            <a href={'http://twitter.com/' + twitterId} rel="noopener noreferrer" target="_blank">
               <span title="Follow us on Twitter!" className="twitter small"></span>
             </a>
           </li>}
           {facebookId && <li className="socmedia-link no-divider">
-            <a href={'http://facebook.com/' + facebookId} target="_blank">
+            <a href={'http://facebook.com/' + facebookId} rel="noopener noreferrer" target="_blank">
               <span title="Follow us on Facebook!" className="facebook small"></span>
             </a>
           </li>}
           {youtubeId && <li className="socmedia-link no-divider">
-            <a href="http://www.youtube.com/user/{youtubeId}/videos?sort=dd&flow=list&view=1" target="_blank">
+            <a href={`http://www.youtube.com/user/${youtubeId}/videos?sort=dd&flow=list&view=1`} rel="noopener noreferrer" target="_blank">
               <span title="Follow us on YouTube!" className="youtube small"></span>
             </a>
           </li>}
