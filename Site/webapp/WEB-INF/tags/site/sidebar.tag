@@ -261,7 +261,7 @@
   <div class="menu_lefttop_drop">
     <ul id="education">
       <li id='edu-05'>
-        <a target="_blank" href="https://youtube.com/user/${props.youtube}/videos?sort=dd&amp;flow=list&amp;view=1">
+        <a target="_blank" href="https://youtube.com/user/${props.YOUTUBE_ID}/videos?sort=dd&amp;flow=list&amp;view=1">
           YouTube Tutorials Channel
           <imp:image style="width:20px;display:inline;vertical-align:middle;" src="images/youtube_32x32.png"/>
         </a>
