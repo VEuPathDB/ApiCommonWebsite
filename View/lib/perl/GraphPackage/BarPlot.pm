@@ -337,7 +337,7 @@ names.margin = max(round(max(nchar(my.labels)) / 2), 3);
 names.margin = max(round(max(nchar(my.labels)) / 2.5), 3);
 
   if(!is.compact) {
-    par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA, cex=0.9);
+    par(mar       = c(names.margin,left.margin.size,1.5 + title.line,fold.induction.margin + extra.legend.size), xpd=NA, cex=$scale);
   } 
   y.lim = c(d.min, d.max);
   x.lim = NULL;
@@ -363,11 +363,9 @@ if($horiz || nrow(profile.df) > 1) {
              beside    = $beside,
              axisnames = showAxisNames,
              axes = FALSE,
-             cex.names = $scale,
              names.arg = my.labels,
              space = my.space,
              las = my.las,
-             cex.axis=$scale,
              axis.lty = my.axis.lty,
              horiz=$horiz,
             );
