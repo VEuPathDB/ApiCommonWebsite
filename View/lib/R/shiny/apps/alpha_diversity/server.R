@@ -8,6 +8,9 @@ source("../../lib/wdkDataset.R")
 shinyServer(function(input, output, session) {
   columns <- NULL
   hash_sample_names<- NULL
+  hash_count_samples <- NULL
+  richness_default <- NULL
+  plot_build <- NULL
   
   physeq <- reactive({
     #Change with the file with abundances
@@ -37,9 +40,9 @@ shinyServer(function(input, output, session) {
     
     df_abundance.formatted <- dcast(data = df_abundance,formula = Kingdom+Phylum+Class+Order+Family+Genus+Species~Sample,fun.aggregate = sum,value.var = "AbsoluteAbundance")
     if(ncol(df_abundance.formatted) == 8){
-    	OTU_MATRIX <- df_abundance.formatted[,8, drop=F]	
+    	OTU_MATRIX <- df_abundance.formatted[,8, drop=F]
     }else{
-    	OTU_MATRIX <- df_abundance.formatted[,8:ncol(df_abundance.formatted)]	
+    	OTU_MATRIX <- df_abundance.formatted[,8:ncol(df_abundance.formatted)]
     }
     
     OTU = otu_table(OTU_MATRIX, taxa_are_rows = input$taxa_are_rows)
@@ -48,8 +51,22 @@ shinyServer(function(input, output, session) {
     TAX_MATRIX <- as.matrix(TAX_MATRIX)
     TAX <- tax_table(TAX_MATRIX)
     SAMPLE <- sample_data(df_sample.formatted)
-
-    phyloseq(OTU, TAX, SAMPLE)
+	
+    categories <- columns
+    new_columns <- 0
+    k <- 1
+    merged_phyloseq<-phyloseq(OTU, TAX, SAMPLE)
+    for(i in 1:length(columns)){
+    	unique_factors <- as.factor(sample_data(merged_phyloseq)[[hash_sample_names[[columns[i]]]]]) 
+    	if(length(levels(unique_factors)) > 1){
+    		new_columns[k] <- paste0(columns[i], " (",length(levels(unique_factors)), ")")
+    		hash_count_samples[[new_columns[k]]] <<- columns[i]
+    		k <- k+1
+    	}
+    }
+    columns <<- new_columns
+    
+    merged_phyloseq
   })
 	
 	output$abundanceChart <- renderPlot({
@@ -60,7 +77,7 @@ shinyServer(function(input, output, session) {
 	        panel.grid.major.x = element_blank()
 	      )+geom_point(size = 4, alpha= 0.5)
 	    }else{
-	      chart <- plot_richness(physeqobj, x=hash_sample_names[[input$category]], measures = input$measureCheckBox)+theme(
+	      chart <- plot_richness(physeqobj, x=hash_sample_names[[hash_count_samples[[input$category]]]], measures = input$measureCheckBox)+theme(
 	        panel.grid.major.x = element_blank()
 	      )+geom_point(size = 4, alpha= 0.5)
 	    }
@@ -130,7 +147,7 @@ shinyServer(function(input, output, session) {
 	      }
 	    }else{
 	      if(nrow(near_points) > 0){
-	        category_value <- sample_data(physeqobj)[,hash_sample_names[[input$category]]]
+	        category_value <- sample_data(physeqobj)[,hash_sample_names[[hash_count_samples[[input$category]]]]]
 	        lvls <- levels(as.factor(category_value[[1]]))
 	        hover_category <- lvls[round(hover$x)]
 	        alpha_and_sample <- ""
@@ -148,7 +165,7 @@ shinyServer(function(input, output, session) {
 	                  tags$b("Measure: "),
 	                  hover$panelvar1,
 	                  br(),
-	                  tags$b(paste(input$category, ": ")),
+	                  tags$b(paste(hash_count_samples[[input$category]], ": ")),
 	                  hover_category,
 	                  br(),
 	                  HTML(alpha_and_sample)
