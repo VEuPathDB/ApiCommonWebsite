@@ -14,6 +14,7 @@ shinyServer(function(input, output, session) {
   physeq <- reactive({
     #Change with the file with abundances
     df_abundance <-
+      read.csv(
         getWdkDatasetFile('TaxaRelativeAbundance.tab', session, FALSE, dataStorageDir),
         sep = "\t",
         col.names = c("Sample","Taxon", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "RelativeAbundance", "AbsoluteAbundance", "Nada")
