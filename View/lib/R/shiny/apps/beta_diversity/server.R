@@ -8,14 +8,15 @@ source("../../lib/wdkDataset.R")
 shinyServer(function(input, output, session) {
   columns <- NULL
   hash_sample_names<- NULL
-  
+  hash_count_samples <- NULL
+  richness_default <- NULL
+  plot_build <- NULL
   physeq <- reactive({
     #Change with the file with abundances
     df_abundance <-
-      read.csv(
         getWdkDatasetFile('TaxaRelativeAbundance.tab', session, FALSE, dataStorageDir),
         sep = "\t",
-        col.names = c("Sample","Taxon", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "Abundance", "EmptyColumn")
+        col.names = c("Sample","Taxon", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "RelativeAbundance", "AbsoluteAbundance", "Nada")
       )
     
     # Change with the Metadata file
@@ -35,7 +36,7 @@ shinyServer(function(input, output, session) {
     
     hash_sample_names <<- corrected_columns
 
-    df_abundance.formatted <- dcast(data = df_abundance,formula = Kingdom+Phylum+Class+Order+Family+Genus+Species~Sample,fun.aggregate = sum,value.var = "Abundance")
+    df_abundance.formatted <- dcast(data = df_abundance,formula = Kingdom+Phylum+Class+Order+Family+Genus+Species~Sample,fun.aggregate = sum,value.var = "RelativeAbundance")
     OTU_MATRIX <- df_abundance.formatted[,8:ncol(df_abundance.formatted)]
     OTU = otu_table(OTU_MATRIX, taxa_are_rows = input$taxa_are_rows)
     
@@ -44,17 +45,32 @@ shinyServer(function(input, output, session) {
     TAX <- tax_table(TAX_MATRIX)
     SAMPLE <- sample_data(df_sample.formatted)
     
-    phyloseq(OTU, TAX, SAMPLE)
+    merged_phyloseq <- phyloseq(OTU, TAX, SAMPLE)
+    
+    categories <- columns
+    new_columns <- 0
+    k <- 1
+    for(i in 1:length(columns)){
+    	unique_factors <- as.factor(sample_data(merged_phyloseq)[[hash_sample_names[[columns[i]]]]]) 
+    	if(length(levels(unique_factors)) > 1){
+    		new_columns[k] <- paste0(columns[i], " (",length(levels(unique_factors)), ")")
+    		hash_count_samples[[new_columns[k]]] <<- columns[i]
+    		k <- k+1
+    	}
+    }
+    columns <<- new_columns
+    merged_phyloseq
   })
 	
 	output$abundanceChart <- renderPlot({
 	  physeqobj = physeq()
+	  
     ordination = ordinate(physeqobj, method = "PCoA", distance = input$distance)
     if(identical(input$category, "All Samples")){
       chart <- plot_ordination(physeqobj, ordination, color="SampleName")+theme(
         panel.grid.major.x = element_blank(), legend.position="none")+geom_point(size = 4, alpha= 0.5)
     }else{
-      chart <- plot_ordination(physeqobj, ordination, color=input$category)+theme(
+      chart <- plot_ordination(physeqobj, ordination, color=hash_sample_names[[hash_count_samples[[input$category]]]])+theme(
         panel.grid.major.x = element_blank(), legend.position="none")+geom_point(size = 4, alpha= 0.5)  
     }
     
@@ -110,12 +126,12 @@ shinyServer(function(input, output, session) {
                   HTML(text_hover)
         )
       }else{
-        category_hover = hash_sample_names[[input$category]]
+        category_hover = hash_sample_names[[hash_count_samples[[input$category]]]]
         text_hover <- ""
         for(i in 1:nrow(near_points)){
           text_hover <- paste0(text_hover,
                                "<b>Sample: </b>",near_points[i,"SampleName"],
-                               sprintf("<br><b>%s: </b>%s",input$category, near_points[i,category_hover]),
+                               sprintf("<br><b>%s: </b>%s",hash_count_samples[[input$category]], near_points[i,category_hover]),
                                "<br><b>Axis.1: </b>", sprintf("%.3f",near_points[i,"Axis.1"]),
                                "<br><b>Axis.2: </b>", sprintf("%.3f<br>",near_points[i,"Axis.2"]) )
         }
