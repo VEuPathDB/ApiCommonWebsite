@@ -4,9 +4,9 @@
   <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
-  <import file="${projectsDir}/EuPathWebSvcCommon/build.xml" />
+  <import file="${projectsDir}/EbrcWebSvcCommon/build.xml" />
   <import file="${projectsDir}/GBrowse/build.xml" />
-  <import file="${projectsDir}/ApiCommonShared/build.xml" />
+  <import file="${projectsDir}/ApiCommonModel/build.xml" />
 
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
@@ -15,11 +15,11 @@
 
   <target name="ApiCommonWebsite-ChildCheckout">
     <available file="${projectsDir}/GBrowse" type="dir" property="GBrowse.present" />
-    <available file="${projectsDir}/EuPathWebSvcCommon" type="dir"  property="EuPathWebSvcCommon.present" />
-    <available file="${projectsDir}/ApiCommonShared" type="dir"  property="ApiCommonShared.present" />
+    <available file="${projectsDir}/EbrcWebSvcCommon" type="dir"  property="EbrcWebSvcCommon.present" />
+    <available file="${projectsDir}/ApiCommonModel" type="dir"  property="ApiCommonModel.present" />
     <antcall target="GBrowse-Checkout"/>
-    <antcall target="EuPathWebSvcCommon-Checkout"/>
-    <antcall target="ApiCommonShared-Checkout"/>
+    <antcall target="EbrcWebSvcCommon-Checkout"/>
+    <antcall target="ApiCommonModel-Checkout"/>
   </target>
   
   
@@ -31,19 +31,19 @@
     </ant>
   </target>
 
-  <target name="EuPathWebSvcCommon-Checkout" unless="EuPathWebSvcCommon.present">
+  <target name="EbrcWebSvcCommon-Checkout" unless="EbrcWebSvcCommon.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/EuPathWebSvcCommon"/>
-      <property name="project" value="EuPathWebSvcCommon"/>
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/EbrcWebSvcCommon"/>
+      <property name="project" value="EbrcWebSvcCommon"/>
       <property name="version" value="??"/>
     </ant>
   </target>
 
 
-  <target name="ApiCommonShared-Checkout" unless="ApiCommonShared.present">
+  <target name="ApiCommonModel-Checkout" unless="ApiCommonModel.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonShared"/>
-      <property name="project" value="ApiCommonShared"/>
+      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonModel"/>
+      <property name="project" value="ApiCommonModel"/>
       <property name="version" value="api-build-9"/>
     </ant>
   </target>
@@ -58,10 +58,10 @@
       <property name="project" value="GBrowse"/>
     </ant>
     <ant target="defaultProjectUpdate">
-      <property name="project" value="EuPathWebSvcCommon"/>
+      <property name="project" value="EbrcWebSvcCommon"/>
     </ant>
      <ant target="defaultProjectUpdate">
-      <property name="project" value="ApiCommonShared"/>
+      <property name="project" value="ApiCommonModel"/>
     </ant>
   </target>
 
@@ -70,9 +70,9 @@
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
- <target name="ApiCommonWebsite-Installation" depends="EuPathWebSvcCommon-Installation,
-                                                       ApiCommonShared-Installation,
-                                                       ApiCommonShared/Datasources-Installation,
+ <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
+                                                       ApiCommonModel-Installation,
+                                                       ApiCommonModel/Datasources-Installation,
                                                        GBrowse-Installation,
                                                        ApiCommonWebsite/Model-Installation,
                                                        ApiCommonWebsite/View-Installation,
@@ -147,7 +147,7 @@
                                                            ApiCommonWebsite/Site-WebInstallation">
  </target>
 -->
-  <target name="ApiCommonWebsite-WebInstallation" depends="EuPathWebSvcCommon-WebInstallation,
+  <target name="ApiCommonWebsite-WebInstallation" depends="EbrcWebSvcCommon-WebInstallation,
                                                            GBrowse-WebInstallation,
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/View-WebInstallation,
