@@ -81,7 +81,7 @@ from
         and pc.pathway_id = tp.pathway_id
         and pr.reaction_id = pc.reaction_id
         and pr.ext_db_name = pc.ext_db_name
-        and pr.enzyme = tp.ec_number
+        and pr.enzyme = tp.ec_number_gene
         and tp.pathway_source in ($self->{source})
         group by tp.pathway_source_id, tp.pathway_name, tp.pathway_source
    ) bgd,
@@ -96,7 +96,7 @@ from
         and pc.pathway_id = tp.pathway_id
         and pr.reaction_id = pc.reaction_id
         and pr.ext_db_name = pc.ext_db_name
-        and pr.enzyme = tp.ec_number
+        and pr.enzyme = tp.ec_number_gene
         group by tp.pathway_source_id, tp.pathway_source
  ) rslt
 where bgd.pathway_source_id = rslt.pathway_source_id
