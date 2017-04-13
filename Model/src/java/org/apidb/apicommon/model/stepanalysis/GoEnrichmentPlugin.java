@@ -39,6 +39,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
 
   private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
+  private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
+    //we would create another one here for the word cloud file 
 
   private static final String ONTOLOGY_PARAM_HELP =
       "<p>Choose the Ontology that you are interested in analyzing. Only terms " +
@@ -169,13 +171,14 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
         GO_EVID_CODE_PARAM_KEY, params, null); // in sql format
     String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY)[0];
-
+    // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+    Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
-        wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr);
+	     wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr + " " + imageResultFilePath.toString());
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql,
-                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr  };
+                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr, imageResultFilePath.toString() };
   }
 
   /**
@@ -267,6 +270,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public Object getResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+    //    Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
          BufferedReader buffer = new BufferedReader(fileIn)) {
@@ -276,7 +280,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         String[] columns = line.split(TAB);
         results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7], columns[8], columns[9]));
       }
-      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(GO_TERM_BASE_URL_PROP_KEY));
+      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(GO_TERM_BASE_URL_PROP_KEY), IMAGE_RESULT_FILE_PATH);
     }
     catch (IOException ioe) {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
@@ -332,19 +336,22 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private String _downloadPath;
     private Map<String, String[]> _formParams;
     private String _goTermBaseUrl;
+      private String _imageDownloadPath;
 
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-        Map<String, String[]> formParams, String goTermBaseUrl) {
-      _downloadPath = downloadPath;
-      _formParams = formParams;
-      _resultData = resultData;
-      _goTermBaseUrl = goTermBaseUrl;
+			   Map<String, String[]> formParams, String goTermBaseUrl, String imageDownloadPath) {
+      this._downloadPath = downloadPath;
+      this._formParams = formParams;
+      this._resultData = resultData;
+      this._goTermBaseUrl = goTermBaseUrl;
+      this._imageDownloadPath = imageDownloadPath;
     }
 
     public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
     public ResultRow getHeaderDescription() { return GoEnrichmentPlugin.COLUMN_HELP; }
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
+    public String getImageDownloadPath() { return _imageDownloadPath; }
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
     // public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
     public String getEvidCodes() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY), ", "); }
