@@ -19,6 +19,133 @@
 -->
 
 <record>
+  <attribute name="headline">PlasmoDB 32 Released</attribute>
+  <attribute name="date">19 Apr 2017 13:00</attribute>
+  <attribute name="tag">plasmodb04_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 32</strong></p>
+     
+      <section>
+        <h3>New Data in Release 30</h3> 
+        
+          <h4>Genome Sequence and Annotation:</h4>
+
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_22b4dadc51"><i>P. gallinaceum</i> 8A</a> &ndash; 
+              first release of this genome in PlasmoDB (version from 9th of January 2017). Provided by the 
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group">Parsite Genomics Group</a> at the  
+              <a href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c3f289d21a"><i>Plasmodium relictum </i> SGS1</a> &ndash; 
+              first release of this genome in PlasmoDB (version from 9th of January 2017). Provided by the 
+              <a href="http://www.sanger.ac.uk/science/groups/berriman-group">Parsite Genomics Group</a> at the  
+              <a href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>.
+              </li>
+           </ul>
+           
+        <h4>Updated Functional Annotation</h4>
+          <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1Yu9ymLEpdQKyPnRlebdovKea4aF7d42siqO_mMWcjIA/edit?usp=sharing">Summary of annotation updates</a>
+          which include products, GO terms, gene names, synonyms and PMID.
+        
+        <style>
+           #FunctAnnot_Bld32 table, #FunctAnnot_Bld32 td, #FunctAnnot_Bld32 th, #FunctAnnot_Bld32 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld32 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld32"> 
+           <tr>
+             <th>PlasmoDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f2d80510c7"><i>P. berghei</i> ANKA </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Pberghei.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>179 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_1d17c1883c"><i>P. falciparum</i> 3D7 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Pfalciparum.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>355 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_5dab6e4a9f"><i>P. chabaudi</i> AS </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Pchabaudi.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>165 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_8793a259f4"><i>P. knowlesi</i> H </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Pknowlesi.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>251 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3986a0b578"><i>P. malariae</i> UG01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Pmalariae.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>180 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_a4928ff670"><i>P. ovale curtisi</i> GH01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Povale.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>187 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_91fa338f8f"><i>P. reichenowi</i> CDC </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Preichenowi.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>221 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_b5a76b5939"><i>P. yoelii yoelii</i> 17X </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/Pyoelii.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>151 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://alpha.plasmodb.org/plasmo.alpha/app/record/dataset/DS_ad07e73d42"><i>P. vivax</i> P01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-03/PvivaxP01.noseq.gff3.gz">GeneDB version March, 2017</a></td>
+             <td>277 genes</td>
+           </tr>
+           </table>
+           <br><br>
+        </div>
+        
+      <h4>Proteomics</h4>
+          <ul>
+           <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_aaa667e298">Salivary gland sporozoite total and surface proteome (17XNL)</a> &ndash; 
+               Added samples from the PlasmoSEP surface proteomes (2016) to the <i>P yoelii</i> 17XNL sporozoite total and surface proteomes (2013).
+               <a href="https://www.ncbi.nlm.nih.gov/pubmed/27298255">El-Manzalawy et al.</a>
+           </li>
+         </ul>
+         <br>  
+     </section>    
+         
+     <section>
+         
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">PlasmoDB 31 Released</attribute>
   <attribute name="date">08 Mar 2017 13:00</attribute>
   <attribute name="tag">plasmodb03_17_release</attribute>
