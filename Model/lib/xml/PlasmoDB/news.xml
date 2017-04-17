@@ -28,7 +28,7 @@
     <p><strong>We are pleased to announce the release of PlasmoDB 32</strong></p>
      
       <section>
-        <h3>New Data in Release 30</h3> 
+        <h3>New Data in Release 32</h3> 
         
           <h4>Genome Sequence and Annotation:</h4>
 
@@ -49,7 +49,7 @@
           <div style="margin-left: 3em;">
         
         <a href="https://docs.google.com/spreadsheets/d/1Yu9ymLEpdQKyPnRlebdovKea4aF7d42siqO_mMWcjIA/edit?usp=sharing">Summary of annotation updates</a>
-          which include products, GO terms, gene names, synonyms and PMID.
+          which include products, GO terms, gene names, synonyms and PMID. <br><br>
         
         <style>
            #FunctAnnot_Bld32 table, #FunctAnnot_Bld32 td, #FunctAnnot_Bld32 th, #FunctAnnot_Bld32 tr {
