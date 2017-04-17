@@ -38,26 +38,26 @@
         <h4>Annotated Genomes</h4>
          <ul>  
            <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_bd2ba20f68"><i>Cryptosporidium andersoni</i> isolate 30847</a> &mdash; 
-            <i>Cryptosporidium andersoni</i> 30847 was isolated from beef cattle in Alberta Canada in 2009. This organism's annotated genome appears for the first time in CryptoDB.<br>
+            <i>Cryptosporidium andersoni</i> 30847 was isolated from beef cattle in Alberta Canada in 2009. This organism's annotated genome appears for the first time in CryptoDB. 
             <a href="https://www.ncbi.nlm.nih.gov/nuccore/LRBS00000000">Genome home page at NCBI/GenBank</a>.
             <a href="https://www.ncbi.nlm.nih.gov/pubmed/27931183">Liu et al.</a><br>
            </li>
            <li>
             <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_9ef8fb5462"><i>Cryptosporidium hminis</i> TU502_2012</a> &mdash; 
             <i>Cryptosporidium hominis</i> isolate TU502_2012, isolated in 2012 at Tufts University (USA) was a result of multiple 
-            (approximately 20) passages of the original TU502 isolate (2004) in gnotobiotic pigs.<br>
-            <a href="http://www.ncbi.nlm.nih.gov/bioproject/222836">NCBI Bioproject home page</a>.
+            (approximately 20) passages of the original TU502 isolate (2004) in gnotobiotic pigs. 
+            <a href="http://www.ncbi.nlm.nih.gov/bioproject/222836">NCBI Bioproject home page</a>.  
             <a href="https://www.ncbi.nlm.nih.gov/pubmed/27519257">Ifeonu et al.</a><br>
            </li>
          </ul>
          
         <h4>Transcriptomics</h4>
          <ul>
-           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_5787bf263d"><i>Transcriptome of 48 hours in vitro infection</a> &mdash; 
-             Transcriptome (RNA sequence) from <i>Cryptosporidium parvum</i> Iowa isolated from an in vitro infection of cultured HCT-8 cells. <br>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_5787bf263d">Transcriptome of 48 hours in vitro infection</a> &mdash; 
+             Transcriptome (RNA sequence) from <i>Cryptosporidium parvum</i> Iowa isolated from an in vitro infection of cultured HCT-8 cells.  
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/26549794">Isaza et al.</a><br>
            </li>
-           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_8b537f7e54"><i>Transcriptome of oocyst and intracellular stages</a> &mdash; 
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_8b537f7e54">Transcriptome of oocyst and intracellular stages</a> &mdash; 
              <i>Cryptosporidium parvum</i> transcriptome from intracellular (24 h post-infection) and oocysts Stages. Data provided pre-publication by 
              Giovanni Widmer, Tufts University<br>
            </li>
