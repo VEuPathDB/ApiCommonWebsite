@@ -3,7 +3,6 @@ package org.apidb.apicommon.model.migrate;
 import javax.sql.DataSource;
 
 import org.gusdb.fgputil.FormatUtil;
-import org.gusdb.fgputil.accountdb.AccountManager;
 import org.gusdb.fgputil.db.platform.Oracle;
 import org.gusdb.fgputil.db.platform.SupportedPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
@@ -24,18 +23,19 @@ public class B32_To_B33_Migration {
   private static final String USER_DB_SCHEMA = "userlogins5.";
 
   private static final String TABLE_USERS = "users";
+  private static final String TABLE_ACCOUNTS = "accounts";
 
   private static final String SEQUENCE_START_NUM_MACRO = "$$sequence_start_macro$$";
 
   private static final String CREATE_ACCOUNT_USER_ID_SEQUENCE =
-      "CREATE SEQUENCE " + ACCOUNT_DB_SCHEMA + AccountManager.TABLE_ACCOUNTS + "_PKSEQ" +
+      "CREATE SEQUENCE " + ACCOUNT_DB_SCHEMA + TABLE_ACCOUNTS + "_PKSEQ" +
       " MINVALUE 1 MAXVALUE 9999999999999999999999999999" +
       " INCREMENT BY 10" +
       " START WITH " + SEQUENCE_START_NUM_MACRO +
       " CACHE 20 NOORDER NOCYCLE";
 
   private static final String CREATE_ACCOUNT_TABLE_SQL =
-      "create table " + ACCOUNT_DB_SCHEMA + AccountManager.TABLE_ACCOUNTS + " as ( " +
+      "create table " + ACCOUNT_DB_SCHEMA + TABLE_ACCOUNTS + " as ( " +
       "  select user_id, email, passwd, is_guest, signature, address as stable_id, register_time, last_active as last_login " +
       "  from " + USER_DB_SCHEMA + TABLE_USERS +
       ")";
@@ -131,7 +131,7 @@ public class B32_To_B33_Migration {
   private static SqlGetter createAccountSequenceFromUserSequence() {
     return new SqlGetter() {
       @Override public String getSql(DataSource ds) throws Exception {
-        Long nextId = new Oracle().getNextId(ds, USER_DB_SCHEMA, TABLE_USERS);
+        Integer nextId = new Oracle().getNextId(ds, USER_DB_SCHEMA, TABLE_USERS);
         return CREATE_ACCOUNT_USER_ID_SEQUENCE.replace(SEQUENCE_START_NUM_MACRO, nextId.toString());
       }
     };
