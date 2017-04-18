@@ -21,163 +21,137 @@ use ApiCommonWebsite::View::CgiApp::IsolateClustalw;
 use Bio::Graphics::Browser2::PadAlignment;
 
 sub run {
-    my ($self, $cgi) = @_;
-    my %alignmentHash;
-    my %originsHash;
+  my ($self, $cgi) = @_;
+  my %alignmentHash;
+  my %originsHash;
 
-    my $project = $cgi->param('project_id');
-    my $contig = $cgi->param('contig');
-    my $start= $cgi->param('start');
-    my $stop= $cgi->param('stop');
-    my $revComp = $cgi->param('revComp');
-    my $genomes = $cgi->param ('genomes');
-    my $type= $cgi->param('type');
-    if ($type eq 'clustal') {
-	print $cgi->header('text/html');
-    }
-    elsif ($type eq 'fasta_ungapped'){
-	print $cgi->header('text/plain');
-    }
-    elsif ($type eq 'fasta_gapped'){
-	print $cgi->header('text/plain');
-    }
-    my $dbh = $self->getQueryHandle($cgi);
-    my $taxonToDirNameMap = getTaxonToDirMap($cgi, $dbh);
-    
-    my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh, $taxonToDirNameMap);
-    my ($mercatorOutputDir, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
+  my $project = $cgi->param('project_id');
+  my $contig = $cgi->param('contig');
+  my $start= $cgi->param('start');
+  my $stop= $cgi->param('stop');
+  my $revComp = $cgi->param('revComp');
+  my $genomes = $cgi->param ('genomes');
+  my $type= $cgi->param('type');
+  if ($type eq 'clustal') {
+    print $cgi->header('text/html');
+  } elsif ($type eq 'fasta_ungapped' || $type eq 'fasta_gapped'){
+    print $cgi->header('text/plain');
+  }
+  my $dbh = $self->getQueryHandle($cgi);
+  my $taxonToDirNameMap = getTaxonToDirMap($cgi, $dbh);
 
-    my $regex = join '|', @$genomes;
+  my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh, $taxonToDirNameMap);
+  my ($mercatorOutputDir, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
 
-    if (!$regex && $type eq 'clustal') {
-      print "Please choose at least one organism which is not the reference";
-    }
+  my $regex = join '|', @$genomes;
+  if (!$regex && $type eq 'clustal') {
+   &userError("Please choose at least one organism which is not the reference");
+  }
 
-    foreach my $pairs (@$pairwiseDirectories) {
+  foreach my $pairs (@$pairwiseDirectories) {
+    my %agpHash;
+    my @agpArraybackwards;
+    my @fullCoordCheck;
+    my $pair = basename($pairs);
 
-	my %agpHash;
-	my @agpArraybackwards;
-	my @fullCoordCheck;
-	my $pair = basename($pairs);
+    if ($regex && ($pair =~ /$referenceGenome/) && ($pair=~ /$regex/)) {
+      #	    my @org_names = split "-", $pair;
+      my @org_names = map { s/\.agp//; basename($_); } glob($pairs . "/*.agp");
 
-	if ($regex && ($pair =~ /$referenceGenome/) && ($pair=~ /$regex/)) {
-#	    my @org_names = split "-", $pair;
-            my @org_names = map { s/\.agp//; basename($_); } glob($pairs . "/*.agp");
+      foreach my $elements (@org_names) {
+	my ($agpHashRef, $backwardAgpArrayRef, $coordRef) = &makeAgpMap($pairs, $pair, $elements);
+	my %agp = %{$agpHashRef};
+	my @backwardAgp = @{$backwardAgpArrayRef};
+	my @coord = @{$coordRef};
 
-#	    print Dumper "pair is $pair";
-	    foreach my $elements (@org_names) {
-		
-		my ($agpHashRef, $backwardAgpArrayRef, $coordRef) = &makeAgpMap($pairs, $pair, $elements);
-		my %agp = %{$agpHashRef};
-		my @backwardAgp = @{$backwardAgpArrayRef};
-		my @coord = @{$coordRef};
-
-		foreach my $agpkey (keys %agp) {
-		    if (exists $agpHash{$agpkey}) {
-			print Dumper "ERROR YOU HAVE THE AGP MAP THE WRONG WAY ROUNG\n";
-		    }
-		    else {
-			$agpHash{$agpkey}=$agp{$agpkey};
-		    }
-		}
-		foreach my $agpBack (@backwardAgp) {
-		    my %agpbackHash = %{$agpBack};
-		    push (@agpArraybackwards, \%agpbackHash)
-		}
-		foreach my $co (@coord) {
-		    my %coordHash = %{$co};
-		    push (@fullCoordCheck, \%coordHash)
-		}
-	    }
-#removed @alignments from front array below 
-	    my ($sequenceHashRef,$orHashRef) = &createAlignmentHash($pairs, \%agpHash, $referenceGenome, $start, $stop, $contig, $strand, \@agpArraybackwards, $revComp, \@fullCoordCheck);
-
-	    my %sequenceHash = %$sequenceHashRef;
-     
-	    my %orHash= %$orHashRef;
-	    foreach my $sequenceToAlign (keys %sequenceHash){
-		if (exists $alignmentHash{$sequenceToAlign}) {
-		    print Dumper "ERROR $sequenceToAlign already in alignment hash\n";
-		}
-		else {
-		    $alignmentHash{$sequenceToAlign} = $sequenceHash{$sequenceToAlign};
-#		    print Dumper "seq to align is $sequenceToAlign";
-		}
-	    }
-	    foreach my $startPoint (keys %orHash) {
-		if (exists $originsHash{$startPoint}) {
-		    print Dumper "ERROR $startPoint already in origins hash\n";
-		}
-		else {
-		    $originsHash{$startPoint} = $orHash{$startPoint};
-		}
-	    }
+	foreach my $agpkey (keys %agp) {
+	  if (exists $agpHash{$agpkey}) {
+	    print Dumper "ERROR YOU HAVE THE AGP MAP THE WRONG WAY ROUNG\n";
+	  } else {
+	    $agpHash{$agpkey}=$agp{$agpkey};
+	  }
 	}
+	foreach my $agpBack (@backwardAgp) {
+	  my %agpbackHash = %{$agpBack};
+	  push (@agpArraybackwards, \%agpbackHash)
+	}
+	foreach my $co (@coord) {
+	  my %coordHash = %{$co};
+	  push (@fullCoordCheck, \%coordHash)
+	}
+      }
+      #removed @alignments from front array below 
+      my ($sequenceHashRef,$orHashRef) = &createAlignmentHash($pairs, \%agpHash, $referenceGenome, $start, $stop, $contig, $strand, \@agpArraybackwards, $revComp, \@fullCoordCheck);
+
+      my %sequenceHash = %$sequenceHashRef;
+      my %orHash= %$orHashRef;
+      foreach my $sequenceToAlign (keys %sequenceHash){
+	if (exists $alignmentHash{$sequenceToAlign}) {
+	  print Dumper "ERROR $sequenceToAlign already in alignment hash\n";
+	} else {
+	  $alignmentHash{$sequenceToAlign} = $sequenceHash{$sequenceToAlign};
+	  # print Dumper "seq to align is $sequenceToAlign";
+	}
+      }
+      foreach my $startPoint (keys %orHash) {
+	if (exists $originsHash{$startPoint}) {
+	  print Dumper "ERROR $startPoint already in origins hash\n";
+	} else {
+	  $originsHash{$startPoint} = $orHash{$startPoint};
+	}
+      }
     }
-    my $referenceSequence = &getReferenceSequence($project, $contig, $referenceGenome, $start, $stop, $dbh);
-    my $referenceId = $contig;
-    if ($revComp eq 'on') {
-	$referenceSequence = &reverseCompliment($referenceSequence);
-	$alignmentHash{$referenceId}=$referenceSequence;
-	my $negstart = (-1 * $start);
-	$originsHash{$referenceId}=$negstart;
-   }
-    else {
+  }
+  my $referenceSequence = &getReferenceSequence($project, $contig, $referenceGenome, $start, $stop, $dbh);
+  my $referenceId = $contig;
+  if ($revComp eq 'on') {
+    $referenceSequence = &reverseCompliment($referenceSequence);
+    $alignmentHash{$referenceId}=$referenceSequence;
+    my $negstart = (-1 * $start);
+    $originsHash{$referenceId}=$negstart;
+  } else {
     $alignmentHash{$referenceId}=$referenceSequence;
     $originsHash{$referenceId}=$start;
-    }
+  }
 
- #   print Dumper %originsHash;
-     print Dumper "HASH";
- #   print Dumper %alignmentHash;
+  if ($type eq 'clustal') {
     my $tempfile = &doClustalWalignment(\%alignmentHash, $mercatorOutputDir, $referenceId);
-    if ($type eq 'clustal') {
-	ApiCommonWebsite::View::CgiApp::IsolateClustalw::createHTML($tempfile,$cgi,%originsHash);
-   }
-    elsif($type eq 'fasta_ungapped') {
-	my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
-	
-	my $seenReference;
-	foreach my $seq (keys %alignmentHash) {
-	    my $id = $seq;
-	    next if($seenReference and $id eq $contig);
-	    if($id eq $contig) {
-		$seenReference++;
-	    }
-	    
-	    my $sequence = $alignmentHash{$seq};
-	    $sequence =~ s/-//g;
-	    
-	    my $ungappedSeq = Bio::Seq->new( -seq => $sequence,
-					     -id  => $id
-		);
-	    
-	    $seqIO->write_seq($ungappedSeq);
-	}
-	$seqIO->close();
-    }
-    elsif($type eq 'fasta_gapped') {
-	my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
-	
-	my $seenReference;
-	foreach my $seq (keys %alignmentHash) {
-	    my $id = $seq;
-	    next if($seenReference and $id eq $contig);
-	    if($id eq $contig) {
-		$seenReference++;
-	    }
-	    
-	    my $sequence = $alignmentHash{$seq};
-	    
-	    my $gappedSeq = Bio::Seq->new( -seq => $sequence,
-					     -id  => $id
-		);
-	    
-	    $seqIO->write_seq($gappedSeq);
-	}
-	$seqIO->close();
-    }
+    ApiCommonWebsite::View::CgiApp::IsolateClustalw::createHTML($tempfile,$cgi,%originsHash);
+  } elsif($type eq 'fasta_ungapped') {
+    my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+    my $seenReference;
+    foreach my $seq (keys %alignmentHash) {
+      my $id = $seq;
+      next if($seenReference and $id eq $contig);
+      if($id eq $contig) {
+	$seenReference++;
+      }
+      my $sequence = $alignmentHash{$seq};
+      $sequence =~ s/-//g;
 
+      my $ungappedSeq = Bio::Seq->new( -seq => $sequence,
+				       -id  => $id
+				     );
+      $seqIO->write_seq($ungappedSeq);
+    }
+    $seqIO->close();
+  } elsif($type eq 'fasta_gapped') {
+    my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+    my $seenReference;
+    foreach my $seq (keys %alignmentHash) {
+      my $id = $seq;
+      next if($seenReference and $id eq $contig);
+      if($id eq $contig) {
+	$seenReference++;
+      }
+      my $sequence = $alignmentHash{$seq};
+      my $gappedSeq = Bio::Seq->new( -seq => $sequence,
+				     -id  => $id
+				   );
+      $seqIO->write_seq($gappedSeq);
+    }
+    $seqIO->close();
+  }
 }
 
 
@@ -198,7 +172,7 @@ sub createAlignmentHash {
     else {
 	print Dumper "cant determine comparator\n ";
     }
-    
+
     my %sequenceHash;
     my %originsHash;
     my @alignments;
@@ -420,16 +394,12 @@ sub createAlignmentHash {
    # print Dumper "origins hash";
    # print Dumper %originsHash;
     return (\%sequenceHash, \%originsHash);
-    
 }
+
 sub doClustalWalignment {
     my ($sequenceHash,$folder, $reference) = @_;
     my %hash = %$sequenceHash;
-#    print Dumper "folder is $folder \n ";
-#    print Dumper "reference is $reference";
-#    my $multifasta = $folder."sequences.fasta";
     my ($fh1, $multifasta) = tempfile();
-#    print Dumper "multifasta is $multifasta \n ";
     my $seqin = Bio::SeqIO->new (-file=> ">$multifasta", -format=>'fasta');
 #    my $outfile = $folder."clustalw.aln";
 #    my $tempfile = $folder."tempclustalstderr.txt";
@@ -456,6 +426,11 @@ sub doClustalWalignment {
 #	}
    my $cmd = "/usr/bin/clustalo --infile=$multifasta --outfile=$outfile --outfmt clustal --output-order tree-order --seqtype dna  --force 2> $tempfile";
     system($cmd);
+
+    if(!(stat($outfile))[7]){
+      &userError("No alignments found for this region.");
+    }
+
 #    open (IN, $tempfile) or die "cant open $tempfile!\n";
  #   while (<IN>){
 #	print Dumper $_;
@@ -555,8 +530,11 @@ sub validateParams {
     my $stop         = $cgi->param('stop');
     my $revComp      = $cgi->param('revComp');
     my $type         = $cgi->param('type');
-    
+
     my @genomes      = $cgi->param('genomes');
+#BB       push @filteredGenomes, $_ unless($_ eq $referenceGenome);
+
+    print STDERR ">>>> genomes 1= " .  $genomes[0] . "   <<<<\n'";
     if(scalar @genomes < 1 && $type eq 'clustal') {
 	&userError("You must select at least one genome to align to");
     }
@@ -568,7 +546,7 @@ sub validateParams {
     unless($referenceGenome = $taxonDirHash->{$organism}->{name}) {
 	&userError("Invalid Genome Name [$organism]: does not match an available Organism");
     }
-    
+    print STDERR ">>>> referenceGenome = $referenceGenome   <<<<\n'";
     my $strand;
     if($revComp eq 'on') {
 	$strand = '-';
@@ -912,7 +890,7 @@ sub determineSplitSeq {
 	    print Dumper "ERROR THERE ISNT ANY MATCHES BEEN SET FOR NUMBERING";
 	}	
     }
-    if (defined %multipleHash) {
+    if ( %multipleHash) {
 	#DO SEQ MAGIC HERE
 	my $count = 0;
 #So I know the Ass stuff and I need to order this to know how to split the sequence up. 
