@@ -532,9 +532,6 @@ sub validateParams {
     my $type         = $cgi->param('type');
 
     my @genomes      = $cgi->param('genomes');
-#BB       push @filteredGenomes, $_ unless($_ eq $referenceGenome);
-
-    print STDERR ">>>> genomes 1= " .  $genomes[0] . "   <<<<\n'";
     if(scalar @genomes < 1 && $type eq 'clustal') {
 	&userError("You must select at least one genome to align to");
     }
@@ -546,7 +543,6 @@ sub validateParams {
     unless($referenceGenome = $taxonDirHash->{$organism}->{name}) {
 	&userError("Invalid Genome Name [$organism]: does not match an available Organism");
     }
-    print STDERR ">>>> referenceGenome = $referenceGenome   <<<<\n'";
     my $strand;
     if($revComp eq 'on') {
 	$strand = '-';
