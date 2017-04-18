@@ -48,7 +48,7 @@
         
         Functional annotations in TriTrypDB 32 are current with GeneDB March 2017 GFF versions. 
         <a href="https://docs.google.com/spreadsheets/d/1BXClxtU4kMGie5mVYO-rR9BeKbVh4XvhZZQ7P7wQidU/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms and PMIDs. 
-        
+        <br><br>
         <style>
            #FunctAnnot_Bld32 table, #FunctAnnot_Bld32 td, #FunctAnnot_Bld32 th, #FunctAnnot_Bld32 tr {
            text-align : center;
