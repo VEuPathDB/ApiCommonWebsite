@@ -8,6 +8,7 @@ import org.gusdb.fgputil.db.platform.SupportedPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.db.slowquery.QueryLogger;
 
 public class B32_To_B33_Migration {
 
@@ -92,6 +93,7 @@ public class B32_To_B33_Migration {
       System.exit(1);
     }
     String dbPassword = args[0];
+    QueryLogger.setInactive();
     runSqls(PRIMARY_DB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN, dbPassword);
     if (REPLICATED_DBS) {
       runSqls(REPLICATED_DB_CONNECTION_URL, REPLICATED_SQLS_TO_RUN, dbPassword);
