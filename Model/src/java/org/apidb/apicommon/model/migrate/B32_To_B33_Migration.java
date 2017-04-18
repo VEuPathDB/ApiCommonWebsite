@@ -45,14 +45,14 @@ public class B32_To_B33_Migration {
       " from " + USER_DB_SCHEMA + TABLE_USERS + " where is_guest = 0 ";
 
   private static final String CREATE_ACCOUNT_PROPS_TABLE_SQL =
-      "create table " + ACCOUNT_DB_SCHEMA + "user_properties as ( " +
+      "create table " + ACCOUNT_DB_SCHEMA + "account_properties as ( " +
       "  select user_id, 'first_name' as key, first_name as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
-      "  select user_id, 'middle_name' as key, middle_name as value from " + SELECT_USER_PROPS_SQL_SUFFIX +
+      "  select user_id, 'middle_name' as key, middle_name as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
       "  select user_id, 'last_name' as key, last_name as value from " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
-      "  select user_id, 'organization' as key, organization as value from " + SELECT_USER_PROPS_SQL_SUFFIX +
+      "  select user_id, 'organization' as key, organization as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       ")";
 
   private static final String BACK_UP_USERS_TABLE =
