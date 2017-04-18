@@ -18,9 +18,9 @@ public class B32_To_B33_Migration {
   private static final String PRIMARY_DB_CONNECTION_URL = "jdbc:oracle:oci:@rm9972"; // to be apicommDevN
   private static final String REPLICATED_DB_CONNECTION_URL = "jdbc:oracle:oci:@apicommDevS";
 
-  private static final String DB_USER = "rdoherty";
+  private static final String DB_USER = "wdkmaint";
 
-  private static final String ACCOUNT_DB_SCHEMA = "rdoherty.";
+  private static final String ACCOUNT_DB_SCHEMA = "wdkmaint.";
   private static final String USER_DB_SCHEMA = "userlogins5.";
 
   private static final String TABLE_USERS = "users";
