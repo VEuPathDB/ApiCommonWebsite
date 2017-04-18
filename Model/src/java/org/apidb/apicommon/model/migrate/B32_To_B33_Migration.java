@@ -12,8 +12,8 @@ import org.gusdb.fgputil.db.slowquery.QueryLogger;
 
 public class B32_To_B33_Migration {
 
-  private static final boolean WRITE_TO_DB = false;    // keep off during testing
-  private static final boolean REPLICATED_DBS = false; // keep until testing on apicommDev
+  private static final boolean WRITE_TO_DB = true;     // keep off to check generated SQL
+  private static final boolean REPLICATED_DBS = false; // keep off until testing on apicommDev
 
   private static final String PRIMARY_DB_CONNECTION_URL = "jdbc:oracle:oci:@rm9972"; // to be apicommDevN
   private static final String REPLICATED_DB_CONNECTION_URL = "jdbc:oracle:oci:@apicommDevS";
