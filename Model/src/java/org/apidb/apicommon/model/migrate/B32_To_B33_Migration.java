@@ -50,7 +50,7 @@ public class B32_To_B33_Migration {
       "  union " +
       "  select user_id, 'middle_name' as key, middle_name as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
-      "  select user_id, 'last_name' as key, last_name as value from " + SELECT_USER_PROPS_SQL_SUFFIX +
+      "  select user_id, 'last_name' as key, last_name as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
       "  select user_id, 'organization' as key, organization as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       ")";
