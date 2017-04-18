@@ -20,6 +20,168 @@
 -->
 
 <record>
+  <attribute name="headline">TriTrypDB 32 Released</attribute>
+  <attribute name="date">19 Apr 2017 13:00</attribute>
+  <attribute name="tag">tritrypdb04_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 32</strong></p>
+      
+      <section>
+        <h3>New data in TriTrypDB 32</h3> 
+        
+        <h4>Annotated Genome</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_107bdce9bb"><i>Trypanosoma cruzi</i> Sylvio X10/1</a> &mdash; 
+            <i>Trypanosoma cruzi</i> Sylvio X10 was sequenced to 30X coverage using 454 and Illumina HiSeq technologies.   
+            Appears for the first time in TriTrypDB. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23035642">Frazen et a.</a>. 
+           </li>
+         </ul>
+            
+<!--
+        <h4>Updated Functional Annotation</h4>
+        
+        <div style="margin-left: 3em;">
+        
+        Functional annotations in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes:
+        
+        <style>
+           #FunctAnnot_Bld31 table, #FunctAnnot_Bld31 td, #FunctAnnot_Bld31 th, #FunctAnnot_Bld31 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld31 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld31"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-01/Tbruceibrucei927.noseq.gff3.gz">Tbruceibrucei927.noseq.gff3.gz</a></td>
+             <td>930 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        <a href="https://docs.google.com/spreadsheets/d/1tdffPh46KsApkcMHShzhmnnJyvk2NL0u04ODZUKohKw/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms and PMIDs.
+        </div>
+      </section>  
+      
+      <section>
+        <h4>Updated Structural Annotations from GeneDB</h4>
+        
+        <div style="margin-left: 3em;">
+        
+        Structural annotations (gene models) in TriTrypDB 31 have been updated to GeneDB's January 2017 version for the following genomes: 
+        
+        <style>
+           #StructAnnot_Bld31 table, #StructAnnot_Bld31 td, #StructAnnot_Bld31 th, #StructAnnot_Bld31 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #StructAnnot_Bld31 {
+           margin-left : 5 em;
+           }
+         </style> 
+          <table id="StructAnnot_Bld31"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-01/Tbruceibrucei927.noseq.gff3.gz">Tbruceibrucei927.noseq.gff3.gz</a></td>
+             <td>87 genes</td>
+           </tr>
+          </table>
+        <br><br>
+        
+        <a href="https://docs.google.com/spreadsheets/d/1p9z8PPH4_rPacZMo7Pw1XNB60e20AEHC5sNoN17QPxM/edit?usp=sharing">Summary of annotation updates</a> which include added and deleted genes, changes in CDS coordinates and updates in gene IDs.
+        <br><br>
+       
+      
+        </div>
+--> 
+
+     <h4>RNA Sequencing</h4>
+       <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_10d28f3e4f">Promastigote, Axenic Amastigote and Intracellular Amastigote Transcriptomes</a> &mdash; 
+            Illumina sequencing of poly-A selected RNA of <i>L. mexicana</i> MHOMGT2001U1103 promastigotes, axenic amastigotes and intracellular amastigotes. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26452044">Fiebig et al.</a>. 
+           </li>
+           
+           <!--
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_392d0377dc">T cruzi Transcriptome during Infection in Human Fibroblasts</a> &mdash; 
+            Transcriptome of <i>T. cruzi</i> Y strain during infection of human cells mapped against <i>T. cruzi</i> SylvioX10-1.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>. 
+           </li>
+           <li>
+            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_77b2dc5fe2">Transcriptome and Translatome</a> &mdash; 
+            Transcriptome and Translatome of <i>T. cruzi</i> Dm28c strain mapped against <i>T. cruzi</i> SylvioX10-1.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a>. 
+           </li>
+           -->
+           
+       </ul>
+
+     <h4>Proteomics</h4>
+       <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_17396b5363">Glycosomal proteome</a> &mdash; 
+            Glycosome proteome for procyclic form Trypanosoma brucei by epitope-tag organelle enrichment. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792668">Guther et al.</a>. 
+           </li>
+       </ul>
+     
+     
+     <h4>Cellular Localization Imaging</h4>   
+          <ul>
+           <li><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T. brucei</i> proteins</a> &ndash; 
+              Additional images and localization information associated with GO terms obtained from the <a href="http://tryptag.org/?pageType=landing">TrypTag project</a>. 
+              Access the data on gene pages (<a href="http://tritrypdb.org/tritrypdb/app/record/gene/Tb927.11.760#protein-targeting-and-localization">example</a>)
+              and through a dedicated search based on GO terms (<a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTermCL">Identify Genes based on Cellular Localization Imaging</a>).       
+           </li>
+          </ul>
+     
+      </section>      
+            
+            
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+<record>
   <attribute name="headline">TriTrypDB 31 Released</attribute>
   <attribute name="date">08 Mar 2017 13:00</attribute>
   <attribute name="tag">tritrypdb03_17_release</attribute>
