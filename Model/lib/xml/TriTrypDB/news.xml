@@ -127,6 +127,8 @@
             Illumina sequencing of poly-A selected RNA of <i>L. mexicana</i> MHOMGT2001U1103 promastigotes, axenic amastigotes and intracellular amastigotes. 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26452044">Fiebig et al.</a>. 
            </li>
+           
+           <!--
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_392d0377dc">T cruzi Transcriptome during Infection in Human Fibroblasts</a> &mdash; 
             Transcriptome of <i>T. cruzi</i> Y strain during infection of human cells mapped against <i>T. cruzi</i> SylvioX10-1.
@@ -137,6 +139,8 @@
             Transcriptome and Translatome of <i>T. cruzi</i> Dm28c strain mapped against <i>T. cruzi</i> SylvioX10-1.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a>. 
            </li>
+           -->
+           
        </ul>
 
      <h4>Proteomics</h4>
